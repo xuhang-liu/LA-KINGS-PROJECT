@@ -107,6 +107,7 @@ const PriceCard = (props) => {
       style={{
         borderRadius: "8px",
         marginLeft: props.first ? "10%" : 0,
+        boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.15)",
         marginRight: props.first ? 0 : "10%",
         backgroundColor: "white",
         height: 650,

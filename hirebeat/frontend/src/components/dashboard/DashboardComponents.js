@@ -15,7 +15,7 @@ const Icon = (props) => {
       className="material-icons-outlined"
       style={{
         fontSize: props.iconSize,
-        marginRight: "6px",
+        marginRight: "10x",
         color: props.iconColor ?? "#7d7d7d",
       }}
     >
@@ -81,7 +81,7 @@ export const renderSuccessTag = (text) => {
       <i
         className="material-icons-outlined"
         style={{
-          fontSize: "10px",
+          fontSize: "15px",
           color: "#67ac5c",
           marginTop: "2px",
         }}
@@ -90,7 +90,7 @@ export const renderSuccessTag = (text) => {
       </i>
       <p
         className="text-success"
-        style={{ fontSize: "10px", marginRight: "10px" }}
+        style={{ color: "#14CC75", fontSize: "15px", marginRight: "10px" }}
       >
         {text}
       </p>

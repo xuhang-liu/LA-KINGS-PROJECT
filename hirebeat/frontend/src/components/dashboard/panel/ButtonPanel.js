@@ -12,7 +12,7 @@ function ButtonPanel(props) {
         onClick={props.renderVideos}
       >
         <IconText
-          textSize={"16px"}
+          textSize={"18px"}
           textDisplayed={"Interviews"}
           iconName={"video_library"}
           textColor={props.subpage == "videos" ? selectColor : defaultColor}
@@ -25,7 +25,7 @@ function ButtonPanel(props) {
         onClick={props.renderAnalytics}
       >
         <IconText
-          textSize={"16px"}
+          textSize={"18px"}
           textDisplayed={"Analytics"}
           iconName={"analytics"}
           textColor={props.subpage == "analytics" ? selectColor : defaultColor}

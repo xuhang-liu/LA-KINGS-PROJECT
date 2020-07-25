@@ -122,7 +122,7 @@ export class Register extends Component {
                 <button
                   type="submit"
                   style={{
-                    WebkitBorderRadius: "20px",
+                    WebkitBorderRadius: "50px",
                     width: "100%",
                     height: "50px",
                     color: "white",

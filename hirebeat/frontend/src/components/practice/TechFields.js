@@ -47,7 +47,8 @@ const FieldButtonGroup = (props) => {
                 marginRight: "15px",
                 marginBottom: "15px",
                 background: field == t ? "#4689FA" : "transparent",
-                border: "1px solid #91B8FB",
+                boxShadow: "none",
+                border: "2px solid #91B8FB",
                 color: field == t ? "white" : "#91B8FB",
               }}
               key={index + "1"}
