@@ -22,9 +22,6 @@ export class VideoPreviewList extends Component {
   render() {
     return (
       <div className="container">
-        <p className="light-grey">
-          {this.props.filter ? null : "Saved videos"}
-        </p>
         {this.props.loaded
           ? this.props.videos.map((v) => {
               if (this.props.filter) {

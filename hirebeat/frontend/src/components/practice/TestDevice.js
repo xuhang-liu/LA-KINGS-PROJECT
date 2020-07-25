@@ -41,7 +41,7 @@ function TestDevice(props) {
             <CardButton
               onTap={props.testDeviceDone}
               textDisplayed={"Start Practice"}
-              buttonWidth={"50%"}
+              buttonWidth={"75%"}
             />
           </div>
         </div>

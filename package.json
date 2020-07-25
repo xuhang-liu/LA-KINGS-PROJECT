@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@stripe/stripe-js": "^1.8.0",
     "apexcharts": "^3.19.2",
     "avatar": "^0.1.0",
     "aws-s3": "^2.0.5",

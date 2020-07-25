@@ -72,7 +72,7 @@ export const CardButton = (props) => {
             : "#FF6B00",
         boxShadow:
           "0px 0px 8px" +
-          (props.btnClassName == "btn btn-success" ? " #7cb873" : "#FF6B00"),
+          (props.btnClassName == "btn btn-success" ? " #14CC75" : "#FF6B00"),
       }}
       onClick={props.onTap}
     >
@@ -151,6 +151,7 @@ export const ButtonContainer = (src, onTap, textDisplayed, btnClassName) => {
           onTap={onTap}
           textDisplayed={textDisplayed}
           buttonWidth={"85%"}
+          WebkitBorderRadius={"40px"}
           btnClassName={btnClassName ?? "btn btn-warning"}
         />
       </CardRow>
@@ -162,8 +163,8 @@ const s = {
   //Dropdown style
   control: (styles) => ({
     ...styles,
-    WebkitBorderRadius: "15px",
-    boxShadow: "0px 2px 8px #B8CEFF",
+    WebkitBorderRadius: "20px",
+    boxShadow: "4px 25px rgba(70, 137, 250, 0.15)",
     border: "none",
     width: "80%",
   }),

@@ -6,8 +6,6 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-...
- 
 conn = boto.connect_s3(os.getenv("AWSAccessKeyId"), os.getenv("AWSSecretKey"))
  
 def sign_s3_upload(request):

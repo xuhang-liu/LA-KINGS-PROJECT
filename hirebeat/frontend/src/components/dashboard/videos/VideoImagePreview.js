@@ -17,7 +17,7 @@ export function VideoImagePreview(props) {
             <p className="text-secondary">{props.v.q_type}</p>
             <p
               className="text-secondary"
-              style={{ marginLeft: "5px", marginRight: "5px" }}
+              style={{ marginLeft: "10px", marginRight: "10px" ,fontSize:"15px"}}
             >
               {" | "}
             </p>

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateProfile } from "../../redux/actions/auth_actions";
 import { createMessage } from "../../redux/actions/message_actions";
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('pk_test_51H4wpRKxU1MN2zWMpM0uKcYl4zZGDIecT8lKilLjKPax7kNxgGrXJEYsAGwQOSTAXOSM8CZC8DlnotePGf6l6KUY00F0TbxnIQ');
 
 const commonDetail1 = "Unlimited mock-interview practice";
 const commonDetail2 = "Request AI analysis on your video interviews";
@@ -21,7 +24,6 @@ const PremiumPrice = () => {
   return (
     <div className="d-flex">
       <p
-        className="strikethrough"
         style={{
           color: "#FF6B00",
           fontSize: 50,
@@ -95,7 +97,7 @@ const PriceCard = (props) => {
   };
   const upgrade = () => {
     props.handleUpgrade();
-    props.createMessage({ successMessage: message });
+    //props.createMessage({ successMessage: message });
   };
   var basicSrc = "https://hirebeat-assets.s3.amazonaws.com/free.png";
   var premiumSrc = "https://hirebeat-assets.s3.amazonaws.com/premium.png";
@@ -105,6 +107,7 @@ const PriceCard = (props) => {
       style={{
         borderRadius: "8px",
         marginLeft: props.first ? "10%" : 0,
+        boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.15)",
         marginRight: props.first ? 0 : "10%",
         backgroundColor: "white",
         height: 650,
@@ -127,14 +130,15 @@ const PriceCard = (props) => {
         {props.first ? (
           <PriceButton onTap={basic} textDisplayed={"Try this plan"} />
         ) : (
-          <PriceButton onTap={upgrade} textDisplayed={"Upgrade for free"} />
+          <PriceButton role="link" onTap={upgrade} textDisplayed={"Upgrade Now"} />
         )}
       </div>
     </div>
   );
 };
 
-class Pricing extends Component {
+export class Pricing extends Component {
+
   makeProfile = () => {
     return {
       user: this.props.user.id,
@@ -143,10 +147,50 @@ class Pricing extends Component {
       membership: 'Premium',
     };
   };
+  
+  handleClickUpgrade = async (event) => {
+    // When the customer clicks on the button, redirect them to Checkout.
+    const stripe = await stripePromise;
+    const { error } = await stripe.redirectToCheckout({
+      lineItems: [{
+        price: 'price_1H8A7JKxU1MN2zWMnXyneDRk', // Replace with the ID of your price
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      successUrl: 'http://127.0.0.1:8000/payment',
+      cancelUrl: 'http://127.0.0.1:8000/pricing',
+      billingAddressCollection: 'auto',
+      customerEmail: this.props.user.email,
+    });
+    error.message;
+  };
+
+  handleClickDefault = async (event) => {
+    // When the customer clicks on the button, redirect them to Checkout.
+    const stripe = await stripePromise;
+    const { error } = await stripe.redirectToCheckout({
+      lineItems: [{
+        price: 'price_1H8AF9KxU1MN2zWMXCW0o7pH', // Replace with the ID of your price
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      successUrl: 'http://127.0.0.1:8000/payment',
+      cancelUrl: 'http://127.0.0.1:8000/pricing',
+      billingAddressCollection: 'auto',
+      customerEmail: this.props.user.email,
+    });
+    error.message;
+  };
 
   handleUpgrade = () => {
-    var profile = this.makeProfile();
-    this.props.updateProfile(profile);
+    this.handleClickUpgrade();
+    /*if(this.handleClickUpgrade()){
+      var profile = this.makeProfile();
+      this.props.updateProfile(profile);
+    }*/
+  };
+  handleDefault = () => {
+    this.handleClickDefault();
   };
 
   render() {
@@ -177,6 +221,7 @@ class Pricing extends Component {
               <PriceCard
                 first={true}
                 createMessage={this.props.createMessage}
+                handleDefault={this.handleDefault}
               />
               <PriceCard
                 first={false}
@@ -199,3 +244,4 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { updateProfile, createMessage })(
   Pricing
 );
+

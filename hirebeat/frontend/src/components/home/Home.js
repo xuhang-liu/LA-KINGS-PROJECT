@@ -7,12 +7,12 @@ const HomeButton = (props) => {
     <button
       className="btn btn-warning"
       style={{
-        WebkitBorderRadius: "20px",
+        WebkitBorderRadius: "50px",
         marginRight: props.first ? 50 : 0,
         background: props.first ? "#FF6B00" : "transparent",
         border: props.first ? "none" : "2px solid white",
         width: "30%",
-        height: 40,
+        height: 50,
         padding: 0, // key to center text in button
         marginBottom: "5%",
       }}
@@ -20,7 +20,7 @@ const HomeButton = (props) => {
     >
       <p
         style={{
-          fontSize: "1vw",
+          fontSize: "1.1vw",
           fontWeight: "bold",
           marginBottom: 0,
         }}
@@ -92,6 +92,7 @@ export class Home extends Component {
         <h2>You seat is vacant</h2>
         <br />
         <HomeButton
+          style={{marginRight: 0,}}
           first={true}
           onTap={() => this.redirectTo("/register/")}
           textDisplayed={"Sign Up Now"}

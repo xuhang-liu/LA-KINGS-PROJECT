@@ -30,8 +30,9 @@ export class ReviewWindow extends Component {
           this.props.video.url == "" ? (
             <h2>No video needs to be reviewed</h2>
           ) : (
-            <div>
-              <VideoPlayer url={this.props.video.url} />
+            <div style={{width: "60%"}}>
+              <div>
+              <VideoPlayer url={this.props.video.url} /></div>
               <Reviews
                 videoID={this.props.video.id}
                 nextVideo={this.nextVideo}

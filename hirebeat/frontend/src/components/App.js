@@ -13,6 +13,7 @@ import Register from "./accounts/Register";
 import PrivateRoute from "./basic/PrivateRoute";
 import Home from "./home/Home";
 import Pricing from "./pricing/Pricing";
+import Payment from "./payment/Payment"
 import Company from "./company/Company";
 import SelectParam from "./practice/SelectParam";
 import TechFields from "./practice/TechFields";
@@ -72,12 +73,13 @@ class App extends Component {
                   component={QuestionTypeChoices}
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
-                <Route exact path="/pricing" component={Pricing} />
+                <PrivateRoute exact path="/pricing" component={Pricing} />
                 <Route exact path="/company" component={Company} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
                 <Route exact path="/" component={Home} />
+                <Route exact path="/payment" component={Payment} />
                 <Route component={NotFoundPage} />
               </Switch>
             </Fragment>
