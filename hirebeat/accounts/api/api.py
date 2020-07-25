@@ -21,10 +21,10 @@ class ResgisterAPI(generics.GenericAPIView):
         user = serializer.save()
         ## email
         subject = 'Welcome letter from Hirebeat'
-        message = 'Welcome!' + request.data['username']
+        message = 'Welcome! ' + request.data['username']
         from_email = 'hirebeat.tech@gmail.com'
         to_list = [request.data['email']]
-        #send_mail(subject,message,from_email,to_list,fail_silently=True)
+        send_mail(subject,message,from_email,to_list,fail_silently=True)
         
         ### token
         _, token = AuthToken.objects.create(user)
