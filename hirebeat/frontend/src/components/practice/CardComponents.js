@@ -164,7 +164,7 @@ const s = {
   control: (styles) => ({
     ...styles,
     WebkitBorderRadius: "20px",
-    boxShadow: "4px 25px rgba(70, 137, 250, 0.15)",
+    boxShadow: "2px 8px rgba(70, 137, 250, 0.15)",
     border: "none",
     width: "80%",
   }),

@@ -4,7 +4,7 @@ import { updateProfile } from "../../redux/actions/auth_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_test_51H4wpRKxU1MN2zWMpM0uKcYl4zZGDIecT8lKilLjKPax7kNxgGrXJEYsAGwQOSTAXOSM8CZC8DlnotePGf6l6KUY00F0TbxnIQ');
+const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
 const commonDetail1 = "Unlimited mock-interview practice";
 const commonDetail2 = "Request AI analysis on your video interviews";
@@ -128,7 +128,7 @@ const PriceCard = (props) => {
         {props.first ? <BasicPrice /> : <PremiumPrice />}
         {props.first ? <BasicDetails /> : <PremiumDetails />}
         {props.first ? (
-          <PriceButton onTap={basic} textDisplayed={"Try this plan"} />
+          <PriceButton onTap={basic} textDisplayed={"Default plan"} />
         ) : (
           <PriceButton role="link" onTap={upgrade} textDisplayed={"Upgrade Now"} />
         )}
@@ -139,26 +139,26 @@ const PriceCard = (props) => {
 
 export class Pricing extends Component {
 
-  makeProfile = () => {
+  /*makeProfile = () => {
     return {
       user: this.props.user.id,
       id: this.props.profile.id,
       save_limit: 1000,
       membership: 'Premium',
     };
-  };
+  };*/
   
   handleClickUpgrade = async (event) => {
     // When the customer clicks on the button, redirect them to Checkout.
     const stripe = await stripePromise;
     const { error } = await stripe.redirectToCheckout({
       lineItems: [{
-        price: 'price_1H8A7JKxU1MN2zWMnXyneDRk', // Replace with the ID of your price
+        price: 'price_1H8WhZKxU1MN2zWMo3Cu8kLn', // Replace with the ID of your price
         quantity: 1,
       }],
       mode: 'subscription',
-      successUrl: 'http://127.0.0.1:8000/payment',
-      cancelUrl: 'http://127.0.0.1:8000/pricing',
+      successUrl: 'https://hirebeat.co/payment',
+      cancelUrl: 'https://hirebeat.co/pricing',
       billingAddressCollection: 'auto',
       customerEmail: this.props.user.email,
     });
@@ -170,12 +170,12 @@ export class Pricing extends Component {
     const stripe = await stripePromise;
     const { error } = await stripe.redirectToCheckout({
       lineItems: [{
-        price: 'price_1H8AF9KxU1MN2zWMXCW0o7pH', // Replace with the ID of your price
+        price: 'price_1H8WheKxU1MN2zWM2KELpMkC', // Replace with the ID of your price
         quantity: 1,
       }],
       mode: 'subscription',
-      successUrl: 'http://127.0.0.1:8000/payment',
-      cancelUrl: 'http://127.0.0.1:8000/pricing',
+      successUrl: 'https://hirebeat.co/payment',
+      cancelUrl: 'https://hirebeat.co/pricing',
       billingAddressCollection: 'auto',
       customerEmail: this.props.user.email,
     });
