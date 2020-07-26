@@ -21,7 +21,7 @@ class ResgisterAPI(generics.GenericAPIView):
         user = serializer.save()
         ## email
         subject = 'Welcome letter from Hirebeat'
-        message = '<html><body><h2>Welcome! '+ request.data['username'] + '</h2><br><br><p>Thank you for being a value customer with us.</p><br><br><br><p>Hirebeat Team</p></body></html>'
+        message = 'Welcome! '+ request.data['username']
         from_email = 'hirebeat.tech@gmail.com'
         to_list = [request.data['email']]
         send_mail(subject,message,from_email,to_list,fail_silently=True)
