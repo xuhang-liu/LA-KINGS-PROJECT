@@ -39,6 +39,7 @@ class Profile(models.Model):
             MaxValueValidator(1000)
         ])
     email_confirmed = models.BooleanField(default=False)
+    customer_id = models.CharField(max_length=30,null=True, blank=True)
 
     def __str__(self):
         return self.user.username
