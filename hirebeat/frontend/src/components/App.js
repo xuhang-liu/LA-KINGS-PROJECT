@@ -18,6 +18,8 @@ import Company from "./company/Company";
 import SelectParam from "./practice/SelectParam";
 import TechFields from "./practice/TechFields";
 import NotFoundPage from "./layout/NotFoundPage";
+import Privacy from "./layout/Privacy";
+import Term from "./layout/Term";
 
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
 
@@ -80,6 +82,8 @@ class App extends Component {
                 <Route exact path="/upload" component={MyVideoUploader} />
                 <Route exact path="/" component={Home} />
                 <Route exact path="/payment" component={Payment} />
+                <Route exact path="/privacy" component={Privacy} />
+                <Route exact path="/term" component={Term} />
                 <Route component={NotFoundPage} />
               </Switch>
             </Fragment>

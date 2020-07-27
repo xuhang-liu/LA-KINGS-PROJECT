@@ -1,4 +1,6 @@
 import React from "react";
+import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+import { Link } from 'react-router-dom'
 
 const whoTitle = "Who we are?";
 const whoContent =
@@ -50,6 +52,22 @@ export default function Pricing() {
           </div>
         </div>
       </div>
+      <div>
+      <MDBFooter color="blue" className="font-small pt-4 mt-4">
+      <div className="footer-copyright text-center py-3">
+        <MDBContainer fluid>
+        <h5 className="title">Links</h5>
+        <Link to="/privacy" className="nav-link">
+            Privacy
+        </Link>
+        <Link to="/term" className="nav-link">
+            Terms
+        </Link>
+          &copy; {new Date().getFullYear()} Copyright: <a href="https://www.hirebeat.co"> Hirebeat.co </a>
+        </MDBContainer>
+      </div>
+    </MDBFooter>
+    </div>
     </div>
   );
 }
