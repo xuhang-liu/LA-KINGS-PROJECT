@@ -81,14 +81,16 @@ function ReviewStatus(props) {
     props.sendVideoForReview,
     props.setSubPage
   );
-  var btnTextExpert = "Expert Analytics";
-  var btnTextAI = "AI Analytics";
+  var btnTextExpert = "Human Analytics";
+  var btnTextAI = "AI Data Analytics";
   return (
     <div className="container height-400">
       <div className="d-flex flex-column justify-content-center align-items-center">
         <p className="text-secondary">Create Your Interview Result</p>
-        <h3>Choose Analysis Method</h3>
-        <p className="text-primary" style={{ fontSize: "25px" }}>
+        <h3 className="h3" style={{ fontSize: "40px", fontWeight: "normal"}}>
+          Choose Analysis Method
+        </h3>
+        <p className="review-text">
           Q:{renderQDes(props.v.q_description)}
         </p>
       </div>

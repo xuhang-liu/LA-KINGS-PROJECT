@@ -419,12 +419,62 @@ h5 {
   color: #7d7d7d;
 }
 
-.btn-success{
+.btn-success {
   background-color: #14CC75;
   border-radius: 50px;
 }
 
-.btn-primary{
+.btn-primary {
   background-color: #FF6B00;
   border-radius: 50px;
+}
+
+.btn-selected {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: #FFFFFF;
+  display: block;
+  text-align:center;
+  margin-right: 15px;
+  background: #4689FA;
+  border-radius: 5px;
+}
+
+.btn-unselected {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  color: #91B8FB;
+  display: block;
+  text-align:center;
+  margin-right: 15px;
+  background: #FFFFFF;
+  border-color: #2196F3;
+  border-radius: 5px;
+}
+
+.text-secondary {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.h3 {
+  font-family: Lato;
+  font-style: normal;
+  color: #000000;
+}
+
+.review-text {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 30px;
+  color: #4689FA;
 }
