@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { updateProfile } from "../../redux/actions/auth_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import { loadStripe } from '@stripe/stripe-js';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
@@ -183,12 +185,25 @@ export class Pricing extends Component {
   };
 
   handleUpgrade = () => {
-    this.handleClickUpgrade();
+    if(this.props.profile.membership == 'Premium'){
+      confirmAlert({
+        title: 'Premium Member Already',
+        message: '',
+        buttons: [
+          {
+            label: 'Sure'
+          }
+        ]
+        });
+    }else{
+      this.handleClickUpgrade();
+    }
     /*if(this.handleClickUpgrade()){
       var profile = this.makeProfile();
       this.props.updateProfile(profile);
     }*/
   };
+
   handleDefault = () => {
     this.handleClickDefault();
   };

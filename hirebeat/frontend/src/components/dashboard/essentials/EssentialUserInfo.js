@@ -18,7 +18,8 @@ export class EssentialUserInfo extends Component {
     isActive: true,
     membership: "",
     email_confirmed: this.props.profile.email_confirmed,
-    active_code: "",
+    email_match: "",
+    saved_video_count: "",
   };
 
   componentDidMount() {
@@ -27,6 +28,7 @@ export class EssentialUserInfo extends Component {
       location: this.props.profile.location,
       membership: this.props.profile.membership,
       email_confirmed: this.props.profile.email_confirmed,
+      saved_video_count: this.props.profile.saved_video_count,
     });
   }
 
@@ -105,7 +107,55 @@ export class EssentialUserInfo extends Component {
       save_limit: 5,
     };
   };*/
+  cancelSub = () => {
+    this.finishEditing();
+    if(this.state.email_match == this.props.user.email){
+      confirmAlert({
+        title: 'Are you sure?',
+        message: 'Subscriptions will cancel immediatelly',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: () => {
+              var profile = this.makeCancelConfirm();
+              this.props.updateProfile(profile);
+            }
+          },
+          {
+            label: 'No'
+          }
+        ]
+        });
+    }else{
+      confirmAlert({
+        title: 'Your email does not match what you type',
+        message: '',
+        buttons: [
+          {
+            label: 'OK'
+          }
+        ]
+        });
+    }
+  };
 
+  makeCancelConfirm = () => {
+    if(this.state.saved_video_count>5){
+      return {
+        user: this.props.user.id,
+        id: this.props.profile.id,
+        membership: 'Regular',
+        save_limit: 5,
+        saved_video_count: 5,
+      };
+    }
+    return {
+      user: this.props.user.id,
+      id: this.props.profile.id,
+      membership: 'Regular',
+      save_limit: 5,
+    };
+  };
 
   makeProfile = () => {
     return {
@@ -182,10 +232,25 @@ export class EssentialUserInfo extends Component {
                     textSize={"15px"}
                   />
                 </div>
-                <div className="col"></div>
+                {this.props.profile.membership == "Regular" &&
+                <div className="col"></div>}
+                {this.props.profile.membership == "Regular" &&
                 <div className="col">
                 {this.props.profile.membership == "Regular" && <Link className="btn" to="/pricing">Upgrade Now</Link>}
-              </div>
+              </div>}
+              <div className="col">
+                  {this.props.profile.membership == "Premium" &&
+                  <input
+                    className="form-control"
+                    type="text"
+                    name={"email_match"}
+                    placeholder={"Type and confirm your email to cancel"}
+                    onChange={this.handleInputChange}
+                />}
+                {this.props.profile.membership == "Premium" &&
+                  <button className="btn" type="button" onClick={this.cancelSub}>Cancel Subscriptions</button>
+                }
+                </div>
               </div>
             </div>
           </DbCenterRow>
@@ -197,6 +262,7 @@ export class EssentialUserInfo extends Component {
           saveChanges={this.saveChanges}
           handleInputChange={this.handleInputChange}
           hide={this.finishEditing}
+          cancelSub={this.cancelSub}
         />
       </div>
     );
@@ -241,7 +307,7 @@ const EditModal = (props) => {
             </button>
           </fieldset>
         </form>
-      </div>
+        </div>
     </MyModal>
   );
 };
