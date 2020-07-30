@@ -15,7 +15,7 @@ export class SocialButtons extends Component {
         onLoginFailure={this.handleSocialLoginFailure}
         type="facebook"
       >
-        Login with Facebook
+        
       </SocialButton>
     );
   };
