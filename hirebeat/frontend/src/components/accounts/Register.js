@@ -61,8 +61,8 @@ export class Register extends Component {
           alignItems: "center",
         }}
       >
-        <h2 className="text-center">Start Your Career with HireBeat</h2>
-        <p style={{ color: "#7d7d7d" }}>
+        <h2 className="text-center" style={{fontSize: "44px"}}>Start your career with the interview</h2>
+        <p style={{ color: "#7d7d7d", fontSize:"20px" }}>
           Join our AI-analysis interview platform to improve your performance.
         </p>
         <div className="col-md-6 m-auto" style={{ width: "30%" }}>
@@ -71,11 +71,16 @@ export class Register extends Component {
               <div className="form-group">
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control "
                   name="username"
-                  placeholder="Username"
+                  placeholder="Username/Email"
                   onChange={this.onChange}
                   value={username}
+                  style={{
+                    background: "#FFFFFF",
+                    border: "1px solid #E5E5E5",
+                    borderRadius: "5px",
+                  }}
                   required
                 />
               </div>
@@ -84,9 +89,14 @@ export class Register extends Component {
                   type="email"
                   className="form-control"
                   name="email"
-                  placeholder="Email. Will be used to retrive password"
+                  placeholder="Email"
                   required
                   onChange={this.onChange}
+                  style={{
+                    background: "#FFFFFF",
+                    border: "1px solid #E5E5E5",
+                    borderRadius: "5px",
+                  }}
                   value={email}
                 />
               </div>
@@ -97,8 +107,13 @@ export class Register extends Component {
                   name="password"
                   onChange={this.onChange}
                   value={password}
-                  placeholder="Password. Should be more than 8 characters."
+                  placeholder="Create Password"
                   minLength="8"
+                  style={{
+                    background: "#FFFFFF",
+                    border: "1px solid #E5E5E5",
+                    borderRadius: "5px",
+                  }}
                   required
                 />
               </div>
@@ -109,13 +124,18 @@ export class Register extends Component {
                   name="password2"
                   onChange={this.onChange}
                   value={password2}
-                  placeholder="Confirm password"
+                  placeholder="Confirm Password"
                   minLength="8"
+                  style={{
+                    background: "#FFFFFF",
+                    border: "1px solid #E5E5E5",
+                    borderRadius: "5px",
+                  }}
                   required
                 />
               </div>
-              <p>
-                Already have an account? <Link to="/login">Login</Link>
+              <p className="d-flex justify-content-end" style={{ fontSize:"20px", color: "grey", fontWeight: "50"}}>
+                Have an account? <Link to="/login"className="active d-flex ml-2" style={{textDecoration: "underline", color:"orange"}}> Log in</Link>
               </p>
               <br />
               <div className="form-group">
@@ -131,29 +151,12 @@ export class Register extends Component {
                     boxShadow: "0px 0px 8px #FF6B00",
                   }}
                 >
-                  Sign up
+                  Register
                 </button>
               </div>
             </fieldset>
           </form>
-          <div className="d-flex justify-content-center align-items-center">
-          <div className="line" />
-          <p
-            style={{
-              color: "#7d7d7d",
-              paddingLeft: 10,
-              paddingRight: 10,
-              paddingTop: 0,
-              marginTop: 0,
-              paddingBottom: 0,
-              marginBottom: 0,
-            }}
-          >
-            Or use
-          </p>
-          <div className="line" />
-        </div>
-        <SocialButtons handleSocialLogin={this.handleSocialLogin} />
+
         </div>
       </div>
     );
