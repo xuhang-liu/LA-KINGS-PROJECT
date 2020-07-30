@@ -5,15 +5,16 @@ import { createMessage } from "../../redux/actions/message_actions";
 import { loadStripe } from '@stripe/stripe-js';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { Redirect } from 'react-router-dom'
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
-const basicDetail1 = "Unlimited feedback";
-const commonDetail1 = "5 Saved videos monthly";
+const basicDetail1 = "Save up to 5 video interviews";
 
-// const commonDetail2 = "Request AI analysis on your video interviews";
-// const commonDetail3 = "Request professional feedback from HR";
-// const commonDetail4 = "Review & replay interview performance";
+const commonDetail1 = "Save up to 5 video interviews";
+const commonDetail2 = "Request AI analysis on your video interviews";
+const commonDetail3 = "Request professional feedback from HR";
+const commonDetail4 = "Review & replay interview performance";
 
 
 
@@ -34,7 +35,7 @@ const PremiumPrice = () => {
           fontSize: 50,
         }}
       >
-        $10
+        $19.99
       </p>
       <p style={{ color: "black", fontSize: 30, paddingTop: 20 }}>/mo</p>
     </div>
@@ -45,7 +46,9 @@ const BasicDetails = () => {
   return (
     <div style={{ marginBottom: "34px" }}>
       <p className="text-muted">{commonDetail1}</p>
-
+      <p className="text-muted">{commonDetail2}</p>
+      <p className="text-muted">{commonDetail3}</p>
+      <p className="text-muted">{commonDetail4}</p>
       <p className="text-muted d-flex justify-content-center">{basicDetail1}</p>
     </div>
   );
@@ -53,7 +56,11 @@ const BasicDetails = () => {
 
 const PremiumDetails = () => {
   return (
-    <div style={{ marginBottom: "34px" }}>
+    <div>
+      <p className="text-muted">{commonDetail1}</p>
+      <p className="text-muted">{commonDetail2}</p>
+      <p className="text-muted">{commonDetail3}</p>
+      <p className="text-muted">{commonDetail4}</p>
       <p className="text-muted">{premiumDetail1}</p>
       <p className="text-muted d-flex justify-content-center">{premiumDetail2}</p>
     </div>
@@ -90,8 +97,9 @@ const PriceButton = (props) => {
 };
 
 const PriceCard = (props) => {
-  var message = props.first ? "Try This Plan" : "Upgrade successfully";
+  var message = props.first ? "Default Plan" : "Upgrade successfully";
   const basic = () => {
+    props.handleDefault();
     props.createMessage({ successMessage: message });
   };
   const upgrade = () => {
@@ -113,7 +121,7 @@ const PriceCard = (props) => {
       }}
     >
       <div className="container d-flex flex-column justify-content-center align-items-center">
-        <div style={{ marginBottom: 20, marginTop: 20 }}>
+        <div style={{ marginBottom: 20, marginTop: 40 }}>
           <img
             src={props.first ? basicSrc : premiumSrc}
             width="80"
@@ -127,7 +135,7 @@ const PriceCard = (props) => {
         {props.first ? <BasicPrice /> : <PremiumPrice />}
         {props.first ? <BasicDetails /> : <PremiumDetails />}
         {props.first ? (
-          <PriceButton role="link" onTap={basic} textDisplayed={"Try This Plan"} />
+          <PriceButton role="link" onTap={basic} textDisplayed={"Default Plan"} />
         ) : (
           <PriceButton role="link" onTap={upgrade} textDisplayed={"Purchase Now"} />
         )}

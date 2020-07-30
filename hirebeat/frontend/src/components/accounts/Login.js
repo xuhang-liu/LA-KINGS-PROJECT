@@ -68,7 +68,7 @@ export class Login extends Component {
               type="text"
               className="form-control"
               name="username"
-              placeholder="Username/Email"
+              placeholder="Username"
               onChange={this.onChange}
               value={username}
               style={{
