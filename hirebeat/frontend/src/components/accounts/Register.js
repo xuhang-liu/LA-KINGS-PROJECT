@@ -156,7 +156,28 @@ export class Register extends Component {
               </div>
             </fieldset>
           </form>
+          <div className="d-flex justify-content-center align-items-center">
+          <div className="line" />
+          <p
 
+            style={{
+              color: "#7d7d7d",
+              paddingLeft: 10,
+              paddingRight: 10,
+              paddingTop: 0,
+              marginTop: 0,
+              paddingBottom: 0,
+              marginBottom: 0,
+              fontSize: "20px"
+            }}
+            className="d-inline"
+
+          >
+            Or use
+          </p>
+          <div className="line" />
+        </div>
+        <SocialButtons handleSocialLogin={this.handleSocialLogin} />
         </div>
       </div>
     );

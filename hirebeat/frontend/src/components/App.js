@@ -75,7 +75,7 @@ class App extends Component {
                   component={QuestionTypeChoices}
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
-                <PrivateRoute exact path="/pricing" component={Pricing} />
+                <Route exact path="/pricing" component={Pricing} />
                 <Route exact path="/company" component={Company} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />

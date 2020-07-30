@@ -53,9 +53,7 @@ const BasicDetails = () => {
 
 const PremiumDetails = () => {
   return (
-    <div>
-      
-
+    <div style={{ marginBottom: "34px" }}>
       <p className="text-muted">{premiumDetail1}</p>
       <p className="text-muted d-flex justify-content-center">{premiumDetail2}</p>
     </div>
@@ -129,7 +127,7 @@ const PriceCard = (props) => {
         {props.first ? <BasicPrice /> : <PremiumPrice />}
         {props.first ? <BasicDetails /> : <PremiumDetails />}
         {props.first ? (
-          <PriceButton onTap={basic} textDisplayed={"Try This Plan"} />
+          <PriceButton role="link" onTap={basic} textDisplayed={"Try This Plan"} />
         ) : (
           <PriceButton role="link" onTap={upgrade} textDisplayed={"Purchase Now"} />
         )}
@@ -236,7 +234,7 @@ export class Pricing extends Component {
               <PriceCard
                 first={true}
                 createMessage={this.props.createMessage}
-                handleDefault={this.handleDefault}
+                handleDefault= {this.handleDefault}
               />
               <PriceCard
                 first={false}
