@@ -96,20 +96,20 @@ const ProgressScore = (props) => {
   return (
     <div className="d-flex align-items-end">
       <p className={scoreClassName}>{props.percent}</p>
-      <p style={{ marginBottom: 5, fontSize: props.height / 1.5 }}>/10</p>
+      <p style={{ marginBottom: 5, fontSize: props.height / 1.5, fontWeight: "bold" }}>/10</p>
     </div>
   );
 };
 
 const PercentTag = (props) => {
   if (props.percent > 8.5) {
-    return <p className="text-success">Excellent!</p>;
+    return <p className="text-success text-10">Excellent!</p>;
   } else if (props.percent > 5) {
-    return <p className="text-primary">Well Done</p>;
+    return <p className="text-primary text-10">Well Done</p>;
   } else if (props.percent > 3) {
-    return <p className="text-warning">You Can Improve</p>;
+    return <p className="text-warning text-10">You Can Improve</p>;
   } else {
-    return <p className="text-danger">Needs Attention!</p>;
+    return <p className="text-danger text-10">Needs Attention!</p>;
   }
 };
 
@@ -120,7 +120,15 @@ const AICategoryReview = (props) => {
       <br />
       <div className="row">
         <div className="col-3 d-flex align-items-center">
-          <p>{props.category}</p>
+          <p style={{ fontFamily: "Lato",
+                      fontStyle: "normal",
+                      fontWeight: "normal",
+                      fontSize: "15px",
+                      lineHeight: "18px",
+                      display: "flex",
+                      alignItems: "center"}}>
+            {props.category}
+           </p>
         </div>
         <div className="col-7">
           <ProgressBar

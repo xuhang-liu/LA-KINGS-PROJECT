@@ -13,14 +13,14 @@ function ReviewStatusButton(props) {
 
   // decide text, className based on review status
   if (props.v.is_expert_reviewed && props.v.is_ai_reviewed) {
-    text = "Reviews Ready";
-    className = "btn btn-success";
+    text = "View Analyze Result";
+    className = "reviewed text-15";
   } else if (!props.v.needed_expert_review || !props.v.needed_ai_review) {
-    text = "Send for review";
-    className = "btn btn-primary";
+    text = "Send Video to Analyze ";
+    className = "not-reviewed text-15";
   } else {
-    text = "Under Review";
-    className = "btn btn-warning";
+    text = "Please Wait for Result";
+    className = "under-review text-15";
   }
 
   return (
@@ -33,7 +33,7 @@ function ReviewStatusButton(props) {
         <button
           onClick={() => setShow(true)}
           className={className}
-          style={{ borderRadius: "20px", width: "200px" }}
+          style={{ color: "#FFFFFF", marginBottom: "0px", display: "block" }}
         >
           {text}
         </button>

@@ -115,7 +115,7 @@ export const ReviewHeader = (props) => {
         </button>
       </div>
       <div className="col-8 d-flex justify-content-center align-items-center">
-        <strong>Review Your Performance</strong>
+        <strong className="text-20" style={{color: "#7D7D7D"}}>Review Your Performance</strong>
       </div>
       <div className="col-2" />
     </DbRow>
@@ -125,8 +125,8 @@ export const ReviewHeader = (props) => {
 export const QuestionTitle = (props) => {
   return (
     <div className="row" style={{ marginLeft: "10px", marginBottom: "10px" }}>
-      <h2 style={{ color: "#98b8f6" }}>Q:</h2>
-      <h2>{props.title}</h2>
+      <h2 className="review-text" style={{ color: "#98b8f6" }}>Q:</h2>
+      <h2 className="review-text" style={{color: "#000000"}}>{props.title}</h2>
     </div>
   );
 };
@@ -140,10 +140,12 @@ export const Comments = (props) => {
 };
 
 const sectionTitleStyle = {
-  fontSize: 17,
-  fontWeight: 200,
-  color: "#7d7d7d",
-  marginBottom: 0,
+  fontFamily: "Lato",
+  fontStyle: "normal",
+  fontWeight: "300",
+  fontSize: "15px",
+  lineHeight: "18px",
+  color: "#7D7D7D",
 };
 
 export const CategoryTitle = (props) => {

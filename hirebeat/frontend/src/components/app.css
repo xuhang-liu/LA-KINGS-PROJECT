@@ -54,20 +54,36 @@ video {
 }
 
 .gradient-progress-blue {
-  background: linear-gradient(45deg, #4689FA, #91B8FB);
+  background: linear-gradient(277.55deg, #91B8FB 0%, #4689FA 100%);
+  border-radius: 10px;
 }
 
 .gradient-progress-orange {
-  background: linear-gradient(45deg, #FF6B00, #FAC046);
+  background: linear-gradient(271.92deg, #FAC046 0%, #FF6B00 100%);
+  border-radius: 10px;
 }
 
 .text-30 {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
   font-size: 30px;
+  line-height: 48px;
+  display: flex;
+  align-items: center;
+  text-align: center;
   margin-bottom: 10px;
 }
 
 .text-15 {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
   font-size: 15px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
   margin-bottom: 5px;
 }
 
@@ -117,9 +133,13 @@ video {
 }
 
 .comments {
-  font-size: large;
-  word-wrap: break-word;
-  width: 100%;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+
 }
 
 .margin-right-20 {
@@ -477,4 +497,51 @@ h5 {
   font-size: 25px;
   line-height: 30px;
   color: #4689FA;
+}
+
+.text-20 {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.text-10 {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+}
+
+.not-reviewed {
+  width: 226px;
+  height: 34px;
+  background: #FF6B00;
+  box-shadow: 0px 4px 25px rgba(255, 107, 0, 0.25);
+  border-radius: 50px;
+  border: 0px;
+}
+
+.under-review {
+  width: 226px;
+  height: 34px;
+  background: #7D7D7D;
+  box-shadow: 0px 4px 25px rgba(125, 125, 125, 0.25);
+  border-radius: 50px;
+  border: 0px;
+}
+
+.reviewed {
+  width: 226px;
+  height: 34px;
+  background: #14CC75;
+  box-shadow: 0px 4px 25px rgba(20, 204, 117, 0.25);
+  border-radius: 50px;
+  border: 0px;
 }
