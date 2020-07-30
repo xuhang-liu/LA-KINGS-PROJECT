@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6
 
 const basicDetail1 = "Save up to 5 video interviews";
 
-const commonDetail1 = "Save up to 5 video interviews";
+const commonDetail1 = "Unlimited mock-interview practice";
 const commonDetail2 = "Request AI analysis on your video interviews";
 const commonDetail3 = "Request professional feedback from HR";
 const commonDetail4 = "Review & replay interview performance";
@@ -128,7 +128,7 @@ const PriceCard = (props) => {
             height="80"
           />
         </div>
-        <h2>{props.first ? "Free" : "Premium"}</h2>
+        <h2>{props.first ? "Basic" : "Premium"}</h2>
         <p className="text-muted">
           {props.first ? "Practice interview" : "Prepare for job seaking"}
         </p>
