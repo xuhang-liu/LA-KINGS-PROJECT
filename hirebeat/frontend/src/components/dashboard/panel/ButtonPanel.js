@@ -42,7 +42,8 @@ function ButtonPanel(props) {
         <IconText
           textSize={"18px"}
           textDisplayed={"Resume"}
-          iconName={"resume"}
+          iconName={"portrait"}
+          iconMargin={"4px"}
           textColor={props.subpage == "resume" ? selectColor : defaultColor}
         />
       </button>
