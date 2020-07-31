@@ -45,8 +45,11 @@ export var radialChartOptions = {
     title: {
       text: "Competency Map",
       style: {
-        fontSize: 20,
-        fontWeight: 200,
+        fontFamily: "Lato",
+        fontStyle: "normal",
+        fontWeight: "300",
+        fontSize: "20px",
+        lineHeight: "24px",
         color: "#7d7d7d",
       },
     },

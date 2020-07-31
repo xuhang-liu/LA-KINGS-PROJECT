@@ -32,6 +32,19 @@ function ButtonPanel(props) {
         />
       </button>
       <br />
+      <button
+        type="button"
+        className="panel-button"
+        onClick={props.renderResume}
+      >
+        <IconText
+          textSize={"18px"}
+          textDisplayed={"Resume"}
+          iconName={"resume"}
+          textColor={props.subpage == "resume" ? selectColor : defaultColor}
+        />
+      </button>
+      <br />
     </div>
   );
 }
