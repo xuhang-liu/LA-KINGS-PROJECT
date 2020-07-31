@@ -2,6 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
+class SubCategory(models.Model):
+    sub_category = models.CharField(max_length=300, default="Not Provided", null=True)
+
+    def __str__(self):
+        return self.sub_category
+
+
 class Question(models.Model):
     class QuestionCategory(models.TextChoices):
         PositiveAttitude = 'Positive Attitude', _('Positive Attitude')
@@ -27,3 +34,10 @@ class Question(models.Model):
         choices=QuestionCategory.choices,
         default=QuestionCategory.PositiveAttitude
     )
+
+class Categorys(models.Model):
+
+    subCategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.question.category + '|' + self.subCategory.sub_category
