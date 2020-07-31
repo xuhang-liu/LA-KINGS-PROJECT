@@ -15,6 +15,7 @@ function ButtonPanel(props) {
           textSize={"18px"}
           textDisplayed={"Interviews"}
           iconName={"video_library"}
+          iconMargin={"4px"}
           textColor={props.subpage == "videos" ? selectColor : defaultColor}
         />
       </button>
@@ -27,8 +28,23 @@ function ButtonPanel(props) {
         <IconText
           textSize={"18px"}
           textDisplayed={"Analytics"}
-          iconName={"analytics"}
+          iconName={"track_changes"}
+          iconMargin={"4px"}
           textColor={props.subpage == "analytics" ? selectColor : defaultColor}
+        />
+      </button>
+      <br />
+      <button
+        type="button"
+        className="panel-button"
+        onClick={props.renderResume}
+      >
+        <IconText
+          textSize={"18px"}
+          textDisplayed={"Resume"}
+          iconName={"portrait"}
+          iconMargin={"4px"}
+          textColor={props.subpage == "resume" ? selectColor : defaultColor}
         />
       </button>
       <br />
