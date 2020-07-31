@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from questions.models import Question
+from questions.models import Question, SubCategory
 from django.utils.translation import gettext_lazy as _
 
 class Video(models.Model):
@@ -32,3 +32,24 @@ class Video(models.Model):
     # More fields to add
     def __str__(self):
         return self.owner.username + '|' + self.created_at.strftime("%m/%d/%Y")
+
+class Transcript(models.Model):
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    transcript = models.CharField(max_length=1000, null=True, blank=True)
+
+    def __str__(self):
+        return self.transcript
+
+class Sentence(models.Model):
+    transcript = models.ForeignKey(Transcript, on_delete=models.CASCADE)
+    timestamp = models.CharField(max_length=500, null=True, blank=True)
+    sentence = models.CharField(max_length=500, null=True, blank=True)
+
+    def __str__(self):
+        return self.timestamp + '|' + self.sentence
+
+class Label(models.Model):
+    sentence = models.ForeignKey(Sentence, on_delete=models.CASCADE)
+    subCategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    label = models.BooleanField(default=False)
