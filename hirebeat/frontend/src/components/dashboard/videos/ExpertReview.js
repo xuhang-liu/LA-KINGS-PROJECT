@@ -19,7 +19,7 @@ const OverallScore = (props) => {
       options={options.options}
       series={options.series}
       type="radialBar"
-      height={115}
+      height={140}
       key={"overall"}
     />
   );

@@ -9,10 +9,14 @@ const AccountBtnText = (props) => {
     <h3
       style={{
         border: "2px solid white",
-        padding: 5,
         borderRadius: "10px",
-        marginTop: 2,
-        fontsize: "20px",
+        boxSizing: "border-box",
+        fontSize: "20px",
+        fontWeight: "normal",
+        lineHeight: "39px",
+        width: "98px",
+        textAlign: "center",
+        marginRight: "15px",
       }}
     >
       {props.textDisplayed}
@@ -92,17 +96,17 @@ export class Header extends Component {
         
           <li className="nav-item">
             <Link to="/" className="nav-link">
-              <h3>Home</h3>
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "59px"}}>Home</h3>
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/pricing" className="nav-link">
-              <h3>Pricing</h3>
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "59px"}}>Pricing</h3>
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/company" className="nav-link">
-              <h3>Company</h3>
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "59px"}}>Company</h3>
             </Link>
           </li>
           
@@ -173,7 +177,7 @@ export class Header extends Component {
                   alt="logo"
                 />
                 
-                <h1 className="d-inline" style={{color:"white"}}>
+                <h1 className="d-inline" style={{color: "white", fontSize: "30px", fontWeight: "bold", marginLeft: "13px"}}>
                 HireBeat
                 </h1>
               
