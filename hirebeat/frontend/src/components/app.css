@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Lato', sans-serif;
+  font-style: normal;
 }
 
 video {
@@ -169,13 +170,14 @@ video {
 
 .panel-button {
   display: block;
-  width: 100%;
+  width: 140px;
   background-color: #fafafb;
   border: none;
-  padding: 15px 100px;
+  padding: 15px;
   font-size: 18px;
   cursor: pointer;
   text-align: center;
+  margin-left: 100px;
 }
 
 .card-container {

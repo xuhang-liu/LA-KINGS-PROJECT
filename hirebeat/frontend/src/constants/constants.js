@@ -55,10 +55,32 @@ export var radialChartOptions = {
     },
     xaxis: {
       categories: ["January", "February", "March", "April"],
+      labels: {
+        show: true,
+        style: {
+          colors: ["#000000", "#000000", "#000000", "#000000", "#000000"],
+          fontSize: "12px",
+          fontFamily: "Lato",
+          fontStyle: "normal",
+          fontWeight: "normal",
+          lineHeight: "7px"
+        }
+      }
     },
     yaxis: {
       max: 10,
       min: 0,
+      labels: {
+        show: true,
+        style: {
+          colors: ["#000000", "#000000", "#000000", "#000000", "#000000"],
+          fontSize: "12px",
+          fontFamily: "Lato",
+          fontStyle: "normal",
+          fontWeight: "normal",
+          lineHeight: "7px"
+        }
+      }
     },
   },
 };

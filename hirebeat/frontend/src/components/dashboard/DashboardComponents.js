@@ -15,7 +15,7 @@ const Icon = (props) => {
       className="material-icons-outlined"
       style={{
         fontSize: props.iconSize,
-        marginRight: "10x",
+        marginRight: props.iconMargin,
         color: props.iconColor ?? "#7d7d7d",
       }}
     >
@@ -44,6 +44,7 @@ export const IconText = (props) => {
       <Icon
         iconName={props.iconName}
         iconSize={props.textSize}
+        iconMargin={props.iconMargin}
         iconColor={props.textColor}
       />
       <p
@@ -107,11 +108,11 @@ export const ReviewHeader = (props) => {
           className="borderless d-flex justify-content-center align-items-center"
         >
           <Icon
-            iconSize={"8px"}
-            iconColor={"#98b8f6"}
+            iconSize={"20px"}
+            iconColor={"#1679c7"}
             iconName={"keyboard_backspace"}
           />
-          <h6 style={{ color: "#98b8f6", marginBottom: 0 }}>Back</h6>
+          <h6 style={{ color: "#1679c7", marginBottom: 0, fontSize: "20px"}}>Back</h6>
         </button>
       </div>
       <div className="col-8 d-flex justify-content-center align-items-center">
