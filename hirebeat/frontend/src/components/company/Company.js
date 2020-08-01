@@ -17,6 +17,7 @@ const Intro = (props) => {
     <div
       className="d-flex flex-column align-items-start"
       style={{ marginBottom: 20 }}
+      
     >
       <h1 style={{ color: "black" }}>{props.title}</h1>
       <p style={{ color: "black", fontSize: 15 }}>{props.content}</p>
@@ -32,27 +33,92 @@ export default function Pricing() {
         padding: 0,
         //backgroundColor: "white",
       }}
-    >
+      >
       <div className="company-bg">
-        <div className="container" style={{ paddingTop: 70 }}>
-          <Intro title={whoTitle} content={whoContent} />
-          <Intro title={whatTitle} content={whatContent} />
-          <div style={{ width: "50%" }}>
-            <Intro title={contactTitle} content={contactContent} />
-            <a
-              style={{
-                color: "#FF6B00",
-                fontSize: 15,
-                textDecoration: "underline",
-              }}
-              href="mailto:Support@HireBeat.co"
-            >
-              Support@HireBeat.co
-            </a>
-          </div>
+      <span className="company-top-text">Help job seekers gain core competence</span>
+      <span className="company-top-text1">by implementing talent intelligent database.</span>
+      </div>
+      <div className="company-top-placeholder">
+      <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/placeholder.png"></img>
+      </div>
+      <div className="company-mid1">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+71.png"/>
+      </div>
+      <div className="company-mid2">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+70.png"/>
+      </div>
+      <div className="company-mid3">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+72.png"/>
+      </div>
+      <div className="company-mid4-text">We are here to help!</div>
+      <div className="company-mid4-line1">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/wrong.png"/>
+      </div>
+      <div className="company-mid4-line1-text">No more aimingless searching for interview questions and advice</div>
+      <div className="company-mid4-line2">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/wrong.png"/>
+      </div>
+      <div className="company-mid4-line2-text">No more untargeted advice and feedback for every interview</div>
+      <div className="company-mid4-line3">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/right.png"/>
+      </div>
+      <div className="company-mid4-line3-text">Simulate real interview experience and repeat practice recodring</div>
+      <div className="company-mid4-line4">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/right.png"/>
+      </div>
+      <div className="company-mid4-line4-text">Receive systmatic AI-driven analysis for your performance</div>
+      <div className="company-mid5-bg">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Subtract.png"/>
+      </div>
+      <div className="company-mid5-toptext">OUR FEATURES</div>
+      <div className="company-mid5-83-icon">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+83.png"/>
+      </div>
+      <div className="company-mid5-84-icon">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+84.png"/>
+      </div>
+      <div className="company-mid5-85-icon">
+        <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+85.png"/>
+      </div>
+      <div className="company-mid5-text1">Utilize our AI-powered video interview platform and receive comprehensive feedback.</div>
+      <div className="company-mid5-text2">Practice your interview anytime anywhere at your own schedule and convenience.</div>
+      <div className="company-mid5-text3">No more expensive coaching fees for interviews, the average costs between $200-399.</div>
+      <div className="company-bottom-title">CONTACT</div>
+      <div className="company-bottom-rec1">
+        <div className="company-bottom-rec1-title1">
+          Technical Support
+        </div>
+        <div className="company-bottom-rec1-text1">
+          Get help with your user account or have questions about how we can help with your next interview.
+        </div>
+        <div className="company-bottom-email1" href={"mailto:Tech@hirebeat.co"}>
+          Tech@hirebeat.co
         </div>
       </div>
-      <div>
+      <div className="company-bottom-rec2">
+        <div className="company-bottom-rec1-title1">
+          Feedback
+        </div>
+        <div className="company-bottom-rec1-text1">
+          Please share your experience with us. Your feedback helps us create a better experience for our customers. 
+        </div>
+        <div className="company-bottom-email1" href={"mailto:Tech@hirebeat.co"}>
+          Admin@hirebeat.co
+        </div>
+      </div>
+      <div className="company-bottom-rec3">
+      <div className="company-bottom-rec1-title1">
+          Join Us
+        </div>
+        <div className="company-bottom-rec1-text1">
+        Join our team to help reshape the recruiting landscape and make products that reach over million people worldwide.
+        </div>
+        <div className="company-bottom-email1" href={"mailto:Tech@hirebeat.co"}>
+          HR@hirebeat.co
+        </div>
+      </div>
+
+      <div className="company-footer">
       <MDBFooter color="blue" className="font-small pt-4 mt-4">
       <div className="footer-copyright text-center py-3">
         <MDBContainer fluid>
