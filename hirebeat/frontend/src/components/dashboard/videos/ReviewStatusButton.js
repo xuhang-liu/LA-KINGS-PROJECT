@@ -33,7 +33,7 @@ function ReviewStatusButton(props) {
         <button
           onClick={() => setShow(true)}
           className={className}
-          style={{ color: "#FFFFFF", marginBottom: "0px", display: "block" }}
+          style={{ color: "#FFFFFF", marginBottom: "0px", display: "block", outline: "none" }}
         >
           {text}
         </button>

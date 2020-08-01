@@ -10,6 +10,7 @@ function ButtonPanel(props) {
         type="button"
         className="panel-button"
         onClick={props.renderVideos}
+        style={{outline: "none"}}
       >
         <IconText
           textSize={"18px"}
@@ -24,6 +25,7 @@ function ButtonPanel(props) {
         type="button"
         className="panel-button"
         onClick={props.renderAnalytics}
+        style={{outline: "none"}}
       >
         <IconText
           textSize={"18px"}
@@ -38,11 +40,13 @@ function ButtonPanel(props) {
         type="button"
         className="panel-button"
         onClick={props.renderResume}
+        style={{outline: "none"}}
       >
         <IconText
           textSize={"18px"}
           textDisplayed={"Resume"}
-          iconName={"resume"}
+          iconName={"text_snippet"}
+          iconMargin={"4px"}
           textColor={props.subpage == "resume" ? selectColor : defaultColor}
         />
       </button>
