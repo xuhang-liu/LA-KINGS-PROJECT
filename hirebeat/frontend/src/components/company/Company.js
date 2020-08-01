@@ -91,9 +91,9 @@ export default function Pricing() {
         <div className="company-bottom-rec1-text1">
           Get help with your user account or have questions about how we can help with your next interview.
         </div>
-        <div className="company-bottom-email1" href={"mailto:Tech@hirebeat.co"}>
+        <a className="company-bottom-email1" href={"mailto:Tech@hirebeat.co"}>
           Tech@hirebeat.co
-        </div>
+        </a>
       </div>
       <div className="company-bottom-rec2">
         <div className="company-bottom-rec1-title1">
@@ -102,9 +102,9 @@ export default function Pricing() {
         <div className="company-bottom-rec1-text1">
           Please share your experience with us. Your feedback helps us create a better experience for our customers. 
         </div>
-        <div className="company-bottom-email1" href={"mailto:Tech@hirebeat.co"}>
+        <a className="company-bottom-email1" href={"mailto:Tech@hirebeat.co"}>
           Admin@hirebeat.co
-        </div>
+        </a>
       </div>
       <div className="company-bottom-rec3">
       <div className="company-bottom-rec1-title1">
@@ -113,9 +113,9 @@ export default function Pricing() {
         <div className="company-bottom-rec1-text1">
         Join our team to help reshape the recruiting landscape and make products that reach over million people worldwide.
         </div>
-        <div className="company-bottom-email1" href={"mailto:Tech@hirebeat.co"}>
+        <a className="company-bottom-email1" href={"mailto:Tech@hirebeat.co"}>
           HR@hirebeat.co
-        </div>
+        </a>
       </div>
 
       <div className="company-footer">
