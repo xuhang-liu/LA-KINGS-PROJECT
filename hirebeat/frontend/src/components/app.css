@@ -41,12 +41,15 @@ video {
   background-size: 100%;
   background-repeat: no-repeat;
   width: 100%;
-  height: 700px;
+  height: 557.76px;
 }
 
 .company-bg {
+  background-image: url("https://hirebeat-assets.s3.amazonaws.com/bg.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
   width: 100%;
-  height: 700px;
+  height: 487px;
 }
 
 .home-1 {
@@ -581,4 +584,364 @@ h5 {
   box-shadow: 0px 4px 25px rgba(20, 204, 117, 0.25);
   border-radius: 50px;
   border: 0px;
+}
+
+.company-top-text{
+  position: absolute;
+width: 538px;
+height: 120px;
+left: 144px;
+top: 162px;
+font-family: Lato;
+font-style: normal;
+font-weight: bold;
+font-size: 50px;
+line-height: 60px;
+color: #FFFFFF;
+}
+
+.company-top-text1{
+  position: absolute;
+width: 394px;
+height: 24px;
+left: 143px;
+top: 314px;
+font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 24px;
+color: #FFFFFF;
+}
+
+.company-top-placeholder{
+  position: absolute;
+width: 715px;
+height: 378px;
+left: 613px;
+top: 282px;
+filter: drop-shadow(0px 0px 50px rgba(70, 137, 250, 0.1));
+border-radius: 10px;
+}
+
+.company-mid1{
+  position: absolute;
+width: 381px;
+height: 133px;
+left: 141px;
+top: 665px;
+}
+
+.company-mid2{
+  position: absolute;
+width: 519px;
+height: 133px;
+left: 434px;
+top: 822px;
+}
+
+.company-footer{
+  position: absolute;
+  top: 3000px;
+  left: 613px;
+}
+
+.company-mid3{
+  position: absolute;
+width: 485px;
+height: 133px;
+left: 807px;
+top: 979px;
+}
+
+.company-mid4-text{
+  position: absolute;
+width: 472px;
+height: 48px;
+left: 141px;
+top: 1177px;
+font-family: Lato;
+font-style: normal;
+font-weight: bold;
+font-size: 40px;
+line-height: 48px;
+color: #000000;
+}
+
+.company-mid4-line1{
+  position: absolute;
+width: 41px;
+height: 40px;
+left: 150px;
+top: 1298px;
+}
+
+.company-mid4-line1-text{
+  position: absolute;
+width: 980px;
+height: 40px;
+left: 231px;
+top: 1298px;
+font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 40px;
+color: #7D7D7D;
+}
+
+.company-mid4-line2{
+  position: absolute;
+width: 41px;
+height: 40px;
+left: 150px;
+top: 1403px;
+}
+
+.company-mid4-line2-text{
+  position: absolute;
+width: 925px;
+height: 40px;
+left: 231px;
+top: 1403px;
+font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 40px;
+color: #7D7D7D;
+}
+
+.company-mid4-line3{
+  position: absolute;
+  width: 41px;
+  height: 34px;
+  left: 150px;
+  top: 1511px;
+}
+
+.company-mid4-line3-text{
+  position: absolute;
+  width: 892px;
+  height: 40px;
+  left: 231px;
+  top: 1508px;
+font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 40px;
+color: #7D7D7D;
+}
+
+.company-mid4-line4{
+  position: absolute;
+width: 41px;
+height: 34px;
+left: 150px;
+top: 1616px;
+}
+
+.company-mid4-line4-text{
+  position: absolute;
+  width: 951px;
+  height: 40px;
+  left: 231px;
+  top: 1613px;
+font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 40px;
+color: #7D7D7D;
+}
+
+.company-mid5-bg{
+  position: absolute;
+width: 1440px;
+height: 714px;
+left: 0px;
+top: 1736px;
+background: linear-gradient(202.18deg, rgba(75, 173, 228, 0.1) 39.11%, rgba(67, 86, 240, 0.1) 92.07%);
+}
+
+.company-mid5-toptext{
+  position: absolute;
+width: 110px;
+height: 18px;
+left: 665px;
+top: 1849px;
+font-family: Lato;
+font-style: normal;
+font-weight: bold;
+font-size: 15px;
+line-height: 18px;
+color: #000000;
+}
+.company-mid5-83-icon{
+  position: absolute;
+width: 265px;
+height: 265px;
+left: 180px;
+top: 1932px;
+}
+.company-mid5-84-icon{
+  position: absolute;
+  width: 265px;
+  height: 265px;
+  left: 540px;
+  top: 1932px;
+}
+.company-mid5-85-icon{
+  position: absolute;
+  width: 265px;
+  height: 265px;
+  left: 890px;
+  top: 1932px;
+}
+.company-mid5-text1{
+  position: absolute;
+width: 281px;
+height: 71px;
+left: 214px;
+top: 2270px;
+font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 24px;
+text-align: center;
+color: #000000;
+}
+.company-mid5-text2{
+  position: absolute;
+  width: 281px;
+  height: 71px;
+  left: 582px;
+  top: 2270px;
+font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 24px;
+text-align: center;
+color: #000000;
+}
+.company-mid5-text3{
+  position: absolute;
+  width: 281px;
+  height: 71px;
+  left: 929px;
+  top: 2270px;
+font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 24px;
+text-align: center;
+color: #000000;
+}
+
+.company-bottom-title{
+  position: absolute;
+width: 71px;
+height: 18px;
+left: 685px;
+top: 2517px;
+font-family: Lato;
+font-style: normal;
+font-weight: bold;
+font-size: 15px;
+line-height: 18px;
+color: #000000;
+}
+
+.company-bottom-rec1{
+  position: absolute;
+width: 326px;
+height: 264px;
+left: 141px;
+top: 2583px;
+
+background: #FFFFFF;
+/* card2 */
+
+box-shadow: 0px 0px 50px rgba(70, 137, 250, 0.1);
+border-radius: 10px;
+}
+.company-bottom-rec2{
+  position: absolute;
+  width: 326px;
+  height: 264px;
+  left: 557px;
+  top: 2583px;
+  
+  background: #FFFFFF;
+  /* card2 */
+  
+  box-shadow: 0px 0px 50px rgba(70, 137, 250, 0.1);
+  border-radius: 10px;
+}
+.company-bottom-rec3{
+  position: absolute;
+  width: 326px;
+  height: 264px;
+  left: 973px;
+  top: 2583px;
+  
+  background: #FFFFFF;
+  /* card2 */
+  
+  box-shadow: 0px 0px 50px rgba(70, 137, 250, 0.1);
+  border-radius: 10px;
+}
+
+.company-bottom-email1{
+  position: absolute;
+width: 204px;
+height: 29px;
+left: 61px;
+top: 197px;
+font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 24px;
+text-align: center;
+text-decoration-line: underline;
+color: #FF6B00;
+}
+
+.company-bottom-rec1-title1{
+  position: absolute;
+width: 274px;
+height: 39px;
+left: 26px;
+top: 33px;
+
+font-family: Lato;
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+line-height: 36px;
+text-align: center;
+
+color: #000000;
+}
+
+.company-bottom-rec1-text1{
+  position: absolute;
+width: 274px;
+height: 96px;
+left: 26px;
+top: 84px;
+
+font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 24px;
+text-align: center;
+
+color: #7D7D7D;
 }
