@@ -58,6 +58,7 @@ export const IconText = (props) => {
           marginBottom: "10px",
           color: props.textColor ?? "#7d7d7d",
           wordWrap: "revert",
+          textAlign: "center",
         }}
       >
         {props.textDisplayed}

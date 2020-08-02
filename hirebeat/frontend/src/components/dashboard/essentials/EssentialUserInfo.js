@@ -233,7 +233,7 @@ export class EssentialUserInfo extends Component {
                   {
                     this.props.profile.membership == "Premium" &&
                     <div className="col" style={{marginBottom: "10px"}}>
-                      <img src={premiumIcon} alt="premiumIcon" />
+                      <img src={premiumIcon} alt="premiumIcon"/>
                       <span style={{marginLeft: "6px"}}>Premium</span>
                     </div>
                   }

@@ -50,13 +50,51 @@ video {
 }
 
 .home-1 {
-  background-image: url("https://hirebeat-assets.s3.amazonaws.com/home-gradient.png");
+  background-image: url("https://hirebeat-assets.s3.amazonaws.com/Home-page/bg.png");
   background-size: 100%;
   background-repeat: no-repeat;
   width: 100%;
   height: 700px;
 }
 
+.home-2 {
+  background-image: url("https://hirebeat-assets.s3.amazonaws.com/Subtract.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 700px;
+}
+
+.home-3 {
+  background-image: url("https://hirebeat-assets.s3.amazonaws.com/Home-page/Group+87.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 700px;
+}
+
+.home-4 {
+  background-color: #E5E5E5;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 500px;
+}
+
+.footer {
+  background-color:  #91B8FB;
+  background-size: 100%;
+  width: 100%;
+  height: 100px;
+}
+
+.footer-align {
+ font-size: 20px;
+ font-weight: normal;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
 .gradient-progress-blue {
   background: linear-gradient(277.55deg, #91B8FB 0%, #4689FA 100%);
   border-radius: 10px;
