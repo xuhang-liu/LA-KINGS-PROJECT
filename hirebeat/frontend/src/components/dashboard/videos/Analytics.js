@@ -9,7 +9,7 @@ export const Analytics = () => {
   const [filter, setFilter] = useState("all");
   return (
     <div>
-      <div className="container d-flex justify-content-start">
+      <div style={{marginBottom: "20px"}} className="container d-flex justify-content-start">
         <button
           className={decideClassName(filter, "all")}
           style = {{width: "77px", height: "42px"}}

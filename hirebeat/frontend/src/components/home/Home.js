@@ -309,12 +309,11 @@ export class Home extends Component {
                   </div>
                 </div>
               </div>
-              <h2 style={{fontSize: "40px", fontWeight: "bold", textAlign: "center", color: "#000000", marginTop: "3%"}}>
+              <h2 style={{fontSize: "40px", fontWeight: "bold", marginLeft:"37%", color: "#000000", marginTop: "3%"}}>
                 Your seat is vacant
               </h2>
               <div className="d-flex justify-content-center">
                 <HomeButton
-                  style={{marginRight: 0,}}
                   first={true}
                   onTap={() => this.redirectTo("/register/")}
                   textDisplayed={"Sign Up Now"}

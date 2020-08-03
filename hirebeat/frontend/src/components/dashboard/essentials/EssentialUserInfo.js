@@ -195,6 +195,9 @@ export class EssentialUserInfo extends Component {
                       iconSize={"20px"}
                       iconColor={"#98b8f6"}
                     />
+                    <p style={{fontSize: "18px", fontFamily: "Lato", paddingTop: "10px", color: "#98b8f6", marginLeft: "20px"}}>
+                        Edit
+                    </p>
                     <IconButton
                       iconName={"edit"}
                       iconSize={"20px"}
@@ -204,9 +207,6 @@ export class EssentialUserInfo extends Component {
                         this.setState({ ...this.state, show: true });
                       }}
                     />
-                    <p style={{fontSize: "18px", fontFamily: "Lato", paddingTop: "10px", color: "#98b8f6"}}>
-                        Edit
-                    </p>
                   </div>
                   {/* for regular user */}
                   {
@@ -232,7 +232,7 @@ export class EssentialUserInfo extends Component {
                   {/* for premium user */}
                   {
                     this.props.profile.membership == "Premium" &&
-                    <div className="col" style={{marginBottom: "10px"}}>
+                    <div className="col" style={{marginBottom: "10px", marginLeft:"30px"}}>
                       <img src={premiumIcon} alt="premiumIcon"/>
                       <span style={{marginLeft: "6px"}}>Premium</span>
                     </div>
@@ -269,7 +269,7 @@ export class EssentialUserInfo extends Component {
                       />
                     </div>
                   </div>
-                  <div className="row">
+                  {/*<div className="row">
                     <div className="col">
                       <IconText
                         iconName={"language"}
@@ -278,12 +278,12 @@ export class EssentialUserInfo extends Component {
                         iconMargin={"3px"}
                       />
                     </div>
-              </div>
+                </div>*/}
                 </div>
-                <div className="col-7">
+                {/*<div className="col-7">
                   <h3 className="text-15">About</h3>
                     <p>{this.props.user.about}</p>  
-                </div>  
+                </div>*/}
               </div>
             </div>
           </DbCenterRow>
