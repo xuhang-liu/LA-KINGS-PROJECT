@@ -12,21 +12,21 @@ export const Analytics = () => {
       <div style={{marginBottom: "20px"}} className="container d-flex justify-content-start">
         <button
           className={decideClassName(filter, "all")}
-          style = {{width: "77px", height: "42px"}}
+          style = {{width: "77px", height: "42px", outline: "none", borderRadius: "5px"}}
           onClick={() => setFilter("all")}
         >
           All
         </button>
         <button
           className={decideClassName(filter, "expert")}
-          style = {{width: "196px", height: "42px"}}
+          style = {{width: "196px", height: "42px", outline: "none", borderRadius: "5px"}}
           onClick={() => setFilter("expert")}
         >
           Expert Analytics
         </button>
         <button
           className={decideClassName(filter, "ai")}
-          style = {{width: "150px", height: "42px"}}
+          style = {{width: "150px", height: "42px", outline: "none", borderRadius: "5px"}}
           onClick={() => setFilter("ai")}
         >
           AI Analytics

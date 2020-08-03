@@ -208,21 +208,23 @@ export class EssentialUserInfo extends Component {
                       }}
                     />
                   </div>
+                  <div className="col"></div><div className="col"></div>
                   {/* for regular user */}
                   {
                     this.props.profile.membership == "Regular" &&
-                    <div className="col">
+                    <div className="col" style={{marginLeft:"10px"}}>
                       <IconText
                         iconName={"card_membership"}  
                         iconMargin={"6px"}
                         textDisplayed={this.props.profile.membership}
-                        textSize={"15px"}
+                        textSize={"18px"}
+                        fontFamily={"Lato"}
                       />
                     </div>
                   }
                   {
                     this.props.profile.membership == "Regular" &&
-                    <div className="upgrade">
+                    <div className="upgrade" style={{marginBottom:"10px"}}>
                       {
                         this.props.profile.membership == "Regular" && 
                         <Link className="text-15" style={{color: "#ffffff", textDecoration: "none", lineHeight: "34px", marginLeft: "30px"}} to="/pricing">Upgrade</Link>
@@ -232,7 +234,7 @@ export class EssentialUserInfo extends Component {
                   {/* for premium user */}
                   {
                     this.props.profile.membership == "Premium" &&
-                    <div className="col" style={{marginBottom: "10px", marginLeft:"30px"}}>
+                    <div className="col" style={{marginLeft:"10px"}}>
                       <img src={premiumIcon} alt="premiumIcon"/>
                       <span style={{marginLeft: "6px"}}>Premium</span>
                     </div>
@@ -240,7 +242,7 @@ export class EssentialUserInfo extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col-4">
+                <div className="col-6">
                   <div className="row">
                     <div className="col">
                       <IconText
@@ -269,6 +271,23 @@ export class EssentialUserInfo extends Component {
                       />
                     </div>
                   </div>
+                  {this.props.profile.membership == "Premium" &&
+                    
+                    <input
+                      className="form-control"
+                      type="text"
+                      name={"email_match"}
+                      placeholder={"Type and confirm your email to cancel"}
+                      onChange={this.handleInputChange}
+                      style={{
+                        fontSize: "12px",
+                        borderRadius: "5px",
+                        paddingLeft: "20px",
+                      }}
+                    />}
+                    {this.props.profile.membership == "Premium" &&
+                      <button className="btn" type="button" onClick={this.cancelSub}>Cancel Subscriptions</button>
+                    }
                   {/*<div className="row">
                     <div className="col">
                       <IconText
@@ -295,7 +314,6 @@ export class EssentialUserInfo extends Component {
           saveChanges={this.saveChanges}
           handleInputChange={this.handleInputChange}
           hide={this.finishEditing}
-          cancelSub={this.cancelSub}
         />
       </div>
     );
@@ -330,7 +348,7 @@ const EditModal = (props) => {
                 onChange={props.handleInputChange}
                 required="required"
               />
-              {/* add About and user Website here */}
+              {/*
               <label style={{ fontSize: "20px" }}>Personal Website</label>
               <input
                 type="url"
@@ -349,7 +367,7 @@ const EditModal = (props) => {
                 value={props.about}
                 placeholder={"About Yourself"}
                 onChange={props.handleInputChange}
-              />
+              />*/}
             </div>
             <button
               type="button"
