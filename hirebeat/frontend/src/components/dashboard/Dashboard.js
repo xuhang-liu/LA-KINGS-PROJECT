@@ -64,7 +64,7 @@ export class Dashboard extends Component {
         <br />
         <br />
         <DbRow>
-          <div className="col-2">
+          <div className="col-3">
             <ButtonPanel
               renderVideos={this.renderVideos}
               renderProfile={this.renderProfile}
