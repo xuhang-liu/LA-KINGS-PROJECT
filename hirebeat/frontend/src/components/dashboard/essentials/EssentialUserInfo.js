@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import premiumIcon from "../../../assets/premium.png"
 
 export class EssentialUserInfo extends Component {
   state = {
@@ -181,76 +182,108 @@ export class EssentialUserInfo extends Component {
                   <h1
                     style={{
                       fontWeight: "bold",
-                      marginRight: "30px",
+                      marginRight: "10px",
                     }}
                   >
                     {this.props.user.username}
                   </h1>
                   <div
                     className="d-flex justify-content-end"
-                    style={{ width: "100%" }}
                   >
                     <IconButton
-                      iconName={"edit"}
-                      iconSize={"28px"}
+                      iconName={"facebook"}
+                      iconSize={"20px"}
                       iconColor={"#98b8f6"}
+                    />
+                    <p style={{fontSize: "18px", fontFamily: "Lato", paddingTop: "10px", color: "#98b8f6", marginLeft: "20px"}}>
+                        Edit
+                    </p>
+                    <IconButton
+                      iconName={"edit"}
+                      iconSize={"20px"}
+                      iconColor={"#98b8f6"}
+                      textDisplayed={"Edit"}
                       onTap={() => {
                         this.setState({ ...this.state, show: true });
                       }}
                     />
                   </div>
+                  {/* for regular user */}
+                  {
+                    this.props.profile.membership == "Regular" &&
+                    <div className="col">
+                      <IconText
+                        iconName={"card_membership"}  
+                        iconMargin={"6px"}
+                        textDisplayed={this.props.profile.membership}
+                        textSize={"15px"}
+                      />
+                    </div>
+                  }
+                  {
+                    this.props.profile.membership == "Regular" &&
+                    <div className="upgrade">
+                      {
+                        this.props.profile.membership == "Regular" && 
+                        <Link className="text-15" style={{color: "#ffffff", textDecoration: "none", lineHeight: "34px", marginLeft: "30px"}} to="/pricing">Upgrade</Link>
+                      }
+                    </div>
+                  }
+                  {/* for premium user */}
+                  {
+                    this.props.profile.membership == "Premium" &&
+                    <div className="col" style={{marginBottom: "10px", marginLeft:"30px"}}>
+                      <img src={premiumIcon} alt="premiumIcon"/>
+                      <span style={{marginLeft: "6px"}}>Premium</span>
+                    </div>
+                  }
                 </div>
               </div>
               <div className="row">
-                <div className="col-3">
-                  <IconText
-                    iconName={"phone"}
-                    textDisplayed={this.props.profile.phone_number}
-                    textSize={"15px"}
-                  />
-                </div>
-                <div className="col-3">
-                  <IconText
-                    iconName={"location_on"}
-                    textDisplayed={this.props.profile.location}
-                    textSize={"15px"}
-                  />
-                </div>
-                <div className="col-3">
-                  <IconText
-                    iconName={"card_membership"}
-                    textDisplayed={"Membership: " + this.props.profile.membership}
-                    textSize={"15px"}
-                  />
+                <div className="col-4">
+                  <div className="row">
+                    <div className="col">
+                      <IconText
+                        iconName={"phone"}
+                        textDisplayed={this.props.profile.phone_number}
+                        textSize={"15px"}
+                        iconMargin={"3px"}
+                      />
+                    </div>
+                    <div className="col">
+                      <IconText
+                        iconName={"location_on"}
+                        textDisplayed={this.props.profile.location}
+                        textSize={"15px"}
+                        iconMargin={"3px"}
+                      />
+                    </div>
                   </div>
-              </div>
-              <div className="row">
-                <div className="col">
-                  <IconText
-                    iconName={"email"}
-                    textDisplayed={this.props.user.email}
-                    textSize={"15px"}
-                  />
+                  <div className="row">
+                    <div className="col">
+                      <IconText
+                        iconName={"email"}
+                        textDisplayed={this.props.user.email}
+                        textSize={"15px"}
+                        iconMargin={"3px"}
+                      />
+                    </div>
+                  </div>
+                  {/*<div className="row">
+                    <div className="col">
+                      <IconText
+                        iconName={"language"}
+                        textDisplayed={this.props.user.website}  // todo: enable user website attribute
+                        textSize={"15px"}
+                        iconMargin={"3px"}
+                      />
+                    </div>
+                </div>*/}
                 </div>
-                {this.props.profile.membership == "Regular" &&
-                <div className="col"></div>}
-                {this.props.profile.membership == "Regular" &&
-                <div className="col">
-                {this.props.profile.membership == "Regular" && <Link className="btn" to="/pricing">Upgrade Now</Link>}
-              </div>}
-              <div className="col">
-                  {this.props.profile.membership == "Premium" &&
-                  <input
-                    className="form-control"
-                    type="text"
-                    name={"email_match"}
-                    placeholder={"Type and confirm your email to cancel"}
-                    onChange={this.handleInputChange}
-                />}
-                {this.props.profile.membership == "Premium" &&
-                  <button className="btn" type="button" onClick={this.cancelSub}>Cancel Subscriptions</button>
-                }
-                </div>
+                {/*<div className="col-7">
+                  <h3 className="text-15">About</h3>
+                    <p>{this.props.user.about}</p>  
+                </div>*/}
               </div>
             </div>
           </DbCenterRow>
@@ -296,6 +329,26 @@ const EditModal = (props) => {
                 placeholder={"Location"}
                 onChange={props.handleInputChange}
                 required="required"
+              />
+              {/* add About and user Website here */}
+              <label style={{ fontSize: "20px" }}>Personal Website</label>
+              <input
+                type="url"
+                className="form-control"
+                name={"website"}
+                value={props.website}
+                placeholder={"Personal Website"}
+                onChange={props.handleInputChange}
+              />
+              <br />
+              <label style={{ fontSize: "20px" }}>About</label>
+              <input
+                type="text"
+                className="form-control"
+                name={"about"}
+                value={props.about}
+                placeholder={"About Yourself"}
+                onChange={props.handleInputChange}
               />
             </div>
             <button
