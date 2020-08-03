@@ -30,6 +30,7 @@ import ReviewWindow from "./review/ReviewWindow";
 import QuestionTypeChoices from "./practice/QuestionTypeChoices";
 
 import "./app.css";
+import "./../../../../node_modules/animate.css/animate.css";
 
 const alertOptions = {
   timeout: 3000,
