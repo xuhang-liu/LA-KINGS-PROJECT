@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter, Link } from "react-router-dom";
 import ScrollAnimation from "react-animate-on-scroll";
-import Fade from "react-reveal/Fade";
 import pc from "./../../assets/pc.png";
 import easyToUse from "./../../assets/easytouse.png";
 import realtime from "./../../assets/realtime.png";
@@ -49,6 +48,26 @@ const HomeButton = (props) => {
   );
 };
 
+function FadeInSection(props) {
+  const [isVisible, setVisible] = React.useState(false);
+  const domRef = React.useRef();
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => setVisible(entry.isIntersecting));
+    });
+    observer.observe(domRef.current);
+  }, []);
+  return (
+    <div
+      style={{width: "100%"}}
+      className={`fade-in-section ${isVisible ? 'is-visible' : ''}`}
+      ref={domRef}
+    >
+      {props.children}
+    </div>
+  );
+}
+
 export class Home extends Component {
   redirectTo = (path) => {
     const { history } = this.props;
@@ -74,9 +93,8 @@ export class Home extends Component {
           alignItems: "center",
         }}
       >
-        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut" style={{width: "100%"}}>
-          <Fade bottom>
-            <div className="row home-1">
+        <FadeInSection>
+            <div className="row home-1" style={{marginLeft: "0px"}}>
               <div className="row">
                 <div className="col" style={{marginLeft: "10%"}}>
                   <div className="row" style={{marginTop: "15%", marginBottom: "10%"}}>
@@ -110,10 +128,8 @@ export class Home extends Component {
                 </div>
               </div>
            </div>
-          </Fade>
-        </ScrollAnimation>
-        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut" style={{width: "100%"}}>
-          <Fade bottom>
+        </FadeInSection>
+        <FadeInSection>
             <div style={{width: "100%"}}>
               <div style={{marginTop: "5%"}}>
                 <h3 style={{fontSize: "15px", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
@@ -224,10 +240,8 @@ export class Home extends Component {
                 </div>
               </div>
             </div>
-          </Fade>
-        </ScrollAnimation>
-        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut" style={{width:"100%"}}>
-          <Fade bottom>
+        </FadeInSection>
+        <FadeInSection>
             <div style={{width: "100%"}}>
               <br/>
               <h3 style={{fontSize: "15px", fontWeight: "bold", textAlign: "center", color: "#000000", marginTop: "5%"}}>
@@ -242,7 +256,7 @@ export class Home extends Component {
                 Are you overwhelmed with endless questions but nowhere to start <br/>
                 Are you frustrated with few useful feedback but only rejection letter?
               </p>
-              <div className="row home-3">
+              <div className="row home-3" style={{marginLeft: "0px"}}>
                 <div className="col" style={{marginTop: "10%", marginLeft: "5%"}}>
                   <img src={laptop} alt="laptop image"/>
                 </div>
@@ -259,10 +273,8 @@ export class Home extends Component {
                 </div>
               </div>
             </div>
-          </Fade>
-        </ScrollAnimation>
-        <ScrollAnimation animateIn="bounceInRight" style={{width:"100%"}}>
-          <Fade bottom>
+        </FadeInSection>
+        <FadeInSection>
             <div style={{width: "100%"}}>
               <div className="home-4">
                 <br/>
@@ -319,7 +331,7 @@ export class Home extends Component {
                   textDisplayed={"Sign Up Now"}
                 />
               </div>
-              <div className="row footer">
+              <div className="row footer" style={{marginLeft: "0px"}}>
                 <div className="col footer-align">
                   <Link style={{textDecoration: "none"}} to="/company" >
                     <p style={{color: "#FFFFFF"}}>About</p>
@@ -347,8 +359,7 @@ export class Home extends Component {
                 </div>
               </div>
             </div>
-          </Fade>
-        </ScrollAnimation>
+        </FadeInSection>
       </div>
     );
   }

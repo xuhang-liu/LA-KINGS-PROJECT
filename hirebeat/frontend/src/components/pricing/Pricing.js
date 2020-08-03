@@ -5,7 +5,10 @@ import { createMessage } from "../../redux/actions/message_actions";
 import { loadStripe } from '@stripe/stripe-js';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
+import fbIcon from "./../../assets/facebook.png";
+import liIcon from "./../../assets/linkedin.png";
+import insIcon from "./../../assets/ins.png";
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
@@ -250,6 +253,33 @@ export class Pricing extends Component {
                 handleUpgrade={this.handleUpgrade}
               />
             </div>
+          </div>
+        </div>
+        <div className="row footer" style={{marginLeft: "0px", marginTop: "25%"}}>
+          <div className="col footer-align">
+            <Link style={{textDecoration: "none"}} to="/company" >
+              <p style={{color: "#FFFFFF"}}>About</p>
+            </Link>
+            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/company" >
+              <p style={{color: "#FFFFFF"}}>Contact</p>
+            </Link>
+            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/privacy" >
+              <p style={{color: "#FFFFFF"}}>Privacy</p>
+            </Link>
+            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/term" >
+              <p style={{color: "#FFFFFF"}}>Terms</p>
+            </Link>
+          </div>
+          <div className="col footer-align">
+            <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
+              <img style={{height:"38px", width: "38px"}} src={fbIcon} alt="facebook icon"/>
+            </button>
+            <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
+              <img style={{height:"38px", width: "38px"}} src={liIcon} alt="linkedin icon"/>
+            </button>
+            <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
+              <img style={{height:"38px", width: "38px"}} src={insIcon} alt="instagram icon"/>
+            </button>
           </div>
         </div>
       </div>
