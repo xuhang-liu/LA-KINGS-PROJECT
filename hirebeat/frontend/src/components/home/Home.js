@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter, Link } from "react-router-dom";
 import ScrollAnimation from "react-animate-on-scroll";
-import "./../../../../../node_modules/animate.css/animate.css";
 import Fade from "react-reveal/Fade";
 import pc from "./../../assets/pc.png";
 import easyToUse from "./../../assets/easytouse.png";
