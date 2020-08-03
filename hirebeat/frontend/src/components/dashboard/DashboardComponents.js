@@ -16,6 +16,7 @@ const Icon = (props) => {
       style={{
         fontSize: props.iconSize,
         marginRight: props.iconMargin,
+        marginBottom:"10px",
         color: props.iconColor ?? "#7d7d7d",
       }}
     >
@@ -27,7 +28,11 @@ const Icon = (props) => {
 export const IconButton = (props) => {
   //iconSize, iconName, iconColor, onTap
   return (
-    <button className="btn-sm" style={{ border: "none" }} onClick={props.onTap}>
+    <button
+    className="btn-sm"
+    style={{ border: "none", outline: "none", background: "white"}}
+    onClick={props.onTap}
+    >
       <Icon
         iconSize={props.iconSize}
         iconColor={props.iconColor}
@@ -50,9 +55,10 @@ export const IconText = (props) => {
       <p
         style={{
           fontSize: props.textSize,
-          marginBottom: "1px",
+          marginBottom: "10px",
           color: props.textColor ?? "#7d7d7d",
           wordWrap: "revert",
+          textAlign: "center",
         }}
       >
         {props.textDisplayed}
@@ -106,13 +112,14 @@ export const ReviewHeader = (props) => {
         <button
           onClick={props.setSubPage}
           className="borderless d-flex justify-content-center align-items-center"
+          style={{outline: "none", background: "white"}}
         >
           <Icon
             iconSize={"20px"}
             iconColor={"#1679c7"}
             iconName={"keyboard_backspace"}
           />
-          <h6 style={{ color: "#1679c7", marginBottom: 0, fontSize: "20px"}}>Back</h6>
+          <h6 style={{ color: "#1679c7", marginBottom: "10px", fontSize: "20px"}}>Back</h6>
         </button>
       </div>
       <div className="col-8 d-flex justify-content-center align-items-center">
