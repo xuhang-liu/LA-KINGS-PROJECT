@@ -80,6 +80,7 @@ export class Register extends Component {
                     background: "#FFFFFF",
                     border: "1px solid #E5E5E5",
                     borderRadius: "5px",
+                    paddingLeft: "20px",
                   }}
                   required
                 />
@@ -96,6 +97,7 @@ export class Register extends Component {
                     background: "#FFFFFF",
                     border: "1px solid #E5E5E5",
                     borderRadius: "5px",
+                    paddingLeft: "20px",
                   }}
                   value={email}
                 />
@@ -113,6 +115,7 @@ export class Register extends Component {
                     background: "#FFFFFF",
                     border: "1px solid #E5E5E5",
                     borderRadius: "5px",
+                    paddingLeft: "20px",
                   }}
                   required
                 />
@@ -130,6 +133,7 @@ export class Register extends Component {
                     background: "#FFFFFF",
                     border: "1px solid #E5E5E5",
                     borderRadius: "5px",
+                    paddingLeft: "20px",
                   }}
                   required
                 />
@@ -173,7 +177,7 @@ export class Register extends Component {
             className="d-inline"
 
           >
-            Or use
+            <p className="oruse-text">Or use</p>
           </p>
           <div className="line" />
         </div>

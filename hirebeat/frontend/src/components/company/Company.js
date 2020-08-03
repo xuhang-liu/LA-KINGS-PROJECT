@@ -120,7 +120,7 @@ export default function Pricing() {
             HR@hirebeat.co
           </a>
         </div>
-        <div className="row footer footer-company" style={{marginLeft: "0px"}}>
+        <div className="row footer footer-company" style={{marginLeft: "0px", marginRight: "0px"}}>
           <div className="col footer-align">
             <Link style={{textDecoration: "none"}} to="/company" >
               <p style={{color: "#FFFFFF"}}>About</p>
