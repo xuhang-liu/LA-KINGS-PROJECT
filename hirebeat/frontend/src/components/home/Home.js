@@ -98,11 +98,11 @@ export class Home extends Component {
               <div className="row">
                 <div className="col" style={{marginLeft: "10%"}}>
                   <div className="row" style={{marginTop: "15%", marginBottom: "10%"}}>
-                    <p style={{fontSize: "50px", fontWeight: "bold", color: "#FFFFFF", textAlign: "center"}}>
+                    <p style={{fontSize: "50px", fontWeight: "bold", color: "#FFFFFF"}}>
                       Land your next job, <br/>
                       starting with the interview
                     </p>
-                    <p style={{fontSize: "20px", fontWeight: "normal", color: "#FFFFFF", textAlign: "center"}}>
+                    <p style={{fontSize: "20px", fontWeight: "normal", color: "#FFFFFF"}}>
                       AI-analysis interview platform that supercharges your performance <br/>
                       and makes a great impression at your next interview.
                     </p>
@@ -287,10 +287,10 @@ export class Home extends Component {
                 </p>
                 <div className="row">
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center"}}>
-                      <img src={step1} alt="step1 image"/>
+                    <div className="row" style={{justifyContent: "center", marginLeft: "30%"}}>
+                      <img src={step1} alt="step1 image" style={{width:"50%"}}/>
                     </div>
-                    <div className="row" style={{justifyContent: "center"}}>
+                    <div className="row" style={{justifyContent: "center", marginLeft: "30%"}}>
                       <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#000000"}}>
                         Choose Interview <br/>
                         & Practice
@@ -299,7 +299,7 @@ export class Home extends Component {
                   </div>
                   <div className="col">
                     <div className="row" style={{justifyContent: "center"}}>
-                      <img src={step2} alt="step2 image"/>
+                      <img src={step2} alt="step2 image" style={{width:"36.5%"}}/>
                     </div>
                     <div className="row" style={{justifyContent: "center"}}>
                       <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#000000"}}>
@@ -309,10 +309,10 @@ export class Home extends Component {
                     </div>
                   </div>
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center"}}>
-                      <img src={step3} alt="step3 image"/>
+                    <div className="row" style={{justifyContent: "center", marginRight: "30%"}}>
+                      <img src={step3} alt="step3 image" style={{width:"50%"}}/>
                     </div>
-                    <div className="row" style={{justifyContent: "center"}}>
+                    <div className="row" style={{justifyContent: "center", marginRight: "30%"}}>
                       <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#000000"}}>
                         Review & <br/>
                         Pivot
@@ -321,10 +321,10 @@ export class Home extends Component {
                   </div>
                 </div>
               </div>
-              <h2 style={{fontSize: "40px", fontWeight: "bold", marginLeft:"37%", color: "#000000", marginTop: "3%"}}>
+              <h2 style={{fontSize: "40px", fontWeight: "bold", textAlign:"center", color: "#000000", marginTop: "3%"}}>
                 Your seat is vacant
               </h2>
-              <div className="d-flex justify-content-center">
+              <div style={{textAlign:"center", marginLeft:"50px"}}>
                 <HomeButton
                   first={true}
                   onTap={() => this.redirectTo("/register/")}
@@ -347,7 +347,7 @@ export class Home extends Component {
                   </Link>
                 </div>
                 <div className="col footer-align">
-                  <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
+                  <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
                     <img style={{height:"38px", width: "38px"}} src={fbIcon} alt="facebook icon"/>
                   </button>
                   <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>

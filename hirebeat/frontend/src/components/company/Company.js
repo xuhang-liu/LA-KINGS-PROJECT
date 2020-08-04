@@ -34,12 +34,16 @@ export default function Pricing() {
       className="container-fluid"
       style={{
         padding: 0,
-//        backgroundColor: "white",
+        backgroundColor: "white",
+        display: "flex",
+        flexDirection: "column",
+        alignContent: "center",
+        alignItems: "center",
       }}
       >
         <div className="company-bg">
-          <span className="company-top-text">Help job seekers gain core competence</span>
-          <span className="company-top-text1">by implementing talent intelligent database.</span>
+          <div className="company-top-text">Help job seekers gain core competence</div>
+          <div className="company-top-text1">by implementing talent intelligent database.</div>
         </div>
         <div className="company-top-placeholder">
           <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/placeholder.png"></img>
