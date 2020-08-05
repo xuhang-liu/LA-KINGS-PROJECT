@@ -271,7 +271,7 @@ export class Pricing extends Component {
             </Link>
           </div>
           <div className="col footer-align">
-            <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
+            <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
               <img style={{height:"38px", width: "38px"}} src={fbIcon} alt="facebook icon"/>
             </button>
             <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
