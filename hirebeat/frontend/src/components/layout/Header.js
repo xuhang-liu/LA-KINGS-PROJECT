@@ -9,10 +9,14 @@ const AccountBtnText = (props) => {
     <h3
       style={{
         border: "2px solid white",
-        padding: 5,
         borderRadius: "10px",
-        marginTop: 2,
-        fontsize: "20px",
+        boxSizing: "border-box",
+        fontSize: "20px",
+        fontWeight: "normal",
+        lineHeight: "39px",
+        width: "98px",
+        textAlign: "center",
+        marginRight: "15px",
       }}
     >
       {props.textDisplayed}
@@ -87,17 +91,44 @@ export class Header extends Component {
 
   renderGuestLinks = () => {
     return (
-      <ul className="navbar-nav" style={{ marginLeft: "50%" }}>
-        <li className="nav-item">
-          <Link to="/register" className="nav-link">
-            <AccountBtnText textDisplayed={"Sign up"} />
-          </Link>
-        </li>
+      <ul className="navbar-nav d-flex mx-auto" >
+        <ul className="navbar-nav d-flex my-auto mr-5">
+        
+          <li className="nav-item">
+            <Link to="/" className="nav-link">
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "59px"}}>Home</h3>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/pricing" className="nav-link">
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "59px"}}>Pricing</h3>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/company" className="nav-link">
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "59px"}}>Company</h3>
+            </Link>
+          </li>
+          
+        </ul>
+      
+      
+      
+      
+      
+      
         <li className="nav-item">
           <Link to="/login" className="nav-link">
             <AccountBtnText textDisplayed={"Log in"} />
           </Link>
         </li>
+        
+        <li className="nav-item">
+          <Link to="/register" className="nav-link">
+            <AccountBtnText textDisplayed={"Sign up"} />
+          </Link>
+        </li>
+        
       </ul>
     );
   };
@@ -134,10 +165,22 @@ export class Header extends Component {
             backgroundColor: "transparent", paddingTop: "10px",
           }}
         >
-          <ul className="navbar-nav mr-auto align-items-center">
+          <ul className="navbar-nav mr-auto align-item-center">
             <li className="nav-item active">
-              <Link to="/" className="nav-link">
-                <h1>HireBeat</h1>
+              <Link to="/" className="navbar-brand">
+                
+                <img
+                  src="https://s3-alpha-sig.figma.com/img/c5c5/dfc2/82b9bc35ccd596ef998414d29e3bfb03?Expires=1597017600&Signature=KHHGJY0hmjgboZ6KUby3IwD8jMeyPH4OHQ1eJmYEYrrfvpaiUjPxx1mGMP8NW~DApYAutXT4gQFtD8dTIDR4OXOPHJ2~18w74QBIR9J2OgjoU75~dxu2DF70JJzTTRnJVB4X~Z-HAUpFkLKauBgBvtJKFZYA2IFFjkPusK~enjUq4MEr0rcHo1tI500kSItpmuxUnska-DKQR-jxjvna1vT0AIkzj0nW6LwiVtWNdArp3M9E6tZFAMjNIMibWqUD2rLR1aNoZZ0pE2CBmer9UlmBOocawuiBsYXIL6W-I8hQPBztei4Uz7p1~odsliedcwZzpv5IzS5PfpqgUA66sQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                  width="30"
+                  height="30"
+                  className="d-inline-block align-top"
+                  alt="logo"
+                />
+                
+                <h1 className="d-inline" style={{color: "white", fontSize: "30px", fontWeight: "bold", marginLeft: "13px"}}>
+                HireBeat
+                </h1>
+              
               </Link>
             </li>
           </ul>

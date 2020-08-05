@@ -3,6 +3,7 @@ import ButtonPanel from "./panel/ButtonPanel";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 import VideoPreviewList from "./videos/VideoPreviewList";
 import { Analytics } from "./videos/Analytics";
+import { Resume } from "./videos/Resume";
 import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 import { DbRow } from "./DashboardComponents";
@@ -30,12 +31,19 @@ export class Dashboard extends Component {
     });
   };
 
+  renderResume = () => {
+    this.setState({
+      subpage: "resume",
+    });
+  };
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "videos":
         return <VideoPreviewList />;
       case "analytics":
         return <Analytics />;
+      case "resume":
+        return <Resume />;
       default:
       //Do nothing
     }
@@ -56,11 +64,12 @@ export class Dashboard extends Component {
         <br />
         <br />
         <DbRow>
-          <div className="col-2">
+          <div className="col-3">
             <ButtonPanel
               renderVideos={this.renderVideos}
               renderProfile={this.renderProfile}
               renderAnalytics={this.renderAnalytics}
+              renderResume={this.renderResume}
               subpage={this.state.subpage}
             />
           </div>

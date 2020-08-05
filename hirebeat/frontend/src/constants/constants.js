@@ -45,17 +45,42 @@ export var radialChartOptions = {
     title: {
       text: "Competency Map",
       style: {
-        fontSize: 20,
-        fontWeight: 200,
+        fontFamily: "Lato",
+        fontStyle: "normal",
+        fontWeight: "300",
+        fontSize: "20px",
+        lineHeight: "24px",
         color: "#7d7d7d",
       },
     },
     xaxis: {
       categories: ["January", "February", "March", "April"],
+      labels: {
+        show: true,
+        style: {
+          colors: ["#000000", "#000000", "#000000", "#000000", "#000000"],
+          fontSize: "12px",
+          fontFamily: "Lato",
+          fontStyle: "normal",
+          fontWeight: "normal",
+          lineHeight: "7px"
+        }
+      }
     },
     yaxis: {
       max: 10,
       min: 0,
+      labels: {
+        show: true,
+        style: {
+          colors: ["#000000", "#000000", "#000000", "#000000", "#000000"],
+          fontSize: "12px",
+          fontFamily: "Lato",
+          fontStyle: "normal",
+          fontWeight: "normal",
+          lineHeight: "7px"
+        }
+      }
     },
   },
 };

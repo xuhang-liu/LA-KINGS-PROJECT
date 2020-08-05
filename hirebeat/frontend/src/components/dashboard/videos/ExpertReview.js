@@ -19,7 +19,7 @@ const OverallScore = (props) => {
       options={options.options}
       series={options.series}
       type="radialBar"
-      height={115}
+      height={140}
       key={"overall"}
     />
   );
@@ -53,7 +53,7 @@ export function ExpertReview(props) {
           );
         })}
       </div>
-      <h3 style={{ color: "#98b8f6" }}>Comments:</h3>
+      <h3 className="text-20" style={{ color: "#4689FA", display: "flex" }}>Comments:</h3>
       <Comments comments={props.v.comments} />
     </div>
   );

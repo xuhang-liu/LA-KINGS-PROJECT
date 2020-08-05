@@ -40,6 +40,7 @@ class Profile(models.Model):
         ])
     email_confirmed = models.BooleanField(default=False)
     customer_id = models.CharField(max_length=30,null=True, blank=True)
+    sub_id = models.CharField(max_length=30,null=True, blank=True)
 
     def __str__(self):
         return self.user.username

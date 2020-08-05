@@ -61,7 +61,7 @@ export class Login extends Component {
         className="col-md-6 m-auto"
         style={{ paddingTop: "70px", width: "25%", minWidth: "200px" }}
       >
-        <h2 className="text-center">Welcome back!</h2>
+        <h2 className="text-center d-flex mb-5 justify-content-center" style={{ fontSize:"44px"}}>Welcome back!</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <input
@@ -71,6 +71,12 @@ export class Login extends Component {
               placeholder="Username"
               onChange={this.onChange}
               value={username}
+              style={{
+                    background: "#FFFFFF",
+                    border: "1px solid #E5E5E5",
+                    borderRadius: "5px",
+                    paddingLeft: "20px",
+                  }}
               required
             />
           </div>
@@ -82,20 +88,29 @@ export class Login extends Component {
               name="password"
               onChange={this.onChange}
               value={password}
+              style={{
+                    background: "#FFFFFF",
+                    border: "1px solid #E5E5E5",
+                    borderRadius: "5px",
+                    paddingLeft: "20px",
+                  }}
               required
             />
           </div>
           <div className="d-flex justify-content-between align-items-center">
             <Link
               to="/register"
-              style={{ textDecoration: "underline", color: "#FF6B00" }}
+              style={{ textDecoration: "underline", color: "#FF6B00",fontSize: "20px", fontWeight:"300"}}
             >
               Create account
             </Link>
             <Link
               to="/password_reset"
               target="_blank"
-              style={{ color: "#7D7D7D" }}
+              style={{ color: "#7D7D7D",
+                        fontSize: "20px",
+                        fontWeight:"300"
+              }}
             >
               Forget password?
             </Link>
@@ -109,6 +124,7 @@ export class Login extends Component {
               type="submit"
               style={{
                 WebkitBorderRadius: "50px",
+                fontSize:"20px",
                 width: "100%",
                 height: "50px",
                 color: "white",
@@ -124,6 +140,7 @@ export class Login extends Component {
         <div className="d-flex justify-content-center align-items-center">
           <div className="line" />
           <p
+
             style={{
               color: "#7d7d7d",
               paddingLeft: 10,
@@ -132,9 +149,12 @@ export class Login extends Component {
               marginTop: 0,
               paddingBottom: 0,
               marginBottom: 0,
+              fontSize: "20px"
             }}
+            className="d-inline"
+
           >
-            Or use
+            <p className="oruse-text">Or use</p>
           </p>
           <div className="line" />
         </div>

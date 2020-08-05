@@ -15,7 +15,8 @@ const Icon = (props) => {
       className="material-icons-outlined"
       style={{
         fontSize: props.iconSize,
-        marginRight: "10x",
+        marginRight: props.iconMargin,
+        marginBottom:"10px",
         color: props.iconColor ?? "#7d7d7d",
       }}
     >
@@ -27,7 +28,11 @@ const Icon = (props) => {
 export const IconButton = (props) => {
   //iconSize, iconName, iconColor, onTap
   return (
-    <button className="btn-sm" style={{ border: "none" }} onClick={props.onTap}>
+    <button
+    className="btn-sm"
+    style={{ border: "none", outline: "none", background: "white"}}
+    onClick={props.onTap}
+    >
       <Icon
         iconSize={props.iconSize}
         iconColor={props.iconColor}
@@ -44,14 +49,16 @@ export const IconText = (props) => {
       <Icon
         iconName={props.iconName}
         iconSize={props.textSize}
+        iconMargin={props.iconMargin}
         iconColor={props.textColor}
       />
       <p
         style={{
           fontSize: props.textSize,
-          marginBottom: "1px",
+          marginBottom: "10px",
           color: props.textColor ?? "#7d7d7d",
           wordWrap: "revert",
+          textAlign: "center",
         }}
       >
         {props.textDisplayed}
@@ -105,17 +112,18 @@ export const ReviewHeader = (props) => {
         <button
           onClick={props.setSubPage}
           className="borderless d-flex justify-content-center align-items-center"
+          style={{outline: "none", background: "white"}}
         >
           <Icon
-            iconSize={"8px"}
-            iconColor={"#98b8f6"}
+            iconSize={"20px"}
+            iconColor={"#1679c7"}
             iconName={"keyboard_backspace"}
           />
-          <h6 style={{ color: "#98b8f6", marginBottom: 0 }}>Back</h6>
+          <h6 style={{ color: "#1679c7", marginBottom: "10px", fontSize: "20px"}}>Back</h6>
         </button>
       </div>
       <div className="col-8 d-flex justify-content-center align-items-center">
-        <strong>Review Your Performance</strong>
+        <strong className="text-20" style={{color: "#7D7D7D"}}>Review Your Performance</strong>
       </div>
       <div className="col-2" />
     </DbRow>
@@ -125,8 +133,8 @@ export const ReviewHeader = (props) => {
 export const QuestionTitle = (props) => {
   return (
     <div className="row" style={{ marginLeft: "10px", marginBottom: "10px" }}>
-      <h2 style={{ color: "#98b8f6" }}>Q:</h2>
-      <h2>{props.title}</h2>
+      <h2 className="review-text" style={{ color: "#98b8f6" }}>Q:</h2>
+      <h2 className="review-text" style={{color: "#000000"}}>{props.title}</h2>
     </div>
   );
 };
@@ -140,10 +148,12 @@ export const Comments = (props) => {
 };
 
 const sectionTitleStyle = {
-  fontSize: 17,
-  fontWeight: 200,
-  color: "#7d7d7d",
-  marginBottom: 0,
+  fontFamily: "Lato",
+  fontStyle: "normal",
+  fontWeight: "300",
+  fontSize: "15px",
+  lineHeight: "18px",
+  color: "#7D7D7D",
 };
 
 export const CategoryTitle = (props) => {
