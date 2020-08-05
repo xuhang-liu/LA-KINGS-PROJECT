@@ -1,5 +1,4 @@
 import React from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 import { Link } from 'react-router-dom'
 import fbIcon from "./../../assets/facebook.png";
 import liIcon from "./../../assets/linkedin.png";
@@ -48,14 +47,17 @@ export default function Pricing() {
         <div className="company-top-placeholder">
           <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/placeholder.png"></img>
         </div>
+        <div className="company-mid1-text">In need of</div>
         <div className="company-mid1">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+71.png"/>
+          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+89.png"/>
         </div>
+        <div className="company-mid2-text">Overwhelmed by</div>
         <div className="company-mid2">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+70.png"/>
+          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+90.png"/>
         </div>
+        <div className="company-mid3-text">Lack of</div>
         <div className="company-mid3">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+72.png"/>
+          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+91.png"/>
         </div>
         <div className="company-mid4-text">We are here to help!</div>
         <div className="company-mid4-line1">
@@ -79,13 +81,13 @@ export default function Pricing() {
         </div>
         <div className="company-mid5-toptext">OUR FEATURES</div>
         <div className="company-mid5-83-icon">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+83.png"/>
+          <img style={{width: "191px", height: "191px"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+83.png"/>
         </div>
         <div className="company-mid5-84-icon">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+84.png"/>
+          <img style={{width: "191px", height: "191px"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+84.png"/>
         </div>
         <div className="company-mid5-85-icon">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+85.png"/>
+          <img style={{width: "191px", height: "191px"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+85.png"/>
         </div>
         <div className="company-mid5-text1">Utilize our AI-powered video interview platform and receive comprehensive feedback.</div>
         <div className="company-mid5-text2">Practice your interview anytime anywhere at your own schedule and convenience.</div>
@@ -124,7 +126,7 @@ export default function Pricing() {
             HR@hirebeat.co
           </a>
         </div>
-        <div className="row footer footer-company" style={{marginLeft: "0px", marginRight: "0px"}}>
+        <div className="row footer footer-company" style={{marginLeft: "0px", marginRight: "0px", marginTop: "5%"}}>
           <div className="col footer-align">
             <Link style={{textDecoration: "none"}} to="/company" >
               <p style={{color: "#FFFFFF"}}>About</p>
@@ -140,7 +142,7 @@ export default function Pricing() {
             </Link>
           </div>
           <div className="col footer-align">
-            <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
+            <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
               <img style={{height:"38px", width: "38px"}} src={fbIcon} alt="facebook icon"/>
             </button>
             <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
