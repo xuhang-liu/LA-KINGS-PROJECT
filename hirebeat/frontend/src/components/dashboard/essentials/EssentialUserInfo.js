@@ -212,8 +212,9 @@ export class EssentialUserInfo extends Component {
                   {/* for regular user */}
                   {
                     this.props.profile.membership == "Regular" &&
-                    <div className="col" style={{marginLeft:"10px"}}>
+                    <div className="col">
                       <IconText
+                        style={{marginRight: "10px"}}
                         iconName={"card_membership"}  
                         iconMargin={"6px"}
                         textDisplayed={this.props.profile.membership}
