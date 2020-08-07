@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import S3FileUpload from "react-s3";
+
 import {
   IconButton,
   DbCenterRow,
@@ -10,12 +12,22 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import premiumIcon from "../../../assets/premium.png"
 
+const config = {
+    bucketName: 'hirebeat-avatar',
+    dirName: '', 
+    region: 'us-east-1',
+    accessKeyId: 'AKIAINMYVZ5BEO5PVMZQ',
+    secretAccessKey: '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',
+}
+
+
 export class EssentialUserInfo extends Component {
   state = {
     show: false,
     phone_number: "",
     location: "",
     filePhoto: "https://hirebeat-assets.s3.amazonaws.com/user.png",
+    avatar:null,
     isActive: true,
     membership: "",
     email_confirmed: this.props.profile.email_confirmed,
@@ -168,14 +180,66 @@ export class EssentialUserInfo extends Component {
     };
   };
 
+
+
+  upload = (e) => {
+    console.log("upload starts");
+    S3FileUpload.uploadFile(e.target.files[0], config)
+      .then(data => {
+        this.setState({
+          filePhoto : data.location
+        })
+      })
+      .catch((err) => console.error(err));
+    // this.setState({filePhoto: URL.createObjectURL(e.target.files[0])});
+    console.log(this.state.filePhoto);
+
+  };
+  
   render() {
     return (
       <div className="card container">
         <div className="card-body">
           <DbCenterRow>
             <div className="col-2">
-            <img src={this.state.filePhoto} />
+              
+                <div className="row justify-content-center">
+                
+                  <img 
+                    style = {{width:"100px", 
+                              height:"100px", 
+                              objectFit:"cover"}} 
+                              
+                    src={this.state.filePhoto} 
+                    
+                    className = {"d-flex mb-2"}/>
+                  
+                </div>
+                
+                <div className="row justify-content-center">
+                  <input
+                    style={{display:"none"}}
+                    type="file"
+                    onChange={this.upload}
+                    ref={fileInput => this.fileInput = fileInput}
+                  />
+                  
+                  <button 
+                    type = "button"
+                    onClick={() => this.fileInput.click()}
+                    className = {"btn btn-sm"}
+                    style={{color: "#98b8f6",
+                            fontSize: "15px"
+                    }}
+                    >
+                  Upload Image
+                  </button>
+                </div>
+              
             </div>
+            
+            
+            
             <div className="col-10">
               <div className="row">
                 <div className="col d-flex align-items-center">
@@ -195,9 +259,11 @@ export class EssentialUserInfo extends Component {
                       iconSize={"20px"}
                       iconColor={"#98b8f6"}
                     />
-                    <p style={{fontSize: "18px", fontFamily: "Lato", paddingTop: "10px", color: "#98b8f6", marginLeft: "20px"}}>
+                    
+                    {/*<p style={{fontSize: "18px", fontFamily: "Lato", paddingTop: "10px", color: "#98b8f6", marginLeft: "20px"}}>
                         Edit
-                    </p>
+                    </p>*/}
+                    
                     <IconButton
                       iconName={"edit"}
                       iconSize={"20px"}
@@ -212,8 +278,9 @@ export class EssentialUserInfo extends Component {
                   {/* for regular user */}
                   {
                     this.props.profile.membership == "Regular" &&
-                    <div className="col" style={{marginLeft:"10px"}}>
+                    <div className="col">
                       <IconText
+                        style={{marginRight: "10px"}}
                         iconName={"card_membership"}  
                         iconMargin={"6px"}
                         textDisplayed={this.props.profile.membership}
@@ -327,6 +394,9 @@ const EditModal = (props) => {
         <form style={{ marginBottom: "3%" }}>
           <fieldset>
             <div className="form-group">
+            
+
+              
               <label style={{ fontSize: "20px" }}>Phone Number</label>
               <input
                 type="number"
