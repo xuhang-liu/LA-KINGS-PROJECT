@@ -6,9 +6,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Redirect, Link } from 'react-router-dom'
-import fbIcon from "./../../assets/facebook.png";
-import liIcon from "./../../assets/linkedin.png";
-import insIcon from "./../../assets/ins.png";
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
@@ -271,16 +268,16 @@ export class Pricing extends Component {
             </Link>
           </div>
           <div className="col footer-align">
-            <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
-              <img style={{height:"38px", width: "38px"}} src={fbIcon} alt="facebook icon"/>
-            </button>
-            <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
-              <img style={{height:"38px", width: "38px"}} src={liIcon} alt="linkedin icon"/>
-            </button>
-            <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
-              <img style={{height:"38px", width: "38px"}} src={insIcon} alt="instagram icon"/>
-            </button>
-          </div>
+                  <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
+                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+                  </button>
+                  <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
+                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+                  </button>
+                  <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
+                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
+                  </button>
+                </div>
         </div>
       </div>
     );

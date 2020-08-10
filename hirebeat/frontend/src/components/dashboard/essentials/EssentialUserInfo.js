@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import S3FileUpload from "react-s3";
+
 import {
   IconButton,
   DbCenterRow,
@@ -10,12 +12,22 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import premiumIcon from "../../../assets/premium.png"
 
+const config = {
+    bucketName: 'hirebeat-avatar',
+    dirName: '',
+    region: 'us-east-1',
+    accessKeyId: 'AKIAINMYVZ5BEO5PVMZQ',
+    secretAccessKey: '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',
+}
+
+
 export class EssentialUserInfo extends Component {
   state = {
     show: false,
     phone_number: "",
     location: "",
     filePhoto: "https://hirebeat-assets.s3.amazonaws.com/user.png",
+    avatar_url:"",
     isActive: true,
     membership: "",
     email_confirmed: this.props.profile.email_confirmed,
@@ -30,6 +42,7 @@ export class EssentialUserInfo extends Component {
       membership: this.props.profile.membership,
       email_confirmed: this.props.profile.email_confirmed,
       saved_video_count: this.props.profile.saved_video_count,
+      filePhoto: this.props.profile.avatar_url
     });
   }
 
@@ -164,8 +177,31 @@ export class EssentialUserInfo extends Component {
       id: this.props.profile.id,
       phone_number: this.state.phone_number,
       location: this.state.location,
-      membership: this.state.membership
+      membership: this.state.membership,
+      avatar_url: this.state.avatar_url
     };
+  };
+
+
+
+  upload = (e) => {
+    console.log("upload starts");
+    e.persist();
+    S3FileUpload.uploadFile(e.target.files[0], config)
+      .then(data => {
+        this.setState({
+          filePhoto: URL.createObjectURL(e.target.files[0]),
+          avatar_url: data.location
+        });
+        console.log(this.state.avatar_url);
+
+        this.saveChanges();
+        console.log(this.props.profile.avatar_url);
+
+      })
+      .catch((err) => console.error(err));
+    // this.setState({});
+
   };
 
   render() {
@@ -174,8 +210,44 @@ export class EssentialUserInfo extends Component {
         <div className="card-body">
           <DbCenterRow>
             <div className="col-2">
-            <img src={this.state.filePhoto} />
+
+                <div className="row justify-content-center">
+
+                  <img
+                    style = {{width:"100px",
+                              height:"100px",
+                              objectFit:"cover"}}
+
+                    src={this.state.filePhoto}
+
+                    className = {"d-flex mb-2"}/>
+
+                </div>
+
+                <div className="row justify-content-center">
+                  <input
+                    style={{display:"none"}}
+                    type="file"
+                    onChange={this.upload}
+                    ref={fileInput => this.fileInput = fileInput}
+                  />
+
+                  <button
+                    type = "button"
+                    onClick={() => this.fileInput.click()}
+                    className = {"btn btn-sm"}
+                    style={{color: "#98b8f6",
+                            fontSize: "15px"
+                    }}
+                    >
+                  Upload Image
+                  </button>
+                </div>
+
             </div>
+
+
+
             <div className="col-10">
               <div className="row">
                 <div className="col d-flex align-items-center">
@@ -195,9 +267,11 @@ export class EssentialUserInfo extends Component {
                       iconSize={"20px"}
                       iconColor={"#98b8f6"}
                     />
-                    <p style={{fontSize: "18px", fontFamily: "Lato", paddingTop: "10px", color: "#98b8f6", marginLeft: "20px"}}>
+
+                    {/*<p style={{fontSize: "18px", fontFamily: "Lato", paddingTop: "10px", color: "#98b8f6", marginLeft: "20px"}}>
                         Edit
-                    </p>
+                    </p>*/}
+
                     <IconButton
                       iconName={"edit"}
                       iconSize={"20px"}
@@ -227,7 +301,7 @@ export class EssentialUserInfo extends Component {
                     this.props.profile.membership == "Regular" &&
                     <div className="upgrade" style={{marginBottom:"10px"}}>
                       {
-                        this.props.profile.membership == "Regular" && 
+                        this.props.profile.membership == "Regular" &&
                         <Link className="text-15" style={{color: "#ffffff", textDecoration: "none", lineHeight: "34px", marginLeft: "30px"}} to="/pricing">Upgrade</Link>
                       }
                     </div>
@@ -273,7 +347,7 @@ export class EssentialUserInfo extends Component {
                     </div>
                   </div>
                   {this.props.profile.membership == "Premium" &&
-                    
+
                     <input
                       className="form-control"
                       type="text"
@@ -328,6 +402,9 @@ const EditModal = (props) => {
         <form style={{ marginBottom: "3%" }}>
           <fieldset>
             <div className="form-group">
+
+
+
               <label style={{ fontSize: "20px" }}>Phone Number</label>
               <input
                 type="number"
