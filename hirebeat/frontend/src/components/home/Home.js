@@ -6,9 +6,7 @@ import people from "./../../assets/people.png";
 import step1 from "./../../assets/step1.png";
 import step2 from "./../../assets/step2.png";
 import step3 from "./../../assets/step3.png";
-import fbIcon from "./../../assets/facebook.png";
-import liIcon from "./../../assets/linkedin.png";
-import insIcon from "./../../assets/ins.png";
+
 const HomeButton = (props) => {
   return (
     <button
@@ -340,13 +338,13 @@ export class Home extends Component {
                 </div>
                 <div className="col footer-align">
                   <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src={fbIcon} alt="facebook icon"/>
+                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
                   </button>
                   <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src={liIcon} alt="linkedin icon"/>
+                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
                   </button>
                   <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src={insIcon} alt="instagram icon"/>
+                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
                   </button>
                 </div>
               </div>

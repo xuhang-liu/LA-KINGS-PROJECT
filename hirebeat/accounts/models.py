@@ -41,7 +41,7 @@ class Profile(models.Model):
     email_confirmed = models.BooleanField(default=False)
     customer_id = models.CharField(max_length=30,null=True, blank=True)
     sub_id = models.CharField(max_length=30,null=True, blank=True)
-    avatar_url = models.CharField(max_length=1000,null=True, blank=True)
+    avatar_url = models.CharField(max_length=1000, default="https://hirebeat-assets.s3.amazonaws.com/user.png", null=True, blank=True)
 
 
 
