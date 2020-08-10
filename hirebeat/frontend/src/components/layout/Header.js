@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
-import hblogo from "./../../assets/hirebeat_logo.png";
 import PropTypes from "prop-types";
 
 const AccountBtnText = (props) => {
@@ -15,9 +14,9 @@ const AccountBtnText = (props) => {
         fontSize: "20px",
         fontWeight: "normal",
         lineHeight: "39px",
-        width: "98px",
+        width: "6rem",
         textAlign: "center",
-        marginRight: "15px",
+        marginRight: "1rem",
       }}
     >
       {props.textDisplayed}
@@ -59,6 +58,11 @@ export class Header extends Component {
           </Link>
         </li>
         <li className="nav-item">
+          <Link to="/bloghome" className="nav-link">
+            <h3>Blog</h3>
+          </Link>
+        </li>
+        <li className="nav-item">
           <div className="btn-group" role="group">
             <button
               id="btnGroupDrop1"
@@ -79,7 +83,7 @@ export class Header extends Component {
               <button
                 onClick={this.props.logout}
                 className="btn btn-danger btn-sm text-light"
-                style={{ width: "80%", marginLeft: 15 }}
+                style={{ width: "80%", marginLeft: "15px" }}
               >
                 Logout
               </button>
@@ -93,31 +97,29 @@ export class Header extends Component {
   renderGuestLinks = () => {
     return (
       <ul className="navbar-nav d-flex mx-auto" >
-        <ul className="navbar-nav d-flex my-auto mr-5">
+        <ul className="navbar-nav d-flex my-auto mr-4">
         
           <li className="nav-item">
             <Link to="/" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "59px"}}>Home</h3>
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem"}}>Home</h3>
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/pricing" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "59px"}}>Pricing</h3>
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem"}}>Pricing</h3>
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/company" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "59px"}}>Company</h3>
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem"}}>Company</h3>
             </Link>
           </li>
-          
+          <li className="nav-item">
+            <Link to="/bloghome" className="nav-link">
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem"}}>Blog</h3>
+            </Link>
+          </li>
         </ul>
-      
-      
-      
-      
-      
-      
         <li className="nav-item">
           <Link to="/login" className="nav-link">
             <AccountBtnText textDisplayed={"Log in"} />
@@ -152,12 +154,24 @@ export class Header extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
     return (
+      <div
+        className="container-fluid"
+        style={{
+          padding: 0,
+          backgroundColor: "white",
+          display: "flex",
+          flexDirection: "column",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+        >
       <nav
         className="navbar navbar-expand-sm navbar-dark my-header-container"
         style={{
           WebkitBoxShadow: "none",
           boxShadow: "none",
           background: "linear-gradient(209.24deg, #4BADE4 0%, #4356F0 97.24%)",
+          width: "100%",
         }}
       >
         <div
@@ -171,14 +185,14 @@ export class Header extends Component {
               <Link to="/" className="navbar-brand">
                 
                 <img
-                  src={hblogo}
-                  width="30"
-                  height="30"
+                  src="https://s3-alpha-sig.figma.com/img/c5c5/dfc2/82b9bc35ccd596ef998414d29e3bfb03?Expires=1597017600&Signature=KHHGJY0hmjgboZ6KUby3IwD8jMeyPH4OHQ1eJmYEYrrfvpaiUjPxx1mGMP8NW~DApYAutXT4gQFtD8dTIDR4OXOPHJ2~18w74QBIR9J2OgjoU75~dxu2DF70JJzTTRnJVB4X~Z-HAUpFkLKauBgBvtJKFZYA2IFFjkPusK~enjUq4MEr0rcHo1tI500kSItpmuxUnska-DKQR-jxjvna1vT0AIkzj0nW6LwiVtWNdArp3M9E6tZFAMjNIMibWqUD2rLR1aNoZZ0pE2CBmer9UlmBOocawuiBsYXIL6W-I8hQPBztei4Uz7p1~odsliedcwZzpv5IzS5PfpqgUA66sQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                  width="30px"
+                  height="30px"
                   className="d-inline-block align-top"
                   alt="logo"
                 />
                 
-                <h1 className="d-inline" style={{color: "white", fontSize: "30px", fontWeight: "bold", marginLeft: "13px"}}>
+                <h1 className="d-inline" style={{color: "white", fontSize: "30px", fontWeight: "bold", marginLeft: "1rem"}}>
                 HireBeat
                 </h1>
               
@@ -201,7 +215,7 @@ export class Header extends Component {
             id="navbarTogglerDemo01"
             style={{
               backgroundColor: "transparent",
-              marginLeft: "30%",
+              marginLeft: "20%",
             }}
           >
             {isAuthenticated
@@ -212,6 +226,7 @@ export class Header extends Component {
           </div>
         </div>
       </nav>
+      </div>
     );
   }
 }

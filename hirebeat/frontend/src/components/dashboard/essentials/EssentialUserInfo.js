@@ -289,7 +289,7 @@ export class EssentialUserInfo extends Component {
                     <div className="col">
                       <IconText
                         style={{marginRight: "10px"}}
-                        iconName={"card_membership"}
+                        iconName={"card_membership"}  
                         iconMargin={"6px"}
                         textDisplayed={this.props.profile.membership}
                         textSize={"18px"}
