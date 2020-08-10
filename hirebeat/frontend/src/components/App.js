@@ -15,6 +15,8 @@ import Home from "./home/Home";
 import Pricing from "./pricing/Pricing";
 import Payment from "./payment/Payment"
 import Company from "./company/Company";
+import BlogHome from "./blog/BlogHome";
+import Blog1 from "./blog/Blog1";
 import SelectParam from "./practice/SelectParam";
 import TechFields from "./practice/TechFields";
 import NotFoundPage from "./layout/NotFoundPage";
@@ -77,6 +79,8 @@ class App extends Component {
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
                 <Route exact path="/pricing" component={Pricing} />
                 <Route exact path="/company" component={Company} />
+                <Route exact path="/bloghome" component={BlogHome} />
+                <Route exact path="/blog1" component={Blog1} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />

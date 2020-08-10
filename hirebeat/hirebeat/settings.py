@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ['34.230.181.0','www.hirebeat.co','hirebeat.co','localhost',"169.254.169.254","[::ffff:a9fe:a9fe]","127.0.0.1"]
-# ALLOWED_HOSTS = ["*"]
+#ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -91,7 +91,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'django',
-	'PASSWORD':'django',
+        'PASSWORD': 'django'
+
     }
 }
 
