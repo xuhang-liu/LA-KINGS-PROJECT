@@ -1,8 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
-import fbIcon from "./../../assets/facebook.png";
-import liIcon from "./../../assets/linkedin.png";
-import insIcon from "./../../assets/ins.png";
+import { Link } from 'react-router-dom';
 
 const topblogTitle="7 Ways to Conduct Interview Practice Online";
 const topblogdate="Aug 2, 2020";
@@ -82,16 +79,16 @@ export default function BlogHome() {
             </Link>
         </div>
         <div className="col footer-align">
-            <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
-            <img style={{height:"38px", width: "38px"}} src={fbIcon} alt="facebook icon"/>
-            </button>
-            <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
-            <img style={{height:"38px", width: "38px"}} src={liIcon} alt="linkedin icon"/>
-            </button>
-            <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
-            <img style={{height:"38px", width: "38px"}} src={insIcon} alt="instagram icon"/>
-            </button>
-        </div>
+                  <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
+                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+                  </button>
+                  <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
+                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+                  </button>
+                  <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
+                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
+                  </button>
+                </div>
         </div>
         </div>
     );
