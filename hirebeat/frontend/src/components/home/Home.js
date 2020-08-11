@@ -314,7 +314,6 @@ export class Home extends Component {
               </h2>
               <div style={{textAlign:"center"}}>
                 <HomeButton
-                  style={{marginRight: "0%"}}
                   first={true}
                   onTap={() => this.redirectTo("/register/")}
                   textDisplayed={"Sign Up Now"}
