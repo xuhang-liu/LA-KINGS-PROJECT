@@ -23,7 +23,7 @@ const premiumDetail2 = "Unlimited feedback monthly";
 
 
 const BasicPrice = () => {
-  return <p style={{ color: "#FF6B00", fontSize: 50 }}>$Free</p>;
+  return <p style={{ color: "#FF6B00", fontSize: "3.125rem" }}>$Free</p>;
 };
 
 const PremiumPrice = () => {
@@ -32,24 +32,24 @@ const PremiumPrice = () => {
       <p
         style={{
           color: "#FF6B00",
-          fontSize: 50,
+          fontSize: "3.125rem",
         }}
       >
         $19.99
       </p>
-      <p style={{ color: "black", fontSize: 30, paddingTop: 20 }}>/mo</p>
+      <p style={{ color: "black", fontSize: "1.875rem", paddingTop: "1.25rem" }}>/mo</p>
     </div>
   );
 };
 
 const BasicDetails = () => {
   return (
-    <div style={{ marginBottom: "34px" }}>
+    <div style={{ marginBottom: "2.125rem" }}>
       <p className="text-muted">{commonDetail1}</p>
       <p className="text-muted">{commonDetail2}</p>
       <p className="text-muted">{commonDetail3}</p>
       <p className="text-muted">{commonDetail4}</p>
-      <p className="text-muted d-flex justify-content-center">{basicDetail1}</p>
+      <p className="text-muted">{basicDetail1}</p>
     </div>
   );
 };
@@ -61,8 +61,8 @@ const PremiumDetails = () => {
       <p className="text-muted">{commonDetail2}</p>
       <p className="text-muted">{commonDetail3}</p>
       <p className="text-muted">{commonDetail4}</p>
-      <p className="text-muted">{premiumDetail1}</p>
-      <p className="text-muted d-flex justify-content-center">{premiumDetail2}</p>
+      <p className="text-muted" style={{fontWeight: "bold"}}>{premiumDetail1}</p>
+      <p className="text-muted" style={{fontWeight: "bold"}}>{premiumDetail2}</p>
     </div>
   );
 };
@@ -72,12 +72,12 @@ const PriceButton = (props) => {
   return (
     <button
       style={{
-        WebkitBorderRadius: "20px",
+        WebkitBorderRadius: "1.25rem",
         background: "#FF6B00",
         border: "none",
         width: "80%",
-        height: 40,
-        marginTop: 50,
+        height: "2.5rem",
+        marginTop: "3.125rem",
         padding: 0, // key to center text in button
       }}
       onClick={props.onTap}
@@ -106,26 +106,25 @@ const PriceCard = (props) => {
     props.handleUpgrade();
     //props.createMessage({ successMessage: message });
   };
-  var basicSrc = "https://hirebeat-assets.s3.amazonaws.com/free.png";
-  var premiumSrc = "https://hirebeat-assets.s3.amazonaws.com/premium.png";
+  var basicSrc = "https://hirebeat-assets.s3.amazonaws.com/003-happy-17+1.png";
+  var premiumSrc = "https://hirebeat-assets.s3.amazonaws.com/020-happy-16+1.png";
   return (
     <div
       className="col-4"
       style={{
-        borderRadius: "8px",
+        borderRadius: "0.5rem",
         marginLeft: props.first ? "10%" : 0,
-        boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.15)",
+        boxShadow:"0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.15)",
         marginRight: props.first ? 0 : "10%",
         backgroundColor: "white",
-        height: 650,
+        height: "40.625rem",
       }}
     >
       <div className="container d-flex flex-column justify-content-center align-items-center">
-        <div style={{ marginBottom: 20, marginTop: 40 }}>
+        <div style={{ marginBottom: "1.25rem", marginTop: "2.5rem", display: "flex", justifyContent: "center" }}>
           <img
             src={props.first ? basicSrc : premiumSrc}
-            width="80"
-            height="80"
+            width="100%"
           />
         </div>
         <h2>{props.first ? "Basic" : "Premium"}</h2>
@@ -220,18 +219,18 @@ export class Pricing extends Component {
         style={{
           padding: 0,
           backgroundColor: "#FAFAFB",
-          height: 900,
+          height: "56.25rem",
         }}
       >
         <div className="pricing-bg">
           <div
             className="container d-flex flex-column justify-content-center align-items-center"
-            style={{ paddingTop: 50 }}
+            style={{ paddingTop: "3.125rem" }}
           >
-            <h1 style={{ color: "white", marginBottom: 50 }}>
+            <h1 style={{ color: "white", marginBottom: "3.125rem" }}>
               Transparent & Simple Pricing
             </h1>
-            <h4 style={{ color: "white", marginBottom: 50, fontSize: "20px" }}>
+            <h4 style={{ color: "white", marginBottom: "3.125rem", fontSize: "1.25rem" }}>
               Get unlimited interview analytics with any HireBeat plan. <br></br>
               <span className="d-flex justify-content-center">Try for free.</span>
             </h4>
@@ -252,30 +251,30 @@ export class Pricing extends Component {
             </div>
           </div>
         </div>
-        <div className="row footer" style={{marginLeft: "0px", marginTop: "25%"}}>
-          <div className="col footer-align">
+        <div className="row footer" style={{marginLeft: "0%", marginTop: "30%"}}>
+          <div className="col-9 footer-align">
             <Link style={{textDecoration: "none"}} to="/company" >
               <p style={{color: "#FFFFFF"}}>About</p>
             </Link>
-            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/company" >
+            <Link style={{textDecoration: "none", marginLeft: "3.75rem"}} to="/company" >
               <p style={{color: "#FFFFFF"}}>Contact</p>
             </Link>
-            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/privacy" >
+            <Link style={{textDecoration: "none", marginLeft: "3.75rem"}} to="/privacy" >
               <p style={{color: "#FFFFFF"}}>Privacy</p>
             </Link>
-            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/term" >
+            <Link style={{textDecoration: "none", marginLeft: "3.75rem", marginRight: "50%"}} to="/term" >
               <p style={{color: "#FFFFFF"}}>Terms</p>
             </Link>
           </div>
           <div className="col footer-align">
-                  <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+                  <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
+                    <img style={{width: "2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
                   </button>
-                  <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+                  <button style={{outline: "none", border: "none", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
+                    <img style={{width: "2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
                   </button>
-                  <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
+                  <button style={{outline: "none", border: "none", borderRadius: "0.625rem"}}>
+                    <img style={{width: "2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
                   </button>
                 </div>
         </div>

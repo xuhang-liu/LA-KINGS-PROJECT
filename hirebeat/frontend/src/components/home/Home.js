@@ -12,15 +12,14 @@ const HomeButton = (props) => {
     <button
       className="btn btn-warning"
       style={{
-        WebkitBorderRadius: "30px",
-        marginRight: props.first ? 50 : 0,
+        WebkitBorderRadius: "1.875rem",
+        marginRight: props.first ? "1rem" : "0rem",
         background: props.first ? "#FF6B00" : "transparent",
-        border: props.first ? "none" : "2px solid white",
-        width: "255px",
-        height: "53px",
+        border: props.first ? "none" : "0.125rem solid white",
+        width: "14rem",
+        height: "3rem",
         padding: 0, // key to center text in button
         marginBottom: "5%",
-        marginTop: "10px",
       }}
       onClick={props.onTap}
     >
@@ -84,15 +83,14 @@ export class Home extends Component {
         }}
       >
         <FadeInSection>
-            <div className="row home-1" style={{marginLeft: "0px"}}>
-              <div className="row">
-                <div className="col" style={{marginLeft: "10%"}}>
-                  <div className="row" style={{marginTop: "15%", marginBottom: "10%"}}>
-                    <p style={{fontSize: "50px", fontWeight: "bold", color: "#FFFFFF"}}>
+            <div className="row home-1" style={{marginLeft: "0%", marginRight: "0%"}}>
+                <div className="col-6" style={{marginLeft: "5%", paddingRight: "0%"}}>
+                  <div style={{marginTop: "15%", marginBottom: "10%", display: "flex", flexWrap: "wrap"}}>
+                    <p style={{fontSize: "3.125rem", fontWeight: "bold", color: "#FFFFFF"}}>
                       Land your next job, <br/>
                       starting with the interview
                     </p>
-                    <p style={{fontSize: "20px", fontWeight: "normal", color: "#FFFFFF"}}>
+                    <p style={{fontSize: "1.25rem", fontWeight: "normal", color: "#FFFFFF"}}>
                       AI-analysis interview platform that supercharges your performance <br/>
                       and makes a great impression at your next interview.
                     </p>
@@ -109,27 +107,25 @@ export class Home extends Component {
                       textDisplayed={"Learn More"}
                     />
                   </ScrollAnimation>
-
                 </div>
-                <div className="col">
-                  <div className="row" style={{marginTop: "30%"}}>
-                    <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/Group.png"} style={{width: "516px", height: "493.16px"}} alt="pc"/>
+                <div className="col" style={{paddingLeft: "0%"}}>
+                  <div style={{marginTop: "35%", display: "flex", flexWrap: "wrap", paddingLeft: "5%"}}>
+                    <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/Group.png"} style={{width: "90%"}} alt="pc"/>
                   </div>
                 </div>
-              </div>
            </div>
         </FadeInSection>
         <FadeInSection>
             <div style={{width: "100%"}}>
               <div style={{marginTop: "5%"}}>
-                <h3 style={{fontSize: "15px", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
+                <h3 style={{fontSize: "0.9375rem", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
                   OUR SERVICES
                 </h3>
-                <p style={{fontSize: "30px", fontWeight: "bold", textAlign: "center", color: "#4356F0"}}>
+                <p style={{fontSize: "1.875rem", fontWeight: "bold", textAlign: "center", color: "#4356F0"}}>
                   We Provide AI-Powered Analysis & Personal <br/>
                   Feedback on Interview Performance
                 </p>
-                <p style={{fontSize: "20px", fontWeight: "normal", textAlign: "center", color: "#1F1F2D"}}>
+                <p style={{fontSize: "1.25rem", fontWeight: "normal", textAlign: "center", color: "#1F1F2D"}}>
                   Transform old ways of practicing to be more efficient and effective. <br/>
                   Provide extensive questions library to match your specific position. <br/>
                   Create intelligent experience to receive constructive feedback.
@@ -137,16 +133,16 @@ export class Home extends Component {
               </div>
               <div className="home-2">
                 <br/>
-                <div className="row" style={{marginTop: "7rem"}}>
+                <div className="row" style={{marginTop: "4rem", marginLeft: "0%", marginRight: "0%"}}>
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center"}}>
-                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/easytouse.png"} style={{width: "91px", height: "91px"}} alt="easy to use icon"/>
+                    <div style={{justifyContent: "center", display: "flex", flexWrap: "wrap"}}>
+                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/easytouse.png"} style={{width: "25%"}} alt="easy to use icon"/>
                     </div>
-                    <div style={{justifyContent: "center", marginTop: "10px"}}>
-                      <h3 style={{fontSize: "30px", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
+                    <div style={{justifyContent: "center", marginTop: "0.625rem"}}>
+                      <h3 style={{fontSize: "1.25rem", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
                         Easy to use
                       </h3>
-                      <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
+                      <p style={{fontSize: "0.9375rem", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
                         Your interview practice is just few <br/>
                         clicks asway, practice interview <br/>
                         anytime anywhere
@@ -154,28 +150,28 @@ export class Home extends Component {
                     </div>
                   </div>
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center"}}>
-                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/realtime.png"} style={{width: "91px", height: "91px"}} alt="realtime icon"/>
+                    <div style={{justifyContent: "center", display: "flex", flexWrap: "wrap"}}>
+                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/realtime.png"} style={{width: "25%"}} alt="realtime icon"/>
                     </div>
-                    <div style={{justifyContent: "center", marginTop: "10px"}}>
-                      <h3 style={{fontSize: "30px", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
+                    <div style={{justifyContent: "center", marginTop: "0.625rem"}}>
+                      <h3 style={{fontSize: "1.25rem", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
                         Real-time simulation
                       </h3>
-                      <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
+                      <p style={{fontSize: "0.9375rem", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
                         You will never know what question is <br/>
                         coming next, just like a live interview
                       </p>
                     </div>
                   </div>
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center"}}>
-                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/questionbank.png"} style={{width: "91px", height: "91px"}} alt="question bank icon"/>
+                    <div style={{justifyContent: "center", display: "flex", flexWrap: "wrap"}}>
+                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/questionbank.png"} style={{width: "25%"}} alt="question bank icon"/>
                     </div>
-                    <div style={{justifyContent: "center", marginTop: "10px"}}>
-                      <h3 style={{fontSize: "30px", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
+                    <div style={{justifyContent: "center", marginTop: "0.625rem"}}>
+                      <h3 style={{fontSize: "1.25rem", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
                         Interview question bank
                       </h3>
-                      <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
+                      <p style={{fontSize: "0.9375rem", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
                         Forget the random articles online <br/>
                         and get thousands of interview <br/>
                         questions across different industries
@@ -183,44 +179,44 @@ export class Home extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="row" style={{marginTop:"1rem"}}>
+                <div className="row" style={{marginTop:"1rem", marginLeft: "0%", marginRight: "0%"}}>
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center"}}>
-                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/review.png"} style={{width: "91px", height: "91px"}} alt="review icon"/>
+                    <div style={{justifyContent: "center", display: "flex", flexWrap: "wrap"}}>
+                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/review.png"} style={{width: "25%"}} alt="review icon"/>
                     </div>
-                    <div style={{justifyContent: "center", marginTop: "10px"}}>
-                      <h3 style={{fontSize: "30px", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
+                    <div style={{justifyContent: "center", marginTop: "0.625rem"}}>
+                      <h3 style={{fontSize: "1.25rem", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
                         Review & Replay
                       </h3>
-                      <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
+                      <p style={{fontSize: "0.9375rem", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
                         Secured stage allows you to track <br/>
                         and revisit your training progress
                       </p>
                     </div>
                   </div>
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center"}}>
-                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/afford.png"} style={{width: "91px", height: "91px"}} alt="affordable icon"/>
+                    <div style={{justifyContent: "center", display: "flex", flexWrap: "wrap"}}>
+                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/afford.png"} style={{width: "25%"}} alt="affordable icon"/>
                     </div>
-                    <div style={{justifyContent: "center", marginTop: "10px"}}>
-                      <h3 style={{fontSize: "30px", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
+                    <div style={{justifyContent: "center", marginTop: "0.625rem"}}>
+                      <h3 style={{fontSize: "1.25rem", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
                         Affordable
                       </h3>
-                      <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
+                      <p style={{fontSize: "0.9375rem", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
                         No contact, you can enjoy our <br/>
                         sevice for just $0.65/day
                       </p>
                     </div>
                   </div>
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center"}}>
-                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/feedback.png"} style={{width: "91px", height: "91px"}} alt="feedback icon"/>
+                    <div style={{justifyContent: "center", display: "flex", flexWrap: "wrap"}}>
+                      <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/feedback.png"} style={{width: "25%"}} alt="feedback icon"/>
                     </div>
-                    <div style={{justifyContent: "center", marginTop: "10px"}}>
-                      <h3 style={{fontSize: "30px", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
+                    <div style={{justifyContent: "center", marginTop: "0.625rem"}}>
+                      <h3 style={{fontSize: "1.25rem", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
                         Feedback
                       </h3>
-                      <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
+                      <p style={{fontSize: "0.9375rem", fontWeight: "normal", textAlign:"center", color: "#7D7D7D"}}>
                         No more guessing, our expert <br/>
                         feedback and AI analysis provides <br/>
                         you the best data-driven parameters
@@ -234,28 +230,30 @@ export class Home extends Component {
         <FadeInSection>
             <div style={{width: "100%"}}>
               <br/>
-              <h3 style={{fontSize: "15px", fontWeight: "bold", textAlign: "center", color: "#000000", marginTop: "5%"}}>
+              <h3 style={{fontSize: "0.9375rem", fontWeight: "bold", textAlign: "center", color: "#000000", marginTop: "5%"}}>
                   WHY US
               </h3>
               <br/>
-              <p style={{fontSize: "30px", fontWeight: "bold", textAlign: "center", color: "#4356F0"}}>
+              <p style={{fontSize: "1.875rem", fontWeight: "bold", textAlign: "center", color: "#4356F0"}}>
                 Employers are looking for the right candidate
               </p>
-              <p style={{fontSize: "20px", fontWeight: "normal", textAlign: "center", color: "#1F1F2D"}}>
+              <p style={{fontSize: "1.25rem", fontWeight: "normal", textAlign: "center", color: "#1F1F2D"}}>
                 Are you kicked around to prepare interview but nowhere to find good resource? <br/>
                 Are you overwhelmed with endless questions but nowhere to start <br/>
                 Are you frustrated with few useful feedback but only rejection letter?
               </p>
-              <div className="row home-3" style={{marginLeft: "0px"}}>
-                <div className="col" style={{marginTop: "10%", marginLeft: "5%"}}>
-                  <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/Group+69.png"} style={{width: "698.48px", height: "495.3px"}} alt="laptop image"/>
+            </div>
+            <div className="home-3">
+              <div style={{display: "flex", flexWrap: "wrap"}}>
+                <div className="col-5" style={{marginTop: "10%", marginLeft: "5%"}}>
+                  <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/Group+69.png"} style={{width: "100%"}} alt="laptop image"/>
                 </div>
                 <div className="col">
-                  <div className="row" style={{marginLeft: "70%", marginTop: "30%"}}>
+                  <div style={{marginLeft: "70%", marginTop: "30%", display: "flex", flexWrap: "wrap"}}>
                     <img src={people} alt="people image"/>
                   </div>
-                  <div className="row" style={{marginRight: "10%", marginTop: "5%"}}>
-                    <p style={{fontSize: "30px", fontWeight: "bold", color: "#FFFFFF", textAlign: "center"}}>
+                  <div style={{marginTop: "5%", display: "flex", flexWrap: "wrap"}}>
+                    <p style={{fontSize: "1.875rem", fontWeight: "bold", color: "#FFFFFF", textAlign: "left"}}>
                       Hirebeat helps bridges the gap to a job by <br/>
                       making sure you‘re prepared for the interview
                     </p>
@@ -268,42 +266,42 @@ export class Home extends Component {
             <div style={{width: "100%"}}>
               <div className="home-4">
                 <br/>
-                <h3 style={{fontSize: "15px", fontWeight: "bold", textAlign: "center", color: "#000000", marginTop: "5%"}}>
+                <h3 style={{fontSize: "0.9375rem", fontWeight: "bold", textAlign: "center", color: "#000000", marginTop: "5%"}}>
                   YOUR STEPS
                 </h3>
                 <br/>
-                <p style={{fontSize: "30px", fontWeight: "bold", textAlign: "center", color: "#4356F0"}}>
+                <p style={{fontSize: "1.875rem", fontWeight: "bold", textAlign: "center", color: "#4356F0"}}>
                   Prepare your next interview as simple as 1-2-3
                 </p>
-                <div className="row">
+                <div className="row" style={{marginRight: "0%", marginLeft: "0%"}}>
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center", marginLeft: "30%"}}>
+                    <div style={{justifyContent: "center", marginLeft: "30%", display: "flex", flexWrap: "wrap"}}>
                       <img src={step1} alt="step1 image" style={{width:"50%"}}/>
                     </div>
-                    <div className="row" style={{justifyContent: "center", marginLeft: "30%"}}>
-                      <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#000000"}}>
+                    <div style={{justifyContent: "center", marginLeft: "30%", display: "flex", flexWrap: "wrap"}}>
+                      <p style={{fontSize: "1.25rem", fontWeight: "normal", textAlign:"center", color: "#000000"}}>
                         Choose Interview <br/>
                         & Practice
                       </p>
                     </div>
                   </div>
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center"}}>
+                    <div style={{justifyContent: "center", display: "flex", flexWrap: "wrap"}}>
                       <img src={step2} alt="step2 image" style={{width:"36.5%"}}/>
                     </div>
-                    <div className="row" style={{justifyContent: "center"}}>
-                      <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#000000"}}>
+                    <div style={{justifyContent: "center", display: "flex", flexWrap: "wrap"}}>
+                      <p style={{fontSize: "1.25rem", fontWeight: "normal", textAlign:"center", color: "#000000"}}>
                         AI & Expert <br/>
                         Analysis
                       </p>
                     </div>
                   </div>
                   <div className="col">
-                    <div className="row" style={{justifyContent: "center", marginRight: "30%"}}>
+                    <div style={{justifyContent: "center", marginRight: "30%", display: "flex", flexWrap: "wrap"}}>
                       <img src={step3} alt="step3 image" style={{width:"50%"}}/>
                     </div>
-                    <div className="row" style={{justifyContent: "center", marginRight: "30%"}}>
-                      <p style={{fontSize: "20px", fontWeight: "normal", textAlign:"center", color: "#000000"}}>
+                    <div style={{justifyContent: "center", marginRight: "30%", display: "flex", flexWrap: "wrap"}}>
+                      <p style={{fontSize: "1.25rem", fontWeight: "normal", textAlign:"center", color: "#000000"}}>
                         Review & <br/>
                         Pivot
                       </p>
@@ -311,40 +309,41 @@ export class Home extends Component {
                   </div>
                 </div>
               </div>
-              <h2 style={{fontSize: "40px", fontWeight: "bold", textAlign:"center", color: "#000000", marginTop: "3%"}}>
+              <h2 style={{fontSize: "2.5rem", fontWeight: "bold", textAlign:"center", color: "#000000", marginTop: "3%"}}>
                 Your seat is vacant
               </h2>
-              <div style={{textAlign:"center", marginLeft:"50px"}}>
+              <div style={{textAlign:"center"}}>
                 <HomeButton
+                  style={{marginRight: "0%"}}
                   first={true}
                   onTap={() => this.redirectTo("/register/")}
                   textDisplayed={"Sign Up Now"}
                 />
               </div>
-              <div className="row footer" style={{marginLeft: "0px"}}>
-                <div className="col footer-align">
+              <div className="row footer" style={{marginRight: "0%", marginLeft: "0%"}}>
+                <div className="col-9 footer-align">
                   <Link style={{textDecoration: "none"}} to="/company" >
                     <p style={{color: "#FFFFFF"}}>About</p>
                   </Link>
-                  <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/company" >
+                  <Link style={{textDecoration: "none", marginLeft: "3.75rem"}} to="/company" >
                     <p style={{color: "#FFFFFF"}}>Contact</p>
                   </Link>
-                  <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/privacy" >
+                  <Link style={{textDecoration: "none", marginLeft: "3.75rem"}} to="/privacy" >
                     <p style={{color: "#FFFFFF"}}>Privacy</p>
                   </Link>
-                  <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/term" >
+                  <Link style={{textDecoration: "none", marginLeft: "3.75rem", marginRight: "50%"}} to="/term" >
                     <p style={{color: "#FFFFFF"}}>Terms</p>
                   </Link>
                 </div>
                 <div className="col footer-align">
-                  <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+                  <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
+                    <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
                   </button>
-                  <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+                  <button style={{outline: "none", border: "none", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
+                    <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
                   </button>
-                  <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
+                  <button style={{outline: "none", border: "none", borderRadius: "0.625rem"}}>
+                    <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
                   </button>
                 </div>
               </div>
