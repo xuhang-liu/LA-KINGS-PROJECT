@@ -18,8 +18,8 @@ export default function Company() {
           <div className="company-top-text">Help job seekers gain core competence</div>
           <div className="company-top-text1">by implementing talent intelligent database.</div>
         </div>
-        <div className="company-top-placeholder">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/placeholder.png"></img>
+        <div className="company-top-placeholder ">
+          <img className="img-placeholder " src="https://hirebeat-assets.s3.amazonaws.com/Company-page/placeholder.png"></img>
         </div>
         <div className="company-mid1-text">In need of</div>
         <div className="company-mid1">
@@ -37,7 +37,7 @@ export default function Company() {
         <div className="company-mid4-line1">
           <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/wrong.png"/>
         </div>
-        <div className="company-mid4-line1-text">No more aimingless searching for interview questions and advice</div>
+        <div className="company-mid4-line1-text">No more aimless searching for interview questions and advice</div>
         <div className="company-mid4-line2">
           <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/wrong.png"/>
         </div>
@@ -45,13 +45,13 @@ export default function Company() {
         <div className="company-mid4-line3">
           <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/right.png"/>
         </div>
-        <div className="company-mid4-line3-text">Simulate real interview experience and repeat practice recodring</div>
+        <div className="company-mid4-line3-text">Simulate real interview experience and repeat practice recoding</div>
         <div className="company-mid4-line4">
           <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/right.png"/>
         </div>
-        <div className="company-mid4-line4-text">Receive systmatic AI-driven analysis for your performance</div>
+        <div className="company-mid4-line4-text d-inline">Receive systematic AI-driven analysis for your performance</div>
         <div className="company-mid5-bg">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Subtract.png"/>
+          <img style={{maxWidth: "100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Subtract.png"/>
         </div>
         <div className="company-mid5-toptext">OUR FEATURES</div>
         <div className="company-mid5-83-icon">
