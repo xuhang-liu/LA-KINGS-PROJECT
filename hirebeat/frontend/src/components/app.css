@@ -665,13 +665,16 @@ color: #FFFFFF;
 
 .company-top-placeholder{
   position: absolute;
-width: 44.68rem;
-height: 23.6rem;
-left: 50%;
-right: 20%;
 top: 17.625rem;
 filter: drop-shadow(0 0 3.125rem rgba(70, 137, 250, 0.1));
 border-radius: 1rem;
+  align-self: end;
+  max-width: 100%;
+}
+
+.img-placeholder{
+  object-fit: cover;
+
 }
 
 .company-mid1{
@@ -766,7 +769,7 @@ top: 85.93rem;
 
 .company-mid4-line1-text{
   position: absolute;
-width: 61.25rem;
+width: 50%;
 height: 2.5rem;
 left: 21%;
 top: 85.93rem;
@@ -788,7 +791,7 @@ top: 92.5rem;
 
 .company-mid4-line2-text{
   position: absolute;
-width: 57.81rem;
+width: 50%;
 height: 2.5rem;
 left: 21%;
 top: 92.5rem;
@@ -810,7 +813,7 @@ color: #7D7D7D;
 
 .company-mid4-line3-text{
   position: absolute;
-  width: 55.75rem;
+  width: 50%;
   height:2.5rem;
   left: 21%;
   top: 100rem;
@@ -832,7 +835,7 @@ top: 105.81rem;
 
 .company-mid4-line4-text{
   position: absolute;
-  width: 60rem;
+  width: 50%;
   height: 2.5rem;
   left: 21%;
   top: 105.81rem;
