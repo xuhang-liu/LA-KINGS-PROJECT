@@ -59,30 +59,30 @@ export default function Blog1() {
         </div>
 
 
-        <div className="row footer footer-blog1" style={{marginLeft: "0px", marginRight: "0px", marginTop: "145rem"}}>
+        <div className="row footer footer-blog1" style={{marginLeft: "0", marginRight: "0", marginTop: "145rem"}}>
         <div className="col footer-align">
             <Link style={{textDecoration: "none"}} to="/company" >
                 <p style={{color: "#FFFFFF"}}>About</p>
             </Link>
-            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/company" >
+            <Link style={{textDecoration: "none", marginLeft: "3.75rem"}} to="/company" >
                 <p style={{color: "#FFFFFF"}}>Contact</p>
             </Link>
-            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/privacy" >
+            <Link style={{textDecoration: "none", marginLeft: "3.75rem"}} to="/privacy" >
                 <p style={{color: "#FFFFFF"}}>Privacy</p>
             </Link>
-            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/term" >
+            <Link style={{textDecoration: "none", marginLeft: "3.75rem"}} to="/term" >
                 <p style={{color: "#FFFFFF"}}>Terms</p>
             </Link>
         </div>
         <div className="col footer-align">
-                  <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+                  <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
+                    <img style={{height:"2.375rem", width: "2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
                   </button>
-                  <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+                  <button style={{outline: "none", border: "none", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
+                    <img style={{height:"2.375rem", width: "2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
                   </button>
-                  <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
+                  <button style={{outline: "none", border: "none", borderRadius: "0.625rem"}}>
+                    <img style={{height:"2.375rem", width: "2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
                   </button>
                 </div>
         </div>
