@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 
 export default function Company() {
   return (
-    <div
-      className="container-fluid"
-      style={{
-        padding: 0,
-        backgroundColor: "white",
-        display: "flex",
-        flexDirection: "column",
-        alignContent: "center",
-        alignItems: "center",
-      }}
+      <div
+          className="container-fluid"
+          style={{
+            padding: 0,
+            backgroundColor: "white",
+            display: "flex",
+            flexDirection: "column",
+            alignContent: "center",
+            alignItems: "center",
+          }}
       >
         <div className="company-bg">
           <div className="company-top-text">Help job seekers gain core competence</div>
@@ -116,17 +116,17 @@ export default function Company() {
             </Link>
           </div>
           <div className="col footer-align">
-                  <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
-                  </button>
-                  <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
-                  </button>
-                  <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
-                    <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
-                  </button>
-                </div>
+            <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
+              <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+            </button>
+            <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
+              <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+            </button>
+            <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
+              <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
+            </button>
+          </div>
         </div>
-    </div>
+      </div>
   );
 }
