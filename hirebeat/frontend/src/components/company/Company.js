@@ -18,8 +18,8 @@ export default function Company() {
           <div className="company-top-text">Help job seekers gain core competence</div>
           <div className="company-top-text1">by implementing talent intelligent database.</div>
         </div>
-        <div className="company-top-placeholder ">
-          <img className="img-placeholder " src="https://hirebeat-assets.s3.amazonaws.com/Company-page/placeholder.png"></img>
+        <div className="company-top-placeholder">
+          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/placeholder.png"></img>
         </div>
         <div className="company-mid1-text">In need of</div>
         <div className="company-mid1">
@@ -37,7 +37,7 @@ export default function Company() {
         <div className="company-mid4-line1">
           <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/wrong.png"/>
         </div>
-        <div className="company-mid4-line1-text">No more aimless searching for interview questions and advice</div>
+        <div className="company-mid4-line1-text">No more aimingless searching for interview questions and advice</div>
         <div className="company-mid4-line2">
           <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/wrong.png"/>
         </div>
@@ -45,23 +45,23 @@ export default function Company() {
         <div className="company-mid4-line3">
           <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/right.png"/>
         </div>
-        <div className="company-mid4-line3-text">Simulate real interview experience and repeat practice recoding</div>
+        <div className="company-mid4-line3-text">Simulate real interview experience and repeat practice recodring</div>
         <div className="company-mid4-line4">
           <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/right.png"/>
         </div>
-        <div className="company-mid4-line4-text d-inline">Receive systematic AI-driven analysis for your performance</div>
+        <div className="company-mid4-line4-text">Receive systmatic AI-driven analysis for your performance</div>
         <div className="company-mid5-bg">
-          <img style={{maxWidth: "100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Subtract.png"/>
+          <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Subtract.png"/>
         </div>
         <div className="company-mid5-toptext">OUR FEATURES</div>
         <div className="company-mid5-83-icon">
-          <img style={{width: "11.9375rem", height: "11.9375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+83.png"/>
+          <img style={{width: "191px", height: "191px"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+83.png"/>
         </div>
         <div className="company-mid5-84-icon">
-          <img style={{width: "11.9375rem", height: "11.9375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+84.png"/>
+          <img style={{width: "191px", height: "191px"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+84.png"/>
         </div>
         <div className="company-mid5-85-icon">
-          <img style={{width: "11.9375rem", height: "11.9375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+85.png"/>
+          <img style={{width: "191px", height: "191px"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/Group+85.png"/>
         </div>
         <div className="company-mid5-text1">Utilize our AI-powered video interview platform and receive comprehensive feedback.</div>
         <div className="company-mid5-text2">Practice your interview anytime anywhere at your own schedule and convenience.</div>
@@ -100,30 +100,30 @@ export default function Company() {
             HR@hirebeat.co
           </a>
         </div>
-        <div className="row footer footer-company" style={{marginLeft: "0", marginRight: "0", marginTop: "5%"}}>
+        <div className="row footer footer-company" style={{marginLeft: "0px", marginRight: "0px", marginTop: "5%"}}>
           <div className="col footer-align">
             <Link style={{textDecoration: "none"}} to="/company" >
               <p style={{color: "#FFFFFF"}}>About</p>
             </Link>
-            <Link style={{textDecoration: "none", marginLeft: "3.75rem"}} to="/company" >
+            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/company" >
               <p style={{color: "#FFFFFF"}}>Contact</p>
             </Link>
-            <Link style={{textDecoration: "none", marginLeft: "3.75rem"}} to="/privacy" >
+            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/privacy" >
               <p style={{color: "#FFFFFF"}}>Privacy</p>
             </Link>
-            <Link style={{textDecoration: "none", marginLeft: "3.75rem"}} to="/term" >
+            <Link style={{textDecoration: "none", marginLeft: "60px"}} to="/term" >
               <p style={{color: "#FFFFFF"}}>Terms</p>
             </Link>
           </div>
           <div className="col footer-align">
-            <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
-              <img style={{height:"2.375rem", width: "2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+            <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
+              <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
             </button>
-            <button style={{outline: "none", border: "none", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
-              <img style={{height:"2.375rem", width: "2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+            <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
+              <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
             </button>
-            <button style={{outline: "none", border: "none", borderRadius: "0.625rem"}}>
-              <img style={{height:"2.375rem", width: "2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
+            <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
+              <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
             </button>
           </div>
         </div>
