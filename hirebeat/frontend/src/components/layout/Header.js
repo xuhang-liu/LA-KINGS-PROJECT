@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import hirebeatlogo from "../../assets/HireBeatLogo2.png";
 
 const AccountBtnText = (props) => {
   return (
@@ -39,27 +40,27 @@ export class Header extends Component {
       >
         <li className="nav-item align-items-center">
           <Link to="/practice" className="nav-link">
-            <h3>Practice</h3>
+            <h3 style={{color:"grey"}}>Practice</h3>
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/dashboard" className="nav-link">
-            <h3>Dashboard</h3>
+            <h3 style={{color:"grey"}}>Dashboard</h3>
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/pricing" className="nav-link">
-            <h3>Pricing</h3>
+            <h3 style={{color:"grey"}}>Pricing</h3>
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/company" className="nav-link">
-            <h3>Company</h3>
+            <h3 style={{color:"grey"}}>Company</h3>
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/bloghome" className="nav-link">
-            <h3>Blog</h3>
+            <h3 style={{color:"grey"}}>Blog</h3>
           </Link>
         </li>
         <li className="nav-item">
@@ -101,34 +102,39 @@ export class Header extends Component {
         
           <li className="nav-item">
             <Link to="/" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem"}}>Home</h3>
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem", color: "grey"}}>Home</h3>
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/pricing" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem"}}>Pricing</h3>
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem", color: "grey"}}>Pricing</h3>
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/company" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem"}}>Company</h3>
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem", color: "grey"}}>Company</h3>
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/bloghome" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem"}}>Blog</h3>
+              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem", color: "grey"}}>Blog</h3>
             </Link>
           </li>
         </ul>
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            <AccountBtnText textDisplayed={"Log in"} />
-          </Link>
-        </li>
         
         <li className="nav-item">
           <Link to="/register" className="nav-link">
-            <AccountBtnText textDisplayed={"Sign up"} />
+          <a className="default-btn mr-1">
+            <i className="bx bxs-hot"></i> Get Started <span></span>
+          </a>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="/login" className="nav-link">
+          <a className="default-btn black-btn">
+            <i className="bx bx-log-in"></i> Log In <span></span>
+          </a>
           </Link>
         </li>
         
@@ -170,8 +176,9 @@ export class Header extends Component {
         style={{
           WebkitBoxShadow: "none",
           boxShadow: "none",
-          background: "linear-gradient(209.24deg, #4BADE4 0%, #4356F0 97.24%)",
+          background: "white",
           width: "100%",
+          height: "5rem",
         }}
       >
         <div
@@ -185,14 +192,14 @@ export class Header extends Component {
               <Link to="/" className="navbar-brand">
                 
                 <img
-                  src="https://hirebeat-assets.s3.amazonaws.com/hirebeat_logo.png"
+                  src={hirebeatlogo}
                   width="30px"
                   height="30px"
                   className="d-inline-block align-top"
                   alt="logo"
                 />
                 
-                <h1 className="d-inline" style={{color: "white", fontSize: "30px", fontWeight: "bold", marginLeft: "1rem"}}>
+                <h1 className="d-inline" style={{color: "white", fontSize: "30px", fontWeight: "bold", marginLeft: "1rem", color:"grey"}}>
                 HireBeat
                 </h1>
               
