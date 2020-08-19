@@ -1,30 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { logout } from "../../redux/actions/auth_actions";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
+import {logout} from "../../redux/actions/auth_actions";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import hirebeatlogo from "../../assets/HireBeatLogo2.png";
-
-const AccountBtnText = (props) => {
-  return (
-    <h3
-      style={{
-        border: "2px solid white",
-        borderRadius: "10px",
-        boxSizing: "border-box",
-        fontSize: "20px",
-        fontWeight: "normal",
-        lineHeight: "39px",
-        width: "6rem",
-        textAlign: "center",
-        marginRight: "1rem",
-      }}
-    >
-      {props.textDisplayed}
-    </h3>
-  );
-};
-
 export class Header extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
@@ -32,208 +10,210 @@ export class Header extends Component {
   };
 
   renderUserLinks = () => {
-    const { user } = this.props.auth;
+    const {user} = this.props.auth;
     return (
-      <ul
-        className="navbar-nav align-items-center d-flex justify-content-around"
-        style={{ width: "100%" }}
-      >
-        <li className="nav-item align-items-center">
-          <Link to="/practice" className="nav-link">
-            <h3 style={{color:"grey"}}>Practice</h3>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/dashboard" className="nav-link">
-            <h3 style={{color:"grey"}}>Dashboard</h3>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/pricing" className="nav-link">
-            <h3 style={{color:"grey"}}>Pricing</h3>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/company" className="nav-link">
-            <h3 style={{color:"grey"}}>Company</h3>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/bloghome" className="nav-link">
-            <h3 style={{color:"grey"}}>Blog</h3>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <div className="btn-group" role="group">
-            <button
-              id="btnGroupDrop1"
-              type="button"
-              className="btn btn btn-primary"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              style={{ borderRadius: "10px", boxShadow: "none" }}
-            >
-              <b>{user ? `  ${user.username}  ` : ""}</b>
-            </button>
-            <div
-              className="dropdown-menu"
-              role="menu"
-              aria-labelledby="btnGroupDrop1"
-            >
+        <React.Fragment>
+          <div className="nav-item order-xl-1 align-self-center">
+            <div className="btn-group" role="group">
               <button
-                onClick={this.props.logout}
-                className="btn btn-danger btn-sm text-light"
-                style={{ width: "80%", marginLeft: "15px" }}
-              >
-                Logout
+                  id="btnGroupDrop1"
+                  type="button"
+                  className="btn btn btn-primary ml-5"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style={{borderRadius: "10px",
+                          boxShadow: "none"
+                        }}>
+                <b>{user ? `  ${user.username}  ` : ""}</b>
               </button>
+
+              <div
+                  className="dropdown-menu"
+                  role="menu"
+                  aria-labelledby="btnGroupDrop1"
+              >
+                <button
+                    onClick={this.props.logout}
+                    className="btn btn-danger btn-sm text-light"
+                    style={{width: "80%", marginLeft: "15px"}}
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           </div>
-        </li>
-      </ul>
+
+
+          <div className="collapse navbar-collapse"
+               id="navbarSupportedContent">
+
+            <ul
+              className="navbar-nav ml-auto mr-5
+                 text-left order-xl-0">
+              <li className="nav-item ">
+                <a href="/practice" className="nav-link text-white navbar-font">
+                  <span>Practice</span>
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a href="/dashboard" className="nav-link text-white navbar-font">
+                  <span>Dashboard</span>
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a href="/pricing" className="nav-link text-white navbar-font">
+                  <span>Pricing</span>
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a href="/company" className="nav-link text-white navbar-font">
+                  <span>Company</span>
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a href="/bloghome" className="nav-link text-white navbar-font">
+                  <span>Blog</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </React.Fragment>
     );
   };
 
   renderGuestLinks = () => {
     return (
-      <ul className="navbar-nav d-flex mx-auto" >
-        <ul className="navbar-nav d-flex my-auto mr-4">
-        
-          <li className="nav-item">
-            <Link to="/" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem", color: "grey"}}>Home</h3>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/pricing" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem", color: "grey"}}>Pricing</h3>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/company" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem", color: "grey"}}>Company</h3>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/bloghome" className="nav-link">
-              <h3 className="text-20" style={{fontWeight: "bold", marginRight: "1rem", color: "grey"}}>Blog</h3>
-            </Link>
-          </li>
-        </ul>
-        
-        <li className="nav-item">
-          <Link to="/register" className="nav-link">
-          <a className="default-btn mr-1">
-            <i className="bx bxs-hot"></i> Get Started <span></span>
-          </a>
-          </Link>
-        </li>
+        <React.Fragment>
+          <ul className="navbar-nav d-flex flex-row order-xl-1">
+            <li className="nav-item">
+              <a href="/login"
+                 className="btn btn-outline-primary
+                            bg-transparent text-white
+                            text-capitalize mr-3
+                            py-1 px-3 "
+                 style={{
+                   border: "2px solid white",
+                   borderRadius:"0.625rem",
+                 }}
+              >
+                <span style={{fontSize: "1.25rem"}}>Log in</span>
+              </a>
+            </li>
 
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">
-          <a className="default-btn black-btn">
-            <i className="bx bx-log-in"></i> Log In <span></span>
-          </a>
-          </Link>
-        </li>
-        
-      </ul>
+            <li className="nav-item">
+              <a href="/register"
+                 className="btn btn-outline-primary bg-transparent
+                            text-white text-capitalize py-1 px-3 "
+                 style={{
+                   border: "2px solid white",
+                   borderRadius:"0.625rem",
+                 }}
+              >
+                <span style={{fontSize: "1.25rem"}}>Sign up</span>
+              </a>
+            </li>
+          </ul>
+
+
+          <div className="collapse navbar-collapse"
+               id="navbarSupportedContent">
+
+            <ul className="navbar-nav order-xl-0 ml-auto mr-5
+               text-left">
+              <li className="nav-item">
+                <a href="/" className="nav-link text-white navbar-font active">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/pricing" className="nav-link text-white navbar-font">
+                  Pricing
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/company" className="nav-link text-white navbar-font">
+                  Company
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/bloghome" className="nav-link text-white navbar-font">
+                  Blog
+                </a>
+              </li>
+            </ul>
+          </div>
+        </React.Fragment>
     );
   };
 
   renderReviewerLinks = () => {
     return (
-      <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li className="nav-item">
-          <button
-            onClick={this.props.logout}
-            className="nav-link btn btn-info btn-sm text-light"
-          >
-            Logout
-          </button>
-        </li>
-      </ul>
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li className="nav-item">
+            <button
+                onClick={this.props.logout}
+                className="nav-link btn btn-info btn-sm text-light"
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
     );
   };
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const {isAuthenticated, user} = this.props.auth;
     return (
-      <div
-        className="container-fluid"
-        style={{
-          padding: 0,
-          backgroundColor: "white",
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
-          alignItems: "center",
-        }}
-        >
-      <nav
-        className="navbar navbar-expand-sm navbar-dark my-header-container"
-        style={{
-          WebkitBoxShadow: "none",
-          boxShadow: "none",
-          background: "white",
-          width: "100%",
-          height: "5rem",
-        }}
-      >
-        <div
-          className="container align-items-center justify-content-between my-header"
-          style={{
-            backgroundColor: "transparent", paddingTop: "10px",
-          }}
-        >
-          <ul className="navbar-nav mr-auto align-item-center">
-            <li className="nav-item active">
-              <Link to="/" className="navbar-brand">
-                
-                <img
-                  src={hirebeatlogo}
-                  width="30px"
-                  height="30px"
-                  className="d-inline-block align-top"
-                  alt="logo"
-                />
-                
-                <h1 className="d-inline" style={{color: "white", fontSize: "30px", fontWeight: "bold", marginLeft: "1rem", color:"grey"}}>
-                HireBeat
-                </h1>
-              
-              </Link>
-            </li>
-          </ul>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className="collapse navbar-collapse my-header-container"
-            id="navbarTogglerDemo01"
+
+        <nav
+            className="navbar navbar-expand-xl
+            navbar-dark pb-0 pt-2"
             style={{
-              backgroundColor: "transparent",
-              marginLeft: "20%",
+              background: "linear-gradient(209.24deg, #4BADE4 0%, #4356F0 97.24%)",
             }}
-          >
+        >
+          <div className="container pb-0">
+            {/*<div className="align-self-start">*/}
+              <button
+                  className="navbar-toggler mr-2 "
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarSupportedContent"
+                  data-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"/>
+              </button>
+              <a href="/" className="navbar-brand mr-auto">
+                <img
+                  src="https://hirebeat-assets.s3.amazonaws.com/hirebeat_logo.png"
+                  className="img-fluid mr-2"
+                  alt="logo"
+                  style={{
+                    width: "35px",
+                    height:"100%"
+                  }}
+                />
+                <span className="font-weight-bold">
+                  Hirebeat
+                </span>
+              </a>
+            {/*</div>*/}
             {isAuthenticated
-              ? user.groups[0] == "reviewers"
-                ? this.renderReviewerLinks()
-                : this.renderUserLinks()
-              : this.renderGuestLinks()}
+                ? user.groups[0] == "reviewers"
+                    ? this.renderReviewerLinks()
+                    : this.renderUserLinks()
+                : this.renderGuestLinks()
+            }
+
           </div>
-        </div>
-      </nav>
-      </div>
+        </nav>
+
     );
   }
 }
@@ -242,4 +222,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth_reducer,
 });
 
-export default connect(mapStateToProps, { logout })(Header);
+export default connect(mapStateToProps, {logout})(Header);
