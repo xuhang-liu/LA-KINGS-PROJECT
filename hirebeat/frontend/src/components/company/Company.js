@@ -356,13 +356,6 @@ export default function Company() {
                 Sign Up Now
               </button>
             </Link>
-            {/*}
-            <HomeButton
-              first={true}
-              onTap={() => this.redirectTo("/register/")}
-              textDisplayed={"Sign Up Now"}
-            />
-            */}
           </div>
           <div className="footer-align" style={{backgroundColor: "#3D4159", height: "4rem", width: "100%"}}>
             <button style={{outline: "none", border: "none", marginLeft:"50%", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
