@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter, Link } from "react-router-dom";
 import ScrollAnimation from "react-animate-on-scroll";
+import MediaQuery from 'react-responsive'
 import people from "./../../assets/people.png";
 import step1 from "./../../assets/step1.png";
 import step2 from "./../../assets/step2.png";
@@ -25,10 +26,11 @@ const HomeButton = (props) => {
     >
       <p
         style={{
-          fontSize: "20px",
+          fontSize: "1.25rem",
           fontWeight: "bold",
           marginBottom: 0,
-          textAlign: "center"
+          textAlign: "center",
+          textTransform: "Capitalize"
         }}
       >
         {props.textDisplayed}
@@ -83,6 +85,8 @@ export class Home extends Component {
         }}
       >
         <FadeInSection>
+          {/* Laptop homepage  */}
+          <MediaQuery minDeviceWidth={1224}>
             <div className="row home-1" style={{marginLeft: "0%", marginRight: "0%"}}>
                 <div className="col-6" style={{marginLeft: "5%", paddingRight: "0%"}}>
                   <div style={{marginTop: "15%", marginBottom: "10%", display: "flex", flexWrap: "wrap"}}>
@@ -113,9 +117,33 @@ export class Home extends Component {
                     <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/Group.png"} style={{width: "90%"}} alt="pc"/>
                   </div>
                 </div>
-           </div>
+            </div>
+          </MediaQuery>
+          {/* Mobile homepage  */}
+          <MediaQuery maxDeviceWidth={1223}>
+            <div className="home-1-mobile">
+              <br/>
+              <div style={{marginTop: "5%"}}>
+                <p style={{textAlign: "center", fontSize: "1.875rem", fontWeight: "bold", color: "#FFFFFF" }}>
+                  Land your next job, <br/>
+                  starting with the <br/>
+                  interview
+                </p>
+                <p style={{textAlign: "center", fontSize: "0.9375rem", fontWeight: "normal", color: "#FFFFFF" }}>
+                  AI-analysis interview platform that <br/>
+                  supercharges your performance and makes <br/>
+                  a great impression at your next interview.
+                </p>
+              </div>
+              <div align="center">
+                <img src={"https://hirebeat-assets.s3.amazonaws.com/Home-page/Group.png"} style={{width: "80%", marginBottom: "5%"}} alt="pc"/>
+              </div>
+            </div>
+          </MediaQuery>
         </FadeInSection>
         <FadeInSection>
+          {/* Laptop homepage  */}
+          <MediaQuery minDeviceWidth={1224}>
             <div style={{width: "100%"}}>
               <div style={{marginTop: "5%"}}>
                 <h3 style={{fontSize: "0.9375rem", fontWeight: "bold", textAlign: "center", color: "#000000"}}>
@@ -226,8 +254,24 @@ export class Home extends Component {
                 </div>
               </div>
             </div>
+          </MediaQuery>
+          {/* Mobile Homepage */}
+          <MediaQuery maxDeviceWidth={1223}>
+            <div>
+              <h3 style={{fontSize: "0.9375rem", fontWeight: "bold", color: "black", textAlign: "center", marginTop: "10%"}}>
+                OUR SERVICES
+              </h3>
+              <p style={{fontSize: "1.875rem", fontWeight: "bold", textAlign: "center", color: "#4356F0"}}>
+                AI-Powered Analysis & <br/>
+                Personal Feedback on <br/>
+                Interview Performance
+              </p>
+            </div>
+          </MediaQuery>
         </FadeInSection>
         <FadeInSection>
+          {/* Laptop homepage  */}
+          <MediaQuery minDeviceWidth={1224}>
             <div style={{width: "100%"}}>
               <br/>
               <h3 style={{fontSize: "0.9375rem", fontWeight: "bold", textAlign: "center", color: "#000000", marginTop: "5%"}}>
@@ -261,8 +305,11 @@ export class Home extends Component {
                 </div>
               </div>
             </div>
+          </MediaQuery>
         </FadeInSection>
         <FadeInSection>
+          {/* Laptop homepage  */}
+          <MediaQuery minDeviceWidth={1224}>
             <div style={{width: "100%"}}>
               <div className="home-4">
                 <br/>
@@ -347,6 +394,54 @@ export class Home extends Component {
                 </div>
               </div>
             </div>
+          </MediaQuery>
+          {/* Mobile Homepage */}
+          <MediaQuery maxDeviceWidth={1223}>
+            <div>
+              <br/>
+              <h3 style={{fontSize: "0.9375rem", fontWeight: "bold", textAlign: "center", color: "black"}}>
+                YOUR STEPS
+              </h3>
+              <div style={{width: "80%", margin: "auto"}}>
+                <div>
+                  <img src={step1} alt="step1 image" style={{width: "30%"}}/>
+                  <span style={{fontSize: "0.9375rem", color: "black"}}>
+                    Choose Interview & Practice
+                  </span>
+                </div>
+                <div>
+                  <img src={step2} alt="step2 image" style={{width: "30%"}}/>
+                  <span style={{fontSize: "0.9375rem", color: "black"}}>
+                    AI & Expert Analysis
+                  </span>
+                </div>
+                <div>
+                  <img src={step3} alt="step3 image" style={{width: "30%"}}/>
+                  <span style={{fontSize: "0.9375rem", color: "black"}}>
+                    Review & Pivot
+                  </span>
+                </div>
+              </div>
+              <div style={{textAlign:"center", marginTop: "5%", marginBottom: "5%"}}>
+                <HomeButton
+                  first={true}
+                  onTap={() => this.redirectTo("/register/")}
+                  textDisplayed={"Sign Up Now"}
+                />
+              </div>
+              <div className="footer-align" style={{backgroundColor: "#3D4159", height: "4rem"}}>
+                <button style={{outline: "none", border: "none", marginLeft:"50%", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
+                  <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+                </button>
+                <button style={{outline: "none", border: "none", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
+                  <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+                </button>
+                <button style={{outline: "none", border: "none", borderRadius: "0.625rem"}}>
+                  <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
+                </button>
+              </div>
+            </div>
+          </MediaQuery>
         </FadeInSection>
       </div>
     );
@@ -357,5 +452,7 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth_reducer.isAuthenticated,
   user: state.auth_reducer.user,
 });
+
+export {HomeButton}
 
 export default connect(mapStateToProps, null)(withRouter(Home));

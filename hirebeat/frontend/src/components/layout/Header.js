@@ -172,12 +172,16 @@ export class Header extends Component {
           boxShadow: "none",
           background: "linear-gradient(209.24deg, #4BADE4 0%, #4356F0 97.24%)",
           width: "100%",
+          paddingTop: "0rem",
+          paddingLeft: "1rem",
+          height: "4.5rem",
         }}
       >
         <div
           className="container align-items-center justify-content-between my-header"
           style={{
-            backgroundColor: "transparent", paddingTop: "10px",
+            backgroundColor: "transparent",
+            marginTop: "1rem",
           }}
         >
           <ul className="navbar-nav mr-auto align-item-center">
