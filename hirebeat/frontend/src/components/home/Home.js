@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter, Link } from "react-router-dom";
 import ScrollAnimation from "react-animate-on-scroll";
-import MediaQuery from 'react-responsive'
+import MediaQuery from 'react-responsive';
 import people from "./../../assets/people.png";
 import step1 from "./../../assets/step1.png";
 import step2 from "./../../assets/step2.png";
