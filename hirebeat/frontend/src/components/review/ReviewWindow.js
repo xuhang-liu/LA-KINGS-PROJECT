@@ -23,7 +23,7 @@ export class ReviewWindow extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{marginBottom:"10%"}}>
         This is review page. Number of videos reviewed by this reviewer:
         {this.props.review_count}
         {this.props.loaded ? (
