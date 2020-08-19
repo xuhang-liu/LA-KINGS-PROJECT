@@ -52,33 +52,33 @@ export class Header extends Component {
               className="navbar-nav ml-auto mr-5
                  text-left order-xl-0">
               <li className="nav-item ">
-                <a href="/practice" className="nav-link text-white navbar-font">
+                <Link to="/practice" className="nav-link text-white navbar-font">
                   <span>Practice</span>
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a href="/dashboard" className="nav-link text-white navbar-font">
+                <Link to="/dashboard" className="nav-link text-white navbar-font">
                   <span>Dashboard</span>
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a href="/pricing" className="nav-link text-white navbar-font">
+                <Link to="/pricing" className="nav-link text-white navbar-font">
                   <span>Pricing</span>
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a href="/company" className="nav-link text-white navbar-font">
+                <Link to="/company" className="nav-link text-white navbar-font">
                   <span>Company</span>
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a href="/bloghome" className="nav-link text-white navbar-font">
+                <Link to="/bloghome" className="nav-link text-white navbar-font">
                   <span>Blog</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
