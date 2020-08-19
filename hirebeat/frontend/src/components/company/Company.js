@@ -211,15 +211,9 @@ export default function Company() {
               </Link>
             </div>
             <div className="col footer-align">
-              <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
-                <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
-              </button>
-              <button style={{outline: "none", border: "none", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
-                <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
-              </button>
-              <button style={{outline: "none", border: "none", borderRadius: "0.625rem"}}>
-                <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
-              </button>
+              <img style={{width:"2.375rem", marginLeft: "20%", marginRight: "1.25rem"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+              <img style={{width:"2.375rem", marginRight: "1.25rem"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+              <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
             </div>
           </div>
         </MediaQuery>
@@ -358,15 +352,9 @@ export default function Company() {
             </Link>
           </div>
           <div className="footer-align" style={{backgroundColor: "#3D4159", height: "4rem", width: "100%"}}>
-            <button style={{outline: "none", border: "none", marginLeft:"50%", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
-              <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
-            </button>
-            <button style={{outline: "none", border: "none", marginRight: "1.25rem", borderRadius: "0.625rem"}}>
-              <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
-            </button>
-            <button style={{outline: "none", border: "none", borderRadius: "0.625rem"}}>
-              <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
-            </button>
+            <img style={{width:"2.375rem", marginLeft: "50%", marginRight: "1.25rem"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+            <img style={{width:"2.375rem", marginRight: "1.25rem"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+            <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
           </div>
         </MediaQuery>
     </div>

@@ -79,15 +79,9 @@ export default function BlogHome() {
                     </Link>
                 </div>
                 <div className="col footer-align">
-                    <button style={{outline: "none", border: "none", marginLeft:"20%", marginRight: "20px", borderRadius: "10px"}}>
-                        <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
-                    </button>
-                    <button style={{outline: "none", border: "none", marginRight: "20px", borderRadius: "10px"}}>
-                        <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
-                    </button>
-                    <button style={{outline: "none", border: "none", borderRadius: "10px"}}>
-                        <img style={{height:"38px", width: "38px"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
-                    </button>
+                    <img style={{width:"2.375rem", marginLeft: "20%", marginRight: "1.25rem"}} src="https://hirebeat-assets.s3.amazonaws.com/facebook.png" alt="facebook icon"/>
+                    <img style={{width:"2.375rem", marginRight: "1.25rem"}} src="https://hirebeat-assets.s3.amazonaws.com/linkedin.png" alt="linkedin icon"/>
+                    <img style={{width:"2.375rem"}} src="https://hirebeat-assets.s3.amazonaws.com/ins.png" alt="instagram icon"/>
                 </div>
             </div>
         </div>
