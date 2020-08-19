@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import {logout} from "../../redux/actions/auth_actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import MediaQuery from 'react-responsive';
+
 export class Header extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
@@ -51,35 +53,37 @@ export class Header extends Component {
             <ul
               className="navbar-nav ml-auto mr-5
                  text-left order-xl-0">
+              <MediaQuery minDeviceWidth={1224}>    
               <li className="nav-item ">
                 <Link to="/practice" className="nav-link text-white navbar-font">
                   <span>Practice</span>
                 </Link>
               </li>
-
+              </MediaQuery> 
               <li className="nav-item">
                 <Link to="/dashboard" className="nav-link text-white navbar-font">
                   <span>Dashboard</span>
                 </Link>
               </li>
-
+              <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item">
                 <Link to="/pricing" className="nav-link text-white navbar-font">
                   <span>Pricing</span>
                 </Link>
               </li>
-
+              </MediaQuery>
               <li className="nav-item">
                 <Link to="/company" className="nav-link text-white navbar-font">
                   <span>Company</span>
                 </Link>
               </li>
-
+              <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item">
                 <Link to="/bloghome" className="nav-link text-white navbar-font">
                   <span>Blog</span>
                 </Link>
               </li>
+              </MediaQuery>
             </ul>
           </div>
         </React.Fragment>
@@ -132,21 +136,25 @@ export class Header extends Component {
                   Home
                 </a>
               </li>
+              <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item">
                 <a href="/pricing" className="nav-link text-white navbar-font">
                   Pricing
                 </a>
               </li>
+              </MediaQuery>
               <li className="nav-item">
                 <a href="/company" className="nav-link text-white navbar-font">
                   Company
                 </a>
               </li>
+              <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item">
                 <a href="/bloghome" className="nav-link text-white navbar-font">
                   Blog
                 </a>
               </li>
+              </MediaQuery>
             </ul>
           </div>
         </React.Fragment>
