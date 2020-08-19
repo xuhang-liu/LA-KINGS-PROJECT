@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import {logout} from "../../redux/actions/auth_actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import hirebeatlogo from "../../assets/HireBeatLogo2.png";
+
 export class Header extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
@@ -18,13 +20,15 @@ export class Header extends Component {
               <button
                   id="btnGroupDrop1"
                   type="button"
-                  className="btn btn btn-primary ml-5"
+                  className="default-btn"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                   style={{borderRadius: "10px",
-                          boxShadow: "none"
+                          boxShadow: "none",
+                          marginBottom:"0.6rem",
                         }}>
+                <i className="bx bx-log-in"></i>        
                 <b>{user ? `  ${user.username}  ` : ""}</b>
               </button>
 
@@ -53,7 +57,7 @@ export class Header extends Component {
                  text-left order-xl-0">
               <li className="nav-item ">
                 <Link to="/practice" className="nav-link text-white navbar-font">
-                  <span>Practice</span>
+                  <span style={{color:"grey"}}>Practice</span>
                 </Link>
               </li>
 
@@ -90,34 +94,19 @@ export class Header extends Component {
     return (
         <React.Fragment>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
-            <li className="nav-item">
-              <a href="/login"
-                 className="btn btn-outline-primary
-                            bg-transparent text-white
-                            text-capitalize mr-3
-                            py-1 px-3 "
-                 style={{
-                   border: "2px solid white",
-                   borderRadius:"0.625rem",
-                   marginBottom:"0.6rem",
-                 }}
-              >
-                <span style={{fontSize: "1.25rem"}}>Log in</span>
+          <li className="nav-item">
+            <Link to="/login">
+              <a className="default-btn black-btn mr-3" style={{marginBottom:"0.6rem"}}>
+                <i className="bx bx-log-in"></i> Log In <span></span>
               </a>
+            </Link>
             </li>
-
             <li className="nav-item">
-              <a href="/register"
-                 className="btn btn-outline-primary bg-transparent
-                            text-white text-capitalize py-1 px-3 "
-                 style={{
-                   border: "2px solid white",
-                   borderRadius:"0.625rem",
-                   marginBottom:"0.6rem",
-                 }}
-              >
-                <span style={{fontSize: "1.25rem"}}>Sign up</span>
-              </a>
+            <Link to="/register">
+             <a className="default-btn" style={{marginBottom:"0.6rem"}}>
+             <i className="bx bxs-hot"></i> Get Started <span></span>
+            </a>
+            </Link>
             </li>
           </ul>
 
@@ -129,22 +118,22 @@ export class Header extends Component {
                text-left">
               <li className="nav-item">
                 <a href="/" className="nav-link text-white navbar-font active">
-                  Home
+                  <span style={{color:"grey"}}>Home</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/pricing" className="nav-link text-white navbar-font">
-                  Pricing
+                <span style={{color:"grey"}}>Pricing</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/company" className="nav-link text-white navbar-font">
-                  Company
+                <span style={{color:"grey"}}>Company</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/bloghome" className="nav-link text-white navbar-font">
-                  Blog
+                <span style={{color:"grey"}}>Blog</span>
                 </a>
               </li>
             </ul>
@@ -155,16 +144,15 @@ export class Header extends Component {
 
   renderReviewerLinks = () => {
     return (
-        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+      <React.Fragment>
+        <ul className="navbar-nav d-flex mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
-            <button
-                onClick={this.props.logout}
-                className="nav-link btn btn-info btn-sm text-light"
-            >
-              Logout
-            </button>
+            <a className="default-btn" onClick={this.props.logout} style={{marginBottom:"0.6rem"}}>
+             <i className="bx bxs-hot"></i>Logout<span></span>
+            </a>
           </li>
         </ul>
+        </React.Fragment>
     );
   };
 
@@ -176,7 +164,7 @@ export class Header extends Component {
             className="navbar navbar-expand-xl
             navbar-dark pb-0 pt-2"
             style={{
-              background: "linear-gradient(209.24deg, #4BADE4 0%, #4356F0 97.24%)",
+              background: "white",
             }}
         >
           <div className="container pb-0">
@@ -193,15 +181,16 @@ export class Header extends Component {
               </button>
               <a href="/" className="navbar-brand mr-auto">
                 <img
-                  src="https://hirebeat-assets.s3.amazonaws.com/hirebeat_logo.png"
-                  className="img-fluid mr-2"
+                  src={hirebeatlogo}
+                  className="img-fluid mr-1"
                   alt="logo"
                   style={{
-                    width: "35px",
+                    width: "24%",
                     height:"100%"
                   }}
                 />
-                <span className="font-weight-bold">
+                <span className="font-weight-bold"
+                style={{fontSize:"1.6rem", color:"grey"}}>
                   Hirebeat
                 </span>
               </a>
