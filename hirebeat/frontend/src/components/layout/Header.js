@@ -99,6 +99,7 @@ export class Header extends Component {
                  style={{
                    border: "2px solid white",
                    borderRadius:"0.625rem",
+                   marginBottom:"0.6rem",
                  }}
               >
                 <span style={{fontSize: "1.25rem"}}>Log in</span>
@@ -112,6 +113,7 @@ export class Header extends Component {
                  style={{
                    border: "2px solid white",
                    borderRadius:"0.625rem",
+                   marginBottom:"0.6rem",
                  }}
               >
                 <span style={{fontSize: "1.25rem"}}>Sign up</span>
