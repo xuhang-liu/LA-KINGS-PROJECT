@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import BlogComments from './BlogComments';
 import BlogSidebar from './BlogSidebar';
+import gallery1 from "../public/images/blog/gallery1.jpg";
+import gallery2 from "../public/images/blog/gallery2.jpg";
+import gallery3 from "../public/images/blog/gallery3.jpg";
 
 class BlogDetailsContent extends Component {
     render() {
@@ -12,7 +15,6 @@ class BlogDetailsContent extends Component {
                         <div className="col-lg-8 col-md-12">
                             <div className="blog-details-desc">
                                 <div className="article-image">
-                                    <img src="/images/blog/single-blog.jpg" alt="image" />
                                 </div>
 
                                 <div className="article-content">
@@ -47,19 +49,19 @@ class BlogDetailsContent extends Component {
                                     <ul className="block-gallery columns-3">
                                         <li className="blocks-gallery-item">
                                             <figure>
-                                                <img src="/images/blog/gallery1.jpg" alt="image" />
+                                                <img src={gallery1}alt="image" />
                                             </figure>
                                         </li>
 
                                         <li className="blocks-gallery-item">
                                             <figure>
-                                                <img src="/images/blog/gallery2.jpg" alt="image" />
+                                                <img src={gallery2} alt="image" />
                                             </figure>
                                         </li>
 
                                         <li className="blocks-gallery-item">
                                             <figure>
-                                                <img src="/images/blog/gallery3.jpg" alt="image" />
+                                                <img src={gallery3} alt="image" />
                                             </figure>
                                         </li>
                                     </ul>
@@ -139,52 +141,6 @@ class BlogDetailsContent extends Component {
                                         </Link>
                                     </div>
                                 </div>
-
-                                {/* Post navigation */}
-                                <div className="post-navigation">
-                                    <div className="prev-link-wrapper">
-                                        <div className="info-prev-link-wrapper">
-                                            <Link href="#">
-                                                <a>
-                                                    <span className="image-prev">
-                                                        <img src="/images/blog/blog2.jpg" alt="image" />
-                                                        <span className="post-nav-title">Prev</span>
-                                                    </span>
-                
-                                                    <span className="prev-link-info-wrapper">
-                                                        <span className="prev-title">Don't buy a tech gift until you read these rules</span>
-                                                        <span className="meta-wrapper">
-                                                            <span className="date-post">January 21, 2020</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-            
-                                    <div className="next-link-wrapper">
-                                        <div className="info-next-link-wrapper">
-                                            <Link href="#">
-                                                <a>
-                                                    <span className="next-link-info-wrapper">
-                                                        <span className="next-title">The golden rule of buying a phone as a gift</span>
-                                                        <span className="meta-wrapper">
-                                                            <span className="date-post">January 21, 2020</span>
-                                                        </span>
-                                                    </span>
-                
-                                                    <span className="image-next">
-                                                        <img src="/images/blog/blog3.jpg" alt="image" />
-                                                        <span className="post-nav-title">Next</span>
-                                                    </span>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Comments */}
-                                <BlogComments />
                             </div>
                         </div>
 

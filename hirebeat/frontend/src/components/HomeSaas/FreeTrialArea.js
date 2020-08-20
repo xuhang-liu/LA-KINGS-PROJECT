@@ -11,10 +11,10 @@ class FreeTrialArea extends Component {
             <section className="free-trial-area pb-100 bg-f4f5fe">
                 <div className="container">
                     <div className="free-trial-content">
-                        <h2>We always try to be the best support to you as possible</h2>
+                        <h2 style={{paddingTop:"2rem"}}>We always try to be the best support to you as possible</h2>
                         <p>Qualify your leads & recognize the value of word your customer will love you</p>
 
-                        <Link href="/contact">
+                        <Link to="/contact">
                             <a className="default-btn">
                                 <i className="bx bxs-hot"></i> 
                                 Contact Us

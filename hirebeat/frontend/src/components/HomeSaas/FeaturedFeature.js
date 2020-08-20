@@ -48,10 +48,6 @@ class FeaturedFeature extends Component {
                         </div>
                     </div>
                 </div>
-
-                <div className="shape9">
-                    <img src={shape9} alt="image" />
-                </div>
             </section>
         );
     }

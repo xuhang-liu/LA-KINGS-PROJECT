@@ -20,11 +20,8 @@ class IndexSaas extends Component {
                 <FeaturedFeature />
                 <MoreToDiscover />
                 <WhyChooseUs />
-                <BuildYourApplication />
                 <ClientsFeedbackSlider />
-                <PricingStyleOne />
                 <FaqContent />
-                <OurLovingClients />
                 <FreeTrialArea />
             </React.Fragment>
         );

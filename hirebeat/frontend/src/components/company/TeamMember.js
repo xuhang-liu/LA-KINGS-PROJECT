@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import team5 from "../public/images/team/team5.jpg";
+import team6 from "../public/images/team/team6.jpg";
+import team7 from "../public/images/team/team7.jpg";
+import team8 from "../public/images/team/team8.jpg";
+
 
 class TeamMember extends Component {
     render() {
@@ -14,7 +19,7 @@ class TeamMember extends Component {
                         <div className="col-lg-3 col-sm-6">
                             <div className="single-team-box">
                                 <div className="image">
-                                    <img src="/images/team/team5.jpg" alt="image" />
+                                    <img src={team5} alt="image" />
 
                                     <ul className="social">
                                         <li>
@@ -58,7 +63,7 @@ class TeamMember extends Component {
                         <div className="col-lg-3 col-sm-6">
                             <div className="single-team-box">
                                 <div className="image">
-                                    <img src="/images/team/team6.jpg" alt="image" />
+                                    <img src={team6} alt="image" />
                                     
                                     <ul className="social">
                                         <li>
@@ -102,7 +107,7 @@ class TeamMember extends Component {
                         <div className="col-lg-3 col-sm-6">
                             <div className="single-team-box">
                                 <div className="image">
-                                    <img src="/images/team/team7.jpg" alt="image" />
+                                    <img src={team7} alt="image" />
                                     
                                     <ul className="social">
                                         <li>
@@ -146,7 +151,7 @@ class TeamMember extends Component {
                         <div className="col-lg-3 col-sm-6">
                             <div className="single-team-box">
                                 <div className="image">
-                                    <img src="/images/team/team8.jpg" alt="image" />
+                                    <img src={team8} alt="image" />
                                     
                                     <ul className="social">
                                         <li>

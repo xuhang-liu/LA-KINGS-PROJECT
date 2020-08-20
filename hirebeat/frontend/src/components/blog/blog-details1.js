@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogDetailsContent from '../Blog/BlogDetailsContent';
+import BlogDetailsContent1 from './BlogDetailsContent1';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 
 class BlogDetails extends Component {
@@ -11,7 +11,7 @@ class BlogDetails extends Component {
                     pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogDetailsContent />
+                <BlogDetailsContent1 />
                 <FreeTrialArea />
             </React.Fragment>
         );

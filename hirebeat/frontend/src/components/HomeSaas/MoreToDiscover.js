@@ -49,14 +49,6 @@ class MoreToDiscover extends Component {
                                             Camera Filter
                                         </li>
                                     </ul>
-
-                                    <Link href="#">
-                                        <a className="default-btn black-btn">
-                                            <i className='bx bxs-arrow-to-right'></i>
-                                            Read More 
-                                            <span></span>
-                                        </a>
-                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -95,14 +87,6 @@ class MoreToDiscover extends Component {
                                                 Outdated Comments
                                             </li>
                                         </ul>
-                                        
-                                        <Link href="#">
-                                            <a className="default-btn black-btn">
-                                                <i className='bx bxs-arrow-to-right'></i>
-                                                Read More 
-                                                <span></span>
-                                            </a>
-                                        </Link>
                                     </div>
                                 </div>
 
@@ -153,14 +137,6 @@ class MoreToDiscover extends Component {
                                                 Start Coding Format
                                             </li>
                                         </ul>
-                                        
-                                        <Link href="#">
-                                            <a className="default-btn black-btn">
-                                                <i className='bx bxs-arrow-to-right'></i>
-                                                Read More 
-                                                <span></span>
-                                            </a>
-                                        </Link>
                                     </div>
                                 </div>
                             </div>

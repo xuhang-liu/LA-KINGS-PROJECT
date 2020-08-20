@@ -23,7 +23,7 @@ import about from "./company/about";
 import BlogHome from "./blog/BlogHome";
 import Blog1 from "./blog/Blog1";
 import bloggrid from "./blog/bloggrid";
-import blogdetail from "./blog/blog-details";
+import blogdetail1 from "./blog/blog-details1";
 import SelectParam from "./practice/SelectParam";
 import TechFields from "./practice/TechFields";
 import NotFoundPage from "./layout/NotFoundPage";
@@ -96,7 +96,7 @@ class App extends Component {
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/bloghome" component={bloggrid} />
-                <Route exact path="/blog-details" component={blogdetail} />
+                <Route exact path="/blog-details" component={blogdetail1} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
