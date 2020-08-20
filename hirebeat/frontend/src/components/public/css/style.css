@@ -4462,7 +4462,7 @@ blockquote::after, .blockquote::after {
 Page Title Area CSS
 =================================================*/
 .page-title-area {
-  background-color: #ff612f;
+  background-color: #0077ff;
   position: relative;
   z-index: 1;
   padding-top: 130px;
@@ -6137,7 +6137,7 @@ SaaS Home Page CSS
 /* Saas banner */
 .saas-banner {
   height: 840px;
-  background: #13c4a1;
+  background: #0077ff;
   position: relative;
 }
 

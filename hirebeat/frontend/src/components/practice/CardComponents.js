@@ -11,7 +11,7 @@ function CardHeader() {
 
 export const SetupCard = (props) => {
   return (
-    <div className="container card-container">
+    <div className="container card-container" style={{marginBottom:"10%"}}>
       <div className="card mb-3 setup-card">
         {CardHeader()}
         <div className="card-body setup-card-body">{props.children}</div>
@@ -22,7 +22,7 @@ export const SetupCard = (props) => {
 
 export const PracticeCard = (props) => {
   return (
-    <div className="container">
+    <div className="container" style={{marginBottom:"10%"}}>
       <div className="card mb-3 practice-card">
         {CardHeader()}
         <div className="card-body" style={{ paddingTop: 0 }}>
@@ -35,7 +35,7 @@ export const PracticeCard = (props) => {
 
 export const TestDeviceCard = (props) => {
   return (
-    <div className="container practice-card-container">
+    <div className="container practice-card-container" style={{marginBottom:"10%"}}>
       <div className="card mb-3 practice-card">
         {CardHeader()}
         <div className="card-body test-card-body" style={{ paddingTop: 0 }}>

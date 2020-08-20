@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import OwlCarousel from 'react-owl-carousel3';
+import feedback1 from "../public/images/feedback/feedback1.png";
+import feedback2 from "../public/images/feedback/feedback2.png";
+import feedback3 from "../public/images/feedback/feedback3.png";
 
 const options = {
     loop: true,
@@ -55,7 +58,7 @@ class ClientsFeedbackSlider extends Component {
                         {...options}
                     >
                         <div className="single-feedback-item">
-                            <img src="/images/feedback/feedback1.png" alt="image" />
+                            <img src={feedback1} alt="image" />
 
                             <div className="feedback-desc">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>
@@ -76,7 +79,7 @@ class ClientsFeedbackSlider extends Component {
                         </div>
 
                         <div className="single-feedback-item">
-                            <img src="/images/feedback/feedback2.png" alt="image" />
+                            <img src={feedback2} alt="image" />
 
                             <div className="feedback-desc">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>
@@ -97,7 +100,7 @@ class ClientsFeedbackSlider extends Component {
                         </div>
 
                         <div className="single-feedback-item">
-                            <img src="/images/feedback/feedback3.png" alt="image" />
+                            <img src={feedback3} alt="image" />
 
                             <div className="feedback-desc">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>

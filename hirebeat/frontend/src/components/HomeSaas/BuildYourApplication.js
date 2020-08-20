@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import ReactWOW from 'react-wow';
+import feature5 from "../public/images/home-saas/feature5.png";
+import shape9 from "../public/images/shape/shape9.png";
+
 
 class BuildYourApplication extends Component {
     render() {
@@ -11,7 +14,7 @@ class BuildYourApplication extends Component {
                         <ReactWOW animation='fadeInLeft' delay='0.3s'>
                             <div className="services-image">
                                 <div className="image">
-                                    <img src="/images/home-saas/feature5.png" alt="image" />
+                                    <img src={feature5} alt="image" />
                                 </div>
                             </div>
                         </ReactWOW>
@@ -58,7 +61,7 @@ class BuildYourApplication extends Component {
                 </div>
 
                 <div className="shape9">
-                    <img src="/images/shape/shape9.png" alt="image" />
+                    <img src={shape9} alt="image" />
                 </div>
             </section>
         );

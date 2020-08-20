@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import client1 from "../public/images/clients/client1.png";
+import client2 from "../public/images/clients/client2.png";
+import client3 from "../public/images/clients/client3.png";
+import client4 from "../public/images/clients/client4.png";
+import client5 from "../public/images/clients/client5.png";
+import client6 from "../public/images/clients/client6.png";
+import client7 from "../public/images/clients/client7.png";
+import client8 from "../public/images/clients/client8.png";
+import client9 from "../public/images/clients/client9.png";
 
 class OurLovingClients extends Component {
     render() {
@@ -14,7 +23,7 @@ class OurLovingClients extends Component {
                         <div className="single-clients-logo">
                             <Link href="#">
                                 <a>
-                                    <img src="/images/clients/client1.png" alt="image" />
+                                    <img src={client1} alt="image" />
                                 </a>
                             </Link>
                         </div>
@@ -22,7 +31,7 @@ class OurLovingClients extends Component {
                         <div className="single-clients-logo">
                             <Link href="#">
                                 <a>
-                                    <img src="/images/clients/client2.png" alt="image" />
+                                    <img src={client2} alt="image" />
                                 </a>
                             </Link>
                         </div>
@@ -30,7 +39,7 @@ class OurLovingClients extends Component {
                         <div className="single-clients-logo">
                             <Link href="#">
                                 <a>
-                                    <img src="/images/clients/client3.png" alt="image" />
+                                    <img src={client3} alt="image" />
                                 </a>
                             </Link>
                         </div>
@@ -38,7 +47,7 @@ class OurLovingClients extends Component {
                         <div className="single-clients-logo">
                             <Link href="#">
                                 <a>
-                                    <img src="/images/clients/client4.png" alt="image" />
+                                    <img src={client4} alt="image" />
                                 </a>
                             </Link>
                         </div>
@@ -46,7 +55,7 @@ class OurLovingClients extends Component {
                         <div className="single-clients-logo">
                             <Link href="#">
                                 <a>
-                                    <img src="/images/clients/client5.png" alt="image" />
+                                    <img src={client5} alt="image" />
                                 </a>
                             </Link>
                         </div>
@@ -54,7 +63,7 @@ class OurLovingClients extends Component {
                         <div className="single-clients-logo">
                             <Link href="#">
                                 <a>
-                                    <img src="/images/clients/client6.png" alt="image" />
+                                    <img src={client6} alt="image" />
                                 </a>
                             </Link>
                         </div>
@@ -62,7 +71,7 @@ class OurLovingClients extends Component {
                         <div className="single-clients-logo">
                             <Link href="#">
                                 <a>
-                                    <img src="/images/clients/client7.png" alt="image" />
+                                    <img src={client7} alt="image" />
                                 </a>
                             </Link>
                         </div>
@@ -70,7 +79,7 @@ class OurLovingClients extends Component {
                         <div className="single-clients-logo">
                             <Link href="#">
                                 <a>
-                                    <img src="/images/clients/client8.png" alt="image" />
+                                    <img src={client8} alt="image" />
                                 </a>
                             </Link>
                         </div>
@@ -78,7 +87,7 @@ class OurLovingClients extends Component {
                         <div className="single-clients-logo">
                             <Link href="#">
                                 <a>
-                                    <img src="/images/clients/client9.png" alt="image" />
+                                    <img src={client9} alt="image" />
                                 </a>
                             </Link>
                         </div>

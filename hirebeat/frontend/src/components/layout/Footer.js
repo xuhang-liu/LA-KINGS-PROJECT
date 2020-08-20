@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import whitelogo from "../public/images/white-logo.png";
+import whitelogo from "../../assets/HireBeatLogo.png";
 
 class Footer extends Component {
     render() {
@@ -15,9 +15,13 @@ class Footer extends Component {
                                 <div className="logo">
                                     <a href="/">
                                         <img src={whitelogo} alt="image" />
+                                        <span className="font-weight-bold"
+                                        style={{fontSize:"1.6rem", color:"grey", marginLeft:"0.5rem"}}>
+                                        Hirebeat
+                                        </span>
                                     </a>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                <p>AI-analysis interview platform that supercharges your performance and makes a great impression at your next interview.</p>
                             </div>
                         </div>
 
@@ -27,27 +31,17 @@ class Footer extends Component {
 
                                 <ul className="services-list">
                                     <li>
-                                        <Link href="/about">
+                                        <Link to="/company">
                                             <a>About Us</a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/services">
-                                            <a>Services</a>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/features">
-                                            <a>Features</a>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/pricing">
+                                        <Link to="/pricing">
                                             <a>Our Pricing</a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/blog">
+                                        <Link to="/bloghome">
                                             <a>Latest News</a>
                                         </Link>
                                     </li>
@@ -61,27 +55,17 @@ class Footer extends Component {
 
                                 <ul className="support-list">
                                     <li>
-                                        <Link href="/faq">
-                                            <a>FAQ's</a>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/privacy-policy">
+                                        <Link to="/privacy">
                                             <a>Privacy Policy</a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/terms-conditions">
+                                        <Link to="/term">
                                             <a>Terms & Conditions</a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="#">
-                                            <a>Community</a>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/contact">
+                                        <Link to="/contact">
                                             <a>Contact Us</a>
                                         </Link>
                                     </li>
@@ -133,7 +117,7 @@ class Footer extends Component {
                     </div>
 
                     <div className="copyright-area">
-                        <p>Copyright @{currentYear} Hepro. Designed by <a href="http://envytheme.com/" target="_blank">EnvyTheme</a></p>
+                        <p>Copyright @{currentYear} Hirebeat.</p>
                     </div>
                 </div>
             </footer>

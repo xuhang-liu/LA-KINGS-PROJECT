@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import ReactWOW from 'react-wow';
+import feature2 from "../public/images/home-saas/feature2.png";
+import feature3 from "../public/images/home-saas/feature3.png";
+import feature4 from "../public/images/home-saas/feature4.png";
 
 class MoreToDiscover extends Component {
     render() {
@@ -19,7 +22,7 @@ class MoreToDiscover extends Component {
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-left-img">
-                                    <img src="/images/home-saas/feature2.png" alt="image" />
+                                    <img src={feature2} alt="image" />
                                 </div>
                             </div>
 
@@ -105,7 +108,7 @@ class MoreToDiscover extends Component {
 
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-right-img">
-                                        <img src="/images/home-saas/feature3.png" alt="image" />
+                                        <img src={feature3} alt="image" />
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +122,7 @@ class MoreToDiscover extends Component {
                             <div className="row align-items-center">
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-left-img">
-                                        <img src="/images/home-saas/feature4.png" alt="image" />
+                                        <img src={feature4} alt="image" />
                                     </div>
                                 </div>
 

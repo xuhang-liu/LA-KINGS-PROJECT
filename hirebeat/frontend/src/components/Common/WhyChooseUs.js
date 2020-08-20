@@ -3,6 +3,17 @@ import {Link} from "react-router-dom";
 import ReactWOW from 'react-wow';
 import FunFacts from './FunFacts';
 import ModalVideo from 'react-modal-video';
+import videobg from "../public/images/video-bg.jpg";
+import shape1 from "../public/images/shape/shape1.png";
+import shape2 from "../public/images/shape/shape2.png";
+import shape3 from "../public/images/shape/shape3.png";
+import shape4 from "../public/images/shape/shape4.png";
+import shape5 from "../public/images/shape/shape5.png";
+import shape6 from "../public/images/shape/shape6.png";
+import map1 from "../public/images/map1.png";
+import shape7 from "../public/images/shape/shape7.png";
+import shape8 from "../public/images/shape/shape8.png";
+import shape9 from "../public/images/shape/shape9.png";
 
 class WhyChooseUs extends Component {
 
@@ -31,7 +42,7 @@ class WhyChooseUs extends Component {
                         </div>
 
                         <div className="video-box">
-                            <img src="/images/video-bg.jpg" className="main-image" alt="image" />
+                            <img src={videobg} className="main-image" alt="image" />
 
                             <Link href="#play-video">
                                 <a
@@ -44,22 +55,22 @@ class WhyChooseUs extends Component {
  
                             {/* Shape Images */}
                             <div className="shape1">
-                                <img src="/images/shape/shape1.png" alt="image" />
+                                <img src={shape1} alt="image" />
                             </div>
                             <div className="shape2">
-                                <img src="/images/shape/shape2.png" alt="image" />
+                                <img src={shape2} alt="image" />
                             </div>
                             <div className="shape3">
-                                <img src="/images/shape/shape3.png" alt="image" />
+                                <img src={shape3} alt="image" />
                             </div>
                             <div className="shape4">
-                                <img src="/images/shape/shape4.png" alt="image" />
+                                <img src={shape4} alt="image" />
                             </div>
                             <div className="shape5">
-                                <img src="/images/shape/shape5.png" alt="image" />
+                                <img src={shape5} alt="image" />
                             </div>
                             <div className="shape6">
-                                <img src="/images/shape/shape6.png" alt="image" />
+                                <img src={shape6} alt="image" />
                             </div>
                         </div>
 
@@ -71,7 +82,7 @@ class WhyChooseUs extends Component {
                                 <h3>Have any questions about us?</h3>
                                 <p>Don't hesitate to contact us.</p>
 
-                                <Link href="/contact">
+                                <Link to="/contact">
                                     <a className="default-btn">
                                         <i className="bx bxs-edit-alt"></i>
                                         Contact Us
@@ -84,16 +95,16 @@ class WhyChooseUs extends Component {
 
                     {/* Shape Images */}
                     <div className="shape-map1">
-                        <img src="/images/map1.png" alt="image" />
+                        <img src={map1} alt="image" />
                     </div>
                     <div className="shape7">
-                        <img src="/images/shape/shape7.png" alt="image" />
+                        <img src={shape7} alt="image" />
                     </div>
                     <div className="shape8">
-                        <img src="/images/shape/shape8.png" alt="image" />
+                        <img src={shape8} alt="image" />
                     </div>
                     <div className="shape9">
-                        <img src="/images/shape/shape9.png" alt="image" />
+                        <img src={shape9} alt="image" />
                     </div>
                 </section>
             </React.Fragment>

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import shape10 from "../public/images/shape/shape10.png";
+import shape7 from "../public/images/shape/shape7.png";
+import shape11 from "../public/images/shape/shape11.png";
+import shape12 from "../public/images/shape/shape12.png";
 
 class FreeTrialArea extends Component {
     render() {
@@ -22,16 +26,16 @@ class FreeTrialArea extends Component {
 
                 {/* Shape Image */}
                 <div className="shape10">
-                    <img src="/images/shape/shape10.png" alt="image" />
+                    <img src={shape10} alt="image" />
                 </div>
                 <div className="shape11">
-                    <img src="/images/shape/shape7.png" alt="image" />
+                    <img src={shape7} alt="image" />
                 </div>
                 <div className="shape12">
-                    <img src="/images/shape/shape11.png" alt="image" />
+                    <img src={shape11} alt="image" />
                 </div>
                 <div className="shape13">
-                    <img src="/images/shape/shape12.png" alt="image" />
+                    <img src={shape12} alt="image" />
                 </div>
             </section>
         );

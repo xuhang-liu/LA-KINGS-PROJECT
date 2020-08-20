@@ -6,6 +6,7 @@ import {
     AccordionItemPanel,
     AccordionItemButton
 } from 'react-accessible-accordion';
+import faq1 from "../public/images/faq-img1.png";
 
 class FaqContent extends Component {
     render() {
@@ -88,7 +89,7 @@ class FaqContent extends Component {
 
                         <div className="col-lg-5 col-md-12">
                             <div className="faq-image">
-                                <img src="/images/faq-img1.png" alt="image" />
+                                <img src={faq1} alt="image" />
                             </div>
                         </div>
                     </div>

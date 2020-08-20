@@ -196,7 +196,7 @@ export class Register extends Component {
                            color: "grey",
                          }}>
                         I have read and agree to the
-                        <a href="#"
+                        <a href="/term"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",

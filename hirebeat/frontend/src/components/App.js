@@ -16,21 +16,28 @@ import Register from "./accounts/Register";
 import PrivateRoute from "./basic/PrivateRoute";
 import Home from "./home/Home";
 import Pricing from "./pricing/Pricing";
+import pricings from "./pricing/pricings";
 import Payment from "./payment/Payment"
 import Company from "./company/Company";
+import about from "./company/about";
 import BlogHome from "./blog/BlogHome";
 import Blog1 from "./blog/Blog1";
+import bloggrid from "./blog/bloggrid";
+import blogdetail from "./blog/blog-details";
 import SelectParam from "./practice/SelectParam";
 import TechFields from "./practice/TechFields";
 import NotFoundPage from "./layout/NotFoundPage";
 import Privacy from "./layout/Privacy";
 import Term from "./layout/Term";
 
+import Contact from "./contact/contact";
+
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
 
 import VideoReplayPage from "./dashboard/videos/VideoReplayPage";
 import MyVideoUploader from "./videos/MyVideoUploader";
 import ReviewWindow from "./review/ReviewWindow";
+import GoTop from './Shared/GoTop';
 
 import QuestionTypeChoices from "./practice/QuestionTypeChoices";
 
@@ -60,6 +67,7 @@ class App extends Component {
 
   render() {
     return (
+      <React.Fragment>
       <Provider store={store}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
           <Router>
@@ -85,10 +93,10 @@ class App extends Component {
                   component={QuestionTypeChoices}
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
-                <Route exact path="/pricing" component={Pricing} />
-                <Route exact path="/company" component={Company} />
-                <Route exact path="/bloghome" component={BlogHome} />
-                <Route exact path="/blog1" component={Blog1} />
+                <Route exact path="/pricing" component={pricings} />
+                <Route exact path="/company" component={about} />
+                <Route exact path="/bloghome" component={bloggrid} />
+                <Route exact path="/blog-details" component={blogdetail} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
@@ -96,6 +104,7 @@ class App extends Component {
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/privacy" component={Privacy} />
                 <Route exact path="/term" component={Term} />
+                <Route exact path="/contact" component={Contact} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />
@@ -103,6 +112,9 @@ class App extends Component {
           </Router>
         </AlertProvider>
       </Provider>
+      {/* Go Top Button */}
+      <GoTop scrollStepInPx="100" delayInMs="10.50" />
+      </React.Fragment>
     );
   }
 }

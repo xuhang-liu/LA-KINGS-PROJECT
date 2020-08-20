@@ -52,7 +52,7 @@ export class Dashboard extends Component {
 
   render() {
     return (
-      <div className="dashboard-container">
+      <div className="dashboard-container" style={{marginBottom:"10%"}}>
         <MediaQuery minDeviceWidth={1224}>
         <DbRow>
           <div className="col-11">

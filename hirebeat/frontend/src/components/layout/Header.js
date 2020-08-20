@@ -55,38 +55,39 @@ export class Header extends Component {
 
             <ul
               className="navbar-nav ml-auto mr-5
-                 text-left order-xl-0">
-              <MediaQuery minDeviceWidth={1224}>    
+                 text-left order-xl-0">  
+              <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item ">
                 <Link to="/practice" className="nav-link text-white navbar-font">
-                  <span style={{color:"grey"}}>Practice</span>
+                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Practice</span>
                 </Link>
               </li>
-              </MediaQuery> 
               <li className="nav-item">
                 <Link to="/dashboard" className="nav-link text-white navbar-font">
-                  <span>Dashboard</span>
+                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Dashboard</span>
                 </Link>
               </li>
-              <MediaQuery minDeviceWidth={1224}>
+              </MediaQuery>
               <li className="nav-item">
                 <Link to="/pricing" className="nav-link text-white navbar-font">
-                  <span>Pricing</span>
+                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Pricing</span>
                 </Link>
               </li>
-              </MediaQuery>
               <li className="nav-item">
                 <Link to="/company" className="nav-link text-white navbar-font">
-                  <span>Company</span>
+                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Company</span>
                 </Link>
               </li>
-              <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item">
                 <Link to="/bloghome" className="nav-link text-white navbar-font">
-                  <span>Blog</span>
+                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Blog</span>
                 </Link>
               </li>
-              </MediaQuery>
+              <li className="nav-item">
+                <Link to="/contact" className="nav-link text-white navbar-font">
+                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Contact</span>
+                </Link>
+              </li>
             </ul>
           </div>
         </React.Fragment>
@@ -106,8 +107,8 @@ export class Header extends Component {
             </li>
             <li className="nav-item">
             <Link to="/register">
-             <a className="default-btn" style={{marginBottom:"0.6rem"}}>
-             <i className="bx bxs-hot"></i> Get Started <span></span>
+            <a className="default-btn" style={{marginBottom:"0.6rem"}}>
+              <i className="bx bxs-hot"></i>Get Started <span></span>
             </a>
             </Link>
             </li>
@@ -121,28 +122,29 @@ export class Header extends Component {
                text-left">
               <li className="nav-item">
                 <a href="/" className="nav-link text-white navbar-font active">
-                  <span style={{color:"grey"}}>Home</span>
+                  <span style={{color:"grey", fontFamily:"Lato", fontWeight:"bold"}}>Home</span>
                 </a>
               </li>
-              <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item">
                 <a href="/pricing" className="nav-link text-white navbar-font">
-                <span style={{color:"grey"}}>Pricing</span>
+                <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Pricing</span>
                 </a>
               </li>
-              </MediaQuery>
               <li className="nav-item">
                 <a href="/company" className="nav-link text-white navbar-font">
-                <span style={{color:"grey"}}>Company</span>
+                <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Company</span>
                 </a>
               </li>
-              <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item">
                 <a href="/bloghome" className="nav-link text-white navbar-font">
-                <span style={{color:"grey"}}>Blog</span>
+                <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Blog</span>
                 </a>
               </li>
-              </MediaQuery>
+              <li className="nav-item">
+                <a href="/contact" className="nav-link text-white navbar-font">
+                <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Contact</span>
+                </a>
+              </li>
             </ul>
           </div>
         </React.Fragment>
@@ -177,7 +179,7 @@ export class Header extends Component {
           <div className="container pb-0">
             {/*<div className="align-self-start">*/}
               <button
-                  className="navbar-toggler mr-2 "
+                  className="navbar-toggler mr-2 bg-dark"
                   type="button"
                   data-toggle="collapse"
                   data-target="#navbarSupportedContent"

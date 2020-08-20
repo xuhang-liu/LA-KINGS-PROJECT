@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactWOW from 'react-wow';
+import feature1 from "../public/images/home-saas/feature1.png";
+import shape9 from "../public/images/shape/shape9.png";
 
 class FeaturedFeature extends Component {
     render() {
@@ -10,7 +12,7 @@ class FeaturedFeature extends Component {
                         <ReactWOW animation='fadeInLeft' delay='0.3s'>
                             <div className="services-image">
                                 <div className="image">
-                                    <img src="/images/home-saas/feature1.png" alt="image" />
+                                    <img src={feature1} alt="image" />
                                 </div>
                             </div>
                         </ReactWOW>
@@ -48,7 +50,7 @@ class FeaturedFeature extends Component {
                 </div>
 
                 <div className="shape9">
-                    <img src="/images/shape/shape9.png" alt="image" />
+                    <img src={shape9} alt="image" />
                 </div>
             </section>
         );

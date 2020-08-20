@@ -16,7 +16,6 @@ import girl1 from "../public/images/saas-shape/girl1.png";
 import girl2 from "../public/images/saas-shape/girl2.png";
 import mainimage from "../public/images/saas-shape/main-image.png";
 import monitor from "../public/images/saas-shape/monitor.png";
-import saasmain from "../public/images/saas-shape/saas-main-image.png";
 import shape from "../public/images/saas-shape/shape-rotate.png";
 
 
@@ -59,14 +58,12 @@ class MainBanner extends Component {
         return (
             <React.Fragment>
                 {/* Popup Modal Video If you want to change the video need to update below videoID */}
-                <div>
                 <ModalVideo 
                     channel='youtube' 
                     isOpen={this.state.isOpen} 
                     videoId='_ysd-zHamjk' 
                     onClose={() => this.setState({isOpen: false})} 
                 />
-                </div>
 
                 <div className="saas-banner">
                     <div className="d-table">
@@ -76,7 +73,7 @@ class MainBanner extends Component {
                                     <div className="col-lg-6 col-md-12">
                                         <div className="saas-image mt-70">
                                             <ReactWOW animation='fadeInDown' delay='0.6s'>
-                                                <img src="../public/images/saas-shape/arrow.png" alt="arrow" />
+                                                <img src={arrow} alt="arrow" />
                                             </ReactWOW>
 
                                             <ReactWOW animation='fadeInUp' delay='0.6s'>
@@ -132,12 +129,12 @@ class MainBanner extends Component {
 
                                     <div className="col-lg-6 col-md-12">
                                         <div className="hero-content pl-4">
-                                            <h1>Manage your business strategy in one placeholder</h1>
-                                            <p>Our passion to work hard and deliver excellent results. It could solve the needs of your customers and develop innovation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                            <h1>Land your next job, starting with the interview</h1>
+                                            <p>AI-analysis interview platform that supercharges your performance and makes a great impression at your next interview.</p>
                                             
                                             <div className="banner-btn">
                                                 <div className="d-flex">
-                                                    <Link href="#">
+                                                    <Link to="/register">
                                                         <a className="default-btn">
                                                             <i className="bx bxs-hot"></i>
                                                             Get Started 
@@ -145,7 +142,7 @@ class MainBanner extends Component {
                                                         </a>
                                                     </Link>
 
-                                                    <Link href="#play-video">
+                                                    <Link to="#">
                                                         <a
                                                             onClick={e => {e.preventDefault(); this.openModal()}}
                                                             className="video-btn popup-youtube"
@@ -163,7 +160,7 @@ class MainBanner extends Component {
                     </div>
 
                     <div className="shape-rotate rotateme">
-                        <img src="/images/saas-shape/shape-rotate.png" alt="image" />
+                        <img src={shape} alt="image" />
                     </div>
                     
                     <div className="particles-content">
