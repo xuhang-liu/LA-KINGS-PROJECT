@@ -69,7 +69,8 @@ class MainBanner extends Component {
                     <div className="d-table">
                         <div className="d-table-cell">
                             <div className="container max-width-1290">
-                                <div className="row align-items-center pt-5">
+                                <div className="row align-items-center pt-8">
+                            
                                     <div className="col-lg-6 col-md-12">
                                         <div className="saas-image mt-70">
                                             <ReactWOW animation='fadeInDown' delay='0.6s'>
@@ -126,16 +127,15 @@ class MainBanner extends Component {
                                             </ReactWOW>
                                         </div>
                                     </div>
-
                                     <div className="col-lg-6 col-md-12">
-                                        <div className="hero-content pl-4">
+                                        <div className="hero-content pl-6">
                                             <h1>Land your next job, starting with the interview</h1>
                                             <p>AI-analysis interview platform that supercharges your performance and makes a great impression at your next interview.</p>
                                             
                                             <div className="banner-btn">
                                                 <div className="d-flex">
                                                     <Link to="/register">
-                                                        <a className="default-btn">
+                                                        <a className="default-btn" style={{color:"#56a3fa"}}>
                                                             <i className="bx bxs-hot"></i>
                                                             Get Started 
                                                             <span></span>
@@ -154,6 +154,7 @@ class MainBanner extends Component {
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

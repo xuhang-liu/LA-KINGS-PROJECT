@@ -29,24 +29,16 @@ class MoreToDiscover extends Component {
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-content pl-3">
                                     <span className="number">01</span>
-                                    <h3>Getting Started Page</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                                    <h3>360° Interview Practice</h3>
+                                    <p>Rather than spend hours to search questions online, you should focus on behavioral-based and technical-specific questions. Our practice interviews are customizable that suit the specific job position you are looking for.</p>
                                     <ul>
                                         <li>
                                             <i className='bx bx-badge-check'></i>
-                                            Unique Design
+                                            Behavioral-based Interview Questions
                                         </li>
                                         <li>
                                             <i className='bx bx-badge-check'></i>
-                                            Unimited Video Call
-                                        </li>
-                                        <li>
-                                            <i className='bx bx-badge-check'></i>
-                                            Add Favourite contact
-                                        </li>
-                                        <li>
-                                            <i className='bx bx-badge-check'></i>
-                                            Camera Filter
+                                            Occupation-specific Interview Questions
                                         </li>
                                     </ul>
                                 </div>
@@ -63,28 +55,16 @@ class MoreToDiscover extends Component {
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-content pl-3">
                                         <span className="number">02</span>
-                                        <h3>Outdated Comments Toggling</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                                        <h3>Track Training Progress</h3>
+                                        <p>Video practice data is secured and safe in the cloud system. you can work at your own pace to track your practice video with feedbacks, you will build the knowledge and confidence to land your next dream job.</p>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Mordan Design
+                                                Interview Video Privacy
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Unimited Video Call
-                                            </li>
-                                            <li>
-                                                <i className='bx bx-badge-check'></i>
-                                                Add Favourite contact
-                                            </li>
-                                            <li>
-                                                <i className='bx bx-badge-check'></i>
-                                                Camera Filter
-                                            </li>
-                                            <li>
-                                                <i className='bx bx-badge-check'></i>
-                                                Outdated Comments
+                                                Anytime and Anywhere
                                             </li>
                                         </ul>
                                     </div>
@@ -113,28 +93,16 @@ class MoreToDiscover extends Component {
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-content pl-3">
                                         <span className="number">03</span>
-                                        <h3>Code Review Illustrations</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                                        <h3>AI & Expert Feedback</h3>
+                                        <p>Once you've completed an interview, a recording is provided to you privately. No more guessing on your performance, using our evaluation system by sending your practice video to get valuable feedback from experts or AI.</p>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Professional Code
+                                                Expert feedback
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Unimited Video Call
-                                            </li>
-                                            <li>
-                                                <i className='bx bx-badge-check'></i>
-                                                Add Favourite contact
-                                            </li>
-                                            <li>
-                                                <i className='bx bx-badge-check'></i>
-                                                Camera Filter
-                                            </li>
-                                            <li>
-                                                <i className='bx bx-badge-check'></i>
-                                                Start Coding Format
+                                                AI Behavioral Analysis
                                             </li>
                                         </ul>
                                     </div>

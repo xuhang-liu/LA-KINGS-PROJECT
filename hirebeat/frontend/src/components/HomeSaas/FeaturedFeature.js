@@ -22,7 +22,7 @@ class FeaturedFeature extends Component {
                                 <div className="features-inner-content">
                                     <ReactWOW animation='fadeInRight' delay='0.1s'>
                                         <div className="features-item">
-                                            <i className='bx bx-phone-call bg-13c4a1 blt-radius-0'></i>
+                                            <i className='bx bx-phone-call bg-13c4a1 blt-radius-0' style={{backgroundColor:"#56a3fa"}}></i>
                                             <h3>Free Caliing Service</h3>
                                             <p>Plan ahead by day, week, or month, and see project status at a glance. Search and filter to focus in on anything form a single project to an individual person's workload.</p>
                                         </div>
@@ -30,7 +30,7 @@ class FeaturedFeature extends Component {
 
                                     <ReactWOW animation='fadeInRight' delay='0.2s'>
                                         <div className="features-item wow fadeInRight">
-                                            <i className='bx bx-gift bg-6610f2 blt-radius-0'></i>
+                                            <i className='bx bx-gift bg-6610f2 blt-radius-0' style={{backgroundColor:"#080a3c"}}></i>
                                             <h3>Daily Free Gift</h3>
                                             <p>Plan ahead by day, week, or month, and see project status at a glance. Search and filter to focus in on anything form a single project to an individual person's workload.</p>
                                         </div>

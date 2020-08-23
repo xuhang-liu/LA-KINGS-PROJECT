@@ -49,7 +49,7 @@ class WhyChooseUs extends Component {
                                     onClick={e => {e.preventDefault(); this.openModal()}}
                                     className="video-btn popup-youtube"
                                 > 
-                                    <i className="bx bx-play"></i>
+                                    <i className="bx bx-play" style={{color:"white"}}></i>
                                 </a>
                             </Link>
  
@@ -62,9 +62,6 @@ class WhyChooseUs extends Component {
                             </div>
                             <div className="shape3">
                                 <img src={shape3} alt="image" />
-                            </div>
-                            <div className="shape4">
-                                <img src={shape4} alt="image" />
                             </div>
                             <div className="shape5">
                                 <img src={shape5} alt="image" />
@@ -83,7 +80,7 @@ class WhyChooseUs extends Component {
                                 <p>Don't hesitate to contact us.</p>
 
                                 <Link to="/contact">
-                                    <a className="default-btn">
+                                    <a className="default-btn" style={{color:"white"}}>
                                         <i className="bx bxs-edit-alt"></i>
                                         Contact Us
                                         <span></span>

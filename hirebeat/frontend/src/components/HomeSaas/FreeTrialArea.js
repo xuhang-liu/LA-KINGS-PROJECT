@@ -15,7 +15,7 @@ class FreeTrialArea extends Component {
                         <p>Qualify your leads & recognize the value of word your customer will love you</p>
 
                         <Link to="/contact">
-                            <a className="default-btn">
+                            <a className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>
                                 <i className="bx bxs-hot"></i> 
                                 Contact Us
                                 <span></span>

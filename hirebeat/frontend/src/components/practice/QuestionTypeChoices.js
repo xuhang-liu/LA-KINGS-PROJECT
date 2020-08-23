@@ -28,7 +28,7 @@ export class QuestionTypeChoices extends Component {
           {ButtonContainer(
             behaviorIcon,
             this.redirectToBehaviorQuestions,
-            "Behavior Question"
+            "Behavioral Question"
           )}
           {ButtonContainer(
             techIcon,

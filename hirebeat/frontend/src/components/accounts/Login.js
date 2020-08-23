@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import {login, exchangeToken} from "../../redux/actions/auth_actions";
 import {CardButton} from "../practice/CardComponents";
 import SocialButtons from "./SocialButtons";
+import MediaQuery from 'react-responsive';
 
 export class Login extends Component {
   state = {
@@ -63,15 +64,15 @@ export class Login extends Component {
           <div
               className="container-fluid bg-white p-0"
           >
-
+            <MediaQuery minDeviceWidth={1224}>
             <header id="login-intro"
                     style={{
-                      background: "linear-gradient(209.24deg, #4BADE4 0%, #4356F0 97.24%)",
-                      minHeight: "25rem"
+                      background: "#56a3fa",
+                      minHeight: "14rem"
                     }}>
 
               <div className="container"
-                   style={{paddingTop: "9rem"}}>
+                   style={{paddingTop: "5rem"}}>
 
                 <h1 className="display-4 text-white text-center">
                   Welcome back!
@@ -79,6 +80,24 @@ export class Login extends Component {
 
               </div>
             </header>
+            </MediaQuery>
+            <MediaQuery maxDeviceWidth={1224}>
+            <header id="login-intro"
+                    style={{
+                      background: "#56a3fa",
+                      minHeight: "8rem"
+                    }}>
+
+              <div className="container"
+                   style={{paddingTop: "3rem"}}>
+
+                <h1 className="display-8 text-white text-center" style={{paddingBottom:"1rem"}}>
+                  Welcome back!
+                </h1>
+
+              </div>
+            </header>
+            </MediaQuery>
 
             <section className="card border-bottom-0 shadow-none bg-white">
               <div className="card-body">

@@ -100,14 +100,14 @@ export class Header extends Component {
           <ul className="navbar-nav d-flex flex-row order-xl-1">
           <li className="nav-item">
             <Link to="/login">
-              <a className="default-btn black-btn mr-3" style={{marginBottom:"0.6rem"}}>
+              <a className="default-btn mr-3" style={{marginBottom:"0.6rem", color:"white"}}>
                 <i className="bx bx-log-in"></i> Log In <span></span>
               </a>
             </Link>
             </li>
             <li className="nav-item">
             <Link to="/register">
-            <a className="default-btn" style={{marginBottom:"0.6rem"}}>
+            <a className="default-btn" style={{marginBottom:"0.6rem",color:"white"}}>
               <i className="bx bxs-hot"></i>Get Started <span></span>
             </a>
             </Link>

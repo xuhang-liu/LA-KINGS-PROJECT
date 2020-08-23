@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import {register} from "../../redux/actions/auth_actions";
 import {createMessage} from "../../redux/actions/message_actions";
 import SocialButtons from "./SocialButtons";
+import MediaQuery from 'react-responsive';
 
 export class Register extends Component {
   state = {
@@ -54,26 +55,44 @@ export class Register extends Component {
         <React.Fragment>
           <div
               className="container-fluid bg-white p-0">
-
+            <MediaQuery minDeviceWidth={1224}>    
             <header id="login-intro"
                     style={{
-                      background: "linear-gradient(209.24deg, #4BADE4 0%, #4356F0 97.24%)",
-                      minHeight: "25rem"
+                      background: "#56a3fa",
+                      minHeight: "16rem"
                     }}>
-
               <div className="container"
                    style={{
-                     paddingTop: "6rem"
+                     paddingTop: "4rem"
                    }}>
                 <h1 className="display-4 text-white text-center">
                   Start your career with the interview
                 </h1>
-                <h3 className="text-white text-center">
+                <h3 className="text-white text-center" style={{paddingBottom:"1rem"}}>
                   Join our AI-analysis interview platform to improve your performance.
-
                 </h3>
               </div>
             </header>
+            </MediaQuery>
+            <MediaQuery maxDeviceWidth={1224}>    
+            <header id="login-intro"
+                    style={{
+                      background: "#56a3fa",
+                      minHeight: "8rem"
+                    }}>
+              <div className="container"
+                   style={{
+                     paddingTop: "2rem"
+                   }}>
+                <h1 className="display-8 text-white text-center">
+                  Start your career with the interview
+                </h1>
+                <h5 className="text-white text-center" style={{paddingBottom:"2rem"}}>
+                  Join our AI-analysis interview platform to improve your performance.
+                </h5>
+              </div>
+            </header>
+            </MediaQuery>
 
             <section className="card border-bottom-0 shadow-none bg-white">
               <div className="card-body">

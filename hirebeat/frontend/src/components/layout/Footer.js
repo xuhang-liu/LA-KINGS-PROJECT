@@ -14,7 +14,7 @@ class Footer extends Component {
                             <div className="single-footer-widget">
                                 <div className="logo">
                                     <a href="/">
-                                        <img src={whitelogo} alt="image" />
+                                        <img src={whitelogo} alt="image"/>
                                         <span className="font-weight-bold"
                                         style={{fontSize:"1.6rem", color:"grey", marginLeft:"0.5rem"}}>
                                         Hirebeat
@@ -78,9 +78,9 @@ class Footer extends Component {
                                 <h3>Contact Info</h3>
 
                                 <ul className="footer-contact-info">
-                                    <li>Location: <span>6th Floor, Elegant Tower, York, USA</span></li>
-                                    <li>Email: <span>hello@hepro.com</span></li>
-                                    <li>Phone: <span>+0 (321) 984 754</span></li>
+                                    <li>Location: <span>40 Wall St, New York, USA 10005</span></li>
+                                    <li>Email: <span>info@hirebeat.co</span></li>
+                                    <li>Phone: <span>+1 (929)367-8168</span></li>
                                 </ul>
                                 <ul className="social">
                                     <li>
