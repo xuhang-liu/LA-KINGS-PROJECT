@@ -3253,7 +3253,7 @@ Pricing Area CSS
 }
 
 .single-pricing-table .pricing-features li i {
-  color: #13c4a1;
+  color: #56a3fa;
   position: absolute;
   left: 0;
   top: 3px;
@@ -3369,19 +3369,27 @@ Pricing Area CSS
 }
 
 .col-lg-4:nth-child(1) .single-pricing-table .btn-box .default-btn {
-  background-color: #080a3c;
+  background-color: #56a3fa;
 }
 
 .col-lg-4:nth-child(1) .single-pricing-table .btn-box .default-btn i {
-  color: #ff612f;
+  color: #ffff;
+}
+
+.col-lg-4:nth-child(2) .single-pricing-table .btn-box .default-btn {
+  background-color: #56a3fa;
+}
+
+.col-lg-4:nth-child(2) .single-pricing-table .btn-box .default-btn i {
+  color: #ffff;
 }
 
 .col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn {
-  background-color: #13c4a1;
+  background-color: #56a3fa;
 }
 
 .col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn i {
-  color: #ff612f;
+  color: #ffff;
 }
 
 .col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn span {
@@ -3389,7 +3397,7 @@ Pricing Area CSS
 }
 
 .col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn:hover i, .col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn:focus i {
-  color: #080a3c;
+  color: #56a3fa;
 }
 
 /*================================================

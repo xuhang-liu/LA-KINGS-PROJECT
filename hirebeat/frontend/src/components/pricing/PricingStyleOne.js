@@ -112,8 +112,8 @@ class PricingStyleOne extends Component {
                                             </ul>
 
                                             <div className="btn-box">
-                                                <Link href="#">
-                                                    <a className="default-btn">
+                                                <Link to="/register">
+                                                    <a className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Try It Free Now 
                                                         <span></span>
@@ -186,7 +186,7 @@ class PricingStyleOne extends Component {
 
                                             <div className="btn-box">
                                                 <Link href="#">
-                                                    <a className="default-btn">
+                                                    <a className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Try It Free Now 
                                                         <span></span>
@@ -260,7 +260,7 @@ class PricingStyleOne extends Component {
 
                                             <div className="btn-box">
                                                 <Link href="#">
-                                                    <a className="default-btn">
+                                                    <a className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Try It Free Now 
                                                         <span></span>
@@ -337,7 +337,7 @@ class PricingStyleOne extends Component {
 
                                             <div className="btn-box">
                                                 <Link href="#">
-                                                    <a className="default-btn">
+                                                    <a className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Try It Free Now 
                                                         <span></span>
@@ -411,7 +411,7 @@ class PricingStyleOne extends Component {
 
                                             <div className="btn-box">
                                                 <Link href="#">
-                                                    <a className="default-btn">
+                                                    <a className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Try It Free Now 
                                                         <span></span>
@@ -484,7 +484,7 @@ class PricingStyleOne extends Component {
 
                                             <div className="btn-box">
                                                 <Link href="#">
-                                                    <a className="default-btn">
+                                                    <a className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Try It Free Now 
                                                         <span></span>
