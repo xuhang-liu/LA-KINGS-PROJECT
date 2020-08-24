@@ -16,8 +16,8 @@ const config = {
     bucketName: 'hirebeat-avatar',
     dirName: '',
     region: 'us-east-1',
-    accessKeyId: 'AKIAINMYVZ5BEO5PVMZQ',
-    secretAccessKey: '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',
+    accessKeyId: '',
+    secretAccessKey: '',
 }
 
 
