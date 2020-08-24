@@ -10,8 +10,16 @@ import PricingStyleOne from '../pricing/PricingStyleOne';
 import FaqContent from '../Faq/FaqContent';
 import OurLovingClients from '../Common/OurLovingClients';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
+import Loader from '../shared/Loader';
 
 class IndexSaas extends Component {
+        // Preloader
+        state = {
+            loading: true
+        };
+      componentDidMount() {
+        this.timerHandle = setTimeout(() => this.setState({ loading: false }), 2000); 
+      }
     render() {
         return (
             <React.Fragment>
@@ -23,6 +31,9 @@ class IndexSaas extends Component {
                 <ClientsFeedbackSlider />
                 <FaqContent />
                 <FreeTrialArea />
+                      {/* Preloader */}
+      <Loader loading={this.state.loading} />
+
             </React.Fragment>
         );
     }

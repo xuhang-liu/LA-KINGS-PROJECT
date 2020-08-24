@@ -79,7 +79,7 @@ class Footer extends Component {
 
                                 <ul className="footer-contact-info">
                                     <li>Location: <span>40 Wall St, New York, USA 10005</span></li>
-                                    <li>Email: <span>info@hirebeat.co</span></li>
+                                    <li>Email: <span><a href="mailto: info@hirebeat.co">info@hirebeat.co</a></span></li>
                                     <li>Phone: <span>+1 (929)367-8168</span></li>
                                 </ul>
                                 <ul className="social">

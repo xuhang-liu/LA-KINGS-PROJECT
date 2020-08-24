@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import blog1 from '../../assets/blog1.jpg';
+import blog2 from '../../assets/blog2.jpg';
 
 class BlogSidebar extends Component {
     render() {
@@ -23,17 +25,17 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
-                        <Link to="#">
+                        <Link to="/blog-details1">
                             <a className="thumb">
-                                <span className="fullimage cover bg1" role="img"></span>
+                                <img src={blog1} alt="image"/>
                             </a>
                         </Link>
 
                         <div className="info">
-                            <time>Feb 10, 2020</time>
+                            <time>Aug 24, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="#">
-                                    <a>Making peace with the feast or famine of freelancing</a>
+                                <Link to="/blog-details1">
+                                    <a>Video interview platforms</a>
                                 </Link>
                             </h4>
                         </div>
@@ -42,36 +44,17 @@ class BlogSidebar extends Component {
                     </article>
 
                     <article className="item">
-                        <Link to="#">
+                        <Link to="/blog-details2">
                             <a className="thumb">
-                                <span className="fullimage cover bg2" role="img"></span>
+                                <img src={blog2} alt="image"/>
                             </a>
                         </Link>
 
                         <div className="info">
-                            <time>Feb 21, 2020</time>
+                            <time>Aug 24, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="#">
-                                    <a>I used the web for a day on a 50 mb budget</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="#">
-                            <a className="thumb">
-                                <span className="fullimage cover bg3" role="img"></span>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Feb 30, 2020</time>
-                            <h4 className="title usmall">
-                                <Link to="#">
-                                    <a>How to create a responsive popup gallery?</a>
+                                <Link to="/blog-details2">
+                                    <a>Video interview practice</a>
                                 </Link>
                             </h4>
                         </div>

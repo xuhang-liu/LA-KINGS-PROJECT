@@ -142,7 +142,7 @@ class MainBanner extends Component {
                                                         </a>
                                                     </Link>
 
-                                                    <Link to="#">
+                                                    <Link to="/">
                                                         <a
                                                             onClick={e => {e.preventDefault(); this.openModal()}}
                                                             className="video-btn popup-youtube"

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactWOW from 'react-wow';
-import feature1 from "../public/images/home-saas/feature1.png";
+import feature1 from "../../assets/Picture1.png";
 import shape9 from "../public/images/shape/shape9.png";
 
 class FeaturedFeature extends Component {
@@ -22,25 +22,28 @@ class FeaturedFeature extends Component {
                                 <div className="features-inner-content">
                                     <ReactWOW animation='fadeInRight' delay='0.1s'>
                                         <div className="features-item">
-                                            <i className='bx bx-phone-call bg-13c4a1 blt-radius-0' style={{backgroundColor:"#56a3fa"}}></i>
-                                            <h3>Free Caliing Service</h3>
-                                            <p>Plan ahead by day, week, or month, and see project status at a glance. Search and filter to focus in on anything form a single project to an individual person's workload.</p>
+                                            <i className='bx bx-video-plus bg-13c4a1 blt-radius-0' style={{backgroundColor:"#56a3fa"}}></i>
+                                            <h3>Practice</h3>
+                                            {/* <p>Record yourself to answer the most common interview questions.</p> */}
+                                            <p>Recording yourself answering interview questions</p>
                                         </div>
                                     </ReactWOW>
 
                                     <ReactWOW animation='fadeInRight' delay='0.2s'>
                                         <div className="features-item wow fadeInRight">
-                                            <i className='bx bx-gift bg-6610f2 blt-radius-0' style={{backgroundColor:"#080a3c"}}></i>
-                                            <h3>Daily Free Gift</h3>
-                                            <p>Plan ahead by day, week, or month, and see project status at a glance. Search and filter to focus in on anything form a single project to an individual person's workload.</p>
+                                            <i className='bx bx-book bg-6610f2 blt-radius-0' style={{backgroundColor:"#080a3c"}}></i>
+                                            <h3>Learn</h3>
+                                            {/* <p>Choose to save your recorded videos for replay and review.</p> */}
+                                            <p>Tracking progresses revisiting your saved records</p>
                                         </div>
                                     </ReactWOW>
 
                                     <ReactWOW animation='fadeInRight' delay='0.3s'>
                                         <div className="features-item">
-                                            <i className='bx bx-code-alt bg-ff612f blt-radius-0'></i>
-                                            <h3>QR Code Scaner</h3>
-                                            <p>Plan ahead by day, week, or month, and see project status at a glance. Search and filter to focus in on anything form a single project to an individual person's workload.</p>
+                                            <i className='bx bx-line-chart bg-ff612f blt-radius-0'></i>
+                                            <h3>Improve</h3>
+                                            {/* <p>Read your results from Experts and AI to improve interview skills.</p> */}
+                                            <p>Gaining insightful feedbacks from Experts and AI</p>
                                         </div>
                                     </ReactWOW>
                                 </div>

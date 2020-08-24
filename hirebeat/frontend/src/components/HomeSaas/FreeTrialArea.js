@@ -14,10 +14,10 @@ class FreeTrialArea extends Component {
                         <h2 style={{paddingTop:"2rem"}}>We always try to be the best support to you as possible</h2>
                         <p>Qualify your leads & recognize the value of word your customer will love you</p>
 
-                        <Link to="/contact">
+                        <Link to="/register">
                             <a className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>
                                 <i className="bx bxs-hot"></i> 
-                                Contact Us
+                                Get Started
                                 <span></span>
                             </a>
                         </Link>

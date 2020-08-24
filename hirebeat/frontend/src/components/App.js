@@ -24,6 +24,7 @@ import BlogHome from "./blog/BlogHome";
 import Blog1 from "./blog/Blog1";
 import bloggrid from "./blog/bloggrid";
 import blogdetail1 from "./blog/blog-details1";
+import blogdetail2 from "./blog/blog-details2";
 import SelectParam from "./practice/SelectParam";
 import TechFields from "./practice/TechFields";
 import NotFoundPage from "./layout/NotFoundPage";
@@ -38,6 +39,7 @@ import VideoReplayPage from "./dashboard/videos/VideoReplayPage";
 import MyVideoUploader from "./videos/MyVideoUploader";
 import ReviewWindow from "./review/ReviewWindow";
 import GoTop from './shared/GoTop';
+import Loader from './shared/Loader';
 
 import QuestionTypeChoices from "./practice/QuestionTypeChoices";
 
@@ -96,7 +98,8 @@ class App extends Component {
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/bloghome" component={bloggrid} />
-                <Route exact path="/blog-details" component={blogdetail1} />
+                <Route exact path="/blog-details1" component={blogdetail1} />
+                <Route exact path="/blog-details2" component={blogdetail2} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />

@@ -15,7 +15,6 @@ class Pricing extends Component {
                 />
                 <PricingStyleOne />
                 <FaqContent />
-                <OurLovingClients />
                 <FreeTrialArea />
             </React.Fragment>
         );

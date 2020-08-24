@@ -59,33 +59,33 @@ export class Header extends Component {
               <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item ">
                 <Link to="/practice" className="nav-link text-white navbar-font">
-                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Practice</span>
+                  <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Practice</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/dashboard" className="nav-link text-white navbar-font">
-                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Dashboard</span>
+                  <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Dashboard</span>
                 </Link>
               </li>
               </MediaQuery>
               <li className="nav-item">
                 <Link to="/pricing" className="nav-link text-white navbar-font">
-                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Pricing</span>
+                  <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Pricing</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/company" className="nav-link text-white navbar-font">
-                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Company</span>
+                  <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Company</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/bloghome" className="nav-link text-white navbar-font">
-                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Blog</span>
+                  <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Blog</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/contact" className="nav-link text-white navbar-font">
-                  <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Contact</span>
+                  <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Contact</span>
                 </Link>
               </li>
             </ul>
@@ -122,27 +122,27 @@ export class Header extends Component {
                text-left">
               <li className="nav-item">
                 <a href="/" className="nav-link text-white navbar-font active">
-                  <span style={{color:"grey", fontFamily:"Lato", fontWeight:"bold"}}>Home</span>
+                  <span style={{color:"grey", fontFamily:"Helvetica", fontWeight:"bold"}}>Home</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/pricing" className="nav-link text-white navbar-font">
-                <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Pricing</span>
+                <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Pricing</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/company" className="nav-link text-white navbar-font">
-                <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Company</span>
+                <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Company</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/bloghome" className="nav-link text-white navbar-font">
-                <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Blog</span>
+                <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Blog</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/contact" className="nav-link text-white navbar-font">
-                <span style={{color:"grey",fontFamily:"Lato", fontWeight:"bold"}}>Contact</span>
+                <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Contact</span>
                 </a>
               </li>
             </ul>
@@ -200,7 +200,7 @@ export class Header extends Component {
                 />
                 <span className="font-weight-bold"
                 style={{fontSize:"1.6rem", color:"grey"}}>
-                  Hirebeat
+                  HireBeat
                 </span>
               </a>
             {/*</div>*/}

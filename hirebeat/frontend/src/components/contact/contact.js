@@ -16,7 +16,7 @@ class Contact extends Component {
                 <MediaQuery minDeviceWidth={1224}>
                 {/* 5th part */}
           <div style={{width: "100%", marginBottom: "10%"}}>
-            <div  style={{margin: "auto"}}>
+            <div  style={{margin: "auto", marginBottom:"1rem"}}>
               <br/>
               <p className="company-pc-part5-text1">
                 Use the form to drop us an email or directly reach us at &nbsp;
@@ -39,8 +39,10 @@ class Contact extends Component {
                   <br/>
                   <textarea className="contact-form" style={{height: "6rem"}}></textarea>
                   <br/>
-                  <button className="contact-form-btn" style={{outline: "none"}}>
-                    submit
+                  <button className="default-btn" style={{backgroundColor:"#080a3c", marginLeft:"30%", marginTop:"10%"}}>
+                    <i className="bx bxs-hot"></i>
+                      Submit
+                    <span></span>
                   </button>
                 </div>
               </div>
@@ -69,7 +71,6 @@ class Contact extends Component {
           </MediaQuery>
         <MediaQuery maxDeviceWidth={1223}>
         <div style={{width: "100%", marginTop: "8%"}}>
-            <h3 style={{textAlign: "center"}}>CONTACT</h3>
             <div className="row justify-content-center" style={{marginLeft: "0%", marginRight: "0%"}}>
               <p style={{fontSize: "0.9375rem", fontWeight: "normal", color: "#7D7D7D"}}>
                 Use the form to drop us an email or directly reach <br/> us at &nbsp;
@@ -111,7 +112,6 @@ class Contact extends Component {
             </div>
           </div>
         </MediaQuery>
-                <OurLovingClients />
             </React.Fragment>
         );
     }

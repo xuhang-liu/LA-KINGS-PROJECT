@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import ReactWOW from 'react-wow';
-import feature2 from "../public/images/home-saas/feature2.png";
-import feature3 from "../public/images/home-saas/feature3.png";
-import feature4 from "../public/images/home-saas/feature4.png";
+import feature2 from "../../assets/Picture2.png";
+import feature3 from "../../assets/Picture3.png";
+import feature4 from "../../assets/Picture4.png";
 
 class MoreToDiscover extends Component {
     render() {
