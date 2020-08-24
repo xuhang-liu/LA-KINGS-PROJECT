@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogGrid from '../Blog/BlogGridHome';
+import BlogGrid from './BlogGridHome';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 
 class Blog extends Component {

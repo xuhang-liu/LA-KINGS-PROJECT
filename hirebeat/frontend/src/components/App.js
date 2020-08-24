@@ -37,7 +37,7 @@ import { loadUser, loadProfile } from "../redux/actions/auth_actions";
 import VideoReplayPage from "./dashboard/videos/VideoReplayPage";
 import MyVideoUploader from "./videos/MyVideoUploader";
 import ReviewWindow from "./review/ReviewWindow";
-import GoTop from './Shared/GoTop';
+import GoTop from './shared/GoTop';
 
 import QuestionTypeChoices from "./practice/QuestionTypeChoices";
 
