@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 import whitelogo from "../../assets/HireBeatLogo.png";
+
 
 class Footer extends Component {
     render() {
@@ -17,7 +19,7 @@ class Footer extends Component {
                                         <img src={whitelogo} alt="image"/>
                                         <span className="font-weight-bold"
                                         style={{fontSize:"1.6rem", color:"grey", marginLeft:"0.5rem"}}>
-                                        Hirebeat
+                                        HireBeat
                                         </span>
                                     </a>
                                 </div>
@@ -84,32 +86,44 @@ class Footer extends Component {
                                 </ul>
                                 <ul className="social">
                                     <li>
-                                        <Link href="#">
-                                            <a target="_blank">
-                                                <i className="bx bxl-facebook"></i>
-                                            </a>
-                                        </Link>
+                                    <FacebookShareButton 
+                                        url={"https://hirebeat.co"}
+                                        quote={"HireBeat - Video Interview"}
+                                        hashtag="#hirebeat">
+                                        <a target="_blank">
+                                            <i className="bx bxl-facebook"></i>
+                                        </a>
+                                    </FacebookShareButton>
                                     </li>
                                     <li>
-                                        <Link href="#">
-                                            <a target="_blank">
-                                                <i className="bx bxl-twitter"></i>
-                                            </a>
-                                        </Link>
+                                        <TwitterShareButton
+                                           url={"https://hirebeat.co"}
+                                           title={"HireBeat - Video Interview"}
+                                           via={"HireBeat"}
+                                           hashtag="#hirebeat">
+                                           <a target="_blank">
+                                                <i className="bx bxl-twitter"></i>   
+                                           </a>
+                                        </TwitterShareButton>
                                     </li>
                                     <li>
-                                        <Link href="#">
+                                        <LinkedinShareButton
+                                            url={"https://hirebeat.co"}
+                                            title={"HireBeat - Video Interview"}
+                                            source={"HireBeat"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
-                                        </Link>
+                                        </LinkedinShareButton>
                                     </li>
                                     <li>
-                                        <Link href="#">
+                                        <WhatsappShareButton
+                                            url={"https://hirebeat.co"}
+                                            title={"HireBeat - Video Interview"}>
                                             <a target="_blank">
-                                                <i className="bx bxl-instagram"></i>
+                                                <i className="bx bxl-whatsapp"></i>
                                             </a>
-                                        </Link>
+                                        </WhatsappShareButton>
                                     </li>
                                 </ul>
                             </div>

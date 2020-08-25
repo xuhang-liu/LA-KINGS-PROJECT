@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import blog1 from '../../assets/blog1.jpg';
-import blog2 from "../../assets/blog2.jpg";
-import blog3 from "../public/images/blog/blog3.jpg";
-import author1 from "../public/images/author/author1.jpg";
-import author2 from "../public/images/author/author2.jpg";
-import author3 from "../public/images/author/author3.jpg";
+import blog2 from "../../assets/blog2.gif";
+import author1 from "../../assets/HireBeatLogo2.png";
+import author2 from "../../assets/HireBeatLogo2.png";
 
 
 class BlogGrid extends Component {
@@ -39,7 +37,7 @@ class BlogGrid extends Component {
                                     <div className="post-info">
                                         <div className="post-by">
                                             <img src={author1} alt="image" />
-                                            <h6>Chris Wei</h6>
+                                            <h6>HireBeat</h6>
                                         </div>
 
                                         <div className="details-btn">
@@ -78,7 +76,7 @@ class BlogGrid extends Component {
                                     <div className="post-info">
                                         <div className="post-by">
                                             <img src={author2} alt="image" />
-                                            <h6>Michel John</h6>
+                                            <h6>HireBeat</h6>
                                         </div>
 
                                         <div className="details-btn">

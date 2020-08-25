@@ -50,7 +50,7 @@ class ClientsFeedbackSlider extends Component {
             <section className="feedback-area ptb-100">
                 <div className="container">
                     <div className="section-title">
-                        <h2>Whats Our Clients Said About <span>Hepro</span></h2>
+                        <h2>Whats Our Clients Said About <span>HireBeat</span></h2>
                     </div>
 
                     {this.state.display ? <OwlCarousel 

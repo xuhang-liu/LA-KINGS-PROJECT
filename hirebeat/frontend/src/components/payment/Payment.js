@@ -20,7 +20,7 @@ class Payment extends Component {
           }
         ]
         });
-        return <Redirect to='/dashboard' />
+        return <Redirect to='/' />
       }
 
     render() {

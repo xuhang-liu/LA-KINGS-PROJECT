@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 import BlogComments from './BlogComments';
 import BlogSidebar from './BlogSidebar';
 
@@ -11,9 +12,6 @@ class BlogDetailsContent extends Component {
                     <div className="row">
                         <div className="col-lg-8 col-md-12">
                             <div className="blog-details-desc">
-                                <div className="article-image">
-                                </div>
-
                                 <div className="article-content">
                                     <div className="entry-meta">
                                         <ul>
@@ -25,7 +23,7 @@ class BlogDetailsContent extends Component {
                                             </li>
                                             <li>
                                                 <i className='bx bx-user'></i>
-                                                <Link href="#"><a>Michel John</a></Link>
+                                                <a href="https://www.linkedin.com/company/hirebeat">HireBeat</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -67,6 +65,50 @@ class BlogDetailsContent extends Component {
                                     <p>Are you aiming to get hired soon? Hirebeat is right here for you. Get everything you need to know about the interview and get introduced to other opportunities. We will help you learn what you have never learned before as our website has one of the best templates ever.</p>
                                 </div>
                             </div>
+                            <div className="single-footer-widget1">
+                                    <ul className="social">
+                                    <li>
+                                    <FacebookShareButton 
+                                        url={"https://hirebeat.co/blog-details2"}
+                                        quote={"HireBeat - Video Interview"}
+                                        hashtag="#hirebeat">
+                                        <a target="_blank">
+                                            <i className="bx bxl-facebook"></i>
+                                        </a>
+                                    </FacebookShareButton>
+                                    </li>
+                                    <li>
+                                        <TwitterShareButton
+                                           url={"https://hirebeat.co/blog-details2"}
+                                           title={"HireBeat - Video Interview"}
+                                           via={"HireBeat"}
+                                           hashtag="#hirebeat">
+                                           <a target="_blank">
+                                                <i className="bx bxl-twitter"></i>   
+                                           </a>
+                                        </TwitterShareButton>
+                                    </li>
+                                    <li>
+                                        <LinkedinShareButton
+                                            url={"https://hirebeat.co/blog-details2"}
+                                            title={"HireBeat - Video Interview"}
+                                            source={"HireBeat"}>
+                                            <a target="_blank">
+                                                <i className="bx bxl-linkedin"></i>
+                                            </a>
+                                        </LinkedinShareButton>
+                                    </li>
+                                    <li>
+                                        <WhatsappShareButton
+                                            url={"https://hirebeat.co/blog-details2"}
+                                            title={"HireBeat - Video Interview"}>
+                                            <a target="_blank">
+                                                <i className="bx bxl-whatsapp"></i>
+                                            </a>
+                                        </WhatsappShareButton>
+                                    </li>
+                                </ul>
+                                </div>
                         </div>
 
                         <div className="col-lg-4 col-md-12">

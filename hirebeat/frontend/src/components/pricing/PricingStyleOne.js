@@ -1,7 +1,90 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import { connect } from "react-redux";
+import { updateProfile } from "../../redux/actions/auth_actions";
+import { createMessage } from "../../redux/actions/message_actions";
+import { loadStripe } from '@stripe/stripe-js';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
+const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
 class PricingStyleOne extends Component {
+
+    handleUpgrade = () => {
+        if(this.props.profile.membership == 'Premium'){
+          confirmAlert({
+            title: 'Premium Member Already',
+            message: '',
+            buttons: [
+              {
+                label: 'Sure'
+              }
+            ]
+            });
+        }else{
+          this.handleClickUpgrade();
+        }
+        /*if(this.handleClickUpgrade()){
+          var profile = this.makeProfile();
+          this.props.updateProfile(profile);
+        }*/
+    };
+
+    handleClickUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1H8WhZKxU1MN2zWMo3Cu8kLn', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
+    handleYearUpgrade = () => {
+        if(this.props.profile.membership == 'Premium'){
+          confirmAlert({
+            title: 'Premium Member Already',
+            message: '',
+            buttons: [
+              {
+                label: 'Sure'
+              }
+            ]
+            });
+        }else{
+          this.handleYearClickUpgrade();
+        }
+        /*if(this.handleClickUpgrade()){
+          var profile = this.makeProfile();
+          this.props.updateProfile(profile);
+        }*/
+    };
+
+    handleYearClickUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1HK8ZnKxU1MN2zWMDvkw1zJy', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
 
     openTabSection = (evt, tabNmae) => {
         let i, tabcontent, tablinks;
@@ -111,15 +194,28 @@ class PricingStyleOne extends Component {
                                                 </li>
                                             </ul>
 
-                                            <div className="btn-box">
+                                            {
+                                                this.props.profile.membership != "Regular" && 
+                                                <div className="btn-box">
                                                 <Link to="/register">
-                                                    <a className="default-btn" style={{color:"white"}}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Try It Free Now 
-                                                        <span></span>
-                                                    </a>
+                                                <a className="default-btn" style={{color:"white"}}>
+                                                    <i className="bx bxs-hot"></i> 
+                                                    Try It Free Now
+                                                    <span></span>
+                                                </a>
                                                 </Link>
-                                            </div>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Regular" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Default Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
 
@@ -127,11 +223,11 @@ class PricingStyleOne extends Component {
                                     <div className="col-lg-4 col-sm-6">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
-                                                <h3>Starter</h3>
+                                                <h3>Premium</h3>
                                             </div>
 
                                             <div className="price">
-                                                <sup>$</sup>49 <sub>/ monthly</sub>
+                                                <sup>$</sup>19.99 <sub>/ monthly</sub>
                                             </div>
 
                                             <ul className="pricing-features">
@@ -183,16 +279,28 @@ class PricingStyleOne extends Component {
                                                     Google Analytics
                                                 </li>
                                             </ul>
-
-                                            <div className="btn-box">
-                                                <Link href="#">
-                                                    <a className="default-btn" style={{color:"white"}}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Try It Free Now 
-                                                        <span></span>
-                                                    </a>
+                                            {
+                                                this.props.profile.membership != "Regular" && 
+                                                <div className="btn-box">
+                                                <Link to="/register">
+                                                <a className="default-btn" style={{color:"white"}}>
+                                                    <i className="bx bxs-hot"></i> 
+                                                    Try It Free Now
+                                                    <span></span>
+                                                </a>
                                                 </Link>
-                                            </div>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Regular" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white"}} onClick={this.handleUpgrade}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Upgrade Now
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
 
@@ -200,11 +308,11 @@ class PricingStyleOne extends Component {
                                     <div className="col-lg-4 col-sm-6 offset-lg-0 offset-sm-3">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
-                                                <h3>Professional</h3>
+                                                <h3>Enterprise</h3>
                                             </div>
 
                                             <div className="price">
-                                                <sup>$</sup>79<sub> / monthly</sub>
+                                                <sup>$</sup>299<sub> / monthly</sub>
                                             </div>
 
                                             <ul className="pricing-features">
@@ -259,10 +367,10 @@ class PricingStyleOne extends Component {
                                             </ul>
 
                                             <div className="btn-box">
-                                                <Link href="#">
+                                                <Link to="#">
                                                     <a className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
-                                                        Try It Free Now 
+                                                        Coming Soon 
                                                         <span></span>
                                                     </a>
                                                 </Link>
@@ -335,15 +443,28 @@ class PricingStyleOne extends Component {
                                                 </li>
                                             </ul>
 
-                                            <div className="btn-box">
-                                                <Link href="#">
-                                                    <a className="default-btn" style={{color:"white"}}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Try It Free Now 
-                                                        <span></span>
-                                                    </a>
+                                            {
+                                                this.props.profile.membership != "Regular" && 
+                                                <div className="btn-box">
+                                                <Link to="/register">
+                                                <a className="default-btn" style={{color:"white"}}>
+                                                    <i className="bx bxs-hot"></i> 
+                                                    Try It Free Now
+                                                    <span></span>
+                                                </a>
                                                 </Link>
-                                            </div>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Regular" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Default Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
 
@@ -351,11 +472,11 @@ class PricingStyleOne extends Component {
                                     <div className="col-lg-4 col-md-6">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
-                                                <h3>Starter</h3>
+                                                <h3>Premium</h3>
                                             </div>
 
                                             <div className="price">
-                                                <sup>$</sup>79 <sub>/ yearly</sub>
+                                                <sup>$</sup>99.99 <sub>/ yearly</sub>
                                             </div>
 
                                             <ul className="pricing-features">
@@ -409,15 +530,28 @@ class PricingStyleOne extends Component {
                                                 </li>
                                             </ul>
 
-                                            <div className="btn-box">
-                                                <Link href="#">
-                                                    <a className="default-btn" style={{color:"white"}}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Try It Free Now 
-                                                        <span></span>
-                                                    </a>
+                                            {
+                                                this.props.profile.membership != "Regular" && 
+                                                <div className="btn-box">
+                                                <Link to="/register">
+                                                <a className="default-btn" style={{color:"white"}}>
+                                                    <i className="bx bxs-hot"></i> 
+                                                    Try It Free Now
+                                                    <span></span>
+                                                </a>
                                                 </Link>
-                                            </div>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Regular" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white"}} onClick={this.handleYearUpgrade}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Upgrade Now
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
 
@@ -425,11 +559,11 @@ class PricingStyleOne extends Component {
                                     <div className="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
-                                                <h3>Professional</h3>
+                                                <h3>Enterprise</h3>
                                             </div>
 
                                             <div className="price">
-                                                <sup>$</sup>99 <sub>/ yearly</sub>
+                                                <sup>$</sup>1999 <sub>/ yearly</sub>
                                             </div>
 
                                             <ul className="pricing-features">
@@ -483,10 +617,10 @@ class PricingStyleOne extends Component {
                                             </ul>
 
                                             <div className="btn-box">
-                                                <Link href="#">
+                                                <Link to="#">
                                                     <a className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
-                                                        Try It Free Now 
+                                                        Coming Soon 
                                                         <span></span>
                                                     </a>
                                                 </Link>
@@ -503,4 +637,9 @@ class PricingStyleOne extends Component {
     }
 }
 
-export default PricingStyleOne;
+const mapStateToProps = (state) => ({
+    user: state.auth_reducer.user,
+    profile: state.auth_reducer.profile,
+});
+
+export default connect(mapStateToProps, { updateProfile, createMessage }) (PricingStyleOne);

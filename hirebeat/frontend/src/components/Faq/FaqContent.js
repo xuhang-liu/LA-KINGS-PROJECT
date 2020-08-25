@@ -6,7 +6,7 @@ import {
     AccordionItemPanel,
     AccordionItemButton
 } from 'react-accessible-accordion';
-import faq1 from "../public/images/faq-img1.png";
+import faq1 from "../../assets/faq.png";
 
 class FaqContent extends Component {
     render() {
@@ -16,7 +16,7 @@ class FaqContent extends Component {
                     <div className="row align-items-center">
                         <div className="col-lg-7 col-md-12">
                             <div className="faq-accordion">
-                                <h2>Get To Know About <span>Hepro</span></h2>
+                                <h2>Get To Know About <span>HireBeat</span></h2>
 
                                 <Accordion>
                                     <AccordionItem>

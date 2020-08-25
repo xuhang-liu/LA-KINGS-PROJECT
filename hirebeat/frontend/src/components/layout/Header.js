@@ -62,12 +62,12 @@ export class Header extends Component {
                   <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Practice</span>
                 </Link>
               </li>
+              </MediaQuery>
               <li className="nav-item">
                 <Link to="/dashboard" className="nav-link text-white navbar-font">
                   <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Dashboard</span>
                 </Link>
               </li>
-              </MediaQuery>
               <li className="nav-item">
                 <Link to="/pricing" className="nav-link text-white navbar-font">
                   <span style={{color:"grey",fontFamily:"Helvetica", fontWeight:"bold"}}>Pricing</span>

@@ -22,9 +22,9 @@ class Contact extends Component {
                 Use the form to drop us an email or directly reach us at &nbsp;
                 <a href = "mailto: hr@hirebeat.co" style={{color: "#FF6B00"}}>admin@hirebeat.co</a></p>
             </div>
-            <div className="row" style={{width: "54rem", margin: "auto"}}>
+            <div className="row" style={{width: "48rem", margin: "auto"}}>
               <div className="col contact-bg">
-                <div style={{width: "80%", margin: "auto"}}>
+                <div style={{width: "90%", margin: "auto"}}>
                   <br/>
                   <label className="contact-form-font">
                   Email(Optional)
