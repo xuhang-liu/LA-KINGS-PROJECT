@@ -3,6 +3,15 @@ import { withRouter } from "react-router-dom";
 import behaviorIcon from "../../assets/behavior_icon.png";
 import techIcon from "../../assets/tech_icon.png";
 import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
+import { useEffect } from "react";
+
+function ScrollToTopOnMount() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return null;
+}
 
 export class QuestionTypeChoices extends Component {
   redirectToBehaviorQuestions = () => {
@@ -17,6 +26,8 @@ export class QuestionTypeChoices extends Component {
 
   render() {
     return (
+      <React.Fragment>
+      <ScrollToTopOnMount />
       <SetupCard>
         <CardRow>
           <h5>Create A New Mock Interview</h5>
@@ -37,6 +48,7 @@ export class QuestionTypeChoices extends Component {
           )}
         </div>
       </SetupCard>
+      </React.Fragment>
     );
   }
 }

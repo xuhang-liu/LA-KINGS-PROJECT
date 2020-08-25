@@ -4,11 +4,21 @@ import ContactFormArea from './ContactFormArea';
 import OurLovingClients from '../Common/OurLovingClients';
 import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
+import { useEffect } from "react";
+
+function ScrollToTopOnMount() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return null;
+}
 
 class Contact extends Component {
     render() {
         return (
             <React.Fragment>
+              <ScrollToTopOnMount />
                 <PageTitleArea 
                     pageTitle="Contact Us" 
                     pageDescription="Drop us Message for any Query" 

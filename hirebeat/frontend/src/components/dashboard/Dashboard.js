@@ -9,6 +9,16 @@ import { connect } from "react-redux";
 import { DbRow } from "./DashboardComponents";
 import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
+import { useEffect } from "react";
+
+function ScrollToTopOnMount() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return null;
+}
+
 
 export class Dashboard extends Component {
   componentDidMount() {
@@ -52,6 +62,8 @@ export class Dashboard extends Component {
 
   render() {
     return (
+      <React.Fragment>
+        <ScrollToTopOnMount />
       <div className="dashboard-container" style={{marginBottom:"10%"}}>
         <MediaQuery minDeviceWidth={1224}>
         <DbRow>
@@ -82,6 +94,7 @@ export class Dashboard extends Component {
         <div style={{fontSize:"1.6rem"}}><b>Please Login with your computer for the full functionalities.</b></div>
       </MediaQuery>
       </div>
+      </React.Fragment>
     );
   }
 }

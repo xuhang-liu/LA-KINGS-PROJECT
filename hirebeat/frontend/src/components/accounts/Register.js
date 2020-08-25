@@ -6,6 +6,15 @@ import {register} from "../../redux/actions/auth_actions";
 import {createMessage} from "../../redux/actions/message_actions";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
+import { useEffect } from "react";
+
+function ScrollToTopOnMount() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return null;
+}
 
 export class Register extends Component {
   state = {
@@ -53,6 +62,7 @@ export class Register extends Component {
     }
     return (
         <React.Fragment>
+          <ScrollToTopOnMount />
           <div
               className="container-fluid bg-white p-0">
             <MediaQuery minDeviceWidth={1224}>    

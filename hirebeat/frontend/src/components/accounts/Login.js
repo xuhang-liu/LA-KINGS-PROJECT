@@ -6,6 +6,15 @@ import {login, exchangeToken} from "../../redux/actions/auth_actions";
 import {CardButton} from "../practice/CardComponents";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
+import { useEffect } from "react";
+
+function ScrollToTopOnMount() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return null;
+}
 
 export class Login extends Component {
   state = {
@@ -59,7 +68,7 @@ export class Login extends Component {
     const {username, password} = this.state;
     return (
         <React.Fragment>
-
+          <ScrollToTopOnMount />
 
           <div
               className="container-fluid bg-white p-0"
