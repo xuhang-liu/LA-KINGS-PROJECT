@@ -7,6 +7,7 @@ import Reviews from "./Reviews";
 
 export class ReviewWindow extends Component {
   static propTypes = {
+    q_type: PropTypes.object,
     video: PropTypes.object,
     loaded: PropTypes.bool.isRequired,
     review_count: PropTypes.number.isRequired,
@@ -17,7 +18,7 @@ export class ReviewWindow extends Component {
   }
 
   nextVideo = () => {
-    this.setState({ video: null, loaded: false });
+    this.setState({q_type: null, video: null, loaded: false });
     //window.location.reload();
   };
 
@@ -31,6 +32,7 @@ export class ReviewWindow extends Component {
             <h2>No video needs to be reviewed</h2>
           ) : (
             <div style={{width: "60%"}}>
+              <div style={{marginBottom:"2%"}}><h3>Question: {this.props.q_type}</h3></div>
               <div>
               <VideoPlayer url={this.props.video.url} /></div>
               <Reviews
@@ -52,6 +54,7 @@ export class ReviewWindow extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  q_type: state.video_reducer.q_type,
   video: state.video_reducer.videos,
   loaded: state.video_reducer.loaded,
   review_count: state.video_reducer.review_count,

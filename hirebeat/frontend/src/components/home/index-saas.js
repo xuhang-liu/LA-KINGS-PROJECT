@@ -28,7 +28,6 @@ class IndexSaas extends Component {
                 <FeaturedFeature />
                 <MoreToDiscover />
                 <WhyChooseUs />
-                <ClientsFeedbackSlider />
                 <FaqContent />
                 <FreeTrialArea />
                       {/* Preloader */}

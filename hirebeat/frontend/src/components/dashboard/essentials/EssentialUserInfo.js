@@ -27,7 +27,7 @@ export class EssentialUserInfo extends Component {
     phone_number: "",
     location: "",
     filePhoto: "https://hirebeat-assets.s3.amazonaws.com/user.png",
-    avatar_url:"",
+    avatar_url:"https://hirebeat-assets.s3.amazonaws.com/user.png",
     isActive: true,
     membership: "",
     email_confirmed: this.props.profile.email_confirmed,
@@ -154,20 +154,10 @@ export class EssentialUserInfo extends Component {
   };
 
   makeCancelConfirm = () => {
-    if(this.state.saved_video_count>5){
-      return {
-        user: this.props.user.id,
-        id: this.props.profile.id,
-        membership: 'Regular',
-        save_limit: 5,
-        saved_video_count: 5,
-      };
-    }
     return {
       user: this.props.user.id,
       id: this.props.profile.id,
-      membership: 'Regular',
-      save_limit: 5,
+      membership: 'Regular'
     };
   };
 

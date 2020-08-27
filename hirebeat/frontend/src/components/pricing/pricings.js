@@ -22,8 +22,8 @@ class Pricing extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
-                    pageTitle="Transparent Pricing" 
-                    pageDescription="Border-less account pricing" 
+                    pageTitle="Transparent & Simple Pricing" 
+                    pageDescription="Get unlimited interview analytics with any HireBeat plan" 
                 />
                 <PricingStyleOne />
                 <FaqContent />

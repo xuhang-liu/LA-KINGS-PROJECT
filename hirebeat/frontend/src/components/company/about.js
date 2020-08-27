@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
 import AboutContent from './AboutContent';
 import WhyChooseUs from '../Common/WhyChooseUs';
-import TeamMember from './TeamMember';
 import ClientsFeedbackSlider from '../Common/ClientsFeedbackSlider';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
@@ -21,13 +20,11 @@ class About extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
-                    pageTitle="About Us" 
-                    pageDescription="The Hepro Story" 
+                    pageTitle="Help job seekers gain core competence" 
+                    pageDescription="By implementing talent intelligent database." 
                 />
                 <AboutContent />
                 <WhyChooseUs />
-                <TeamMember />
-                <ClientsFeedbackSlider />
                 <FreeTrialArea />
             </React.Fragment>
         );

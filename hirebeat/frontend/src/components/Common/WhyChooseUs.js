@@ -79,10 +79,10 @@ class WhyChooseUs extends Component {
                                 <h3>Have any questions about us?</h3>
                                 <p>Don't hesitate to contact us.</p>
 
-                                <Link to="/contact">
+                                <Link to="/register">
                                     <a className="default-btn" style={{color:"white"}}>
-                                        <i className="bx bxs-edit-alt"></i>
-                                        Contact Us
+                                        <i className="bx bxs-hot"></i>
+                                        Get Started
                                         <span></span>
                                     </a>
                                 </Link>

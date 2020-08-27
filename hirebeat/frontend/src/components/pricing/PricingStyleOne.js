@@ -367,13 +367,11 @@ class PricingStyleOne extends Component {
                                             </ul>
 
                                             <div className="btn-box">
-                                                <Link to="#">
-                                                    <a className="default-btn" style={{color:"white"}}>
+                                                    <a href = "mailto: admin@hirebeat.co" className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
-                                                        Coming Soon 
+                                                        Contact Us
                                                         <span></span>
                                                     </a>
-                                                </Link>
                                             </div>
                                         </div>
                                     </div>
@@ -617,13 +615,11 @@ class PricingStyleOne extends Component {
                                             </ul>
 
                                             <div className="btn-box">
-                                                <Link to="#">
-                                                    <a className="default-btn" style={{color:"white"}}>
+                                                    <a className="default-btn" style={{color:"white"}} href="mailto: admin@hirebeat.co">
                                                         <i className="bx bxs-hot"></i> 
-                                                        Coming Soon 
+                                                        Contact Us 
                                                         <span></span>
                                                     </a>
-                                                </Link>
                                             </div>
                                         </div>
                                     </div>

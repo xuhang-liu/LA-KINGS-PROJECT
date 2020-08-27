@@ -9,12 +9,12 @@ class FunFacts extends Component {
                     <div className="col-lg-3 col-6 col-sm-6">
                         <ReactWOW animation='fadeInLeft' delay='0.2s'>
                             <div className="single-funfacts funfact-style-two">
-                                <i className='bx bx-list-check'></i>
+                                <i className='bx bxs-book'></i>
                                 <h3>
-                                    850
+                                    6000
                                     <span className="sign-icon">+</span>
                                 </h3>
-                                <p>Completed Projects</p>
+                                <p>Interview Questions</p>
                             </div>
                         </ReactWOW>
                     </div>
@@ -22,12 +22,12 @@ class FunFacts extends Component {
                     <div className="col-lg-3 col-6 col-sm-6">
                         <ReactWOW animation='fadeInLeft' delay='0.3s'>
                             <div className="single-funfacts funfact-style-two">
-                                <i className='bx bx-smile'></i>
+                                <i className='bx bx-world'></i>
                                 <h3>
-                                    850
+                                    55
                                     <span className="sign-icon">+</span>
                                 </h3>
-                                <p>Happy Clients</p>
+                                <p>Coverage Countries</p>
                             </div>
                         </ReactWOW>
                     </div>
@@ -35,12 +35,11 @@ class FunFacts extends Component {
                     <div className="col-lg-3 col-6 col-sm-6">
                         <ReactWOW animation='fadeInLeft' delay='0.4s'>
                             <div className="single-funfacts funfact-style-two">
-                                <i className='bx bx-grid-small'></i>
+                                <i className='bx bxs-pie-chart-alt-2'></i>
                                 <h3>
-                                    120
-                                    <span className="sign-icon">+</span>
+                                    12
                                 </h3>
-                                <p>Ongoing Projects</p>
+                                <p>Evaluation Metrics</p>
                             </div>
                         </ReactWOW>
                     </div>
@@ -48,12 +47,11 @@ class FunFacts extends Component {
                     <div className="col-lg-3 col-6 col-sm-6">
                         <ReactWOW animation='fadeInLeft' delay='0.5s'>
                             <div className="single-funfacts funfact-style-two">
-                                <i className='bx bxs-award'></i>
+                                <i className='bx bxs-network-chart'></i>
                                 <h3>
-                                    50
-                                    <span className="sign-icon">+</span>
+                                    10
                                 </h3>
-                                <p>Winning Awards</p>
+                                <p>Global Industries</p>
                             </div>
                         </ReactWOW>
                     </div>

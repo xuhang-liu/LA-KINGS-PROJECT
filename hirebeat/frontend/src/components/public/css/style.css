@@ -155,8 +155,7 @@ p:last-child {
 /* Section title */
 .section-title {
   text-align: center;
-  max-width: 575px;
-  text-transform: capitalize;
+  max-width: 620px;
   margin-left: auto;
   margin-bottom: 60px;
   margin-right: auto;
@@ -5173,7 +5172,9 @@ Signup Area CSS
 }
 
 .signup-content {
-  height: 100vh;
+  height: 70rem;
+  width: 50%;
+  margin-left: 28%;
 }
 
 .signup-content .signup-form {
@@ -5854,7 +5855,7 @@ Footer Area CSS
   z-index: -1;
   -webkit-animation: imageChange 1s linear 1s infinite;
           animation: imageChange 1s linear 1s infinite;
-  background-image: url(/images/footer-shape1.png);
+  background-image: url(../images/footer-shape1.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -5870,7 +5871,7 @@ Footer Area CSS
   z-index: -1;
   -webkit-animation: imageChangeTwo 1s linear 1s infinite;
           animation: imageChangeTwo 1s linear 1s infinite;
-  background-image: url(/images/footer-shape2.png);
+  background-image: url(../images/footer-shape2.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -6553,9 +6554,9 @@ SaaS Home Page CSS
 /* End Features inner content */
 /* Overview section */
 .overview-item {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   border-bottom: 1px solid #edf0f7;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 .overview-item:last-child {

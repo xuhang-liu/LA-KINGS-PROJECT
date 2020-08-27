@@ -951,8 +951,8 @@
     margin-top: 30px;
   }
   .overview-item {
-    margin-bottom: 30px;
-    padding-bottom: 30px;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
   }
   .overview-item:last-child {
     margin-bottom: 0;
@@ -1679,8 +1679,8 @@
     margin-top: 30px;
   }
   .overview-item {
-    margin-bottom: 30px;
-    padding-bottom: 30px;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
   }
   .overview-item:last-child {
     margin-bottom: 0;

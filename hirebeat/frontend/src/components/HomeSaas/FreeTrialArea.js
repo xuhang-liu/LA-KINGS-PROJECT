@@ -11,8 +11,8 @@ class FreeTrialArea extends Component {
             <section className="free-trial-area pb-100 bg-f4f5fe">
                 <div className="container">
                     <div className="free-trial-content">
-                        <h2 style={{paddingTop:"2rem"}}>We always try to be the best support to you as possible</h2>
-                        <p>Qualify your leads & recognize the value of word your customer will love you</p>
+                        <h2 style={{paddingTop:"2rem"}}>We are here to be the best support to you landing next dream job</h2>
+                        <p>Your training will be specifically tailored to your industry/job role and to engage in a real interview simulation with AI or expert evaluation</p>
 
                         <Link to="/register">
                             <a className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>

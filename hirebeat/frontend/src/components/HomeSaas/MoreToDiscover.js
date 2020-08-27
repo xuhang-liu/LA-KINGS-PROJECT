@@ -12,7 +12,7 @@ class MoreToDiscover extends Component {
                 <div className="container">
                     <div className="section-title">
                         <h2 className="mb-2">More to Discover</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>HireBeat is transforming the way of practicing interview to improve the efficiency. Use our interview tool and AI-based feedback to impress recruiters in just a few clicks</p>
                     </div>
                 </div>
 

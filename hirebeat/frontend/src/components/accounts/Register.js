@@ -7,6 +7,7 @@ import {createMessage} from "../../redux/actions/message_actions";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
+import badge from '../../assets/badge-30.svg';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -64,28 +65,175 @@ export class Register extends Component {
         <React.Fragment>
           <ScrollToTopOnMount />
           <div
-              className="container-fluid bg-white p-0">
-            <MediaQuery minDeviceWidth={1224}>    
-            <header id="login-intro"
-                    style={{
-                      background: "#56a3fa",
-                      minHeight: "16rem"
-                    }}>
-              <div className="container"
-                   style={{
-                     paddingTop: "4rem"
-                   }}>
-                <h1 className="display-4 text-white text-center">
-                  Start your career with the interview
-                </h1>
-                <h3 className="text-white text-center" style={{paddingBottom:"1rem"}}>
-                  Join our AI-analysis interview platform to improve your performance.
-                </h3>
+              className="container-fluid bg-white p-100">
+            <MediaQuery minDeviceWidth={1224}>
+            <section className="signup-area">
+                <div className="row m-0">
+                    <div className="col-lg-5 col-md-12 p-0" style={{backgroundColor:"#56a3fa"}}> 
+                      <div></div>
+                    </div>
+
+                    <div className="col-lg-7 col-md-12 p-0">
+                        <div className="signup-content">
+                            <div className="d-table">
+                                <div className="d-table-cell">
+                                    <div className="signup-form">
+                                      <div>
+                                        <h3 style={{color:"#56a3fa"}}><b>Start your career with the interview</b></h3>
+                                      </div>
+
+                    <form onSubmit={this.onSubmit}>
+                      <div className="form-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="username"
+                            placeholder="Username/Email"
+                            onChange={this.onChange}
+                            value={username}
+                            style={{
+                              background: "#FFFFFF",
+                              border: "1px solid #E5E5E5",
+                              borderRadius: "5px",
+                              paddingLeft: "1rem",
+                            }}
+                            required
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <input
+                            type="email"
+                            className="form-control"
+                            name="email"
+                            placeholder="Email"
+                            required
+                            onChange={this.onChange}
+                            style={{
+                              background: "#FFFFFF",
+                              border: "1px solid #E5E5E5",
+                              borderRadius: "5px",
+                              paddingLeft: "1rem",
+                            }}
+                            value={email}/>
+                      </div>
+
+                      <div className="form-group">
+                        <input
+                            type="password"
+                            className="form-control"
+                            name="password"
+                            onChange={this.onChange}
+                            value={password}
+                            placeholder="Create Password"
+                            minLength="8"
+                            style={{
+                              background: "#FFFFFF",
+                              border: "1px solid #E5E5E5",
+                              borderRadius: "5px",
+                              paddingLeft: "1rem",
+                            }}
+                            required/>
+                      </div>
+
+                      <div className="form-group">
+                        <input
+                            type="password"
+                            className="form-control"
+                            name="password2"
+                            onChange={this.onChange}
+                            value={password2}
+                            placeholder="Confirm Password"
+                            minLength="8"
+                            style={{
+                              background: "#FFFFFF",
+                              border: "1px solid #E5E5E5",
+                              borderRadius: "5px",
+                              paddingLeft: "1rem",
+                            }}
+                            required/>
+                      </div>
+
+                      <p className="d-flex text-muted justify-content-end"
+                         style={{
+                           fontWeight: "70"
+                         }}>
+                        Have an account?
+                        <a href="/login"
+                           className="active d-flex ml-2"
+                           style={{
+                             textDecoration: "underline",
+                             color: "orange"
+                           }}>
+                          Log in
+                        </a>
+                      </p>
+
+                      <br/>
+
+                      <div className="form-group">
+                        <button
+                            type="submit"
+                            className="font-weight-bold navbar-font"
+                            style={{
+                              WebkitBorderRadius: "50px",
+                              width: "100%",
+                              height: "3rem",
+                              color: "white",
+                              background: "#FF6B00",
+                              border: "none",
+                              boxShadow: "0 0 8px #FF6B00",
+                            }}
+                        >
+                          Register
+                        </button>
+                      </div>
+
+                      <p className="d-flex flex-wrap justify-content-end font-weight-lighter"
+                         style={{
+                           fontSize: "0.9rem",
+                           color: "grey",
+                         }}>
+                        I have read and agree to the
+                        <a href="/term"
+                           className="active d-flex ml-2"
+                           style={{
+                             textDecoration: "underline",
+                             color: "orange"
+                           }}>
+                          Terms & Conditions
+                        </a>
+                      </p>
+
+                      <hr className="style-four"
+                          data-content="Or use"
+                          style={{
+                            marginTop:"4rem",
+                          }}
+                      />
+
+                    </form>
+
+                    <SocialButtons handleSocialLogin={this.handleSocialLogin}/>
+
+                    <div>
+                      <div>
+                        <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}}/>
+                        <div style={{paddingTop:"0.5rem", textAlign:"left"}}>
+                        <a>Your purchase is backed by our 30 Day Money Back Guarantee. We stand behind our training 100%. If you aren’t thrilled with the improvement in your interviewing, just email us and we’ll immediately refund the purchase.</a>
+                        </div></div>
+                    </div>
+
+                  </div>
+                </div>
               </div>
-            </header>
+              </div>
+              </div>
+              </div>
+            </section>
             </MediaQuery>
             <MediaQuery maxDeviceWidth={1224}>    
-            <header id="login-intro"
+            <div id="login-intro"
                     style={{
                       background: "#56a3fa",
                       minHeight: "8rem"
@@ -101,9 +249,7 @@ export class Register extends Component {
                   Join our AI-analysis interview platform to improve your performance.
                 </h5>
               </div>
-            </header>
-            </MediaQuery>
-
+            </div>
             <section className="card border-bottom-0 shadow-none bg-white">
               <div className="card-body">
                 <div className="row">
@@ -252,8 +398,7 @@ export class Register extends Component {
               </div>
 
             </section>
-
-
+            </MediaQuery>
           </div>
 
         </React.Fragment>

@@ -135,7 +135,7 @@ class MainBanner extends Component {
                                             <div className="banner-btn">
                                                 <div className="d-flex">
                                                     <Link to="/register">
-                                                        <a className="default-btn" style={{color:"#56a3fa"}}>
+                                                        <a className="default-btn" style={{color:"white"}}>
                                                             <i className="bx bxs-hot"></i>
                                                             Get Started 
                                                             <span></span>

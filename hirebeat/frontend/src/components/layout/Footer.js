@@ -16,14 +16,14 @@ class Footer extends Component {
                             <div className="single-footer-widget">
                                 <div className="logo">
                                     <a href="/">
-                                        <img src={whitelogo} alt="image"/>
+                                        <img src={whitelogo} alt="image" style={{width:"2.5rem", paddingBottom:"1rem"}}/>
                                         <span className="font-weight-bold"
                                         style={{fontSize:"1.6rem", color:"grey", marginLeft:"0.5rem"}}>
                                         HireBeat
                                         </span>
                                     </a>
                                 </div>
-                                <p>AI-analysis interview platform that supercharges your performance and makes a great impression at your next interview.</p>
+                                <p style={{marginRight:"2%"}}>AI-analysis interview platform that supercharges your performance and makes a great impression at your next interview.</p>
                             </div>
                         </div>
 
