@@ -114,11 +114,11 @@ img {
 }
 
 .pt-70 {
-  padding-top: 70px;
+  padding-top: 30px;
 }
 
 .pb-70 {
-  padding-bottom: 70px;
+  padding-bottom: 40px;
 }
 
 .tx-center {
@@ -1640,7 +1640,7 @@ About Area CSS
 
 .about-content h2 {
   margin-bottom: 10px;
-  font-size: 40px;
+  font-size: 46px;
   font-weight: 600;
 }
 
@@ -5172,7 +5172,7 @@ Signup Area CSS
 }
 
 .signup-content {
-  height: 70rem;
+  height: 60rem;
   width: 50%;
   margin-left: 28%;
 }
@@ -5208,7 +5208,7 @@ Signup Area CSS
 }
 
 .signup-content .signup-form form {
-  margin-top: 35px;
+  margin-top: 15px;
 }
 
 .signup-content .signup-form form .form-control {
@@ -6010,10 +6010,12 @@ Footer Area CSS
   width: 30px;
   height: 30px;
   line-height: 33px;
-  background-color: #4e6e8a;
+  color: #ffffff;
+  background-color: #56a3fa;
   text-align: center;
   font-size: 17px;
-  border-radius: 2px;
+  border-radius: 30px;
+
 }
 
 .single-footer-widget .social li a:hover {

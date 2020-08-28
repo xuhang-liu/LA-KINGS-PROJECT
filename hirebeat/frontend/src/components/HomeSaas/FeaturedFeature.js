@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import ReactWOW from 'react-wow';
 import feature1 from "../../assets/Picture1.png";
-import shape9 from "../public/images/shape/shape9.png";
 
 class FeaturedFeature extends Component {
     render() {
         return (
-            <section className="services-area ptb-100">
+            <section className="services-area ptb-70">
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <ReactWOW animation='fadeInLeft' delay='0.3s'>

@@ -96,7 +96,7 @@ class FaqContent extends Component {
                         </div>
 
                         <div className="col-lg-5 col-md-12">
-                            <div className="faq-image">
+                            <div className="faq-image" style={{paddingTop:"8%"}}>
                                 <img src={faq1} alt="image" />
                             </div>
                         </div>

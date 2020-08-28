@@ -64,11 +64,11 @@ export const CardButton = (props) => {
     <button
       className={props.btnClassName ?? "btn btn-warning"}
       style={{
-        WebkitBorderRadius: "20px",
+        WebkitBorderRadius: "1.5rem",
 //        width: props.buttonWidth,
-        width: "298px",
-        height: "60px",
-        borderRadius: "50px",
+        width: "18.625rem",
+        height: "3.75rem",
+        borderRadius: "3.125rem",
         background:
           props.btnClassName && props.btnClassName != "btn btn-warning"
             ? ""
@@ -84,8 +84,8 @@ export const CardButton = (props) => {
           fontFamily: "Lato",
           fontStyle: "normal",
           fontWeight: "bold",
-          fontSize: "25px",
-          lineHeight: "30px",
+          fontSize: "1.2rem",
+          lineHeight: "1.875rem",
           display: "block",
           alignItems: "center",
           textAlign: "center",

@@ -8,6 +8,7 @@ import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import badge from '../../assets/badge-30.svg';
+import leftbg from '../../assets/Login.png';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -69,14 +70,12 @@ export class Register extends Component {
             <MediaQuery minDeviceWidth={1224}>
             <section className="signup-area">
                 <div className="row m-0">
-                    <div className="col-lg-5 col-md-12 p-0" style={{backgroundColor:"#56a3fa"}}> 
-                      <div></div>
+                    <div className="col-lg-5 col-md-12 p-0"> 
+                      <img src={leftbg}></img>
                     </div>
 
                     <div className="col-lg-7 col-md-12 p-0">
-                        <div className="signup-content">
-                            <div className="d-table">
-                                <div className="d-table-cell">
+                        <div className="signup-content" style={{marginTop:"3rem"}}>
                                     <div className="signup-form">
                                       <div>
                                         <h3 style={{color:"#56a3fa"}}><b>Start your career with the interview</b></h3>
@@ -226,8 +225,6 @@ export class Register extends Component {
 
                   </div>
                 </div>
-              </div>
-              </div>
               </div>
               </div>
             </section>
