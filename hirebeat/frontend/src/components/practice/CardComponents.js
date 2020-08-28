@@ -150,6 +150,25 @@ export const VideoNumberLinkRow = (props) => {
   );
 };
 
+export const AudioNumberLinkRow = (props) => {
+  return (
+    <CardRowMidHigh>
+      <div className="d-flex justify-content-around" style={{ width: "100%" }}>
+        <h6>Free audio save left: {props.number_of_audios_to_save} </h6>
+        {/* <a
+          onClick={props.upgrade}
+          style={{
+            color: "#f3a340",
+            textDecoration: "underline",
+          }}
+        >
+          Upgrade >
+        </a> */}
+      </div>
+    </CardRowMidHigh>
+  );
+};
+
 export const ButtonContainer = (src, onTap, textDisplayed, btnClassName) => {
   return (
     <div className="setup-card-button-container">

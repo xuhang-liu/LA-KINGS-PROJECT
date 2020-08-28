@@ -1,3 +1,9 @@
+import WaveSurfer from 'wavesurfer.js';
+import MicrophonePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.microphone.js';
+WaveSurfer.microphone = MicrophonePlugin;
+// register videojs-wavesurfer plugin
+import Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer.js';
+
 export const numberOfQuestionOptions = [
   { value: 3, label: "3" },
   { value: 4, label: "4" },
@@ -26,6 +32,37 @@ export var videoRecorderOptions = {
       videoMimeType: "video/webm;codecs=vp8,opus",
     },
   },
+};
+
+// audio configuration
+export var audioRecorderOptions = {
+    controls: true,
+    width: 600,
+    height: 300,
+    plugins: {
+        wavesurfer: {
+            debug: true,
+            backend: 'WebAudio',
+            waveColor: 'black',
+            cursorWidth: 0,
+            interact: false,
+            hideScrollbar: true,
+            plugins: [
+                // enable microphone plugin
+                WaveSurfer.microphone.create({
+                    bufferSize: 4096,
+                    numberOfInputChannels: 1,
+                    numberOfOutputChannels: 1
+                })
+            ]
+        },
+        record: {
+            audio: true,
+            video: false,
+            maxLength: 60,
+            debug: true
+        }
+    }
 };
 
 export var radialChartOptions = {
