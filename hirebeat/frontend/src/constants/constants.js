@@ -37,15 +37,18 @@ export var videoRecorderOptions = {
 // audio configuration
 export var audioRecorderOptions = {
     controls: true,
-    width: 600,
-    height: 300,
+    bigPlayButton: false,
+    width: 400,
+    height: 100,
+    fluid: false,
+    responsive: true,
     plugins: {
         wavesurfer: {
-            debug: true,
             backend: 'WebAudio',
-            waveColor: 'black',
-            cursorWidth: 0,
-            interact: false,
+            waveColor: '#36393b',
+            progressColor: 'black',
+            debug: true,
+            cursorWidth: 1,
             hideScrollbar: true,
             plugins: [
                 // enable microphone plugin
@@ -60,6 +63,7 @@ export var audioRecorderOptions = {
             audio: true,
             video: false,
             maxLength: 60,
+            displayMilliseconds: true,
             debug: true
         }
     }

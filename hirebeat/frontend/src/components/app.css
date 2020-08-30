@@ -298,6 +298,11 @@ video {
   padding-top: 45px;
 }
 
+.card-row-low {
+  display: flex;
+  justify-content: center;
+}
+
 .card-row-mid-high {
   display: flex;
   justify-content: center;
@@ -1306,4 +1311,9 @@ h5 {
   text-align: center;
   margin-top: 5%;
   margin-bottom: 5%;
+}
+
+/* override video.js css */
+.vjs-record.vjs-device-button.vjs-control {
+  font-size: 1rem;
 }

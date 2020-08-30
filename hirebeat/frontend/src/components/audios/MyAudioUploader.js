@@ -111,11 +111,11 @@ export class MyAudioUploader extends Component {
             autoUpload={true}
           />
         </div>
-        <br />
         <RecordDoneButton
           onTap={saveOnTap}
           textDisplayed={saveText}
           buttonWidth={"100%"}
+          isAudio={true}
         />
         <AudioNumberLinkRow
           number_of_audios_to_save={
@@ -132,6 +132,7 @@ export class MyAudioUploader extends Component {
           }}
           textDisplayed={"Try Again"}
           buttonWidth={"100%"}
+          isAudio={true}
         />
         <BglessCardButton
           onTap={skipOnTap}

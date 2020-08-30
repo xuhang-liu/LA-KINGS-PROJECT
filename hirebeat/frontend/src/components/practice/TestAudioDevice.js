@@ -18,7 +18,7 @@ function TestAudioDevice(props) {
           ensure your microphone is working.
         </h4>
       </div>
-      <div style={{ marginTop: 20 }}>
+      <div style={{ marginTop: "2.5rem" }}>
         <div
           className="video-recorder-row"
           style={{ marginLeft: 0, paddingLeft: 0 }}

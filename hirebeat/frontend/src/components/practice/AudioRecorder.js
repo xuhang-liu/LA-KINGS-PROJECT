@@ -24,7 +24,7 @@ export class AudioRecorder extends Component {
   };
 
   componentDidMount() {
-    this.player = videojs(this.audioNode, this.props, function() {
+    this.player = videojs(this.audioNode, this.props, () => {
       var version_info =
         "Using video.js " +
         videojs.VERSION +
@@ -39,18 +39,19 @@ export class AudioRecorder extends Component {
 
     this.player.on("deviceReady", () => {
       console.log("device is ready!");
+      // logic here needs to be adjusted
+//      this.player.record().getDevice();
       this.player.record().start();
     });
 
-    this.player.on('startRecord', function() {
+    this.player.on('startRecord', () => {
         console.log('started recording!');
-        console.log(this.props.isTesting);
         if (!this.props.isTesting) {
           this.props.startRecording();
         }
     });
 
-    this.player.on('finishRecord', function() {
+    this.player.on('finishRecord', () => {
         console.log('finished recording: ', this.player.recordedData);
         if (!this.props.isTesting) {
           this.recordFinished();
@@ -58,7 +59,7 @@ export class AudioRecorder extends Component {
         this.player.bigPlayButton.show();
     });
 
-     this.player.on('deviceError', function() {
+     this.player.on('deviceError', () => {
         console.log('device error:', this.player.deviceErrorCode);
     });
 
@@ -66,8 +67,6 @@ export class AudioRecorder extends Component {
         console.error(error);
     });
 
-    // auto start recording, but doesn't work here
-//    this.player.record().getDevice();
   }
 
   componentWillUnmount() {
@@ -105,13 +104,13 @@ export class AudioRecorder extends Component {
     this.player.record().reset();
   };
 
-//  startMic = () => {
-//    this.player.record().getDevice();
-//  };
+  startMic = () => {
+    this.player.record().getDevice();
+  };
 
   render() {
     return (
-      <div className="video-recorder-row">
+      <div className="video-recorder-row" style={{height: "100px"}}>
         <div className="col-8">
           <div data-vjs-player>
             <audio
@@ -128,7 +127,7 @@ export class AudioRecorder extends Component {
             <MyAudioUploader
               resetDeviceAndNextQuestion={this.resetDeviceAndNextQuestion}
               resetDevice={this.resetDevice}
-//              startMic={this.startMic}
+              startMic={this.startMic}
               disposePlayer={this.disposePlayer}
               audio={this.state.audio}
               last_q={this.props.last_q}

@@ -22,7 +22,7 @@ export function NotePad(props) {
       <div className="col-8">
         <textarea
           style={{
-            width: window.innerWidth / 2.4,
+            width: (props.isAudio) ? 400 : window.innerWidth / 2.4,
             height: "90px",
             borderColor: "lightgrey",
             borderWidth: "3px",

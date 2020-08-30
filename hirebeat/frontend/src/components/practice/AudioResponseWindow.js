@@ -99,8 +99,8 @@ export class AudioResponseWindow extends Component {
       this.state.status == "Preparation" ? 30 : this.props.responseLength * 60;
     audioRecorderOptions.plugins.record.maxLength =
       this.props.responseLength * 60;
-    audioRecorderOptions.width = window.innerWidth / 2.4;
-    audioRecorderOptions.height = window.innerWidth / 3.6;
+//    audioRecorderOptions.width = window.innerWidth / 2.4;
+//    audioRecorderOptions.height = window.innerWidth / 3.6;
     return (
       <div>
         {this.props.loaded ? (
@@ -108,7 +108,7 @@ export class AudioResponseWindow extends Component {
             {this.questionIndex()}
             {this.questionIndicator()}
             <h4>{this.props.questions[this.props.q_index].description}</h4>
-            <div style={{ marginTop: 20 }}>
+            <div style={{ marginTop: "2.5rem" }}>
               <div
                 className="video-recorder-row"
                 style={{ marginBottom: "-7px" }}
@@ -117,7 +117,7 @@ export class AudioResponseWindow extends Component {
                   <div
                     style={{
                       backgroundColor: "black",
-                      width: window.innerWidth / 2.4,
+                      width: 400,
                       borderRadius: "8px 8px 0 0",
                       display: "flex",
                     }}
@@ -126,7 +126,7 @@ export class AudioResponseWindow extends Component {
                       style={{
                         fontSize: 15,
                         color: "white",
-                        width: "60%",
+                        width: "30%",
                         marginLeft: "10px",
                         marginTop: "5px",
                         marginBottom: "5px",
@@ -143,7 +143,7 @@ export class AudioResponseWindow extends Component {
                 <div className="col-3" />
               </div>
               {this.state.status == "Preparation" ? (
-                <PrepCountdown finishCountdown={this.finishCountdown} />
+                <PrepCountdown finishCountdown={this.finishCountdown} isAudio={true} />
               ) : (
                 <AudioRecorder
                   {...audioRecorderOptions}
@@ -155,7 +155,7 @@ export class AudioResponseWindow extends Component {
                 />
               )}
             </div>
-            <NotePad status={this.state.status} />
+            <NotePad status={this.state.status} isAudio={true} />
           </PracticeCard>
         ) : null}
       </div>

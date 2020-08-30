@@ -54,6 +54,10 @@ export const CardRowHigh = (props) => {
   return <div className="card-row-high">{props.children}</div>;
 };
 
+export const CardRowLow = (props) => {
+  return <div className="card-row-low">{props.children}</div>;
+};
+
 export const CardRowMidHigh = (props) => {
   return <div className="card-row-mid-high">{props.children}</div>;
 };
@@ -66,8 +70,8 @@ export const CardButton = (props) => {
       style={{
         WebkitBorderRadius: "20px",
 //        width: props.buttonWidth,
-        width: "298px",
-        height: "60px",
+        width: props.isAudio ? "220px" : "298px",
+//        height: props.isAudio ? "40px" : "60px",
         borderRadius: "50px",
         background:
           props.btnClassName && props.btnClassName != "btn btn-warning"
@@ -120,7 +124,19 @@ export const BglessCardButton = (props) => {
 };
 
 export const RecordDoneButton = (props) => {
-  return (
+  if (props.isAudio) {
+    return (
+      <CardRowLow>
+      <CardButton
+        onTap={props.onTap}
+        textDisplayed={props.textDisplayed}
+        buttonWidth={props.buttonWidth}
+      />
+    </CardRowLow>
+    )
+  }
+  else {
+    return (
     <CardRowHigh>
       <CardButton
         onTap={props.onTap}
@@ -129,6 +145,7 @@ export const RecordDoneButton = (props) => {
       />
     </CardRowHigh>
   );
+  }
 };
 
 export const VideoNumberLinkRow = (props) => {
