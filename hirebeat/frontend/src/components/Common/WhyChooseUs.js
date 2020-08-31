@@ -42,7 +42,8 @@ class WhyChooseUs extends Component {
                 <section className="video-presentation-area ptb-100">
                     <div className="container">
                         <div className="section-title">
-                            <h2>Why choose us to watch this video know more</h2>
+                            <h2>Why choose us</h2>
+                            <h2>Watch this video know more</h2>
                         </div>
 
                         <div className="video-box">
