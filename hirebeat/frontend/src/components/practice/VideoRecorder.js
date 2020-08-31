@@ -101,7 +101,7 @@ export class VideoRecorder extends Component {
 
   render() {
     return (
-      <div className="video-recorder-row">
+      <div className="video-recorder-row" style={{marginBottom:"10%"}}>
         <div className="col-8">
           <div data-vjs-player>
             <video

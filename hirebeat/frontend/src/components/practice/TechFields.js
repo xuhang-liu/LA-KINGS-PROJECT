@@ -32,7 +32,7 @@ const FieldButtonGroup = (props) => {
   };
 
   return (
-    <div>
+    <div style={{marginBottom:"10%"}}>
       <div
         className="btn-group btn-group-toggle"
         data-toggle="buttons"

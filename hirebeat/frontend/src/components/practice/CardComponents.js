@@ -11,7 +11,7 @@ function CardHeader() {
 
 export const SetupCard = (props) => {
   return (
-    <div className="container card-container">
+    <div className="container card-container" style={{marginBottom:"10%"}}>
       <div className="card mb-3 setup-card">
         {CardHeader()}
         <div className="card-body setup-card-body">{props.children}</div>
@@ -22,7 +22,7 @@ export const SetupCard = (props) => {
 
 export const PracticeCard = (props) => {
   return (
-    <div className="container">
+    <div className="container" style={{marginBottom:"10%"}}>
       <div className="card mb-3 practice-card">
         {CardHeader()}
         <div className="card-body" style={{ paddingTop: 0 }}>
@@ -35,7 +35,7 @@ export const PracticeCard = (props) => {
 
 export const TestDeviceCard = (props) => {
   return (
-    <div className="container practice-card-container">
+    <div className="container practice-card-container" style={{marginBottom:"10%"}}>
       <div className="card mb-3 practice-card">
         {CardHeader()}
         <div className="card-body test-card-body" style={{ paddingTop: 0 }}>
@@ -64,11 +64,11 @@ export const CardButton = (props) => {
     <button
       className={props.btnClassName ?? "btn btn-warning"}
       style={{
-        WebkitBorderRadius: "20px",
+        WebkitBorderRadius: "1.5rem",
 //        width: props.buttonWidth,
-        width: "298px",
-        height: "60px",
-        borderRadius: "50px",
+        width: "18.625rem",
+        height: "3.75rem",
+        borderRadius: "3.125rem",
         background:
           props.btnClassName && props.btnClassName != "btn btn-warning"
             ? ""
@@ -84,8 +84,8 @@ export const CardButton = (props) => {
           fontFamily: "Lato",
           fontStyle: "normal",
           fontWeight: "bold",
-          fontSize: "25px",
-          lineHeight: "30px",
+          fontSize: "1.2rem",
+          lineHeight: "1.875rem",
           display: "block",
           alignItems: "center",
           textAlign: "center",

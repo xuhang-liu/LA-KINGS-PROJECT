@@ -128,7 +128,7 @@ export class Reviews extends Component {
 
   render() {
     return (
-      <div className="container" style={{ paddingBottom: "10%" }}>
+      <div className="container" style={{ marginBottom: "10%" }}>
         <form>
           <fieldset>
             {this.props.needed_expert_review && !this.props.is_expert_reviewed
