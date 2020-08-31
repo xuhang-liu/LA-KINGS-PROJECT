@@ -30,8 +30,12 @@ class WhyChooseUs extends Component {
                 {/* Popup Modal Video If you want to change the video need to update below videoID */}
                 <ModalVideo 
                     channel='youtube' 
+                    youtube={{
+                        autoplay: 1,
+                        mute: 1
+                      }}
                     isOpen={this.state.isOpen} 
-                    videoId='_ysd-zHamjk' 
+                    videoId='Ct82zEpHUf8' 
                     onClose={() => this.setState({isOpen: false})} 
                 />
 
@@ -76,8 +80,8 @@ class WhyChooseUs extends Component {
 
                         <ReactWOW animation='fadeInUp' delay='0.8s'>
                             <div className="contact-cta-box mwidth-1000">
-                                <h3>Have any questions about us?</h3>
-                                <p>Don't hesitate to contact us.</p>
+                                <h3>Join us and give a try</h3>
+                                <p>Let HireBeat be your secret weapon to ace your next interview</p>
 
                                 <Link to="/register">
                                     <a className="default-btn" style={{color:"white"}}>

@@ -102,7 +102,7 @@ img {
 
 .ptb-100 {
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
 }
 
 .pt-100 {
@@ -110,7 +110,7 @@ img {
 }
 
 .pb-100 {
-  padding-bottom: 60px;
+  padding-bottom: 30px;
 }
 
 .pt-70 {
@@ -3223,7 +3223,7 @@ Pricing Area CSS
 }
 
 .single-pricing-table .price sub {
-  bottom: 2px;
+  bottom: 8px;
   color: #4a6f8a;
   padding-right: 5px;
   font-size: 14px;
@@ -5173,8 +5173,8 @@ Signup Area CSS
 
 .signup-content {
   height: 60rem;
-  width: 50%;
-  margin-left: 28%;
+  width: 56%;
+  margin-left: 24%;
 }
 
 .signup-content .signup-form {

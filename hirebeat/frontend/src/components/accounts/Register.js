@@ -65,20 +65,19 @@ export class Register extends Component {
     return (
         <React.Fragment>
           <ScrollToTopOnMount />
-          <div
-              className="container-fluid bg-white p-100">
+          <div>
             <MediaQuery minDeviceWidth={1224}>
             <section className="signup-area">
                 <div className="row m-0">
-                    <div className="col-lg-5 col-md-12 p-0"> 
+                    <div className="col-lg-6 col-md-12 p-0"> 
                       <img src={leftbg}></img>
                     </div>
 
-                    <div className="col-lg-7 col-md-12 p-0">
+                    <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"3rem"}}>
                                     <div className="signup-form">
                                       <div>
-                                        <h3 style={{color:"#56a3fa"}}><b>Start your career with the interview</b></h3>
+                                        <h3 style={{color:"#56a3fa"}}><b>Start your career with HireBeat</b></h3>
                                       </div>
 
                     <form onSubmit={this.onSubmit}>

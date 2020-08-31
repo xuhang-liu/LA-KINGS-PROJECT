@@ -5,6 +5,31 @@ import OurLovingClients from '../Common/OurLovingClients';
 import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
+import emailjs from 'emailjs-com';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
+function sendEmail(e) {
+  e.preventDefault();
+
+  emailjs.sendForm('gmail', 'hire_beat', e.target, 'user_M93PeAsVxs6GUPZp7NGXc')
+    .then((result) => {
+        console.log(result.text);
+    }, (error) => {
+        console.log(error.text);
+    });
+  e.target.reset()
+
+  confirmAlert({
+    title: 'Email Sent!',
+    message: 'Thank you for contacting us.',
+    buttons: [
+      {
+        label: 'OK'
+      }
+    ]
+  });
+}
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -34,27 +59,27 @@ class Contact extends Component {
             </div>
             <div className="row" style={{width: "48rem", margin: "auto"}}>
               <div className="col contact-bg">
-                <div style={{width: "90%", margin: "auto"}}>
+                <form style={{width: "90%", margin: "auto"}} onSubmit={sendEmail}>
                   <br/>
                   <label className="contact-form-font">
                   Email(Optional)
                   </label>
                   <br/>
-                  <input className="contact-form" type="email"></input>
+                  <input className="contact-form" type="email" name="email"></input>
                   <br/>
                   <br/>
                   <label className="contact-form-font">
                     Message
                   </label>
                   <br/>
-                  <textarea className="contact-form" style={{height: "6rem"}}></textarea>
+                  <textarea className="contact-form" style={{height: "6rem"}} name="message"></textarea>
                   <br/>
                   <button className="default-btn" style={{backgroundColor:"#080a3c", marginLeft:"30%", marginTop:"10%"}}>
                     <i className="bx bxs-hot"></i>
                       Submit
                     <span></span>
                   </button>
-                </div>
+                </form>
               </div>
               <div className="col">
                 <div className="company-pc-part5-align">
@@ -88,25 +113,25 @@ class Contact extends Component {
               </p>
             </div>
           </div>
-          <div className="contact-bg" style={{width: "90%", marginLeft:"5%"}}>
+          <form className="contact-bg" style={{width: "90%", marginLeft:"5%"}} onSubmit={sendEmail}>
             <br/>
             <label className="contact-form-font">
               Email(Optional)
             </label>
             <br/>
-            <input className="contact-form" type="email"></input>
+            <input className="contact-form" type="email" name="email"></input>
             <br/>
             <br/>
             <label className="contact-form-font">
               Message
             </label>
             <br/>
-            <textarea className="contact-form" style={{height: "6rem"}}></textarea>
+            <textarea className="contact-form" style={{height: "6rem"}} name="message"></textarea>
             <br/>
             <button className="contact-form-btn" style={{outline: "none"}}>
               submit
             </button>
-          </div>
+          </form>
           <div className="row" style={{width: "80%", marginLeft: "5%", marginRight: "5%", marginTop: "10%"}}>
             <div className="col">
               <p style={{color: "black", fontWeight: "bold", fontSize: "0.9375rem"}}>

@@ -147,50 +147,41 @@ class PricingStyleOne extends Component {
 
                                             <ul className="pricing-features">
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Up to 3 chat operators 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited behavioral practice </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited technical practice
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    100 ChatBot Triggers
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    10+ different industry selections
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    24/7 Live Chat
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Share interview for feedback</li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 AI analysis
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Email Integration 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 HR expert reviews
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Messenger Integration
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 saved recorded interviews
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Info
+                                                    <i className="bx bxs-x-circle"></i> 
+                                                    <s>Full access to interview training program</s>
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Mobile + Desktop Apps
+                                                    <i className="bx bxs-x-circle"></i> <s>Full access to AI & HR evaluation</s>
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Quick Responses 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> Drag & Drop Widgets
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Notes 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> Google Analytics
+                                                    <i className="bx bxs-x-circle"></i> 
+                                                    <s>Unlimited interview recording storage</s>
                                                 </li>
                                             </ul>
 
@@ -209,7 +200,7 @@ class PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white"}}>
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Default Plan
                                                         <span></span>
@@ -231,52 +222,42 @@ class PricingStyleOne extends Component {
                                             </div>
 
                                             <ul className="pricing-features">
+                                            <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited behavioral practice </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Up to 4 chat operators 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited technical practice
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    150 ChatBot Triggers
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    10+ different industry selections
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    24/7 Live Chat
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Share interview for feedback</li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 AI analysis
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Email Integration 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 HR expert reviews
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Messenger Integration
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 saved recorded interviews
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Info
-                                                    </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Mobile + Desktop Apps
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Full access to interview training program
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Quick Responses 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> Full access to AI & HR evaluation
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> Drag & Drop Widgets
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Notes 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Google Analytics
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited interview recording storage 
                                                 </li>
                                             </ul>
                                             {
@@ -308,61 +289,51 @@ class PricingStyleOne extends Component {
                                     <div className="col-lg-4 col-sm-6 offset-lg-0 offset-sm-3">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
-                                                <h3>Enterprise</h3>
+                                                <h3>Enterprise & University</h3>
                                             </div>
 
                                             <div className="price">
-                                                <sup>$</sup>299<sub> / monthly</sub>
+                                                <sub>- Advanced solutions with multiple users -</sub>
                                             </div>
 
                                             <ul className="pricing-features">
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Up to 5 chat operators 
-                                                    <span className="tooltips bx bxs-info-circle"  data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited job posting </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Integrated job board
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    200 ChatBot Triggers
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Passive Candidate Source
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    24/7 Live Chat
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Online application system </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Advanced ATS integration
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Email Integration 
-                                                    <span className="tooltips bx bxs-info-circle"  data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Pre-employment assessments
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Messenger Integration
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited on demand video interview
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Info
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Share recorded interview internally
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Mobile + Desktop Apps
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Full access to recorded interviews
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Quick Responses 
-                                                    <span className="tooltips bx bxs-info-circle"  data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Drag & Drop Widgets
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Notes 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Google Analytics
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited AI analysis access
                                                 </li>
                                             </ul>
 
@@ -392,52 +363,42 @@ class PricingStyleOne extends Component {
                                             </div>
 
                                             <ul className="pricing-features">
+                                            <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited behavioral practice </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Up to 5 chat operators 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited technical practice
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    150 ChatBot Triggers
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    10+ different industry selections
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    24/7 Live Chat
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Share interview for feedback</li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 AI analysis
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Email Integration
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 HR expert reviews
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Messenger Integration
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 saved recorded interviews
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Info
+                                                    <i className="bx bxs-x-circle"></i> 
+                                                    <s>Full access to interview training program</s>
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Mobile + Desktop Apps
+                                                    <i className="bx bxs-x-circle"></i> <s>Full access to AI & HR evaluation</s>
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Quick Responses 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Drag & Drop Widgets
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Notes <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Google Analytics
+                                                    <i className="bx bxs-x-circle"></i> 
+                                                    <s>Unlimited interview recording storage</s> 
                                                 </li>
                                             </ul>
 
@@ -456,7 +417,7 @@ class PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white"}}>
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Default Plan
                                                         <span></span>
@@ -478,53 +439,42 @@ class PricingStyleOne extends Component {
                                             </div>
 
                                             <ul className="pricing-features">
+                                            <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited behavioral practice </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Up to 6 chat operators 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited technical practice
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    200 ChatBot Triggers
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    10+ different industry selections
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    24/7 Live Chat
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Share interview for feedback</li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 AI analysis
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Email Integration 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 HR expert reviews
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Messenger Integration
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    5 saved recorded interviews
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Info
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Full access to interview training program
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Mobile + Desktop Apps
+                                                    <i className="bx bxs-check-circle"></i> Full access to AI & HR evaluation
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Quick Responses 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Drag & Drop Widgets
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Notes 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Google Analytics
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited interview recording storage 
                                                 </li>
                                             </ul>
 
@@ -557,60 +507,51 @@ class PricingStyleOne extends Component {
                                     <div className="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
-                                                <h3>Enterprise</h3>
+                                                <h3>Enterprise & University</h3>
                                             </div>
 
                                             <div className="price">
-                                                <sup>$</sup>1999 <sub>/ yearly</sub>
+                                                <sub>- Advanced solutions with multiple users -</sub>
                                             </div>
 
                                             <ul className="pricing-features">
+                                            <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited job posting </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Up to 7 chat operators 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Integrated job board
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    250 ChatBot Triggers
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Passive Candidate Source
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    24/7 Live Chat
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Online application system </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Advanced ATS integration
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Email Integration 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Pre-employment assessments
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Messenger Integration
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited on demand video interview
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Info</li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Mobile + Desktop Apps
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Share recorded interview internally
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Quick Responses 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Full access to recorded interviews
                                                 </li>
                                                 <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Drag & Drop Widgets
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Visitor Notes 
-                                                    <span className="tooltips bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Tight pants next level keffiyeh you probably haven't heard of them."></span>
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-badge-check"></i> 
-                                                    Google Analytics
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited AI analysis access
                                                 </li>
                                             </ul>
 

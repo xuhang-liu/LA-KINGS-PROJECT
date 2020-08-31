@@ -60,8 +60,12 @@ class MainBanner extends Component {
                 {/* Popup Modal Video If you want to change the video need to update below videoID */}
                 <ModalVideo 
                     channel='youtube' 
+                    youtube={{
+                        autoplay: 1,
+                        mute: 1
+                      }}
                     isOpen={this.state.isOpen} 
-                    videoId='_ysd-zHamjk' 
+                    videoId='Ct82zEpHUf8'
                     onClose={() => this.setState({isOpen: false})} 
                 />
 

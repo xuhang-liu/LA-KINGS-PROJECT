@@ -34,11 +34,11 @@ class MoreToDiscover extends Component {
                                     <ul>
                                         <li>
                                             <i className='bx bx-badge-check'></i>
-                                            Behavioral-based Interview Questions
+                                            Behavioral-based interview questions
                                         </li>
                                         <li>
                                             <i className='bx bx-badge-check'></i>
-                                            Occupation-specific Interview Questions
+                                            Occupation-specific interview questions
                                         </li>
                                     </ul>
                                 </div>
@@ -60,11 +60,11 @@ class MoreToDiscover extends Component {
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Interview Video Privacy
+                                                Interview video privacy
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Anytime and Anywhere
+                                                Anytime and anywhere
                                             </li>
                                         </ul>
                                     </div>
@@ -102,7 +102,7 @@ class MoreToDiscover extends Component {
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                AI Behavioral Analysis
+                                                AI behavioral analysis
                                             </li>
                                         </ul>
                                     </div>
