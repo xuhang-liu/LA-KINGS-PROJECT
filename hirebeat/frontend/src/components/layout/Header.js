@@ -4,7 +4,7 @@ import {logout} from "../../redux/actions/auth_actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import MediaQuery from 'react-responsive';
-import hirebeatlogo from "../../assets/HireBeatLogo2.png";
+import hirebeatlogo from "../../assets/HireBeatLogo.png";
 
 export class Header extends Component {
   static propTypes = {
