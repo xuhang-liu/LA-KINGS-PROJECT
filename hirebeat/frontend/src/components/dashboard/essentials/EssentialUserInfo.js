@@ -259,9 +259,7 @@ export class EssentialUserInfo extends Component {
                   >
                     {this.props.user.username}
                   </h1>
-                  <div
-                    className="d-flex justify-content-end"
-                  >
+                  <div style={{position:'relative', marginLeft:"1rem"}}>
                     <div className="single-footer-widget">
                     <ul className="social">
                                     <li>
@@ -304,7 +302,7 @@ export class EssentialUserInfo extends Component {
                   {/* for regular user */}
                   {
                     this.props.profile.membership == "Regular" &&
-                    <div className="text-15" style={{marginLeft:"36%"}}>
+                    <div className="text-15" style={{marginLeft:'20%'}}>
                       <IconText
                         style={{marginRight: "10px"}}
                         iconName={"card_membership"}  
@@ -327,7 +325,7 @@ export class EssentialUserInfo extends Component {
                   {/* for premium user */}
                   {
                     this.props.profile.membership == "Premium" &&
-                    <div className="col" style={{marginLeft:"10px"}}>
+                    <div className="col" style={{marginLeft:"28%", marginBottom:"0.8rem"}}>
                       <img src={premiumIcon} alt="premiumIcon"/>
                       <span style={{marginLeft: "6px"}}>Premium</span>
                     </div>
