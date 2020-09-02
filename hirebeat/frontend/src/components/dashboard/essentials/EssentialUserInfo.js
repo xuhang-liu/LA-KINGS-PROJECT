@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import S3FileUpload from "react-s3";
+import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 
 import {
   IconButton,
@@ -27,7 +28,7 @@ export class EssentialUserInfo extends Component {
     phone_number: "",
     location: "",
     filePhoto: "https://hirebeat-assets.s3.amazonaws.com/user.png",
-    avatar_url:"",
+    avatar_url:"https://hirebeat-assets.s3.amazonaws.com/user.png",
     isActive: true,
     membership: "",
     email_confirmed: this.props.profile.email_confirmed,
@@ -154,20 +155,10 @@ export class EssentialUserInfo extends Component {
   };
 
   makeCancelConfirm = () => {
-    if(this.state.saved_video_count>5){
-      return {
-        user: this.props.user.id,
-        id: this.props.profile.id,
-        membership: 'Regular',
-        save_limit: 5,
-        saved_video_count: 5,
-      };
-    }
     return {
       user: this.props.user.id,
       id: this.props.profile.id,
-      membership: 'Regular',
-      save_limit: 5,
+      membership: 'Regular'
     };
   };
 
@@ -237,7 +228,7 @@ export class EssentialUserInfo extends Component {
                     onClick={() => this.fileInput.click()}
                     className = {"btn btn-sm"}
                     style={{color: "#98b8f6",
-                            fontSize: "15px"
+                            fontSize: "0.8rem"
                     }}
                     >
                   Upload Image
@@ -251,28 +242,7 @@ export class EssentialUserInfo extends Component {
             <div className="col-10">
               <div className="row">
                 <div className="col d-flex align-items-center">
-                  <h1
-                    style={{
-                      fontWeight: "bold",
-                      marginRight: "10px",
-                    }}
-                  >
-                    {this.props.user.username}
-                  </h1>
-                  <div
-                    className="d-flex justify-content-end"
-                  >
-                    <IconButton
-                      iconName={"facebook"}
-                      iconSize={"20px"}
-                      iconColor={"#98b8f6"}
-                    />
-
-                    {/*<p style={{fontSize: "18px", fontFamily: "Lato", paddingTop: "10px", color: "#98b8f6", marginLeft: "20px"}}>
-                        Edit
-                    </p>*/}
-
-                    <IconButton
+                <IconButton
                       iconName={"edit"}
                       iconSize={"20px"}
                       iconColor={"#98b8f6"}
@@ -281,12 +251,58 @@ export class EssentialUserInfo extends Component {
                         this.setState({ ...this.state, show: true });
                       }}
                     />
+                  <h1
+                    style={{
+                      fontWeight: "bold",
+                      marginRight: "0.8rem",
+                    }}
+                  >
+                    {this.props.user.username}
+                  </h1>
+                  <div style={{position:'relative', marginLeft:"1rem"}}>
+                    <div className="single-footer-widget">
+                    <ul className="social">
+                                    <li>
+                                    <FacebookShareButton 
+                                        url={"https://hirebeat.co"}
+                                        quote={"HireBeat - Video Interview"}
+                                        hashtag="#hirebeat">
+                                        <a target="_blank">
+                                            <i className="bx bxl-facebook"></i>
+                                        </a>
+                                    </FacebookShareButton>
+                                    </li>
+                                    <li>
+                                        <TwitterShareButton
+                                           url={"https://hirebeat.co"}
+                                           title={"HireBeat - Video Interview"}
+                                           via={"HireBeat"}
+                                           hashtag="#hirebeat">
+                                           <a target="_blank">
+                                                <i className="bx bxl-twitter"></i>   
+                                           </a>
+                                        </TwitterShareButton>
+                                    </li>
+                                    <li>
+                                        <LinkedinShareButton
+                                            url={"https://hirebeat.co"}
+                                            title={"HireBeat - Video Interview"}
+                                            source={"HireBeat"}>
+                                            <a target="_blank">
+                                                <i className="bx bxl-linkedin"></i>
+                                            </a>
+                                        </LinkedinShareButton>
+                                    </li>
+                                </ul>
+                                </div>
+                    {/*<p style={{fontSize: "18px", fontFamily: "Lato", paddingTop: "10px", color: "#98b8f6", marginLeft: "20px"}}>
+                        Edit
+                    </p>*/}
                   </div>
-                  <div className="col"></div><div className="col"></div>
                   {/* for regular user */}
                   {
                     this.props.profile.membership == "Regular" &&
-                    <div className="col">
+                    <div className="text-15" style={{marginLeft:'20%'}}>
                       <IconText
                         style={{marginRight: "10px"}}
                         iconName={"card_membership"}  
@@ -299,17 +315,17 @@ export class EssentialUserInfo extends Component {
                   }
                   {
                     this.props.profile.membership == "Regular" &&
-                    <div className="upgrade" style={{marginBottom:"10px"}}>
+                    <div className="upgrade" style={{marginBottom:"0.8rem", marginLeft:"1rem"}}>
                       {
                         this.props.profile.membership == "Regular" &&
-                        <Link className="text-15" style={{color: "#ffffff", textDecoration: "none", lineHeight: "34px", marginLeft: "30px"}} to="/pricing">Upgrade</Link>
+                        <Link className="text-15" style={{color: "#ffffff", textDecoration: "none", lineHeight: "34px", marginLeft:"26%"}} to="/pricing">Upgrade</Link>
                       }
                     </div>
                   }
                   {/* for premium user */}
                   {
                     this.props.profile.membership == "Premium" &&
-                    <div className="col" style={{marginLeft:"10px"}}>
+                    <div className="col" style={{marginLeft:"28%", marginBottom:"0.8rem"}}>
                       <img src={premiumIcon} alt="premiumIcon"/>
                       <span style={{marginLeft: "6px"}}>Premium</span>
                     </div>
