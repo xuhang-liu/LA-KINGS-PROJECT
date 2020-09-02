@@ -475,15 +475,15 @@ Preloader Area CSS
 Navbar Area CSS
 =================================================*/
 .navbar-area {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
   background-color: transparent;
   height: auto;
   z-index: 1040;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .navbar-area .container {
@@ -922,13 +922,12 @@ Navbar Area CSS
   .navbar-area {
     background-color: #ffffff;
     position: relative;
-    border-bottom: 1px solid #eeeeee;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
   .navbar-area.is-sticky {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 }
 
