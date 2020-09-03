@@ -18,7 +18,7 @@ class Footer extends Component {
                                     <a href="/">
                                         <img src={whitelogo} alt="image" style={{width:"2.5rem", paddingBottom:"1rem"}}/>
                                         <span className="font-weight-bold"
-                                        style={{fontSize:"1.6rem", color:"grey", marginLeft:"0.5rem"}}>
+                                        style={{fontSize:"1.6rem", color:"white", marginLeft:"0.5rem"}}>
                                         HireBeat
                                         </span>
                                     </a>

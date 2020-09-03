@@ -5911,7 +5911,7 @@ Footer Area CSS
 }
 
 .single-footer-widget p {
-  color: #acc5db;
+  color: #ffffff;
 }
 
 .single-footer-widget .services-list {
@@ -5921,7 +5921,7 @@ Footer Area CSS
 }
 
 .single-footer-widget .services-list li {
-  color: #acc5db;
+  color: #ffffff;
   margin-bottom: 10px;
 }
 
@@ -5931,11 +5931,11 @@ Footer Area CSS
 
 .single-footer-widget .services-list li a {
   display: inline-block;
-  color: #acc5db;
+  color: #ffffff;
 }
 
 .single-footer-widget .services-list li a:hover {
-  color: #13c4a1;
+  color: #ff612f;
   padding-left: 5px;
 }
 
@@ -5946,7 +5946,7 @@ Footer Area CSS
 }
 
 .single-footer-widget .support-list li {
-  color: #acc5db;
+  color: #ffffff;
   margin-bottom: 10px;
 }
 
@@ -5956,11 +5956,11 @@ Footer Area CSS
 
 .single-footer-widget .support-list li a {
   display: inline-block;
-  color: #acc5db;
+  color: #ffffff;
 }
 
 .single-footer-widget .support-list li a:hover {
-  color: #13c4a1;
+  color: #ff612f;
   padding-left: 5px;
 }
 
@@ -5981,15 +5981,15 @@ Footer Area CSS
 
 .single-footer-widget .footer-contact-info li a {
   display: inline-block;
-  color: #acc5db;
+  color: #ffffff;
 }
 
 .single-footer-widget .footer-contact-info li a:hover {
-  color: #13c4a1;
+  color: #ff612f;
 }
 
 .single-footer-widget .footer-contact-info li span {
-  color: #acc5db;
+  color: #ffffff;
 }
 
 .single-footer-widget .social {
@@ -6070,7 +6070,7 @@ Footer Area CSS
 }
 
 .copyright-area p a:hover {
-  color: #13c4a1;
+  color: #ff612f;
 }
 
 @-webkit-keyframes imageChange {

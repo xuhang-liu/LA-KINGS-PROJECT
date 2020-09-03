@@ -51,6 +51,7 @@ export class PrepCountdown extends Component {
                 onTap={this.props.finishCountdown}
                 textDisplayed={"Start Recording"}
                 buttonWidth={"30%"}
+                fontFamily={"Lato"}
               />
             </CardRow>
           </div>
