@@ -78,6 +78,7 @@ export class SelectParam extends Component {
             onTap={this.setParams}
             textDisplayed={"Test & Start"}
             buttonWidth={"30%"}
+            fontFamily={"Lato"}
           />
         </CardRow>
       </SetupCard>

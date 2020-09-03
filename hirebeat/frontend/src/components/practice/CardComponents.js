@@ -162,6 +162,7 @@ export const ButtonContainer = (src, onTap, textDisplayed, btnClassName) => {
           textDisplayed={textDisplayed}
           buttonWidth={"85%"}
           WebkitBorderRadius={"40px"}
+          fontFamily={"Lato"}
           btnClassName={btnClassName ?? "btn btn-warning"}
         />
       </CardRow>

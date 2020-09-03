@@ -200,7 +200,7 @@ export class Header extends Component {
             className="navbar navbar-expand-md
             navbar-dark pb-0 pt-2"
             style={{
-              background: "#3995fd",
+              background: "#080a3c",
             }}
         >
           <div className="container pb-0">
