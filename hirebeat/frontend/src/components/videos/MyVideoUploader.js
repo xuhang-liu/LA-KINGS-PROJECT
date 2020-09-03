@@ -112,6 +112,7 @@ export class MyVideoUploader extends Component {
           />
         </div>
         <RecordDoneButton
+          fontFamily={"Lato"}
           onTap={saveOnTap}
           textDisplayed={saveText}
           buttonWidth={"100%"}
@@ -133,11 +134,13 @@ export class MyVideoUploader extends Component {
           textDisplayed={"Try Again"}
           buttonWidth={"100%"}
           isAudio={true}
+          fontFamily={"Lato"}
         />
         <BglessCardButton
           onTap={skipOnTap}
           textDisplayed={skipText}
           buttonWidth={"100%"}
+          fontFamily={"Lato"}
         />
       </div>
     );

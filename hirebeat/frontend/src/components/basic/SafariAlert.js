@@ -5,6 +5,6 @@ export default function safariAlert() {
   ) {
   } else if (navigator.userAgent.indexOf("Chrome") != -1) {
   } else if (navigator.userAgent.indexOf("Safari") != -1) {
-    alert("Incompatible Browser.\nPlease try Chrome or Firefox.");
+    alert("Incompatible Browsering mode.\nPlease try Chrome or Firefox on your Computer.");
   }
 }

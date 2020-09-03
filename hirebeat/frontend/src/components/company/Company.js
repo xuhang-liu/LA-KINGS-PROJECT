@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
-import {HomeButton} from "./../home/Home"
+import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
+import {HomeButton} from "./../home/Home";
 
 export default function Company() {
   return (

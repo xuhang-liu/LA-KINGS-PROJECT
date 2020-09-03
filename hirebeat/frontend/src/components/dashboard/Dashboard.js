@@ -8,6 +8,17 @@ import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 import { DbRow } from "./DashboardComponents";
 import safariAlert from "../basic/SafariAlert";
+import MediaQuery from 'react-responsive';
+import { useEffect } from "react";
+
+function ScrollToTopOnMount() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return null;
+}
+
 
 export class Dashboard extends Component {
   componentDidMount() {
@@ -51,7 +62,10 @@ export class Dashboard extends Component {
 
   render() {
     return (
-      <div className="dashboard-container">
+      <React.Fragment>
+        <ScrollToTopOnMount />
+      <div className="dashboard-container" style={{marginBottom:"10%"}}>
+        <MediaQuery minDeviceWidth={1224}>
         <DbRow>
           <div className="col-11">
             <EssentialUserInfo
@@ -75,7 +89,12 @@ export class Dashboard extends Component {
           </div>
           <div className="col-10">{this.renderSubpage()}</div>
         </DbRow>
+        </MediaQuery>
+        <MediaQuery maxDeviceWidth={1224}>
+        <div style={{fontSize:"1.6rem"}}><b>Please Login with your computer for the full functionalities.</b></div>
+      </MediaQuery>
       </div>
+      </React.Fragment>
     );
   }
 }

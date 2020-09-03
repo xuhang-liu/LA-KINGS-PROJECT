@@ -11,7 +11,7 @@ function CardHeader() {
 
 export const SetupCard = (props) => {
   return (
-    <div className="container card-container">
+    <div className="container card-container" style={{marginBottom:"10%"}}>
       <div className="card mb-3 setup-card">
         {CardHeader()}
         <div className="card-body setup-card-body">{props.children}</div>
@@ -22,7 +22,7 @@ export const SetupCard = (props) => {
 
 export const PracticeCard = (props) => {
   return (
-    <div className="container">
+    <div className="container" style={{marginBottom:"10%"}}>
       <div className="card mb-3 practice-card">
         {CardHeader()}
         <div className="card-body" style={{ paddingTop: 0 }}>
@@ -35,7 +35,7 @@ export const PracticeCard = (props) => {
 
 export const TestDeviceCard = (props) => {
   return (
-    <div className="container practice-card-container">
+    <div className="container practice-card-container" style={{marginBottom:"10%"}}>
       <div className="card mb-3 practice-card">
         {CardHeader()}
         <div className="card-body test-card-body" style={{ paddingTop: 0 }}>
@@ -68,11 +68,10 @@ export const CardButton = (props) => {
     <button
       className={props.btnClassName ?? "btn btn-warning"}
       style={{
-        WebkitBorderRadius: "20px",
-//        width: props.buttonWidth,
-        width: props.isAudio ? "220px" : "298px",
+        WebkitBorderRadius: "1.5rem",
+        width: props.isAudio ? "13.75rem" : "18.625rem",
 //        height: props.isAudio ? "40px" : "60px",
-        borderRadius: "50px",
+        borderRadius: "3.125rem",
         background:
           props.btnClassName && props.btnClassName != "btn btn-warning"
             ? ""
@@ -88,8 +87,8 @@ export const CardButton = (props) => {
           fontFamily: "Lato",
           fontStyle: "normal",
           fontWeight: "bold",
-          fontSize: "25px",
-          lineHeight: "30px",
+          fontSize: "1.2rem",
+          lineHeight: "1.875rem",
           display: "block",
           alignItems: "center",
           textAlign: "center",
@@ -198,6 +197,7 @@ export const ButtonContainer = (src, onTap, textDisplayed, btnClassName) => {
           textDisplayed={textDisplayed}
           buttonWidth={"85%"}
           WebkitBorderRadius={"40px"}
+          fontFamily={"Lato"}
           btnClassName={btnClassName ?? "btn btn-warning"}
         />
       </CardRow>

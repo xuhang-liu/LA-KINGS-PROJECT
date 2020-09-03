@@ -96,7 +96,6 @@ export class SelectParam extends Component {
             />
           </div>
         </div>
-
       </SetupCard>
     );
   };
