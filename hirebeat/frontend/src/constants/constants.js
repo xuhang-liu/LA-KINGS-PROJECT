@@ -1,8 +1,8 @@
 import WaveSurfer from 'wavesurfer.js';
 import MicrophonePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.microphone.js';
 WaveSurfer.microphone = MicrophonePlugin;
-// register videojs-wavesurfer plugin
 import Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer.js';
+import RecordRTC from "recordrtc";
 
 export const numberOfQuestionOptions = [
   { value: 3, label: "3" },
@@ -62,6 +62,8 @@ export var audioRecorderOptions = {
         record: {
             audio: true,
             video: false,
+            audioMimeType: 'audio/wav',  //TODO convert to mp3
+            audioRecorderType: RecordRTC.StereoAudioRecorder,
             maxLength: 60,
             displayMilliseconds: true,
             debug: true

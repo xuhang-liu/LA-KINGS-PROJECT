@@ -12,7 +12,7 @@ WaveSurfer.microphone = MicrophonePlugin;
 import Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer.js';
 import Record from "videojs-record/dist/videojs.record.js";
 
-import MyAudioUploader from "../audios/MyAudioUploader";
+import MyVideoUploader from "../videos/MyVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_QUESTION } from "../../redux/actions/action_types";
 
@@ -56,7 +56,6 @@ export class AudioRecorder extends Component {
         if (!this.props.isTesting) {
           this.recordFinished();
         }
-        this.player.bigPlayButton.show();
     });
 
      this.player.on('deviceError', () => {
@@ -124,12 +123,12 @@ export class AudioRecorder extends Component {
           {!this.props.isTesting &&
           this.state.audioRecorded &&
           !this.state.audioHandled ? (
-            <MyAudioUploader
+            <MyVideoUploader
               resetDeviceAndNextQuestion={this.resetDeviceAndNextQuestion}
               resetDevice={this.resetDevice}
-              startMic={this.startMic}
+              startCamera={this.startMic}
               disposePlayer={this.disposePlayer}
-              audio={this.state.audio}
+              video={this.state.audio}
               last_q={this.props.last_q}
             />
           ) : null}

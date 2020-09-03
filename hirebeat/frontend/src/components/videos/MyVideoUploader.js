@@ -111,11 +111,11 @@ export class MyVideoUploader extends Component {
             autoUpload={true}
           />
         </div>
-        <br />
         <RecordDoneButton
           onTap={saveOnTap}
           textDisplayed={saveText}
           buttonWidth={"100%"}
+          isAudio={true}
         />
         <VideoNumberLinkRow
           number_of_videos_to_save={
@@ -132,6 +132,7 @@ export class MyVideoUploader extends Component {
           }}
           textDisplayed={"Try Again"}
           buttonWidth={"100%"}
+          isAudio={true}
         />
         <BglessCardButton
           onTap={skipOnTap}
