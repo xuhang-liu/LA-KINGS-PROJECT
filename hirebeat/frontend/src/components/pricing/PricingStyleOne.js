@@ -248,15 +248,15 @@ class PricingStyleOne extends Component {
                                                     Share interview for feedback</li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    5 AI analysis
+                                                    Unlimited AI analysis
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    5 HR expert reviews
+                                                    Unlimited HR expert reviews
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    5 saved recorded interviews
+                                                    Unlimited saved recorded interviews
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
@@ -485,15 +485,15 @@ class PricingStyleOne extends Component {
                                                     Share interview for feedback</li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    5 AI analysis
+                                                    Unlimited AI analysis
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    5 HR expert reviews
+                                                    Unlimited HR expert reviews
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    5 saved recorded interviews
+                                                    Unlimited saved recorded interviews
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
