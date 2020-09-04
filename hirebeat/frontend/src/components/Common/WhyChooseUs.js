@@ -43,7 +43,7 @@ class WhyChooseUs extends Component {
                     <div className="container">
                         <div className="section-title">
                             <h2>Why choose us</h2>
-                            <h2>Watch this video know more</h2>
+                            <h2>Watch this video to know more</h2>
                         </div>
 
                         <div className="video-box">
