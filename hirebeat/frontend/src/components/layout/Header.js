@@ -7,6 +7,33 @@ import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
 
 export class Header extends Component {
+
+  // Navbar 
+  _isMounted = false;
+  state = {
+      display: false,
+      collapsed: true
+  };
+  toggleNavbar = () => {
+      this.setState({
+          collapsed: !this.state.collapsed,
+      });
+  }
+  componentDidMount() {
+      let elementId = document.getElementById("navbar");
+      document.addEventListener("scroll", () => {
+          if (window.scrollY > 170) {
+              elementId.classList.add("is-sticky");
+          } else {
+              elementId.classList.remove("is-sticky");
+          }
+      });
+      window.scrollTo(0, 0);
+  }
+  componentWillUnmount() {
+      this._isMounted = false;
+  }
+
   static propTypes = {
     auth: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired,
@@ -168,12 +195,12 @@ export class Header extends Component {
   render() {
     const {isAuthenticated, user} = this.props.auth;
     return (
-
+      <div id="navbar" className="navbar-area bg-white">
         <nav
-            className="navbar navbar-expand-xl
+            className="navbar navbar-expand-md
             navbar-dark pb-0 pt-2"
             style={{
-              background: "#3995fd",
+              background: "#080a3c",
             }}
         >
           <div className="container pb-0">
@@ -213,7 +240,7 @@ export class Header extends Component {
 
           </div>
         </nav>
-
+        </div>
     );
   }
 }

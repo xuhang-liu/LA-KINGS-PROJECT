@@ -475,15 +475,15 @@ Preloader Area CSS
 Navbar Area CSS
 =================================================*/
 .navbar-area {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
   background-color: transparent;
   height: auto;
   z-index: 1040;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .navbar-area .container {
@@ -922,13 +922,12 @@ Navbar Area CSS
   .navbar-area {
     background-color: #ffffff;
     position: relative;
-    border-bottom: 1px solid #eeeeee;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
   .navbar-area.is-sticky {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 }
 
@@ -5912,7 +5911,7 @@ Footer Area CSS
 }
 
 .single-footer-widget p {
-  color: #acc5db;
+  color: #ffffff;
 }
 
 .single-footer-widget .services-list {
@@ -5922,7 +5921,7 @@ Footer Area CSS
 }
 
 .single-footer-widget .services-list li {
-  color: #acc5db;
+  color: #ffffff;
   margin-bottom: 10px;
 }
 
@@ -5932,11 +5931,11 @@ Footer Area CSS
 
 .single-footer-widget .services-list li a {
   display: inline-block;
-  color: #acc5db;
+  color: #ffffff;
 }
 
 .single-footer-widget .services-list li a:hover {
-  color: #13c4a1;
+  color: #ff612f;
   padding-left: 5px;
 }
 
@@ -5947,7 +5946,7 @@ Footer Area CSS
 }
 
 .single-footer-widget .support-list li {
-  color: #acc5db;
+  color: #ffffff;
   margin-bottom: 10px;
 }
 
@@ -5957,11 +5956,11 @@ Footer Area CSS
 
 .single-footer-widget .support-list li a {
   display: inline-block;
-  color: #acc5db;
+  color: #ffffff;
 }
 
 .single-footer-widget .support-list li a:hover {
-  color: #13c4a1;
+  color: #ff612f;
   padding-left: 5px;
 }
 
@@ -5982,15 +5981,15 @@ Footer Area CSS
 
 .single-footer-widget .footer-contact-info li a {
   display: inline-block;
-  color: #acc5db;
+  color: #ffffff;
 }
 
 .single-footer-widget .footer-contact-info li a:hover {
-  color: #13c4a1;
+  color: #ff612f;
 }
 
 .single-footer-widget .footer-contact-info li span {
-  color: #acc5db;
+  color: #ffffff;
 }
 
 .single-footer-widget .social {
@@ -6071,7 +6070,7 @@ Footer Area CSS
 }
 
 .copyright-area p a:hover {
-  color: #13c4a1;
+  color: #ff612f;
 }
 
 @-webkit-keyframes imageChange {

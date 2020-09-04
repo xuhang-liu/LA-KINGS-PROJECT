@@ -172,21 +172,21 @@ class PricingStyleOne extends Component {
                                                     <i className="bx bxs-check-circle"></i> 
                                                     5 saved recorded interviews
                                                 </li>
-                                                <li>
-                                                    <i className="bx bxs-x-circle"></i> 
-                                                    <s>Full access to interview training program</s>
+                                                <li style={{color:"#979797"}}>
+                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
+                                                    Full access to interview training program
                                                 </li>
-                                                <li>
-                                                    <i className="bx bxs-x-circle"></i> <s>Full access to AI & HR evaluation</s>
+                                                <li  style={{color:"#979797"}}>
+                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> Full access to AI & HR evaluation
                                                 </li>
-                                                <li>
-                                                    <i className="bx bxs-x-circle"></i> 
-                                                    <s>Unlimited interview recording storage</s>
+                                                <li  style={{color:"#979797"}}>
+                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
+                                                    Unlimited interview recording storage
                                                 </li>
                                             </ul>
 
                                             {
-                                                this.props.profile.membership != "Regular" && 
+                                                this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
                                                 <a className="default-btn" style={{color:"white"}}>
@@ -201,6 +201,16 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
                                                     <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Current Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Premium" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Default Plan
                                                         <span></span>
@@ -261,7 +271,7 @@ class PricingStyleOne extends Component {
                                                 </li>
                                             </ul>
                                             {
-                                                this.props.profile.membership != "Regular" && 
+                                                this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
                                                 <a className="default-btn" style={{color:"white"}}>
@@ -278,6 +288,16 @@ class PricingStyleOne extends Component {
                                                     <button className="default-btn" style={{color:"white"}} onClick={this.handleUpgrade}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Upgrade Now
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Premium" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Current Plan
                                                         <span></span>
                                                     </button>
                                                 </div>
@@ -389,21 +409,21 @@ class PricingStyleOne extends Component {
                                                     <i className="bx bxs-check-circle"></i> 
                                                     5 saved recorded interviews
                                                 </li>
-                                                <li>
-                                                    <i className="bx bxs-x-circle"></i> 
-                                                    <s>Full access to interview training program</s>
+                                                <li  style={{color:"#979797"}}>
+                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
+                                                    Full access to interview training program
                                                 </li>
-                                                <li>
-                                                    <i className="bx bxs-x-circle"></i> <s>Full access to AI & HR evaluation</s>
+                                                <li  style={{color:"#979797"}}>
+                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> Full access to AI & HR evaluation
                                                 </li>
-                                                <li>
-                                                    <i className="bx bxs-x-circle"></i> 
-                                                    <s>Unlimited interview recording storage</s> 
+                                                <li  style={{color:"#979797"}}>
+                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
+                                                    Unlimited interview recording storage 
                                                 </li>
                                             </ul>
 
                                             {
-                                                this.props.profile.membership != "Regular" && 
+                                                this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
                                                 <a className="default-btn" style={{color:"white"}}>
@@ -418,6 +438,16 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
                                                     <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Current Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Premium" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Default Plan
                                                         <span></span>
@@ -479,7 +509,7 @@ class PricingStyleOne extends Component {
                                             </ul>
 
                                             {
-                                                this.props.profile.membership != "Regular" && 
+                                                this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
                                                 <a className="default-btn" style={{color:"white"}}>
@@ -496,6 +526,16 @@ class PricingStyleOne extends Component {
                                                     <button className="default-btn" style={{color:"white"}} onClick={this.handleYearUpgrade}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Upgrade Now
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Premium" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Current Plan
                                                         <span></span>
                                                     </button>
                                                 </div>
