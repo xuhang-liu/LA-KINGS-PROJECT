@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import Header from "./layout/Header";
-import NavbarTwo from "./layout/NavbarTwo";
 import Footer from "./layout/Footer";
 import Dashboard from "./dashboard/Dashboard";
 import { Provider } from "react-redux";
@@ -14,14 +13,9 @@ import indexsaas from "./home/index-saas";
 import Login from "./accounts/Login";
 import Register from "./accounts/Register";
 import PrivateRoute from "./basic/PrivateRoute";
-import Home from "./home/Home";
-import Pricing from "./pricing/Pricing";
 import pricings from "./pricing/pricings";
 import Payment from "./payment/Payment"
-import Company from "./company/Company";
 import about from "./company/about";
-import BlogHome from "./blog/BlogHome";
-import Blog1 from "./blog/Blog1";
 import bloggrid from "./blog/bloggrid";
 import blogdetail1 from "./blog/blog-details1";
 import blogdetail2 from "./blog/blog-details2";
@@ -77,7 +71,7 @@ class App extends Component {
               <Header/>
               <Alerts />
               <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute exact path="/review" component={ReviewWindow} />
                 <PrivateRoute
                   exact
@@ -89,7 +83,7 @@ class App extends Component {
                   path="/techfields/"
                   component={TechFields}
                 />
-                <PrivateRoute
+                <Route
                   exact
                   path="/practice/"
                   component={QuestionTypeChoices}

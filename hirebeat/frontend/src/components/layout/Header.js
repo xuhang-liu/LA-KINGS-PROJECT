@@ -65,6 +65,7 @@ export class Header extends Component {
                   role="menu"
                   aria-labelledby="btnGroupDrop1"
               >
+                <Link to="/">
                 <button
                     onClick={this.props.logout}
                     className="btn btn-danger btn-sm text-light"
@@ -72,6 +73,7 @@ export class Header extends Component {
                 >
                   Logout
                 </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -183,9 +185,11 @@ export class Header extends Component {
       <React.Fragment>
         <ul className="navbar-nav d-flex mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
+          <Link to="/">
             <a className="default-btn" onClick={this.props.logout} style={{marginBottom:"0.6rem"}}>
              <i className="bx bxs-hot"></i>Logout<span></span>
             </a>
+          </Link>
           </li>
         </ul>
         </React.Fragment>

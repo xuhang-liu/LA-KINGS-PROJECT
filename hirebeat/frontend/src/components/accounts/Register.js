@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Link, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {register} from "../../redux/actions/auth_actions";
+import {register, exchangeToken} from "../../redux/actions/auth_actions";
 import {createMessage} from "../../redux/actions/message_actions";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
@@ -57,10 +57,28 @@ export class Register extends Component {
     });
   };
 
+  decideProvider = (provider) => {
+    switch (provider) {
+      case "facebook":
+        return provider;
+      case "google":
+      case "linkedin":
+        return provider + "-oauth2";
+      default:
+        // Do nothing
+    }
+  };
+
+  handleSocialLogin = (user) => {
+    console.log(user);
+    var provider = this.decideProvider(user.provider);
+    this.props.exchangeToken(user.token.accessToken, provider);
+  };
+
   render() {
     const {username, email, password, password2} = this.state;
     if (this.props.auth.isAuthenticated) {
-      return <Redirect to="/"/>;
+      return <Redirect to="/practice"/>;
     }
     return (
         <React.Fragment>
@@ -183,7 +201,7 @@ export class Register extends Component {
                               boxShadow: "0 0 8px #FF6B00",
                             }}
                         >
-                          Register
+                          Try It Free Now
                         </button>
                       </div>
 
@@ -357,7 +375,7 @@ export class Register extends Component {
                               boxShadow: "0 0 8px #FF6B00",
                             }}
                         >
-                          Register
+                          Try It Free Now
                         </button>
                       </div>
 
@@ -405,6 +423,7 @@ export class Register extends Component {
 
 const mapStateToProps = (state) => ({
   auth: state.auth_reducer,
+  user: state.auth_reducer.user,
 });
 
-export default connect(mapStateToProps, {register, createMessage})(Register);
+export default connect(mapStateToProps, {register, createMessage, exchangeToken})(Register);
