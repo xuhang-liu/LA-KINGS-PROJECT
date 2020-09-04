@@ -183,7 +183,7 @@ export class Register extends Component {
                               boxShadow: "0 0 8px #FF6B00",
                             }}
                         >
-                          Register
+                          Try It Free Now
                         </button>
                       </div>
 
@@ -357,7 +357,7 @@ export class Register extends Component {
                               boxShadow: "0 0 8px #FF6B00",
                             }}
                         >
-                          Register
+                          Try It Free Now
                         </button>
                       </div>
 
