@@ -17,6 +17,23 @@ export function NotePad(props) {
     }
   });
 
+  if (props.isAudio) {
+    return (
+      <textarea
+          style={{
+            marginTop: "1rem",
+            width: "25rem",
+            height: "90px",
+            borderColor: "lightgrey",
+            borderWidth: "3px",
+            borderRadius: "8px",
+          }}
+          placeholder=" Notes here ..."
+          onChange={handleChange}
+          value={value}
+        />
+    )
+  }
   return (
     <div className="video-recorder-row">
       <div className="col-8">

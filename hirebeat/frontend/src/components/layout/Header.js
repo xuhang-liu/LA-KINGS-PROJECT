@@ -186,7 +186,7 @@ export class Header extends Component {
         <ul className="navbar-nav d-flex mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
           <Link to="/">
-            <a className="default-btn" onClick={this.props.logout} style={{marginBottom:"0.6rem"}}>
+            <a className="default-btn" onClick={this.props.logout} style={{marginBottom:"0.6rem", color:"white"}}>
              <i className="bx bxs-hot"></i>Logout<span></span>
             </a>
           </Link>
