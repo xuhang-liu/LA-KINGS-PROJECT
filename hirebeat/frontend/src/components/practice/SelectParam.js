@@ -84,14 +84,14 @@ export class SelectParam extends Component {
           <div className="col" style={{display: "flex", justifyContent: "center"}}>
             <CardButton
               onTap={this.setAudioParam}
-              textDisplayed={"Audio Test"}
+              textDisplayed={"Start with Audio"}
               buttonWidth={"30%"}
             />
           </div>
           <div className="col" style={{display: "flex", justifyContent: "center"}}>
             <CardButton
               onTap={this.setParams}
-              textDisplayed={"Video Test"}
+              textDisplayed={"Start with Video"}
               buttonWidth={"30%"}
             />
           </div>

@@ -2,6 +2,8 @@ import React from "react";
 import ReviewStatusButton from "./ReviewStatusButton";
 import { renderQDes } from "../DashboardComponents";
 import VideoPlayer from "../../videos/VideoPlayer";
+import AudioPlayer from "../../audios/AudioPlayer";
+
 
 export function VideoImagePreview(props) {
   // control status, render modal
@@ -9,7 +11,10 @@ export function VideoImagePreview(props) {
     <div className="height-20">
       <div className="row">
         <div className="col-5">
-          <VideoPlayer url={props.v.url} isAudio={props.isAudio} />
+          {
+            (props.isAudio) ? <AudioPlayer url={props.v.url} />
+                : <VideoPlayer url={props.v.url} />
+          }
         </div>
         <div className="col d-flex flex-column justify-content-start container">
           <h3 className="height-50">Q:{renderQDes(props.v.q_description)}</h3>
@@ -28,6 +33,7 @@ export function VideoImagePreview(props) {
           <ReviewStatusButton
             v={props.v}
             sendVideoForReview={props.sendVideoForReview}
+            isAudio={props.isAudio}
           />
         </div>
       </div>

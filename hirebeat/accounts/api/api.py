@@ -23,26 +23,26 @@ class ResgisterAPI(generics.GenericAPIView):
         user = serializer.save()
 
         ## email
-        account_activation_token = PasswordResetTokenGenerator()
-        current_site = get_current_site(request)
-        subject = 'Please Activate Your Hirebeat Account'
-        message = get_template("accounts/account_activation_email.txt")
-        context = {
-            'user': user,
-            'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': account_activation_token.make_token(user),
-        }
-        from_email = 'hirebeat.tech@gmail.com'
-        to_list = [user.email]
-        content = message.render(context)
-        email = EmailMessage(
-            subject,
-            content,
-            from_email,
-            to_list,
-        )
-        email.send()
+        # account_activation_token = PasswordResetTokenGenerator()
+        # current_site = get_current_site(request)
+        # subject = 'Please Activate Your Hirebeat Account'
+        # message = get_template("accounts/account_activation_email.txt")
+        # context = {
+        #     'user': user,
+        #     'domain': current_site.domain,
+        #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        #     'token': account_activation_token.make_token(user),
+        # }
+        # from_email = 'hirebeat.tech@gmail.com'
+        # to_list = [user.email]
+        # content = message.render(context)
+        # email = EmailMessage(
+        #     subject,
+        #     content,
+        #     from_email,
+        #     to_list,
+        # )
+        # email.send()
         ### token
         _, token = AuthToken.objects.create(user)
         ### profile is autocreated

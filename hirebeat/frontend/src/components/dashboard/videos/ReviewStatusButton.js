@@ -16,7 +16,12 @@ function ReviewStatusButton(props) {
     text = "View Analyze Result";
     className = "reviewed text-15";
   } else if (!props.v.needed_expert_review || !props.v.needed_ai_review) {
-    text = "Send Video to Analyze ";
+    if (props.isAudio) {
+        text = "Send Audio to Analyze ";
+    }
+    else {
+        text = "Send Video to Analyze ";
+    }
     className = "not-reviewed text-15";
   } else {
     text = "Please Wait for Result";

@@ -12,6 +12,7 @@ WaveSurfer.microphone = MicrophonePlugin;
 import Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer.js';
 import Record from "videojs-record/dist/videojs.record.js";
 
+import NotePad from "./NotePad";
 import MyVideoUploader from "../videos/MyVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_QUESTION } from "../../redux/actions/action_types";
@@ -109,7 +110,7 @@ export class AudioRecorder extends Component {
 
   render() {
     return (
-      <div className="video-recorder-row" style={{height: "100px"}}>
+      <div className="video-recorder-row">
         <div className="col-8">
           <div data-vjs-player>
             <audio
@@ -118,6 +119,7 @@ export class AudioRecorder extends Component {
               className="video-js vjs-default-skin"
             ></audio>
           </div>
+          { !this.props.isTesting ? <NotePad status={this.state.status} isAudio={true} /> : null}
         </div>
         <div className="col-3">
           {!this.props.isTesting &&
@@ -130,6 +132,7 @@ export class AudioRecorder extends Component {
               disposePlayer={this.disposePlayer}
               video={this.state.audio}
               last_q={this.props.last_q}
+              isAudio = {true}
             />
           ) : null}
         </div>

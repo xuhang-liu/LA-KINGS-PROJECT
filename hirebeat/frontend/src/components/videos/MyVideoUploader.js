@@ -116,7 +116,7 @@ export class MyVideoUploader extends Component {
           onTap={saveOnTap}
           textDisplayed={saveText}
           buttonWidth={"100%"}
-          isAudio={true}
+          isAudio={this.props.isAudio}
         />
         <VideoNumberLinkRow
           number_of_videos_to_save={
@@ -124,6 +124,7 @@ export class MyVideoUploader extends Component {
               ? "Unlimited"
               : this.props.save_limit - this.props.saved_video_count
           }
+          isAudio={this.props.isAudio}
           //upgrade={() => console.log("upgrade")}
         />
         <RecordDoneButton
@@ -133,7 +134,7 @@ export class MyVideoUploader extends Component {
           }}
           textDisplayed={"Try Again"}
           buttonWidth={"100%"}
-          isAudio={true}
+          isAudio={this.props.isAudio}
           fontFamily={"Lato"}
         />
         <BglessCardButton
@@ -141,6 +142,7 @@ export class MyVideoUploader extends Component {
           textDisplayed={skipText}
           buttonWidth={"100%"}
           fontFamily={"Lato"}
+          isAudio={this.props.isAudio}
         />
       </div>
     );

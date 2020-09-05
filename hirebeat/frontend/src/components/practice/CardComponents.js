@@ -62,6 +62,10 @@ export const CardRowMidHigh = (props) => {
   return <div className="card-row-mid-high">{props.children}</div>;
 };
 
+export const CardRowThirdHigh = (props) => {
+  return <div className="card-row-third-high">{props.children}</div>;
+};
+
 export const CardButton = (props) => {
   // buttonWidth, onTap, textDisplayed, btnClassName
   return (
@@ -126,24 +130,24 @@ export const RecordDoneButton = (props) => {
   if (props.isAudio) {
     return (
       <CardRowLow>
-      <CardButton
-        onTap={props.onTap}
-        textDisplayed={props.textDisplayed}
-        buttonWidth={props.buttonWidth}
-      />
-    </CardRowLow>
+        <CardButton
+          onTap={props.onTap}
+          textDisplayed={props.textDisplayed}
+          buttonWidth={props.buttonWidth}
+        />
+      </CardRowLow>
     )
   }
   else {
     return (
-    <CardRowHigh>
-      <CardButton
-        onTap={props.onTap}
-        textDisplayed={props.textDisplayed}
-        buttonWidth={props.buttonWidth}
-      />
-    </CardRowHigh>
-  );
+      <CardRowHigh>
+        <CardButton
+          onTap={props.onTap}
+          textDisplayed={props.textDisplayed}
+          buttonWidth={props.buttonWidth}
+        />
+      </CardRowHigh>
+    );
   }
 };
 
