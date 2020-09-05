@@ -54,8 +54,16 @@ export const CardRowHigh = (props) => {
   return <div className="card-row-high">{props.children}</div>;
 };
 
+export const CardRowLow = (props) => {
+  return <div className="card-row-low">{props.children}</div>;
+};
+
 export const CardRowMidHigh = (props) => {
   return <div className="card-row-mid-high">{props.children}</div>;
+};
+
+export const CardRowThirdHigh = (props) => {
+  return <div className="card-row-third-high">{props.children}</div>;
 };
 
 export const CardButton = (props) => {
@@ -65,9 +73,8 @@ export const CardButton = (props) => {
       className={props.btnClassName ?? "btn btn-warning"}
       style={{
         WebkitBorderRadius: "1.5rem",
-//        width: props.buttonWidth,
-        width: "18.625rem",
-        height: "3.75rem",
+        width: props.isAudio ? "13.75rem" : "18.625rem",
+//        height: props.isAudio ? "40px" : "60px",
         borderRadius: "3.125rem",
         background:
           props.btnClassName && props.btnClassName != "btn btn-warning"
@@ -120,15 +127,28 @@ export const BglessCardButton = (props) => {
 };
 
 export const RecordDoneButton = (props) => {
-  return (
-    <CardRowHigh>
-      <CardButton
-        onTap={props.onTap}
-        textDisplayed={props.textDisplayed}
-        buttonWidth={props.buttonWidth}
-      />
-    </CardRowHigh>
-  );
+  if (props.isAudio) {
+    return (
+      <CardRowLow>
+        <CardButton
+          onTap={props.onTap}
+          textDisplayed={props.textDisplayed}
+          buttonWidth={props.buttonWidth}
+        />
+      </CardRowLow>
+    )
+  }
+  else {
+    return (
+      <CardRowHigh>
+        <CardButton
+          onTap={props.onTap}
+          textDisplayed={props.textDisplayed}
+          buttonWidth={props.buttonWidth}
+        />
+      </CardRowHigh>
+    );
+  }
 };
 
 export const VideoNumberLinkRow = (props) => {
@@ -136,6 +156,25 @@ export const VideoNumberLinkRow = (props) => {
     <CardRowMidHigh>
       <div className="d-flex justify-content-around" style={{ width: "100%" }}>
         <h6>Free video save left: {props.number_of_videos_to_save} </h6>
+        {/* <a
+          onClick={props.upgrade}
+          style={{
+            color: "#f3a340",
+            textDecoration: "underline",
+          }}
+        >
+          Upgrade >
+        </a> */}
+      </div>
+    </CardRowMidHigh>
+  );
+};
+
+export const AudioNumberLinkRow = (props) => {
+  return (
+    <CardRowMidHigh>
+      <div className="d-flex justify-content-around" style={{ width: "100%" }}>
+        <h6>Free audio save left: {props.number_of_audios_to_save} </h6>
         {/* <a
           onClick={props.upgrade}
           style={{

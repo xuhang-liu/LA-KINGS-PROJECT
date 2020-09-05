@@ -1,3 +1,9 @@
+import WaveSurfer from 'wavesurfer.js';
+import MicrophonePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.microphone.js';
+WaveSurfer.microphone = MicrophonePlugin;
+import Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer.js';
+import RecordRTC from "recordrtc";
+
 export const numberOfQuestionOptions = [
   { value: 3, label: "3" },
   { value: 4, label: "4" },
@@ -26,6 +32,43 @@ export var videoRecorderOptions = {
       videoMimeType: "video/webm;codecs=vp8,opus",
     },
   },
+};
+
+// audio configuration
+export var audioRecorderOptions = {
+    controls: true,
+    bigPlayButton: false,
+    width: 400,
+    height: 100,
+    fluid: false,
+    responsive: true,
+    plugins: {
+        wavesurfer: {
+            backend: 'WebAudio',
+            waveColor: '#36393b',
+            progressColor: 'black',
+            debug: true,
+            cursorWidth: 1,
+            hideScrollbar: true,
+            plugins: [
+                // enable microphone plugin
+                WaveSurfer.microphone.create({
+                    bufferSize: 4096,
+                    numberOfInputChannels: 1,
+                    numberOfOutputChannels: 1
+                })
+            ]
+        },
+        record: {
+            audio: true,
+            video: false,
+            audioMimeType: 'audio/wav',  //TODO convert to mp3
+            audioRecorderType: RecordRTC.StereoAudioRecorder,
+            maxLength: 60,
+            displayMilliseconds: true,
+            debug: true
+        }
+    }
 };
 
 export var radialChartOptions = {

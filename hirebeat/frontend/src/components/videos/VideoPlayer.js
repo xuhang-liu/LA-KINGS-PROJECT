@@ -18,8 +18,10 @@ export class VideoPlayer extends Component {
           boxShadow: "0px 0px 4px #8db1f5",
           boxSizing: "content-box",
           overflow: "hidden",
+//          height: this.props.isAudio ? "120px": null
         }}
       >
+        {/* here to change audio player */}
         <Player
           ref={(player) => {
             this.player = player;
