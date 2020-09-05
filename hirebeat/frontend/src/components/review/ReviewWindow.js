@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getUnreviewedVideo } from "../../redux/actions/video_actions";
 import PropTypes from "prop-types";
 import VideoPlayer from "../videos/VideoPlayer";
+import AudioPlayer from "../audios/AudioPlayer";
 import Reviews from "./Reviews";
 
 export class ReviewWindow extends Component {
@@ -34,7 +35,11 @@ export class ReviewWindow extends Component {
             <div style={{width: "60%"}}>
               <div style={{marginBottom:"2%"}}><h3>Question: {this.props.q_type}</h3></div>
               <div>
-              <VideoPlayer url={this.props.video.url} /></div>
+              {
+                this.props.video.url.slice(-3) === "wav" ? <AudioPlayer url={this.props.video.url} />
+                  : <VideoPlayer url={this.props.video.url} />
+              }
+            </div>
               <Reviews
                 videoID={this.props.video.id}
                 nextVideo={this.nextVideo}

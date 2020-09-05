@@ -4,13 +4,16 @@ import {
   lengthOfResponseOptions,
 } from "../../constants/constants";
 import ResponseWindow from "./ResponseWindow";
+import AudioResponseWindow from "./AudioResponseWindow";
 import TestDevice from "./TestDevice";
+import TestAudioDevice from "./TestAudioDevice";
 import { SetupCard, CardRow, CardButton, selectParam } from "./CardComponents";
 
 export class SelectParam extends Component {
   state = {
     type: "behavior",
     paramsAreSet: false,
+    audioParamIsSet: false,
     deviceTested: false,
     numberOfQuestions: { value: 3, label: "3" },
     lengthOfResponse: { value: 1, label: "60s" },
@@ -25,6 +28,10 @@ export class SelectParam extends Component {
 
   setParams = () => {
     this.setState({ ...this.state, paramsAreSet: true });
+  };
+
+  setAudioParam = () => {
+    this.setState({ ...this.state, audioParamIsSet: true });
   };
 
   testDeviceDone = () => {
@@ -73,36 +80,69 @@ export class SelectParam extends Component {
         <CardRow>
           <h4>This will cost you {this.getEstimateTime()} on average</h4>
         </CardRow>
-        <CardRow>
-          <CardButton
-            onTap={this.setParams}
-            textDisplayed={"Test & Start"}
-            buttonWidth={"30%"}
-            fontFamily={"Lato"}
-          />
-        </CardRow>
+        <div className="row">
+          <div className="col" style={{display: "flex", justifyContent: "center"}}>
+            <CardButton
+              onTap={this.setAudioParam}
+              textDisplayed={"Start with Audio"}
+              buttonWidth={"30%"}
+            />
+          </div>
+          <div className="col" style={{display: "flex", justifyContent: "center"}}>
+            <CardButton
+              onTap={this.setParams}
+              textDisplayed={"Start with Video"}
+              buttonWidth={"30%"}
+            />
+          </div>
+        </div>
       </SetupCard>
     );
   };
 
   render() {
-    return (
-      <div className="container">
-        {this.state.paramsAreSet ? (
-          this.state.deviceTested ? (
-            <ResponseWindow
-              questionType={this.state.type}
-              questionNumber={this.state.numberOfQuestions.value}
-              responseLength={this.state.lengthOfResponse.value}
-            />
-          ) : (
-            <TestDevice testDeviceDone={this.testDeviceDone} />
-          )
-        ) : (
-          this.getQuestionsParams()
-        )}
-      </div>
-    );
+    const { paramsAreSet, audioParamIsSet } = this.state
+    // video test
+    if (paramsAreSet === true) {
+        return (
+          <div className="container">
+            {this.state.deviceTested ? (
+              <ResponseWindow
+                questionType={this.state.type}
+                questionNumber={this.state.numberOfQuestions.value}
+                responseLength={this.state.lengthOfResponse.value}
+              />
+              ) : (
+                <TestDevice testDeviceDone={this.testDeviceDone} />
+              )
+            }
+          </div>
+        );
+    }
+    // audio test
+    else if (audioParamIsSet === true) {
+        return (
+          <div className="container">
+            {this.state.deviceTested ? (
+              <AudioResponseWindow
+                questionType={this.state.type}
+                questionNumber={this.state.numberOfQuestions.value}
+                responseLength={this.state.lengthOfResponse.value}
+              />
+              ) : (
+                <TestAudioDevice testDeviceDone={this.testDeviceDone} />
+              )
+            }
+          </div>
+        );
+    }
+    else {
+        return(
+          <div className="container">
+            { this.getQuestionsParams() }
+          </div>
+        );
+    }
   }
 }
 

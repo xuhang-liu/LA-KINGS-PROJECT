@@ -1,17 +1,17 @@
 var ReactS3Uploader = require("react-s3-uploader");
 import React, { Component } from "react";
-import { addVideo } from "../../redux/actions/video_actions";
+import { addAudio } from "../../redux/actions/audio_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  VideoNumberLinkRow,
+  AudioNumberLinkRow,
   RecordDoneButton,
   BglessCardButton,
 } from "../practice/CardComponents";
 import { withRouter } from "react-router-dom";
 
-export class MyVideoUploader extends Component {
+export class MyAudioUploader extends Component {
   constructor(props) {
     super(props);
     this.uploader = null;
@@ -19,7 +19,7 @@ export class MyVideoUploader extends Component {
   }
 
   static propTypes = {
-    addVideo: PropTypes.func.isRequired,
+    addAudio: PropTypes.func.isRequired,
     questions: PropTypes.array.isRequired,
     q_index: PropTypes.number.isRequired,
   };
@@ -30,13 +30,13 @@ export class MyVideoUploader extends Component {
     //var url = "https://hb-transcoded-videos.s3.amazonaws.com/" + name
 
     //For other browsers
-    var name = this.props.video.name;
+    var name = this.props.audio.name;
     var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
-    const videoMetaData = {
+    const audioMetaData = {
       url: url,
       q_description: `${this.props.questions[this.props.q_index].description}`,
     };
-    this.props.addVideo(videoMetaData);
+    this.props.addAudio(audioMetaData);
   };
 
   onUploadError = (err) => {
@@ -48,32 +48,32 @@ export class MyVideoUploader extends Component {
   };
 
   handleUpload() {
-    if (this.props.saved_video_count < this.props.save_limit) {
-      this.uploader.uploadFile(this.props.video);
+    if (this.props.saved_audio_count < this.props.save_limit) {
+      this.uploader.uploadFile(this.props.audio);
       this.props.resetDeviceAndNextQuestion();
     } else {
       this.props.createMessage({
-        errorMessage: "Video save limit already reached",
+        errorMessage: "Audio save limit already reached",
       });
     }
   }
 
   handleUploadAndFinish = () => {
     if (this.uploadCheckPassed) {
-      this.uploader.uploadFile(this.props.video);
+      this.uploader.uploadFile(this.props.audio);
       this.redirectToDashboard();
     } else {
       this.props.createMessage({
-        errorMessage: "Video save limit already reached",
+        errorMessage: "Audio save limit already reached",
       });
     }
   };
 
   uploadCheckPassed = () => {
     console.log("======result========");
-    console.log(this.props.saved_video_count);
+    console.log(this.props.saved_audio_count);
     console.log(this.props.save_limit);
-    return this.props.saved_video_count < this.props.save_limit;
+    return this.props.saved_audio_count < this.props.save_limit;
   };
 
   redirectToDashboard = () => {
@@ -112,37 +112,32 @@ export class MyVideoUploader extends Component {
           />
         </div>
         <RecordDoneButton
-          fontFamily={"Lato"}
           onTap={saveOnTap}
           textDisplayed={saveText}
           buttonWidth={"100%"}
-          isAudio={this.props.isAudio}
+          isAudio={true}
         />
-        <VideoNumberLinkRow
-          number_of_videos_to_save={
+        <AudioNumberLinkRow
+          number_of_audios_to_save={
             this.props.save_limit == 1000
               ? "Unlimited"
-              : this.props.save_limit - this.props.saved_video_count
+              : this.props.save_limit - this.props.saved_audio_count
           }
-          isAudio={this.props.isAudio}
           //upgrade={() => console.log("upgrade")}
         />
         <RecordDoneButton
           onTap={() => {
-            this.props.startCamera();
+            this.props.startMic();
             this.props.resetDevice();
           }}
           textDisplayed={"Try Again"}
           buttonWidth={"100%"}
-          isAudio={this.props.isAudio}
-          fontFamily={"Lato"}
+          isAudio={true}
         />
         <BglessCardButton
           onTap={skipOnTap}
           textDisplayed={skipText}
           buttonWidth={"100%"}
-          fontFamily={"Lato"}
-          isAudio={this.props.isAudio}
         />
       </div>
     );
@@ -153,9 +148,9 @@ const mapStateToProps = (state) => ({
   questions: state.question_reducer.questions,
   q_index: state.question_reducer.q_index,
   save_limit: state.auth_reducer.profile.save_limit,
-  saved_video_count: state.auth_reducer.profile.saved_video_count,
+  saved_audio_count: state.auth_reducer.profile.saved_audio_count,
 });
 
-export default connect(mapStateToProps, { addVideo, createMessage })(
-  withRouter(MyVideoUploader)
+export default connect(mapStateToProps, { addAudio, createMessage })(
+  withRouter(MyAudioUploader)
 );

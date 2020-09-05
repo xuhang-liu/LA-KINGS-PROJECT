@@ -5,27 +5,52 @@ from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileSerializer
 from accounts.models import Profile
 from rest_framework import status
+from django.utils.encoding import force_bytes
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import send_mail
-
 
 #Register API
 
 class ResgisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
-
     def post(self, request, *args, **kwargs):
         ## user info
         serializer = self.get_serializer(data=request.data)
-        print(request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        ## email
+
+        ## welcome email
         subject = 'Welcome letter from Hirebeat'
         message = 'Welcome! '+ request.data['username']
         from_email = 'hirebeat.tech@gmail.com'
         to_list = [request.data['email']]
         send_mail(subject,message,from_email,to_list,fail_silently=True)
-        
+
+        ## email
+        # account_activation_token = PasswordResetTokenGenerator()
+        # current_site = get_current_site(request)
+        # subject = 'Please Activate Your Hirebeat Account'
+        # message = get_template("accounts/account_activation_email.txt")
+        # context = {
+        #     'user': user,
+        #     'domain': current_site.domain,
+        #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        #     'token': account_activation_token.make_token(user),
+        # }
+        # from_email = 'hirebeat.tech@gmail.com'
+        # to_list = [user.email]
+        # content = message.render(context)
+        # email = EmailMessage(
+        #     subject,
+        #     content,
+        #     from_email,
+        #     to_list,
+        # )
+        # email.send()
         ### token
         _, token = AuthToken.objects.create(user)
         ### profile is autocreated
