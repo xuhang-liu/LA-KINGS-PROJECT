@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main21.js",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main21.js",
+    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main22.js",
+    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main22.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
@@ -16,19 +16,20 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
+    "babel-cli": "^6.3.13",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "compression-webpack-plugin": "^5.0.2",
     "file-loader": "^6.0.0",
     "node-sass": "^4.14.1",
     "react-scripts": "1.0.7",
     "sass-loader": "^9.0.3",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11",
-    "babel-cli": "^6.3.13",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
-    "babelify": "^7.2.0",
-    "browserify": "^12.0.1"
+    "webpack-cli": "^3.3.11"
   },
   "babel": {
     "presets": [

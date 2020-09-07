@@ -11,6 +11,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.core.mail import send_mail
 
 #Register API
 
@@ -21,6 +22,13 @@ class ResgisterAPI(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+
+        ## welcome email
+        subject = 'Welcome letter from Hirebeat'
+        message = 'Welcome! '+ request.data['username']
+        from_email = 'hirebeat.tech@gmail.com'
+        to_list = [request.data['email']]
+        send_mail(subject,message,from_email,to_list,fail_silently=True)
 
         ## email
         # account_activation_token = PasswordResetTokenGenerator()

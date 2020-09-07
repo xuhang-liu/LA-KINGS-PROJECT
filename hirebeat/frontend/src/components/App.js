@@ -33,7 +33,6 @@ import VideoReplayPage from "./dashboard/videos/VideoReplayPage";
 import MyVideoUploader from "./videos/MyVideoUploader";
 import ReviewWindow from "./review/ReviewWindow";
 import GoTop from './shared/GoTop';
-import Loader from './shared/Loader';
 
 import QuestionTypeChoices from "./practice/QuestionTypeChoices";
 
