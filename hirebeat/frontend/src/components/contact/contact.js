@@ -57,9 +57,9 @@ class Contact extends Component {
                 Use the form to drop us an email or directly reach us at &nbsp;
                 <a href = "mailto: hr@hirebeat.co" style={{color: "#FF6B00"}}>admin@hirebeat.co</a></p>
             </div>
-            <div className="row" style={{width: "48rem", margin: "auto"}}>
+            <div className="row" style={{width: "44rem", margin: "auto"}}>
               <div className="col contact-bg">
-                <form style={{width: "90%", margin: "auto"}} onSubmit={sendEmail}>
+                <form style={{width: "90%"}} onSubmit={sendEmail}>
                   <br/>
                   <label className="contact-form-font">
                   Email(Optional)
