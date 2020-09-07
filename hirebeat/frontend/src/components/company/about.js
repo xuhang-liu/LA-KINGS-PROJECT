@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
 import AboutContent from './AboutContent';
 import WhyChooseUs from '../Common/WhyChooseUs';
-import ClientsFeedbackSlider from '../Common/ClientsFeedbackSlider';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 

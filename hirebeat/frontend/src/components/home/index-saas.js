@@ -4,11 +4,7 @@ import Features from '../HomeSaas/Features';
 import FeaturedFeature from '../HomeSaas/FeaturedFeature';
 import MoreToDiscover from '../HomeSaas/MoreToDiscover';
 import WhyChooseUs from '../Common/WhyChooseUs';
-import BuildYourApplication from '../HomeSaas/BuildYourApplication';
-import ClientsFeedbackSlider from '../Common/ClientsFeedbackSlider';
-import PricingStyleOne from '../pricing/PricingStyleOne';
 import FaqContent from '../Faq/FaqContent';
-import OurLovingClients from '../Common/OurLovingClients';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import Loader from '../shared/Loader';
 
