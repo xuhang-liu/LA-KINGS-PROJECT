@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const basePath = path.resolve(__dirname);
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   context: path.join(basePath, "src"),
@@ -28,6 +29,7 @@ module.exports = {
       videojs: "video.js/dist/video.cjs.js",
       RecordRTC: "recordrtc",
     }),
+    new CompressionPlugin(),
   ],
   module: {
     rules: [
