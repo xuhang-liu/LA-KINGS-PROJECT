@@ -56,6 +56,7 @@ export const IconText = (props) => {
                 style={{
                     fontSize: props.textSize,
                     marginBottom: "10px",
+                    marginLeft:"5px",
                     color: props.textColor ?? "#7d7d7d",
                     wordWrap: "revert",
                     textAlign: "center",
