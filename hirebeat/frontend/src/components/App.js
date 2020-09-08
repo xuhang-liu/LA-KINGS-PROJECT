@@ -70,7 +70,7 @@ class App extends Component {
               <Header/>
               <Alerts />
               <Switch>
-                <Route exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute exact path="/review" component={ReviewWindow} />
                 <PrivateRoute
                   exact
