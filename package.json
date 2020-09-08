@@ -59,6 +59,7 @@
     "firebase": "^7.16.1",
     "fs": "0.0.1-security",
     "google-spreadsheet": "^3.0.11",
+    "inline-worker": "^0.1.0",
     "js-sha256": "^0.9.0",
     "mdbreact": "^4.27.0",
     "mic-recorder-to-mp3": "^2.2.2",
@@ -81,6 +82,7 @@
     "react-owl-carousel3": "^2.2.5",
     "react-particles-js": "^3.3.0",
     "react-player": "^1.15.3",
+    "react-quiz-component": "^0.3.5",
     "react-redux": "^7.2.0",
     "react-render-html": "^0.6.0",
     "react-responsive": "^8.1.0",
@@ -105,7 +107,6 @@
     "tabletop": "^1.6.3",
     "url-loader": "^4.1.0",
     "video-react": "^0.14.1",
-    "videojs-record": "^4.1.0",
-    "inline-worker": "^0.1.0"
+    "videojs-record": "^4.1.0"
   }
 }
