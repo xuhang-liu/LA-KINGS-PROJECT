@@ -38,10 +38,13 @@ export class AudioRecorder extends Component {
       videojs.log(version_info);
     });
 
+    // auto start here
+    this.player.on("ready", () => {
+      this.player.record().getDevice();
+    })
+
     this.player.on("deviceReady", () => {
       console.log("device is ready!");
-      // logic here needs to be adjusted
-//      this.player.record().getDevice();
       this.player.record().start();
     });
 

@@ -33,7 +33,6 @@ import VideoReplayPage from "./dashboard/videos/VideoReplayPage";
 import MyVideoUploader from "./videos/MyVideoUploader";
 import ReviewWindow from "./review/ReviewWindow";
 import GoTop from './shared/GoTop';
-import Loader from './shared/Loader';
 
 import QuestionTypeChoices from "./practice/QuestionTypeChoices";
 
@@ -71,7 +70,7 @@ class App extends Component {
               <Header/>
               <Alerts />
               <Switch>
-                <Route exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute exact path="/review" component={ReviewWindow} />
                 <PrivateRoute
                   exact

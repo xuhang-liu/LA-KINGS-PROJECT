@@ -201,9 +201,7 @@ export class EssentialUserInfo extends Component {
         <div className="card-body">
           <DbCenterRow>
             <div className="col-2">
-
                 <div className="row justify-content-center">
-
                   <img
                     style = {{width:"100px",
                               height:"100px",
@@ -244,7 +242,7 @@ export class EssentialUserInfo extends Component {
                 <div className="col d-flex align-items-center">
                 <IconButton
                       iconName={"edit"}
-                      iconSize={"20px"}
+                      iconSize={"1.5rem"}
                       iconColor={"#98b8f6"}
                       textDisplayed={"Edit"}
                       onTap={() => {
@@ -358,7 +356,7 @@ export class EssentialUserInfo extends Component {
                         iconName={"email"}
                         textDisplayed={this.props.user.email}
                         textSize={"15px"}
-                        iconMargin={"3px"}
+                        iconMargin={"5px"}
                       />
                     </div>
                   </div>
@@ -418,9 +416,6 @@ const EditModal = (props) => {
         <form style={{ marginBottom: "3%" }}>
           <fieldset>
             <div className="form-group">
-
-
-
               <label style={{ fontSize: "20px" }}>Phone Number</label>
               <input
                 type="number"
