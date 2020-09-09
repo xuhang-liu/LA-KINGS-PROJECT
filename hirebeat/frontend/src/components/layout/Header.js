@@ -51,11 +51,7 @@ export class Header extends Component {
                   className="default-btn"
                   data-toggle="dropdown"
                   aria-haspopup="true"
-                  aria-expanded="false"
-                  style={{borderRadius: "10px",
-                          boxShadow: "none",
-                          marginBottom:"0.6rem",
-                        }}>
+                  aria-expanded="false">
                 <i className="bx bx-log-in"></i>        
                 <b>{user ? `  ${user.username}  ` : ""}</b>
               </button>
@@ -88,33 +84,33 @@ export class Header extends Component {
               <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item ">
                 <Link to="/practice" className="nav-link text-white navbar-font">
-                  <span style={{color:"white",fontFamily:"Helvetica", fontWeight:"bold"}}>Practice</span>
+                  <span className="header-text">Practice</span>
                 </Link>
               </li>
               </MediaQuery>
               <li className="nav-item">
                 <Link to="/dashboard" className="nav-link text-white navbar-font">
-                  <span style={{color:"white",fontFamily:"Helvetica", fontWeight:"bold"}}>Dashboard</span>
+                  <span className="header-text">Dashboard</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/pricing" className="nav-link text-white navbar-font">
-                  <span style={{color:"white",fontFamily:"Helvetica", fontWeight:"bold"}}>Pricing</span>
+                  <span className="header-text">Pricing</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/company" className="nav-link text-white navbar-font">
-                  <span style={{color:"white",fontFamily:"Helvetica", fontWeight:"bold"}}>Company</span>
+                  <span className="header-text">Company</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/bloghome" className="nav-link text-white navbar-font">
-                  <span style={{color:"white",fontFamily:"Helvetica", fontWeight:"bold"}}>Blog</span>
+                  <span className="header-text">Blog</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/contact" className="nav-link text-white navbar-font">
-                  <span style={{color:"white",fontFamily:"Helvetica", fontWeight:"bold"}}>Contact</span>
+                  <span className="header-text">Contact</span>
                 </Link>
               </li>
             </ul>
@@ -129,14 +125,14 @@ export class Header extends Component {
           <ul className="navbar-nav d-flex flex-row order-xl-1">
           <li className="nav-item">
             <Link to="/login">
-              <a className="default-btn mr-3" style={{marginBottom:"0.6rem", color:"white"}}>
+              <a className="default-btn mr-3" style={{color:"white"}}>
                 <i className="bx bx-log-in"></i> Log In <span></span>
               </a>
             </Link>
             </li>
             <li className="nav-item">
             <Link to="/register">
-            <a className="default-btn" style={{marginBottom:"0.6rem",color:"white"}}>
+            <a className="default-btn" style={{color:"white"}}>
               <i className="bx bxs-hot"></i>Get Started <span></span>
             </a>
             </Link>
@@ -151,27 +147,27 @@ export class Header extends Component {
                text-left">
               <li className="nav-item">
                 <a href="/" className="nav-link text-white navbar-font active">
-                  <span style={{color:"white", fontFamily:"Helvetica", fontWeight:"bold"}}>Home</span>
+                  <span className="header-text">Home</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/pricing" className="nav-link text-white navbar-font">
-                <span style={{color:"white",fontFamily:"Helvetica", fontWeight:"bold"}}>Pricing</span>
+                <span className="header-text">Pricing</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/company" className="nav-link text-white navbar-font">
-                <span style={{color:"white",fontFamily:"Helvetica", fontWeight:"bold"}}>Company</span>
+                <span className="header-text">Company</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/bloghome" className="nav-link text-white navbar-font">
-                <span style={{color:"white",fontFamily:"Helvetica", fontWeight:"bold"}}>Blog</span>
+                <span className="header-text">Blog</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/contact" className="nav-link text-white navbar-font">
-                <span style={{color:"white",fontFamily:"Helvetica", fontWeight:"bold"}}>Contact</span>
+                <span className="header-text">Contact</span>
                 </a>
               </li>
             </ul>
@@ -186,7 +182,7 @@ export class Header extends Component {
         <ul className="navbar-nav d-flex mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
           <Link to="/">
-            <a className="default-btn" onClick={this.props.logout} style={{marginBottom:"0.6rem", color:"white"}}>
+            <a className="default-btn" onClick={this.props.logout} style={{color:"white"}}>
              <i className="bx bxs-hot"></i>Logout<span></span>
             </a>
           </Link>
@@ -202,7 +198,7 @@ export class Header extends Component {
       <div id="navbar" className="navbar-area bg-white">
         <nav
             className="navbar navbar-expand-md
-            navbar-dark pb-0 pt-2"
+            navbar-dark pb-2 pt-2"
             style={{
               background: "#080a3c",
             }}
@@ -222,7 +218,7 @@ export class Header extends Component {
               <a href="/" className="navbar-brand mr-auto">
                 <img
                   src={hirebeatlogo}
-                  className="img-fluid mr-1"
+                  className="img-fluid mr-2"
                   alt="logo"
                   style={{
                     width: "24%",
@@ -230,7 +226,7 @@ export class Header extends Component {
                   }}
                 />
                 <span className="font-weight-bold"
-                style={{fontSize:"1.6rem", color:"white"}}>
+                style={{fontSize:"1.2rem", color:"white", fontFamily:"Poppins", fontWeight:"500"}}>
                   HireBeat
                 </span>
               </a>

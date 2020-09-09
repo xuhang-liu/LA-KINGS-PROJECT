@@ -201,9 +201,7 @@ export class EssentialUserInfo extends Component {
         <div className="card-body">
           <DbCenterRow>
             <div className="col-2">
-
                 <div className="row justify-content-center">
-
                   <img
                     style = {{width:"100px",
                               height:"100px",
@@ -244,7 +242,7 @@ export class EssentialUserInfo extends Component {
                 <div className="col d-flex align-items-center">
                 <IconButton
                       iconName={"edit"}
-                      iconSize={"20px"}
+                      iconSize={"1.5rem"}
                       iconColor={"#98b8f6"}
                       textDisplayed={"Edit"}
                       onTap={() => {
@@ -259,53 +257,13 @@ export class EssentialUserInfo extends Component {
                   >
                     {this.props.user.username}
                   </h1>
-                  <div style={{position:'relative', marginLeft:"1rem"}}>
-                    <div className="single-footer-widget">
-                    <ul className="social">
-                                    <li>
-                                    <FacebookShareButton 
-                                        url={"https://hirebeat.co"}
-                                        quote={"HireBeat - Video Interview"}
-                                        hashtag="#hirebeat">
-                                        <a target="_blank">
-                                            <i className="bx bxl-facebook"></i>
-                                        </a>
-                                    </FacebookShareButton>
-                                    </li>
-                                    <li>
-                                        <TwitterShareButton
-                                           url={"https://hirebeat.co"}
-                                           title={"HireBeat - Video Interview"}
-                                           via={"HireBeat"}
-                                           hashtag="#hirebeat">
-                                           <a target="_blank">
-                                                <i className="bx bxl-twitter"></i>   
-                                           </a>
-                                        </TwitterShareButton>
-                                    </li>
-                                    <li>
-                                        <LinkedinShareButton
-                                            url={"https://hirebeat.co"}
-                                            title={"HireBeat - Video Interview"}
-                                            source={"HireBeat"}>
-                                            <a target="_blank">
-                                                <i className="bx bxl-linkedin"></i>
-                                            </a>
-                                        </LinkedinShareButton>
-                                    </li>
-                                </ul>
-                                </div>
-                    {/*<p style={{fontSize: "18px", fontFamily: "Lato", paddingTop: "10px", color: "#98b8f6", marginLeft: "20px"}}>
-                        Edit
-                    </p>*/}
-                  </div>
                   {/* for regular user */}
                   {
                     this.props.profile.membership == "Regular" &&
-                    <div className="text-15" style={{marginLeft:'20%'}}>
+                    <div className="text-15" style={{marginLeft:'40%'}}>
                       <IconText
                         style={{marginRight: "10px"}}
-                        iconName={"card_membership"}  
+                        iconName={"card_membership"}
                         iconMargin={"6px"}
                         textDisplayed={this.props.profile.membership}
                         textSize={"18px"}
@@ -358,7 +316,7 @@ export class EssentialUserInfo extends Component {
                         iconName={"email"}
                         textDisplayed={this.props.user.email}
                         textSize={"15px"}
-                        iconMargin={"3px"}
+                        iconMargin={"5px"}
                       />
                     </div>
                   </div>
@@ -418,9 +376,6 @@ const EditModal = (props) => {
         <form style={{ marginBottom: "3%" }}>
           <fieldset>
             <div className="form-group">
-
-
-
               <label style={{ fontSize: "20px" }}>Phone Number</label>
               <input
                 type="number"

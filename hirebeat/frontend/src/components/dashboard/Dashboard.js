@@ -64,10 +64,10 @@ export class Dashboard extends Component {
     return (
       <React.Fragment>
         <ScrollToTopOnMount />
-      <div className="dashboard-container" style={{marginBottom:"10%"}}>
+      <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Lato"}}>
         <MediaQuery minDeviceWidth={1224}>
         <DbRow>
-          <div className="col-11">
+          <div className="col-12">
             <EssentialUserInfo
               user={this.props.user}
               profile={this.props.profile}

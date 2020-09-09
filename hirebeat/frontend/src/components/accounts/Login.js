@@ -62,7 +62,7 @@ export class Login extends Component {
       if (this.props.user.groups[0] == "reviewers") {
         return <Redirect to="/review"/>;
       } else {
-        return <Redirect to="/dashboard"/>;
+        return <Redirect to="/"/>;
       }
     }
     const {username, password} = this.state;
