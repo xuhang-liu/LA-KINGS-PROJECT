@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {
   numberOfQuestionOptions,
   lengthOfResponseOptions,
+  categoryOfQuestionOptions,
 } from "../../constants/constants";
 import ResponseWindow from "./ResponseWindow";
 import AudioResponseWindow from "./AudioResponseWindow";
@@ -17,6 +18,7 @@ export class SelectParam extends Component {
     deviceTested: false,
     numberOfQuestions: { value: 3, label: "3" },
     lengthOfResponse: { value: 1, label: "60s" },
+    categoryOfQuestion: { value: 1, label: "Random"},
   };
 
   componentDidMount() {
@@ -45,6 +47,10 @@ export class SelectParam extends Component {
   handleChangeLength = (lengthOfResponse) => {
     this.setState({ lengthOfResponse });
   };
+
+  handleChangeCatogary = (categoryOfQuestion) => {
+    this.setState({ categoryOfQuestion });
+  }
 
   getEstimateTime = () => {
     return (
@@ -76,6 +82,12 @@ export class SelectParam extends Component {
           this.state.lengthOfResponse,
           this.handleChangeLength,
           lengthOfResponseOptions
+        )}
+        {selectParam(
+          "Which question catogary do you want to practice?",
+          this.state.categoryOfQuestion,
+          this.handleChangeCatogary,
+          categoryOfQuestionOptions
         )}
         <CardRow>
           <h4>This will cost you {this.getEstimateTime()} on average</h4>
@@ -111,6 +123,7 @@ export class SelectParam extends Component {
                 questionType={this.state.type}
                 questionNumber={this.state.numberOfQuestions.value}
                 responseLength={this.state.lengthOfResponse.value}
+                questionCategory={this.state.categoryOfQuestion.label}
               />
               ) : (
                 <TestDevice testDeviceDone={this.testDeviceDone} />
@@ -128,6 +141,7 @@ export class SelectParam extends Component {
                 questionType={this.state.type}
                 questionNumber={this.state.numberOfQuestions.value}
                 responseLength={this.state.lengthOfResponse.value}
+                questionCategory={this.state.categoryOfQuestion.label}
               />
               ) : (
                 <TestAudioDevice testDeviceDone={this.testDeviceDone} />
