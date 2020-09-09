@@ -16,6 +16,22 @@ export const lengthOfResponseOptions = [
   { value: 3, label: "180s" },
 ];
 
+export const categoryOfQuestionOptions = [
+  { value: 1, label: "Random"},
+  { value: 2, label: "Positive Attitude"},
+  { value: 3, label: "Loyalty & Commitment"},
+  { value: 4, label: "Team Player Spirit"},
+  { value: 5, label: "Leadership"},
+  { value: 6, label: "Pressure Handling"},
+  { value: 7, label: "Self-Motivated"},
+  { value: 8, label: "Strong Work Ethic"},
+  { value: 9, label: "Creativity"},
+  { value: 10, label: "Dependable & Reliable"},
+  { value: 11, label: "Detail Oriented"},
+  { value: 12, label: "Good Communication"},
+  { value: 13, label: "Problem Solving"},
+];
+
 // The length changes
 export var videoRecorderOptions = {
   controls: true,

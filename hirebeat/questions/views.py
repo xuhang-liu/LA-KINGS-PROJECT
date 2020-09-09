@@ -13,9 +13,14 @@ class QuestionAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         number = self.request.query_params.get('number')
-        questions = Question.objects.all()
+        category = self.request.query_params.get('category', None)
+        # questions = Question.objects.all()
+        if category is not 'Random':
+            questions=Question.objects.filter(category=category)
+        if category is 'Random':
+            questions=Question.objects.all()
         if number is None :
             number = 3
         questions = random.sample(list(questions), int(number))
+        print(questions)
         return questions
-
