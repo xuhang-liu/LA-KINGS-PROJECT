@@ -95,7 +95,7 @@ export class Register extends Component {
                         <div className="signup-content" style={{marginTop:"3rem"}}>
                                     <div className="signup-form">
                                       <div>
-                                        <h3 style={{color:"#56a3fa"}}><b>Start your career with HireBeat</b></h3>
+                                        <h3 style={{color:"#56a3fa", fontFamily: "Poppins"}}><b>Start your career with HireBeat</b></h3>
                                       </div>
 
                     <form onSubmit={this.onSubmit}>
@@ -108,10 +108,11 @@ export class Register extends Component {
                             onChange={this.onChange}
                             value={username}
                             style={{
+                              fontFamily: "Poppins",
                               background: "#FFFFFF",
-                              border: "1px solid #E5E5E5",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
+                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             required
                         />
@@ -126,10 +127,11 @@ export class Register extends Component {
                             required
                             onChange={this.onChange}
                             style={{
+                              fontFamily: "Poppins",
                               background: "#FFFFFF",
-                              border: "1px solid #E5E5E5",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
+                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             value={email}/>
                       </div>
@@ -144,10 +146,11 @@ export class Register extends Component {
                             placeholder="Create Password"
                             minLength="8"
                             style={{
+                              fontFamily: "Poppins",
                               background: "#FFFFFF",
-                              border: "1px solid #E5E5E5",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
+                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             required/>
                       </div>
@@ -162,10 +165,11 @@ export class Register extends Component {
                             placeholder="Confirm Password"
                             minLength="8"
                             style={{
+                              fontFamily: "Poppins",
                               background: "#FFFFFF",
-                              border: "1px solid #E5E5E5",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
+                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             required/>
                       </div>
@@ -190,18 +194,10 @@ export class Register extends Component {
                       <div className="form-group">
                         <button
                             type="submit"
-                            className="font-weight-bold navbar-font"
-                            style={{
-                              WebkitBorderRadius: "50px",
-                              width: "100%",
-                              height: "3rem",
-                              color: "white",
-                              background: "#FF6B00",
-                              border: "none",
-                              boxShadow: "0 0 8px #FF6B00",
-                            }}
+                            className="default-btn"
                         >
-                          Try It Free Now
+                          <i className="bx bxs-hot"></i>
+                          Try For Free
                         </button>
                       </div>
 
@@ -224,6 +220,8 @@ export class Register extends Component {
                       <hr className="style-four"
                           data-content="Or use"
                           style={{
+                            fontFamily: "Poppins",
+                            marginBottom:"2rem",
                             marginTop:"4rem",
                           }}
                       />
@@ -235,7 +233,7 @@ export class Register extends Component {
                     <div>
                       <div>
                         <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}}/>
-                        <div style={{paddingTop:"0.5rem", textAlign:"left"}}>
+                        <div style={{paddingTop:"0.5rem", textAlign:"left", fontFamily: "Poppins"}}>
                         <a>Your purchase is backed by our 30 Day Money Back Guarantee. We stand behind our training 100%. If you aren’t thrilled with the improvement in your interviewing, just email us and we’ll immediately refund the purchase.</a>
                         </div></div>
                     </div>
@@ -282,10 +280,12 @@ export class Register extends Component {
                             onChange={this.onChange}
                             value={username}
                             style={{
-                              background: "#FFFFFF",
+                              fontFamily: "Poppins",
                               border: "1px solid #E5E5E5",
+                              background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
+                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             required
                         />
@@ -300,10 +300,12 @@ export class Register extends Component {
                             required
                             onChange={this.onChange}
                             style={{
+                              fontFamily: "Poppins",
                               background: "#FFFFFF",
                               border: "1px solid #E5E5E5",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
+                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             value={email}/>
                       </div>
@@ -318,10 +320,12 @@ export class Register extends Component {
                             placeholder="Create Password"
                             minLength="8"
                             style={{
-                              background: "#FFFFFF",
+                              fontFamily: "Poppins",
                               border: "1px solid #E5E5E5",
+                              background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
+                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             required/>
                       </div>
@@ -336,17 +340,19 @@ export class Register extends Component {
                             placeholder="Confirm Password"
                             minLength="8"
                             style={{
-                              background: "#FFFFFF",
+                              fontFamily: "Poppins",
                               border: "1px solid #E5E5E5",
+                              background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
+                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             required/>
                       </div>
 
                       <p className="d-flex text-muted justify-content-end"
                          style={{
-                           fontWeight: "70"
+                           fontWeight: "70",
                          }}>
                         Have an account?
                         <a href="/login"
@@ -364,18 +370,11 @@ export class Register extends Component {
                       <div className="form-group">
                         <button
                             type="submit"
-                            className="font-weight-bold navbar-font"
-                            style={{
-                              WebkitBorderRadius: "50px",
-                              width: "100%",
-                              height: "3rem",
-                              color: "white",
-                              background: "#FF6B00",
-                              border: "none",
-                              boxShadow: "0 0 8px #FF6B00",
-                            }}
+                            className="default-btn"
+                            style={{width:"100%"}}
                         >
-                          Try It Free Now
+                          <i className="bx bxs-hot"></i>
+                          Try For Free
                         </button>
                       </div>
 
