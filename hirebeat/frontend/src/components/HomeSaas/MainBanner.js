@@ -141,7 +141,7 @@ class MainBanner extends Component {
                                                     <Link to="/register">
                                                         <a className="default-btn" style={{color:"white"}}>
                                                             <i className="bx bxs-hot"></i>
-                                                            Get Started 
+                                                            Try For Free 
                                                             <span></span>
                                                         </a>
                                                     </Link>
