@@ -31,10 +31,12 @@ export class MyVideoUploader extends Component {
 
     //For other browsers
     var name = this.props.video.name;
+    // note to change below when run in local
     var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
     const videoMetaData = {
       url: url,
       q_description: `${this.props.questions[this.props.q_index].description}`,
+      q_category: `${this.props.questions[this.props.q_index].category}`, // insert question category to database
     };
     this.props.addVideo(videoMetaData);
   };

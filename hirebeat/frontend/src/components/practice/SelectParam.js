@@ -92,7 +92,7 @@ export class SelectParam extends Component {
         <CardRow>
           <h4>This will cost you {this.getEstimateTime()} on average</h4>
         </CardRow>
-        <div className="row">
+        <div className="row" style={{marginTop: "1rem"}}>
           <div className="col" style={{display: "flex", justifyContent: "center"}}>
             <CardButton
               onTap={this.setAudioParam}

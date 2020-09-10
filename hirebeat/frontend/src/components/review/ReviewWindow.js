@@ -9,6 +9,7 @@ import Reviews from "./Reviews";
 export class ReviewWindow extends Component {
   static propTypes = {
     q_type: PropTypes.object,
+    q_category: PropTypes.string,
     video: PropTypes.object,
     loaded: PropTypes.bool.isRequired,
     review_count: PropTypes.number.isRequired,
@@ -34,6 +35,7 @@ export class ReviewWindow extends Component {
           ) : (
             <div style={{width: "60%"}}>
               <div style={{marginBottom:"2%"}}><h3>Question: {this.props.q_type}</h3></div>
+              <div style={{marginBottom:"2%"}}><h3>Question Category: {this.props.q_category}</h3></div>
               <div>
               {
                 this.props.video.url.slice(-3) === "wav" ? <AudioPlayer url={this.props.video.url} />
@@ -60,6 +62,7 @@ export class ReviewWindow extends Component {
 
 const mapStateToProps = (state) => ({
   q_type: state.video_reducer.q_type,
+  q_category: state.video_reducer.q_category,
   video: state.video_reducer.videos,
   loaded: state.video_reducer.loaded,
   review_count: state.video_reducer.review_count,
