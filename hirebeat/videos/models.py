@@ -13,6 +13,7 @@ class Video(models.Model):
         BehaviorQuestion = 'Behavior Question', _('Behavior Question')
         TechniqueQuestion = 'Technique Question', _('Technique Question')
     q_type= models.CharField(max_length=50, choices=QuestionType.choices,default=QuestionType.BehaviorQuestion)
+    q_category = models.CharField(default="Random", max_length=100)
     # review related
     needed_expert_review = models.BooleanField(default=False)
     is_expert_reviewed = models.BooleanField(default=False)

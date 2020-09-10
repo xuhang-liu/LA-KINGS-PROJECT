@@ -214,9 +214,10 @@ const s = {
   control: (styles) => ({
     ...styles,
     WebkitBorderRadius: "20px",
-    boxShadow: "2px 8px rgba(70, 137, 250, 0.15)",
+    boxShadow: "0px 4px 25px rgba(70, 137, 250, 0.15)",
     border: "none",
     width: "80%",
+    marginBottom:"5px",
   }),
   dropdownIndicator: () => ({
     color: "#98b8f6",
@@ -251,7 +252,7 @@ export const selectParam = (question, value, onTap, options) => {
         <h5>{question}</h5>
       </QuestionCol>
       <SelectCol>
-        <Select value={value} onChange={onTap} options={options} styles={s} />
+        <Select value={value} onChange={onTap} options={options} styles={s} isSearchable={false}/>
       </SelectCol>
       <div className="col-sm-1" />
     </CardRow>
@@ -259,7 +260,7 @@ export const selectParam = (question, value, onTap, options) => {
 };
 
 export const QuestionCol = (props) => {
-  return <div className="col-6">{props.children}</div>;
+  return <div className="col-8">{props.children}</div>;
 };
 
 export const SelectCol = (props) => {

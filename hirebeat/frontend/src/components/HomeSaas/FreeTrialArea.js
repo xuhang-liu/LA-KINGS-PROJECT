@@ -17,7 +17,7 @@ class FreeTrialArea extends Component {
                         <Link to="/register">
                             <a className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>
                                 <i className="bx bxs-hot"></i> 
-                                Get Started
+                                Try For Free
                                 <span></span>
                             </a>
                         </Link>
