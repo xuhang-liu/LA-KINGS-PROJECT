@@ -1155,7 +1155,7 @@ h5 {
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
-  color: #4356F0;
+  color: #56a3fa;
 }
 .blog-bottom-box1-date{
   position: absolute;
@@ -1187,11 +1187,11 @@ h5 {
 }
 
 .home-1-mobile {
-  background: linear-gradient(258.29deg, #4BADE4 0%, #4356F0 97.24%);
+  background: linear-gradient(258.29deg, #56a3fa 0%, #56a3fa 97.24%);
 }
 
 .contact-bg {
-  background: linear-gradient(90deg, #56a3fa 0%, #59a7ff 100%);
+  background: linear-gradient(90deg, #56a3fa 0%, #56a3fa 100%);
   border-radius: 10px;
 }
 
