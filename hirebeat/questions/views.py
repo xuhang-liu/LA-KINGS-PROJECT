@@ -15,7 +15,7 @@ class QuestionAPIView(generics.ListCreateAPIView):
         number = self.request.query_params.get('number')
         category = self.request.query_params.get('category')
         if category != 'Random':
-            questions=Question.objects.filter(category=category)
+            questions=Question.objects.filter(category__contains=category)
         else:
             questions=Question.objects.all()
         questions = random.sample(list(questions), int(number))

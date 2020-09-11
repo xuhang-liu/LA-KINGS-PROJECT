@@ -69,7 +69,7 @@ export class Reviews extends Component {
     this.doAsync(this.props.addVideoReviews, this.props.nextVideo);
   };
 
-  scoreField = (title, name) => {
+  scoreField = (title) => {
     return (
       <div>
         <label style={{ fontSize: "20px" }}>{title}</label>
@@ -79,7 +79,7 @@ export class Reviews extends Component {
           class="form-control"
           min="0"
           max="10"
-          name={name}
+          name={title}
           placeholder={title + " score"}
           onChange={this.handleInputChange}
           required="required"
@@ -90,15 +90,12 @@ export class Reviews extends Component {
   };
 
   expertReivews = () => {
+    var str = this.props.expert_review_categories;
+    var titles = str.split(",");
     return (
       <div className="form-group">
         <h1>Expert Score</h1>
-        {this.scoreField("Positive Attitude", "postitiveAttitude")}
-        {this.scoreField("Communication", "communication")}
-        {this.scoreField("Detail Oriented", "detailOriented")}
-        {this.scoreField("Team Spirit", "teamSpirit")}
-        {this.scoreField("Stress Tolerance", "stressTolerance")}
-        {this.scoreField("Overall", "score")}
+        {titles.map(this.scoreField)}
         <label>Comments</label>
         <textarea
           className="form-control"
@@ -113,15 +110,13 @@ export class Reviews extends Component {
   };
 
   aiReivews = () => {
+    var str = this.props.ai_review_categories;
+    var titles = str.split(",");
+    var aiTitles = titles.map((title) => "AI " + title);
     return (
       <div className="form-group">
         <h1>AI Score</h1>
-        {this.scoreField("AI Positive Attitude", "ai_postitiveAttitude")}
-        {this.scoreField("AI Communication", "ai_communication")}
-        {this.scoreField("AI Detail Oriented", "ai_detailOriented")}
-        {this.scoreField("AI Team Spirit", "ai_teamSpirit")}
-        {this.scoreField("AI Stress Tolerance", "ai_stressTolerance")}
-        {this.scoreField("AI Overall", "ai_score")}
+        {aiTitles.map(this.scoreField)}
       </div>
     );
   };

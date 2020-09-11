@@ -49,6 +49,8 @@ export class ReviewWindow extends Component {
                 is_ai_reviewed={this.props.video.is_ai_reviewed}
                 needed_expert_review={this.props.video.needed_expert_review}
                 is_expert_reviewed={this.props.video.is_expert_reviewed}
+                ai_review_categories={this.props.video.ai_review_categories}
+                expert_review_categories={this.props.video.expert_review_categories}
               />
             </div>
           )
