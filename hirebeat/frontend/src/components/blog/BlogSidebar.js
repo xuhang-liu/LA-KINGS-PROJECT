@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import blog1 from '../../assets/blog1.jpg';
-import blog2 from '../../assets/blog2.gif';
+import blog2 from '../../assets/blog2.jpg';
 
 class BlogSidebar extends Component {
     render() {
