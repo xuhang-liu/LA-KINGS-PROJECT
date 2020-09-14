@@ -24,11 +24,12 @@ class ResgisterAPI(generics.GenericAPIView):
         user = serializer.save()
 
         ## welcome email
-        subject = 'Welcome letter from Hirebeat'
-        message = 'Welcome! '+ request.data['username']
-        from_email = 'hirebeat.tech@gmail.com'
-        to_list = [request.data['email']]
-        send_mail(subject,message,from_email,to_list,fail_silently=True)
+        #subject = 'Welcome letter from Hirebeat'
+        #html_message = render_to_string('mail_template.html', {'context': 'values'})
+        #plain_message = strip_tags(html_message)
+        #from_email = 'hirebeat.tech@gmail.com'
+        #to_list = [request.data['email']]
+        #send_mail(subject,plain_message,from_email,to_list,html_message=html_message,fail_silently=True)
 
         ## email
         # account_activation_token = PasswordResetTokenGenerator()
