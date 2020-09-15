@@ -36,7 +36,7 @@ class PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{
-            price: 'price_1H8WhZKxU1MN2zWMo3Cu8kLn', // Replace with the ID of your price
+            price: 'price_1HRUQJKxU1MN2zWMo9p8tKjJ', // Replace with the ID of your price
             quantity: 1,
           }],
           mode: 'subscription',
