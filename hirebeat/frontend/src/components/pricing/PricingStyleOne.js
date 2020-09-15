@@ -228,7 +228,7 @@ class PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price">
-                                                <sup>$</sup>19.99 <sub>/ monthly</sub>
+                                                <sup>$</sup><sub style={{fontSize:"20px"}}><s>19.99</s></sub>9.99<sub>/ monthly</sub>
                                             </div>
 
                                             <ul className="pricing-features">
