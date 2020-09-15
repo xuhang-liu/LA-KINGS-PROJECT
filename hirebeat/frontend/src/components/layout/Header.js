@@ -94,18 +94,18 @@ export class Header extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/pricing" className="nav-link text-white navbar-font">
-                  <span className="header-text">Pricing</span>
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link to="/company" className="nav-link text-white navbar-font">
-                  <span className="header-text">Company</span>
+                  <span className="header-text">About Us</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/bloghome" className="nav-link text-white navbar-font">
                   <span className="header-text">Blog</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/pricing" className="nav-link text-white navbar-font">
+                  <span className="header-text">Pricing</span>
                 </Link>
               </li>
               <li className="nav-item">
@@ -133,7 +133,7 @@ export class Header extends Component {
             <li className="nav-item">
             <Link to="/register">
             <a className="default-btn" style={{color:"white"}}>
-              <i className="bx bxs-hot"></i>Get Started <span></span>
+              <i className="bx bxs-hot"></i>Sign Up <span></span>
             </a>
             </Link>
             </li>
@@ -151,18 +151,18 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/pricing" className="nav-link text-white navbar-font">
-                <span className="header-text">Pricing</span>
-                </a>
-              </li>
-              <li className="nav-item">
                 <a href="/company" className="nav-link text-white navbar-font">
-                <span className="header-text">Company</span>
+                <span className="header-text">About Us</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="/bloghome" className="nav-link text-white navbar-font">
                 <span className="header-text">Blog</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/pricing" className="nav-link text-white navbar-font">
+                <span className="header-text">Pricing</span>
                 </a>
               </li>
               <li className="nav-item">

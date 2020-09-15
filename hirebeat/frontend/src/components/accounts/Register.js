@@ -200,12 +200,12 @@ export class Register extends Component {
                           Try For Free
                         </button>
                       </div>
-
                       <p className="d-flex flex-wrap justify-content-end font-weight-lighter"
                          style={{
                            fontSize: "0.9rem",
                            color: "grey",
                          }}>
+                        <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
                         I have read and agree to the
                         <a href="/term"
                            className="active d-flex ml-2"
@@ -383,6 +383,7 @@ export class Register extends Component {
                            fontSize: "0.9rem",
                            color: "grey",
                          }}>
+                      <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
                         I have read and agree to the
                         <a href="/term"
                            className="active d-flex ml-2"
