@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class PageTitleArea extends Component {
     render() {
 
-        let { pageTitle, pageDescription } = this.props;
+        let { pageTitle, pageDescription, style } = this.props;
 
         return (
-            <div className="page-title-area">
+            <div className="page-title-area" style={style}>
                 <div className="container">
                     <div className="page-title-content">
                         <h2>{pageTitle}</h2>

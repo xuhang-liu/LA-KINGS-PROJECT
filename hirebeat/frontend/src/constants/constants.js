@@ -17,19 +17,18 @@ export const lengthOfResponseOptions = [
 ];
 
 export const categoryOfQuestionOptions = [
-  { value: 1, label: "Random"},
-  { value: 2, label: "Positive Attitude"},
-  { value: 3, label: "Loyalty & Commitment"},
-  { value: 4, label: "Team Player Spirit"},
-  { value: 5, label: "Leadership"},
-  { value: 6, label: "Pressure Handling"},
-  { value: 7, label: "Self-Motivated"},
-  { value: 8, label: "Strong Work Ethic"},
-  { value: 9, label: "Creativity"},
-  { value: 10, label: "Dependable & Reliable"},
-  { value: 11, label: "Detail Oriented"},
-  { value: 12, label: "Good Communication"},
-  { value: 13, label: "Problem Solving"},
+  { value: 1, label: "Positive Attitude"},
+  { value: 2, label: "Loyalty & Commitment"},
+  { value: 3, label: "Team Player Spirit"},
+  { value: 4, label: "Leadership"},
+  { value: 5, label: "Pressure Handling"},
+  { value: 6, label: "Self-Motivated"},
+  { value: 7, label: "Strong Work Ethic"},
+  { value: 8, label: "Creativity"},
+  { value: 9, label: "Dependable & Reliable"},
+  { value: 10, label: "Detail Oriented"},
+  { value: 11, label: "Good Communication"},
+  { value: 12, label: "Problem Solving"},
 ];
 
 // The length changes
