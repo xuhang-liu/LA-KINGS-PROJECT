@@ -244,15 +244,15 @@ const s = {
   }),
 };
 
-export const selectParam = (question, value, onTap, options) => {
+export const selectParam = (question, value, onTap, options, className) => {
   return (
     <CardRow className="vertically-center">
       <div className="col-sm-1" />
       <QuestionCol>
-        <h5>{question}</h5>
+        <h5 className="practice-txt">{question}</h5>
       </QuestionCol>
       <SelectCol>
-        <Select value={value} onChange={onTap} options={options} styles={s} isSearchable={false}/>
+        <Select className={className} value={value} onChange={onTap} options={options} styles={s} isSearchable={false}/>
       </SelectCol>
       <div className="col-sm-1" />
     </CardRow>

@@ -1349,3 +1349,91 @@ h5 {
 .vjs-record.vjs-device-button.vjs-control {
   font-size: 1rem;
 }
+
+.mode-title {
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2.375rem;
+}
+
+.mode-subtitle {
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.875rem;
+}
+
+.mode-col-title {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.375rem;
+  color: #080A3C;
+}
+
+.mode-col-text1 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.mode-col-text2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #13C4A1;
+}
+
+.practice-txt {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.25rem;
+  color: #000000;
+
+}
+
+.practice-txt2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #4A6F8A;
+}
+
+.practice-txt3 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.25rem;
+  color: #000000;
+}
+
+.start-btn {
+  width: 14.375rem;
+  height: 3.75rem;
+  color: #FFFFFF;
+  border:none;
+  background: #090D3A;
+  border-radius: 10px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.select-category {
+  width: 22rem;
+}
+
+.select-question-count {
+  width: 7rem;
+}
+
+.select-time {
+  width: 9rem;
+}

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import blog1 from '../../assets/blog1.jpg';
-import blog2 from '../../assets/blog2.gif';
+import blog2 from '../../assets/blog2.jpg';
+import blog3 from '../../assets/blog3.jpg';
 
 class BlogSidebar extends Component {
     render() {
@@ -55,6 +56,25 @@ class BlogSidebar extends Component {
                             <h4 className="title usmall">
                                 <Link to="/blog-details2">
                                     <a>Video interview practice</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
+                        <Link to="/blog-details3">
+                            <a className="thumb">
+                                <img src={blog3} alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Sep 11, 2020</time>
+                            <h4 className="title usmall">
+                                <Link to="/blog-details3">
+                                    <a>How to Prepare for an AI Interview</a>
                                 </Link>
                             </h4>
                         </div>

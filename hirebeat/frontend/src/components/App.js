@@ -19,8 +19,11 @@ import about from "./company/about";
 import bloggrid from "./blog/bloggrid";
 import blogdetail1 from "./blog/blog-details1";
 import blogdetail2 from "./blog/blog-details2";
+import blogdetail3 from "./blog/blog-details3";
 import SelectParam from "./practice/SelectParam";
+import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
+import BehaviorQuestionMode from "./practice/BehaviorQuestionMode"
 import NotFoundPage from "./layout/NotFoundPage";
 import Privacy from "./layout/Privacy";
 import Term from "./layout/Term";
@@ -75,8 +78,18 @@ class App extends Component {
                 <PrivateRoute exact path="/review" component={ReviewWindow} />
                 <PrivateRoute
                   exact
-                  path="/practice/:type"
+                  path="/practice/modes"
+                  component={BehaviorQuestionMode}
+                />
+                <PrivateRoute
+                  exact
+                  path="/practice/modes/practice"
                   component={SelectParam}
+                />
+                <PrivateRoute
+                  exact
+                  path="/practice/modes/simulate"
+                  component={SelectSimulate}
                 />
                 <PrivateRoute
                   exact
@@ -94,6 +107,7 @@ class App extends Component {
                 <Route exact path="/bloghome" component={bloggrid} />
                 <Route exact path="/blog-details1" component={blogdetail1} />
                 <Route exact path="/blog-details2" component={blogdetail2} />
+                <Route exact path="/blog-details3" component={blogdetail3} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
