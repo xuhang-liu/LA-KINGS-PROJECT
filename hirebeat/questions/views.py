@@ -11,16 +11,12 @@ class QuestionAPIView(generics.ListCreateAPIView):
     serializer_class = QuestionSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
+def get_queryset(self):
         number = self.request.query_params.get('number')
-        category = self.request.query_params.get('category', None)
-        # questions = Question.objects.all()
-        if category is not 'Random':
-            questions=Question.objects.filter(category=category)
-        if category is 'Random':
+        category = self.request.query_params.get('category')
+        if category != 'Random':
+            questions=Question.objects.filter(category__contains=category)
+        else:
             questions=Question.objects.all()
-        if number is None :
-            number = 3
         questions = random.sample(list(questions), int(number))
-        print(questions)
         return questions

@@ -6,6 +6,8 @@ import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
 import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
 import { useEffect } from "react";
+import PageTitleArea from '../Common/PageTitleArea';
+import {Link} from "react-router-dom";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -34,31 +36,37 @@ export class QuestionTypeChoices extends Component {
     return (
       <React.Fragment>
       <ScrollToTopOnMount />
-      <div className="dashboard-container" style={{marginBottom:"10%"}}>
+      <div style={{marginBottom:"10%"}}>
       <MediaQuery minDeviceWidth={1224}>
-      <SetupCard>
-        <CardRow>
-          <h5>Create A New Mock Interview</h5>
-        </CardRow>
-        <CardRow>
-          <h1>Choose Interview Category</h1>
-        </CardRow>
-        <div className="row setup-card-row-bottom">
-          {ButtonContainer(
-            behaviorIcon,
-            this.redirectToBehaviorQuestions,
-            "Behavioral Question"
-          )}
-          {ButtonContainer(
-            techIcon,
-            this.redirectToTechQuestions,
-            "Technical Question"
-          )}
+        <PageTitleArea 
+          pageTitle="Choose Interview Category" 
+          pageDescription="Create A New Mock Interview"
+          style={{marginBottom: "2rem"}} 
+        />
+      <div className="row" style={{marginTop:"8%",marginLeft:"25%", width:"70%"}}>
+        <div className="features-box" >
+          <i className="bx bx-user-voice bx-md" style={{color: '#6FA8F3', marginBottom:'8%',padding: '5%',background:'#F4F5FD',borderRadius:'10px'}}></i>
+          <br/>
+          <h3 style={{fontFamily: "Poppins"}}> Behavioral Question</h3>
+          <p style={{fontFamily: "Poppins"}}> 
+          Prepare about how you've<br/> 
+          overcome previous professional<br/>
+          challenges, reached success and<br/>
+          navigated difficult decisions.</p>
+          <Link onClick={this.redirectToBehaviorQuestions}><p style={{fontFamily: "Poppins", color: '#13C4A1'}}>Next step -></p></Link>
         </div>
-      </SetupCard>
-      </MediaQuery>
-      <MediaQuery maxDeviceWidth={1224}>
-        <div style={{fontSize:"1.6rem"}}><b>Please Login with your computer for the full functionalities.</b></div>
+
+        <div className="features-box" style={{marginLeft: '10%'}}>
+          <i className="bx bx-extension bx-md" style={{color: '#6FA8F3', marginBottom:'8%',padding: '5%',background:'#F4F5FD',borderRadius:'10px'}}></i>
+          <h3 style={{fontFamily: "Poppins"}}>Technical Question</h3>
+          <p style={{fontFamily: "Poppins"}}> 
+          Polish your hard skills from project<br/>
+          management to analyzing<br/>
+          business needs and executing<br/>
+          quality testing.</p>
+          <Link onClick={this.redirectToTechQuestions}><p style={{fontFamily: "Poppins", color: '#13C4A1'}}>Next step -></p></Link>
+        </div>
+      </div>
       </MediaQuery>
       </div>
       </React.Fragment>
