@@ -247,20 +247,20 @@ const s = {
 export const selectParam = (question, value, onTap, options, className) => {
   return (
     <CardRow className="vertically-center">
-      <div className="col-sm-1" />
+      <div className="col-3" />
       <QuestionCol>
         <h5 className="practice-txt">{question}</h5>
       </QuestionCol>
       <SelectCol>
         <Select className={className} value={value} onChange={onTap} options={options} styles={s} isSearchable={false}/>
       </SelectCol>
-      <div className="col-sm-1" />
+      <div className="col-3" />
     </CardRow>
   );
 };
 
 export const QuestionCol = (props) => {
-  return <div className="col-8">{props.children}</div>;
+  return <div className="col-4">{props.children}</div>;
 };
 
 export const SelectCol = (props) => {
