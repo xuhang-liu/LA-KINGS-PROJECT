@@ -95,6 +95,7 @@
     "react-share": "^4.2.1",
     "react-social-login": "^3.4.7",
     "react-social-login-buttons": "^3.1.0",
+    "react-switch": "^5.0.1",
     "react-transition-group": "^4.3.0",
     "react-wow": "^1.0.0",
     "redux": "^4.0.5",

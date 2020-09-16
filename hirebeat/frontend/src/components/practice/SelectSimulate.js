@@ -18,6 +18,10 @@ export class SelectParam extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  handleChange(checked) {
+    this.setState({ checked });
+  }
+
   state = {
     type: "behavior",
     paramsAreSet: false,
@@ -26,7 +30,7 @@ export class SelectParam extends Component {
     deviceTested: false,
     numberOfQuestions: { value: 3, label: "3" },
     lengthOfResponse: { value: 1, label: "60s" },
-    categoryOfQuestion: { value: 1, label: "Positive Attitude"},
+    categoryOfQuestion: { value: 1, label: "Random"},
   };
 
   componentDidMount() {
@@ -44,14 +48,14 @@ export class SelectParam extends Component {
     this.setState({ ...this.state, audioParamIsSet: true });
   };
 
-  selectMedia = () => {
-    if (this.state.checked === true) {
-      this.setParams();
-    }
-    else {
-      this.setAudioParam();
-    }
+selectMedia = () => {
+  if (this.state.checked === true) {
+    this.setParams();
   }
+  else {
+    this.setAudioParam();
+  }
+}
 
   testDeviceDone = () => {
     this.setState({ ...this.state, deviceTested: true });
@@ -69,9 +73,6 @@ export class SelectParam extends Component {
     this.setState({ categoryOfQuestion });
   }
 
-  handleChange(checked) {
-    this.setState({ checked });
-  }
   getEstimateTime = () => {
     return (
       <a style={{ color: "#f3a340", textDecorationLine: "underline" }}>
@@ -90,13 +91,6 @@ export class SelectParam extends Component {
           pageDescription="Create A New Mock Interview"
           style={{marginBottom: "2rem"}}
         />
-        {selectParam(
-          "Select one specific category",
-          this.state.categoryOfQuestion,
-          this.handleChangeCatogary,
-          categoryOfQuestionOptions,
-          "select-category"
-          )}
         {selectParam(
           "How many questions do you want to practice?",
           this.state.numberOfQuestions,
