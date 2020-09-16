@@ -69,7 +69,7 @@ export class Reviews extends Component {
     this.doAsync(this.props.addVideoReviews, this.props.nextVideo);
   };
 
-  scoreField = (title) => {
+  scoreField = (title, name) => {
     return (
       <div>
         <label style={{ fontSize: "20px" }}>{title}</label>
@@ -79,7 +79,7 @@ export class Reviews extends Component {
           class="form-control"
           min="0"
           max="10"
-          name={title}
+          name={name}
           placeholder={title + " score"}
           onChange={this.handleInputChange}
           required="required"
@@ -89,13 +89,23 @@ export class Reviews extends Component {
     );
   };
 
-  expertReivews = () => {
+  getCategories = () => {
     var str = this.props.expert_review_categories;
-    var titles = str.split(",");
+    var categories = str.split(",");
+    return categories;
+  }
+
+  expertReviews = () => {
+    var categories = this.getCategories();
     return (
       <div className="form-group">
         <h1>Expert Score</h1>
-        {titles.map(this.scoreField)}
+        {this.scoreField(categories[0], "postitiveAttitude")}
+        {this.scoreField(categories[1], "communication")}
+        {this.scoreField(categories[2], "detailOriented")}
+        {this.scoreField(categories[3], "teamSpirit")}
+        {this.scoreField(categories[4], "stressTolerance")}
+        {this.scoreField("Overall", "score")}
         <label>Comments</label>
         <textarea
           className="form-control"
@@ -109,14 +119,18 @@ export class Reviews extends Component {
     );
   };
 
-  aiReivews = () => {
-    var str = this.props.ai_review_categories;
-    var titles = str.split(",");
-    var aiTitles = titles.map((title) => "AI " + title);
+  aiReviews = () => {
+    var categories = this.getCategories();
+    var aiCategories = categories.map((category) => "AI " + category);
     return (
       <div className="form-group">
         <h1>AI Score</h1>
-        {aiTitles.map(this.scoreField)}
+        {this.scoreField(aiCategories[0], "ai_postitiveAttitude")}
+        {this.scoreField(aiCategories[1], "ai_communication")}
+        {this.scoreField(aiCategories[2], "ai_detailOriented")}
+        {this.scoreField(aiCategories[3], "ai_teamSpirit")}
+        {this.scoreField(aiCategories[4], "ai_stressTolerance")}
+        {this.scoreField("AI Overall", "ai_score")}
       </div>
     );
   };
@@ -127,13 +141,13 @@ export class Reviews extends Component {
         <form>
           <fieldset>
             {this.props.needed_expert_review && !this.props.is_expert_reviewed
-              ? this.expertReivews()
+              ? this.expertReviews()
               : null}
             <br />
             <div className="line" />
             <br />
             {this.props.needed_ai_review && !this.props.is_ai_reviewed
-              ? this.aiReivews()
+              ? this.aiReviews()
               : null}
             <button
               type="submit"
