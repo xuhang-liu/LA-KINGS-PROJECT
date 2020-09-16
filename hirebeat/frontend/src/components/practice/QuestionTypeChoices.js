@@ -20,7 +20,7 @@ function ScrollToTopOnMount() {
 export class QuestionTypeChoices extends Component {
   redirectToBehaviorQuestions = () => {
     const { history } = this.props;
-    if (history) history.push(`/practice/behavior`);
+    if (history) history.push(`/practice/modes`);
   };
 
   redirectToTechQuestions = () => {

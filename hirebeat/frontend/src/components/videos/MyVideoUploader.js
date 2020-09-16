@@ -10,6 +10,66 @@ import {
   BglessCardButton,
 } from "../practice/CardComponents";
 import { withRouter } from "react-router-dom";
+import {
+  random,
+  positiveAttitude,
+  loyaltyCommitment,
+  teamPLayerSpirit,
+  leadership,
+  pressureHandling,
+  selfMotivated,
+  strongWorkEthic,
+  creativity,
+  dependableReliable,
+  detailOriented,
+  goodCommunication,
+  problemSolving
+} from "./../../constants/constants";
+
+ // determine review categories
+  function reviewCategories(q_category) {
+      var review_categories = "";
+      if(q_category === "Problem Solving") {
+        review_categories = problemSolving;
+      }
+      else if (q_category === "Positive Attitude") {
+        review_categories = positiveAttitude;
+      }
+      else if (q_category === "Loyalty & Commitment") {
+        review_categories = loyaltyCommitment;
+      }
+      else if (q_category === "Team Player Spirit") {
+        review_categories = teamPLayerSpirit;
+      }
+      else if (q_category === "Leadership") {
+        review_categories = leadership;
+      }
+      else if (q_category === "Pressure Handling") {
+        review_categories = pressureHandling;
+      }
+      else if (q_category === "Self-Motivated") {
+        review_categories = selfMotivated;
+      }
+      else if (q_category === "Strong Work Ethic") {
+        review_categories = strongWorkEthic;
+      }
+      else if (q_category === "Creativity") {
+        review_categories = creativity;
+      }
+      else if (q_category === "Dependable & Reliable") {
+        review_categories = dependableReliable;
+      }
+      else if (q_category === "Detail Oriented") {
+        review_categories = detailOriented;
+      }
+      else if (q_category === "Good Communication") {
+        review_categories = goodCommunication;
+      }
+      else {
+        review_categories = random;
+      }
+      return review_categories;
+  }
 
 export class MyVideoUploader extends Component {
   constructor(props) {
@@ -31,11 +91,17 @@ export class MyVideoUploader extends Component {
 
     //For other browsers
     var name = this.props.video.name;
+    // note to change below when run in local
     var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
+    var q_category = `${this.props.questions[this.props.q_index].category}`;
     const videoMetaData = {
       url: url,
       q_description: `${this.props.questions[this.props.q_index].description}`,
+      q_category: q_category, // insert question category to database
+      ai_review_categories: reviewCategories(q_category),
+      expert_review_categories: reviewCategories(q_category),
     };
+    console.log(videoMetaData);
     this.props.addVideo(videoMetaData);
   };
 

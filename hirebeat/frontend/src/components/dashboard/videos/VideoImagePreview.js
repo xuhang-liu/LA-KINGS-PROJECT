@@ -19,7 +19,7 @@ export function VideoImagePreview(props) {
         <div className="col d-flex flex-column justify-content-start container">
           <h3 className="height-50">Q:{renderQDes(props.v.q_description)}</h3>
           <div className="d-flex justify-content-start">
-            <p className="text-secondary">{props.v.q_type}</p>
+            <p className="text-secondary">{props.v.q_type}({props.v.q_category})</p>
             <p
               className="text-secondary"
               style={{ marginLeft: "10px", marginRight: "10px" ,fontSize:"15px"}}
