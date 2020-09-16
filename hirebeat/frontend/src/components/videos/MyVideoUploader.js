@@ -101,7 +101,6 @@ export class MyVideoUploader extends Component {
       ai_review_categories: reviewCategories(q_category),
       expert_review_categories: reviewCategories(q_category),
     };
-    console.log(videoMetaData);
     this.props.addVideo(videoMetaData);
   };
 
