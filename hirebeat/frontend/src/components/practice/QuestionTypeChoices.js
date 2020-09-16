@@ -35,7 +35,7 @@ export class QuestionTypeChoices extends Component {
     return (
       <React.Fragment>
       <ScrollToTopOnMount />
-      <div className="dashboard-container" style={{marginBottom:"10%"}}>
+      <div style={{marginBottom:"10%"}}>
       <MediaQuery minDeviceWidth={1224}>
         <PageTitleArea
           pageTitle="Choose Interview Category"

@@ -42,7 +42,7 @@ export class BehaviorQuestionMode extends Component {
           pageDescription="Create A New Mock Interview"
           style={{marginBottom: "2rem"}}
         />
-        <div className="row" style={{margin: "auto", width: "70%"}}>
+        <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
           <div className="col features-box" style={{marginLeft: "5%"}}>
             <div style={{padding: "10%"}}>
               <img src={practiceIcon} />
