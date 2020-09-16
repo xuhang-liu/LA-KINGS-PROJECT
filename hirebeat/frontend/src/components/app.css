@@ -1437,3 +1437,11 @@ h5 {
 .select-time {
   width: 9rem;
 }
+
+.question-icon {
+  color: #6FA8F3;
+  margin-bottom: 8%;
+  padding: 5%;
+  background: #F4F5FD;
+  borderRadius: 10px;
+}
