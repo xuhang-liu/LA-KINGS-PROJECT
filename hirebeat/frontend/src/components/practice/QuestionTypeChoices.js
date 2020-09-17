@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
-import behaviorIcon from "../../assets/behavior_icon.png";
-import techIcon from "../../assets/tech_icon.png";
+import bqIcon from "../../assets/bq_icon.png";
+import tqIcon from "../../assets/tq_icon.png";
 import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
 import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
@@ -10,7 +10,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 100);
   }, []);
 
   return null;
@@ -42,27 +42,32 @@ export class QuestionTypeChoices extends Component {
           pageDescription="Create A New Mock Interview"
           style={{marginBottom: "2rem"}}
         />
-        <div className="row" style={{marginTop:"8%",marginLeft:"25%", width:"70%"}}>
-          <div className="features-box" >
-            <i className="bx bx-user-voice bx-md question-icon"></i>
-            <br/>
-            <h3 style={{fontFamily: "Poppins"}}> Behavioral Question</h3>
-            <p style={{fontFamily: "Poppins"}}>
-            Prepare about how you've<br/>
-            overcome previous professional<br/>
-            challenges, reached success and<br/>
-            navigated difficult decisions.</p>
-            <Link onClick={this.redirectToBehaviorQuestions}><p style={{fontFamily: "Poppins", color: '#13C4A1'}}>Next step -></p></Link>
+        <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
+          <div className="col features-box" style={{marginLeft: "5%"}}>
+            <div style={{padding: "10%"}}>
+              <img src={bqIcon} />
+              <h3 className="practice-h3">Behavioral Question</h3>
+              <p className="mode-col-text1">
+                Prepare about how you’ve <br/>
+                overcome previous professional <br/>
+                challenges, reached success and <br/>
+                navigated difficult decisions.
+              </p>
+              <Link style={{textDecoration: "none"}} onClick={this.redirectToBehaviorQuestions}><p className="mode-col-text2">Next Step -> </p></Link>
+            </div>
           </div>
-          <div className="features-box" style={{marginLeft: '10%'}}>
-            <i className="bx bx-extension bx-md question-icon"></i>
-            <h3 style={{fontFamily: "Poppins"}}>Technical Question</h3>
-            <p style={{fontFamily: "Poppins"}}>
-            Polish your hard skills from project<br/>
-            management to analyzing<br/>
-            business needs and executing<br/>
-            quality testing.</p>
-            <Link onClick={this.redirectToTechQuestions}><p style={{fontFamily: "Poppins", color: '#13C4A1'}}>Next step -></p></Link>
+          <div className="col features-box" style={{marginLeft: "6rem"}}>
+            <div style={{padding: "10%"}}>
+              <img src={tqIcon} />
+              <h3 className="practice-h3">Technical Question</h3>
+              <p className="mode-col-text1">
+                Polish your hard skills from project <br/>
+                management to analyzing <br/>
+                 business needs and executing <br/>
+                 quality testing.
+              </p>
+              <Link style={{textDecoration: "none"}} onClick={this.redirectToTechQuestions}><p className="mode-col-text2">Next Step -> </p></Link>
+            </div>
           </div>
         </div>
       </MediaQuery>
