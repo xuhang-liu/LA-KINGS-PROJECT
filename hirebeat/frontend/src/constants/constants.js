@@ -34,10 +34,8 @@ export const categoryOfQuestionOptions = [
 // The length changes
 export var videoRecorderOptions = {
   controls: true,
+  bigPlayButton: false,
   width: 640,
-  controlBar: {
-    recordToggle: false
-  },
   height: 480,
   fluid: false,
   responsive: true,
@@ -55,9 +53,6 @@ export var videoRecorderOptions = {
 // audio configuration
 export var audioRecorderOptions = {
     controls: true,
-    controlBar: {
-      recordToggle: false
-    },
     bigPlayButton: false,
     width: 400,
     height: 100,
