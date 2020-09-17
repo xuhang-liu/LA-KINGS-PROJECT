@@ -174,16 +174,19 @@ export class Register extends Component {
                             required/>
                       </div>
 
-                      <p className="d-flex text-muted justify-content-end"
+                      <p className="d-flex flex-wrap justify-content-end"
                          style={{
-                           fontWeight: "70"
+                           fontSize: "0.9rem",
+                           color: "grey",
+                           fontWeight: "400"
                          }}>
                         Have an account?
                         <a href="/login"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
-                             color: "orange"
+                             color: "orange",
+                             fontWeight: "400"
                            }}>
                           Log in
                         </a>
@@ -200,10 +203,11 @@ export class Register extends Component {
                           Try For Free
                         </button>
                       </div>
-                      <p className="d-flex flex-wrap justify-content-end font-weight-lighter"
+                      <p className="d-flex flex-wrap justify-content-end"
                          style={{
                            fontSize: "0.9rem",
                            color: "grey",
+                           fontWeight: "400"
                          }}>
                         <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
                         I have read and agree to the
@@ -211,7 +215,8 @@ export class Register extends Component {
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
-                             color: "orange"
+                             color: "orange",
+                             fontWeight: "400"
                            }}>
                           Terms & Conditions
                         </a>
