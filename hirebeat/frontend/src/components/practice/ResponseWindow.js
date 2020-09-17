@@ -17,6 +17,7 @@ export class ResponseWindow extends Component {
     getQuestions: PropTypes.func.isRequired,
     questionType: PropTypes.string.isRequired, // Used to determine the type of questions to get
     questionNumber: PropTypes.number.isRequired,
+    questionCategory: PropTypes.string.isRequired,
     responseLength: PropTypes.number.isRequired,
   };
 
@@ -31,7 +32,7 @@ export class ResponseWindow extends Component {
         behavior: "smooth",
       });
     }, 200);
-    this.props.getQuestions(this.props.questionNumber);
+    this.props.getQuestions(this.props.questionNumber, this.props.questionCategory);
   }
 
   finishCountdown = () => {

@@ -10,6 +10,7 @@ import {
 const initialState = {
   videos: [],
   q_type: [],
+  q_category: '',
   loaded: false,
   review_count: 0,
 };
@@ -25,6 +26,7 @@ export default function (state = initialState, action) {
     case GET_UNREVIEWED_VIDEO:
       return {
         q_type: action.payload.video.q_description,
+        q_category: action.payload.video.q_category,
         videos: action.payload.video,
         loaded: true,
         review_count: action.payload.review_count,
