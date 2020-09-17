@@ -46,7 +46,7 @@ export class BehaviorQuestionMode extends Component {
           <div className="col features-box" style={{marginLeft: "5%"}}>
             <div style={{padding: "10%"}}>
               <img src={practiceIcon} />
-              <h3>Practice Mode</h3>
+              <h3 className="practice-h3">Practice Mode</h3>
               <p className="mode-col-text1">Select one specific category and <br/> practice to perfect.</p>
               <Link style={{textDecoration: "none"}} onClick={this.redirectToBQPracticeMode}><p className="mode-col-text2">Next Step -> </p></Link>
             </div>
@@ -54,7 +54,7 @@ export class BehaviorQuestionMode extends Component {
           <div className="col features-box" style={{marginLeft: "6rem"}}>
             <div style={{padding: "10%"}}>
               <img src={simulateIcon} />
-              <h3>Simulate Mode</h3>
+              <h3 className="practice-h3">Simulate Mode</h3>
               <p className="mode-col-text1">Include all categories and <br/> practice questions randomly.</p>
               <Link style={{textDecoration: "none"}} onClick={this.redirectToBQSimulateMode}><p className="mode-col-text2">Next Step -> </p></Link>
             </div>
