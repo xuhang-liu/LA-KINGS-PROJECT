@@ -10,7 +10,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 100);
   }, []);
 
   return null;

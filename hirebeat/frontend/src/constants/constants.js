@@ -35,6 +35,9 @@ export const categoryOfQuestionOptions = [
 export var videoRecorderOptions = {
   controls: true,
   width: 640,
+  controlBar: {
+    recordToggle: false
+  },
   height: 480,
   fluid: false,
   responsive: true,
@@ -52,6 +55,9 @@ export var videoRecorderOptions = {
 // audio configuration
 export var audioRecorderOptions = {
     controls: true,
+    controlBar: {
+      recordToggle: false
+    },
     bigPlayButton: false,
     width: 400,
     height: 100,
@@ -60,7 +66,7 @@ export var audioRecorderOptions = {
     plugins: {
         wavesurfer: {
             backend: 'WebAudio',
-            waveColor: '#36393b',
+            waveColor: '#56a3fa',
             progressColor: 'black',
             debug: true,
             cursorWidth: 1,
@@ -248,7 +254,7 @@ export const pressureHandling = "Pressure Handling,Positive Attitude,Loyalty & C
 export const selfMotivated = "Self-motivation,Positive Attitude,Problem Solving,Pressure Handling,Dependable & Reliable";
 export const strongWorkEthic = "Strong Work Ethic,Loyalty & Commitment,Positive Attitude,Dependable & Reliable,Team Player Spirit";
 export const creativity = "Creativity,Self-motivation,Problem Solving,Dependable & Reliable, Detail Oriented";
-export const dependableReliable = "Dependable & Reliable,Team Player Spirit,Loyalty & Commitment,Strong Work Ethic";
+export const dependableReliable = "Dependable & Reliable,Team Player Spirit,Loyalty & Commitment,Strong Work Ethic,Problem Solving";
 export const detailOriented = "Detail Oriented,Positive Attitude,Loyalty & Commitment,Creativity,Dependable & Reliable";
 export const goodCommunication = "Good Communicator,Team PLayer Spirit,Creativity,Leadership,Strong Work Ethic";
 export const problemSolving = "Problem Solving,Self-motivation,Dependable & Reliable,Good Communicator,Positive Attitude";
