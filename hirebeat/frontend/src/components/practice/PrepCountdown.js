@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { CardButton, CardRow, StyledLink } from "./CardComponents";
+import NotePad from "./NotePad";
 
 export class PrepCountdown extends Component {
   state = {
@@ -57,6 +58,7 @@ export class PrepCountdown extends Component {
               />
             </CardRow>
           </div>
+          {this.props.isAudio ? <NotePad isAudio={this.props.isAudio} /> : null}
         </div>
         <div className="col-3" />
       </div>

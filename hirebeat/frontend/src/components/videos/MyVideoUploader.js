@@ -192,16 +192,19 @@ export class MyVideoUploader extends Component {
           isAudio={this.props.isAudio}
           //upgrade={() => console.log("upgrade")}
         />
-        <RecordDoneButton
-          onTap={() => {
-            this.props.startCamera();
-            this.props.resetDevice();
-          }}
-          textDisplayed={"Try Again"}
-          buttonWidth={"100%"}
-          isAudio={this.props.isAudio}
-          fontFamily={"Lato"}
-        />
+        {
+          !this.props.isSimulate ?
+            <RecordDoneButton
+              onTap={() => {
+                this.props.startCamera();
+                this.props.resetDevice();
+              }}
+              textDisplayed={"Try Again"}
+              buttonWidth={"100%"}
+              isAudio={this.props.isAudio}
+              fontFamily={"Lato"}
+            /> : null
+        }
         <BglessCardButton
           onTap={skipOnTap}
           textDisplayed={skipText}

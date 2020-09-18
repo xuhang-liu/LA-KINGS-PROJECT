@@ -123,6 +123,7 @@ export class VideoRecorder extends Component {
               disposePlayer={this.disposePlayer}
               video={this.state.video}
               last_q={this.props.last_q}
+              isSimulate={this.props.isSimulate}
             />
           ) : null}
         </div>

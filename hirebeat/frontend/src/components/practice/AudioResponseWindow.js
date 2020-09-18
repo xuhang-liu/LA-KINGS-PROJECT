@@ -153,6 +153,7 @@ export class AudioResponseWindow extends Component {
                   resetCountdownBar={this.resetCountdownBar}
                   isTesting={false}
                   last_q={this.props.last_q}
+                  isSimulate={this.props.isSimulate}
                 />
               )}
             </div>

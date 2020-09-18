@@ -122,7 +122,7 @@ export class AudioRecorder extends Component {
               className="video-js vjs-default-skin"
             ></audio>
           </div>
-          { !this.props.isTesting ? <NotePad status={this.state.status} isAudio={true} /> : null}
+          { !this.props.isTesting ? <NotePad isAudio={true} /> : null}
         </div>
         <div className="col-3">
           {!this.props.isTesting &&
@@ -135,7 +135,8 @@ export class AudioRecorder extends Component {
               disposePlayer={this.disposePlayer}
               video={this.state.audio}
               last_q={this.props.last_q}
-              isAudio = {true}
+              isAudio={true}
+              isSimulate={this.props.isSimulate}
             />
           ) : null}
         </div>
