@@ -1445,3 +1445,72 @@ font-weight: 600;
 font-size: 1.375rem;
 color: #080A3C;
 }
+
+#quize-result {
+  background-color: #F4F5FD;
+  height: 10%;
+  margin-top: 0%;
+}
+
+#quize-result .image {
+  background-color: #5AC0A3;
+  border: #5AC0A3;
+  bottom: auto;
+}
+
+#quize-result .image::before {
+  border-color: #5AC0A3;
+}
+
+#quize-result .headline {
+  font-family: Poppins;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 68px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+#quize-result .maintext {
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.quiz-title{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.quiz-text{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #4A6F8A;
+}
+
+.quiz-list{
+  font-family: Poppins;
+  padding-left: 0;
+  list-style-type: none;
+  color: #4a6f8a;
+  margin-bottom: 0.25rem;
+}
+
+.quiz-text2{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  color: #67A3F3;
+  margin-right: 2%;
+}
