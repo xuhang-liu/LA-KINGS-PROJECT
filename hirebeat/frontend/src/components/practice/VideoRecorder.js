@@ -9,6 +9,7 @@ import Record from "videojs-record/dist/videojs.record.js";
 import MyVideoUploader from "../videos/MyVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_QUESTION } from "../../redux/actions/action_types";
+import { RecordDoneButton } from "./CardComponents";
 
 export class VideoRecorder extends Component {
   state = {
@@ -99,6 +100,10 @@ export class VideoRecorder extends Component {
     this.player.record().getDevice();
   };
 
+  stopCamera = () => {
+    this.player.record().stop();
+  }
+
   render() {
     return (
       <div className="video-recorder-row">
@@ -113,6 +118,15 @@ export class VideoRecorder extends Component {
           </div>
         </div>
         <div className="col-3">
+          {
+            !this.props.isTesting && this.props.isSimulate ? (
+              <RecordDoneButton
+                fontFamily={"Lato"}
+                onTap={this.stopCamera}
+                textDisplayed={"Stop Recording"}
+                buttonWidth={"100%"}
+              />) : null
+          }
           {!this.props.isTesting &&
           this.state.videoRecorded &&
           !this.state.videoHandled ? (

@@ -16,6 +16,7 @@ import NotePad from "./NotePad";
 import MyVideoUploader from "../videos/MyVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_QUESTION } from "../../redux/actions/action_types";
+import { RecordDoneButton } from "./CardComponents";
 
 export class AudioRecorder extends Component {
   state = {
@@ -91,7 +92,7 @@ export class AudioRecorder extends Component {
     });
   };
 
- resetDeviceAndNextQuestion = () => {
+  resetDeviceAndNextQuestion = () => {
     this.resetDevice();
     this.props.onNextQuestion();
     this.props.resetCountdownBar();
@@ -110,6 +111,10 @@ export class AudioRecorder extends Component {
     this.player.record().getDevice();
   };
 
+  stopMic = () => {
+    this.player.record().stop();
+  }
+
   render() {
     return (
       <div className="video-recorder-row">
@@ -124,6 +129,17 @@ export class AudioRecorder extends Component {
           { !this.props.isTesting ? <NotePad isAudio={true} /> : null}
         </div>
         <div className="col-3">
+          {
+            !this.props.isTesting && this.props.isSimulate ? (
+              <RecordDoneButton
+                fontFamily={"Lato"}
+                onTap={this.stopMic}
+                textDisplayed={"Stop Recording"}
+                buttonWidth={"100%"}
+                isAudio={true}
+              />) : null
+          }
+          <br style={{marginTop: "3rem"}}/>
           {!this.props.isTesting &&
           this.state.audioRecorded &&
           !this.state.audioHandled ? (
