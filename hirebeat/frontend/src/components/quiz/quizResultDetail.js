@@ -20,30 +20,29 @@ class QuizResultDetail extends Component {
                         You know that the only way to be sure that something will work is to make a simple version of it and try it out. You love fast-paced trial and error, iterating on the best bits until you have something that works for everyone. You never get too attached to your ideas, always safe in the knowledge that the next big thing is just one prototype away.
                     </p>
                     <div className="single-footer-widget1">
-                                                <ul className="social" style={{margin: "auto"}}>
-                                                    <li>
-                                                        <FacebookShareButton 
-                                                            url={"https://hirebeat.co/blog-details1"}
-                                                            quote={"HireBeat - Video Interview"}
-                                                            hashtag="#hirebeat">
-                                                            <a target="_blank">
-                                                                <i className="bx bxl-facebook"></i>
-                                                            </a>
-                                                        </FacebookShareButton>
-                                                    </li>
+                        <ul className="social" style={{margin: "auto"}}>
+                            <li>
+                                <FacebookShareButton 
+                                url={"https://hirebeat.co/blog-details1"}
+                                quote={"HireBeat - Video Interview"}
+                                hashtag="#hirebeat"><a target="_blank">
+                                    <i className="bx bxl-facebook"></i>
+                                </a>
+                                </FacebookShareButton>
+                            </li>
                                             
-                                                     <li>
-                                                        <LinkedinShareButton
-                                                            url={"https://hirebeat.co/blog-details1"}
-                                                            title={"HireBeat - Video Interview"}
-                                                            source={"HireBeat"}>
-                                                            <a target="_blank">
-                                                                <i className="bx bxl-linkedin"></i>
-                                                            </a>
-                                                        </LinkedinShareButton>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                            <li>
+                                <LinkedinShareButton
+                                    url={"https://hirebeat.co/blog-details1"}
+                                    title={"HireBeat - Video Interview"}
+                                    source={"HireBeat"}>
+                                    <a target="_blank">
+                                        <i className="bx bxl-linkedin"></i>
+                                   </a>
+                                </LinkedinShareButton>                                           
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                     <div className="row">
                         <div className="col-lg-8 col-md-12">
