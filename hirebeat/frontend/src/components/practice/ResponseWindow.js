@@ -102,6 +102,7 @@ export class ResponseWindow extends Component {
       this.props.responseLength * 60;
     videoRecorderOptions.width = window.innerWidth / 2.4;
     videoRecorderOptions.height = window.innerWidth / 3.6;
+    videoRecorderOptions.controlBar.recordToggle = (this.props.isSimulate) ? false : true;
     return (
       <div>
         {this.props.loaded ? (

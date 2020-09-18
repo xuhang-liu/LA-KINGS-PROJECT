@@ -137,6 +137,7 @@ export class SelectParam extends Component {
                 questionNumber={this.state.numberOfQuestions.value}
                 responseLength={this.state.lengthOfResponse.value}
                 questionCategory={this.state.categoryOfQuestion.label}
+                isSimulate={false}
               />
               ) : (
                 <TestDevice testDeviceDone={this.testDeviceDone} />
@@ -155,6 +156,7 @@ export class SelectParam extends Component {
                 questionNumber={this.state.numberOfQuestions.value}
                 responseLength={this.state.lengthOfResponse.value}
                 questionCategory={this.state.categoryOfQuestion.label}
+                isSimulate={false}
               />
               ) : (
                 <TestAudioDevice testDeviceDone={this.testDeviceDone} />

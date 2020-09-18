@@ -102,6 +102,7 @@ export class AudioResponseWindow extends Component {
       this.props.responseLength * 60;
 //    audioRecorderOptions.width = window.innerWidth / 2.4;
 //    audioRecorderOptions.height = window.innerWidth / 3.6;
+    audioRecorderOptions.controlBar.recordToggle = (this.props.isSimulate) ? false : true;
     return (
       <div>
         {this.props.loaded ? (

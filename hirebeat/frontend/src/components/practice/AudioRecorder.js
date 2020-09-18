@@ -38,11 +38,6 @@ export class AudioRecorder extends Component {
       videojs.log(version_info);
     });
 
-    // auto start here
-    this.player.on("ready", () => {
-      this.player.record().getDevice();
-    })
-
     this.player.on("deviceReady", () => {
       console.log("device is ready!");
       this.player.record().start();
@@ -62,14 +57,18 @@ export class AudioRecorder extends Component {
         }
     });
 
+     this.player.on('error', (element, error) => {
+        console.error(error);
+    });
+
      this.player.on('deviceError', () => {
         console.log('device error:', this.player.deviceErrorCode);
     });
 
-    this.player.on('error', function(element, error) {
-        console.error(error);
-    });
-
+    // auto start here
+    this.player.on("ready", () => {
+      this.player.record().getDevice();
+    })
   }
 
   componentWillUnmount() {
