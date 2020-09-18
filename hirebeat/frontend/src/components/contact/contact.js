@@ -12,23 +12,22 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 function sendEmail(e) {
   e.preventDefault();
 
-  emailjs.sendForm('gmail', 'hire_beat', e.target, 'user_M93PeAsVxs6GUPZp7NGXc')
+  emailjs.sendForm('default_service', 'template_yyd7rhd', e.target, 'user_Qu9SAkGeIPnGdg8qQXc0J')
     .then((result) => {
         console.log(result.text);
+        confirmAlert({
+          title: 'Email Sent!',
+          message: 'Thank you for contacting us.',
+          buttons: [
+            {
+              label: 'OK'
+            }
+          ]
+        });
     }, (error) => {
         console.log(error.text);
     });
   e.target.reset()
-
-  confirmAlert({
-    title: 'Email Sent!',
-    message: 'Thank you for contacting us.',
-    buttons: [
-      {
-        label: 'OK'
-      }
-    ]
-  });
 }
 
 function ScrollToTopOnMount() {

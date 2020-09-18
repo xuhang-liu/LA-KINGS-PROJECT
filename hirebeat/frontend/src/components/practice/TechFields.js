@@ -29,6 +29,27 @@ function ScrollToTopOnMount() {
   return null;
 }
 
+function sendEmail(e) {
+  e.preventDefault();
+
+  emailjs.sendForm('default_service', 'template_cu13gu5', e.target, 'user_Qu9SAkGeIPnGdg8qQXc0J')
+    .then((result) => {
+        console.log(result.text);
+        confirmAlert({
+          title: 'Email Sent!',
+          message: 'Thank you for contacting us.',
+          buttons: [
+            {
+              label: 'OK'
+            }
+          ]
+        });
+    }, (error) => {
+        console.log(error.text);
+    });
+  e.target.reset()
+}
+
 function TechButtons() {
   confirmAlert({
     title: 'Feature is coming soon',
@@ -157,7 +178,7 @@ export class TechFields extends Component {
         onClick={this.DisplayText}>
       <img src={nofind}/>
       </button>
-      <form style={{display:"inline", visibility:this.state.display, marginLeft: "15px"}}>
+      <form style={{display:"inline", visibility:this.state.display, marginLeft: "15px"}} onSubmit={sendEmail}>
       <input type="text" name="field" placeholder="What industry are you looking for?"
       style={{border:"1px solid #E6E8F6", boxSizing: 'border-box', borderRadius:"3px", width:"20rem", fontSize:"0.75rem", height:"3rem"}}>
       </input>
