@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
-import bqIcon from "../../assets/bq_icon.png";
-import tqIcon from "../../assets/tq_icon.png";
 import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
 import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
@@ -43,9 +41,12 @@ export class QuestionTypeChoices extends Component {
           style={{marginBottom: "2rem"}}
         />
         <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
-          <div className="col features-box" style={{marginLeft: "5%"}}>
+        <div className="col features-box" style={{marginLeft: "5%"}}>
+        <Link style={{textDecoration: "none"}} onClick={this.redirectToBehaviorQuestions}>
             <div style={{padding: "10%"}}>
-              <img src={bqIcon} />
+            <div className="icon">
+              <i className='bx bx-user-voice'></i>
+            </div>
               <h3 className="practice-h3">Behavioral Question</h3>
               <p className="mode-col-text1">
                 Prepare about how you’ve <br/>
@@ -53,12 +54,16 @@ export class QuestionTypeChoices extends Component {
                 challenges, reached success and <br/>
                 navigated difficult decisions.
               </p>
-              <Link style={{textDecoration: "none"}} onClick={this.redirectToBehaviorQuestions}><p className="mode-col-text2">Next Step -> </p></Link>
+              <p className="mode-col-text2">Next Step -> </p>
             </div>
+            </Link>
           </div>
           <div className="col features-box" style={{marginLeft: "6rem"}}>
+          <Link style={{textDecoration: "none"}} onClick={this.redirectToTechQuestions}>
             <div style={{padding: "10%"}}>
-              <img src={tqIcon} />
+            <div className="icon">
+              <i className='bx bx-extension'></i>
+            </div>
               <h3 className="practice-h3">Technical Question</h3>
               <p className="mode-col-text1">
                 Polish your hard skills from project <br/>
@@ -66,8 +71,9 @@ export class QuestionTypeChoices extends Component {
                  business needs and executing <br/>
                  quality testing.
               </p>
-              <Link style={{textDecoration: "none"}} onClick={this.redirectToTechQuestions}><p className="mode-col-text2">Next Step -> </p></Link>
+              <p className="mode-col-text2">Next Step -> </p>
             </div>
+            </Link>
           </div>
         </div>
       </MediaQuery>

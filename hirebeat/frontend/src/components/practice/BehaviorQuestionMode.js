@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
-import practiceIcon from "../../assets/practice_icon.png";
-import simulateIcon from "../../assets/simulate_icon.png";
 import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
 import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
@@ -44,20 +42,28 @@ export class BehaviorQuestionMode extends Component {
         />
         <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
           <div className="col features-box" style={{marginLeft: "5%"}}>
+          <Link style={{textDecoration: "none"}} onClick={this.redirectToBQPracticeMode}>
             <div style={{padding: "10%"}}>
-              <img src={practiceIcon} />
+            <div className="icon">
+              <i className='bx bx-bullseye'></i>
+            </div>
               <h3 className="practice-h3">Practice Mode</h3>
               <p className="mode-col-text1">Select one specific category and <br/> practice to perfect.</p>
-              <Link style={{textDecoration: "none"}} onClick={this.redirectToBQPracticeMode}><p className="mode-col-text2">Next Step -> </p></Link>
+              <p className="mode-col-text2">Next Step -> </p>
             </div>
+            </Link>
           </div>
           <div className="col features-box" style={{marginLeft: "6rem"}}>
+          <Link style={{textDecoration: "none"}} onClick={this.redirectToBQSimulateMode}>
             <div style={{padding: "10%"}}>
-              <img src={simulateIcon} />
+            <div className="icon">
+              <i className='bx bx-bolt-circle'></i>
+            </div>
               <h3 className="practice-h3">Simulate Mode</h3>
               <p className="mode-col-text1">Include all categories and <br/> practice questions randomly.</p>
-              <Link style={{textDecoration: "none"}} onClick={this.redirectToBQSimulateMode}><p className="mode-col-text2">Next Step -> </p></Link>
+              <p className="mode-col-text2">Next Step -> </p>
             </div>
+            </Link>
           </div>
         </div>
       </MediaQuery>
