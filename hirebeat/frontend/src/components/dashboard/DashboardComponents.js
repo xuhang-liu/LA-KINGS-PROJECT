@@ -111,20 +111,7 @@ export const renderSuccessTag = (text) => {
 export const ReviewHeader = (props) => {
     return (
         <DbRow>
-            <div className="col-2">
-                <button
-                    onClick={props.setSubPage}
-                    className="borderless d-flex justify-content-center align-items-center"
-                    style={{outline: "none", background: "white"}}
-                >
-                    <Icon
-                        iconSize={"20px"}
-                        iconColor={"#1679c7"}
-                        iconName={"keyboard_backspace"}
-                    />
-                    <h6 style={{color: "#1679c7", marginBottom: "10px", fontSize: "20px"}}>Back</h6>
-                </button>
-            </div>
+            <div className="col-2"/>
             <div className="col-8 d-flex justify-content-center align-items-center">
                 <strong className="text-20" style={{color: "#7D7D7D"}}>Review Your Performance</strong>
             </div>
