@@ -28,6 +28,7 @@ import NotFoundPage from "./layout/NotFoundPage";
 import Privacy from "./layout/Privacy";
 import Term from "./layout/Term";
 import QuizHome from "./quiz/quizHome";
+import QuizResultPage from "./quiz/quizResultPage"
 
 import Contact from "./contact/contact";
 
@@ -117,6 +118,7 @@ class App extends Component {
                 <Route exact path="/term" component={Term} />
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/quiz" component={QuizHome} />
+                <Route exact path="/quizresult" component={QuizResultPage} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />

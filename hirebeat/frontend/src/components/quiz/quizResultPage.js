@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
+import QuizResultDetail from './quizResultDetail';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
-import Quizdetail1 from './quizdetail1';
 import { useEffect } from "react";
-
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -13,20 +12,20 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class QuizHome extends Component {
+class QuizResultPage extends Component {
     render() {
         return (
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
-                    pageTitle="Take Your Quiz Here" 
-                    pageDescription="Recommend positions according to your personaility" 
+                    pageTitle="View Your Results" 
+                    pageDescription="Your suitable position is" 
                 />
-                <Quizdetail1/>
+                <QuizResultDetail />
                 <FreeTrialArea />
             </React.Fragment>
         );
     }
 }
 
-export default QuizHome;
+export default QuizResultPage;
