@@ -10,35 +10,43 @@ function ReviewStatusButton(props) {
   const [show, setShow] = useState(false);
   var text = "";
   var className = "";
+  var type = props.aiReview ? "ai" : "expert";
 
-  // decide text, className based on review status
-  if (props.v.is_expert_reviewed && props.v.is_ai_reviewed) {
-    text = "View Analyze Result";
-    className = "reviewed text-15";
-  } else if (!props.v.needed_expert_review || !props.v.needed_ai_review) {
-    if (props.isAudio) {
-        text = "Send Audio to Analyze ";
+  // decide expert or ai review type by props.aiReview
+  if (props.aiReview) {
+    // decide text, className based on review status
+    if (props.v.is_ai_reviewed) {
+        text = "View AI Result";
+        className = "reviewed text-15";
+    } else if (!props.v.needed_ai_review) {
+        text = "Send For AI Review";
+        className = "not-reviewed text-15";
+    } else {
+        text = "Please Wait for Result";
+        className = "under-review text-15";
     }
-    else {
-        text = "Send Video to Analyze ";
-    }
-    className = "not-reviewed text-15";
   } else {
-    text = "Please Wait for Result";
-    className = "under-review text-15";
+    if (props.v.is_expert_reviewed) {
+        text = "View Expert Result";
+        className = "reviewed text-15";
+    } else if (!props.v.needed_expert_review) {
+        text = "Send For Expert Review";
+        className = "not-reviewed text-15";
+    } else {
+        text = "Please Wait for Result";
+        className = "under-review text-15";
+    }
   }
 
   return (
     <div>
-      <div className="height-30 d-flex justify-content-start align-items-end">
-        {props.v.is_expert_reviewed ? renderSuccessTag("Expert") : null}
-        {props.v.is_ai_reviewed ? renderSuccessTag("AI") : null}
-      </div>
+      {props.aiReview ? (props.v.is_ai_reviewed ? renderSuccessTag("AI Reviewed") : null)
+        : (props.v.is_expert_reviewed ? renderSuccessTag("Expert Reviewed") : null)}
       <div className="height-30">
         <button
           onClick={() => setShow(true)}
           className={className}
-          style={{ color: "#FFFFFF", marginBottom: "0px", display: "block", outline: "none" }}
+          style={{ color: "#FFFFFF", marginBottom: "0px", display: "inline-block", outline: "none", width: "12rem" }}
         >
           {text}
         </button>
@@ -130,6 +138,27 @@ function decideClassNameAndOnTap(type, v, sendVideoForReview, setSubPage) {
       return ["btn btn-warning disabled", null];
     } else {
       return ["btn btn-warning", () => sendVideoForReview("ai", v.id)];
+    }
+  }
+}
+
+function decideOnTap(type, v, sendVideoForReview, setSubPage) {
+  if (type == "expert") {
+    if (v.is_expert_reviewed) {
+      return [() => setSubPage("expert")];
+    } else if (v.needed_expert_review) {
+      return [null];
+    } else {
+      return [() => sendVideoForReview("expert", v.id)];
+    }
+  } else {
+    // ai
+    if (v.is_ai_reviewed) {
+      return [() => setSubPage("ai")];
+    } else if (v.needed_ai_review) {
+      return [null];
+    } else {
+      return [() => sendVideoForReview("ai", v.id)];
     }
   }
 }
