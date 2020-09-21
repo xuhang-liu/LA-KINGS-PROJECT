@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import DocumentMeta from 'react-document-meta';
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Dashboard from "./dashboard/Dashboard";
@@ -67,7 +68,19 @@ class App extends Component {
   }
 
   render() {
+    const meta = {
+      title: 'HireBeat – the best video interview prep tool for jobseekers',
+      description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+      canonical: 'https://hirebeat.co/',
+      meta: {
+        charset: 'utf-8',
+        name: {
+          keywords: 'react,meta,document,html,tags'
+        }
+      }
+    };
     return (
+      <DocumentMeta {...meta}>
       <React.Fragment>
       <Provider store={store}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
@@ -131,6 +144,7 @@ class App extends Component {
       {/* Go Top Button */}
       <GoTop scrollStepInPx="100" delayInMs="10.50" />
       </React.Fragment>
+      </DocumentMeta>
     );
   }
 }
