@@ -5,6 +5,8 @@ import MediaQuery from 'react-responsive';
 import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
 import { useEffect } from "react";
 import PageTitleArea from '../Common/PageTitleArea';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -21,8 +23,16 @@ export class QuestionTypeChoices extends Component {
   };
 
   redirectToTechQuestions = () => {
-    const { history } = this.props;
-    if (history) history.push(`/techfields/`);
+    confirmAlert({
+      title: 'Feature is coming soon',
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+      });
+    //const { history } = this.props;
+    //if (history) history.push(`/techfields/`);
   };
 
   componentDidMount() {
