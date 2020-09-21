@@ -102,6 +102,7 @@ export class AudioResponseWindow extends Component {
       this.props.responseLength * 60;
 //    audioRecorderOptions.width = window.innerWidth / 2.4;
 //    audioRecorderOptions.height = window.innerWidth / 3.6;
+    audioRecorderOptions.controlBar.recordToggle = (this.props.isSimulate) ? false : true;
     return (
       <div>
         {this.props.loaded ? (
@@ -127,7 +128,7 @@ export class AudioResponseWindow extends Component {
                       style={{
                         fontSize: 15,
                         color: "white",
-                        width: "30%",
+                        width: "40%",
                         marginLeft: "10px",
                         marginTop: "5px",
                         marginBottom: "5px",
@@ -153,6 +154,7 @@ export class AudioResponseWindow extends Component {
                   resetCountdownBar={this.resetCountdownBar}
                   isTesting={false}
                   last_q={this.props.last_q}
+                  isSimulate={this.props.isSimulate}
                 />
               )}
             </div>
