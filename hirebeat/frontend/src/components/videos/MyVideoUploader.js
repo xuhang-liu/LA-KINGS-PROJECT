@@ -13,16 +13,16 @@ import { withRouter } from "react-router-dom";
 import {
   random,
   positiveAttitude,
-  loyaltyCommitment,
-  teamPLayerSpirit,
+  workCommitment,
+  teamworkSkill,
   leadership,
   pressureHandling,
-  selfMotivated,
-  strongWorkEthic,
+  proactiveSkill,
+  workEthic,
   creativity,
-  dependableReliable,
+  reliability,
   detailOriented,
-  goodCommunication,
+  communicationSkill,
   problemSolving
 } from "./../../constants/constants";
 
@@ -35,11 +35,11 @@ import {
       else if (q_category === "Positive Attitude") {
         review_categories = positiveAttitude;
       }
-      else if (q_category === "Loyalty & Commitment") {
-        review_categories = loyaltyCommitment;
+      else if (q_category === "Work Commitment") {
+        review_categories = workCommitment;
       }
-      else if (q_category === "Team Player Spirit") {
-        review_categories = teamPLayerSpirit;
+      else if (q_category === "Teamwork Skill") {
+        review_categories = teamworkSkill;
       }
       else if (q_category === "Leadership") {
         review_categories = leadership;
@@ -47,23 +47,23 @@ import {
       else if (q_category === "Pressure Handling") {
         review_categories = pressureHandling;
       }
-      else if (q_category === "Self-Motivated") {
-        review_categories = selfMotivated;
+      else if (q_category === "Proactive Skill") {
+        review_categories = proactiveSkill;
       }
-      else if (q_category === "Strong Work Ethic") {
-        review_categories = strongWorkEthic;
+      else if (q_category === "Work Ethic") {
+        review_categories = workEthic;
       }
       else if (q_category === "Creativity") {
         review_categories = creativity;
       }
-      else if (q_category === "Dependable & Reliable") {
-        review_categories = dependableReliable;
+      else if (q_category === "Reliability") {
+        review_categories = reliability;
       }
       else if (q_category === "Detail Oriented") {
         review_categories = detailOriented;
       }
-      else if (q_category === "Good Communication") {
-        review_categories = goodCommunication;
+      else if (q_category === "Communication Skill") {
+        review_categories = communicationSkill;
       }
       else {
         review_categories = random;

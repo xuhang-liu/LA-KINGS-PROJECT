@@ -18,16 +18,16 @@ export const lengthOfResponseOptions = [
 
 export const categoryOfQuestionOptions = [
   { value: 1, label: "Positive Attitude"},
-  { value: 2, label: "Loyalty & Commitment"},
-  { value: 3, label: "Team Player Spirit"},
+  { value: 2, label: "Work Commitment"},
+  { value: 3, label: "Teamwork Skill"},
   { value: 4, label: "Leadership"},
   { value: 5, label: "Pressure Handling"},
-  { value: 6, label: "Self-Motivated"},
-  { value: 7, label: "Strong Work Ethic"},
+  { value: 6, label: "Proactive Skill"},
+  { value: 7, label: "Work Ethic"},
   { value: 8, label: "Creativity"},
-  { value: 9, label: "Dependable & Reliable"},
+  { value: 9, label: "Reliability"},
   { value: 10, label: "Detail Oriented"},
-  { value: 11, label: "Good Communication"},
+  { value: 11, label: "Communication Skill"},
   { value: 12, label: "Problem Solving"},
 ];
 
@@ -42,6 +42,7 @@ export var videoRecorderOptions = {
   },
   width: 520,
   height: 350,
+  bigPlayButton: false,
   fluid: false,
   responsive: true,
   plugins: {
@@ -251,15 +252,15 @@ export const infillOverallData = (scoreNumber) => {
 };
 
 export const random = "Positive Attitude,Communication,Detail Oriented,Team Spirit,Stress Tolerance";
-export const positiveAttitude = "Positive Attitude,Self-motivation,Problem Solving,Pressure Handling,Team PLayer Spirit";
-export const loyaltyCommitment = "Loyalty & Commitment,Strong Work Ethic,Detail Oriented,Pressure Handling,Team Player Spirit";
-export const teamPLayerSpirit = "Team Player Spirit,Positive Attitude,Loyalty & Commitment,Good Communicator,Dependable & Reliable";
-export const leadership = "Leadership,Self-motivation,Problem Solving,Strong Work Ethic,Good Communicator";
-export const pressureHandling = "Pressure Handling,Positive Attitude,Loyalty & Commitment,Detail Oriented,Self-motivation";
-export const selfMotivated = "Self-motivation,Positive Attitude,Problem Solving,Pressure Handling,Dependable & Reliable";
-export const strongWorkEthic = "Strong Work Ethic,Loyalty & Commitment,Positive Attitude,Dependable & Reliable,Team Player Spirit";
-export const creativity = "Creativity,Self-motivation,Problem Solving,Dependable & Reliable, Detail Oriented";
-export const dependableReliable = "Dependable & Reliable,Team Player Spirit,Loyalty & Commitment,Strong Work Ethic,Problem Solving";
-export const detailOriented = "Detail Oriented,Positive Attitude,Loyalty & Commitment,Creativity,Dependable & Reliable";
-export const goodCommunication = "Good Communicator,Team PLayer Spirit,Creativity,Leadership,Strong Work Ethic";
-export const problemSolving = "Problem Solving,Self-motivation,Dependable & Reliable,Good Communicator,Positive Attitude";
+export const positiveAttitude = "Positive Attitude,Proactive Skill,Problem Solving,Pressure Handling,Teamwork Skill";
+export const workCommitment = "Work Commitment,Work Ethic,Detail Oriented,Pressure Handling,Teamwork Skill";
+export const teamworkSkill = "Teamwork Skill,Positive Attitude,Work Commitment,Communication Skill,Reliability";
+export const leadership = "Leadership,Proactive Skill,Problem Solving,Work Ethic,Communication Skill";
+export const pressureHandling = "Pressure Handling,Positive Attitude,Work Commitment,Detail Oriented,Proactive Skill";
+export const proactiveSkill = "Proactive Skill,Positive Attitude,Problem Solving,Pressure Handling,Reliability";
+export const workEthic = "Work Ethic,Work Commitment,Positive Attitude,Reliability,Teamwork Skill";
+export const creativity = "Creativity,Proactive Skill,Problem Solving,Reliability, Detail Oriented";
+export const reliability = "Reliability,Teamwork Skill,Work Commitment,Work Ethic,Problem Solving";
+export const detailOriented = "Detail Oriented,Positive Attitude,Work Commitment,Creativity,Reliability";
+export const communicationSkill = "Communication Skill,Teamwork Skill,Creativity,Leadership,Work Ethic";
+export const problemSolving = "Problem Solving,Proactive Skill,Reliability,Communication Skill,Positive Attitude";

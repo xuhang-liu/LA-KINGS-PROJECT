@@ -12,16 +12,16 @@ class SubCategory(models.Model):
 class Question(models.Model):
     class QuestionCategory(models.TextChoices):
         PositiveAttitude = 'Positive Attitude', _('Positive Attitude')
-        LoyaltyCommitment = 'Loyalty & Commitment', _('Loyalty & Commitment')
-        TeamPlayer = 'Team Player Spirit', _('Team Player Spirit')
+        WorkCommitment = 'Work Commitment', _('Work Commitment')
+        TeamWork = 'Teamwork Skill', _('Teamwork Skill')
         Leadership = 'Leadership', _('Leadership')
         PressureHandling = 'Pressure Handling', _('Pressure Handling')
-        SelfMotivated = 'Self-Motivated', _('Self-Motivated')
-        WorkEthic = 'Strong Work Ethic', _('Strong Work Ethic')
+        ProactiveSkill = 'Proactive Skill', _('Proactive Skill')
+        WorkEthic = 'Work Ethic', _('Work Ethic')
         Creativity = 'Creativity', _('Creativity')
         Dependable = 'Dependable & Reliable', _('Dependable & Reliable')
-        DetailOriented = 'Detail Oriented', _('Detail Oriented')
-        Communication = 'Good Communication', _('Good Communication')
+        Reliability = 'Reliability', _('Reliability')
+        CommunicationSkill = 'Communication Skill', _('Communication Skill')
         ProblemSolving = 'Problem Solving', _('Problem Solving')
     # id is auto created
     def __str__(self):
