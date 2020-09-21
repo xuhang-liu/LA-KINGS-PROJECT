@@ -47,14 +47,13 @@ export class VideoPreviewList extends Component {
                 }
               }
               return (
-                <div key={v.id}>
+                <div key={v.id} style={{marginTop: "2rem"}}>
                   <VideoImagePreview
                     isAudio={(v.url.slice(-3) === "wav") ? true : false}
                     v={v}
                     key={v.id}
                     sendVideoForReview={this.props.sendVideoForReview}
                   />
-                  <br />
                 </div>
               );
             })

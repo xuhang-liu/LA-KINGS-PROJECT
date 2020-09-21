@@ -85,23 +85,25 @@ export const renderQDes = (des) => {
 
 export const renderSuccessTag = (text) => {
     return (
-        <div className="d-flex justify-content-start">
-            <i
-                className="material-icons-outlined"
-                style={{
-                    fontSize: "15px",
-                    color: "#67ac5c",
-                    marginTop: "2px",
-                }}
-            >
-                done
-            </i>
-            <p
-                className="text-success"
-                style={{color: "#14CC75", fontSize: "15px", marginRight: "10px"}}
-            >
-                {text}
-            </p>
+        <div className="height-30 d-flex justify-content-start align-items-end" style={{marginBottom: "0.8rem"}}>
+            <div className="d-flex justify-content-start">
+                <i
+                    className="material-icons-outlined"
+                    style={{
+                        fontSize: "15px",
+                        color: "#67ac5c",
+                        marginTop: "2px",
+                    }}
+                >
+                    done
+                </i>
+                <span
+                    className="text-success"
+                    style={{color: "#14CC75", fontSize: "15px", marginRight: "10px"}}
+                >
+                    {text}
+                </span>
+            </div>
         </div>
     );
 };
@@ -109,20 +111,7 @@ export const renderSuccessTag = (text) => {
 export const ReviewHeader = (props) => {
     return (
         <DbRow>
-            <div className="col-2">
-                <button
-                    onClick={props.setSubPage}
-                    className="borderless d-flex justify-content-center align-items-center"
-                    style={{outline: "none", background: "white"}}
-                >
-                    <Icon
-                        iconSize={"20px"}
-                        iconColor={"#1679c7"}
-                        iconName={"keyboard_backspace"}
-                    />
-                    <h6 style={{color: "#1679c7", marginBottom: "10px", fontSize: "20px"}}>Back</h6>
-                </button>
-            </div>
+            <div className="col-2"/>
             <div className="col-8 d-flex justify-content-center align-items-center">
                 <strong className="text-20" style={{color: "#7D7D7D"}}>Review Your Performance</strong>
             </div>

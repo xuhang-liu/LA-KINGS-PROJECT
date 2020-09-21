@@ -16,12 +16,23 @@ import NotePad from "./NotePad";
 import MyVideoUploader from "../videos/MyVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_QUESTION } from "../../redux/actions/action_types";
+import { RecordDoneButton } from "./CardComponents";
 
 export class AudioRecorder extends Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({ ...this.state, display: "none" });
+  }
+
   state = {
     audioRecorded: false,
     audioHandled: false,
     audio: null,
+    display: "block",
   };
 
   componentDidMount() {
@@ -37,11 +48,6 @@ export class AudioRecorder extends Component {
         " and recordrtc " + RecordRTC.version;
       videojs.log(version_info);
     });
-
-    // auto start here
-    this.player.on("ready", () => {
-      this.player.record().getDevice();
-    })
 
     this.player.on("deviceReady", () => {
       console.log("device is ready!");
@@ -62,14 +68,18 @@ export class AudioRecorder extends Component {
         }
     });
 
+     this.player.on('error', (element, error) => {
+        console.error(error);
+    });
+
      this.player.on('deviceError', () => {
         console.log('device error:', this.player.deviceErrorCode);
     });
 
-    this.player.on('error', function(element, error) {
-        console.error(error);
-    });
-
+    // auto start here
+    this.player.on("ready", () => {
+      this.player.record().getDevice();
+    })
   }
 
   componentWillUnmount() {
@@ -92,7 +102,7 @@ export class AudioRecorder extends Component {
     });
   };
 
- resetDeviceAndNextQuestion = () => {
+  resetDeviceAndNextQuestion = () => {
     this.resetDevice();
     this.props.onNextQuestion();
     this.props.resetCountdownBar();
@@ -111,6 +121,11 @@ export class AudioRecorder extends Component {
     this.player.record().getDevice();
   };
 
+  stopMic = () => {
+    this.player.record().stop();
+    this.handleClick();
+  }
+
   render() {
     return (
       <div className="video-recorder-row">
@@ -122,9 +137,22 @@ export class AudioRecorder extends Component {
               className="video-js vjs-default-skin"
             ></audio>
           </div>
-          { !this.props.isTesting ? <NotePad status={this.state.status} isAudio={true} /> : null}
+          { !this.props.isTesting ? <NotePad isAudio={true} /> : null}
         </div>
         <div className="col-3">
+          {
+            !this.props.isTesting && this.props.isSimulate ? (
+              <div style={{display: this.state.display}}>
+                <RecordDoneButton
+                  fontFamily={"Lato"}
+                  onTap={this.stopMic}
+                  textDisplayed={"Finish Now"}
+                  buttonWidth={"100%"}
+                  isAudio={true}
+                />
+            </div>) : null
+          }
+          <br style={{marginTop: "3rem"}}/>
           {!this.props.isTesting &&
           this.state.audioRecorded &&
           !this.state.audioHandled ? (
@@ -135,7 +163,8 @@ export class AudioRecorder extends Component {
               disposePlayer={this.disposePlayer}
               video={this.state.audio}
               last_q={this.props.last_q}
-              isAudio = {true}
+              isAudio={true}
+              isSimulate={this.props.isSimulate}
             />
           ) : null}
         </div>

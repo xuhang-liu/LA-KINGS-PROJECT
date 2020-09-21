@@ -131,6 +131,7 @@ selectMedia = () => {
                 questionNumber={this.state.numberOfQuestions.value}
                 responseLength={this.state.lengthOfResponse.value}
                 questionCategory={this.state.categoryOfQuestion.label}
+                isSimulate={true}
               />
               ) : (
                 <TestDevice testDeviceDone={this.testDeviceDone} />
@@ -149,6 +150,7 @@ selectMedia = () => {
                 questionNumber={this.state.numberOfQuestions.value}
                 responseLength={this.state.lengthOfResponse.value}
                 questionCategory={this.state.categoryOfQuestion.label}
+                isSimulate={true}
               />
               ) : (
                 <TestAudioDevice testDeviceDone={this.testDeviceDone} />
