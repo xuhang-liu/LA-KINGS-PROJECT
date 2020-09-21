@@ -30,11 +30,22 @@ export function VideoImagePreview(props) {
               {props.v.created_at.substring(0, 10)}
             </p>
           </div>
-          <ReviewStatusButton
-            v={props.v}
-            sendVideoForReview={props.sendVideoForReview}
-            isAudio={props.isAudio}
-          />
+          <div className="row" style={{width: "90%"}}>
+            <div className="col">
+              <ReviewStatusButton
+                v={props.v}
+                sendVideoForReview={props.sendVideoForReview}
+                aiReview={true}  // review type： AI
+              />
+            </div>
+            <div className="col">
+              <ReviewStatusButton
+                v={props.v}
+                sendVideoForReview={props.sendVideoForReview}
+                aiReview={false}  // review type： Expert
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -248,15 +248,15 @@ class PricingStyleOne extends Component {
                                                     Share interview for feedback</li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited AI analysis
+                                                    <b>Unlimited</b> AI analysis
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited HR expert reviews
+                                                    <b>Unlimited</b> HR expert reviews
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited saved recorded interviews
+                                                    <b>Unlimited</b> saved recorded interviews
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
@@ -485,15 +485,15 @@ class PricingStyleOne extends Component {
                                                     Share interview for feedback</li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited AI analysis
+                                                    <b>Unlimited</b> AI analysis
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited HR expert reviews
+                                                    <b>Unlimited</b> HR expert reviews
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited saved recorded interviews
+                                                    <b>Unlimited</b> saved recorded interviews
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
