@@ -100,8 +100,8 @@ export class ResponseWindow extends Component {
       this.state.status == "Preparation" ? 30 : this.props.responseLength * 60;
     videoRecorderOptions.plugins.record.maxLength =
       this.props.responseLength * 60;
-    videoRecorderOptions.width = window.innerWidth / 2.4;
-    videoRecorderOptions.height = window.innerWidth / 3.6;
+//    videoRecorderOptions.width = window.innerWidth / 2.4;
+//    videoRecorderOptions.height = window.innerWidth / 3.6;
     videoRecorderOptions.controlBar.recordToggle = (this.props.isSimulate) ? false : true;
     return (
       <div>
@@ -119,7 +119,7 @@ export class ResponseWindow extends Component {
                   <div
                     style={{
                       backgroundColor: "black",
-                      width: window.innerWidth / 2.4,
+                      width: 520,
                       borderRadius: "8px 8px 0 0",
                       display: "flex",
                     }}
@@ -128,7 +128,7 @@ export class ResponseWindow extends Component {
                       style={{
                         fontSize: 15,
                         color: "white",
-                        width: "60%",
+                        width: "40%",
                         marginLeft: "10px",
                         marginTop: "5px",
                         marginBottom: "5px",

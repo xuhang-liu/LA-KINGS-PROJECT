@@ -40,8 +40,8 @@ export var videoRecorderOptions = {
     pictureInPictureToggle: false,
     fullscreenToggle: false
   },
-  width: 640,
-  height: 480,
+  width: 520,
+  height: 350,
   fluid: false,
   responsive: true,
   plugins: {

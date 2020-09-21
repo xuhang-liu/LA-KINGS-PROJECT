@@ -12,10 +12,20 @@ import { NEXT_QUESTION } from "../../redux/actions/action_types";
 import { RecordDoneButton } from "./CardComponents";
 
 export class VideoRecorder extends Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({ ...this.state, display: "none" });
+  }
+
   state = {
     videoRecorded: false,
     videoHandled: false,
     video: null,
+    display: "block",
   };
 
   componentDidMount() {
@@ -102,6 +112,7 @@ export class VideoRecorder extends Component {
 
   stopCamera = () => {
     this.player.record().stop();
+    this.handleClick();
   }
 
   render() {
@@ -120,12 +131,14 @@ export class VideoRecorder extends Component {
         <div className="col-3">
           {
             !this.props.isTesting && this.props.isSimulate ? (
-              <RecordDoneButton
-                fontFamily={"Lato"}
-                onTap={this.stopCamera}
-                textDisplayed={"Stop Recording"}
-                buttonWidth={"100%"}
-              />) : null
+              <div style={{display: this.state.display}}>
+                <RecordDoneButton
+                  fontFamily={"Lato"}
+                  onTap={this.stopCamera}
+                  textDisplayed={"Finish Now"}
+                  buttonWidth={"100%"}
+                />
+              </div>) : null
           }
           {!this.props.isTesting &&
           this.state.videoRecorded &&

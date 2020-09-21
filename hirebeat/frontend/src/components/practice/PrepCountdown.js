@@ -40,8 +40,8 @@ export class PrepCountdown extends Component {
           <div
             className={this.props.isAudio ? null : "prep-countdown-container"}
             style={{
-              width: (this.props.isAudio) ? 400 : window.innerWidth / 2.4,
-              height: (this.props.isAudio) ? 100 : window.innerWidth / 3.6,
+              width: (this.props.isAudio) ? 400 : 520,
+              height: (this.props.isAudio) ? 100 : 350,
               backgroundColor: "black",
               borderRadius: "0 0 8px 8px",
             }}

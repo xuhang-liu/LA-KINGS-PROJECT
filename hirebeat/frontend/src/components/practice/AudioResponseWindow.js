@@ -128,7 +128,7 @@ export class AudioResponseWindow extends Component {
                       style={{
                         fontSize: 15,
                         color: "white",
-                        width: "30%",
+                        width: "40%",
                         marginLeft: "10px",
                         marginTop: "5px",
                         marginBottom: "5px",

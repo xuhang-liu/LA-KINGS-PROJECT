@@ -19,10 +19,20 @@ import { NEXT_QUESTION } from "../../redux/actions/action_types";
 import { RecordDoneButton } from "./CardComponents";
 
 export class AudioRecorder extends Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({ ...this.state, display: "none" });
+  }
+
   state = {
     audioRecorded: false,
     audioHandled: false,
     audio: null,
+    display: "block",
   };
 
   componentDidMount() {
@@ -113,6 +123,7 @@ export class AudioRecorder extends Component {
 
   stopMic = () => {
     this.player.record().stop();
+    this.handleClick();
   }
 
   render() {
@@ -131,13 +142,15 @@ export class AudioRecorder extends Component {
         <div className="col-3">
           {
             !this.props.isTesting && this.props.isSimulate ? (
-              <RecordDoneButton
-                fontFamily={"Lato"}
-                onTap={this.stopMic}
-                textDisplayed={"Stop Recording"}
-                buttonWidth={"100%"}
-                isAudio={true}
-              />) : null
+              <div style={{display: this.state.display}}>
+                <RecordDoneButton
+                  fontFamily={"Lato"}
+                  onTap={this.stopMic}
+                  textDisplayed={"Finish Now"}
+                  buttonWidth={"100%"}
+                  isAudio={true}
+                />
+            </div>) : null
           }
           <br style={{marginTop: "3rem"}}/>
           {!this.props.isTesting &&
