@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import ReactWOW from 'react-wow';
-import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
+import {FacebookShareButton, LinkedinShareButton} from "react-share";
 import QuizSidebar from './QuizSidebar';
-import quizSuccess from '../../assets/quiz/quiz_success.jpg';
-
+import quizSuccess from '../../assets/quiz/quiz_success.png';
 
 class QuizResultDetail extends Component {
     render() {
@@ -23,7 +22,7 @@ class QuizResultDetail extends Component {
                         <ul className="social" style={{margin: "auto"}}>
                             <li>
                                 <FacebookShareButton 
-                                url={"https://hirebeat.co/blog-details1"}
+                                url={"https://hirebeat.co/quiz"}
                                 quote={"HireBeat - Video Interview"}
                                 hashtag="#hirebeat"><a target="_blank">
                                     <i className="bx bxl-facebook"></i>
@@ -33,7 +32,7 @@ class QuizResultDetail extends Component {
                                             
                             <li>
                                 <LinkedinShareButton
-                                    url={"https://hirebeat.co/blog-details1"}
+                                    url={"https://hirebeat.co/quiz"}
                                     title={"HireBeat - Video Interview"}
                                     source={"HireBeat"}>
                                     <a target="_blank">
@@ -56,7 +55,7 @@ class QuizResultDetail extends Component {
                                         </ul>
                                     </div>
 
-                                    <h2 className="quiz-title">Business Analyst</h2>
+                                    <h2 className="quiz-title">Analyst</h2>
                                     <p className="quiz-text" style={{marginBottom:"5%"}}>In today’s complex business environment, an organization’s adaptability, agility, and ability to manage constant change through innovation can be keys to success. Traditional methods may no longer lead to reaching objectives when economic conditions are unfavorable. That’s where business analysis comes in. Corporations achieve goals through projects that translate customer needs into new products, services, and profits. Business analysts can make it all happen more efficiently and effectively.</p>
                                     <div className="article-image" >
                                         <img src={quizSuccess} alt="image"/>
@@ -100,7 +99,7 @@ class QuizResultDetail extends Component {
                                                 <ul className="social" style={{margin: "auto"}}>
                                                     <li>
                                                         <FacebookShareButton 
-                                                            url={"https://hirebeat.co/blog-details1"}
+                                                            url={"https://hirebeat.co/quiz"}
                                                             quote={"HireBeat - Video Interview"}
                                                             hashtag="#hirebeat">
                                                             <a target="_blank">
@@ -111,7 +110,7 @@ class QuizResultDetail extends Component {
                                             
                                                      <li>
                                                         <LinkedinShareButton
-                                                            url={"https://hirebeat.co/blog-details1"}
+                                                            url={"https://hirebeat.co/quiz"}
                                                             title={"HireBeat - Video Interview"}
                                                             source={"HireBeat"}>
                                                             <a target="_blank">
@@ -132,16 +131,17 @@ class QuizResultDetail extends Component {
                     </div>
                     <ReactWOW animation='fadeInUp' delay='0.8s'>
                         <div className="contact-cta-box mwidth-1000">
-                            <h3 className="quiz-title">Want to land your dream role? </h3>
-                            <p className="quiz-text">We are here to enhance your interview skills</p>
-                            <Link to="/practice">
+                            <h3 className="quiz-title">We are here to help!</h3>
+                            <p className="quiz-text">We offer personalized evaluation on your resume and interview, and more</p>
+                            <Link to="/register">
                                 <a className="default-btn" style={{color:"white", fontFamily:"Poppins"}}>
+                                    <i className="bx bxs-hot"></i>
                                     Practice with HireBeat
                                     <span></span>
                                 </a>
                             </Link>
                          </div>
-                         <Link style={{textDecoration: "none"}}>
+                         <Link to="/company" style={{textDecoration: "none"}}>
                          <p style={{marginLeft:"9%"}} className="mode-col-text2">Explore more about HireBeat -></p>
                          </Link>
                     </ReactWOW>
