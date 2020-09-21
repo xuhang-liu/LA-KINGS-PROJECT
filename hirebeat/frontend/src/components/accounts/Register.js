@@ -7,7 +7,7 @@ import {createMessage} from "../../redux/actions/message_actions";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
-import badge from '../../assets/badge-30.svg';
+import badge from '../../assets/badge.png';
 import leftbg from '../../assets/Login.png';
 
 function ScrollToTopOnMount() {
@@ -238,8 +238,8 @@ export class Register extends Component {
                     <div>
                       <div>
                         <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}}/>
-                        <div style={{paddingTop:"0.5rem", textAlign:"left", fontFamily: "Poppins"}}>
-                        <a>Your purchase is backed by our 30 Day Money Back Guarantee. We stand behind our training 100%. If you aren’t thrilled with the improvement in your interviewing, just email us and we’ll immediately refund the purchase.</a>
+                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Poppins"}}>
+                        <a>No credit card information needed during signup. Enjoy your free plan.</a>
                         </div></div>
                     </div>
 
