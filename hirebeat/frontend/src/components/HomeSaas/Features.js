@@ -22,7 +22,7 @@ class Features extends Component {
                                 <div className="features-box-one">
                                     <i className='bx'><img src={f1}></img></i>
                                     <h3>Easy to use</h3>
-                                    <p>Streamline design that allows you to practice interview anytime anywhere</p>
+                                    <p>Interview practice is just few clicks asway, practice interview anytime anywhere</p>
                                 </div>
                             </ReactWOW>
                         </div>
@@ -72,7 +72,7 @@ class Features extends Component {
                                 <div className="features-box-one">
                                 <i className='bx'><img src={f6}></img></i>
                                     <h3>Feedback</h3>
-                                    <p>Get AI or HR feedback after practice, improve your interview skill today</p>
+                                    <p>No more guessing, our feedback system provides the best data-driven parameters</p>
                                 </div>
                             </ReactWOW>
                         </div>
