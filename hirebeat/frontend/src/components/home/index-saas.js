@@ -14,7 +14,7 @@ class IndexSaas extends Component {
             loading: true
         };
       componentDidMount() {
-        this.timerHandle = setTimeout(() => this.setState({ loading: false }), 2000); 
+        this.timerHandle = setTimeout(() => this.setState({ loading: false }), 1000); 
       }
     render() {
         return (
