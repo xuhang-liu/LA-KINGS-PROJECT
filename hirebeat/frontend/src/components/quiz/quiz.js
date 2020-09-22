@@ -42,13 +42,14 @@ export const quiz =  {
         ],
         "correctAnswer": "1",
       },
+      // changed here
       {
         "question": "Do you prefer to learn new skills everyday or master skills you already know?",
         "questionType": "text",
         "answerSelectionType": "single",
         "answers": [
-          "NEW SKILL",
           "MASTER SKILL ALREADY KNOW",
+          "NEW SKILL",
         ],
         "correctAnswer": "1",
       },
@@ -82,13 +83,14 @@ export const quiz =  {
         ],
         "correctAnswer": "1",
       },
+      // changed here
       {
         "question": "When you encounter a problem in your work, will you solve it on your own or ask for help?",
         "questionType": "text",
         "answerSelectionType": "single",
         "answers": [
-          "SOLVE IT ALONE",
           "ASK FOR HELP",
+          "SOLVE IT ALONE",
         ],
         "correctAnswer": "1",
       },
@@ -102,13 +104,14 @@ export const quiz =  {
         ],
         "correctAnswer": "1",
       },
+      // changed it here
       {
         "question": "Do you speak before you think or you would think be you speak?",
         "questionType": "text",
         "answerSelectionType": "single",
         "answers": [
-          "SPEAK BEFORE YOU THINK",
           "THINK BEFORE YOU SPEAK",
+          "SPEAK BEFORE YOU THINK",
         ],
         "correctAnswer": "1",
       },

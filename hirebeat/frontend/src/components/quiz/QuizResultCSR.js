@@ -5,23 +5,23 @@ import {FacebookShareButton, LinkedinShareButton} from "react-share";
 import QuizSidebar from './QuizSidebar';
 import quizSuccess from '../../assets/quiz/quiz_success.png';
 
-class QuizResultDetail extends Component {
+class QuizResultCSR extends Component {
     render() {
         return (
-            <section className="blog-details-area ptb-100">  
+            <section className="blog-details-area ptb-100">
                 <div className="container">
                 <div className="single-features-box" id="quize-result">
                     <div className="icon image">
-                        <i className="bx bx-analyse 1"></i>
+                        <i className="bx bx-group 1"></i>
                     </div>
-                    <h3 className="headline">Analyst</h3>
+                    <h3 className="headline">Customer Service Representatives</h3>
                     <p className="maintext">
-                        You know that the only way to be sure that something will work is to make a simple version of it and try it out. You love fast-paced trial and error, iterating on the best bits until you have something that works for everyone. You never get too attached to your ideas, always safe in the knowledge that the next big thing is just one prototype away.
+                        You have an enthusiasm for working with people. You enjoyed working with others and roles such as client facing work. Your unique appeal for people’s emotion made you a great client facing person.
                     </p>
                     <div className="single-footer-widget1">
                         <ul className="social" style={{margin: "auto"}}>
                             <li>
-                                <FacebookShareButton 
+                                <FacebookShareButton
                                 url={"https://hirebeat.co/quiz"}
                                 quote={"HireBeat - Video Interview"}
                                 hashtag="#hirebeat"><a target="_blank">
@@ -29,7 +29,7 @@ class QuizResultDetail extends Component {
                                 </a>
                                 </FacebookShareButton>
                             </li>
-                                            
+
                             <li>
                                 <LinkedinShareButton
                                     url={"https://hirebeat.co/quiz"}
@@ -38,7 +38,7 @@ class QuizResultDetail extends Component {
                                     <a target="_blank">
                                         <i className="bx bxl-linkedin"></i>
                                    </a>
-                                </LinkedinShareButton>                                           
+                                </LinkedinShareButton>
                             </li>
                         </ul>
                     </div>
@@ -55,42 +55,37 @@ class QuizResultDetail extends Component {
                                         </ul>
                                     </div>
 
-                                    <h2 className="quiz-title">Analyst</h2>
+                                    <h2 className="quiz-title">Customer Service Representatives</h2>
+                                    {/* todo change here */}
                                     <p className="quiz-text" style={{marginBottom:"5%"}}>In today’s complex business environment, an organization’s adaptability, agility, and ability to manage constant change through innovation can be keys to success. Traditional methods may no longer lead to reaching objectives when economic conditions are unfavorable. That’s where business analysis comes in. Corporations achieve goals through projects that translate customer needs into new products, services, and profits. Business analysts can make it all happen more efficiently and effectively.</p>
                                     <div className="article-image" >
                                         <img src={quizSuccess} alt="image"/>
                                     </div>
                                     <div className="row" style={{marginBottom:"5%",marginTop:"5%"}}>
-                                        <div className="col-md-6">
-                                            <h4 className="quiz-title">Role</h4>
+                                        <div className="col">
+                                            <h4 className="quiz-title">Roles</h4>
                                             <div className="quiz-text">
                                                 <ul style={{paddingLeft:"0"}}>
-                                                    <li className="quiz-list" > 1. Assisting with the business case</li>
-                                                    <li className="quiz-list" > 2. Planning and monitoring</li>
-                                                    <li className="quiz-list" > 3. Eliciting requirements</li>
-                                                    <li className="quiz-list" > 4. Requirements organization</li>
-                                                    <li className="quiz-list" > 5. Translating and simplifying requirements </li>
-                                                    <li className="quiz-list" > 6. Requirements management and communication</li>
-                                                    <li className="quiz-list" > 7. Requirements analysis</li>
+                                                    <li className="quiz-list" > 1. Help customers with complaints and questions</li>
+                                                    <li className="quiz-list" > 2. Provide customers with information about products and services, take orders, and process returns</li>
+                                                    <li className="quiz-list" > 3. Impact the company‘s bottom line by problem solving and turning frustrated clients into repeat customers</li>
                                                 </ul>
                                             </div>
                                         </div>
 
-                                        <div className="col-md-6">
+                                        <div className="col">
                                             <h4 className="quiz-title">Requirements</h4>
                                             <div className="quiz-text">
                                                 <ul style={{paddingLeft:"0"}}>
-                                                    <li className="quiz-list" > 1. Written and verbal communication skills, including technique writing</li>
-                                                    <li className="quiz-list" > 2. Understanding of systems engineering concepts</li>
-                                                    <li className="quiz-list" > 3. The ability to conduct cost/benefit analysis </li>
-                                                    <li className="quiz-list" > 4. Business case development Modeling techniques and methods Leadership</li>
+                                                    <li className="quiz-list" > 1. Excellent verbal and written communication skill</li>
+                                                    <li className="quiz-list" > 2. Ability to stay calm when customers are stressed or upset</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
 
                                     <h4 className="quiz-title">Interview Guidance</h4>
-                                    <p className="quiz-text">In today’s complex business environment, an organization’s adaptability, agility, and ability to manage constant change through innovation can be keys to success. Traditional methods may no longer lead to reaching objectives when economic conditions are unfavorable.</p>
+                                    <p className="quiz-text">Do you know most of the Customer service representatives interviews will evaluate the candidate‘s qualification through Behaviors Questions? So it is crucial to learn what types of questions will be asked. And more importantly, practice and improve your interview skills before you go to the real battlefield. Want to know how? HireBeat provides the cutting-edge AI interview practicing platform to help you ace your interview!</p>
 
                                     <div className="article-footer">
                                         <div className="row" style={{margin:"auto"}}>
@@ -98,7 +93,7 @@ class QuizResultDetail extends Component {
                                             <div className="single-footer-widget1">
                                                 <ul className="social" style={{margin: "auto"}}>
                                                     <li>
-                                                        <FacebookShareButton 
+                                                        <FacebookShareButton
                                                             url={"https://hirebeat.co/quiz"}
                                                             quote={"HireBeat - Video Interview"}
                                                             hashtag="#hirebeat">
@@ -107,7 +102,7 @@ class QuizResultDetail extends Component {
                                                             </a>
                                                         </FacebookShareButton>
                                                     </li>
-                                            
+
                                                      <li>
                                                         <LinkedinShareButton
                                                             url={"https://hirebeat.co/quiz"}
@@ -126,7 +121,7 @@ class QuizResultDetail extends Component {
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-12">
-                            <QuizSidebar /> 
+                            <QuizSidebar />
                         </div>
                     </div>
                     <ReactWOW animation='fadeInUp' delay='0.8s'>
@@ -151,4 +146,4 @@ class QuizResultDetail extends Component {
     }
 }
 
-export default QuizResultDetail;
+export default QuizResultCSR;

@@ -56,7 +56,7 @@ class Quizdetail1 extends Component {
                             <div className="col-lg-4 col-md-4">
                                 <Link to={{
                                     pathname: "/quizresult",
-                                    state: {userInput: this.state.userInput} // your data array of objects
+                                    params: {userInput: this.state.userInput} // your data array of objects
                                     }}
                                     style={{textDecoration: "none"}}>
                                 <button type="submit" disabled={this.state.isEmail ? null : "disabled"}>
