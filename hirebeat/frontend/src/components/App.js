@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import DocumentMeta from 'react-document-meta';
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Dashboard from "./dashboard/Dashboard";
@@ -20,6 +21,7 @@ import bloggrid from "./blog/bloggrid";
 import blogdetail1 from "./blog/blog-details1";
 import blogdetail2 from "./blog/blog-details2";
 import blogdetail3 from "./blog/blog-details3";
+import blogdetail4 from "./blog/blog-details4";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -66,7 +68,19 @@ class App extends Component {
   }
 
   render() {
+    const meta = {
+      title: 'HireBeat – the best video interview prep tool for jobseekers',
+      description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+      canonical: 'https://hirebeat.co/',
+      meta: {
+        charset: 'utf-8',
+        name: {
+          keywords: 'react,meta,document,html,tags'
+        }
+      }
+    };
     return (
+      <DocumentMeta {...meta}>
       <React.Fragment>
       <Provider store={store}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
@@ -109,6 +123,7 @@ class App extends Component {
                 <Route exact path="/blog-details1" component={blogdetail1} />
                 <Route exact path="/blog-details2" component={blogdetail2} />
                 <Route exact path="/blog-details3" component={blogdetail3} />
+                <Route exact path="/blog-details4" component={blogdetail4} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
@@ -129,6 +144,7 @@ class App extends Component {
       {/* Go Top Button */}
       <GoTop scrollStepInPx="100" delayInMs="10.50" />
       </React.Fragment>
+      </DocumentMeta>
     );
   }
 }

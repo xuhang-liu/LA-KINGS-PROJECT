@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
-import BlogComments from './BlogComments';
 import BlogSidebar from './BlogSidebar';
 import blog3pic from '../../assets/blog3-pic.jpg';
 
