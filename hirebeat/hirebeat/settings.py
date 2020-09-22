@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'knox',
     'accounts',
     'questions',
+    "compressor",
 ]
 
 REST_FRAMEWORK = {
@@ -133,6 +134,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.linkedin.LinkedinOAuth2',
