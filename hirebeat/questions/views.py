@@ -11,7 +11,7 @@ class QuestionAPIView(generics.ListCreateAPIView):
     serializer_class = QuestionSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
+def get_queryset(self):
         number = self.request.query_params.get('number')
         category = self.request.query_params.get('category')
         if category != 'Random':
