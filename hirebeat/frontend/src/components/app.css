@@ -1547,3 +1547,11 @@ color: #080A3C;
   color: #67A3F3;
   margin-right: 2%;
 }
+
+.quiz-alert {
+  color: red;
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: serif;
+  margin-top: 1rem;
+}
