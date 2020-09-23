@@ -20,7 +20,7 @@ class Quizdetail1 extends Component {
         showS: false,
         showPIC: true,
         userInput: "",
-        isEmail: false,
+        isEmail: true,
     };
 
     handleEmail (e) {
@@ -91,7 +91,7 @@ class Quizdetail1 extends Component {
                             </div>
                             {!this.state.isEmail ? (
                                 <div className="col-lg-8 col-md-8 quiz-alert">
-                                    Please Enter Correct Email Address.
+                                    Please Enter Your Email In Correct Format.
                                 </div>) : null}
                         </div>
                     </form>
@@ -120,8 +120,7 @@ class Quizdetail1 extends Component {
                     <div className="row align-items-center">
                         {showP && <div className="col-lg-8 col-md-12">
                             <Quiz quiz={quiz} showInstantFeedback={false} showDefaultResult={false} onComplete={onCompleteAction}/>
-                            <p>While it’s really just for referenece, this short quiz might help you work some of that out.</p>
-                        </div>
+                            </div>
                         }
                         {showPIC &&
                         <div className="col-lg-4 col-md-12">
