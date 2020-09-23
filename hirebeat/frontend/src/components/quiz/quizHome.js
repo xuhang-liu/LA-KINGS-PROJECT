@@ -19,8 +19,8 @@ class QuizHome extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
-                    pageTitle="Quiz" 
-                    pageDescription="Take your quiz below" 
+                    pageTitle="Take Your Quiz Here" 
+                    pageDescription="Recommend positions according to your personaility" 
                 />
                 <Quizdetail1/>
                 <FreeTrialArea />
