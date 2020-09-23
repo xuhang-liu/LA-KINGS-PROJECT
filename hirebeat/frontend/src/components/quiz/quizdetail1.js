@@ -2,12 +2,25 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import Quiz from 'react-quiz-component';
 import { quiz } from './quiz';
+import emailjs from 'emailjs-com';
 import quizimg from "../../assets/quiz/quiz-img.png";
 import shape13 from '../public/images/shape/shape13.png';
 import shape14 from '../public/images/shape/shape14.png';
 import shape15 from '../public/images/shape/shape15.png';
 import shape16 from '../public/images/shape/shape16.png';
 import shape17 from '../public/images/shape/shape17.png';
+
+function sendEmail(e) {
+    e.preventDefault();
+  
+    emailjs.sendForm('service_s8700fg', 'template_992v1vd', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+    e.target.reset()
+  }
 
 class Quizdetail1 extends Component {
     state = {
@@ -47,7 +60,7 @@ class Quizdetail1 extends Component {
                 <div className="subscribe-content">
                     <h2>Enter your email to get your free results</h2>
 
-                    <form className="newsletter-form"> 
+                    <form className="newsletter-form" onSubmit={sendEmail}> 
                         <div className="row align-items-center">
                             <div className="col-lg-8 col-md-8">
                                 <input type="email" onChange={this.handleEmail.bind(this)} className="input-newsletter" placeholder="hello@example.com" name="email" required />

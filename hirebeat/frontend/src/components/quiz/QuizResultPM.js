@@ -16,7 +16,7 @@ class QuizResultPM extends Component {
                     </div>
                     <h3 className="headline">Product Manager</h3>
                     <p className="maintext">
-                        You believe before you see it. You are a visionary that can see the big picture and lead the entire team to create something different. You enjoyed working in a team and collaborating with others, this made you a great product manager.
+                    Want to learn more about this role? Check out role-specific information below!
                     </p>
                     <div className="single-footer-widget1">
                         <ul className="social" style={{margin: "auto"}}>
@@ -57,7 +57,7 @@ class QuizResultPM extends Component {
 
                                     <h2 className="quiz-title">Product Manger</h2>
                                     {/* todo change here */}
-                                    <p className="quiz-text" style={{marginBottom:"5%"}}>In today’s complex business environment, an organization’s adaptability, agility, and ability to manage constant change through innovation can be keys to success. Traditional methods may no longer lead to reaching objectives when economic conditions are unfavorable. That’s where business analysis comes in. Corporations achieve goals through projects that translate customer needs into new products, services, and profits. Business analysts can make it all happen more efficiently and effectively.</p>
+                                    <p className="quiz-text" style={{marginBottom:"5%"}}>You believe before you see it. You are a visionary that can see the big picture and lead the entire team to create something different. You enjoyed working in a team and collaborating with others, this made you a great product manager.</p>
                                     <div className="article-image" >
                                         <img src={quizSuccess} alt="image"/>
                                     </div>

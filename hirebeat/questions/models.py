@@ -19,7 +19,7 @@ class Question(models.Model):
         ProactiveSkill = 'Proactive Skill', _('Proactive Skill')
         WorkEthic = 'Work Ethic', _('Work Ethic')
         Creativity = 'Creativity', _('Creativity')
-        Dependable = 'Dependable & Reliable', _('Dependable & Reliable')
+        DetailOriented = 'Detail Oriented', _('Detail Oriented')
         Reliability = 'Reliability', _('Reliability')
         CommunicationSkill = 'Communication Skill', _('Communication Skill')
         ProblemSolving = 'Problem Solving', _('Problem Solving')

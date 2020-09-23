@@ -1470,6 +1470,19 @@ color: #080A3C;
   line-height: 68px;
   letter-spacing: 0em;
   text-align: center;
+  margin-top: 1rem;
+}
+
+@media only screen and (max-width: 767px) {
+  #quize-result .headline {
+    font-family: Poppins;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 68px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
 }
 
 #quize-result .maintext {

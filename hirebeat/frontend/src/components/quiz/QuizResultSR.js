@@ -16,7 +16,7 @@ class QuizResultSR extends Component {
                     </div>
                     <h3 className="headline">Sales Representatives</h3>
                     <p className="maintext">
-                        You are outgoing and love to present yourself. You are great at persuasion, you will sell an idea instantly and love working with people. You will never run out of ideas because it has already built within you.
+                    Want to learn more about this role? Check out role-specific information below!
                     </p>
                     <div className="single-footer-widget1">
                         <ul className="social" style={{margin: "auto"}}>
@@ -57,7 +57,7 @@ class QuizResultSR extends Component {
 
                                     <h2 className="quiz-title">Sales Representatives</h2>
                                     {/* todo change here */}
-                                    <p className="quiz-text" style={{marginBottom:"5%"}}>In today’s complex business environment, an organization’s adaptability, agility, and ability to manage constant change through innovation can be keys to success. Traditional methods may no longer lead to reaching objectives when economic conditions are unfavorable. That’s where business analysis comes in. Corporations achieve goals through projects that translate customer needs into new products, services, and profits. Business analysts can make it all happen more efficiently and effectively.</p>
+                                    <p className="quiz-text" style={{marginBottom:"5%"}}>You are outgoing and love to present yourself. You are great at persuasion, you will sell an idea instantly and love working with people. You will never run out of ideas because it has already built within you.</p>
                                     <div className="article-image" >
                                         <img src={quizSuccess} alt="image"/>
                                     </div>
