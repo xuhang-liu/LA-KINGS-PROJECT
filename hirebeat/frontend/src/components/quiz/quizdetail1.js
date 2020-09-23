@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
+import {withRouter, Link} from "react-router-dom";
 import Quiz from 'react-quiz-component';
 import { quiz } from './quiz';
 import emailjs from 'emailjs-com';
@@ -10,19 +10,11 @@ import shape15 from '../public/images/shape/shape15.png';
 import shape16 from '../public/images/shape/shape16.png';
 import shape17 from '../public/images/shape/shape17.png';
 
-function sendEmail(e) {
-    e.preventDefault();
-  
-    emailjs.sendForm('service_s8700fg', 'template_992v1vd', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-    e.target.reset()
-  }
-
 class Quizdetail1 extends Component {
+    constructor(props) {
+        super(props);
+    };
+
     state = {
         showP: true,
         showS: false,
@@ -33,12 +25,37 @@ class Quizdetail1 extends Component {
 
     handleEmail (e) {
         let value = e.target.value;
-        if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(value)) {
+        let reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        if (!reg.test(value)) {
             this.setState({ ...this.state, isEmail: false })
         }
         else {
             this.setState({ ...this.state, isEmail: true })
         }
+    }
+
+    redirectToQuizResult = (e) => {
+        // send email
+        this.sendEmail(e);
+
+        // redirect to quiz result
+        const { history } = this.props;
+        if (history) history.push({
+            pathname: "/quizresult",
+            params: {userInput: this.state.userInput}
+        });
+    };
+
+    sendEmail (e) {
+        e.preventDefault();
+
+        emailjs.sendForm('service_s8700fg', 'template_992v1vd', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+        e.target.reset()
     }
 
     render() {
@@ -60,23 +77,17 @@ class Quizdetail1 extends Component {
                 <div className="subscribe-content">
                     <h2>Enter your email to get your free results</h2>
 
-                    <form className="newsletter-form" onSubmit={sendEmail}> 
+                    <form className="newsletter-form" onSubmit={this.redirectToQuizResult}>
                         <div className="row align-items-center">
                             <div className="col-lg-8 col-md-8">
                                 <input type="email" onChange={this.handleEmail.bind(this)} className="input-newsletter" placeholder="hello@example.com" name="email" required />
                             </div>
 
                             <div className="col-lg-4 col-md-4">
-                                <Link to={{
-                                    pathname: "/quizresult",
-                                    params: {userInput: this.state.userInput} // your data array of objects
-                                    }}
-                                    style={{textDecoration: "none"}}>
                                 <button type="submit" disabled={this.state.isEmail ? null : "disabled"}>
                                     <i className="bx bxs-hot"></i>
                                     View Result Now
                                 </button>
-                                </Link>
                             </div>
                             {!this.state.isEmail ? (
                                 <div className="col-lg-8 col-md-8 quiz-alert">
@@ -127,4 +138,4 @@ class Quizdetail1 extends Component {
     }
 }
 
-export default Quizdetail1;
+export default withRouter(Quizdetail1);
