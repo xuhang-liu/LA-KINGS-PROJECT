@@ -1,6 +1,6 @@
 export const quiz =  {
     "quizTitle": "Find out what position is best suited for you",
-    "quizSynopsis": "What position is the most suitable one for me?' this is a question asked by millions of people, so as you and me. As the old saying, well begun is half done, finding the position suitable for you before our job hunting is crucial to your success. HireBeat's quiz consists of 12 single choice questions, and help finding your best suited position!",
+    "quizSynopsis": "What position is the most suitable one for me?' this is a question asked by millions of people, so as you and me. As the old saying, well begun is half done, finding the position suitable for you before our job hunting is crucial to your success. HireBeat's quiz consists of 12 single choice questions, and help finding your best suited position! \n While it’s really just for referenece, this short quiz might help you work some of that out.",
     "questions": [
       {
         "question": "When you have time, do your prefer to go to social events with lots of people or spend time with yourself?",
@@ -106,7 +106,7 @@ export const quiz =  {
       },
       // changed it here
       {
-        "question": "Do you speak before you think or you would think be you speak?",
+        "question": "Do you speak before you think or you would think before you speak?",
         "questionType": "text",
         "answerSelectionType": "single",
         "answers": [

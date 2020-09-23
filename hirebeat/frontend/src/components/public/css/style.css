@@ -5429,43 +5429,27 @@ Features Area CSS
 }
 
 .subscribe-content form .input-newsletter::-webkit-input-placeholder {
-  color: #000;
+  color: #999999;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .subscribe-content form .input-newsletter:-ms-input-placeholder {
-  color: #ffffff;
+  color: #999999;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .subscribe-content form .input-newsletter::-ms-input-placeholder {
-  color: #ffffff;
+  color: #999999;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .subscribe-content form .input-newsletter::placeholder {
-  color: #ffffff;
+  color: #999999;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-}
-
-.subscribe-content form .input-newsletter:focus::-webkit-input-placeholder {
-  color: transparent;
-}
-
-.subscribe-content form .input-newsletter:focus:-ms-input-placeholder {
-  color: transparent;
-}
-
-.subscribe-content form .input-newsletter:focus::-ms-input-placeholder {
-  color: transparent;
-}
-
-.subscribe-content form .input-newsletter:focus::placeholder {
-  color: transparent;
 }
 
 .subscribe-content form button {
