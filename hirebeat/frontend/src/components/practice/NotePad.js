@@ -39,7 +39,7 @@ export function NotePad(props) {
       <div className="col-8">
         <textarea
           style={{
-            width: window.innerWidth / 2.4,
+            width: "32.5rem",
             height: "90px",
             borderColor: "lightgrey",
             borderWidth: "3px",

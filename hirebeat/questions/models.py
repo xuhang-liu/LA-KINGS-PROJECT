@@ -19,8 +19,8 @@ class Question(models.Model):
         ProactiveSkill = 'Proactive Skill', _('Proactive Skill')
         WorkEthic = 'Work Ethic', _('Work Ethic')
         Creativity = 'Creativity', _('Creativity')
-        Dependable = 'Dependable & Reliable', _('Dependable & Reliable')
         Reliability = 'Reliability', _('Reliability')
+        DetailOriented = 'Detail Oriented', _('Detail Oriented')
         CommunicationSkill = 'Communication Skill', _('Communication Skill')
         ProblemSolving = 'Problem Solving', _('Problem Solving')
     # id is auto created
