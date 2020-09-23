@@ -16,7 +16,7 @@ class QuizResultDesigner extends Component {
                     </div>
                     <h3 className="headline">Designer</h3>
                     <p className="maintext">
-                        You are creative, insightful and passionate.  You enjoy solving problems that you care about and finding the perfect solution.
+                    Want to learn more about this role? Check out role-specific information below!
                     </p>
                     <div className="single-footer-widget1">
                         <ul className="social" style={{margin: "auto"}}>
@@ -57,7 +57,7 @@ class QuizResultDesigner extends Component {
 
                                     <h2 className="quiz-title">Designer</h2>
                                     {/* todo change here */}
-                                    <p className="quiz-text" style={{marginBottom:"5%"}}>In today’s complex business environment, an organization’s adaptability, agility, and ability to manage constant change through innovation can be keys to success. Traditional methods may no longer lead to reaching objectives when economic conditions are unfavorable. That’s where business analysis comes in. Corporations achieve goals through projects that translate customer needs into new products, services, and profits. Business analysts can make it all happen more efficiently and effectively.</p>
+                                    <p className="quiz-text" style={{marginBottom:"5%"}}>You are creative, insightful and passionate.  You enjoy solving problems that you care about and finding the perfect solution. </p>
                                     <div className="article-image" >
                                         <img src={quizSuccess} alt="image"/>
                                     </div>

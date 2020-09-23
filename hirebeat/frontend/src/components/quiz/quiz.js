@@ -1,6 +1,6 @@
 export const quiz =  {
-    "quizTitle": "React Quiz Component Demo",
-    "quizSynopsis": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim",
+    "quizTitle": "Find out what position is best suited for you",
+    "quizSynopsis": "What position is the most suitable one for me?' this is a question asked by millions of people, so as you and me. As the old saying, well begun is half done, finding the position suitable for you before our job hunting is crucial to your success. HireBeat's quiz consists of 12 single choice questions, and help finding your best suited position!",
     "questions": [
       {
         "question": "When you have time, do your prefer to go to social events with lots of people or spend time with yourself?",
