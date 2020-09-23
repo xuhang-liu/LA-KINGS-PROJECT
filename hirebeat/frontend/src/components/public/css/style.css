@@ -2338,8 +2338,9 @@ Features Area CSS
 
 .single-features-box {
   text-align: center;
+  padding-bottom: 30px;
+  padding-top: 45px;
   margin-bottom: 30px;
-  margin-top: 45px;
 }
 
 .single-features-box .icon {
@@ -5376,7 +5377,7 @@ Features Area CSS
   border-radius: 30px;
   text-align: center;
   padding: 70px;
-  background-color: #ff612f;
+  background-color: #56a3fa;
 }
 
 .subscribe-content h2 {
@@ -5420,15 +5421,15 @@ Features Area CSS
   border: none;
   height: 50px;
   border-radius: 5px;
-  color: #ffffff;
-  background-color: #c32f00;
+  color: #000;
+  background-color: #ffffff;
   padding: 0 0 0 15px;
   font-size: 14px;
   font-weight: 500;
 }
 
 .subscribe-content form .input-newsletter::-webkit-input-placeholder {
-  color: #ffffff;
+  color: #000;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
@@ -5494,7 +5495,7 @@ Features Area CSS
 }
 
 .subscribe-content form button:hover, .subscribe-content form button:focus {
-  background-color: #13c4a1;
+  background-color: #ff612f;
 }
 
 .subscribe-content form button:hover i, .subscribe-content form button:focus i {

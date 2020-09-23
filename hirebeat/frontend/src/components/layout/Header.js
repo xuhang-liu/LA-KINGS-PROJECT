@@ -104,6 +104,11 @@ export class Header extends Component {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link to="/quiz" className="nav-link text-white navbar-font">
+                  <span className="header-text">Quiz</span>
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/pricing" className="nav-link text-white navbar-font">
                   <span className="header-text">Pricing</span>
                 </Link>
@@ -158,6 +163,11 @@ export class Header extends Component {
               <li className="nav-item">
                 <a href="/bloghome" className="nav-link text-white navbar-font">
                 <span className="header-text">Blog</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/quiz" className="nav-link text-white navbar-font">
+                <span className="header-text">Quiz</span>
                 </a>
               </li>
               <li className="nav-item">
