@@ -27,7 +27,7 @@ class BlogDetailsContent extends Component {
                                         </ul>
                                     </div>
 
-                                    <h2>WHY VIDEO INTERVIEW PRACTICE PLATFORMS ARE ESSENTIAL FOR LANDING YOUR DREAM JOB</h2>
+                                    <h2>Why video inteview practice platforms are essential for landing your dream job</h2>
 
                                     <p>While an outstanding resume that highlights all your related skills is an entrance ticket for a job interview, it’s the interview itself that will be the deciding factor. That is when the employer will assess your abilities and check if they match your resume information.
                                        <br/> However, the hiring manager won’t only evaluate your previous experience and compatibility with the job position. They will analyze your communication skills, how you convey your message, whether your outfit is professional, and if you are showing enthusiasm.
@@ -67,7 +67,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                     <FacebookShareButton 
                                         url={"https://hirebeat.co/blog-details1"}
-                                        quote={"HireBeat - Video Interview"}
+                                        quote={"Why video inteview practice platforms are essential for landing your dream job"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
                                             <i className="bx bxl-facebook"></i>
@@ -77,7 +77,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <TwitterShareButton
                                            url={"https://hirebeat.co/blog-details1"}
-                                           title={"HireBeat - Video Interview"}
+                                           title={"Why video inteview practice platforms are essential for landing your dream job"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
                                            <a target="_blank">
@@ -88,7 +88,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <LinkedinShareButton
                                             url={"https://hirebeat.co/blog-details1"}
-                                            title={"HireBeat - Video Interview"}
+                                            title={"Why video inteview practice platforms are essential for landing your dream job"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-linkedin"></i>
@@ -98,7 +98,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-details1"}
-                                            title={"HireBeat - Video Interview"}>
+                                            title={"Why video inteview practice platforms are essential for landing your dream job"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
