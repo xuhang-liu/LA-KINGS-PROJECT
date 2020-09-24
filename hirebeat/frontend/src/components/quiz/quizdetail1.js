@@ -75,12 +75,12 @@ class Quizdetail1 extends Component {
             <section className="subscribe-area">
             <div className="container">
                 <div className="subscribe-content">
-                    <h2>Enter your email to get your free results</h2>
+                    <h2>Enter your email to view your result on the next page</h2>
 
                     <form className="newsletter-form" onSubmit={this.redirectToQuizResult}>
                         <div className="row align-items-center">
                             <div className="col-lg-8 col-md-8">
-                                <input type="email" onChange={this.handleEmail.bind(this)} className="input-newsletter" placeholder="hello@example.com" name="email" required />
+                                <input type="email" onChange={this.handleEmail.bind(this)} className="input-newsletter" placeholder="example@email.com" name="email" required />
                             </div>
 
                             <div className="col-lg-4 col-md-4">

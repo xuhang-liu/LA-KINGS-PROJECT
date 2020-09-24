@@ -20,26 +20,27 @@ class QuizResultCSR extends Component {
                     </p>
                     <div className="single-footer-widget1">
                         <ul className="social" style={{margin: "auto"}}>
-                            <li>
-                                <FacebookShareButton
-                                url={"https://hirebeat.co/quiz"}
-                                quote={"HireBeat - Video Interview"}
-                                hashtag="#hirebeat"><a target="_blank">
-                                    <i className="bx bxl-facebook"></i>
-                                </a>
-                                </FacebookShareButton>
-                            </li>
-
-                            <li>
-                                <LinkedinShareButton
-                                    url={"https://hirebeat.co/quiz"}
-                                    title={"HireBeat - Video Interview"}
-                                    source={"HireBeat"}>
-                                    <a target="_blank">
-                                        <i className="bx bxl-linkedin"></i>
-                                   </a>
-                                </LinkedinShareButton>
-                            </li>
+                        <li>
+                                                        <FacebookShareButton 
+                                                            url={"https://hirebeat.co/quiz"}
+                                                            quote={"My best fit job is [ Customer Service Representatives ] - Take the quiz to find out what job best suits you"}
+                                                            hashtag="#hirebeat">
+                                                            <a target="_blank">
+                                                                <i className="bx bxl-facebook"></i>
+                                                            </a>
+                                                        </FacebookShareButton>
+                                                    </li>
+                                            
+                                                     <li>
+                                                        <LinkedinShareButton
+                                                            url={"https://hirebeat.co/quiz"}
+                                                            title={"My best fit job is [ Customer Service Representatives ] - Take the quiz to find out what job best suits you"}
+                                                            source={"HireBeat"}>
+                                                            <a target="_blank">
+                                                                <i className="bx bxl-linkedin"></i>
+                                                            </a>
+                                                        </LinkedinShareButton>
+                                                    </li>
                         </ul>
                     </div>
                 </div>
@@ -57,7 +58,7 @@ class QuizResultCSR extends Component {
 
                                     <h2 className="quiz-title">Customer Service Representatives</h2>
                                     {/* todo change here */}
-                                    <p className="quiz-text" style={{marginBottom:"5%"}}>You have an enthusiasm for working with people. You enjoyed working with others and roles such as client facing work. Your unique appeal for people’s emotion made you a great client facing person.</p>
+                                    <p className="quiz-text" style={{marginBottom:"5%"}}>You have an enthusiasm for working with people. You enjoyed working with others and roles such as client-facing work. Your unique appeal for people’s emotions made you a great client-facing person.</p>
                                     <div className="article-image" >
                                         <img src={quizSuccess} alt="image"/>
                                     </div>
@@ -68,7 +69,7 @@ class QuizResultCSR extends Component {
                                                 <ul style={{paddingLeft:"0"}}>
                                                     <li className="quiz-list" > 1. Help customers with complaints and questions</li>
                                                     <li className="quiz-list" > 2. Provide customers with information about products and services, take orders, and process returns</li>
-                                                    <li className="quiz-list" > 3. Impact the company‘s bottom line by problem solving and turning frustrated clients into repeat customers</li>
+                                                    <li className="quiz-list" > 3. Impact the company‘s bottom line by solving problems and turning frustrated clients into repeat customers</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -85,28 +86,28 @@ class QuizResultCSR extends Component {
                                     </div>
 
                                     <h4 className="quiz-title">Interview Guidance</h4>
-                                    <p className="quiz-text">Do you know most of the Customer service representatives interviews will evaluate the candidate‘s qualification through Behaviors Questions? So it is crucial to learn what types of questions will be asked. And more importantly, practice and improve your interview skills before you go to the real battlefield. Want to know how? HireBeat provides the cutting-edge AI interview practicing platform to help you ace your interview!</p>
+                                    <p className="quiz-text">Do you know most of the Customer Service Representative's interviews will evaluate the candidate‘s qualification through Behaviors Questions? So it is crucial to learn what types of questions will be asked. And more importantly, practice and improve your interview skills before you go to the real battlefield. Want to know how? HireBeat provides the cutting-edge AI interview practicing platform to help you ace your interview!</p>
 
                                     <div className="article-footer">
                                         <div className="row" style={{margin:"auto"}}>
                                             <p className="quiz-text2">SHARE WITH YOUR FRIENDS TO TAKE THE TEST TOO!</p>
                                             <div className="single-footer-widget1">
                                                 <ul className="social" style={{margin: "auto"}}>
-                                                    <li>
-                                                        <FacebookShareButton
+                                                <li>
+                                                        <FacebookShareButton 
                                                             url={"https://hirebeat.co/quiz"}
-                                                            quote={"HireBeat - Video Interview"}
+                                                            quote={"My best fit job is [ Customer Service Representatives ] - Take the quiz to find out what job best suits you"}
                                                             hashtag="#hirebeat">
                                                             <a target="_blank">
                                                                 <i className="bx bxl-facebook"></i>
                                                             </a>
                                                         </FacebookShareButton>
                                                     </li>
-
+                                            
                                                      <li>
                                                         <LinkedinShareButton
                                                             url={"https://hirebeat.co/quiz"}
-                                                            title={"HireBeat - Video Interview"}
+                                                            title={"My best fit job is [ Customer Service Representatives ] - Take the quiz to find out what job best suits you"}
                                                             source={"HireBeat"}>
                                                             <a target="_blank">
                                                                 <i className="bx bxl-linkedin"></i>

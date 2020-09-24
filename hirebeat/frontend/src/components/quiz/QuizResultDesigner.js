@@ -20,26 +20,27 @@ class QuizResultDesigner extends Component {
                     </p>
                     <div className="single-footer-widget1">
                         <ul className="social" style={{margin: "auto"}}>
-                            <li>
-                                <FacebookShareButton
-                                url={"https://hirebeat.co/quiz"}
-                                quote={"HireBeat - Video Interview"}
-                                hashtag="#hirebeat"><a target="_blank">
-                                    <i className="bx bxl-facebook"></i>
-                                </a>
-                                </FacebookShareButton>
-                            </li>
-
-                            <li>
-                                <LinkedinShareButton
-                                    url={"https://hirebeat.co/quiz"}
-                                    title={"HireBeat - Video Interview"}
-                                    source={"HireBeat"}>
-                                    <a target="_blank">
-                                        <i className="bx bxl-linkedin"></i>
-                                   </a>
-                                </LinkedinShareButton>
-                            </li>
+                        <li>
+                                                        <FacebookShareButton 
+                                                            url={"https://hirebeat.co/quiz"}
+                                                            quote={"My best fit job is [ Designer ] - Take the quiz to find out what job best suits you"}
+                                                            hashtag="#hirebeat">
+                                                            <a target="_blank">
+                                                                <i className="bx bxl-facebook"></i>
+                                                            </a>
+                                                        </FacebookShareButton>
+                                                    </li>
+                                            
+                                                     <li>
+                                                        <LinkedinShareButton
+                                                            url={"https://hirebeat.co/quiz"}
+                                                            title={"My best fit job is [ Designer ] - Take the quiz to find out what job best suits you"}
+                                                            source={"HireBeat"}>
+                                                            <a target="_blank">
+                                                                <i className="bx bxl-linkedin"></i>
+                                                            </a>
+                                                        </LinkedinShareButton>
+                                                    </li>
                         </ul>
                     </div>
                 </div>
@@ -93,21 +94,21 @@ class QuizResultDesigner extends Component {
                                             <p className="quiz-text2">SHARE WITH YOUR FRIENDS TO TAKE THE TEST TOO!</p>
                                             <div className="single-footer-widget1">
                                                 <ul className="social" style={{margin: "auto"}}>
-                                                    <li>
-                                                        <FacebookShareButton
+                                                <li>
+                                                        <FacebookShareButton 
                                                             url={"https://hirebeat.co/quiz"}
-                                                            quote={"HireBeat - Video Interview"}
+                                                            quote={"My best fit job is [ Designer ] - Take the quiz to find out what job best suits you"}
                                                             hashtag="#hirebeat">
                                                             <a target="_blank">
                                                                 <i className="bx bxl-facebook"></i>
                                                             </a>
                                                         </FacebookShareButton>
                                                     </li>
-
+                                            
                                                      <li>
                                                         <LinkedinShareButton
                                                             url={"https://hirebeat.co/quiz"}
-                                                            title={"HireBeat - Video Interview"}
+                                                            title={"My best fit job is [ Designer ] - Take the quiz to find out what job best suits you"}
                                                             source={"HireBeat"}>
                                                             <a target="_blank">
                                                                 <i className="bx bxl-linkedin"></i>
