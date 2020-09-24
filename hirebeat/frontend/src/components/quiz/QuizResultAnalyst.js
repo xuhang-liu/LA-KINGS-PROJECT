@@ -20,26 +20,27 @@ class QuizResultAnalyst extends Component {
                     </p>
                     <div className="single-footer-widget1">
                         <ul className="social" style={{margin: "auto"}}>
-                            <li>
-                                <FacebookShareButton 
-                                url={"https://hirebeat.co/quiz"}
-                                quote={"HireBeat - Video Interview"}
-                                hashtag="#hirebeat"><a target="_blank">
-                                    <i className="bx bxl-facebook"></i>
-                                </a>
-                                </FacebookShareButton>
-                            </li>
+                        <li>
+                                                        <FacebookShareButton 
+                                                            url={"https://hirebeat.co/quiz"}
+                                                            quote={"My best fit job is [ Analyst ] - Take the quiz to find out what job best suits you"}
+                                                            hashtag="#hirebeat">
+                                                            <a target="_blank">
+                                                                <i className="bx bxl-facebook"></i>
+                                                            </a>
+                                                        </FacebookShareButton>
+                                                    </li>
                                             
-                            <li>
-                                <LinkedinShareButton
-                                    url={"https://hirebeat.co/quiz"}
-                                    title={"HireBeat - Video Interview"}
-                                    source={"HireBeat"}>
-                                    <a target="_blank">
-                                        <i className="bx bxl-linkedin"></i>
-                                   </a>
-                                </LinkedinShareButton>                                           
-                            </li>
+                                                     <li>
+                                                        <LinkedinShareButton
+                                                            url={"https://hirebeat.co/quiz"}
+                                                            title={"My best fit job is [ Analyst ] - Take the quiz to find out what job best suits you"}
+                                                            source={"HireBeat"}>
+                                                            <a target="_blank">
+                                                                <i className="bx bxl-linkedin"></i>
+                                                            </a>
+                                                        </LinkedinShareButton>
+                                                    </li>
                         </ul>
                     </div>
                 </div>
@@ -88,7 +89,7 @@ class QuizResultAnalyst extends Component {
                                     </div>
 
                                     <h4 className="quiz-title">Interview Guidance</h4>
-                                    <p className="quiz-text">Do you know most of the Analyst interviews will evaluate the candidate‘s qualification through both Technical Questions and Behaviors Questions? So it is crucial to learn what types of questions will be asked. And more importantly, practice and improve your interview skills before you go to the real battlefield. Want to know how? HireBeat provides the cutting-edge AI interview practicing platform to help you ace your interview!</p>
+                                    <p className="quiz-text">Do you know most of the Analyst’s interviews will evaluate the candidate‘s qualification through both Technical Questions and Behaviors Questions? So it is crucial to learn what types of questions will be asked. And more importantly, practice and improve your interview skills before you go to the real battlefield. Want to know how? HireBeat provides the cutting-edge AI interview practicing platform to help you ace your interview!</p>
 
                                     <div className="article-footer">
                                         <div className="row" style={{margin:"auto"}}>
@@ -98,7 +99,7 @@ class QuizResultAnalyst extends Component {
                                                     <li>
                                                         <FacebookShareButton 
                                                             url={"https://hirebeat.co/quiz"}
-                                                            quote={"HireBeat - Video Interview"}
+                                                            quote={"My best fit job is [ Analyst ] - Take the quiz to find out what job best suits you"}
                                                             hashtag="#hirebeat">
                                                             <a target="_blank">
                                                                 <i className="bx bxl-facebook"></i>
@@ -109,7 +110,7 @@ class QuizResultAnalyst extends Component {
                                                      <li>
                                                         <LinkedinShareButton
                                                             url={"https://hirebeat.co/quiz"}
-                                                            title={"HireBeat - Video Interview"}
+                                                            title={"My best fit job is [ Analyst ] - Take the quiz to find out what job best suits you"}
                                                             source={"HireBeat"}>
                                                             <a target="_blank">
                                                                 <i className="bx bxl-linkedin"></i>
