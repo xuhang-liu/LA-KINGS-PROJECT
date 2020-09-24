@@ -70,7 +70,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                     <FacebookShareButton 
                                         url={"https://hirebeat.co/blog-details3"}
-                                        quote={"HireBeat - Video Interview"}
+                                        quote={"How to Prepare for an AI Interview"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
                                             <i className="bx bxl-facebook"></i>
@@ -80,7 +80,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <TwitterShareButton
                                            url={"https://hirebeat.co/blog-details3"}
-                                           title={"HireBeat - Video Interview"}
+                                           title={"How to Prepare for an AI Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
                                            <a target="_blank">
@@ -91,7 +91,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <LinkedinShareButton
                                             url={"https://hirebeat.co/blog-details3"}
-                                            title={"HireBeat - Video Interview"}
+                                            title={"How to Prepare for an AI Interview"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-linkedin"></i>
@@ -101,7 +101,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-details3"}
-                                            title={"HireBeat - Video Interview"}>
+                                            title={"How to Prepare for an AI Interview"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
