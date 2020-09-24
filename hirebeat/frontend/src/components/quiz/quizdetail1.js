@@ -36,7 +36,8 @@ class Quizdetail1 extends Component {
 
     redirectToQuizResult = (e) => {
         // send email
-        this.sendEmail(e);
+        //this.sendEmail(e);
+        this.sendEmail2(e);
 
         // redirect to quiz result
         const { history } = this.props;
@@ -46,7 +47,7 @@ class Quizdetail1 extends Component {
         });
     };
 
-    sendEmail (e) {
+    sendEmail1 (e) {
         e.preventDefault();
 
         emailjs.sendForm('service_s8700fg', 'template_992v1vd', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
@@ -56,7 +57,19 @@ class Quizdetail1 extends Component {
               console.log(error.text);
           });
         e.target.reset()
-    }
+    };
+
+    sendEmail2 (e) {
+        e.preventDefault();
+
+        emailjs.sendForm('service_s8700fg', 'template_s3u4uvb', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+        e.target.reset()
+    };
 
     render() {
         const showP = this.state.showP;
@@ -66,7 +79,7 @@ class Quizdetail1 extends Component {
             console.log(obj.userInput);
             this.setState({ showP: false, showS: true, showPIC: false, userInput: obj.userInput });
             // YOUR LOGIC GOES HERE
-          };
+        };
         return (
             <React.Fragment>
             {showS && <div className="features-box"><h3 style={{marginLeft:"10%"}}>Just one last step...</h3>
@@ -88,6 +101,21 @@ class Quizdetail1 extends Component {
                                     <i className="bx bxs-hot"></i>
                                     View Result Now
                                 </button>
+                            </div>
+                            <div className="col-lg-4 col-md-12">
+                            <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"8%", fontFamily:"Poppin", fontWeight:"400"}}></input>
+                                I have read and agree to the 
+                                <a  target="_blank"
+                                href="https://hirebeat.co/term"
+                                className="active d-flex"
+                                style={{
+                                textDecoration: "underline",
+                                color: "orange",
+                                fontWeight: "400",
+                                display:'inline'
+                            }}>
+                                Terms & Conditions
+                            </a>
                             </div>
                             {!this.state.isEmail ? (
                                 <div className="col-lg-8 col-md-8 quiz-alert">

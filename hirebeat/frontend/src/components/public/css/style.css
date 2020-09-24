@@ -2311,7 +2311,8 @@ FunFacts Area CSS
 .contact-cta-box .default-btn {
   background-color: #56a3fa;
   position: absolute;
-  right: 50px;
+  padding-left: 25px;
+  right: 30px;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);

@@ -73,11 +73,11 @@ export const renderQDes = (des) => {
     var i = 0;
     if (des.length > length) {
         var ans = des.substring(0, length);
-        while (des[length + i] !== " ") {
+        //while (des[length + i] !== " " || des[length + i] !== null) {
             // Make sure the des ends with a complete word
-            ans = ans + des[length + i];
-            i++;
-        }
+            //ans = ans + des[length + i];
+            //i++;
+        //}
         return ans + "...";
     }
     return des;

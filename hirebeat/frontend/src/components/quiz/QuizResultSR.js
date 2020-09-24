@@ -60,7 +60,19 @@ class QuizResultSR extends Component {
                                     {/* todo change here */}
                                     <p className="quiz-text" style={{marginBottom:"5%"}}>You are outgoing and love to present yourself. You are great at persuasion, you will sell an idea instantly and love working with people. You will never run out of ideas because it has already built within you.</p>
                                     <div className="article-image" >
-                                        <img src={quizSuccess} alt="image"/>
+                                    <div className="contact-cta-box mwidth-200">
+                                            <h3 className="quiz-title">We are here to help you landing your dream role!</h3>
+                                            <p className="quiz-text">We offer personalized evaluation on your resume and interview, and more</p>
+                                            <Link to="/register">
+                                            <a className="default-btn" style={{color:"white", fontFamily:"Poppins"}}>
+                                                Practice with HireBeat
+                                            <span></span>
+                                            </a>
+                                            </Link>
+                                        </div>
+                                        <Link to="/company" style={{textDecoration: "none"}}>
+                                            <p style={{marginLeft:"9%"}} className="mode-col-text2">Explore more about HireBeat -></p>
+                                        </Link>
                                     </div>
                                     <div className="row" style={{marginBottom:"5%",marginTop:"5%"}}>
                                         <div className="col">
@@ -127,20 +139,9 @@ class QuizResultSR extends Component {
                         </div>
                     </div>
                     <ReactWOW animation='fadeInUp' delay='0.8s'>
-                        <div className="contact-cta-box mwidth-1000">
-                            <h3 className="quiz-title">We are here to help!</h3>
-                            <p className="quiz-text">We offer personalized evaluation on your resume and interview, and more</p>
-                            <Link to="/register">
-                                <a className="default-btn" style={{color:"white", fontFamily:"Poppins"}}>
-                                    <i className="bx bxs-hot"></i>
-                                    Practice with HireBeat
-                                    <span></span>
-                                </a>
-                            </Link>
-                         </div>
-                         <Link to="/company" style={{textDecoration: "none"}}>
-                         <p style={{marginLeft:"9%"}} className="mode-col-text2">Explore more about HireBeat -></p>
-                         </Link>
+                        <div style={{width:"70%"}}>
+                            <img src={quizSuccess} alt="image"/>
+                        </div>
                     </ReactWOW>
                 </div>
             </section>
