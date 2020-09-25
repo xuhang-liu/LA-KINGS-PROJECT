@@ -8,6 +8,7 @@ import {
   VideoNumberLinkRow,
   RecordDoneButton,
   BglessCardButton,
+  BglessCardButton1,
 } from "../practice/CardComponents";
 import { withRouter } from "react-router-dom";
 import {
@@ -92,7 +93,7 @@ export class MyVideoUploader extends Component {
     //For other browsers
     var name = this.props.video.name;
     // note to change below when run in local
-    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
+    var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
     var q_category = `${this.props.questions[this.props.q_index].category}`;
     const videoMetaData = {
       url: url,
@@ -118,7 +119,7 @@ export class MyVideoUploader extends Component {
       this.props.resetDeviceAndNextQuestion();
     } else {
       this.props.createMessage({
-        errorMessage: "Video save limit already reached",
+        errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
       });
     }
   }
@@ -129,7 +130,7 @@ export class MyVideoUploader extends Component {
       this.redirectToDashboard();
     } else {
       this.props.createMessage({
-        errorMessage: "Video save limit already reached",
+        errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
       });
     }
   };
@@ -151,12 +152,12 @@ export class MyVideoUploader extends Component {
     var saveOnTap = this.handleUpload;
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
     var saveText = "Save and Next";
-    var skipText = "Discard and Skip";
+    var skipText = "Discard and Next";
     if (this.props.last_q) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
       saveText = "Save and Finish";
-      skipText = "Skip and Finish";
+      skipText = "Discard and Finish";
     }
     return (
       <div>
@@ -192,11 +193,17 @@ export class MyVideoUploader extends Component {
           isAudio={this.props.isAudio}
           //upgrade={() => console.log("upgrade")}
         />
+        <BglessCardButton1
+          textDisplayed={"Upgrade Now ->"}
+          buttonWidth={"100%"}
+          fontFamily={"Poppins"}
+          isAudio={this.props.isAudio}
+        />
         <BglessCardButton
           onTap={skipOnTap}
           textDisplayed={skipText}
           buttonWidth={"100%"}
-          fontFamily={"Lato"}
+          fontFamily={"Poppins"}
           isAudio={this.props.isAudio}
         />
       </div>

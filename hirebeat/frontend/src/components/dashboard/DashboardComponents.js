@@ -138,7 +138,7 @@ export const Comments = (props) => {
 };
 
 const sectionTitleStyle = {
-    fontFamily: "Lato",
+    fontFamily: "Poppins",
     fontStyle: "normal",
     fontWeight: "300",
     fontSize: "15px",

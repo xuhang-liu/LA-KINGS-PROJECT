@@ -23,7 +23,7 @@ export function NotePad(props) {
           style={{
             marginTop: "1rem",
             width: "25rem",
-            height: "90px",
+            height: "7.5rem",
             borderColor: "lightgrey",
             borderWidth: "3px",
             borderRadius: "8px",
