@@ -93,7 +93,7 @@ export class MyVideoUploader extends Component {
     //For other browsers
     var name = this.props.video.name;
     // note to change below when run in local
-    var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
+    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
     var q_category = `${this.props.questions[this.props.q_index].category}`;
     const videoMetaData = {
       url: url,
