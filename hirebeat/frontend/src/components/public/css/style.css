@@ -6011,6 +6011,18 @@ Footer Area CSS
   margin-right: 8px;
 }
 
+.single-footer-widget .social1 {
+  padding-left: 0;
+  list-style-type: none;
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+.single-footer-widget .social1 li {
+  display: inline-block;
+  margin-right: 8px;
+}
+
 .single-footer-widget .social li a {
   display: block;
   width: 30px;

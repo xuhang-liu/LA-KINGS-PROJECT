@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import S3FileUpload from "react-s3";
-import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 
 import {
   IconButton,

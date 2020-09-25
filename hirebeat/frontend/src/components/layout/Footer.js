@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
+import {FacebookIcon, LinkedinIcon, TwitterIcon, EmailIcon} from "react-share";
 import whitelogo from "../../assets/HireBeatLogo.png";
 
 
@@ -84,46 +84,30 @@ class Footer extends Component {
                                     <li>Email: <span><a href="mailto: info@hirebeat.co">info@hirebeat.co</a></span></li>
                                     <li>Phone: <span>+1 (929)367-8168</span></li>
                                 </ul>
-                                <ul className="social">
+                                <ul className="social1">
                                     <li>
-                                    <FacebookShareButton 
-                                        url={"https://hirebeat.co"}
-                                        quote={"HireBeat - Video Interview"}
-                                        hashtag="#hirebeat">
-                                        <a target="_blank">
-                                            <i className="bx bxl-facebook"></i>
+                                        <a href="https://www.facebook.com/HireBeat">
+                                        <FacebookIcon size={32} round={true}>
+                                        </FacebookIcon>
                                         </a>
-                                    </FacebookShareButton>
                                     </li>
                                     <li>
-                                        <TwitterShareButton
-                                           url={"https://hirebeat.co"}
-                                           title={"HireBeat - Video Interview"}
-                                           via={"HireBeat"}
-                                           hashtag="#hirebeat">
-                                           <a target="_blank">
-                                                <i className="bx bxl-twitter"></i>   
-                                           </a>
-                                        </TwitterShareButton>
+                                        <a href="https://www.linkedin.com/company/hirebeat/">
+                                        <LinkedinIcon size={32} round={true}>
+                                        </LinkedinIcon>
+                                        </a>
                                     </li>
                                     <li>
-                                        <LinkedinShareButton
-                                            url={"https://hirebeat.co"}
-                                            title={"HireBeat - Video Interview"}
-                                            source={"HireBeat"}>
-                                            <a target="_blank">
-                                                <i className="bx bxl-linkedin"></i>
-                                            </a>
-                                        </LinkedinShareButton>
+                                        <a href="https://twitter.com/hirebeat">
+                                        <TwitterIcon size={32} round={true}>
+                                        </TwitterIcon>
+                                        </a>
                                     </li>
                                     <li>
-                                        <WhatsappShareButton
-                                            url={"https://hirebeat.co"}
-                                            title={"HireBeat - Video Interview"}>
-                                            <a target="_blank">
-                                                <i className="bx bxl-whatsapp"></i>
-                                            </a>
-                                        </WhatsappShareButton>
+                                        <a href="mailto: info@hirebeat.co">
+                                        <EmailIcon size={32} round={true}>
+                                        </EmailIcon>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
