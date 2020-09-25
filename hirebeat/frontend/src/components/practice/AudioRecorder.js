@@ -137,7 +137,7 @@ export class AudioRecorder extends Component {
               className="video-js vjs-default-skin"
             ></audio>
           </div>
-          { !this.props.isTesting ? <NotePad isAudio={true} /> : null}
+          {/* !this.props.isTesting ? <NotePad isAudio={true} /> : null*/}
         </div>
         <div className="col-3">
           {

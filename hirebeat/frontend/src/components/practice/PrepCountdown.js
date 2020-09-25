@@ -58,7 +58,7 @@ export class PrepCountdown extends Component {
               />
             </CardRow>
           </div>
-          {this.props.isAudio ? <NotePad isAudio={this.props.isAudio} /> : null}
+          {/*this.props.isAudio ? <NotePad isAudio={this.props.isAudio} /> : null*/}
         </div>
         <div className="col-3" />
       </div>
