@@ -92,7 +92,6 @@ export class QuestionTypeChoices extends Component {
           pageTitle="Welcome to Hirebeat!"
           pageDescription="Our mobile functionality for interview practice is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
         />
-      </MediaQuery>
       <Link to="/">
         <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00", marginLeft:"25%", marginTop:"1rem"}}>
           <i className="bx bxs-hot"></i>
@@ -100,6 +99,7 @@ export class QuestionTypeChoices extends Component {
             <span></span>
             </a>
        </Link>
+       </MediaQuery>
       </div>
       </React.Fragment>
     );
