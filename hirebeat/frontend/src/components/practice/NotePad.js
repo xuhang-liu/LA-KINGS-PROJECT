@@ -19,6 +19,8 @@ export function NotePad(props) {
 
   if (props.isAudio) {
     return (
+      <div className="video-recorder-row">
+      <div className="col-8">
       <textarea
           style={{
             marginTop: "1rem",
@@ -32,6 +34,9 @@ export function NotePad(props) {
           onChange={handleChange}
           value={value}
         />
+      </div>
+      <div className="col-3"></div>
+      </div>
     )
   }
   return (
