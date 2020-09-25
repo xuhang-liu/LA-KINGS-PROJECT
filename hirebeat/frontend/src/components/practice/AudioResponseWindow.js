@@ -158,6 +158,7 @@ export class AudioResponseWindow extends Component {
                 />
               )}
             </div>
+            <NotePad status={this.state.status} isAudio={true}/>
           </PracticeCard>
         ) : null}
       </div>

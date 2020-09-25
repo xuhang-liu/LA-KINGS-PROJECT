@@ -137,14 +137,14 @@ export class AudioRecorder extends Component {
               className="video-js vjs-default-skin"
             ></audio>
           </div>
-          { !this.props.isTesting ? <NotePad isAudio={true} /> : null}
+          {/* !this.props.isTesting ? <NotePad isAudio={true} /> : null*/}
         </div>
         <div className="col-3">
           {
             !this.props.isTesting && this.props.isSimulate ? (
               <div style={{display: this.state.display}}>
                 <RecordDoneButton
-                  fontFamily={"Lato"}
+                  fontFamily={"Poppins"}
                   onTap={this.stopMic}
                   textDisplayed={"Finish Now"}
                   buttonWidth={"100%"}

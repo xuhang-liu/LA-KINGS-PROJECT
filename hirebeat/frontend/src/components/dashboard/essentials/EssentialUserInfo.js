@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import S3FileUpload from "react-s3";
-import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 
 import {
   IconButton,
@@ -267,7 +266,7 @@ export class EssentialUserInfo extends Component {
                         iconMargin={"6px"}
                         textDisplayed={this.props.profile.membership}
                         textSize={"18px"}
-                        fontFamily={"Lato"}
+                        fontFamily={"Poppins"}
                       />
                     </div>
                   }
