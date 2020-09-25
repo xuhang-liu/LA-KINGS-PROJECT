@@ -5,7 +5,7 @@
 
 
 * {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .navbar-font{
@@ -130,7 +130,7 @@ video {
 }
 
 .text-30 {
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
@@ -142,7 +142,7 @@ video {
 }
 
 .text-15 {
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
@@ -199,7 +199,7 @@ video {
 }
 
 .comments {
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -560,7 +560,7 @@ h5 {
 }
 
 .btn-selected {
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -576,7 +576,7 @@ h5 {
 }
 
 .btn-unselected {
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -593,7 +593,7 @@ h5 {
 }
 
 .text-secondary {
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -601,13 +601,13 @@ h5 {
 }
 
 .h3 {
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   color: #000000;
 }
 
 .review-text {
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 25px;
@@ -616,7 +616,7 @@ h5 {
 }
 
 .text-20 {
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -625,7 +625,7 @@ h5 {
 }
 
 .text-10 {
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 10px;
@@ -727,7 +727,7 @@ h5 {
   left: 10px;
   top: 84px;
 
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -775,7 +775,7 @@ h5 {
   height: 96px;
   left: 307.96px;
   top: 338px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -789,7 +789,7 @@ h5 {
   height: 20px;
   left: calc(50% - 87px/2 - 368.5px);
   top: 442px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -803,7 +803,7 @@ h5 {
   height: 18px;
   left: calc(50% - 74px/2 - 375px);
   top: 538px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -834,7 +834,7 @@ h5 {
   height: 36px;
   left: 19px;
   top: 182px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
@@ -847,7 +847,7 @@ h5 {
   height: 42px;
   left: 19px;
   top: 231px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -860,7 +860,7 @@ h5 {
   height: 20.03px;
   left: 19px;
   top: 294px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -873,7 +873,7 @@ h5 {
   height: 28px;
   left: 19px;
   top: 327.27px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -886,7 +886,7 @@ h5 {
   height: 28px;
   left: 205px;
   top: 327.57px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -919,7 +919,7 @@ h5 {
   height: 173px;
   left: 76px;
   top: 37px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
@@ -949,7 +949,7 @@ h5 {
   left: 27.99%;
   right: 27.99%;
   top: 185px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
@@ -969,7 +969,7 @@ h5 {
   height: 18px;
   left: 23.12%;
   top: 906px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -982,7 +982,7 @@ h5 {
   height: 18px;
   left: 33.33%;
   top: 906px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -995,7 +995,7 @@ h5 {
   height: 18px;
   left: 43.12%;
   top: 906px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1030,7 +1030,7 @@ h5 {
   left: 23.12%;
   right: 22.71%;
   top: 980px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -1044,7 +1044,7 @@ h5 {
   left: 22.92%;
   right: 22.92%;
   top: 1031px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1058,7 +1058,7 @@ h5 {
   left: 23.12%;
   right: 22.71%;
   top: 1387px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -1072,7 +1072,7 @@ h5 {
   left: 22.92%;
   right: 22.92%;
   top: 1438px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1086,7 +1086,7 @@ h5 {
   height: 17px;
   left: 222px;
   top: 1861px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1124,7 +1124,7 @@ h5 {
   height: 36.09px;
   left: 19.05px;
   top: 182.44px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
@@ -1137,7 +1137,7 @@ h5 {
   height: 42.1px;
   left: 19.05px;
   top: 231.56px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1150,7 +1150,7 @@ h5 {
   height: 20.08px;
   left: 19.05px;
   top: 294.72px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1163,7 +1163,7 @@ h5 {
   height: 28.07px;
   left: 19.05px;
   top: 328.06px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1176,7 +1176,7 @@ h5 {
   height: 28.07px;
   left: 205.5px;
   top: 328.37px;
-  font-family: Lato;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
