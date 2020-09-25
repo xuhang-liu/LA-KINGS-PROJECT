@@ -88,8 +88,18 @@ export class QuestionTypeChoices extends Component {
         </div>
       </MediaQuery>
       <MediaQuery maxDeviceWidth={1223}>
-        <div style={{fontSize:"1.6rem"}}><b>Please Login with your computer for the full functionalities.</b></div>
+      <PageTitleArea
+          pageTitle="Welcome to Hirebeat!"
+          pageDescription="Our mobile functionality for interview practice is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
+        />
       </MediaQuery>
+      <Link to="/">
+        <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00", marginLeft:"25%", marginTop:"1rem"}}>
+          <i className="bx bxs-hot"></i>
+            Back to Home Page 
+            <span></span>
+            </a>
+       </Link>
       </div>
       </React.Fragment>
     );

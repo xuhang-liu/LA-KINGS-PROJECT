@@ -30,7 +30,7 @@ import NotFoundPage from "./layout/NotFoundPage";
 import Privacy from "./layout/Privacy";
 import Term from "./layout/Term";
 import QuizHome from "./quiz/quizHome";
-import QuizResultPage from "./quiz/quizResultPage"
+import QuizResultPage from "./quiz/quizResultPage";
 
 import Contact from "./contact/contact";
 
