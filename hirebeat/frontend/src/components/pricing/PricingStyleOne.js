@@ -172,17 +172,9 @@ class PricingStyleOne extends Component {
                                                     <i className="bx bxs-check-circle"></i> 
                                                     5 saved recorded interviews
                                                 </li>
-                                                <li style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
-                                                    Full access to interview training program
-                                                </li>
-                                                <li  style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> Full access to AI & HR evaluation
-                                                </li>
-                                                <li  style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
-                                                    Unlimited interview recording storage
-                                                </li>
+                                                <li  style={{color:"#ffffff"}}>empty</li>
+                                                <li  style={{color:"#ffffff"}}>empty</li>
+                                                <li  style={{color:"#ffffff"}}>empty</li>
                                             </ul>
 
                                             {
@@ -265,9 +257,9 @@ class PricingStyleOne extends Component {
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> Full access to AI & HR evaluation
                                                 </li>
-                                                <li>
+                                                <li style={{color:"#979797"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited interview recording storage 
+                                                    Resume scan & analysis - Coming soon 
                                                 </li>
                                             </ul>
                                             {
@@ -409,17 +401,9 @@ class PricingStyleOne extends Component {
                                                     <i className="bx bxs-check-circle"></i> 
                                                     5 saved recorded interviews
                                                 </li>
-                                                <li  style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
-                                                    Full access to interview training program
-                                                </li>
-                                                <li  style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> Full access to AI & HR evaluation
-                                                </li>
-                                                <li  style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
-                                                    Unlimited interview recording storage 
-                                                </li>
+                                                <li  style={{color:"#ffffff"}}>empty</li>
+                                                <li  style={{color:"#ffffff"}}>empty</li>
+                                                <li  style={{color:"#ffffff"}}>empty</li>
                                             </ul>
 
                                             {
@@ -502,9 +486,9 @@ class PricingStyleOne extends Component {
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> Full access to AI & HR evaluation
                                                 </li>
-                                                <li>
+                                                <li style={{color:"#979797"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited interview recording storage 
+                                                    Resume scan & analysis - Coming soon 
                                                 </li>
                                             </ul>
 

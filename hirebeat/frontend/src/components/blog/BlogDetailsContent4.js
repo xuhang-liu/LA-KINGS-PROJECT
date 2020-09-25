@@ -72,7 +72,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                     <FacebookShareButton 
                                         url={"https://hirebeat.co/blog-details4"}
-                                        quote={"HireBeat - Video Interview"}
+                                        quote={"Questions to Ask at Career Fairs"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
                                             <i className="bx bxl-facebook"></i>
@@ -82,7 +82,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <TwitterShareButton
                                            url={"https://hirebeat.co/blog-details4"}
-                                           title={"HireBeat - Video Interview"}
+                                           title={"Questions to Ask at Career Fairs"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
                                            <a target="_blank">
@@ -93,7 +93,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <LinkedinShareButton
                                             url={"https://hirebeat.co/blog-details4"}
-                                            title={"HireBeat - Video Interview"}
+                                            title={"Questions to Ask at Career Fairs"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-linkedin"></i>
@@ -103,7 +103,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-details4"}
-                                            title={"HireBeat - Video Interview"}>
+                                            title={"Questions to Ask at Career Fairs"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>

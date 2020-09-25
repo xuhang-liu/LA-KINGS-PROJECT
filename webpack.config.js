@@ -29,7 +29,18 @@ module.exports = {
       videojs: "video.js/dist/video.cjs.js",
       RecordRTC: "recordrtc",
     }),
-    new CompressionPlugin(),
+    new CompressionPlugin({
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+    new webpack.DefinePlugin({ // <-- key to reducing React's size
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }), 
+    new webpack.optimize.AggressiveMergingPlugin()//Merge chunks 
   ],
   module: {
     rules: [
