@@ -115,7 +115,7 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                   <Dropdown>
                     <Dropdown.Toggle as={CustomToggle} >
-                      <span className="header-text">Features</span>
+                      <span className="header-text">Resources</span>
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
@@ -193,7 +193,7 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                   <Dropdown>
                     <Dropdown.Toggle as={CustomToggle} >
-                      <span className="header-text">Features</span>
+                      <span className="header-text">Resources</span>
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
