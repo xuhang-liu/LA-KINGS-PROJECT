@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
+import Dropdown from 'react-bootstrap/Dropdown'
 
 export class Header extends Component {
 
@@ -41,6 +42,19 @@ export class Header extends Component {
 
   renderUserLinks = () => {
     const {user} = this.props.auth;
+    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+      <a
+        href=""
+        ref={ref}
+        onClick={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+      >
+        {children}
+        &#x25bc;
+      </a>
+    ));
     return (
         <React.Fragment>
           <div className="nav-item order-xl-1 align-self-center">
@@ -99,14 +113,18 @@ export class Header extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/bloghome" className="nav-link text-white navbar-font">
-                  <span className="header-text">Blog</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/quiz" className="nav-link text-white navbar-font">
-                  <span className="header-text">Quiz</span>
-                </Link>
+                <a className="nav-link text-white navbar-font">
+                  <Dropdown>
+                    <Dropdown.Toggle as={CustomToggle} >
+                      <span className="header-text">Explore</span>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="/bloghome">Blog</Dropdown.Item>
+                      <Dropdown.Item href="/quiz">Quiz</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </a>
               </li>
               <li className="nav-item">
                 <Link to="/pricing" className="nav-link text-white navbar-font">
@@ -125,6 +143,19 @@ export class Header extends Component {
   };
 
   renderGuestLinks = () => {
+    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+      <a
+        href=""
+        ref={ref}
+        onClick={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+      >
+        {children}
+        &#x25bc;
+      </a>
+    ));
     return (
         <React.Fragment>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
@@ -161,13 +192,17 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/bloghome" className="nav-link text-white navbar-font">
-                <span className="header-text">Blog</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/quiz" className="nav-link text-white navbar-font">
-                <span className="header-text">Quiz</span>
+                <a className="nav-link text-white navbar-font">
+                  <Dropdown>
+                    <Dropdown.Toggle as={CustomToggle} >
+                      <span className="header-text">Explore</span>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="/bloghome">Blog</Dropdown.Item>
+                      <Dropdown.Item href="/quiz">Quiz</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </a>
               </li>
               <li className="nav-item">
