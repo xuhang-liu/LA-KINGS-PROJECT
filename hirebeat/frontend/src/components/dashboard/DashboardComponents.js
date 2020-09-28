@@ -12,15 +12,14 @@ export const DbCenterRow = (props) => {
 const Icon = (props) => {
     return (
         <i
-            className="material-icons-outlined"
+            className= {props.iconName}
             style={{
                 fontSize: props.iconSize,
                 marginRight: props.iconMargin,
-                marginBottom: "10px",
+                marginBottom: "5px",
                 color: props.iconColor ?? "#7d7d7d",
             }}
         >
-            {props.iconName}
         </i>
     );
 };
@@ -41,7 +40,6 @@ export const IconButton = (props) => {
         </button>
     );
 };
-
 export const IconText = (props) => {
     //textSize, textDisplayed, iconName, textColor?
     return (
@@ -58,6 +56,7 @@ export const IconText = (props) => {
                     marginBottom: "10px",
                     marginLeft:"5px",
                     color: props.textColor ?? "#7d7d7d",
+                    textDecoration: props.textDecoration ?? "none",
                     wordWrap: "revert",
                     textAlign: "center",
                 }}
