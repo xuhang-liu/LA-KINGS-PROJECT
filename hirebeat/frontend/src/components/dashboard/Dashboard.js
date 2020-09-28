@@ -37,11 +37,11 @@ export class Dashboard extends Component {
     });
   };
 
-  renderAnalytics = () => {
+  /*renderAnalytics = () => {
     this.setState({
       subpage: "analytics",
     });
-  };
+  };*/
 
   renderResume = () => {
     this.setState({
@@ -88,6 +88,7 @@ export class Dashboard extends Component {
             <DbCenterRow>
               <div className="col-3" style={{marginBottom:"auto"}}>
                 <ButtonPanel
+                  profile={this.props.profile}
                   renderVideos={this.renderVideos}
                   renderProfile={this.renderProfile}
                   renderAnalytics={this.renderAnalytics}

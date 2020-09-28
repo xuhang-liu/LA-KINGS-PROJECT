@@ -1,9 +1,13 @@
 import React from "react";
 import { IconText } from "../DashboardComponents";
-import {PanelSelect} from "../DashboardComponents";
+//import {PanelSelect} from "../DashboardComponents";
 import { Link } from "react-router-dom";
 
 function ButtonPanel(props) {
+  var save_limit = props.profile.save_limit;
+  var saved_video = props.profile.saved_video_count;
+  var saves_left = Number(save_limit) - Number(saved_video);
+
   var selectColor = "#090D3A";
   var defaultColor = "#7d7d7d";
   var selectDecoration = "underline";
@@ -66,10 +70,11 @@ function ButtonPanel(props) {
           <span></span>
         </a>
       </Link>
+      {props.profile.membership == 'Regular' &&
         <div className="col-12">
           <div className="row">
             <div className="col-5" style={{padding:"0%"}}>
-              <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: 4</p>
+              <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {saves_left}</p>
             </div>
 
             <div className="col-6" style={{padding:"0%"}}>
@@ -79,7 +84,7 @@ function ButtonPanel(props) {
             </div>
           </div>
         </div>
-
+      }
     </div>
   );
 }

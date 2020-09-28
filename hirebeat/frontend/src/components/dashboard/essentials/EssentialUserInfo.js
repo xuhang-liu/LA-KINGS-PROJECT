@@ -346,10 +346,11 @@ export class EssentialUserInfo extends Component {
                     placeholder={"Type your email to cancel subscription."}
                     onChange={this.handleInputChange}
                     style={{
+                      backgroundColor:"#FFFFFF",
                       fontSize: "12px",
                       borderRadius: "5px",
                       paddingLeft: "20px",
-                      color:"#FFFFFF"
+                      color:"grey"
                     }}
                   />
                   </div>
