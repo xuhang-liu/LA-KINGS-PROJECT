@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import S3FileUpload from "react-s3";
-import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 
 import {
   IconButton,
@@ -246,7 +245,38 @@ export class EssentialUserInfo extends Component {
                     }}
                   >
                     {this.props.user.username}
-                  </h1>    
+                  </h1>
+                  {/* for regular user */}
+                  {
+                    this.props.profile.membership == "Regular" &&
+                    <div className="text-15" style={{marginLeft:'40%'}}>
+                      <IconText
+                        style={{marginRight: "10px"}}
+                        iconName={"card_membership"}
+                        iconMargin={"6px"}
+                        textDisplayed={this.props.profile.membership}
+                        textSize={"18px"}
+                        fontFamily={"Poppins"}
+                      />
+                    </div>
+                  }
+                  {
+                    this.props.profile.membership == "Regular" &&
+                    <div className="upgrade" style={{marginBottom:"0.8rem", marginLeft:"1rem"}}>
+                      {
+                        this.props.profile.membership == "Regular" &&
+                        <Link className="text-15" style={{color: "#ffffff", textDecoration: "none", lineHeight: "34px", marginLeft:"26%"}} to="/pricing">Upgrade</Link>
+                      }
+                    </div>
+                  }
+                  {/* for premium user */}
+                  {
+                    this.props.profile.membership == "Premium" &&
+                    <div className="col" style={{marginLeft:"28%", marginBottom:"0.8rem"}}>
+                      <img src={premiumIcon} alt="premiumIcon"/>
+                      <span style={{marginLeft: "6px"}}>Premium</span>
+                    </div>
+                  }
                 </div>
               </div>
 

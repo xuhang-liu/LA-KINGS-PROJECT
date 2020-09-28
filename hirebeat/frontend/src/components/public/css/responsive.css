@@ -37,7 +37,7 @@
     line-height: 1.3;
   }
   .default-btn {
-    font-size: 13px;
+    font-size: 12px;
     padding-left: 45px;
     padding-right: 20px;
     padding-top: 12px;
@@ -1147,7 +1147,7 @@
     font-size: 30px;
   }
   .default-btn {
-    font-size: 14px;
+    font-size: 12px;
   }
   .navbar-area .container {
     max-width: 720px;
@@ -1721,6 +1721,9 @@
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .section-title h2 {
     font-size: 34px;
+  }
+  .default-btn {
+    font-size: 14px;
   }
   .navbar-area {
     position: relative;
