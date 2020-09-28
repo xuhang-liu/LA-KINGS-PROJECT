@@ -1,27 +1,32 @@
 import React from "react";
 import { IconText } from "../DashboardComponents";
+import {PanelSelect} from "../DashboardComponents";
+import { Link } from "react-router-dom";
 
 function ButtonPanel(props) {
-  var selectColor = "#538af2";
+  var selectColor = "#090D3A";
   var defaultColor = "#7d7d7d";
+  var selectDecoration = "underline";
+  var defaultDecoration = "none";
   return (
     <div>
       <button
         type="button"
         className="panel-button"
         onClick={props.renderVideos}
-        style={{outline: "none"}}
+        style={{outline: "none", margin:"1%"}}
       >
         <IconText
           textSize={"18px"}
-          textDisplayed={"Interviews"}
-          iconName={"video_library"}
+          textDisplayed={"Interview"}
+          iconName={"bx bx-slideshow 1 bx-md"}
           iconMargin={"4px"}
           textColor={props.subpage == "videos" ? selectColor : defaultColor}
+          textDecoration={props.subpage == "videos" ? selectDecoration : defaultDecoration}
         />
       </button>
       <br />
-      <button
+      {/* <button
         type="button"
         className="panel-button"
         onClick={props.renderAnalytics}
@@ -35,23 +40,46 @@ function ButtonPanel(props) {
           textColor={props.subpage == "analytics" ? selectColor : defaultColor}
         />
       </button>
-      <br />
+      <br /> */}
       <button
         type="button"
         className="panel-button"
         onClick={props.renderResume}
-        style={{outline: "none"}}
+        style={{outline: "none", margin:"1%"}}
       >
         <IconText
           textSize={"18px"}
           textDisplayed={"Resume"}
-          iconName={"text_snippet"}
-          iconName={"portrait"}
+          iconName={"bx bx-file 1 bx-md"}
           iconMargin={"4px"}
           textColor={props.subpage == "resume" ? selectColor : defaultColor}
+          textDecoration={props.subpage == "resume" ? selectDecoration: defaultDecoration}
         />
       </button>
       <br />
+
+      <Link to="/practice">
+        <a className="default-btn" 
+        style={{color:"white", backgroundColor:"#090D3A"}}>
+          <i className="bx bxs-hot"></i> 
+          New Practice
+          <span></span>
+        </a>
+      </Link>
+        <div className="col-12">
+          <div className="row">
+            <div className="col-5" style={{padding:"0%"}}>
+              <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: 4</p>
+            </div>
+
+            <div className="col-6" style={{padding:"0%"}}>
+              <Link to="/pricing">
+                <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
+              </Link>
+            </div>
+          </div>
+        </div>
+
     </div>
   );
 }
