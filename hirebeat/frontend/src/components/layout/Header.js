@@ -52,7 +52,6 @@ export class Header extends Component {
         }}
       >
         {children}
-        &#x25bc;
       </a>
     ));
     return (
@@ -116,12 +115,12 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                   <Dropdown>
                     <Dropdown.Toggle as={CustomToggle} >
-                      <span className="header-text">Explore</span>
+                      <span className="header-text">Resources</span>
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                      <Dropdown.Item href="/bloghome">Blog</Dropdown.Item>
-                      <Dropdown.Item href="/quiz">Quiz</Dropdown.Item>
+                      <Dropdown.Item href="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Blog</Dropdown.Item>
+                      <Dropdown.Item href="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Quiz</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </a>
@@ -153,7 +152,6 @@ export class Header extends Component {
         }}
       >
         {children}
-        &#x25bc;
       </a>
     ));
     return (
@@ -195,12 +193,12 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                   <Dropdown>
                     <Dropdown.Toggle as={CustomToggle} >
-                      <span className="header-text">Explore</span>
+                      <span className="header-text">Resources</span>
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                      <Dropdown.Item href="/bloghome">Blog</Dropdown.Item>
-                      <Dropdown.Item href="/quiz">Quiz</Dropdown.Item>
+                      <Dropdown.Item href="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Blog</Dropdown.Item>
+                      <Dropdown.Item href="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Quiz</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </a>
