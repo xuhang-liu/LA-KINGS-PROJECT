@@ -54,11 +54,11 @@ export class PrepCountdown extends Component {
                 textDisplayed={"Start Recording"}
                 buttonWidth={"30%"}
                 isAudio={this.props.isAudio ? true : false}
-                fontFamily={"Lato"}
+                fontFamily={"Poppins"}
               />
             </CardRow>
           </div>
-          {this.props.isAudio ? <NotePad isAudio={this.props.isAudio} /> : null}
+          {/*this.props.isAudio ? <NotePad isAudio={this.props.isAudio} /> : null*/}
         </div>
         <div className="col-3" />
       </div>
