@@ -10,7 +10,6 @@ import {
 import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import premiumIcon from "../../../assets/premium.png"
 
 const config = {
     bucketName: 'hirebeat-avatar',
@@ -335,7 +334,7 @@ export class EssentialUserInfo extends Component {
                 this.props.profile.membership == "Premium" &&
                 <div className="row">
                   <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
-                    <img src={premiumIcon} alt="premiumIcon"/>
+                    <i className='bx bx-diamond'></i> 
                     <span style={{marginLeft: "6px"}}>Premium</span>
                   </div>
                   <div className="col-8">
