@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ButtonPanel from "./panel/ButtonPanel";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 import VideoPreviewList from "./videos/VideoPreviewList";
-import { Analytics } from "./videos/Analytics";
+//import { Analytics } from "./videos/Analytics";
 import { Resume } from "./videos/Resume";
 import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
@@ -37,11 +37,11 @@ export class Dashboard extends Component {
     });
   };
 
-  renderAnalytics = () => {
+  /*renderAnalytics = () => {
     this.setState({
       subpage: "analytics",
     });
-  };
+  };*/
 
   renderResume = () => {
     this.setState({
@@ -52,8 +52,8 @@ export class Dashboard extends Component {
     switch (this.state.subpage) {
       case "videos":
         return <VideoPreviewList />;
-      case "analytics":
-        return <Analytics />;
+      //case "analytics":
+        //return <Analytics />;
       case "resume":
         return <Resume />;
       default:
@@ -88,6 +88,7 @@ export class Dashboard extends Component {
             <DbCenterRow>
               <div className="col-3" style={{marginBottom:"auto"}}>
                 <ButtonPanel
+                  profile={this.props.profile}
                   renderVideos={this.renderVideos}
                   renderProfile={this.renderProfile}
                   renderAnalytics={this.renderAnalytics}
