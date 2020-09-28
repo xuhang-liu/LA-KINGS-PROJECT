@@ -247,7 +247,7 @@ export class EssentialUserInfo extends Component {
                     {this.props.user.username}
                   </h1>
                   {/* for regular user */}
-                  {
+                  {/*
                     this.props.profile.membership == "Regular" &&
                     <div className="text-15" style={{marginLeft:'40%'}}>
                       <IconText
@@ -259,8 +259,8 @@ export class EssentialUserInfo extends Component {
                         fontFamily={"Poppins"}
                       />
                     </div>
-                  }
-                  {
+                  */}
+                  {/*
                     this.props.profile.membership == "Regular" &&
                     <div className="upgrade" style={{marginBottom:"0.8rem", marginLeft:"1rem"}}>
                       {
@@ -268,15 +268,15 @@ export class EssentialUserInfo extends Component {
                         <Link className="text-15" style={{color: "#ffffff", textDecoration: "none", lineHeight: "34px", marginLeft:"26%"}} to="/pricing">Upgrade</Link>
                       }
                     </div>
-                  }
+                    */}
                   {/* for premium user */}
-                  {
+                  {/*
                     this.props.profile.membership == "Premium" &&
                     <div className="col" style={{marginLeft:"28%", marginBottom:"0.8rem"}}>
                       <img src={premiumIcon} alt="premiumIcon"/>
                       <span style={{marginLeft: "6px"}}>Premium</span>
                     </div>
-                  }
+                  */}
                 </div>
               </div>
 

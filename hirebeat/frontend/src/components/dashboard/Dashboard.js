@@ -65,7 +65,7 @@ export class Dashboard extends Component {
     return (
       <React.Fragment>
         <ScrollToTopOnMount />
-        <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Poppins"}}>
+        {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Poppins"}}> */}
           <MediaQuery minDeviceWidth={1224}>
           <DbRow>
             <div className="col-12" style={{padding:"0%"}}>
@@ -102,7 +102,7 @@ export class Dashboard extends Component {
           <MediaQuery maxDeviceWidth={1224}>
           <div style={{fontSize:"1.6rem"}}><b>Please Login with your computer for the full functionalities.</b></div>
         </MediaQuery>
-      </div>
+      {/* </div> */}
       </React.Fragment>
     );
   }
