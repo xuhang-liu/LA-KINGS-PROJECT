@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ButtonPanel from "./panel/ButtonPanel";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 import VideoPreviewList from "./videos/VideoPreviewList";
-import { Analytics } from "./videos/Analytics";
+//import { Analytics } from "./videos/Analytics";
 import { Resume } from "./videos/Resume";
 import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
@@ -52,8 +52,8 @@ export class Dashboard extends Component {
     switch (this.state.subpage) {
       case "videos":
         return <VideoPreviewList />;
-      case "analytics":
-        return <Analytics />;
+      //case "analytics":
+        //return <Analytics />;
       case "resume":
         return <Resume />;
       default:
