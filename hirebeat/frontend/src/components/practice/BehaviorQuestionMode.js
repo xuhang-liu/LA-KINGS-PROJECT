@@ -32,6 +32,7 @@ export class BehaviorQuestionMode extends Component {
   render() {
     return (
       <React.Fragment>
+      <section className="pricing-area pb-70 bg-f4f5fe">
       <ScrollToTopOnMount />
       <div style={{marginBottom:"10%"}}>
       <MediaQuery minDeviceWidth={1224}>
@@ -41,7 +42,7 @@ export class BehaviorQuestionMode extends Component {
           style={{marginBottom: "2rem"}}
         />
         <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
-          <div className="col features-box" style={{marginLeft: "5%"}}>
+          <div className="col features-box" style={{marginLeft: "5%", backgroundColor:"#ffffff"}}>
           <Link style={{textDecoration: "none"}} onClick={this.redirectToBQPracticeMode}>
             <div style={{padding: "10%"}}>
             <div className="icon">
@@ -53,7 +54,7 @@ export class BehaviorQuestionMode extends Component {
             </div>
             </Link>
           </div>
-          <div className="col features-box" style={{marginLeft: "6rem"}}>
+          <div className="col features-box" style={{marginLeft: "6rem", backgroundColor:"#ffffff"}}>
           <Link style={{textDecoration: "none"}} onClick={this.redirectToBQSimulateMode}>
             <div style={{padding: "10%"}}>
             <div className="icon">
@@ -71,6 +72,7 @@ export class BehaviorQuestionMode extends Component {
         <div style={{fontSize:"1.6rem"}}><b>Please Login with your computer for the full functionalities.</b></div>
       </MediaQuery>
       </div>
+      </section>
       </React.Fragment>
     );
   }
