@@ -34,6 +34,7 @@ export class QuestionTypeChoices extends Component {
   render() {
     return (
       <React.Fragment>
+      <section className="pricing-area pb-70 bg-f4f5fe">
       <ScrollToTopOnMount />
       <div style={{marginBottom:"10%"}}>
       <MediaQuery minDeviceWidth={1224}>
@@ -43,7 +44,7 @@ export class QuestionTypeChoices extends Component {
           style={{marginBottom: "2rem"}}
         />
         <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
-        <div className="col features-box" style={{marginLeft: "5%"}}>
+        <div className="col features-box" style={{marginLeft: "5%", backgroundColor:"#ffffff"}}>
         <Link style={{textDecoration: "none"}} onClick={this.redirectToBehaviorQuestions}>
             <div style={{padding: "10%"}}>
             <div className="icon">
@@ -60,7 +61,7 @@ export class QuestionTypeChoices extends Component {
             </div>
             </Link>
           </div>
-          <div className="col features-box" style={{marginLeft: "6rem"}}>
+          <div className="col features-box" style={{marginLeft: "6rem", backgroundColor:"#ffffff"}}>
           <Link style={{textDecoration: "none"}} onClick={this.redirectToTechQuestions}>
             <div style={{padding: "10%"}}>
             <div className="icon">
@@ -94,6 +95,7 @@ export class QuestionTypeChoices extends Component {
         </div>
       </MediaQuery>
       </div>
+      </section>
       </React.Fragment>
     );
   }

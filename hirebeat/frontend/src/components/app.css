@@ -233,7 +233,7 @@ video {
 .panel-button {
   display: block;
   width: 140px;
-  background-color: #fafafb;
+  background-color: white;
   border: none;
   padding: 15px;
   font-size: 18px;
@@ -596,7 +596,7 @@ h5 {
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 24px;
 }
 
