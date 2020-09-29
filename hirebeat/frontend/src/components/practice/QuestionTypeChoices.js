@@ -75,24 +75,24 @@ export class QuestionTypeChoices extends Component {
               </p>
               <p className="mode-col-text2">Next Step -> </p>
             </div>
-            </Link>
+          </Link>
           </div>
         </div>
       </MediaQuery>
       <MediaQuery maxDeviceWidth={1223}>
-      <PageTitleArea
+        <PageTitleArea
           pageTitle="Welcome to Hirebeat!"
           pageDescription="Our mobile functionality for interview practice is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
         />
+        <div style={{textAlign: "center"}}>
+          <Link to="/">
+            <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00", marginTop:"1rem"}}>
+              <i className="bx bxs-hot"></i>
+                Back to Home Page
+            </a>
+          </Link>
+        </div>
       </MediaQuery>
-      <div style={{textAlign: "center"}}>
-        <Link to="/">
-          <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00", marginTop:"1rem"}}>
-            <i className="bx bxs-hot"></i>
-              Back to Home Page
-          </a>
-        </Link>
-      </div>
       </div>
       </React.Fragment>
     );
