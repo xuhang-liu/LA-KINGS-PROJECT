@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'accounts',
     'questions',
     "compressor",
+    "resume",
 ]
 
 REST_FRAMEWORK = {
