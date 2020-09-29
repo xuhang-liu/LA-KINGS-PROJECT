@@ -3,7 +3,20 @@ import ReviewStatusButton from "./ReviewStatusButton";
 import { renderQDes } from "../DashboardComponents";
 import VideoPlayer from "../../videos/VideoPlayer";
 import AudioPlayer from "../../audios/AudioPlayer";
+import { confirmAlert } from 'react-confirm-alert';
 
+
+function showAns() {
+     confirmAlert({
+            title: 'Answer',
+            message: 'Sorry, this feature is coming soon!',
+            buttons: [
+              {
+                label: 'OK'
+              }
+            ]
+     });
+}
 
 export function VideoImagePreview(props) {
   // control status, render modal
@@ -30,22 +43,33 @@ export function VideoImagePreview(props) {
               {props.v.created_at.substring(0, 10)}
             </p>
           </div>
-          <div className="row" style={{width: "90%"}}>
-            <div className="col">
-              <ReviewStatusButton
-                v={props.v}
-                sendVideoForReview={props.sendVideoForReview}
-                aiReview={true}  // review type： AI
-              />
-            </div>
-            <div className="col">
-              <ReviewStatusButton
-                v={props.v}
-                sendVideoForReview={props.sendVideoForReview}
-                aiReview={false}  // review type： Expert
-              />
-            </div>
-          </div>
+            { props.isBQ ? (
+                <div className="row" style={{width: "90%"}}>
+                    <div className="col">
+                      <ReviewStatusButton
+                        v={props.v}
+                        sendVideoForReview={props.sendVideoForReview}
+                        aiReview={true}  // review type： AI
+                      />
+                    </div>
+                    <div className="col">
+                      <ReviewStatusButton
+                        v={props.v}
+                        sendVideoForReview={props.sendVideoForReview}
+                        aiReview={false}  // review type： Expert
+                      />
+                    </div>
+                </div>) : (
+                <div>
+                  <button
+                    className="reviewed text-15"
+                    style={{ color: "#FFFFFF", marginBottom: "0px", display: "inline-block", outline: "none", width: "12rem" }}
+                    onClick={showAns}
+                    >
+                    Sample Answer
+                  </button>
+                </div>)
+            }
         </div>
       </div>
     </div>
