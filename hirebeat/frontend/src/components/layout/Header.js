@@ -101,7 +101,7 @@ export class Header extends Component {
                 </Link>
               </li>
               <li className="nav-item ">
-                <Link to="/Resume" className="nav-link text-white navbar-font">
+                <Link to="/resume" className="nav-link text-white navbar-font">
                   <span className="header-text">Resume</span>
                 </Link>
               </li>
