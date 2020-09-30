@@ -12,14 +12,14 @@ export const Interview = () => {
       <div style={{marginBottom: "20px"}} className="container d-flex justify-content-start">
         <button
           className={decideClassName(filter, "bq")}
-          style = {{outline: "none", borderRadius: "5px"}}
+          style = {{outline: "none", borderRadius: "2px"}}
           onClick={() => setFilter("bq")}
         >
           Behavior Questions
         </button>
         <button
           className={decideClassName(filter, "tq")}
-          style = {{outline: "none", borderRadius: "5px"}}
+          style = {{outline: "none", borderRadius: "2px"}}
           onClick={() => setFilter("tq")}
         >
           Technique Questions

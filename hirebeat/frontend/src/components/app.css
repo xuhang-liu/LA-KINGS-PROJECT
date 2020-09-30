@@ -564,15 +564,17 @@ h5 {
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  color: #FFFFFF;
-  display: block;
-  text-align:center;
+  border: none;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+  color: #ffffff;
+  background-color: #56a3fa;
   margin-right: 1rem;
   margin-bottom: 1.625rem;
-  background: #56a3fa;
   border-radius: 2px;
-  outline: none;
-
 }
 
 .btn-unselected {
@@ -581,14 +583,14 @@ h5 {
   font-weight: 400;
   font-size: 20px;
   color: #56a3fa;
-  display: block;
+  display: inline-block;
   text-align:center;
   margin-right: 1rem;
   margin-bottom: 1.625rem;
   background: #FFFFFF;
   border-color: #56a3fa;
-  border-radius: 5px;
-  border: 1px solid #91B8FB;
+  border-radius: 2px;
+  border: 2px dashed #EEEEEE;
   box-sizing: border-box;
 }
 
