@@ -86,16 +86,6 @@ export const renderSuccessTag = (text) => {
     return (
         <div className="height-30 d-flex justify-content-start align-items-end" style={{marginBottom: "0.8rem"}}>
             <div className="d-flex justify-content-start">
-                <i
-                    className="material-icons-outlined"
-                    style={{
-                        fontSize: "15px",
-                        color: "#67ac5c",
-                        marginTop: "2px",
-                    }}
-                >
-                    done
-                </i>
                 <span
                     className="text-success"
                     style={{color: "#14CC75", fontSize: "15px", marginRight: "10px"}}
