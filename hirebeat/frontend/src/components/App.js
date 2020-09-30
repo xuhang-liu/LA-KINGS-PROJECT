@@ -26,6 +26,7 @@ import blogdetail5 from "./blog/blog-details5";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
+import TechPracticeMode from "./practice/TechPracticeMode";
 import BehaviorQuestionMode from "./practice/BehaviorQuestionMode"
 import NotFoundPage from "./layout/NotFoundPage";
 import Privacy from "./layout/Privacy";
@@ -111,6 +112,11 @@ class App extends Component {
                   exact
                   path="/techfields/"
                   component={TechFields}
+                />
+                <PrivateRoute
+                  exact
+                  path="/techfields/practice"
+                  component={TechPracticeMode}
                 />
                 <Route
                   exact
