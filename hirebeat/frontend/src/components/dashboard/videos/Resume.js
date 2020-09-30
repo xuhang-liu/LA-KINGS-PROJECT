@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ContactForm from '../../contact/ContactForm';
 
 export const Resume = () => {
   return (

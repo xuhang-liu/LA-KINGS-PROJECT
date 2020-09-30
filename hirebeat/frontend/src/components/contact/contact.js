@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import ContactFormArea from './ContactFormArea';
-import OurLovingClients from '../Common/OurLovingClients';
-import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import emailjs from 'emailjs-com';

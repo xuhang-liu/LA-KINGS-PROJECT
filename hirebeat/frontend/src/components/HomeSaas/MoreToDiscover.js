@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
 import ReactWOW from 'react-wow';
 import feature2 from "../../assets/Picture2.png";
 import feature3 from "../../assets/Picture3.png";
