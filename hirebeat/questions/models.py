@@ -44,6 +44,7 @@ class Question(models.Model):
         choices=QuestionCategory.choices,
         default=QuestionCategory.PositiveAttitude
     )
+    answer = models.TextField(blank=True, null=True)
 
 class Categorys(models.Model):
 

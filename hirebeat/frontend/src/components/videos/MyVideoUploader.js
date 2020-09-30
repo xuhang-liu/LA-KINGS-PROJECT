@@ -101,6 +101,7 @@ export class MyVideoUploader extends Component {
     var q_category = `${this.props.questions[this.props.q_index].category}`;
     var q_description = `${this.props.questions[this.props.q_index].description}`;
     var q_title = `${this.props.questions[this.props.q_index].title}`;
+    var q_answer = `${this.props.questions[this.props.q_index].answer}`;
 
     // insert MetaData to video table
     const videoMetaData = {
@@ -108,6 +109,7 @@ export class MyVideoUploader extends Component {
       q_description: q_description,
       q_type: matchQType(q_title),
       q_category: q_category,
+      q_answer: q_answer,
       ai_review_categories: reviewCategories(q_category),
       expert_review_categories: reviewCategories(q_category),
     };

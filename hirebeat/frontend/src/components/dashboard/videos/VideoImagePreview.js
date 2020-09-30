@@ -6,10 +6,10 @@ import AudioPlayer from "../../audios/AudioPlayer";
 import { confirmAlert } from 'react-confirm-alert';
 
 
-function showAns() {
+function showAns(ans) {
      confirmAlert({
             title: 'Answer',
-            message: 'Sorry, this feature is coming soon!',
+            message: ans,
             buttons: [
               {
                 label: 'OK'
@@ -64,7 +64,7 @@ export function VideoImagePreview(props) {
                   <button
                     className="reviewed text-15"
                     style={{ color: "#FFFFFF", marginBottom: "0px", display: "inline-block", outline: "none", width: "12rem" }}
-                    onClick={showAns}
+                    onClick={() => showAns(props.v.q_answer)}
                     >
                     Sample Answer
                   </button>
