@@ -562,15 +562,15 @@ h5 {
 .btn-selected {
   font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 20px;
   color: #FFFFFF;
   display: block;
   text-align:center;
-  margin-right: 15px;
-  margin-bottom: 26px;
-  background: #4689FA;
-  border-radius: 5px;
+  margin-right: 1rem;
+  margin-bottom: 1.625rem;
+  background: #56a3fa;
+  border-radius: 2px;
   outline: none;
 
 }
@@ -578,17 +578,17 @@ h5 {
 .btn-unselected {
   font-family: Poppins;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 20px;
-  color: #91B8FB;
+  color: #56a3fa;
   display: block;
   text-align:center;
-  margin-right: 15px;
-  margin-bottom: 26px;
+  margin-right: 1rem;
+  margin-bottom: 1.625rem;
   background: #FFFFFF;
-  border-color: #2196F3;
+  border-color: #56a3fa;
   border-radius: 5px;
-  border: 2px solid #91B8FB;
+  border: 1px solid #91B8FB;
   box-sizing: border-box;
 }
 
