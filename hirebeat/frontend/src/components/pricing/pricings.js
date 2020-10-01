@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
 import PricingStyleOne from './PricingStyleOne';
 import FaqContent from '../Faq/FaqContent';
-import OurLovingClients from '../Common/OurLovingClients';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 
