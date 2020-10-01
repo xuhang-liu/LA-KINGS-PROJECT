@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 from questions.models import Question, SubCategory
 from django.utils.translation import gettext_lazy as _
@@ -29,10 +30,14 @@ class Video(models.Model):
     ai_score = models.FloatField(default=10.0)
     ai_review_categories = models.CharField(default="Positive Attitude,Communication,Detail Oriented,Team Spirit,Stress Tolerance", max_length=500)
     #ai_category_score is a char b/c sqlite has no support for ArrayField. Now db is migrated to postgres, this filed can be an ArrayField. Code in frontend should change accordingly.
-    ai_category_score = models.CharField(default="10,10,10,10,10", max_length=500)
+    ai_category_score = models.CharField(default="10,10,10,10,10", max_length=500) 
+    # ai words and ummm... detection
+    ai_words_per_minute = models.CharField(null=True, max_length=50)
+    ai_filter_words = ArrayField(models.CharField(null=True, max_length=100), blank=True, null=True)
+    ai_auto_ready = models.BooleanField(default=False)
     # TQ answer
     q_answer = models.TextField(blank=True, null=True)
-    # More fields to add
+
     def __str__(self):
         return self.owner.username + '|' + self.created_at.strftime("%m/%d/%Y")
 
