@@ -1,14 +1,16 @@
 import React from "react";
 import ReviewStatusButton from "./ReviewStatusButton";
+import TQReviewStatus from "./TQReviewStatus";
 import { renderQDes } from "../DashboardComponents";
 import VideoPlayer from "../../videos/VideoPlayer";
 import AudioPlayer from "../../audios/AudioPlayer";
 import { confirmAlert } from 'react-confirm-alert';
+import { renderWaitTag } from "../DashboardComponents";
 
 
 function showAns(ans) {
      confirmAlert({
-            title: 'Answer',
+            title: 'Sample Answer',
             message: ans,
             buttons: [
               {
@@ -59,15 +61,23 @@ export function VideoImagePreview(props) {
                         aiReview={false}  // review type： Expert
                       />
                     </div>
-                </div>) : (
-                <div>
-                  <button
-                    className="reviewed text-15"
-                    style={{ color: "#FFFFFF", marginBottom: "0px", display: "inline-block", outline: "none", width: "12rem" }}
-                    onClick={() => showAns(props.v.q_answer)}
-                    >
-                    Sample Answer
-                  </button>
+                </div>) : (  // TQ
+                <div className="row" style={{width: "90%"}}>
+                  <div className="col">
+                    <TQReviewStatus
+                      v={props.v}
+                      aiReview={true}  // review type： AI
+                      isTQ={true}
+                    />
+                  </div>
+                  <div className="col">
+                    <TQReviewStatus
+                      v={props.v}
+                      aiReview={true}  // review type： AI
+                      isTQ={true}
+                      isSampleAns={true}
+                    />
+                  </div>
                 </div>)
             }
         </div>

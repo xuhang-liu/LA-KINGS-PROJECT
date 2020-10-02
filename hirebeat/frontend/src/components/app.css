@@ -637,6 +637,13 @@ h5 {
   text-align: right;
 }
 
+.text-12 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.75rem;
+}
+
 .not-reviewed {
   width: 226px;
   height: 34px;
@@ -1576,4 +1583,28 @@ color: #080A3C;
   font-family:"Poppins";
   font-weight: 500;
   font-size: 15px;
+}
+
+.ai-review-text1 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.ai-review-text2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.75rem;
+  color: #4A6F8A;
+}
+
+.ai-review-text3 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: #4A6F8A;
 }
