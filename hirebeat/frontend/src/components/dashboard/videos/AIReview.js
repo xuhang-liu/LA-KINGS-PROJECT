@@ -14,8 +14,16 @@ import {
 export function AIReview(props) {
   var categoryArray = convertStringToArray(props.v.ai_review_categories);
   var percentArray = convertStringToArray(props.v.ai_category_score);
-  var wordArray = props.v.ai_filter_words;
-  var talkSpeed = props.v.ai_words_per_minute;
+  var wordArray = [];
+  var talkSpeed = "";
+  if (props.v.ai_filter_words != null) {
+    wordArray = props.v.ai_filter_words;
+  }
+  if (props.v.ai_words_per_minute != null) {
+    talkSpeed = props.v.ai_words_per_minute;
+  } else {
+      talkSpeed = "0";
+  }
   infillChartData(categoryArray, percentArray);
   return (
     <div className="container">

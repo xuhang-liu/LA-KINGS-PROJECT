@@ -14,7 +14,7 @@ export function SampleAnswer(props) {
       <DbRow>
         <div className="col-2"/>
         <div className="col-8 d-flex justify-content-center align-items-center">
-            <strong className="text-20" style={{color: "#7D7D7D"}}>Review Your Sample Answer</strong>
+            <strong className="text-20" style={{color: "#7D7D7D"}}>See Your Sample Answer</strong>
         </div>
         <div className="col-2"/>
         </DbRow>
