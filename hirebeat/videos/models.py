@@ -35,6 +35,9 @@ class Video(models.Model):
     ai_words_per_minute = models.CharField(null=True, max_length=50)
     ai_filter_words = ArrayField(models.CharField(null=True, max_length=100), blank=True, null=True)
     ai_auto_ready = models.BooleanField(default=False)
+    # TQ answer
+    q_answer = models.TextField(blank=True, null=True)
+    q_explain = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.owner.username + '|' + self.created_at.strftime("%m/%d/%Y")

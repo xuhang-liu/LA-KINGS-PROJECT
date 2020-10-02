@@ -97,6 +97,20 @@ export const renderSuccessTag = (text) => {
     );
 };
 
+export const renderWaitTag = (text) => {
+    return (
+        <div className="height-30 d-flex justify-content-start align-items-end" style={{marginBottom: "0.8rem"}}>
+            <div className="d-flex justify-content-start">
+                <span
+                    style={{color: "#7D7D7D", fontSize: "15px", marginRight: "10px"}}
+                >
+                    {text}
+                </span>
+            </div>
+        </div>
+    );
+};
+
 export const ReviewHeader = (props) => {
     return (
         <DbRow>
