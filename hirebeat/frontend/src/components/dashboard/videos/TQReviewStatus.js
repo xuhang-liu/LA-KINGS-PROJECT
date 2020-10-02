@@ -34,7 +34,7 @@ if (props.isSampleAns) {
     if (text == "View AI Result") {
         setSubPage("ai");
         setShow(true);
-    } else {
+    } else if (text == "Sample Answer")  {
         setSubPage("sampleAns");
         setShow(true);
     }
