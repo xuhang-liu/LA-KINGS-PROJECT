@@ -119,7 +119,7 @@ const WordProgressBar = (props) => {
               width: (props.percent / 2).toString() + "%",
             }}
             aria-valuemin="0"
-            aria-valuemax="200"
+            aria-valuemax="240"
           ></div>
         </div>
       </div>
@@ -156,20 +156,20 @@ const PercentTag = (props) => {
   } else if (props.percent > 5) {
     return <p className="text-primary text-10">Well Done</p>;
   } else if (props.percent > 3) {
-    return <p className="text-warning text-10">You Can Improve</p>;
+    return <p className="text-warning text-10">Improve It</p>;
   } else {
-    return <p className="text-danger text-10">Needs Attention!</p>;
+    return <p className="text-danger text-10">Attention!</p>;
   }
 };
 
 const WordPercentTag = (props) => {
-  if (props.percent <= 25) {
+  if (props.percent <= 40) {
     return <p className="text-danger ai-review-text2">Too Slow</p>;
-  } else if (props.percent > 25 && props.percent <= 75) {
+  } else if (props.percent > 40 && props.percent <= 80) {
     return <p className="text-warning ai-review-text2">Slow</p>;
-  } else if (props.percent > 75 && props.percent <= 125) {
+  } else if (props.percent > 80 && props.percent <= 160) {
     return <p className="text-success ai-review-text2">Just Right</p>;
-  } else if (props.percent > 125 && props.percent <= 175) {
+  } else if (props.percent > 160 && props.percent <= 200) {
     return <p className="text-warning ai-review-text2">Fast</p>;
   } else {
     return <p className="text-danger ai-review-text2">Too Fast</p>;
@@ -177,13 +177,13 @@ const WordPercentTag = (props) => {
 };
 
 const SpeedDesc = (props) => {
-  if (props.percent <= 25) {
+  if (props.percent <= 40) {
     return <p className="ai-review-text2" style={{marginBottom: "2rem"}}>Your pace is <span style={{color: "red"}}>too slow</span>. Speak fast</p>;
-  } else if (props.percent > 25 && props.percent <= 75) {
+  } else if (props.percent > 40 && props.percent <= 80) {
     return <p className="ai-review-text2" style={{marginBottom: "2rem"}}>Your pace is <span style={{color: "orange"}}>slow</span>. Talk quickly</p>;
-  } else if (props.percent > 75 && props.percent <= 125) {
+  } else if (props.percent > 80 && props.percent <= 160) {
     return <p className="ai-review-text2" style={{marginBottom: "2rem"}}>Your pace is <span style={{color: "green"}}>just right</span>. Keep it up</p>;
-  } else if (props.percent > 125 && props.percent <= 175) {
+  } else if (props.percent > 160 && props.percent <= 200) {
     return <p className="ai-review-text2" style={{marginBottom: "2rem"}}>Your pace is <span style={{color: "orange"}}>fast</span>. Talk slowly</p>;
   } else {
     return <p className="ai-review-text2" style={{marginBottom: "2rem"}}>Your pace is <span style={{color: "red"}}>too fast</span>. Speak smoothly</p>;
