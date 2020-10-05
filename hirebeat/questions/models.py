@@ -23,6 +23,16 @@ class Question(models.Model):
         DetailOriented = 'Detail Oriented', _('Detail Oriented')
         CommunicationSkill = 'Communication Skill', _('Communication Skill')
         ProblemSolving = 'Problem Solving', _('Problem Solving')
+
+        # TQ categories
+        Accounting = 'Accounting', _('Accounting')
+        AdministrateSupport = 'Administrate Support', _('Administrate Support')
+        Consulting = 'Consulting', _('Consulting')
+        Finance = 'Finance', _('Finance')
+        HumanResources = 'Human Resources', _('Human Resources')
+        Marketing = 'Marketing', _('Marketing')
+        ProductManagement = 'Product Management', _('Product Management')
+        Retail = 'Retail', _('Retail')
     # id is auto created
     def __str__(self):
         return self.category + '|' + self.description
@@ -34,6 +44,8 @@ class Question(models.Model):
         choices=QuestionCategory.choices,
         default=QuestionCategory.PositiveAttitude
     )
+    answer = models.TextField(blank=True, null=True)
+    explain = models.TextField(blank=True, null=True)
 
 class Categorys(models.Model):
 
