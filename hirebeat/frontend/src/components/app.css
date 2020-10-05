@@ -1608,3 +1608,17 @@ color: #080A3C;
   font-size: 0.75rem;
   color: #4A6F8A;
 }
+
+.resume-subtitle {
+  font-family: "Poppins";
+  font-weight: bold;
+  margin-top: 2%;
+}
+
+.resume-textarea{
+  width: 300%;
+  height: 625%;
+  border: 1px solid #E6E8F6;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
