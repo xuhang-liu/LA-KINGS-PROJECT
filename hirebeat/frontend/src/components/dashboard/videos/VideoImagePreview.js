@@ -1,9 +1,24 @@
 import React from "react";
 import ReviewStatusButton from "./ReviewStatusButton";
+import TQReviewStatus from "./TQReviewStatus";
 import { renderQDes } from "../DashboardComponents";
 import VideoPlayer from "../../videos/VideoPlayer";
 import AudioPlayer from "../../audios/AudioPlayer";
+import { confirmAlert } from 'react-confirm-alert';
+import { renderWaitTag } from "../DashboardComponents";
 
+
+function showAns(ans) {
+     confirmAlert({
+            title: 'Sample Answer',
+            message: ans,
+            buttons: [
+              {
+                label: 'OK'
+              }
+            ]
+     });
+}
 
 export function VideoImagePreview(props) {
   // control status, render modal
@@ -30,22 +45,41 @@ export function VideoImagePreview(props) {
               {props.v.created_at.substring(0, 10)}
             </p>
           </div>
-          <div className="row" style={{width: "90%"}}>
-            <div className="col">
-              <ReviewStatusButton
-                v={props.v}
-                sendVideoForReview={props.sendVideoForReview}
-                aiReview={true}  // review type： AI
-              />
-            </div>
-            <div className="col">
-              <ReviewStatusButton
-                v={props.v}
-                sendVideoForReview={props.sendVideoForReview}
-                aiReview={false}  // review type： Expert
-              />
-            </div>
-          </div>
+            { props.isBQ ? (
+                <div className="row" style={{width: "90%"}}>
+                    <div className="col">
+                      <ReviewStatusButton
+                        v={props.v}
+                        sendVideoForReview={props.sendVideoForReview}
+                        aiReview={true}  // review type： AI
+                      />
+                    </div>
+                    <div className="col">
+                      <ReviewStatusButton
+                        v={props.v}
+                        sendVideoForReview={props.sendVideoForReview}
+                        aiReview={false}  // review type： Expert
+                      />
+                    </div>
+                </div>) : (  // TQ
+                <div className="row" style={{width: "90%"}}>
+                  <div className="col">
+                    <TQReviewStatus
+                      v={props.v}
+                      aiReview={true}  // review type： AI
+                      isTQ={true}
+                    />
+                  </div>
+                  <div className="col">
+                    <TQReviewStatus
+                      v={props.v}
+                      aiReview={true}  // review type： AI
+                      isTQ={true}
+                      isSampleAns={true}
+                    />
+                  </div>
+                </div>)
+            }
         </div>
       </div>
     </div>

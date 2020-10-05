@@ -72,6 +72,11 @@ import {
       return review_categories;
   }
 
+  // map question title(question table) to question type(video table)
+  function matchQType(q_title) {
+    return q_title == "BQ" ? "Behavior Question" : "Technique Question";
+  }
+
 export class MyVideoUploader extends Component {
   constructor(props) {
     super(props);
@@ -92,13 +97,21 @@ export class MyVideoUploader extends Component {
 
     //For other browsers
     var name = this.props.video.name;
-    // note to change below when run in local
-    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
+    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;  // change bucket when run in local
     var q_category = `${this.props.questions[this.props.q_index].category}`;
+    var q_description = `${this.props.questions[this.props.q_index].description}`;
+    var q_title = `${this.props.questions[this.props.q_index].title}`;
+    var q_answer = `${this.props.questions[this.props.q_index].answer}`;
+    var q_explain = `${this.props.questions[this.props.q_index].explain}`;
+
+    // insert MetaData to video table
     const videoMetaData = {
       url: url,
-      q_description: `${this.props.questions[this.props.q_index].description}`,
-      q_category: q_category, // insert question category to database
+      q_description: q_description,
+      q_type: matchQType(q_title),
+      q_category: q_category,
+      q_answer: q_answer,
+      q_explain: q_explain,
       ai_review_categories: reviewCategories(q_category),
       expert_review_categories: reviewCategories(q_category),
     };
