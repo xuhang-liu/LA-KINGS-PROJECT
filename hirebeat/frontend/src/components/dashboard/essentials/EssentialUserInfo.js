@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import S3FileUpload from "react-s3";
 
 import {
-  IconButton,
   DbCenterRow,
   IconText,
   MyModal,
@@ -10,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import emailjs from 'emailjs-com';
 
 const config = {
     bucketName: 'hirebeat-avatar',
@@ -120,29 +120,36 @@ export class EssentialUserInfo extends Component {
       save_limit: 5,
     };
   };*/
-  cancelSub = () => {
-    this.finishEditing();
+  sendEmail (e) {
+    e.preventDefault();
+    emailjs.sendForm('service_s8700fg', 'template_992v1vd', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+    e.target.reset()
+  };
+
+  cancelSub = (e) => {
+    e.preventDefault();
     if(this.state.email_match == this.props.user.email){
+      this.sendEmail(e);
+      var profile = this.makeCancelConfirm();
+      this.props.updateProfile(profile);
       confirmAlert({
-        title: 'Are you sure?',
-        message: 'Subscriptions will cancel immediatelly',
+        title: 'Cancel Success',
+        message: 'Your subscriptions will stop at the end of this cycle.',
         buttons: [
           {
-            label: 'Yes',
-            onClick: () => {
-              var profile = this.makeCancelConfirm();
-              this.props.updateProfile(profile);
-            }
-          },
-          {
-            label: 'No'
+            label: 'Ok',
           }
         ]
         });
     }else{
       confirmAlert({
-        title: 'Your email does not match what you type',
-        message: '',
+        title: 'Sure to cancel?',
+        message: 'Your email does not match what you type',
         buttons: [
           {
             label: 'OK'
@@ -150,6 +157,7 @@ export class EssentialUserInfo extends Component {
         ]
         });
     }
+    e.target.reset()
   };
 
   makeCancelConfirm = () => {
@@ -376,16 +384,17 @@ export class EssentialUserInfo extends Component {
                     </Link>
                 </div>
                 <div className="row" style={{marginTop:"8%"}}>
-                  <Link>
-                    <a 
-                    onClick={this.cancelSub}
+                  <form onSubmit={this.cancelSub}>
+                  <input type="email" value={this.props.user.email} name='useremail' style={{display:"none"}}/>
+                    <button
+                    type="submit"
                     className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}} 
                     >
                       <i className="bx bxs-hot"></i>
                         Confirm
                         <span></span>
-                    </a>
-                  </Link>
+                    </button>
+                  </form>
                 </div>
             </div>
           }

@@ -34,7 +34,7 @@ export function AIReview(props) {
           <CategoryTitle title={"Overall Score"} />
           <ProgressBar color={"blue"} height={15} percent={props.v.ai_score} />
           <div className="row">
-            <div className="col-5">
+            <div className="col-6">
               <div id="chart">
                 <Chart
                   options={radialChartOptions.options}
@@ -44,7 +44,7 @@ export function AIReview(props) {
                 />
               </div>
             </div>
-            <div className="col-7">
+            <div className="col-6">
               <CategoryTitle title={"Details"} />
               {categoryArray.map((c, index) => {
                 return (
