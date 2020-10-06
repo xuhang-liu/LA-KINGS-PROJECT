@@ -23,6 +23,7 @@ import blogdetail2 from "./blog/blog-details2";
 import blogdetail3 from "./blog/blog-details3";
 import blogdetail4 from "./blog/blog-details4";
 import blogdetail5 from "./blog/blog-details5";
+import blogdetail6 from "./blog/blog-details6";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -132,6 +133,7 @@ class App extends Component {
                 <Route exact path="/blog-details3" component={blogdetail3} />
                 <Route exact path="/blog-details4" component={blogdetail4} />
                 <Route exact path="/blog-details5" component={blogdetail5} />
+                <Route exact path="/blog-details6" component={blogdetail6} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />

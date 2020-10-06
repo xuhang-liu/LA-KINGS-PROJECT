@@ -237,7 +237,7 @@ export const ButtonContainer = (src, onTap, textDisplayed, btnClassName) => {
   return (
     <div className="setup-card-button-container">
       <CardRow>
-        <img src={src} width={src == techIcon ? "39%" : "40%"} />
+        <img src={src} width={src == techIcon ? "39%" : "40%"} alt="image"/>
       </CardRow>
       <CardRow>
         <CardButton

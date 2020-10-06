@@ -20,7 +20,7 @@ class Features extends Component {
                         <div className="col-lg-4 col-md-6">
                             <ReactWOW animation='fadeInLeft' delay='0.1s'>
                                 <div className="features-box-one">
-                                    <i className='bx'><img src={f1}></img></i>
+                                    <i className='bx'><img src={f1} alt="image"></img></i>
                                     <h3>Easy to use</h3>
                                     <p>Streamline design that allows you to practice interview anytime anywhere</p>
                                 </div>
@@ -30,7 +30,7 @@ class Features extends Component {
                         <div className="col-lg-4 col-md-6">
                             <ReactWOW animation='fadeInLeft' delay='0.2s'>
                                 <div className="features-box-one">
-                                <i className='bx'><img src={f2}></img></i>
+                                <i className='bx'><img src={f2} alt="image"></img></i>
                                     <h3>Real-time simulation</h3>
                                     <p>You will never know what question is coming next, just like a live interview</p>
                                 </div>
@@ -40,7 +40,7 @@ class Features extends Component {
                         <div className="col-lg-4 col-md-6">
                             <ReactWOW animation='fadeInLeft' delay='0.3s'>
                                 <div className="features-box-one">
-                                <i className='bx'><img src={f3}></img></i>
+                                <i className='bx'><img src={f3} alt="image"></img></i>
                                     <h3>Interview question bank</h3>
                                     <p>Get thousands of interview questions across different industries</p>
                                 </div>
@@ -50,7 +50,7 @@ class Features extends Component {
                         <div className="col-lg-4 col-md-6">
                             <ReactWOW animation='fadeInLeft' delay='0.4s'>
                                 <div className="features-box-one">
-                                <i className='bx'><img src={f4}></img></i>
+                                <i className='bx'><img src={f4} alt="image"></img></i>
                                     <h3>Review & Replay</h3>
                                     <p>Secured stage allows you to track and revisit your training progress</p>
                                 </div>
@@ -60,7 +60,7 @@ class Features extends Component {
                         <div className="col-lg-4 col-md-6">
                             <ReactWOW animation='fadeInLeft' delay='0.5s'>
                                 <div className="features-box-one">
-                                <i className='bx'><img src={f5}></img></i>
+                                <i className='bx'><img src={f5} alt="image"></img></i>
                                     <h3>Affordable</h3>
                                     <p>No contact, you can enjoy our sevice for just $0.65/day</p>
                                 </div>
@@ -70,7 +70,7 @@ class Features extends Component {
                         <div className="col-lg-4 col-md-6">
                             <ReactWOW animation='fadeInLeft' delay='0.6s'>
                                 <div className="features-box-one">
-                                <i className='bx'><img src={f6}></img></i>
+                                <i className='bx'><img src={f6} alt="image"></img></i>
                                     <h3>Feedback</h3>
                                     <p>Get AI or HR feedback after practice, improve your interview skill today</p>
                                 </div>
