@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import DocumentMeta from 'react-document-meta';
+import {Helmet} from "react-helmet";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Dashboard from "./dashboard/Dashboard";
@@ -84,6 +85,11 @@ class App extends Component {
     };
     return (
       <DocumentMeta {...meta}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>HireBeat – the best video interview prep tool for jobseekers</title>
+        <link rel="canonical" href="https://hirebeat.co"/>
+      </Helmet>
       <React.Fragment>
       <Provider store={store}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
