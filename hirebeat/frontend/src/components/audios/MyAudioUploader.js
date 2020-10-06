@@ -86,12 +86,12 @@ export class MyAudioUploader extends Component {
     var saveOnTap = this.handleUpload;
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
     var saveText = "Save and Next";
-    var skipText = "Discard and Skip";
+    var skipText = "Discard and Next";
     if (this.props.last_q) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
       saveText = "Save and Finish";
-      skipText = "Skip and Finish";
+      skipText = "Discard and Finish";
     }
     return (
       <div>
