@@ -206,12 +206,14 @@ export class MyVideoUploader extends Component {
           isAudio={this.props.isAudio}
           //upgrade={() => console.log("upgrade")}
         />
+        {this.props.save_limit <= 5  &&
         <BglessCardButton1
           textDisplayed={"Upgrade Now ->"}
           buttonWidth={"100%"}
           fontFamily={"Poppins"}
           isAudio={this.props.isAudio}
         />
+        }
         <BglessCardButton
           onTap={skipOnTap}
           textDisplayed={skipText}
