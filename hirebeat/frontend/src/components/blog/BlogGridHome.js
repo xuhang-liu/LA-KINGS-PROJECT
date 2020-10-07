@@ -5,6 +5,7 @@ import blog2 from "../../assets/blog2.jpg";
 import blog3 from "../../assets/blog3.jpg";
 import blog4 from "../../assets/blog4.jpg";
 import blog5 from "../../assets/blog5.jpg";
+import blog6 from "../../assets/blog6.jpg";
 import author1 from "../../assets/HireBeatLogo2.png";
 
 
@@ -14,6 +15,45 @@ class BlogGrid extends Component {
             <section className="blog-area ptb-100">
                 <div className="container">
                     <div className="row">
+
+                    <div className="col-lg-4 col-md-6">
+                            <div className="single-blog-post">
+                                <div className="post-image">
+                                    <Link to="/blog-details6">
+                                        <a>
+                                            <img src={blog6} alt="image" />
+                                        </a>
+                                    </Link>
+
+                                    <div className="date">
+                                        <i className='bx bx-calendar'></i> Oct 06, 2020
+                                    </div>
+                                </div>
+
+                                <div className="post-content">
+                                    <h3>
+                                        <Link to="/blog-details6">
+                                            <a>4 COMMON INTERVIEW QUESTIONS</a>
+                                        </Link>
+                                    </h3>
+
+                                    <div className="post-info">
+                                        <div className="post-by">
+                                            <img src={author1} alt="image" />
+                                            <h6>HireBeat</h6>
+                                        </div>
+
+                                        <div className="details-btn">
+                                            <Link to="/blog-details6">
+                                                <a>
+                                                    <i className="bx bx-right-arrow-alt"></i>
+                                                </a>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     <div className="col-lg-4 col-md-6">
                             <div className="single-blog-post">
