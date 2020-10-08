@@ -93,6 +93,7 @@ class App extends Component {
               <Alerts />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/resume" component={ResumeUpload} />
                 <PrivateRoute exact path="/review" component={ReviewWindow} />
                 <PrivateRoute
                   exact
@@ -143,7 +144,6 @@ class App extends Component {
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/quiz" component={QuizHome} />
                 <Route exact path="/quizresult" component={QuizResultPage} />
-                <Route exact path="/resume" component={ResumeUpload} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />
