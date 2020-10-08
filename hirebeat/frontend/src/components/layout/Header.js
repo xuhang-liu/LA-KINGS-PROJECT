@@ -44,12 +44,16 @@ export class Header extends Component {
     const {user} = this.props.auth;
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       <a
-        href=""
         ref={ref}
-        onClick={(e) => {
+        onMouseEnter={(e) => {
           e.preventDefault();
           onClick(e);
         }}
+        onMouseLeave={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+        style={{textDecoration:"none", cursor:"pointer"}}
       >
         {children}
       </a>
@@ -132,12 +136,12 @@ export class Header extends Component {
                   <Dropdown>
                     <Dropdown.Toggle as={CustomToggle} >
                       <span className="header-text">Resources</span>
-                    </Dropdown.Toggle>
 
                     <Dropdown.Menu>
                       <Dropdown.Item href="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Blog</Dropdown.Item>
                       <Dropdown.Item href="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Quiz</Dropdown.Item>
                     </Dropdown.Menu>
+                    </Dropdown.Toggle>
                   </Dropdown>
                 </a>
               </li>
@@ -160,12 +164,16 @@ export class Header extends Component {
   renderGuestLinks = () => {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       <a
-        href=""
         ref={ref}
-        onClick={(e) => {
+        onMouseEnter={(e) => {
           e.preventDefault();
           onClick(e);
         }}
+        onMouseLeave={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+        style={{textDecoration:"none", cursor:"pointer"}}
       >
         {children}
       </a>
@@ -210,12 +218,12 @@ export class Header extends Component {
                   <Dropdown>
                     <Dropdown.Toggle as={CustomToggle} >
                       <span className="header-text">Resources</span>
-                    </Dropdown.Toggle>
 
                     <Dropdown.Menu>
                       <Dropdown.Item href="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Blog</Dropdown.Item>
                       <Dropdown.Item href="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Quiz</Dropdown.Item>
                     </Dropdown.Menu>
+                    </Dropdown.Toggle>
                   </Dropdown>
                 </a>
               </li>
