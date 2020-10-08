@@ -99,7 +99,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Accounting")}>
-      <img src={accounting}/>
+      <img src={accounting} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -109,7 +109,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Administrate Support")}>
-      <img src={admin}/>
+      <img src={admin} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -119,7 +119,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Consulting")}>
-      <img src={consult}/>
+      <img src={consult} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -129,7 +129,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Finance")}>
-      <img src={finance}/>
+      <img src={finance} alt="image"/>
       </button>  
       </div>
       <br/>
@@ -142,7 +142,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Human Resources")}>
-      <img src={human}/>
+      <img src={human} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -152,7 +152,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Marketing")}>
-      <img src={market}/>
+      <img src={market} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -162,7 +162,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Product Management")}>
-      <img src={product}/>
+      <img src={product} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -172,7 +172,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Retail")}>
-      <img src={retail}/>
+      <img src={retail} alt="image"/>
       </button>  
       </div>
       <div>
@@ -184,7 +184,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.DisplayText}>
-      <img src={nofind}/>
+      <img src={nofind} alt="image"/>
       </button>
       <form style={{display:"inline", visibility:this.state.display, marginLeft: "15px"}} onSubmit={sendEmail}>
       <input type="text" name="field" placeholder="What industry are you looking for?"

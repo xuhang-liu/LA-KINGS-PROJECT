@@ -88,7 +88,7 @@ export class Register extends Component {
             <section className="signup-area">
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0"> 
-                      <img src={leftbg}></img>
+                      <img src={leftbg} alt="image"></img>
                     </div>
 
                     <div className="col-lg-6 col-md-12 p-0">
@@ -237,7 +237,7 @@ export class Register extends Component {
 
                     <div>
                       <div>
-                        <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}}/>
+                        <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
                         <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Poppins"}}>
                         <a>No credit card information needed during signup. Enjoy your free plan.</a>
                         </div></div>

@@ -6,7 +6,14 @@ import { Link } from "react-router-dom";
 function ButtonPanel(props) {
   var save_limit = props.profile.save_limit;
   var saved_video = props.profile.saved_video_count;
-  var saves_left = Number(save_limit) - Number(saved_video);
+  var saves_left = 0;
+  if(Number(save_limit)>900){
+    saves_left = "unlimited";
+  }else{
+    if((Number(save_limit) - Number(saved_video))>0){
+      saves_left = Number(save_limit) - Number(saved_video);
+    }
+  }
 
   var selectColor = "#090D3A";
   var defaultColor = "#7d7d7d";
