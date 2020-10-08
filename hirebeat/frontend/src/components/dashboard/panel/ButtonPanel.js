@@ -10,7 +10,9 @@ function ButtonPanel(props) {
   if(Number(save_limit)>900){
     saves_left = "unlimited";
   }else{
-    saves_left = Number(save_limit) - Number(saved_video);
+    if((Number(save_limit) - Number(saved_video))>0){
+      saves_left = Number(save_limit) - Number(saved_video);
+    }
   }
 
   var selectColor = "#090D3A";

@@ -138,7 +138,7 @@ export class MyVideoUploader extends Component {
   }
 
   handleUploadAndFinish = () => {
-    if (this.uploadCheckPassed) {
+    if (this.props.saved_video_count < this.props.save_limit) {
       this.uploader.uploadFile(this.props.video);
       this.redirectToDashboard();
     } else {
@@ -146,13 +146,6 @@ export class MyVideoUploader extends Component {
         errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
       });
     }
-  };
-
-  uploadCheckPassed = () => {
-    console.log("======result========");
-    console.log(this.props.saved_video_count);
-    console.log(this.props.save_limit);
-    return this.props.saved_video_count < this.props.save_limit;
   };
 
   redirectToDashboard = () => {
@@ -206,12 +199,14 @@ export class MyVideoUploader extends Component {
           isAudio={this.props.isAudio}
           //upgrade={() => console.log("upgrade")}
         />
+        {this.props.save_limit <= 5  &&
         <BglessCardButton1
           textDisplayed={"Upgrade Now ->"}
           buttonWidth={"100%"}
           fontFamily={"Poppins"}
           isAudio={this.props.isAudio}
         />
+        }
         <BglessCardButton
           onTap={skipOnTap}
           textDisplayed={skipText}

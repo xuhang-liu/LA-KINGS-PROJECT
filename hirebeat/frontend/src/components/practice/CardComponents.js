@@ -199,7 +199,7 @@ export const VideoNumberLinkRow = (props) => {
   return (
     <CardRowMidHigh>
       <div className="d-flex justify-content-around" style={{ width: "100%" }}>
-        <h6>Free video save left: <h6 style={{color:"#FF6B00", display:"inline"}}>{props.number_of_videos_to_save}</h6></h6>
+        <h6>Free video save left: <h6 style={{color:"#FF6B00", display:"inline"}}>{props.number_of_videos_to_save<0 ? 0:props.number_of_videos_to_save}</h6></h6>
         {/* <a
           onClick={props.upgrade}
           style={{
@@ -237,7 +237,7 @@ export const ButtonContainer = (src, onTap, textDisplayed, btnClassName) => {
   return (
     <div className="setup-card-button-container">
       <CardRow>
-        <img src={src} width={src == techIcon ? "39%" : "40%"} />
+        <img src={src} width={src == techIcon ? "39%" : "40%"} alt="image"/>
       </CardRow>
       <CardRow>
         <CardButton

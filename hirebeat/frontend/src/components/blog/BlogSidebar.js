@@ -5,6 +5,7 @@ import blog2 from '../../assets/blog2.jpg';
 import blog3 from '../../assets/blog3.jpg';
 import blog4 from '../../assets/blog4.jpg';
 import blog5 from '../../assets/blog5.jpg';
+import blog6 from '../../assets/blog6.jpg';
 
 class BlogSidebar extends Component {
     render() {
@@ -26,6 +27,25 @@ class BlogSidebar extends Component {
                 {/* Popular Posts */}
                 <div className="widget widget_spacle_posts_thumb">
                     <h3 className="widget-title">Popular Posts</h3>
+
+                    <article className="item">
+                        <Link to="/blog-details6">
+                            <a className="thumb">
+                                <img src={blog6} alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Oct 06, 2020</time>
+                            <h4 className="title usmall">
+                                <Link to="/blog-details6">
+                                    <a>4 Common Interview Questions</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
 
                     <article className="item">
                         <Link to="/blog-details5">
