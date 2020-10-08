@@ -100,6 +100,7 @@ class App extends Component {
               <Alerts />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/resume" component={ResumeUpload} />
                 <PrivateRoute exact path="/review" component={ReviewWindow} />
                 <PrivateRoute
                   exact

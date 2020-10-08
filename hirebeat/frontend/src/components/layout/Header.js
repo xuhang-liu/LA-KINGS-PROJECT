@@ -62,32 +62,43 @@ export class Header extends Component {
         <React.Fragment>
           <div className="nav-item order-xl-1 align-self-center">
             <div className="btn-group" role="group">
-              <button
+            <a className="nav-link text-white">
+                <div
                   id="btnGroupDrop1"
                   type="button"
-                  className="default-btn"
+                  className="nav-item"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false">
-                <i className="bx bx-log-in"></i>        
-                <b>{user ? `  ${user.username}  ` : ""}</b>
-              </button>
-
-              <div
+                  <i className="bx bx-user-circle 1 bx-sm"></i>        
+                  <span className="header-text">{user ? `  ${user.username}  ` : ""}</span>
+                </div>
+                <div
                   className="dropdown-menu"
                   role="menu"
                   aria-labelledby="btnGroupDrop1"
-              >
-                <Link to="/">
-                <button
-                    onClick={this.props.logout}
-                    className="btn btn-danger btn-sm text-light"
-                    style={{width: "80%", marginLeft: "15px"}}
+                  style={{marginLeft:"8%"}}
                 >
-                  Logout
-                </button>
-                </Link>
-              </div>
+                  <Link to="/dashboard">
+                    <a
+                      className="dropdown-item"
+                      style={{color:"#090D3A", fontFamily:"Poppins"}}
+                    >
+                    Dashboard
+                    </a>
+                  </Link>
+
+                  <Link to="/">
+                    <a
+                      onClick={this.props.logout}
+                      className="dropdown-item"
+                      style={{color:"#FF0000", fontFamily:"Poppins"}}
+                    >
+                    Log Out
+                  </a>
+                  </Link>
+                </div>
+            </a>
             </div>
           </div>
 
