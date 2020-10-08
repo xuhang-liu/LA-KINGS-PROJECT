@@ -59,7 +59,7 @@ export class MyAudioUploader extends Component {
   }
 
   handleUploadAndFinish = () => {
-    if (this.uploadCheckPassed) {
+    if (this.props.saved_audio_count < this.props.save_limit) {
       this.uploader.uploadFile(this.props.audio);
       this.redirectToDashboard();
     } else {
@@ -67,13 +67,6 @@ export class MyAudioUploader extends Component {
         errorMessage: "Audio save limit already reached",
       });
     }
-  };
-
-  uploadCheckPassed = () => {
-    console.log("======result========");
-    console.log(this.props.saved_audio_count);
-    console.log(this.props.save_limit);
-    return this.props.saved_audio_count < this.props.save_limit;
   };
 
   redirectToDashboard = () => {
