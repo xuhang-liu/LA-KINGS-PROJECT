@@ -1615,10 +1615,48 @@ color: #080A3C;
   margin-top: 2%;
 }
 
-.resume-textarea{
+.resume-textarea {
   width: 300%;
   height: 625%;
   border: 1px solid #E6E8F6;
   box-sizing: border-box;
   border-radius: 3px;
+}
+
+.resume-upload {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #FFFFFF;
+}
+
+.resume-type {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  margin-left: 1.5rem;
+  color: #4A6F8A;
+}
+
+.resume-scan {
+  color: white;
+  fontWeight: bold;
+}
+
+.resume-name {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.resume-success {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  color: #13C4A1;
 }

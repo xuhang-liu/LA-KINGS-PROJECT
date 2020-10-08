@@ -8,6 +8,7 @@ class Resume(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     owner = models.ForeignKey(User, related_name="resume", on_delete = models.CASCADE, null = True)
     resume_url = models.URLField(max_length=200)
+    job_title = models.CharField(max_length=200, default="Not Provided", null=True)
     jd_text = models.TextField(blank=True)
     skills_keywords_bool = models.BooleanField(default=False, null=True)
     skills_keywords = models.TextField(blank=True, null=True)
