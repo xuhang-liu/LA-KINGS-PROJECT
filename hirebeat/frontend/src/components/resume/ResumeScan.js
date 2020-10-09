@@ -5,6 +5,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import PropTypes from "prop-types";
 import { addResume } from "../../redux/actions/resume_actions";
+import { createMessage } from "../../redux/actions/message_actions";
 import { connect } from "react-redux";
 var ReactS3Uploader = require("react-s3-uploader");
 
@@ -41,6 +42,11 @@ export class ResumeScan extends Component {
     this.setState({ ...this.state, jdText: value });
   }
 
+  setLabel = (name) => {
+    let label = document.getElementById('fileName');
+    label.textContent = name;
+  }
+
   selectFile = () => {
     // toggle input element
     let input = document.getElementById('uploadFile');
@@ -55,10 +61,8 @@ export class ResumeScan extends Component {
         // check file type
         let docType = name.slice(-3);
         if (docType === "doc" || docType === "pdf") {
-            // convert selected to be true
             this.setSelected();
-            let label = document.getElementById('fileName');
-            label.textContent = name;
+            this.setLabel(name);
 
             //set cvName &　resume states
             let timestamp = Date.parse(new Date());
@@ -67,15 +71,15 @@ export class ResumeScan extends Component {
             this.setState({cvName: cvName});
             this.setState({resume: newResume});
         } else {
-            this.alert();
+            this.alert("Wrong File Type", "Please upload Doc or PDF version of your resume");
         }
     }
   }
 
-  alert = () => {
+  alert = (title, message) => {
     confirmAlert({
-      title: "Wrong File Type",
-      message: "Please upload Doc or PDF version of your resume",
+      title: title,
+      message: message,
       buttons: [
         {
           label: 'Ok'
@@ -108,13 +112,18 @@ export class ResumeScan extends Component {
     console.log("In progress");
   };
 
-  handleUpload() {
+  handleUpload = () => {
+    if (this.props.saved_resume_count < this.props.save_resume_limit) {
       this.uploader.uploadFile(this.state.resume);
       this.redirectToDashboard();
+    } else {
+      this.props.createMessage({
+        errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
+      });
+    }
   }
 
   redirectToDashboard = () => {
-    // redirect to profile
     const { history } = this.props;
     if (history) history.push({
             pathname: "/dashboard",
@@ -160,7 +169,6 @@ export class ResumeScan extends Component {
           }}
           autoUpload={true}
         />
-        <form onSubmit={this.handleUpload}>
         <div style={{textAlign: "center"}}>
            <h4 className="resume-subtitle">Paste Your Job Description </h4>
            <div>
@@ -185,16 +193,24 @@ export class ResumeScan extends Component {
            </div>
         </div>
         <div className="free-trial-content" style={{textAlign: "center", marginTop:"5%"}}>
-          <button type="submit" className="default-btn resume-scan" style={{background: "#090D3A"}}>
+          <button onClick={this.handleUpload} className="default-btn resume-scan" style={{background: "#090D3A"}}>
             <i className="bx bxs-hot"></i>
               Scan
           </button>
         </div>
-        </form>
       </div>
       </React.Fragment>
     );
   }
 }
 
-export default connect(null, { addResume })(withRouter(ResumeScan));
+const mapStateToProps = (state) => ({
+  save_resume_limit: state.auth_reducer.profile.save_resume_limit,
+  saved_resume_count: state.auth_reducer.profile.saved_resume_count,
+  profile: state.auth_reducer.profile,
+  user: state.auth_reducer.user,
+});
+
+export default withRouter(connect(mapStateToProps, { addResume, createMessage })(
+  ResumeScan
+));
