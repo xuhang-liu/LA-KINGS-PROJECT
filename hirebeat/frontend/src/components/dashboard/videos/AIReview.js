@@ -207,7 +207,7 @@ const WordReview = (props) => {
           </div>
         </div>
         <div style={{padding: "2rem", paddingTop: "0"}}>
-          <p className="ai-review-text1">{props.wordArray.length} filter words</p>
+          <p className="ai-review-text1">{props.wordArray.length} filter word(s)</p>
           <p className="ai-review-text2">Avoid using filter words to sound more confident and succinct in your delivery</p>
           {props.wordArray.map(word => {
             return (

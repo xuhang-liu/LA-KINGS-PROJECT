@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
-import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
+//import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
 import { useEffect } from "react";
 import PageTitleArea from '../Common/PageTitleArea';
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+//import { confirmAlert } from 'react-confirm-alert';
+//import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
