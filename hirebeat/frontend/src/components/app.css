@@ -1608,3 +1608,8 @@ color: #080A3C;
   font-size: 0.75rem;
   color: #4A6F8A;
 }
+
+#subpage_scroll_overflow:hover {
+  padding-bottom: 10%;
+  overflow: auto;
+}
