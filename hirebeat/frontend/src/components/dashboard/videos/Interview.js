@@ -15,14 +15,14 @@ export const Interview = () => {
           style = {{outline: "none", borderRadius: "2px"}}
           onClick={() => setFilter("bq")}
         >
-          Behavior Questions
+          Behavioral Questions
         </button>
         <button
           className={decideClassName(filter, "tq")}
           style = {{outline: "none", borderRadius: "2px"}}
           onClick={() => setFilter("tq")}
         >
-          Technique Questions
+          Technical Questions
         </button>
       </div>
       <VideoPreviewList filter={filter} />
