@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ButtonPanel from "./panel/ButtonPanel";
+import { Link } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
-import VideoPreviewList from "./videos/VideoPreviewList";
+//import VideoPreviewList from "./videos/VideoPreviewList";
 //import { Analytics } from "./videos/Analytics";
 import { Interview } from "./videos/Interview";
 import { Resume } from "./videos/Resume";
@@ -11,6 +12,7 @@ import { DbRow } from "./DashboardComponents";
 import { DbCenterRow } from "./DashboardComponents";
 import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
+import PageTitleArea from '../Common/PageTitleArea';
 import { useEffect } from "react";
 
 function ScrollToTopOnMount() {
@@ -89,7 +91,7 @@ export class Dashboard extends Component {
           </DbRow>
           <br />
           <br />
-          <div className="container" style={{marginBottom:"10%"}}>
+          <div className="container" style={{marginBottom:"0%"}}>
             <DbCenterRow>
               <div className="col-3" style={{marginBottom:"auto"}}>
                 <ButtonPanel
@@ -101,13 +103,24 @@ export class Dashboard extends Component {
                   subpage={this.state.subpage}
                 />
               </div>
-              <div className="col-10" style={{marginBottom:"auto"}}>{this.renderSubpage()}</div>
+              <div className="col-10" id="subpage_scroll_overflow" style={{marginBottom:"auto", height:"38rem"}}>{this.renderSubpage()}</div>
             </DbCenterRow>
           </div>
           </MediaQuery>
-          <MediaQuery maxDeviceWidth={1224}>
-          <div style={{fontSize:"1.6rem"}}><b>Please Login with your computer for the full functionalities.</b></div>
-        </MediaQuery>
+          <MediaQuery maxDeviceWidth={1223}>
+            <PageTitleArea
+              pageTitle="Welcome to Hirebeat!"
+              pageDescription="Our mobile functionality for interview practice is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
+            />
+            <div style={{textAlign: "center"}}>
+            <Link to="/">
+              <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00", marginTop:"1rem",marginBottom:"1rem"}}>
+                <i className="bx bxs-hot"></i>
+                Back to Home Page
+              </a>
+            </Link>
+            </div>
+          </MediaQuery>
       {/* </div> */}
       </React.Fragment>
     );

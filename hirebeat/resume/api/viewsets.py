@@ -16,6 +16,9 @@ class RessumeViewSet(viewsets.ModelViewSet):
         return self.request.user.resume.all().order_by('-created_at')
 
     def perform_create(self, serializer):
+        profile = Profile.objects.filter(user=self.request.user)[0]
+        profile.saved_resume_count += 1
+        profile.save()
         serializer.save(owner=self.request.user)
 
 

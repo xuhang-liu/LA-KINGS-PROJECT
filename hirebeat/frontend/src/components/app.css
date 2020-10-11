@@ -1660,3 +1660,9 @@ color: #080A3C;
   font-size: 15px;
   color: #13C4A1;
 }
+
+#subpage_scroll_overflow:hover {
+  padding-bottom: 10%;
+  overflow: auto;
+}
+

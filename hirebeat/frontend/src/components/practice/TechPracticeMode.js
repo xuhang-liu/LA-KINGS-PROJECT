@@ -22,7 +22,7 @@ export class TechPracticeMode extends Component {
     type: "behavior",
     paramsAreSet: false,
     audioParamIsSet: false,
-    checked: false,
+    checked: true,
     deviceTested: false,
     numberOfQuestions: { value: 3, label: "3" },
     lengthOfResponse: { value: 1, label: "60s" },
