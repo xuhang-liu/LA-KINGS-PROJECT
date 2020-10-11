@@ -44,12 +44,16 @@ export class Header extends Component {
     const {user} = this.props.auth;
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       <a
-        href=""
         ref={ref}
-        onClick={(e) => {
+        onMouseEnter={(e) => {
           e.preventDefault();
           onClick(e);
         }}
+        onMouseLeave={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+        style={{textDecoration:"none", cursor:"pointer"}}
       >
         {children}
       </a>
@@ -57,44 +61,28 @@ export class Header extends Component {
     return (
         <React.Fragment>
           <div className="nav-item order-xl-1 align-self-center">
-            <div className="btn-group" role="group">
-            <a className="nav-link text-white">
-                <div
-                  id="btnGroupDrop1"
-                  type="button"
-                  className="nav-item"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false">
-                  <i className="bx bx-user-circle 1 bx-sm"></i>        
-                  <span className="header-text">{user ? `  ${user.username}  ` : ""}</span>
-                </div>
-                <div
-                  className="dropdown-menu"
-                  role="menu"
-                  aria-labelledby="btnGroupDrop1"
-                  style={{marginLeft:"8%"}}
-                >
-                  <Link to="/dashboard">
-                    <a
-                      className="dropdown-item"
-                      style={{color:"#090D3A", fontFamily:"Poppins"}}
-                    >
-                    Dashboard
-                    </a>
-                  </Link>
-
-                  <Link to="/">
-                    <a
-                      onClick={this.props.logout}
-                      className="dropdown-item"
-                      style={{color:"#FF0000", fontFamily:"Poppins"}}
-                    >
-                    Log Out
-                  </a>
-                  </Link>
-                </div>
-            </a>
+            <div className="nav-link text-white navbar-font">
+              <Dropdown>
+                <Dropdown.Toggle as={CustomToggle} >
+                  <div className="row">
+                    <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF"}}></i>        
+                    <div className="header-text">{user ? `  ${user.username}  ` : ""}</div>
+                  </div>
+                </Dropdown.Toggle>
+                
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <Link to="/dashboard" className="header-dropdown-custom" style={{color:"#090D3A", fontFamily:"Poppins", textDecoration:"none"}}>
+                      Dashboard
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", fontFamily:"Poppins", textDecoration:"none"}}>
+                      Log out
+                    </Link>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           </div>
 
