@@ -103,6 +103,30 @@ export class Dashboard extends Component {
             </DbCenterRow>
           </div>
           </MediaQuery>
+          {/*<MediaQuery maxDeviceWidth={1223}>
+          <DbRow>
+            <div className="col-12" style={{padding:"0%"}}>
+              <div className="page-title-area">
+                <div className="container">
+                  <div className="page-title-content" style={{color:"#FFFFFF"}}>
+                    <EssentialUserInfo
+                      user={this.props.user}
+                      profile={this.props.profile}
+                      updateProfile={this.props.updateProfile}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </DbRow>
+          <br />
+          <br />
+          <div className="container" style={{marginBottom:"0%"}}>
+            <DbCenterRow>
+              <div id="subpage_scroll_overflow" style={{marginBottom:"auto", height:"38rem"}}>{this.renderSubpage()}</div>
+            </DbCenterRow>
+          </div>
+    </MediaQuery>*/}
           <MediaQuery maxDeviceWidth={1223}>
             <PageTitleArea
               pageTitle="Welcome to Hirebeat!"
@@ -116,7 +140,7 @@ export class Dashboard extends Component {
               </a>
             </Link>
             </div>
-          </MediaQuery>
+    </MediaQuery>
       {/* </div> */}
       </React.Fragment>
     );

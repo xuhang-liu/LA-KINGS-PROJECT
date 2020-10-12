@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import emailjs from 'emailjs-com';
+import MediaQuery from 'react-responsive';
 
 const config = {
     bucketName: 'hirebeat-avatar',
@@ -203,6 +204,8 @@ export class EssentialUserInfo extends Component {
 
   render() {
     return (
+      <React.Fragment>
+      <MediaQuery minDeviceWidth={1224}>
       <div className="container">
           <DbCenterRow>
             {/* <div className="col-2">
@@ -439,6 +442,53 @@ export class EssentialUserInfo extends Component {
           hide={this.finishEditing}
         />
       </div>
+      </MediaQuery>
+      <MediaQuery maxDeviceWidth={1223}>
+        <DbCenterRow>
+          <div className="container">
+            <div className="col-9">
+              <div className="row">
+                <div className="col d-flex align-items-center">
+                  <h1
+                    style={{
+                      fontWeight: "bold",
+                      marginRight: "0.8rem",
+                    }}
+                  >
+                    {this.props.user.username}
+                  </h1>
+                  {/* for regular user */}
+                  {
+                    this.props.profile.membership == "Regular" &&
+                    <div className="col-3">
+                      <div className="row">
+                        <Link to="/pricing">
+                          <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}}>
+                          <i className="bx bxs-hot"></i>
+                            Upgrade
+                            <span></span>
+                          </a>
+                        </Link>
+                      </div>
+                    </div>
+                  }
+                  {/* for premium user */}
+                  {
+                    this.props.profile.membership == "Premium" &&
+                    <div className="row">
+                      <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
+                        <i className='bx bx-diamond'></i> 
+                          <span style={{marginLeft: "6px"}}>Premium</span>
+                      </div>
+                    </div>
+                  }         
+                </div>
+              </div>
+            </div>
+          </div>
+        </DbCenterRow>
+      </MediaQuery>
+      </React.Fragment>
     );
   }
 }
