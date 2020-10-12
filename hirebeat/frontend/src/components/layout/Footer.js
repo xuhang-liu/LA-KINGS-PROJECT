@@ -86,25 +86,25 @@ class Footer extends Component {
                                 </ul>
                                 <ul className="social1">
                                     <li>
-                                        <a href="https://www.facebook.com/HireBeat">
+                                        <a href="https://www.facebook.com/HireBeat" target="_blank">
                                         <FacebookIcon size={32} round={true}>
                                         </FacebookIcon>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.linkedin.com/company/hirebeat/">
+                                        <a href="https://www.linkedin.com/company/hirebeat/" target="_blank">
                                         <LinkedinIcon size={32} round={true}>
                                         </LinkedinIcon>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/hirebeat">
+                                        <a href="https://twitter.com/hirebeat" target="_blank">
                                         <TwitterIcon size={32} round={true}>
                                         </TwitterIcon>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="mailto: info@hirebeat.co">
+                                        <a href="mailto: info@hirebeat.co" target="_blank">
                                         <EmailIcon size={32} round={true}>
                                         </EmailIcon>
                                         </a>

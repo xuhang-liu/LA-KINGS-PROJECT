@@ -4,6 +4,7 @@ import TQReviewStatus from "./TQReviewStatus";
 import { renderQDes } from "../DashboardComponents";
 import VideoPlayer from "../../videos/VideoPlayer";
 import AudioPlayer from "../../audios/AudioPlayer";
+import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 import { renderWaitTag } from "../DashboardComponents";
 
@@ -25,12 +26,14 @@ export function VideoImagePreview(props) {
   return (
     <div className="height-20">
       <div className="row">
+        <MediaQuery minDeviceWidth={1224}>
         <div className="col-5">
           {
             (props.isAudio) ? <AudioPlayer url={props.v.url} />
                 : <VideoPlayer url={props.v.url} />
           }
         </div>
+        </MediaQuery>
         <div className="col d-flex flex-column justify-content-start container">
           <h3 className="height-50">Q:{renderQDes(props.v.q_description)}</h3>
           <div className="d-flex justify-content-start">
