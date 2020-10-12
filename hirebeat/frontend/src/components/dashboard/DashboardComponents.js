@@ -1,5 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
+import Chart from "react-apexcharts";
+import { customBarData } from "../../constants/constants";
 
 export const DbRow = (props) => {
     return <div className="dashboard-row">{props.children}</div>;
@@ -165,4 +167,17 @@ export const MyModal = (props) => {
             {props.children}
         </Modal>
     );
+};
+
+export const OverallScore = (props) => {
+  var options = customBarData(props.percent, props.bgColor, props.barColor);
+  return (
+    <Chart
+      options={options.options}
+      series={options.series}
+      type="radialBar"
+      height={150}
+      key={"overall"}
+    />
+  );
 };

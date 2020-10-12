@@ -66,9 +66,8 @@ export class Header extends Component {
                 <Dropdown.Toggle as={CustomToggle} >
                   <div className="row">
                     <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF"}}></i>        
-                    <div className="header-text">{user ? `  ${user.username}  ` : ""}</div>
+                    <span className="header-text" style={{marginLeft: "0.5rem"}}>{user ? `  ${user.username}  ` : ""}</span>
                   </div>
-                </Dropdown.Toggle>
                 
                 <Dropdown.Menu>
                   <Dropdown.Item>
@@ -82,6 +81,7 @@ export class Header extends Component {
                     </Link>
                   </Dropdown.Item>
                 </Dropdown.Menu>
+                </Dropdown.Toggle>
               </Dropdown>
             </div>
           </div>

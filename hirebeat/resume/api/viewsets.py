@@ -11,7 +11,7 @@ class RessumeViewSet(viewsets.ModelViewSet):
 
     serializer_class = ResumeSerializer
 
-    # queryset = Video.objects.all() get all videos
+    # queryset = Resume.objects.all() get all videos
     def get_queryset(self):
         return self.request.user.resume.all().order_by('-created_at')
 

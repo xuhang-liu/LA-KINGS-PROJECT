@@ -190,6 +190,7 @@ export var radialBarOptions = {
       height: "150px",
       type: "line",
     },
+    colors: ["#008ffb"],
     plotOptions: {
       radialBar: {
         hollow: {
@@ -235,6 +236,20 @@ export const infillBarData = (scoreNumber) => {
   var options = deepCopyFunction(radialBarOptions);
   options.series[0] = scoreNumber * 10;
   options.options.labels[0] = scoreNumber;
+  return options;
+};
+
+export const customBarData = (scoreNumber, bgColor, barColor) => {
+  var options = deepCopyFunction(radialBarOptions);
+  options.series[0] = scoreNumber;
+  options.options.labels[0] = scoreNumber;
+  // configure color params
+  if (typeof(bgColor) != "undefined") {
+    options.options.plotOptions.radialBar.hollow.background = bgColor;
+  }
+  if (typeof(barColor) != "undefined") {
+    options.options.colors[0] = barColor;
+  }
   return options;
 };
 

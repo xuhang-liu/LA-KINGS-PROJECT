@@ -98,7 +98,7 @@ function ButtonPanel(props) {
             </div>
 
             <div className="col-6" style={{padding:"0%"}}>
-              <Link to="/pricing">
+              <Link to="/pricing" style={{textDecoration: "none"}}>
                 <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
               </Link>
             </div>

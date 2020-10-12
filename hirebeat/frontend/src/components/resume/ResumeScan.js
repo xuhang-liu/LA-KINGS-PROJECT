@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import safariAlert from "../basic/SafariAlert";
 import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
 import PropTypes from "prop-types";
 import { addResume } from "../../redux/actions/resume_actions";
 import { createMessage } from "../../redux/actions/message_actions";
@@ -45,6 +44,14 @@ export class ResumeScan extends Component {
   setLabel = (name) => {
     let label = document.getElementById('fileName');
     label.textContent = name;
+  }
+
+  checkInput = (resume, jobTitle, jdText) => {
+    let filled = true;
+    if (this.state.resume == null || this.state.jobTitle == "" || this.state.jdText == "") {
+        filled = false;
+    }
+    return filled;
   }
 
   selectFile = () => {
@@ -113,10 +120,15 @@ export class ResumeScan extends Component {
   };
 
   handleUpload = () => {
+    // check required inputs: resume, jobTitle, jdText
+    if (!this.checkInput(this.state.resume, this.state.jobTitle, this.state.jdText)) {
+        return this.alert("Required Fields Not Provided", "Please fill all forms! ");
+    }
     if (this.props.saved_resume_count < this.props.save_resume_limit) {
       this.uploader.uploadFile(this.state.resume);
       this.redirectToDashboard();
-    } else {
+    }
+    else {
       this.props.createMessage({
         errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
       });
@@ -137,7 +149,7 @@ export class ResumeScan extends Component {
       <div className="container">
         <div style={{textAlign: "center"}}>
           <button className="default-btn resume-upload" onClick={this.selectFile}>
-            <i className="bx bx-cloud-upload bx-sm" style={{marginRight: "1rem"}}></i>
+            <i className="bx bx-cloud-upload bx-sm"></i>
               Upload Resume
           </button>
           <span className="resume-type">Doc or PDF file supported. </span>
@@ -192,10 +204,11 @@ export class ResumeScan extends Component {
              </textarea>
            </div>
         </div>
-        <div className="free-trial-content" style={{textAlign: "center", marginTop:"5%"}}>
-          <button onClick={this.handleUpload} className="default-btn resume-scan" style={{background: "#090D3A"}}>
+        <div style={{textAlign: "center", marginTop:"5%"}}>
+          <button onClick={this.handleUpload} className="default-btn resume-scan" style={{backgroundColor: "#090D3A"}}>
             <i className="bx bxs-hot"></i>
               Scan
+            <span></span>
           </button>
         </div>
       </div>

@@ -1666,3 +1666,9 @@ color: #080A3C;
   overflow: auto;
 }
 
+.resume-btn {
+  width: 9rem;
+  color: #FFFFFF;
+  margin-top: 2%;
+  display: inline-block;
+}
