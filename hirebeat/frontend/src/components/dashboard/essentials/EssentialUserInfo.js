@@ -457,11 +457,13 @@ export class EssentialUserInfo extends Component {
                   >
                     {this.props.user.username}
                   </h1>
-                  {/* for regular user */}
-                  {
+                </div>
+              </div>
+                {/* for regular user */}
+                {
                     this.props.profile.membership == "Regular" &&
-                    <div className="col-3">
                       <div className="row">
+                        <div style={{paddingLeft:'10px', paddingBottom:'5px'}}>
                         <Link to="/pricing">
                           <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}}>
                           <i className="bx bxs-hot"></i>
@@ -469,31 +471,37 @@ export class EssentialUserInfo extends Component {
                             <span></span>
                           </a>
                         </Link>
+                        </div>
+                        <div style={{paddingLeft:'10px'}}>
+                        <Link to="/practice">
+                        <a className="default-btn" 
+                          style={{color:"white", backgroundColor:"#090D3A"}}>
+                          <i className="bx bxs-hot"></i> 
+                            New Practice
+                          <span></span>
+                        </a>
+                      </Link>
                       </div>
-                    </div>
+                      </div>
                   }
                   {/* for premium user */}
                   {
                     this.props.profile.membership == "Premium" &&
                     <div className="row">
-                      <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
-                        <i className='bx bx-diamond'></i> 
-                          <span style={{marginLeft: "6px"}}>Premium</span>
+                      <div style={{marginTop:"0.5rem", paddingRight:'20px', paddingLeft:'10px'}}>
+                        <i className='bx bx-diamond'></i>
+                          <span style={{marginLeft: "2px"}}>Premium</span>
                       </div>
+                      <Link to="/practice">
+                        <a className="default-btn" 
+                          style={{color:"white", backgroundColor:"#090D3A"}}>
+                          <i className="bx bxs-hot"></i> 
+                            New Practice
+                          <span></span>
+                        </a>
+                      </Link>
                     </div>
-                  }         
-                </div>
-              </div>
-              <div className="row">
-              <Link to="/practice">
-                  <a className="default-btn" 
-                    style={{color:"white", backgroundColor:"#090D3A"}}>
-                    <i className="bx bxs-hot"></i> 
-                      New Practice
-                    <span></span>
-                  </a>
-              </Link>
-              </div>
+                  }
             </div>
           </div>
         </DbCenterRow>
