@@ -5,6 +5,7 @@ import { ButtonContainer } from "../../practice/CardComponents";
 import { renderQDes, renderSuccessTag, renderWaitTag, MyModal } from "../DashboardComponents";
 import { SampleAnswer } from "./SampleAnswer";
 import { AIReview } from "./AIReview";
+import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 
 function TQReviewStatus(props) {
@@ -42,6 +43,7 @@ if (props.isSampleAns) {
 
   return (
     <div>
+      <MediaQuery minDeviceWidth={1224}>
       {props.isSampleAns ? renderWaitTag("") : (props.v.ai_auto_ready ? renderSuccessTag("AI Reviewed") : renderWaitTag("In Progress"))}
       <div className="height-30">
         <button
@@ -60,6 +62,26 @@ if (props.isSampleAns) {
         v={props.v}
         isTQ={props.isTQ}
       />
+      </MediaQuery>
+      <MediaQuery maxDeviceWidth={1223}>
+        <div className="height-30">
+        <button
+          onClick={reviewToggle}
+          className={className}
+          style={{ color: "#FFFFFF", marginBottom: "0px", display: "inline-block", outline: "none", width: "8.8rem" }}
+        >
+          {text}
+        </button>
+      </div>
+      <MyVerticallyCenteredModal
+        show={show}
+        subPage={subPage}
+        setSubPage={setSubPage}
+        onHide={() => setShow(false)}
+        v={props.v}
+        isTQ={props.isTQ}
+      />
+      </MediaQuery>
     </div>
   );
 }

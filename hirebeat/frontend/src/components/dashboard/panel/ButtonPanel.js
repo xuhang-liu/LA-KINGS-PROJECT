@@ -2,6 +2,7 @@ import React from "react";
 import { IconText } from "../DashboardComponents";
 //import {PanelSelect} from "../DashboardComponents";
 import { Link } from "react-router-dom";
+import MediaQuery from 'react-responsive';
 
 function ButtonPanel(props) {
   var save_limit = props.profile.save_limit;
@@ -21,6 +22,7 @@ function ButtonPanel(props) {
   var defaultDecoration = "none";
   return (
     <div>
+      <MediaQuery minDeviceWidth={1224}>
       <button
         type="button"
         className="panel-button"
@@ -92,6 +94,37 @@ function ButtonPanel(props) {
           </div>
         </div>
       }
+      </MediaQuery>
+      <MediaQuery maxDeviceWidth={1223}>
+      <button
+        type="button"
+        onClick={props.renderVideos}
+        style={{outline: "none", margin:"1%", backgroundColor:'white', border:"none", cursor:'pointer', textAlign:'center', paddingBottom:'1.5rem'}}
+      >
+        <IconText
+          textSize={"18px"}
+          textDisplayed={"Interview"}
+          iconName={"bx bx-slideshow 1 bx-md"}
+          iconMargin={"4px"}
+          textColor={props.subpage == "videos" ? selectColor : defaultColor}
+          textDecoration={props.subpage == "videos" ? selectDecoration : defaultDecoration}
+        />
+      </button>
+      <button
+        type="button"
+        onClick={props.renderResume}
+        style={{outline: "none", margin:"1%", backgroundColor:'white', border:"none", cursor:'pointer', textAlign:'center', paddingBottom:'1.5rem'}}
+      >
+        <IconText
+          textSize={"18px"}
+          textDisplayed={"Resume"}
+          iconName={"bx bx-file 1 bx-md"}
+          iconMargin={"4px"}
+          textColor={props.subpage == "resume" ? selectColor : defaultColor}
+          textDecoration={props.subpage == "resume" ? selectDecoration: defaultDecoration}
+        />
+      </button>
+      </MediaQuery>
     </div>
   );
 }
