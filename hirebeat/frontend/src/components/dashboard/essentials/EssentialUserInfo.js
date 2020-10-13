@@ -484,6 +484,16 @@ export class EssentialUserInfo extends Component {
                   }         
                 </div>
               </div>
+              <div className="row">
+              <Link to="/practice">
+                  <a className="default-btn" 
+                    style={{color:"white", backgroundColor:"#090D3A"}}>
+                    <i className="bx bxs-hot"></i> 
+                      New Practice
+                    <span></span>
+                  </a>
+              </Link>
+              </div>
             </div>
           </div>
         </DbCenterRow>

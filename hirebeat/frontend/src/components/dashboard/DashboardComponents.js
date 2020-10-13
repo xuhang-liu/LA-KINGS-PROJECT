@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
+import MediaQuery from 'react-responsive';
 
 export const DbRow = (props) => {
     return <div className="dashboard-row">{props.children}</div>;
@@ -115,9 +116,16 @@ export const ReviewHeader = (props) => {
     return (
         <DbRow>
             <div className="col-2"/>
+            <MediaQuery minDeviceWidth={1224}>
             <div className="col-8 d-flex justify-content-center align-items-center">
                 <strong className="text-20" style={{color: "#7D7D7D"}}>Review Your Performance</strong>
             </div>
+            </MediaQuery>
+            <MediaQuery maxDeviceWidth={1223}>
+            <div className="col-8 d-flex justify-content-center align-items-center">
+                <strong className="text-12" style={{color: "#7D7D7D"}}>Review Your Performance</strong>
+            </div>
+            </MediaQuery>
             <div className="col-2"/>
         </DbRow>
     );
@@ -126,8 +134,14 @@ export const ReviewHeader = (props) => {
 export const QuestionTitle = (props) => {
     return (
         <div className="row" style={{marginLeft: "10px", marginBottom: "10px"}}>
+            <MediaQuery minDeviceWidth={1224}>
             <h2 className="review-text" style={{color: "#98b8f6"}}>Q:</h2>
             <h2 className="review-text" style={{color: "#000000"}}>{props.title}</h2>
+            </MediaQuery>
+            <MediaQuery maxDeviceWidth={1223}>
+            <h4 className="review-text" style={{color: "#98b8f6"}}>Q:</h4>
+            <h4 className="review-text" style={{color: "#000000"}}>{props.title}</h4>
+            </MediaQuery>
         </div>
     );
 };
