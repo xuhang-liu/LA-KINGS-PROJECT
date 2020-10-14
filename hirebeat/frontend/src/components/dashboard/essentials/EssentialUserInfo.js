@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import emailjs from 'emailjs-com';
+import MediaQuery from 'react-responsive';
 
 const config = {
     bucketName: 'hirebeat-avatar',
@@ -203,6 +204,8 @@ export class EssentialUserInfo extends Component {
 
   render() {
     return (
+      <React.Fragment>
+      <MediaQuery minDeviceWidth={1224}>
       <div className="container">
           <DbCenterRow>
             {/* <div className="col-2">
@@ -439,6 +442,71 @@ export class EssentialUserInfo extends Component {
           hide={this.finishEditing}
         />
       </div>
+      </MediaQuery>
+      <MediaQuery maxDeviceWidth={1223}>
+        <DbCenterRow>
+          <div className="container">
+            <div className="col-9">
+              <div className="row">
+                <div className="col d-flex align-items-center">
+                  <h1
+                    style={{
+                      fontWeight: "bold",
+                      marginRight: "0.8rem",
+                    }}
+                  >
+                    {this.props.user.username}
+                  </h1>
+                </div>
+              </div>
+                {/* for regular user */}
+                {
+                    this.props.profile.membership == "Regular" &&
+                      <div className="row">
+                        <div style={{paddingLeft:'10px', paddingBottom:'5px'}}>
+                        <Link to="/pricing">
+                          <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}}>
+                          <i className="bx bxs-hot"></i>
+                            Upgrade
+                            <span></span>
+                          </a>
+                        </Link>
+                        </div>
+                        <div style={{paddingLeft:'10px'}}>
+                        <Link to="/practice">
+                        <a className="default-btn" 
+                          style={{color:"white", backgroundColor:"#090D3A"}}>
+                          <i className="bx bxs-hot"></i> 
+                            New Practice
+                          <span></span>
+                        </a>
+                      </Link>
+                      </div>
+                      </div>
+                  }
+                  {/* for premium user */}
+                  {
+                    this.props.profile.membership == "Premium" &&
+                    <div className="row">
+                      <div style={{marginTop:"0.5rem", paddingRight:'20px', paddingLeft:'10px'}}>
+                        <i className='bx bx-diamond'></i>
+                          <span style={{marginLeft: "2px"}}>Premium</span>
+                      </div>
+                      <Link to="/practice">
+                        <a className="default-btn" 
+                          style={{color:"white", backgroundColor:"#090D3A"}}>
+                          <i className="bx bxs-hot"></i> 
+                            New Practice
+                          <span></span>
+                        </a>
+                      </Link>
+                    </div>
+                  }
+            </div>
+          </div>
+        </DbCenterRow>
+      </MediaQuery>
+      </React.Fragment>
     );
   }
 }
