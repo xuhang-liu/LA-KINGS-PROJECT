@@ -1,5 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
+import Chart from "react-apexcharts";
+import { customBarData } from "../../constants/constants";
 import MediaQuery from 'react-responsive';
 
 export const DbRow = (props) => {
@@ -171,7 +173,7 @@ export const MyModal = (props) => {
     return (
         <Modal
             {...props}
-            dialogClassName="my-modal"
+            dialogClassName= {!props.isResume ? "my-modal" : "resume-modal"}
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
@@ -179,4 +181,17 @@ export const MyModal = (props) => {
             {props.children}
         </Modal>
     );
+};
+
+export const OverallScore = (props) => {
+  var options = customBarData(props.percent, props.bgColor, props.barColor);
+  return (
+    <Chart
+      options={options.options}
+      series={options.series}
+      type="radialBar"
+      height={150}
+      key={"overall"}
+    />
+  );
 };

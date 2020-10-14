@@ -61,33 +61,28 @@ export class Header extends Component {
     return (
         <React.Fragment>
           <div className="nav-item order-xl-1 align-self-center">
-            <div className="btn-group" role="group">
-              <button
-                  id="btnGroupDrop1"
-                  type="button"
-                  className="default-btn"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false">
-                <i className="bx bx-log-in"></i>        
-                <b>{user ? `  ${user.username}  ` : ""}</b>
-              </button>
-
-              <div
-                  className="dropdown-menu"
-                  role="menu"
-                  aria-labelledby="btnGroupDrop1"
-              >
-                <Link to="/">
-                <button
-                    onClick={this.props.logout}
-                    className="btn btn-danger btn-sm text-light"
-                    style={{width: "80%", marginLeft: "15px"}}
-                >
-                  Logout
-                </button>
-                </Link>
-              </div>
+            <div className="nav-link text-white navbar-font">
+              <Dropdown>
+                <Dropdown.Toggle as={CustomToggle} >
+                  <div className="row">
+                    <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF"}}></i>        
+                    <span className="header-text" style={{marginLeft: "0.5rem"}}>{user ? `  ${user.username}  ` : ""}</span>
+                  </div>
+                
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <Link to="/dashboard" className="header-dropdown-custom" style={{color:"#090D3A", fontFamily:"Poppins", textDecoration:"none"}}>
+                      Dashboard
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", fontFamily:"Poppins", textDecoration:"none"}}>
+                      Log out
+                    </Link>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+                </Dropdown.Toggle>
+              </Dropdown>
             </div>
           </div>
 
@@ -102,6 +97,11 @@ export class Header extends Component {
               <li className="nav-item ">
                 <Link to="/practice" className="nav-link text-white navbar-font">
                   <span className="header-text">Practice</span>
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link to="/resume" className="nav-link text-white navbar-font">
+                  <span className="header-text">Resume</span>
                 </Link>
               </li>
               </MediaQuery>

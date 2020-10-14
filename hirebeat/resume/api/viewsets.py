@@ -11,8 +11,14 @@ class RessumeViewSet(viewsets.ModelViewSet):
 
     serializer_class = ResumeSerializer
 
-    # queryset = Video.objects.all() get all videos
+    # queryset = Resume.objects.all() get all videos
     def get_queryset(self):
         return self.request.user.resume.all().order_by('-created_at')
+
+    def perform_create(self, serializer):
+        profile = Profile.objects.filter(user=self.request.user)[0]
+        profile.saved_resume_count += 1
+        profile.save()
+        serializer.save(owner=self.request.user)
 
 

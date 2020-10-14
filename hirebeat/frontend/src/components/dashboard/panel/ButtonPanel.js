@@ -70,15 +70,28 @@ function ButtonPanel(props) {
         />
       </button>
       <br />
+      {props.subpage == 'videos' &&
+        <Link to="/practice">
+          <a className="default-btn" 
+          style={{color:"white", backgroundColor:"#090D3A"}}>
+            <i className="bx bxs-hot"></i> 
+            New Practice
+            <span></span>
+          </a>
+        </Link>
+      }
 
-      <Link to="/practice">
-        <a className="default-btn" 
-        style={{color:"white", backgroundColor:"#090D3A"}}>
-          <i className="bx bxs-hot"></i> 
-          New Practice
-          <span></span>
-        </a>
-      </Link>
+      {props.subpage == 'resume' &&
+        <Link to="/resume">
+          <a className="default-btn" 
+          style={{color:"white", backgroundColor:"#090D3A", marginLeft:"4%"}}>
+            <i className="bx bxs-hot"></i> 
+            New Scan
+            <span></span>
+          </a>
+        </Link>
+      }
+
       {props.profile.membership == 'Regular' &&
         <div className="col-12">
           <div className="row">
@@ -87,7 +100,7 @@ function ButtonPanel(props) {
             </div>
 
             <div className="col-6" style={{padding:"0%"}}>
-              <Link to="/pricing">
+              <Link to="/pricing" style={{textDecoration: "none"}}>
                 <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
               </Link>
             </div>

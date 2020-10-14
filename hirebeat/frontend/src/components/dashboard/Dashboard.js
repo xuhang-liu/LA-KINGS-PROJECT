@@ -27,8 +27,12 @@ export class Dashboard extends Component {
     this.props.loadProfile();
   }
 
+  // params passed from resume page
+  param = this.props.location.params;
+  page = (typeof(this.param) == "undefined" ? "" : this.param.subpage);
+
   state = {
-    subpage: "videos", // or analytics
+    subpage: (this.page == "" ? "videos" : this.page),
   };
 
   renderVideos = () => {
