@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import MediaQuery from 'react-responsive';
 
 function ButtonPanel(props) {
+  // video & audio save left
   var save_limit = props.profile.save_limit;
   var saved_video = props.profile.saved_video_count;
   var saves_left = 0;
@@ -14,6 +15,18 @@ function ButtonPanel(props) {
     if((Number(save_limit) - Number(saved_video))>0){
       saves_left = Number(save_limit) - Number(saved_video);
     }
+  }
+
+  // resume save left
+  var cv_save_limit = props.profile.save_resume_limit;
+  var saved_resume = props.profile.saved_resume_count;
+  var cv_saves_left = 0;
+  if (Number(cv_save_limit) > 900) {
+      cv_saves_left = "unlimited";
+  } else {
+      if((Number(cv_save_limit) - Number(saved_resume)) > 0){
+          cv_saves_left = Number(cv_save_limit) - Number(saved_resume);
+      }
   }
 
   var selectColor = "#090D3A";
@@ -96,7 +109,8 @@ function ButtonPanel(props) {
         <div className="col-12">
           <div className="row">
             <div className="col-5" style={{padding:"0%"}}>
-              <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {saves_left}</p>
+              {props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {saves_left}</p> : null}
+              {props.subpage == "resume" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {cv_saves_left}</p> : null}
             </div>
 
             <div className="col-6" style={{padding:"0%"}}>

@@ -5,6 +5,7 @@ import { OverallScore, ProgressBar } from "./Components";
 import {goodResult, badResult} from "./../../constants/constants";
 
 export function RateSummary(props) {
+    var r = props.resume;
     return (
         <section className="funfacts-inner" style={{width: "80%", marginTop: "2rem"}}>
             <div className="row single-funfacts funfact-style-two">
@@ -13,7 +14,7 @@ export function RateSummary(props) {
                 </div>
                 <div className="col-10">
                     <p className="resume-res" style={{textAlign: "left"}}>YOUR RESULTS</p>
-                    <h1 className="resume-h1" style={{textAlign: "left"}}>{props.resume.result_rate}% out of 100%</h1>
+                    <h1 className="resume-h1" style={{textAlign: "left"}}>{r.result_rate}% out of 100%</h1>
                     <p className="resume-text1" style={{color: '#4A6F8A', textAlign: "left"}}>
                         {props.resume.result_rate >= 75 ? goodResult : badResult}
                     </p>
@@ -23,19 +24,19 @@ export function RateSummary(props) {
                 <div className="col-lg-4 col-4 col-sm-12" style={{paddingLeft: "0px"}}>
                     <div className="single-funfacts funfact-style-two">
                         <p className="resume-res" style={{fontWeight: '600', marginBottom: "1rem"}}>ATS Findings</p>
-                        <ProgressBar max={10} height={7.5} percent={props.resume.ats_findings_count} />
+                        <ProgressBar percent={r.ats_findings_count} max={r.ats_findings_count_total} height={7.5} />
                     </div>
                 </div>
                 <div className="col-lg-4 col-4 col-sm-12">
                     <div className="single-funfacts funfact-style-two">
                         <p className="resume-res" style={{fontWeight: '600', marginBottom: "1rem"}}>Recruiter Findings</p>
-                        <ProgressBar max={4} height={7.5} percent={props.resume.rec_findings_count} />
+                        <ProgressBar percent={r.rec_findings_count} max={r.rec_findings_count_total} height={7.5} />
                     </div>
                 </div>
                 <div className="col-lg-4 col-4 col-sm-12" style={{paddingRight: "0px"}}>
                     <div className="single-funfacts funfact-style-two">
                         <p className="resume-res" style={{fontWeight: '600', marginBottom: "1rem"}}>Skills Match</p>
-                        <ProgressBar max={42} height={7.5} percent={props.resume.skills_match_count} />
+                        <ProgressBar percent={r.skills_match_count} max={r.skills_match_count_total} height={7.5} />
                     </div>
                 </div>
             </div>
