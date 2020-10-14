@@ -159,7 +159,7 @@ export const MyModal = (props) => {
     return (
         <Modal
             {...props}
-            dialogClassName="my-modal"
+            dialogClassName= {!props.isResume ? "my-modal" : "resume-modal"}
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >

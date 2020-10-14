@@ -279,3 +279,8 @@ export const reliability = "Reliability,Teamwork Skill,Work Commitment,Work Ethi
 export const detailOriented = "Detail Oriented,Positive Attitude,Work Commitment,Creativity,Reliability";
 export const communicationSkill = "Communication Skill,Teamwork Skill,Creativity,Leadership,Work Ethic";
 export const problemSolving = "Problem Solving,Proactive Skill,Reliability,Communication Skill,Positive Attitude";
+
+export const badResult = "That‘s pretty good, but you can still make some improvements to boost your chances. " +
+    "We recommend reaching a score of 75 or higher before you apply. Scroll down to see our suggestions for making your resume more competitive.";
+export const goodResult = "Great job on your resume! But there are still a few areas that you can improve to make" +
+    "your resume even more stand out from other candidates! Scroll down to see our suggestions for making your resume more compatible.";

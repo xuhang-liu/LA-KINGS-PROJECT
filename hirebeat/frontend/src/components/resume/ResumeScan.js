@@ -64,6 +64,12 @@ export class ResumeScan extends Component {
         // get selected file
         let resume = input.files[0];
         let name = resume.name;
+        let size = resume.size;
+
+        // check file size
+        if (size > 5000000) {
+            return this.alert("Wrong File Type", "Please upload resume that less than 5MB!");
+        }
 
         // check file type
         let docType = name.slice(-3);
@@ -78,7 +84,7 @@ export class ResumeScan extends Component {
             this.setState({cvName: cvName});
             this.setState({resume: newResume});
         } else {
-            this.alert("Wrong File Type", "Please upload Doc or PDF version of your resume");
+            return this.alert("Wrong File Type", "Please upload Doc or PDF version of your resume");
         }
     }
   }
@@ -122,7 +128,7 @@ export class ResumeScan extends Component {
   handleUpload = () => {
     // check required inputs: resume, jobTitle, jdText
     if (!this.checkInput(this.state.resume, this.state.jobTitle, this.state.jdText)) {
-        return this.alert("Required Fields Not Provided", "Please fill all forms! ");
+        return this.alert("Required Fields Not Provided", "Please fill all forms and select your resume! ");
     }
     if (this.props.saved_resume_count < this.props.save_resume_limit) {
       this.uploader.uploadFile(this.state.resume);

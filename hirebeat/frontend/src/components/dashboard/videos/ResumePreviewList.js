@@ -31,7 +31,8 @@ export class Resume extends Component {
               }
               return (
                 <ResumePreview
-                  percent={45}  // todo fetch from resume table
+                  resume={r}
+                  percent={r.result_rate}
                   jobTitle={r.job_title}
                   jdText={r.jd_text}
                   createdAt={r.created_at.slice(0, 10)}

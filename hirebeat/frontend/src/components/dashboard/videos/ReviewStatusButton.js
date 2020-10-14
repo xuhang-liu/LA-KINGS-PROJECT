@@ -46,29 +46,11 @@ function ReviewStatusButton(props) {
     // send for review
     if (text == "Send For AI Review") {
         sendVideoForReview("ai", video.id);
-        // pop up
-        confirmAlert({
-            title: 'Submit Succeed!',
-            message: 'Your feedback will be ready within 24 hours.',
-            buttons: [
-              {
-                label: 'OK'
-              }
-            ]
-        });
+        alert();
     }
     else if (text == "Send For Expert Review") {
         sendVideoForReview("expert", video.id);
-        // pop up
-        confirmAlert({
-            title: 'Submit Succeed!',
-            message: 'Your feedback will be ready within 24 hours.',
-            buttons: [
-              {
-                label: 'OK'
-              }
-            ]
-        });
+        alert();
     }
     // view result
     else if (text == "View AI Result") {
@@ -117,6 +99,18 @@ function MyVerticallyCenteredModal(props) {
       )}
     </MyModal>
   );
+}
+
+function alert() {
+    confirmAlert({
+        title: 'Submit Succeed!',
+        message: 'Your feedback will be ready within 24 hours.',
+        buttons: [
+          {
+            label: 'OK'
+          }
+        ]
+    });
 }
 
 //function ReviewStatus(props) {

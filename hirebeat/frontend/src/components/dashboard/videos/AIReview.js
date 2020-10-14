@@ -102,9 +102,9 @@ const WordProgressBar = (props) => {
   // color, percent, height
   var barClassName =
     "progress-bar " +
-    (props.color == "blue"
-      ? "gradient-progress-blue"
-      : "gradient-progress-orange");
+    (props.color == "green"
+      ? "gradient-progress-green"
+      : "gradient-progress-blue");
   return (
     <div className="row d-flex align-items-center">
       <div className="col-10">
@@ -200,7 +200,7 @@ const WordReview = (props) => {
           </div>
           <div className="col-7">
             <WordProgressBar
-                color={"blue"}
+                color={"green"}
                 height={"15px"}
                 percent={props.talkSpeed}
             />

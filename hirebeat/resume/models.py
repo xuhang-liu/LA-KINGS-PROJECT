@@ -26,7 +26,7 @@ class Resume(models.Model):
     data_formating = models.TextField(blank=True, null=True)
     word_count_bool = models.BooleanField(default=False, null=True)
     word_count_text = models.TextField(blank=True, null=True)
-    measureable_results_list_bool = ArrayField(models.BooleanField(default=False), blank=True, null=True)
+    measureable_results_bool = models.BooleanField(default=False, null=True)
     measureable_results_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
     job_level_text_bool = models.BooleanField(default=False, null=True)
     job_level_text = models.TextField(blank=True, null=True)

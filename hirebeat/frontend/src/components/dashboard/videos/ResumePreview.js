@@ -1,11 +1,17 @@
-import React from "react";
-import { OverallScore } from "./../DashboardComponents";
+import React, { useState } from "react";
+import { OverallScore, MyModal } from "./../DashboardComponents";
+import { ResumeResult } from "./../../resume/ResumeResult";
 
 export const ResumePreview = (props) => {
+  const [show, setShow] = useState(false);
+  function reviewToggle() {
+    setShow(true);
+  }
+
   return (
       <div className="container d-flex justify-content-start" style={{marginTop:"2%"}}>
         <div className="col-2">
-          <OverallScore percent={props.percent} bgColor={"#FAC046"} barColor={"#FF6B00"}/>
+         { props.reviewed ? <OverallScore percent={props.percent} bgColor={"#FAC046"} barColor={"#FF6B00"}/> : null }
         </div>
         <div className="col-10" style={{fontFamily: "Poppins" }}>
           <div>
@@ -22,15 +28,29 @@ export const ResumePreview = (props) => {
           <div>
             {
               props.reviewed ? (
-              <button onClick={props.vieResult} className="reviewed text-15 resume-btn">
+              <button onClick={reviewToggle} className="reviewed text-15 resume-btn">
                 View Result
               </button>) : (
               <button className="under-review text-15 resume-btn" disabled={true}>
-                Ready in 2 min
+                Ready in 2 mins
               </button>)
             }
           </div>
+          <MyVerticallyCenteredModal
+            show={show}
+            onHide={() => setShow(false)}
+            resume={props.resume}
+          />
         </div>
       </div>
+  );
+};
+
+function MyVerticallyCenteredModal(props) {
+  const { resume, ...rest } = props;
+  return (
+    <MyModal {...rest} isResume={true}>
+      <ResumeResult resume={resume} />
+    </MyModal>
   );
 };
