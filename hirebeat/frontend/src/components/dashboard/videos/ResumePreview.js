@@ -19,7 +19,7 @@ export const ResumePreview = (props) => {
           </div>
           <div className="row">
             <div className="col-9">
-              <p style={{color:"#7D7D7D"}}>{props.jdText}</p>
+              <p style={{color:"#7D7D7D"}}>{props.jdText.substring(0, 100)+'...'}</p>
             </div>
             <div className="col-3" style={{color:"#7D7D7D", borderLeft:"outset"}}>
               <p>{props.createdAt}</p>

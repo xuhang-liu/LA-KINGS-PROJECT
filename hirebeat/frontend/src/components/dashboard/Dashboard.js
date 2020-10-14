@@ -6,6 +6,7 @@ import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import { Analytics } from "./videos/Analytics";
 import { Interview } from "./videos/Interview";
 import { Resume } from "./videos/Resume";
+import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 import { DbRow } from "./DashboardComponents";
@@ -104,7 +105,7 @@ export class Dashboard extends Component {
             </DbCenterRow>
           </div>
           </MediaQuery>
-          <MediaQuery maxDeviceWidth={1223}>
+          {/*<MediaQuery maxDeviceWidth={1223}>
           <DbRow>
             <div className="col-12" style={{padding:"0%"}}>
               <div className="page-title-area">
@@ -137,8 +138,8 @@ export class Dashboard extends Component {
               <div id="subpage_scroll_overflow" style={{marginBottom:"auto", height:"38rem"}}>{this.renderSubpage()}</div>
             </DbCenterRow>
           </div>
-          </MediaQuery>
-          {/*<MediaQuery maxDeviceWidth={1223}>
+          </MediaQuery>*/}
+          <MediaQuery maxDeviceWidth={1223}>
             <PageTitleArea
               pageTitle="Welcome to Hirebeat!"
               pageDescription="Our mobile functionality for interview practice is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
@@ -151,7 +152,7 @@ export class Dashboard extends Component {
               </a>
             </Link>
             </div>
-    </MediaQuery>*/}
+    </MediaQuery>
       {/* </div> */}
       </React.Fragment>
     );

@@ -73,7 +73,7 @@ export class ResumeScan extends Component {
 
         // check file type
         let docType = name.slice(-3);
-        if (docType === "doc" || docType === "pdf") {
+        if (docType === "pdf") {
             this.setSelected();
             this.setLabel(name);
 
@@ -84,7 +84,7 @@ export class ResumeScan extends Component {
             this.setState({cvName: cvName});
             this.setState({resume: newResume});
         } else {
-            return this.alert("Wrong File Type", "Please upload Doc or PDF version of your resume");
+            return this.alert("Wrong File Type", "Please upload PDF version of your resume");
         }
     }
   }
@@ -158,7 +158,7 @@ export class ResumeScan extends Component {
             <i className="bx bx-cloud-upload bx-sm"></i>
               Upload Resume
           </button>
-          <span className="resume-type">Doc or PDF file supported. </span>
+          <span className="resume-type">Only PDF file supported. </span>
         </div>
         {
           this.state.selected ? (
@@ -173,7 +173,7 @@ export class ResumeScan extends Component {
         <ReactS3Uploader
           style={{display: "none"}}
           id="uploadFile"
-          accept=".doc,.pdf"  // only accept pdf & doc files
+          accept=".pdf"  // only accept pdf & doc files
           signingUrl="/sign_cv"
           signingUrlMethod="GET"
           onError={this.onUploadError}
