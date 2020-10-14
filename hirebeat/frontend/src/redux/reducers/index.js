@@ -5,6 +5,7 @@ import error_reducer from "./error_reducers";
 import message_reducer from "./message_reducers";
 import auth_reducer from "./auth_reducers";
 import question_reducer from "./question_reducers";
+import resume_reducer from "./resume_reducers";
 import { LOGOUT_SUCCESS } from "../actions/action_types";
 
 const rootReducer = (state, action) => {
@@ -21,6 +22,7 @@ const appReducer = combineReducers({
   message_reducer,
   auth_reducer,
   question_reducer,
+  resume_reducer,
 });
 
 export default rootReducer;

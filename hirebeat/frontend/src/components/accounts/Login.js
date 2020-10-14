@@ -188,7 +188,7 @@ export class Login extends Component {
                         <button
                             type="submit"
                             className="default-btn"
-                            style={{width:"100%"}}
+                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
                           Log in

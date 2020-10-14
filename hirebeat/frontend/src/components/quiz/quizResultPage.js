@@ -103,8 +103,5 @@ function matchPosition (personality) {
     }
     return null;
 }
-/*
-    const userInput = this.props.location.params;
-        console.log(userInput["userInput"]);
-*/
+
 export default QuizResultPage;

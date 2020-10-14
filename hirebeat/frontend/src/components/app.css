@@ -129,6 +129,11 @@ video {
   border-radius: 10px;
 }
 
+.gradient-progress-green {
+  background: linear-gradient(270.14deg, #14CC75 0%, rgba(20, 204, 117, 0.5) 100%);
+  border-radius: 15px;
+}
+
 .text-30 {
   font-family: Poppins;
   font-style: normal;
@@ -368,6 +373,10 @@ card-row-third-high {
 .my-modal {
   min-width: 70%;
   min-height: 600px;
+}
+
+.resume-modal {
+  min-width: 90%;
 }
 
 .line {
@@ -1678,7 +1687,132 @@ color: #080A3C;
   color: #4A6F8A;
 }
 
+.resume-subtitle {
+  font-family: "Poppins";
+  font-weight: bold;
+  margin-top: 2%;
+}
+
+.resume-textarea {
+  width: 300%;
+  height: 625%;
+  border: 1px solid #E6E8F6;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.resume-upload {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #FFFFFF;
+}
+
+.resume-type {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  margin-left: 1.5rem;
+  color: #4A6F8A;
+}
+
+.resume-scan {
+  color: white;
+  fontWeight: bold;
+}
+
+.resume-name {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.resume-success {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  color: #13C4A1;
+}
+
 #subpage_scroll_overflow:hover {
   padding-bottom: 10%;
   overflow: auto;
+}
+
+.resume-btn {
+  width: 9rem;
+  color: #FFFFFF;
+  margin-top: 2%;
+  display: inline-block;
+}
+
+.resume-res {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.resume-h1 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.8125rem;
+  color: #090D3A;
+}
+
+.resume-text1 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.resume-text2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5625rem;
+  text-transform: uppercase;
+  color: #090D3A;
+}
+
+.resume-text3 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.resume-text4 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.75rem;
+  color: #4A6F8A;
+}
+
+.resume-text5 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem  ;
+  color: #7D7D7D;
+}
+
+.resume-panel-btn {
+  display: block;
+  background-color: white;
+  border: none;
+  font-size: 1.125rem;
+  cursor: pointer;
+  text-align: center;
 }
