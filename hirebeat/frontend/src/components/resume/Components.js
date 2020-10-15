@@ -1,25 +1,261 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import Chart from "react-apexcharts";
+import { customBarData } from "../../constants/constants";
 
-function SaveLeft(props) {
-    var save_limit = props.profile.save_limit;
-    var saved_video = props.profile.saved_video_count;
-    var saves_left = Number(save_limit) - Number(saved_video);
-    
+export const OverallScore = (props) => {
+  var options = customBarData(props.percent, props.bgColor, props.barColor);
+  return (
+    <Chart
+      options={options.options}
+      series={options.series}
+      type="radialBar"
+      height={150}
+      key={"overall"}
+    />
+  );
+};
+
+export const ProgressScore = (props) => {
+  //percent, height
+  var scoreClassName = props.height == 30 ? "text-30 " : "text-15 ";
+  var percentage = props.percent / props.max
+  if (percentage > 0.85) {
+    scoreClassName += "text-success";
+  } else if (percentage > 0.5) {
+    scoreClassName += "text-primary";
+  } else if (percentage > 0.3) {
+    scoreClassName += "text-warning";
+  } else {
+    scoreClassName += "text-danger";
+  }
+  return (
+    <div className="d-flex align-items-end">
+      <p className={scoreClassName}>{props.percent}</p>
+      <p style={{ fontSize: props.height / 1.5, fontWeight: "bold" }}>/{props.max}</p>
+    </div>
+  );
+};
+
+export const ProgressBar = (props) => {
+  // color, percent, height
+  var barClassName = "progress-bar gradient-progress-green"
+  return (
+    <div className="row d-flex align-items-center" style={{width: "95%", margin: "auto"}}>
+      <div className="col-10">
+        <div
+          className="progress"
+          style={{ height: props.height, borderRadius: "20px" }}
+        >
+          <div
+            className={barClassName}
+            role="progressbar"
+            style={{
+              width: ((props.percent / props.max) * 100).toString() + "%",
+            }}
+            aria-valuemin="0"
+            aria-valuemax={props.max}
+          ></div>
+        </div>
+      </div>
+      <div className="col-2">
+        <ProgressScore percent={props.percent} height={props.height * 2} max={props.max} />
+      </div>
+    </div>
+  );
+};
+
+export const IconText = (props) => {
+    //textSize, textDisplayed, iconName, textColor?
     return (
-        <div className="row">
-          <div className="free-trial-content">
-          {props.profile.membership == "Regular" &&
-            <div className="row">
-              <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {saves_left}</p>
-              <Link to="/pricing" style={{marginLeft:"2rem"}}>
-                <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
-              </Link>
-            </div>
-          }
-          </div>
-        </div>   
+        <div className="d-flex align-items-center">
+            <p
+                style={{
+                    fontSize: props.textSize,
+                    marginBottom: "10px",
+                    marginLeft:"5px",
+                    color: props.textColor ?? "#7d7d7d",
+                    textDecoration: props.textDecoration ?? "none",
+                    fontWeight: props.textWeight ?? "normal",
+                    wordWrap: "revert",
+                    textAlign: "center",
+                }}
+            >
+                {props.textDisplayed}
+            </p>
+        </div>
     );
 };
 
-export default SaveLeft;
+export const AtsRow = (props) => {
+    return (
+        <div>
+            <div className="row align-items-center" style={{background: "#F4F5FE"}}>
+                <div className="col-3">
+                    <p className="resume-text3">{props.name}</p>
+                </div>
+                <div className="col-1">
+                    {
+                        props.status ? (
+                            <i className='bx bx-check bx-md' style={{color: "#14CC75"}}></i>) : (
+                            <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>)
+                    }
+                </div>
+                <div className="col-8">
+                    <p className="resume-text4">{props.desc}</p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const AtsMultipleRows = (props) => {
+    return (
+        <div>
+            <div className="row align-items-center" style={{background: "#F4F5FE"}}>
+                <div className="col-3">
+                    <p className="resume-text3">{props.name}</p>
+                </div>
+                <div className="col-9">
+                    {props.status.map((s, index) => {
+                        if (s) {
+                            return (
+                                <div className="row">
+                                    <div className="col-2">
+                                        <i className='bx bx-check bx-md' style={{color: "#14CC75"}}></i>
+                                    </div>
+                                    <div className="col-10" style={{paddingTop: "5px"}}>
+                                        <p className="resume-text4">{props.desc[index]}</p>
+                                    </div>
+                                </div>
+                            );
+                        }
+                        else {
+                            return (
+                                <div className="row">
+                                    <div className="col-2">
+                                        <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>
+                                    </div>
+                                    <div className="col-10" style={{paddingTop: "5px"}}>
+                                        <p className="resume-text4">{props.desc[index]}</p>
+                                    </div>
+                                </div>
+                            );
+                        }
+                    })}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const RecMultipleRows = (props) => {
+    return (
+        <div>
+            <div className="row align-items-center" style={{background: "#F4F5FE"}}>
+                <div className="col-3">
+                    <p className="resume-text3">{props.name}</p>
+                </div>
+                <div className="col-1">
+                    {
+                        props.status ? (
+                            <i className='bx bx-check bx-md' style={{color: "#14CC75"}}></i>) : (
+                            <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>)
+                    }
+                </div>
+                <div className="col-8">
+                    {props.desc.map((d) => {
+                        return (
+                            <p className="resume-text4" style={{marginBottom: "0px"}}>{d}</p>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const SkillsRow = (props) => {
+    return (
+        <div>
+            {props.skills.map((s, index) => {
+                return (
+                    <div className="row align-items-center" style={{background: "#F4F5FE"}}>
+                        <div className="col-3" style={{textAlign: "center"}}>
+                            <p className={props.className} style={props.style}>{props.skills[index]}</p>
+                        </div>
+                        <div className="col-3" style={{textAlign: "center"}}>
+                            <p className={props.className} style={props.vStyle}>{props.variations[index]}</p>
+                        </div>
+                        <div className="col-3" style={{textAlign: "center"}}>
+                            {
+                                props.resume[index] == "0" ? (
+                                    <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>) : (
+                                    <p className={props.className}>{props.resume[index]}</p>)
+                            }
+                        </div>
+                        <div className="col-3" style={{textAlign: "center"}}>
+                            {
+                                props.jd[index] == "0" ? (
+                                    <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>) : (
+                                    <p className={props.className}>{props.jd[index]}</p>)
+                            }
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
+    );
+};
+
+export const KeywordsRow = (props) => {
+    return (
+        <div>
+            {props.skills.map((s, index) => {
+                return (
+                    <div className="row align-items-center" style={{background: "#F4F5FE"}}>
+                        <div className="col-4" style={{textAlign: "center"}}>
+                            <p className={props.className} style={props.style}>{props.skills[index]}</p>
+                        </div>
+                        <div className="col-4" style={{textAlign: "center"}}>
+                            {
+                                props.resume[index] == "0" ? (
+                                    <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>) : (
+                                    <p className={props.className}>{props.resume[index]}</p>)
+                            }
+                        </div>
+                        <div className="col-4" style={{textAlign: "center"}}>
+                            {
+                                props.jd[index] == "0" ? (
+                                    <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>) : (
+                                    <p className={props.className}>{props.jd[index]}</p>)
+                            }
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
+    );
+};
+
+export function ResumeFooter() {
+    return (
+        <div style={{marginBottom: "2rem"}}>
+            <div className="contact-cta-box mwidth-200" style={{width: "80%"}}>
+                <h3 className="quiz-title">Want to land your dream role? </h3>
+                <p className="quiz-text">We are here to enhance your interview skills</p>
+                <Link to="/practice">
+                    <a className="default-btn" style={{color:"white", fontFamily:"Poppins"}}>
+                        Practice with HireBeat
+                        <span></span>
+                    </a>
+                </Link>
+            </div>
+            <div style={{width: "80%", margin: "auto"}}>
+            <Link to="/company" style={{textDecoration: "none"}}>
+                <p style={{marginLeft:"9%"}} className="mode-col-text2">Explore more about HireBeat -></p>
+            </Link>
+            </div>
+        </div>
+    );
+};

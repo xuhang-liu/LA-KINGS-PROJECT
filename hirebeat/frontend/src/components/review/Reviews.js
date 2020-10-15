@@ -24,6 +24,8 @@ export class Reviews extends Component {
   handleInputChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
+      score: Math.round((Number(this.state.postitiveAttitude)+Number(this.state.communication)+Number(this.state.detailOriented)+Number(this.state.teamSpirit)+Number(this.state.stressTolerance))/5),
+      ai_score: Math.round((Number(this.state.ai_positiveAttitude)+Number(this.state.ai_communication)+Number(this.state.ai_detailOriented)+Number(this.state.ai_teamSpirit)+Number(this.state.ai_stressTolerance))/5),
     });
   };
 
@@ -40,7 +42,7 @@ export class Reviews extends Component {
 
   cancatenateAIScores = () => {
     var ans = "";
-    ans += this.state.ai_postitiveAttitude + ",";
+    ans += this.state.ai_positiveAttitude + ",";
     ans += this.state.ai_communication + ",";
     ans += this.state.ai_detailOriented + ",";
     ans += this.state.ai_teamSpirit + ",";
@@ -69,18 +71,19 @@ export class Reviews extends Component {
     this.doAsync(this.props.addVideoReviews, this.props.nextVideo);
   };
 
-  scoreField = (title, name) => {
+  scoreField = (title, name, value) => {
     return (
       <div>
         <label style={{ fontSize: "20px" }}>{title}</label>
         <input
           type="number"
-          step="0.1"
+          step="1"
           class="form-control"
           min="0"
           max="10"
           name={name}
-          placeholder={title + " score"}
+          value={value}
+          placeholder={value}
           onChange={this.handleInputChange}
           required="required"
         />
@@ -100,12 +103,12 @@ export class Reviews extends Component {
     return (
       <div className="form-group">
         <h1>Expert Score</h1>
-        {this.scoreField(categories[0], "postitiveAttitude")}
-        {this.scoreField(categories[1], "communication")}
-        {this.scoreField(categories[2], "detailOriented")}
-        {this.scoreField(categories[3], "teamSpirit")}
-        {this.scoreField(categories[4], "stressTolerance")}
-        {this.scoreField("Overall", "score")}
+        {this.scoreField(categories[0], "postitiveAttitude", this.state.postitiveAttitude)}
+        {this.scoreField(categories[1], "communication", this.state.communication)}
+        {this.scoreField(categories[2], "detailOriented", this.state.detailOriented)}
+        {this.scoreField(categories[3], "teamSpirit", this.state.teamSpirit)}
+        {this.scoreField(categories[4], "stressTolerance", this.state.stressTolerance)}
+        {this.scoreField("Overall", "score", this.state.score)}
         <label>Comments</label>
         <textarea
           className="form-control"
@@ -125,12 +128,12 @@ export class Reviews extends Component {
     return (
       <div className="form-group">
         <h1>AI Score</h1>
-        {this.scoreField(aiCategories[0], "ai_postitiveAttitude")}
-        {this.scoreField(aiCategories[1], "ai_communication")}
-        {this.scoreField(aiCategories[2], "ai_detailOriented")}
-        {this.scoreField(aiCategories[3], "ai_teamSpirit")}
-        {this.scoreField(aiCategories[4], "ai_stressTolerance")}
-        {this.scoreField("AI Overall", "ai_score")}
+        {this.scoreField(aiCategories[0], "ai_positiveAttitude", this.state.ai_positiveAttitude)}
+        {this.scoreField(aiCategories[1], "ai_communication", this.state.ai_communication)}
+        {this.scoreField(aiCategories[2], "ai_detailOriented", this.state.ai_detailOriented)}
+        {this.scoreField(aiCategories[3], "ai_teamSpirit", this.state.ai_teamSpirit)}
+        {this.scoreField(aiCategories[4], "ai_stressTolerance", this.state.ai_stressTolerance)}
+        {this.scoreField("AI Overall", "ai_score", this.state.ai_score)}
       </div>
     );
   };

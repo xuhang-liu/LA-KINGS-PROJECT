@@ -5,6 +5,7 @@ import {
   Comments,
   CategoryTitle,
 } from "../DashboardComponents";
+import MediaQuery from 'react-responsive';
 import Chart from "react-apexcharts";
 import {
   infillOverallData,
@@ -33,14 +34,22 @@ export function ExpertReview(props) {
       <ReviewHeader setSubPage={() => props.setSubPage("status")} />
       <QuestionTitle title={props.v.q_description} />
       <div className="row">
+        <MediaQuery minDeviceWidth={1224}>
         <div className="col score-col">
           <CategoryTitle title={"Overall Score"} />
           <OverallScore percent={props.v.expert_score} />
         </div>
+        </MediaQuery>
+        <MediaQuery maxDeviceWidth={1223}>
+        <div style={{marginLeft:'5%'}}>
+          <h3 style={{color:'#56a3fa'}}>Overall Score: {props.v.expert_score}</h3>
+        </div>
+        </MediaQuery>
         {categoryArray.map((c, index) => {
           var options = infillBarData(percentArray[index]);
           return (
             <div className="col score-col" key={index + c}>
+              <MediaQuery minDeviceWidth={1224}>
               <CategoryTitle title={c} key={c} />
               <Chart
                 options={options.options}
@@ -49,6 +58,7 @@ export function ExpertReview(props) {
                 height={150}
                 key={index}
               />
+              </MediaQuery>
             </div>
           );
         })}

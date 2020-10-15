@@ -66,9 +66,8 @@ export class Header extends Component {
                 <Dropdown.Toggle as={CustomToggle} >
                   <div className="row">
                     <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF"}}></i>        
-                    <div className="header-text">{user ? `  ${user.username}  ` : ""}</div>
+                    <span className="header-text" style={{marginLeft: "0.5rem"}}>{user ? `  ${user.username}  ` : ""}</span>
                   </div>
-                </Dropdown.Toggle>
                 
                 <Dropdown.Menu>
                   <Dropdown.Item>
@@ -82,6 +81,7 @@ export class Header extends Component {
                     </Link>
                   </Dropdown.Item>
                 </Dropdown.Menu>
+                </Dropdown.Toggle>
               </Dropdown>
             </div>
           </div>
@@ -99,17 +99,12 @@ export class Header extends Component {
                   <span className="header-text">Practice</span>
                 </Link>
               </li>
-              <li className="nav-item ">
+              {/*<li className="nav-item ">
                 <Link to="/resume" className="nav-link text-white navbar-font">
                   <span className="header-text">Resume</span>
                 </Link>
-              </li>
+                </li>*/}
               </MediaQuery>
-              <li className="nav-item">
-                <Link to="/dashboard" className="nav-link text-white navbar-font">
-                  <span className="header-text">Dashboard</span>
-                </Link>
-              </li>
               <li className="nav-item">
                 <Link to="/company" className="nav-link text-white navbar-font">
                   <span className="header-text">About Us</span>

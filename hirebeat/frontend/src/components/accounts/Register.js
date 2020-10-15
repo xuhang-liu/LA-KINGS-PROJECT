@@ -198,6 +198,7 @@ export class Register extends Component {
                         <button
                             type="submit"
                             className="default-btn"
+                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
                           Try For Free
@@ -376,7 +377,7 @@ export class Register extends Component {
                         <button
                             type="submit"
                             className="default-btn"
-                            style={{width:"100%"}}
+                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
                           Try For Free

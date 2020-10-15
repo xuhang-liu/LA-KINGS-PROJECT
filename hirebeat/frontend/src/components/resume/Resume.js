@@ -6,7 +6,7 @@ import { loadProfile } from "../../redux/actions/auth_actions";
 import MediaQuery from 'react-responsive';
 import PageTitleArea from '../Common/PageTitleArea';
 import ResumeScan from './ResumeScan';
-import SaveLeft from './Components'
+import SaveLeft from './SaveLeft'
 
 
 function ScrollToTopOnMount() {
@@ -17,7 +17,7 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-export class ResumeUpload extends Component {
+export class Resume extends Component {
     render() {
         return (
             <React.Fragment>
@@ -60,5 +60,5 @@ const mapStateToProps = (state) => ({
 });
   
 export default connect(mapStateToProps, { loadProfile})( 
-    ResumeUpload
+    Resume
 );

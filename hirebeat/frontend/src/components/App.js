@@ -35,7 +35,7 @@ import Privacy from "./layout/Privacy";
 import Term from "./layout/Term";
 import QuizHome from "./quiz/quizHome";
 import QuizResultPage from "./quiz/quizResultPage";
-import ResumeUpload from "./resume/ResumeUpload";
+import Resume from "./resume/Resume";
 
 import Contact from "./contact/contact";
 
@@ -100,7 +100,7 @@ class App extends Component {
               <Alerts />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                <PrivateRoute exact path="/resume" component={ResumeUpload} />
+                <PrivateRoute exact path="/resume" component={Resume} />
                 <PrivateRoute exact path="/review" component={ReviewWindow} />
                 <PrivateRoute
                   exact

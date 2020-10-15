@@ -10,6 +10,7 @@ import {
   QuestionTitle,
   CategoryTitle,
 } from "../DashboardComponents";
+import MediaQuery from 'react-responsive';
 
 export function AIReview(props) {
   var categoryArray = convertStringToArray(props.v.ai_review_categories);
@@ -34,6 +35,7 @@ export function AIReview(props) {
           <CategoryTitle title={"Overall Score"} />
           <ProgressBar color={"blue"} height={15} percent={props.v.ai_score} />
           <div className="row">
+          <MediaQuery minDeviceWidth={1224}>
             <div className="col-6">
               <div id="chart">
                 <Chart
@@ -56,6 +58,21 @@ export function AIReview(props) {
                 );
               })}
             </div>
+            </MediaQuery>
+            <MediaQuery maxDeviceWidth={1223}>
+            <div style={{marginLeft:'4%'}}>
+              <CategoryTitle title={"Details"} />
+              {categoryArray.map((c, index) => {
+                return (
+                  <AICategoryReview
+                    category={c}
+                    percent={percentArray[index]}
+                    key={index}
+                  />
+                );
+              })}
+            </div>
+            </MediaQuery>
           </div>
         </div>) : null}
       <WordReview
@@ -102,9 +119,9 @@ const WordProgressBar = (props) => {
   // color, percent, height
   var barClassName =
     "progress-bar " +
-    (props.color == "blue"
-      ? "gradient-progress-blue"
-      : "gradient-progress-orange");
+    (props.color == "green"
+      ? "gradient-progress-green"
+      : "gradient-progress-blue");
   return (
     <div className="row d-flex align-items-center">
       <div className="col-10">
@@ -200,7 +217,7 @@ const WordReview = (props) => {
           </div>
           <div className="col-7">
             <WordProgressBar
-                color={"blue"}
+                color={"green"}
                 height={"15px"}
                 percent={props.talkSpeed}
             />

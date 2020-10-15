@@ -6,13 +6,12 @@ import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import { Analytics } from "./videos/Analytics";
 import { Interview } from "./videos/Interview";
 import { Resume } from "./videos/Resume";
+import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 import { DbRow } from "./DashboardComponents";
 import { DbCenterRow } from "./DashboardComponents";
-import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
-import PageTitleArea from '../Common/PageTitleArea';
 import { useEffect } from "react";
 
 function ScrollToTopOnMount() {
@@ -26,7 +25,6 @@ function ScrollToTopOnMount() {
 
 export class Dashboard extends Component {
   componentDidMount() {
-    safariAlert();
     this.props.loadProfile();
   }
 
@@ -107,6 +105,40 @@ export class Dashboard extends Component {
             </DbCenterRow>
           </div>
           </MediaQuery>
+          {/*<MediaQuery maxDeviceWidth={1223}>
+          <DbRow>
+            <div className="col-12" style={{padding:"0%"}}>
+              <div className="page-title-area">
+                <div className="container">
+                  <div className="page-title-content" style={{color:"#FFFFFF"}}>
+                    <EssentialUserInfo
+                      user={this.props.user}
+                      profile={this.props.profile}
+                      updateProfile={this.props.updateProfile}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </DbRow>
+          <br />
+          <br />
+          <div className="container" style={{marginBottom:"0%"}}>
+          <div style={{marginBottom:"auto"}}>
+                <ButtonPanel
+                  profile={this.props.profile}
+                  renderVideos={this.renderVideos}
+                  renderProfile={this.renderProfile}
+                  renderAnalytics={this.renderAnalytics}
+                  renderResume={this.renderResume}
+                  subpage={this.state.subpage}
+                />
+              </div>
+            <DbCenterRow>
+              <div id="subpage_scroll_overflow" style={{marginBottom:"auto", height:"38rem"}}>{this.renderSubpage()}</div>
+            </DbCenterRow>
+          </div>
+          </MediaQuery>*/}
           <MediaQuery maxDeviceWidth={1223}>
             <PageTitleArea
               pageTitle="Welcome to Hirebeat!"
@@ -120,7 +152,7 @@ export class Dashboard extends Component {
               </a>
             </Link>
             </div>
-          </MediaQuery>
+    </MediaQuery>
       {/* </div> */}
       </React.Fragment>
     );

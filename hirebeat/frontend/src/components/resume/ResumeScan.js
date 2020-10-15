@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import safariAlert from "../basic/SafariAlert";
 import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
 import PropTypes from "prop-types";
 import { addResume } from "../../redux/actions/resume_actions";
 import { createMessage } from "../../redux/actions/message_actions";
@@ -47,6 +46,14 @@ export class ResumeScan extends Component {
     label.textContent = name;
   }
 
+  checkInput = (resume, jobTitle, jdText) => {
+    let filled = true;
+    if (this.state.resume == null || this.state.jobTitle == "" || this.state.jdText == "") {
+        filled = false;
+    }
+    return filled;
+  }
+
   selectFile = () => {
     // toggle input element
     let input = document.getElementById('uploadFile');
@@ -57,10 +64,16 @@ export class ResumeScan extends Component {
         // get selected file
         let resume = input.files[0];
         let name = resume.name;
+        let size = resume.size;
+
+        // check file size
+        if (size > 5000000) {
+            return this.alert("Wrong File Type", "Please upload resume that less than 5MB!");
+        }
 
         // check file type
         let docType = name.slice(-3);
-        if (docType === "doc" || docType === "pdf") {
+        if (docType === "pdf") {
             this.setSelected();
             this.setLabel(name);
 
@@ -71,7 +84,7 @@ export class ResumeScan extends Component {
             this.setState({cvName: cvName});
             this.setState({resume: newResume});
         } else {
-            this.alert("Wrong File Type", "Please upload Doc or PDF version of your resume");
+            return this.alert("Wrong File Type", "Please upload PDF version of your resume");
         }
     }
   }
@@ -113,10 +126,15 @@ export class ResumeScan extends Component {
   };
 
   handleUpload = () => {
+    // check required inputs: resume, jobTitle, jdText
+    if (!this.checkInput(this.state.resume, this.state.jobTitle, this.state.jdText)) {
+        return this.alert("Required Fields Not Provided", "Please fill all forms and select your resume! ");
+    }
     if (this.props.saved_resume_count < this.props.save_resume_limit) {
       this.uploader.uploadFile(this.state.resume);
       this.redirectToDashboard();
-    } else {
+    }
+    else {
       this.props.createMessage({
         errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
       });
@@ -137,10 +155,10 @@ export class ResumeScan extends Component {
       <div className="container">
         <div style={{textAlign: "center"}}>
           <button className="default-btn resume-upload" onClick={this.selectFile}>
-            <i className="bx bx-cloud-upload bx-sm" style={{marginRight: "1rem"}}></i>
+            <i className="bx bx-cloud-upload bx-sm"></i>
               Upload Resume
           </button>
-          <span className="resume-type">Doc or PDF file supported. </span>
+          <span className="resume-type">Only PDF file supported. </span>
         </div>
         {
           this.state.selected ? (
@@ -155,7 +173,7 @@ export class ResumeScan extends Component {
         <ReactS3Uploader
           style={{display: "none"}}
           id="uploadFile"
-          accept=".doc,.pdf"  // only accept pdf & doc files
+          accept=".pdf"  // only accept pdf & doc files
           signingUrl="/sign_cv"
           signingUrlMethod="GET"
           onError={this.onUploadError}
@@ -192,10 +210,11 @@ export class ResumeScan extends Component {
              </textarea>
            </div>
         </div>
-        <div className="free-trial-content" style={{textAlign: "center", marginTop:"5%"}}>
-          <button onClick={this.handleUpload} className="default-btn resume-scan" style={{background: "#090D3A"}}>
+        <div style={{textAlign: "center", marginTop:"5%"}}>
+          <button onClick={this.handleUpload} className="default-btn resume-scan" style={{backgroundColor: "#090D3A"}}>
             <i className="bx bxs-hot"></i>
               Scan
+            <span></span>
           </button>
         </div>
       </div>
