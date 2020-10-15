@@ -49,7 +49,8 @@ class Question(models.Model):
 
 class Categorys(models.Model):
 
-    subCategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    subCategorys = models.CharField(max_length=300, null=True, blank=True)
+    category_des = models.CharField(max_length=100, null=True, blank=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     def __str__(self):
         return self.question.category + '|' + self.subCategory.sub_category
