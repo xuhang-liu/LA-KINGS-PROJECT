@@ -2687,7 +2687,8 @@ Features Area CSS
   font-size: 30px;
   text-align: center;
   border-radius: 100%;
-  color: #ffffff;
+  background-color: #56a3fa;
+  color: #fff;
   margin-bottom: 25px;
 }
 

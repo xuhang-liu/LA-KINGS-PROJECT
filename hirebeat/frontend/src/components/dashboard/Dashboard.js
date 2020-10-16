@@ -91,7 +91,7 @@ export class Dashboard extends Component {
           <br />
           <div className="container" style={{marginBottom:"0%"}}>
             <DbCenterRow>
-              <div className="col-3" style={{marginBottom:"auto"}}>
+              <div className="col-3" style={{marginBottom:"auto", paddingBottom:'10%'}}>
                 <ButtonPanel
                   profile={this.props.profile}
                   renderVideos={this.renderVideos}

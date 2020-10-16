@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MainBanner from '../HomeSaas/MainBanner';
 import Features from '../HomeSaas/Features';
-import FeaturedFeature from '../HomeSaas/FeaturedFeature';
+//import FeaturedFeature from '../HomeSaas/FeaturedFeature';
 import MoreToDiscover from '../HomeSaas/MoreToDiscover';
 import WhyChooseUs from '../Common/WhyChooseUs';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
@@ -21,7 +21,6 @@ class IndexSaas extends Component {
                 <MainBanner />
                 <WhyChooseUs />
                 <Features />
-                <FeaturedFeature />
                 <MoreToDiscover />
                 <FreeTrialArea />
                       {/* Preloader */}

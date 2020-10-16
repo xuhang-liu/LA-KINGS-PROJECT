@@ -45,22 +45,6 @@ export class Header extends Component {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       <a
         ref={ref}
-        onMouseEnter={(e) => {
-          e.preventDefault();
-          onClick(e);
-        }}
-        onMouseLeave={(e) => {
-          e.preventDefault();
-          onClick(e);
-        }}
-        style={{textDecoration:"none", cursor:"pointer"}}
-      >
-        {children}
-      </a>
-    ));
-    const CustomToggle1 = React.forwardRef(({ children, onClick }, ref) => (
-      <a
-        ref={ref}
         onClick={(e) => {
           e.preventDefault();
           onClick(e);
@@ -75,7 +59,7 @@ export class Header extends Component {
           <div className="nav-item order-xl-1 align-self-center">
             <div className="nav-link text-white navbar-font">
               <Dropdown>
-                <Dropdown.Toggle as={CustomToggle1} >
+                <Dropdown.Toggle as={CustomToggle} >
                   <div className="row">
                     <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF"}}></i>        
                     <span className="header-text" style={{marginLeft: "0.5rem"}}>{user ? `  ${user.username}  ` : ""}</span>
@@ -111,11 +95,11 @@ export class Header extends Component {
                   <span className="header-text">Practice</span>
                 </Link>
               </li>
-              {/*<li className="nav-item ">
+              <li className="nav-item ">
                 <Link to="/resume" className="nav-link text-white navbar-font">
                   <span className="header-text">Resume</span>
                 </Link>
-                </li>*/}
+                </li>
               </MediaQuery>
               <li className="nav-item">
                 <Link to="/company" className="nav-link text-white navbar-font">
@@ -129,8 +113,8 @@ export class Header extends Component {
                       <span className="header-text">Resources</span>
 
                     <Dropdown.Menu>
-                      <Dropdown.Item href="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Blog</Dropdown.Item>
-                      <Dropdown.Item href="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Quiz</Dropdown.Item>
+                      <Dropdown.Item><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown.Toggle>
                   </Dropdown>
@@ -156,11 +140,7 @@ export class Header extends Component {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       <a
         ref={ref}
-        onMouseEnter={(e) => {
-          e.preventDefault();
-          onClick(e);
-        }}
-        onMouseLeave={(e) => {
+        onClick={(e) => {
           e.preventDefault();
           onClick(e);
         }}
@@ -211,8 +191,8 @@ export class Header extends Component {
                       <span className="header-text">Resources</span>
 
                     <Dropdown.Menu>
-                      <Dropdown.Item href="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Blog</Dropdown.Item>
-                      <Dropdown.Item href="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Quiz</Dropdown.Item>
+                      <Dropdown.Item><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown.Toggle>
                   </Dropdown>

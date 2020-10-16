@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import ReactWOW from 'react-wow';
 import FunFacts from '../Common/FunFacts';
 import {Link} from "react-router-dom";
-import feature2 from "../../assets/Picture2.png";
-import feature3 from "../../assets/Picture3.png";
-import feature4 from "../../assets/Picture4.png";
 
 class MoreToDiscover extends Component {
     render() {
         return (
             <React.Fragment>
-            <section className="ptb-100 bg-f4f6fc">
-                <div className="container">
+            <section className="ptb-100">
+                <div className="container" id='i1'>
                     <div className="section-title">
                         <h2 className="mb-2">More to Discover</h2>
-                        <p>HireBeat is transforming the way of practicing interview to improve the efficiency. Use our interview tool and AI-based feedback to impress recruiters in just a few clicks</p>
+                        <p>HireBeat is transforming the way of career pivoting to improve the efficiency. Use our interview practicing and resume matching tools to impress recruiters in just a few clicks</p>
                     </div>
                 </div>
 
@@ -24,14 +21,14 @@ class MoreToDiscover extends Component {
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-left-img">
-                                    <img src={feature2} alt="image" />
+                                    <img src='https://hirebeat-assets.s3.amazonaws.com/P_S2.gif' alt="gif" />
                                 </div>
                             </div>
 
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-content pl-3">
                                     <span className="number">01</span>
-                                    <h3>360° Interview Practice</h3>
+                                    <h3>Pracetice/Simulate Modes</h3>
                                     <p>Rather than spend hours to search questions online, you should focus on behavioral-based and technical-specific questions. Our practice interviews are customizable that suit the specific job position you are looking for.</p>
                                     <ul>
                                         <li>
@@ -50,14 +47,14 @@ class MoreToDiscover extends Component {
                 </div>
                 </ReactWOW>
 
-                <ReactWOW animation='fadeInUp' delay='0.4s'>
+                <ReactWOW animation='fadeInUp' delay='0.2s'>
                     <div className="overview-item">
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-content pl-3">
                                         <span className="number">02</span>
-                                        <h3>Track Training Progress</h3>
+                                        <h3>Behavior/Technical Questions</h3>
                                         <p>Video practice data is secured and safe in the cloud system. you can work at your own pace to track your practice video with feedbacks, you will build the knowledge and confidence to land your next dream job.</p>
                                         <ul>
                                             <li>
@@ -74,7 +71,7 @@ class MoreToDiscover extends Component {
 
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-right-img">
-                                        <img src={feature3} alt="image" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/B_T2.gif' alt="gif" />
                                     </div>
                                 </div>
                             </div>
@@ -82,20 +79,20 @@ class MoreToDiscover extends Component {
                     </div>
                 </ReactWOW>
 
-                <ReactWOW animation='fadeInUp' delay='0.6s'>
-                    <div className="overview-item">
+                <ReactWOW animation='fadeInUp' delay='0.2s'>
+                    <div className="overview-item" id='i2'>
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-left-img">
-                                        <img src={feature4} alt="image" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/AI2.gif' alt="gif" />
                                     </div>
                                 </div>
 
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-content pl-3">
                                         <span className="number">03</span>
-                                        <h3>AI & Expert Feedback</h3>
+                                        <h3>AI/Expert Analytics</h3>
                                         <p>Once you've completed an interview, a recording is provided to you privately. No more guessing on your performance, using our evaluation system by sending your practice video to get valuable feedback from experts or AI.</p>
                                         <ul>
                                             <li>
@@ -107,6 +104,38 @@ class MoreToDiscover extends Component {
                                                 AI behavioral analysis
                                             </li>
                                         </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ReactWOW>
+
+                <ReactWOW animation='fadeInUp' delay='0.2s'>
+                    <div className="overview-item">
+                        <div className="container max-width-1290">
+                            <div className="row align-items-center">
+                                <div className="col-lg-6 col-md-6">
+                                    <div className="overview-content pl-3">
+                                        <span className="number">04</span>
+                                        <h3>Optimize Resume Matching</h3>
+                                        <p>Video practice data is secured and safe in the cloud system. you can work at your own pace to track your practice video with feedbacks, you will build the knowledge and confidence to land your next dream job.</p>
+                                        <ul>
+                                            <li>
+                                                <i className='bx bx-badge-check'></i>
+                                                Interview video privacy
+                                            </li>
+                                            <li>
+                                                <i className='bx bx-badge-check'></i>
+                                                Anytime and anywhere
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-6 col-md-6">
+                                    <div className="overview-right-img">
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/Resume2.gif' alt="gif" />
                                     </div>
                                 </div>
                             </div>
