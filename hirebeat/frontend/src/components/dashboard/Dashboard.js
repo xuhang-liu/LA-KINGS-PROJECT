@@ -101,7 +101,7 @@ export class Dashboard extends Component {
                   subpage={this.state.subpage}
                 />
               </div>
-              <div className="col-10" id="subpage_scroll_overflow" style={{marginBottom:"auto", height:"38rem"}}>{this.renderSubpage()}</div>
+              <div className="col-10" style={{marginBottom:"auto", height:"auto", paddingBottom:'10%'}}>{this.renderSubpage()}</div>
             </DbCenterRow>
           </div>
           </MediaQuery>
