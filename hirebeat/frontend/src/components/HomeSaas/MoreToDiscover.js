@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactWOW from 'react-wow';
+import FunFacts from '../Common/FunFacts';
+import {Link} from "react-router-dom";
 import feature2 from "../../assets/Picture2.png";
 import feature3 from "../../assets/Picture3.png";
 import feature4 from "../../assets/Picture4.png";
@@ -7,6 +9,7 @@ import feature4 from "../../assets/Picture4.png";
 class MoreToDiscover extends Component {
     render() {
         return (
+            <React.Fragment>
             <section className="ptb-100 bg-f4f6fc">
                 <div className="container">
                     <div className="section-title">
@@ -110,7 +113,28 @@ class MoreToDiscover extends Component {
                         </div>
                     </div>
                 </ReactWOW>
-            </section>
+                </section>
+                <section className="video-presentation-area ptb-100">
+                <div className="container">
+                {/* Fun Facts Style One */}
+                <FunFacts />
+
+                <ReactWOW animation='fadeInUp' delay='0.8s'>
+                    <div className="contact-cta-box mwidth-1000">
+                        <h3>Join us and give a try</h3>
+                        <p>Let HireBeat be your secret weapon to ace your next interview</p>
+
+                        <Link to="/register">
+                            <a className="default-btn" style={{color:"white"}}>
+                                Try For Free
+                                <span></span>
+                            </a>
+                        </Link>
+                    </div>
+                </ReactWOW>
+                </div>
+                </section>
+            </React.Fragment>
         );
     }
 }
