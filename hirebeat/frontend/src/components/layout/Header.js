@@ -58,12 +58,24 @@ export class Header extends Component {
         {children}
       </a>
     ));
+    const CustomToggle1 = React.forwardRef(({ children, onClick }, ref) => (
+      <a
+        ref={ref}
+        onClick={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+        style={{textDecoration:"none", cursor:"pointer"}}
+      >
+        {children}
+      </a>
+    ));
     return (
         <React.Fragment>
           <div className="nav-item order-xl-1 align-self-center">
             <div className="nav-link text-white navbar-font">
               <Dropdown>
-                <Dropdown.Toggle as={CustomToggle} >
+                <Dropdown.Toggle as={CustomToggle1} >
                   <div className="row">
                     <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF"}}></i>        
                     <span className="header-text" style={{marginLeft: "0.5rem"}}>{user ? `  ${user.username}  ` : ""}</span>
