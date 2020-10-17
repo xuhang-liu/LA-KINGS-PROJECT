@@ -45,11 +45,7 @@ export class Header extends Component {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       <a
         ref={ref}
-        onMouseEnter={(e) => {
-          e.preventDefault();
-          onClick(e);
-        }}
-        onMouseLeave={(e) => {
+        onClick={(e) => {
           e.preventDefault();
           onClick(e);
         }}
@@ -117,8 +113,8 @@ export class Header extends Component {
                       <span className="header-text">Resources</span>
 
                     <Dropdown.Menu>
-                      <Dropdown.Item href="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Blog</Dropdown.Item>
-                      <Dropdown.Item href="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Quiz</Dropdown.Item>
+                      <Dropdown.Item><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown.Toggle>
                   </Dropdown>
@@ -144,11 +140,7 @@ export class Header extends Component {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       <a
         ref={ref}
-        onMouseEnter={(e) => {
-          e.preventDefault();
-          onClick(e);
-        }}
-        onMouseLeave={(e) => {
+        onClick={(e) => {
           e.preventDefault();
           onClick(e);
         }}
@@ -199,8 +191,8 @@ export class Header extends Component {
                       <span className="header-text">Resources</span>
 
                     <Dropdown.Menu>
-                      <Dropdown.Item href="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Blog</Dropdown.Item>
-                      <Dropdown.Item href="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa"}}>Quiz</Dropdown.Item>
+                      <Dropdown.Item><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown.Toggle>
                   </Dropdown>
