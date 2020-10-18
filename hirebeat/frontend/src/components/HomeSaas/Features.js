@@ -9,7 +9,7 @@ class Features extends Component {
             <section className="features-area pt-100 pb-70 bg-f4f6fc">
                 <div className="container max-width-1290">
                     <div className="section-title">
-                        <h2>We Are Here To Help</h2>
+                        <h2>We Are Here To Help With Your Career Path</h2>
                         <p>We are offering AI-powered interview training and resume matching to help you get hired</p>
                     </div>
 
@@ -20,7 +20,7 @@ class Features extends Component {
                                 <div className="features-box-one">
                                     <i className='bx bx-laptop'></i>
                                     <h3>Interview Practicing</h3>
-                                    <p>Streamline design that allows you to practice interview anytime anywhere</p>
+                                    <p>Mock real-life interviews with common interview questions from large companies, and receive AI-powered feedback</p>
                                 </div>
                                 </a>
                             </ReactWOW>
@@ -32,7 +32,7 @@ class Features extends Component {
                                 <div className="features-box-one">
                                     <i className='bx bx-file'></i>
                                     <h3>Resume Matching</h3>
-                                    <p>You will never know what question is coming next, just like a live interview</p>
+                                    <p>See how well your resume matches a job and optimize it with ATS-specific analysis</p>
                                 </div>
                                 </a>
                             </ReactWOW>

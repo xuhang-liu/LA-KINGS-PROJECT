@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactWOW from 'react-wow';
-import FunFacts from '../Common/FunFacts';
 import {Link} from "react-router-dom";
 
 class MoreToDiscover extends Component {
@@ -11,7 +10,7 @@ class MoreToDiscover extends Component {
                 <div className="container" id='i1'>
                     <div className="section-title">
                         <h2 className="mb-2">More to Discover</h2>
-                        <p>HireBeat is transforming the way of career pivoting to improve the efficiency. Use our interview practicing and resume matching tools to impress recruiters in just a few clicks</p>
+                        <p>HireBeat is transforming the way of career pivoting to improve job-hunting efficiency. Use our interview practicing and resume matching tools to impress recruiters in just a few clicks</p>
                     </div>
                 </div>
 
@@ -29,17 +28,22 @@ class MoreToDiscover extends Component {
                                 <div className="overview-content pl-3">
                                     <span className="number">01</span>
                                     <h3>Pracetice/Simulate Modes</h3>
-                                    <p>Rather than spend hours to search questions online, you should focus on behavioral-based and technical-specific questions. Our practice interviews are customizable that suit the specific job position you are looking for.</p>
+                                    <p>Create your own customized interview and practice the questions that you want</p>
                                     <ul>
                                         <li>
                                             <i className='bx bx-badge-check'></i>
-                                            Behavioral-based interview questions
+                                            Practice questions of your choice
                                         </li>
                                         <li>
                                             <i className='bx bx-badge-check'></i>
-                                            Occupation-specific interview questions
+                                            Real-time interview simulation and get ready for the big day
                                         </li>
                                     </ul>
+                                    <Link to='/register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <i className="bx bxs-arrow-to-right"></i>
+                                            Start Now
+                                        <span></span>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -55,17 +59,22 @@ class MoreToDiscover extends Component {
                                     <div className="overview-content pl-3">
                                         <span className="number">02</span>
                                         <h3>Behavior/Technical Questions</h3>
-                                        <p>Video practice data is secured and safe in the cloud system. you can work at your own pace to track your practice video with feedbacks, you will build the knowledge and confidence to land your next dream job.</p>
+                                        <p>Ace your interview skills for both behavioral and technical questions with our help</p>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Interview video privacy
+                                                "Tell me about a time..."
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Anytime and anywhere
+                                                Practice your technical concepts
                                             </li>
                                         </ul>
+                                        <Link to='/register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <i className="bx bxs-arrow-to-right"></i>
+                                            Start Now
+                                        <span></span>
+                                    </Link>
                                     </div>
                                 </div>
 
@@ -93,17 +102,22 @@ class MoreToDiscover extends Component {
                                     <div className="overview-content pl-3">
                                         <span className="number">03</span>
                                         <h3>AI/Expert Analytics</h3>
-                                        <p>Once you've completed an interview, a recording is provided to you privately. No more guessing on your performance, using our evaluation system by sending your practice video to get valuable feedback from experts or AI.</p>
+                                        <p>Get comprehensive feedback on your interview performance with our AI/expert analytics</p>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Expert feedback
+                                                Quantified feedback based on our AI-model
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                AI behavioral analysis
+                                                Suggestions on improvement from our HR experts
                                             </li>
                                         </ul>
+                                        <Link to='/register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <i className="bx bxs-arrow-to-right"></i>
+                                            Start Now
+                                        <span></span>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -119,17 +133,23 @@ class MoreToDiscover extends Component {
                                     <div className="overview-content pl-3">
                                         <span className="number">04</span>
                                         <h3>Optimize Resume Matching</h3>
-                                        <p>Video practice data is secured and safe in the cloud system. you can work at your own pace to track your practice video with feedbacks, you will build the knowledge and confidence to land your next dream job.</p>
+                                        <p>Optimize the matching rate between resume and target job based on AI suggestions on key words</p>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Interview video privacy
+                                                Matching rate
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Anytime and anywhere
+                                                ATS-Friendly Tips
+                                                <i className='bx bx-question-mark'></i>
                                             </li>
                                         </ul>
+                                        <Link to='/resume' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <i className="bx bxs-arrow-to-right"></i>
+                                            Start Now
+                                        <span></span>
+                                        </Link>
                                     </div>
                                 </div>
 
@@ -142,26 +162,6 @@ class MoreToDiscover extends Component {
                         </div>
                     </div>
                 </ReactWOW>
-                </section>
-                <section className="video-presentation-area ptb-100">
-                <div className="container">
-                {/* Fun Facts Style One */}
-                <FunFacts />
-
-                <ReactWOW animation='fadeInUp' delay='0.8s'>
-                    <div className="contact-cta-box mwidth-1000">
-                        <h3>Join us and give a try</h3>
-                        <p>Let HireBeat be your secret weapon to ace your next interview</p>
-
-                        <Link to="/register">
-                            <a className="default-btn" style={{color:"white"}}>
-                                Try For Free
-                                <span></span>
-                            </a>
-                        </Link>
-                    </div>
-                </ReactWOW>
-                </div>
                 </section>
             </React.Fragment>
         );

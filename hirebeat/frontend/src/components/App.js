@@ -74,7 +74,7 @@ class App extends Component {
 
   render() {
     const meta = {
-      title: 'HireBeat – the best video interview prep tool for jobseekers',
+      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
       description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
       canonical: 'https://hirebeat.co/',
       meta: {
@@ -88,7 +88,7 @@ class App extends Component {
       <DocumentMeta {...meta}>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>HireBeat – the best video interview prep tool for jobseekers</title>
+        <title>HireBeat – The Best Video Interview Prep Tool For Jobseekers</title>
         <link rel="canonical" href="https://hirebeat.co"/>
       </Helmet>
       <React.Fragment>

@@ -39,9 +39,9 @@ class WhyChooseUs extends Component {
                 <section className="video-presentation-area ptb-100">
                     <div className="container">
                         <div className="section-title">
-                            <h2>We Understand Your Pain</h2>
-                            <p>When preparing for an upcoming interview, it is not enough to just search questions online and read advice</p>
-                        </div>
+                            <h2>Why choose us</h2>
+                            <h2>Watch this video to know more</h2>
+                       </div>
 
                         <div className="video-box">
                             <img src={videobg} className="main-image" alt="image" />
