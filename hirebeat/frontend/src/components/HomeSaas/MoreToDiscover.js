@@ -3,6 +3,7 @@ import ReactWOW from 'react-wow';
 import {Link} from "react-router-dom";
 
 class MoreToDiscover extends Component {
+
     render() {
         return (
             <React.Fragment>
@@ -20,7 +21,7 @@ class MoreToDiscover extends Component {
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-left-img">
-                                    <img src='https://hirebeat-assets.s3.amazonaws.com/P_S2.gif' alt="gif" />
+                                    <img src='https://hirebeat-assets.s3.amazonaws.com/PS.gif' alt="gif" />
                                 </div>
                             </div>
 
@@ -80,7 +81,7 @@ class MoreToDiscover extends Component {
 
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-right-img">
-                                        <img src='https://hirebeat-assets.s3.amazonaws.com/B_T2.gif' alt="gif" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/BT.gif' alt="gif" />
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +95,7 @@ class MoreToDiscover extends Component {
                             <div className="row align-items-center">
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-left-img">
-                                        <img src='https://hirebeat-assets.s3.amazonaws.com/AI2.gif' alt="gif" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/AI.gif' alt="gif" />
                                     </div>
                                 </div>
 
@@ -142,7 +143,7 @@ class MoreToDiscover extends Component {
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
                                                 ATS-Friendly Tips
-                                                <i className='bx bx-question-mark'></i>
+                                                <span style={{paddingLeft:'2px'}} className="bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Applicant tracking systems (ATS) is a recruiting software used by most of large companies, it provides ranking by calculating how well your resume scores based on job description."></span>
                                             </li>
                                         </ul>
                                         <Link to='/resume' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
@@ -155,7 +156,7 @@ class MoreToDiscover extends Component {
 
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-right-img">
-                                        <img src='https://hirebeat-assets.s3.amazonaws.com/Resume2.gif' alt="gif" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/Resume.gif' alt="gif" />
                                     </div>
                                 </div>
                             </div>

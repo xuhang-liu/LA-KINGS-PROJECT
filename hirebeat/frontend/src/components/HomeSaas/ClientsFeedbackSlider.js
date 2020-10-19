@@ -78,6 +78,7 @@ class ClientsFeedbackSlider extends Component {
                                 <div className="client-info">
                                     <img src={user1} alt="image" />
                                     <h3>Rebecca</h3>
+                                    <p>NYU Class Of 2023</p>
                                 </div>
                             </div>
                         </div>
@@ -98,6 +99,7 @@ class ClientsFeedbackSlider extends Component {
                                 <div className="client-info">
                                     <img src={user2}  alt="image"/>
                                     <h3>Daniel</h3>
+                                    <p>UCSD Class Of 2021</p>
                                 </div>
                             </div>
                         </div>
