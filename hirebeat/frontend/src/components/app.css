@@ -1816,3 +1816,23 @@ color: #080A3C;
   cursor: pointer;
   text-align: center;
 }
+
+.review-align {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 50px rgba(70, 137, 250, 0.1);
+  border-radius: 10px;
+}
+
+.review-text1 {
+  font-family: Poppins;
+  font-size: 1.25rem;
+  font-style: normal;
+  color: #4689FA;
+}
+
+.review-text2 {
+  font-family: Poppins;
+  font-size: 0.9375rem;
+  font-style: normal;
+  text-align: left;
+}

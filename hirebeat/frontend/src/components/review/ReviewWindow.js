@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import VideoPlayer from "../videos/VideoPlayer";
 import AudioPlayer from "../audios/AudioPlayer";
 import Reviews from "./Reviews";
+import { ReviewLabel } from "./ReviewLabel";
 
 export class ReviewWindow extends Component {
   static propTypes = {
@@ -28,37 +29,7 @@ export class ReviewWindow extends Component {
   render() {
     return (
       <div className="container" style={{marginBottom:"10%"}}>
-        This is review page. Number of videos reviewed by this reviewer:
-        {this.props.review_count}
-        {this.props.loaded ? (
-          this.props.video.url == "" ? (
-            <h2>No video needs to be reviewed</h2>
-          ) : (
-            <div style={{width: "60%"}}>
-              <div style={{marginBottom:"2%"}}><h3>Question Type: {this.props.q_type}</h3></div>
-              <div style={{marginBottom:"2%"}}><h3>Question Category: {this.props.q_category}</h3></div>
-              <div style={{marginBottom:"2%"}}><h3>Question Description: {this.props.q_description}</h3></div>
-              <div>
-              {
-                this.props.video.url.slice(-3) === "wav" ? <AudioPlayer url={this.props.video.url} />
-                  : <VideoPlayer url={this.props.video.url} />
-              }
-            </div>
-              <Reviews
-                videoID={this.props.video.id}
-                nextVideo={this.nextVideo}
-                needed_ai_review={this.props.video.needed_ai_review}
-                is_ai_reviewed={this.props.video.is_ai_reviewed}
-                needed_expert_review={this.props.video.needed_expert_review}
-                is_expert_reviewed={this.props.video.is_expert_reviewed}
-                ai_review_categories={this.props.video.ai_review_categories}
-                expert_review_categories={this.props.video.expert_review_categories}
-              />
-            </div>
-          )
-        ) : (
-          <h2>Loading</h2>
-        )}
+        <ReviewLabel />
       </div>
     );
   }
