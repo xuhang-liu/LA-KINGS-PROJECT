@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import ReactWOW from 'react-wow';
 import Particles from 'react-particles-js';
 import ModalVideo from 'react-modal-video';
+import MediaQuery from 'react-responsive';
 import arrow from "../public/images/saas-shape/arrow.png";
 import box1 from "../public/images/saas-shape/box1.png";
 import boy1 from "../public/images/saas-shape/boy1.png";
@@ -72,9 +73,8 @@ class MainBanner extends Component {
                 <div className="saas-banner">
                     <div className="d-table">
                         <div className="d-table-cell">
-                            <div className="container max-width-1290">
+                            <div className="container max-width-1440">
                                 <div className="row align-items-center pt-8">
-                            
                                     <div className="col-lg-6 col-md-12">
                                         <div className="saas-image mt-70">
                                             <ReactWOW animation='fadeInDown' delay='0.6s'>

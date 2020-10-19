@@ -95,11 +95,11 @@ export class Header extends Component {
                   <span className="header-text">Practice</span>
                 </Link>
               </li>
-              {/*<li className="nav-item ">
+              <li className="nav-item ">
                 <Link to="/resume" className="nav-link text-white navbar-font">
                   <span className="header-text">Resume</span>
                 </Link>
-                </li>*/}
+                </li>
               </MediaQuery>
               <li className="nav-item">
                 <Link to="/company" className="nav-link text-white navbar-font">

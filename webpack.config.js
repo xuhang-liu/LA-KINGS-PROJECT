@@ -28,6 +28,9 @@ module.exports = {
     new webpack.ProvidePlugin({
       videojs: "video.js/dist/video.cjs.js",
       RecordRTC: "recordrtc",
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
     }),
     new CompressionPlugin({
       algorithm: "gzip",
