@@ -26,6 +26,7 @@ export class ReviewWindow extends Component {
   };
 
   render() {
+  // todo pass video sentences data here
     return (
       <div className="container" style={{marginBottom:"10%"}}>
         This is review page. Number of videos reviewed by this reviewer:

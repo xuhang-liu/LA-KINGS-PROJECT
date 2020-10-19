@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { addVideoReviews } from "../../redux/actions/video_actions";
+import { addVideoLabels } from "../../redux/actions/video_actions";
 import { connect } from "react-redux";
 
 export class Reviews extends Component {
@@ -19,7 +20,18 @@ export class Reviews extends Component {
     ai_detailOriented: 0,
     ai_teamSpirit: 0,
     ai_stressTolerance: 0,
+    // ai label
+    label: false,
+    sentence: -1,
+    subCategory: -1,
   };
+
+  labelMetaData = {
+    label: this.state.label,
+    sentence: this.state.sentence,
+    subCategory: this.state.subCategory,
+    };
+  // this.props.addVideoReviews   add label to db
 
   handleInputChange = (e) => {
     this.setState({
@@ -167,4 +179,4 @@ export class Reviews extends Component {
   }
 }
 
-export default connect(null, { addVideoReviews })(Reviews);
+export default connect(null, { addVideoReviews, addVideoLabels })(Reviews);

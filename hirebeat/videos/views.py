@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseBadRequest
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .api.serializers import VideoSerializer
-from .models import Video
+from .api.serializers import VideoSerializer, VideoLabelSerializer
+from .models import Video, Label
 from accounts.models import ReviewerInfo
 # For fake ai
 from django.db.models import Q
@@ -68,4 +68,16 @@ def mark_video_as_needed_review(request):
     video.save()
     serializer = VideoSerializer(video)
     return Response(serializer.data)
-    
+
+@api_view(['POST'])
+def add_video_label(request):
+    print("===Save Video Label Called===")
+    label = request.data["label"]
+    sentence = request.data["sentence"]
+    subCategory = request.data["subCategory"]
+    data = Label.objects.create(label=label, sentence=sentence, subCategory=subCategory)
+    return Response({
+        "label": label,
+        "sentence": sentence,
+        "subCategory": subCategory
+    })
