@@ -41,6 +41,11 @@ export class ResumeScan extends Component {
     this.setState({ ...this.state, jdText: value });
   }
 
+  strToText = () => {
+    let value = document.getElementById("cvText").value;
+    this.createCV(value);
+  }
+
   setLabel = (name) => {
     let label = document.getElementById('fileName');
     label.textContent = name;
@@ -48,10 +53,19 @@ export class ResumeScan extends Component {
 
   checkInput = (resume, jobTitle, jdText) => {
     let filled = true;
-    if (this.state.resume == null || this.state.jobTitle == "" || this.state.jdText == "") {
+    if (resume == null || jobTitle == "" || jdText == "") {
         filled = false;
     }
     return filled;
+  }
+
+  createCV = (content) => {
+    let timestamp = Date.parse(new Date());
+    let cvName = timestamp + ".txt";
+    const newResume = new File([content], cvName, {type: "text/plain"});
+    //set cvName &　resume states
+    this.setState({cvName: cvName});
+    this.setState({resume: newResume});
   }
 
   selectFile = () => {
@@ -153,7 +167,7 @@ export class ResumeScan extends Component {
     return (
       <React.Fragment>
       <div className="container">
-        <div style={{textAlign: "center"}}>
+        {/*<div style={{textAlign: "center"}}>
           <button className="default-btn resume-upload" onClick={this.selectFile}>
             <i className="bx bx-cloud-upload bx-sm"></i>
               Upload Resume
@@ -169,7 +183,7 @@ export class ResumeScan extends Component {
               <i className="bx bxs-check-circle resume-success" style={{marginLeft: "1rem"}}></i>
             </div>
           ) : null
-        }
+        }*/}
         <ReactS3Uploader
           style={{display: "none"}}
           id="uploadFile"
@@ -188,6 +202,17 @@ export class ResumeScan extends Component {
           autoUpload={true}
         />
         <div style={{textAlign: "center"}}>
+           <h4 className="resume-subtitle">Paste Your Resume </h4>
+           <div>
+             <textarea
+               id="cvText"
+               className="resume-textarea"
+               style={{width: "40%", height: "12.5rem", marginTop: "0.5rem"}}
+               placeholder="Paste resume here"
+               onChange={this.strToText}
+             >
+             </textarea>
+           </div>
            <h4 className="resume-subtitle">Paste Your Job Description </h4>
            <div>
              <textarea
