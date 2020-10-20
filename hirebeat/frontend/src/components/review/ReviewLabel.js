@@ -3,9 +3,8 @@ import { LabelRow, ContentRow } from "./Components";
 
 export function ReviewLabel() {
     return (
-        <section style={{paddingBottom: "10%", paddingTop:"5%"}}>
-            <div className="row align-items-center">
-                <div className="col-6" />
+
+
                 <div className="col-6 review-align">
                     <h4 className="review-text1">Labeling</h4>
                     <br/>
@@ -17,7 +16,6 @@ export function ReviewLabel() {
                             "Lorem ipsum dolor sit amet, consectetur "]}
                     /> 
                 </div>
-            </div>
-        </section>
+
     );
 };
