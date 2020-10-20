@@ -25,6 +25,7 @@ import blogdetail3 from "./blog/blog-details3";
 import blogdetail4 from "./blog/blog-details4";
 import blogdetail5 from "./blog/blog-details5";
 import blogdetail6 from "./blog/blog-details6";
+import blogdetail7 from "./blog/blog-details7";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -74,7 +75,7 @@ class App extends Component {
 
   render() {
     const meta = {
-      title: 'HireBeat – the best video interview prep tool for jobseekers',
+      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
       description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
       canonical: 'https://hirebeat.co/',
       meta: {
@@ -88,7 +89,7 @@ class App extends Component {
       <DocumentMeta {...meta}>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>HireBeat – the best video interview prep tool for jobseekers</title>
+        <title>HireBeat – The Best Video Interview Prep Tool For Jobseekers</title>
         <link rel="canonical" href="https://hirebeat.co"/>
       </Helmet>
       <React.Fragment>
@@ -142,6 +143,7 @@ class App extends Component {
                 <Route exact path="/blog-details4" component={blogdetail4} />
                 <Route exact path="/blog-details5" component={blogdetail5} />
                 <Route exact path="/blog-details6" component={blogdetail6} />
+                <Route exact path="/blog-details7" component={blogdetail7} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
