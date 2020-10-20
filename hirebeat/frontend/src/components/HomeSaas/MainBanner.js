@@ -75,7 +75,7 @@ class MainBanner extends Component {
                         <div className="d-table-cell">
                             <div className="container max-width-1440">
                                 <div className="row align-items-center pt-8">
-                                    <div className="col-lg-6 col-md-12">
+                                    <div className="col-lg-5 col-md-12">
                                         <div className="saas-image mt-70">
                                             <ReactWOW animation='fadeInDown' delay='0.6s'>
                                                 <img src={arrow} alt="arrow" />
@@ -131,10 +131,10 @@ class MainBanner extends Component {
                                             </ReactWOW>
                                         </div>
                                     </div>
-                                    <div className="col-lg-6 col-md-12">
+                                    <div className="col-lg-7 col-md-12">
                                         <div className="hero-content pl-6">
-                                            <h1>Land your next job, starting with the interview</h1>
-                                            <p>AI-analysis interview training platform that supercharges your performance and makes a great impression at your next interview.</p>
+                                            <h1>All-in-one stop to land your next dream job</h1>
+                                            <p>Gain confidence and competence with AI powered interview training and resume matching to boost your career path</p>
                                             
                                             <div className="banner-btn">
                                                 <div className="d-flex">
