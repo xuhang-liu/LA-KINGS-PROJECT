@@ -174,9 +174,7 @@ export class EssentialUserInfo extends Component {
       user: this.props.user.id,
       id: this.props.profile.id,
       phone_number: this.state.phone_number,
-      location: this.state.location,
-      membership: this.state.membership,
-      avatar_url: this.state.avatar_url
+      location: this.state.location
     };
   };
 
