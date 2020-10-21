@@ -11,7 +11,7 @@ function SaveLeft(props) {
           <div className="free-trial-content">
           {props.profile.membership == "Regular" &&
             <div className="row">
-              <p style={{color:"#7D7D7D", fontSize:"0.75rem"}}>Saves Left: {saves_left}</p>
+              <p style={{color:"#7D7D7D", fontSize:"0.75rem"}}>Saves Left: {saves_left<0 ? 0:saves_left}</p>
               <Link to="/pricing" style={{marginLeft:"2rem", textDecoration: "none"}}>
                 <p style={{color:"#FF6B00", fontSize:"0.75rem"}}>Upgrade -></p>
               </Link>
