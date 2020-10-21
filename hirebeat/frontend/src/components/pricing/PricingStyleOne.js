@@ -285,7 +285,17 @@ class PricingStyleOne extends Component {
                                                 </div>
                                             }
                                             {
-                                                this.props.profile.membership == "Premium" &&
+                                                this.props.profile.plan_interval == "year" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Yearly Plan Already
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.plan_interval == "month" &&
                                                 <div className="btn-box">
                                                     <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
                                                         <i className="bx bxs-hot"></i> 
@@ -515,11 +525,21 @@ class PricingStyleOne extends Component {
                                                 </div>
                                             }
                                             {
-                                                this.props.profile.membership == "Premium" &&
+                                                this.props.profile.plan_interval == "year" &&
                                                 <div className="btn-box">
                                                     <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Current Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.plan_interval == "month" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white"}} onClick={this.handleYearUpgrade}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Upgrade Now
                                                         <span></span>
                                                     </button>
                                                 </div>
