@@ -134,7 +134,7 @@ class MainBanner extends Component {
                                     <div className="col-lg-7 col-md-12">
                                         <div className="hero-content pl-6">
                                             <h1>All-in-one stop to land your next dream job</h1>
-                                            <p>Gain confidence and competence with AI powered interview training and resume matching to boost your career path</p>
+                                            <p>Gain confidence and competence with AI-powered interview training and resume matching to boost your career path</p>
                                             
                                             <div className="banner-btn">
                                                 <div className="d-flex">
