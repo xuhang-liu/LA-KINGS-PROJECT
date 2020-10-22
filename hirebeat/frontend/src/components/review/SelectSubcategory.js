@@ -61,9 +61,11 @@ class SelectSubcategory extends Component {
       super();
       this.handleChange = this.handleChange.bind(this);
       this.handleChangeCatogary = this.handleChangeCatogary.bind(this);
-    }
+      this.handleInputChange = this.handleInputChange.bind(this);
+    };
     
     state = {
+        labelValue: "F",
         checked: false,
         categoryOfQuestion: { value: 1, label: "Discuss past mistakes or failures without becoming overly negative", checked: false},
     };
@@ -79,58 +81,50 @@ class SelectSubcategory extends Component {
    handleChangeCatogary = (categoryOfQuestion) => {
       this.setState({ categoryOfQuestion });
       this.setState(state => ({checked: this.Subcategory[state.categoryOfQuestion.value - 1].checked}));
-   }
+   };
     
 
    handleChange(checked) {
         this.setState(state => ({checked: !state.checked}));
         this.Subcategory[this.state.categoryOfQuestion.value - 1].checked = this.state.checked;
-   }
-  
-  
-    render() {
-//        console.log(this.props.subcategories[0]);
-        return(
-            <div className="row align-items-center" >
-                <div className="col-10">
-                    <div className="react-select-container">
-                        {/*<Select
-                          id="select"
-                          className="select-category1"
-                          value={this.state.categoryOfQuestion}
-                          onChange={this.handleChangeCatogary}
-                          options={this.Subcategory}
-                          styles={s}
-                          isSearchable={false} />*/}
+   };
 
-                          {this.props.subcategories.map((s, index) =>  {
-                                return(
+   handleInputChange(e) {
+        this.setState({[e.target.name]: e.target.value});
+   };
+
+    render() {
+        return(
+            <div>
+                {this.props.subcategories.map((s, index) =>  {
+                    return(
+                        <div className="row align-items-center">
+                            <div className="col-10">
+                                 <div className="react-select-container">
                                     <p className="review-text2">{ (index + 1) + ". " + s.sub_category}</p>
-                                )
-                          })}
-                    </div>
-                </div>
-                <div className="col-2">
-                    <CardRow>
-                        {/*<Switch id={this.props.switchID} onChange={this.handleChange} checked={this.state.checked} />*/}
-                        <input
-                            type="number"
-                            step="1"
-                            class="form-control review-text"
-                            min="0"
-                            max="5"
-                            id={this.props.switchID}
-                            placeHolder="0"
-                            required="required"
-                            style={{width:"50%",height:"50%", padding:"7%",
-                                    border:"1px solid #E5E5E5", borderRadius:"5px",
-                                    textAlign:"center",color:"#FF6B00", fontSize:"15px"}}
-                        />
-                    </CardRow>
-                </div>
+                                 </div>
+                            </div>
+                            <div className="col-2">
+                                <CardRow>
+                                    <input
+                                        type="text"
+                                        minlength="1"
+                                        maxlength="1"
+                                        class="form-control review-text"
+                                        className="label-input"
+                                        required="required"
+                                        style={{width:"50%",height:"50%", padding:"7%",
+                                                border:"1px solid #E5E5E5", borderRadius:"5px",
+                                                textAlign:"center",color:"#FF6B00", fontSize:"15px"}}
+                                    />
+                                </CardRow>
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         );
-    }
+    };
 }
 
 export default SelectSubcategory;

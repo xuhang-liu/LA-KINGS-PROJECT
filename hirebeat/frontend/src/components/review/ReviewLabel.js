@@ -28,15 +28,30 @@ export class ReviewLabel extends Component {
         let labels = [];
 
         let num = this.props.sentences.length;
+        let total = this.props.subcategories.length;
+        let allInputs = document.getElementsByClassName("label-input");
+        let count = 0;
+
         for (let i = 0; i < num; i++) {
-            let input = document.getElementById(i.toString());
-            let index = input.value - 1;
-            let status = index == -1 ? false : true;
+            let tempSubcats = [];
+            let tempLabels = [];
+
+            for (let j = 0; j < total; j++) {
+                let subcatValue = this.props.subcategories[j].id;
+                let inputValue = allInputs[count].value;
+                let labelValue = false;
+                if (inputValue == "T" || inputValue == "t") {
+                    labelValue = true;
+                }
+
+                tempSubcats.push(subcatValue);
+                tempLabels.push(labelValue);
+                count++;
+            }
 
             sentences.push(this.props.sentences[i].id);
-            // -1 means all the metrics are false regarding to current sentence
-            index == -1 ? subcategories.push(0) : subcategories.push(this.props.subcategories[index].id);
-            labels.push(status);
+            subcategories.push(tempSubcats);
+            labels.push(tempLabels);
         }
 
         data.push(sentences);
@@ -48,16 +63,26 @@ export class ReviewLabel extends Component {
 
     saveData = (data) => {
         let num = data[0].length;
+        let total = data[1].length;
+
+        let sentences = data[0];
+        let subcategories = data[1];
+        let labels = data[2];
 
         for (let i = 0; i < num; i++) {
-            let metaData = {
-                    sentence: data[0][i],
-                    subCategory: data[1][i],
-                    label: data[2][i],
-                }
-            this.props.addVideoLabels(metaData);
-        }
+            let curr_sentence = sentences[i];
+            let curr_subcategories = subcategories[i];
+            let curr_labels = labels[i];
 
+            for (let j = 0; j < total; j++) {
+                let metaData = {
+                    sentence: curr_sentence,
+                    subCategory: curr_subcategories[j],
+                    label: curr_labels[j],
+                }
+                this.props.addVideoLabels(metaData);
+            }
+        }
     }
 
     submitLabel = () => {
