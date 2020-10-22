@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import ReactWOW from 'react-wow';
 import f1 from "../../assets/f1.png";
 import f2 from "../../assets/f2.png";
-import f3 from "../../assets/f3.png";
-import f4 from "../../assets/f4.png";
-import f5 from "../../assets/f5.png";
-import f6 from "../../assets/f6.png";
 
 class Features extends Component {
     render() {
@@ -13,67 +9,32 @@ class Features extends Component {
             <section className="features-area pt-100 pb-70 bg-f4f6fc">
                 <div className="container max-width-1290">
                     <div className="section-title">
-                        <h2>Our amazing features</h2>
+                        <h2>We Are Here To Help With Your Career Path</h2>
+                        <p>We are offering AI-powered interview training and resume matching to help you get hired</p>
                     </div>
 
                     <div className="row">
-                        <div className="col-lg-4 col-md-6">
+                        <div className="col-lg-6 col-md-6">
                             <ReactWOW animation='fadeInLeft' delay='0.1s'>
+                                <a href='#i1' style={{textDecoration:'none'}}>
                                 <div className="features-box-one">
-                                    <i className='bx'><img src={f1} alt="image"></img></i>
-                                    <h3>Easy to use</h3>
-                                    <p>Streamline design that allows you to practice interview anytime anywhere</p>
+                                    <i className='bx bx-laptop'></i>
+                                    <h3>Interview Practicing</h3>
+                                    <p>Mock real-life interviews with common interview questions from large companies, and receive AI-powered feedback</p>
                                 </div>
+                                </a>
                             </ReactWOW>
                         </div>
 
-                        <div className="col-lg-4 col-md-6">
+                        <div className="col-lg-6 col-md-6">
                             <ReactWOW animation='fadeInLeft' delay='0.2s'>
+                                <a href='#i2' style={{textDecoration:'none'}}>
                                 <div className="features-box-one">
-                                <i className='bx'><img src={f2} alt="image"></img></i>
-                                    <h3>Real-time simulation</h3>
-                                    <p>You will never know what question is coming next, just like a live interview</p>
+                                    <i className='bx bx-file'></i>
+                                    <h3>Resume Matching</h3>
+                                    <p>See how well your resume matches a job and optimize it with ATS-specific analysis</p>
                                 </div>
-                            </ReactWOW>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6">
-                            <ReactWOW animation='fadeInLeft' delay='0.3s'>
-                                <div className="features-box-one">
-                                <i className='bx'><img src={f3} alt="image"></img></i>
-                                    <h3>Interview question bank</h3>
-                                    <p>Get thousands of interview questions across different industries</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6">
-                            <ReactWOW animation='fadeInLeft' delay='0.4s'>
-                                <div className="features-box-one">
-                                <i className='bx'><img src={f4} alt="image"></img></i>
-                                    <h3>Review & Replay</h3>
-                                    <p>Secured stage allows you to track and revisit your training progress</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6">
-                            <ReactWOW animation='fadeInLeft' delay='0.5s'>
-                                <div className="features-box-one">
-                                <i className='bx'><img src={f5} alt="image"></img></i>
-                                    <h3>Affordable</h3>
-                                    <p>No contact, you can enjoy our sevice for just $0.65/day</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6">
-                            <ReactWOW animation='fadeInLeft' delay='0.6s'>
-                                <div className="features-box-one">
-                                <i className='bx'><img src={f6} alt="image"></img></i>
-                                    <h3>Feedback</h3>
-                                    <p>Get AI or HR feedback after practice, improve your interview skill today</p>
-                                </div>
+                                </a>
                             </ReactWOW>
                         </div>
                     </div>

@@ -59,6 +59,6 @@ class Sentence(models.Model):
         return self.timestamp + '|' + self.sentence
 
 class Label(models.Model):
-    sentence = models.ForeignKey(Sentence, on_delete=models.CASCADE)
-    subCategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    sentence = models.BigIntegerField()
+    subCategory = models.BigIntegerField()
     label = models.BooleanField(default=False)

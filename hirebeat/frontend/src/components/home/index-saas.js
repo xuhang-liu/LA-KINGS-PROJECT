@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import MainBanner from '../HomeSaas/MainBanner';
 import Features from '../HomeSaas/Features';
-import FeaturedFeature from '../HomeSaas/FeaturedFeature';
+//import FeaturedFeature from '../HomeSaas/FeaturedFeature';
+import ClientsFeedbackSlider from '../HomeSaas/ClientsFeedbackSlider';
 import MoreToDiscover from '../HomeSaas/MoreToDiscover';
-import WhyChooseUs from '../Common/WhyChooseUs';
-import FaqContent from '../Faq/FaqContent';
+//import WhyChooseUs from '../Common/WhyChooseUs';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import Loader from '../shared/Loader';
 
@@ -21,10 +21,8 @@ class IndexSaas extends Component {
             <React.Fragment>
                 <MainBanner />
                 <Features />
-                <FeaturedFeature />
                 <MoreToDiscover />
-                <WhyChooseUs />
-                <FaqContent />
+                <ClientsFeedbackSlider/>
                 <FreeTrialArea />
                       {/* Preloader */}
       <Loader loading={this.state.loading} />
