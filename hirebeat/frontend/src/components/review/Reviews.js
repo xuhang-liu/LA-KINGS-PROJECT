@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { addVideoReviews } from "../../redux/actions/video_actions";
-import { addVideoLabels } from "../../redux/actions/video_actions";
+import { getSentences } from "../../redux/actions/video_sentence_actions";
 import { connect } from "react-redux";
+import { LabelRow, ContentRow } from "./Components";
+import PropTypes from "prop-types";
+import ReviewLabel from "./ReviewLabel";
 
 export class Reviews extends Component {
   state = {
@@ -26,12 +29,9 @@ export class Reviews extends Component {
     subCategory: -1,
   };
 
-  labelMetaData = {
-    label: this.state.label,
-    sentence: this.state.sentence,
-    subCategory: this.state.subCategory,
-    };
-  // this.props.addVideoReviews   add label to db
+  componentWillMount() {
+    this.props.getSentences(this.props.videoID);
+  }
 
   handleInputChange = (e) => {
     this.setState({
@@ -85,20 +85,27 @@ export class Reviews extends Component {
 
   scoreField = (title, name, value) => {
     return (
-      <div>
-        <label style={{ fontSize: "20px" }}>{title}</label>
-        <input
-          type="number"
-          step="1"
-          class="form-control"
-          min="0"
-          max="10"
-          name={name}
-          value={value}
-          placeholder={value}
-          onChange={this.handleInputChange}
-          required="required"
-        />
+      <div className="form-inline" style={{marginBottom:"1%"}}>
+        <div className="col-8" style={{padding:"0px"}}>
+          <label className="review-text" style={{fontSize:"15px", color:"#000000", justifyContent:"left"}}>{title}</label>
+        </div>
+        <div className="col-sm-4" style={{padding:"0px"}}>
+          <input
+            type="number"
+            step="1"
+            class="form-control review-text"
+            min="0"
+            max="10"
+            name={name}
+            value={value}
+            placeholder={value}
+            onChange={this.handleInputChange}
+            required="required"
+            style={{width:"75%",height:"50%", padding:"7%", 
+                    border:"1px solid #E5E5E5", borderRadius:"5px", 
+                    textAlign:"center",color:"#FF6B00", fontSize:"15px"}}
+          />
+        </div>
         <br />
       </div>
     );
@@ -108,75 +115,101 @@ export class Reviews extends Component {
     var str = this.props.expert_review_categories;
     var categories = str.split(",");
     return categories;
-  }
+  };
 
   expertReviews = () => {
     var categories = this.getCategories();
     return (
       <div className="form-group">
-        <h1>Expert Score</h1>
-        {this.scoreField(categories[0], "postitiveAttitude", this.state.postitiveAttitude)}
-        {this.scoreField(categories[1], "communication", this.state.communication)}
-        {this.scoreField(categories[2], "detailOriented", this.state.detailOriented)}
-        {this.scoreField(categories[3], "teamSpirit", this.state.teamSpirit)}
-        {this.scoreField(categories[4], "stressTolerance", this.state.stressTolerance)}
-        {this.scoreField("Overall", "score", this.state.score)}
-        <label>Comments</label>
-        <textarea
-          className="form-control"
-          rows="5"
-          spellCheck="true"
-          placeholder="Comments here ..."
-          name="comments"
-          onChange={this.handleInputChange}
-        />
+        <div className="row">
+          <div className="col-7">
+            <p className="review-text" style={{fontSize:"20px"}}>Expert Score</p>
+            {this.scoreField(categories[0], "postitiveAttitude", this.state.postitiveAttitude)}
+            {this.scoreField(categories[1], "communication", this.state.communication)}
+            {this.scoreField(categories[2], "detailOriented", this.state.detailOriented)}
+            {this.scoreField(categories[3], "teamSpirit", this.state.teamSpirit)}
+            {this.scoreField(categories[4], "stressTolerance", this.state.stressTolerance)}
+            {this.scoreField("Overall", "score", this.state.score)}
+          </div>
+          <div className="col" style={{paddingLeft:"0px"}}>
+            <label className="review-text" style={{fontSize:"20px"}}>Comments</label>
+            <textarea
+              className="form-control"
+              rows="9"
+              spellCheck="true"
+              name="comments"
+              onChange={this.handleInputChange}
+              style={{padding:"0px", border:"1px solid #E5E5E5", borderRadius:"5px", fontSize: "1.2rem"}}
+            />
+          </div>
+        </div>
       </div>
     );
   };
 
   aiReviews = () => {
-    var categories = this.getCategories();
-    var aiCategories = categories.map((category) => "AI " + category);
+    var aiCategories = this.getCategories();
+    // var aiCategories = categories.map((category) => "AI " + category);
     return (
       <div className="form-group">
-        <h1>AI Score</h1>
-        {this.scoreField(aiCategories[0], "ai_positiveAttitude", this.state.ai_positiveAttitude)}
-        {this.scoreField(aiCategories[1], "ai_communication", this.state.ai_communication)}
-        {this.scoreField(aiCategories[2], "ai_detailOriented", this.state.ai_detailOriented)}
-        {this.scoreField(aiCategories[3], "ai_teamSpirit", this.state.ai_teamSpirit)}
-        {this.scoreField(aiCategories[4], "ai_stressTolerance", this.state.ai_stressTolerance)}
-        {this.scoreField("AI Overall", "ai_score", this.state.ai_score)}
+        <div className="col-12" style={{paddingLeft:"0px"}}>
+          <p className="review-text" style={{fontSize:"20px"}}>AI Score</p>
+          {this.scoreField(aiCategories[0], "ai_positiveAttitude", this.state.ai_positiveAttitude)}
+          {this.scoreField(aiCategories[1], "ai_communication", this.state.ai_communication)}
+          {this.scoreField(aiCategories[2], "ai_detailOriented", this.state.ai_detailOriented)}
+          {this.scoreField(aiCategories[3], "ai_teamSpirit", this.state.ai_teamSpirit)}
+          {this.scoreField(aiCategories[4], "ai_stressTolerance", this.state.ai_stressTolerance)}
+          {this.scoreField("Overall", "ai_score", this.state.ai_score)}
+        </div>
       </div>
     );
   };
 
   render() {
     return (
-      <div className="container" style={{ marginBottom: "10%" }}>
-        <form>
-          <fieldset>
-            {this.props.needed_expert_review && !this.props.is_expert_reviewed
-              ? this.expertReviews()
-              : null}
-            <br />
-            <div className="line" />
-            <br />
-            {this.props.needed_ai_review && !this.props.is_ai_reviewed
-              ? this.aiReviews()
-              : null}
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={this.submitReview}
-            >
-              Submit
-            </button>
-            <br />
-          </fieldset>
-        </form>
+      <div style={{width: "100%"}}>
+            <div className="review-align" style={{width: "95%", margin: "auto"}}  >
+              <div style={{ marginBottom: "3%", padding: "2rem", width: "95%", margin: "auto" }}>
+                {this.props.needed_ai_review && !this.props.is_ai_reviewed ? (
+                    <ReviewLabel
+                      sentences={this.props.sentences}
+                      subcategories={this.props.subcategories}
+                      q_category={this.props.q_category}
+                    />) : null}
+                <form>
+                    <fieldset>
+                      <div className="row" style={{marginTop: "3rem"}}>
+                        <div className="col-5">
+                          {this.props.needed_ai_review && !this.props.is_ai_reviewed
+                            ? this.aiReviews()
+                            : null}
+                        </div>
+                        <div className="col-7">
+                          {this.props.needed_expert_review && !this.props.is_expert_reviewed
+                            ? this.expertReviews()
+                            : null}
+                        </div>
+                      </div>
+                      <div className="row" style={{justifyContent: "center"}}>
+                        <button
+                          type="submit"
+                          className="not-reviewed text-15"
+                          onClick={this.submitReview}
+                          style={{color:"#FFFFFF", display:"inline-block", width:"10rem"}}>
+                            Submit Review
+                        </button>
+                      </div>
+                    </fieldset>
+                </form>
+              </div>
+            </div>
       </div>
     );
   }
 }
 
-export default connect(null, { addVideoReviews, addVideoLabels })(Reviews);
+const mapStateToProps = (state) => ({
+  sentences: state.video_sentence_reducer.sentences,
+});
+
+export default connect(mapStateToProps, { addVideoReviews, getSentences })(Reviews);

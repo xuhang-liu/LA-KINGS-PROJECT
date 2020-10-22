@@ -1,6 +1,6 @@
 from .models import Question, Categorys, SubCategory
 from rest_framework import generics, permissions
-from .serializers import QuestionSerializer
+from .serializers import QuestionSerializer, SubcategorySerializer
 from rest_framework.decorators import api_view
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -24,7 +24,8 @@ class QuestionAPIView(generics.ListCreateAPIView):
 
 @api_view(['GET'])
 def get_subcategories(request):
-    category = request.data.get('category')
+    print("===Get Question Subcategories Called===")
+    category = request.query_params.get('category')
     queryset = Categorys.objects.filter(category_des=category).values('subCategorys')
     sub_list = queryset[0]["subCategorys"].split(",")
 
@@ -33,7 +34,8 @@ def get_subcategories(request):
     for i in range(num):
         id = int(sub_list[i])
         s = SubCategory.objects.filter(id=id)
-        subcategory = s[0].sub_category
+        serializer = SubcategorySerializer(s[0])
+        subcategory = serializer.data
         subcategories.append(subcategory)
 
     return Response({

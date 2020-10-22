@@ -1,6 +1,6 @@
 from rest_framework import routers
 from videos.api.viewsets import VideoViewSet
-from .views import get_unreviewed_video, mark_video_as_needed_review, add_video_label
+from .views import get_unreviewed_video, mark_video_as_needed_review, add_video_label, get_video_sentences
 from django.urls import path
 
 router = routers.DefaultRouter()
@@ -15,5 +15,6 @@ urlpatterns=router.urls
 urlpatterns.append(path('get_unreviewed_video', get_unreviewed_video))
 urlpatterns.append(path('mark_video_as_needed_review', mark_video_as_needed_review))
 urlpatterns.append(path('api/video-labels', add_video_label))
+urlpatterns.append(path('api/video-sentences', get_video_sentences))
 
 
