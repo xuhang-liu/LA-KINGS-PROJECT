@@ -121,7 +121,7 @@ export const AtsMultipleRows = (props) => {
                         if (s) {
                             return (
                                 <div className="row">
-                                    <div className="col-2">
+                                    <div className="col-1" style={{width:'11.5%', flex:'0 0 11.5%', maxWidth:'11.5%'}}>
                                         <i className='bx bx-check bx-md' style={{color: "#14CC75"}}></i>
                                     </div>
                                     <div className="col-10" style={{paddingTop: "5px", borderBottom:'2px dashed white'}}>
@@ -133,7 +133,7 @@ export const AtsMultipleRows = (props) => {
                         else {
                             return (
                                 <div className="row">
-                                    <div className="col-2">
+                                    <div className="col-1" style={{width:'11.5%', flex:'0 0 11.5%', maxWidth:'11.5%'}}>
                                         <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>
                                     </div>
                                     <div className="col-10" style={{paddingTop: "5px", borderBottom:'2px dashed white'}}>
