@@ -6,6 +6,8 @@ import message_reducer from "./message_reducers";
 import auth_reducer from "./auth_reducers";
 import question_reducer from "./question_reducers";
 import resume_reducer from "./resume_reducers";
+import video_sentence_reducer from "./video_sentence_reducers";
+import question_subcategory_reducer from "./question_subcategory_reducers";
 import { LOGOUT_SUCCESS } from "../actions/action_types";
 
 const rootReducer = (state, action) => {
@@ -23,6 +25,8 @@ const appReducer = combineReducers({
   auth_reducer,
   question_reducer,
   resume_reducer,
+  video_sentence_reducer,
+  question_subcategory_reducer,
 });
 
 export default rootReducer;

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main72.js",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main72.js",
+    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main73.js",
+    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main73.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
@@ -82,6 +82,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-modal-video": "^1.2.5",
+    "react-owl-carousel": "^2.3.1",
     "react-owl-carousel3": "^2.2.5",
     "react-particles-js": "^3.3.0",
     "react-player": "^1.15.3",

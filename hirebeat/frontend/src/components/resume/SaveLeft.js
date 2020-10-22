@@ -5,6 +5,9 @@ function SaveLeft(props) {
     var save_resume_limit = props.profile.save_resume_limit;
     var saved_resume = props.profile.saved_resume_count;
     var saves_left = Number(save_resume_limit) - Number(saved_resume);
+    if(saves_left>900){
+      saves_left = "unlimited";
+    };
 
     return (
         <div className="row">

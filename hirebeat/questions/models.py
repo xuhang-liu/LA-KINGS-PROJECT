@@ -53,4 +53,4 @@ class Categorys(models.Model):
     category_des = models.CharField(max_length=100, null=True, blank=True)
     questions = models.CharField(max_length=100, null=True, blank=True)
     def __str__(self):
-        return self.question.category + '|' + self.subCategory.sub_category
+        return self.category_des + '|' + self.subCategorys

@@ -95,11 +95,11 @@ export class Header extends Component {
                   <span className="header-text">Practice</span>
                 </Link>
               </li>
-              {/*<li className="nav-item ">
+              <li className="nav-item ">
                 <Link to="/resume" className="nav-link text-white navbar-font">
                   <span className="header-text">Resume</span>
                 </Link>
-                </li>*/}
+                </li>
               </MediaQuery>
               <li className="nav-item">
                 <Link to="/company" className="nav-link text-white navbar-font">
@@ -111,7 +111,7 @@ export class Header extends Component {
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources
                     <ul className="nav_submenu"> 
-                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></li>
+                      <li style={{borderBottom:'1px dashed lightgrey'}}><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></li>
                       <li><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></li>
                     </ul>
                   </span>
@@ -186,7 +186,7 @@ export class Header extends Component {
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources
                     <ul className="nav_submenu"> 
-                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></li>
+                      <li style={{borderBottom:'1px dashed lightgrey'}}><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></li>
                       <li><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></li>
                     </ul>
                   </span>
