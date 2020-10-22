@@ -89,7 +89,7 @@ export const IconText = (props) => {
 
 export const AtsRow = (props) => {
     return (
-        <div>
+        <div style={{borderBottom:'2px dashed white'}}>
             <div className="row align-items-center" style={{background: "#F4F5FE"}}>
                 <div className="col-3">
                     <p className="resume-text3">{props.name}</p>
@@ -111,7 +111,7 @@ export const AtsRow = (props) => {
 
 export const AtsMultipleRows = (props) => {
     return (
-        <div>
+        <div style={{borderBottom:'2px dashed white'}}>
             <div className="row align-items-center" style={{background: "#F4F5FE"}}>
                 <div className="col-3">
                     <p className="resume-text3">{props.name}</p>
@@ -124,7 +124,7 @@ export const AtsMultipleRows = (props) => {
                                     <div className="col-2">
                                         <i className='bx bx-check bx-md' style={{color: "#14CC75"}}></i>
                                     </div>
-                                    <div className="col-10" style={{paddingTop: "5px"}}>
+                                    <div className="col-10" style={{paddingTop: "5px", borderBottom:'2px dashed white'}}>
                                         <p className="resume-text4">{props.desc[index]}</p>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@ export const AtsMultipleRows = (props) => {
                                     <div className="col-2">
                                         <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>
                                     </div>
-                                    <div className="col-10" style={{paddingTop: "5px"}}>
+                                    <div className="col-10" style={{paddingTop: "5px", borderBottom:'2px dashed white'}}>
                                         <p className="resume-text4">{props.desc[index]}</p>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@ export const AtsMultipleRows = (props) => {
 
 export const RecMultipleRows = (props) => {
     return (
-        <div>
+        <div style={{borderBottom:'2px dashed white'}}>
             <div className="row align-items-center" style={{background: "#F4F5FE"}}>
                 <div className="col-3">
                     <p className="resume-text3">{props.name}</p>
@@ -166,7 +166,7 @@ export const RecMultipleRows = (props) => {
                 <div className="col-8">
                     {props.desc.map((d) => {
                         return (
-                            <p className="resume-text4" style={{marginBottom: "0px"}}>{d}</p>
+                            <p className="resume-text4" style={{marginBottom: "0px", borderBottom:'2px dashed white'}}>{d}</p>
                         );
                     })}
                 </div>
@@ -177,7 +177,7 @@ export const RecMultipleRows = (props) => {
 
 export const SkillsRow = (props) => {
     return (
-        <div>
+        <div style={{borderBottom:'2px dashed white'}}>
             {props.skills.map((s, index) => {
                 return (
                     <div className="row align-items-center" style={{background: "#F4F5FE"}}>
@@ -210,7 +210,7 @@ export const SkillsRow = (props) => {
 
 export const KeywordsRow = (props) => {
     return (
-        <div>
+        <div style={{borderBottom:'2px dashed white'}}>
             {props.skills.map((s, index) => {
                 return (
                     <div className="row align-items-center" style={{background: "#F4F5FE"}}>

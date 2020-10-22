@@ -1726,11 +1726,16 @@ color: #080A3C;
 }
 
 .resume-textarea {
+  font-family: "Poppins";
   width: 300%;
   height: 625%;
   border: 1px solid #E6E8F6;
   box-sizing: border-box;
   border-radius: 3px;
+}
+
+.resume-textarea::placeholder {
+  padding-left: 1rem;
 }
 
 .resume-upload {
