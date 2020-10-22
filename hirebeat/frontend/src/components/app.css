@@ -762,6 +762,34 @@ h5 {
   color: #FF6B00;
 }
 
+.nav_submenu {
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  position: absolute;
+  text-align: center;
+  border: none;
+  width: 6rem;
+  z-index: 99;
+  display: block;
+  visibility: hidden;
+  border-radius: 0;
+  font-size: medium;
+  font-weight: 500;
+  font-family: 'Poppins';
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin-top: 20px;
+  border-top: 2px solid #56a3fa;
+  padding: 4px;
+  cursor: pointer;
+  list-style-type: none;
+}
+.header-text:hover .nav_submenu {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
 .upgrade {
   background: #FF6B00;
   box-shadow: 0px 4px 25px rgba(255, 107, 0, 0.25);
