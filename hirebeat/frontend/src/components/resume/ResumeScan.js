@@ -87,18 +87,19 @@ export class ResumeScan extends Component {
 
         // check file type
         let docType = name.slice(-3);
-        if (docType === "pdf") {
+        if (docType === "pdf" || docType === "ocx") {
             this.setSelected();
             this.setLabel(name);
 
             //set cvName &　resume states
             let timestamp = Date.parse(new Date());
-            let cvName = timestamp + "." + docType;
+            let suffix = docType == "pdf" ? ".pdf" : ".docx";
+            let cvName = timestamp + suffix;
             const newResume = new File([resume], cvName, {type: resume.type});
             this.setState({cvName: cvName});
             this.setState({resume: newResume});
         } else {
-            return this.alert("Wrong File Type", "Please upload PDF version of your resume");
+            return this.alert("Wrong File Type", "Please upload PDF or DOCX version of your resume");
         }
     }
   }
@@ -167,12 +168,12 @@ export class ResumeScan extends Component {
     return (
       <React.Fragment>
       <div className="container">
-        {/*<div style={{textAlign: "center"}}>
+        <div style={{textAlign: "center"}}>
           <button className="default-btn resume-upload" onClick={this.selectFile}>
             <i className="bx bx-cloud-upload bx-sm"></i>
               Upload Resume
           </button>
-          <span className="resume-type">Only PDF file supported. </span>
+          <span className="resume-type">PDF and DOCX files supported. </span>
         </div>
         {
           this.state.selected ? (
@@ -183,11 +184,11 @@ export class ResumeScan extends Component {
               <i className="bx bxs-check-circle resume-success" style={{marginLeft: "1rem"}}></i>
             </div>
           ) : null
-        }*/}
+        }
         <ReactS3Uploader
           style={{display: "none"}}
           id="uploadFile"
-          accept=".pdf"  // only accept pdf & doc files
+          accept=".pdf, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document"  // only accept pdf & docx files
           signingUrl="/sign_cv"
           signingUrlMethod="GET"
           onError={this.onUploadError}
@@ -201,38 +202,42 @@ export class ResumeScan extends Component {
           }}
           autoUpload={true}
         />
-        <div style={{textAlign: "center"}}>
-           <h4 className="resume-subtitle">Paste Your Resume </h4>
-           <div>
-             <textarea
-               id="cvText"
-               className="resume-textarea"
-               style={{width: "40%", height: "12.5rem", marginTop: "0.5rem"}}
-               placeholder="Paste resume here"
-               onChange={this.strToText}
-             >
-             </textarea>
+        <div className="row" style={{textAlign: "center", marginTop: "2rem"}}>
+           <div className="col-6">
+               <h4 className="resume-subtitle">Paste Your Resume </h4>
+               <div className="row" style={{justifyContent: "center"}}>
+                 <textarea
+                   id="cvText"
+                   className="resume-textarea"
+                   style={{width: "80%", height: "18rem", marginTop: "0.5rem", fontSize: "1.2rem"}}
+                   placeholder="Paste resume here"
+                   onChange={this.strToText}
+                 >
+                 </textarea>
+               </div>
            </div>
-           <h4 className="resume-subtitle">Paste Your Job Description </h4>
-           <div>
-             <textarea
-               id="jobTitle"
-               className="resume-textarea"
-               style={{width: "40%", height: "2rem"}}
-               placeholder="Job Title Here"
-               onChange={this.setJobTitle}
-             >
-             </textarea>
-           </div>
-           <div>
-             <textarea
-               id="jdText"
-               className="resume-textarea"
-               style={{width: "40%", height: "12.5rem", marginTop: "0.5rem"}}
-               placeholder="Paste job description here. Exclude the “About Company”."
-               onChange={this.setJdText}
-             >
-             </textarea>
+           <div className="col-6">
+               <h4 className="resume-subtitle">Paste Your Job Description </h4>
+               <div className="row" style={{justifyContent: "center"}}>
+                 <textarea
+                   id="jobTitle"
+                   className="resume-textarea"
+                   style={{width: "80%", height: "2rem", fontSize: "1.2rem"}}
+                   placeholder="Job Title Here"
+                   onChange={this.setJobTitle}
+                 >
+                 </textarea>
+               </div>
+               <div className="row" style={{justifyContent: "center"}}>
+                 <textarea
+                   id="jdText"
+                   className="resume-textarea"
+                   style={{width: "80%", height: "16rem", marginTop: "0.5rem", fontSize: "1.2rem"}}
+                   placeholder="Paste job description here. Exclude the “About Company”."
+                   onChange={this.setJdText}
+                 >
+                 </textarea>
+               </div>
            </div>
         </div>
         <div style={{textAlign: "center", marginTop:"5%"}}>

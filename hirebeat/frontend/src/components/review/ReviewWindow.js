@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import VideoPlayer from "../videos/VideoPlayer";
 import AudioPlayer from "../audios/AudioPlayer";
 import Reviews from "./Reviews";
-import { ReviewLabel } from "./ReviewLabel";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -26,7 +25,7 @@ export class ReviewWindow extends Component {
     review_count: PropTypes.number.isRequired,
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.getUnreviewedVideo();
   }
 
@@ -39,9 +38,9 @@ export class ReviewWindow extends Component {
     return (
       <React.Fragment>
       <ScrollToTopOnMount />
-      <div className="container" style={{marginBottom:"10%"}}>
+      <div style={{padding: "2%", margin: "auto", background: "#E5E5E5", marginBottom: "10%"}}>
         <div className="row" style={{margin: "4% auto 1%"}}>
-          <p className="review-text" style={{fontSize:"20px" ,color:"#000000"}}>Number of videos reviewed: </p> 
+          <p className="review-text" style={{fontSize:"20px", color:"#090D3A", marginLeft: "5rem"}}>Number of videos reviewed: </p>
           <p className="review-text" style={{fontSize:"20px", marginLeft:"1%"}}>{this.props.review_count}</p>
         </div>
         {this.props.loaded ? (
@@ -51,19 +50,27 @@ export class ReviewWindow extends Component {
           <div>
             {/* <div style={{marginBottom:"2%"}}><h3>Question Type: {this.props.q_type}</h3></div>
             <div style={{marginBottom:"2%"}}><h3>Question Category: {this.props.q_category}</h3></div> */}
-            <div style={{marginBottom:"2%"}}><h4 className="review-text" style={{fontSize:"25px", color:"#000000"}}>Under Review</h4></div>
-            <div className="row" style={{margin:"auto"}}>
-              <p className="review-text" style={{fontSize:"20px"}}>Q1</p> 
-              <p className="review-text" style={{fontSize:"20px" ,color:"#1F1F2D", marginLeft:"2%"}}>{this.props.q_description}</p>
+            <div style={{marginBottom:"2%"}}>
+              <h4 className="review-text" style={{fontSize:"25px", color:"#090D3A", marginLeft: "5rem"}}>
+                Under Review
+              </h4>
             </div>
-            <div className="row">
-              <div className="col-6" style={{padding:"0px"}}>
+            <div className="row" style={{margin:"auto"}}>
+              <p className="review-text" style={{fontSize:"20px", marginLeft: "5rem"}}>Q1</p>
+              <p className="review-text" style={{fontSize:"20px" ,color:"#4A6F8A", marginLeft:"2%"}}>{this.props.q_description}</p>
+            </div>
+            <div className="row" style={{justifyContent: "center", marginBottom: "2rem"}}>
+              <div className="col-5" style={{padding:"0px"}}>
                 {
                   this.props.video.url.slice(-3) === "wav" ? <AudioPlayer url={this.props.video.url} />
                   : <VideoPlayer url={this.props.video.url} />
                 }
+              </div>
+            </div>
+            <div className="row" style={{justifyContent: "center", padding:"0px"}}>
                 <Reviews
                   videoID={this.props.video.id}
+                  q_category={this.props.q_category}
                   nextVideo={this.nextVideo}
                   needed_ai_review={this.props.video.needed_ai_review}
                   is_ai_reviewed={this.props.video.is_ai_reviewed}
@@ -72,8 +79,6 @@ export class ReviewWindow extends Component {
                   ai_review_categories={this.props.video.ai_review_categories}
                   expert_review_categories={this.props.video.expert_review_categories}
                 />
-              </div>
-              <ReviewLabel />
             </div>
           </div>
           )

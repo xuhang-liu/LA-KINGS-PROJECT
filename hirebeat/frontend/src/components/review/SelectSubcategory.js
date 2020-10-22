@@ -3,7 +3,7 @@ import Select from "react-select";
 import Switch from "react-switch"; 
 
 const s = {
-    //Dropdown style
+    //  Dropdown style
     control: (styles) => ({
       ...styles,
       WebkitBorderRadius: "20px",
@@ -32,7 +32,7 @@ const s = {
     singleValue: (provided) => ({
       ...provided,
       color: "#538af2",
-      fontSize: "8px",
+      fontSize: "0.9375rem",
     }),
 };
 
@@ -48,7 +48,7 @@ export const SelectCol = (props) => {
 
 
 
-export const PASubcategory = [
+export const Subcategory = [
     { value: 1, label: "Discuss past mistakes or failures without becoming overly negative", checked: false},
     { value: 2, label: "Willing to try new things and embrace the challenges", checked: false},
     { value: 3, label: "Passionate about using knowledge and technical skills to apply to work", checked: false},
@@ -64,48 +64,72 @@ class SelectSubcategory extends Component {
     }
     
     state = {
-        category: "Positive Attitude",
-        checked: true,
+        checked: false,
         categoryOfQuestion: { value: 1, label: "Discuss past mistakes or failures without becoming overly negative", checked: false},
     };
 
-    handleChangeCatogary = (categoryOfQuestion) => {
+//   Subcategory = [
+//        { value: 1, label: this.props.subcategories[0]["sub_category"], checked: false},
+//        { value: 2, label: this.props.subcategories[1]["sub_category"], checked: false},
+//        { value: 3, label: this.props.subcategories[2]["sub_category"], checked: false},
+//        { value: 4, label: this.props.subcategories[3]["sub_category"], checked: false},
+//        { value: 5, label: this.props.subcategories[4]["sub_category"], checked: false},
+//    ];
+
+   handleChangeCatogary = (categoryOfQuestion) => {
       this.setState({ categoryOfQuestion });
-      this.setState(state => ({checked: PASubcategory[state.categoryOfQuestion.value - 1].checked}));
-    }
+      this.setState(state => ({checked: this.Subcategory[state.categoryOfQuestion.value - 1].checked}));
+   }
     
 
-    handleChange(checked) {
+   handleChange(checked) {
         this.setState(state => ({checked: !state.checked}));
-        PASubcategory[this.state.categoryOfQuestion.value - 1].checked = this.state.checked;
-    }
+        this.Subcategory[this.state.categoryOfQuestion.value - 1].checked = this.state.checked;
+   }
   
   
     render() {
-        const {category} = this.state
-        console.log(this.state);
-        console.log(PASubcategory);
-        if (category == "Positive Attitude"){
-            return(
-                <div className="row align-items-center" >
-                    <div className="col-9">
-                        <div className="react-select-container">
-                            <Select className="select-category" 
-                            value={this.state.categoryOfQuestion} 
-                            onChange={this.handleChangeCatogary} 
-                            options={PASubcategory} 
-                            styles={s} 
-                            isSearchable={false} />
-                        </div>
-                    </div>
-                    <div className="col-3">
-                        <CardRow>
-                            <Switch onChange={this.handleChange} checked={this.state.checked} />
-                        </CardRow>
+//        console.log(this.props.subcategories[0]);
+        return(
+            <div className="row align-items-center" >
+                <div className="col-10">
+                    <div className="react-select-container">
+                        {/*<Select
+                          id="select"
+                          className="select-category1"
+                          value={this.state.categoryOfQuestion}
+                          onChange={this.handleChangeCatogary}
+                          options={this.Subcategory}
+                          styles={s}
+                          isSearchable={false} />*/}
+
+                          {this.props.subcategories.map((s, index) =>  {
+                                return(
+                                    <p className="review-text2">{ (index + 1) + ". " + s.sub_category}</p>
+                                )
+                          })}
                     </div>
                 </div>
-            );
-        }
+                <div className="col-2">
+                    <CardRow>
+                        {/*<Switch id={this.props.switchID} onChange={this.handleChange} checked={this.state.checked} />*/}
+                        <input
+                            type="number"
+                            step="1"
+                            class="form-control review-text"
+                            min="0"
+                            max="5"
+                            id={this.props.switchID}
+                            placeHolder="0"
+                            required="required"
+                            style={{width:"50%",height:"50%", padding:"7%",
+                                    border:"1px solid #E5E5E5", borderRadius:"5px",
+                                    textAlign:"center",color:"#FF6B00", fontSize:"15px"}}
+                        />
+                    </CardRow>
+                </div>
+            </div>
+        );
     }
 }
 
