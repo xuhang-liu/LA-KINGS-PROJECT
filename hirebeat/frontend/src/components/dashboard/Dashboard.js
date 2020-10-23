@@ -142,7 +142,7 @@ export class Dashboard extends Component {
           <MediaQuery maxDeviceWidth={1223}>
             <PageTitleArea
               pageTitle="Welcome to Hirebeat!"
-              pageDescription="Our mobile functionality for interview practice is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
+              pageDescription="Our mobile functionality is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
             />
             <div style={{textAlign: "center"}}>
             <Link to="/">
