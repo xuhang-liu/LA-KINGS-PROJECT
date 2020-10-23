@@ -95,7 +95,7 @@ function ButtonPanel(props) {
       }
 
       {props.subpage == 'resume' &&
-        <Link to="#">
+        <Link to="/resume">
           <a className="default-btn" 
           style={{color:"white", backgroundColor:"#090D3A", marginLeft:"4%"}}>
             <i className="bx bxs-hot"></i> 

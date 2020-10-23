@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseBadRequest
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .api.serializers import VideoSerializer
-from .models import Video
+from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenceSerializer
+from .models import Video, Label, Transcript, Sentence
 from accounts.models import ReviewerInfo
 # For fake ai
 from django.db.models import Q
@@ -68,4 +68,34 @@ def mark_video_as_needed_review(request):
     video.save()
     serializer = VideoSerializer(video)
     return Response(serializer.data)
-    
+
+@api_view(['POST'])
+def add_video_label(request):
+    print("===Save Video Label Called===")
+    label = request.data["label"]
+    sentence = request.data["sentence"]
+    subCategory = request.data["subCategory"]
+    data = Label.objects.create(label=label, sentence=sentence, subCategory=subCategory)
+    return Response({
+        "label": label,
+        "sentence": sentence,
+        "subCategory": subCategory
+    })
+
+@api_view(['GET'])
+def get_video_sentences(request):
+    print("===Get Video Sentences Called===")
+    video_id = request.query_params.get("videoId")
+    transcript = Transcript.objects.filter(video_id=video_id)
+    transcript_id = transcript[0].id
+
+    sentences = []
+    queryset = Sentence.objects.filter(transcript_id=transcript_id)
+    for i in range(len(queryset)):
+        serializer = VideoSentenceSerializer(queryset[i])
+        sentence = serializer.data
+        sentences.append(sentence)
+
+    return Response({
+        "sentences": sentences
+    })

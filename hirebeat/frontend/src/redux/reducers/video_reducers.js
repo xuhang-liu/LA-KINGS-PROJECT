@@ -3,6 +3,7 @@ import {
   DELETE_VIDEO,
   ADD_VIDEO,
   ADD_REVIEWS,
+  ADD_LABELS,
   GET_UNREVIEWED_VIDEO,
   VIDEO_UNDER_REVIEW,
 } from "../actions/action_types";
@@ -58,6 +59,7 @@ export default function (state = initialState, action) {
         }),
       };
     case ADD_REVIEWS:
+    case ADD_LABELS:
     default:
       return state;
   }

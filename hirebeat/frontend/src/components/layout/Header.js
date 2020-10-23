@@ -95,11 +95,11 @@ export class Header extends Component {
                   <span className="header-text">Practice</span>
                 </Link>
               </li>
-              {/*<li className="nav-item ">
+              <li className="nav-item ">
                 <Link to="/resume" className="nav-link text-white navbar-font">
                   <span className="header-text">Resume</span>
                 </Link>
-                </li>*/}
+                </li>
               </MediaQuery>
               <li className="nav-item">
                 <Link to="/company" className="nav-link text-white navbar-font">
@@ -108,16 +108,13 @@ export class Header extends Component {
               </li>
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
-                  <Dropdown>
-                    <Dropdown.Toggle as={CustomToggle} >
-                      <span className="header-text">Resources</span>
-
-                    <Dropdown.Menu>
-                      <Dropdown.Item><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></Dropdown.Item>
-                      <Dropdown.Item><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></Dropdown.Item>
-                    </Dropdown.Menu>
-                    </Dropdown.Toggle>
-                  </Dropdown>
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Resources
+                    <ul className="nav_submenu"> 
+                      <li style={{borderBottom:'1px dashed lightgrey'}}><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></li>
+                      <li><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></li>
+                    </ul>
+                  </span>
                 </a>
               </li>
               <li className="nav-item">
@@ -137,7 +134,7 @@ export class Header extends Component {
   };
 
   renderGuestLinks = () => {
-    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+    /*const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       <a
         ref={ref}
         onClick={(e) => {
@@ -148,7 +145,7 @@ export class Header extends Component {
       >
         {children}
       </a>
-    ));
+    ));*/
     return (
         <React.Fragment>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
@@ -186,16 +183,13 @@ export class Header extends Component {
               </li>
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
-                  <Dropdown>
-                    <Dropdown.Toggle as={CustomToggle} >
-                      <span className="header-text">Resources</span>
-
-                    <Dropdown.Menu>
-                      <Dropdown.Item><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></Dropdown.Item>
-                      <Dropdown.Item><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></Dropdown.Item>
-                    </Dropdown.Menu>
-                    </Dropdown.Toggle>
-                  </Dropdown>
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Resources
+                    <ul className="nav_submenu"> 
+                      <li style={{borderBottom:'1px dashed lightgrey'}}><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></li>
+                      <li><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></li>
+                    </ul>
+                  </span>
                 </a>
               </li>
               <li className="nav-item">

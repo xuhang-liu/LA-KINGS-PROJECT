@@ -64,7 +64,7 @@ export function ResumeResult(props) {
                             subpage={subpage}
                         />
                     </div>
-                    <div className="col-9" id="subpage_scroll_overflow" style={{marginBottom:"auto"}}>
+                    <div className="col-9" style={{marginBottom:"auto"}}>
                         {renderSubpage(resume)}
                     </div>
                 </div>

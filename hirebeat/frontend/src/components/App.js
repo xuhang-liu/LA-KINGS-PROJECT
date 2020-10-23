@@ -128,7 +128,7 @@ class App extends Component {
                   path="/techfields/practice"
                   component={TechPracticeMode}
                 />
-                <Route
+                <PrivateRoute
                   exact
                   path="/practice/"
                   component={QuestionTypeChoices}

@@ -174,9 +174,7 @@ export class EssentialUserInfo extends Component {
       user: this.props.user.id,
       id: this.props.profile.id,
       phone_number: this.state.phone_number,
-      location: this.state.location,
-      membership: this.state.membership,
-      avatar_url: this.state.avatar_url
+      location: this.state.location
     };
   };
 
@@ -342,11 +340,11 @@ export class EssentialUserInfo extends Component {
               </div>
               {/* for premium user */}
               {
-                this.props.profile.membership == "Premium" &&
+                this.props.profile.plan_interval == "month" &&
                 <div className="row">
                   <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
                     <i className='bx bx-diamond'></i> 
-                    <span style={{marginLeft: "6px"}}>Premium</span>
+                    <span style={{marginLeft: "6px"}}>Monthly Premium</span>
                   </div>
                   <div className="col-8">
                     <input
@@ -365,7 +363,32 @@ export class EssentialUserInfo extends Component {
                   />
                   </div>
                 </div>
-              }     
+              }
+              {
+                this.props.profile.plan_interval == "year" &&
+                <div className="row">
+                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
+                    <i className='bx bx-diamond'></i> 
+                    <span style={{marginLeft: "6px"}}>Yearly Premium</span>
+                  </div>
+                  <div className="col-8">
+                    <input
+                    className="form-control"
+                    type="text"
+                    name={"email_match"}
+                    placeholder={"Type your email to cancel subscription."}
+                    onChange={this.handleInputChange}
+                    style={{
+                      backgroundColor:"#FFFFFF",
+                      fontSize: "12px",
+                      borderRadius: "5px",
+                      paddingLeft: "20px",
+                      color:"grey"
+                    }}
+                  />
+                  </div>
+                </div>
+              }         
             </div>
 
           {/* for premium user */}

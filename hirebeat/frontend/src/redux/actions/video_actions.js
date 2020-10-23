@@ -4,6 +4,7 @@ import {
   DELETE_VIDEO,
   ADD_VIDEO,
   ADD_REVIEWS,
+  ADD_LABELS,
   GET_UNREVIEWED_VIDEO,
   VIDEO_UNDER_REVIEW,
   INCREASE_VIDEO_COUNT,
@@ -95,6 +96,21 @@ export const addVideoReviews = (
       console.log(res.data);
       dispatch({
         type: ADD_REVIEWS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const addVideoLabels = (label) => (dispatch, getState) => {
+  axios
+    .post("/api/video-labels", label, tokenConfig(getState))
+    .then((res) => {
+      console.log(res.data);
+      dispatch({
+        type: ADD_LABELS,
         payload: res.data,
       });
     })

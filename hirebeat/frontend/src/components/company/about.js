@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
 import AboutContent from './AboutContent';
 import WhyChooseUs from '../Common/WhyChooseUs';
+import FaqContent from '../Faq/FaqContent';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 
@@ -24,6 +25,7 @@ class About extends Component {
                 />
                 <AboutContent />
                 <WhyChooseUs />
+                <FaqContent />
                 <FreeTrialArea />
             </React.Fragment>
         );
