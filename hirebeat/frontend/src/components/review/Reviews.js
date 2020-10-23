@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { addVideoReviews } from "../../redux/actions/video_actions";
 import { getSentences } from "../../redux/actions/video_sentence_actions";
 import { connect } from "react-redux";
-import { LabelRow, ContentRow } from "./Components";
-import PropTypes from "prop-types";
+//import { LabelRow, ContentRow } from "./Components";
+//import PropTypes from "prop-types";
 import ReviewLabel from "./ReviewLabel";
 
 export class Reviews extends Component {

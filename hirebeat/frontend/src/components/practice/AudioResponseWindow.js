@@ -7,7 +7,7 @@ import NotePad from "./NotePad";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getQuestions } from "../../redux/actions/question_actions";
-import { createMessage } from "../../redux/actions/message_actions";
+//import { createMessage } from "../../redux/actions/message_actions";
 import PrepCountdown from "./PrepCountdown";
 
 export class AudioResponseWindow extends Component {

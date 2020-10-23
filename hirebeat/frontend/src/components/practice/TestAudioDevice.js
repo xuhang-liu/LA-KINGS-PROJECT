@@ -2,7 +2,7 @@ import React from "react";
 import AudioRecorder from "./AudioRecorder";
 import { CardButton, TestDeviceCard } from "./CardComponents";
 import { audioRecorderOptions } from "../../constants/constants";
-import safariAlert from "../basic/SafariAlert";
+//import safariAlert from "../basic/SafariAlert";
 
 function TestAudioDevice(props) {
   audioRecorderOptions.plugins.record.maxLength = 15;

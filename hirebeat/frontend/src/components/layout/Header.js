@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
-import Dropdown from 'react-bootstrap/Dropdown'
+//import Dropdown from 'react-bootstrap/Dropdown'
 
 export class Header extends Component {
 
@@ -42,7 +42,7 @@ export class Header extends Component {
 
   renderUserLinks = () => {
     const {user} = this.props.auth;
-    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+    /*const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       <a
         ref={ref}
         onClick={(e) => {
@@ -53,32 +53,28 @@ export class Header extends Component {
       >
         {children}
       </a>
-    ));
+    ));*/
     return (
         <React.Fragment>
           <div className="nav-item order-xl-1 align-self-center">
             <div className="nav-link text-white navbar-font">
-              <Dropdown>
-                <Dropdown.Toggle as={CustomToggle} >
-                  <div className="row">
+              <div className="row">
                     <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF"}}></i>        
-                    <span className="header-text" style={{marginLeft: "0.5rem"}}>{user ? `  ${user.username}  ` : ""}</span>
-                  </div>
-                
-                <Dropdown.Menu>
-                  <Dropdown.Item>
-                    <Link to="/dashboard" className="header-dropdown-custom" style={{color:"#090D3A", fontFamily:"Poppins", textDecoration:"none"}}>
-                      Dashboard
-                    </Link>
-                  </Dropdown.Item>
-                  <Dropdown.Item>
-                    <Link to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", fontFamily:"Poppins", textDecoration:"none"}}>
-                      Log out
-                    </Link>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-                </Dropdown.Toggle>
-              </Dropdown>
+                    <span className="header-text" style={{marginLeft: "0.5rem", cursor:'pointer'}}>{user ? `  ${user.username}  ` : ""}
+                    <ul className="nav_submenu" style={{width:'8rem'}}> 
+                      <li style={{borderBottom:'2px dashed lightgrey', height:'2rem'}}>
+                      <Link to="/dashboard" className="header-dropdown-custom" style={{color:"#56a3fa", fontFamily:"Poppins", textDecoration:"none"}}>
+                        Dashboard
+                      </Link>
+                      </li>
+                      <li style={{height:'2rem', paddingTop:'0.3rem'}}>
+                      <Link to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", fontFamily:"Poppins", textDecoration:"none"}}>
+                        Log out
+                      </Link>
+                      </li>
+                    </ul>
+                    </span>
+              </div>
             </div>
           </div>
 
