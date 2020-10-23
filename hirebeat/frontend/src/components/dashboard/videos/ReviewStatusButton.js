@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import aiIcon from "../../../assets/ai_icon.png";
-import expertIcon from "../../../assets/expert_icon.png";
-import { ButtonContainer } from "../../practice/CardComponents";
+//import aiIcon from "../../../assets/ai_icon.png";
+//import expertIcon from "../../../assets/expert_icon.png";
+//import { ButtonContainer } from "../../practice/CardComponents";
 import { renderQDes, renderSuccessTag, renderWaitTag, MyModal } from "../DashboardComponents";
 import { ExpertReview } from "./ExpertReview";
 import { AIReview } from "./AIReview";

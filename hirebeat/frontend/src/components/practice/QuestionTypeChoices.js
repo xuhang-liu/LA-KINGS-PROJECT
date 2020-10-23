@@ -17,7 +17,7 @@ function ScrollToTopOnMount() {
 }
 
 export class QuestionTypeChoices extends Component {
-  redirectToBehaviorQuestions = () => {
+  /*redirectToBehaviorQuestions = () => {
     const { history } = this.props;
     if (history) history.push(`/practice/modes`);
   };
@@ -25,7 +25,7 @@ export class QuestionTypeChoices extends Component {
   redirectToTechQuestions = () => {
     const { history } = this.props;
     if (history) history.push(`/techfields/`);
-  };
+  };*/
 
   componentDidMount() {
     safariAlert();
@@ -45,7 +45,7 @@ export class QuestionTypeChoices extends Component {
         />
         <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
         <div className="col features-box" style={{marginLeft: "5%", backgroundColor:"#ffffff"}}>
-        <Link style={{textDecoration: "none"}} onClick={this.redirectToBehaviorQuestions}>
+        <Link style={{textDecoration: "none"}} to='/practice/modes'>
             <div style={{padding: "10%"}}>
             <div className="icon">
               <i className='bx bx-user-voice'></i>
@@ -62,7 +62,7 @@ export class QuestionTypeChoices extends Component {
             </Link>
           </div>
           <div className="col features-box" style={{marginLeft: "6rem", backgroundColor:"#ffffff"}}>
-          <Link style={{textDecoration: "none"}} onClick={this.redirectToTechQuestions}>
+          <Link style={{textDecoration: "none"}} to='/techfields/'>
             <div style={{padding: "10%"}}>
             <div className="icon">
               <i className='bx bx-extension'></i>

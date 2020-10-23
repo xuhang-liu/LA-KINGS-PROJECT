@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Select from "react-select";
-import Switch from "react-switch"; 
+//import Select from "react-select";
+//import Switch from "react-switch"; 
 
 const s = {
     //  Dropdown style
