@@ -177,24 +177,24 @@ export const RecMultipleRows = (props) => {
 
 export const SkillsRow = (props) => {
     return (
-        <div style={{borderBottom:'2px dashed white'}}>
+        <div style={{borderBottom:'1px dashed white'}}>
             {props.skills.map((s, index) => {
                 return (
                     <div className="row align-items-center" style={{background: "#F4F5FE"}}>
-                        <div className="col-3" style={{textAlign: "center"}}>
+                        <div className="col-3" style={{textAlign: "center", borderBottom:'2px dashed white', height:'2.5rem'}}>
                             <p className={props.className} style={props.style}>{props.skills[index]}</p>
                         </div>
-                        <div className="col-3" style={{textAlign: "center"}}>
+                        <div className="col-3" style={{textAlign: "center", borderBottom:'2px dashed white', height:'2.5rem'}}>
                             <p className={props.className} style={props.vStyle}>{props.variations[index]}</p>
                         </div>
-                        <div className="col-3" style={{textAlign: "center"}}>
+                        <div className="col-3" style={{textAlign: "center", borderBottom:'2px dashed white', height:'2.5rem'}}>
                             {
                                 props.resume[index] == "0" ? (
                                     <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>) : (
                                     <p className={props.className}>{props.resume[index]}</p>)
                             }
                         </div>
-                        <div className="col-3" style={{textAlign: "center"}}>
+                        <div className="col-3" style={{textAlign: "center", borderBottom:'2px dashed white', height:'2.5rem'}}>
                             {
                                 props.jd[index] == "0" ? (
                                     <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>) : (
@@ -210,21 +210,21 @@ export const SkillsRow = (props) => {
 
 export const KeywordsRow = (props) => {
     return (
-        <div style={{borderBottom:'2px dashed white'}}>
+        <div style={{borderBottom:'1px dashed white'}}>
             {props.skills.map((s, index) => {
                 return (
                     <div className="row align-items-center" style={{background: "#F4F5FE"}}>
-                        <div className="col-4" style={{textAlign: "center"}}>
+                        <div className="col-4" style={{textAlign: "center", borderBottom:'2px dashed white', height:'2.5rem'}}>
                             <p className={props.className} style={props.style}>{props.skills[index]}</p>
                         </div>
-                        <div className="col-4" style={{textAlign: "center"}}>
+                        <div className="col-4" style={{textAlign: "center", borderBottom:'2px dashed white', height:'2.5rem'}}>
                             {
                                 props.resume[index] == "0" ? (
                                     <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>) : (
                                     <p className={props.className}>{props.resume[index]}</p>)
                             }
                         </div>
-                        <div className="col-4" style={{textAlign: "center"}}>
+                        <div className="col-4" style={{textAlign: "center", borderBottom:'2px dashed white', height:'2.5rem'}}>
                             {
                                 props.jd[index] == "0" ? (
                                     <i className='bx bx-x bx-md' style={{color: "#FF0000"}}></i>) : (
