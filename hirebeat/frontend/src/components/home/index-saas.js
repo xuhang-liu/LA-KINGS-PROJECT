@@ -7,6 +7,14 @@ import MoreToDiscover from '../HomeSaas/MoreToDiscover';
 //import WhyChooseUs from '../Common/WhyChooseUs';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import Loader from '../shared/Loader';
+import { useEffect } from "react";
+
+function ScrollToTopOnMount() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  return null;
+}
 
 class IndexSaas extends Component {
         // Preloader
@@ -14,11 +22,12 @@ class IndexSaas extends Component {
             loading: true
         };
       componentDidMount() {
-        this.timerHandle = setTimeout(() => this.setState({ loading: false }), 1000); 
+        this.timerHandle = setTimeout(() => this.setState({ loading: false }), 666); 
       }
     render() {
         return (
             <React.Fragment>
+                <ScrollToTopOnMount />
                 <MainBanner />
                 <Features />
                 <MoreToDiscover />
