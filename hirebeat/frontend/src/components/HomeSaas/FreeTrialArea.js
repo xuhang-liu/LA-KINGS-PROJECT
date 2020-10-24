@@ -14,7 +14,7 @@ class FreeTrialArea extends Component {
                         <h2 style={{paddingTop:"2rem"}}>We are here to best support you landing your dream job</h2>
                         <p>Your training will be specifically tailored to your industry/job role and to engage in a real interview simulation with AI or expert evaluation</p>
 
-                        <Link to="/register">
+                        <Link to="/practice">
                             <a className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>
                                 <i className="bx bxs-hot"></i> 
                                 Try For Free
