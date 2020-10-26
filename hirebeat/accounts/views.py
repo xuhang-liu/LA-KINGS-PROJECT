@@ -10,6 +10,9 @@ from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+from .models import Profile
+from rest_framework.response import Response
 load_dotenv()
 
 if not boto.config.get('s3', 'use-sigv4'):
@@ -52,3 +55,29 @@ class ActivateAccount(View):
             return render(request, 'accounts/activation_success.html')
         else:
             return render(request, 'accounts/activation_failure.html')
+
+@api_view(['POST'])
+def upgrade_accounts(request):
+    print("===Upgrade Account Called===")
+    premiums = []
+    # retrieve satisfying users
+    email_suffix = request.data["email_suffix"]
+    users = User.objects.filter(email__contains=email_suffix)
+
+    # upgrade accounts(change save limit & membership)
+    num = len(users)
+    for i in range(num):
+        user_name = users[i].username
+        user_id = users[i].id
+        account = {"id": user_id, "username": user_name}
+        premiums.append(account)
+        user_profile = Profile.objects.get(user_id=user_id)
+
+        user_profile.membership = "Premium"
+        user_profile.plan_interval = "month"
+        user_profile.save_limit = 1000
+        user_profile.save()
+
+    return Response({
+        "premiums": premiums
+    })
