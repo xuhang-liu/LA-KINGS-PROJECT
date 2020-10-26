@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
-import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
+//import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
 import { useEffect } from "react";
 import PageTitleArea from '../Common/PageTitleArea';
 

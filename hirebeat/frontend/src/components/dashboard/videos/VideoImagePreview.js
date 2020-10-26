@@ -6,7 +6,7 @@ import VideoPlayer from "../../videos/VideoPlayer";
 import AudioPlayer from "../../audios/AudioPlayer";
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
-import { renderWaitTag } from "../DashboardComponents";
+//import { renderWaitTag } from "../DashboardComponents";
 
 
 function showAns(ans) {

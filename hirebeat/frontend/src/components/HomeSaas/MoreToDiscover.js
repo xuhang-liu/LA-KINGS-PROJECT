@@ -40,7 +40,7 @@ class MoreToDiscover extends Component {
                                             Real-time interview simulation and get ready for the big day
                                         </li>
                                     </ul>
-                                    <Link to='/register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                    <Link to='/practice' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
                                         <i className="bx bxs-arrow-to-right"></i>
                                             Start Now
                                         <span></span>
@@ -71,7 +71,7 @@ class MoreToDiscover extends Component {
                                                 Practice your technical concepts
                                             </li>
                                         </ul>
-                                        <Link to='/register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <Link to='/practice' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
                                         <i className="bx bxs-arrow-to-right"></i>
                                             Start Now
                                         <span></span>
@@ -114,7 +114,7 @@ class MoreToDiscover extends Component {
                                                 Suggestions on improvement from our HR experts
                                             </li>
                                         </ul>
-                                        <Link to='/register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <Link to='/practice' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
                                         <i className="bx bxs-arrow-to-right"></i>
                                             Start Now
                                         <span></span>

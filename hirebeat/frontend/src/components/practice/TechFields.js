@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { SetupCard, CardRow, CardButton } from "./CardComponents";
+//import { SetupCard, CardRow, CardButton } from "./CardComponents";
 import { updateProfile } from "../../redux/actions/auth_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import PageTitleArea from '../Common/PageTitleArea';
