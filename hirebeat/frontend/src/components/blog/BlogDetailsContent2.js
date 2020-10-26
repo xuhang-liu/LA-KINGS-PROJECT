@@ -68,7 +68,7 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-details2"}
+                                        url={"https://hirebeat.co/video-interview-practice"}
                                         quote={"Video interview practice"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
@@ -78,7 +78,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-details2"}
+                                           url={"https://hirebeat.co/video-interview-practice"}
                                            title={"Video interview practice"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -89,7 +89,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-details2"}
+                                            url={"https://hirebeat.co/video-interview-practice"}
                                             title={"Video interview practice"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
@@ -99,7 +99,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-details2"}
+                                            url={"https://hirebeat.co/video-interview-practice"}
                                             title={"Video interview practice"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>

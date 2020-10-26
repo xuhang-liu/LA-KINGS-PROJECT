@@ -26,6 +26,7 @@ import blogdetail4 from "./blog/blog-details4";
 import blogdetail5 from "./blog/blog-details5";
 import blogdetail6 from "./blog/blog-details6";
 import blogdetail7 from "./blog/blog-details7";
+import blogdetail8 from "./blog/blog-details8";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -137,13 +138,14 @@ class App extends Component {
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/bloghome" component={bloggrid} />
-                <Route exact path="/blog-details1" component={blogdetail1} />
-                <Route exact path="/blog-details2" component={blogdetail2} />
-                <Route exact path="/blog-details3" component={blogdetail3} />
-                <Route exact path="/blog-details4" component={blogdetail4} />
-                <Route exact path="/blog-details5" component={blogdetail5} />
-                <Route exact path="/blog-details6" component={blogdetail6} />
-                <Route exact path="/blog-details7" component={blogdetail7} />
+                <Route exact path="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={blogdetail1} />
+                <Route exact path="/video-interview-practice" component={blogdetail2} />
+                <Route exact path="/how-to-prepare-for-an-AI-interview" component={blogdetail3} />
+                <Route exact path="/questions-to-ask-at-career-fairs" component={blogdetail4} />
+                <Route exact path="/things-to-do-before-an-interview" component={blogdetail5} />
+                <Route exact path="/4-common-interview-questions-and-how-to-answer-them" component={blogdetail6} />
+                <Route exact path="/how-to-write-a-thank-you-email-after-a-job-interview" component={blogdetail7} />
+                <Route exact path="/keywords-to-include-on-a-resume" component={blogdetail8} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />

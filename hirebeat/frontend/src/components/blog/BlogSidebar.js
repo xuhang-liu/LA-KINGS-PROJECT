@@ -7,6 +7,7 @@ import blog4 from '../../assets/blog4.jpg';
 import blog5 from '../../assets/blog5.jpg';
 import blog6 from '../../assets/blog6.jpg';
 import blog7 from '../../assets/blog7.jpg';
+import blog8 from '../../assets/blog8.jpg';
 
 class BlogSidebar extends Component {
     render() {
@@ -30,7 +31,26 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
-                        <Link to="/blog-details7">
+                        <Link to="/keywords-to-include-on-a-resume">
+                            <a className="thumb">
+                                <img src={blog8} alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Oct 26, 2020</time>
+                            <h4 className="title usmall">
+                                <Link to="/keywords-to-include-on-a-resume">
+                                    <a>Keywords to Include on A Resume</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
+                        <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
                             <a className="thumb">
                                 <img src={blog7} alt="image"/>
                             </a>
@@ -39,7 +59,7 @@ class BlogSidebar extends Component {
                         <div className="info">
                             <time>Oct 19, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/blog-details7">
+                                <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
                                     <a>How to Write a Thank-You Email</a>
                                 </Link>
                             </h4>
@@ -49,7 +69,7 @@ class BlogSidebar extends Component {
                     </article>
 
                     <article className="item">
-                        <Link to="/blog-details6">
+                        <Link to="/4-common-interview-questions-and-how-to-answer-them">
                             <a className="thumb">
                                 <img src={blog6} alt="image"/>
                             </a>
@@ -58,7 +78,7 @@ class BlogSidebar extends Component {
                         <div className="info">
                             <time>Oct 06, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/blog-details6">
+                                <Link to="/4-common-interview-questions-and-how-to-answer-them">
                                     <a>4 Common Interview Questions</a>
                                 </Link>
                             </h4>
@@ -68,7 +88,7 @@ class BlogSidebar extends Component {
                     </article>
 
                     <article className="item">
-                        <Link to="/blog-details5">
+                        <Link to="/things-to-do-before-an-interview">
                             <a className="thumb">
                                 <img src={blog5} alt="image"/>
                             </a>
@@ -77,7 +97,7 @@ class BlogSidebar extends Component {
                         <div className="info">
                             <time>Sep 28, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/blog-details5">
+                                <Link to="/things-to-do-before-an-interview">
                                     <a>Things to Do Before an Interview</a>
                                 </Link>
                             </h4>
@@ -87,7 +107,7 @@ class BlogSidebar extends Component {
                     </article>
 
                     <article className="item">
-                        <Link to="/blog-details4">
+                        <Link to="/questions-to-ask-at-career-fairs">
                             <a className="thumb">
                                 <img src={blog4} alt="image"/>
                             </a>
@@ -96,7 +116,7 @@ class BlogSidebar extends Component {
                         <div className="info">
                             <time>Sep 21, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/blog-details4">
+                                <Link to="/questions-to-ask-at-career-fairs">
                                     <a>Questions to Ask at Career Fairs</a>
                                 </Link>
                             </h4>
@@ -106,7 +126,7 @@ class BlogSidebar extends Component {
                     </article>
 
                     <article className="item">
-                        <Link to="/blog-details3">
+                        <Link to="/how-to-prepare-for-an-AI-interview">
                             <a className="thumb">
                                 <img src={blog3} alt="image"/>
                             </a>
@@ -115,7 +135,7 @@ class BlogSidebar extends Component {
                         <div className="info">
                             <time>Sep 11, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/blog-details3">
+                                <Link to="/how-to-prepare-for-an-AI-interview">
                                     <a>How to Prepare for an AI Interview</a>
                                 </Link>
                             </h4>
@@ -125,7 +145,7 @@ class BlogSidebar extends Component {
                     </article>
 
                     <article className="item">
-                        <Link to="/blog-details1">
+                        <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
                             <a className="thumb">
                                 <img src={blog1} alt="image"/>
                             </a>
@@ -134,7 +154,7 @@ class BlogSidebar extends Component {
                         <div className="info">
                             <time>Aug 24, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/blog-details1">
+                                <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
                                     <a>Video interview platforms</a>
                                 </Link>
                             </h4>
@@ -144,7 +164,7 @@ class BlogSidebar extends Component {
                     </article>
 
                     <article className="item">
-                        <Link to="/blog-details2">
+                        <Link to="/video-interview-practice">
                             <a className="thumb">
                                 <img src={blog2} alt="image"/>
                             </a>
@@ -153,7 +173,7 @@ class BlogSidebar extends Component {
                         <div className="info">
                             <time>Aug 16, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/blog-details2">
+                                <Link to="/video-interview-practice">
                                     <a>Video interview practice</a>
                                 </Link>
                             </h4>
