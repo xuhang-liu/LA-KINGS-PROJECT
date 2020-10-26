@@ -164,11 +164,11 @@ export const RecMultipleRows = (props) => {
                     }
                 </div>
                 <div className="col-8">
-                    {props.desc.map((d) => {
+                    {props.desc != null ? (props.desc.map((d) => {
                         return (
                             <p className="resume-text4" style={{marginBottom: "0px", borderBottom:'2px dashed white'}}>{d}</p>
                         );
-                    })}
+                    })) : null}
                 </div>
             </div>
         </div>
@@ -178,7 +178,7 @@ export const RecMultipleRows = (props) => {
 export const SkillsRow = (props) => {
     return (
         <div style={{borderBottom:'1px dashed white'}}>
-            {props.skills.map((s, index) => {
+            {props.skills != null ? (props.skills.map((s, index) => {
                 return (
                     <div className="row align-items-center" style={{background: "#F4F5FE"}}>
                         <div className="col-3" style={{textAlign: "center", borderBottom:'2px dashed white', height:'2.5rem'}}>
@@ -203,7 +203,7 @@ export const SkillsRow = (props) => {
                         </div>
                     </div>
                 )
-            })}
+            })) : null}
         </div>
     );
 };
