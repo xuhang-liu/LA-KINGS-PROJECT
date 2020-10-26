@@ -8,10 +8,10 @@ export function SoftSkillsMatch(props) {
     var soft_skill_resume_list = [];
     var soft_skill_jd_list = [];
 
-    if (soft_skill_skills_list != null) { soft_skill_skills_list = r.soft_skill_skills_list; }
-    if (soft_skill_variations_list != null) { soft_skill_variations_list = r.soft_skill_variations_list; }
-    if (soft_skill_resume_list != null) { soft_skill_resume_list = r.soft_skill_resume_list; }
-    if (soft_skill_jd_list != null) { soft_skill_jd_list = r.soft_skill_jd_list; }
+    if (r.soft_skill_skills_list != null) { soft_skill_skills_list = r.soft_skill_skills_list; }
+    if (r.soft_skill_variations_list != null) { soft_skill_variations_list = r.soft_skill_variations_list; }
+    if (r.soft_skill_resume_list != null) { soft_skill_resume_list = r.soft_skill_resume_list; }
+    if (r.soft_skill_jd_list != null) { soft_skill_jd_list = r.soft_skill_jd_list; }
 
     return (
         <div>
