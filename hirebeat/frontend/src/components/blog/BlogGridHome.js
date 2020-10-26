@@ -7,6 +7,7 @@ import blog4 from "../../assets/blog4.jpg";
 import blog5 from "../../assets/blog5.jpg";
 import blog6 from "../../assets/blog6.jpg";
 import blog7 from "../../assets/blog7.jpg";
+import blog8 from "../../assets/blog8.jpg";
 import author1 from "../../assets/HireBeatLogo2.png";
 
 
@@ -20,7 +21,46 @@ class BlogGrid extends Component {
                     <div className="col-lg-4 col-md-6">
                             <div className="single-blog-post">
                                 <div className="post-image">
-                                    <Link to="/blog-details7">
+                                    <Link to="/keywords-to-include-on-a-resume">
+                                        <a>
+                                            <img src={blog8} alt="image" />
+                                        </a>
+                                    </Link>
+
+                                    <div className="date">
+                                        <i className='bx bx-calendar'></i> Oct 26, 2020
+                                    </div>
+                                </div>
+
+                                <div className="post-content">
+                                    <h3>
+                                        <Link to="/keywords-to-include-on-a-resume">
+                                            <a>KEYWORDS TO INCLUDE ON A RESUME</a>
+                                        </Link>
+                                    </h3>
+
+                                    <div className="post-info">
+                                        <div className="post-by">
+                                            <img src={author1} alt="image" />
+                                            <h6>HireBeat</h6>
+                                        </div>
+
+                                        <div className="details-btn">
+                                            <Link to="/keywords-to-include-on-a-resume">
+                                                <a>
+                                                    <i className="bx bx-right-arrow-alt"></i>
+                                                </a>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div className="col-lg-4 col-md-6">
+                            <div className="single-blog-post">
+                                <div className="post-image">
+                                    <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
                                         <a>
                                             <img src={blog7} alt="image" />
                                         </a>
@@ -33,7 +73,7 @@ class BlogGrid extends Component {
 
                                 <div className="post-content">
                                     <h3>
-                                        <Link to="/blog-details7">
+                                        <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
                                             <a>HOW TO WRITE A THANK-YOU EMAIL</a>
                                         </Link>
                                     </h3>
@@ -45,7 +85,7 @@ class BlogGrid extends Component {
                                         </div>
 
                                         <div className="details-btn">
-                                            <Link to="/blog-details7">
+                                            <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
                                                 <a>
                                                     <i className="bx bx-right-arrow-alt"></i>
                                                 </a>
@@ -59,7 +99,7 @@ class BlogGrid extends Component {
                     <div className="col-lg-4 col-md-6">
                             <div className="single-blog-post">
                                 <div className="post-image">
-                                    <Link to="/blog-details6">
+                                    <Link to="/4-common-interview-questions-and-how-to-answer-them">
                                         <a>
                                             <img src={blog6} alt="image" />
                                         </a>
@@ -72,7 +112,7 @@ class BlogGrid extends Component {
 
                                 <div className="post-content">
                                     <h3>
-                                        <Link to="/blog-details6">
+                                        <Link to="/4-common-interview-questions-and-how-to-answer-them">
                                             <a>4 COMMON INTERVIEW QUESTIONS</a>
                                         </Link>
                                     </h3>
@@ -84,7 +124,7 @@ class BlogGrid extends Component {
                                         </div>
 
                                         <div className="details-btn">
-                                            <Link to="/blog-details6">
+                                            <Link to="/4-common-interview-questions-and-how-to-answer-them">
                                                 <a>
                                                     <i className="bx bx-right-arrow-alt"></i>
                                                 </a>
@@ -98,7 +138,7 @@ class BlogGrid extends Component {
                     <div className="col-lg-4 col-md-6">
                             <div className="single-blog-post">
                                 <div className="post-image">
-                                    <Link to="/blog-details5">
+                                    <Link to="/things-to-do-before-an-interview">
                                         <a>
                                             <img src={blog5} alt="image" />
                                         </a>
@@ -111,7 +151,7 @@ class BlogGrid extends Component {
 
                                 <div className="post-content">
                                     <h3>
-                                        <Link to="/blog-details5">
+                                        <Link to="/things-to-do-before-an-interview">
                                             <a>THINGS TO DO BEFORE AN INTERVIEW</a>
                                         </Link>
                                     </h3>
@@ -123,7 +163,7 @@ class BlogGrid extends Component {
                                         </div>
 
                                         <div className="details-btn">
-                                            <Link to="/blog-details5">
+                                            <Link to="/things-to-do-before-an-interview">
                                                 <a>
                                                     <i className="bx bx-right-arrow-alt"></i>
                                                 </a>
@@ -137,7 +177,7 @@ class BlogGrid extends Component {
                     <div className="col-lg-4 col-md-6">
                             <div className="single-blog-post">
                                 <div className="post-image">
-                                    <Link to="/blog-details4">
+                                    <Link to="/questions-to-ask-at-career-fairs">
                                         <a>
                                             <img src={blog4} alt="image" />
                                         </a>
@@ -150,7 +190,7 @@ class BlogGrid extends Component {
 
                                 <div className="post-content">
                                     <h3>
-                                        <Link to="/blog-details4">
+                                        <Link to="/questions-to-ask-at-career-fairs">
                                             <a>QUESTIONS TO ASK AT CAREER FAIRS</a>
                                         </Link>
                                     </h3>
@@ -162,7 +202,7 @@ class BlogGrid extends Component {
                                         </div>
 
                                         <div className="details-btn">
-                                            <Link to="/blog-details4">
+                                            <Link to="/questions-to-ask-at-career-fairs">
                                                 <a>
                                                     <i className="bx bx-right-arrow-alt"></i>
                                                 </a>
@@ -176,7 +216,7 @@ class BlogGrid extends Component {
                         <div className="col-lg-4 col-md-6">
                             <div className="single-blog-post">
                                 <div className="post-image">
-                                    <Link to="/blog-details3">
+                                    <Link to="/how-to-prepare-for-an-AI-interview">
                                         <a>
                                             <img src={blog3} alt="image" />
                                         </a>
@@ -189,7 +229,7 @@ class BlogGrid extends Component {
 
                                 <div className="post-content">
                                     <h3>
-                                        <Link to="/blog-details3">
+                                        <Link to="/how-to-prepare-for-an-AI-interview">
                                             <a>HOW TO PREPARE FOR AN AI INTERVIEW</a>
                                         </Link>
                                     </h3>
@@ -201,7 +241,7 @@ class BlogGrid extends Component {
                                         </div>
 
                                         <div className="details-btn">
-                                            <Link to="/blog-details3">
+                                            <Link to="/how-to-prepare-for-an-AI-interview">
                                                 <a>
                                                     <i className="bx bx-right-arrow-alt"></i>
                                                 </a>
@@ -215,7 +255,7 @@ class BlogGrid extends Component {
                         <div className="col-lg-4 col-md-6">
                             <div className="single-blog-post">
                                 <div className="post-image">
-                                    <Link to="/blog-details1">
+                                    <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
                                         <a>
                                             <img src={blog1} alt="image"/>
                                         </a>
@@ -228,7 +268,7 @@ class BlogGrid extends Component {
 
                                 <div className="post-content">
                                     <h3>
-                                        <Link to="/blog-details1">
+                                        <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
                                             <a>VIDEO INTERVIEW PRACTICE PLATFORMS</a>
                                         </Link>
                                     </h3>
@@ -240,7 +280,7 @@ class BlogGrid extends Component {
                                         </div>
 
                                         <div className="details-btn">
-                                            <Link to="/blog-details1">
+                                            <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
                                                 <a>
                                                     <i className="bx bx-right-arrow-alt"></i>
                                                 </a>
@@ -254,7 +294,7 @@ class BlogGrid extends Component {
                         <div className="col-lg-4 col-md-6">
                             <div className="single-blog-post">
                                 <div className="post-image">
-                                    <Link to="/blog-details2">
+                                    <Link to="/video-interview-practice">
                                         <a>
                                             <img src={blog2} alt="image" />
                                         </a>
@@ -267,7 +307,7 @@ class BlogGrid extends Component {
 
                                 <div className="post-content">
                                     <h3>
-                                        <Link to="/blog-details2">
+                                        <Link to="/video-interview-practice">
                                             <a>VIDEO INTERVIEW PRACTICES</a>
                                         </Link>
                                     </h3>
@@ -279,7 +319,7 @@ class BlogGrid extends Component {
                                         </div>
 
                                         <div className="details-btn">
-                                            <Link to="/blog-details2">
+                                            <Link to="/video-interview-practice">
                                                 <a>
                                                     <i className="bx bx-right-arrow-alt"></i>
                                                 </a>
