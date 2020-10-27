@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import Quizdetail1 from './quizdetail1';
+import {Helmet} from "react-helmet";
 import { useEffect } from "react";
 
 
@@ -17,6 +18,12 @@ class QuizHome extends Component {
     render() {
         return (
             <React.Fragment>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>HireBeat Quiz – The Best Video Interview Prep Tool For Jobseekers</title>
+                    <meta name="Description" CONTENT="Recommend Positions According To Your Personaility!"></meta>
+                    <link rel="canonical" href="https://hirebeat.co/quiz"/>
+                </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
                     pageTitle="Take Your Quiz Here" 

@@ -59,8 +59,8 @@ function MyVerticallyCenteredModal(props) {
 
 function alert() {
     confirmAlert({
-        title: "Result Processing",
-        message: "Processing your resume result, please check again in 20 seconds",
+        title: "Result Processing!",
+        message: "Please check again in 30 seconds",
         buttons: [
             {
               label: 'Ok'
