@@ -12,6 +12,7 @@ export const ResumePreview = (props) => {
   }
 
   function reviewToggle() {
+    props.getResumes();
     reviewed ? setShow(true) : alert();
 
   }
