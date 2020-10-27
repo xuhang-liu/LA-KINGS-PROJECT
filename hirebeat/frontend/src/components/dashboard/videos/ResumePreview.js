@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import { OverallScore, MyModal } from "./../DashboardComponents";
 import { ResumeResult } from "./../../resume/ResumeResult";
+import { confirmAlert } from 'react-confirm-alert';
 
 export const ResumePreview = (props) => {
+  var reviewed = false;
   const [show, setShow] = useState(false);
+
+  if (props.resume.skills_keywords != null) {
+    reviewed = true;
+  }
+
   function reviewToggle() {
-    setShow(true);
+    props.getResumes();
+    reviewed ? setShow(true) : alert();
+
   }
 
   return (
       <div className="container d-flex justify-content-start" style={{marginTop:"2%"}}>
         <div className="col-2">
-         { props.reviewed ? <OverallScore percent={props.percent} bgColor={"#FAC046"} barColor={"#FF6B00"}/> : null }
+          { reviewed ? <OverallScore percent={props.percent} bgColor={"#FAC046"} barColor={"#FF6B00"}/> : null }
         </div>
         <div className="col-10" style={{fontFamily: "Poppins" }}>
           <div>
@@ -19,22 +28,16 @@ export const ResumePreview = (props) => {
           </div>
           <div className="row">
             <div className="col-9">
-              <p style={{color:"#7D7D7D"}}>{props.jdText.substring(0, 100)+'...'}</p>
+              <p style={{color:"#7D7D7D"}}>{props.jdText.substring(0, 110)+'...'}</p>
             </div>
             <div className="col-3" style={{color:"#7D7D7D", borderLeft:"outset"}}>
               <p>{props.createdAt}</p>
             </div>
           </div>
           <div>
-            {
-              props.reviewed ? (
-              <button onClick={reviewToggle} className="reviewed text-15 resume-btn">
-                View Result
-              </button>) : (
-              <button className="under-review text-15 resume-btn" disabled={true}>
-                Ready in 2 mins
-              </button>)
-            }
+            <button onClick={reviewToggle} className="reviewed text-15 resume-btn">
+              View Result
+            </button>
           </div>
           <MyVerticallyCenteredModal
             show={show}
@@ -54,3 +57,16 @@ function MyVerticallyCenteredModal(props) {
     </MyModal>
   );
 };
+
+function alert() {
+    confirmAlert({
+        title: "Your result is on the way 🏃",
+        message: "It will be ready within 30s",
+        buttons: [
+            {
+              label: 'Ok'
+            }
+        ]
+    });
+
+}

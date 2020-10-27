@@ -165,6 +165,10 @@ export class ResumeScan extends Component {
   };
 
   render() {
+    var cName = "col-6";
+    if(this.state.selected){
+      cName = "col-12";
+    }
     return (
       <React.Fragment>
       <div className="container">
@@ -216,7 +220,7 @@ export class ResumeScan extends Component {
                  </textarea>
               </div>
            </div>}
-           {!this.state.selected && <div className="col-6">
+           <div className={cName}>
                <h4 className="resume-subtitle">Paste Your Job Description </h4>
                <div className="row" style={{justifyContent: "center"}}>
                  <textarea
@@ -238,30 +242,7 @@ export class ResumeScan extends Component {
                  >
                  </textarea>
                </div>
-           </div>}
-           {this.state.selected && <div className="col-12">
-               <h4 className="resume-subtitle">Paste Your Job Description </h4>
-               <div className="row" style={{justifyContent: "center"}}>
-                 <textarea
-                   id="jobTitle"
-                   className="resume-textarea"
-                   style={{width: "80%", height: "2rem", fontSize: "1.2rem"}}
-                   placeholder="Job Title Here"
-                   onChange={this.setJobTitle}
-                 >
-                 </textarea>
-               </div>
-               <div className="row" style={{justifyContent: "center"}}>
-                 <textarea
-                   id="jdText"
-                   className="resume-textarea"
-                   style={{width: "80%", height: "16rem", marginTop: "0.5rem", fontSize: "1.2rem"}}
-                   placeholder="Paste job description here. Exclude the “About Company”."
-                   onChange={this.setJdText}
-                 >
-                 </textarea>
-               </div>
-           </div>}
+           </div>
         </div>
         <div style={{textAlign: "center", marginTop:"5%"}}>
           <button onClick={this.handleUpload} className="default-btn resume-scan" style={{backgroundColor: "#090D3A"}}>

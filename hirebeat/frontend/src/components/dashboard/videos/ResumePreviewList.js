@@ -25,18 +25,14 @@ export class Resume extends Component {
         <React.Fragment>
           {this.props.loaded ?
             this.props.resumes.map((r) => {
-              let reviewed = false;
-              if (r.skills_keywords != null) {
-                reviewed = true;
-              }
               return (
                 <ResumePreview
                   resume={r}
                   percent={r.result_rate}
                   jobTitle={r.job_title}
                   jdText={r.jd_text}
+                  getResumes={this.props.getResumes}
                   createdAt={r.created_at.slice(0, 10)}
-                  reviewed={reviewed}
                 />
               )
             }) : null
