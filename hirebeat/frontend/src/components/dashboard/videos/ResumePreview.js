@@ -1,17 +1,25 @@
 import React, { useState } from "react";
 import { OverallScore, MyModal } from "./../DashboardComponents";
 import { ResumeResult } from "./../../resume/ResumeResult";
+import { confirmAlert } from 'react-confirm-alert';
 
 export const ResumePreview = (props) => {
+  var reviewed = false;
   const [show, setShow] = useState(false);
+
+  if (props.resume.skills_keywords != null) {
+    reviewed = true;
+  }
+
   function reviewToggle() {
-    setShow(true);
+    reviewed ? setShow(true) : alert();
+
   }
 
   return (
       <div className="container d-flex justify-content-start" style={{marginTop:"2%"}}>
         <div className="col-2">
-         { props.reviewed ? <OverallScore percent={props.percent} bgColor={"#FAC046"} barColor={"#FF6B00"}/> : null }
+          { reviewed ? <OverallScore percent={props.percent} bgColor={"#FAC046"} barColor={"#FF6B00"}/> : null }
         </div>
         <div className="col-10" style={{fontFamily: "Poppins" }}>
           <div>
@@ -26,15 +34,9 @@ export const ResumePreview = (props) => {
             </div>
           </div>
           <div>
-            {
-              props.reviewed ? (
-              <button onClick={reviewToggle} className="reviewed text-15 resume-btn">
-                View Result
-              </button>) : (
-              <button className="under-review text-15 resume-btn" disabled={true}>
-                Ready in 2 mins
-              </button>)
-            }
+            <button onClick={reviewToggle} className="reviewed text-15 resume-btn">
+              View Result
+            </button>
           </div>
           <MyVerticallyCenteredModal
             show={show}
@@ -54,3 +56,16 @@ function MyVerticallyCenteredModal(props) {
     </MyModal>
   );
 };
+
+function alert() {
+    confirmAlert({
+        title: "Result Processing",
+        message: "Processing your resume result, please check again in 20 seconds",
+        buttons: [
+            {
+              label: 'Ok'
+            }
+        ]
+    });
+
+}
