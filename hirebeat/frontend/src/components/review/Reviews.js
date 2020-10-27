@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { addVideoReviews } from "../../redux/actions/video_actions";
-import { getSentences } from "../../redux/actions/video_sentence_actions";
+import { getSentences, getVideoUser } from "../../redux/actions/video_sentence_actions";
 import { connect } from "react-redux";
+import emailjs from 'emailjs-com';
 //import { LabelRow, ContentRow } from "./Components";
 //import PropTypes from "prop-types";
 import ReviewLabel from "./ReviewLabel";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export class Reviews extends Component {
   state = {
@@ -31,6 +34,7 @@ export class Reviews extends Component {
 
   componentWillMount() {
     this.props.getSentences(this.props.videoID);
+    this.props.getVideoUser(this.props.videoID);
   }
 
   handleInputChange = (e) => {
@@ -40,6 +44,27 @@ export class Reviews extends Component {
       ai_score: Math.round((Number(this.state.ai_positiveAttitude)+Number(this.state.ai_communication)+Number(this.state.ai_detailOriented)+Number(this.state.ai_teamSpirit)+Number(this.state.ai_stressTolerance))/5),
     });
   };
+
+  sendEmail(e) {
+    e.preventDefault();
+  
+    emailjs.sendForm('default_service', 'template_d52ulu8', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
+      .then((result) => {
+          console.log(result.text);
+          confirmAlert({
+            title: 'Email Sent!',
+            message: '',
+            buttons: [
+              {
+                label: 'OK'
+              }
+            ]
+          });
+      }, (error) => {
+          console.log(error.text);
+      });
+    e.target.reset()
+  }
 
   cancatenateScores = () => {
     var ans = "";
@@ -191,10 +216,19 @@ export class Reviews extends Component {
                         </div>
                       </div>
                       <div className="row" style={{justifyContent: "center"}}>
+                      <form onSubmit={this.sendEmail}>
+                        <input type='hidden' name="email" value={this.props.email}></input>
                         <button
                           type="submit"
                           className="not-reviewed text-15"
+                          style={{color:"#FFFFFF", display:"inline-block", width:"10rem", marginRight:'1rem'}}>
+                            Send Notification
+                        </button>
+                        </form>
+                        <button
+                          type="submit"
                           onClick={this.submitReview}
+                          className="not-reviewed text-15"
                           style={{color:"#FFFFFF", display:"inline-block", width:"10rem"}}>
                             Submit Review
                         </button>
@@ -210,6 +244,8 @@ export class Reviews extends Component {
 
 const mapStateToProps = (state) => ({
   sentences: state.video_sentence_reducer.sentences,
+  email: state.video_user_reducer.email,
+  user: state.auth_reducer.user,
 });
 
-export default connect(mapStateToProps, { addVideoReviews, getSentences })(Reviews);
+export default connect(mapStateToProps, { addVideoReviews, getSentences, getVideoUser })(Reviews);

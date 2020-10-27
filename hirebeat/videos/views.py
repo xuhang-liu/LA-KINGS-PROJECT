@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenceSerializer
 from .models import Video, Label, Transcript, Sentence
+from django.contrib.auth.models import User
 from accounts.models import ReviewerInfo
 # For fake ai
 from django.db.models import Q
@@ -98,4 +99,16 @@ def get_video_sentences(request):
 
     return Response({
         "sentences": sentences
+    })
+
+@api_view(['GET'])
+def get_video_user(request):
+    print("===Get Video User Called===")
+    video_id = request.query_params.get("videoID")
+    video = Video.objects.filter(id=video_id)
+    user = User.objects.filter(id=video[0].owner_id)[0]
+    email = user.email
+
+    return Response({
+        "email": email
     })
