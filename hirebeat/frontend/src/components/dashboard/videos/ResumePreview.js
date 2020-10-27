@@ -28,7 +28,7 @@ export const ResumePreview = (props) => {
           </div>
           <div className="row">
             <div className="col-9">
-              <p style={{color:"#7D7D7D"}}>{props.jdText.substring(0, 100)+'...'}</p>
+              <p style={{color:"#7D7D7D"}}>{props.jdText.substring(0, 110)+'...'}</p>
             </div>
             <div className="col-3" style={{color:"#7D7D7D", borderLeft:"outset"}}>
               <p>{props.createdAt}</p>
@@ -60,8 +60,8 @@ function MyVerticallyCenteredModal(props) {
 
 function alert() {
     confirmAlert({
-        title: "Result Processing!",
-        message: "Please check again in 30 seconds",
+        title: "Your result is on the way 🏃",
+        message: "It will be ready within 30s",
         buttons: [
             {
               label: 'Ok'
