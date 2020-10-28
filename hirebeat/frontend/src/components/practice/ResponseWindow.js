@@ -36,6 +36,8 @@ export class ResponseWindow extends Component {
   }
 
   finishCountdown = () => {
+    const audioStart = document.getElementsByClassName("audio-start")[0];
+    audioStart.play();
     this.setState({
       status: "Loading",
     });
@@ -48,6 +50,8 @@ export class ResponseWindow extends Component {
   };
 
   recordingDone = () => {
+    const audioStop = document.getElementsByClassName("audio-stop")[0];
+    audioStop.play();
     this.setState({
       status: "Your Answer",
     });
@@ -105,6 +109,12 @@ export class ResponseWindow extends Component {
     videoRecorderOptions.controlBar.recordToggle = (this.props.isSimulate) ? false : true;
     return (
       <div>
+        <audio className="audio-start">
+          <source src="https://hirebeat-assets.s3.amazonaws.com/single_beep.mp3"></source>
+        </audio>
+        <audio className="audio-stop">
+          <source src="https://hirebeat-assets.s3.amazonaws.com/double_beep.mp3"></source>
+        </audio>
         {this.props.loaded ? (
           <PracticeCard>
             {this.questionIndex()}
