@@ -6,6 +6,7 @@ import { audioRecorderOptions } from "../../constants/constants";
 
 function TestAudioDevice(props) {
   audioRecorderOptions.plugins.record.maxLength = 15;
+  audioRecorderOptions.controlBar.recordToggle = true;
   return (
     <TestDeviceCard>
       <div
