@@ -78,7 +78,7 @@ export class Register extends Component {
   render() {
     const {username, email, password, password2} = this.state;
     if (this.props.auth.isAuthenticated) {
-      return <Redirect to="/practice"/>;
+      return <Redirect to="/dashboard"/>;
     }
     return (
         <React.Fragment>

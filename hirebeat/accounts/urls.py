@@ -1,7 +1,7 @@
 from django.urls import path,include
 from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI
 from knox import views as knox_views
-from .views import sign_s3_upload, ActivateAccount
+from .views import sign_s3_upload, ActivateAccount, upgrade_accounts
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -31,5 +31,8 @@ urlpatterns = [
     path('password_reset_done',auth_views.PasswordResetDoneView.as_view(template_name="accounts/password_reset_sent.html"),name='password_reset_done'),
     path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name="accounts/password_reset_new_password.html"),name='password_reset_confirm'),
     path('password_reset_complete',auth_views.PasswordResetCompleteView.as_view(template_name="accounts/password_reset_done.html"),name='password_reset_complete'),
+
+    ### Upgrade Accounts
+    path('api/upgrade-accounts', upgrade_accounts, name='upgrade accounts'),
 ]
 

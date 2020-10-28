@@ -5,6 +5,8 @@ import MediaQuery from 'react-responsive';
 //import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
 import { useEffect } from "react";
 import PageTitleArea from '../Common/PageTitleArea';
+import { connect } from "react-redux";
+import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
 //import { confirmAlert } from 'react-confirm-alert';
 //import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -29,6 +31,7 @@ export class QuestionTypeChoices extends Component {
 
   componentDidMount() {
     safariAlert();
+    this.props.loadProfile();
   }
 
   render() {
@@ -101,4 +104,9 @@ export class QuestionTypeChoices extends Component {
   }
 }
 
-export default withRouter(QuestionTypeChoices);
+const mapStateToProps = (state) => ({
+  profile: state.auth_reducer.profile,
+  user: state.auth_reducer.user,
+});
+
+export default connect(mapStateToProps, { loadProfile, updateProfile })(QuestionTypeChoices);

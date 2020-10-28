@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogDetailsContent6 from './BlogDetailsContent6';
+import BlogDetailsContent8 from './BlogDetailsContent8';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import {Helmet} from "react-helmet";
@@ -20,7 +20,7 @@ class BlogDetails extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – The Best Video Interview Prep Tool For Jobseekers</title>
-                    <meta name="Description" CONTENT="4 Common Interview Questions and How to Answer Them"></meta>
+                    <meta name="Description" CONTENT="Keywords to Include on A Resume"></meta>
                     <link rel="canonical" href="https://hirebeat.co"/>
                 </Helmet>
                 <ScrollToTopOnMount />
@@ -28,7 +28,7 @@ class BlogDetails extends Component {
                     pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogDetailsContent6 />
+                <BlogDetailsContent8 />
                 <FreeTrialArea />
             </React.Fragment>
         );
