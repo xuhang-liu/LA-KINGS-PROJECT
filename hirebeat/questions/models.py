@@ -51,6 +51,6 @@ class Categorys(models.Model):
 
     subCategorys = models.CharField(max_length=300, null=True, blank=True)
     category_des = models.CharField(max_length=100, null=True, blank=True)
-    questions = models.CharField(max_length=100, null=True, blank=True)
+    questions = models.CharField(max_length=500, null=True, blank=True)
     def __str__(self):
         return self.category_des + '|' + self.subCategorys
