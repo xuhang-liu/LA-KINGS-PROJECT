@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { addVideoReviews } from "../../redux/actions/video_actions";
-import { getSentences } from "../../redux/actions/video_sentence_actions";
+import { getSentences, getVideoUser } from "../../redux/actions/video_sentence_actions";
 import { connect } from "react-redux";
+import emailjs from 'emailjs-com';
 import ReviewLabel from "./ReviewLabel";
 import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export class Reviews extends Component {
   state = {
@@ -26,15 +28,22 @@ export class Reviews extends Component {
     label: false,
     sentence: -1,
     subCategory: -1,
+    // button states
     isSubmitted: false,
+    emailSent: false,
   };
 
   setSubmitted = () => {
-        this.setState({ ...this.state, isSubmitted: true });
-    }
+      this.setState({ ...this.state, isSubmitted: true });
+  }
 
-  componentWillMount() {
+  setEmailSent = () => {
+      this.setState({ ...this.state, emailSent: true });
+  }
+
+  componentDidMount() {
     this.props.getSentences(this.props.videoID);
+    this.props.getVideoUser(this.props.videoID);
   }
 
   handleInputChange = (e) => {
@@ -44,6 +53,24 @@ export class Reviews extends Component {
       ai_score: Math.round((Number(this.state.ai_positiveAttitude)+Number(this.state.ai_communication)+Number(this.state.ai_detailOriented)+Number(this.state.ai_teamSpirit)+Number(this.state.ai_stressTolerance))/5),
     });
   };
+
+  sendEmail(e) {
+    e.preventDefault();
+  
+    emailjs.sendForm('default_service', 'template_d52ulu8', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
+      .then((result) => {
+          console.log(result.text);
+          alert("Email Sent!", null);
+      }, (error) => {
+          console.log(error.text);
+      });
+    e.target.reset();
+  }
+
+  sendEmailNotice = (e) => {
+    this.sendEmail(e);
+    this.setEmailSent();
+  }
 
   cancatenateScores = () => {
     var ans = "";
@@ -203,6 +230,16 @@ export class Reviews extends Component {
                         </div>
                       </div>
                       <div className="row" style={{justifyContent: "center"}}>
+                        <form onSubmit={this.sendEmailNotice}>
+                          <input type='hidden' name="email" value={this.props.email}></input>
+                          <button
+                            type="submit"
+                            disabled={this.state.emailSent}
+                            className= {this.state.emailSent ? "under-review text-15" : "not-reviewed text-15"}
+                            style={{color:"#FFFFFF", display:"inline-block", width:"10rem", marginRight:'1rem'}}>
+                              Send Notification
+                          </button>
+                        </form>
                         <button
                           className= {this.state.isSubmitted ? "under-review text-15" : "not-reviewed text-15"}
                           onClick={this.submitReview}
@@ -233,6 +270,8 @@ function  alert(title, message){
 
 const mapStateToProps = (state) => ({
   sentences: state.video_sentence_reducer.sentences,
+  email: state.video_user_reducer.email,
+  user: state.auth_reducer.user,
 });
 
-export default connect(mapStateToProps, { addVideoReviews, getSentences })(Reviews);
+export default connect(mapStateToProps, { addVideoReviews, getSentences, getVideoUser })(Reviews);
