@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { addVideoReviews } from "../../redux/actions/video_actions";
 import { getSentences } from "../../redux/actions/video_sentence_actions";
 import { connect } from "react-redux";
-//import { LabelRow, ContentRow } from "./Components";
-//import PropTypes from "prop-types";
 import ReviewLabel from "./ReviewLabel";
+import { confirmAlert } from 'react-confirm-alert';
 
 export class Reviews extends Component {
   state = {
@@ -27,7 +26,12 @@ export class Reviews extends Component {
     label: false,
     sentence: -1,
     subCategory: -1,
+    isSubmitted: false,
   };
+
+  setSubmitted = () => {
+        this.setState({ ...this.state, isSubmitted: true });
+    }
 
   componentWillMount() {
     this.props.getSentences(this.props.videoID);
@@ -80,7 +84,16 @@ export class Reviews extends Component {
   }
 
   submitReview = () => {
-    this.doAsync(this.props.addVideoReviews, this.props.nextVideo);
+//    this.doAsync(this.props.addVideoReviews, this.props.nextVideo);
+    this.props.addVideoReviews(
+        this.state.ai_score,
+        this.cancatenateAIScores(),
+        this.state.score,
+        this.cancatenateScores(),
+        this.state.comments,
+        this.props.videoID);
+    alert("Submission Success", "You submitted the review successfully!");
+    this.setSubmitted();
   };
 
   scoreField = (title, name, value) => {
@@ -176,7 +189,6 @@ export class Reviews extends Component {
                       subcategories={this.props.subcategories}
                       q_category={this.props.q_category}
                     />) : null}
-                <form>
                     <fieldset>
                       <div className="row" style={{marginTop: "3rem"}}>
                         <div className="col-5">
@@ -192,21 +204,32 @@ export class Reviews extends Component {
                       </div>
                       <div className="row" style={{justifyContent: "center"}}>
                         <button
-                          type="submit"
-                          className="not-reviewed text-15"
+                          className= {this.state.isSubmitted ? "under-review text-15" : "not-reviewed text-15"}
                           onClick={this.submitReview}
+                          disabled={this.state.isSubmitted}
                           style={{color:"#FFFFFF", display:"inline-block", width:"10rem"}}>
                             Submit Review
                         </button>
                       </div>
                     </fieldset>
-                </form>
               </div>
             </div>
       </div>
     );
   }
 }
+
+function  alert(title, message){
+    confirmAlert({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+      });
+  };
 
 const mapStateToProps = (state) => ({
   sentences: state.video_sentence_reducer.sentences,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import { getUnreviewedVideo } from "../../redux/actions/video_actions";
+import { getReviewCount } from "../../redux/actions/video_actions";
 import PropTypes from "prop-types";
 import VideoPlayer from "../videos/VideoPlayer";
 import AudioPlayer from "../audios/AudioPlayer";
@@ -17,22 +17,15 @@ function ScrollToTopOnMount() {
 
 export class ReviewWindow extends Component {
   static propTypes = {
-    q_type: PropTypes.string,
-    q_category: PropTypes.string,
-    q_description: PropTypes.string,
-    video: PropTypes.object,
-    loaded: PropTypes.bool.isRequired,
-    review_count: PropTypes.number.isRequired,
+      review_count: PropTypes.number.isRequired,
   };
-
-  componentWillMount() {
-    this.props.getUnreviewedVideo();
+  constructor(props) {
+      super(props);
   }
 
-  nextVideo = () => {
-    this.setState({q_type: null, video: null, loaded: false });
-    //window.location.reload();
-  };
+  componentDidMount() {
+      this.props.getReviewCount();
+  }
 
   render() {
     return (
@@ -48,8 +41,6 @@ export class ReviewWindow extends Component {
           <h2>No video needs to be reviewed</h2>
           ) : (
           <div>
-            {/* <div style={{marginBottom:"2%"}}><h3>Question Type: {this.props.q_type}</h3></div>
-            <div style={{marginBottom:"2%"}}><h3>Question Category: {this.props.q_category}</h3></div> */}
             <div style={{marginBottom:"2%"}}>
               <h4 className="review-text" style={{fontSize:"25px", color:"#090D3A", marginLeft: "5rem"}}>
                 Under Review
@@ -71,7 +62,6 @@ export class ReviewWindow extends Component {
                 <Reviews
                   videoID={this.props.video.id}
                   q_category={this.props.q_category}
-                  nextVideo={this.nextVideo}
                   needed_ai_review={this.props.video.needed_ai_review}
                   is_ai_reviewed={this.props.video.is_ai_reviewed}
                   needed_expert_review={this.props.video.needed_expert_review}
@@ -92,12 +82,7 @@ export class ReviewWindow extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  q_type: state.video_reducer.q_type,
-  q_category: state.video_reducer.q_category,
-  q_description: state.video_reducer.q_description,
-  video: state.video_reducer.videos,
-  loaded: state.video_reducer.loaded,
   review_count: state.video_reducer.review_count,
 });
 
-export default connect(mapStateToProps, { getUnreviewedVideo })(ReviewWindow);
+export default connect(mapStateToProps, { getReviewCount })(ReviewWindow);
