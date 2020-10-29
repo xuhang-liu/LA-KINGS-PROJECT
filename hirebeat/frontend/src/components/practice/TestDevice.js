@@ -8,6 +8,7 @@ function TestDevice(props) {
   videoRecorderOptions.plugins.record.maxLength = 15;
 //  videoRecorderOptions.width = window.innerWidth / 2.4;
 //  videoRecorderOptions.height = window.innerWidth / 3.6;
+  videoRecorderOptions.controlBar.recordToggle = true;
   safariAlert();
   return (
     <TestDeviceCard>
