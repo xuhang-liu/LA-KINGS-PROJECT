@@ -5,11 +5,14 @@ import {
   ADD_REVIEWS,
   ADD_LABELS,
   GET_UNREVIEWED_VIDEO,
+  GET_UNREVIEWED_VIDEO_LIST,
+  GET_REVIEW_COUNT,
   VIDEO_UNDER_REVIEW,
 } from "../actions/action_types";
 
 const initialState = {
   videos: [],
+  unreviewed_videos: [],
   q_type: '',
   q_category: '',
   q_description: '',
@@ -32,6 +35,16 @@ export default function (state = initialState, action) {
         q_description: action.payload.video.q_description,
         videos: action.payload.video,
         loaded: true,
+        review_count: action.payload.review_count,
+      };
+    case GET_UNREVIEWED_VIDEO_LIST:
+      return {
+        unreviewed_videos: action.payload.video_list,
+        loaded: true,
+        review_count: action.payload.review_count,
+      };
+    case GET_REVIEW_COUNT:
+      return {
         review_count: action.payload.review_count,
       };
     case DELETE_VIDEO:

@@ -57,6 +57,38 @@ def get_unreviewed_video(request):
         "review_count":review_count,
     })
 
+
+@api_view(['GET'])
+def get_unreviewed_video_list(request):
+    # Use in view func to check group instead of decorator due to the issue: can't pass request.user to decorator
+    # if not group_check(allowed_groups=['reviewers'], user=request.user):
+    #     return HttpResponseBadRequest(
+    #         {"You are not authorized to view this page. Please don't use incognito browsers."})
+
+    videos = Video.objects.filter(Q(needed_expert_review=True, is_expert_reviewed=False) | Q(needed_ai_review=True,is_ai_reviewed=False)).order_by('created_at')
+    video_list = []
+    for i in range(len(videos)):
+        serializer = VideoSerializer(videos[i])
+        video_list.append(serializer.data)
+    # review_count = ReviewerInfo.objects.filter(user=request.user)[0].review_count
+
+    return Response({
+        "video_list": video_list,
+        # "review_count": review_count,
+    })
+
+@api_view(['GET'])
+def get_review_count(request):
+    # Use in view func to check group instead of decorator due to the issue: can't pass request.user to decorator
+    if not group_check(allowed_groups=['reviewers'], user=request.user):
+        return HttpResponseBadRequest(
+            {"You are not authorized to view this page. Please don't use incognito browsers."})
+
+    review_count = ReviewerInfo.objects.filter(user=request.user)[0].review_count
+    return Response({
+        "review_count": review_count,
+    })
+
 @api_view(['POST'])
 def mark_video_as_needed_review(request):
     id = request.data["id"]
