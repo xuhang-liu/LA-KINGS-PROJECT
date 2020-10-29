@@ -240,13 +240,15 @@ export class Reviews extends Component {
                               Send Notification
                           </button>
                         </form>
-                        <button
-                          className= {this.state.isSubmitted ? "under-review text-15" : "not-reviewed text-15"}
-                          onClick={this.submitReview}
-                          disabled={this.state.isSubmitted}
-                          style={{color:"#FFFFFF", display:"inline-block", width:"10rem"}}>
-                            Submit Review
-                        </button>
+                        <form onSubmit={this.submitReview}>
+                          <button
+                            type="submit"
+                            className= {this.state.isSubmitted ? "under-review text-15" : "not-reviewed text-15"}
+                            disabled={this.state.isSubmitted}
+                            style={{color:"#FFFFFF", display:"inline-block", width:"10rem"}}>
+                              Submit Review
+                          </button>
+                        </form>
                       </div>
                     </fieldset>
               </div>
