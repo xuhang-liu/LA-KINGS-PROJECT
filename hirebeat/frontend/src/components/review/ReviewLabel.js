@@ -16,10 +16,6 @@ export class ReviewLabel extends Component {
         this.setState({ ...this.state, disabled: true });
     }
 
-    componentWillMount() {
-        this.props.getSubcategories(this.props.q_category);
-    }
-
     collectData = () => {
         let data = [];
 
@@ -63,7 +59,7 @@ export class ReviewLabel extends Component {
 
     saveData = (data) => {
         let num = data[0].length;
-        let total = data[1].length;
+        let total = data[1][0].length;
 
         let sentences = data[0];
         let subcategories = data[1];
@@ -131,8 +127,4 @@ function  alert(title, message){
       });
   };
 
-const mapStateToProps = (state) => ({
-  subcategories: state.question_subcategory_reducer.subcategories,
-});
-
-export default connect(mapStateToProps, { getSubcategories, addVideoLabels })(ReviewLabel);
+export default connect(null, { addVideoLabels })(ReviewLabel);
