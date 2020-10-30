@@ -23,7 +23,7 @@ export class ReviewList extends Component {
     };
 
     loadDataFromServer() {
-        fetch("http://127.0.0.1:8000/get-unreviewed-video-list")  // change here in production
+        fetch("https://hirebeat.co/get-unreviewed-video-list")  // change here in production
           .then(res => res.json())
           .then(
             (result) => {

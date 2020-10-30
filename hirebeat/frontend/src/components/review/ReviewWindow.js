@@ -47,8 +47,8 @@ export class ReviewWindow extends Component {
               </h4>
             </div>
             <div className="row" style={{margin:"auto"}}>
-              <p className="review-text" style={{fontSize:"20px", marginLeft: "5rem"}}>Q1</p>
-              <p className="review-text" style={{fontSize:"20px" ,color:"#4A6F8A", marginLeft:"2%"}}>{this.props.q_description}</p>
+              <p className="review-text" style={{fontSize:"20px", marginLeft: "5rem"}}>Q:</p>
+              <p className="review-text" style={{fontSize:"16px" ,color:"#4A6F8A", marginLeft:"1%"}}>{this.props.q_description}</p>
             </div>
             <div className="row" style={{justifyContent: "center", marginBottom: "2rem"}}>
               <div className="col-5" style={{padding:"0px"}}>
