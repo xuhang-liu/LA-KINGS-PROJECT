@@ -47,7 +47,7 @@ import { loadUser, loadProfile } from "../redux/actions/auth_actions";
 
 import VideoReplayPage from "./dashboard/videos/VideoReplayPage";
 import MyVideoUploader from "./videos/MyVideoUploader";
-import ReviewWindow from "./review/ReviewWindow";
+import ReviewList from "./review/ReviewList";
 import GoTop from './shared/GoTop';
 
 import QuestionTypeChoices from "./practice/QuestionTypeChoices";
@@ -105,7 +105,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute exact path="/resume" component={Resume} />
-                <PrivateRoute exact path="/review" component={ReviewWindow} />
+                <PrivateRoute exact path="/review" component={ReviewList} />
                 <PrivateRoute
                   exact
                   path="/practice/modes"
