@@ -23,7 +23,9 @@ export class ReviewList extends Component {
     };
 
     loadDataFromServer() {
-        fetch("https://hirebeat.co/get-unreviewed-video-list")  // change here in production
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const url = "https://hirebeat.co/get-unreviewed-video-list"; // change here in production
+        fetch(proxyurl + url)
           .then(res => res.json())
           .then(
             (result) => {
