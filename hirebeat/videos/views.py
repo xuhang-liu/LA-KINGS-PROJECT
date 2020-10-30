@@ -6,6 +6,8 @@ from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenc
 from .models import Video, Label, Transcript, Sentence
 from django.contrib.auth.models import User
 from accounts.models import ReviewerInfo
+from questions.models import Categorys, SubCategory
+from questions.serializers import SubcategorySerializer
 # For fake ai
 from django.db.models import Q
 
@@ -57,24 +59,59 @@ def get_unreviewed_video(request):
         "review_count":review_count,
     })
 
+def get_video_sentences_by_id(video_id):
+    sentences = []
+    transcript = Transcript.objects.filter(video_id=video_id)
+    transcript_id = transcript[0].id
+    queryset = Sentence.objects.filter(transcript_id=transcript_id)
+
+    for i in range(len(queryset)):
+        serializer = VideoSentenceSerializer(queryset[i])
+        sentence = serializer.data
+        sentences.append(sentence)
+    return sentences
+
+def get_question_subcategories(category):
+    subcategories = []
+    queryset = Categorys.objects.filter(category_des=category).values('subCategorys')
+    sub_list = queryset[0]["subCategorys"].split(",")
+    num = len(sub_list)
+
+    for i in range(num):
+        id = int(sub_list[i])
+        s = SubCategory.objects.filter(id=id)
+        serializer = SubcategorySerializer(s[0])
+        subcategory = serializer.data
+        subcategories.append(subcategory)
+    return subcategories
 
 @api_view(['GET'])
 def get_unreviewed_video_list(request):
-    # Use in view func to check group instead of decorator due to the issue: can't pass request.user to decorator
-    # if not group_check(allowed_groups=['reviewers'], user=request.user):
-    #     return HttpResponseBadRequest(
-    #         {"You are not authorized to view this page. Please don't use incognito browsers."})
-
-    videos = Video.objects.filter(Q(needed_expert_review=True, is_expert_reviewed=False) | Q(needed_ai_review=True,is_ai_reviewed=False)).order_by('created_at')
+    print("===Get Unreviewed Video List Called===")
+    data = []
     video_list = []
+    video_sentences = []
+    question_categories = []
+    # get videos
+    videos = Video.objects.filter(Q(needed_expert_review=True, is_expert_reviewed=False) |
+                                  Q(needed_ai_review=True,is_ai_reviewed=False)).order_by('created_at')
     for i in range(len(videos)):
+        # videos
         serializer = VideoSerializer(videos[i])
         video_list.append(serializer.data)
-    # review_count = ReviewerInfo.objects.filter(user=request.user)[0].review_count
+        # video sentences
+        sentences = get_video_sentences_by_id(videos[i].id)
+        video_sentences.append(sentences)
+        # question subcategories
+        subcategories = get_question_subcategories(videos[i].q_category)
+        question_categories.append(subcategories)
+
+    data.append(video_list)
+    data.append(video_sentences)
+    data.append(question_categories)
 
     return Response({
-        "video_list": video_list,
-        # "review_count": review_count,
+        "data": data
     })
 
 @api_view(['GET'])

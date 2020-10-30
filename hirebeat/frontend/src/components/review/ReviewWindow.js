@@ -61,13 +61,14 @@ export class ReviewWindow extends Component {
             <div className="row" style={{justifyContent: "center", padding:"0px"}}>
                 <Reviews
                   videoID={this.props.video.id}
-                  q_category={this.props.q_category}
                   needed_ai_review={this.props.video.needed_ai_review}
                   is_ai_reviewed={this.props.video.is_ai_reviewed}
                   needed_expert_review={this.props.video.needed_expert_review}
                   is_expert_reviewed={this.props.video.is_expert_reviewed}
                   ai_review_categories={this.props.video.ai_review_categories}
                   expert_review_categories={this.props.video.expert_review_categories}
+                  sentences={this.props.sentences}
+                  subcategories={this.props.subcategories}
                 />
             </div>
           </div>

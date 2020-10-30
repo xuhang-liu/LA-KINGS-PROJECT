@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { addVideoReviews } from "../../redux/actions/video_actions";
-import { getSentences, getVideoUser } from "../../redux/actions/video_sentence_actions";
+import { getVideoUser } from "../../redux/actions/video_sentence_actions";
 import { connect } from "react-redux";
 import emailjs from 'emailjs-com';
 import ReviewLabel from "./ReviewLabel";
@@ -42,7 +42,6 @@ export class Reviews extends Component {
   }
 
   componentDidMount() {
-    this.props.getSentences(this.props.videoID);
     this.props.getVideoUser(this.props.videoID);
   }
 
@@ -214,7 +213,6 @@ export class Reviews extends Component {
                     <ReviewLabel
                       sentences={this.props.sentences}
                       subcategories={this.props.subcategories}
-                      q_category={this.props.q_category}
                     />) : null}
                     <fieldset>
                       <div className="row" style={{marginTop: "3rem"}}>
@@ -271,9 +269,8 @@ function  alert(title, message){
   };
 
 const mapStateToProps = (state) => ({
-  sentences: state.video_sentence_reducer.sentences,
   email: state.video_user_reducer.email,
   user: state.auth_reducer.user,
 });
 
-export default connect(mapStateToProps, { addVideoReviews, getSentences, getVideoUser })(Reviews);
+export default connect(mapStateToProps, { addVideoReviews, getVideoUser })(Reviews);
