@@ -9,7 +9,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 function sendEmail(e) {
   e.preventDefault();
 
-  emailjs.sendForm('default_service', 'template_yyd7rhd', e.target, 'user_Qu9SAkGeIPnGdg8qQXc0J')
+  emailjs.sendForm('default_service', 'template_k9dipu8', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
     .then((result) => {
         console.log(result.text);
         confirmAlert({

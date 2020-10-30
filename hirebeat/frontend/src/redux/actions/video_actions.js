@@ -6,6 +6,8 @@ import {
   ADD_REVIEWS,
   ADD_LABELS,
   GET_UNREVIEWED_VIDEO,
+  GET_UNREVIEWED_VIDEO_LIST,
+  GET_REVIEW_COUNT,
   VIDEO_UNDER_REVIEW,
   INCREASE_VIDEO_COUNT,
 } from "./action_types";
@@ -66,6 +68,36 @@ export const getUnreviewedVideo = () => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_UNREVIEWED_VIDEO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getUnreviewedVideoList = () => (dispatch, getState) => {
+  console.log("getting unreviewed video list");
+  axios
+    .get("get-unreviewed-video-list", tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_UNREVIEWED_VIDEO_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getReviewCount = () => (dispatch, getState) => {
+  console.log("getting review count");
+  axios
+    .get("get-review-count", tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_REVIEW_COUNT,
         payload: res.data,
       });
     })
