@@ -62,13 +62,20 @@ def get_unreviewed_video(request):
 def get_video_sentences_by_id(video_id):
     sentences = []
     transcript = Transcript.objects.filter(video_id=video_id)
-    transcript_id = transcript[0].id
-    queryset = Sentence.objects.filter(transcript_id=transcript_id)
+    if transcript.exists():
+        transcript_id = transcript[0].id
+        queryset = Sentence.objects.filter(transcript_id=transcript_id)
 
-    for i in range(len(queryset)):
-        serializer = VideoSentenceSerializer(queryset[i])
-        sentence = serializer.data
-        sentences.append(sentence)
+        for i in range(len(queryset)):
+            serializer = VideoSentenceSerializer(queryset[i])
+            sentence = serializer.data
+            sentences.append(sentence)
+    else:
+        sentences.append({
+            "id": -1,
+            "timestamp": "0.00",
+            "sentence": "This video has no sentence",
+            "transcript": -1})
     return sentences
 
 def get_question_subcategories(category):

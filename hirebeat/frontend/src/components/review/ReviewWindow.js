@@ -31,7 +31,7 @@ export class ReviewWindow extends Component {
     return (
       <React.Fragment>
       <ScrollToTopOnMount />
-      <div style={{padding: "2%", margin: "auto", background: "#E5E5E5", marginBottom: "10%"}}>
+      <div style={{padding: "2%", margin: "auto", background: "#E5E5E5"}}>
         <div className="row" style={{margin: "4% auto 1%"}}>
           <p className="review-text" style={{fontSize:"20px", color:"#090D3A", marginLeft: "5rem"}}>Number of videos reviewed: </p>
           <p className="review-text" style={{fontSize:"20px", marginLeft:"1%"}}>{this.props.review_count}</p>

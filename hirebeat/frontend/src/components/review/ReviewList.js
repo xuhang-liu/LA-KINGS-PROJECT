@@ -61,7 +61,7 @@ export class ReviewList extends Component {
 
     render() {
         return (
-            <div className="commentBox" style={{ marginBottom: "10%"}}>
+            <div className="commentBox" style={{ marginBottom: "5%"}}>
                 {this.state.pageCount != 0 ?
                     <div>
                         <MediaList data={this.state.data} index={this.state.index} />
@@ -78,7 +78,7 @@ export class ReviewList extends Component {
                           subContainerClassName={'pages pagination'}
                           activeClassName={'active'}
                         />
-                    </div> : <h2 style={{padding: "3rem"}}>No videos need to be reviewed!</h2>}
+                    </div> : <h2 style={{padding: "3rem", textAlign: "center"}}>No videos need to be reviewed!</h2>}
             </div>
         );
     };
