@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import ReviewWindow from "./ReviewWindow";
 import ReactPaginate from 'react-paginate';
+import MediaList from "./MediaList";
 
 export class ReviewList extends Component {
 
@@ -17,6 +18,7 @@ export class ReviewList extends Component {
           pageCount: 0,
           error: null,
           isLoaded: false,
+          index: 0,
         };
     };
 
@@ -26,9 +28,10 @@ export class ReviewList extends Component {
           .then(
             (result) => {
               this.setState({
-                pageCount: result.video_list.length,
+                pageCount: result.data[0].length,
                 isLoaded: true,
-                data: result.video_list.slice(this.state.offset, this.state.offset + this.state.perPage)
+                data: result.data,
+                index: this.state.offset,
               });
             },
             // Note: it's important to handle errors here
@@ -58,10 +61,10 @@ export class ReviewList extends Component {
 
     render() {
         return (
-            <div className="commentBox" style={{ marginBottom: "10%"}}>
-                {this.state.isLoaded ?
+            <div className="commentBox" style={{ marginBottom: "5%"}}>
+                {this.state.pageCount != 0 ?
                     <div>
-                        <MediaList data={this.state.data} />
+                        <MediaList data={this.state.data} index={this.state.index} />
                         <ReactPaginate
                           previousLabel={'previous'}
                           nextLabel={'next'}
@@ -75,33 +78,11 @@ export class ReviewList extends Component {
                           subContainerClassName={'pages pagination'}
                           activeClassName={'active'}
                         />
-                    </div> : null}
+                    </div> : <h2 style={{padding: "3rem", textAlign: "center"}}>No videos need to be reviewed!</h2>}
             </div>
         );
     };
 
-};
-
-export class MediaList extends Component {
-    static propTypes = {
-        data: PropTypes.array.isRequired,
-    };
-
-    render() {
-        let mediaNodes = this.props.data.map(function (media, index) {
-            return <ReviewWindow
-                        q_types={media.q_type}
-                        q_category={media.q_category}
-                        q_description={media.q_description}
-                        video={media}
-                        loaded={true}
-                    />
-        });
-
-        return (
-            <div>{mediaNodes}</div>
-        );
-    }
 };
 
 export default ReviewList;

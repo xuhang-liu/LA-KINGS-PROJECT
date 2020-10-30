@@ -39,9 +39,8 @@ export default function (state = initialState, action) {
       };
     case GET_UNREVIEWED_VIDEO_LIST:
       return {
-        unreviewed_videos: action.payload.video_list,
+        unreviewed_videos: action.payload.data,
         loaded: true,
-        review_count: action.payload.review_count,
       };
     case GET_REVIEW_COUNT:
       return {
