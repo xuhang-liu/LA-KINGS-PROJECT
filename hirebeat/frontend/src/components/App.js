@@ -38,6 +38,8 @@ import Term from "./layout/Term";
 import QuizHome from "./quiz/quizHome";
 import QuizResultPage from "./quiz/quizResultPage";
 import Resume from "./resume/Resume";
+import CompanyList from"./companyData/CompanyList";
+import CompanyInfo from"./companyData/CompanyInfo";
 
 import Contact from "./contact/contact";
 
@@ -156,6 +158,8 @@ class App extends Component {
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/quiz" component={QuizHome} />
                 <Route exact path="/quizresult" component={QuizResultPage} />
+                <Route exact path="/companydata" component={CompanyList} />
+                <Route exact path="/companyinfo" component={CompanyInfo} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />
