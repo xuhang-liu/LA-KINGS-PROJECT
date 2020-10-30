@@ -112,10 +112,10 @@ class CompanyList extends Component {
                     </div>
 
                     <div className="row company-list-help-box">
-                        <h3 className="col-3 company-list-help-text" style={{paddingLeft:"4%"}}>
+                        <h3 className="col-md-3 company-list-help-text" style={{paddingLeft:"4%"}}>
                             We also help you on </h3>
                             
-                        <div className="col-2">
+                        <div className="col-md-3" style={{maxWidth:"18%"}}>
                             <Link to="/practice">
                                 <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}>
                                     <i className="bx bxs-arrow-to-right"></i> 
@@ -125,7 +125,7 @@ class CompanyList extends Component {
                             </Link>
                         </div>
 
-                        <div className="col-2">
+                        <div className="col-md-3" style={{maxWidth:"18%"}}>
                             <Link to="/resume">
                                 <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}>
                                     <i className="bx bxs-arrow-to-right"></i> 
