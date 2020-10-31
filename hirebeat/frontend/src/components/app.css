@@ -1944,22 +1944,20 @@ color: #080A3C;
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin: 0;
-  font-size: 14px;
-  font-size: .875rem;
   line-height: 1.4286;
 }
 
+
 .companydata-text4{
-  font-size: 1.6rem;
+  font-size: 0.5rem;
   color: #4A6F8A;
-  margin-left: 0.5rem;
-  
 }
 
 .company_ul li {
-  flex: 1 1 25%;
+  flex: 1 1 12.5%;
   padding: .75rem 0;
   white-space: nowrap;
+  display: table;
 }
 
 .companydata{
@@ -1971,6 +1969,18 @@ color: #080A3C;
   margin-left: auto;
   margin-top: 40px;
   margin-right: auto;
+}
+
+.img-with-text {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 2.5rem;
+}
+
+.img-with-text a {
+  display: block;
+  margin: 0 auto;
 }
 #react-paginate ul {
   display: inline-block;
