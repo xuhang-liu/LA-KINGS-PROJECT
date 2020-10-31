@@ -1,15 +1,15 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const Category = (props) => {
+export const Category = (props) => {
   return (
     <Chart
       options=  {{
           labels: ['A', 'B', 'C', 'D', 'E'],
       }}
-      series={[44, 55, 41, 17, 15]}
+      series={props.series}
       type="pie"
-      height={140}
+      height={props.height}
       key={"overall"}
     />
   );
@@ -63,12 +63,42 @@ export const Bar = (props) => {
     );
 }
 
+const decideClassName = (filter, text) => {
+  return filter == text ? "btn-selected" : "btn-unselected";
+};
 
-export default function Demographic(props) {
-    return (
-        <div>
-        <h3 className="companydata-text1">{props.name}</h3>
-        <Category />
-        </div>
-    );
+export const Switchbutton = (filter, setFilter)=>{
+  console.log(filter);
+  return(
+      <div style={{marginBottom: "5px"}} className="container d-flex justify-content-start">
+          <button
+          className={decideClassName(filter, "swe")}
+          style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+          onClick={() => setFilter("swe")}
+          >
+          SWE
+          </button>
+          <button
+          className={decideClassName(filter, "data")}
+          style = {{width: "150px", height: "42px", outline: "none", borderRadius: "5px"}}
+          onClick={() => setFilter("data")}
+          >
+          Data
+          </button>
+          <button
+          className={decideClassName(filter, "design")}
+          style = {{width: "150px", height: "42px", outline: "none", borderRadius: "5px"}}
+          onClick={() => setFilter("design")}
+          >
+          Design
+          </button>
+          <button
+          className={decideClassName(filter, "pm")}
+          style = {{width: "150px", height: "42px", outline: "none", borderRadius: "5px"}}
+          onClick={() => setFilter("pm")}
+          >
+          PM
+          </button>
+      </div>
+  );
 }

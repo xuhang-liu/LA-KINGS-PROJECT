@@ -19,7 +19,13 @@ export const OverallScore = (props) => {
 };
 
 class Overview extends Component{
+    
     render(){
+        var numrows = 4;
+        const stars = [];
+        for (var i= 0; i<numrows; i++) {
+            stars.push(<i key={i} className="bx bxs-star"></i>)
+        };
         return(
             <ReactWOW animation='fadeInLeft' delay='0.1s' >
                 <div>
@@ -53,6 +59,59 @@ class Overview extends Component{
                             </a>
                         </div>
                         <div className="col-lg-5 col-md-5">
+                            <p className="companydata-text3">Company Growth</p>
+                            <p className="companydata-text3">(employees)</p>
+                        </div>
+                        <div className="col-lg-7 col-md-7">
+                        <Chart
+                            options= {{
+                                chart: {
+                                    type: 'line',
+                                },
+                                grid: {
+                                    show: false,
+                                },
+                                stroke: {
+                                    curve: 'smooth',
+                                },
+                                dataLabels: {
+                                enabled: true,
+                                enabledOnSeries: [0]
+                                },
+                                labels: ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
+                                xaxis:{
+                                    labels: {
+                                        show: false,
+                                    },
+                                },
+                                yaxis:{
+                                    labels: {
+                                        show:false,
+                                    },
+                                },
+                                dataLabels: {
+                                    enabled: false,
+                                },
+                            }}
+                            series={[{
+                                name: 'employees',
+                                type: 'line',
+                                data: [230, 420, 350, 270, 430, 220, 170, 310]
+                                },
+                            ]}
+                            type="line"
+                            />
+                        </div>
+                        <div className="col-lg-5 col-md-5">
+                            <p className="companydata-text3">Employee Ratings</p>
+                        </div>
+                        <div className="col-lg-7 col-md-7">
+                            <div className="rating">
+                            {stars}
+                            </div>
+                        </div>
+
+                        <div className="col-lg-5 col-md-5" style={{marginTop: '3%'}}>
                             <Link to="/resume">
                             <a className="default-btn" 
                             style={{color:"white", backgroundColor:"#090D3A", marginLeft:"4%"}}>
