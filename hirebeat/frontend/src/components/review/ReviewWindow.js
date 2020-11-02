@@ -5,6 +5,7 @@ import { getReviewCount } from "../../redux/actions/video_actions";
 import PropTypes from "prop-types";
 import VideoPlayer from "../videos/VideoPlayer";
 import AudioPlayer from "../audios/AudioPlayer";
+import ReactPlayer from 'react-player';
 import Reviews from "./Reviews";
 
 function ScrollToTopOnMount() {
@@ -54,7 +55,7 @@ export class ReviewWindow extends Component {
               <div className="col-5" style={{padding:"0px"}}>
                 {
                   this.props.video.url.slice(-3) === "wav" ? <AudioPlayer url={this.props.video.url} />
-                  : <VideoPlayer url={this.props.video.url} />
+                      : <ReactPlayer className="react-player" height={"30rem"} url={this.props.video.url} controls={true} />
                 }
               </div>
             </div>
