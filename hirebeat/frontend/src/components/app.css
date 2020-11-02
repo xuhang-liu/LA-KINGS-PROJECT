@@ -33,6 +33,12 @@ hr.style-four:after {
   background: white;
 }
 
+video {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+  -moz-transform: rotateY(180deg); /* Firefox */
+}
+
 :root {
   --theme-color: #4356F0;
 }
