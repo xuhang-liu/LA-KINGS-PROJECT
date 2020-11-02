@@ -145,6 +145,9 @@ export class ResumeScan extends Component {
     if (!this.checkInput(this.state.resume, this.state.jobTitle, this.state.jdText)) {
         return this.alert("Required Fields Not Provided", "Please fill all forms and select your resume! ");
     }
+    if(this.state.jdText.length < 100){
+      return this.alert("Job Description Is Too Short", "Please fill proper contents for job description! ");
+    }
     if (this.props.saved_resume_count < this.props.save_resume_limit) {
       this.uploader.uploadFile(this.state.resume);
       this.redirectToDashboard();

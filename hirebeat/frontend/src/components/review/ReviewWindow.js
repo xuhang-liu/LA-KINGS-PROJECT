@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import { useEffect } from "react";
 import { getReviewCount } from "../../redux/actions/video_actions";
 import PropTypes from "prop-types";
-import VideoPlayer from "../videos/VideoPlayer";
+//import VideoPlayer from "../videos/VideoPlayer";
 import AudioPlayer from "../audios/AudioPlayer";
-import ReactPlayer from 'react-player';
+//import ReactPlayer from 'react-player';
+import '../../../../../node_modules/video-react/dist/video-react.css';
+import { Player } from 'video-react';
 import Reviews from "./Reviews";
 
 function ScrollToTopOnMount() {
@@ -55,7 +57,9 @@ export class ReviewWindow extends Component {
               <div className="col-5" style={{padding:"0px"}}>
                 {
                   this.props.video.url.slice(-3) === "wav" ? <AudioPlayer url={this.props.video.url} />
-                      : <ReactPlayer className="react-player" height={"30rem"} url={this.props.video.url} controls={true} />
+                      : <Player>
+                      <source src={this.props.video.url} />
+                    </Player>
                 }
               </div>
             </div>
