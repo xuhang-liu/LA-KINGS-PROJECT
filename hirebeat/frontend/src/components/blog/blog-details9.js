@@ -19,7 +19,7 @@ class BlogDetails extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – The Best Video Interview Prep Tool For Jobseekers</title>
+                    <title>HireBeat Blog – Tips for Getting Your Resume Past an Applicant Tracking System</title>
                     <meta name="Description" CONTENT="Keywords to Include on A Resume"></meta>
                     <link rel="canonical" href="https://hirebeat.co/tips-for-getting-your-resume-past-an-applicant-tracking-system"/>
                 </Helmet>

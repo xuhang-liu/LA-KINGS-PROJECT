@@ -77,7 +77,7 @@ class App extends Component {
 
   render() {
     const meta = {
-      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
+      title: 'HireBeat – The Best Career Prep Tool For Jobseekers',
       description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
       canonical: 'https://hirebeat.co/',
       meta: {

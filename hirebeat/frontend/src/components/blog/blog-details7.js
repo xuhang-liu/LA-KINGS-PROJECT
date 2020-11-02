@@ -19,7 +19,7 @@ class BlogDetails extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – The Best Video Interview Prep Tool For Jobseekers</title>
+                    <title>HireBeat Blog – How to Write a Thank-You Email After a Job Interview (Example Included)</title>
                     <meta name="Description" CONTENT="How to Write a Thank-You Email After a Job Interview (Example Included)"></meta>
                     <link rel="canonical" href="https://hirebeat.co/how-to-write-a-thank-you-email-after-a-job-interview"/>
                 </Helmet>

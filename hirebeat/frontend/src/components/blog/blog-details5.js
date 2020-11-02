@@ -19,7 +19,7 @@ class BlogDetails extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – The Best Video Interview Prep Tool For Jobseekers</title>
+                    <title>HireBeat Blog – Things to Do Before an Interview</title>
                     <meta name="Description" CONTENT="Things to Do Before an Interview"></meta>
                     <link rel="canonical" href="https://hirebeat.co/things-to-do-before-an-interview"/>
                 </Helmet>

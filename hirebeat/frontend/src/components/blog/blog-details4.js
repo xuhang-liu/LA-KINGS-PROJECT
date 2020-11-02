@@ -19,7 +19,7 @@ class BlogDetails extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – The Best Video Interview Prep Tool For Jobseekers</title>
+                    <title>HireBeat Blog – Questions to Ask at Career Fairs</title>
                     <meta name="Description" CONTENT="Questions to Ask at Career Fairs"></meta>
                     <link rel="canonical" href="https://hirebeat.co/questions-to-ask-at-career-fairs"/>
                 </Helmet>

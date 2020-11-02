@@ -19,7 +19,7 @@ class BlogDetails extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – The Best Video Interview Prep Tool For Jobseekers</title>
+                    <title>HireBeat Blog – Video interview practice</title>
                     <meta name="Description" CONTENT="Video interview practice"></meta>
                     <link rel="canonical" href="https://hirebeat.co/video-interview-practice"/>
                 </Helmet>
