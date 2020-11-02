@@ -8,6 +8,7 @@ import blog5 from '../../assets/blog5.jpg';
 import blog6 from '../../assets/blog6.jpg';
 import blog7 from '../../assets/blog7.jpg';
 import blog8 from '../../assets/blog8.jpg';
+import blog9 from '../../assets/blog9.jpg';
 
 class BlogSidebar extends Component {
     render() {
@@ -29,6 +30,25 @@ class BlogSidebar extends Component {
                 {/* Popular Posts */}
                 <div className="widget widget_spacle_posts_thumb">
                     <h3 className="widget-title">Popular Posts</h3>
+
+                    <article className="item">
+                        <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
+                            <a className="thumb">
+                                <img src={blog9} alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Nov 02, 2020</time>
+                            <h4 className="title usmall">
+                                <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
+                                    <a>Tips for Getting Your Resume Past an Applicant Tracking System</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
 
                     <article className="item">
                         <Link to="/keywords-to-include-on-a-resume">

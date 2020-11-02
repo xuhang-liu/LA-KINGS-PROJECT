@@ -19,9 +19,9 @@ class BlogDetails extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – The Best Video Interview Prep Tool For Jobseekers</title>
+                    <title>HireBeat Blog – Keywords to Include on A Resume</title>
                     <meta name="Description" CONTENT="Keywords to Include on A Resume"></meta>
-                    <link rel="canonical" href="https://hirebeat.co"/>
+                    <link rel="canonical" href="https://hirebeat.co/keywords-to-include-on-a-resume"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

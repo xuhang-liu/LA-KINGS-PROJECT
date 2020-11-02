@@ -28,8 +28,8 @@ class MoreToDiscover extends Component {
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-content pl-3">
                                     <span className="number">01</span>
-                                    <h3>Pracetice/Simulate Modes</h3>
-                                    <p>Create your own customized interview and practice the questions that you want</p>
+                                    <h3>Practice/Simulate Modes</h3>
+                                    <p>Choose your own set of questions and practice your customized interview</p>
                                     <ul>
                                         <li>
                                             <i className='bx bx-badge-check'></i>
