@@ -21,7 +21,7 @@ class BlogDetails extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – The Best Video Interview Prep Tool For Jobseekers</title>
                     <meta name="Description" CONTENT="Questions to Ask at Career Fairs"></meta>
-                    <link rel="canonical" href="https://hirebeat.co"/>
+                    <link rel="canonical" href="https://hirebeat.co/questions-to-ask-at-career-fairs"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
