@@ -117,8 +117,18 @@ def get_unreviewed_video_list(request):
     data.append(video_sentences)
     data.append(question_categories)
 
+    # get review count
+    # Use in view func to check group instead of decorator due to the issue: can't pass request.user to decorator
+    if not group_check(allowed_groups=['reviewers'], user=request.user):
+        return HttpResponseBadRequest(
+            {"You are not authorized to view this page. Please don't use incognito browsers."})
+
+    review_count = ReviewerInfo.objects.filter(user=request.user)[0].review_count
+
     return Response({
-        "data": data
+        "data": data,
+        "nums": len(data[0]),
+        "review_count": review_count
     })
 
 @api_view(['GET'])
