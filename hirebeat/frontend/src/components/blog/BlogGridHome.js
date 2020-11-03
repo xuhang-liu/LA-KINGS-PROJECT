@@ -8,6 +8,7 @@ import blog5 from "../../assets/blog5.jpg";
 import blog6 from "../../assets/blog6.jpg";
 import blog7 from "../../assets/blog7.jpg";
 import blog8 from "../../assets/blog8.jpg";
+import blog9 from "../../assets/blog9.jpg";
 import author1 from "../../assets/HireBeatLogo2.png";
 
 
@@ -17,6 +18,45 @@ class BlogGrid extends Component {
             <section className="blog-area ptb-100">
                 <div className="container">
                     <div className="row">
+
+                    <div className="col-lg-4 col-md-6">
+                            <div className="single-blog-post">
+                                <div className="post-image">
+                                    <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
+                                        <a>
+                                            <img src={blog9} alt="image" />
+                                        </a>
+                                    </Link>
+
+                                    <div className="date">
+                                        <i className='bx bx-calendar'></i> Nov 02, 2020
+                                    </div>
+                                </div>
+
+                                <div className="post-content">
+                                    <h3>
+                                        <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
+                                            <a>TIPS FOR GETTING YOUR RESUME PAST AN APPLICANT TRACKING SYSTEM</a>
+                                        </Link>
+                                    </h3>
+
+                                    <div className="post-info">
+                                        <div className="post-by">
+                                            <img src={author1} alt="image" />
+                                            <h6>HireBeat</h6>
+                                        </div>
+
+                                        <div className="details-btn">
+                                            <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
+                                                <a>
+                                                    <i className="bx bx-right-arrow-alt"></i>
+                                                </a>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     <div className="col-lg-4 col-md-6">
                             <div className="single-blog-post">

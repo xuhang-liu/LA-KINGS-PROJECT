@@ -27,6 +27,7 @@ import blogdetail5 from "./blog/blog-details5";
 import blogdetail6 from "./blog/blog-details6";
 import blogdetail7 from "./blog/blog-details7";
 import blogdetail8 from "./blog/blog-details8";
+import blogdetail9 from "./blog/blog-details9";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -78,7 +79,7 @@ class App extends Component {
 
   render() {
     const meta = {
-      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
+      title: 'HireBeat – The Best Career Prep Tool For Jobseekers',
       description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
       canonical: 'https://hirebeat.co/',
       meta: {
@@ -148,6 +149,7 @@ class App extends Component {
                 <Route exact path="/4-common-interview-questions-and-how-to-answer-them" component={blogdetail6} />
                 <Route exact path="/how-to-write-a-thank-you-email-after-a-job-interview" component={blogdetail7} />
                 <Route exact path="/keywords-to-include-on-a-resume" component={blogdetail8} />
+                <Route exact path="/tips-for-getting-your-resume-past-an-applicant-tracking-system" component={blogdetail9} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />

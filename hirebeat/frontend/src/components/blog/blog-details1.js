@@ -19,9 +19,9 @@ class BlogDetails extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – The Best Video Interview Prep Tool For Jobseekers</title>
+                    <title>HireBeat Blog – Why video inteview practice platforms are essential for landing your dream job</title>
                     <meta name="Description" CONTENT="Why video inteview practice platforms are essential for landing your dream job"></meta>
-                    <link rel="canonical" href="https://hirebeat.co"/>
+                    <link rel="canonical" href="https://hirebeat.co/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
