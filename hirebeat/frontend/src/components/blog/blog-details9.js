@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogDetailsContent4 from './BlogDetailsContent4';
+import BlogDetailsContent9 from './BlogDetailsContent9';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import {Helmet} from "react-helmet";
@@ -19,16 +19,16 @@ class BlogDetails extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – Questions to Ask at Career Fairs</title>
-                    <meta name="Description" CONTENT="Questions to Ask at Career Fairs"></meta>
-                    <link rel="canonical" href="https://hirebeat.co/questions-to-ask-at-career-fairs"/>
+                    <title>HireBeat Blog – Tips for Getting Your Resume Past an Applicant Tracking System</title>
+                    <meta name="Description" CONTENT="Keywords to Include on A Resume"></meta>
+                    <link rel="canonical" href="https://hirebeat.co/tips-for-getting-your-resume-past-an-applicant-tracking-system"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
                     pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogDetailsContent4 />
+                <BlogDetailsContent9 />
                 <FreeTrialArea />
             </React.Fragment>
         );

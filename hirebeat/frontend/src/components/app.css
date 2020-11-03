@@ -33,7 +33,6 @@ hr.style-four:after {
   background: white;
 }
 
-
 video {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg); /* Safari and Chrome */
@@ -1980,3 +1979,9 @@ color: #080A3C;
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
   }
+
+  #rw-video video {
+  transform: unset;
+  -webkit-transform: unset; /* Safari and Chrome */
+  -moz-transform: unset; /* Firefox */
+}
