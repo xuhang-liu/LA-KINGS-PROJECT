@@ -51,7 +51,7 @@ class QuizResultAnalyst extends Component {
                                     <div className="entry-meta">
                                         <ul>
                                             <li>
-                                                <p style={{color: "#6FA8F3", fontFamily: "Poppins"}}>Your Career</p>
+                                                <p style={{color: "#6FA8F3", fontFamily: "Avenir Next"}}>Your Career</p>
                                             </li>
                                         </ul>
                                     </div>
@@ -64,7 +64,7 @@ class QuizResultAnalyst extends Component {
                                             <h3 className="quiz-title">We are here to help you landing your dream role!</h3>
                                             <p className="quiz-text">We offer personalized evaluation on your resume and interview, and more</p>
                                             <Link to="/register">
-                                            <a className="default-btn" style={{color:"white", fontFamily:"Poppins"}}>
+                                            <a className="default-btn" style={{color:"white", fontFamily:"Avenir Next"}}>
                                                 Practice with HireBeat
                                             <span></span>
                                             </a>

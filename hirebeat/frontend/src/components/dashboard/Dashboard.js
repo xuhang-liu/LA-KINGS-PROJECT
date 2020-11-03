@@ -70,7 +70,7 @@ export class Dashboard extends Component {
     return (
       <React.Fragment>
         <ScrollToTopOnMount />
-        {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Poppins"}}> */}
+        {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
           <DbRow>
             <div className="col-12" style={{padding:"0%"}}>

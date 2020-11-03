@@ -59,16 +59,16 @@ export class Header extends Component {
           <div className="nav-item order-xl-1 align-self-center">
             <div className="nav-link text-white navbar-font">
               <div className="row">
-                    <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF"}}></i>        
-                    <span className="header-text" style={{marginLeft: "0.5rem", cursor:'pointer'}}>{user ? `  ${user.username}  ` : ""}
-                    <ul className="nav_submenu" style={{width:'8rem'}}> 
-                      <li style={{borderBottom:'2px dashed lightgrey', height:'2rem'}}>
-                      <Link to="/dashboard" className="header-dropdown-custom" style={{color:"#56a3fa", fontFamily:"Poppins", textDecoration:"none"}}>
+                    <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px'}}></i>        
+                    <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username}  ` : ""}
+                    <ul className="nav_submenu"> 
+                      <li>
+                      <Link to="/dashboard" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
                         Dashboard
                       </Link>
                       </li>
-                      <li style={{height:'2rem', paddingTop:'0.3rem'}}>
-                      <Link to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", fontFamily:"Poppins", textDecoration:"none"}}>
+                      <li>
+                      <Link to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
                         Log out
                       </Link>
                       </li>
@@ -105,10 +105,10 @@ export class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    Resources
-                    <ul className="nav_submenu"> 
-                      <li style={{borderBottom:'1px dashed lightgrey'}}><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></li>
-                      <li><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></li>
+                    Resources <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu">
+                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Quiz</Link></li>
                     </ul>
                   </span>
                 </a>
@@ -180,10 +180,10 @@ export class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    Resources
-                    <ul className="nav_submenu"> 
-                      <li style={{borderBottom:'1px dashed lightgrey'}}><Link to="/bloghome" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Blog</Link></li>
-                      <li><Link to="/quiz" className="header-dropdown-custom" style={{color:"#56a3fa", textDecoration:'none'}}>Quiz</Link></li>
+                    Resources <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu">
+                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Quiz</Link></li>
                     </ul>
                   </span>
                 </a>
@@ -254,7 +254,7 @@ export class Header extends Component {
                   }}
                 />
                 <span className="font-weight-bold"
-                style={{fontSize:"1.2rem", color:"white", fontFamily:"Poppins", fontWeight:"500"}}>
+                style={{fontSize:"1.2rem", color:"white", fontFamily:"Avenir Next", fontWeight:"500"}}>
                   HireBeat
                 </span>
               </a>

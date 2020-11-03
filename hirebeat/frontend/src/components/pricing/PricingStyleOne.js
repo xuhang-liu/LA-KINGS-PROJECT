@@ -315,7 +315,7 @@ class PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price">
-                                                <sub>- Advanced solutions with multiple users -</sub>
+                                                <sub>-Advanced solutions with multiple users-</sub>
                                             </div>
 
                                             <ul className="pricing-features">
@@ -555,7 +555,7 @@ class PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price">
-                                                <sub>- Advanced solutions with multiple users -</sub>
+                                                <sub>-Advanced solutions with multiple users-</sub>
                                             </div>
 
                                             <ul className="pricing-features">

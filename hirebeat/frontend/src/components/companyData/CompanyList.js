@@ -34,7 +34,7 @@ class CompanyList extends Component {
                     <div className="container" style={{marginBottom:"3%"}}>
                         <div className="row" style={{marginBottom:"3%"}}>
                             <div className="col-lg-8 col-md-12" style={{paddingLeft:"44%", paddingTop:"2%"}}>
-                                <h1 style={{fontFamily:"Poppins"}}>Popular</h1>
+                                <h1 style={{fontFamily:"Avenir Next"}}>Popular</h1>
                             </div>
 
                             <div class="col-lg-4 col-md-12">
