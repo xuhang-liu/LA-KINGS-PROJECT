@@ -30,6 +30,7 @@ export class Register extends Component {
     auth: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
     createMessage: PropTypes.func.isRequired,
+    user: PropTypes.object,
   };
 
   onSubmit = (e) => {
@@ -78,7 +79,11 @@ export class Register extends Component {
   render() {
     const {username, email, password, password2} = this.state;
     if (this.props.auth.isAuthenticated) {
-      return <Redirect to="/dashboard"/>;
+      if (this.props.user.groups[0] == "reviewers") {
+        return <Redirect to="/review"/>;
+      } else {
+        return <Redirect to="/dashboard"/>;
+      }
     }
     return (
         <React.Fragment>
@@ -95,7 +100,7 @@ export class Register extends Component {
                         <div className="signup-content" style={{marginTop:"3rem"}}>
                                     <div className="signup-form">
                                       <div>
-                                        <h3 style={{color:"#56a3fa", fontFamily: "Poppins"}}><b>Start your career with HireBeat</b></h3>
+                                        <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next"}}><b>Start your career with HireBeat</b></h3>
                                       </div>
 
                     <form onSubmit={this.onSubmit}>
@@ -108,7 +113,7 @@ export class Register extends Component {
                             onChange={this.onChange}
                             value={username}
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -127,7 +132,7 @@ export class Register extends Component {
                             required
                             onChange={this.onChange}
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -146,7 +151,7 @@ export class Register extends Component {
                             placeholder="Create Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -165,7 +170,7 @@ export class Register extends Component {
                             placeholder="Confirm Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -226,7 +231,7 @@ export class Register extends Component {
                       <hr className="style-four"
                           data-content="Or use"
                           style={{
-                            fontFamily: "Poppins",
+                            fontFamily: "Avenir Next",
                             marginBottom:"2rem",
                             marginTop:"4rem",
                           }}
@@ -239,7 +244,7 @@ export class Register extends Component {
                     <div>
                       <div>
                         <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
-                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Poppins"}}>
+                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next"}}>
                         <a>No credit card information needed during signup. Enjoy your free plan.</a>
                         </div></div>
                     </div>
@@ -286,7 +291,7 @@ export class Register extends Component {
                             onChange={this.onChange}
                             value={username}
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               border: "1px solid #E5E5E5",
                               background: "#FFFFFF",
                               borderRadius: "5px",
@@ -306,7 +311,7 @@ export class Register extends Component {
                             required
                             onChange={this.onChange}
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               border: "1px solid #E5E5E5",
                               borderRadius: "5px",
@@ -326,7 +331,7 @@ export class Register extends Component {
                             placeholder="Create Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               border: "1px solid #E5E5E5",
                               background: "#FFFFFF",
                               borderRadius: "5px",
@@ -346,7 +351,7 @@ export class Register extends Component {
                             placeholder="Confirm Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               border: "1px solid #E5E5E5",
                               background: "#FFFFFF",
                               borderRadius: "5px",

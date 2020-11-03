@@ -54,7 +54,7 @@ export class PrepCountdown extends Component {
                 textDisplayed={"Start Recording"}
                 buttonWidth={"30%"}
                 isAudio={this.props.isAudio ? true : false}
-                fontFamily={"Poppins"}
+                fontFamily={"Avenir Next"}
               />
             </CardRow>
           </div>

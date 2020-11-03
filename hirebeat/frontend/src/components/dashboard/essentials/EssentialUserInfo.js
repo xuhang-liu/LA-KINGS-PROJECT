@@ -264,7 +264,7 @@ export class EssentialUserInfo extends Component {
                         iconMargin={"6px"}
                         textDisplayed={this.props.profile.membership}
                         textSize={"18px"}
-                        fontFamily={"Poppins"}
+                        fontFamily={"Avenir Next"}
                       />
                     </div>
                   */}

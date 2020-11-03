@@ -22,7 +22,7 @@ export const ResumePreview = (props) => {
         <div className="col-2">
           { reviewed ? <OverallScore percent={props.percent} bgColor={"#FAC046"} barColor={"#FF6B00"}/> : null }
         </div>
-        <div className="col-10" style={{fontFamily: "Poppins" }}>
+        <div className="col-10" style={{fontFamily: "Avenir Next" }}>
           <div>
             <h3>{props.jobTitle}</h3>
           </div>
