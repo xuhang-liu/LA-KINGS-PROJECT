@@ -17,6 +17,7 @@ export class MediaList extends Component {
         let videos = this.props.data[0];
         let sentences = this.props.data[1];
         let subcategories = this.props.data[2];
+        let review_count = this.props.review_count;
         return (
             <div>
                 <ReviewWindow
@@ -27,6 +28,7 @@ export class MediaList extends Component {
                     loaded={true}
                     sentences={sentences[index]}
                     subcategories={subcategories[index]}
+                    review_count={review_count}
                 />
             </div>
         );
