@@ -45,26 +45,28 @@ export class ReviewList extends Component {
         return (
             <div className="commentBox" style={{ marginBottom: "5%"}}>
                 {this.props.loaded ?
-                    (<div>
-                        <MediaList
-                            data={this.props.unreviewed_videos}
-                            index={this.state.offset}
-                            review_count={this.props.review_count}
-                        />
-                        <ReactPaginate
-                          previousLabel={'previous'}
-                          nextLabel={'next'}
-                          breakLabel={'...'}
-                          breakClassName={'break-me'}
-                          pageCount={this.props.nums}
-                          marginPagesDisplayed={2}
-                          pageRangeDisplayed={5}
-                          onPageChange={this.handlePageClick}
-                          containerClassName={'pagination'}
-                          subContainerClassName={'pages pagination'}
-                          activeClassName={'active'}
-                        />
-                    </div>) : null}
+                    (this.props.nums > 0 ?
+                        <div>
+                            <MediaList
+                                data={this.props.unreviewed_videos}
+                                index={this.state.offset}
+                                review_count={this.props.review_count}
+                            />
+                            <ReactPaginate
+                              previousLabel={'previous'}
+                              nextLabel={'next'}
+                              breakLabel={'...'}
+                              breakClassName={'break-me'}
+                              pageCount={this.props.nums}
+                              marginPagesDisplayed={2}
+                              pageRangeDisplayed={5}
+                              onPageChange={this.handlePageClick}
+                              containerClassName={'pagination'}
+                              subContainerClassName={'pages pagination'}
+                              activeClassName={'active'}
+                            />
+                        </div> : <h2 style={{padding: "3rem", textAlign: "center"}}>No videos need to be reviewed!</h2>)
+                    : null}
             </div>
         );
     };
