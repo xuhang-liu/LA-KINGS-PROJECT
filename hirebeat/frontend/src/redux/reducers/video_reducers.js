@@ -18,6 +18,7 @@ const initialState = {
   q_description: '',
   loaded: false,
   review_count: 0,
+  nums: 0,
 };
 
 export default function (state = initialState, action) {
@@ -40,6 +41,8 @@ export default function (state = initialState, action) {
     case GET_UNREVIEWED_VIDEO_LIST:
       return {
         unreviewed_videos: action.payload.data,
+        nums: action.payload.nums,
+        review_count: action.payload.review_count,
         loaded: true,
       };
     case GET_REVIEW_COUNT:
