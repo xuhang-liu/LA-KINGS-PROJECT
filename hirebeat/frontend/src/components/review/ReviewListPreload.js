@@ -46,7 +46,6 @@ export class ReviewList extends Component {
             <div className="commentBox" style={{ marginBottom: "5%"}}>
                 {this.props.loaded ?
                     (<div>
-                        {console.log(this.props.review_count)}
                         <MediaList
                             data={this.props.unreviewed_videos}
                             index={this.state.offset}
