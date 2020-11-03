@@ -57,7 +57,7 @@ export class ReviewWindow extends Component {
               <div className="col-5" style={{padding:"0px"}}>
                 {
                   this.props.video.url.slice(-3) === "wav" ? <AudioPlayer url={this.props.video.url} />
-                      : <ReactPlayer url={this.props.video.url} controls={true}/>
+                      : <ReactPlayer id="rw-video" url={this.props.video.url} controls={true} width={"600px"} height={"450px"}/>
                 }
               </div>
             </div>
