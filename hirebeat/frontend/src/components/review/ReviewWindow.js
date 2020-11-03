@@ -3,11 +3,8 @@ import { connect } from "react-redux";
 import { useEffect } from "react";
 import { getReviewCount } from "../../redux/actions/video_actions";
 import PropTypes from "prop-types";
-//import VideoPlayer from "../videos/VideoPlayer";
 import AudioPlayer from "../audios/AudioPlayer";
 import ReactPlayer from 'react-player';
-//import '../../../../../node_modules/video-react/dist/video-react.css';
-//import { Player } from 'video-react';
 import Reviews from "./Reviews";
 
 function ScrollToTopOnMount() {
@@ -19,15 +16,9 @@ function ScrollToTopOnMount() {
 }
 
 export class ReviewWindow extends Component {
-  static propTypes = {
-      review_count: PropTypes.number.isRequired,
-  };
+
   constructor(props) {
       super(props);
-  }
-
-  componentDidMount() {
-      this.props.getReviewCount();
   }
 
   render() {
@@ -85,8 +76,4 @@ export class ReviewWindow extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  review_count: state.video_reducer.review_count,
-});
-
-export default connect(mapStateToProps, { getReviewCount })(ReviewWindow);
+export default ReviewWindow;
