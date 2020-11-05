@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
+import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
 //import Dropdown from 'react-bootstrap/Dropdown'
 
 export class Header extends Component {
@@ -248,17 +249,22 @@ export class Header extends Component {
               <a href="/" className="navbar-brand mr-auto">
                 <img
                   src={hirebeatlogo}
-                  className="img-fluid mr-2"
+                  className="img-fluid mr-3"
                   alt="logo"
                   style={{
-                    width: "24%",
-                    height:"100%"
+                    width: "14%",
+                    height:"14%",
                   }}
                 />
-                <span className="font-weight-bold"
-                style={{fontSize:"1.2rem", color:"white", fontFamily:"Avenir Next", fontWeight:"500"}}>
-                  HireBeat
-                </span>
+                <img
+                  src={hirebeatlogotext}
+                  className="img-fluid mr-2"
+                  alt="logotext"
+                  style={{
+                    width: "40%",
+                    height:"100%",
+                  }}
+                />
               </a>
             {/*</div>*/}
             {isAuthenticated

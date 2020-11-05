@@ -166,14 +166,19 @@ p:last-child {
 }
 
 .section-title h2 {
+  color: #090D3A;
   margin-bottom: 0;
   font-size: 42px;
   font-weight: 600;
+  line-height: 48px;
+  padding-bottom: 1.5rem;
 }
 
 .section-title p {
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 500;
+  line-height: 26px;
+  padding-bottom: 2rem;
 }
 
 .section-title h2 span {
@@ -2979,6 +2984,9 @@ Feedback Area CSS
 }
 
 .single-feedback-item .feedback-desc p {
+  font-size: 15px;
+  line-height: 21px;
+  color: #4A6F8A;
   margin-bottom: 0;
 }
 
@@ -6225,9 +6233,11 @@ SaaS Home Page CSS
 
 .saas-banner .hero-content h1 {
   color: #ffffff;
-  font-size: 42px;
+  font-size: 50px;
   font-weight: 600;
+  padding-bottom: 2rem;
   margin: 0;
+  line-height: 56px;
 }
 
 .saas-banner .hero-content p {
@@ -6236,6 +6246,8 @@ SaaS Home Page CSS
   margin-top: 30px;
   margin-bottom: 35px;
   font-weight: 500;
+  line-height: 26px;
+  padding-bottom: 2rem;
 }
 
 .saas-banner .hero-content .default-btn {
@@ -6588,7 +6600,7 @@ SaaS Home Page CSS
 .overview-item {
   margin-bottom: 20px;
   border-bottom: none;
-  padding-bottom: 20px;
+  padding-bottom: 60px;
 }
 
 .overview-item:last-child {
@@ -6612,11 +6624,13 @@ SaaS Home Page CSS
 }
 
 .overview-content h3 {
+  color: #090D3A;
   font-size: 25px;
   font-weight: 600;
 }
 
 .overview-content p {
+  color: #4A6F8A;
   font-size: 16px;
   font-weight: 500;
   margin: 0;
