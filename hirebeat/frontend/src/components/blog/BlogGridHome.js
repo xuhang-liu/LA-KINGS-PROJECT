@@ -36,7 +36,7 @@ class BlogGrid extends Component {
                                 <div className="post-content">
                                     <h3>
                                         <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
-                                            <a>TIPS FOR GETTING YOUR RESUME PAST AN APPLICANT TRACKING SYSTEM</a>
+                                            <a>TIPS FOR YOUR RESUME TO PASS APPLICANT SYSTEM</a>
                                         </Link>
                                     </h3>
 
@@ -348,7 +348,7 @@ class BlogGrid extends Component {
                                 <div className="post-content">
                                     <h3>
                                         <Link to="/video-interview-practice">
-                                            <a>VIDEO INTERVIEW PRACTICES</a>
+                                            <a>VIDEO INTERVIEW PRACTICES FOR YOU</a>
                                         </Link>
                                     </h3>
 

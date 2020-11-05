@@ -98,17 +98,11 @@ export class Header extends Component {
                 </li>
               </MediaQuery>
               <li className="nav-item">
-                <Link to="/company" className="nav-link text-white navbar-font">
-                  <span className="header-text">About Us</span>
-                </Link>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
-                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
-                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Quiz</Link></li>
+                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
                     </ul>
                   </span>
                 </a>
@@ -119,9 +113,16 @@ export class Header extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/contact" className="nav-link text-white navbar-font">
-                  <span className="header-text">Contact</span>
-                </Link>
+              <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Company <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu">
+                      <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                    </ul>
+                  </span>
+                </a>
               </li>
             </ul>
           </div>
@@ -173,17 +174,11 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/company" className="nav-link text-white navbar-font">
-                <span className="header-text">About Us</span>
-                </a>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
-                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
-                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Quiz</Link></li>
+                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
                     </ul>
                   </span>
                 </a>
@@ -194,8 +189,15 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/contact" className="nav-link text-white navbar-font">
-                <span className="header-text">Contact</span>
+              <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Company <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu">
+                      <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                    </ul>
+                  </span>
                 </a>
               </li>
             </ul>
