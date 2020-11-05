@@ -2101,3 +2101,8 @@ color: #080A3C;
   -webkit-transform: unset; /* Safari and Chrome */
   -moz-transform: unset; /* Firefox */
 }
+
+.owl-dot{
+  border: none;
+  background-color: #f4f6fc;
+}
