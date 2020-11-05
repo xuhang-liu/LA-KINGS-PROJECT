@@ -39,6 +39,8 @@ import Term from "./layout/Term";
 import QuizHome from "./quiz/quizHome";
 import QuizResultPage from "./quiz/quizResultPage";
 import Resume from "./resume/Resume";
+import CompanyList from"./companyData/CompanyList";
+import CompanyInfo from"./companyData/CompanyInfo";
 
 import Contact from "./contact/contact";
 
@@ -46,7 +48,7 @@ import { loadUser, loadProfile } from "../redux/actions/auth_actions";
 
 import VideoReplayPage from "./dashboard/videos/VideoReplayPage";
 import MyVideoUploader from "./videos/MyVideoUploader";
-import ReviewList from "./review/ReviewList";
+import ReviewListPreload from "./review/ReviewListPreload";
 import GoTop from './shared/GoTop';
 
 import QuestionTypeChoices from "./practice/QuestionTypeChoices";
@@ -104,7 +106,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute exact path="/resume" component={Resume} />
-                <PrivateRoute exact path="/review" component={ReviewList} />
+                <PrivateRoute exact path="/review" component={ReviewListPreload} />
                 <PrivateRoute
                   exact
                   path="/practice/modes"
@@ -158,6 +160,8 @@ class App extends Component {
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/quiz" component={QuizHome} />
                 <Route exact path="/quizresult" component={QuizResultPage} />
+                <Route exact path="/companydata" component={CompanyList} />
+                <Route exact path="/companyinfo" component={CompanyInfo} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />

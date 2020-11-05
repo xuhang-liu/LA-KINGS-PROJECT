@@ -89,7 +89,7 @@ export const CardButton = (props) => {
     >
       <p
         style={{
-          fontFamily: "Poppins",
+          fontFamily: "Avenir Next",
           fontStyle: "normal",
           fontWeight: "bold",
           fontSize: "1.2rem",
@@ -130,7 +130,7 @@ export const BglessCardButton = (props) => {
       >
         <p
         style={{
-          fontFamily: "Poppins",
+          fontFamily: "Avenir Next",
           fontStyle: "normal",
           fontWeight: "bold",
           fontSize: "1.2rem",
@@ -245,7 +245,7 @@ export const ButtonContainer = (src, onTap, textDisplayed, btnClassName) => {
           textDisplayed={textDisplayed}
           buttonWidth={"85%"}
           WebkitBorderRadius={"40px"}
-          fontFamily={"Poppins"}
+          fontFamily={"Avenir Next"}
           btnClassName={btnClassName ?? "btn btn-warning"}
         />
       </CardRow>
