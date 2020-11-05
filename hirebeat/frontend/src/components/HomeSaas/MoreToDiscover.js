@@ -11,7 +11,7 @@ class MoreToDiscover extends Component {
                 <div className="container" id='i1'>
                     <div className="section-title">
                         <h2 className="mb-2">More to Discover</h2>
-                        <p>HireBeat is transforming the way of career pivoting to improve job-hunting efficiency. Use our interview practicing and resume matching tools to impress recruiters in just a few clicks</p>
+                        <p>We are transforming the way of career pivoting to improve job-hunting efficiency. Use our interview practicing and resume matching tools to impress recruiters in just a few clicks</p>
                     </div>
                 </div>
 

@@ -52,7 +52,7 @@ class ClientsFeedbackSlider extends Component {
     render() {
         return (
             <React.Fragment>
-            <section className="feedback-area pt-100">
+            <section className="feedback-area pt-100 bg-f4f6fc">
                 <div className="container">
                     <div className="section-title">
                         <h2>Whats Our Clients Said About <span>HireBeat</span></h2>
@@ -114,7 +114,7 @@ class ClientsFeedbackSlider extends Component {
             <ReactWOW animation='fadeInUp' delay='0.8s'>
                 <div className="contact-cta-box mwidth-1000">
                     <h3>Join us and give a try</h3>
-                    <p>Let HireBeat be your secret weapon to ace your next interview</p>
+                    <p style={{color:'black'}}>Let HireBeat be your secret weapon to ace your next interview</p>
 
                     <Link to="/register">
                         <a className="default-btn" style={{color:"white"}}>

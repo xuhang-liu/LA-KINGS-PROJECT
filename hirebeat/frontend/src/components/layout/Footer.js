@@ -23,7 +23,7 @@ class Footer extends Component {
                                         </span>
                                     </a>
                                 </div>
-                                <p style={{marginRight:"2%"}}>AI-analysis career preparation platform that supercharges your performance at your next interview.</p>
+                                <p style={{marginRight:"2%"}}>The best career support platform that supercharges your performance to make a great impression at your next interview</p>
                             </div>
                         </div>
 
