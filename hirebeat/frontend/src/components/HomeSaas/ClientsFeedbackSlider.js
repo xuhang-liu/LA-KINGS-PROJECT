@@ -184,7 +184,7 @@ class ClientsFeedbackSlider extends Component {
             <ReactWOW animation='fadeInUp' delay='0.8s'>
                 <div className="contact-cta-box mwidth-1000">
                     <h3>Join us and give a try</h3>
-                    <p style={{color:'black'}}>Let HireBeat be your secret weapon to ace your next interview</p>
+                    <p>Let HireBeat be your secret weapon to ace your next interview</p>
 
                     <Link to="/register">
                         <a className="default-btn" style={{color:"white"}}>

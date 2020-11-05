@@ -11,6 +11,53 @@ const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6
 
 class PricingStyleOne extends Component {
 
+    state = {
+        email_match: "",
+    }
+
+    handleInputChange = (e) => {
+        this.setState({
+          [e.target.name]: e.target.value,
+        });
+      };
+
+      handleCounponUpgrade = () => {
+        if(this.state.email_match != 'PRODUCTHUNT2020'){
+          confirmAlert({
+            title: 'Enter A Valid Code',
+            message: '',
+            buttons: [
+              {
+                label: 'Ok'
+              }
+            ]
+            });
+        }else{
+          this.handleClickCouponUpgrade();
+        }
+        /*if(this.handleClickUpgrade()){
+          var profile = this.makeProfile();
+          this.props.updateProfile(profile);
+        }*/
+    };
+
+      handleClickCouponUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1HRUQJKxU1MN2zWMo9p8tKjJ', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
     handleUpgrade = () => {
         if(this.props.profile.membership == 'Premium'){
           confirmAlert({
@@ -36,7 +83,7 @@ class PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{
-            price: 'price_1HRUQJKxU1MN2zWMo9p8tKjJ', // Replace with the ID of your price
+            price: 'price_1H8WhZKxU1MN2zWMo3Cu8kLn', // Replace with the ID of your price
             quantity: 1,
           }],
           mode: 'subscription',
@@ -220,7 +267,7 @@ class PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price">
-                                                <sup>$</sup><sub style={{fontSize:"20px"}}><s>19.99</s></sub>9.99<sub>/ monthly</sub>
+                                                <sup>$</sup>19.99<sub>/ monthly</sub>
                                             </div>
 
                                             <ul className="pricing-features">
@@ -612,6 +659,36 @@ class PricingStyleOne extends Component {
                             </div>
                         </div>
                     </div>
+                    {
+                    this.props.profile.membership == "Regular" &&
+                    <div style={{textAlign:"center"}}>
+                    <h2 style={{display:"inline-block", marginRight:'0.5rem'}}>Coupon:</h2>
+                    <input
+                    className="form-control"
+                    type="text"
+                    name={"email_match"}
+                    placeholder={"Type your coupon code here"}
+                    onChange={this.handleInputChange}
+                    style={{  
+                      backgroundColor:"#FFFFFF",
+                      fontSize: "16px",
+                      borderRadius: "5px",
+                      color:"grey",
+                      width:"30%",
+                      display:"inline-block",
+                      paddingLeft: "0.5rem"
+                    }}
+                    />
+                    <button
+                    onClick={this.handleCounponUpgrade}
+                    type="button"
+                    className="default-btn" style={{color:"white", display:"inline-block", marginLeft:"1rem"}} 
+                    >
+                      <i className="bx bxs-hot"></i>
+                        Apply
+                        <span></span>
+                    </button>
+                    </div>}
                 </div>
             </section>
         );
