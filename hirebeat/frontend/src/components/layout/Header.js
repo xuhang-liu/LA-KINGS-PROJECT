@@ -252,8 +252,8 @@ export class Header extends Component {
                   className="img-fluid mr-3"
                   alt="logo"
                   style={{
-                    width: "14%",
-                    height:"14%",
+                    width: "16%",
+                    height:"16%",
                   }}
                 />
                 <img
@@ -261,7 +261,7 @@ export class Header extends Component {
                   className="img-fluid mr-2"
                   alt="logotext"
                   style={{
-                    width: "40%",
+                    width: "50%",
                     height:"100%",
                   }}
                 />
