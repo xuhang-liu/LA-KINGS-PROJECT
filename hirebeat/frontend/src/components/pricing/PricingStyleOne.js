@@ -12,7 +12,7 @@ const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6
 class PricingStyleOne extends Component {
 
     state = {
-        email_match: "",
+        coupon_match: "",
     }
 
     handleInputChange = (e) => {
@@ -22,7 +22,7 @@ class PricingStyleOne extends Component {
       };
 
       handleCounponUpgrade = () => {
-        if(this.state.email_match != 'PRODUCTHUNT2020'){
+        if(this.state.coupon_match != 'PRODUCTHUNT2020'){
           confirmAlert({
             title: 'Enter A Valid Code',
             message: '',
@@ -666,7 +666,7 @@ class PricingStyleOne extends Component {
                     <input
                     className="form-control"
                     type="text"
-                    name={"email_match"}
+                    name={"coupon_match"}
                     placeholder={"Type your coupon code here"}
                     onChange={this.handleInputChange}
                     style={{  
