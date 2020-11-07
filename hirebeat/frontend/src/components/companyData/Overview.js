@@ -1,105 +1,72 @@
 import React, { Component } from 'react';
 import Chart from "react-apexcharts";
 import ReactWOW from 'react-wow';
+import ShowMoreText from 'react-show-more-text';
+import StarRatings from 'react-star-ratings';
+import { GrowthChart } from "./Components";
 
-import { customBarData } from "../../constants/constants";
-import { Link } from "react-router-dom";
+export class Overview extends Component{
 
-export const OverallScore = (props) => {
-  var options = customBarData(props.percent, props.bgColor, props.barColor);
-  return (
-    <Chart
-      options={options.options}
-      series={options.series}
-      type="line"
-      height={150}
-      key={"overall"}
-    />
-  );
-};
+    constructor(props) {
+        super(props);
+    }
 
-class Overview extends Component{
+    executeOnClick(isExpanded) {
+        console.log(isExpanded);
+    }
     
     render(){
-        var numrows = 4;
-        const stars = [];
-        for (var i= 0; i<numrows; i++) {
-            stars.push(<i key={i} className="bx bxs-star"></i>)
-        };
         return(
             <ReactWOW animation='fadeInLeft' delay='0.1s' >
                 <div>
-                    <h3 className="companydata-text1">OverView</h3>
-                    <p className="companydata-text2">Walmart is a retailing company that operates a chain of hypermarkets, discount departments, and...</p>
+                    <h3 className="companydata-text1">Overview</h3>
+                     <ShowMoreText
+                        /* Default options */
+                        lines={2}
+                        more='Show more'
+                        less='Show less'
+                        className='content-css companydata-text2'
+                        anchorClass='my-anchor-css-class'
+                        onClick={this.executeOnClick}
+                        expanded={false}
+                     >
+                        {this.props.overview}
+                    </ShowMoreText>
                     <div className="row"> 
                         <div className="col-lg-5 col-md-5">
                             <p className="companydata-text3">Type</p>
                         </div>
                         <div className="col-lg-7 col-md-7">
-                            <p className="companydata-text2">Public</p> 
+                            <p className="companydata-text2">{this.props.type}</p>
                         </div>
                         <div className="col-lg-5 col-md-5">
                             <p className="companydata-text3">Founded</p>
                         </div>
                         <div className="col-lg-7 col-md-7 ">
-                            <p className="companydata-text2">1962</p> 
+                            <p className="companydata-text2">{this.props.founded}</p>
                         </div>
                         <div className="col-lg-5 col-md-5 ">
                             <p className="companydata-text3">HQ</p>
                         </div>
                         <div className="col-lg-7 col-md-7">
-                            <p className="companydata-text2">Bentonville, US</p> 
+                            <p className="companydata-text2">{this.props.hq}</p>
                         </div>
                         <div className="col-lg-5 col-md-5 ">
                             <p className="companydata-text3">Website</p>
                         </div>
                         <div className="col-lg-7 col-md-7">
-                            <a href="http://www.hirebeat.com" rel="nofollow noopener opreferer">
-                            hirebeat.com
+                            <a href={this.props.website}  target="_blank">
+                                {this.props.website}
                             </a>
                         </div>
                         <div className="col-lg-5 col-md-5">
-                            <p className="companydata-text3">Company Growth</p>
+                            <p className="companydata-text3" style={{marginBottom: "0rem"}}>Company Growth</p>
                             <p className="companydata-text3">(employees)</p>
                         </div>
                         <div className="col-lg-7 col-md-7">
-                        <Chart
-                            options= {{
-                                chart: {
-                                    type: 'line',
-                                },
-                                grid: {
-                                    show: false,
-                                },
-                                stroke: {
-                                    curve: 'smooth',
-                                },
-                                dataLabels: {
-                                enabled: true,
-                                enabledOnSeries: [0]
-                                },
-                                labels: ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
-                                xaxis:{
-                                    labels: {
-                                        show: false,
-                                    },
-                                },
-                                yaxis:{
-                                    labels: {
-                                        show:false,
-                                    },
-                                },
-                                dataLabels: {
-                                    enabled: false,
-                                },
-                            }}
-                            series={[{
-                                name: 'employees',
-                                type: 'line',
-                                data: [230, 420, 350, 270, 430, 220, 170, 310]
-                                },
-                            ]}
-                            type="line"
+                            <GrowthChart
+                                growthLabels={this.props.growthLabels}
+                                growthData={this.props.growthData}
                             />
                         </div>
                         <div className="col-lg-5 col-md-5">
@@ -107,24 +74,29 @@ class Overview extends Component{
                         </div>
                         <div className="col-lg-7 col-md-7">
                             <div className="rating">
-                            {stars}
+                                <StarRatings
+                                    rating={3.5}
+                                    starDimension="20px"
+                                    starRatedColor="#FF6B00"
+                                />
+                                <span style={{color: "#FF6B00", marginLeft: "1rem"}}>3.5</span>
                             </div>
                         </div>
 
                         <div className="col-lg-5 col-md-5" style={{marginTop: '3%'}}>
-                            <Link to="/resume">
-                            <a className="default-btn" 
-                            style={{color:"white", backgroundColor:"#090D3A", marginLeft:"4%"}}>
+                            <a className="default-btn"
+                                target="_blank"
+                                style={{color:"white", backgroundColor:"#090D3A", marginLeft:"4%", textDecoration: "none"}}
+                                href="https://www.aig.com/careers"
+                            >
                                 <i className="bx bxs-hot"></i> 
                                 View Jobs
                                 <span></span>
                             </a>
-                            </Link>
                         </div>
                     </div>
                 </div>
             </ReactWOW>
-            // <OverallScore percent={10} bgColor={"#FAC046"} barColor={"#FF6B00"}/>
         )
     }
 }

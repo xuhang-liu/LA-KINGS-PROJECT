@@ -1888,7 +1888,10 @@ color: #080A3C;
 }
 
 .company-list-help-text{
-  font-family: Avenir Next;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 1.625rem;
+  color: #090D3A;
   margin-top: 0.5rem;
   margin-left: 19%;
   text-align: center;
@@ -1904,34 +1907,36 @@ color: #080A3C;
   height: 140px;
 }
 
-.companydata-text1{
+.companydata-text1 {
   font-family: Avenir Next;
-  font-size: 22px;
   font-style: normal;
   font-weight: 600;
-  line-height: 33px;
-  letter-spacing: 0em;
-  text-align: left;
+  font-size: 1.375rem;
+  color: #080A3C;
 }
 
-.companydata-text2{
+.companydata-text2 {
   font-family: Avenir Next;
-  font-size: 15px;
   font-style: normal;
-  font-weight: 400;
-  line-height: 23px;
-  letter-spacing: 0em;
-  text-align: left;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
 }
 
-.companydata-text3{
+.companydata-text3 {
   font-family: Avenir Next;
-  font-size: 13px;
   font-style: normal;
   font-weight: 600;
-  line-height: 23px;
-  letter-spacing: 0em;
-  text-align: left;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.companydata-text5 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
 }
 
 .company-align {
@@ -2100,4 +2105,17 @@ color: #080A3C;
   transform: unset;
   -webkit-transform: unset; /* Safari and Chrome */
   -moz-transform: unset; /* Firefox */
+}
+
+.company-data-title {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: #090D3A;
+}
+
+.align-center {
+ display: flex;
+ align-items: center;
 }

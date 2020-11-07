@@ -39,8 +39,26 @@ import Term from "./layout/Term";
 import QuizHome from "./quiz/quizHome";
 import QuizResultPage from "./quiz/quizResultPage";
 import Resume from "./resume/Resume";
+
 import CompanyList from"./companyData/CompanyList";
-import CompanyInfo from"./companyData/CompanyInfo";
+import AIGInfo from"./companyData/companies/AIGInfo";
+import AEInfo from"./companyData/companies/AEInfo";
+import BBInfo from"./companyData/companies/BBInfo";
+import BMInfo from"./companyData/companies/BMInfo";
+import BRInfo from"./companyData/companies/BRInfo";
+import BSInfo from"./companyData/companies/BSInfo";
+import CityInfo from"./companyData/companies/CityInfo";
+import ECInfo from"./companyData/companies/ECInfo";
+import GSInfo from"./companyData/companies/GSInfo";
+import JFInfo from"./companyData/companies/JFInfo";
+import JLLPInfo from"./companyData/companies/JLLPInfo";
+import JPMInfo from"./companyData/companies/JPMInfo";
+import JSInfo from"./companyData/companies/JSInfo";
+import MDInfo from"./companyData/companies/MDInfo";
+import MSInfo from"./companyData/companies/MSInfo";
+import MUFGInfo from"./companyData/companies/MUFGInfo";
+import NDQInfo from"./companyData/companies/NDQInfo";
+import TSMInfo from"./companyData/companies/TSMInfo";
 
 import Contact from "./contact/contact";
 
@@ -161,7 +179,24 @@ class App extends Component {
                 <Route exact path="/quiz" component={QuizHome} />
                 <Route exact path="/quizresult" component={QuizResultPage} />
                 <Route exact path="/companydata" component={CompanyList} />
-                <Route exact path="/companyinfo" component={CompanyInfo} />
+                <Route exact path="/companydata-aig" component={AIGInfo} />
+                <Route exact path="/companydata-ae" component={AEInfo} />
+                <Route exact path="/companydata-bb" component={BBInfo} />
+                <Route exact path="/companydata-bm" component={BMInfo} />
+                <Route exact path="/companydata-br" component={BRInfo} />
+                <Route exact path="/companydata-bs" component={BSInfo} />
+                <Route exact path="/companydata-citi" component={CityInfo} />
+                <Route exact path="/companydata-ec" component={ECInfo} />
+                <Route exact path="/companydata-gs" component={GSInfo} />
+                <Route exact path="/companydata-jf" component={JFInfo} />
+                <Route exact path="/companydata-jllp" component={JLLPInfo} />
+                <Route exact path="/companydata-jpm" component={JPMInfo} />
+                <Route exact path="/companydata-js" component={JSInfo} />
+                <Route exact path="/companydata-md" component={MDInfo} />
+                <Route exact path="/companydata-ms" component={MSInfo} />
+                <Route exact path="/companydata-mufg" component={MUFGInfo} />
+                <Route exact path="/companydata-ndq" component={NDQInfo} />
+                <Route exact path="/companydata-tsm" component={TSMInfo} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />
