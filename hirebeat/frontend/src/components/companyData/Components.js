@@ -2,103 +2,245 @@ import React from "react";
 import Chart from "react-apexcharts";
 
 export const Category = (props) => {
-  return (
-    <Chart
-      options=  {{
-          labels: ['A', 'B', 'C', 'D', 'E'],
-      }}
-      series={props.series}
-      type="pie"
-      height={props.height}
-      key={"overall"}
-    />
-  );
+    return (
+        <Chart
+            options=  {{
+                labels: props.labels,
+                colors: ["#fcec20", "#378aff", "#fba330", "#f54f52", "#92f03b", "#9552ea",
+                    "#0c3f5c", "#58508d", "#bc5090", "#fb6361", "#fba600",
+                    "#c608d1", "#fe02fe", "#fe77fd", "#fea9fd", "#2900a5"
+                ]
+            }}
+            series={props.series}
+            type="pie"
+            height={props.height}
+        />
+    );
 };
 
-export const Bar = (props) => {
+export const RevenueBar = (props) => {
+
+    var labelFormatter = function(value) {
+        var val = Math.abs(value);
+        if (val >= 1000000000) {
+            val = (val / 1000000000).toFixed(1) + " b";
+        }
+        else if (val > 1000000 && val < 1000000000) {
+            val = (val / 1000000).toFixed(1) + " m";
+        }
+        return val;
+    };
+
+    var labelFormatter2 = function(value) {
+        var val = Math.abs(value);
+        val = (val).toFixed(1) + " %";
+        return val;
+    };
+
     return (
-      <div> 
-      <h3 className="companydata-text1">Revenue </h3>
-      <Chart
-      options= {{
-        chart: {
-          type: 'line',
-        },
-        stroke: {
-          width: [0, 4]
-        },
-        dataLabels: {
-          enabled: true,
-          enabledOnSeries: [1]
-        },
-        labels: ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
-        xaxis: {
-          type: 'datetime'
-        },
-        yaxis: [{
-          title: {
-            text: 'Income (thousand crores)',
-          },
-        }]
-      }}
-      series={[
-        {
-          name: 'Cashflow',
-          type: 'column',
-          data: [440, 505, 414, 671, 227, 413, 201, 352]
-        }, 
-        {
-          name: 'Income',
-          type: 'column',
-          data: [440, 752, 320, 257, 160, 413, 201, 352]
-        },{
-          name: 'Revenue',
-          type: 'line',
-          data: [230, 420, 350, 270, 430, 220, 170, 310]
-        },
-      ]}
-      type="line"
-      />
-      </div>
+        <div>
+            <h3 className="companydata-text1">Revenue </h3>
+            <Chart
+                options= {{
+                    chart: {
+                        type: 'line',
+                    },
+                    stroke: {
+                        width: [4, 4, 4],
+                    },
+                    colors: ["#fbbc45", "#40a0fc", "#37e7a5"],
+                    dataLabels: {
+                        enabled: true,
+                        enabledOnSeries: []
+                    },
+                    labels: props.labels,
+                    xaxis: {
+                        type: "category",
+                    },
+                    yaxis: [
+                        {
+                          min: 0,
+                          max: 100,
+                          tickAmount: 4,
+                          opposite: true,
+                          seriesName: "Gross Profit Margin",
+                          labels: {
+                            formatter: labelFormatter2,
+                          }
+                        },
+                        {
+                          min: 1000000000,
+                          max: 100000000000,
+                          tickAmount: 4,
+                          seriesName: "Net Income",
+                          labels: {
+                            formatter: labelFormatter,
+                          }
+                        },
+                        {
+                          seriesName: "Revenue",
+                          show: false,
+                          labels: {
+                            formatter: labelFormatter,
+                          }
+                        },
+                    ]
+                }}
+                series={[
+                    {
+                        name: 'Gross Profit Margin',
+                        type: 'line',
+                        data: props.gpmData
+                    },
+                    {
+                        name: 'Net Income',
+                        type: 'column',
+                        data: props.netIncomeData
+                    },{
+                        name: 'Revenue',
+                        type: 'column',
+                        data: props.revenueData
+                    },
+                ]}
+                type="line"
+            />
+        </div>
+    );
+}
+
+export const SalaryBar = (props) => {
+
+    var labelFormatter = function(value) {
+        var val = Math.abs(value);
+        if (val >= 1000) {
+            val = (val / 1000).toFixed(1) + " k";
+        }
+        return val;
+    };
+
+    return (
+        <div>
+            <h3 className="companydata-text1">Medium Salary</h3>
+            <Chart
+                options= {{
+                    chart: {
+                        type: 'line',
+                    },
+                    colors: ["#43335a"],
+                    stroke: {
+                        width: [4]
+                    },
+                    dataLabels: {
+                        enabled: false,
+                        enabledOnSeries: [0]
+                    },
+                    labels: props.labels,
+                    xaxis: {
+                        type: 'category'
+                    },
+                    yaxis: [
+                        {
+                          min: 0,
+                          max: 200000,
+                          tickAmount: 4,
+                          seriesName: "Salary",
+                          labels: {
+                            formatter: labelFormatter,
+                          }
+                        }
+                    ]
+                }}
+                series={[
+                    {
+                        name: 'Salary',
+                        type: 'column',
+                        data: props.salaryData
+                    }
+                ]}
+                type="line"
+            />
+        </div>
     );
 }
 
 const decideClassName = (filter, text) => {
-  return filter == text ? "btn-selected" : "btn-unselected";
+    return filter == text ? "btn-selected" : "btn-unselected";
 };
 
-export const Switchbutton = (filter, setFilter)=>{
-  console.log(filter);
+export const SwitchButton = (filter, setFilter)=>{
   return(
       <div style={{marginBottom: "5px"}} className="container d-flex justify-content-start">
           <button
-          className={decideClassName(filter, "swe")}
-          style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
-          onClick={() => setFilter("swe")}
+              className={decideClassName(filter, "swe")}
+              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("swe")}
           >
-          SWE
+              SWE
           </button>
           <button
-          className={decideClassName(filter, "data")}
-          style = {{width: "150px", height: "42px", outline: "none", borderRadius: "5px"}}
-          onClick={() => setFilter("data")}
+              className={decideClassName(filter, "data")}
+              style = {{width: "150px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("data")}
           >
-          Data
+              Data
           </button>
           <button
-          className={decideClassName(filter, "design")}
-          style = {{width: "150px", height: "42px", outline: "none", borderRadius: "5px"}}
-          onClick={() => setFilter("design")}
+              className={decideClassName(filter, "design")}
+              style = {{width: "150px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("design")}
           >
-          Design
+              Design
           </button>
           <button
-          className={decideClassName(filter, "pm")}
-          style = {{width: "150px", height: "42px", outline: "none", borderRadius: "5px"}}
-          onClick={() => setFilter("pm")}
+              className={decideClassName(filter, "pm")}
+              style = {{width: "150px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("pm")}
           >
-          PM
+              PM
           </button>
       </div>
   );
+}
+
+export const GrowthChart = (props) => {
+    return (
+        <Chart
+            options= {{
+                chart: {
+                    type: 'line',
+                },
+                grid: {
+                    show: false,
+                },
+                stroke: {
+                    curve: 'smooth',
+                },
+                dataLabels: {
+                enabled: true,
+                enabledOnSeries: [0]
+                },
+                labels: props.growthLabels,
+                xaxis:{
+                    labels: {
+                        show: false,
+                    },
+                },
+                yaxis:{
+                    labels: {
+                        show:false,
+                    },
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+            }}
+            series={[{
+                name: 'employees',
+                type: 'line',
+                data: props.growthData,
+                },
+            ]}
+            type="line"
+        />
+    )
 }
