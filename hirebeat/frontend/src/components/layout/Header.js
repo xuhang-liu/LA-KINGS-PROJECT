@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
+import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
 //import Dropdown from 'react-bootstrap/Dropdown'
 
 export class Header extends Component {
@@ -98,17 +99,11 @@ export class Header extends Component {
                 </li>
               </MediaQuery>
               <li className="nav-item">
-                <Link to="/company" className="nav-link text-white navbar-font">
-                  <span className="header-text">About Us</span>
-                </Link>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
-                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
-                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Quiz</Link></li>
+                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
                     </ul>
                   </span>
                 </a>
@@ -119,9 +114,16 @@ export class Header extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/contact" className="nav-link text-white navbar-font">
-                  <span className="header-text">Contact</span>
-                </Link>
+              <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Company <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu">
+                      <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                    </ul>
+                  </span>
+                </a>
               </li>
             </ul>
           </div>
@@ -173,17 +175,11 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/company" className="nav-link text-white navbar-font">
-                <span className="header-text">About Us</span>
-                </a>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
-                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
-                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Quiz</Link></li>
+                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
                     </ul>
                   </span>
                 </a>
@@ -194,8 +190,15 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/contact" className="nav-link text-white navbar-font">
-                <span className="header-text">Contact</span>
+              <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Company <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu">
+                      <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                    </ul>
+                  </span>
                 </a>
               </li>
             </ul>
@@ -246,17 +249,22 @@ export class Header extends Component {
               <a href="/" className="navbar-brand mr-auto">
                 <img
                   src={hirebeatlogo}
-                  className="img-fluid mr-2"
+                  className="img-fluid mr-3"
                   alt="logo"
                   style={{
-                    width: "24%",
-                    height:"100%"
+                    width: "16%",
+                    height:"16%",
                   }}
                 />
-                <span className="font-weight-bold"
-                style={{fontSize:"1.2rem", color:"white", fontFamily:"Avenir Next", fontWeight:"500"}}>
-                  HireBeat
-                </span>
+                <img
+                  src={hirebeatlogotext}
+                  className="img-fluid mr-2"
+                  alt="logotext"
+                  style={{
+                    width: "50%",
+                    height:"100%",
+                  }}
+                />
               </a>
             {/*</div>*/}
             {isAuthenticated

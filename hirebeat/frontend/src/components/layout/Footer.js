@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import {FacebookIcon, LinkedinIcon, TwitterIcon, EmailIcon} from "react-share";
-import whitelogo from "../../assets/HireBeatLogo.png";
+import hirebeatlogo from "../../assets/HireBeatLogo.png";
+import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
 
 
 class Footer extends Component {
@@ -16,14 +17,27 @@ class Footer extends Component {
                             <div className="single-footer-widget">
                                 <div className="logo">
                                     <a href="/">
-                                        <img src={whitelogo} alt="image" style={{width:"2.5rem", paddingBottom:"1rem"}}/>
-                                        <span className="font-weight-bold"
-                                        style={{fontSize:"1.6rem", color:"white", marginLeft:"0.5rem"}}>
-                                        HireBeat
-                                        </span>
+                                    <img
+                                        src={hirebeatlogo}
+                                        className="img-fluid mr-3"
+                                        alt="logo"
+                                        style={{
+                                        width: "14%",
+                                        height:"14%",
+                                        }}
+                                    />
+                                    <img
+                                        src={hirebeatlogotext}
+                                        className="img-fluid mr-2"
+                                        alt="logotext"
+                                        style={{
+                                        width: "40%",
+                                        height:"100%",
+                                        }}
+                                    />
                                     </a>
                                 </div>
-                                <p style={{marginRight:"2%"}}>AI-analysis career preparation platform that supercharges your performance at your next interview.</p>
+                                <p style={{marginRight:"2%"}}>The best career support platform that supercharges your performance to make a great impression at your next interview</p>
                             </div>
                         </div>
 

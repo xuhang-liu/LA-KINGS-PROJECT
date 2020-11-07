@@ -2118,4 +2118,9 @@ color: #080A3C;
 .align-center {
  display: flex;
  align-items: center;
+
+.owl-dot{
+  border: none;
+  background-color: #f4f6fc;
+
 }
