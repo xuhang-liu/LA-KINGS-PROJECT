@@ -26,8 +26,7 @@ class BSInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Blackstone Mortgage Trust</title>
-                    <meta name="Description" CONTENT="Blackstone Mortgage Trust, Inc. is a real estate finance company that originates and acquires senior loans collateralized by properties in North America and Europe. The Company is focused on originating or acquiring senior, floating rate mortgage loans that are secured by a first priority mortgage on commercial real estate assets primarily in the office, lodging, retail, residential, and industrial sectors in North America and Europe. These investments may be in the form of whole loans or may also include pari passu participations within mortgage loans. Blackstone also originates and acquires fixed rate loans and subordinate loans, including subordinate mortgage interests and mezzanine loans." >
-                    </meta>
+                    <meta name="Description" CONTENT="Blackstone Mortgage Trust, Inc. is a real estate finance company that originates and acquires senior loans collateralized by properties in North America and Europe. The Company is focused on originating or acquiring senior, floating rate mortgage loans that are secured by a first priority mortgage on commercial real estate assets primarily in the office, lodging, retail, residential, and industrial sectors in North America and Europe. These investments may be in the form of whole loans or may also include pari passu participations within mortgage loans. Blackstone also originates and acquires fixed rate loans and subordinate loans, including subordinate mortgage interests and mezzanine loans." ></meta>
                     <link rel="canonical" href="https://hirebeat.co/companydata-bs"/>
                 </Helmet>
                 <ScrollToTopOnMount />
