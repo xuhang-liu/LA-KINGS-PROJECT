@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Chart from "react-apexcharts";
+//import Chart from "react-apexcharts";
 import ReactWOW from 'react-wow';
 import ShowMoreText from 'react-show-more-text';
 import StarRatings from 'react-star-ratings';

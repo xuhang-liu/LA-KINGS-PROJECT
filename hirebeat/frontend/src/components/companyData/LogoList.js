@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 
 export default class LogoList extends Component{
     render(){
@@ -8,66 +9,66 @@ export default class LogoList extends Component{
                 <ul className="company_ul">
                     <li>
                         <div className="img-with-text">
-                            <a href="https://www.goldmansachs.com/" target="_blank" >
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/GS2.png" alt="GS logo" style={{width:"2.5rem"}}/>
+                            <Link to="/companydata-gs">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/GS2.png" alt="GS logo" style={{width:"3.5rem"}}/>
                                 <p className="companydata-text4">Goldman Sachs</p>
-                            </a>
+                            </Link>
                         </div>
                     </li>
                     <li>
                         <div className="img-with-text">
-                            <a href="https://www.morganstanley.com/" target="_blank" >
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/MS2.png" alt="MS2 logo" style={{width:"2.5rem"}}/>
+                        <Link to="/companydata-ms">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/MS2.png" alt="MS2 logo" style={{width:"3.5rem"}}/>
                                 <p className="companydata-text4">Morgan Stanley</p>
-                            </a>
+                            </Link>
                         </div>
                     </li>
                     <li>
                         <div className="img-with-text">
-                            <a href="https://online.citi.com/" target="_blank" >
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Citi2.png" alt="Citi logo" style={{width:"2.5rem"}}/>
-                                <p className="companydata-text4">Google</p>
-                            </a>
+                        <Link to="/companydata-citi">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Citi2.png" alt="Citi logo" style={{width:"3.5rem"}}/>
+                                <p className="companydata-text4">Citibank</p>
+                            </Link>
                         </div>
                     </li>
                     <li>
                         <div className="img-with-text">
-                            <a href="https://www.jpmorgan.com/" target="_blank" >
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/JPMC2.png" alt="JPMC logo" style={{width:"2.5rem"}}/>
+                        <Link to="/companydata-jpm">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/JPMC2.png" alt="JPMC logo" style={{width:"3.5rem"}}/>
                                 <p className="companydata-text4">JPMorganChase</p>
-                            </a>
+                            </Link>
                         </div>
                     </li>
                     <li>
                         <div className="img-with-text">
-                            <a href="https://www.blackrock.com/" target="_blank" >
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/BR2.png" alt="BR logo" style={{width:"2.5rem"}}/>
+                        <Link to="/companydata-br">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/BR2.png" alt="BR logo" style={{width:"3.5rem"}}/>
                                 <p className="companydata-text4">BlackRock</p>
-                            </a>
+                            </Link>
                         </div>
                     </li>
                     <li>
                         <div className="img-with-text">
-                            <a href="https://www.americanexpress.com/" target="_blank" >
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/AE2.png" alt="AE logo" style={{width:"2.5rem"}}/>
+                        <Link to="/companydata-ae">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/AE2.png" alt="AE logo" style={{width:"3.5rem"}}/>
                                 <p className="companydata-text4">American Express</p>
-                            </a>
+                            </Link>
                         </div>
                     </li>
                     <li>
                         <div className="img-with-text">
-                            <a href="https://www.bloomberg.com/" target="_blank" >
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Bloomberg2.png" alt="BB logo" style={{width:"2.5rem"}}/>
+                        <Link to="/companydata-bb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Bloomberg2.png" alt="BB logo" style={{width:"3.5rem"}}/>
                                 <p className="companydata-text4">Bloomberg</p>
-                            </a>
+                            </Link>
                         </div>
                     </li>
                     <li>
                         <div className="img-with-text">
-                            <a href="https://www.evercore.com/" target="_blank" >
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Evercore2.png" alt="Evercore logo" style={{width:"2.5rem"}}/>
+                        <Link to="/companydata-ec">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Evercore2.png" alt="Evercore logo" style={{width:"3.5rem"}}/>
                                 <p className="companydata-text4">Evercore</p>
-                            </a>
+                            </Link>
                         </div>
                     </li>
                 </ul>

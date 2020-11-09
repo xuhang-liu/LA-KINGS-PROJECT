@@ -25,28 +25,29 @@ class MUFGInfo extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Company Data – American International Group (AIG)</title>
-                    <meta name="Description" CONTENT="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising." >
+                    <title>HireBeat Company Data – MUFG Americas</title>
+                    <meta name="Description" CONTENT="MUFG (Mitsubishi UFJ Financial Group) is a financial group, which services include corporate banking, commercial banking, consumer banking, wealth management, investment banking, securities, capital markets, personal and corporate trust, and transaction banking." >
                     </meta>
                     <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
-                    pageTitle="MUFG"
-                    pageDescription="How to get a job at American International Group (AIG)."
+                    pageTitle="MUFG Americas"
+                    pageDescription="How to get a job at American MUFG Americas."
                 />
                 <div className="Container" style={{margin: "2% 3%"}}>
                     <div className="row">
                         <div className="col-lg-5 col-md-5 company-align" style={{marginLeft: "5%", marginTop: "5%"}} >
                             <Overview
-                                overview="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising."
+                                overview="MUFG (Mitsubishi UFJ Financial Group) is a financial group, which services include corporate banking, commercial banking, consumer banking, wealth management, investment banking, securities, capital markets, personal and corporate trust, and transaction banking."
                                 type="Public"
-                                founded="1919"
+                                founded="1864"
                                 hq="New York, US"
-                                website="https://www.aig.com/"
-                                growthLabels={[2015, 2016, 2017, 2018, 2019]}
-                                growthData={[66400, 56400, 49800, 49600, 46000]}
-                                ratings="3.3"
+                                website="https://www.mufgamericas.com/"
+                                growthLabels={[2016, 2017, 2018, 2019]}
+                                growthData={[0, 144000, 112700, 168400]}
+                                ratings={3.2}
+                                jobPage="https://careers.mufgamericas.com/"
                             />
                         </div>
 
@@ -59,8 +60,8 @@ class MUFGInfo extends Component {
                             <div style={{margin: "15% 0"}}>
                                 <Category
                                     height="300"
-                                    labels={["Legal", "Administrative", "Support", "Marketing & PR", "other", "Creative", "Sales & BD", "Technology", "HR", "Health & Medical", "Operations", "Retail", "Finance"]}
-                                    series={[4.4, 7.7, 4.1, 0.8, 40, 2.1, 4.9, 20.7, 0.5, 0.2, 2.1, 1.8, 10.7 ]}/>
+                                    labels={["Legal", "Administrative", "Support", "Marketing & PR", "other", "Creative", "Sales & BD", "Technology", "HR", "Operations", "Retail", "Finance"]}
+                                    series={[0.4, 7.3, 3.6, 0.2, 13.2, 0.2, 3.0, 30.3, 1.3, 10.9, 2.8, 26.7 ]}/>
                             </div>
                         </div>
 
@@ -71,17 +72,17 @@ class MUFGInfo extends Component {
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
                             <RevenueBar
                                 labels={["2016", "2017", "2018", "2019"]}
-                                revenueData={[52370000000, 49520000000, 47390000000, 49750000000]}
-                                netIncomeData={[349000000, 6060000000, 61000000,3350000000]}
-                                gpmData={[30.98, 39.47, 34.23, 48.94]}
+                                revenueData={[5300000000, 5200000000, 5500000000, 5800000000]}
+                                netIncomeData={[922000000, 1000000000, 1000000000,751000000]}
+                                gpmData={[25, 0, 0, 0]}
                             />
                             <SalaryBar
-                                labels={["Administrative", "Finance", "HR", "Legal", "Marketing & PR", "Operations", "Other", "Sales & BD", "Support", "Technology"]}
-                                salaryData={[125000, 92000, 60000, 107500, 95000, 117800, 137500, 155000, 65000, 110000]}
+                                labels={["Administrative", "Finance", "HR", "Product Manager", "Marketing & PR", "Operations", "Other", "Sales & BD", "Support", "Technology"]}
+                                salaryData={[74510, 125000, 50000, 75000, 109000, 167960, 98000, 130000, 35000, 43000]}
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:'auto', marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

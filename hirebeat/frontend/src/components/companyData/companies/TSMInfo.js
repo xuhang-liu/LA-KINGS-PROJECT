@@ -25,28 +25,29 @@ class TSMInfo extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Company Data – American International Group (AIG)</title>
-                    <meta name="Description" CONTENT="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising." >
+                    <title>HireBeat Company Data – Two Sigma Investments</title>
+                    <meta name="Description" CONTENT="Two Sigma Investments is a hedge fund that utilizes machine learning, distributed computing, and other technologies to improve investment strategies. It primarily focuses on equities, fixed income, currencies, and credit markets. The company serves public and corporate pension plans, sovereign wealth funds, insurance companies, research institutions, educational endowments, healthcare systems, and foundations." >
                     </meta>
                     <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
                     pageTitle="Two Sigma"
-                    pageDescription="How to get a job at American International Group (AIG)."
+                    pageDescription="How to get a job at Two Sigma Investments."
                 />
                 <div className="Container" style={{margin: "2% 3%"}}>
                     <div className="row">
                         <div className="col-lg-5 col-md-5 company-align" style={{marginLeft: "5%", marginTop: "5%"}} >
                             <Overview
-                                overview="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising."
-                                type="Public"
-                                founded="1919"
+                                overview="Two Sigma Investments is a hedge fund that utilizes machine learning, distributed computing, and other technologies to improve investment strategies. It primarily focuses on equities, fixed income, currencies, and credit markets. The company serves public and corporate pension plans, sovereign wealth funds, insurance companies, research institutions, educational endowments, healthcare systems, and foundations."
+                                type="Private"
+                                founded="2001"
                                 hq="New York, US"
-                                website="https://www.aig.com/"
-                                growthLabels={[2015, 2016, 2017, 2018, 2019]}
-                                growthData={[66400, 56400, 49800, 49600, 46000]}
-                                ratings="3.3"
+                                website="https://www.twosigma.com/"
+                                growthLabels={[2018, 2019, 2020]}
+                                growthData={[2000, 2100, 1667]}
+                                ratings={4.4}
+                                jobPage="https://www.twosigma.com/careers/"
                             />
                         </div>
 
@@ -59,8 +60,8 @@ class TSMInfo extends Component {
                             <div style={{margin: "15% 0"}}>
                                 <Category
                                     height="300"
-                                    labels={["Legal", "Administrative", "Support", "Marketing & PR", "other", "Creative", "Sales & BD", "Technology", "HR", "Health & Medical", "Operations", "Retail", "Finance"]}
-                                    series={[4.4, 7.7, 4.1, 0.8, 40, 2.1, 4.9, 20.7, 0.5, 0.2, 2.1, 1.8, 10.7 ]}/>
+                                    labels={["Administrative", "Sales & BD", "Operations", "Technology", "Marketing & PR", "Retail", "Finance", "Other"]}
+                                    series={[2.8, 4.2, 4.2, 72.2, 1.4, 2.8, 1.4, 11.1]}/>
                             </div>
                         </div>
 
@@ -70,18 +71,18 @@ class TSMInfo extends Component {
 
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
                             <RevenueBar
-                                labels={["2016", "2017", "2018", "2019"]}
-                                revenueData={[52370000000, 49520000000, 47390000000, 49750000000]}
-                                netIncomeData={[349000000, 6060000000, 61000000,3350000000]}
-                                gpmData={[30.98, 39.47, 34.23, 48.94]}
+                                labels={["2019"]}
+                                revenueData={[24900000]}
+                                netIncomeData={[11900000]}
+                                gpmData={[39]}
                             />
                             <SalaryBar
-                                labels={["Administrative", "Finance", "HR", "Legal", "Marketing & PR", "Operations", "Other", "Sales & BD", "Support", "Technology"]}
-                                salaryData={[125000, 92000, 60000, 107500, 95000, 117800, 137500, 155000, 65000, 110000]}
+                                labels={["Finance", "Legal", "Marketing & PR", "Operations", "Sales & BD", "Support", "Technology"]}
+                                salaryData={[132500, 214000, 155000, 180000, 110000, 99000, 145000]}
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:'auto', marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

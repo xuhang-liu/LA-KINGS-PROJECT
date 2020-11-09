@@ -103,6 +103,7 @@ export class Header extends Component {
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
+                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Company Data</Link></li>
                       <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
                     </ul>
                   </span>
@@ -179,6 +180,7 @@ export class Header extends Component {
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
+                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Company Data</Link></li>
                       <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
                     </ul>
                   </span>

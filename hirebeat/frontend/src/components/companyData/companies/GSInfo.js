@@ -45,7 +45,7 @@ class GSInfo extends Component {
                                 website="https://www.goldmansachs.com/"
                                 growthLabels={[2015, 2016, 2017, 2018, 2019]}
                                 growthData={[36800, 34400, 36600, 36600, 38300]}
-                                ratings="3.3"
+                                ratings={3.3}
                                 jobPage="https://www.goldmansachs.com/careers/"
                             />
                         </div>
