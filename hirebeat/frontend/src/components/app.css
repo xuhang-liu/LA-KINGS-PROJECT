@@ -772,7 +772,7 @@ h5 {
   position: absolute;
   text-align: left;
   border: none;
-  width: 8rem;
+  width: 9rem;
   z-index: 99;
   display: block;
   visibility: hidden;
@@ -1865,6 +1865,7 @@ color: #080A3C;
   background: #FFFFFF;
   box-shadow: 0px 0px 50px rgba(70, 137, 250, 0.1);
   border-radius: 10px;
+  border: 1px solid #F4F5FE;
 }
 
 .review-text1 {
@@ -1889,6 +1890,9 @@ color: #080A3C;
 
 .company-list-help-text{
   font-family: Avenir Next;
+  font-weight: 600;
+  font-size: 1.625rem;
+  color: #090D3A;
   margin-top: 0.5rem;
   margin-left: 19%;
   text-align: center;
@@ -1904,34 +1908,39 @@ color: #080A3C;
   height: 140px;
 }
 
-.companydata-text1{
+.companydata-text1 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
   font-family: Avenir Next;
-  font-size: 22px;
   font-style: normal;
   font-weight: 600;
-  line-height: 33px;
-  letter-spacing: 0em;
-  text-align: left;
+  font-size: 1.375rem;
+  color: #080A3C;
 }
 
-.companydata-text2{
+.companydata-text2 {
   font-family: Avenir Next;
-  font-size: 15px;
   font-style: normal;
-  font-weight: 400;
-  line-height: 23px;
-  letter-spacing: 0em;
-  text-align: left;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
 }
 
-.companydata-text3{
+.companydata-text3 {
   font-family: Avenir Next;
-  font-size: 13px;
   font-style: normal;
   font-weight: 600;
-  line-height: 23px;
-  letter-spacing: 0em;
-  text-align: left;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.companydata-text5 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
 }
 
 .company-align {
@@ -1952,6 +1961,7 @@ color: #080A3C;
   justify-content: space-between;
   margin: 0;
   line-height: 1.4286;
+  margin-bottom: 2rem;
 }
 
 
@@ -2102,7 +2112,26 @@ color: #080A3C;
   -moz-transform: unset; /* Firefox */
 }
 
+.company-data-title {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: #090D3A;
+}
+
+.align-center {
+ display: flex;
+ align-items: center;
+}
+
 .owl-dot{
   border: none;
   background-color: #f4f6fc;
+
+}
+
+.logo-size {
+  height: 6.057rem;
+  width: 8.625rem;
 }
