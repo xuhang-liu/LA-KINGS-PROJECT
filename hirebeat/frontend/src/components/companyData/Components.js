@@ -6,7 +6,7 @@ export const Category = (props) => {
         <Chart
             options=  {{
                 labels: props.labels,
-                colors: ["#fcec20", "#378aff", "#fba330", "#f54f52", "#92f03b", "#9552ea",
+                colors: ["#378aff", "#fba330", "#f54f52", "#92f03b", "#9552ea",
                     "#0c3f5c", "#58508d", "#bc5090", "#fb6361", "#fba600",
                     "#c608d1", "#fe02fe", "#fe77fd", "#fea9fd", "#2900a5"
                 ]
@@ -23,10 +23,10 @@ export const RevenueBar = (props) => {
     var labelFormatter = function(value) {
         var val = Math.abs(value);
         if (val >= 1000000000) {
-            val = (val / 1000000000).toFixed(1) + " b";
+            val = (val / 1000000000).toFixed(2) + " b";
         }
         else if (val > 1000000 && val < 1000000000) {
-            val = (val / 1000000).toFixed(1) + " m";
+            val = (val / 1000000).toFixed(2) + " m";
         }
         return val;
     };
@@ -70,7 +70,7 @@ export const RevenueBar = (props) => {
                         },
                         {
                           min: 1000000000,
-                          max: 100000000000,
+                          max: 60000000000,
                           tickAmount: 4,
                           seriesName: "Net Income",
                           labels: {

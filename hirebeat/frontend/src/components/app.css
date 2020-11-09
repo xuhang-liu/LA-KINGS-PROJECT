@@ -2118,9 +2118,15 @@ color: #080A3C;
 .align-center {
  display: flex;
  align-items: center;
+ }
 
 .owl-dot{
   border: none;
   background-color: #f4f6fc;
 
+}
+
+.logo-size {
+  height: 6.057rem;
+  width: 8.625rem;
 }

@@ -3,8 +3,8 @@ import PageTitleArea from './../../Common/PageTitleArea';
 import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
-import AIGIP from './../interviewProcess/AIGIP';
-import AIGIQ from './../interviewQuestions/AIGIQ';
+//import AIGIP from './../interviewProcess/AIGIP';
+import BRIQ from './../interviewQuestions/AIGIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -25,33 +25,34 @@ class BRInfo extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Company Data – American International Group (AIG)</title>
-                    <meta name="Description" CONTENT="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising." >
+                    <title>HireBeat Company Data – BlackRock</title>
+                    <meta name="Description" CONTENT="BlackRock is an investment management company providing investment and technology services to institutional and retail clients. Its diverse platform of alpha-seeking active, index, and cash management investment strategies across asset classes enables the company to tailor investment outcomes and asset allocation solutions for clients. The company offers single- and multi-asset portfolios investing in equities, fixed income, alternatives, and money market instruments. BlackRock also delivers technology services, including the investment and risk management technology platform, Aladdin, Aladdin Wealth, eFront, Cachematrix, and FutureAdvisor, as well as advisory services and solutions to institutional and wealth management clients." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata-br"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
                     pageTitle="BlackRock"
-                    pageDescription="How to get a job at American International Group (AIG)."
+                    pageDescription="How to get a job at BlackRock."
                 />
                 <div className="Container" style={{margin: "2% 3%"}}>
                     <div className="row">
                         <div className="col-lg-5 col-md-5 company-align" style={{marginLeft: "5%", marginTop: "5%"}} >
                             <Overview
-                                overview="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising."
+                                overview="BlackRock is an investment management company providing investment and technology services to institutional and retail clients. Its diverse platform of alpha-seeking active, index, and cash management investment strategies across asset classes enables the company to tailor investment outcomes and asset allocation solutions for clients. The company offers single- and multi-asset portfolios investing in equities, fixed income, alternatives, and money market instruments. BlackRock also delivers technology services, including the investment and risk management technology platform, Aladdin, Aladdin Wealth, eFront, Cachematrix, and FutureAdvisor, as well as advisory services and solutions to institutional and wealth management clients."
                                 type="Public"
-                                founded="1919"
+                                founded="1988"
                                 hq="New York, US"
-                                website="https://www.aig.com/"
+                                website="https://www.blackrock.com/"
                                 growthLabels={[2015, 2016, 2017, 2018, 2019]}
-                                growthData={[66400, 56400, 49800, 49600, 46000]}
-                                ratings="3.3"
+                                growthData={[13000, 13000, 13900, 14900, 16200]}
+                                ratings={3.9}
+                                jobPage="https://careers.blackrock.com/"
                             />
                         </div>
 
                         {/*<div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}} >
-                            <AIGIP />
+                            <BRIP />
                         </div>*/}
 
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
@@ -59,25 +60,25 @@ class BRInfo extends Component {
                             <div style={{margin: "15% 0"}}>
                                 <Category
                                     height="300"
-                                    labels={["Legal", "Administrative", "Support", "Marketing & PR", "other", "Creative", "Sales & BD", "Technology", "HR", "Health & Medical", "Operations", "Retail", "Finance"]}
-                                    series={[4.4, 7.7, 4.1, 0.8, 40, 2.1, 4.9, 20.7, 0.5, 0.2, 2.1, 1.8, 10.7 ]}/>
+                                    labels={["Administrative", "Support", "Marketing & PR", "other", "Sales & BD", "Technology", "HR", "Operations", "Retail", "Finance"]}
+                                    series={[1.1, 4.4, 4.0, 11.7, 3.3, 38.0, 2.2, 4.0, 10.6, 20.8]}/>
                             </div>
                         </div>
 
                          <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
-                            <AIGIQ />
+                            <BRIQ />
                         </div>
 
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
                             <RevenueBar
                                 labels={["2016", "2017", "2018", "2019"]}
-                                revenueData={[52370000000, 49520000000, 47390000000, 49750000000]}
-                                netIncomeData={[349000000, 6060000000, 61000000,3350000000]}
-                                gpmData={[30.98, 39.47, 34.23, 48.94]}
+                                revenueData={[12261000000, 13600000000, 14198000000, 14539000000]}
+                                netIncomeData={[3168000000, 4952000000, 4305000000, 4476000000]}
+                                gpmData={[100, 100, 100, 100]}
                             />
                             <SalaryBar
-                                labels={["Administrative", "Finance", "HR", "Legal", "Marketing & PR", "Operations", "Other", "Sales & BD", "Support", "Technology"]}
-                                salaryData={[125000, 92000, 60000, 107500, 95000, 117800, 137500, 155000, 65000, 110000]}
+                                labels={["Business", "Research & Science", "Finance & Accounting", "Engineering", "Other", "Administrative", "Product Management"]}
+                                salaryData={[95000, 126000, 92000, 116000,  75000, 86000, 144000]}
                             />
                         </div>
 

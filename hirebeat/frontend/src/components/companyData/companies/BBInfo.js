@@ -3,8 +3,8 @@ import PageTitleArea from './../../Common/PageTitleArea';
 import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
-import AIGIP from './../interviewProcess/AIGIP';
-import AIGIQ from './../interviewQuestions/AIGIQ';
+//import AIGIP from './../interviewProcess/AIGIP';
+import BBIQ from './../interviewQuestions/AIGIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -25,28 +25,29 @@ class BBInfo extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Company Data – American International Group (AIG)</title>
-                    <meta name="Description" CONTENT="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising." >
+                    <title>HireBeat Company Data – Bloomberg</title>
+                    <meta name="Description" CONTENT="Bloomberg is a financial software, data, and media company that provides financial software tools such as an analytics and equity trading platform, data services and news to financial companies and organizations through the Bloomberg terminal (via its Bloomberg Professional Service), its core money-generating product. It also includes a wire service (Bloomberg News), a global television network (Bloomberg Television), a radio station (WBBR), websites, subscription-only newsletters, and three magazines: Bloomberg Businessweek, Bloomberg Markets, and Bloomberg Pursuit." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata-bb"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
-                    pageTitle="Bloomberg "
-                    pageDescription="How to get a job at American International Group (AIG)."
+                    pageTitle="Bloomberg"
+                    pageDescription="How to get a job at Bloomberg."
                 />
                 <div className="Container" style={{margin: "2% 3%"}}>
                     <div className="row">
                         <div className="col-lg-5 col-md-5 company-align" style={{marginLeft: "5%", marginTop: "5%"}} >
                             <Overview
-                                overview="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising."
-                                type="Public"
-                                founded="1919"
+                                overview="Bloomberg is a financial software, data, and media company that provides financial software tools such as an analytics and equity trading platform, data services and news to financial companies and organizations through the Bloomberg terminal (via its Bloomberg Professional Service), its core money-generating product. It also includes a wire service (Bloomberg News), a global television network (Bloomberg Television), a radio station (WBBR), websites, subscription-only newsletters, and three magazines: Bloomberg Businessweek, Bloomberg Markets, and Bloomberg Pursuit."
+                                type="Private"
+                                founded="1981"
                                 hq="New York, US"
-                                website="https://www.aig.com/"
-                                growthLabels={[2015, 2016, 2017, 2018, 2019]}
-                                growthData={[66400, 56400, 49800, 49600, 46000]}
-                                ratings="3.3"
+                                website="https://www.bloomberg.com/"
+                                growthLabels={[2019, 2020]}
+                                growthData={[20000, 22289]}
+                                ratings={3.9}
+                                jobPage="https://careers.bloomberg.com/"
                             />
                         </div>
 
@@ -59,13 +60,13 @@ class BBInfo extends Component {
                             <div style={{margin: "15% 0"}}>
                                 <Category
                                     height="300"
-                                    labels={["Legal", "Administrative", "Support", "Marketing & PR", "other", "Creative", "Sales & BD", "Technology", "HR", "Health & Medical", "Operations", "Retail", "Finance"]}
-                                    series={[4.4, 7.7, 4.1, 0.8, 40, 2.1, 4.9, 20.7, 0.5, 0.2, 2.1, 1.8, 10.7 ]}/>
+                                    labels={["Creative", "Operations", "Marketing & PR", "other", "Sales & BD", "Technology", "HR", "Support", "Retail", "Finance"]}
+                                    series={[0.9, 0.3, 0.3, 10.5, 4.7, 69.1, 0.3, 6.4, 4.1, 3.5]}/>
                             </div>
                         </div>
 
                          <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
-                            <AIGIQ />
+                            <BBIQ />
                         </div>
 
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>

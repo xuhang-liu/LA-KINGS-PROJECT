@@ -3,7 +3,7 @@ import PageTitleArea from './../../Common/PageTitleArea';
 import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
-import AIGIP from './../interviewProcess/AIGIP';
+//import AIGIP from './../interviewProcess/AIGIP';
 import AIGIQ from './../interviewQuestions/AIGIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
@@ -46,7 +46,8 @@ class AIGInfo extends Component {
                                 website="https://www.aig.com/"
                                 growthLabels={[2015, 2016, 2017, 2018, 2019]}
                                 growthData={[66400, 56400, 49800, 49600, 46000]}
-                                ratings="3.3"
+                                ratings={3.3}
+                                jobPage="https://www.aig.com/careers"
                             />
                         </div>
 

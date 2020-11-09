@@ -75,11 +75,11 @@ export class Overview extends Component{
                         <div className="col-lg-7 col-md-7">
                             <div className="rating">
                                 <StarRatings
-                                    rating={3.5}
-                                    starDimension="20px"
+                                    rating={this.props.ratings}
+                                    starDimension="1.25rem"
                                     starRatedColor="#FF6B00"
                                 />
-                                <span style={{color: "#FF6B00", marginLeft: "1rem"}}>3.5</span>
+                                <span style={{color: "#FF6B00", marginLeft: "1rem"}}>{this.props.ratings}</span>
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@ export class Overview extends Component{
                             <a className="default-btn"
                                 target="_blank"
                                 style={{color:"white", backgroundColor:"#090D3A", marginLeft:"4%", textDecoration: "none"}}
-                                href="https://www.aig.com/careers"
+                                href={this.props.jobPage}
                             >
                                 <i className="bx bxs-hot"></i> 
                                 View Jobs
