@@ -47,6 +47,7 @@ class JPMInfo extends Component {
                                 growthLabels={[2016, 2017, 2018, 2019]}
                                 growthData={[243355, 252539, 256105, 256981]}
                                 ratings={4.5}
+                                jobPage="https://careers.jpmorgan.com/"
                             />
                         </div>
 

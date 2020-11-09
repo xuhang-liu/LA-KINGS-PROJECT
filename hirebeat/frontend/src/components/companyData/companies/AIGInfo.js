@@ -3,7 +3,7 @@ import PageTitleArea from './../../Common/PageTitleArea';
 import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
-import AIGIP from './../interviewProcess/AIGIP';
+//import AIGIP from './../interviewProcess/AIGIP';
 import AIGIQ from './../interviewQuestions/AIGIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
@@ -26,8 +26,7 @@ class AIGInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – American International Group (AIG)</title>
-                    <meta name="Description" CONTENT="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising." >
-                    </meta>
+                    <meta name="Description" CONTENT="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising." ></meta>
                     <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
                 </Helmet>
                 <ScrollToTopOnMount />
@@ -47,6 +46,7 @@ class AIGInfo extends Component {
                                 growthLabels={[2015, 2016, 2017, 2018, 2019]}
                                 growthData={[66400, 56400, 49800, 49600, 46000]}
                                 ratings={3.3}
+                                jobPage="https://www.aig.com/careers"
                             />
                         </div>
 

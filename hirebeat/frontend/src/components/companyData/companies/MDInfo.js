@@ -47,6 +47,7 @@ class MDInfo extends Component {
                                 growthLabels={[2016, 2017, 2018, 2019]}
                                 growthData={[10600, 12000, 13000, 11000]}
                                 ratings={3.8}
+                                jobPage="https://careers.moodys.com/"
                             />
                         </div>
 

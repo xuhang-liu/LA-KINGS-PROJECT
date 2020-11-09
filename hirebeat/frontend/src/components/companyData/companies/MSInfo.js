@@ -47,6 +47,7 @@ class MSInfo extends Component {
                                 growthLabels={[2016, 2017, 2018, 2019]}
                                 growthData={[55311, 57633, 60348, 60431]}
                                 ratings={3.9}
+                                jobPage="https://www.morganstanley.com/people"
                             />
                         </div>
 

@@ -47,6 +47,7 @@ class MUFGInfo extends Component {
                                 growthLabels={[2016, 2017, 2018, 2019]}
                                 growthData={[0, 144000, 112700, 168400]}
                                 ratings={3.2}
+                                jobPage="https://careers.mufgamericas.com/"
                             />
                         </div>
 

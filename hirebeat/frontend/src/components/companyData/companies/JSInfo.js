@@ -46,6 +46,7 @@ class JSInfo extends Component {
                                 growthLabels={[2015, 2016, 2017, 2018, 2019]}
                                 growthData={[600, 750, 800, 900, 868]}
                                 ratings={4.8}
+                                jobPage="https://www.janestreet.com/join-jane-street/"
                             />
                         </div>
 

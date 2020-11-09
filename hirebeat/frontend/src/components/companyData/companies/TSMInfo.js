@@ -47,6 +47,7 @@ class TSMInfo extends Component {
                                 growthLabels={[2018, 2019, 2020]}
                                 growthData={[2000, 2100, 1667]}
                                 ratings={4.4}
+                                jobPage="https://www.twosigma.com/careers/"
                             />
                         </div>
 

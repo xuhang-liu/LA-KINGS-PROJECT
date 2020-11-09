@@ -47,6 +47,7 @@ class JLLPInfo extends Component {
                                 growthLabels={[2016, 2017, 2018, 2019]}
                                 growthData={[114, 100, 95, 115]}
                                 ratings={3.9}
+                                jobPage="https://www.linkedin.com/company/jll-partners"
                             />
                         </div>
 

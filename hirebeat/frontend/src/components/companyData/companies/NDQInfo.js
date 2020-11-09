@@ -47,6 +47,7 @@ class NDQInfo extends Component {
                                 growthLabels={[2016, 2017, 2018, 2019]}
                                 growthData={[4325, 4734, 4099, 4361]}
                                 ratings={3.8}
+                                jobPage="https://www.nasdaq.com/about/careers"
                             />
                         </div>
 
