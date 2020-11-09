@@ -3,8 +3,8 @@ import PageTitleArea from './../../Common/PageTitleArea';
 import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
-import AIGIP from './../interviewProcess/AIGIP';
-import AIGIQ from './../interviewQuestions/AIGIQ';
+//import AIGIP from './../interviewProcess/AIGIP';
+import TSMIQ from './../interviewQuestions/TSMIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -25,15 +25,15 @@ class TSMInfo extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Company Data – Two Sigma Investments</title>
+                    <title>HireBeat Company Data – Two Sigma</title>
                     <meta name="Description" CONTENT="Two Sigma Investments is a hedge fund that utilizes machine learning, distributed computing, and other technologies to improve investment strategies. It primarily focuses on equities, fixed income, currencies, and credit markets. The company serves public and corporate pension plans, sovereign wealth funds, insurance companies, research institutions, educational endowments, healthcare systems, and foundations." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/two-sigma"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
                     pageTitle="Two Sigma"
-                    pageDescription="How to get a job at Two Sigma Investments."
+                    pageDescription="How to get a job at Two Sigma."
                 />
                 <div className="Container" style={{margin: "2% 3%"}}>
                     <div className="row">
@@ -66,7 +66,7 @@ class TSMInfo extends Component {
                         </div>
 
                          <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
-                            <AIGIQ />
+                            <TSMIQ />
                         </div>
 
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
@@ -77,8 +77,8 @@ class TSMInfo extends Component {
                                 gpmData={[39]}
                             />
                             <SalaryBar
-                                labels={["Finance", "Legal", "Marketing & PR", "Operations", "Sales & BD", "Support", "Technology"]}
-                                salaryData={[132500, 214000, 155000, 180000, 110000, 99000, 145000]}
+                                labels={["Finance", "Legal", "Marketing & PR", "Operations", "Sales & BD", "Support", "Technology", "Data Analyst", "Intern", "Executive Assistant"]}
+                                salaryData={[132500, 214000, 155000, 180000, 110000, 99000, 145000, 115000, 110369, 90000]}
                             />
                         </div>
 

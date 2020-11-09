@@ -3,8 +3,8 @@ import PageTitleArea from './../../Common/PageTitleArea';
 import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
-import AIGIP from './../interviewProcess/AIGIP';
-import AIGIQ from './../interviewQuestions/AIGIQ';
+//import AIGIP from './../interviewProcess/AIGIP';
+import NDQIQ from './../interviewQuestions/NDQIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -28,7 +28,7 @@ class NDQInfo extends Component {
                     <title>HireBeat Company Data – Nasdaq</title>
                     <meta name="Description" CONTENT="Nasdaq is a global provider of trading, clearing, exchange technology, listing, information, and public company services. It operates in four business segments: Market Services, Corporate Services, Information Services, and Market Technology. The company operates exchanges and other marketplace facilities across several asset classes. The Market Services segment is comprised of equity derivative trading and clearing, cash equity trading, FICC and trade management services businesses. The Corporate Services segment includes listing services and corporate solutions businesses. The Information Services segment offers market data, index and investment data, as well as analytics. The Market Technology segment provides technology solutions to exchanges, clearing organizations, central securities depositories, regulators, banks, brokers, buy-side firms, and corporate businesses." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/nasdaq"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -66,7 +66,7 @@ class NDQInfo extends Component {
                         </div>
 
                          <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
-                            <AIGIQ />
+                            <NDQIQ />
                         </div>
 
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>

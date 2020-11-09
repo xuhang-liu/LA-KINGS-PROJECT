@@ -4,7 +4,7 @@ import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
 //import AIGIP from './../interviewProcess/AIGIP';
-import CityIQ from './../interviewQuestions/AIGIQ';
+import CityIQ from './../interviewQuestions/CityIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -27,7 +27,7 @@ class CityInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Citibank</title>
                     <meta name="Description" CONTENT="Citigroup is a company providing financial products and services. It operates through two segments: Global Consumer Banking and Institutional Clients Group. Global Consumer Banking offers traditional banking services to retail customers through retail banking, commercial banking, Citi-branded cards, and Citi retail services. Institutional Clients Group delivers wholesale banking products and services, including fixed income and equity sales and trading, foreign exchange, prime brokerage, derivative services, equity and fixed income research, corporate lending, investment banking, and advisory services, as well as private banking, cash management, trade finance, and securities services to corporate, institutional, public sector, and high-net-worth clients." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-citi"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/citi"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -76,12 +76,12 @@ class CityInfo extends Component {
                                 gpmData={[84.98, 81.43, 75.01, 71.81]}
                             />
                             <SalaryBar
-                                labels={["Finance", "Business", "Customer Service", "Research & Science", "Information Technology", "Engineering", "Product"]}
-                                salaryData={[91000, 72000, 33000, 90000, 86000, 94000, 130000]}
+                                labels={["Finance", "Business", "Customer Service", "Research & Science", "Information Technology", "Engineering", "Product", "Analyst", "Associate"]}
+                                salaryData={[91000, 72000, 33000, 90000, 86000, 94000, 130000, 91000, 136000]}
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:"auto", marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

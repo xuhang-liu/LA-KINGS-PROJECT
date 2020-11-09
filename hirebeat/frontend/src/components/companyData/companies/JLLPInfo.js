@@ -3,8 +3,8 @@ import PageTitleArea from './../../Common/PageTitleArea';
 import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
-import AIGIP from './../interviewProcess/AIGIP';
-import AIGIQ from './../interviewQuestions/AIGIQ';
+//import AIGIP from './../interviewProcess/AIGIP';
+import JLLPIQ from './../interviewQuestions/JLLPIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -28,7 +28,7 @@ class JLLPInfo extends Component {
                     <title>HireBeat Company Data – JLL Partners</title>
                     <meta name="Description" CONTENT="Founded in 1988, JLL Partners is among the leading private equity investment firms in the country. Since inception, we have managed a series of private equity funds aggregating approximately $4 billion in committed capital. JLL seeks to make control equity investments in middle market companies by extricating good companies from complicated situations and bad balance sheets, or by building strong companies in partnership with exceptional managers." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/jll-partners"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -66,7 +66,7 @@ class JLLPInfo extends Component {
                         </div>
 
                          <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
-                            <AIGIQ />
+                            <JLLPIQ />
                         </div>
 
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
@@ -82,7 +82,7 @@ class JLLPInfo extends Component {
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:"auto", marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

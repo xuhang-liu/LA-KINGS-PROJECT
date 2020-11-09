@@ -4,7 +4,7 @@ import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
 //import AIGIP from './../interviewProcess/AIGIP';
-import AEIQ from './../interviewQuestions/AIGIQ';
+import AEIQ from './../interviewQuestions/AEIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -27,7 +27,7 @@ class AEInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – American Express</title>
                     <meta name="Description" CONTENT="American Express is a globally integrated payments company. It provides credit and charge cards to consumers, small businesses, mid-sized companies, and large corporations around the world. The company also offers gift cards, rewards, travel and expense management solutions, personal savings, business services, insurance, and more." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-ae"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/american-express"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -82,7 +82,7 @@ class AEInfo extends Component {
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:"auto", marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

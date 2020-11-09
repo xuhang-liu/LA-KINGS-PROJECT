@@ -1,6 +1,6 @@
 import React, { useState, Component } from 'react';
 import { Link } from "react-router-dom";
-import {SwitchButton} from './../Components';
+//import {SwitchButton} from './../Components';
 
 
 export default function JSIQ(props){
@@ -8,8 +8,17 @@ export default function JSIQ(props){
     return(
         <div style={{marginTop: '5%'}}>
             <h3 className="companydata-text1">Interview Questions</h3>
-            {SwitchButton(filter, setFilter)}
-            {renderContent(filter)}
+            {/*SwitchButton(filter, setFilter)*/}
+            {/*renderContent(filter)*/}
+            <div>
+                  <p className="companydata-text2"><li>What makes you a good candidate?</li></p>
+                  <p className="companydata-text2"><li>Why Jane Street?</li></p>
+                  <p className="companydata-text2"><li>Please complete the excel sheet and answer the questions.</li></p>
+                  <p className="companydata-text2"><li>How many buildings in NYC?</li></p>
+                  <p className="companydata-text2"><li>Tracking orders that Jane Street has made and answer questions about them.</li></p>
+                  <p className="companydata-text2"><li>How many 1's are there between 0 and 200?</li></p>
+                  <p className="companydata-text2"><li>Which of the following gives you the highest expected value: the square of a singular die roll, the product of two dice, or the square of the median of three dice roll?</li></p>
+            </div>
             <div className="row" style={{marginTop: "1rem"}}>
                 <div className="col-lg-7 col-md-7 align-center">
                     <p className="companydata-text5">View more and prepare your answer</p>

@@ -1,6 +1,6 @@
 import React, { useState, Component } from 'react';
 import { Link } from "react-router-dom";
-import {SwitchButton} from './../Components';
+//import {SwitchButton} from './../Components';
 
 
 export default function BRIQ(props){
@@ -8,8 +8,17 @@ export default function BRIQ(props){
     return(
         <div style={{marginTop: '5%'}}>
             <h3 className="companydata-text1">Interview Questions</h3>
-            {SwitchButton(filter, setFilter)}
-            {renderContent(filter)}
+            {/*SwitchButton(filter, setFilter)*/}
+            {/*renderContent(filter)*/}
+            <div>
+                  <p className="companydata-text2"><li>Describe a recent (financial) news article that interested you, why it was interesting to you and how it related to Blackrock?</li></p>
+                  <p className="companydata-text2"><li>Why have you chosen to apply to BlackRock and what makes you suited for that role?</li></p>
+                  <p className="companydata-text2"><li>What is going to be the greatest challenge that this company is going to face in 5 years?</li></p>
+                  <p className="companydata-text2"><li>What are bonds and its types?</li></p>
+                  <p className="companydata-text2"><li>A product / technology I can't live without. </li></p>
+                  <p className="companydata-text2"><li>Why is diversity important to you?</li></p>
+                  <p className="companydata-text2"><li>If you were to go back to a project on your resume, how would you improve this project?</li></p>
+            </div>
             <div className="row" style={{marginTop: "0.5rem"}}>
                 <div className="col-lg-7 col-md-7 align-center">
                     <p className="companydata-text5">View more and prepare your answer</p>
@@ -17,7 +26,7 @@ export default function BRIQ(props){
                 <div className="col-lg-5 col-md-5">
                     <Link to="/practice">
                         <a className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", height: "2.5rem"}}>
+                            style={{color:"white", backgroundColor:"#090D3A"}}>
                             <i className="bx bxs-hot"></i>
                             Practice Now
                             <span></span>
@@ -32,7 +41,7 @@ export default function BRIQ(props){
                 <div className="col-lg-5 col-md-5">
                     <Link to="/resume">
                         <a className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", height: "2.5rem"}}>
+                            style={{color:"white", backgroundColor:"#090D3A"}}>
                             <i className="bx bxs-hot"></i>
                             Optimize Now
                             <span></span>

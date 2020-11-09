@@ -4,7 +4,7 @@ import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
 //import AIGIP from './../interviewProcess/AIGIP';
-import BMIQ from './../interviewQuestions/AIGIQ';
+import BMIQ from './../interviewQuestions/BMIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -27,7 +27,7 @@ class BMInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Bank Of New York Mellon Corporation(BNY Mellon)</title>
                     <meta name="Description" CONTENT="The Bank of New York Mellon Corporation, which does business as BNY Mellon, is an American worldwide banking and financial services holding company. The Bank's primary functions are managing and servicing the investments of institutions and high-net-worth individuals. BNY Mellon's two primary businesses are Investment Services and Investment Management, which offer services for each stage of investment, from creation through to trading, holding, management, distribution, and restructuring." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-bm"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/bny-mellon"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -81,7 +81,7 @@ class BMInfo extends Component {
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:"auto", marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

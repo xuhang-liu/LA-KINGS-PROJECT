@@ -4,7 +4,7 @@ import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
 //import AIGIP from './../interviewProcess/AIGIP';
-import GSIQ from './../interviewQuestions/AIGIQ';
+import GSIQ from './../interviewQuestions/GSIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -27,7 +27,7 @@ class GSInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Goldman Sachs</title>
                     <meta name="Description" CONTENT="Goldman Sachs (also known as The Goldman Sachs Group) is an investment banking, securities, and investment management company. It operates in four segments: Investment Banking, Global Markets, Asset Management, and Consumer & Wealth Management. The Investment Banking segment provides financial advisory services, including strategic advisory assignments related to mergers and acquisitions, divestitures, corporate defense activities, restructurings, and spin-offs; and middle-market lending, relationship lending, and acquisition financing, as well as transaction banking services. The Global Markets segment focuses on client execution activities for cash and derivative instruments, credit products, mortgages, currencies, commodities, and equities; and provision of equity intermediation, and equity financing services, as well as offers clearing, settlement and custody services. The Asset Management segment manages assets across various asset classes, including equity, fixed income, hedge funds, credit funds, private equity, real estate, currencies, and commodities. The Consumer & Wealth Management segment offers wealth advisory and banking services, including financial planning, investment management, and lending; private banking and lending services; unsecured loans; and saving and time deposits." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-gs"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/goldman-sachs"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -76,12 +76,12 @@ class GSInfo extends Component {
                                 gpmData={[90.83, 91.21, 91.26, 91.10]}
                             />
                             <SalaryBar
-                                labels={["Research & Science", "Finance & Accounting", "Business", "Information Technology", "Engineering", "Operations"]}
-                                salaryData={[90000, 87000, 87000, 100000, 114000, 89000]}
+                                labels={["Research & Science", "Finance & Accounting", "Business", "Information Technology", "Engineering", "Operations", "Lead Specialist", "Legal Analyst"]}
+                                salaryData={[90000, 87000, 87000, 100000, 114000, 89000, 87000, 78000]}
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:"auto", marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

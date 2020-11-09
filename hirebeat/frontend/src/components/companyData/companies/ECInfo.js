@@ -4,7 +4,7 @@ import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
 //import AIGIP from './../interviewProcess/AIGIP';
-import ECIQ from './../interviewQuestions/AIGIQ';
+import ECIQ from './../interviewQuestions/ECIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -27,7 +27,7 @@ class ECInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Evercore</title>
                     <meta name="Description" CONTENT="Evercore is a global independent investment banking advisory firm. The Firm's Investment Banking business advises its clients on mergers and acquisitions, divestitures, restructurings, financings, public offerings, private placements and other strategic transactions and also provides institutional investors with macro and fundamental equity research, sales and trading execution. Evercore’s Investment Management business comprises wealth management, institutional asset management and private equity investing." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-ec"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/evercore"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -81,7 +81,7 @@ class ECInfo extends Component {
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:"auto", marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

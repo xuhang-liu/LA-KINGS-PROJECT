@@ -179,24 +179,24 @@ class App extends Component {
                 <Route exact path="/quiz" component={QuizHome} />
                 <Route exact path="/quizresult" component={QuizResultPage} />
                 <Route exact path="/companydata" component={CompanyList} />
-                <Route exact path="/companydata-aig" component={AIGInfo} />
-                <Route exact path="/companydata-ae" component={AEInfo} />
-                <Route exact path="/companydata-bb" component={BBInfo} />
-                <Route exact path="/companydata-bm" component={BMInfo} />
-                <Route exact path="/companydata-br" component={BRInfo} />
-                <Route exact path="/companydata-bs" component={BSInfo} />
-                <Route exact path="/companydata-citi" component={CityInfo} />
-                <Route exact path="/companydata-ec" component={ECInfo} />
-                <Route exact path="/companydata-gs" component={GSInfo} />
-                <Route exact path="/companydata-jf" component={JFInfo} />
-                <Route exact path="/companydata-jllp" component={JLLPInfo} />
-                <Route exact path="/companydata-jpm" component={JPMInfo} />
-                <Route exact path="/companydata-js" component={JSInfo} />
-                <Route exact path="/companydata-md" component={MDInfo} />
-                <Route exact path="/companydata-ms" component={MSInfo} />
-                <Route exact path="/companydata-mufg" component={MUFGInfo} />
-                <Route exact path="/companydata-ndq" component={NDQInfo} />
-                <Route exact path="/companydata-tsm" component={TSMInfo} />
+                <Route exact path="/companydata/american-international-group" component={AIGInfo} />
+                <Route exact path="/companydata/american-express" component={AEInfo} />
+                <Route exact path="/companydata/bloomberg" component={BBInfo} />
+                <Route exact path="/companydata/bny-mellon" component={BMInfo} />
+                <Route exact path="/companydata/blackrock" component={BRInfo} />
+                <Route exact path="/companydata/blackstone" component={BSInfo} />
+                <Route exact path="/companydata/citi" component={CityInfo} />
+                <Route exact path="/companydata/evercore" component={ECInfo} />
+                <Route exact path="/companydata/goldman-sachs" component={GSInfo} />
+                <Route exact path="/companydata/jefferies-financial-group" component={JFInfo} />
+                <Route exact path="/companydata/jll-partners" component={JLLPInfo} />
+                <Route exact path="/companydata/jpmorgan-chase" component={JPMInfo} />
+                <Route exact path="/companydata/jane-street-capital" component={JSInfo} />
+                <Route exact path="/companydata/moodys" component={MDInfo} />
+                <Route exact path="/companydata/morgan-stanley" component={MSInfo} />
+                <Route exact path="/companydata/mufg" component={MUFGInfo} />
+                <Route exact path="/companydata/nasdaq" component={NDQInfo} />
+                <Route exact path="/companydata/two-sigma" component={TSMInfo} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />

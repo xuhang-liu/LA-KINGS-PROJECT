@@ -3,8 +3,8 @@ import PageTitleArea from './../../Common/PageTitleArea';
 import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
-import AIGIP from './../interviewProcess/AIGIP';
-import AIGIQ from './../interviewQuestions/AIGIQ';
+//import AIGIP from './../interviewProcess/AIGIP';
+import JPMIQ from './../interviewQuestions/JPMIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -28,7 +28,7 @@ class JPMInfo extends Component {
                     <title>HireBeat Company Data – JPMorgan Chase</title>
                     <meta name="Description" CONTENT="JP Morgan Chase is a financial services provider that offers investment banking, asset management, treasury, and other services. It includes four major sectors: Consumer and Community Banking, Corporate and Investment Bank, Commercial Banking, and Asset Management. The Consumer and Community Banking division derives its revenues from its credit card business, consumer and business banking, and mortgage banking. The Corporate and Investment Bank segment offers investment banking, market-making, prime brokerage, and treasury and securities products and services. The Commercial Banking division provides credit, banking, and treasury services to clients including mid-sized businesses, corporations, municipalities, financial institutions, nonprofit entities, and real estate owners and investors. The Asset Management segment provides its clients with strategies and expertise that span the spectrum of asset classes. JPMorgan Chase was formed as a result of a merger between Chase Manhattan Corporation and J.P. Morgan." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/jpmorgan-chase"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -66,7 +66,7 @@ class JPMInfo extends Component {
                         </div>
 
                          <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
-                            <AIGIQ />
+                            <JPMIQ />
                         </div>
 
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>

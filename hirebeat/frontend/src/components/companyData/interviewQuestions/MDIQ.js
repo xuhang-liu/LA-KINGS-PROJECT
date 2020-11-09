@@ -1,6 +1,6 @@
 import React, { useState, Component } from 'react';
 import { Link } from "react-router-dom";
-import {SwitchButton} from './../Components';
+//import {SwitchButton} from './../Components';
 
 
 export default function MDIQ(props){
@@ -8,8 +8,17 @@ export default function MDIQ(props){
     return(
         <div style={{marginTop: '5%'}}>
             <h3 className="companydata-text1">Interview Questions</h3>
-            {SwitchButton(filter, setFilter)}
-            {renderContent(filter)}
+            {/*SwitchButton(filter, setFilter)*/}
+            {/*renderContent(filter)*/}
+            <div>
+                  <p className="companydata-text2"><li>What do you know about Moody's role in the financial markets？</li></p>
+                  <p className="companydata-text2"><li>Tell me a time when you disagreed with a team member. </li></p>
+                  <p className="companydata-text2"><li>How do you deal with conflicts both with clients and with internal fuction teams?</li></p>
+                  <p className="companydata-text2"><li>What do you see as the challenge for you in this position?</li></p>
+                  <p className="companydata-text2"><li>What do you consider to be your greatest accomplishment?</li></p>
+                  <p className="companydata-text2"><li>Tell me about the time you had to manage a group of people.</li></p>
+                  <p className="companydata-text2"><li>Why you think you are a good candidate for this role?</li></p>
+            </div>
             <div className="row" style={{marginTop: "0.5rem"}}>
                 <div className="col-lg-7 col-md-7 align-center">
                     <p className="companydata-text5">View more and prepare your answer</p>
@@ -17,7 +26,7 @@ export default function MDIQ(props){
                 <div className="col-lg-5 col-md-5">
                     <Link to="/practice">
                         <a className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", height: "2.5rem"}}>
+                            style={{color:"white", backgroundColor:"#090D3A"}}>
                             <i className="bx bxs-hot"></i>
                             Practice Now
                             <span></span>
@@ -32,7 +41,7 @@ export default function MDIQ(props){
                 <div className="col-lg-5 col-md-5">
                     <Link to="/resume">
                         <a className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", height: "2.5rem"}}>
+                            style={{color:"white", backgroundColor:"#090D3A"}}>
                             <i className="bx bxs-hot"></i>
                             Optimize Now
                             <span></span>

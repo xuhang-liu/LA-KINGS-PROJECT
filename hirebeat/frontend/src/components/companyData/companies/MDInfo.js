@@ -3,8 +3,8 @@ import PageTitleArea from './../../Common/PageTitleArea';
 import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
-import AIGIP from './../interviewProcess/AIGIP';
-import AIGIQ from './../interviewQuestions/AIGIQ';
+//import AIGIP from './../interviewProcess/AIGIP';
+import MDIQ from './../interviewQuestions/MDIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -28,7 +28,7 @@ class MDInfo extends Component {
                     <title>HireBeat Company Data – Moody's</title>
                     <meta name="Description" CONTENT="Moody's Corporation is a company providing credit ratings, research tools, and analysis that contribute to transparent and integrated financial markets. Moody’s is the parent company of Moody’s Investors Service, which provides credit ratings and research covering debt instruments and securities, and Moody’s Analytics, which offers software, advisory services, and research for credit and economic analysis, and financial risk management." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/moodys"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -66,7 +66,7 @@ class MDInfo extends Component {
                         </div>
 
                          <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
-                            <AIGIQ />
+                            <MDIQ />
                         </div>
 
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>

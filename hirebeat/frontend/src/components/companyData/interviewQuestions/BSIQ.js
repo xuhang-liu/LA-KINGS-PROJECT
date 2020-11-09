@@ -1,6 +1,6 @@
 import React, { useState, Component } from 'react';
 import { Link } from "react-router-dom";
-import {SwitchButton} from './../Components';
+//import {SwitchButton} from './../Components';
 
 
 export default function BSIQ(props){
@@ -8,8 +8,17 @@ export default function BSIQ(props){
     return(
         <div style={{marginTop: '5%'}}>
             <h3 className="companydata-text1">Interview Questions</h3>
-            {SwitchButton(filter, setFilter)}
-            {renderContent(filter)}
+            {/*SwitchButton(filter, setFilter)*/}
+            {/*renderContent(filter)*/}
+            <div>
+                  <p className="companydata-text2"><li>Tell us about a time you failed.</li></p>
+                  <p className="companydata-text2"><li>What's something interesting you've read in the news lately?</li></p>
+                  <p className="companydata-text2"><li>Tell me about your work experience.</li></p>
+                  <p className="companydata-text2"><li>What does this group do? Describe a time you worked on a team. </li></p>
+                  <p className="companydata-text2"><li>What are valuation methods? </li></p>
+                  <p className="companydata-text2"><li>What's your favorite book?</li></p>
+                  <p className="companydata-text2"><li>Why would an investor prefer to invest in secondary private equity over traditional private equity?</li></p>
+            </div>
             <div className="row" style={{marginTop: "0.5rem"}}>
                 <div className="col-lg-7 col-md-7 align-center">
                     <p className="companydata-text5">View more and prepare your answer</p>
@@ -17,7 +26,7 @@ export default function BSIQ(props){
                 <div className="col-lg-5 col-md-5">
                     <Link to="/practice">
                         <a className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", height: "2.5rem"}}>
+                            style={{color:"white", backgroundColor:"#090D3A"}}>
                             <i className="bx bxs-hot"></i>
                             Practice Now
                             <span></span>
@@ -32,7 +41,7 @@ export default function BSIQ(props){
                 <div className="col-lg-5 col-md-5">
                     <Link to="/resume">
                         <a className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", height: "2.5rem"}}>
+                            style={{color:"white", backgroundColor:"#090D3A"}}>
                             <i className="bx bxs-hot"></i>
                             Optimize Now
                             <span></span>

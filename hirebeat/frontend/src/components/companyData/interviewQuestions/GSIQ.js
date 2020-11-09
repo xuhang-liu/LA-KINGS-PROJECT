@@ -1,6 +1,6 @@
 import React, { useState, Component } from 'react';
 import { Link } from "react-router-dom";
-import {SwitchButton} from './../Components';
+//import {SwitchButton} from './../Components';
 
 
 export default function GSIQ(props){
@@ -8,8 +8,17 @@ export default function GSIQ(props){
     return(
         <div style={{marginTop: '5%'}}>
             <h3 className="companydata-text1">Interview Questions</h3>
-            {SwitchButton(filter, setFilter)}
-            {renderContent(filter)}
+            {/*SwitchButton(filter, setFilter)*/}
+            {/*renderContent(filter)*/}
+            <div>
+                  <p className="companydata-text2"><li>Why Goldman Sachs?</li></p>
+                  <p className="companydata-text2"><li>What are your weaknesses?</li></p>
+                  <p className="companydata-text2"><li>Give me an example of a situation where you solved a conflict/ organized something / found an unusual way to do something / when you made something creative.</li></p>
+                  <p className="companydata-text2"><li>Where do you see yourself in 5 years?</li></p>
+                  <p className="companydata-text2"><li>What are your greatest strengths?</li></p>
+                  <p className="companydata-text2"><li>How well do you work in a diverse team?</li></p>
+                  <p className="companydata-text2"><li>Describe a time you displayed leadership.</li></p>
+            </div>
             <div className="row" style={{marginTop: "0.5rem"}}>
                 <div className="col-lg-7 col-md-7 align-center">
                     <p className="companydata-text5">View more and prepare your answer</p>
@@ -17,7 +26,7 @@ export default function GSIQ(props){
                 <div className="col-lg-5 col-md-5">
                     <Link to="/practice">
                         <a className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", height: "2.5rem"}}>
+                            style={{color:"white", backgroundColor:"#090D3A"}}>
                             <i className="bx bxs-hot"></i>
                             Practice Now
                             <span></span>
@@ -32,7 +41,7 @@ export default function GSIQ(props){
                 <div className="col-lg-5 col-md-5">
                     <Link to="/resume">
                         <a className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", height: "2.5rem"}}>
+                            style={{color:"white", backgroundColor:"#090D3A"}}>
                             <i className="bx bxs-hot"></i>
                             Optimize Now
                             <span></span>

@@ -4,7 +4,7 @@ import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
 //import AIGIP from './../interviewProcess/AIGIP';
-import BRIQ from './../interviewQuestions/AIGIQ';
+import BRIQ from './../interviewQuestions/BRIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -27,7 +27,7 @@ class BRInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – BlackRock</title>
                     <meta name="Description" CONTENT="BlackRock is an investment management company providing investment and technology services to institutional and retail clients. Its diverse platform of alpha-seeking active, index, and cash management investment strategies across asset classes enables the company to tailor investment outcomes and asset allocation solutions for clients. The company offers single- and multi-asset portfolios investing in equities, fixed income, alternatives, and money market instruments. BlackRock also delivers technology services, including the investment and risk management technology platform, Aladdin, Aladdin Wealth, eFront, Cachematrix, and FutureAdvisor, as well as advisory services and solutions to institutional and wealth management clients." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-br"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/blackrock"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -81,7 +81,7 @@ class BRInfo extends Component {
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:"auto", marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

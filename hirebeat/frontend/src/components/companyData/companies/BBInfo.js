@@ -4,7 +4,7 @@ import FreeTrialArea from './../../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Overview from './../Overview';
 //import AIGIP from './../interviewProcess/AIGIP';
-import BBIQ from './../interviewQuestions/AIGIQ';
+import BBIQ from './../interviewQuestions/BBIQ';
 import {RevenueBar, SalaryBar, Category} from './../Components';
 import LogoList from './../LogoList';
 import {ResumeFooter} from "./../../resume/Components";
@@ -27,7 +27,7 @@ class BBInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Bloomberg</title>
                     <meta name="Description" CONTENT="Bloomberg is a financial software, data, and media company that provides financial software tools such as an analytics and equity trading platform, data services and news to financial companies and organizations through the Bloomberg terminal (via its Bloomberg Professional Service), its core money-generating product. It also includes a wire service (Bloomberg News), a global television network (Bloomberg Television), a radio station (WBBR), websites, subscription-only newsletters, and three magazines: Bloomberg Businessweek, Bloomberg Markets, and Bloomberg Pursuit." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata-bb"/>
+                    <link rel="canonical" href="https://hirebeat.co/companydata/bloomberg"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -76,12 +76,12 @@ class BBInfo extends Component {
                                 gpmData={[]}
                             />
                             <SalaryBar
-                                labels={["Engineering", "Research & Science", "Arts & Design", "Finance", "Administrative", "Product", "HR"]}
-                                salaryData={[133000, 73000, 115000, 170000, 73000, 186000, 85000]}
+                                labels={["Engineering", "Research & Science", "Arts & Design", "Finance", "Administrative", "Product", "HR", "Reporter", "Account Manager"]}
+                                salaryData={[133000, 73000, 115000, 170000, 73000, 186000, 85000, 98000, 100000]}
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:"auto", marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>
