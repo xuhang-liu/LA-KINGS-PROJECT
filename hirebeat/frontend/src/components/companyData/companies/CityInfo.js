@@ -46,7 +46,7 @@ class CityInfo extends Component {
                                 website="https://www.aig.com/"
                                 growthLabels={[2015, 2016, 2017, 2018, 2019]}
                                 growthData={[66400, 56400, 49800, 49600, 46000]}
-                                ratings="3.3"
+                                ratings={3.3}
                             />
                         </div>
 

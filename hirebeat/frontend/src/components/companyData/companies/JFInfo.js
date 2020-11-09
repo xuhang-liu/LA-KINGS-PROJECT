@@ -25,28 +25,28 @@ class JFInfo extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Company Data – American International Group (AIG)</title>
-                    <meta name="Description" CONTENT="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising." >
+                    <title>HireBeat Company Data – Jefferies Financial Group</title>
+                    <meta name="Description" CONTENT="Jefferies Financial Group is an investment and financial services company that offers a range of products and services in investment banking, equities, fixed income, and wealth management. It specializes in the debt capital market, merger and acquisition, private capital advisory, restructuring, and recapitalization businesses. It offers cash equities, electronic trading solutions, such as global algorithmic and portfolio trading solutions. The company also provides wealth management services, such as portfolio management services, executive services, and family office services to high-net-worth individuals, family offices, and others." >
                     </meta>
                     <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
-                    pageTitle="Jefferies"
-                    pageDescription="How to get a job at American International Group (AIG)."
+                    pageTitle="Jefferies Financial Group"
+                    pageDescription="How to get a job at Jefferies Financial Group."
                 />
                 <div className="Container" style={{margin: "2% 3%"}}>
                     <div className="row">
                         <div className="col-lg-5 col-md-5 company-align" style={{marginLeft: "5%", marginTop: "5%"}} >
                             <Overview
-                                overview="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising."
+                                overview="Jefferies Financial Group is an investment and financial services company that offers a range of products and services in investment banking, equities, fixed income, and wealth management. It specializes in the debt capital market, merger and acquisition, private capital advisory, restructuring, and recapitalization businesses. It offers cash equities, electronic trading solutions, such as global algorithmic and portfolio trading solutions. The company also provides wealth management services, such as portfolio management services, executive services, and family office services to high-net-worth individuals, family offices, and others."
                                 type="Public"
-                                founded="1919"
+                                founded="1962"
                                 hq="New York, US"
-                                website="https://www.aig.com/"
-                                growthLabels={[2015, 2016, 2017, 2018, 2019]}
-                                growthData={[66400, 56400, 49800, 49600, 46000]}
-                                ratings="3.3"
+                                website="https://www.jefferies.com/"
+                                growthLabels={[2016, 2017, 2018, 2019]}
+                                growthData={[0, 12700, 4700, 4800]}
+                                ratings={4.1}
                             />
                         </div>
 
@@ -59,8 +59,8 @@ class JFInfo extends Component {
                             <div style={{margin: "15% 0"}}>
                                 <Category
                                     height="300"
-                                    labels={["Legal", "Administrative", "Support", "Marketing & PR", "other", "Creative", "Sales & BD", "Technology", "HR", "Health & Medical", "Operations", "Retail", "Finance"]}
-                                    series={[4.4, 7.7, 4.1, 0.8, 40, 2.1, 4.9, 20.7, 0.5, 0.2, 2.1, 1.8, 10.7 ]}/>
+                                    labels={["Administrative", "Sales & BD", "Support", "Technology", "Retail", "HR", "Finance", "Other"]}
+                                    series={[1.3, 3.9, 9.1, 35.1, 15.6, 1.3, 22.1, 11.7]}/>
                             </div>
                         </div>
 
@@ -71,17 +71,17 @@ class JFInfo extends Component {
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
                             <RevenueBar
                                 labels={["2016", "2017", "2018", "2019"]}
-                                revenueData={[52370000000, 49520000000, 47390000000, 49750000000]}
-                                netIncomeData={[349000000, 6060000000, 61000000,3350000000]}
-                                gpmData={[30.98, 39.47, 34.23, 48.94]}
+                                revenueData={[10100000000, 11400000000, 3800000000, 5400000000]}
+                                netIncomeData={[194300000, 252800000, 1100000000, 962600000]}
+                                gpmData={[11.98, 18.5, 35.09, 94.04]}
                             />
                             <SalaryBar
-                                labels={["Administrative", "Finance", "HR", "Legal", "Marketing & PR", "Operations", "Other", "Sales & BD", "Support", "Technology"]}
-                                salaryData={[125000, 92000, 60000, 107500, 95000, 117800, 137500, 155000, 65000, 110000]}
+                                labels={["Administrative", "Finance", "HR", "Legal", "Marketing & PR", "Operations", "IT", "Sales & BD", "Support", "Technology"]}
+                                salaryData={[63532, 148000, 77000, 268000, 140000, 67294, 68000, 142000, 133000, 87000]}
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight: "auto", marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

@@ -10,14 +10,14 @@ export default function JSIQ(props){
             <h3 className="companydata-text1">Interview Questions</h3>
             {SwitchButton(filter, setFilter)}
             {renderContent(filter)}
-            <div className="row" style={{marginTop: "0.5rem"}}>
+            <div className="row" style={{marginTop: "1rem"}}>
                 <div className="col-lg-7 col-md-7 align-center">
                     <p className="companydata-text5">View more and prepare your answer</p>
                 </div>
                 <div className="col-lg-5 col-md-5">
                     <Link to="/practice">
                         <a className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", height: "2.5rem"}}>
+                            style={{color:"white", backgroundColor:"#090D3A"}}>
                             <i className="bx bxs-hot"></i>
                             Practice Now
                             <span></span>
@@ -32,7 +32,7 @@ export default function JSIQ(props){
                 <div className="col-lg-5 col-md-5">
                     <Link to="/resume">
                         <a className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", height: "2.5rem"}}>
+                            style={{color:"white", backgroundColor:"#090D3A"}}>
                             <i className="bx bxs-hot"></i>
                             Optimize Now
                             <span></span>

@@ -25,28 +25,28 @@ class NDQInfo extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Company Data – American International Group (AIG)</title>
-                    <meta name="Description" CONTENT="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising." >
+                    <title>HireBeat Company Data – Nasdaq</title>
+                    <meta name="Description" CONTENT="Nasdaq is a global provider of trading, clearing, exchange technology, listing, information, and public company services. It operates in four business segments: Market Services, Corporate Services, Information Services, and Market Technology. The company operates exchanges and other marketplace facilities across several asset classes. The Market Services segment is comprised of equity derivative trading and clearing, cash equity trading, FICC and trade management services businesses. The Corporate Services segment includes listing services and corporate solutions businesses. The Information Services segment offers market data, index and investment data, as well as analytics. The Market Technology segment provides technology solutions to exchanges, clearing organizations, central securities depositories, regulators, banks, brokers, buy-side firms, and corporate businesses." >
                     </meta>
                     <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
                     pageTitle="Nasdaq"
-                    pageDescription="How to get a job at American International Group (AIG)."
+                    pageDescription="How to get a job at Nasdaq."
                 />
                 <div className="Container" style={{margin: "2% 3%"}}>
                     <div className="row">
                         <div className="col-lg-5 col-md-5 company-align" style={{marginLeft: "5%", marginTop: "5%"}} >
                             <Overview
-                                overview="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising."
+                                overview="Nasdaq is a global provider of trading, clearing, exchange technology, listing, information, and public company services. It operates in four business segments: Market Services, Corporate Services, Information Services, and Market Technology. The company operates exchanges and other marketplace facilities across several asset classes. The Market Services segment is comprised of equity derivative trading and clearing, cash equity trading, FICC and trade management services businesses. The Corporate Services segment includes listing services and corporate solutions businesses. The Information Services segment offers market data, index and investment data, as well as analytics. The Market Technology segment provides technology solutions to exchanges, clearing organizations, central securities depositories, regulators, banks, brokers, buy-side firms, and corporate businesses."
                                 type="Public"
-                                founded="1919"
+                                founded="1971"
                                 hq="New York, US"
-                                website="https://www.aig.com/"
-                                growthLabels={[2015, 2016, 2017, 2018, 2019]}
-                                growthData={[66400, 56400, 49800, 49600, 46000]}
-                                ratings="3.3"
+                                website="https://www.nasdaq.com/"
+                                growthLabels={[2016, 2017, 2018, 2019]}
+                                growthData={[4325, 4734, 4099, 4361]}
+                                ratings={3.8}
                             />
                         </div>
 
@@ -59,8 +59,8 @@ class NDQInfo extends Component {
                             <div style={{margin: "15% 0"}}>
                                 <Category
                                     height="300"
-                                    labels={["Legal", "Administrative", "Support", "Marketing & PR", "other", "Creative", "Sales & BD", "Technology", "HR", "Health & Medical", "Operations", "Retail", "Finance"]}
-                                    series={[4.4, 7.7, 4.1, 0.8, 40, 2.1, 4.9, 20.7, 0.5, 0.2, 2.1, 1.8, 10.7 ]}/>
+                                    labels={["Support","other","Sales & BD", "Technology", "Retail", "Finance"]}
+                                    series={[7.0, 12.7, 7.0, 60.6, 1.4, 11.3]}/>
                             </div>
                         </div>
 
@@ -71,17 +71,17 @@ class NDQInfo extends Component {
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
                             <RevenueBar
                                 labels={["2016", "2017", "2018", "2019"]}
-                                revenueData={[52370000000, 49520000000, 47390000000, 49750000000]}
-                                netIncomeData={[349000000, 6060000000, 61000000,3350000000]}
-                                gpmData={[30.98, 39.47, 34.23, 48.94]}
+                                revenueData={[3700000000, 4000000000, 4300000000, 4300000000]}
+                                netIncomeData={[108000000, 734000000, 458000000,774000000]}
+                                gpmData={[9, 7, 8, 8]}
                             />
                             <SalaryBar
                                 labels={["Administrative", "Finance", "HR", "Legal", "Marketing & PR", "Operations", "Other", "Sales & BD", "Support", "Technology"]}
-                                salaryData={[125000, 92000, 60000, 107500, 95000, 117800, 137500, 155000, 65000, 110000]}
+                                salaryData={[122000, 75000, 113000, 145000, 64110, 92000, 49946, 78583, 86000, 92000]}
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:'auto', marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

@@ -25,28 +25,28 @@ class JPMInfo extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Company Data – American International Group (AIG)</title>
-                    <meta name="Description" CONTENT="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising." >
+                    <title>HireBeat Company Data – JPMorgan Chase</title>
+                    <meta name="Description" CONTENT="JP Morgan Chase is a financial services provider that offers investment banking, asset management, treasury, and other services. It includes four major sectors: Consumer and Community Banking, Corporate and Investment Bank, Commercial Banking, and Asset Management. The Consumer and Community Banking division derives its revenues from its credit card business, consumer and business banking, and mortgage banking. The Corporate and Investment Bank segment offers investment banking, market-making, prime brokerage, and treasury and securities products and services. The Commercial Banking division provides credit, banking, and treasury services to clients including mid-sized businesses, corporations, municipalities, financial institutions, nonprofit entities, and real estate owners and investors. The Asset Management segment provides its clients with strategies and expertise that span the spectrum of asset classes. JPMorgan Chase was formed as a result of a merger between Chase Manhattan Corporation and J.P. Morgan." >
                     </meta>
                     <link rel="canonical" href="https://hirebeat.co/companydata-aig"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
-                    pageTitle="JP Morgan"
-                    pageDescription="How to get a job at American International Group (AIG)."
+                    pageTitle="JPMorgan Chase"
+                    pageDescription="How to get a job at JPMorgan Chase."
                 />
                 <div className="Container" style={{margin: "2% 3%"}}>
                     <div className="row">
                         <div className="col-lg-5 col-md-5 company-align" style={{marginLeft: "5%", marginTop: "5%"}} >
                             <Overview
-                                overview="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising."
+                                overview="JP Morgan Chase is a financial services provider that offers investment banking, asset management, treasury, and other services. It includes four major sectors: Consumer and Community Banking, Corporate and Investment Bank, Commercial Banking, and Asset Management. The Consumer and Community Banking division derives its revenues from its credit card business, consumer and business banking, and mortgage banking. The Corporate and Investment Bank segment offers investment banking, market-making, prime brokerage, and treasury and securities products and services. The Commercial Banking division provides credit, banking, and treasury services to clients including mid-sized businesses, corporations, municipalities, financial institutions, nonprofit entities, and real estate owners and investors. The Asset Management segment provides its clients with strategies and expertise that span the spectrum of asset classes. JPMorgan Chase was formed as a result of a merger between Chase Manhattan Corporation and J.P. Morgan."
                                 type="Public"
-                                founded="1919"
+                                founded="2000"
                                 hq="New York, US"
-                                website="https://www.aig.com/"
-                                growthLabels={[2015, 2016, 2017, 2018, 2019]}
-                                growthData={[66400, 56400, 49800, 49600, 46000]}
-                                ratings="3.3"
+                                website="https://www.jpmorganchase.com/"
+                                growthLabels={[2016, 2017, 2018, 2019]}
+                                growthData={[243355, 252539, 256105, 256981]}
+                                ratings={4.5}
                             />
                         </div>
 
@@ -59,8 +59,8 @@ class JPMInfo extends Component {
                             <div style={{margin: "15% 0"}}>
                                 <Category
                                     height="300"
-                                    labels={["Legal", "Administrative", "Support", "Marketing & PR", "other", "Creative", "Sales & BD", "Technology", "HR", "Health & Medical", "Operations", "Retail", "Finance"]}
-                                    series={[4.4, 7.7, 4.1, 0.8, 40, 2.1, 4.9, 20.7, 0.5, 0.2, 2.1, 1.8, 10.7 ]}/>
+                                    labels={["Legal", "Creative", "Health & Medical", "Administrative", "Sales & BD", "Support", "Operations", "Technology", "Retail", "Marketing & PR", "HR", "Finance", "Other"]}
+                                    series={[0.2, 0.2, 0.3, 1.9, 2.5, 3.8, 5.5, 36.6, 2.8, 0.4, 0.3, 28.1, 17.4 ]}/>
                             </div>
                         </div>
 
@@ -70,18 +70,18 @@ class JPMInfo extends Component {
 
                         <div className="col-lg-5 col-md-5 review-align" style={{marginLeft: "5%", marginTop: "5%"}}>
                             <RevenueBar
-                                labels={["2016", "2017", "2018", "2019"]}
-                                revenueData={[52370000000, 49520000000, 47390000000, 49750000000]}
-                                netIncomeData={[349000000, 6060000000, 61000000,3350000000]}
-                                gpmData={[30.98, 39.47, 34.23, 48.94]}
+                                labels={["2017", "2018", "2019"]}
+                                revenueData={[11390000000, 13141000000, 14242000000]}
+                                netIncomeData={[24440000000, 32470000000,36430000000]}
+                                gpmData={[87.47, 82.97, 81.19]}
                             />
                             <SalaryBar
-                                labels={["Administrative", "Finance", "HR", "Legal", "Marketing & PR", "Operations", "Other", "Sales & BD", "Support", "Technology"]}
-                                salaryData={[125000, 92000, 60000, 107500, 95000, 117800, 137500, 155000, 65000, 110000]}
+                                labels={["Administrative", "Finance", "Banker", "Legal", "Marketing & PR", "Operations", "Consultant", "Sales & BD", "Support", "Technology"]}
+                                salaryData={[62000, 89281, 36593, 221000, 65000, 95000, 68000, 76000, 105000, 103000]}
                             />
                         </div>
 
-                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "5%", marginTop: "5%"}}>
+                        <div className="col-lg-10 col-md-10 review-align"style={{marginLeft: "auto", marginRight:"auto", marginTop: "5%"}}>
                             <LogoList />
                         </div>
                     </div>

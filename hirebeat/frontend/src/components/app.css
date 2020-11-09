@@ -772,7 +772,7 @@ h5 {
   position: absolute;
   text-align: left;
   border: none;
-  width: 8rem;
+  width: 9rem;
   z-index: 99;
   display: block;
   visibility: hidden;
@@ -1865,6 +1865,7 @@ color: #080A3C;
   background: #FFFFFF;
   box-shadow: 0px 0px 50px rgba(70, 137, 250, 0.1);
   border-radius: 10px;
+  border: 1px solid #F4F5FE;
 }
 
 .review-text1 {
@@ -1888,7 +1889,7 @@ color: #080A3C;
 }
 
 .company-list-help-text{
-  font-family: Poppins;
+  font-family: Avenir Next;
   font-weight: 600;
   font-size: 1.625rem;
   color: #090D3A;
@@ -1908,6 +1909,9 @@ color: #080A3C;
 }
 
 .companydata-text1 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
   font-family: Avenir Next;
   font-style: normal;
   font-weight: 600;
@@ -1957,6 +1961,7 @@ color: #080A3C;
   justify-content: space-between;
   margin: 0;
   line-height: 1.4286;
+  margin-bottom: 2rem;
 }
 
 
@@ -2108,7 +2113,7 @@ color: #080A3C;
 }
 
 .company-data-title {
-  font-family: Poppins;
+  font-family: Avenir Next;
   font-style: normal;
   font-weight: 600;
   font-size: 2.5rem;
@@ -2118,6 +2123,7 @@ color: #080A3C;
 .align-center {
  display: flex;
  align-items: center;
+}
 
 .owl-dot{
   border: none;

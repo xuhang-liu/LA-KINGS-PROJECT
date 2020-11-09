@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Chart from "react-apexcharts";
+//import Chart from "react-apexcharts";
 import ReactWOW from 'react-wow';
 import ShowMoreText from 'react-show-more-text';
 import StarRatings from 'react-star-ratings';
@@ -75,11 +75,11 @@ export class Overview extends Component{
                         <div className="col-lg-7 col-md-7">
                             <div className="rating">
                                 <StarRatings
-                                    rating={3.5}
+                                    rating={this.props.ratings}
                                     starDimension="20px"
                                     starRatedColor="#FF6B00"
                                 />
-                                <span style={{color: "#FF6B00", marginLeft: "1rem"}}>3.5</span>
+                                <span style={{color: "#FF6B00", marginLeft: "1rem"}}>{this.props.ratings}</span>
                             </div>
                         </div>
 
