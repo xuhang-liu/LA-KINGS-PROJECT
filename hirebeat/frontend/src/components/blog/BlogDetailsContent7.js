@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 import BlogSidebar from './BlogSidebar';
-import blog7pic from '../../assets/blog7-pic.jpg';
-import blog7pic1 from '../../assets/blog7-pic1.jpg';
 
 class BlogDetailsContent extends Component {
     render() {
@@ -35,7 +33,7 @@ class BlogDetailsContent extends Component {
                                         <i><b>Meta Description: </b>: Thank you, emails can go a long way in making you stand out from other candidates. Get tips for writing a good thank you email and a thank-you email sample.</i>
                                     </p>
                                     <div className="article-image">
-                                    <img src={blog7pic} alt="image" />
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog7-pic.jpg" alt="image" />
                                     </div>
                                     <p>
                                     Sending a thank you email after a job interview is essential for several reasons. For one, it expresses your enthusiasm for the role; it also helps you linger on the minds of the interview panel and give you a competitive edge. It is also an expression of courtesy.</p>
@@ -69,7 +67,7 @@ class BlogDetailsContent extends Component {
                                     <h3 className="mb-0">Take away</h3> 
                                     <p>It is always essential to have a notebook and take notes during an interview. Some of the critical points can be useful in creating content for your post-interview thank-you an email. This means that you should feel free to highlight and appreciate something that the interviewer had mentioned during the interview. Also, highlight something special about the organization that could help take your career to the next level or challenge you to become better.</p>
                                     <p>Also, it is worth noting that not all times are ideal for sending thank-you emails. The recommended time is within 24 hours after the interview. During this time, the interviewers’ thoughts would not have drifted far away from the event, and your email will be most relevant. Also, since it is a formal email, please do not send it over the weekend as the chance is high that no one will view it.</p>
-                                    <img src={blog7pic1} alt="image"></img>
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog7-pic1.jpg" alt="image"></img>
                                 </div>
                             </div>
                             <div className="single-footer-widget1">

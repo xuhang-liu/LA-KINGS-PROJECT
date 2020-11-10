@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import blog1 from '../../assets/blog1.jpg';
-import blog2 from "../../assets/blog2.jpg";
-import blog3 from "../../assets/blog3.jpg";
-import blog4 from "../../assets/blog4.jpg";
-import blog5 from "../../assets/blog5.jpg";
-import blog6 from "../../assets/blog6.jpg";
-import blog7 from "../../assets/blog7.jpg";
-import blog8 from "../../assets/blog8.jpg";
-import blog9 from "../../assets/blog9.jpg";
 import author1 from "../../assets/HireBeatLogo2.png";
 
 
@@ -22,9 +13,48 @@ class BlogGrid extends Component {
                     <div className="col-lg-4 col-md-6">
                             <div className="single-blog-post">
                                 <div className="post-image">
+                                    <Link to="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
+                                        <a>
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog10.jpg" alt="image" />
+                                        </a>
+                                    </Link>
+
+                                    <div className="date">
+                                        <i className='bx bx-calendar'></i> Nov 10, 2020
+                                    </div>
+                                </div>
+
+                                <div className="post-content">
+                                    <h3>
+                                        <Link to="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
+                                            <a>"WHERE DO YOU TO SEE YOURSELF IN 5 YEARS"</a>
+                                        </Link>
+                                    </h3>
+
+                                    <div className="post-info">
+                                        <div className="post-by">
+                                            <img src={author1} alt="image" />
+                                            <h6>HireBeat</h6>
+                                        </div>
+
+                                        <div className="details-btn">
+                                            <Link to="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
+                                                <a>
+                                                    <i className="bx bx-right-arrow-alt"></i>
+                                                </a>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div className="col-lg-4 col-md-6">
+                            <div className="single-blog-post">
+                                <div className="post-image">
                                     <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
                                         <a>
-                                            <img src={blog9} alt="image" />
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog9.jpg" alt="image" />
                                         </a>
                                     </Link>
 
@@ -63,7 +93,7 @@ class BlogGrid extends Component {
                                 <div className="post-image">
                                     <Link to="/keywords-to-include-on-a-resume">
                                         <a>
-                                            <img src={blog8} alt="image" />
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog8.jpg" alt="image" />
                                         </a>
                                     </Link>
 
@@ -102,7 +132,7 @@ class BlogGrid extends Component {
                                 <div className="post-image">
                                     <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
                                         <a>
-                                            <img src={blog7} alt="image" />
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog7.jpg" alt="image" />
                                         </a>
                                     </Link>
 
@@ -141,7 +171,7 @@ class BlogGrid extends Component {
                                 <div className="post-image">
                                     <Link to="/4-common-interview-questions-and-how-to-answer-them">
                                         <a>
-                                            <img src={blog6} alt="image" />
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog6.jpg" alt="image" />
                                         </a>
                                     </Link>
 
@@ -180,7 +210,7 @@ class BlogGrid extends Component {
                                 <div className="post-image">
                                     <Link to="/things-to-do-before-an-interview">
                                         <a>
-                                            <img src={blog5} alt="image" />
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog5.jpg" alt="image" />
                                         </a>
                                     </Link>
 
@@ -219,7 +249,7 @@ class BlogGrid extends Component {
                                 <div className="post-image">
                                     <Link to="/questions-to-ask-at-career-fairs">
                                         <a>
-                                            <img src={blog4} alt="image" />
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog4.jpg" alt="image" />
                                         </a>
                                     </Link>
 
@@ -258,7 +288,7 @@ class BlogGrid extends Component {
                                 <div className="post-image">
                                     <Link to="/how-to-prepare-for-an-AI-interview">
                                         <a>
-                                            <img src={blog3} alt="image" />
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog3.jpg" alt="image" />
                                         </a>
                                     </Link>
 
@@ -297,7 +327,7 @@ class BlogGrid extends Component {
                                 <div className="post-image">
                                     <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
                                         <a>
-                                            <img src={blog1} alt="image"/>
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog1.jpg" alt="image"/>
                                         </a>
                                     </Link>
 
@@ -336,7 +366,7 @@ class BlogGrid extends Component {
                                 <div className="post-image">
                                     <Link to="/video-interview-practice">
                                         <a>
-                                            <img src={blog2} alt="image" />
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog2.jpg" alt="image" />
                                         </a>
                                     </Link>
 
