@@ -87,6 +87,7 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview",
     "/tips-for-getting-your-resume-past-an-applicant-tracking-system",
     "/keywords-to-include-on-a-resume",
     "/how-to-write-a-thank-you-email-after-a-job-interview",
@@ -99,18 +100,20 @@ const blogURLs = [
 ];
 
 const blogImgs = [
-    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog9.jpg",
-    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog8.jpg",
-    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog7.jpg",
-    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog6.jpg",
-    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog5.jpg",
-    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog4.jpg",
-    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog3.jpg",
-    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog1.jpg",
-    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog2.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog10.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog9.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog8.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog7.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog6.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog5.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog4.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog3.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog1.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog2.jpg",
 ];
 
 const blogDates = [
+    "Nov 10, 2020",
     "Nov 02, 2020",
     "Oct 26, 2020",
     "Oct 19, 2020",
@@ -123,6 +126,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "WHERE DO YOU TO SEE YOURSELF IN 5 YEARS",
     "TIPS FOR YOUR RESUME TO PASS APPLICANT SYSTEM",
     "KEYWORDS TO INCLUDE ON A RESUME",
     "HOW TO WRITE A THANK-YOU EMAIL",

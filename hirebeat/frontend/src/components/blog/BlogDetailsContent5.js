@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 import BlogSidebar from './BlogSidebar';
-import blog5pic from '../../assets/blog5-pic.jpg';
-import blog5pic1 from '../../assets/blog5-pic1.jpg';
 
 class BlogDetailsContent extends Component {
     render() {
@@ -32,7 +30,7 @@ class BlogDetailsContent extends Component {
                                     <h2>Things to Do Before an Interview</h2>
 
                                     <div className="article-image">
-                                    <img src={blog5pic} alt="image" />
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog5-pic.jpg" alt="image" />
                                     </div>
 
                                     <p>
@@ -56,7 +54,7 @@ class BlogDetailsContent extends Component {
                                     <h3 className="mb-0">3. Prepare the appropriate outfit</h3> 
                                     <p>First impression matters and you should purpose to impress the interviewers even before you start talking. You need to dress professionally and be very minute. Picking the outfit to wear on the morning of the interview is a recipe for disaster. Be safe and do that the night before the interview. Try out the different professional outfits, pick one and iron it.</p>
                                     <p>Your dress code will tell a lot about you as an employee. Also, you can get inspiration for dressing from the company's website and LinkedIn profiles. Look around and see how the employees of the company dress and align your dress code.</p>
-                                    <img src={blog5pic1} alt="image"></img>
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog5-pic1.jpg" alt="image"></img>
                                     <h3 className="mb-0">4. Plan for the logistics</h3> 
                                     <p>One of the things that mess up interviews is transport. The moment you arrive at the interview venue late, then you know you have to work extra hard to prove that you deserve the job. Do not let getting late get in the way of securing your dream job.</p>
                                     <p>Arrange how will get to the interview on time. If you are driving, find about the easy routes to the place and plan how you can beat traffic. If you will be using public means, look at the timetables, and align your schedule. It is recommended that you be at the venue 15 minutes earlier.</p>

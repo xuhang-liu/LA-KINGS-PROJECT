@@ -24,78 +24,70 @@ class QuizSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
-                        <Link to="/questions-to-ask-at-career-fairs">
+                        <Link to="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
                             <a className="thumb">
-                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog4.jpg"} alt="image"/>
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog10.jpg" alt="image"/>
                             </a>
                         </Link>
-
                         <div className="info">
-                            <time>Sep 21, 2020</time>
+                            <time>Nov 10, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/questions-to-ask-at-career-fairs">
-                                    <a>Questions to Ask at Career Fairs</a>
+                                <Link to="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
+                                    <a>"Where Do You To See Yourself In 5 Years"</a>
                                 </Link>
                             </h4>
                         </div>
-
                         <div className="clear"></div>
                     </article>
 
                     <article className="item">
-                        <Link to="/how-to-prepare-for-an-AI-interview">
+                        <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
                             <a className="thumb">
-                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog3.jpg"} alt="image"/>
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog9.jpg" alt="image"/>
                             </a>
                         </Link>
-
                         <div className="info">
-                            <time>Sep 11, 2020</time>
+                            <time>Nov 02, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/how-to-prepare-for-an-AI-interview">
-                                    <a>How to Prepare for an AI Interview</a>
+                                <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
+                                    <a>Tips for Getting Your Resume Past an Applicant Tracking System</a>
                                 </Link>
                             </h4>
                         </div>
-
                         <div className="clear"></div>
                     </article>
 
                     <article className="item">
-                        <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
+                        <Link to="/keywords-to-include-on-a-resume">
                             <a className="thumb">
-                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog1.jpg"} alt="image"/>
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog8.jpg" alt="image"/>
                             </a>
                         </Link>
-
                         <div className="info">
-                            <time>Aug 24, 2020</time>
+                            <time>Oct 26, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
-                                    <a>Video interview platforms</a>
+                                <Link to="/keywords-to-include-on-a-resume">
+                                    <a>Keywords to Include on A Resume</a>
                                 </Link>
                             </h4>
                         </div>
-
                         <div className="clear"></div>
                     </article>
 
                     <article className="item">
-                        <Link to="/video-interview-practice">
+                        <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
                             <a className="thumb">
-                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog2.jpg"} alt="image"/>
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog7.jpg" alt="image"/>
                             </a>
                         </Link>
-
                         <div className="info">
-                            <time>Aug 16, 2020</time>
+                            <time>Oct 19, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/video-interview-practice">
-                                    <a>Video interview practice</a>
+                                <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
+                                    <a>How to Write a Thank-You Email</a>
                                 </Link>
                             </h4>
                         </div>
-
                         <div className="clear"></div>
                     </article>
                 </div>

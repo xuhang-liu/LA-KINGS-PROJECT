@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 import BlogSidebar from './BlogSidebar';
-import blog8pic from '../../assets/blog8-pic.jpg';
-import blog8pic1 from '../../assets/blog8-pic1.jpg';
 
 class BlogDetailsContent extends Component {
     render() {
@@ -35,7 +33,7 @@ class BlogDetailsContent extends Component {
                                         <i><b>Meta Description: </b>Hiring managers look for words in resumes that show that a candidate is ideal for a role. Learn about the different keywords to include in your resume and what they mean.</i>
                                     </p>
                                     <div className="article-image">
-                                    <img src={blog8pic} alt="image" />
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog8-pic.jpg" alt="image" />
                                     </div>
                                     <p>
                                     Many things can be used to describe a successful resume. It could be error-free grammar, certifications, and tons of other things that vary with industries and employers. The one common thing that makes resumes successful is the choice of keywords or phrases. It is essential for every candidate, regardless of the role they are pursuing, using words that will grab the attention of the recruiters.
@@ -60,7 +58,7 @@ class BlogDetailsContent extends Component {
                                     <p>While employees get benefits through remuneration, medical covers, and other benefits, employers expect to get value from them through the assigned roles.</p>
                                     <p>Mentioning that you are looking to be of value or make a valuable contribution to a company shows that your goals are aligned with those of the organizations.</p>
                                     <p>Hiring managers will certainly give attention to candidates that are interested in helping the company improve or champion it towards making progress.</p>
-                                    <img src={blog8pic1} alt="image"></img>
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog8-pic1.jpg" alt="image"></img>
                                     <h3 className="mb-0">Take away</h3> 
                                     <p>The other keywords that should be included in resumes are redesign, introduced or invented, teamwork, collaboration, and motivation, to mention a few. Diction plays a crucial role in the hiring process. Remember that the employers have not experienced your work yet, and only words or phrases and some evidence can help them gauge the kind of employee you would be. In this digital era, companies are pre-scanning resumes electronically and point out the job nouns they are looking for. Among other things, they use this to call in candidates for interviews. The right choice of words can be your ticket to your dream job: do not underestimate the power of keywords in resumes.</p>
                                 </div>

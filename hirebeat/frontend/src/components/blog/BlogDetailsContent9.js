@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 import BlogSidebar from './BlogSidebar';
-import blog9pic from '../../assets/blog9-pic.jpg';
-import blog9pic1 from '../../assets/blog9-pic1.jpg';
 
 class BlogDetailsContent extends Component {
     render() {
@@ -35,7 +33,7 @@ class BlogDetailsContent extends Component {
                                         <i><b>Meta Description: </b>Most employers are using tracking systems for their recruitment. Get tips for getting your resume past an applicant tracking system.</i>
                                     </p>
                                     <div className="article-image">
-                                    <img src={blog9pic} alt="image" />
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog9-pic.jpg" alt="image" />
                                     </div>
                                     <p>
                                     With advancements in technology, candidates have much more to worry about other than the recruiter’s judgment. Today, three-quarters of the companies are using applicant tracking systems to go through resumes before they engage an applicant.</p>
@@ -50,7 +48,7 @@ class BlogDetailsContent extends Component {
                                     <h3 className="mb-0">2. Use relevant keywords</h3> 
                                     <p>Not many applicants know this, but using relevant keywords when applying for jobs is critical. The ATS resume system algorithms rely on keywords to pick candidates that match the job posting. Your choice of words and phrases, therefore, will bring you closer to your dream job.</p>
                                     <p>How do you select keywords to use in your resume? Well, it is pretty simple. You can get them from the job description. Look at the specific job requirements, academic credentials, competencies, and skills required, and use them in the resume to describe why you are the perfect fit for the job. Examples of the keywords that the ATS looks for include: committed, team player, dedicated, innovated, or created, and much more.</p>
-                                    <img src={blog9pic1} alt="image"></img>
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog9-pic1.jpg" alt="image"></img>
                                     <h3 className="mb-0">3. Write a simple resume</h3> 
                                     <p>It might be tempting to write sophisticated resumes with enhanced graphics and language as they may appear more appealing to the hiring manager. Well, while this might be the case, the application tracking system might have a hard time understanding it.</p>
                                     <p>This means that getting through the ATS will be challenging as the system may not be able to process the content quickly.</p>
@@ -63,7 +61,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                     <FacebookShareButton 
                                         url={"https://hirebeat.co/tips-for-getting-your-resume-past-an-applicant-tracking-system"}
-                                        quote={"Keywords to Include on A Resume"}
+                                        quote={"Tips for Getting Your Resume Past an Applicant Tracking System"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
                                             <i className="bx bxl-facebook"></i>
@@ -73,7 +71,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <TwitterShareButton
                                            url={"https://hirebeat.co/tips-for-getting-your-resume-past-an-applicant-tracking-system"}
-                                           title={"Keywords to Include on A Resume"}
+                                           title={"Tips for Getting Your Resume Past an Applicant Tracking System"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
                                            <a target="_blank">
@@ -84,7 +82,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <LinkedinShareButton
                                             url={"https://hirebeat.co/tips-for-getting-your-resume-past-an-applicant-tracking-system"}
-                                            title={"Keywords to Include on A Resume"}
+                                            title={"Tips for Getting Your Resume Past an Applicant Tracking System"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-linkedin"></i>
@@ -94,7 +92,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/tips-for-getting-your-resume-past-an-applicant-tracking-system"}
-                                            title={"Keywords to Include on A Resume"}>
+                                            title={"Tips for Getting Your Resume Past an Applicant Tracking System"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>

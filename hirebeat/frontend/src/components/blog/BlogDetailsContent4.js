@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 import BlogSidebar from './BlogSidebar';
-import blog4pic from '../../assets/blog4-pic.jpg';
-import blog4pic1 from '../../assets/blog4-pic1.jpg';
-import blog4pic2 from '../../assets/blog4-pic2.jpg';
 
 class BlogDetailsContent extends Component {
     render() {
@@ -33,7 +30,7 @@ class BlogDetailsContent extends Component {
                                     <h2>Questions to Ask at Career Fairs</h2>
 
                                     <div className="article-image">
-                                    <img src={blog4pic} alt="image" />
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog4-pic.jpg" alt="image" />
                                     </div>
 
                                     <p>
@@ -57,11 +54,11 @@ class BlogDetailsContent extends Component {
                                     <h3 className="mb-0">2. Probe on growth opportunities</h3> 
                                     <p>Note that recruiters prefer candidates that have their goals aligned with those of the organization. Asking about the company's growth opportunities as a whole and the employees will make you stand out. The recruiters will see that you are interested in growth (which is the mission of all organizations), and you are willing to work with them to grow.</p>
                                     <p>Some of the questions that will give you answers to this include the company's opportunities, especially for the role you are interested in. It would help if you also asked about the employee development initiatives the company has in place.</p>
-                                    <img src={blog4pic1} alt="image"></img>
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog4-pic1.jpg" alt="image"></img>
                                     <h3 className="mb-0">3. Ask about the organization’s culture</h3> 
                                     <p>An organization’s culture is what motivates employees and drives them to work diligently. Organizational culture can reduce employee turnover, increase productivity, and creates a healthy and happy work environment. The corporate culture is also what distinguishes a company from another and makes it unique.</p>
                                     <p>Asking about the company's culture will show that you have an interest in engaging with the company in the long term. Questions regarding the company’s culture will also help you point out if it would be a happy working environment for you. On this note, ask about the techniques and technologies they use to communicate internally, any team building events or activities that employees engage in, and so on.</p>
-                                    <img src={blog4pic2} alt="image"></img>
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog4-pic2.jpg" alt="image"></img>
                                     <h3 className="mb-0">Take away</h3> 
                                     <p>You can ask the recruiter about their personal experience with the company and any challenges that come with the role that you are interested in. Asking these questions at a career fair will not only make the recruiters see that you have a connection with the company, but you will be able to find out if it is a suitable environment for you.</p>
 

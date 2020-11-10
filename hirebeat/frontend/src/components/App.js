@@ -28,6 +28,7 @@ import BlogDetail6 from "./blog/blog-details6";
 import BlogDetail7 from "./blog/blog-details7";
 import BlogDetail8 from "./blog/blog-details8";
 import BlogDetail9 from "./blog/blog-details9";
+import BlogDetail10 from "./blog/blog-details10";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -168,6 +169,7 @@ class App extends Component {
                 <Route exact path="/how-to-write-a-thank-you-email-after-a-job-interview" component={BlogDetail7} />
                 <Route exact path="/keywords-to-include-on-a-resume" component={BlogDetail8} />
                 <Route exact path="/tips-for-getting-your-resume-past-an-applicant-tracking-system" component={BlogDetail9} />
+                <Route exact path="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview" component={BlogDetail10} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
