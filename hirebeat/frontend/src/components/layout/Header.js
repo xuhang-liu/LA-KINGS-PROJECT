@@ -103,6 +103,7 @@ export class Header extends Component {
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
+                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Company Data</Link></li>
                       <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
                     </ul>
                   </span>
@@ -179,6 +180,7 @@ export class Header extends Component {
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
+                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Company Data</Link></li>
                       <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
                     </ul>
                   </span>
@@ -252,8 +254,8 @@ export class Header extends Component {
                   className="img-fluid mr-3"
                   alt="logo"
                   style={{
-                    width: "14%",
-                    height:"14%",
+                    width: "16%",
+                    height:"16%",
                   }}
                 />
                 <img
@@ -261,7 +263,7 @@ export class Header extends Component {
                   className="img-fluid mr-2"
                   alt="logotext"
                   style={{
-                    width: "40%",
+                    width: "50%",
                     height:"100%",
                   }}
                 />
