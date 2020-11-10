@@ -13,7 +13,7 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class BlogDetails extends Component {
+class BlogDetail9 extends Component {
     render() {
         return (
             <React.Fragment>
@@ -35,4 +35,4 @@ class BlogDetails extends Component {
     }
 }
 
-export default BlogDetails;
+export default BlogDetail9;

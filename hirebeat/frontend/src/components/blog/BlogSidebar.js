@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import blog1 from '../../assets/blog1.jpg';
-import blog2 from '../../assets/blog2.jpg';
-import blog3 from '../../assets/blog3.jpg';
-import blog4 from '../../assets/blog4.jpg';
-import blog5 from '../../assets/blog5.jpg';
-import blog6 from '../../assets/blog6.jpg';
-import blog7 from '../../assets/blog7.jpg';
-import blog8 from '../../assets/blog8.jpg';
-import blog9 from '../../assets/blog9.jpg';
+
 
 class BlogSidebar extends Component {
     render() {
@@ -34,7 +26,7 @@ class BlogSidebar extends Component {
                     <article className="item">
                         <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
                             <a className="thumb">
-                                <img src={blog9} alt="image"/>
+                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog9.jpg"} alt="image"/>
                             </a>
                         </Link>
 
@@ -53,7 +45,7 @@ class BlogSidebar extends Component {
                     <article className="item">
                         <Link to="/keywords-to-include-on-a-resume">
                             <a className="thumb">
-                                <img src={blog8} alt="image"/>
+                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog8.jpg"} alt="image"/>
                             </a>
                         </Link>
 
@@ -72,7 +64,7 @@ class BlogSidebar extends Component {
                     <article className="item">
                         <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
                             <a className="thumb">
-                                <img src={blog7} alt="image"/>
+                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog7.jpg"} alt="image"/>
                             </a>
                         </Link>
 
@@ -91,7 +83,7 @@ class BlogSidebar extends Component {
                     <article className="item">
                         <Link to="/4-common-interview-questions-and-how-to-answer-them">
                             <a className="thumb">
-                                <img src={blog6} alt="image"/>
+                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog6.jpg"} alt="image"/>
                             </a>
                         </Link>
 
@@ -110,7 +102,7 @@ class BlogSidebar extends Component {
                     <article className="item">
                         <Link to="/things-to-do-before-an-interview">
                             <a className="thumb">
-                                <img src={blog5} alt="image"/>
+                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog5.jpg"} alt="image"/>
                             </a>
                         </Link>
 
@@ -129,7 +121,7 @@ class BlogSidebar extends Component {
                     <article className="item">
                         <Link to="/questions-to-ask-at-career-fairs">
                             <a className="thumb">
-                                <img src={blog4} alt="image"/>
+                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog4.jpg"} alt="image"/>
                             </a>
                         </Link>
 
@@ -148,7 +140,7 @@ class BlogSidebar extends Component {
                     <article className="item">
                         <Link to="/how-to-prepare-for-an-AI-interview">
                             <a className="thumb">
-                                <img src={blog3} alt="image"/>
+                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog3.jpg"} alt="image"/>
                             </a>
                         </Link>
 
@@ -167,7 +159,7 @@ class BlogSidebar extends Component {
                     <article className="item">
                         <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
                             <a className="thumb">
-                                <img src={blog1} alt="image"/>
+                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog1.jpg"} alt="image"/>
                             </a>
                         </Link>
 
@@ -186,7 +178,7 @@ class BlogSidebar extends Component {
                     <article className="item">
                         <Link to="/video-interview-practice">
                             <a className="thumb">
-                                <img src={blog2} alt="image"/>
+                                <img src={"https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog2.jpg"} alt="image"/>
                             </a>
                         </Link>
 

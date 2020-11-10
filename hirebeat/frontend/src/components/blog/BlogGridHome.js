@@ -1,400 +1,141 @@
-import React, { Component } from 'react';
-import {Link} from "react-router-dom";
-import blog1 from '../../assets/blog1.jpg';
-import blog2 from "../../assets/blog2.jpg";
-import blog3 from "../../assets/blog3.jpg";
-import blog4 from "../../assets/blog4.jpg";
-import blog5 from "../../assets/blog5.jpg";
-import blog6 from "../../assets/blog6.jpg";
-import blog7 from "../../assets/blog7.jpg";
-import blog8 from "../../assets/blog8.jpg";
-import blog9 from "../../assets/blog9.jpg";
-import author1 from "../../assets/HireBeatLogo2.png";
+import React from "react";
+import { render } from "react-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import {BlogCol} from "./BlogComponents";
 
 
-class BlogGrid extends Component {
-    render() {
-        return (
-            <section className="blog-area ptb-100">
-                <div className="container">
-                    <div className="row">
+export class BlogGridHome extends React.Component {
+    state = {
+        items: Array.from({ length: 3 }),
+        hasMore: true
+    };
 
-                    <div className="col-lg-4 col-md-6">
-                            <div className="single-blog-post">
-                                <div className="post-image">
-                                    <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
-                                        <a>
-                                            <img src={blog9} alt="image" />
-                                        </a>
-                                    </Link>
+  fetchMoreData = () => {
+      let blogRows = Math.ceil(blogURLs.length / 3);
+      if (this.state.items.length > blogRows) {
+          this.setState({ hasMore: false });
+          return;
+      }
+      // a fake async api call like which sends
+      // 3 records in every 0.5 secs
+      setTimeout(() => {
+          this.setState({
+              items: this.state.items.concat(Array.from({ length: 3 }))
+          });
+      }, 500);
+  };
 
-                                    <div className="date">
-                                        <i className='bx bx-calendar'></i> Nov 02, 2020
-                                    </div>
-                                </div>
+  render() {
+      let nums = blogURLs.length - 1;  // max index
+      let count = -3;
+      return (
+          <div>
+              <InfiniteScroll
+                  dataLength={this.state.items.length}
+                  next={this.fetchMoreData}
+                  hasMore={this.state.hasMore}
+                  loader={<h4 style={{textAlign: "center", color: "#2196F3"}}>Loading...</h4>}
+                  height={"89rem"}
+                  endMessage={
+                      <p style={{textAlign: "center", color: "#2196F3"}}>
+                          <b>No More Blogs!</b>
+                      </p>
+                  }
+              >
+                  <section className="blog-area ptb-100">
+                      <div className="container">
+                          {this.state.items.map((i, index) => {
+                              count = count + 3;
+                              return (
+                                  <div className="row" key={index}>
+                                      { count <= nums ?
+                                          <BlogCol
+                                              blogURL={blogURLs[count]}
+                                              blogImg={blogImgs[count]}
+                                              blogDate={blogDates[count]}
+                                              blogTitle={blogTitles[count]}
+                                              blogAuthor={blogAuthors[0]}
+                                          /> : null
+                                      }
+                                      { count+1 <= nums ?
+                                          <BlogCol
+                                              blogURL={blogURLs[count+1]}
+                                              blogImg={blogImgs[count+1]}
+                                              blogDate={blogDates[count+1]}
+                                              blogTitle={blogTitles[count+1]}
+                                              blogAuthor={blogAuthors[0]}
+                                          /> : null
+                                      }
+                                      { count+2 <= nums ?
+                                          <BlogCol
+                                              blogURL={blogURLs[count+2]}
+                                              blogImg={blogImgs[count+2]}
+                                              blogDate={blogDates[count+2]}
+                                              blogTitle={blogTitles[count+2]}
+                                              blogAuthor={blogAuthors[0]}
+                                          /> : null
+                                      }
+                                  </div>
+                              );
+                          })}
+                      </div>
+                  </section>
+              </InfiniteScroll>
+          </div>
+      );
+  }
+};
 
-                                <div className="post-content">
-                                    <h3>
-                                        <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
-                                            <a>TIPS FOR YOUR RESUME TO PASS APPLICANT SYSTEM</a>
-                                        </Link>
-                                    </h3>
+const blogURLs = [
+    "/tips-for-getting-your-resume-past-an-applicant-tracking-system",
+    "/keywords-to-include-on-a-resume",
+    "/how-to-write-a-thank-you-email-after-a-job-interview",
+    "/4-common-interview-questions-and-how-to-answer-them",
+    "/things-to-do-before-an-interview",
+    "/questions-to-ask-at-career-fairs",
+    "/how-to-prepare-for-an-AI-interview",
+    "/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job",
+    "/video-interview-practice",
+];
 
-                                    <div className="post-info">
-                                        <div className="post-by">
-                                            <img src={author1} alt="image" />
-                                            <h6>HireBeat</h6>
-                                        </div>
+const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog9.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog8.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog7.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog6.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog5.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog4.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog3.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog1.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/blog2.jpg",
+];
 
-                                        <div className="details-btn">
-                                            <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
-                                                <a>
-                                                    <i className="bx bx-right-arrow-alt"></i>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+const blogDates = [
+    "Nov 02, 2020",
+    "Oct 26, 2020",
+    "Oct 19, 2020",
+    "Oct 06, 2020",
+    "Sep 28, 2020",
+    "Sep 21, 2020",
+    "Sep 11, 2020",
+    "Aug 24, 2020",
+    "Aug 16, 2020",
+];
 
-                    <div className="col-lg-4 col-md-6">
-                            <div className="single-blog-post">
-                                <div className="post-image">
-                                    <Link to="/keywords-to-include-on-a-resume">
-                                        <a>
-                                            <img src={blog8} alt="image" />
-                                        </a>
-                                    </Link>
+const blogTitles = [
+    "TIPS FOR YOUR RESUME TO PASS APPLICANT SYSTEM",
+    "KEYWORDS TO INCLUDE ON A RESUME",
+    "HOW TO WRITE A THANK-YOU EMAIL",
+    "4 COMMON INTERVIEW QUESTIONS",
+    "THINGS TO DO BEFORE AN INTERVIEW",
+    "QUESTIONS TO ASK AT CAREER FAIRS",
+    "HOW TO PREPARE FOR AN AI INTERVIEW",
+    "VIDEO INTERVIEW PRACTICE PLATFORMS",
+    "VIDEO INTERVIEW PRACTICES FOR YOU",
+];
 
-                                    <div className="date">
-                                        <i className='bx bx-calendar'></i> Oct 26, 2020
-                                    </div>
-                                </div>
+const blogAuthors = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/cover/HireBeatLogo2.png"
+];
 
-                                <div className="post-content">
-                                    <h3>
-                                        <Link to="/keywords-to-include-on-a-resume">
-                                            <a>KEYWORDS TO INCLUDE ON A RESUME</a>
-                                        </Link>
-                                    </h3>
-
-                                    <div className="post-info">
-                                        <div className="post-by">
-                                            <img src={author1} alt="image" />
-                                            <h6>HireBeat</h6>
-                                        </div>
-
-                                        <div className="details-btn">
-                                            <Link to="/keywords-to-include-on-a-resume">
-                                                <a>
-                                                    <i className="bx bx-right-arrow-alt"></i>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    <div className="col-lg-4 col-md-6">
-                            <div className="single-blog-post">
-                                <div className="post-image">
-                                    <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
-                                        <a>
-                                            <img src={blog7} alt="image" />
-                                        </a>
-                                    </Link>
-
-                                    <div className="date">
-                                        <i className='bx bx-calendar'></i> Oct 19, 2020
-                                    </div>
-                                </div>
-
-                                <div className="post-content">
-                                    <h3>
-                                        <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
-                                            <a>HOW TO WRITE A THANK-YOU EMAIL</a>
-                                        </Link>
-                                    </h3>
-
-                                    <div className="post-info">
-                                        <div className="post-by">
-                                            <img src={author1} alt="image" />
-                                            <h6>HireBeat</h6>
-                                        </div>
-
-                                        <div className="details-btn">
-                                            <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
-                                                <a>
-                                                    <i className="bx bx-right-arrow-alt"></i>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    <div className="col-lg-4 col-md-6">
-                            <div className="single-blog-post">
-                                <div className="post-image">
-                                    <Link to="/4-common-interview-questions-and-how-to-answer-them">
-                                        <a>
-                                            <img src={blog6} alt="image" />
-                                        </a>
-                                    </Link>
-
-                                    <div className="date">
-                                        <i className='bx bx-calendar'></i> Oct 06, 2020
-                                    </div>
-                                </div>
-
-                                <div className="post-content">
-                                    <h3>
-                                        <Link to="/4-common-interview-questions-and-how-to-answer-them">
-                                            <a>4 COMMON INTERVIEW QUESTIONS</a>
-                                        </Link>
-                                    </h3>
-
-                                    <div className="post-info">
-                                        <div className="post-by">
-                                            <img src={author1} alt="image" />
-                                            <h6>HireBeat</h6>
-                                        </div>
-
-                                        <div className="details-btn">
-                                            <Link to="/4-common-interview-questions-and-how-to-answer-them">
-                                                <a>
-                                                    <i className="bx bx-right-arrow-alt"></i>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    <div className="col-lg-4 col-md-6">
-                            <div className="single-blog-post">
-                                <div className="post-image">
-                                    <Link to="/things-to-do-before-an-interview">
-                                        <a>
-                                            <img src={blog5} alt="image" />
-                                        </a>
-                                    </Link>
-
-                                    <div className="date">
-                                        <i className='bx bx-calendar'></i> Sep 28, 2020
-                                    </div>
-                                </div>
-
-                                <div className="post-content">
-                                    <h3>
-                                        <Link to="/things-to-do-before-an-interview">
-                                            <a>THINGS TO DO BEFORE AN INTERVIEW</a>
-                                        </Link>
-                                    </h3>
-
-                                    <div className="post-info">
-                                        <div className="post-by">
-                                            <img src={author1} alt="image" />
-                                            <h6>HireBeat</h6>
-                                        </div>
-
-                                        <div className="details-btn">
-                                            <Link to="/things-to-do-before-an-interview">
-                                                <a>
-                                                    <i className="bx bx-right-arrow-alt"></i>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    <div className="col-lg-4 col-md-6">
-                            <div className="single-blog-post">
-                                <div className="post-image">
-                                    <Link to="/questions-to-ask-at-career-fairs">
-                                        <a>
-                                            <img src={blog4} alt="image" />
-                                        </a>
-                                    </Link>
-
-                                    <div className="date">
-                                        <i className='bx bx-calendar'></i> Sep 21, 2020
-                                    </div>
-                                </div>
-
-                                <div className="post-content">
-                                    <h3>
-                                        <Link to="/questions-to-ask-at-career-fairs">
-                                            <a>QUESTIONS TO ASK AT CAREER FAIRS</a>
-                                        </Link>
-                                    </h3>
-
-                                    <div className="post-info">
-                                        <div className="post-by">
-                                            <img src={author1} alt="image" />
-                                            <h6>HireBeat</h6>
-                                        </div>
-
-                                        <div className="details-btn">
-                                            <Link to="/questions-to-ask-at-career-fairs">
-                                                <a>
-                                                    <i className="bx bx-right-arrow-alt"></i>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-blog-post">
-                                <div className="post-image">
-                                    <Link to="/how-to-prepare-for-an-AI-interview">
-                                        <a>
-                                            <img src={blog3} alt="image" />
-                                        </a>
-                                    </Link>
-
-                                    <div className="date">
-                                        <i className='bx bx-calendar'></i> Sep 11, 2020
-                                    </div>
-                                </div>
-
-                                <div className="post-content">
-                                    <h3>
-                                        <Link to="/how-to-prepare-for-an-AI-interview">
-                                            <a>HOW TO PREPARE FOR AN AI INTERVIEW</a>
-                                        </Link>
-                                    </h3>
-
-                                    <div className="post-info">
-                                        <div className="post-by">
-                                            <img src={author1} alt="image" />
-                                            <h6>HireBeat</h6>
-                                        </div>
-
-                                        <div className="details-btn">
-                                            <Link to="/how-to-prepare-for-an-AI-interview">
-                                                <a>
-                                                    <i className="bx bx-right-arrow-alt"></i>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-blog-post">
-                                <div className="post-image">
-                                    <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
-                                        <a>
-                                            <img src={blog1} alt="image"/>
-                                        </a>
-                                    </Link>
-
-                                    <div className="date">
-                                        <i className='bx bx-calendar'></i> Aug 24, 2020
-                                    </div>
-                                </div>
-
-                                <div className="post-content">
-                                    <h3>
-                                        <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
-                                            <a>VIDEO INTERVIEW PRACTICE PLATFORMS</a>
-                                        </Link>
-                                    </h3>
-
-                                    <div className="post-info">
-                                        <div className="post-by">
-                                            <img src={author1} alt="image" />
-                                            <h6>HireBeat</h6>
-                                        </div>
-
-                                        <div className="details-btn">
-                                            <Link to="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
-                                                <a>
-                                                    <i className="bx bx-right-arrow-alt"></i>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-blog-post">
-                                <div className="post-image">
-                                    <Link to="/video-interview-practice">
-                                        <a>
-                                            <img src={blog2} alt="image" />
-                                        </a>
-                                    </Link>
-
-                                    <div className="date">
-                                        <i className='bx bx-calendar'></i> Aug 16, 2020
-                                    </div>
-                                </div>
-
-                                <div className="post-content">
-                                    <h3>
-                                        <Link to="/video-interview-practice">
-                                            <a>VIDEO INTERVIEW PRACTICES FOR YOU</a>
-                                        </Link>
-                                    </h3>
-
-                                    <div className="post-info">
-                                        <div className="post-by">
-                                            <img src={author1} alt="image" />
-                                            <h6>HireBeat</h6>
-                                        </div>
-
-                                        <div className="details-btn">
-                                            <Link to="/video-interview-practice">
-                                                <a>
-                                                    <i className="bx bx-right-arrow-alt"></i>
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
- 
-                        {/* Pagination */}
-                        <div className="col-lg-12 col-md-12">
-                            <div className="pagination-area">
-                                <Link href="#">
-                                    <a className="prev page-numbers">
-                                        <i className='bx bxs-arrow-to-left'></i>
-                                    </a>
-                                </Link>
-
-                                <Link href="#">
-                                    <span className="page-numbers current">1</span>
-                                </Link>
-
-                                <Link href="#">
-                                    <a className="next page-numbers">
-                                        <i className='bx bxs-arrow-to-right'></i>
-                                    </a>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        );
-    }
-}
-
-export default BlogGrid;
+export default BlogGridHome;

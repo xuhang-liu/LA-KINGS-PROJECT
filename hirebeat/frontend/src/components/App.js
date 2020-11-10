@@ -19,15 +19,15 @@ import pricings from "./pricing/pricings";
 import Payment from "./payment/Payment"
 import about from "./company/about";
 import bloggrid from "./blog/bloggrid";
-import blogdetail1 from "./blog/blog-details1";
-import blogdetail2 from "./blog/blog-details2";
-import blogdetail3 from "./blog/blog-details3";
-import blogdetail4 from "./blog/blog-details4";
-import blogdetail5 from "./blog/blog-details5";
-import blogdetail6 from "./blog/blog-details6";
-import blogdetail7 from "./blog/blog-details7";
-import blogdetail8 from "./blog/blog-details8";
-import blogdetail9 from "./blog/blog-details9";
+import BlogDetail1 from "./blog/blog-details1";
+import BlogDetail2 from "./blog/blog-details2";
+import BlogDetail3 from "./blog/blog-details3";
+import BlogDetail4 from "./blog/blog-details4";
+import BlogDetail5 from "./blog/blog-details5";
+import BlogDetail6 from "./blog/blog-details6";
+import BlogDetail7 from "./blog/blog-details7";
+import BlogDetail8 from "./blog/blog-details8";
+import BlogDetail9 from "./blog/blog-details9";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -159,15 +159,15 @@ class App extends Component {
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/bloghome" component={bloggrid} />
-                <Route exact path="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={blogdetail1} />
-                <Route exact path="/video-interview-practice" component={blogdetail2} />
-                <Route exact path="/how-to-prepare-for-an-AI-interview" component={blogdetail3} />
-                <Route exact path="/questions-to-ask-at-career-fairs" component={blogdetail4} />
-                <Route exact path="/things-to-do-before-an-interview" component={blogdetail5} />
-                <Route exact path="/4-common-interview-questions-and-how-to-answer-them" component={blogdetail6} />
-                <Route exact path="/how-to-write-a-thank-you-email-after-a-job-interview" component={blogdetail7} />
-                <Route exact path="/keywords-to-include-on-a-resume" component={blogdetail8} />
-                <Route exact path="/tips-for-getting-your-resume-past-an-applicant-tracking-system" component={blogdetail9} />
+                <Route exact path="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
+                <Route exact path="/video-interview-practice" component={BlogDetail2} />
+                <Route exact path="/how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
+                <Route exact path="/questions-to-ask-at-career-fairs" component={BlogDetail4} />
+                <Route exact path="/things-to-do-before-an-interview" component={BlogDetail5} />
+                <Route exact path="/4-common-interview-questions-and-how-to-answer-them" component={BlogDetail6} />
+                <Route exact path="/how-to-write-a-thank-you-email-after-a-job-interview" component={BlogDetail7} />
+                <Route exact path="/keywords-to-include-on-a-resume" component={BlogDetail8} />
+                <Route exact path="/tips-for-getting-your-resume-past-an-applicant-tracking-system" component={BlogDetail9} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
