@@ -120,7 +120,7 @@ class PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{
-            price: 'price_1HK8ZnKxU1MN2zWMDvkw1zJy', // Replace with the ID of your price
+            price: 'price_1HmmhzKxU1MN2zWMlxYp4I0z', // Replace with the ID of your price
             quantity: 1,
           }],
           mode: 'subscription',
@@ -303,21 +303,11 @@ class PricingStyleOne extends Component {
                                                 </div>
                                             }
                                             {
-                                                this.props.profile.plan_interval == "year" &&
+                                                this.props.profile.membership == "Premium" &&
                                                 <div className="btn-box">
                                                     <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
                                                         <i className="bx bxs-hot"></i> 
-                                                        Current Plan
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                this.props.profile.plan_interval == "month" &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white"}} onClick={this.handleYearUpgrade}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Upgrade Now
+                                                        Premium Already
                                                         <span></span>
                                                     </button>
                                                 </div>
@@ -447,21 +437,11 @@ class PricingStyleOne extends Component {
                                                 </div>
                                             }
                                             {
-                                                this.props.profile.plan_interval == "year" &&
+                                                this.props.profile.membership == "Premium" &&
                                                 <div className="btn-box">
                                                     <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
                                                         <i className="bx bxs-hot"></i> 
-                                                        Yearly Plan Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                this.props.profile.plan_interval == "month" &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Current Plan
+                                                        Premium Already
                                                         <span></span>
                                                     </button>
                                                 </div>
