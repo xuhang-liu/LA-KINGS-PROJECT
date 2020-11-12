@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 280);
   }, []);
 
   return null;
@@ -21,7 +21,7 @@ class Pricing extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
-                    pageTitle="Transparent & Simple Pricing" 
+                    pageTitle="Pricing & Plans" 
                     pageDescription="Get unlimited interview analytics with any HireBeat plan" 
                 />
                 <PricingStyleOne />
