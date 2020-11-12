@@ -19,6 +19,7 @@ const initialState = {
   loaded: false,
   review_count: 0,
   nums: 0,
+  deleted_video_id: 0,
 };
 
 export default function (state = initialState, action) {
@@ -52,7 +53,8 @@ export default function (state = initialState, action) {
     case DELETE_VIDEO:
       return {
         ...state,
-        videos: state.videos.filter((video) => video.id !== action.payload),
+        deleted_video_id: action.payload.deleted_video_id,
+//        videos: state.videos.filter((video) => video.id !== action.payload),
       };
     case ADD_VIDEO:
       return {
