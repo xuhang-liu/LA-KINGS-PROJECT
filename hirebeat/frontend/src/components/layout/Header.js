@@ -101,9 +101,9 @@ export class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    Resources <i className="bx bx-chevron-down"></i>
+                    Career Tips <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
-                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Company Data</Link></li>
+                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Top Companies</Link></li>
                       <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
                     </ul>
                   </span>
@@ -178,9 +178,9 @@ export class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    Resources <i className="bx bx-chevron-down"></i>
+                  Career Tips <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
-                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Company Data</Link></li>
+                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Top Companies</Link></li>
                       <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
                     </ul>
                   </span>
