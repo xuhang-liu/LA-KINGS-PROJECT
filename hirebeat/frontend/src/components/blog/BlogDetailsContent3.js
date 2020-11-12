@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 import BlogSidebar from './BlogSidebar';
-import blog3pic from '../../assets/blog3-pic.jpg';
 
 class BlogDetailsContent extends Component {
     render() {
@@ -31,7 +30,7 @@ class BlogDetailsContent extends Component {
                                     <h2>How to Prepare for an AI Interview</h2>
 
                                     <div className="article-image">
-                                    <img src={blog3pic} alt="image" />
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog3-pic.jpg" alt="image" />
                                     </div>
 
                                     <p>

@@ -103,7 +103,7 @@ class Quizdetail1 extends Component {
                                 </button>
                             </div>
                             <div className="col-lg-4 col-md-12">
-                            <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"8%", fontFamily:"Poppin", fontWeight:"400"}}></input>
+                            <input type="checkbox" required name="terms" style={{marginRight:'2%',display:'inline', marginTop:"8%", fontFamily:"Poppin", fontWeight:"400"}}></input>
                                 I have read and agree to the 
                                 <a  target="_blank"
                                 href="https://hirebeat.co/term"

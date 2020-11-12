@@ -13,14 +13,14 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class BlogDetails extends Component {
+class BlogDetail9 extends Component {
     render() {
         return (
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – Tips for Getting Your Resume Past an Applicant Tracking System</title>
-                    <meta name="Description" CONTENT="Keywords to Include on A Resume"></meta>
+                    <meta name="Description" CONTENT="Tips for Getting Your Resume Past an Applicant Tracking System"></meta>
                     <link rel="canonical" href="https://hirebeat.co/tips-for-getting-your-resume-past-an-applicant-tracking-system"/>
                 </Helmet>
                 <ScrollToTopOnMount />
@@ -35,4 +35,4 @@ class BlogDetails extends Component {
     }
 }
 
-export default BlogDetails;
+export default BlogDetail9;

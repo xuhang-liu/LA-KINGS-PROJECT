@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 import BlogSidebar from './BlogSidebar';
-import blog6pic from '../../assets/blog6-pic.jpg';
-import blog6pic1 from '../../assets/blog6-pic1.jpg';
 
 class BlogDetailsContent extends Component {
     render() {
@@ -32,7 +30,7 @@ class BlogDetailsContent extends Component {
                                     <h2>4 Common Interview Questions and How to Answer Them</h2>
 
                                     <div className="article-image">
-                                    <img src={blog6pic} alt="image" />
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog6-pic.jpg" alt="image" />
                                     </div>
 
                                     <p>
@@ -52,7 +50,7 @@ class BlogDetailsContent extends Component {
                                     <h3 className="mb-0">2. Why you are leaving your current position</h3> 
                                     <p>This is also one of the questions that interviewers will never fail to ask. By asking this question, the interviewer is trying to understand you as an employee, by gauging your loyalty to an organization and your relationship with previous colleagues and bosses. It would help if you, therefore, were very careful with the answers you give for this. No matter how sour your transition from your former place of employment was, you should never talk about it in the interview. It would be best if you steered away from negative comments on your previous job. This will show the recruiters that you can be loyal to their company. The best answer would be talking about how this role would help you take your career to the next level.</p>
                                     <p>You should talk about how the company will offer you a more challenging opportunity.</p>
-                                    <img src={blog6pic1} alt="image"></img>
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog6-pic1.jpg" alt="image"></img>
                                     <h3 className="mb-0">3. Where do you see yourself in five years?</h3> 
                                     <p>If you have been to other interviews, you can attest that this is one question that you will never miss. By asking this question, the company looks to find whether your goals align with that of the company. The best answer to this question would be how you would like to develop your skills, and what you expect your role to grow into.</p>
                                     <p>Employers understand that employees are motivated and able to perform better when their trajectories align with those of the organization.</p>
