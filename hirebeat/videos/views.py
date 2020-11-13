@@ -6,6 +6,7 @@ from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenc
 from .models import Video, Label, Transcript, Sentence
 from django.contrib.auth.models import User
 from accounts.models import ReviewerInfo
+from accounts.models import Profile
 from questions.models import Categorys, SubCategory
 from questions.serializers import SubcategorySerializer
 # For fake ai
@@ -148,11 +149,16 @@ def mark_video_as_needed_review(request):
     id = request.data["id"]
     type = request.data["type"]
     video = Video.objects.filter(id=id)[0]
+    owner_id = video.owner_id
+    profile = Profile.objects.filter(user_id=owner_id)[0]
     if type == "expert":
         video.needed_expert_review = True
+        profile.saved_video_count += 1
     if type == "ai":
         video.needed_ai_review = True
+        profile.saved_video_count += 1
     video.save()
+    profile.save()
     serializer = VideoSerializer(video)
     return Response(serializer.data)
 
