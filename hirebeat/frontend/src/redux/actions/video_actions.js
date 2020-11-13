@@ -52,9 +52,9 @@ export const addVideo = (video) => (dispatch, getState) => {
         type: ADD_VIDEO,
         payload: res.data,
       });
-      dispatch({
-        type: INCREASE_VIDEO_COUNT,
-      });
+      // dispatch({
+      //   type: INCREASE_VIDEO_COUNT,
+      // });
     })
     .catch((err) =>
       dispatch(returnErrors(err.response.data, err.response.status))
@@ -163,6 +163,9 @@ export const sendVideoForReview = (type, id) => (dispatch, getState) => {
       dispatch({
         type: VIDEO_UNDER_REVIEW,
         payload: res.data,
+      });
+      dispatch({
+        type: INCREASE_VIDEO_COUNT,
       });
     })
     .catch((err) =>

@@ -18,7 +18,7 @@ class VideoViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         profile = Profile.objects.filter(user=self.request.user)[0]
-        profile.saved_video_count += 1
+        # profile.saved_video_count += 1
         profile.save()
         serializer.save(owner=self.request.user)
     
