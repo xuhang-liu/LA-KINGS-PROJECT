@@ -28,6 +28,23 @@ export function VideoImagePreview(props) {
     window.location.reload();
   }
 
+  function deleteAlert() {
+    confirmAlert({
+        title: "Confirm to delete",
+        message: "Are you sure to delete this video/audio?",
+        buttons: [
+            {
+              label: 'Yes',
+              onClick: () => removeVideo()
+            },
+            {
+              label: 'No'
+            }
+        ]
+    });
+
+  }
+
   // control status, render modal
   return (
     <div className="height-20">
@@ -89,7 +106,7 @@ export function VideoImagePreview(props) {
                       />
                     </div>
                     <div className="col-1" style={{marginRight: "3rem"}}>
-                      <button onClick={removeVideo} className="delete-btn btn-margin">
+                      <button onClick={deleteAlert} className="delete-btn btn-margin">
                         <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                       </button>
                     </div>
@@ -111,7 +128,7 @@ export function VideoImagePreview(props) {
                     />
                   </div>
                   <div className="col-1">
-                    <button onClick={removeVideo} className="delete-btn btn-margin">
+                    <button onClick={deleteAlert} className="delete-btn btn-margin">
                       <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                     </button>
                     </div>
