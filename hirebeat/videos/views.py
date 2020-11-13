@@ -198,3 +198,9 @@ def get_video_user(request):
     return Response({
         "email": email
     })
+
+@api_view(['POST'])
+def delete_video(request):
+    id = request.data["id"]
+    Video.objects.filter(id=id).delete()
+    return Response({"deleted_video_id": id})
