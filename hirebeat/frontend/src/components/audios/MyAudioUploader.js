@@ -48,25 +48,13 @@ export class MyAudioUploader extends Component {
   };
 
   handleUpload() {
-    if (this.props.saved_audio_count < this.props.save_limit) {
-      this.uploader.uploadFile(this.props.audio);
-      this.props.resetDeviceAndNextQuestion();
-    } else {
-      this.props.createMessage({
-        errorMessage: "Audio save limit already reached",
-      });
-    }
+    this.uploader.uploadFile(this.props.audio);
+    this.props.resetDeviceAndNextQuestion();
   }
 
   handleUploadAndFinish = () => {
-    if (this.props.saved_audio_count < this.props.save_limit) {
-      this.uploader.uploadFile(this.props.audio);
-      this.redirectToDashboard();
-    } else {
-      this.props.createMessage({
-        errorMessage: "Audio save limit already reached",
-      });
-    }
+    this.uploader.uploadFile(this.props.audio);
+    this.redirectToDashboard();
   };
 
   redirectToDashboard = () => {
@@ -111,11 +99,7 @@ export class MyAudioUploader extends Component {
           isAudio={true}
         />
         <AudioNumberLinkRow
-          number_of_audios_to_save={
-            this.props.save_limit == 1000
-              ? "Unlimited"
-              : this.props.save_limit - this.props.saved_audio_count
-          }
+          number_of_audios_to_save= "Unlimited"
           //upgrade={() => console.log("upgrade")}
         />
         <RecordDoneButton
