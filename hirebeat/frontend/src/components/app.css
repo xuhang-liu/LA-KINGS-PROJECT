@@ -2135,3 +2135,13 @@ color: #080A3C;
   height: 6.057rem;
   width: 8.625rem;
 }
+
+.delete-btn {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.btn-margin {
+  margin-top: 2.5rem;
+}

@@ -7,6 +7,7 @@ import { ExpertReview } from "./ExpertReview";
 import { AIReview } from "./AIReview";
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
+import { connect } from "react-redux";
 
 function ReviewStatusButton(props) {
   const [show, setShow] = useState(false);
@@ -46,12 +47,24 @@ function ReviewStatusButton(props) {
   function reviewToggle() {
     // send for review
     if (text == "Send For AI Review") {
-        sendVideoForReview("ai", video.id);
-        alert();
+        if (props.saved_video_count >= props.save_limit) {
+          upgradeMessage();
+        }
+        else{
+          sendVideoForReview("ai", video.id);
+          window.location.reload();
+//          alert();
+        }
     }
     else if (text == "Send For Expert Review") {
-        sendVideoForReview("expert", video.id);
-        alert();
+        if (props.saved_video_count >= props.save_limit) {
+          upgradeMessage();
+        }
+        else {
+          sendVideoForReview("expert", video.id);
+          window.location.reload();
+//          alert();
+        }
     }
     // view result
     else if (text == "View AI Result") {
@@ -135,6 +148,16 @@ function alert() {
     });
 }
 
+function upgradeMessage() {
+  confirmAlert({
+    title: 'Upgrade',
+    message: 'You need to upgrade for more reviews.',
+    buttons: [
+      {label: 'OK'}
+    ]
+  });
+}
+
 //function ReviewStatus(props) {
 //  const [btnClassNameExpert, onTapExpert] = decideClassNameAndOnTap(
 //    "expert",
@@ -196,4 +219,10 @@ function alert() {
 //  }
 //}
 
-export default ReviewStatusButton;
+const mapStateToProps = (state) => ({
+  save_limit: state.auth_reducer.profile.save_limit,
+  saved_video_count: state.auth_reducer.profile.saved_video_count,
+});
+
+
+export default connect(mapStateToProps)(ReviewStatusButton);

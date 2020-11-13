@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenceSerializer
 from .models import Video, Label, Transcript, Sentence
 from django.contrib.auth.models import User
-from accounts.models import ReviewerInfo
+from accounts.models import ReviewerInfo, Profile
 from questions.models import Categorys, SubCategory
 from questions.serializers import SubcategorySerializer
 # For fake ai
@@ -148,11 +148,16 @@ def mark_video_as_needed_review(request):
     id = request.data["id"]
     type = request.data["type"]
     video = Video.objects.filter(id=id)[0]
+    owner_id = video.owner_id
+    profile = Profile.objects.filter(user_id=owner_id)[0]
     if type == "expert":
         video.needed_expert_review = True
+        profile.saved_video_count += 1
     if type == "ai":
         video.needed_ai_review = True
+        profile.saved_video_count += 1
     video.save()
+    profile.save()
     serializer = VideoSerializer(video)
     return Response(serializer.data)
 
@@ -198,3 +203,9 @@ def get_video_user(request):
     return Response({
         "email": email
     })
+
+@api_view(['POST'])
+def delete_video(request):
+    id = request.data["id"]
+    Video.objects.filter(id=id).delete()
+    return Response({"deleted_video_id": id})

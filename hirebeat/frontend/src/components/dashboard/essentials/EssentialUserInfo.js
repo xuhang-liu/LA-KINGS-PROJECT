@@ -33,6 +33,7 @@ export class EssentialUserInfo extends Component {
     email_confirmed: this.props.profile.email_confirmed,
     email_match: "",
     saved_video_count: "",
+    plan_interval: "",
   };
 
   componentDidMount() {
@@ -40,6 +41,7 @@ export class EssentialUserInfo extends Component {
       phone_number: this.props.profile.phone_number,
       location: this.props.profile.location,
       membership: this.props.profile.membership,
+      plan_interval: this.props.profile.plan_interval,
       email_confirmed: this.props.profile.email_confirmed,
       saved_video_count: this.props.profile.saved_video_count,
       filePhoto: this.props.profile.avatar_url
@@ -165,7 +167,7 @@ export class EssentialUserInfo extends Component {
     return {
       user: this.props.user.id,
       id: this.props.profile.id,
-      membership: 'Regular'
+      plan_interval: 'Regular'
     };
   };
 
@@ -254,37 +256,6 @@ export class EssentialUserInfo extends Component {
                   >
                     {this.props.user.username}
                   </h1>
-                  {/* for regular user */}
-                  {/*
-                    this.props.profile.membership == "Regular" &&
-                    <div className="text-15" style={{marginLeft:'40%'}}>
-                      <IconText
-                        style={{marginRight: "10px"}}
-                        iconName={"card_membership"}
-                        iconMargin={"6px"}
-                        textDisplayed={this.props.profile.membership}
-                        textSize={"18px"}
-                        fontFamily={"Avenir Next"}
-                      />
-                    </div>
-                  */}
-                  {/*
-                    this.props.profile.membership == "Regular" &&
-                    <div className="upgrade" style={{marginBottom:"0.8rem", marginLeft:"1rem"}}>
-                      {
-                        this.props.profile.membership == "Regular" &&
-                        <Link className="text-15" style={{color: "#ffffff", textDecoration: "none", lineHeight: "34px", marginLeft:"26%"}} to="/pricing">Upgrade</Link>
-                      }
-                    </div>
-                    */}
-                  {/* for premium user */}
-                  {/*
-                    this.props.profile.membership == "Premium" &&
-                    <div className="col" style={{marginLeft:"28%", marginBottom:"0.8rem"}}>
-                      <img src={premiumIcon} alt="premiumIcon"/>
-                      <span style={{marginLeft: "6px"}}>Premium</span>
-                    </div>
-                  */}
                 </div>
               </div>
 
@@ -320,31 +291,16 @@ export class EssentialUserInfo extends Component {
                         />
                       </div>
                     </div>
-                    {/*<div className="row">
-                      <div className="col">
-                        <IconText
-                          iconName={"language"}
-                          textDisplayed={this.props.user.website}  // todo: enable user website attribute
-                          textSize={"15px"}
-                          iconMargin={"3px"}
-                        />
-                      </div>
-                    </div>*/}
-      
-                    {/*<div className="col-7">
-                      <h3 className="text-15">About</h3>
-                        <p>{this.props.user.about}</p>  
-                    </div>*/}
                   </div>
                 </div>
               </div>
               {/* for premium user */}
               {
-                this.props.profile.plan_interval == "month" &&
+                this.props.profile.plan_interval == "Premium" &&
                 <div className="row">
                   <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
                     <i className='bx bx-diamond'></i> 
-                    <span style={{marginLeft: "6px"}}>Monthly Premium</span>
+                    <span style={{marginLeft: "6px"}}>Premium</span>
                   </div>
                   <div className="col-8">
                     <input
@@ -365,35 +321,19 @@ export class EssentialUserInfo extends Component {
                 </div>
               }
               {
-                this.props.profile.plan_interval == "year" &&
+                this.props.profile.plan_interval == "Regular" &&
                 <div className="row">
                   <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
                     <i className='bx bx-diamond'></i> 
-                    <span style={{marginLeft: "6px"}}>Yearly Premium</span>
-                  </div>
-                  <div className="col-8">
-                    <input
-                    className="form-control"
-                    type="text"
-                    name={"email_match"}
-                    placeholder={"Type your email to cancel subscription."}
-                    onChange={this.handleInputChange}
-                    style={{
-                      backgroundColor:"#FFFFFF",
-                      fontSize: "12px",
-                      borderRadius: "5px",
-                      paddingLeft: "20px",
-                      color:"grey"
-                    }}
-                  />
+                    <span style={{marginLeft: "6px"}}>Premium</span>
                   </div>
                 </div>
-              }         
+              }        
             </div>
 
           {/* for premium user */}
           {
-            this.props.profile.membership == "Premium" &&
+            this.props.profile.plan_interval == "Premium" &&
             <div className="col-2" style={{marginTop:"2%"}}>
                 <div className="row" style={{marginTop:"8%"}}>
                   <Link>
@@ -421,6 +361,26 @@ export class EssentialUserInfo extends Component {
                         <span></span>
                     </button>
                   </form>
+                </div>
+            </div>
+          }
+
+{
+            this.props.profile.plan_interval == "Regular" &&
+            <div className="col-2" style={{marginTop:"2%"}}>
+                <div className="row" style={{marginTop:"8%"}}>
+                  <Link>
+                      <a 
+                      onClick={() => {
+                      this.setState({ ...this.state, show: true });
+                      }}
+                      className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"127%"}} 
+                      >
+                        <i className="bx bx-edit 2"></i>
+                          Edit
+                          <span></span>
+                      </a>
+                    </Link>
                 </div>
             </div>
           }

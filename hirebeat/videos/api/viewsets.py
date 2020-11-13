@@ -17,9 +17,10 @@ class VideoViewSet(viewsets.ModelViewSet):
         return self.request.user.videos.all().order_by('-created_at')
 
     def perform_create(self, serializer):
-        profile = Profile.objects.filter(user=self.request.user)[0]
-        profile.saved_video_count += 1
-        profile.save()
+        # Don't update profile when uploading videos
+        # profile = Profile.objects.filter(user=self.request.user)[0]
+        # profile.saved_video_count += 1
+        # profile.save()
         serializer.save(owner=self.request.user)
     
     def partial_update(self, request, pk=None):

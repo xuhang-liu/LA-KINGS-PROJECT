@@ -7,6 +7,7 @@ import {
 const initialState = {
   resumes: [],
   loaded: false,
+  deleted_cv_id: 0,
 };
 
 export default function (state = initialState, action) {
@@ -20,7 +21,8 @@ export default function (state = initialState, action) {
     case DELETE_RESUME:
       return {
         ...state,
-        resumes: state.resumes.filter((resume) => resume.id !== action.payload),
+        deleted_cv_id: action.payload.deleted_cv_id,
+//        resumes: state.resumes.filter((resume) => resume.id !== action.payload),
       };
     case ADD_RESUME:
       return {

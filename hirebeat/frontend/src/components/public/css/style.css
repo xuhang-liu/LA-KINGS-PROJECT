@@ -3242,12 +3242,14 @@ Pricing Area CSS
 }
 
 .single-pricing-table .pricing-header h3 {
+  color: #090D3A;
   margin-bottom: 0;
   font-size: 22px;
   font-weight: 500;
 }
 
 .single-pricing-table .price {
+  color: #090D3A;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   padding-top: 8px;
@@ -3259,6 +3261,7 @@ Pricing Area CSS
 }
 
 .single-pricing-table .price sup {
+  color: #090D3A;
   top: -18px;
   left: -5px;
   font-size: 18px;
@@ -3266,7 +3269,7 @@ Pricing Area CSS
 }
 
 .single-pricing-table .price sub {
-  bottom: 8px;
+  bottom: 0px;
   color: #4a6f8a;
   padding-right: 5px;
   font-size: 14px;
@@ -3284,9 +3287,10 @@ Pricing Area CSS
 }
 
 .single-pricing-table .pricing-features li {
+  font-size: 14px;
   margin-bottom: 10px;
   position: relative;
-  color: #444683;
+  color: #4a6f8a;
   padding-left: 21px;
 }
 
