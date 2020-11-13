@@ -71,7 +71,7 @@ export default function (state = initialState, action) {
           saved_video_count: state.profile.saved_video_count + 1,
         },
       };
-      case INCREASE_RESUME_COUNT:
+    case INCREASE_RESUME_COUNT:
       return {
         ...state,
         profile: {
@@ -79,7 +79,7 @@ export default function (state = initialState, action) {
           saved_resume_count: state.profile.saved_resume_count + 1,
         },
       };
-      case UPGRADE_ACCOUNTS:
+    case UPGRADE_ACCOUNTS:
       return {
         ...state,
         premiums: action.payload,

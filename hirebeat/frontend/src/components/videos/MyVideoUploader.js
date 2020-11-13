@@ -127,25 +127,25 @@ export class MyVideoUploader extends Component {
   };
 
   handleUpload() {
-    if (this.props.saved_video_count < this.props.save_limit) {
-      this.uploader.uploadFile(this.props.video);
-      this.props.resetDeviceAndNextQuestion();
-    } else {
-      this.props.createMessage({
-        errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
-      });
-    }
+    // if (this.props.saved_video_count < this.props.save_limit) {
+    this.uploader.uploadFile(this.props.video);
+    this.props.resetDeviceAndNextQuestion();
+    // } else {
+    //   this.props.createMessage({
+    //     errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
+    //   });
+    // }
   }
 
   handleUploadAndFinish = () => {
-    if (this.props.saved_video_count < this.props.save_limit) {
-      this.uploader.uploadFile(this.props.video);
-      this.redirectToDashboard();
-    } else {
-      this.props.createMessage({
-        errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
-      });
-    }
+    // if (this.props.saved_video_count < this.props.save_limit) {
+    this.uploader.uploadFile(this.props.video);
+    this.redirectToDashboard();
+    // } else {
+    //   this.props.createMessage({
+    //     errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
+    //   });
+    // }
   };
 
   redirectToDashboard = () => {
@@ -191,11 +191,7 @@ export class MyVideoUploader extends Component {
           isAudio={this.props.isAudio}
         />
         <VideoNumberLinkRow
-          number_of_videos_to_save={
-            this.props.save_limit == 1000
-              ? "Unlimited"
-              : this.props.save_limit - this.props.saved_video_count
-          }
+          number_of_videos_to_save= "Unlimited"
           isAudio={this.props.isAudio}
           //upgrade={() => console.log("upgrade")}
         />
