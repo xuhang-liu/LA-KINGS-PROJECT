@@ -22,6 +22,12 @@ function showAns(ans) {
 }
 
 export function VideoImagePreview(props) {
+  function removeVideo() {
+    let id = props.v.id;
+    props.deleteVideo({"id": id});
+    window.location.reload();
+  }
+
   // control status, render modal
   return (
     <div className="height-20">
@@ -67,7 +73,7 @@ export function VideoImagePreview(props) {
           </MediaQuery>
           <MediaQuery minDeviceWidth={1224}>
             { props.isBQ ? (
-                <div className="row" style={{width: "90%"}}>
+                <div className="row">
                     <div className="col">
                       <ReviewStatusButton
                         v={props.v}
@@ -81,6 +87,11 @@ export function VideoImagePreview(props) {
                         sendVideoForReview={props.sendVideoForReview}
                         aiReview={false}  // review type： Expert
                       />
+                    </div>
+                    <div className="col-1" style={{marginRight: "3rem"}}>
+                      <button onClick={removeVideo} className="delete-btn btn-margin">
+                        <i className="bx bx-trash bx-md"></i>
+                      </button>
                     </div>
                 </div>) : (  // TQ
                 <div className="row" style={{width: "90%"}}>
@@ -99,6 +110,11 @@ export function VideoImagePreview(props) {
                       isSampleAns={true}
                     />
                   </div>
+                  <div className="col-1">
+                    <button onClick={removeVideo} className="delete-btn btn-margin">
+                      <i className="bx bx-trash bx-md"></i>
+                    </button>
+                    </div>
                 </div>)
             }
             </MediaQuery>

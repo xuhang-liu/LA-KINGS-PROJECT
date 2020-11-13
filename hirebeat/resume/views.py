@@ -1,9 +1,12 @@
 import boto
-import mimetypes
+# import mimetypes
 import json
 from django.http import HttpResponse
 import os
 from dotenv import load_dotenv
+from .models import Resume
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 load_dotenv()
 
 if not boto.config.get('s3', 'use-sigv4'):
@@ -30,4 +33,8 @@ def sign_s3_upload_cv(request):
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
 
-
+@api_view(['POST'])
+def delete_resume(request):
+    id = request.data["id"]
+    Resume.objects.filter(id=id).delete()
+    return Response({"deleted_cv_id": id})

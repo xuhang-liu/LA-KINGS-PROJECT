@@ -17,6 +17,12 @@ export const ResumePreview = (props) => {
 
   }
 
+  function deleteCV() {
+    let id = props.resume.id;
+    props.deleteResume({"id": id});
+    window.location.reload();
+  }
+
   return (
       <div className="container d-flex justify-content-start" style={{marginTop:"2%"}}>
         <div className="col-2">
@@ -34,10 +40,15 @@ export const ResumePreview = (props) => {
               <p>{props.createdAt}</p>
             </div>
           </div>
-          <div>
-            <button onClick={reviewToggle} className="reviewed text-15 resume-btn">
-              View Result
-            </button>
+          <div className="row">
+            <div>
+              <button onClick={reviewToggle} className="reviewed text-15 resume-btn">
+                View Result
+              </button>
+            </div>
+            <div style={{marginLeft: "2rem"}}>
+              <button onClick={deleteCV} className="delete-btn"><i className="bx bx-trash bx-md"></i></button>
+            </div>
           </div>
           <MyVerticallyCenteredModal
             show={show}

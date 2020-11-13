@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import {
   getVideos,
   sendVideoForReview,
+  deleteVideo,
 } from "../../../redux/actions/video_actions";
 
 export class VideoPreviewList extends Component {
@@ -12,6 +13,7 @@ export class VideoPreviewList extends Component {
     videos: PropTypes.array.isRequired,
     loaded: PropTypes.bool.isRequired,
     getVideos: PropTypes.func.isRequired,
+    deleteVideo: PropTypes.func.isRequired,
     filter: PropTypes.string,
   };
 
@@ -64,6 +66,7 @@ export class VideoPreviewList extends Component {
                         v.q_type === "Behavior Question" ? this.props.sendVideoForReview
                         : null}
                     isBQ={v.q_type === "Behavior Question" ? true : false}
+                    deleteVideo={this.props.deleteVideo}
                   />
                 </div>
               );
@@ -82,4 +85,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getVideos,
   sendVideoForReview,
+  deleteVideo,
 })(VideoPreviewList);

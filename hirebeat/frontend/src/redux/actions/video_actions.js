@@ -30,17 +30,19 @@ export const getVideos = () => (dispatch, getState) => {
     );
 };
 
-export const deleteVideo = (id) => (dispatch, getState) => {
+export const deleteVideo = (videoId) => (dispatch, getState) => {
   axios
-    .delete(`/api/videos/${id}/`, tokenConfig(getState))
+    .post("/api/video/deletion", videoId, tokenConfig(getState))
     .then((res) => {
-      dispatch(createMessage({ successMessage: "Video Deleted" }));
+      console.log("video deleted")
       dispatch({
         type: DELETE_VIDEO,
-        payload: id,
+        payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 
 export const addVideo = (video) => (dispatch, getState) => {
