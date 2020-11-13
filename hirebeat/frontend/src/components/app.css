@@ -1966,7 +1966,7 @@ color: #080A3C;
 
 
 .companydata-text4{
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   color: #4A6F8A;
 }
 
@@ -2134,4 +2134,14 @@ color: #080A3C;
 .logo-size {
   height: 6.057rem;
   width: 8.625rem;
+}
+
+.delete-btn {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.btn-margin {
+  margin-top: 2.5rem;
 }

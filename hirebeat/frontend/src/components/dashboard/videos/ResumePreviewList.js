@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getResumes } from "../../../redux/actions/resume_actions";
+import { getResumes, deleteResume } from "../../../redux/actions/resume_actions";
 import { ResumePreview } from "./ResumePreview";
 
 export class Resume extends Component {
@@ -9,6 +9,7 @@ export class Resume extends Component {
     resumes: PropTypes.array.isRequired,
     loaded: PropTypes.bool.isRequired,
     getResumes: PropTypes.func.isRequired,
+    deleteResume: PropTypes.func.isRequired,
   };
 
   state = {
@@ -32,6 +33,7 @@ export class Resume extends Component {
                   jobTitle={r.job_title}
                   jdText={r.jd_text}
                   getResumes={this.props.getResumes}
+                  deleteResume={this.props.deleteResume}
                   createdAt={r.created_at.slice(0, 10)}
                 />
               )
@@ -48,5 +50,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getResumes,
+  getResumes, deleteResume
 })(Resume);
