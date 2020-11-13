@@ -31,7 +31,7 @@ export function VideoImagePreview(props) {
   function deleteAlert() {
     confirmAlert({
         title: "Confirm to delete",
-        message: "Are you sure to delete the video/audio?",
+        message: "Are you sure to delete this video/audio?",
         buttons: [
             {
               label: 'Yes',

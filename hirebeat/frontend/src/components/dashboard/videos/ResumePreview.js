@@ -26,7 +26,7 @@ export const ResumePreview = (props) => {
   function deleteAlert() {
     confirmAlert({
         title: "Confirm to delete",
-        message: "Are you sure to delete the resume?",
+        message: "Are you sure to delete this resume?",
         buttons: [
             {
               label: 'Yes',
