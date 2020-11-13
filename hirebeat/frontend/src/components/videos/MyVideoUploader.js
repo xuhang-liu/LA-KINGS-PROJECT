@@ -97,7 +97,7 @@ export class MyVideoUploader extends Component {
 
     //For other browsers
     var name = this.props.video.name;
-    var url = "https://test-hb-videos.s3.amazonaws.com/" + name; // change bucket when run in local
+    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;  // change bucket when run in local
     var q_category = `${this.props.questions[this.props.q_index].category}`;
     var q_description = `${this.props.questions[this.props.q_index].description}`;
     var q_title = `${this.props.questions[this.props.q_index].title}`;

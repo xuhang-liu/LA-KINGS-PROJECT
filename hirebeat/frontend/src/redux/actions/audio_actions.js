@@ -117,7 +117,7 @@ export const sendAudioForReview = (type, id) => (dispatch, getState) => {
         payload: res.data,
       });
       dispatch({
-        type: INCREASE_VIDEO_COUNT,
+        type: INCREASE_AUDIO_COUNT,
       });
     })
     .catch((err) =>

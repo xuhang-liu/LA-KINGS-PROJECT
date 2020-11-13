@@ -5,8 +5,7 @@ from rest_framework.decorators import api_view
 from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenceSerializer
 from .models import Video, Label, Transcript, Sentence
 from django.contrib.auth.models import User
-from accounts.models import ReviewerInfo
-from accounts.models import Profile
+from accounts.models import ReviewerInfo, Profile
 from questions.models import Categorys, SubCategory
 from questions.serializers import SubcategorySerializer
 # For fake ai

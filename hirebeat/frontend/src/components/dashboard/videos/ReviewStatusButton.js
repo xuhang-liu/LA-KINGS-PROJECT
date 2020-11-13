@@ -47,21 +47,23 @@ function ReviewStatusButton(props) {
   function reviewToggle() {
     // send for review
     if (text == "Send For AI Review") {
-        sendVideoForReview("ai", video.id);
-        if (props.saved_video_count > props.save_limit) {
+        if (props.saved_video_count >= props.save_limit) {
           upgradeMessage();
         }
         else{
-          alert();
+          sendVideoForReview("ai", video.id);
+          window.location.reload();
+//          alert();
         }
     }
     else if (text == "Send For Expert Review") {
-        sendVideoForReview("expert", video.id);
-        if (props.saved_video_count > props.save_limit) {
+        if (props.saved_video_count >= props.save_limit) {
           upgradeMessage();
         }
         else {
-          alert();
+          sendVideoForReview("expert", video.id);
+          window.location.reload();
+//          alert();
         }
     }
     // view result
