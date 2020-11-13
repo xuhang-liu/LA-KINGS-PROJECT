@@ -23,6 +23,23 @@ export const ResumePreview = (props) => {
     window.location.reload();
   }
 
+  function deleteAlert() {
+    confirmAlert({
+        title: "Confirm to delete",
+        message: "Are you sure to delete the resume?",
+        buttons: [
+            {
+              label: 'Yes',
+              onClick: () => deleteCV()
+            },
+            {
+              label: 'No'
+            }
+        ]
+    });
+
+  }
+
   return (
       <div className="container d-flex justify-content-start" style={{marginTop:"2%"}}>
         <div className="col-2">
@@ -47,7 +64,7 @@ export const ResumePreview = (props) => {
               </button>
             </div>
             <div style={{marginLeft: "2rem"}}>
-              <button onClick={deleteCV} className="delete-btn"><i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i></button>
+              <button onClick={deleteAlert} className="delete-btn"><i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i></button>
             </div>
           </div>
           <MyVerticallyCenteredModal
