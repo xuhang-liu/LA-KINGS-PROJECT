@@ -1,7 +1,7 @@
 from rest_framework import routers
 from videos.api.viewsets import VideoViewSet
 from .views import get_unreviewed_video, mark_video_as_needed_review, \
-    add_video_label, get_video_sentences, get_video_user, get_unreviewed_video_list, get_review_count
+    add_video_label, get_video_sentences, get_video_user, get_unreviewed_video_list, get_review_count, delete_video
 from django.urls import path
 
 router = routers.DefaultRouter()
@@ -20,5 +20,5 @@ urlpatterns.append(path('mark_video_as_needed_review', mark_video_as_needed_revi
 urlpatterns.append(path('api/video-labels', add_video_label))
 urlpatterns.append(path('api/video-sentences', get_video_sentences))
 urlpatterns.append(path('api/video-user', get_video_user))
-
+urlpatterns.append(path('api/video/deletion', delete_video))
 

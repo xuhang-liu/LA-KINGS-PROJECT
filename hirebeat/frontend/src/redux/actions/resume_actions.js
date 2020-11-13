@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RESUMES, ADD_RESUME, INCREASE_RESUME_COUNT } from "./action_types";
+import { GET_RESUMES, ADD_RESUME, INCREASE_RESUME_COUNT, DELETE_RESUME } from "./action_types";
 import { createMessage, returnErrors } from "./message_actions";
 import { tokenConfig } from "./auth_actions";
 
@@ -30,6 +30,21 @@ export const addResume = (resume) => (dispatch, getState) => {
       });
       dispatch({
         type: INCREASE_RESUME_COUNT,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const deleteResume = (resumeId) => (dispatch, getState) => {
+  axios
+    .post("/api/resume/deletion", resumeId, tokenConfig(getState))
+    .then((res) => {
+      console.log("resume deleted")
+      dispatch({
+        type: DELETE_RESUME,
+        payload: res.data,
       });
     })
     .catch((err) =>
