@@ -109,7 +109,7 @@ function ButtonPanel(props) {
         <div className="col-12">
           <div className="row">
             <div className="col-5" style={{padding:"0%"}}>
-              {props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {saves_left}</p> : null}
+              {props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Reviews Left: {saves_left}</p> : null}
               {props.subpage == "resume" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {cv_saves_left}</p> : null}
             </div>
 
