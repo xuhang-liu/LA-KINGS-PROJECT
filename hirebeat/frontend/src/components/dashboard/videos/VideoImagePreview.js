@@ -90,7 +90,7 @@ export function VideoImagePreview(props) {
                     </div>
                     <div className="col-1" style={{marginRight: "3rem"}}>
                       <button onClick={removeVideo} className="delete-btn btn-margin">
-                        <i className="bx bx-trash bx-md"></i>
+                        <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                       </button>
                     </div>
                 </div>) : (  // TQ
@@ -112,7 +112,7 @@ export function VideoImagePreview(props) {
                   </div>
                   <div className="col-1">
                     <button onClick={removeVideo} className="delete-btn btn-margin">
-                      <i className="bx bx-trash bx-md"></i>
+                      <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                     </button>
                     </div>
                 </div>)

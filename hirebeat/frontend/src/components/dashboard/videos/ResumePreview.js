@@ -47,7 +47,7 @@ export const ResumePreview = (props) => {
               </button>
             </div>
             <div style={{marginLeft: "2rem"}}>
-              <button onClick={deleteCV} className="delete-btn"><i className="bx bx-trash bx-md"></i></button>
+              <button onClick={deleteCV} className="delete-btn"><i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i></button>
             </div>
           </div>
           <MyVerticallyCenteredModal
