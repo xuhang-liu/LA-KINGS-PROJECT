@@ -10,6 +10,8 @@ import {
   PROFILE_LOADED,
   PROFILE_UPDATED,
   INCREASE_VIDEO_COUNT,
+  INCREASE_RESUME_COUNT,
+  UPGRADE_ACCOUNTS,
 } from "../actions/action_types";
 
 const initialState = {
@@ -18,6 +20,7 @@ const initialState = {
   isLoading: false,
   user: null,
   profile: {},
+  premiums: [],
 };
 
 export default function (state = initialState, action) {
@@ -67,6 +70,19 @@ export default function (state = initialState, action) {
           ...state.profile,
           saved_video_count: state.profile.saved_video_count + 1,
         },
+      };
+    case INCREASE_RESUME_COUNT:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          saved_resume_count: state.profile.saved_resume_count + 1,
+        },
+      };
+    case UPGRADE_ACCOUNTS:
+      return {
+        ...state,
+        premiums: action.payload,
       };
     default:
       return state;

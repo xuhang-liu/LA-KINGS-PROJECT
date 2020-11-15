@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
 import ReactWOW from 'react-wow';
-import feature2 from "../../assets/Picture2.png";
-import feature3 from "../../assets/Picture3.png";
-import feature4 from "../../assets/Picture4.png";
+import {Link} from "react-router-dom";
 
 class MoreToDiscover extends Component {
+
     render() {
         return (
-            <section className="ptb-100 bg-f4f6fc">
-                <div className="container">
+            <React.Fragment>
+            <section className="ptb-100">
+                <div className="container" id='i1'>
                     <div className="section-title">
                         <h2 className="mb-2">More to Discover</h2>
-                        <p>HireBeat is transforming the way of practicing interview to improve the efficiency. Use our interview tool and AI-based feedback to impress recruiters in just a few clicks</p>
+                        <p>We are transforming the way of career pivoting to improve job-hunting efficiency. Use our interview practicing and resume matching tools to impress recruiters in just a few clicks</p>
                     </div>
                 </div>
 
@@ -22,25 +21,30 @@ class MoreToDiscover extends Component {
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-left-img">
-                                    <img src={feature2} alt="image" />
+                                    <img src='https://hirebeat-assets.s3.amazonaws.com/PS.gif' alt="gif" />
                                 </div>
                             </div>
 
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-content pl-3">
                                     <span className="number">01</span>
-                                    <h3>360° Interview Practice</h3>
-                                    <p>Rather than spend hours to search questions online, you should focus on behavioral-based and technical-specific questions. Our practice interviews are customizable that suit the specific job position you are looking for.</p>
+                                    <h3>Practice/Simulate Modes</h3>
+                                    <p>Choose your own set of questions and practice your customized interview</p>
                                     <ul>
                                         <li>
                                             <i className='bx bx-badge-check'></i>
-                                            Behavioral-based interview questions
+                                            Practice questions of your choice
                                         </li>
                                         <li>
                                             <i className='bx bx-badge-check'></i>
-                                            Occupation-specific interview questions
+                                            Real-time interview simulation and get ready for the big day
                                         </li>
                                     </ul>
+                                    <Link to='/practice' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <i className="bx bxs-arrow-to-right"></i>
+                                            Start Now
+                                        <span></span>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -48,31 +52,36 @@ class MoreToDiscover extends Component {
                 </div>
                 </ReactWOW>
 
-                <ReactWOW animation='fadeInUp' delay='0.4s'>
+                <ReactWOW animation='fadeInUp' delay='0.2s'>
                     <div className="overview-item">
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-content pl-3">
                                         <span className="number">02</span>
-                                        <h3>Track Training Progress</h3>
-                                        <p>Video practice data is secured and safe in the cloud system. you can work at your own pace to track your practice video with feedbacks, you will build the knowledge and confidence to land your next dream job.</p>
+                                        <h3>Behavior/Technical Questions</h3>
+                                        <p>Ace your interview skills for both behavioral and technical questions with our help</p>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Interview video privacy
+                                                "Tell me about a time..."
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Anytime and anywhere
+                                                Practice your technical concepts
                                             </li>
                                         </ul>
+                                        <Link to='/practice' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <i className="bx bxs-arrow-to-right"></i>
+                                            Start Now
+                                        <span></span>
+                                    </Link>
                                     </div>
                                 </div>
 
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-right-img">
-                                        <img src={feature3} alt="image" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/BT.gif' alt="gif" />
                                     </div>
                                 </div>
                             </div>
@@ -80,38 +89,82 @@ class MoreToDiscover extends Component {
                     </div>
                 </ReactWOW>
 
-                <ReactWOW animation='fadeInUp' delay='0.6s'>
-                    <div className="overview-item">
+                <ReactWOW animation='fadeInUp' delay='0.2s'>
+                    <div className="overview-item" id='i2'>
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-left-img">
-                                        <img src={feature4} alt="image" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/AI.gif' alt="gif" />
                                     </div>
                                 </div>
 
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-content pl-3">
                                         <span className="number">03</span>
-                                        <h3>AI & Expert Feedback</h3>
-                                        <p>Once you've completed an interview, a recording is provided to you privately. No more guessing on your performance, using our evaluation system by sending your practice video to get valuable feedback from experts or AI.</p>
+                                        <h3>AI/Expert Analytics</h3>
+                                        <p>Get comprehensive feedback on your interview performance with our AI/expert analytics</p>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Expert feedback
+                                                Quantified feedback based on our AI-model
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                AI behavioral analysis
+                                                Suggestions on improvement from our HR experts
                                             </li>
                                         </ul>
+                                        <Link to='/practice' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <i className="bx bxs-arrow-to-right"></i>
+                                            Start Now
+                                        <span></span>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </ReactWOW>
-            </section>
+
+                <ReactWOW animation='fadeInUp' delay='0.2s'>
+                    <div className="overview-item">
+                        <div className="container max-width-1290">
+                            <div className="row align-items-center">
+                                <div className="col-lg-6 col-md-6">
+                                    <div className="overview-content pl-3">
+                                        <span className="number">04</span>
+                                        <h3>Optimize Resume Matching</h3>
+                                        <p>Optimize the matching rate between resume and target job based on AI suggestions on key words</p>
+                                        <ul>
+                                            <li>
+                                                <i className='bx bx-badge-check'></i>
+                                                Matching rate
+                                            </li>
+                                            <li>
+                                                <i className='bx bx-badge-check'></i>
+                                                ATS-Friendly Tips
+                                                <span style={{paddingLeft:'2px'}} className="bx bxs-info-circle" data-toggle="tooltip" data-placement="right" title="Applicant tracking systems (ATS) is a recruiting software used by most of large companies, it provides ranking by calculating how well your resume scores based on job description."></span>
+                                            </li>
+                                        </ul>
+                                        <Link to='/resume' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <i className="bx bxs-arrow-to-right"></i>
+                                            Start Now
+                                        <span></span>
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-6 col-md-6">
+                                    <div className="overview-right-img">
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/Resume.gif' alt="gif" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ReactWOW>
+                </section>
+            </React.Fragment>
         );
     }
 }

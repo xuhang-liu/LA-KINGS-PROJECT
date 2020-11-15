@@ -8,8 +8,74 @@ import {
   VideoNumberLinkRow,
   RecordDoneButton,
   BglessCardButton,
+  BglessCardButton1,
 } from "../practice/CardComponents";
 import { withRouter } from "react-router-dom";
+import {
+  random,
+  positiveAttitude,
+  workCommitment,
+  teamworkSkill,
+  leadership,
+  pressureHandling,
+  proactiveSkill,
+  workEthic,
+  creativity,
+  reliability,
+  detailOriented,
+  communicationSkill,
+  problemSolving
+} from "./../../constants/constants";
+
+ // determine review categories
+  function reviewCategories(q_category) {
+      var review_categories = "";
+      if(q_category === "Problem Solving") {
+        review_categories = problemSolving;
+      }
+      else if (q_category === "Positive Attitude") {
+        review_categories = positiveAttitude;
+      }
+      else if (q_category === "Work Commitment") {
+        review_categories = workCommitment;
+      }
+      else if (q_category === "Teamwork Skill") {
+        review_categories = teamworkSkill;
+      }
+      else if (q_category === "Leadership") {
+        review_categories = leadership;
+      }
+      else if (q_category === "Pressure Handling") {
+        review_categories = pressureHandling;
+      }
+      else if (q_category === "Proactive Skill") {
+        review_categories = proactiveSkill;
+      }
+      else if (q_category === "Work Ethic") {
+        review_categories = workEthic;
+      }
+      else if (q_category === "Creativity") {
+        review_categories = creativity;
+      }
+      else if (q_category === "Reliability") {
+        review_categories = reliability;
+      }
+      else if (q_category === "Detail Oriented") {
+        review_categories = detailOriented;
+      }
+      else if (q_category === "Communication Skill") {
+        review_categories = communicationSkill;
+      }
+      else {
+        review_categories = random;
+      }
+      return review_categories;
+  }
+
+  // map question title(question table) to question type(video table)
+  function matchQType(q_title) {
+    return q_title == "BQ" ? "Behavior Question" : "Technique Question";
+  }
 
 export class MyVideoUploader extends Component {
   constructor(props) {
@@ -31,10 +97,23 @@ export class MyVideoUploader extends Component {
 
     //For other browsers
     var name = this.props.video.name;
-    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
+    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;  // change bucket when run in local
+    var q_category = `${this.props.questions[this.props.q_index].category}`;
+    var q_description = `${this.props.questions[this.props.q_index].description}`;
+    var q_title = `${this.props.questions[this.props.q_index].title}`;
+    var q_answer = `${this.props.questions[this.props.q_index].answer}`;
+    var q_explain = `${this.props.questions[this.props.q_index].explain}`;
+
+    // insert MetaData to video table
     const videoMetaData = {
       url: url,
-      q_description: `${this.props.questions[this.props.q_index].description}`,
+      q_description: q_description,
+      q_type: matchQType(q_title),
+      q_category: q_category,
+      q_answer: q_answer,
+      q_explain: q_explain,
+      ai_review_categories: reviewCategories(q_category),
+      expert_review_categories: reviewCategories(q_category),
     };
     this.props.addVideo(videoMetaData);
   };
@@ -48,32 +127,25 @@ export class MyVideoUploader extends Component {
   };
 
   handleUpload() {
-    if (this.props.saved_video_count < this.props.save_limit) {
-      this.uploader.uploadFile(this.props.video);
-      this.props.resetDeviceAndNextQuestion();
-    } else {
-      this.props.createMessage({
-        errorMessage: "Video save limit already reached",
-      });
-    }
+    // if (this.props.saved_video_count < this.props.save_limit) {
+    this.uploader.uploadFile(this.props.video);
+    this.props.resetDeviceAndNextQuestion();
+    // } else {
+    //   this.props.createMessage({
+    //     errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
+    //   });
+    // }
   }
 
   handleUploadAndFinish = () => {
-    if (this.uploadCheckPassed) {
-      this.uploader.uploadFile(this.props.video);
-      this.redirectToDashboard();
-    } else {
-      this.props.createMessage({
-        errorMessage: "Video save limit already reached",
-      });
-    }
-  };
-
-  uploadCheckPassed = () => {
-    console.log("======result========");
-    console.log(this.props.saved_video_count);
-    console.log(this.props.save_limit);
-    return this.props.saved_video_count < this.props.save_limit;
+    // if (this.props.saved_video_count < this.props.save_limit) {
+    this.uploader.uploadFile(this.props.video);
+    this.redirectToDashboard();
+    // } else {
+    //   this.props.createMessage({
+    //     errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
+    //   });
+    // }
   };
 
   redirectToDashboard = () => {
@@ -86,12 +158,12 @@ export class MyVideoUploader extends Component {
     var saveOnTap = this.handleUpload;
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
     var saveText = "Save and Next";
-    var skipText = "Discard and Skip";
+    var skipText = "Discard and Next";
     if (this.props.last_q) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
       saveText = "Save and Finish";
-      skipText = "Skip and Finish";
+      skipText = "Discard and Finish";
     }
     return (
       <div>
@@ -119,29 +191,23 @@ export class MyVideoUploader extends Component {
           isAudio={this.props.isAudio}
         />
         <VideoNumberLinkRow
-          number_of_videos_to_save={
-            this.props.save_limit == 1000
-              ? "Unlimited"
-              : this.props.save_limit - this.props.saved_video_count
-          }
+          number_of_videos_to_save= "Unlimited"
           isAudio={this.props.isAudio}
           //upgrade={() => console.log("upgrade")}
         />
-        <RecordDoneButton
-          onTap={() => {
-            this.props.startCamera();
-            this.props.resetDevice();
-          }}
-          textDisplayed={"Try Again"}
+        {this.props.save_limit <= 5  &&
+        <BglessCardButton1
+          textDisplayed={"Upgrade Now ->"}
           buttonWidth={"100%"}
+          fontFamily={"Avenir Next"}
           isAudio={this.props.isAudio}
-          fontFamily={"Lato"}
         />
+        }
         <BglessCardButton
           onTap={skipOnTap}
           textDisplayed={skipText}
           buttonWidth={"100%"}
-          fontFamily={"Lato"}
+          fontFamily={"Avenir Next"}
           isAudio={this.props.isAudio}
         />
       </div>

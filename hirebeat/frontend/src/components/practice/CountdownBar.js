@@ -64,16 +64,6 @@ export class CountdownBar extends Component {
     var percent = (this.state.timeRemain / this.state.timeTotal) * 100;
     return (
       <div className="d-flex justify-content-center align-items-center">
-        <i
-          className="material-icons-outlined"
-          style={{
-            fontSize: 15,
-            marginRight: "4px",
-            color: "white",
-          }}
-        >
-          update
-        </i>
         <div className="progress" style={{ width: "120px" }}>
           <div
             className="progress-bar progress-bar-striped bg-warning progress-bar-animated"

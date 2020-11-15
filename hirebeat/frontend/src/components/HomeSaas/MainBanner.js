@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import ReactWOW from 'react-wow';
 import Particles from 'react-particles-js';
 import ModalVideo from 'react-modal-video';
+import MediaQuery from 'react-responsive';
 import arrow from "../public/images/saas-shape/arrow.png";
 import box1 from "../public/images/saas-shape/box1.png";
 import boy1 from "../public/images/saas-shape/boy1.png";
@@ -65,17 +66,16 @@ class MainBanner extends Component {
                         mute: 1
                       }}
                     isOpen={this.state.isOpen} 
-                    videoId='Ct82zEpHUf8'
+                    videoId='aJPnes3-yOQ'
                     onClose={() => this.setState({isOpen: false})} 
                 />
 
                 <div className="saas-banner">
                     <div className="d-table">
                         <div className="d-table-cell">
-                            <div className="container max-width-1290">
+                            <div className="container max-width-1440">
                                 <div className="row align-items-center pt-8">
-                            
-                                    <div className="col-lg-6 col-md-12">
+                                    <div className="col-lg-5 col-md-12">
                                         <div className="saas-image mt-70">
                                             <ReactWOW animation='fadeInDown' delay='0.6s'>
                                                 <img src={arrow} alt="arrow" />
@@ -131,14 +131,14 @@ class MainBanner extends Component {
                                             </ReactWOW>
                                         </div>
                                     </div>
-                                    <div className="col-lg-6 col-md-12">
+                                    <div className="col-lg-7 col-md-12">
                                         <div className="hero-content pl-6">
-                                            <h1>Land your next job, starting with the interview</h1>
-                                            <p>AI-analysis interview platform that supercharges your performance and makes a great impression at your next interview.</p>
+                                            <h1>All-in-one platform to land your next dream job</h1>
+                                            <p>Gain confidence and competence with AI-powered interview training and resume matching to boost your career path</p>
                                             
                                             <div className="banner-btn">
                                                 <div className="d-flex">
-                                                    <Link to="/register">
+                                                    <Link to="/practice">
                                                         <a className="default-btn" style={{color:"white"}}>
                                                             <i className="bx bxs-hot"></i>
                                                             Try For Free 

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
-import BlogComments from './BlogComments';
 import BlogSidebar from './BlogSidebar';
-import blog3pic from '../../assets/blog3-pic.jpg';
 
 class BlogDetailsContent extends Component {
     render() {
@@ -32,7 +30,7 @@ class BlogDetailsContent extends Component {
                                     <h2>How to Prepare for an AI Interview</h2>
 
                                     <div className="article-image">
-                                    <img src={blog3pic} alt="image" />
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog3-pic.jpg" alt="image" />
                                     </div>
 
                                     <p>
@@ -70,8 +68,8 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-details3"}
-                                        quote={"HireBeat - Video Interview"}
+                                        url={"https://hirebeat.co/how-to-prepare-for-an-AI-interview"}
+                                        quote={"How to Prepare for an AI Interview"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
                                             <i className="bx bxl-facebook"></i>
@@ -80,8 +78,8 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-details3"}
-                                           title={"HireBeat - Video Interview"}
+                                           url={"https://hirebeat.co/how-to-prepare-for-an-AI-interview"}
+                                           title={"How to Prepare for an AI Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
                                            <a target="_blank">
@@ -91,8 +89,8 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-details3"}
-                                            title={"HireBeat - Video Interview"}
+                                            url={"https://hirebeat.co/how-to-prepare-for-an-AI-interview"}
+                                            title={"How to Prepare for an AI Interview"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-linkedin"></i>
@@ -101,8 +99,8 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-details3"}
-                                            title={"HireBeat - Video Interview"}>
+                                            url={"https://hirebeat.co/how-to-prepare-for-an-AI-interview"}
+                                            title={"How to Prepare for an AI Interview"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>

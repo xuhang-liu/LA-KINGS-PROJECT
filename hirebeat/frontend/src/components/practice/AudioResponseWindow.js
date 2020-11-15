@@ -7,7 +7,7 @@ import NotePad from "./NotePad";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getQuestions } from "../../redux/actions/question_actions";
-import { createMessage } from "../../redux/actions/message_actions";
+//import { createMessage } from "../../redux/actions/message_actions";
 import PrepCountdown from "./PrepCountdown";
 
 export class AudioResponseWindow extends Component {
@@ -17,6 +17,7 @@ export class AudioResponseWindow extends Component {
     getQuestions: PropTypes.func.isRequired,
     questionType: PropTypes.string.isRequired, // Used to determine the type of questions to get
     questionNumber: PropTypes.number.isRequired,
+    questionCategory: PropTypes.string.isRequired,
     responseLength: PropTypes.number.isRequired,
   };
 
@@ -31,10 +32,12 @@ export class AudioResponseWindow extends Component {
         behavior: "smooth",
       });
     }, 200);
-    this.props.getQuestions(this.props.questionNumber);
+    this.props.getQuestions(this.props.questionNumber, this.props.questionCategory);
   }
 
   finishCountdown = () => {
+    const audioStart = document.getElementsByClassName("audio-start")[0];
+    audioStart.play();
     this.setState({
       status: "Loading",
     });
@@ -47,6 +50,8 @@ export class AudioResponseWindow extends Component {
   };
 
   recordingDone = () => {
+    const audioStop = document.getElementsByClassName("audio-stop")[0];
+    audioStop.play();
     this.setState({
       status: "Your Answer",
     });
@@ -101,8 +106,15 @@ export class AudioResponseWindow extends Component {
       this.props.responseLength * 60;
 //    audioRecorderOptions.width = window.innerWidth / 2.4;
 //    audioRecorderOptions.height = window.innerWidth / 3.6;
+    audioRecorderOptions.controlBar.recordToggle = (this.props.isSimulate) ? false : true;
     return (
       <div>
+        <audio className="audio-start">
+          <source src="https://hirebeat-assets.s3.amazonaws.com/single_beep.mp3"></source>
+        </audio>
+        <audio className="audio-stop">
+          <source src="https://hirebeat-assets.s3.amazonaws.com/double_beep.mp3"></source>
+        </audio>
         {this.props.loaded ? (
           <PracticeCard>
             {this.questionIndex()}
@@ -126,7 +138,7 @@ export class AudioResponseWindow extends Component {
                       style={{
                         fontSize: 15,
                         color: "white",
-                        width: "30%",
+                        width: "40%",
                         marginLeft: "10px",
                         marginTop: "5px",
                         marginBottom: "5px",
@@ -152,9 +164,11 @@ export class AudioResponseWindow extends Component {
                   resetCountdownBar={this.resetCountdownBar}
                   isTesting={false}
                   last_q={this.props.last_q}
+                  isSimulate={this.props.isSimulate}
                 />
               )}
             </div>
+            <NotePad status={this.state.status} isAudio={true}/>
           </PracticeCard>
         ) : null}
       </div>

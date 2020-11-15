@@ -3,15 +3,23 @@ import {
   DELETE_VIDEO,
   ADD_VIDEO,
   ADD_REVIEWS,
+  ADD_LABELS,
   GET_UNREVIEWED_VIDEO,
+  GET_UNREVIEWED_VIDEO_LIST,
+  GET_REVIEW_COUNT,
   VIDEO_UNDER_REVIEW,
 } from "../actions/action_types";
 
 const initialState = {
   videos: [],
-  q_type: [],
+  unreviewed_videos: [],
+  q_type: '',
+  q_category: '',
+  q_description: '',
   loaded: false,
   review_count: 0,
+  nums: 0,
+  deleted_video_id: 0,
 };
 
 export default function (state = initialState, action) {
@@ -24,15 +32,29 @@ export default function (state = initialState, action) {
       };
     case GET_UNREVIEWED_VIDEO:
       return {
-        q_type: action.payload.video.q_description,
+        q_type: action.payload.video.q_type,
+        q_category: action.payload.video.q_category,
+        q_description: action.payload.video.q_description,
         videos: action.payload.video,
         loaded: true,
+        review_count: action.payload.review_count,
+      };
+    case GET_UNREVIEWED_VIDEO_LIST:
+      return {
+        unreviewed_videos: action.payload.data,
+        nums: action.payload.nums,
+        review_count: action.payload.review_count,
+        loaded: true,
+      };
+    case GET_REVIEW_COUNT:
+      return {
         review_count: action.payload.review_count,
       };
     case DELETE_VIDEO:
       return {
         ...state,
-        videos: state.videos.filter((video) => video.id !== action.payload),
+        deleted_video_id: action.payload.deleted_video_id,
+//        videos: state.videos.filter((video) => video.id !== action.payload),
       };
     case ADD_VIDEO:
       return {
@@ -54,6 +76,7 @@ export default function (state = initialState, action) {
         }),
       };
     case ADD_REVIEWS:
+    case ADD_LABELS:
     default:
       return state;
   }

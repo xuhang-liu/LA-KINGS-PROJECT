@@ -7,7 +7,7 @@ import NotePad from "./NotePad";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getQuestions } from "../../redux/actions/question_actions";
-import { createMessage } from "../../redux/actions/message_actions";
+//import { createMessage } from "../../redux/actions/message_actions";
 import PrepCountdown from "./PrepCountdown";
 
 export class ResponseWindow extends Component {
@@ -17,6 +17,7 @@ export class ResponseWindow extends Component {
     getQuestions: PropTypes.func.isRequired,
     questionType: PropTypes.string.isRequired, // Used to determine the type of questions to get
     questionNumber: PropTypes.number.isRequired,
+    questionCategory: PropTypes.string.isRequired,
     responseLength: PropTypes.number.isRequired,
   };
 
@@ -31,10 +32,12 @@ export class ResponseWindow extends Component {
         behavior: "smooth",
       });
     }, 200);
-    this.props.getQuestions(this.props.questionNumber);
+    this.props.getQuestions(this.props.questionNumber, this.props.questionCategory);
   }
 
   finishCountdown = () => {
+    const audioStart = document.getElementsByClassName("audio-start")[0];
+    audioStart.play();
     this.setState({
       status: "Loading",
     });
@@ -47,6 +50,8 @@ export class ResponseWindow extends Component {
   };
 
   recordingDone = () => {
+    const audioStop = document.getElementsByClassName("audio-stop")[0];
+    audioStop.play();
     this.setState({
       status: "Your Answer",
     });
@@ -99,10 +104,17 @@ export class ResponseWindow extends Component {
       this.state.status == "Preparation" ? 30 : this.props.responseLength * 60;
     videoRecorderOptions.plugins.record.maxLength =
       this.props.responseLength * 60;
-    videoRecorderOptions.width = window.innerWidth / 2.4;
-    videoRecorderOptions.height = window.innerWidth / 3.6;
+//    videoRecorderOptions.width = window.innerWidth / 2.4;
+//    videoRecorderOptions.height = window.innerWidth / 3.6;
+    videoRecorderOptions.controlBar.recordToggle = (this.props.isSimulate) ? false : true;
     return (
       <div>
+        <audio className="audio-start">
+          <source src="https://hirebeat-assets.s3.amazonaws.com/single_beep.mp3"></source>
+        </audio>
+        <audio className="audio-stop">
+          <source src="https://hirebeat-assets.s3.amazonaws.com/double_beep.mp3"></source>
+        </audio>
         {this.props.loaded ? (
           <PracticeCard>
             {this.questionIndex()}
@@ -117,7 +129,7 @@ export class ResponseWindow extends Component {
                   <div
                     style={{
                       backgroundColor: "black",
-                      width: window.innerWidth / 2.4,
+                      width: 520,
                       borderRadius: "8px 8px 0 0",
                       display: "flex",
                     }}
@@ -126,7 +138,7 @@ export class ResponseWindow extends Component {
                       style={{
                         fontSize: 15,
                         color: "white",
-                        width: "60%",
+                        width: "40%",
                         marginLeft: "10px",
                         marginTop: "5px",
                         marginBottom: "5px",
@@ -152,6 +164,7 @@ export class ResponseWindow extends Component {
                   resetCountdownBar={this.resetCountdownBar}
                   isTesting={false}
                   last_q={this.props.last_q}
+                  isSimulate={this.props.isSimulate}
                 />
               )}
             </div>

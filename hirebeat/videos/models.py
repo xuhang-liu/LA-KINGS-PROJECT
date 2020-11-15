@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 from questions.models import Question, SubCategory
 from django.utils.translation import gettext_lazy as _
@@ -13,6 +14,7 @@ class Video(models.Model):
         BehaviorQuestion = 'Behavior Question', _('Behavior Question')
         TechniqueQuestion = 'Technique Question', _('Technique Question')
     q_type= models.CharField(max_length=50, choices=QuestionType.choices,default=QuestionType.BehaviorQuestion)
+    q_category = models.CharField(default="Random", max_length=100)
     # review related
     needed_expert_review = models.BooleanField(default=False)
     is_expert_reviewed = models.BooleanField(default=False)
@@ -29,7 +31,14 @@ class Video(models.Model):
     ai_review_categories = models.CharField(default="Positive Attitude,Communication,Detail Oriented,Team Spirit,Stress Tolerance", max_length=500)
     #ai_category_score is a char b/c sqlite has no support for ArrayField. Now db is migrated to postgres, this filed can be an ArrayField. Code in frontend should change accordingly.
     ai_category_score = models.CharField(default="10,10,10,10,10", max_length=500) 
-    # More fields to add
+    # ai words and ummm... detection
+    ai_words_per_minute = models.CharField(null=True, max_length=50)
+    ai_filter_words = ArrayField(models.CharField(null=True, max_length=100), blank=True, null=True)
+    ai_auto_ready = models.BooleanField(default=False)
+    # TQ answer
+    q_answer = models.TextField(blank=True, null=True)
+    q_explain = models.TextField(blank=True, null=True)
+
     def __str__(self):
         return self.owner.username + '|' + self.created_at.strftime("%m/%d/%Y")
 
@@ -50,6 +59,6 @@ class Sentence(models.Model):
         return self.timestamp + '|' + self.sentence
 
 class Label(models.Model):
-    sentence = models.ForeignKey(Sentence, on_delete=models.CASCADE)
-    subCategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    sentence = models.BigIntegerField()
+    subCategory = models.BigIntegerField()
     label = models.BooleanField(default=False)

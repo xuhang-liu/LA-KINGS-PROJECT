@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
-import whitelogo from "../../assets/HireBeatLogo.png";
+import {FacebookIcon, LinkedinIcon, TwitterIcon, EmailIcon} from "react-share";
+import hirebeatlogo from "../../assets/HireBeatLogo.png";
+import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
 
 
 class Footer extends Component {
@@ -16,14 +17,27 @@ class Footer extends Component {
                             <div className="single-footer-widget">
                                 <div className="logo">
                                     <a href="/">
-                                        <img src={whitelogo} alt="image" style={{width:"2.5rem", paddingBottom:"1rem"}}/>
-                                        <span className="font-weight-bold"
-                                        style={{fontSize:"1.6rem", color:"white", marginLeft:"0.5rem"}}>
-                                        HireBeat
-                                        </span>
+                                    <img
+                                        src={hirebeatlogo}
+                                        className="img-fluid mr-3"
+                                        alt="logo"
+                                        style={{
+                                        width: "14%",
+                                        height:"14%",
+                                        }}
+                                    />
+                                    <img
+                                        src={hirebeatlogotext}
+                                        className="img-fluid mr-2"
+                                        alt="logotext"
+                                        style={{
+                                        width: "40%",
+                                        height:"100%",
+                                        }}
+                                    />
                                     </a>
                                 </div>
-                                <p style={{marginRight:"2%"}}>AI-analysis interview platform that supercharges your performance and makes a great impression at your next interview.</p>
+                                <p style={{marginRight:"2%"}}>The best career support platform that supercharges your performance to make a great impression at your next interview</p>
                             </div>
                         </div>
 
@@ -84,46 +98,30 @@ class Footer extends Component {
                                     <li>Email: <span><a href="mailto: info@hirebeat.co">info@hirebeat.co</a></span></li>
                                     <li>Phone: <span>+1 (929)367-8168</span></li>
                                 </ul>
-                                <ul className="social">
+                                <ul className="social1">
                                     <li>
-                                    <FacebookShareButton 
-                                        url={"https://hirebeat.co"}
-                                        quote={"HireBeat - Video Interview"}
-                                        hashtag="#hirebeat">
-                                        <a target="_blank">
-                                            <i className="bx bxl-facebook"></i>
+                                        <a href="https://www.facebook.com/HireBeat" target="_blank">
+                                        <FacebookIcon size={32} round={true}>
+                                        </FacebookIcon>
                                         </a>
-                                    </FacebookShareButton>
                                     </li>
                                     <li>
-                                        <TwitterShareButton
-                                           url={"https://hirebeat.co"}
-                                           title={"HireBeat - Video Interview"}
-                                           via={"HireBeat"}
-                                           hashtag="#hirebeat">
-                                           <a target="_blank">
-                                                <i className="bx bxl-twitter"></i>   
-                                           </a>
-                                        </TwitterShareButton>
+                                        <a href="https://www.linkedin.com/company/hirebeat/" target="_blank">
+                                        <LinkedinIcon size={32} round={true}>
+                                        </LinkedinIcon>
+                                        </a>
                                     </li>
                                     <li>
-                                        <LinkedinShareButton
-                                            url={"https://hirebeat.co"}
-                                            title={"HireBeat - Video Interview"}
-                                            source={"HireBeat"}>
-                                            <a target="_blank">
-                                                <i className="bx bxl-linkedin"></i>
-                                            </a>
-                                        </LinkedinShareButton>
+                                        <a href="https://twitter.com/hirebeat" target="_blank">
+                                        <TwitterIcon size={32} round={true}>
+                                        </TwitterIcon>
+                                        </a>
                                     </li>
                                     <li>
-                                        <WhatsappShareButton
-                                            url={"https://hirebeat.co"}
-                                            title={"HireBeat - Video Interview"}>
-                                            <a target="_blank">
-                                                <i className="bx bxl-whatsapp"></i>
-                                            </a>
-                                        </WhatsappShareButton>
+                                        <a href="mailto: info@hirebeat.co" target="_blank">
+                                        <EmailIcon size={32} round={true}>
+                                        </EmailIcon>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {register, exchangeToken} from "../../redux/actions/auth_actions";
@@ -7,7 +7,7 @@ import {createMessage} from "../../redux/actions/message_actions";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
-import badge from '../../assets/badge-30.svg';
+import badge from '../../assets/badge.png';
 import leftbg from '../../assets/Login.png';
 
 function ScrollToTopOnMount() {
@@ -30,6 +30,7 @@ export class Register extends Component {
     auth: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
     createMessage: PropTypes.func.isRequired,
+    user: PropTypes.object,
   };
 
   onSubmit = (e) => {
@@ -78,7 +79,11 @@ export class Register extends Component {
   render() {
     const {username, email, password, password2} = this.state;
     if (this.props.auth.isAuthenticated) {
-      return <Redirect to="/practice"/>;
+      if (this.props.user.groups[0] == "reviewers") {
+        return <Redirect to="/review"/>;
+      } else {
+        return <Redirect to="/dashboard"/>;
+      }
     }
     return (
         <React.Fragment>
@@ -88,14 +93,14 @@ export class Register extends Component {
             <section className="signup-area">
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0"> 
-                      <img src={leftbg}></img>
+                      <img src={leftbg} alt="image"></img>
                     </div>
 
                     <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"3rem"}}>
                                     <div className="signup-form">
                                       <div>
-                                        <h3 style={{color:"#56a3fa", fontFamily: "Poppins"}}><b>Start your career with HireBeat</b></h3>
+                                        <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next"}}><b>Start your career with HireBeat</b></h3>
                                       </div>
 
                     <form onSubmit={this.onSubmit}>
@@ -108,7 +113,7 @@ export class Register extends Component {
                             onChange={this.onChange}
                             value={username}
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -127,7 +132,7 @@ export class Register extends Component {
                             required
                             onChange={this.onChange}
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -146,7 +151,7 @@ export class Register extends Component {
                             placeholder="Create Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -165,7 +170,7 @@ export class Register extends Component {
                             placeholder="Confirm Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -174,16 +179,19 @@ export class Register extends Component {
                             required/>
                       </div>
 
-                      <p className="d-flex text-muted justify-content-end"
+                      <p className="d-flex flex-wrap justify-content-end"
                          style={{
-                           fontWeight: "70"
+                           fontSize: "0.9rem",
+                           color: "grey",
+                           fontWeight: "400"
                          }}>
                         Have an account?
                         <a href="/login"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
-                             color: "orange"
+                             color: "orange",
+                             fontWeight: "400"
                            }}>
                           Log in
                         </a>
@@ -195,23 +203,26 @@ export class Register extends Component {
                         <button
                             type="submit"
                             className="default-btn"
+                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
                           Try For Free
                         </button>
                       </div>
-
-                      <p className="d-flex flex-wrap justify-content-end font-weight-lighter"
+                      <p className="d-flex flex-wrap justify-content-end"
                          style={{
                            fontSize: "0.9rem",
                            color: "grey",
+                           fontWeight: "400"
                          }}>
+                        <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
                         I have read and agree to the
                         <a href="/term"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
-                             color: "orange"
+                             color: "orange",
+                             fontWeight: "400"
                            }}>
                           Terms & Conditions
                         </a>
@@ -220,7 +231,7 @@ export class Register extends Component {
                       <hr className="style-four"
                           data-content="Or use"
                           style={{
-                            fontFamily: "Poppins",
+                            fontFamily: "Avenir Next",
                             marginBottom:"2rem",
                             marginTop:"4rem",
                           }}
@@ -232,9 +243,9 @@ export class Register extends Component {
 
                     <div>
                       <div>
-                        <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}}/>
-                        <div style={{paddingTop:"0.5rem", textAlign:"left", fontFamily: "Poppins"}}>
-                        <a>Your purchase is backed by our 30 Day Money Back Guarantee. We stand behind our training 100%. If you aren’t thrilled with the improvement in your interviewing, just email us and we’ll immediately refund the purchase.</a>
+                        <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
+                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next"}}>
+                        <a>No credit card information needed during signup. Enjoy your free plan.</a>
                         </div></div>
                     </div>
 
@@ -280,7 +291,7 @@ export class Register extends Component {
                             onChange={this.onChange}
                             value={username}
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               border: "1px solid #E5E5E5",
                               background: "#FFFFFF",
                               borderRadius: "5px",
@@ -300,7 +311,7 @@ export class Register extends Component {
                             required
                             onChange={this.onChange}
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               border: "1px solid #E5E5E5",
                               borderRadius: "5px",
@@ -320,7 +331,7 @@ export class Register extends Component {
                             placeholder="Create Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               border: "1px solid #E5E5E5",
                               background: "#FFFFFF",
                               borderRadius: "5px",
@@ -340,7 +351,7 @@ export class Register extends Component {
                             placeholder="Confirm Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               border: "1px solid #E5E5E5",
                               background: "#FFFFFF",
                               borderRadius: "5px",
@@ -371,7 +382,7 @@ export class Register extends Component {
                         <button
                             type="submit"
                             className="default-btn"
-                            style={{width:"100%"}}
+                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
                           Try For Free
@@ -383,6 +394,7 @@ export class Register extends Component {
                            fontSize: "0.9rem",
                            color: "grey",
                          }}>
+                      <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
                         I have read and agree to the
                         <a href="/term"
                            className="active d-flex ml-2"

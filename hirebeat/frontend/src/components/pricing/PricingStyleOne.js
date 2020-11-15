@@ -11,6 +11,53 @@ const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6
 
 class PricingStyleOne extends Component {
 
+    state = {
+        coupon_match: "",
+    }
+
+    handleInputChange = (e) => {
+        this.setState({
+          [e.target.name]: e.target.value,
+        });
+      };
+
+      handleCounponUpgrade = () => {
+        if(this.state.coupon_match != 'PRODUCTHUNT2020'){
+          confirmAlert({
+            title: 'Enter A Valid Code',
+            message: '',
+            buttons: [
+              {
+                label: 'Ok'
+              }
+            ]
+            });
+        }else{
+          this.handleClickCouponUpgrade();
+        }
+        /*if(this.handleClickUpgrade()){
+          var profile = this.makeProfile();
+          this.props.updateProfile(profile);
+        }*/
+    };
+
+      handleClickCouponUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1HRUQJKxU1MN2zWMo9p8tKjJ', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
     handleUpgrade = () => {
         if(this.props.profile.membership == 'Premium'){
           confirmAlert({
@@ -73,7 +120,7 @@ class PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{
-            price: 'price_1HK8ZnKxU1MN2zWMDvkw1zJy', // Replace with the ID of your price
+            price: 'price_1HmmhzKxU1MN2zWMlxYp4I0z', // Replace with the ID of your price
             quantity: 1,
           }],
           mode: 'subscription',
@@ -114,74 +161,54 @@ class PricingStyleOne extends Component {
                         {/* Pricing Tab List */}
                         <ul className="tabs">
                             <li
-                                className="current"
                                 onClick={(e) => this.openTabSection(e, 'tab1')}
                             >
                                 <span>
-                                    <i className="bx bxs-calendar-check"></i> Monthly
+                                    <i className="bx bxs-calendar-check"></i> 1-Month
                                 </span>
                             </li>
 
                             <li
+                                className="current"
                                 onClick={(e) => this.openTabSection(e, 'tab2')}
                             >
                                 <span>
-                                    <i className="bx bxs-calendar-check"></i> Yearly
+                                    <i className="bx bxs-calendar-check"></i> 3-Month
                                 </span>
                             </li>
                         </ul>
 
                         <div className="tab_content">
-                            <div id="tab1" className="tabs_item">
+                        <div id="tab2" className="tabs_item">
                                 <div className="row">
                                     {/* Single pricing table */}
-                                    <div className="col-lg-4 col-sm-6">
+                                    <div className="col-lg-6 col-md-6">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
                                                 <h3>Free</h3>
                                             </div>
 
                                             <div className="price">
-                                                <sup>$</sup>0 <sub>/ monthly</sub>
+                                                <sup>$</sup>0 <sub>/ month</sub>
+                                                <div style={{marginTop:'-1rem'}}><sub></sub></div>
                                             </div>
 
                                             <ul className="pricing-features">
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited behavioral practice </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited technical practice
+                                                    Unlimited Interview simulations & practices
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    10+ different industry selections
+                                                    3 AI or expert reports on your interview performance
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Share interview for feedback</li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    5 AI analysis
+                                                    2 resume-to-job evaluation reports
                                                 </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    5 HR expert reviews
+                                                <li style={{color:"#ffffff"}}>empty
                                                 </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    5 saved recorded interviews
-                                                </li>
-                                                <li style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
-                                                    Full access to interview training program
-                                                </li>
-                                                <li  style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> Full access to AI & HR evaluation
-                                                </li>
-                                                <li  style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
-                                                    Unlimited interview recording storage
+                                                <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                             </ul>
 
@@ -221,290 +248,35 @@ class PricingStyleOne extends Component {
                                     </div>
 
                                     {/* Single pricing table */}
-                                    <div className="col-lg-4 col-sm-6">
+                                    <div className="col-lg-6 col-md-6">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
-                                                <h3>Premium</h3>
+                                                <h3>3 Months Bundle</h3>
                                             </div>
 
-                                            <div className="price">
-                                                <sup>$</sup>19.99 <sub>/ monthly</sub>
+                                            <div className="price" style={{color:'#ff6b00'}}>
+                                                <sup>$</sup>9.99 <sub style={{color:'#ff6b00'}}>/ month</sub>
+                                                <div style={{marginTop:'-1rem'}}><sub>$29.97 in total - </sub><sub style={{color:'#ff6b00'}}><b>Save 50%</b></sub></div>
                                             </div>
 
                                             <ul className="pricing-features">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited behavioral practice </li>
+                                                    Unlimited interview simulations & practices
+                                                    </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited technical practice
+                                                    <b>Unlimited</b> AI and expert reports on your interview performance
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    10+ different industry selections
+                                                    <b>Unlimited</b> resume-to-job evaluation reports
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Share interview for feedback</li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited AI analysis
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited HR expert reviews
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited saved recorded interviews
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Full access to interview training program
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> Full access to AI & HR evaluation
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited interview recording storage 
-                                                </li>
-                                            </ul>
-                                            {
-                                                this.props.profile.membership == null && 
-                                                <div className="btn-box">
-                                                <Link to="/register">
-                                                <a className="default-btn" style={{color:"white"}}>
-                                                    <i className="bx bxs-hot"></i> 
-                                                    Try It Free Now
-                                                    <span></span>
-                                                </a>
-                                                </Link>
-                                                </div>
-                                            }
-                                            {
-                                                this.props.profile.membership == "Regular" &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white"}} onClick={this.handleUpgrade}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Upgrade Now
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                this.props.profile.membership == "Premium" &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Current Plan
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    {/* Single pricing table */}
-                                    <div className="col-lg-4 col-sm-6 offset-lg-0 offset-sm-3">
-                                        <div className="single-pricing-table left-align">
-                                            <div className="pricing-header">
-                                                <h3>Enterprise & University</h3>
-                                            </div>
-
-                                            <div className="price">
-                                                <sub>- Advanced solutions with multiple users -</sub>
-                                            </div>
-
-                                            <ul className="pricing-features">
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited job posting </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Integrated job board
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Passive Candidate Source
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Online application system </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Advanced ATS integration
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Pre-employment assessments
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited on demand video interview
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Share recorded interview internally
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Full access to recorded interviews
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited AI analysis access
-                                                </li>
-                                            </ul>
-
-                                            <div className="btn-box">
-                                                    <a href = "mailto: admin@hirebeat.co" className="default-btn" style={{color:"white"}}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Contact Us
-                                                        <span></span>
-                                                    </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="tab2" className="tabs_item">
-                                <div className="row">
-                                    {/* Single pricing table */}
-                                    <div className="col-lg-4 col-md-6">
-                                        <div className="single-pricing-table left-align">
-                                            <div className="pricing-header">
-                                                <h3>Free</h3>
-                                            </div>
-
-                                            <div className="price">
-                                                <sup>$</sup>0 <sub>/ yearly</sub>
-                                            </div>
-
-                                            <ul className="pricing-features">
-                                            <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited behavioral practice </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited technical practice
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    10+ different industry selections
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Share interview for feedback</li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    5 AI analysis
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    5 HR expert reviews
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    5 saved recorded interviews
-                                                </li>
-                                                <li  style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
-                                                    Full access to interview training program
-                                                </li>
-                                                <li  style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> Full access to AI & HR evaluation
-                                                </li>
-                                                <li  style={{color:"#979797"}}>
-                                                    <i className="bx bxs-x-circle"  style={{color:"#979797"}}></i> 
-                                                    Unlimited interview recording storage 
-                                                </li>
-                                            </ul>
-
-                                            {
-                                                this.props.profile.membership == null && 
-                                                <div className="btn-box">
-                                                <Link to="/register">
-                                                <a className="default-btn" style={{color:"white"}}>
-                                                    <i className="bx bxs-hot"></i> 
-                                                    Try It Free Now
-                                                    <span></span>
-                                                </a>
-                                                </Link>
-                                                </div>
-                                            }
-                                            {
-                                                this.props.profile.membership == "Regular" &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Current Plan
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                this.props.profile.membership == "Premium" &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white"}}>
-                                                        <i className="bx bxs-hot"></i> 
-                                                        Default Plan
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    {/* Single pricing table */}
-                                    <div className="col-lg-4 col-md-6">
-                                        <div className="single-pricing-table left-align">
-                                            <div className="pricing-header">
-                                                <h3>Premium</h3>
-                                            </div>
-
-                                            <div className="price">
-                                                <sup>$</sup>99.99 <sub>/ yearly</sub>
-                                            </div>
-
-                                            <ul className="pricing-features">
-                                            <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited behavioral practice </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited technical practice
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    10+ different industry selections
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Share interview for feedback</li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited AI analysis
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited HR expert reviews
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited saved recorded interviews
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Full access to interview training program
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> Full access to AI & HR evaluation
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited interview recording storage 
+                                                    Priority 24/7 customer support</li>
+                                                
+                                                <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                             </ul>
 
@@ -535,7 +307,75 @@ class PricingStyleOne extends Component {
                                                 <div className="btn-box">
                                                     <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
                                                         <i className="bx bxs-hot"></i> 
+                                                        Premium Already
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab1" className="tabs_item">
+                                <div className="row">
+                                    {/* Single pricing table */}
+                                    <div className="col-lg-6 col-sm-6">
+                                        <div className="single-pricing-table left-align">
+                                            <div className="pricing-header">
+                                                <h3>Free</h3>
+                                            </div>
+
+                                            <div className="price">
+                                                <sup>$</sup>0 <sub>/ month</sub>
+                                            </div>
+
+                                            <ul className="pricing-features">
+                                            <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited Interview simulations & practices
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    3 AI or expert reports on your interview performance
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    2 resume-to-job evaluation reports
+                                                </li>
+                                                <li style={{color:"#ffffff"}}>empty
+                                                </li>
+                                                <li style={{color:"#ffffff"}}>empty
+                                                </li>
+                                            </ul>
+
+                                            {
+                                                this.props.profile.membership == null && 
+                                                <div className="btn-box">
+                                                <Link to="/register">
+                                                <a className="default-btn" style={{color:"white"}}>
+                                                    <i className="bx bxs-hot"></i> 
+                                                    Try It Free Now
+                                                    <span></span>
+                                                </a>
+                                                </Link>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Regular" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
                                                         Current Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Premium" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Default Plan
                                                         <span></span>
                                                     </button>
                                                 </div>
@@ -544,70 +384,104 @@ class PricingStyleOne extends Component {
                                     </div>
 
                                     {/* Single pricing table */}
-                                    <div className="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
+                                    <div className="col-lg-6 col-sm-6">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
-                                                <h3>Enterprise & University</h3>
+                                                <h3>Monthly</h3>
                                             </div>
 
                                             <div className="price">
-                                                <sub>- Advanced solutions with multiple users -</sub>
+                                                <sup>$</sup>19.99<sub>/ month</sub>
                                             </div>
 
                                             <ul className="pricing-features">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited job posting </li>
+                                                    Unlimited interview simulations & practices
+                                                    </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Integrated job board
+                                                    <b>Unlimited</b> AI and expert reports on your interview performance
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Passive Candidate Source
+                                                    <b>Unlimited</b> resume-to-job evaluation reports
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Online application system </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Advanced ATS integration
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Pre-employment assessments
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited on demand video interview
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Share recorded interview internally
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Full access to recorded interviews
-                                                </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited AI analysis access
+                                                    Priority 24/7 customer support</li>
+                                                
+                                                <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                             </ul>
-
-                                            <div className="btn-box">
-                                                    <a className="default-btn" style={{color:"white"}} href="mailto: admin@hirebeat.co">
+                                            {
+                                                this.props.profile.membership == null && 
+                                                <div className="btn-box">
+                                                <Link to="/register">
+                                                <a className="default-btn" style={{color:"white"}}>
+                                                    <i className="bx bxs-hot"></i> 
+                                                    Try It Free Now
+                                                    <span></span>
+                                                </a>
+                                                </Link>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Regular" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white"}} onClick={this.handleUpgrade}>
                                                         <i className="bx bxs-hot"></i> 
-                                                        Contact Us 
+                                                        Upgrade Now
                                                         <span></span>
-                                                    </a>
-                                            </div>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Premium" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Premium Already
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {
+                    this.props.profile.membership == "Regular" &&
+                    <div style={{textAlign:"center"}}>
+                    <h2 style={{display:"inline-block", marginRight:'0.5rem'}}>Coupon:</h2>
+                    <input
+                    className="form-control"
+                    type="text"
+                    name={"coupon_match"}
+                    placeholder={"Type your coupon code here"}
+                    onChange={this.handleInputChange}
+                    style={{  
+                      backgroundColor:"#FFFFFF",
+                      fontSize: "16px",
+                      borderRadius: "5px",
+                      color:"grey",
+                      width:"30%",
+                      display:"inline-block",
+                      paddingLeft: "0.5rem"
+                    }}
+                    />
+                    <button
+                    onClick={this.handleCounponUpgrade}
+                    type="button"
+                    className="default-btn" style={{color:"white", display:"inline-block", marginLeft:"1rem"}} 
+                    >
+                      <i className="bx bxs-hot"></i>
+                        Apply
+                        <span></span>
+                    </button>
+                    </div>}
                 </div>
             </section>
         );

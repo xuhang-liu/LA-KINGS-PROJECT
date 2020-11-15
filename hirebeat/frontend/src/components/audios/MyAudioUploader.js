@@ -48,32 +48,13 @@ export class MyAudioUploader extends Component {
   };
 
   handleUpload() {
-    if (this.props.saved_audio_count < this.props.save_limit) {
-      this.uploader.uploadFile(this.props.audio);
-      this.props.resetDeviceAndNextQuestion();
-    } else {
-      this.props.createMessage({
-        errorMessage: "Audio save limit already reached",
-      });
-    }
+    this.uploader.uploadFile(this.props.audio);
+    this.props.resetDeviceAndNextQuestion();
   }
 
   handleUploadAndFinish = () => {
-    if (this.uploadCheckPassed) {
-      this.uploader.uploadFile(this.props.audio);
-      this.redirectToDashboard();
-    } else {
-      this.props.createMessage({
-        errorMessage: "Audio save limit already reached",
-      });
-    }
-  };
-
-  uploadCheckPassed = () => {
-    console.log("======result========");
-    console.log(this.props.saved_audio_count);
-    console.log(this.props.save_limit);
-    return this.props.saved_audio_count < this.props.save_limit;
+    this.uploader.uploadFile(this.props.audio);
+    this.redirectToDashboard();
   };
 
   redirectToDashboard = () => {
@@ -86,12 +67,12 @@ export class MyAudioUploader extends Component {
     var saveOnTap = this.handleUpload;
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
     var saveText = "Save and Next";
-    var skipText = "Discard and Skip";
+    var skipText = "Discard and Next";
     if (this.props.last_q) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
       saveText = "Save and Finish";
-      skipText = "Skip and Finish";
+      skipText = "Discard and Finish";
     }
     return (
       <div>
@@ -118,11 +99,7 @@ export class MyAudioUploader extends Component {
           isAudio={true}
         />
         <AudioNumberLinkRow
-          number_of_audios_to_save={
-            this.props.save_limit == 1000
-              ? "Unlimited"
-              : this.props.save_limit - this.props.saved_audio_count
-          }
+          number_of_audios_to_save= "Unlimited"
           //upgrade={() => console.log("upgrade")}
         />
         <RecordDoneButton

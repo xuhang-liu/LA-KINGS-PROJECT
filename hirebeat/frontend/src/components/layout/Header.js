@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
+import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
+//import Dropdown from 'react-bootstrap/Dropdown'
 
 export class Header extends Component {
 
@@ -41,35 +43,38 @@ export class Header extends Component {
 
   renderUserLinks = () => {
     const {user} = this.props.auth;
+    /*const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+      <a
+        ref={ref}
+        onClick={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+        style={{textDecoration:"none", cursor:"pointer"}}
+      >
+        {children}
+      </a>
+    ));*/
     return (
         <React.Fragment>
           <div className="nav-item order-xl-1 align-self-center">
-            <div className="btn-group" role="group">
-              <button
-                  id="btnGroupDrop1"
-                  type="button"
-                  className="default-btn"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false">
-                <i className="bx bx-log-in"></i>        
-                <b>{user ? `  ${user.username}  ` : ""}</b>
-              </button>
-
-              <div
-                  className="dropdown-menu"
-                  role="menu"
-                  aria-labelledby="btnGroupDrop1"
-              >
-                <Link to="/">
-                <button
-                    onClick={this.props.logout}
-                    className="btn btn-danger btn-sm text-light"
-                    style={{width: "80%", marginLeft: "15px"}}
-                >
-                  Logout
-                </button>
-                </Link>
+            <div className="nav-link text-white navbar-font">
+              <div className="row">
+                    <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px'}}></i>        
+                    <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username}  ` : ""}
+                    <ul className="nav_submenu"> 
+                      <li>
+                      <Link to="/dashboard" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
+                        Dashboard
+                      </Link>
+                      </li>
+                      <li>
+                      <Link to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
+                        Log out
+                      </Link>
+                      </li>
+                    </ul>
+                    </span>
               </div>
             </div>
           </div>
@@ -87,11 +92,22 @@ export class Header extends Component {
                   <span className="header-text">Practice</span>
                 </Link>
               </li>
+              <li className="nav-item ">
+                <Link to="/resume" className="nav-link text-white navbar-font">
+                  <span className="header-text">Resume</span>
+                </Link>
+                </li>
               </MediaQuery>
               <li className="nav-item">
-                <Link to="/dashboard" className="nav-link text-white navbar-font">
-                  <span className="header-text">Dashboard</span>
-                </Link>
+                <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Career Tips <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu">
+                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Top Companies</Link></li>
+                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
+                    </ul>
+                  </span>
+                </a>
               </li>
               <li className="nav-item">
                 <Link to="/pricing" className="nav-link text-white navbar-font">
@@ -99,19 +115,16 @@ export class Header extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/company" className="nav-link text-white navbar-font">
-                  <span className="header-text">Company</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/bloghome" className="nav-link text-white navbar-font">
-                  <span className="header-text">Blog</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/contact" className="nav-link text-white navbar-font">
-                  <span className="header-text">Contact</span>
-                </Link>
+              <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Company <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu">
+                      <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                    </ul>
+                  </span>
+                </a>
               </li>
             </ul>
           </div>
@@ -120,6 +133,18 @@ export class Header extends Component {
   };
 
   renderGuestLinks = () => {
+    /*const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+      <a
+        ref={ref}
+        onClick={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+        style={{textDecoration:"none", cursor:"pointer"}}
+      >
+        {children}
+      </a>
+    ));*/
     return (
         <React.Fragment>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
@@ -133,7 +158,7 @@ export class Header extends Component {
             <li className="nav-item">
             <Link to="/register">
             <a className="default-btn" style={{color:"white"}}>
-              <i className="bx bxs-hot"></i>Get Started <span></span>
+              <i className="bx bxs-hot"></i>Sign Up <span></span>
             </a>
             </Link>
             </li>
@@ -151,23 +176,31 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item">
+                <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                  Career Tips <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu">
+                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Top Companies</Link></li>
+                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
+                    </ul>
+                  </span>
+                </a>
+              </li>
+              <li className="nav-item">
                 <a href="/pricing" className="nav-link text-white navbar-font">
                 <span className="header-text">Pricing</span>
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/company" className="nav-link text-white navbar-font">
-                <span className="header-text">Company</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/bloghome" className="nav-link text-white navbar-font">
-                <span className="header-text">Blog</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/contact" className="nav-link text-white navbar-font">
-                <span className="header-text">Contact</span>
+              <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Company <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu">
+                      <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                    </ul>
+                  </span>
                 </a>
               </li>
             </ul>
@@ -218,17 +251,22 @@ export class Header extends Component {
               <a href="/" className="navbar-brand mr-auto">
                 <img
                   src={hirebeatlogo}
-                  className="img-fluid mr-2"
+                  className="img-fluid mr-3"
                   alt="logo"
                   style={{
-                    width: "24%",
-                    height:"100%"
+                    width: "16%",
+                    height:"16%",
                   }}
                 />
-                <span className="font-weight-bold"
-                style={{fontSize:"1.2rem", color:"white", fontFamily:"Poppins", fontWeight:"500"}}>
-                  HireBeat
-                </span>
+                <img
+                  src={hirebeatlogotext}
+                  className="img-fluid mr-2"
+                  alt="logotext"
+                  style={{
+                    width: "50%",
+                    height:"100%",
+                  }}
+                />
               </a>
             {/*</div>*/}
             {isAuthenticated

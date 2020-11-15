@@ -1,9 +1,8 @@
 import React, {Component} from "react";
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {login, exchangeToken} from "../../redux/actions/auth_actions";
-import {CardButton} from "../practice/CardComponents";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
@@ -62,7 +61,7 @@ export class Login extends Component {
       if (this.props.user.groups[0] == "reviewers") {
         return <Redirect to="/review"/>;
       } else {
-        return <Redirect to="/"/>;
+        return <Redirect to="/dashboard"/>;
       }
     }
     const {username, password} = this.state;
@@ -128,7 +127,7 @@ export class Login extends Component {
                             onChange={this.onChange}
                             value={username}
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               border: "0.5px solid #E5E5E5",
                               borderRadius: "0.5rem",
@@ -147,7 +146,7 @@ export class Login extends Component {
                             onChange={this.onChange}
                             value={password}
                             style={{
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               background: "#FFFFFF",
                               border: "0.5px solid #E5E5E5",
                               borderRadius: "0.5rem",
@@ -161,7 +160,7 @@ export class Login extends Component {
                         <a
                             href="/register"
                             className="navbar-font"
-                            style={{textDecoration: "underline", color: "#FF6B00", fontWeight: "300", fontFamily: "Poppins", fontSize:"1rem"}}
+                            style={{textDecoration: "underline", color: "#FF6B00", fontWeight: "300", fontFamily: "Avenir Next", fontSize:"1rem"}}
                         >
                           Create account
                         </a>
@@ -172,7 +171,7 @@ export class Login extends Component {
                             className="navbar-font"
                             style={{
                               fontSize:"1rem",
-                              fontFamily: "Poppins",
+                              fontFamily: "Avenir Next",
                               color: "#7D7D7D",
                               fontWeight: "300"
                             }}
@@ -189,7 +188,7 @@ export class Login extends Component {
                         <button
                             type="submit"
                             className="default-btn"
-                            style={{width:"100%"}}
+                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
                           Log in
@@ -203,7 +202,7 @@ export class Login extends Component {
                         style={{
                           marginTop:"4rem",
                           marginBottom:"2rem",
-                          fontFamily: "Poppins",
+                          fontFamily: "Avenir Next",
                         }}
                     />
 

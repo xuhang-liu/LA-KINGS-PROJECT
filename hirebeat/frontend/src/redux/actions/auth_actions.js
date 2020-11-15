@@ -11,6 +11,7 @@ import {
   REGISTER_FAIL,
   PROFILE_LOADED,
   PROFILE_UPDATED,
+  UPGRADE_ACCOUNTS,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -186,4 +187,19 @@ export const updateProfile = (profile) => (dispatch) => {
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
     });
+};
+
+export const upgradeAccounts = (email_suffix) => (dispatch, getState) => {
+  axios
+    .post("/api/upgrade-accounts", email_suffix, tokenConfig(getState))
+    .then((res) => {
+      console.log(res.data);
+      dispatch({
+        type: UPGRADE_ACCOUNTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };

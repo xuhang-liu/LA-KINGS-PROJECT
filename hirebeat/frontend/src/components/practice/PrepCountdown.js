@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { CardButton, CardRow, StyledLink } from "./CardComponents";
+//import NotePad from "./NotePad";
 
 export class PrepCountdown extends Component {
   state = {
@@ -39,8 +40,8 @@ export class PrepCountdown extends Component {
           <div
             className={this.props.isAudio ? null : "prep-countdown-container"}
             style={{
-              width: (this.props.isAudio) ? 400 : window.innerWidth / 2.4,
-              height: (this.props.isAudio) ? 100 : window.innerWidth / 3.6,
+              width: (this.props.isAudio) ? 400 : 520,
+              height: (this.props.isAudio) ? 100 : 350,
               backgroundColor: "black",
               borderRadius: "0 0 8px 8px",
             }}
@@ -53,10 +54,11 @@ export class PrepCountdown extends Component {
                 textDisplayed={"Start Recording"}
                 buttonWidth={"30%"}
                 isAudio={this.props.isAudio ? true : false}
-                fontFamily={"Lato"}
+                fontFamily={"Avenir Next"}
               />
             </CardRow>
           </div>
+          {/*this.props.isAudio ? <NotePad isAudio={this.props.isAudio} /> : null*/}
         </div>
         <div className="col-3" />
       </div>

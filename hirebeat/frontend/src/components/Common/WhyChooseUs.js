@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import ReactWOW from 'react-wow';
-import FunFacts from './FunFacts';
 import ModalVideo from 'react-modal-video';
 import videobg from "../public/images/video-bg.jpg";
 import shape1 from "../public/images/shape/shape1.png";
 import shape2 from "../public/images/shape/shape2.png";
 import shape3 from "../public/images/shape/shape3.png";
-import shape4 from "../public/images/shape/shape4.png";
 import shape5 from "../public/images/shape/shape5.png";
 import shape6 from "../public/images/shape/shape6.png";
 import map1 from "../public/images/map1.png";
@@ -44,7 +41,7 @@ class WhyChooseUs extends Component {
                         <div className="section-title">
                             <h2>Why choose us</h2>
                             <h2>Watch this video to know more</h2>
-                        </div>
+                       </div>
 
                         <div className="video-box">
                             <img src={videobg} className="main-image" alt="image" />
@@ -75,24 +72,6 @@ class WhyChooseUs extends Component {
                                 <img src={shape6} alt="image" />
                             </div>
                         </div>
-
-                        {/* Fun Facts Style One */}
-                        <FunFacts />
-
-                        <ReactWOW animation='fadeInUp' delay='0.8s'>
-                            <div className="contact-cta-box mwidth-1000">
-                                <h3>Join us and give a try</h3>
-                                <p>Let HireBeat be your secret weapon to ace your next interview</p>
-
-                                <Link to="/register">
-                                    <a className="default-btn" style={{color:"white"}}>
-                                        <i className="bx bxs-hot"></i>
-                                        Try For Free
-                                        <span></span>
-                                    </a>
-                                </Link>
-                            </div>
-                        </ReactWOW>
                     </div>
 
                     {/* Shape Images */}

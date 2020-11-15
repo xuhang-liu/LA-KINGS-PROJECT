@@ -28,8 +28,22 @@ module.exports = {
     new webpack.ProvidePlugin({
       videojs: "video.js/dist/video.cjs.js",
       RecordRTC: "recordrtc",
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
     }),
-    new CompressionPlugin(),
+    new CompressionPlugin({
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+    new webpack.DefinePlugin({ // <-- key to reducing React's size
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }), 
+    new webpack.optimize.AggressiveMergingPlugin()//Merge chunks 
   ],
   module: {
     rules: [

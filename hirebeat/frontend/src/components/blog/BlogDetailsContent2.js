@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
-import BlogComments from './BlogComments';
 import BlogSidebar from './BlogSidebar';
 
 class BlogDetailsContent extends Component {
@@ -69,8 +68,8 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-details2"}
-                                        quote={"HireBeat - Video Interview"}
+                                        url={"https://hirebeat.co/video-interview-practice"}
+                                        quote={"Video interview practice"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
                                             <i className="bx bxl-facebook"></i>
@@ -79,8 +78,8 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-details2"}
-                                           title={"HireBeat - Video Interview"}
+                                           url={"https://hirebeat.co/video-interview-practice"}
+                                           title={"Video interview practice"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
                                            <a target="_blank">
@@ -90,8 +89,8 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-details2"}
-                                            title={"HireBeat - Video Interview"}
+                                            url={"https://hirebeat.co/video-interview-practice"}
+                                            title={"Video interview practice"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-linkedin"></i>
@@ -100,8 +99,8 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-details2"}
-                                            title={"HireBeat - Video Interview"}>
+                                            url={"https://hirebeat.co/video-interview-practice"}
+                                            title={"Video interview practice"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>

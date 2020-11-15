@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import S3FileUpload from "react-s3";
-import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 
 import {
-  IconButton,
   DbCenterRow,
   IconText,
   MyModal,
@@ -11,7 +9,8 @@ import {
 import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import premiumIcon from "../../../assets/premium.png"
+import emailjs from 'emailjs-com';
+import MediaQuery from 'react-responsive';
 
 const config = {
     bucketName: 'hirebeat-avatar',
@@ -34,6 +33,7 @@ export class EssentialUserInfo extends Component {
     email_confirmed: this.props.profile.email_confirmed,
     email_match: "",
     saved_video_count: "",
+    plan_interval: "",
   };
 
   componentDidMount() {
@@ -41,6 +41,7 @@ export class EssentialUserInfo extends Component {
       phone_number: this.props.profile.phone_number,
       location: this.props.profile.location,
       membership: this.props.profile.membership,
+      plan_interval: this.props.profile.plan_interval,
       email_confirmed: this.props.profile.email_confirmed,
       saved_video_count: this.props.profile.saved_video_count,
       filePhoto: this.props.profile.avatar_url
@@ -122,29 +123,36 @@ export class EssentialUserInfo extends Component {
       save_limit: 5,
     };
   };*/
-  cancelSub = () => {
-    this.finishEditing();
+  sendEmail (e) {
+    e.preventDefault();
+    emailjs.sendForm('service_s8700fg', 'template_992v1vd', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+    e.target.reset()
+  };
+
+  cancelSub = (e) => {
+    e.preventDefault();
     if(this.state.email_match == this.props.user.email){
+      this.sendEmail(e);
+      var profile = this.makeCancelConfirm();
+      this.props.updateProfile(profile);
       confirmAlert({
-        title: 'Are you sure?',
-        message: 'Subscriptions will cancel immediatelly',
+        title: 'Cancel Success',
+        message: 'Your subscriptions will stop at the end of this cycle.',
         buttons: [
           {
-            label: 'Yes',
-            onClick: () => {
-              var profile = this.makeCancelConfirm();
-              this.props.updateProfile(profile);
-            }
-          },
-          {
-            label: 'No'
+            label: 'Ok',
           }
         ]
         });
     }else{
       confirmAlert({
-        title: 'Your email does not match what you type',
-        message: '',
+        title: 'Sure to cancel?',
+        message: 'Your email does not match what you type',
         buttons: [
           {
             label: 'OK'
@@ -152,13 +160,14 @@ export class EssentialUserInfo extends Component {
         ]
         });
     }
+    e.target.reset()
   };
 
   makeCancelConfirm = () => {
     return {
       user: this.props.user.id,
       id: this.props.profile.id,
-      membership: 'Regular'
+      plan_interval: 'Regular'
     };
   };
 
@@ -167,9 +176,7 @@ export class EssentialUserInfo extends Component {
       user: this.props.user.id,
       id: this.props.profile.id,
       phone_number: this.state.phone_number,
-      location: this.state.location,
-      membership: this.state.membership,
-      avatar_url: this.state.avatar_url
+      location: this.state.location
     };
   };
 
@@ -197,10 +204,11 @@ export class EssentialUserInfo extends Component {
 
   render() {
     return (
-      <div className="card container">
-        <div className="card-body">
+      <React.Fragment>
+      <MediaQuery minDeviceWidth={1224}>
+      <div className="container">
           <DbCenterRow>
-            <div className="col-2">
+            {/* <div className="col-2">
                 <div className="row justify-content-center">
                   <img
                     style = {{width:"100px",
@@ -225,7 +233,7 @@ export class EssentialUserInfo extends Component {
                     type = "button"
                     onClick={() => this.fileInput.click()}
                     className = {"btn btn-sm"}
-                    style={{color: "#98b8f6",
+                    style={{color: "#FFFFFF",
                             fontSize: "0.8rem"
                     }}
                     >
@@ -233,22 +241,13 @@ export class EssentialUserInfo extends Component {
                   </button>
                 </div>
 
-            </div>
+            </div> */}
 
 
 
-            <div className="col-10">
+            <div className="col-9">
               <div className="row">
                 <div className="col d-flex align-items-center">
-                <IconButton
-                      iconName={"edit"}
-                      iconSize={"1.5rem"}
-                      iconColor={"#98b8f6"}
-                      textDisplayed={"Edit"}
-                      onTap={() => {
-                        this.setState({ ...this.state, show: true });
-                      }}
-                    />
                   <h1
                     style={{
                       fontWeight: "bold",
@@ -257,105 +256,166 @@ export class EssentialUserInfo extends Component {
                   >
                     {this.props.user.username}
                   </h1>
-                  {/* for regular user */}
-                  {
-                    this.props.profile.membership == "Regular" &&
-                    <div className="text-15" style={{marginLeft:'40%'}}>
-                      <IconText
-                        style={{marginRight: "10px"}}
-                        iconName={"card_membership"}
-                        iconMargin={"6px"}
-                        textDisplayed={this.props.profile.membership}
-                        textSize={"18px"}
-                        fontFamily={"Lato"}
-                      />
-                    </div>
-                  }
-                  {
-                    this.props.profile.membership == "Regular" &&
-                    <div className="upgrade" style={{marginBottom:"0.8rem", marginLeft:"1rem"}}>
-                      {
-                        this.props.profile.membership == "Regular" &&
-                        <Link className="text-15" style={{color: "#ffffff", textDecoration: "none", lineHeight: "34px", marginLeft:"26%"}} to="/pricing">Upgrade</Link>
-                      }
-                    </div>
-                  }
-                  {/* for premium user */}
-                  {
-                    this.props.profile.membership == "Premium" &&
-                    <div className="col" style={{marginLeft:"28%", marginBottom:"0.8rem"}}>
-                      <img src={premiumIcon} alt="premiumIcon"/>
-                      <span style={{marginLeft: "6px"}}>Premium</span>
-                    </div>
-                  }
                 </div>
               </div>
-              <div className="row">
-                <div className="col-6">
-                  <div className="row">
-                    <div className="col">
-                      <IconText
-                        iconName={"phone"}
-                        textDisplayed={this.props.profile.phone_number}
-                        textSize={"15px"}
-                        iconMargin={"3px"}
-                      />
-                    </div>
-                    <div className="col">
-                      <IconText
-                        iconName={"location_on"}
-                        textDisplayed={this.props.profile.location}
-                        textSize={"15px"}
-                        iconMargin={"3px"}
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <IconText
-                        iconName={"email"}
-                        textDisplayed={this.props.user.email}
-                        textSize={"15px"}
-                        iconMargin={"5px"}
-                      />
-                    </div>
-                  </div>
-                  {this.props.profile.membership == "Premium" &&
 
-                    <input
-                      className="form-control"
-                      type="text"
-                      name={"email_match"}
-                      placeholder={"Type and confirm your email to cancel"}
-                      onChange={this.handleInputChange}
-                      style={{
-                        fontSize: "12px",
-                        borderRadius: "5px",
-                        paddingLeft: "20px",
-                      }}
-                    />}
-                    {this.props.profile.membership == "Premium" &&
-                      <button className="btn" type="button" onClick={this.cancelSub}>Cancel Subscriptions</button>
-                    }
-                  {/*<div className="row">
-                    <div className="col">
-                      <IconText
-                        iconName={"language"}
-                        textDisplayed={this.props.user.website}  // todo: enable user website attribute
-                        textSize={"15px"}
-                        iconMargin={"3px"}
-                      />
+              <div className="row" style={{marginTop:"1%"}}>
+                <div className="col d-flex align-items-center">
+                  <div className="col-12" style={{padding:"0%"}}>
+                    <div className="row">
+                      <div className="col-3">
+                        <IconText
+                          iconName={"bx bx-phone bx-sm"}
+                          textDisplayed={this.props.profile.phone_number}
+                          textSize={"15px"}
+                          textColor={"#FFFFFF"}
+                          iconMargin={"3px"}
+                        />
+                      </div>
+                      <div className="col-4">
+                        <IconText
+                          iconName={"bx bx-envelope bx-sm"}
+                          textDisplayed={this.props.user.email}
+                          textSize={"15px"}
+                          textColor={"#FFFFFF"}
+                          iconMargin={"5px"}
+                        />
+                      </div>
+                      <div className="col-3">
+                        <IconText
+                          iconName={"bx bx-location-plus bx-sm"}
+                          textDisplayed={this.props.profile.location}
+                          textSize={"15px"}
+                          textColor={"#FFFFFF"}
+                          iconMargin={"3px"}
+                        />
+                      </div>
                     </div>
-                </div>*/}
+                  </div>
                 </div>
-                {/*<div className="col-7">
-                  <h3 className="text-15">About</h3>
-                    <p>{this.props.user.about}</p>  
-                </div>*/}
               </div>
+              {/* for premium user */}
+              {
+                this.props.profile.plan_interval == "Premium" &&
+                <div className="row">
+                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
+                    <i className='bx bx-diamond'></i> 
+                    <span style={{marginLeft: "6px"}}>Premium</span>
+                  </div>
+                  <div className="col-8">
+                    <input
+                    className="form-control"
+                    type="text"
+                    name={"email_match"}
+                    placeholder={"Type your email to cancel subscription."}
+                    onChange={this.handleInputChange}
+                    style={{
+                      backgroundColor:"#FFFFFF",
+                      fontSize: "12px",
+                      borderRadius: "5px",
+                      paddingLeft: "20px",
+                      color:"grey"
+                    }}
+                  />
+                  </div>
+                </div>
+              }
+              {
+                this.props.profile.plan_interval == "Regular" &&
+                <div className="row">
+                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
+                    <i className='bx bx-diamond'></i> 
+                    <span style={{marginLeft: "6px"}}>Premium</span>
+                  </div>
+                </div>
+              }        
             </div>
+
+          {/* for premium user */}
+          {
+            this.props.profile.plan_interval == "Premium" &&
+            <div className="col-2" style={{marginTop:"2%"}}>
+                <div className="row" style={{marginTop:"8%"}}>
+                  <Link>
+                      <a 
+                      onClick={() => {
+                      this.setState({ ...this.state, show: true });
+                      }}
+                      className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"127%"}} 
+                      >
+                        <i className="bx bx-edit 2"></i>
+                          Edit
+                          <span></span>
+                      </a>
+                    </Link>
+                </div>
+                <div className="row" style={{marginTop:"8%"}}>
+                  <form onSubmit={this.cancelSub}>
+                  <input type="email" value={this.props.user.email} name='useremail' style={{display:"none"}}/>
+                    <button
+                    type="submit"
+                    className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}} 
+                    >
+                      <i className="bx bxs-hot"></i>
+                        Confirm
+                        <span></span>
+                    </button>
+                  </form>
+                </div>
+            </div>
+          }
+
+{
+            this.props.profile.plan_interval == "Regular" &&
+            <div className="col-2" style={{marginTop:"2%"}}>
+                <div className="row" style={{marginTop:"8%"}}>
+                  <Link>
+                      <a 
+                      onClick={() => {
+                      this.setState({ ...this.state, show: true });
+                      }}
+                      className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"127%"}} 
+                      >
+                        <i className="bx bx-edit 2"></i>
+                          Edit
+                          <span></span>
+                      </a>
+                    </Link>
+                </div>
+            </div>
+          }
+
+          {/* for regular user */}
+            {
+              this.props.profile.membership == "Regular" &&
+              <div className="col-2">
+                <div className="row">
+                  <Link to="/pricing">
+                    <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}}>
+                      <i className="bx bxs-hot"></i>
+                        Upgrade
+                        <span></span>
+                    </a>
+                  </Link>
+                </div>
+
+                <div className="row" style={{marginTop:"8%"}}>
+                  <Link>
+                    <a 
+                    onClick={() => {
+                    this.setState({ ...this.state, show: true });
+                    }}
+                    className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"133%"}} 
+                    >
+                      <i className="bx bx-edit 2"></i>
+                        Edit
+                        <span></span>
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            }                
           </DbCenterRow>
-        </div>
         <EditModal
           show={this.state.show}
           location={this.state.location}
@@ -365,6 +425,71 @@ export class EssentialUserInfo extends Component {
           hide={this.finishEditing}
         />
       </div>
+      </MediaQuery>
+      <MediaQuery maxDeviceWidth={1223}>
+        <DbCenterRow>
+          <div className="container">
+            <div className="col-9">
+              <div className="row">
+                <div className="col d-flex align-items-center">
+                  <h1
+                    style={{
+                      fontWeight: "bold",
+                      marginRight: "0.8rem",
+                    }}
+                  >
+                    {this.props.user.username}
+                  </h1>
+                </div>
+              </div>
+                {/* for regular user */}
+                {
+                    this.props.profile.membership == "Regular" &&
+                      <div className="row">
+                        <div style={{paddingLeft:'10px', paddingBottom:'5px'}}>
+                        <Link to="/pricing">
+                          <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}}>
+                          <i className="bx bxs-hot"></i>
+                            Upgrade
+                            <span></span>
+                          </a>
+                        </Link>
+                        </div>
+                        <div style={{paddingLeft:'10px'}}>
+                        <Link to="/practice">
+                        <a className="default-btn" 
+                          style={{color:"white", backgroundColor:"#090D3A"}}>
+                          <i className="bx bxs-hot"></i> 
+                            New Practice
+                          <span></span>
+                        </a>
+                      </Link>
+                      </div>
+                      </div>
+                  }
+                  {/* for premium user */}
+                  {
+                    this.props.profile.membership == "Premium" &&
+                    <div className="row">
+                      <div style={{marginTop:"0.5rem", paddingRight:'20px', paddingLeft:'10px'}}>
+                        <i className='bx bx-diamond'></i>
+                          <span style={{marginLeft: "2px"}}>Premium</span>
+                      </div>
+                      <Link to="/practice">
+                        <a className="default-btn" 
+                          style={{color:"white", backgroundColor:"#090D3A"}}>
+                          <i className="bx bxs-hot"></i> 
+                            New Practice
+                          <span></span>
+                        </a>
+                      </Link>
+                    </div>
+                  }
+            </div>
+          </div>
+        </DbCenterRow>
+      </MediaQuery>
+      </React.Fragment>
     );
   }
 }

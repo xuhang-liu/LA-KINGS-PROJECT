@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import {
   getVideos,
   sendVideoForReview,
+  deleteVideo,
 } from "../../../redux/actions/video_actions";
 
 export class VideoPreviewList extends Component {
@@ -12,6 +13,7 @@ export class VideoPreviewList extends Component {
     videos: PropTypes.array.isRequired,
     loaded: PropTypes.bool.isRequired,
     getVideos: PropTypes.func.isRequired,
+    deleteVideo: PropTypes.func.isRequired,
     filter: PropTypes.string,
   };
 
@@ -25,36 +27,47 @@ export class VideoPreviewList extends Component {
         {this.props.loaded
           ? this.props.videos.map((v) => {
               if (this.props.filter) {
-                // filter videos according to review status
+                // filter videos according to question type
                 switch (this.props.filter) {
-                  case "all":
-                    if (!v.is_expert_reviewed) {
-                      if (!v.is_ai_reviewed) return null;
-                    }
+                  case "bq":
+                    if (v.q_type === "Technique Question") return null;
                     break;
-                  case "expert":
-                    if (!v.is_expert_reviewed) {
-                      return null;
-                    }
+                  case "tq":
+                    if (v.q_type === "Behavior Question") return null;
                     break;
-                  case "ai":
-                    if (!v.is_ai_reviewed) {
-                      return null;
-                    }
-                    break;
+
+                    // filter videos according to review status
+//                  case "all":
+//                    if (!v.is_expert_reviewed) {
+//                      if (!v.is_ai_reviewed) return null;
+//                    }
+//                    break;
+//                  case "expert":
+//                    if (!v.is_expert_reviewed) {
+//                      return null;
+//                    }
+//                    break;
+//                  case "ai":
+//                    if (!v.is_ai_reviewed) {
+//                      return null;
+//                    }
+//                    break;
                   default:
                     return null;
                 }
               }
               return (
-                <div key={v.id}>
+                <div key={v.id} style={{marginTop: "2rem"}}>
                   <VideoImagePreview
                     isAudio={(v.url.slice(-3) === "wav") ? true : false}
                     v={v}
                     key={v.id}
-                    sendVideoForReview={this.props.sendVideoForReview}
+                    sendVideoForReview={
+                        v.q_type === "Behavior Question" ? this.props.sendVideoForReview
+                        : null}
+                    isBQ={v.q_type === "Behavior Question" ? true : false}
+                    deleteVideo={this.props.deleteVideo}
                   />
-                  <br />
                 </div>
               );
             })
@@ -72,4 +85,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getVideos,
   sendVideoForReview,
+  deleteVideo,
 })(VideoPreviewList);

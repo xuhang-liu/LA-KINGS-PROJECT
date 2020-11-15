@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import ContactFormArea from './ContactFormArea';
-import OurLovingClients from '../Common/OurLovingClients';
-import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import emailjs from 'emailjs-com';
@@ -12,23 +9,22 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 function sendEmail(e) {
   e.preventDefault();
 
-  emailjs.sendForm('gmail', 'hire_beat', e.target, 'user_M93PeAsVxs6GUPZp7NGXc')
+  emailjs.sendForm('default_service', 'template_k9dipu8', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
     .then((result) => {
         console.log(result.text);
+        confirmAlert({
+          title: 'Email Sent!',
+          message: 'Thank you for contacting us.',
+          buttons: [
+            {
+              label: 'OK'
+            }
+          ]
+        });
     }, (error) => {
         console.log(error.text);
     });
   e.target.reset()
-
-  confirmAlert({
-    title: 'Email Sent!',
-    message: 'Thank you for contacting us.',
-    buttons: [
-      {
-        label: 'OK'
-      }
-    ]
-  });
 }
 
 function ScrollToTopOnMount() {

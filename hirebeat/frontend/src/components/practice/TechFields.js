@@ -1,13 +1,14 @@
 import React, { Component, useState } from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { SetupCard, CardRow, CardButton } from "./CardComponents";
+//import { SetupCard, CardRow, CardButton } from "./CardComponents";
 import { updateProfile } from "../../redux/actions/auth_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import PageTitleArea from '../Common/PageTitleArea';
 import emailjs from 'emailjs-com';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { withRouter } from "react-router-dom";
 
 import accounting from '../../assets/tech/Accounting.png';
 import admin from '../../assets/tech/Administrative.png';
@@ -29,21 +30,49 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-function TechButtons() {
-  confirmAlert({
-    title: 'Feature is coming soon',
-    buttons: [
-      {
-        label: 'Ok'
-      }
-    ]
+function sendEmail(e) {
+  e.preventDefault();
+
+  emailjs.sendForm('default_service', 'template_4fms1o5', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
+    .then((result) => {
+        console.log(result.text);
+        confirmAlert({
+          title: 'Email Sent!',
+          message: 'Thank you for contacting us.',
+          buttons: [
+            {
+              label: 'OK'
+            }
+          ]
+        });
+    }, (error) => {
+        console.log(error.text);
     });
+  e.target.reset()
 }
 
 export class TechFields extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   state = {
     display: "hidden",
+    category: "",
+  }
+
+  setCategory = (category) => {
+    // important！ setState is an async function,
+    // must call redirectToTechPractice within the setState method to keep syncing
+    this.setState({category: category}, () => {this.redirectToTechPractice();});
+  }
+
+  redirectToTechPractice = () => {
+    const { history } = this.props;
+    if (history) history.push({
+        pathname: "/techfields/practice",
+        params: {category: this.state.category}
+    });
   }
 
   DisplayText = () => {
@@ -69,8 +98,8 @@ export class TechFields extends Component {
         marginRight: "15px",
         marginBottom: "15px",
         backgroundColor: "white",}}
-        onClick={TechButtons}>
-      <img src={accounting}/>
+        onClick={this.setCategory.bind(this, "Accounting")}>
+      <img src={accounting} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -79,8 +108,8 @@ export class TechFields extends Component {
         marginRight: "15px",
         marginBottom: "15px",
         backgroundColor: "white",}}
-        onClick={TechButtons}>
-      <img src={admin}/>
+        onClick={this.setCategory.bind(this, "Administrate Support")}>
+      <img src={admin} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -89,8 +118,8 @@ export class TechFields extends Component {
         marginRight: "15px",
         marginBottom: "15px",
         backgroundColor: "white",}}
-        onClick={TechButtons}>
-      <img src={consult}/>
+        onClick={this.setCategory.bind(this, "Consulting")}>
+      <img src={consult} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -99,8 +128,8 @@ export class TechFields extends Component {
         marginRight: "15px",
         marginBottom: "15px",
         backgroundColor: "white",}}
-        onClick={TechButtons}>
-      <img src={finance}/>
+        onClick={this.setCategory.bind(this, "Finance")}>
+      <img src={finance} alt="image"/>
       </button>  
       </div>
       <br/>
@@ -112,8 +141,8 @@ export class TechFields extends Component {
         marginRight: "15px",
         marginBottom: "15px",
         backgroundColor: "white",}}
-        onClick={TechButtons}>
-      <img src={human}/>
+        onClick={this.setCategory.bind(this, "Human Resources")}>
+      <img src={human} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -122,8 +151,8 @@ export class TechFields extends Component {
         marginRight: "15px",
         marginBottom: "15px",
         backgroundColor: "white",}}
-        onClick={TechButtons}>
-      <img src={market}/>
+        onClick={this.setCategory.bind(this, "Marketing")}>
+      <img src={market} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -132,8 +161,8 @@ export class TechFields extends Component {
         marginRight: "15px",
         marginBottom: "15px",
         backgroundColor: "white",}}
-        onClick={TechButtons}>
-      <img src={product}/>
+        onClick={this.setCategory.bind(this, "Product Management")}>
+      <img src={product} alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -142,8 +171,8 @@ export class TechFields extends Component {
         marginRight: "15px",
         marginBottom: "15px",
         backgroundColor: "white",}}
-        onClick={TechButtons}>
-      <img src={retail}/>
+        onClick={this.setCategory.bind(this, "Retail")}>
+      <img src={retail} alt="image"/>
       </button>  
       </div>
       <div>
@@ -155,9 +184,9 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.DisplayText}>
-      <img src={nofind}/>
+      <img src={nofind} alt="image"/>
       </button>
-      <form style={{display:"inline", visibility:this.state.display, marginLeft: "15px"}}>
+      <form style={{display:"inline", visibility:this.state.display, marginLeft: "15px"}} onSubmit={sendEmail}>
       <input type="text" name="field" placeholder="What industry are you looking for?"
       style={{border:"1px solid #E6E8F6", boxSizing: 'border-box', borderRadius:"3px", width:"20rem", fontSize:"0.75rem", height:"3rem"}}>
       </input>
@@ -177,6 +206,6 @@ const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
   user: state.auth_reducer.user,
 });
-export default connect(mapStateToProps, { updateProfile, createMessage })(
+export default withRouter(connect(mapStateToProps, { updateProfile, createMessage })(
   TechFields
-);
+));

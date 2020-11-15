@@ -6,8 +6,9 @@ import safariAlert from "../basic/SafariAlert";
 
 function TestDevice(props) {
   videoRecorderOptions.plugins.record.maxLength = 15;
-  videoRecorderOptions.width = window.innerWidth / 2.4;
-  videoRecorderOptions.height = window.innerWidth / 3.6;
+//  videoRecorderOptions.width = window.innerWidth / 2.4;
+//  videoRecorderOptions.height = window.innerWidth / 3.6;
+  videoRecorderOptions.controlBar.recordToggle = true;
   safariAlert();
   return (
     <TestDeviceCard>
@@ -42,7 +43,7 @@ function TestDevice(props) {
               onTap={props.testDeviceDone}
               textDisplayed={"Start Practice"}
               buttonWidth={"75%"}
-              fontFamily={"Lato"}
+              fontFamily={"Avenir Next"}
             />
           </div>
         </div>

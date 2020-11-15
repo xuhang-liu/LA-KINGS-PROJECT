@@ -9,12 +9,23 @@ import Record from "videojs-record/dist/videojs.record.js";
 import MyVideoUploader from "../videos/MyVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_QUESTION } from "../../redux/actions/action_types";
+import { RecordDoneButton } from "./CardComponents";
 
 export class VideoRecorder extends Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({ ...this.state, display: "none" });
+  }
+
   state = {
     videoRecorded: false,
     videoHandled: false,
     video: null,
+    display: "block",
   };
 
   componentDidMount() {
@@ -99,6 +110,11 @@ export class VideoRecorder extends Component {
     this.player.record().getDevice();
   };
 
+  stopCamera = () => {
+    this.player.record().stop();
+    this.handleClick();
+  }
+
   render() {
     return (
       <div className="video-recorder-row">
@@ -113,6 +129,17 @@ export class VideoRecorder extends Component {
           </div>
         </div>
         <div className="col-3">
+          {
+            !this.props.isTesting && this.props.isSimulate ? (
+              <div style={{display: this.state.display}}>
+                <RecordDoneButton
+                  fontFamily={"Avenir Next"}
+                  onTap={this.stopCamera}
+                  textDisplayed={"Finish Now"}
+                  buttonWidth={"100%"}
+                />
+              </div>) : null
+          }
           {!this.props.isTesting &&
           this.state.videoRecorded &&
           !this.state.videoHandled ? (
@@ -123,6 +150,7 @@ export class VideoRecorder extends Component {
               disposePlayer={this.disposePlayer}
               video={this.state.video}
               last_q={this.props.last_q}
+              isSimulate={this.props.isSimulate}
             />
           ) : null}
         </div>

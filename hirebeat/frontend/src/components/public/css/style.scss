@@ -44,9 +44,9 @@ This files table contents are outlined below>>>>>
 /*================================================
 Default CSS
 =================================================*/
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Avenir Next:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
 
-$font-family: 'Poppins', sans-serif;
+$font-family: 'Avenir Next', sans-serif;
 $main-color: #13c4a1;
 $optional-color: #ff612f;
 $black-color: #080a3c;
@@ -54,6 +54,10 @@ $white-color: #ffffff;
 $paragraph-color: #4a6f8a;
 $font-size: 15px;
 $transition: .5s;
+
+* {
+    font-family: 'Avenir Next', sans-serif;
+}
 
 body {
     color: $black-color;
