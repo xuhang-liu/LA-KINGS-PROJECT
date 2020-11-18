@@ -61,6 +61,13 @@ import MUFGInfo from"./companyData/companies/MUFGInfo";
 import NDQInfo from"./companyData/companies/NDQInfo";
 import TSMInfo from"./companyData/companies/TSMInfo";
 
+import JobList from "./career/JobList";
+import UIDesigner from "./career/jobs/UIDesigner";
+import BusinessAnalyst from "./career/jobs/BusinessAnalyst";
+import Marketing from "./career/jobs/Marketing";
+import ProductManager from "./career/jobs/ProductManager";
+import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
+
 import Contact from "./contact/contact";
 
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
@@ -199,6 +206,12 @@ class App extends Component {
                 <Route exact path="/companydata/mufg" component={MUFGInfo} />
                 <Route exact path="/companydata/nasdaq" component={NDQInfo} />
                 <Route exact path="/companydata/two-sigma" component={TSMInfo} />
+                <Route exact path="/jobs" component={JobList} />
+                <Route exact path="/jobs/ui-designer" component={UIDesigner} />
+                <Route exact path="/jobs/business-analyst" component={BusinessAnalyst} />
+                <Route exact path="/jobs/marketing" component={Marketing} />
+                <Route exact path="/jobs/product-manager" component={ProductManager} />
+                <Route exact path="/jobs/software-engineer" component={SoftwareEngineer} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />
