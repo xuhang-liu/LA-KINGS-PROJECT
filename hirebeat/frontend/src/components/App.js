@@ -29,6 +29,7 @@ import BlogDetail7 from "./blog/blog-details7";
 import BlogDetail8 from "./blog/blog-details8";
 import BlogDetail9 from "./blog/blog-details9";
 import BlogDetail10 from "./blog/blog-details10";
+import BlogDetail11 from "./blog/blog-details11";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -60,6 +61,13 @@ import MSInfo from"./companyData/companies/MSInfo";
 import MUFGInfo from"./companyData/companies/MUFGInfo";
 import NDQInfo from"./companyData/companies/NDQInfo";
 import TSMInfo from"./companyData/companies/TSMInfo";
+
+import JobList from "./career/JobList";
+import UIDesigner from "./career/jobs/UIDesigner";
+import BusinessAnalyst from "./career/jobs/BusinessAnalyst";
+import Marketing from "./career/jobs/Marketing";
+import ProductManager from "./career/jobs/ProductManager";
+import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
 
 import Contact from "./contact/contact";
 
@@ -170,6 +178,7 @@ class App extends Component {
                 <Route exact path="/keywords-to-include-on-a-resume" component={BlogDetail8} />
                 <Route exact path="/tips-for-getting-your-resume-past-an-applicant-tracking-system" component={BlogDetail9} />
                 <Route exact path="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview" component={BlogDetail10} />
+                <Route exact path="/guidelines-on-how-to-answer-what-is-your-biggest-strength" component={BlogDetail11} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
@@ -199,6 +208,12 @@ class App extends Component {
                 <Route exact path="/companydata/mufg" component={MUFGInfo} />
                 <Route exact path="/companydata/nasdaq" component={NDQInfo} />
                 <Route exact path="/companydata/two-sigma" component={TSMInfo} />
+                <Route exact path="/jobs" component={JobList} />
+                <Route exact path="/jobs/ui-designer" component={UIDesigner} />
+                <Route exact path="/jobs/business-analyst" component={BusinessAnalyst} />
+                <Route exact path="/jobs/marketing" component={Marketing} />
+                <Route exact path="/jobs/product-manager" component={ProductManager} />
+                <Route exact path="/jobs/software-engineer" component={SoftwareEngineer} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />

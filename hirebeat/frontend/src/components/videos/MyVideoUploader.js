@@ -190,7 +190,7 @@ export class MyVideoUploader extends Component {
           buttonWidth={"100%"}
           isAudio={this.props.isAudio}
         />
-        <VideoNumberLinkRow
+        {/*<VideoNumberLinkRow
           number_of_videos_to_save= "Unlimited"
           isAudio={this.props.isAudio}
           //upgrade={() => console.log("upgrade")}
@@ -202,7 +202,7 @@ export class MyVideoUploader extends Component {
           fontFamily={"Avenir Next"}
           isAudio={this.props.isAudio}
         />
-        }
+        }*/}
         <BglessCardButton
           onTap={skipOnTap}
           textDisplayed={skipText}
