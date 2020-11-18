@@ -3,6 +3,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import emailjs from 'emailjs-com';
+import {Link} from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -83,7 +84,7 @@ class Contact extends Component {
                     Technical Support
                   </p>
                   <p className="company-pc-part5-text3">
-                    Get help with your user account or have <br/> questions about how we can help with <br/> your next interview.
+                    Get help with your user account or have questions about how we can help with your next interview.
                   </p>
                   <a className="company-pc-part5-text4" href = "mailto: tech@hirebeat.co" style={{color: "#FF6B00"}}>tech@hirebeat.co</a>
                 </div>
@@ -92,9 +93,15 @@ class Contact extends Component {
                     Join us
                   </p>
                   <p className="company-pc-part5-text3">
-                    Join our team to help reshape the <br/> recruiting and make products reach over <br/> million people worldwide.
+                    Join our team to help reshape the recruiting and make products reach over million people worldwide.
                   </p>
-                  <a className="company-pc-part5-text4" href = "mailto: hr@hirebeat.co" style={{color: "#FF6B00"}}>hr@hirebeat.co</a>
+                  <Link to="/jobs">
+                    <a className="default-btn" style={{color:"white"}}>
+                      <i className="bx bxs-hot"></i>
+                        See Openings
+                        <span></span>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>

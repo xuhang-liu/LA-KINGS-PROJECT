@@ -18,91 +18,76 @@ class SoftwareEngineer extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea
-                    pageTitle="Software Engineer Intern"
+                    pageTitle="Software Developer Intern"
                     pageDescription="New York / Remote"
                 />
                 <div className="container" style={{marginTop: "2rem"}}>
                     <div>
                         <h2 className="job-txt1">About the position</h2>
                         <p className="job-txt2" style={{marginTop: "2rem"}}>
-                            HireBeat is seeking a UI Design Intern to create simple, elegant, and intuitive interactive
-                            interfaces for our core web product: AI-driven and function-heavy Saas product. As a UI Design
-                            Intern, you will work with Product Management, Engineering, Business, to push boundaries,
-                            build great products, and solve customer problems. Candidates should show an impressive background
-                            with interface design, as well as interest and consideration for experience, and user-centered design.
-                            This role is focused on visual interactive interface design: how users interact with devices,
-                            how users process information, and ultimately how HireBeat’s product “look” and “feel”.
-                            Core to this role is the creation of the final “pixel-perfect” UI that users experience,
-                            and in creating UI, illustration, and micro animation in a visually systematic way that ensures
-                            a holistic, consistent experience across our products.
+                        We are looking for a <b>Software Developer</b> with solid experience and knowledge in web technologies, as well as interest in learning new technologies and willingness to tackle new challenges. In this role, you will research and provide the best solutions for building website(s), microsites, interactive forms, integrations with third-party APIs, and other interactive tasks. Research, collaboration, and investigation are your three core strengths.
                         </p>
                         <p className="job-txt3" style={{marginTop: "1rem"}}>
-                            Note: Along with your Resume a link to your online portfolio is required. Applications
-                            without a portfolio are unlikely to be considered.
+                            Note: The program is 8-10 weeks. You can choose either work remotely or in our New York office.
+                            Note that this internship is an <b>unpaid</b> position. However, we provide a return offer for a full-time position to our top interns at the end of the internship.
+
                         </p>
                     </div>
                     <div style={{marginTop: "1.25rem"}}>
-                        <h3 className="job-txt4">What you’ll do</h3>
+                        <h3 className="job-txt4">Responsibilities:</h3>
                         <ul className="job-txt2">
-                            <li>Collaborating with Product Management and Engineering to define and implement innovative solutions for the product direction, visuals and experience</li>
-                            <li>Quickly iterate and offer versions based on design critique from peers or from learnings found in user testing or feature response</li>
-                            <li>Build out multi-version comps for user testing</li>
-                            <li>Provide prototypes/deliverables to describe interactions and motion to enhance UI</li>
-                            <li>Execute final, “pixel perfect” UI designs and package, spec, and prep for engineering</li>
-                            <li>Conceptualizing original ideas that bring simplicity and user friendliness to complex design roadblocks</li>
+                            <li>Build websites from scratch including microsites, applications, forms, and hybrid mobile apps</li>
+                            <li>Collaborate with the marketing team, research, and investigate web solutions and technologies such as Web Frameworks, APIs, integrations, etc</li>
+                            <li>Maintain, update, and troubleshoot website(s), including website loading speed, mobile compatibility, etc</li>
+                            <li>Assist in managing vendors and freelancers</li>
                         </ul>
                     </div>
                     <div style={{marginTop: "1.25rem"}}>
-                        <h3 className="job-txt4">You should have</h3>
+                        <h3 className="job-txt4">Qualifications:</h3>
                         <ul className="job-txt2">
-                            <li>BA or BS in Human-Computer Interaction or related field, boot camps, projects, or work experienc</li>
-                            <li>Confident knowledge of design applications like Sketch, Figma, and Adobe XD</li>
-                            <li>Communicative and collaborative team-oriented worker</li>
-                            <li>A readily available portfolio</li>
+                            <li>Experience building complex interactive websites from scratch</li>
+                            <li>Experience with HTML5, CSS, JavaScript, SQL (preferred PostgreSQL), React, Django, and other relevant web technologies</li>
+                            <li>Experience with third-party APIs</li>
+                            <li>Knowledge of SEO and how it affects web development</li>
+                            <li>Superb communication and interpersonal skills</li>
                         </ul>
                     </div>
                     <div style={{marginTop: "1.25rem"}}>
-                        <h3 className="job-txt4">Must be able to</h3>
+                        <h3 className="job-txt4">Preferred Skills and Experience:</h3>
                         <ul className="job-txt2">
-                            <li>Understand technical feasibilities and compromise with Engineering on design decisions while advocating for users </li>
-                            <li>Own designs end-to-end from lofi to hifi and post-release</li>
-                            <li>Consider edge cases and validations when designing</li>
-                            <li>Quickly visualize and iterate on designs from business requirements</li>
-                            <li>Keep up with current design trends and constantly apply them to designs</li>
-                            <li>Openly accept criticism and apply learnings to improve processes and designs</li>
-                        </ul>
-                    </div>
-                    <div style={{marginTop: "1.25rem"}}>
-                        <h3 className="job-txt4">Nice to have</h3>
-                        <ul className="job-txt2">
-                            <li>2-3 years of experience designing UIs with some exposure to UX</li>
-                            <li>Experience designing and working with SaaS or PaaS </li>
-                            <li>Experience designing analytics dashboards</li>
-                            <li>Experience designing for desktop resolutions</li>
-                            <li>Front-end coding language knowledge like HTML/CSS/JS</li>
+                            <li>1+ years of front-end development experience with HTML, CSS, and JavaScript</li>
+                            <li>1+ years of experience with any scripting language (Python, Node.js, etc.)</li>
+                            <li>Modern HTML/CSS tools and practices (Single page apps, responsive design, etc.)</li>
+                            <li>Professional, precise communication skills</li>
+                            <li>Strong experience with React and/or Angular</li>
+                            <li>Strong experience documenting, testing, and maintaining large scale projects</li>
+                            <li>Undergraduate degree in computer science or related field OR commensurate work experience</li>
                         </ul>
                     </div>
                 </div>
                 <div className="row job-tail">
                     <div className="container" style={{paddingBottom: "6rem"}}>
-                        <h2 className="job-txt1" style={{paddingTop: "2rem"}}>Instruction</h2>
+                        <h2 className="job-txt1" style={{paddingTop: "2rem", color:'#ff6b00'}}>Instructions:</h2>
                         <p style={{marginTop: "1rem", marginBottom: "0"}}>
-                            To move forward with your application, we would like to invite you to finish our online resume
-                            scanning process. Please follow the instruction below carefully:
+                        To move forward with your application, we would like to invite you to finish our online video interview process. Please follow the instruction below carefully:
                          </p>
                         <p style={{marginBottom: "0"}}>
-                            <span className="job-step">Step1:</span> Use a laptop to create an account by click apply now or visit our website at
-                            https://www.hirebeat.co/register (make sure the email matches your resume)
+                            <span className="job-step">Step1:</span> Use a laptop to create an account by click <Link to='/register'>apply now</Link> or visit our website at <Link to='/register'>https://www.hirebeat.co/register</Link> (Please make sure that your email address is consistent with your resume)
                         </p>
                         <p style={{marginBottom: "0"}}>
-                            <span className="job-step">Step2:</span> Upload your resume
+                            <span className="job-step">Step2:</span> <Link to='/resume'>Upload your resume</Link>
                             <li>Navigate to the resume section on the left-hand side of the dashboard, click new scan.</li>
                             <li>Upload your resume with the match job description you are applying, then click scan.</li>
                         </p>
-                        <p><span className="job-step">Step3:</span>  Reply to us with your user name at ye.tian@hirebeat.co</p>
+                        <p style={{marginBottom: "0"}}>
+                            <span className="job-step">Step3:</span> <Link to='/practice'>Video Interview</Link>
+                            <li>Navigate to the interview section on the left-hand side of the dashboard and click new practice.</li>
+                            <li>Chose the <b>Behavior Question</b> and select the <b>Simulate Mode</b>.</li>
+                            <li>Begin your interview with the default setting; after you finish, simply send for an <b>AI review</b> in your dashboard.</li>
+                        </p>
                         <p style={{marginTop: "1rem"}}>We will be in touch with you as soon as possible after we have reviewed your result.</p>
                         <Link to="/register">
-                            <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}>
+                            <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A", paddingLeft:'25px'}}>
                                 Apply Now
                                 <span></span>
                             </a>

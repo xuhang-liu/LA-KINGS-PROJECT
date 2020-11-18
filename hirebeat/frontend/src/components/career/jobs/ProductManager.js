@@ -25,84 +25,70 @@ class ProductManager extends Component {
                     <div>
                         <h2 className="job-txt1">About the position</h2>
                         <p className="job-txt2" style={{marginTop: "2rem"}}>
-                            HireBeat is seeking a UI Design Intern to create simple, elegant, and intuitive interactive
-                            interfaces for our core web product: AI-driven and function-heavy Saas product. As a UI Design
-                            Intern, you will work with Product Management, Engineering, Business, to push boundaries,
-                            build great products, and solve customer problems. Candidates should show an impressive background
-                            with interface design, as well as interest and consideration for experience, and user-centered design.
-                            This role is focused on visual interactive interface design: how users interact with devices,
-                            how users process information, and ultimately how HireBeat’s product “look” and “feel”.
-                            Core to this role is the creation of the final “pixel-perfect” UI that users experience,
-                            and in creating UI, illustration, and micro animation in a visually systematic way that ensures
-                            a holistic, consistent experience across our products.
+                        Looking for a career path that combines technical savvy with a business perspective?
+                        Product Managers at HireBeat are data-driven decision-makers, building new features and products that touch directly to the customers in the market. The candidate will perform analysis or mining of data, evangelize the insights drawn from the data analysis, and work with developers and designers to define features based on these insights.
                         </p>
+                        <p className="job-txt2" style={{marginTop: "2rem"}}>As a Product Manager Intern, you will be focused on ensuring the aggressive expansion of
+                        HireBeat’s business, helping to explore key opportunities for growth, creating stellar customer experiences, and supporting all aspects of the business while partnering with employees from all backgrounds and function teams.</p>
+                        <p className="job-txt2">Position Location: <u>New York City / Remote</u></p>
+                        <p className="job-txt2">Length: <u>8-10 weeks</u></p>
+                        <p className="job-txt2">Position Location: <u>New York City / Remote</u></p>
                         <p className="job-txt3" style={{marginTop: "1rem"}}>
-                            Note: Along with your Resume a link to your online portfolio is required. Applications
-                            without a portfolio are unlikely to be considered.
+                            Note that this position is an unpaid internship to start with the possibility of becoming a paid position in the future.
                         </p>
                     </div>
                     <div style={{marginTop: "1.25rem"}}>
-                        <h3 className="job-txt4">What you’ll do</h3>
+                        <h3 className="job-txt4">Key Responsibilities:</h3>
                         <ul className="job-txt2">
-                            <li>Collaborating with Product Management and Engineering to define and implement innovative solutions for the product direction, visuals and experience</li>
-                            <li>Quickly iterate and offer versions based on design critique from peers or from learnings found in user testing or feature response</li>
-                            <li>Build out multi-version comps for user testing</li>
-                            <li>Provide prototypes/deliverables to describe interactions and motion to enhance UI</li>
-                            <li>Execute final, “pixel perfect” UI designs and package, spec, and prep for engineering</li>
-                            <li>Conceptualizing original ideas that bring simplicity and user friendliness to complex design roadblocks</li>
+                            <li>Think strategically and creatively to gather product and customer insights and help define the Product Vision and Strategy</li>
+                            <li>Understand Go-to-market strategy and competitive position and define product requirements for MVPs and new features/enhancements</li>
+                            <li>Analyze current customer experiences and feedback to define friction points and create seamless and effortless experiences</li>
+                            <li>Develop product roadmaps and work with cross-functional teams (business, marketing, product, development, UI&UX, analytics)</li>
+                            <li>Define detailed product requirements, scope, ship, measure features and use rapid cycles to iterate and learn; managed and monitor the deliverables and project milestones</li>
+                            <li>Take overall business objectives and combine them with insight into what user problems we are uniquely suited to solve</li>
+                            <li>Build trust and effective relationships with peers/cross-functional teams</li>
                         </ul>
                     </div>
                     <div style={{marginTop: "1.25rem"}}>
-                        <h3 className="job-txt4">You should have</h3>
+                        <h3 className="job-txt4">Basic Requirements:</h3>
                         <ul className="job-txt2">
-                            <li>BA or BS in Human-Computer Interaction or related field, boot camps, projects, or work experienc</li>
-                            <li>Confident knowledge of design applications like Sketch, Figma, and Adobe XD</li>
-                            <li>Communicative and collaborative team-oriented worker</li>
-                            <li>A readily available portfolio</li>
-                        </ul>
-                    </div>
-                    <div style={{marginTop: "1.25rem"}}>
-                        <h3 className="job-txt4">Must be able to</h3>
-                        <ul className="job-txt2">
-                            <li>Understand technical feasibilities and compromise with Engineering on design decisions while advocating for users </li>
-                            <li>Own designs end-to-end from lofi to hifi and post-release</li>
-                            <li>Consider edge cases and validations when designing</li>
-                            <li>Quickly visualize and iterate on designs from business requirements</li>
-                            <li>Keep up with current design trends and constantly apply them to designs</li>
-                            <li>Openly accept criticism and apply learnings to improve processes and designs</li>
-                        </ul>
-                    </div>
-                    <div style={{marginTop: "1.25rem"}}>
-                        <h3 className="job-txt4">Nice to have</h3>
-                        <ul className="job-txt2">
-                            <li>2-3 years of experience designing UIs with some exposure to UX</li>
-                            <li>Experience designing and working with SaaS or PaaS </li>
-                            <li>Experience designing analytics dashboards</li>
-                            <li>Experience designing for desktop resolutions</li>
-                            <li>Front-end coding language knowledge like HTML/CSS/JS</li>
+                            <li>Must be pursuing a Bachelor’s or Master’s degree in Computer Science, Business, or related field</li>
+                            <li>Strong analytical and data visualization skills</li>
+                            <li>Knowledge of data analytics and SEO (using Excel VBA, SQL, Google Analytics, Tableau, etc.)</li>
+                            <li>Ability to juggle multiple priorities and thrive in fast-paced environments</li>
+                            <li>Strong problem-solving abilities - you can cut through the noise and laser focus on what matters</li>
+                            <li>Experience working with internet technologies or the SaaS industry is desirable</li>
+                            <li>Experience with PM methodologies to understand customers and explore insights</li>
+                            <li>Strong ability to translate product needs to technology and to understand the technology</li>
+                            <li>Ability to write scripts or snippets of code preferred</li>
+                            <li>Excellent verbal and written communication skills</li>
+                            <li>The desire to work in a startup environment – things can be ambiguous here and move very quickly</li>
                         </ul>
                     </div>
                 </div>
                 <div className="row job-tail">
                     <div className="container" style={{paddingBottom: "6rem"}}>
-                        <h2 className="job-txt1" style={{paddingTop: "2rem"}}>Instruction</h2>
+                        <h2 className="job-txt1" style={{paddingTop: "2rem", color:'#ff6b00'}}>Instructions:</h2>
                         <p style={{marginTop: "1rem", marginBottom: "0"}}>
-                            To move forward with your application, we would like to invite you to finish our online resume
-                            scanning process. Please follow the instruction below carefully:
+                        To move forward with your application, we would like to invite you to finish our online video interview process. Please follow the instruction below carefully:
                          </p>
                         <p style={{marginBottom: "0"}}>
-                            <span className="job-step">Step1:</span> Use a laptop to create an account by click apply now or visit our website at
-                            https://www.hirebeat.co/register (make sure the email matches your resume)
+                            <span className="job-step">Step1:</span> Use a laptop to create an account by click <Link to='/register'>apply now</Link> or visit our website at <Link to='/register'>https://www.hirebeat.co/register</Link> (Please make sure that your email address is consistent with your resume)
                         </p>
                         <p style={{marginBottom: "0"}}>
-                            <span className="job-step">Step2:</span> Upload your resume
+                            <span className="job-step">Step2:</span> <Link to='/resume'>Upload your resume</Link>
                             <li>Navigate to the resume section on the left-hand side of the dashboard, click new scan.</li>
                             <li>Upload your resume with the match job description you are applying, then click scan.</li>
                         </p>
-                        <p><span className="job-step">Step3:</span>  Reply to us with your user name at ye.tian@hirebeat.co</p>
+                        <p style={{marginBottom: "0"}}>
+                            <span className="job-step">Step3:</span> <Link to='/practice'>Video Interview</Link>
+                            <li>Navigate to the interview section on the left-hand side of the dashboard and click new practice.</li>
+                            <li>Chose the <b>Behavior Question</b> and select the <b>Simulate Mode</b>.</li>
+                            <li>Begin your interview with the default setting; after you finish, simply send for an <b>AI review</b> in your dashboard.</li>
+                        </p>
                         <p style={{marginTop: "1rem"}}>We will be in touch with you as soon as possible after we have reviewed your result.</p>
                         <Link to="/register">
-                            <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}>
+                            <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A", paddingLeft:'25px'}}>
                                 Apply Now
                                 <span></span>
                             </a>

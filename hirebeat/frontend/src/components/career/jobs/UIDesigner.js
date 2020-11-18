@@ -25,7 +25,7 @@ class UIDesigner extends Component {
                     <div>
                         <h2 className="job-txt1">About the position</h2>
                         <p className="job-txt2" style={{marginTop: "2rem"}}>
-                            HireBeat is seeking a UI Design Intern to create simple, elegant, and intuitive interactive
+                            HireBeat is seeking a <b>UI Design Intern</b> to create simple, elegant, and intuitive interactive
                             interfaces for our core web product: AI-driven and function-heavy Saas product. As a UI Design
                             Intern, you will work with Product Management, Engineering, Business, to push boundaries,
                             build great products, and solve customer problems. Candidates should show an impressive background
@@ -85,24 +85,24 @@ class UIDesigner extends Component {
                 </div>
                 <div className="row job-tail">
                     <div className="container" style={{paddingBottom: "6rem"}}>
-                        <h2 className="job-txt1" style={{paddingTop: "2rem"}}>Instruction</h2>
+                        <h2 className="job-txt1" style={{paddingTop: "2rem", color:'#ff6b00'}}>Instructions:</h2>
                         <p style={{marginTop: "1rem", marginBottom: "0"}}>
-                            To move forward with your application, we would like to invite you to finish our online resume
-                            scanning process. Please follow the instruction below carefully:
+                        To move forward with your application, we would like to invite you to finish our online video interview process. Please follow the instruction below carefully:
                          </p>
                         <p style={{marginBottom: "0"}}>
-                            <span className="job-step">Step1:</span> Use a laptop to create an account by click apply now or visit our website at
-                            https://www.hirebeat.co/register (make sure the email matches your resume)
+                            <span className="job-step">Step1:</span> Use a laptop to create an account by click <Link to='/register'>apply now</Link> or visit our website at <Link to='/register'>https://www.hirebeat.co/register</Link> (Please make sure that your email address is consistent with your resume)
                         </p>
                         <p style={{marginBottom: "0"}}>
-                            <span className="job-step">Step2:</span> Upload your resume
+                            <span className="job-step">Step2:</span> <Link to='/resume'>Upload your resume</Link>
                             <li>Navigate to the resume section on the left-hand side of the dashboard, click new scan.</li>
                             <li>Upload your resume with the match job description you are applying, then click scan.</li>
                         </p>
-                        <p><span className="job-step">Step3:</span>  Reply to us with your user name at ye.tian@hirebeat.co</p>
+                        <p style={{marginBottom: "0"}}>
+                            <span className="job-step">Step3:</span> Please reply your username to us at: <a href = "mailto: ye.tian@hirebeat.co">ye.tian@hirebeat.co</a>
+                        </p>
                         <p style={{marginTop: "1rem"}}>We will be in touch with you as soon as possible after we have reviewed your result.</p>
                         <Link to="/register">
-                            <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}>
+                            <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A", paddingLeft:'25px'}}>
                                 Apply Now
                                 <span></span>
                             </a>

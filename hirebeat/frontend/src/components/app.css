@@ -2159,6 +2159,7 @@ color: #080A3C;
   font-style: normal;
   font-weight: normal;
   font-size: 0.9375rem;
+  line-height: 1.3125rem;
   color: #4A6F8A;
 }
 
@@ -2171,7 +2172,7 @@ color: #080A3C;
 }
 
 .job-txt2 {
-  font-family: Poppins;
+  font-family: Avenir Next;
   font-style: normal;
   font-weight: normal;
   font-size: 0.9375rem;
@@ -2179,7 +2180,7 @@ color: #080A3C;
 }
 
 .job-txt3 {
-  font-family: Poppins;
+  font-family: Avenir Next;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -2187,7 +2188,7 @@ color: #080A3C;
 }
 
 .job-txt4 {
-  font-family: Poppins;
+  font-family: Avenir Next;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;

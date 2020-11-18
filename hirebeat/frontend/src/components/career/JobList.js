@@ -31,19 +31,19 @@ class JobList extends Component {
                         </div>
                         <div className="clients-logo-list justify-items">
                             <div className="col-3 single-clients-logo">
-                                <Link to="/jobs/software-engineer" style={{textDecoration: "none", height: "14rem"}}>
+                                <Link to="/jobs/software-engineer" style={{textDecoration: "none", height: "12.5rem"}}>
                                     <h3 className="job-title">Software Engineer</h3>
                                     <p className="job-des">We’re looking for software engineers with strong front-end development skills who love to implement beautiful design</p>
                                 </Link>
                             </div>
                             <div className="col-3 single-clients-logo">
-                                <Link to="/jobs/product-manager" style={{textDecoration: "none", height: "14rem"}}>
+                                <Link to="/jobs/product-manager" style={{textDecoration: "none", height: "12.5rem"}}>
                                     <h3 className="job-title">Product Manager</h3>
                                     <p className="job-des">We’re looking for product manager from tier-1 institutions with skills to manage a product or set of products all the way from ideation to launch.</p>
                                 </Link>
                             </div>
                             <div className="col-3 single-clients-logo">
-                                <Link to="/jobs/marketing" style={{textDecoration: "none", height: "14rem"}}>
+                                <Link to="/jobs/marketing" style={{textDecoration: "none", height: "12.5rem"}}>
                                     <h3 className="job-title">Marketing</h3>
                                     <p className="job-des">If you’re a person who likes solving complex problems and gets excited by big ideas, come to join our marketing team.</p>
                                 </Link>
@@ -51,13 +51,13 @@ class JobList extends Component {
                         </div>
                         <div className="clients-logo-list justify-items" style={{marginTop: "1rem"}}>
                             <div className="col-3 single-clients-logo">
-                                <Link to="/jobs/business-analyst" style={{textDecoration: "none", height: "14rem"}}>
-                                    <h3 className="job-title">Business Analyst</h3>
+                                <Link to="/jobs/business-analyst" style={{textDecoration: "none", height: "12.5rem"}}>
+                                    <h3 className="job-title">Financial Analyst</h3>
                                     <p className="job-des">We’re looking for a business analyst who can plan and analyse different product features in collaboration with the product team.</p>
                                 </Link>
                             </div>
                             <div className="col-3 single-clients-logo">
-                                <Link to="/jobs/ui-designer" style={{textDecoration: "none", height: "14rem"}}>
+                                <Link to="/jobs/ui-designer" style={{textDecoration: "none", height: "12.5rem"}}>
                                     <h3 className="job-title">UI Designer</h3>
                                     <p className="job-des">Are you a designer who specializes in UI or visual design? We’re always looking to hire talented designers at all levels of experience.</p>
                                 </Link>
