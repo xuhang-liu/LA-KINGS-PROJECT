@@ -98,10 +98,10 @@ export class MyAudioUploader extends Component {
           buttonWidth={"100%"}
           isAudio={true}
         />
-        <AudioNumberLinkRow
+        {/*<AudioNumberLinkRow
           number_of_audios_to_save= "Unlimited"
           //upgrade={() => console.log("upgrade")}
-        />
+        />*/}
         <RecordDoneButton
           onTap={() => {
             this.props.startMic();

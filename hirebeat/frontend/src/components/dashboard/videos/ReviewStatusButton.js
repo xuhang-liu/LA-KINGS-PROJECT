@@ -8,6 +8,7 @@ import { AIReview } from "./AIReview";
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 import { connect } from "react-redux";
+import {Link} from "react-router-dom";
 
 function ReviewStatusButton(props) {
   const [show, setShow] = useState(false);
@@ -148,12 +149,17 @@ function alert() {
     });
 }
 
+function redirectPricing() {
+  window.location.href = "/pricing";
+}
+
 function upgradeMessage() {
   confirmAlert({
     title: 'Upgrade',
-    message: 'You need to upgrade for more reviews.',
+    message: 'No more free review left.😢 Upgrade now to get unlimite reviews',
     buttons: [
-      {label: 'OK'}
+      {label: 'OK'},
+      {label: 'Upgrade Now', onClick: () => redirectPricing()}
     ]
   });
 }

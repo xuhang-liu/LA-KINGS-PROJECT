@@ -298,9 +298,9 @@ export class EssentialUserInfo extends Component {
               {
                 this.props.profile.plan_interval == "Premium" &&
                 <div className="row">
-                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
-                    <i className='bx bx-diamond'></i> 
-                    <span style={{marginLeft: "6px"}}>Premium</span>
+                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%", fontSize:'1rem', fontWeight:'600'}}>
+                    <i className='bx bx-diamond' style={{display:'inline', fontSize:'1.5rem'}}></i> 
+                    <span style={{marginLeft: "6px", display:'inline'}}>Premium</span>
                   </div>
                   <div className="col-8">
                     <input
@@ -323,9 +323,9 @@ export class EssentialUserInfo extends Component {
               {
                 this.props.profile.plan_interval == "Regular" &&
                 <div className="row">
-                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
-                    <i className='bx bx-diamond'></i> 
-                    <span style={{marginLeft: "6px"}}>Premium</span>
+                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%", fontSize:'1rem', fontWeight:'600'}}>
+                    <i className='bx bx-diamond' style={{display:'inline', fontSize:'1.5rem'}}></i> 
+                    <span style={{marginLeft: "6px", display:'inline'}}>Premium</span>
                   </div>
                 </div>
               }        
