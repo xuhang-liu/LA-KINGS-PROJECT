@@ -132,7 +132,7 @@ class App extends Component {
               <Alerts />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                <PrivateRoute exact path="/resume" component={Resume} />
+                <Route exact path="/resume" component={Resume} />
                 <PrivateRoute exact path="/review" component={ReviewListPreload} />
                 <PrivateRoute
                   exact
@@ -159,7 +159,7 @@ class App extends Component {
                   path="/techfields/practice"
                   component={TechPracticeMode}
                 />
-                <PrivateRoute
+                <Route
                   exact
                   path="/practice/"
                   component={QuestionTypeChoices}

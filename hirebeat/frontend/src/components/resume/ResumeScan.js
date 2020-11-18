@@ -9,6 +9,10 @@ import { connect } from "react-redux";
 var ReactS3Uploader = require("react-s3-uploader");
 
 export class ResumeScan extends Component {
+  componentDidMount() {
+    safariAlert();
+  }
+
   constructor(props) {
     super(props);
     this.uploader = null;
@@ -25,6 +29,7 @@ export class ResumeScan extends Component {
 
   static propTypes = {
     addResume: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
   };
 
   setSelected = () => {
@@ -142,20 +147,22 @@ export class ResumeScan extends Component {
 
   handleUpload = () => {
     // check required inputs: resume, jobTitle, jdText
-    if (!this.checkInput(this.state.resume, this.state.jobTitle, this.state.jdText)) {
-        return this.alert("Required Fields Not Provided", "Please fill all forms and select your resume! ");
-    }
-    if(this.state.jdText.length < 100){
-      return this.alert("Job Description Is Too Short", "Please fill proper contents for job description! ");
-    }
-    if (this.props.saved_resume_count < this.props.save_resume_limit) {
-      this.uploader.uploadFile(this.state.resume);
+    if(!this.props.isAuthenticated){
       this.redirectToDashboard();
-    }
-    else {
-      this.props.createMessage({
-        errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
-      });
+    }else{
+      if (!this.checkInput(this.state.resume, this.state.jobTitle, this.state.jdText)) {
+        return this.alert("Required Fields Not Provided", "Please fill all forms and select your resume! ");
+      }
+      if(this.state.jdText.length < 100){
+        return this.alert("Job Description Is Too Short", "Please fill proper contents for job description! ");
+      }
+      if (this.props.saved_resume_count < this.props.save_resume_limit) {
+        this.uploader.uploadFile(this.state.resume);
+        this.redirectToDashboard();
+      }
+      else {
+        return this.alert("Free saves limit reached", "Please upgrade to premium plan!");
+      }
     }
   }
 
@@ -261,6 +268,7 @@ export class ResumeScan extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth_reducer.isAuthenticated,
   save_resume_limit: state.auth_reducer.profile.save_resume_limit,
   saved_resume_count: state.auth_reducer.profile.saved_resume_count,
   profile: state.auth_reducer.profile,
