@@ -26,7 +26,7 @@ class JobList extends Component {
                     <div className="container" style={{marginBottom:"3%"}}>
                         <div className="clients-logo-list justify-items" style={{marginBottom:"3%"}}>
                             <MediaQuery minDeviceWidth={1224}>
-                                <h1 className="company-data-title">We are hiring for theses roles</h1>
+                                <h1 className="company-data-title">We are hiring for these roles</h1>
                             </MediaQuery>
                         </div>
                         <div className="clients-logo-list justify-items">

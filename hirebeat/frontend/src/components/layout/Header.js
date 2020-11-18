@@ -171,11 +171,18 @@ export class Header extends Component {
 
             <ul className="navbar-nav order-xl-0 ml-auto mr-5
                text-left">
-              <li className="nav-item">
-                <a href="/" className="nav-link text-white navbar-font active">
-                  <span className="header-text">Home</span>
-                </a>
+              <MediaQuery minDeviceWidth={1224}>
+              <li className="nav-item ">
+                <Link to="/practice" className="nav-link text-white navbar-font">
+                  <span className="header-text">Interview Practice</span>
+                </Link>
               </li>
+              <li className="nav-item ">
+                <Link to="/resume" className="nav-link text-white navbar-font">
+                  <span className="header-text">Resume</span>
+                </Link>
+                </li>
+              </MediaQuery>
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
