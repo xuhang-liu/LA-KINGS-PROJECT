@@ -74,6 +74,9 @@ export class ResumeScan extends Component {
   }
 
   selectFile = () => {
+    if(!this.props.isAuthenticated){
+      this.redirectToDashboard();
+    }else{
     // toggle input element
     let input = document.getElementById('uploadFile');
     input.click();
@@ -106,6 +109,7 @@ export class ResumeScan extends Component {
         } else {
             return this.alert("Wrong File Type", "Please upload PDF or DOCX version of your resume");
         }
+      }
     }
   }
 
