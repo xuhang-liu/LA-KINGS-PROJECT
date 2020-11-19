@@ -156,6 +156,8 @@ class MainBanner extends Component {
                                                     </Link>
                                                 </div>
                                             </div>
+                                            <a href="https://www.producthunt.com/posts/hirebeat-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hirebeat-2" target="_blank">
+                                                    <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=275315&theme=dark" alt="HireBeat - All-in-one career training platform for job seekers | Product Hunt" style={{width:'11', height:'3.5rem', paddingTop:'1rem'}}/></a>
                                         </div>
                                     </div>
 
