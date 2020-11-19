@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import S3FileUpload from "react-s3";
+//import Input, { isPossiblePhoneNumber } from 'react-phone-number-input';
 
 import {
   DbCenterRow,
@@ -498,7 +499,7 @@ const EditModal = (props) => {
   return (
     <MyModal show={props.show} onHide={props.hide}>
       <div className="container">
-        <form style={{ marginBottom: "3%" }}>
+        <form style={{ marginBottom: "3%" }} onSubmit={props.saveChanges}>
           <fieldset>
             <div className="form-group">
               <label style={{ fontSize: "20px" }}>Phone Number</label>
@@ -521,6 +522,8 @@ const EditModal = (props) => {
                 placeholder={"Location"}
                 onChange={props.handleInputChange}
                 required="required"
+                pattern="[a-zA-Z]+"
+                title="Alphabet letters only!"
               />
               {/*
               <label style={{ fontSize: "20px" }}>Personal Website</label>
@@ -544,9 +547,8 @@ const EditModal = (props) => {
               />*/}
             </div>
             <button
-              type="button"
+              type="submit"
               className="btn btn-primary"
-              onClick={props.saveChanges}
             >
               Submit
             </button>
