@@ -522,7 +522,7 @@ const EditModal = (props) => {
                 placeholder={"Location"}
                 onChange={props.handleInputChange}
                 required="required"
-                pattern="[a-zA-Z]+"
+                pattern="[0-9 a-z A-Z ]+"
                 title="Alphabet letters only!"
               />
               {/*
