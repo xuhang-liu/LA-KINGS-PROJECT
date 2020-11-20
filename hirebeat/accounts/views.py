@@ -49,7 +49,7 @@ class ActivateAccount(View):
         except (TypeError, ValueError, OverflowError, User.DoesNotExist):
             user = None
         if user is not None and account_activation_token.check_token(user, token):
-            user.is_active = True
+            # user.is_active = True
             user.profile.email_confirmed = True
             user.save()
             return render(request, 'accounts/activation_success.html')

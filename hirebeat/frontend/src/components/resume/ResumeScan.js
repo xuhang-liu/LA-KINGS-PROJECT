@@ -76,6 +76,9 @@ export class ResumeScan extends Component {
   selectFile = () => {
     if(!this.props.isAuthenticated){
       this.redirectToDashboard();
+    }
+    else if(!this.props.profile.email_confirmed){
+      return this.alert("Account Activation Needed", "Please check the activation email and activate your account");
     }else{
     // toggle input element
     let input = document.getElementById('uploadFile');
@@ -153,6 +156,9 @@ export class ResumeScan extends Component {
     // check required inputs: resume, jobTitle, jdText
     if(!this.props.isAuthenticated){
       this.redirectToDashboard();
+    }
+    else if(!this.props.profile.email_confirmed){
+      return this.alert("Account Activation Needed", "Please check the activation email and activate your account");
     }else{
       if (!this.checkInput(this.state.resume, this.state.jobTitle, this.state.jdText)) {
         return this.alert("Required Fields Not Provided", "Please fill all forms and select your resume! ");
