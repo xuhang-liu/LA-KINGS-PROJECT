@@ -1,7 +1,7 @@
 from django.urls import path,include
 from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI
 from knox import views as knox_views
-from .views import sign_s3_upload, ActivateAccount, upgrade_accounts
+from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, resend_activation_email
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -34,5 +34,8 @@ urlpatterns = [
 
     ### Upgrade Accounts
     path('api/upgrade-accounts', upgrade_accounts, name='upgrade accounts'),
+
+    ### Resend Activation Email
+    path('api/resend-activation-email', resend_activation_email, name='resend activation email'),
 ]
 

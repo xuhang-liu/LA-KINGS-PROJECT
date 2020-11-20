@@ -33,6 +33,11 @@ export class Register extends Component {
     user: PropTypes.object,
   };
 
+  redirectToEmailVerification = () => {
+        const { history } = this.props;
+        if (history) history.push(`/email-verification`);
+    };
+
   onSubmit = (e) => {
     e.preventDefault();
     if (this.passwordsMatch()) {
@@ -41,6 +46,7 @@ export class Register extends Component {
           this.state.email,
           this.state.password
       );
+      this.redirectToEmailVerification();
     }
   };
 

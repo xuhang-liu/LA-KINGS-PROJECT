@@ -13,6 +13,11 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from .models import Profile
 from rest_framework.response import Response
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
 load_dotenv()
 
 if not boto.config.get('s3', 'use-sigv4'):
@@ -80,4 +85,33 @@ def upgrade_accounts(request):
 
     return Response({
         "premiums": premiums
+    })
+
+@api_view(['POST'])
+def resend_activation_email(request):
+    print("===Resend Email Called===")
+    user = User.objects.get(pk=request.data["id"])
+    account_activation_token = PasswordResetTokenGenerator()
+    current_site = get_current_site(request)
+    subject = 'Please Activate Your Hirebeat Account'
+    message = get_template("accounts/account_activation_email.txt")
+    context = {
+        'user': user,
+        'domain': current_site.domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': account_activation_token.make_token(user),
+    }
+    from_email = 'hirebeat.tech@gmail.com'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.send()
+
+    return Response({
+        "msg": "Email Sent Successfully"
     })

@@ -25,6 +25,11 @@ export class QuestionTypeChoices extends Component {
       if (history) history.push(`/register`);
   };
 
+  redirectToEmailVerification = () => {
+      const { history } = this.props;
+      if (history) history.push(`/email-verification`);
+  };
+
   redirectToBehaviorQuestions = () => {
       if (!this.props.isAuthenticated) {
           return this.redirectToRegister();
@@ -34,6 +39,7 @@ export class QuestionTypeChoices extends Component {
           if (history) history.push(`/practice/modes`);
       }
       else {
+          this.redirectToEmailVerification();
           return alert();
       }
   };

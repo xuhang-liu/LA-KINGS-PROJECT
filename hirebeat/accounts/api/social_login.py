@@ -30,7 +30,6 @@ def exchange_token(request, backend):
     if serializer.is_valid(raise_exception=True):
         user = request.backend.do_auth(serializer.validated_data['access_token'])
         if user:
-            user.profile.email_confirmed = True
             _, token = AuthToken.objects.create(user)
             return Response({
                    "user": UserSerializer(user).data,
