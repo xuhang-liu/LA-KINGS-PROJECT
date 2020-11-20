@@ -77,7 +77,7 @@ class SoftwareEngineer extends Component {
                         <p style={{marginBottom: "0"}}>
                             <span className="job-step">Step2:</span> <Link to='/resume'>Upload your resume</Link>
                             <li>Navigate to the resume section on the left-hand side of the dashboard, click new scan.</li>
-                            <li>Upload your resume with the match job description you are applying, then click scan.</li>
+                            <li>Upload your resume with the match job description you are applying for, then click scan.</li>
                         </p>
                         <p style={{marginBottom: "0"}}>
                             <span className="job-step">Step3:</span> <Link to='/practice'>Video Interview</Link>
@@ -85,7 +85,7 @@ class SoftwareEngineer extends Component {
                             <li>Chose the <b>Behavior Question</b> and select the <b>Simulate Mode</b>.</li>
                             <li>Begin your interview with the default setting; after you finish, simply send for an <b>AI review</b> in your dashboard.</li>
                         </p>
-                        <p style={{marginTop: "1rem"}}>We will be in touch with you as soon as possible after we have reviewed your result.</p>
+                        <p style={{marginTop: "1rem"}}>We will be in touch with you shortly after reviewing your result.</p>
                         <Link to="/register">
                             <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A", paddingLeft:'25px'}}>
                                 Apply Now

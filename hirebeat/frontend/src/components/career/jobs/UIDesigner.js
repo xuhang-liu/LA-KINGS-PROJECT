@@ -95,12 +95,12 @@ class UIDesigner extends Component {
                         <p style={{marginBottom: "0"}}>
                             <span className="job-step">Step2:</span> <Link to='/resume'>Upload your resume</Link>
                             <li>Navigate to the resume section on the left-hand side of the dashboard, click new scan.</li>
-                            <li>Upload your resume with the match job description you are applying, then click scan.</li>
+                            <li>Upload your resume with the match job description you are applying for, then click scan.</li>
                         </p>
                         <p style={{marginBottom: "0"}}>
                             <span className="job-step">Step3:</span> Please reply your username to us at: <a href = "mailto: ye.tian@hirebeat.co">ye.tian@hirebeat.co</a>
                         </p>
-                        <p style={{marginTop: "1rem"}}>We will be in touch with you as soon as possible after we have reviewed your result.</p>
+                        <p style={{marginTop: "1rem"}}>We will be in touch with you shortly after reviewing your result.</p>
                         <Link to="/register">
                             <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A", paddingLeft:'25px'}}>
                                 Apply Now
