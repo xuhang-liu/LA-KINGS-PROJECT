@@ -53,6 +53,7 @@ export class QuestionTypeChoices extends Component {
           if (history) history.push(`/techfields/`);
       }
       else {
+          this.redirectToEmailVerification();
           return alert();
       }
   };
