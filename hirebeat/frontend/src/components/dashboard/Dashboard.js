@@ -100,7 +100,7 @@ export class Dashboard extends Component {
                   subpage={this.state.subpage}
                 />
               </div>
-              <div className="col-10" style={{marginBottom:"auto", height:"auto", paddingBottom:'10%'}}>{this.renderSubpage()}</div>
+              <div className="col" style={{marginBottom:"auto", height:"auto", paddingBottom:'10%'}}>{this.renderSubpage()}</div>
             </DbCenterRow>
           </div>
           </MediaQuery>
