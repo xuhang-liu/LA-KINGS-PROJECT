@@ -12,6 +12,7 @@ import store from "../store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import indexsaas from "./home/index-saas";
+import EmailVerification from "./accounts/EmailVerification";
 import Login from "./accounts/Login";
 import Register from "./accounts/Register";
 import PrivateRoute from "./basic/PrivateRoute";
@@ -219,6 +220,7 @@ class App extends Component {
                 <Route exact path="/jobs/marketing" component={Marketing} />
                 <Route exact path="/jobs/product-manager" component={ProductManager} />
                 <Route exact path="/jobs/software-engineer" component={SoftwareEngineer} />
+                <PrivateRoute exact path="/email-verification" component={EmailVerification} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />
