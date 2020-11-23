@@ -80,7 +80,7 @@ import ReviewListPreload from "./review/ReviewListPreload";
 import GoTop from './shared/GoTop';
 
 import QuestionTypeChoices from "./practice/QuestionTypeChoices";
-
+import RetryResponseWindow from "./practice/RetryResponseWindow";
 import "./app.css";
 import "./public/css/style.css";
 import "./public/css/responsive.css";
@@ -149,6 +149,11 @@ class App extends Component {
                   exact
                   path="/practice/modes/simulate"
                   component={SelectSimulate}
+                />
+                <PrivateRoute
+                  exact
+                  path="/practice/modes/retry"
+                  component={RetryResponseWindow}
                 />
                 <PrivateRoute
                   exact

@@ -64,7 +64,6 @@ export class Dashboard extends Component {
       subpage: "analytics",
     });
   };*/
-
   renderResume = () => {
     this.setState({
       subpage: "resume",

@@ -6,6 +6,9 @@ import VideoPlayer from "../../videos/VideoPlayer";
 import AudioPlayer from "../../audios/AudioPlayer";
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
+import { Link } from "react-router-dom";
+import { retryBQuestion } from "../../../redux/actions/question_actions";
+import { useDispatch } from 'react-redux';
 //import { renderWaitTag } from "../DashboardComponents";
 
 
@@ -44,7 +47,7 @@ export function VideoImagePreview(props) {
     });
 
   }
-
+  const dispatch = useDispatch();
   // control status, render modal
   return (
     <div className="height-20">
@@ -110,6 +113,19 @@ export function VideoImagePreview(props) {
                         <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                       </button>
                     </div>
+                    <Link to={"/practice/modes/retry"} onClick={()=>{
+                        retryBQuestion(props.v, props.isAudio, dispatch);
+                    }}>
+                    <div className="col" style={{marginTop:"8%", width:"108px", height: "34px"}}>
+                            <a
+                                className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}
+                            >
+                                <i className="bx bx-revision text-15"></i>
+                                Retry
+                                <span></span>
+                            </a>
+                    </div>
+                    </Link>
                 </div>) : (  // TQ
                 <div className="row" style={{width: "90%"}}>
                   <div className="col">
@@ -132,6 +148,19 @@ export function VideoImagePreview(props) {
                       <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                     </button>
                     </div>
+                    <Link to={"/practice/modes/retry"} onClick={()=>{
+                        retryBQuestion(props.v, props.isAudio, dispatch);
+                    }}>
+                        <div className="col" style={{marginTop:"8%", width:"108px", height: "34px"}}>
+                            <a
+                                className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}
+                            >
+                                <i className="bx bx-revision text-15"></i>
+                                Retry
+                                <span></span>
+                            </a>
+                        </div>
+                    </Link>
                 </div>)
             }
             </MediaQuery>
