@@ -12,6 +12,7 @@ import {
   PROFILE_LOADED,
   PROFILE_UPDATED,
   UPGRADE_ACCOUNTS,
+  RESEND_ACTIVATION_EMAIL,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -196,6 +197,21 @@ export const upgradeAccounts = (email_suffix) => (dispatch, getState) => {
       console.log(res.data);
       dispatch({
         type: UPGRADE_ACCOUNTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const resendActivationEmail = (userId) => (dispatch, getState) => {
+  axios
+    .post("/api/resend-activation-email", userId, tokenConfig(getState))
+    .then((res) => {
+      console.log(res.data);
+      dispatch({
+        type: RESEND_ACTIVATION_EMAIL,
         payload: res.data,
       });
     })
