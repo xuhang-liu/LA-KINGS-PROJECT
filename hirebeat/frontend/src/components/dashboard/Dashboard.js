@@ -24,8 +24,25 @@ function ScrollToTopOnMount() {
 
 
 export class Dashboard extends Component {
+  makeProfile = () => {
+    return {
+      user: this.props.user.id,
+      id: this.props.profile.id,
+      email_confirmed: true,
+    };
+  };
+
+  activateEmail = () => {
+    // only for FB social login
+    if (this.props.user.email == "" || this.props.user.email == null ) {
+      var profile = this.makeProfile();
+      this.props.updateProfile(profile);
+    }
+  };
+
   componentDidMount() {
     this.props.loadProfile();
+    this.activateEmail();
   }
 
   // params passed from resume page

@@ -2209,3 +2209,19 @@ color: #080A3C;
   display: flex;
   justify-content: center;
 }
+
+.email-text {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  text-align: center;
+  color: #4A6F8A;
+}
+
+.email-btns {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
