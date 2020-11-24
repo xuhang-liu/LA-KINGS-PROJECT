@@ -12,7 +12,9 @@ var ReactS3Uploader = require("react-s3-uploader");
 export class ResumeScan extends Component {
   componentDidMount() {
     safariAlert();
-    this.activateEmail();
+    if(this.props.user != null){
+      this.activateEmail();
+    }
   }
 
   constructor(props) {
