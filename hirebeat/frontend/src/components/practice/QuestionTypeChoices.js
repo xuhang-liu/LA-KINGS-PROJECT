@@ -77,7 +77,9 @@ export class QuestionTypeChoices extends Component {
   componentDidMount() {
     safariAlert();
     this.props.loadProfile();
-    this.activateEmail();
+    if(this.props.user != null){
+      this.activateEmail();
+    }
   }
 
   render() {
