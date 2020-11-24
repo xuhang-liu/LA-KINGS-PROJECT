@@ -93,8 +93,8 @@ export function VideoImagePreview(props) {
           </MediaQuery>
           <MediaQuery minDeviceWidth={1224}>
             { props.isBQ ? (
-                <div className="row">
-                    <div className="col">
+                <div className="row" style={{width: "90%"}}>
+                    <div className="col" >
                       <ReviewStatusButton
                         v={props.v}
                         sendVideoForReview={props.sendVideoForReview}
@@ -108,23 +108,22 @@ export function VideoImagePreview(props) {
                         aiReview={false}  // review type： Expert
                       />
                     </div>
-                    <div className="col-1" style={{marginRight: "3rem"}}>
+                    <div className="col-1" >
                       <button onClick={deleteAlert} className="delete-btn btn-margin">
                         <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                       </button>
                     </div>
                     <Link to={"/practice/modes/retry"} onClick={()=>{
                         retryBQuestion(props.v, props.isAudio, dispatch);
-                    }}>
-                    <div className="col" style={{marginTop:"8%", width:"108px", height: "34px"}}>
+                    }} className="col-1" style={{ marginTop: "8%"}}>
                             <a
-                                className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}
+                                className="default-btn " style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "100px"}}
                             >
-                                <i className="bx bx-revision text-15"></i>
-                                Retry
+                                <i className="bx bx-revision text-30">
+                                </i>
+                                <p className={"text-15"} style={{height: "100%", color: "white", marginRight: "40%"}}>Retry</p>
                                 <span></span>
                             </a>
-                    </div>
                     </Link>
                 </div>) : (  // TQ
                 <div className="row" style={{width: "90%"}}>
@@ -148,18 +147,17 @@ export function VideoImagePreview(props) {
                       <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                     </button>
                     </div>
-                    <Link to={"/practice/modes/retry"} onClick={()=>{
+                    <Link className="col-1" to={"/practice/modes/retry"} style={{ marginTop: "8%", textAlign:"center"}} onClick={()=>{
                         retryBQuestion(props.v, props.isAudio, dispatch);
                     }}>
-                        <div className="col" style={{marginTop:"8%", width:"108px", height: "34px"}}>
-                            <a
-                                className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}
-                            >
-                                <i className="bx bx-revision text-15"></i>
-                                Retry
-                                <span></span>
-                            </a>
-                        </div>
+                        <a
+                            className="default-btn " style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "100px"}}
+                        >
+                            <i className="bx bx-revision text-30">
+                            </i>
+                            <p className={"text-15"} style={{height: "100%", color: "white", marginRight: "40%"}}>Retry</p>
+                            <span></span>
+                        </a>
                     </Link>
                 </div>)
             }

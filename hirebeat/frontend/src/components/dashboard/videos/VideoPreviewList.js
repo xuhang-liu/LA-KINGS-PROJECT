@@ -23,7 +23,7 @@ export class VideoPreviewList extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{width: 1000}}>
         {this.props.loaded
           ? this.props.videos.map((v) => {
               if (this.props.filter) {
