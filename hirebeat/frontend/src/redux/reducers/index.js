@@ -9,6 +9,7 @@ import resume_reducer from "./resume_reducers";
 import video_sentence_reducer from "./video_sentence_reducers";
 import video_user_reducer from "./video_user_reducers";
 import question_subcategory_reducer from "./question_subcategory_reducers";
+import question_retry_reducer from "./question_retry_reducers"
 import { LOGOUT_SUCCESS } from "../actions/action_types";
 
 const rootReducer = (state, action) => {
@@ -29,6 +30,7 @@ const appReducer = combineReducers({
   video_sentence_reducer,
   video_user_reducer,
   question_subcategory_reducer,
+  question_retry_reducer,
 });
 
 export default rootReducer;

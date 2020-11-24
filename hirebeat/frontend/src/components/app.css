@@ -694,29 +694,29 @@ h5 {
 }
 
 .not-reviewed {
-  width: 226px;
-  height: 34px;
+  width: 14.125rem;
+  height: 2.125rem;
   background: #FF6B00;
   box-shadow: 0px 4px 25px rgba(255, 107, 0, 0.25);
-  border-radius: 50px;
+  border-radius: 3.125rem;
   border: 0px;
 }
 
 .under-review {
-  width: 226px;
-  height: 34px;
+  width: 14.125rem;
+  height: 2.125rem;
   background: #7D7D7D;
   box-shadow: 0px 4px 25px rgba(125, 125, 125, 0.25);
-  border-radius: 50px;
+  border-radius: 3.125rem;
   border: 0px;
 }
 
 .reviewed {
-  width: 226px;
-  height: 34px;
+  width: 14.125rem;
+  height: 2.125rem;
   background: #14CC75;
   box-shadow: 0px 4px 25px rgba(20, 204, 117, 0.25);
-  border-radius: 50px;
+  border-radius: 3.125rem;
   border: 0px;
 }
 
