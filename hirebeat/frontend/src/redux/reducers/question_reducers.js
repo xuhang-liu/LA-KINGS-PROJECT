@@ -7,6 +7,7 @@ const initialState = {
   last_q: false,
   loaded: false,
 };
+
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_QUESTIONS:

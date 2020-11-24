@@ -47,6 +47,11 @@ export function VideoImagePreview(props) {
     });
 
   }
+
+  function retry() {
+    retryBQuestion(props.v, props.isAudio, dispatch);
+  }
+
   const dispatch = useDispatch();
   // control status, render modal
   return (
@@ -93,8 +98,8 @@ export function VideoImagePreview(props) {
           </MediaQuery>
           <MediaQuery minDeviceWidth={1224}>
             { props.isBQ ? (
-                <div className="row" style={{width: "90%"}}>
-                    <div className="col" >
+                <div className="row">
+                    <div className="col">
                       <ReviewStatusButton
                         v={props.v}
                         sendVideoForReview={props.sendVideoForReview}
@@ -108,25 +113,25 @@ export function VideoImagePreview(props) {
                         aiReview={false}  // review type： Expert
                       />
                     </div>
-                    <div className="col-1" >
+                    <div className="col-1">
                       <button onClick={deleteAlert} className="delete-btn btn-margin">
                         <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                       </button>
                     </div>
-                    <Link to={"/practice/modes/retry"} onClick={()=>{
-                        retryBQuestion(props.v, props.isAudio, dispatch);
-                    }} className="col-1" style={{ marginTop: "8%"}}>
+                    <div className="col-2" style={{marginRight: "1rem"}}>
+                        <div className="height-30 d-flex justify-content-start align-items-end" style={{marginBottom: "0.8rem"}} />
+                        <Link to={"/practice/modes/retry"} onClick={retry} style={{ marginTop: "8%"}}>
                             <a
                                 className="default-btn " style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "100px"}}
                             >
-                                <i className="bx bx-revision text-30">
-                                </i>
+                                <i className="bx bx-revision text-30"></i>
                                 <p className={"text-15"} style={{height: "100%", color: "white", marginRight: "40%"}}>Retry</p>
                                 <span></span>
                             </a>
-                    </Link>
+                        </Link>
+                    </div>
                 </div>) : (  // TQ
-                <div className="row" style={{width: "90%"}}>
+                <div className="row">
                   <div className="col">
                     <TQReviewStatus
                       v={props.v}
@@ -146,19 +151,19 @@ export function VideoImagePreview(props) {
                     <button onClick={deleteAlert} className="delete-btn btn-margin">
                       <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                     </button>
-                    </div>
-                    <Link className="col-1" to={"/practice/modes/retry"} style={{ marginTop: "8%", textAlign:"center"}} onClick={()=>{
-                        retryBQuestion(props.v, props.isAudio, dispatch);
-                    }}>
-                        <a
-                            className="default-btn " style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "100px"}}
-                        >
-                            <i className="bx bx-revision text-30">
-                            </i>
-                            <p className={"text-15"} style={{height: "100%", color: "white", marginRight: "40%"}}>Retry</p>
-                            <span></span>
-                        </a>
-                    </Link>
+                  </div>
+                  <div className="col-2" style={{marginRight: "1rem"}}>
+                      <div className="height-30 d-flex justify-content-start align-items-end" style={{marginBottom: "0.8rem"}} />
+                      <Link to={"/practice/modes/retry"} onClick={retry} style={{ marginTop: "8%"}}>
+                          <a
+                              className="default-btn " style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "100px"}}
+                          >
+                              <i className="bx bx-revision text-30"></i>
+                              <p className={"text-15"} style={{height: "100%", color: "white", marginRight: "40%"}}>Retry</p>
+                              <span></span>
+                          </a>
+                      </Link>
+                  </div>
                 </div>)
             }
             </MediaQuery>

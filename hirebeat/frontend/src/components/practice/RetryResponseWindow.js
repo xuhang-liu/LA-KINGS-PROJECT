@@ -10,7 +10,7 @@ import NotePad from "./NotePad";
 import { connect } from "react-redux";
 import PrepCountdown from "./PrepCountdown";
 import {Link} from "react-router-dom"
-import AudioRecorder from "./AudioRecorder";
+
 export class RetryResponseWindow extends Component {
     state = {
         status: "Preparation", // or Recording or Loading or Your Answer. Used to control CountdownBar and 30's preparation
@@ -168,7 +168,7 @@ const mapStateToProps = (state) => ({
         ai_review_categories: state.question_retry_reducer.ai_review_categories,
         expert_review_categories: state.question_retry_reducer.expert_review_categories,
     },
-    responseLength: 2,
+    responseLength: 1,
     isAudio: state.question_retry_reducer.isAudio,
 });
 

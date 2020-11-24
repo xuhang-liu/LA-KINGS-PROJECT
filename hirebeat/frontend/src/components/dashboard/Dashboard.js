@@ -64,11 +64,13 @@ export class Dashboard extends Component {
       subpage: "analytics",
     });
   };*/
+
   renderResume = () => {
     this.setState({
       subpage: "resume",
     });
   };
+
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "videos":
@@ -107,7 +109,7 @@ export class Dashboard extends Component {
           <br />
           <div className="container" style={{marginBottom:"0%"}}>
             <DbCenterRow>
-              <div className="col-3" style={{marginBottom:"auto", paddingBottom:'10%'}}>
+              <div className="col-2" style={{marginBottom:"auto", paddingBottom:'10%'}}>
                 <ButtonPanel
                   profile={this.props.profile}
                   renderVideos={this.renderVideos}
@@ -117,7 +119,7 @@ export class Dashboard extends Component {
                   subpage={this.state.subpage}
                 />
               </div>
-              <div className="col" style={{marginBottom:"auto", height:"auto", paddingBottom:'10%'}}>{this.renderSubpage()}</div>
+              <div className="col-11" style={{marginBottom:"auto", height:"auto", paddingBottom:'10%'}}>{this.renderSubpage()}</div>
             </DbCenterRow>
           </div>
           </MediaQuery>
