@@ -58,9 +58,6 @@ export class Login extends Component {
 
   render() {
     if (this.props.isAuthenticated) {
-      if (!this.props.profile.email_confirmed) {
-        return <Redirect to="/email-verification"/>;
-      }
       if (this.props.user.groups[0] == "reviewers") {
         return <Redirect to="/review"/>;
       } else {
