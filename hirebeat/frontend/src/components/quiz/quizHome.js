@@ -21,13 +21,13 @@ class QuizHome extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Quiz – The Best Video Interview Prep Tool For Jobseekers</title>
-                    <meta name="Description" CONTENT="Recommend Positions According To Your Personaility!"></meta>
+                    <meta name="Description" CONTENT="Recommend positions according to your personality!"></meta>
                     <link rel="canonical" href="https://hirebeat.co/quiz"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
                     pageTitle="Take Your Quiz Here" 
-                    pageDescription="Recommend positions according to your personaility" 
+                    pageDescription="Recommend positions according to your personality" 
                 />
                 <Quizdetail1/>
                 <FreeTrialArea />

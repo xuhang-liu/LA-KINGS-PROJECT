@@ -33,13 +33,13 @@ class JobList extends Component {
                             <div className="single-clients-logo">
                                 <Link to="/jobs/software-engineer" style={{textDecoration: "none", height: "12.5rem"}}>
                                     <h3 className="job-title">Software Engineer</h3>
-                                    <p className="job-des">We’re looking for software engineers with strong front-end development skills who love to implement beautiful design</p>
+                                    <p className="job-des">We’re looking for software engineers with strong front-end development skills who love to implement a beautiful design</p>
                                 </Link>
                             </div>
                             <div className="single-clients-logo">
                                 <Link to="/jobs/product-manager" style={{textDecoration: "none", height: "12.5rem"}}>
                                     <h3 className="job-title">Product Manager</h3>
-                                    <p className="job-des">We’re looking for product manager from tier-1 institutions with skills to manage a product or set of products all the way from ideation to launch.</p>
+                                    <p className="job-des">We’re looking for a product manager from tier-1 institutions with skills to manage a product or set of products all the way from ideation to launch.</p>
                                 </Link>
                             </div>
                             <div className="single-clients-logo">
@@ -51,7 +51,7 @@ class JobList extends Component {
                             <div className="single-clients-logo">
                                 <Link to="/jobs/business-analyst" style={{textDecoration: "none", height: "12.5rem"}}>
                                     <h3 className="job-title">Financial Analyst</h3>
-                                    <p className="job-des">We’re looking for a business analyst who can plan and analyse different product features in collaboration with the product team.</p>
+                                    <p className="job-des">We’re looking for a business analyst who can plan and analyze different product features in collaboration with the product team.</p>
                                 </Link>
                             </div>
                             <div className="single-clients-logo">

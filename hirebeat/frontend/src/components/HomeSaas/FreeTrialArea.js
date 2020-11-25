@@ -11,7 +11,7 @@ class FreeTrialArea extends Component {
             <section className="free-trial-area pb-100 bg-f4f5fe">
                 <div className="container">
                     <div className="free-trial-content">
-                        <h2 style={{paddingTop:"2rem", paddingBottom:"1.5rem"}}>We are here to best support you landing your dream job</h2>
+                        <h2 style={{paddingTop:"2rem", paddingBottom:"1.5rem"}}>We are here to best support you in landing your dream job</h2>
                         <p>Your training will be specifically tailored to your industry/job role and to engage in a real interview simulation with AI or expert evaluation</p>
 
                         <Link to="/register">

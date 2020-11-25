@@ -69,7 +69,7 @@ class ClientsFeedbackSlider extends Component {
                         <div className="single-feedback-item">
 
                             <div className="feedback-desc">
-                                <p>My frustration with being insecure about doing badly in interviews completely ended after I started using HireBeat. After practicing and getting feedback for wide variety of behavioral questions, I am now able to fully articulate and concisely deliver my answers during interviews!</p>
+                                <p>My frustration with being insecure about doing badly in interviews ultimately ended after I started using HireBeat. After practicing and getting feedback for a wide variety of behavioral questions, I can now fully articulate and concisely deliver my answers during interviews!</p>
 
                                 <div className="rating">
                                     <i className="bx bxs-star"></i>
@@ -91,7 +91,7 @@ class ClientsFeedbackSlider extends Component {
                         <div className="single-feedback-item">
 
                             <div className="feedback-desc">
-                                <p>Ever since I started using HireBeat’s resume matching service, I have received more interview invitations than ever! After learning missing key aspects of my resume, I was able to write a more precise resume for each job positions that I was applying to. I highly recommend HireBeat!</p>
+                                <p>Since I started using HireBeat’s resume matching service, I have received more interview invitations than ever! After learning missing vital aspects of my resume, I wrote a more detailed resume for each job position that I was applying to. I highly recommend HireBeat!</p>
 
                                 <div className="rating">
                                     <i className="bx bxs-star"></i>
@@ -113,7 +113,7 @@ class ClientsFeedbackSlider extends Component {
                         <div className="single-feedback-item">
 
                             <div className="feedback-desc">
-                                <p>I’ve been using hirebeat to improve my interviewing in technical roles to compete in this difficult job market. It has helped me improve my skills and my demeanor in interviews to a great extent. I’m much more prepared for my career then ever before!</p>
+                                <p>I’ve been using hirebeat to improve my interviewing in technical roles to compete in this challenging job market. It has helped me improve my skills and my demeanor in interviews to a great extent. I’m much more prepared for my career than ever before!</p>
                                 <br/>
                                 <div className="rating">
                                     <i className="bx bxs-star"></i>
@@ -134,7 +134,7 @@ class ClientsFeedbackSlider extends Component {
                         <div className="single-feedback-item">
 
                             <div className="feedback-desc">
-                                <p>I used HireBeat to improve my interview performance, and the result exceeded my expectations. It’s like hiring a personal interview tutor for myself, but with way cheaper price. Now I have also got an offer from my dream company!</p>
+                                <p>I used HireBeat to improve my interview performance, and the result exceeded my expectations. It’s like hiring a personal interview tutor for myself, but with a way lower price. Now I have also got an offer from my dream company!</p>
                                 <br/>
                                 <div className="rating">
                                     <i className="bx bxs-star"></i>
@@ -155,7 +155,7 @@ class ClientsFeedbackSlider extends Component {
                         <div className="single-feedback-item">
 
                             <div className="feedback-desc">
-                                <p>After struggling during many job interviews, I decided to use HireBeat to help me better prepare. Within two weeks of usage, my interview confidence increase significantly. Now, I am more ready than ever to enter the interview room.</p>
+                                <p>After struggling during many job interviews, I decided to use HireBeat to help me better prepare. Within two weeks of usage, my interview confidence increases significantly. Now, I am more ready than ever to enter the interview room.</p>
                                 <br/>
                                 <div className="rating">
                                     <i className="bx bxs-star"></i>

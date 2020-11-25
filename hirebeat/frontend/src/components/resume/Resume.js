@@ -27,7 +27,7 @@ export class Resume extends Component {
                     <MediaQuery minDeviceWidth={1224}>
                         <PageTitleArea
                         pageTitle="Scan Your Resume"
-                        pageDescription="Please provide your resume and the job description for you targeted position"
+                        pageDescription="Please provide your resume and the job description for your targeted position"
                         style={{marginBottom: "2rem"}}
                         />
                         <ResumeScan/>

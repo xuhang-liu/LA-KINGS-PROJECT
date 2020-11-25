@@ -21,7 +21,7 @@ class About extends Component {
                 <ScrollToTopOnMount />
                 <PageTitleArea 
                     pageTitle="Help job seekers gain core competence" 
-                    pageDescription="By implementing talent intelligent database." 
+                    pageDescription="By implementing an intelligent talent database" 
                 />
                 <AboutContent />
                 <WhyChooseUs />

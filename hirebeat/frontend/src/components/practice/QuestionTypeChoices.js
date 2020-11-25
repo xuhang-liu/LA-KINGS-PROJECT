@@ -104,7 +104,7 @@ export class QuestionTypeChoices extends Component {
               <p className="mode-col-text1">
                 Prepare about how you’ve <br/>
                 overcome previous professional <br/>
-                challenges, reached success and <br/>
+                challenges reached success and <br/>
                 navigated difficult decisions.
               </p>
               <p className="mode-col-text2">Next Step -> </p>
