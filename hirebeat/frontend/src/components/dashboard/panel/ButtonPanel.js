@@ -106,20 +106,17 @@ function ButtonPanel(props) {
       }
 
       {props.profile.membership == 'Regular' &&
-        <div className="col-12">
-          <div className="row">
-            <div className="col-5" style={{padding:"0%"}}>
+          <div>
+            <div className="row justify-items">
               {props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Reviews Left: {saves_left}</p> : null}
               {props.subpage == "resume" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {cv_saves_left}</p> : null}
             </div>
-
-            <div className="col-6" style={{padding:"0%"}}>
+            <div className="row justify-items">
               <Link to="/pricing" style={{textDecoration: "none"}}>
                 <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
               </Link>
             </div>
           </div>
-        </div>
       }
       </MediaQuery>
       <MediaQuery maxDeviceWidth={1223}>
