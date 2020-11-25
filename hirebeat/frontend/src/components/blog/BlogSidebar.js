@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/how-to-answer-what-is-your-weakness-question-in-an-interview">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog12.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Nov 25, 2020</time>
+                            <h4 className="title usmall">
+                                <Link to="/how-to-answer-what-is-your-weakness-question-in-an-interview">
+                                    <a>"What Is Your Weakness"</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/guidelines-on-how-to-answer-what-is-your-biggest-strength">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog11.jpg" alt="image"/>

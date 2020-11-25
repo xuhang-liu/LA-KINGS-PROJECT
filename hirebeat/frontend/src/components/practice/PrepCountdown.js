@@ -47,7 +47,7 @@ export class PrepCountdown extends Component {
             }}
           >
             <br />
-            { this.props.isAudio ? null : <br / >}
+            { this.props.isAudio ? null : <br />}
             <CardRow>
               <CardButton
                 onTap={this.props.finishCountdown}

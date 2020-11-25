@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogDetailsContent11 from './BlogDetailsContent11';
+import BlogDetailsContent12 from './BlogDetailsContent12';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import {Helmet} from "react-helmet";
@@ -19,16 +19,16 @@ class BlogDetail10 extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – Guidelines on How to Answer "What Is Your Biggest Strength" In An Interview with a List of Strength</title>
-                    <meta name="Description" CONTENT="Guidelines on How to Answer 'What Is Your Biggest Strength' In An Interview with a List of Strength"></meta>
-                    <link rel="canonical" href="https://hirebeat.co/guidelines-on-how-to-answer-what-is-your-biggest-strength"/>
+                    <title>HireBeat Blog – How To Answer "What Is Your Weakness" Question In An Interview</title>
+                    <meta name="Description" CONTENT="How To Answer 'What Is Your Weakness' Question In An Interview"></meta>
+                    <link rel="canonical" href="https://hirebeat.co/how-to-answer-what-is-your-weakness-question-in-an-interview"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
                     pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogDetailsContent11 />
+                <BlogDetailsContent12 />
                 <FreeTrialArea />
             </React.Fragment>
         );
