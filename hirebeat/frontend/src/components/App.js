@@ -31,6 +31,7 @@ import BlogDetail8 from "./blog/blog-details8";
 import BlogDetail9 from "./blog/blog-details9";
 import BlogDetail10 from "./blog/blog-details10";
 import BlogDetail11 from "./blog/blog-details11";
+import BlogDetail12 from "./blog/blog-details12";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -185,6 +186,7 @@ class App extends Component {
                 <Route exact path="/tips-for-getting-your-resume-past-an-applicant-tracking-system" component={BlogDetail9} />
                 <Route exact path="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview" component={BlogDetail10} />
                 <Route exact path="/guidelines-on-how-to-answer-what-is-your-biggest-strength" component={BlogDetail11} />
+                <Route exact path="/how-to-answer-what-is-your-weakness-question-in-an-interview" component={BlogDetail12} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />

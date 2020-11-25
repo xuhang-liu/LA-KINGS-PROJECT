@@ -122,10 +122,10 @@ export function VideoImagePreview(props) {
                         <div className="height-30 d-flex justify-content-start align-items-end" style={{marginBottom: "0.8rem"}} />
                         <Link to={"/practice/modes/retry"} onClick={retry} style={{ marginTop: "8%"}}>
                             <a
-                                className="default-btn " style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "100px"}}
+                                className="default-btn" style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "80px", paddingLeft:"32px"}}
                             >
-                                <i className="bx bx-revision text-30"></i>
-                                <p className={"text-15"} style={{height: "100%", color: "white", marginRight: "40%"}}>Retry</p>
+                                <i className="bx bx-revision text-30" style={{left:"10px"}}></i>
+                                <p className={"text-15"} style={{height: "100%", color: "white", marginRight: "10%"}}>Retry</p>
                                 <span></span>
                             </a>
                         </Link>
@@ -156,10 +156,10 @@ export function VideoImagePreview(props) {
                       <div className="height-30 d-flex justify-content-start align-items-end" style={{marginBottom: "0.8rem"}} />
                       <Link to={"/practice/modes/retry"} onClick={retry} style={{ marginTop: "8%"}}>
                           <a
-                              className="default-btn " style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "100px"}}
+                              className="default-btn " style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "80px", paddingLeft:"32px"}}
                           >
-                              <i className="bx bx-revision text-30"></i>
-                              <p className={"text-15"} style={{height: "100%", color: "white", marginRight: "40%"}}>Retry</p>
+                              <i className="bx bx-revision text-30" style={{left:"10px"}}></i>
+                              <p className={"text-15"} style={{height: "100%", color: "white", marginRight: "10%"}}>Retry</p>
                               <span></span>
                           </a>
                       </Link>
