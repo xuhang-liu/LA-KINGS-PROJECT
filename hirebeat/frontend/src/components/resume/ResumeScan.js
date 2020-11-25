@@ -6,11 +6,13 @@ import PropTypes from "prop-types";
 import { addResume } from "../../redux/actions/resume_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import { connect } from "react-redux";
+import { updateProfile } from "../../redux/actions/auth_actions";
 var ReactS3Uploader = require("react-s3-uploader");
 
 export class ResumeScan extends Component {
   componentDidMount() {
     safariAlert();
+    this.activateEmail();
   }
 
   constructor(props) {
@@ -30,6 +32,22 @@ export class ResumeScan extends Component {
   static propTypes = {
     addResume: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
+  };
+
+  makeProfile = () => {
+    return {
+      user: this.props.user.id,
+      id: this.props.profile.id,
+      email_confirmed: true,
+    };
+  };
+
+  activateEmail = () => {
+  // only for FB social login
+    if (this.props.user.email == "" || this.props.user.email == null ) {
+      var profile = this.makeProfile();
+      this.props.updateProfile(profile);
+    }
   };
 
   setSelected = () => {
@@ -292,6 +310,6 @@ const mapStateToProps = (state) => ({
   user: state.auth_reducer.user,
 });
 
-export default withRouter(connect(mapStateToProps, { addResume, createMessage })(
+export default withRouter(connect(mapStateToProps, { addResume, createMessage, updateProfile })(
   ResumeScan
 ));
