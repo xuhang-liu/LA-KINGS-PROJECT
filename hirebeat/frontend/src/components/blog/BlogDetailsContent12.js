@@ -64,7 +64,7 @@ class BlogDetailsContent extends Component {
                                     3. Keep it concise
                                     </p>
                                     <p>
-                                    Keep your response short as you might end up talking about so much and not highlighting the important things. It would be best if you mentioned one or two weaknesses than go into detail.
+                                    Keep your response short as you might end up talking about so much and not highlighting the important things. It would be best if you mentioned one or two weaknesses then go into detail.
                                     </p>
                                     <br/>
                                     <h3 className="mb-0">Example answer to "what is your weakness?" question in an interview</h3>

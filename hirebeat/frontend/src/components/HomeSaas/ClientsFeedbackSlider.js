@@ -58,7 +58,7 @@ class ClientsFeedbackSlider extends Component {
             <section className="feedback-area pt-100 bg-f4f6fc" style={{paddingBottom:'2rem'}}>
                 <div className="container">
                     <div className="section-title">
-                        <h2>Whats Our Clients Said About <span>HireBeat</span></h2>
+                        <h2>What's Our Clients Said About <span>HireBeat</span></h2>
                     </div>
 
                     {this.state.display ? <OwlCarousel 
