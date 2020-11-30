@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import { connect } from "react-redux";
-import { updateProfile } from "../../redux/actions/auth_actions";
+import { updateProfile, updateUserEmail } from "../../redux/actions/auth_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import { loadStripe } from '@stripe/stripe-js';
 import { confirmAlert } from 'react-confirm-alert';
@@ -21,6 +21,114 @@ class PricingStyleOne extends Component {
         });
       };
 
+    confirmEmailCoupon = () => {
+        let email1 = document.getElementById("email1").value;
+        let email2 = document.getElementById("email2").value;
+        let reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+        if (email1 != email2) {
+            // check the input emails are equal
+            return alert("Your input email addresses are not consistent!");
+        } else if (!reg.test(email2)) {
+            // check email format
+            return alert("Please Enter Your Email In Correct Format.");
+        } else {
+            // save email to User model
+            let user = {"id": this.props.user.id , "email": email2};
+            this.props.updateUserEmail(user);
+            // redirect to payment
+            this.handleClickCouponUpgrade2(email2);
+        }
+    }
+
+    confirmEmailMonth1 = () => {
+        let email1 = document.getElementById("email1").value;
+        let email2 = document.getElementById("email2").value;
+        let reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+        if (email1 != email2) {
+            // check the input emails are equal
+            return alert("Your input email addresses are not consistent!");
+        } else if (!reg.test(email2)) {
+            // check email format
+            return alert("Please Enter Your Email In Correct Format.");
+        } else {
+            // save email to User model
+            let user = {"id": this.props.user.id , "email": email2};
+            this.props.updateUserEmail(user);
+            // redirect to payment
+            this.handleClickUpgrade2(email2);
+        }
+    }
+
+    confirmEmailMonth3 = () => {
+        let email1 = document.getElementById("email1").value;
+        let email2 = document.getElementById("email2").value;
+        let reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+        if (email1 != email2) {
+            // check the input emails are equal
+            return alert("Your input email addresses are not consistent!");
+        } else if (!reg.test(email2)) {
+            // check email format
+            return alert("Please Enter Your Email In Correct Format.");
+        } else {
+            // save email to User model
+            let user = {"id": this.props.user.id , "email": email2};
+            this.props.updateUserEmail(user);
+            // redirect to payment
+            this.handleYearClickUpgrade2(email2);
+        }
+    }
+
+    addUserEmailCoupon = () => {
+        confirmAlert({
+            title: 'Please enter your personal email',
+            message: <form>
+                        <label style={{width: "6rem"}}>Email</label><input id="email1" type="text"></input><br/>
+                        <label style={{width: "6rem"}}>Confirm Email</label><input id="email2" type="text"></input>
+                    </form>,
+            buttons: [
+                {
+                    label: 'ok',
+                    onClick: () => this.confirmEmailCoupon()
+                }
+            ],
+        });
+    }
+
+    addUserEmailMonth1 = () => {
+        confirmAlert({
+            title: 'Please enter your personal email',
+            message: <form>
+                        <label style={{width: "6rem"}}>Email</label><input id="email1" type="text"></input><br/>
+                        <label style={{width: "6rem"}}>Confirm Email</label><input id="email2" type="text"></input>
+                    </form>,
+            buttons: [
+                {
+                    label: 'ok',
+                    onClick: () => this.confirmEmailMonth1()
+                }
+            ],
+        });
+    }
+
+    addUserEmailMonth3 = () => {
+        confirmAlert({
+            title: 'Please enter your personal email',
+            message: <form>
+                        <label style={{width: "6rem"}}>Email</label><input id="email1" type="text"></input><br/>
+                        <label style={{width: "6rem"}}>Confirm Email</label><input id="email2" type="text"></input>
+                    </form>,
+            buttons: [
+                {
+                    label: 'ok',
+                    onClick: () => this.confirmEmailMonth3()
+                }
+            ],
+        });
+    }
+
       handleCounponUpgrade = () => {
         if(this.state.coupon_match != 'PRODUCTHUNT2020' && this.state.coupon_match != 'DBCVIP'){
           confirmAlert({
@@ -32,6 +140,8 @@ class PricingStyleOne extends Component {
               }
             ]
             });
+        }else if (this.props.user.email == "" || this.props.user.email == null) {
+            this.addUserEmailCoupon();
         }else{
           this.handleClickCouponUpgrade();
         }
@@ -58,6 +168,23 @@ class PricingStyleOne extends Component {
         error.message;
     };
 
+    handleClickCouponUpgrade2 = async (email) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1HRUQJKxU1MN2zWMo9p8tKjJ', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: email,
+        });
+        error.message;
+    };
+
     handleUpgrade = () => {
         if(this.props.profile.membership == 'Premium'){
           confirmAlert({
@@ -69,6 +196,8 @@ class PricingStyleOne extends Component {
               }
             ]
             });
+        }else if (this.props.user.email == "" || this.props.user.email == null) {
+            this.addUserEmailMonth1();
         }else{
           this.handleClickUpgrade();
         }
@@ -95,6 +224,23 @@ class PricingStyleOne extends Component {
         error.message;
     };
 
+    handleClickUpgrade2 = async (email) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1H8WhZKxU1MN2zWMo3Cu8kLn', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: email,
+        });
+        error.message;
+    };
+
     handleYearUpgrade = () => {
         if(this.props.profile.membership == 'Premium'){
           confirmAlert({
@@ -106,6 +252,8 @@ class PricingStyleOne extends Component {
               }
             ]
             });
+        }else if (this.props.user.email == "" || this.props.user.email == null) {
+            this.addUserEmailMonth3();
         }else{
           this.handleYearClickUpgrade();
         }
@@ -128,6 +276,23 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
+    handleYearClickUpgrade2 = async (email) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1HmmhzKxU1MN2zWMlxYp4I0z', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: email,
         });
         error.message;
     };
@@ -493,4 +658,4 @@ const mapStateToProps = (state) => ({
     profile: state.auth_reducer.profile,
 });
 
-export default connect(mapStateToProps, { updateProfile, createMessage }) (PricingStyleOne);
+export default connect(mapStateToProps, { updateProfile, createMessage, updateUserEmail }) (PricingStyleOne);
