@@ -58,7 +58,12 @@ class Footer extends Component {
                                     </li>
                                     <li>
                                         <Link to="/bloghome">
-                                            <a>Latest News</a>
+                                            <a>Blog</a>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/jobs">
+                                            <a>Join Us</a>
                                         </Link>
                                     </li>
                                 </ul>

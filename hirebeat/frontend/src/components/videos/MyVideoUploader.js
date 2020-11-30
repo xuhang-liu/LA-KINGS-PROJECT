@@ -97,25 +97,43 @@ export class MyVideoUploader extends Component {
 
     //For other browsers
     var name = this.props.video.name;
-    var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;  // change bucket when run in local
-    var q_category = `${this.props.questions[this.props.q_index].category}`;
-    var q_description = `${this.props.questions[this.props.q_index].description}`;
-    var q_title = `${this.props.questions[this.props.q_index].title}`;
-    var q_answer = `${this.props.questions[this.props.q_index].answer}`;
-    var q_explain = `${this.props.questions[this.props.q_index].explain}`;
 
-    // insert MetaData to video table
-    const videoMetaData = {
-      url: url,
-      q_description: q_description,
-      q_type: matchQType(q_title),
-      q_category: q_category,
-      q_answer: q_answer,
-      q_explain: q_explain,
-      ai_review_categories: reviewCategories(q_category),
-      expert_review_categories: reviewCategories(q_category),
-    };
-    this.props.addVideo(videoMetaData);
+    // change bucket to "hirebeat-test-video-bucket" when run in local
+    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
+
+    if (this.props.retry) {
+        let retry_q_meta = this.props.retry_q_meta;
+        const videoMetaData = {
+            url: url,
+            q_description: retry_q_meta.q_description,
+            q_type: retry_q_meta.q_type,
+            q_category: retry_q_meta.q_category,
+            q_answer: retry_q_meta.q_answer,
+            q_explain: retry_q_meta.q_explain,
+            ai_review_categories: retry_q_meta.ai_review_categories,
+            expert_review_categories: retry_q_meta.expert_review_categories,
+        };
+        this.props.addVideo(videoMetaData);
+    } else {
+        var q_category = `${this.props.questions[this.props.q_index].category}`;
+        var q_description = `${this.props.questions[this.props.q_index].description}`;
+        var q_title = `${this.props.questions[this.props.q_index].title}`;
+        var q_answer = `${this.props.questions[this.props.q_index].answer}`;
+        var q_explain = `${this.props.questions[this.props.q_index].explain}`;
+        // insert MetaData to video table
+        const videoMetaData = {
+            url: url,
+            q_description: q_description,
+            q_type: matchQType(q_title),
+            q_category: q_category,
+            q_answer: q_answer,
+            q_explain: q_explain,
+            ai_review_categories: reviewCategories(q_category),
+            expert_review_categories: reviewCategories(q_category),
+        };
+
+        this.props.addVideo(videoMetaData);
+    }
   };
 
   onUploadError = (err) => {
@@ -190,7 +208,7 @@ export class MyVideoUploader extends Component {
           buttonWidth={"100%"}
           isAudio={this.props.isAudio}
         />
-        <VideoNumberLinkRow
+        {/*<VideoNumberLinkRow
           number_of_videos_to_save= "Unlimited"
           isAudio={this.props.isAudio}
           //upgrade={() => console.log("upgrade")}
@@ -202,7 +220,7 @@ export class MyVideoUploader extends Component {
           fontFamily={"Avenir Next"}
           isAudio={this.props.isAudio}
         />
-        }
+        }*/}
         <BglessCardButton
           onTap={skipOnTap}
           textDisplayed={skipText}

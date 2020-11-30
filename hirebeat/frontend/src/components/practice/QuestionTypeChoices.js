@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import PageTitleArea from '../Common/PageTitleArea';
 import { connect } from "react-redux";
 import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
-//import { confirmAlert } from 'react-confirm-alert';
+import { confirmAlert } from 'react-confirm-alert';
 //import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function ScrollToTopOnMount() {
@@ -19,19 +19,67 @@ function ScrollToTopOnMount() {
 }
 
 export class QuestionTypeChoices extends Component {
-  /*redirectToBehaviorQuestions = () => {
-    const { history } = this.props;
-    if (history) history.push(`/practice/modes`);
+
+  redirectToRegister = () => {
+      const { history } = this.props;
+      if (history) history.push(`/register`);
+  };
+
+  redirectToEmailVerification = () => {
+      const { history } = this.props;
+      if (history) history.push(`/email-verification`);
+  };
+
+  redirectToBehaviorQuestions = () => {
+      if (!this.props.isAuthenticated) {
+          return this.redirectToRegister();
+      }
+      else if (this.props.profile.email_confirmed) {
+          const { history } = this.props;
+          if (history) history.push(`/practice/modes`);
+      }
+      else {
+          this.redirectToEmailVerification();
+          return alert();
+      }
   };
 
   redirectToTechQuestions = () => {
-    const { history } = this.props;
-    if (history) history.push(`/techfields/`);
-  };*/
+      if (!this.props.isAuthenticated) {
+          return this.redirectToRegister();
+      }
+      else if (this.props.profile.email_confirmed) {
+          const { history } = this.props;
+          if (history) history.push(`/techfields/`);
+      }
+      else {
+          this.redirectToEmailVerification();
+          return alert();
+      }
+  };
+
+  makeProfile = () => {
+        return {
+          user: this.props.user.id,
+          id: this.props.profile.id,
+          email_confirmed: true,
+        };
+      };
+    
+  activateEmail = () => {
+    // only for FB social login
+        if (this.props.user.email == "" || this.props.user.email == null ) {
+          var profile = this.makeProfile();
+          this.props.updateProfile(profile);
+        }
+  };
 
   componentDidMount() {
     safariAlert();
     this.props.loadProfile();
+    if(this.props.user != null){
+      this.activateEmail();
+    }
   }
 
   render() {
@@ -47,9 +95,8 @@ export class QuestionTypeChoices extends Component {
           style={{marginBottom: "2rem"}}
         />
         <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
-        <div className="col features-box" style={{marginLeft: "5%", backgroundColor:"#ffffff"}}>
-        <Link style={{textDecoration: "none"}} to='/practice/modes'>
-            <div style={{padding: "10%"}}>
+          <button className="col features-box" style={{marginLeft: "5%", backgroundColor:"#ffffff"}} onClick={this.redirectToBehaviorQuestions}>
+            <div style={{padding: "10%", textAlign: "left"}}>
             <div className="icon">
               <i className='bx bx-user-voice'></i>
             </div>
@@ -57,16 +104,14 @@ export class QuestionTypeChoices extends Component {
               <p className="mode-col-text1">
                 Prepare about how you’ve <br/>
                 overcome previous professional <br/>
-                challenges, reached success and <br/>
+                challenges reached success and <br/>
                 navigated difficult decisions.
               </p>
               <p className="mode-col-text2">Next Step -> </p>
             </div>
-            </Link>
-          </div>
-          <div className="col features-box" style={{marginLeft: "6rem", backgroundColor:"#ffffff"}}>
-          <Link style={{textDecoration: "none"}} to='/techfields/'>
-            <div style={{padding: "10%"}}>
+          </button>
+          <button className="col features-box" style={{marginLeft: "6rem", backgroundColor:"#ffffff"}} onClick={this.redirectToTechQuestions}>
+            <div style={{padding: "10%", textAlign: "left"}}>
             <div className="icon">
               <i className='bx bx-extension'></i>
             </div>
@@ -79,8 +124,7 @@ export class QuestionTypeChoices extends Component {
               </p>
               <p className="mode-col-text2">Next Step -> </p>
             </div>
-          </Link>
-          </div>
+          </button>
         </div>
       </MediaQuery>
       <MediaQuery maxDeviceWidth={1223}>
@@ -104,9 +148,22 @@ export class QuestionTypeChoices extends Component {
   }
 }
 
+function alert() {
+    confirmAlert({
+          title: "Account Activation Needed",
+          message: "Please check the activation email and activate your account",
+          buttons: [
+                {
+                  label: 'Ok'
+                }
+          ]
+    });
+}
+
 const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
   user: state.auth_reducer.user,
+  isAuthenticated: state.auth_reducer.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile })(QuestionTypeChoices);

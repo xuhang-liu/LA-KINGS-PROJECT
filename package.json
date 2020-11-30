@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main106.js",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main106.js",
+    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main118.js",
+    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main118.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
@@ -88,6 +88,7 @@
     "react-owl-carousel3": "^2.2.5",
     "react-paginate": "^6.5.0",
     "react-particles-js": "^3.3.0",
+    "react-phone-number-input": "^3.1.6",
     "react-player": "^1.15.3",
     "react-quiz-component": "^0.3.5",
     "react-redux": "^7.2.0",

@@ -154,11 +154,11 @@ class CompanyList extends Component {
                         <h3 className="col-md-3 company-list-help-text" style={{paddingLeft:"4%"}}>
                             We also help you on </h3>
                             
-                        <div className="col-md-3" style={{maxWidth:"18%"}}>
+                        <div className="col-md-3" style={{maxWidth:"18.7%"}}>
                             <Link to="/practice">
                                 <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}>
                                     <i className="bx bxs-arrow-to-right"></i> 
-                                    Interview Praciting
+                                    Interview Practicing
                                     <span></span>
                                 </a>
                             </Link>
@@ -175,7 +175,7 @@ class CompanyList extends Component {
                         </div>
                     </div>
                     </MediaQuery>
-                    <MediaQuery maxDeviceWidth={1224}>
+                    <MediaQuery maxDeviceWidth={1223}>
                     <div style={{backgroundColor:'white'}}>
                         <h3 style={{textAlign:'center', paddingTop:'1rem'}}>
                             We also help you on </h3>

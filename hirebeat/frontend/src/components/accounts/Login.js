@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {login, exchangeToken} from "../../redux/actions/auth_actions";
+import {login, exchangeToken, loadProfile} from "../../redux/actions/auth_actions";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
@@ -225,6 +225,7 @@ export class Login extends Component {
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth_reducer.isAuthenticated,
   user: state.auth_reducer.user,
+  profile: state.auth_reducer.profile,
 });
 
-export default connect(mapStateToProps, {login, exchangeToken})(Login);
+export default connect(mapStateToProps, {login, exchangeToken, loadProfile})(Login);

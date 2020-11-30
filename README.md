@@ -17,7 +17,7 @@ Besides, cd into `node_modules` and remove the folder `react-quiz-component`, th
 8. Migrate database changes. Run `pip3 install psycopg2` then, `python3 manage.py migrate`. 
 9. Run `npm run dev` to build the webpack bundle html file.
 10. Open django admin site to add one question to each category.(Needed for practice).
-11. Run the app using `python3 manage.py runserver --insecure`. (This --insecure flag is required as django debug mode is turned off).
+11. Run the app using `python3 manage.py runserver 0.0.0.0:8000 --insecure`. (This --insecure flag is required as django debug mode is turned off).
 
 
 

@@ -87,6 +87,8 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/how-to-answer-what-is-your-weakness-question-in-an-interview",
+    "/guidelines-on-how-to-answer-what-is-your-biggest-strength",
     "/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview",
     "/tips-for-getting-your-resume-past-an-applicant-tracking-system",
     "/keywords-to-include-on-a-resume",
@@ -100,6 +102,8 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog12.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog11.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog10.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog9.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog8.jpg",
@@ -113,6 +117,8 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Nov 25, 2020",
+    "Nov 18, 2020",
     "Nov 10, 2020",
     "Nov 02, 2020",
     "Oct 26, 2020",
@@ -126,6 +132,8 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "HOW TO ANSWER 'WHAT IS YOUR WEAKNESS' QUESTION",
+    "GUIDELINES ON 'WHAT IS YOUR BIGGEST STRENGTH'",
     "WHERE DO YOU TO SEE YOURSELF IN 5 YEARS",
     "TIPS FOR YOUR RESUME TO PASS APPLICANT SYSTEM",
     "KEYWORDS TO INCLUDE ON A RESUME",

@@ -12,6 +12,7 @@ import store from "../store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import indexsaas from "./home/index-saas";
+import EmailVerification from "./accounts/EmailVerification";
 import Login from "./accounts/Login";
 import Register from "./accounts/Register";
 import PrivateRoute from "./basic/PrivateRoute";
@@ -29,6 +30,8 @@ import BlogDetail7 from "./blog/blog-details7";
 import BlogDetail8 from "./blog/blog-details8";
 import BlogDetail9 from "./blog/blog-details9";
 import BlogDetail10 from "./blog/blog-details10";
+import BlogDetail11 from "./blog/blog-details11";
+import BlogDetail12 from "./blog/blog-details12";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -61,6 +64,13 @@ import MUFGInfo from"./companyData/companies/MUFGInfo";
 import NDQInfo from"./companyData/companies/NDQInfo";
 import TSMInfo from"./companyData/companies/TSMInfo";
 
+import JobList from "./career/JobList";
+import UIDesigner from "./career/jobs/UIDesigner";
+import BusinessAnalyst from "./career/jobs/BusinessAnalyst";
+import Marketing from "./career/jobs/Marketing";
+import ProductManager from "./career/jobs/ProductManager";
+import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
+
 import Contact from "./contact/contact";
 
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
@@ -71,7 +81,7 @@ import ReviewListPreload from "./review/ReviewListPreload";
 import GoTop from './shared/GoTop';
 
 import QuestionTypeChoices from "./practice/QuestionTypeChoices";
-
+import RetryResponseWindow from "./practice/RetryResponseWindow";
 import "./app.css";
 import "./public/css/style.css";
 import "./public/css/responsive.css";
@@ -124,7 +134,7 @@ class App extends Component {
               <Alerts />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                <PrivateRoute exact path="/resume" component={Resume} />
+                <Route exact path="/resume" component={Resume} />
                 <PrivateRoute exact path="/review" component={ReviewListPreload} />
                 <PrivateRoute
                   exact
@@ -143,6 +153,11 @@ class App extends Component {
                 />
                 <PrivateRoute
                   exact
+                  path="/practice/modes/retry"
+                  component={RetryResponseWindow}
+                />
+                <PrivateRoute
+                  exact
                   path="/techfields/"
                   component={TechFields}
                 />
@@ -151,7 +166,7 @@ class App extends Component {
                   path="/techfields/practice"
                   component={TechPracticeMode}
                 />
-                <PrivateRoute
+                <Route
                   exact
                   path="/practice/"
                   component={QuestionTypeChoices}
@@ -170,6 +185,8 @@ class App extends Component {
                 <Route exact path="/keywords-to-include-on-a-resume" component={BlogDetail8} />
                 <Route exact path="/tips-for-getting-your-resume-past-an-applicant-tracking-system" component={BlogDetail9} />
                 <Route exact path="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview" component={BlogDetail10} />
+                <Route exact path="/guidelines-on-how-to-answer-what-is-your-biggest-strength" component={BlogDetail11} />
+                <Route exact path="/how-to-answer-what-is-your-weakness-question-in-an-interview" component={BlogDetail12} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
@@ -199,6 +216,13 @@ class App extends Component {
                 <Route exact path="/companydata/mufg" component={MUFGInfo} />
                 <Route exact path="/companydata/nasdaq" component={NDQInfo} />
                 <Route exact path="/companydata/two-sigma" component={TSMInfo} />
+                <Route exact path="/jobs" component={JobList} />
+                <Route exact path="/jobs/ui-designer" component={UIDesigner} />
+                <Route exact path="/jobs/business-analyst" component={BusinessAnalyst} />
+                <Route exact path="/jobs/marketing" component={Marketing} />
+                <Route exact path="/jobs/product-manager" component={ProductManager} />
+                <Route exact path="/jobs/software-engineer" component={SoftwareEngineer} />
+                <PrivateRoute exact path="/email-verification" component={EmailVerification} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />

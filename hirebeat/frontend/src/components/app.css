@@ -694,29 +694,29 @@ h5 {
 }
 
 .not-reviewed {
-  width: 226px;
-  height: 34px;
+  width: 14.125rem;
+  height: 2.125rem;
   background: #FF6B00;
   box-shadow: 0px 4px 25px rgba(255, 107, 0, 0.25);
-  border-radius: 50px;
+  border-radius: 3.125rem;
   border: 0px;
 }
 
 .under-review {
-  width: 226px;
-  height: 34px;
+  width: 14.125rem;
+  height: 2.125rem;
   background: #7D7D7D;
   box-shadow: 0px 4px 25px rgba(125, 125, 125, 0.25);
-  border-radius: 50px;
+  border-radius: 3.125rem;
   border: 0px;
 }
 
 .reviewed {
-  width: 226px;
-  height: 34px;
+  width: 14.125rem;
+  height: 2.125rem;
   background: #14CC75;
   box-shadow: 0px 4px 25px rgba(20, 204, 117, 0.25);
-  border-radius: 50px;
+  border-radius: 3.125rem;
   border: 0px;
 }
 
@@ -2144,4 +2144,83 @@ color: #080A3C;
 
 .btn-margin {
   margin-top: 2.5rem;
+}
+
+.job-title {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #090D3A;
+}
+
+.job-des {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  color: #4A6F8A;
+}
+
+.job-txt1 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.625rem;
+  color: #090D3A;
+}
+
+.job-txt2 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.job-txt3 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.job-txt4 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #090D3A;
+}
+
+.job-tail {
+  margin-top: 2rem;
+  background: #F4F6FB;
+}
+
+.job-step {
+  font-weight: bold
+}
+
+.justify-items {
+  display: flex;
+  justify-content: center;
+}
+
+.email-text {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  text-align: center;
+  color: #4A6F8A;
+}
+
+.email-btns {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }

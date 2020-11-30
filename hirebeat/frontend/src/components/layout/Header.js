@@ -89,7 +89,7 @@ export class Header extends Component {
               <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item ">
                 <Link to="/practice" className="nav-link text-white navbar-font">
-                  <span className="header-text">Practice</span>
+                  <span className="header-text">Interview Practice</span>
                 </Link>
               </li>
               <li className="nav-item ">
@@ -121,6 +121,7 @@ export class Header extends Component {
                     <ul className="nav_submenu">
                       <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
                       <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link to="/jobs" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Join Us</Link></li>
                       <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
                     </ul>
                   </span>
@@ -170,11 +171,18 @@ export class Header extends Component {
 
             <ul className="navbar-nav order-xl-0 ml-auto mr-5
                text-left">
-              <li className="nav-item">
-                <a href="/" className="nav-link text-white navbar-font active">
-                  <span className="header-text">Home</span>
-                </a>
+              <MediaQuery minDeviceWidth={1224}>
+              <li className="nav-item ">
+                <Link to="/practice" className="nav-link text-white navbar-font">
+                  <span className="header-text">Interview Practice</span>
+                </Link>
               </li>
+              <li className="nav-item ">
+                <Link to="/resume" className="nav-link text-white navbar-font">
+                  <span className="header-text">Resume</span>
+                </Link>
+                </li>
+              </MediaQuery>
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
@@ -198,6 +206,7 @@ export class Header extends Component {
                     <ul className="nav_submenu">
                       <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
                       <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link to="/jobs" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Join Us</Link></li>
                       <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
                     </ul>
                   </span>

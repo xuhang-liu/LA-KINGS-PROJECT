@@ -6,9 +6,17 @@ import PropTypes from "prop-types";
 import { addResume } from "../../redux/actions/resume_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import { connect } from "react-redux";
+import { updateProfile } from "../../redux/actions/auth_actions";
 var ReactS3Uploader = require("react-s3-uploader");
 
 export class ResumeScan extends Component {
+  componentDidMount() {
+    safariAlert();
+    if(this.props.user != null){
+      this.activateEmail();
+    }
+  }
+
   constructor(props) {
     super(props);
     this.uploader = null;
@@ -25,6 +33,23 @@ export class ResumeScan extends Component {
 
   static propTypes = {
     addResume: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+  };
+
+  makeProfile = () => {
+    return {
+      user: this.props.user.id,
+      id: this.props.profile.id,
+      email_confirmed: true,
+    };
+  };
+
+  activateEmail = () => {
+  // only for FB social login
+    if (this.props.user.email == "" || this.props.user.email == null ) {
+      var profile = this.makeProfile();
+      this.props.updateProfile(profile);
+    }
   };
 
   setSelected = () => {
@@ -68,7 +93,19 @@ export class ResumeScan extends Component {
     this.setState({resume: newResume});
   }
 
+  redirectToEmailVerification = () => {
+      const { history } = this.props;
+      if (history) history.push(`/email-verification`);
+  };
+
   selectFile = () => {
+    if(!this.props.isAuthenticated){
+      this.redirectToDashboard();
+    }
+    else if(!this.props.profile.email_confirmed){
+      this.redirectToEmailVerification();
+      return this.alert("Account Activation Needed", "Please check the activation email and activate your account");
+    }else{
     // toggle input element
     let input = document.getElementById('uploadFile');
     input.click();
@@ -101,6 +138,7 @@ export class ResumeScan extends Component {
         } else {
             return this.alert("Wrong File Type", "Please upload PDF or DOCX version of your resume");
         }
+      }
     }
   }
 
@@ -142,20 +180,26 @@ export class ResumeScan extends Component {
 
   handleUpload = () => {
     // check required inputs: resume, jobTitle, jdText
-    if (!this.checkInput(this.state.resume, this.state.jobTitle, this.state.jdText)) {
-        return this.alert("Required Fields Not Provided", "Please fill all forms and select your resume! ");
-    }
-    if(this.state.jdText.length < 100){
-      return this.alert("Job Description Is Too Short", "Please fill proper contents for job description! ");
-    }
-    if (this.props.saved_resume_count < this.props.save_resume_limit) {
-      this.uploader.uploadFile(this.state.resume);
+    if(!this.props.isAuthenticated){
       this.redirectToDashboard();
     }
-    else {
-      this.props.createMessage({
-        errorMessage: "Free saves limit reached. Please upgrade to premium plan.",
-      });
+    else if(!this.props.profile.email_confirmed){
+      this.redirectToEmailVerification();
+      return this.alert("Account Activation Needed", "Please check the activation email and activate your account");
+    }else{
+      if (!this.checkInput(this.state.resume, this.state.jobTitle, this.state.jdText)) {
+        return this.alert("Required Fields Not Provided", "Please fill all forms and select your resume! ");
+      }
+      if(this.state.jdText.length < 100){
+        return this.alert("Job Description Is Too Short", "Please fill proper contents for job description! ");
+      }
+      if (this.props.saved_resume_count < this.props.save_resume_limit) {
+        this.uploader.uploadFile(this.state.resume);
+        this.redirectToDashboard();
+      }
+      else {
+        return this.alert("Free saves limit reached", "Please upgrade to premium plan!");
+      }
     }
   }
 
@@ -261,12 +305,13 @@ export class ResumeScan extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth_reducer.isAuthenticated,
   save_resume_limit: state.auth_reducer.profile.save_resume_limit,
   saved_resume_count: state.auth_reducer.profile.saved_resume_count,
   profile: state.auth_reducer.profile,
   user: state.auth_reducer.user,
 });
 
-export default withRouter(connect(mapStateToProps, { addResume, createMessage })(
+export default withRouter(connect(mapStateToProps, { addResume, createMessage, updateProfile })(
   ResumeScan
 ));

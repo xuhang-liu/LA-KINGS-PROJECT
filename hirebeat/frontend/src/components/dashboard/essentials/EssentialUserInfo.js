@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import S3FileUpload from "react-s3";
+//import Input, { isPossiblePhoneNumber } from 'react-phone-number-input';
 
 import {
   DbCenterRow,
@@ -298,9 +299,9 @@ export class EssentialUserInfo extends Component {
               {
                 this.props.profile.plan_interval == "Premium" &&
                 <div className="row">
-                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
-                    <i className='bx bx-diamond'></i> 
-                    <span style={{marginLeft: "6px"}}>Premium</span>
+                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%", fontSize:'1rem', fontWeight:'600'}}>
+                    <i className='bx bx-diamond' style={{display:'inline', fontSize:'1.5rem'}}></i> 
+                    <span style={{marginLeft: "6px", display:'inline'}}>Premium</span>
                   </div>
                   <div className="col-8">
                     <input
@@ -323,9 +324,9 @@ export class EssentialUserInfo extends Component {
               {
                 this.props.profile.plan_interval == "Regular" &&
                 <div className="row">
-                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%"}}>
-                    <i className='bx bx-diamond'></i> 
-                    <span style={{marginLeft: "6px"}}>Premium</span>
+                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%", fontSize:'1rem', fontWeight:'600'}}>
+                    <i className='bx bx-diamond' style={{display:'inline', fontSize:'1.5rem'}}></i> 
+                    <span style={{marginLeft: "6px", display:'inline'}}>Premium</span>
                   </div>
                 </div>
               }        
@@ -498,7 +499,7 @@ const EditModal = (props) => {
   return (
     <MyModal show={props.show} onHide={props.hide}>
       <div className="container">
-        <form style={{ marginBottom: "3%" }}>
+        <form style={{ marginBottom: "3%" }} onSubmit={props.saveChanges}>
           <fieldset>
             <div className="form-group">
               <label style={{ fontSize: "20px" }}>Phone Number</label>
@@ -521,6 +522,8 @@ const EditModal = (props) => {
                 placeholder={"Location"}
                 onChange={props.handleInputChange}
                 required="required"
+                pattern="[0-9 a-z A-Z ]+"
+                title="Alphabet letters only!"
               />
               {/*
               <label style={{ fontSize: "20px" }}>Personal Website</label>
@@ -544,9 +547,8 @@ const EditModal = (props) => {
               />*/}
             </div>
             <button
-              type="button"
+              type="submit"
               className="btn btn-primary"
-              onClick={props.saveChanges}
             >
               Submit
             </button>
