@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/3-fastest-growing-jobs-you-might-not-know-about">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog13.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Dec 01, 2020</time>
+                            <h4 className="title usmall">
+                                <Link to="/3-fastest-growing-jobs-you-might-not-know-about">
+                                    <a>3 Fastest-growing Jobs You Might Not Know About</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/how-to-answer-what-is-your-weakness-question-in-an-interview">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog12.jpg" alt="image"/>
