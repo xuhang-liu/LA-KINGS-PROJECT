@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import S3FileUpload from "react-s3";
 //import Input, { isPossiblePhoneNumber } from 'react-phone-number-input';
+import { Form, Field } from "fresh";
 
 import {
   DbCenterRow,
@@ -24,6 +25,9 @@ const config = {
 
 export class EssentialUserInfo extends Component {
   state = {
+    // changemaking: I am adding the state to control the show/hide of the password chaning Modal
+    passwordChanging: false,
+    // changefinishes
     show: false,
     phone_number: "",
     location: "",
@@ -64,6 +68,25 @@ export class EssentialUserInfo extends Component {
     this.props.updateProfile(profile);
     this.finishEditing();
   };
+
+  finishedPasswordChanging = () => {
+    this.setState({...this.state, passwordChanging: false});
+  }
+
+  savePasswordChanging = (event) => {
+    // working on the backend logic here.
+    event.preventDefault();
+    console.log(event);
+   
+/*    if(newPassword !== confirmPassword)
+      console.log("Password don't match");
+    else if(newPassword.length < 8)
+      console.log('the Password is too short');
+    else
+      console.log('I just need to check the original password now!');
+    this.finishedPasswordChanging();*/
+  }
+
 
   /*sendEmail = () => {
     //alert
@@ -414,6 +437,22 @@ export class EssentialUserInfo extends Component {
                     </a>
                   </Link>
                 </div>
+{/* Here is the change made: I have added another buttom as password editing*/}
+                <div className="row" style={{marginTop:"8%"}}>
+                  <Link>
+                    <a 
+                    onClick={() => {
+                    this.setState({ ...this.state, passwordChanging: true });
+                    }}
+                    className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"133%"}} 
+                    >
+                      <i className="bx bxs-key"></i>
+                        Change Password
+                        <span></span>
+                    </a>
+                  </Link>
+                </div>
+{/* Changes end here #################### Finished */}
               </div>
             }                
           </DbCenterRow>
@@ -425,6 +464,16 @@ export class EssentialUserInfo extends Component {
           handleInputChange={this.handleInputChange}
           hide={this.finishEditing}
         />
+
+{/* Making Changes Here */}
+        <PasswordChangingInterface
+          show={this.state.passwordChanging}
+          savePasswordChanging={this.savePasswordChanging}
+          hide={this.finishedPasswordChanging}
+        />
+{/* Changes Ends here */}
+
+
       </div>
       </MediaQuery>
       <MediaQuery maxDeviceWidth={1223}>
@@ -558,5 +607,68 @@ const EditModal = (props) => {
     </MyModal>
   );
 };
+
+const PasswordChangingInterface = (props) => {
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const PasswordCheck = (event) => {
+    event.preventDefault();
+    console.log(data);
+    /*
+    if(newPassword !== confirmPassword)
+    {
+      console.log('Password do not match tho');
+    }
+    else if(newPassword.length < 8)
+    {
+      console.log('But you need to get the Password longer than 8 tho');
+    }*/
+    // if condition is fine, we pass the old password and new password to the backend.
+  }
+  
+  return (
+          <MyModal show={props.show} onHide={props.hide}>
+              <div className="container">
+                <Form style={{ marginBottom: "3%" }} onSubmit={PasswordCheck}>
+                <fieldset>
+                <div className="form-group">
+                  <label style={{ fontSize: "20px" }}>Current Password</label>
+                  <Field placeholder="Current password" 
+                         className="form-control"
+                         type="password" 
+                         value={oldPassword} 
+                         onChange={(event) => {setOldPassword(event.target.value)}}
+                  />
+                  <br />
+                  <label style={{ fontSize: "20px" }}>New Password</label>
+                  <Field placeholder="New password" 
+                         className="form-control"
+                         type="password"
+                         value={newPassword}
+                         onChange={(event) => {setNewPassword(event.target.value)}}
+                  />
+                  <br />
+                  <label style={{ fontSize: "20px" }}>Confirm New Password</label>
+                  <Field placeholder="New password" 
+                         className="form-control"
+                         type="password"
+                         value={confirmPassword}
+                         onChange={(event) => {setConfirmPassword(event.target.value)}}
+                  />
+                </div>
+                <button
+                    type="submit"
+                    className="btn btn-primary"
+                  >
+                    Update Password
+                  </button>
+                </fieldset>
+                </Form>
+              </div>
+          </MyModal>
+  );
+}
 
 export default EssentialUserInfo;
