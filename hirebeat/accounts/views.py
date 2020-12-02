@@ -115,3 +115,14 @@ def resend_activation_email(request):
     return Response({
         "msg": "Email Sent Successfully"
     })
+
+@api_view(['POST'])
+def update_user_email(request):
+    print("===Update User Email Called===")
+    email = request.data["email"]
+    user = User.objects.get(pk=request.data["id"])
+    user.email = email
+    user.save()
+    return Response({
+        "email": email
+    })
