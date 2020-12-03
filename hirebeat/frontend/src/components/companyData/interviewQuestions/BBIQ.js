@@ -97,6 +97,7 @@ function renderContent(filter)  {
         case "Financial Software Engineer":
             return(
                 <div>
+                    <p className="companydata-text2">Job Title: Software Engineer</p>
                     <p className="companydata-text2"><li>Given a list of ones and zeros, how would you sort the list efficiently, so the zeros are in the front and the ones are in the second half? </li></p>
                     <p className="companydata-text2"><li>How do you obtain the running average of a group of numbers?</li></p>
                     <p className="companydata-text2"><li>What would you do to check if a string has matching parentheses?</li></p>
@@ -113,6 +114,7 @@ function renderContent(filter)  {
         case "Global data analyst":
             return(
                 <div>
+                    <p className="companydata-text2">Job Title: Data Analyst</p>
                     <p className="companydata-text2"><li>How do you obtain your background knowledge?</li></p>
                     <p className="companydata-text2"><li>What do you look for when you invest in a company?</li></p>
                     <p className="companydata-text2"><li>Tell me about a time you used technology to improve the process during a project.</li></p>

@@ -85,6 +85,7 @@ function renderContent(filter)  {
         case "Software Engineer":
             return(
                 <div>
+                    <p className="companydata-text2">Job Title: Software Engineer</p>
                     <p className="companydata-text2"><li>Given an array of prices for one stock in chronological order, find the time to buy and sell to maximize profit.</li></p>
                     <p className="companydata-text2"><li>Given 2 arrays, return an array consisting of everything in Array 1 that isn‘t in Array 2.</li></p>
                     <p className="companydata-text2"><li>Write a function to evaluate an arithmetic expression, structured as a tree where each node is a number or an operator and the operands are the child nodes.</li></p>

@@ -134,6 +134,7 @@ function renderContent(filter)  {
         case "Vice President":
             return(
                 <div>
+                    <p className="companydata-text2">Job Title: Vice President</p>
                     <p className="companydata-text2"><li>What would keep you from getting bored?</li></p>
                     <p className="companydata-text2"><li>How did you get buy-in from the business when you suggested process improvements?</li></p>
                     <p className="companydata-text2"><li>What is your management philosophy?</li></p>
