@@ -163,7 +163,7 @@ export const SalaryBar = (props) => {
     );
 }
 
-const decideClassName = (filter, text) => {
+export const decideClassName = (filter, text) => {
     return filter == text ? "btn-selected" : "btn-unselected";
 };
 
