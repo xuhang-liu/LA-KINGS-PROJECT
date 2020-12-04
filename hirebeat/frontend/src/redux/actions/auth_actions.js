@@ -73,7 +73,33 @@ export const login = (username, password) => (dispatch) => {
     .post("api/auth/login", body, config)
     .then((res) =>
       dispatch({
-        type: LOGIN_SUCCESS,
+        type: LOGIN_SUCCESS,    //update the data base and the state and front end;
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status)); //prevent the log out and then update the interface
+      dispatch({
+        type: LOGIN_FAIL,
+      });
+    });
+};
+
+// ********  Password Changing  ********
+
+export const PasswordChanging = (username, password) => (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ username: username, password: password });
+
+  axios
+    .post("api/auth/changePassword", body, config)
+    .then((res) =>
+      dispatch({
+        type: PASSWORD_CHANGING_SUCCESS,
         payload: res.data,
       })
     )

@@ -55,3 +55,15 @@ class LoginSerializer(serializers.Serializer): #not creating a user, just valida
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Incorrect Credientials")
+
+# Password Changing serializer
+class  PasswordChangingSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self,data):  # from django auth, rest_framework, knox documentation
+        user = authenticate(**data)
+        if user and user.is_active:
+            return user
+        raise serializers.ValidationError("Incorrect Credientials")
+    

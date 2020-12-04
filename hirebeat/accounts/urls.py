@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI
+from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, UserChangePassword
 from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, resend_activation_email, update_user_email
 from .api.social_login import exchange_token
@@ -12,6 +12,7 @@ urlpatterns = [
     path('api/auth/login', LoginAPI.as_view()),
     path('api/auth/user', UserAPI.as_view()),
     path('api/auth/logout', knox_views.LogoutView.as_view(),name="knox_logout"), # invalidate the token
+    path('api/auth/changePassword', UserChangePassword.as_view()),  ## Liam add another path here for the password changing
 
     ### email confirm ###
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
