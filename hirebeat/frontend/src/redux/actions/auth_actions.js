@@ -14,6 +14,7 @@ import {
   UPGRADE_ACCOUNTS,
   RESEND_ACTIVATION_EMAIL,
   UPDATE_USER_EMAIL,
+  UPDATE_USER_PASSWORD,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -106,7 +107,7 @@ export const PasswordChanging = (username, password) => (dispatch) => {
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
-        type: LOGIN_FAIL,
+        type: PASSWORDMATCH_FAIL,
       });
     });
 };
@@ -253,6 +254,20 @@ export const updateUserEmail = (user) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_USER_EMAIL,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateUserPassword = (user) => (dispatch, getState) => {
+  axios
+    .post("api/update-user-password", user, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_USER_PASSWORD,
         payload: res.data,
       });
     })

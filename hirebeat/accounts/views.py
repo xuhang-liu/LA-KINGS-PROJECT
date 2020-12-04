@@ -126,3 +126,14 @@ def update_user_email(request):
     return Response({
         "email": email
     })
+
+@api_view(['POST'])
+def update_user_password(request):
+    print("===Update User Password Called===")
+    newPassword = request.data["newPassword"]
+    user = User.objects.get(pk=request.data["id"])
+    user.set_password(newPassword)
+    user.save()
+    return Response({
+        "newPassword": newPassword
+    })

@@ -107,7 +107,7 @@ export class Dashboard extends Component {
           </DbRow>
           <br />
           <br />
-          <div style={{marginBottom:"0%"}}>
+          <div className="container" style={{marginBottom:"0%"}}>
             <DbCenterRow>
               <div className="col-2" style={{marginBottom:"auto", paddingBottom:'10%'}}>
                 <ButtonPanel
