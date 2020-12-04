@@ -22,7 +22,7 @@ export const CountdownButton = (props) => {
     }
   }, [time]);
 
-  const getPhoneCaptcha = () => {
+  const resendEmail = () => {
     props.resendEmail();
     timeChange = setInterval(() => setTime(t => --t), 1000);
     setBtnDisabled(true);
@@ -31,7 +31,7 @@ export const CountdownButton = (props) => {
   return (
     <button
       disabled={btnDisabled}
-      onClick={getPhoneCaptcha}
+      onClick={resendEmail}
       className="default-btn"
       style={{color:"white", backgroundColor:"#090D3A", paddingLeft: "1.5625rem", marginRight: "3rem"}}
     >

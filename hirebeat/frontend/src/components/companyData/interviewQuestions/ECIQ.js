@@ -1,6 +1,6 @@
 import React, { useState, Component } from 'react';
 import { Link } from "react-router-dom";
-//import {SwitchButton} from './../Components';
+import {decideClassName} from './../Components';
 
 
 export default function ECIQ(props){
@@ -8,17 +8,8 @@ export default function ECIQ(props){
     return(
         <div style={{marginTop: '5%'}}>
             <h3 className="companydata-text1">Interview Questions</h3>
-            {/*SwitchButton(filter, setFilter)*/}
-            {/*renderContent(filter)*/}
-            <div>
-                  <p className="companydata-text2"><li>If you could do any job in the world what would it be?</li></p>
-                  <p className="companydata-text2"><li>Describe a time you had to make decisions for a team.</li></p>
-                  <p className="companydata-text2"><li>Pitch a tech stock.</li></p>
-                  <p className="companydata-text2"><li>Can you talk about a recent deal that the company was involved in?</li></p>
-                  <p className="companydata-text2"><li>How would you value a company?</li></p>
-                  <p className="companydata-text2"><li>Differences between big banks and independent advisory (like Evercore).</li></p>
-                  <p className="companydata-text2"><li>What is a trend in tech that you find interesting and why?</li></p>
-            </div>
+            {SwitchButton(filter, setFilter)}
+            {renderContent(filter)}
             <div className="row" style={{marginTop: "0.5rem"}}>
                 <div className="col-lg-7 col-md-7 align-center">
                     <p className="companydata-text5">View more and prepare your answer</p>
@@ -53,31 +44,38 @@ export default function ECIQ(props){
     )
 };
 
+const SwitchButton = (filter, setFilter)=>{
+  return(
+      <div style={{marginBottom: "5px"}} className="container d-flex justify-content-start">
+          <button
+              className={decideClassName(filter, "Analyst")}
+              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("Analyst")}
+          >
+              Analyst
+          </button>
+      </div>
+  );
+}
+
 function renderContent(filter)  {
     switch (filter) {
-        case "swe":
-            return (
+        default: case "Analyst":
+            return(
                 <div>
-                  <p className="companydata-text2">The usual interview process usually takes about 4 weeks </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 1:</span> An online coding test, solving two algorithms in the language of the candidate's choice each with a time limit of 70 mins </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 2:</span> Two technical phone interviews conducted one after the other with different interviewers. </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 3:</span> A technical phone screen with either a technical recruiter or an engineer. </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 4:</span> An onsite interview consisting of 6 sessions, 5 technical and one with HR. Technical questions cover things like graph problems, sorting streams of integers, checking if a given list of words are contained in a magazine. Every problem is coupled with an analysis of computational complexity and memory trade offs.</p>
+                    <p className="companydata-text2"><li>Why do you want to do investment banking?</li></p>
+                    <p className="companydata-text2"><li>Can you explain the difference between a maintenance covenant and an incurrence covenant?</li></p>
+                    <p className="companydata-text2"><li>What is the beta of a company that gambles on roulette daily as its only operational activity?</li></p>
+                    <p className="companydata-text2"><li>How do you value a tree that generates $100 the first year, $200 the second, and so on?</li></p>
+                    <p className="companydata-text2"><li>Why do you want to work at Evercore as opposed to a bulge bracket?</li></p>
+                    <p className="companydata-text2"><li>What do you know about Evercore?</li></p>
+                    <p className="companydata-text2"><li>Can you describe some recent Evercore deals?</li></p>
+                    <p className="companydata-text2"><li>How would you calculate the number of taxis in London?</li></p>
+                    <p className="companydata-text2"><li>What valuation methodology gives you the highest valuation?</li></p>
+                    <p className="companydata-text2"><li>What is the Capital Asset Model? What happens when this happens?</li></p>
+                    <p className="companydata-text2"><li>Have you ever had to carry out unpopular policies or decisions?</li></p>
+                    <p className="companydata-text2"><li>Can you tell me about some recent mergers and acquisitions that have interested you?</li></p>
                 </div>
             );
-        case "data":
-            return(
-              <div>data</div>
-            );
-        case "design":
-            return(
-              <div>design</div>
-            );
-        case "pm":
-            return(
-              <div>pm</div>
-            );
-        default:
-            return null;
     }
 };
