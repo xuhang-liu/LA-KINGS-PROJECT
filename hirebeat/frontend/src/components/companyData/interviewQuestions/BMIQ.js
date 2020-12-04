@@ -4,7 +4,7 @@ import {decideClassName} from './../Components';
 
 
 export default function BMIQ(props){
-    const [filter, setFilter] = useState("swe");
+    const [filter, setFilter] = useState("Operations Executive Interview");
     return(
         <div style={{marginTop: '5%'}}>
             <h3 className="companydata-text1">Interview Questions</h3>

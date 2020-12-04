@@ -28,7 +28,7 @@ class MDInfo extends Component {
                     <title>HireBeat Company Data – Moody's</title>
                     <meta name="Description" CONTENT="Moody's Corporation is a company providing credit ratings, research tools, and analysis that contribute to transparent and integrated financial markets. Moody’s is the parent company of Moody’s Investors Service, which provides credit ratings and research covering debt instruments and securities, and Moody’s Analytics, which offers software, advisory services, and research for credit and economic analysis, and financial risk management." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata/moodys"/>
+                    <link rel="canonical" href="https://hirebeat.co/moodys"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
