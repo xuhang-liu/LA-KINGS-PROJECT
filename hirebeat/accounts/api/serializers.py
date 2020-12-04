@@ -65,5 +65,5 @@ class  PasswordChangingSerializer(serializers.Serializer):
         user = authenticate(**data)
         if user and user.is_active:
             return user
-        else
-            return user
+        raise serializers.ValidationError("Incorrect Credientials")
+    

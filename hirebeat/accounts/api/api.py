@@ -2,7 +2,7 @@ from rest_framework import generics,permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from knox.models import AuthToken
-from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileSerializer
+from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileSerializer, PasswordChangingSerializer
 from accounts.models import Profile
 from rest_framework import status
 from django.utils.encoding import force_bytes
@@ -66,7 +66,7 @@ class ResgisterAPI(generics.GenericAPIView):
 # Login API
 
 class LoginAPI(generics.GenericAPIView):
-    serializer_class = LoginSerializer
+    serializer_class = PasswordChangingSerializer
 
     def post(self, request, *args, **kwargs):
         ## user info

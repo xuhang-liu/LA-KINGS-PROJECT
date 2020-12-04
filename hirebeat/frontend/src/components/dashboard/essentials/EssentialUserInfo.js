@@ -632,8 +632,7 @@ const PasswordChangingInterface = (props) => {
     }
     else
     {
-      console.log(props.user);
-      console.log(props.profile);
+
       props.PasswordChanging(props.user.username, oldPassword);
         // if condition is fine, we pass the old password and new password to the backend.
         // If user password match and are longer than 8 chars. we will do the change here.

@@ -72,12 +72,12 @@ export const login = (username, password) => (dispatch) => {
     .post("api/auth/login", body, config)
     .then((res) =>
       dispatch({
-        type: LOGIN_SUCCESS,
+        type: LOGIN_SUCCESS,    //update the data base and the state and front end;
         payload: res.data,
       })
     )
     .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch(returnErrors(err.response.data, err.response.status)); //prevent the log out and then update the interface
       dispatch({
         type: LOGIN_FAIL,
       });
@@ -105,7 +105,7 @@ export const PasswordChanging = (username, password) => (dispatch) => {
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
-        type: AUTH_ERROR,
+        type: LOGIN_FAIL,
       });
     });
 };
