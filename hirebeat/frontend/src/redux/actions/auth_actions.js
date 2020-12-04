@@ -84,6 +84,32 @@ export const login = (username, password) => (dispatch) => {
     });
 };
 
+// ********  Password Changing  ********
+
+export const PasswordChanging = (username, password) => (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ username: username, password: password });
+
+  axios
+    .post("api/auth/changePassword", body, config)
+    .then((res) =>
+      dispatch({
+        type: PASSWORD_CHANGING_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR,
+      });
+    });
+};
+
 // ********  LOG OUT  ********
 export const logout = () => (dispatch, getState) => {
   axios

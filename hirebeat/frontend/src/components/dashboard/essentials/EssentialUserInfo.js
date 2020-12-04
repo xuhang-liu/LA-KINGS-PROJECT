@@ -1,7 +1,6 @@
-import React, { Component, useState } from "react";
+import React, { Component, useReducer, useRef, useState } from "react";
 import S3FileUpload from "react-s3";
 //import Input, { isPossiblePhoneNumber } from 'react-phone-number-input';
-import { Form, Field } from "fresh";
 
 import {
   DbCenterRow,
@@ -13,6 +12,8 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import emailjs from 'emailjs-com';
 import MediaQuery from 'react-responsive';
+import { connect } from 'react-redux';
+import { PasswordChanging } from "../../../redux/actions/auth_actions";
 
 const config = {
     bucketName: 'hirebeat-avatar',
@@ -470,6 +471,9 @@ export class EssentialUserInfo extends Component {
           show={this.state.passwordChanging}
           savePasswordChanging={this.savePasswordChanging}
           hide={this.finishedPasswordChanging}
+          user={this.props.user}
+          profile={this.props.profile}
+          PasswordChanging={this.props.PasswordChanging}
         />
 {/* Changes Ends here */}
 
@@ -609,52 +613,66 @@ const EditModal = (props) => {
 };
 
 const PasswordChangingInterface = (props) => {
+  
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+
   const PasswordCheck = (event) => {
     event.preventDefault();
-    console.log(data);
-    /*
+
     if(newPassword !== confirmPassword)
     {
-      console.log('Password do not match tho');
+      alert('Password do not match!');
     }
     else if(newPassword.length < 8)
     {
-      console.log('But you need to get the Password longer than 8 tho');
-    }*/
-    // if condition is fine, we pass the old password and new password to the backend.
+      alert('Password needs to be longer than 8 characters.');
+    }
+    else
+    {
+      console.log(props.user);
+      console.log(props.profile);
+      props.PasswordChanging(props.user.username, oldPassword);
+        // if condition is fine, we pass the old password and new password to the backend.
+        // If user password match and are longer than 8 chars. we will do the change here.
+        // call an action creater, then get the res.data. if login faill. alert. Otherwise, call change password API in Django.
+
+    }
+  
   }
   
   return (
           <MyModal show={props.show} onHide={props.hide}>
               <div className="container">
-                <Form style={{ marginBottom: "3%" }} onSubmit={PasswordCheck}>
+                <form style={{ marginBottom: "3%" }} onSubmit={PasswordCheck}>
                 <fieldset>
                 <div className="form-group">
                   <label style={{ fontSize: "20px" }}>Current Password</label>
-                  <Field placeholder="Current password" 
+                  <input placeholder="Current password" 
                          className="form-control"
                          type="password" 
                          value={oldPassword} 
+                         required
                          onChange={(event) => {setOldPassword(event.target.value)}}
                   />
                   <br />
                   <label style={{ fontSize: "20px" }}>New Password</label>
-                  <Field placeholder="New password" 
+                  <input placeholder="New password" 
                          className="form-control"
                          type="password"
                          value={newPassword}
+                         required
                          onChange={(event) => {setNewPassword(event.target.value)}}
                   />
                   <br />
                   <label style={{ fontSize: "20px" }}>Confirm New Password</label>
-                  <Field placeholder="New password" 
+                  <input placeholder="New password" 
                          className="form-control"
                          type="password"
                          value={confirmPassword}
+                         required
                          onChange={(event) => {setConfirmPassword(event.target.value)}}
                   />
                 </div>
@@ -665,10 +683,11 @@ const PasswordChangingInterface = (props) => {
                     Update Password
                   </button>
                 </fieldset>
-                </Form>
+                </form>
               </div>
           </MyModal>
   );
 }
 
-export default EssentialUserInfo;
+
+export default connect(null, {PasswordChanging})(EssentialUserInfo);
