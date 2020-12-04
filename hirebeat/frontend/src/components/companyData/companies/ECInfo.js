@@ -27,7 +27,7 @@ class ECInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Evercore</title>
                     <meta name="Description" CONTENT="Evercore is a global independent investment banking advisory firm. The Firm's Investment Banking business advises its clients on mergers and acquisitions, divestitures, restructurings, financings, public offerings, private placements and other strategic transactions and also provides institutional investors with macro and fundamental equity research, sales and trading execution. Evercore’s Investment Management business comprises wealth management, institutional asset management and private equity investing." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata/evercore"/>
+                    <link rel="canonical" href="https://hirebeat.co/evercore"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -4,7 +4,7 @@ import {decideClassName} from './../Components';
 
 
 export default function BRIQ(props){
-    const [filter, setFilter] = useState("swe");
+    const [filter, setFilter] = useState("Analyst");
     return(
         <div style={{marginTop: '5%'}}>
             <h3 className="companydata-text1">Interview Questions</h3>
@@ -49,7 +49,7 @@ const SwitchButton = (filter, setFilter)=>{
       <div style={{marginBottom: "5px"}} className="container d-flex justify-content-start">
           <button
               className={decideClassName(filter, "Analyst")}
-              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+              style = {{width: "100px", height: "42px", outline: "none", borderRadius: "5px"}}
               onClick={() => setFilter("Analyst")}
           >
               Analyst
