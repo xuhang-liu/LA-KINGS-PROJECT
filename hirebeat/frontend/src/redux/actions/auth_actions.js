@@ -13,6 +13,8 @@ import {
   PROFILE_UPDATED,
   UPGRADE_ACCOUNTS,
   RESEND_ACTIVATION_EMAIL,
+  UPDATE_USER_EMAIL,
+  UPDATE_USER_PASSWORD,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -105,7 +107,7 @@ export const PasswordChanging = (username, password) => (dispatch) => {
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
-        type: LOGIN_FAIL,
+        type: PASSWORDMATCH_FAIL,
       });
     });
 };
@@ -238,6 +240,34 @@ export const resendActivationEmail = (userId) => (dispatch, getState) => {
       console.log(res.data);
       dispatch({
         type: RESEND_ACTIVATION_EMAIL,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateUserEmail = (user) => (dispatch, getState) => {
+  axios
+    .post("/api/update-user-email", user, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_USER_EMAIL,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateUserPassword = (user) => (dispatch, getState) => {
+  axios
+    .post("api/update-user-password", user, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_USER_PASSWORD,
         payload: res.data,
       });
     })

@@ -12,6 +12,7 @@ import {
   INCREASE_VIDEO_COUNT,
   INCREASE_RESUME_COUNT,
   UPGRADE_ACCOUNTS,
+  PASSWORDMATCH_FAIL,
 } from "../actions/action_types";
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   user: null,
   profile: {},
   premiums: [],
+  pswd_success: true,
 };
 
 export default function (state = initialState, action) {
@@ -38,6 +40,14 @@ export default function (state = initialState, action) {
         user: action.payload,
       };
     case AUTH_ERROR:
+    case PASSWORDMATCH_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: true,
+        user: action.payload,
+        pswd_fail: false,
+      };
     case LOGIN_FAIL:
     case REGISTER_FAIL:
       localStorage.removeItem("token");

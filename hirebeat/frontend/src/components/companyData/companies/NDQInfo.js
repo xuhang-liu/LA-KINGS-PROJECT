@@ -28,7 +28,7 @@ class NDQInfo extends Component {
                     <title>HireBeat Company Data – Nasdaq</title>
                     <meta name="Description" CONTENT="Nasdaq is a global provider of trading, clearing, exchange technology, listing, information, and public company services. It operates in four business segments: Market Services, Corporate Services, Information Services, and Market Technology. The company operates exchanges and other marketplace facilities across several asset classes. The Market Services segment is comprised of equity derivative trading and clearing, cash equity trading, FICC and trade management services businesses. The Corporate Services segment includes listing services and corporate solutions businesses. The Information Services segment offers market data, index and investment data, as well as analytics. The Market Technology segment provides technology solutions to exchanges, clearing organizations, central securities depositories, regulators, banks, brokers, buy-side firms, and corporate businesses." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata/nasdaq"/>
+                    <link rel="canonical" href="https://hirebeat.co/nasdaq"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

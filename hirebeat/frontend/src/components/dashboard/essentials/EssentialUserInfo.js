@@ -13,7 +13,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import emailjs from 'emailjs-com';
 import MediaQuery from 'react-responsive';
 import { connect } from 'react-redux';
-import { PasswordChanging } from "../../../redux/actions/auth_actions";
+import { PasswordChanging, updateUserPassword } from "../../../redux/actions/auth_actions";
 
 const config = {
     bucketName: 'hirebeat-avatar',
@@ -468,6 +468,7 @@ export class EssentialUserInfo extends Component {
 
 {/* Making Changes Here */}
         <PasswordChangingInterface
+          updateUserPassword={this.props.updateUserPassword}
           show={this.state.passwordChanging}
           savePasswordChanging={this.savePasswordChanging}
           hide={this.finishedPasswordChanging}
@@ -632,8 +633,10 @@ const PasswordChangingInterface = (props) => {
     }
     else
     {
+      let user = {"id": props.user.id , "newPassword": newPassword};
+      props.updateUserPassword(user);
+      //props.PasswordChanging(props.user.username, oldPassword);
 
-      props.PasswordChanging(props.user.username, oldPassword);
         // if condition is fine, we pass the old password and new password to the backend.
         // If user password match and are longer than 8 chars. we will do the change here.
         // call an action creater, then get the res.data. if login faill. alert. Otherwise, call change password API in Django.
@@ -689,4 +692,4 @@ const PasswordChangingInterface = (props) => {
 }
 
 
-export default connect(null, {PasswordChanging})(EssentialUserInfo);
+export default connect(null, {PasswordChanging, updateUserPassword})(EssentialUserInfo);

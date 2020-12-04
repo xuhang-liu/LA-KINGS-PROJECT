@@ -32,6 +32,7 @@ import BlogDetail9 from "./blog/blog-details9";
 import BlogDetail10 from "./blog/blog-details10";
 import BlogDetail11 from "./blog/blog-details11";
 import BlogDetail12 from "./blog/blog-details12";
+import BlogDetail13 from "./blog/blog-details13";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -187,6 +188,7 @@ class App extends Component {
                 <Route exact path="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview" component={BlogDetail10} />
                 <Route exact path="/guidelines-on-how-to-answer-what-is-your-biggest-strength" component={BlogDetail11} />
                 <Route exact path="/how-to-answer-what-is-your-weakness-question-in-an-interview" component={BlogDetail12} />
+                <Route exact path="/3-fastest-growing-jobs-you-might-not-know-about" component={BlogDetail13} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
@@ -198,30 +200,30 @@ class App extends Component {
                 <Route exact path="/quiz" component={QuizHome} />
                 <Route exact path="/quizresult" component={QuizResultPage} />
                 <Route exact path="/companydata" component={CompanyList} />
-                <Route exact path="/companydata/american-international-group" component={AIGInfo} />
-                <Route exact path="/companydata/american-express" component={AEInfo} />
-                <Route exact path="/companydata/bloomberg" component={BBInfo} />
-                <Route exact path="/companydata/bny-mellon" component={BMInfo} />
-                <Route exact path="/companydata/blackrock" component={BRInfo} />
-                <Route exact path="/companydata/blackstone" component={BSInfo} />
-                <Route exact path="/companydata/citi" component={CityInfo} />
-                <Route exact path="/companydata/evercore" component={ECInfo} />
-                <Route exact path="/companydata/goldman-sachs" component={GSInfo} />
-                <Route exact path="/companydata/jefferies-financial-group" component={JFInfo} />
-                <Route exact path="/companydata/jll-partners" component={JLLPInfo} />
-                <Route exact path="/companydata/jpmorgan-chase" component={JPMInfo} />
-                <Route exact path="/companydata/jane-street-capital" component={JSInfo} />
-                <Route exact path="/companydata/moodys" component={MDInfo} />
-                <Route exact path="/companydata/morgan-stanley" component={MSInfo} />
-                <Route exact path="/companydata/mufg" component={MUFGInfo} />
-                <Route exact path="/companydata/nasdaq" component={NDQInfo} />
-                <Route exact path="/companydata/two-sigma" component={TSMInfo} />
+                <Route exact path="/american-international-group" component={AIGInfo} />
+                <Route exact path="/american-express" component={AEInfo} />
+                <Route exact path="/bloomberg" component={BBInfo} />
+                <Route exact path="/bny-mellon" component={BMInfo} />
+                <Route exact path="/blackrock" component={BRInfo} />
+                <Route exact path="/blackstone" component={BSInfo} />
+                <Route exact path="/citi" component={CityInfo} />
+                <Route exact path="/evercore" component={ECInfo} />
+                <Route exact path="/goldman-sachs" component={GSInfo} />
+                <Route exact path="/jefferies-financial-group" component={JFInfo} />
+                <Route exact path="/jll-partners" component={JLLPInfo} />
+                <Route exact path="/jpmorgan-chase" component={JPMInfo} />
+                <Route exact path="/jane-street-capital" component={JSInfo} />
+                <Route exact path="/moodys" component={MDInfo} />
+                <Route exact path="/morgan-stanley" component={MSInfo} />
+                <Route exact path="/mufg" component={MUFGInfo} />
+                <Route exact path="/nasdaq" component={NDQInfo} />
+                <Route exact path="/two-sigma" component={TSMInfo} />
                 <Route exact path="/jobs" component={JobList} />
-                <Route exact path="/jobs/ui-designer" component={UIDesigner} />
-                <Route exact path="/jobs/business-analyst" component={BusinessAnalyst} />
-                <Route exact path="/jobs/marketing" component={Marketing} />
-                <Route exact path="/jobs/product-manager" component={ProductManager} />
-                <Route exact path="/jobs/software-engineer" component={SoftwareEngineer} />
+                <Route exact path="/ui-designer" component={UIDesigner} />
+                <Route exact path="/business-analyst" component={BusinessAnalyst} />
+                <Route exact path="/marketing" component={Marketing} />
+                <Route exact path="/product-manager" component={ProductManager} />
+                <Route exact path="/software-engineer" component={SoftwareEngineer} />
                 <PrivateRoute exact path="/email-verification" component={EmailVerification} />
                 <Route component={NotFoundPage} />
               </Switch>
