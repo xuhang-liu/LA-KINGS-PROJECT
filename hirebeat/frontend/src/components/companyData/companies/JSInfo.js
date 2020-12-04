@@ -27,7 +27,7 @@ class JSInfo extends Component {
                     <title>HireBeat Company Data – Jane Street Capital</title>
                     <meta name="Description" CONTENT="Jane Street is a company that trades financial products and specializes in exchange-traded funds (ETFs). It also trades equities, futures, commodities, options, bonds, currencies. The company also publishes market structure and ETF strategy reports." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata/jane-street-capital"/>
+                    <link rel="canonical" href="https://hirebeat.co/jane-street-capital"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

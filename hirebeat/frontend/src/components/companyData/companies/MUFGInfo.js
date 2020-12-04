@@ -28,7 +28,7 @@ class MUFGInfo extends Component {
                     <title>HireBeat Company Data – MUFG Americas</title>
                     <meta name="Description" CONTENT="MUFG (Mitsubishi UFJ Financial Group) is a financial group, which services include corporate banking, commercial banking, consumer banking, wealth management, investment banking, securities, capital markets, personal and corporate trust, and transaction banking." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata/mufg"/>
+                    <link rel="canonical" href="https://hirebeat.co/mufg"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea
