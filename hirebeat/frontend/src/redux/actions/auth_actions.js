@@ -15,6 +15,7 @@ import {
   RESEND_ACTIVATION_EMAIL,
   UPDATE_USER_EMAIL,
   UPDATE_USER_PASSWORD,
+  PASSWORDMATCH_FAIL,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -107,7 +108,7 @@ export const PasswordChanging = (username, password) => (dispatch) => {
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
-        type: PASSWORDMATCH_FAIL,
+        type: LOGIN_FAIL,
       });
     });
 };

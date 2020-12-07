@@ -74,19 +74,6 @@ export class EssentialUserInfo extends Component {
     this.setState({...this.state, passwordChanging: false});
   }
 
-  savePasswordChanging = (event) => {
-    // working on the backend logic here.
-    event.preventDefault();
-    console.log(event);
-   
-/*    if(newPassword !== confirmPassword)
-      console.log("Password don't match");
-    else if(newPassword.length < 8)
-      console.log('the Password is too short');
-    else
-      console.log('I just need to check the original password now!');
-    this.finishedPasswordChanging();*/
-  }
 
 
   /*sendEmail = () => {
@@ -472,9 +459,11 @@ export class EssentialUserInfo extends Component {
           show={this.state.passwordChanging}
           savePasswordChanging={this.savePasswordChanging}
           hide={this.finishedPasswordChanging}
+          finishedPasswordChanging={this.finishedPasswordChanging}
           user={this.props.user}
           profile={this.props.profile}
           PasswordChanging={this.props.PasswordChanging}
+          pswd_success={this.props.pswd_success}
         />
 {/* Changes Ends here */}
 
@@ -621,8 +610,8 @@ const PasswordChangingInterface = (props) => {
 
 
   const PasswordCheck = (event) => {
+    
     event.preventDefault();
-
     if(newPassword !== confirmPassword)
     {
       alert('Password do not match!');
@@ -633,14 +622,29 @@ const PasswordChangingInterface = (props) => {
     }
     else
     {
-      let user = {"id": props.user.id , "newPassword": newPassword};
-      props.updateUserPassword(user);
-      //props.PasswordChanging(props.user.username, oldPassword);
+       props.PasswordChanging(props.user.username, oldPassword);
+       console.log(props.pswd_success);
+ 
+       //setTimeout(()=>{console.log(props.pswd_success)}, 3000)
+       if(!props.pswd_success)
+       {
+         alert("incorrect password");
+         event.preventDefault();
+       }
+       else
+       {
+        let user = {"id": props.user.id , "newPassword": newPassword};
+        props.updateUserPassword(user);
+        setOldPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        alert('Changed Password Successfully!')
+       }
 
-        // if condition is fine, we pass the old password and new password to the backend.
-        // If user password match and are longer than 8 chars. we will do the change here.
-        // call an action creater, then get the res.data. if login faill. alert. Otherwise, call change password API in Django.
-
+      // 核心逻辑是我们先检查密码，如果密码正确我们就update password。我们通过Store里面的一个参数 pswd_success来辨别这次密码输入是否正确。
+      // 目前Code有两个问题
+      // 1. 这个PasswordChanging 根据密码正确与否dispatch两种Action ：如果正确它dispatch不了这个正确的action
+      // 2. 如果密码错误，这个pswd_success会延迟到下一次Summit才update。
     }
   
   }
@@ -651,7 +655,7 @@ const PasswordChangingInterface = (props) => {
                 <form style={{ marginBottom: "3%" }} onSubmit={PasswordCheck}>
                 <fieldset>
                 <div className="form-group">
-                  <label style={{ fontSize: "20px" }}>Current Password</label>
+                  <label style={{ fontSize: "20px" }}>Current Password T6</label>
                   <input placeholder="Current password" 
                          className="form-control"
                          type="password" 
@@ -691,5 +695,8 @@ const PasswordChangingInterface = (props) => {
   );
 }
 
+const mapStateToProps = (state) => ({
+  pswd_success: state.auth_reducer.pswd_success
+});
 
-export default connect(null, {PasswordChanging, updateUserPassword})(EssentialUserInfo);
+export default connect(mapStateToProps, {PasswordChanging, updateUserPassword})(EssentialUserInfo);

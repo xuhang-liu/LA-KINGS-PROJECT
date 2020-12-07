@@ -13,6 +13,7 @@ import {
   INCREASE_RESUME_COUNT,
   UPGRADE_ACCOUNTS,
   PASSWORDMATCH_FAIL,
+  PASSWORD_CHANGING_SUCCESS,
 } from "../actions/action_types";
 
 const initialState = {
@@ -40,6 +41,10 @@ export default function (state = initialState, action) {
         user: action.payload,
       };
     case AUTH_ERROR:
+    case PASSWORD_CHANGING_SUCCESS:
+      return {...state,
+        pswd_success: true,
+      }; 
     case PASSWORDMATCH_FAIL:
       return {
         ...state,
@@ -49,6 +54,9 @@ export default function (state = initialState, action) {
         pswd_fail: false,
       };
     case LOGIN_FAIL:
+      return {...state,
+        pswd_success: false,
+      };
     case REGISTER_FAIL:
       localStorage.removeItem("token");
       return {

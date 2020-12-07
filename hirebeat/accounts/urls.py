@@ -41,7 +41,7 @@ urlpatterns = [
 
     ### Update User Email
     path('api/update-user-email', update_user_email, name='update user email'),
-    ### Update User Email
+    ### Update User Password
     path('api/update-user-password', update_user_password, name='update user password'),
 ]
 
