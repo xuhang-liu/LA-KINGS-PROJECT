@@ -20,7 +20,7 @@ class BlogDetail9 extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – Tips for Getting Your Resume Past an Applicant Tracking System</title>
-                    <meta name="Description" CONTENT="Tips for Getting Your Resume Past an Applicant Tracking System"></meta>
+                    <meta name="description" CONTENT="Tips for Getting Your Resume Past an Applicant Tracking System"></meta>
                     <link rel="canonical" href="https://hirebeat.co/tips-for-getting-your-resume-past-an-applicant-tracking-system"/>
                 </Helmet>
                 <ScrollToTopOnMount />

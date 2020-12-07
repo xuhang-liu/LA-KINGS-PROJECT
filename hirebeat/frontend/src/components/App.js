@@ -124,6 +124,7 @@ class App extends Component {
       <Helmet>
         <meta charSet="utf-8" />
         <title>HireBeat – The Best Video Interview Prep Tool For Jobseekers</title>
+        <meta name="description" CONTENT="Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!"></meta>
         <link rel="canonical" href="https://hirebeat.co"/>
       </Helmet>
       <React.Fragment>

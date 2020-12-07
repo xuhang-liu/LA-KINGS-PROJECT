@@ -20,7 +20,7 @@ class BlogDetail6 extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – 4 Common Interview Questions and How to Answer Them</title>
-                    <meta name="Description" CONTENT="4 Common Interview Questions and How to Answer Them"></meta>
+                    <meta name="description" CONTENT="4 Common Interview Questions and How to Answer Them"></meta>
                     <link rel="canonical" href="https://hirebeat.co/4-common-interview-questions-and-how-to-answer-them"/>
                 </Helmet>
                 <ScrollToTopOnMount />
