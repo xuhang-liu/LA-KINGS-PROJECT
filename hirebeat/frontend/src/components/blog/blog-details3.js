@@ -20,7 +20,7 @@ class BlogDetail3 extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – How to Prepare for an AI Interview</title>
-                    <meta name="Description" CONTENT="How to Prepare for an AI Interview"></meta>
+                    <meta name="description" CONTENT="AI interviews are taking momentum in the corporate world. Get tips on how you can prepare for a successful AI interview."></meta>
                     <link rel="canonical" href="https://hirebeat.co/how-to-prepare-for-an-AI-interview"/>
                 </Helmet>
                 <ScrollToTopOnMount />

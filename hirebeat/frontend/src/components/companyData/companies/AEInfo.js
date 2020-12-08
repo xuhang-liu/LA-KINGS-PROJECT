@@ -27,7 +27,7 @@ class AEInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – American Express</title>
                     <meta name="Description" CONTENT="American Express is a globally integrated payments company. It provides credit and charge cards to consumers, small businesses, mid-sized companies, and large corporations around the world. The company also offers gift cards, rewards, travel and expense management solutions, personal savings, business services, insurance, and more." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata/american-express"/>
+                    <link rel="canonical" href="https://hirebeat.co/american-express"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

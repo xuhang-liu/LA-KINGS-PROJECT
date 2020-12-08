@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogDetailsContent1 from './BlogDetailsContent1';
+import BlogDetailsContent13 from './BlogDetailsContent13';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import {Helmet} from "react-helmet";
@@ -13,26 +13,26 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class BlogDetail1 extends Component {
+class BlogDetail10 extends Component {
     render() {
         return (
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – Why video interview practice platforms are essential for landing your dream job</title>
-                    <meta name="description" CONTENT="Why video interview practice platforms are essential for landing your dream job"></meta>
-                    <link rel="canonical" href="https://hirebeat.co/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job"/>
+                    <title>HireBeat Blog – 3 Fastest-growing Jobs You Might Not Know About</title>
+                    <meta name="description" CONTENT="Learn about the careers experiencing high growth in the job market for insight on the paths you should pursue."></meta>
+                    <link rel="canonical" href="https://hirebeat.co/3-fastest-growing-jobs-you-might-not-know-about"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
                     pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogDetailsContent1 />
+                <BlogDetailsContent13 />
                 <FreeTrialArea />
             </React.Fragment>
         );
     }
 }
 
-export default BlogDetail1;
+export default BlogDetail10;

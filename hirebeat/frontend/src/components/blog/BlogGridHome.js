@@ -38,7 +38,7 @@ export class BlogGridHome extends React.Component {
                   height={"89rem"}
                   endMessage={
                       <p style={{textAlign: "center", color: "#2196F3"}}>
-                          <b>No More Blogs!</b>
+                          <b>This is the end of blogs!</b>
                       </p>
                   }
               >
@@ -87,6 +87,9 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/why-do-you-want-to-work-here",
+    "/3-fastest-growing-jobs-you-might-not-know-about",
+    "/how-to-answer-what-is-your-weakness-question-in-an-interview",
     "/guidelines-on-how-to-answer-what-is-your-biggest-strength",
     "/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview",
     "/tips-for-getting-your-resume-past-an-applicant-tracking-system",
@@ -101,6 +104,9 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog14.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog13.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog12.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog11.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog10.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog9.jpg",
@@ -115,6 +121,9 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Dec 08, 2020",
+    "Dec 01, 2020",
+    "Nov 25, 2020",
     "Nov 18, 2020",
     "Nov 10, 2020",
     "Nov 02, 2020",
@@ -129,6 +138,9 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "WHY DO YOU WANT TO WORK HERE",
+    "FASTEST-GROWING JOBS YOU MIGHT NOT KNOW ABOUT",
+    "HOW TO ANSWER 'WHAT IS YOUR WEAKNESS' QUESTION",
     "GUIDELINES ON 'WHAT IS YOUR BIGGEST STRENGTH'",
     "WHERE DO YOU TO SEE YOURSELF IN 5 YEARS",
     "TIPS FOR YOUR RESUME TO PASS APPLICANT SYSTEM",

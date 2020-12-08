@@ -13,6 +13,7 @@ import {
   PROFILE_UPDATED,
   UPGRADE_ACCOUNTS,
   RESEND_ACTIVATION_EMAIL,
+  UPDATE_USER_EMAIL,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -212,6 +213,20 @@ export const resendActivationEmail = (userId) => (dispatch, getState) => {
       console.log(res.data);
       dispatch({
         type: RESEND_ACTIVATION_EMAIL,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateUserEmail = (user) => (dispatch, getState) => {
+  axios
+    .post("/api/update-user-email", user, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_USER_EMAIL,
         payload: res.data,
       });
     })

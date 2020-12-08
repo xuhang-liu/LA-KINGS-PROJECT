@@ -8,7 +8,7 @@ import MyVideoUploader from "../videos/MyVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_QUESTION } from "../../redux/actions/action_types";
 
-export class VideoRecorder extends Component {
+export class RetryVideoRecorder extends Component {
     constructor() {
         super();
         this.handleClick = this.handleClick.bind(this);
@@ -155,4 +155,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(VideoRecorder);
+export default connect(null, mapDispatchToProps)(RetryVideoRecorder);

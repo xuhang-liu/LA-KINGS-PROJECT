@@ -27,7 +27,7 @@ class CityInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Citibank</title>
                     <meta name="Description" CONTENT="Citigroup is a company providing financial products and services. It operates through two segments: Global Consumer Banking and Institutional Clients Group. Global Consumer Banking offers traditional banking services to retail customers through retail banking, commercial banking, Citi-branded cards, and Citi retail services. Institutional Clients Group delivers wholesale banking products and services, including fixed income and equity sales and trading, foreign exchange, prime brokerage, derivative services, equity and fixed income research, corporate lending, investment banking, and advisory services, as well as private banking, cash management, trade finance, and securities services to corporate, institutional, public sector, and high-net-worth clients." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata/citi"/>
+                    <link rel="canonical" href="https://hirebeat.co/citi"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

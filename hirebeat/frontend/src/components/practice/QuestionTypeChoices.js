@@ -58,9 +58,28 @@ export class QuestionTypeChoices extends Component {
       }
   };
 
+  makeProfile = () => {
+        return {
+          user: this.props.user.id,
+          id: this.props.profile.id,
+          email_confirmed: true,
+        };
+      };
+    
+  activateEmail = () => {
+    // only for FB social login
+        if (this.props.user.email == "" || this.props.user.email == null ) {
+          var profile = this.makeProfile();
+          this.props.updateProfile(profile);
+        }
+  };
+
   componentDidMount() {
     safariAlert();
     this.props.loadProfile();
+    if(this.props.user != null){
+      this.activateEmail();
+    }
   }
 
   render() {
@@ -85,7 +104,7 @@ export class QuestionTypeChoices extends Component {
               <p className="mode-col-text1">
                 Prepare about how you’ve <br/>
                 overcome previous professional <br/>
-                challenges, reached success and <br/>
+                challenges reached success and <br/>
                 navigated difficult decisions.
               </p>
               <p className="mode-col-text2">Next Step -> </p>

@@ -48,102 +48,102 @@ class CompanyList extends Component {
                         </div>
                         <div className="clients-logo-list align-items-center">
                             <div className="single-clients-logo">
-                                <Link to="/companydata/american-international-group">
+                                <Link to="/american-international-group">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/AIG.png" alt="AIG logo"/>
                                 </Link>
                             </div>
                             <div className="single-clients-logo">
-                                <Link to="/companydata/american-express">
+                                <Link to="/american-express">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/AE.png" alt="AE logo" />
                                 </Link>
                             </div>
                             <div className="single-clients-logo">
-                                <Link to="/companydata/bny-mellon">
+                                <Link to="/bny-mellon">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/BNYM.png" alt="BNYM logo" />
                                 </Link>
                             </div>
                             <div className="single-clients-logo">
-                                <Link to="/companydata/blackrock">
+                                <Link to="/blackrock">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/BR.png" alt="BR logo"/>
                                 </Link>
                             </div>
                             <div className="single-clients-logo">
-                                <Link to="/companydata/blackstone">
+                                <Link to="/blackstone">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/BMT.png" alt="BMT logo" />
                                 </Link>
                             </div>
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/bloomberg">
+                                <Link to="/bloomberg">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Bloomberg.png" alt="BB logo"/>
                                 </Link>
                             </div>
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/citi">
+                                <Link to="/citi">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/citibank.png" alt="City logo"/>
                                 </Link>
                             </div>
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/evercore">
+                                <Link to="/evercore">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Evercore.png" alt="Evercore logo"/>
                                 </Link>
                             </div>
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/goldman-sachs">
+                                <Link to="/goldman-sachs">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/GS.png" alt="GS logo"/>
                                 </Link>
                             </div>
                         </div>
                         <div className="clients-logo-list align-items-center" style={{marginTop: "1rem"}}>
                             <div className="single-clients-logo">
-                                <Link to="/companydata/jane-street-capital">
+                                <Link to="/jane-street-capital">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/JS.png" alt="JS logo"/>
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo">
-                                <Link to="/companydata/jefferies-financial-group">
+                                <Link to="/jefferies-financial-group">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Jefferies.png" alt="Jesseries logo" />
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo">
-                                <Link to="/companydata/jll-partners">
+                                <Link to="/jll-partners">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/JLLP.png" alt="JLLP logo" />
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo">
-                                <Link to="/companydata/jpmorgan-chase">
+                                <Link to="/jpmorgan-chase">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/JPM.png" alt="JPC logo"/>
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo">
-                                <Link to="/companydata/moodys">
+                                <Link to="/moodys">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Moody.png" alt="Moody logo" />
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/morgan-stanley">
+                                <Link to="/morgan-stanley">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/MS.png" alt="MS logo"/>
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/mufg">
+                                <Link to="/mufg">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/MUFG.png" alt="MUFG logo"/>
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/nasdaq">
+                                <Link to="/nasdaq">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Nasdaq.png" alt="Nasdaq logo"/>
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/two-sigma">
+                                <Link to="/two-sigma">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/TSV.png" alt="2 sigma logo"/>
                                 </Link>
                             </div>
@@ -154,11 +154,11 @@ class CompanyList extends Component {
                         <h3 className="col-md-3 company-list-help-text" style={{paddingLeft:"4%"}}>
                             We also help you on </h3>
                             
-                        <div className="col-md-3" style={{maxWidth:"18%"}}>
+                        <div className="col-md-3" style={{maxWidth:"18.7%"}}>
                             <Link to="/practice">
                                 <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}>
                                     <i className="bx bxs-arrow-to-right"></i> 
-                                    Interview Praciting
+                                    Interview Practicing
                                     <span></span>
                                 </a>
                             </Link>
@@ -175,7 +175,7 @@ class CompanyList extends Component {
                         </div>
                     </div>
                     </MediaQuery>
-                    <MediaQuery maxDeviceWidth={1224}>
+                    <MediaQuery maxDeviceWidth={1223}>
                     <div style={{backgroundColor:'white'}}>
                         <h3 style={{textAlign:'center', paddingTop:'1rem'}}>
                             We also help you on </h3>

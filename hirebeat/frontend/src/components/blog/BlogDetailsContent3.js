@@ -32,10 +32,6 @@ class BlogDetailsContent extends Component {
                                     <div className="article-image">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog3-pic.jpg" alt="image" />
                                     </div>
-
-                                    <p>
-                                        <i><b>Meta Description: </b>AI interviews are taking momentum in the corporate world. Get tips on how you can prepare for a successful AI interview.</i>
-                                    </p>
                                     <p>
                                     Job hunting is not a piece of cake. We are talking about landing an opportunity that matches your skills, creating a resume that will earn you an interview, and impressing the interviewing panel. It takes some work to land a dream job. Companies are today incorporating AI technology in their recruiting process, and you should anticipate an AI Interview.
                                     </p>

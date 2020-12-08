@@ -28,7 +28,7 @@ class JFInfo extends Component {
                     <title>HireBeat Company Data – Jefferies Financial Group</title>
                     <meta name="Description" CONTENT="Jefferies Financial Group is an investment and financial services company that offers a range of products and services in investment banking, equities, fixed income, and wealth management. It specializes in the debt capital market, merger and acquisition, private capital advisory, restructuring, and recapitalization businesses. It offers cash equities, electronic trading solutions, such as global algorithmic and portfolio trading solutions. The company also provides wealth management services, such as portfolio management services, executive services, and family office services to high-net-worth individuals, family offices, and others." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata/jefferies-financial-group"/>
+                    <link rel="canonical" href="https://hirebeat.co/jefferies-financial-group"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

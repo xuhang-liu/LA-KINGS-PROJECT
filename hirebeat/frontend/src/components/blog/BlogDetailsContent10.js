@@ -28,10 +28,6 @@ class BlogDetailsContent extends Component {
                                     </div>
 
                                     <h2>How To Answer The Question "Where Do You To See Yourself In 5 Years" In An Interview  (Sample Answer Included)</h2>
-
-                                    <p>
-                                        <i><b>Meta Description: </b>"where do you see yourself in 5 years" is a common interview question. Learn about why employers ask the question and get tips on how to answer it</i>
-                                    </p>
                                     <div className="article-image">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog10-pic1.jpg" alt="image" />
                                     </div>
