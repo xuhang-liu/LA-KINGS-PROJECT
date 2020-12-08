@@ -93,7 +93,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'django',
+        'USER': 'shaobindanielhong',
         'PASSWORD': os.getenv('DATABASE_SECRET_KEY'),
     }
 }

@@ -147,15 +147,15 @@ export function VideoImagePreview(props) {
                       <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
                     </button>
                     </div>
-                    <Link className="col-1" to={"/practice/modes/retry"} style={{ marginTop: "8%", textAlign:"center"}} onClick={()=>{
+                    <Link className="col-1" to={"/practice/modes/retry"} onClick={()=>{
                         retryBQuestion(props.v, props.isAudio, dispatch);
-                    }}>
+                    }}  style={{paddingTop: '30%'}}>
                         <a
-                            className="default-btn " style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "100px"}}
+                            className="default-btn " style={{color:"white", backgroundColor:"#090D3A", height: "30px", width: "100px", paddingTop: '30%'}}
                         >
                             <i className="bx bx-revision text-30">
                             </i>
-                            <p className={"text-15"} style={{height: "100%", color: "white", marginRight: "40%"}}>Retry</p>
+                            <p className={"text-15"} style={{height: "100%", color: "white"}}>Retry</p>
                             <span></span>
                         </a>
                     </Link>
