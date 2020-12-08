@@ -20,7 +20,7 @@ class BlogDetail7 extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – How to Write a Thank-You Email After a Job Interview (Example Included)</title>
-                    <meta name="description" CONTENT="How to Write a Thank-You Email After a Job Interview (Example Included)"></meta>
+                    <meta name="description" CONTENT="Thank you, emails can go a long way in making you stand out from other candidates. Get tips for writing a good thank you email and a thank-you email sample."></meta>
                     <link rel="canonical" href="https://hirebeat.co/how-to-write-a-thank-you-email-after-a-job-interview"/>
                 </Helmet>
                 <ScrollToTopOnMount />

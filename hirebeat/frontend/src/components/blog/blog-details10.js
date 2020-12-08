@@ -20,7 +20,7 @@ class BlogDetail10 extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – How To Answer The Question "Where Do You To See Yourself In 5 Years" In An Interview  (Sample Answer Included)</title>
-                    <meta name="description" CONTENT="How To Answer The Question 'Where Do You To See Yourself In 5 Years' In An Interview  (Sample Answer Included)"></meta>
+                    <meta name="description" CONTENT="'where do you see yourself in 5 years' is a common interview question. Learn about why employers ask the question and get tips on how to answer it"></meta>
                     <link rel="canonical" href="https://hirebeat.co/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview"/>
                 </Helmet>
                 <ScrollToTopOnMount />

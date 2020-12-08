@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogDetailsContent13 from './BlogDetailsContent13';
+import BlogDetailsContent14 from './BlogDetailsContent14';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import {Helmet} from "react-helmet";
@@ -19,16 +19,16 @@ class BlogDetail10 extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – 3 Fastest-growing Jobs You Might Not Know About</title>
-                    <meta name="description" CONTENT="Learn about the careers experiencing high growth in the job market for insight on the paths you should pursue."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/3-fastest-growing-jobs-you-might-not-know-about"/>
+                    <title>HireBeat Blog – "Why do you want to work here?" Your Ultimate Interview Tips</title>
+                    <meta name="description" CONTENT="'Why do you want to work here?' seems to be a simple but challenging question. Lack of proper preparation for this question can be risky because you will lower the chances of acquiring the job."></meta>
+                    <link rel="canonical" href="https://hirebeat.co/why-do-you-want-to-work-here"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
                     pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogDetailsContent13 />
+                <BlogDetailsContent14 />
                 <FreeTrialArea />
             </React.Fragment>
         );

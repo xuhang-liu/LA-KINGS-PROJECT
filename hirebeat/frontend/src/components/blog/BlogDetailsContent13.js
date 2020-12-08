@@ -32,9 +32,6 @@ class BlogDetailsContent extends Component {
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog13-pic.jpg" alt="image" />
                                     </div>
                                     <p>
-                                        <i><b>Meta Description: </b>Learn about the careers experiencing high growth in the job market for insight on the paths you should pursue.</i>
-                                    </p>
-                                    <p>
                                     Every year, there is a shift in the growth, emergence, and popularity of careers. That is why it is essential for people to know where to look when looking for careers to pursue. No one is ever sure about the job market and keeping tabs on the career trends will help you choose the right career to invest in through education.</p>
                                     <p>
                                     Knowing about the fastest-growing careers would be an excellent place to start, as you will be able to identify a career that you can make a killing from. Here are the top three careers that will be hiring the most, paying a lot, which will offer people an opportunity to grow.

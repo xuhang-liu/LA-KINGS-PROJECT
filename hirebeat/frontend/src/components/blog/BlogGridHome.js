@@ -87,6 +87,7 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/why-do-you-want-to-work-here",
     "/3-fastest-growing-jobs-you-might-not-know-about",
     "/how-to-answer-what-is-your-weakness-question-in-an-interview",
     "/guidelines-on-how-to-answer-what-is-your-biggest-strength",
@@ -103,6 +104,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog14.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog13.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog12.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog11.jpg",
@@ -119,6 +121,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Dec 08, 2020",
     "Dec 01, 2020",
     "Nov 25, 2020",
     "Nov 18, 2020",
@@ -135,7 +138,8 @@ const blogDates = [
 ];
 
 const blogTitles = [
-    "FASTEST-GROWING JOBS YOU MIGHT NOT KNOW ABOUT ",
+    "WHY DO YOU WANT TO WORK HERE",
+    "FASTEST-GROWING JOBS YOU MIGHT NOT KNOW ABOUT",
     "HOW TO ANSWER 'WHAT IS YOUR WEAKNESS' QUESTION",
     "GUIDELINES ON 'WHAT IS YOUR BIGGEST STRENGTH'",
     "WHERE DO YOU TO SEE YOURSELF IN 5 YEARS",

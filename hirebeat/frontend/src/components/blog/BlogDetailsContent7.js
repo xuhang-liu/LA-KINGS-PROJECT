@@ -28,10 +28,6 @@ class BlogDetailsContent extends Component {
                                     </div>
 
                                     <h2>How to Write a Thank-You Email After a Job Interview (Example Included)</h2>
-
-                                    <p>
-                                        <i><b>Meta Description: </b>: Thank you, emails can go a long way in making you stand out from other candidates. Get tips for writing a good thank you email and a thank-you email sample.</i>
-                                    </p>
                                     <div className="article-image">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog7-pic.jpg" alt="image" />
                                     </div>

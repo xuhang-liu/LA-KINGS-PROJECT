@@ -32,10 +32,6 @@ class BlogDetailsContent extends Component {
                                     <div className="article-image">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog6-pic.jpg" alt="image" />
                                     </div>
-
-                                    <p>
-                                        <i><b>Meta Description: </b>: get information on the common questions asked in interviews. Get tips on the appropriate answers for common interview questions.</i>
-                                    </p>
                                     <p>
                                     Regardless of how many interviews you have attended, every new interview poses a challenge. It is normal to get anxious and wonder which questions the interviewers will be asking. There is no sure way of identifying the topics and questions. As much as that could be the case, there are common interview questions that you will never miss; it does not have to be all of them but just a couple.
                                     </p>
