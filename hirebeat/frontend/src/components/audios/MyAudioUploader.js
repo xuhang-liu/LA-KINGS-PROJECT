@@ -31,7 +31,7 @@ export class MyAudioUploader extends Component {
 
     //For other browsers
     var name = this.props.audio.name;
-    var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
+    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
     const audioMetaData = {
       url: url,
       q_description: `${this.props.questions[this.props.q_index].description}`,
