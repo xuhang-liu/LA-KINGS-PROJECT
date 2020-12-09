@@ -8,7 +8,7 @@ import NotePad from "../practice/NotePad";
 import { connect } from "react-redux";
 import PrepCountdown from "../practice/PrepCountdown";
 import TestDevice from "../practice/TestDevice";
-import { getQuestions } from "../../redux/actions/question_actions";
+import { getRandomQuestion } from "../../redux/actions/question_actions";
 import VideoRecorder from "../practice/VideoRecorder";
 export class CareerVideoRecorder extends Component {
     constructor(props) {
@@ -17,8 +17,6 @@ export class CareerVideoRecorder extends Component {
             status: "Preparation",
             type: "behavior",
             deviceTested: false,
-            numberOfQuestions: 1,
-            categoryOfQuestion: "Random", // 1 means "Random"
         };
     }
 
@@ -29,7 +27,7 @@ export class CareerVideoRecorder extends Component {
                 behavior: "smooth",
             });
         }, 200);
-        this.props.getQuestions(this.state.numberOfQuestions, this.state.categoryOfQuestion)
+        this.props.getRandomQuestion();
     }
 
 
@@ -68,6 +66,8 @@ export class CareerVideoRecorder extends Component {
             videoRecorderOptions.plugins.record.maxLength =
                 120;
             videoRecorderOptions.controlBar.recordToggle = false;
+        let currentUrl = window.location.href;
+        let email = currentUrl.split("=")[1];
 
         return (
             (!this.state.deviceTested) ? (
@@ -82,7 +82,7 @@ export class CareerVideoRecorder extends Component {
                 </audio>
                 {this.props.loaded ? (
                 <PracticeCard>
-                    <h4>Q: {this.props.questions[this.props.q_index].description}</h4>
+                    <h4 style={{marginTop: "2rem"}}>Q: {this.props.random_question}</h4>
                     <div style={{ marginTop: 20 }}>
                         <div
                             className="video-recorder-row"
@@ -130,6 +130,9 @@ export class CareerVideoRecorder extends Component {
                                     last_q={true}
                                     isSimulate={true}
                                     isCareerVideo={true}
+                                    question={this.props.random_question}
+                                    questionId={this.props.random_question_id}
+                                    email={email}
                                 />
                             )
                         )}
@@ -143,10 +146,9 @@ export class CareerVideoRecorder extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    questions: state.question_reducer.questions,
     loaded: state.question_reducer.loaded,
-    q_count: state.question_reducer.q_count,
-    q_index: state.question_reducer.q_index,
+    random_question: state.question_reducer.random_question,
+    random_question_id: state.question_reducer.random_question_id,
 });
 
-export default connect(mapStateToProps, { getQuestions })(CareerVideoRecorder);
+export default connect(mapStateToProps, {getRandomQuestion })(CareerVideoRecorder);

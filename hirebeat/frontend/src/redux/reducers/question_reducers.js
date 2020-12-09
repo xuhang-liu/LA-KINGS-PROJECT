@@ -7,6 +7,7 @@ const initialState = {
   last_q: false,
   loaded: false,
   random_question: "",
+  random_question_id: 0,
 };
 
 export default function (state = initialState, action) {
@@ -40,6 +41,7 @@ export default function (state = initialState, action) {
         ...state,
         loaded: true,
         random_question: action.payload.question,
+        random_question_id: action.payload.id,
       };
     default:
       return state;

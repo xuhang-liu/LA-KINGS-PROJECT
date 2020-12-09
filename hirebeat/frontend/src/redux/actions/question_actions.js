@@ -39,14 +39,14 @@ export const retryBQuestion = (video, isAudio, dispatch) => {
     dispatch({type: RETRY_B_QUESTION, payload: data});
 };
 
-export const getRandomQuestion = () => (dispatch, getState) => {
+export const getRandomQuestion = () => (dispatch) => {
   axios
-    .get("random-question", tokenConfig(getState))
+    .get("/random-question")
     .then((res) => {
       console.log("get random question");
       console.log(res.data);
       dispatch({
-        type: GET__GET_RANDOM_QUESTION,
+        type: GET_RANDOM_QUESTION,
         payload: res.data,
       });
     })

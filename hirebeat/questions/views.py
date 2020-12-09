@@ -48,4 +48,5 @@ def get_random_question(request):
     question = random.sample(list(queryset), int(1))
     return Response({
         "question": question[0].description,
+        "id": question[0].id,
     })
