@@ -34,8 +34,7 @@ class IndexSaas extends Component {
                 <ClientsFeedbackSlider/>
                 <FreeTrialArea />
                       {/* Preloader */}
-      <Loader loading={this.state.loading} />
-
+                <Loader loading={this.state.loading} />
             </React.Fragment>
         );
     }
