@@ -151,6 +151,7 @@ export class VideoRecorder extends Component {
               video={this.state.video}
               last_q={this.props.last_q}
               isSimulate={this.props.isSimulate}
+              isCareerVideo={this.props.isCareerVideo}
             />
           ) : null}
         </div>
