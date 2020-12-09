@@ -1,24 +1,15 @@
 import React, { useState, Component } from 'react';
 import { Link } from "react-router-dom";
-//import {SwitchButton} from './../Components';
+import {decideClassName} from './../Components';
 
 
 export default function JLLPIQ(props){
-    const [filter, setFilter] = useState("swe");
+    const [filter, setFilter] = useState("Accounts Payable Specialist");
     return(
         <div style={{marginTop: '5%'}}>
             <h3 className="companydata-text1">Interview Questions</h3>
-            {/*SwitchButton(filter, setFilter)*/}
-            {/*renderContent(filter)*/}
-            <div>
-                  <p className="companydata-text2"><li>What would be your career goals for the next 5 years?</li></p>
-                  <p className="companydata-text2"><li>What can you bring to the company?</li></p>
-                  <p className="companydata-text2"><li>What is the different between debt and equity?</li></p>
-                  <p className="companydata-text2"><li>Why were you interested in this position?</li></p>
-                  <p className="companydata-text2"><li>Do you have prior experience with using dashboards for reporting?</li></p>
-                  <p className="companydata-text2"><li>What devices and software you have experience with?</li></p>
-                  <p className="companydata-text2"><li>Where would you like to start your work?</li></p>
-            </div>
+            {SwitchButton(filter, setFilter)}
+            {renderContent(filter)}
             <div className="row" style={{marginTop: "0.5rem"}}>
                 <div className="col-lg-7 col-md-7 align-center">
                     <p className="companydata-text5">View more and prepare your answer</p>
@@ -53,31 +44,68 @@ export default function JLLPIQ(props){
     )
 };
 
+const SwitchButton = (filter, setFilter)=>{
+  return(
+      <div style={{marginBottom: "5px"}} className="container d-flex justify-content-start">
+          <button
+              className={decideClassName(filter, "Accounts Payable Specialist")}
+              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("Accounts Payable Specialist")}
+          >
+              APS
+          </button>
+          <button
+              className={decideClassName(filter, "Capital Market Transaction")}
+              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("Capital Market Transaction")}
+          >
+              CMT
+          </button>
+          <button
+              className={decideClassName(filter, "Procurement")}
+              style = {{width: "120px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("Procurement")}
+          >
+              Procurement
+          </button>
+          <button
+              className={decideClassName(filter, "Consultant")}
+              style = {{width: "100px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("Consultant")}
+          >
+              Consultant
+          </button>
+      </div>
+  );
+}
+
 function renderContent(filter)  {
     switch (filter) {
-        case "swe":
-            return (
+        default: case "Accounts Payable Specialist":
+            return(
                 <div>
-                  <p className="companydata-text2">The usual interview process usually takes about 4 weeks </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 1:</span> An online coding test, solving two algorithms in the language of the candidate's choice each with a time limit of 70 mins </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 2:</span> Two technical phone interviews conducted one after the other with different interviewers. </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 3:</span> A technical phone screen with either a technical recruiter or an engineer. </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 4:</span> An onsite interview consisting of 6 sessions, 5 technical and one with HR. Technical questions cover things like graph problems, sorting streams of integers, checking if a given list of words are contained in a magazine. Every problem is coupled with an analysis of computational complexity and memory trade offs.</p>
+                    <p className="companydata-text2">Job Title: Accounts Payable Specialist</p>
+                    <p className="companydata-text2"><li>What would be your career goals for the next five years?</li></p>
                 </div>
             );
-        case "data":
+        case "Capital Market Transaction":
             return(
-              <div>data</div>
+                <div>
+                    <p className="companydata-text2">Job Title: Capital Market Transaction</p>
+                    <p className="companydata-text2"><li>What is the difference between debt and equity?</li></p>
+                </div>
             );
-        case "design":
+        case "Procurement":
             return(
-              <div>design</div>
+                <div>
+                    <p className="companydata-text2"><li>What is your working style?</li></p>
+                </div>
             );
-        case "pm":
+        case "Consultant":
             return(
-              <div>pm</div>
+                <div>
+                    <p className="companydata-text2"><li>What can you bring to the company?  </li></p>
+                </div>
             );
-        default:
-            return null;
     }
 };
