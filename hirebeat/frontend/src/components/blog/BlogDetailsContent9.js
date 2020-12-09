@@ -28,10 +28,6 @@ class BlogDetailsContent extends Component {
                                     </div>
 
                                     <h2>Tips for Getting Your Resume Past an Applicant Tracking System</h2>
-
-                                    <p>
-                                        <i><b>Meta Description: </b>Most employers are using tracking systems for their recruitment. Get tips for getting your resume past an applicant tracking system.</i>
-                                    </p>
                                     <div className="article-image">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog9-pic.jpg" alt="image" />
                                     </div>

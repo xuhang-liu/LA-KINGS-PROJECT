@@ -20,7 +20,7 @@ class BlogDetail10 extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – Guidelines on How to Answer "What Is Your Biggest Strength" In An Interview with a List of Strength</title>
-                    <meta name="description" CONTENT="Guidelines on How to Answer 'What Is Your Biggest Strength' In An Interview with a List of Strength"></meta>
+                    <meta name="description" CONTENT="'What is your greatest strength' is a common question in interviews. Learn why employers ask the question and the best way to answer it."></meta>
                     <link rel="canonical" href="https://hirebeat.co/guidelines-on-how-to-answer-what-is-your-biggest-strength"/>
                 </Helmet>
                 <ScrollToTopOnMount />
