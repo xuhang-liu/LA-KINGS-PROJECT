@@ -15,7 +15,6 @@ import {
   RESEND_ACTIVATION_EMAIL,
   UPDATE_USER_EMAIL,
   UPDATE_USER_PASSWORD,
-  PASSWORDMATCH_FAIL,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -81,32 +80,6 @@ export const login = (username, password) => (dispatch) => {
     )
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status)); //prevent the log out and then update the interface
-      dispatch({
-        type: LOGIN_FAIL,
-      });
-    });
-};
-
-// ********  Password Changing  ********
-
-export const PasswordChanging = (username, password) => (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  const body = JSON.stringify({ username: username, password: password });
-
-  axios
-    .post("api/auth/changePassword", body, config)
-    .then((res) =>
-      dispatch({
-        type: PASSWORD_CHANGING_SUCCESS,
-        payload: res.data,
-      })
-    )
-    .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
         type: LOGIN_FAIL,
       });

@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.auth import authenticate
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from .models import Profile
@@ -137,3 +138,10 @@ def update_user_password(request):
     return Response({
         "newPassword": newPassword
     })
+
+@api_view(['POST'])
+def check_password(request):
+    print("==check password")
+    user = User.objects.get(pk=request.data["id"])
+    password = request.data['password']
+    return Response({user.check_password(password)})

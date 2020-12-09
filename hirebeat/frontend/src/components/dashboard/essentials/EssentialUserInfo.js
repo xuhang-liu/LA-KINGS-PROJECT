@@ -1,5 +1,6 @@
 import React, { Component, useReducer, useRef, useState } from "react";
 import S3FileUpload from "react-s3";
+import axios from "axios";
 //import Input, { isPossiblePhoneNumber } from 'react-phone-number-input';
 
 import {
@@ -13,7 +14,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import emailjs from 'emailjs-com';
 import MediaQuery from 'react-responsive';
 import { connect } from 'react-redux';
-import { PasswordChanging, updateUserPassword } from "../../../redux/actions/auth_actions";
+import { updateUserPassword } from "../../../redux/actions/auth_actions";
 
 const config = {
     bucketName: 'hirebeat-avatar',
@@ -457,13 +458,8 @@ export class EssentialUserInfo extends Component {
         <PasswordChangingInterface
           updateUserPassword={this.props.updateUserPassword}
           show={this.state.passwordChanging}
-          savePasswordChanging={this.savePasswordChanging}
           hide={this.finishedPasswordChanging}
-          finishedPasswordChanging={this.finishedPasswordChanging}
           user={this.props.user}
-          profile={this.props.profile}
-          PasswordChanging={this.props.PasswordChanging}
-          pswd_success={this.props.pswd_success}
         />
 {/* Changes Ends here */}
 
@@ -610,7 +606,6 @@ const PasswordChangingInterface = (props) => {
 
 
   const PasswordCheck = (event) => {
-    
     event.preventDefault();
     if(newPassword !== confirmPassword)
     {
@@ -622,29 +617,36 @@ const PasswordChangingInterface = (props) => {
     }
     else
     {
-       props.PasswordChanging(props.user.username, oldPassword);
-       console.log(props.pswd_success);
- 
-       //setTimeout(()=>{console.log(props.pswd_success)}, 3000)
-       if(!props.pswd_success)
-       {
-         alert("incorrect password");
-         event.preventDefault();
-       }
-       else
-       {
-        let user = {"id": props.user.id , "newPassword": newPassword};
-        props.updateUserPassword(user);
-        setOldPassword('');
-        setNewPassword('');
-        setConfirmPassword('');
-        alert('Changed Password Successfully!')
-       }
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      let user_pw = { "id": props.user.id , "password": oldPassword };
+      
+      axios.post("api/check_password", user_pw, config).then((res)=>{
+        console.log(res);
+        const is_matching = res.data[0];
+        if(is_matching)
+        {
+          let user = {"id": props.user.id , "newPassword": newPassword};
+          props.updateUserPassword(user);
+          setOldPassword('');
+          setNewPassword('');
+          setConfirmPassword('');
+          alert("Changed Password Successfully!");
+          props.hide();
+          console.log(props.show);
+        } else {
+          alert("Incorrect Password");
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      }); 
 
-      // 核心逻辑是我们先检查密码，如果密码正确我们就update password。我们通过Store里面的一个参数 pswd_success来辨别这次密码输入是否正确。
-      // 目前Code有两个问题
-      // 1. 这个PasswordChanging 根据密码正确与否dispatch两种Action ：如果正确它dispatch不了这个正确的action
-      // 2. 如果密码错误，这个pswd_success会延迟到下一次Summit才update。
+      // user login judgement, third partiy login.
+      // user email /go to database user social auth. Matching function. filter(same user id.) question view.(objects.filter)
     }
   
   }
@@ -655,7 +657,7 @@ const PasswordChangingInterface = (props) => {
                 <form style={{ marginBottom: "3%" }} onSubmit={PasswordCheck}>
                 <fieldset>
                 <div className="form-group">
-                  <label style={{ fontSize: "20px" }}>Current Password T6</label>
+                  <label style={{ fontSize: "20px" }}>Current Password</label>
                   <input placeholder="Current password" 
                          className="form-control"
                          type="password" 
@@ -695,8 +697,4 @@ const PasswordChangingInterface = (props) => {
   );
 }
 
-const mapStateToProps = (state) => ({
-  pswd_success: state.auth_reducer.pswd_success
-});
-
-export default connect(mapStateToProps, {PasswordChanging, updateUserPassword})(EssentialUserInfo);
+export default connect(null, { updateUserPassword })(EssentialUserInfo);

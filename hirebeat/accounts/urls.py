@@ -1,7 +1,7 @@
 from django.urls import path,include
 from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, UserChangePassword
 from knox import views as knox_views
-from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, resend_activation_email, update_user_email, update_user_password
+from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, resend_activation_email, update_user_email, update_user_password, check_password
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -43,5 +43,7 @@ urlpatterns = [
     path('api/update-user-email', update_user_email, name='update user email'),
     ### Update User Password
     path('api/update-user-password', update_user_password, name='update user password'),
+    ### Check the Password
+    path('api/check_password', check_password, name='check password'),
 ]
 
