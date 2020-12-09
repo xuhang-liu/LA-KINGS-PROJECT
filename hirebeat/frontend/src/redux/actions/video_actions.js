@@ -10,6 +10,7 @@ import {
   GET_REVIEW_COUNT,
   VIDEO_UNDER_REVIEW,
   INCREASE_VIDEO_COUNT,
+  ADD_WP_VIDEO,
 } from "./action_types";
 import { createMessage, returnErrors } from "./message_actions";
 import { tokenConfig } from "./auth_actions";
@@ -169,6 +170,21 @@ export const sendVideoForReview = (type, id) => (dispatch, getState) => {
 //      dispatch({
 //        type: INCREASE_VIDEO_COUNT,
 //      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const addWPVideo = (video) => (dispatch, getState) => {
+  axios
+    .post("/api/wp-videos/", video, tokenConfig(getState))
+    .then((res) => {
+      //dispatch(createMessage({ successMessage: "Video Saved" }));
+      dispatch({
+        type: ADD_WP_VIDEO,
+        payload: res.data,
+      });
     })
     .catch((err) =>
       dispatch(returnErrors(err.response.data, err.response.status))

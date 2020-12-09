@@ -1,4 +1,4 @@
-import { GET_QUESTIONS, NEXT_QUESTION, RETRY_B_QUESTION , RETRY_T_QUESTION} from "./action_types";
+import { GET_QUESTIONS, NEXT_QUESTION, RETRY_B_QUESTION , RETRY_T_QUESTION, GET_RANDOM_QUESTION } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
 import { returnErrors } from "./message_actions";
@@ -37,4 +37,20 @@ export const retryBQuestion = (video, isAudio, dispatch) => {
         isAudio: isAudio,
     };
     dispatch({type: RETRY_B_QUESTION, payload: data});
+};
+
+export const getRandomQuestion = () => (dispatch, getState) => {
+  axios
+    .get("random-question", tokenConfig(getState))
+    .then((res) => {
+      console.log("get random question");
+      console.log(res.data);
+      dispatch({
+        type: GET__GET_RANDOM_QUESTION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
