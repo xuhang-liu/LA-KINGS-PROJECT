@@ -98,8 +98,8 @@ export class MyVideoUploader extends Component {
     //For other browsers
     var name = this.props.video.name;
     // change bucket to "hirebeat-test-video-bucket" when run in local
-    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
-
+    // var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
+      var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
     if (this.props.retry) {
         let retry_q_meta = this.props.retry_q_meta;
         const videoMetaData = {
@@ -176,10 +176,11 @@ export class MyVideoUploader extends Component {
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
     var saveText = "Save and Next";
     var skipText = "Discard and Next";
+
     if (this.props.last_q) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
-      saveText = "Save and Finish";
+      saveText = this.props.isCareerVideo ? "Submit" : "Save and Finish";
       skipText = "Discard and Finish";
     }
     return (
@@ -220,13 +221,15 @@ export class MyVideoUploader extends Component {
           isAudio={this.props.isAudio}
         />
         }*/}
-        <BglessCardButton
-          onTap={skipOnTap}
-          textDisplayed={skipText}
-          buttonWidth={"100%"}
-          fontFamily={"Avenir Next"}
-          isAudio={this.props.isAudio}
-        />
+          {this.props.isCareerVideo ? null : (
+              <BglessCardButton
+                  onTap={skipOnTap}
+                  textDisplayed={skipText}
+                  buttonWidth={"100%"}
+                  fontFamily={"Avenir Next"}
+                  isAudio={this.props.isAudio}
+              />
+          )}
       </div>
     );
   }
