@@ -86,29 +86,6 @@ class LoginAPI(generics.GenericAPIView):
             "profile": profile_data,
         })
 
-# UserChangePassword API
-
-class UserChangePassword(generics.GenericAPIView):
-    serializer_class = PasswordChangingSerializer
-
-    def post(self, request, *args, **kwargs):
-        ## user info
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data
-        ### token
-        _, token = AuthToken.objects.create(user)
-        ### profile
-        profile_data = {}
-        if Profile.objects.filter(user=user):
-            profile = Profile.objects.filter(user=user)[0]
-            profile_data = ProfileSerializer(profile).data
-        return Response({
-            "user":UserSerializer(user, context=self.get_serializer_context()).data,
-            "token": token,
-            "profile": profile_data,
-        })
-
 # GET User API
 
 class UserAPI(generics.RetrieveAPIView):

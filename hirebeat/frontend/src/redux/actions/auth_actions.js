@@ -3,6 +3,7 @@ import { returnErrors } from "./message_actions";
 import {
   USER_LOADED,
   USER_LOADING,
+  USER_FULLNAME_LOADED,
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
@@ -30,6 +31,28 @@ export const loadUser = () => (dispatch, getState) => {
       console.log("user loaded");
       dispatch({
         type: USER_LOADED,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR,
+      });
+      // Used to suppress error message printed by Chrome
+      console.clear();
+    });
+};
+
+// ********  LOAD USER FULLNAME  ********
+export const loadUserFullname = (user) => (dispatch, getState) => {
+
+  return axios
+    .post("api/userfullname", user, tokenConfig(getState))
+    .then((res) => {
+      console.log("user fullname loaded");
+      dispatch({
+        type: USER_FULLNAME_LOADED,
         payload: res.data,
       });
     })

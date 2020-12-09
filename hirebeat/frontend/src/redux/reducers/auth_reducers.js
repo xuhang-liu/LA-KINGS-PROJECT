@@ -1,6 +1,7 @@
 import {
   USER_LOADED,
   USER_LOADING,
+  USER_FULLNAME_LOADED,
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
@@ -21,6 +22,7 @@ const initialState = {
   user: null,
   profile: {},
   premiums: [],
+  userfullname: "",
 };
 
 export default function (state = initialState, action) {
@@ -36,6 +38,11 @@ export default function (state = initialState, action) {
         isLoading: false,
         isAuthenticated: true,
         user: action.payload,
+      };
+    case USER_FULLNAME_LOADED:
+      return {
+        ...state,
+        userfullname: action.payload,
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:

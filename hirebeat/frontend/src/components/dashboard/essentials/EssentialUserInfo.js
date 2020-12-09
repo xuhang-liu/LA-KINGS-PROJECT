@@ -51,7 +51,7 @@ export class EssentialUserInfo extends Component {
       plan_interval: this.props.profile.plan_interval,
       email_confirmed: this.props.profile.email_confirmed,
       saved_video_count: this.props.profile.saved_video_count,
-      filePhoto: this.props.profile.avatar_url
+      filePhoto: this.props.profile.avatar_url,
     });
   }
 
@@ -362,6 +362,23 @@ export class EssentialUserInfo extends Component {
                       </a>
                     </Link>
                 </div>
+                {/* Here is the change made: I have added another buttom as password editing*/}
+                {this.props.userfullname != "" &&
+                <div className="row" style={{marginTop:"8%"}}>
+                  <Link>
+                    <a 
+                    onClick={() => {
+                    this.setState({ ...this.state, passwordChanging: true });
+                    }}
+                    className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"133%"}} 
+                    >
+                      <i className="bx bxs-key"></i>
+                        Change Password
+                        <span></span>
+                    </a>
+                  </Link>
+                </div>}
+                {/* Changes end here #################### Finished */}
                 <div className="row" style={{marginTop:"8%"}}>
                   <form onSubmit={this.cancelSub}>
                   <input type="email" value={this.props.user.email} name='useremail' style={{display:"none"}}/>
@@ -395,6 +412,23 @@ export class EssentialUserInfo extends Component {
                       </a>
                     </Link>
                 </div>
+                {/* Here is the change made: I have added another buttom as password editing*/}
+                {this.props.userfullname != "" &&
+                <div className="row" style={{marginTop:"8%"}}>
+                  <Link>
+                    <a 
+                    onClick={() => {
+                    this.setState({ ...this.state, passwordChanging: true });
+                    }}
+                    className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"133%"}} 
+                    >
+                      <i className="bx bxs-key"></i>
+                        Change Password
+                        <span></span>
+                    </a>
+                  </Link>
+                </div>}
+                {/* Changes end here #################### Finished */}
             </div>
           }
 
@@ -427,6 +461,7 @@ export class EssentialUserInfo extends Component {
                   </Link>
                 </div>
 {/* Here is the change made: I have added another buttom as password editing*/}
+                {this.props.userfullname != "" &&
                 <div className="row" style={{marginTop:"8%"}}>
                   <Link>
                     <a 
@@ -440,7 +475,7 @@ export class EssentialUserInfo extends Component {
                         <span></span>
                     </a>
                   </Link>
-                </div>
+                </div>}
 {/* Changes end here #################### Finished */}
               </div>
             }                
@@ -625,7 +660,7 @@ const PasswordChangingInterface = (props) => {
       let user_pw = { "id": props.user.id , "password": oldPassword };
       
       axios.post("api/check_password", user_pw, config).then((res)=>{
-        console.log(res);
+        //console.log(res);
         const is_matching = res.data[0];
         if(is_matching)
         {
