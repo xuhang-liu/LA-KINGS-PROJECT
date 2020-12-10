@@ -41,3 +41,12 @@ def get_subcategories(request):
     return Response({
         "subcategories": subcategories,
     })
+
+@api_view(['GET'])
+def get_random_question(request):
+    queryset = Question.objects.all()
+    question = random.sample(list(queryset), int(1))
+    return Response({
+        "question": question[0].description,
+        "id": question[0].id,
+    })

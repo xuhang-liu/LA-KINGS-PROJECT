@@ -1,4 +1,4 @@
-import { GET_QUESTIONS, NEXT_QUESTION } from "../actions/action_types";
+import { GET_QUESTIONS, NEXT_QUESTION, GET_RANDOM_QUESTION } from "../actions/action_types";
 
 const initialState = {
   questions: [],
@@ -6,6 +6,8 @@ const initialState = {
   q_count: 0,
   last_q: false,
   loaded: false,
+  random_question: "",
+  random_question_id: 0,
 };
 
 export default function (state = initialState, action) {
@@ -33,6 +35,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         q_index: state.q_index + 1,
+      };
+    case GET_RANDOM_QUESTION:
+      return {
+        ...state,
+        loaded: true,
+        random_question: action.payload.question,
+        random_question_id: action.payload.id,
       };
     default:
       return state;

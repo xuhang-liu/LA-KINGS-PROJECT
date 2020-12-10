@@ -1,6 +1,6 @@
 var ReactS3Uploader = require("react-s3-uploader");
 import React, { Component } from "react";
-import { addVideo } from "../../redux/actions/video_actions";
+import { addVideo, addWPVideo } from "../../redux/actions/video_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -97,8 +97,10 @@ export class MyVideoUploader extends Component {
 
     //For other browsers
     var name = this.props.video.name;
+
     // change bucket to "hirebeat-test-video-bucket" when run in local
     var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
+//    var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
 
     if (this.props.retry) {
         let retry_q_meta = this.props.retry_q_meta;
@@ -155,6 +157,24 @@ export class MyVideoUploader extends Component {
   }
 
   handleUploadAndFinish = () => {
+    // save wordpress video
+    if (this.props.isCareerVideo) {
+        // save data to database
+        let name = this.props.video.name;
+        let url = "https://hirebeat-wp-video.s3.amazonaws.com/" + name;
+        let metaData = {
+            "url": url,
+            "email": this.props.email,
+            "question_id": this.props.questionId,
+            "question_desc": this.props.question,
+        };
+        this.props.addWPVideo(metaData);
+        // upload video to S3
+        this.uploader.uploadFile(this.props.video);
+        // redirect back to career webpage
+        return window.location.href = "https://career.hirebeat.co/";
+    }
+
     // if (this.props.saved_video_count < this.props.save_limit) {
     this.uploader.uploadFile(this.props.video);
     this.redirectToDashboard();
@@ -176,17 +196,18 @@ export class MyVideoUploader extends Component {
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
     var saveText = "Save and Next";
     var skipText = "Discard and Next";
+
     if (this.props.last_q) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
-      saveText = "Save and Finish";
+      saveText = this.props.isCareerVideo ? "Submit" : "Save and Finish";
       skipText = "Discard and Finish";
     }
     return (
       <div>
         <div style={{ display: "none" }}>
           <ReactS3Uploader
-            signingUrl="/sign_auth"
+            signingUrl= {this.props.isCareerVideo ? "sign-wp-video" : "/sign_auth"}
             signingUrlMethod="GET"
             onError={this.onUploadError}
             onFinish={this.onUploadFinish}
@@ -220,13 +241,15 @@ export class MyVideoUploader extends Component {
           isAudio={this.props.isAudio}
         />
         }*/}
-        <BglessCardButton
-          onTap={skipOnTap}
-          textDisplayed={skipText}
-          buttonWidth={"100%"}
-          fontFamily={"Avenir Next"}
-          isAudio={this.props.isAudio}
-        />
+          {this.props.isCareerVideo ? null : (
+              <BglessCardButton
+                  onTap={skipOnTap}
+                  textDisplayed={skipText}
+                  buttonWidth={"100%"}
+                  fontFamily={"Avenir Next"}
+                  isAudio={this.props.isAudio}
+              />
+          )}
       </div>
     );
   }
@@ -239,6 +262,6 @@ const mapStateToProps = (state) => ({
   saved_video_count: state.auth_reducer.profile.saved_video_count,
 });
 
-export default connect(mapStateToProps, { addVideo, createMessage })(
+export default connect(mapStateToProps, { addVideo, createMessage, addWPVideo })(
   withRouter(MyVideoUploader)
 );

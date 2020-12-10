@@ -72,7 +72,7 @@ import BusinessAnalyst from "./career/jobs/BusinessAnalyst";
 import Marketing from "./career/jobs/Marketing";
 import ProductManager from "./career/jobs/ProductManager";
 import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
-
+import CareerVideoRecorder from "./videoInterview/CareerVideoRecorder";
 import Contact from "./contact/contact";
 
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
@@ -175,6 +175,7 @@ class App extends Component {
                   component={QuestionTypeChoices}
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
+                <Route exact path="/video-interview" component={CareerVideoRecorder}/>
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/bloghome" component={bloggrid} />
