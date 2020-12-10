@@ -160,7 +160,8 @@ export class MyVideoUploader extends Component {
     // save wordpress video
     if (this.props.isCareerVideo) {
         // save data to database
-        let url = "https://test-hb-videos.s3.amazonaws.com/" + name;
+        let name = this.props.video.name;
+        let url = "https://hirebeat-wp-video.s3.amazonaws.com/" + name;
         let metaData = {
             "url": url,
             "email": this.props.email,

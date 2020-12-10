@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import RetryVideoRecorder from "../practice/RetryVideoRecorder";
-
+//import RetryVideoRecorder from "../practice/RetryVideoRecorder";
+import {Redirect} from "react-router-dom";
 import CountdownBar from "../practice/CountdownBar";
 import { videoRecorderOptions } from "../../constants/constants";
 import { PracticeCard} from "../practice/CardComponents";
@@ -68,7 +68,9 @@ export class CareerVideoRecorder extends Component {
             videoRecorderOptions.controlBar.recordToggle = false;
         let currentUrl = window.location.href;
         let email = currentUrl.split("=")[1];
-
+        if(email == null || email == ""){
+            return <Redirect to="/"/>;
+        }
         return (
             (!this.state.deviceTested) ? (
                 <TestDevice testDeviceDone={this.testDeviceDone} />
