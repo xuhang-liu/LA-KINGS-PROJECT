@@ -207,7 +207,7 @@ export class MyVideoUploader extends Component {
       <div>
         <div style={{ display: "none" }}>
           <ReactS3Uploader
-            signingUrl= {this.props.isCareerVideo ? "sign-wp-video" : "/sign_auth"}
+            signingUrl= {this.props.isCareerVideo ? "/sign-wp-video" : "/sign_auth"}
             signingUrlMethod="GET"
             onError={this.onUploadError}
             onFinish={this.onUploadFinish}
