@@ -130,7 +130,7 @@ class PricingStyleOne extends Component {
     }
 
       handleCounponUpgrade = () => {
-        if(this.state.coupon_match != 'PRODUCTHUNT2020' && this.state.coupon_match != 'DBCVIP'){
+        if(this.state.coupon_match != 'PRODUCTHUNT2020' && this.state.coupon_match != 'DBCVIP' && this.state.coupon_match != 'BETALIST2020'){
           confirmAlert({
             title: 'Enter A Valid Code',
             message: '',
