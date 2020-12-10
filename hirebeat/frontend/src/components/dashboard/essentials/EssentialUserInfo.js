@@ -363,7 +363,7 @@ export class EssentialUserInfo extends Component {
                     </Link>
                 </div>
                 {/* Here is the change made: I have added another buttom as password editing*/}
-                {this.props.userfullname != "" &&
+                {this.props.userfullname == "" &&
                 <div className="row" style={{marginTop:"8%"}}>
                   <Link>
                     <a 
@@ -413,7 +413,7 @@ export class EssentialUserInfo extends Component {
                     </Link>
                 </div>
                 {/* Here is the change made: I have added another buttom as password editing*/}
-                {this.props.userfullname != "" &&
+                {this.props.userfullname == "" &&
                 <div className="row" style={{marginTop:"8%"}}>
                   <Link>
                     <a 
@@ -461,7 +461,7 @@ export class EssentialUserInfo extends Component {
                   </Link>
                 </div>
 {/* Here is the change made: I have added another buttom as password editing*/}
-                {this.props.userfullname != "" &&
+                {this.props.userfullname == "" &&
                 <div className="row" style={{marginTop:"8%"}}>
                   <Link>
                     <a 
