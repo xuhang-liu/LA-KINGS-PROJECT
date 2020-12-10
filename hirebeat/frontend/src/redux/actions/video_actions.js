@@ -176,11 +176,10 @@ export const sendVideoForReview = (type, id) => (dispatch, getState) => {
     );
 };
 
-export const addWPVideo = (video) => (dispatch, getState) => {
+export const addWPVideo = (video) => (dispatch) => {
   axios
-    .post("/api/wp-videos/", video, tokenConfig(getState))
+    .post("/api/wp-videos", video)
     .then((res) => {
-      //dispatch(createMessage({ successMessage: "Video Saved" }));
       dispatch({
         type: ADD_WP_VIDEO,
         payload: res.data,
