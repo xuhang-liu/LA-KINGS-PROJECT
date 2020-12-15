@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/top-3-jobs-you-should-apply-for-finance-major">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog15.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Dec 15, 2020</time>
+                            <h4 className="title usmall">
+                                <Link to="/top-3-jobs-you-should-apply-for-finance-major">
+                                    <a>Top 3 Jobs You Should Apply For Finance Major</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/why-do-you-want-to-work-here">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog14.jpg" alt="image"/>

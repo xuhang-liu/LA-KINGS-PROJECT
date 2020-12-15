@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-dom";
+//import { render } from "react-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {BlogCol} from "./BlogComponents";
 
@@ -87,6 +87,7 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/top-3-jobs-you-should-apply-for-finance-major",
     "/why-do-you-want-to-work-here",
     "/3-fastest-growing-jobs-you-might-not-know-about",
     "/how-to-answer-what-is-your-weakness-question-in-an-interview",
@@ -104,6 +105,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog15.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog14.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog13.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog12.jpg",
@@ -121,6 +123,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Dec 15, 2020",
     "Dec 08, 2020",
     "Dec 01, 2020",
     "Nov 25, 2020",
@@ -138,6 +141,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "TOP 3 JOBS YOU SHOULD APPLY FOR FINANCE MAJOR ",
     "WHY DO YOU WANT TO WORK HERE",
     "FASTEST-GROWING JOBS YOU MIGHT NOT KNOW ABOUT",
     "HOW TO ANSWER 'WHAT IS YOUR WEAKNESS' QUESTION",
