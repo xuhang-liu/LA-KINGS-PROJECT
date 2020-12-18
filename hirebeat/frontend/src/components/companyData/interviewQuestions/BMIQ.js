@@ -46,28 +46,60 @@ export default function BMIQ(props){
 
 const SwitchButton = (filter, setFilter)=>{
   return(
-      <div style={{marginBottom: "5px"}} className="container d-flex justify-content-start">
-          <button
-              className={decideClassName(filter, "Operations Executive Interview")}
-              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
-              onClick={() => setFilter("Operations Executive Interview")}
-          >
-              OEI
-          </button>
-          <button
-              className={decideClassName(filter, "Analyst")}
-              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
-              onClick={() => setFilter("Analyst")}
-          >
-              Analyst
-          </button>
-          <button
-              className={decideClassName(filter, "Associate")}
-              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
-              onClick={() => setFilter("Associate")}
-          >
-              Associate
-          </button>
+      <div style={{marginBottom: "5px"}} className="container">
+          <div className="row">
+              <button
+                  className={decideClassName(filter, "Operations Executive Interview")}
+                  style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+                  onClick={() => setFilter("Operations Executive Interview")}
+              >
+                  OEI
+              </button>
+              <button
+                  className={decideClassName(filter, "Analyst")}
+                  style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+                  onClick={() => setFilter("Analyst")}
+              >
+                  Analyst
+              </button>
+              <button
+                  className={decideClassName(filter, "Associate")}
+                  style = {{width: "100px", height: "42px", outline: "none", borderRadius: "5px"}}
+                  onClick={() => setFilter("Associate")}
+              >
+                  Associate
+              </button>
+              <button
+                  className={decideClassName(filter, "Business Analyst")}
+                  style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+                  onClick={() => setFilter("Business Analyst")}
+              >
+                  BA
+              </button>
+          </div>
+          <div className="row">
+              <button
+                  className={decideClassName(filter, "Summer Analyst Program")}
+                  style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+                  onClick={() => setFilter("Summer Analyst Program")}
+              >
+                  SAP
+              </button>
+              <button
+                  className={decideClassName(filter, "Operations Analyst")}
+                  style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+                  onClick={() => setFilter("Operations Analyst")}
+              >
+                  OA
+              </button>
+              <button
+                  className={decideClassName(filter, "Software Developer")}
+                  style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+                  onClick={() => setFilter("Software Developer")}
+              >
+                  SDE
+              </button>
+          </div>
       </div>
   );
 }
@@ -116,6 +148,51 @@ function renderContent(filter)  {
                     <p className="companydata-text2"><li>What is Depository? Who is a Depository Participant?</li></p>
                     <p className="companydata-text2"><li>What are the benefits of participation in a depository?</li></p>
                     <p className="companydata-text2"><li>What is Insider Trading?</li></p>
+                </div>
+            );
+        case "Business Analyst":
+            return(
+                <div>
+                    <p className="companydata-text2">Job Title: Business Analyst</p>
+                    <p className="companydata-text2"><li>Before doing any data analysis, what aspects of data would you look to?</li></p>
+                    <p className="companydata-text2"><li>How to improve the data quality?</li></p>
+                    <p className="companydata-text2"><li>What makes you an ideal candidate for this role?</li></p>
+                    <p className="companydata-text2"><li>What makes you most excited about the program?</li></p>
+                    <p className="companydata-text2"><li>Why didn't the last place you applied to hire you?</li></p>
+                </div>
+            );
+        case "Summer Analyst Program":
+            return(
+                <div>
+                    <p className="companydata-text2">Job Title: Summer Analyst Program</p>
+                    <p className="companydata-text2"><li>Why BNY Mellon? Walk me through your resume.</li></p>
+                    <p className="companydata-text2"><li>What technical skills do you have?</li></p>
+                    <p className="companydata-text2"><li>Please tell me a time when you had difficulty working in a group.</li></p>
+                    <p className="companydata-text2"><li>What did you do to overcome a failure?</li></p>
+                    <p className="companydata-text2"><li>v.Please tell me about a time you didn't know how to do something.</li></p>
+                    <p className="companydata-text2"><li>How would you explain your major to someone not in your field?</li></p>
+                </div>
+            );
+        case "Operations Analyst":
+            return(
+                <div>
+                    <p className="companydata-text2">Job Title: Operations Analyst</p>
+                    <p className="companydata-text2"><li>What motivates you to wake up every morning?</li></p>
+                    <p className="companydata-text2"><li>Describe a project you completed from start to finish</li></p>
+                    <p className="companydata-text2"><li>Please tell me about a stretch goal you have for yourself, and how you accomplished it/plan on working towards it?</li></p>
+                    <p className="companydata-text2"><li>Please tell me a time you had a crisis at work.</li></p>
+                </div>
+            );
+        case "Software Developer":
+            return(
+                <div>
+                    <p className="companydata-text2">Job Title: Software Developer</p>
+                    <p className="companydata-text2"><li>Stock BUY and Sell, Detect Loop in a linked list.</li></p>
+                    <p className="companydata-text2"><li>Find a loop in a link list.</li></p>
+                    <p className="companydata-text2"><li>When would you use ArrayList and when LinkedList?</li></p>
+                    <p className="companydata-text2"><li>i.Rotate an array in-place by n places; sort array using any algorithm; binary search on the same array; design patterns and collections; discussion about projects in your previous company.</li></p>
+                    <p className="companydata-text2"><li>Convert a list to Map Based on Gender in EMP class.</li></p>
+                    <p className="companydata-text2"><li>Find the highest salary from EMP class.</li></p>
                 </div>
             );
     }

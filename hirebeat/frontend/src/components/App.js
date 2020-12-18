@@ -66,7 +66,27 @@ import MSInfo from"./companyData/companies/MSInfo";
 import MUFGInfo from"./companyData/companies/MUFGInfo";
 import NDQInfo from"./companyData/companies/NDQInfo";
 import TSMInfo from"./companyData/companies/TSMInfo";
+import BancoSInfo from"./companyData/companies/BancoSInfo";
+import BLUSAInfo from"./companyData/companies/BLUSAInfo";
+import CFGInfo from"./companyData/companies/CFGInfo";
+import EJInfo from"./companyData/companies/EJInfo";
+import FTBInfo from"./companyData/companies/FTBInfo";
+import HFInfo from"./companyData/companies/HFInfo";
+import HSBCInfo from"./companyData/companies/HSBCInfo";
+import JBInfo from"./companyData/companies/JBInfo";
+import KCInfo from"./companyData/companies/KCInfo";
+import LazardInfo from"./companyData/companies/LazardInfo";
+import MTBInfo from"./companyData/companies/MTBInfo";
+import NTInfo from"./companyData/companies/NTInfo";
+import PictetInfo from"./companyData/companies/PictetInfo";
+import PNCInfo from"./companyData/companies/PNCInfo";
+import RCInfo from"./companyData/companies/RCInfo";
+import RFInfo from"./companyData/companies/RFInfo";
+import RJInfo from"./companyData/companies/RJInfo";
+import SSInfo from"./companyData/companies/SSInfo";
+import WFInfo from"./companyData/companies/WFInfo";
 
+//import SearchPanel from "./career/SearchPanel";
 import JobList from "./career/JobList";
 import UIDesigner from "./career/jobs/UIDesigner";
 import BusinessAnalyst from "./career/jobs/BusinessAnalyst";
@@ -224,6 +244,25 @@ class App extends Component {
                 <Route exact path="/mufg" component={MUFGInfo} />
                 <Route exact path="/nasdaq" component={NDQInfo} />
                 <Route exact path="/two-sigma" component={TSMInfo} />
+                <Route exact path="/banco-santander" component={BancoSInfo} />
+                <Route exact path="/bank-leumi" component={BLUSAInfo} />
+                <Route exact path="/citizens-financial-group" component={CFGInfo} />
+                <Route exact path="/edward-jones" component={EJInfo} />
+                <Route exact path="/fifth-third-bancorp" component={FTBInfo} />
+                <Route exact path="/hanmi-financial" component={HFInfo} />
+                <Route exact path="/hsbc" component={HSBCInfo} />
+                <Route exact path="/julius-baer" component={JBInfo} />
+                <Route exact path="/keycorp" component={KCInfo} />
+                <Route exact path="/lazard" component={LazardInfo} />
+                <Route exact path="/mt-bank" component={MTBInfo} />
+                <Route exact path="/northern-trust" component={NTInfo} />
+                <Route exact path="/pictet" component={PictetInfo} />
+                <Route exact path="/pnc-financial-services-group" component={PNCInfo} />
+                <Route exact path="/rothschild-co" component={RCInfo} />
+                <Route exact path="/regions-financial" component={RFInfo} />
+                <Route exact path="/raymond-james" component={RJInfo} />
+                <Route exact path="/state-street" component={SSInfo} />
+                <Route exact path="/wells-fargo" component={WFInfo} />
                 <Route exact path="/jobs" component={JobList} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
@@ -231,6 +270,7 @@ class App extends Component {
                 <Route exact path="/product-manager" component={ProductManager} />
                 <Route exact path="/software-engineer" component={SoftwareEngineer} />
                 <PrivateRoute exact path="/email-verification" component={EmailVerification} />
+                {/*<Route exact path="/career" component={SearchPanel} />*/}
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />
