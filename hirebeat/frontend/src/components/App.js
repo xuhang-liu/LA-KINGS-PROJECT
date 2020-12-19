@@ -86,6 +86,7 @@ import SSInfo from"./companyData/companies/SSInfo";
 import WFInfo from"./companyData/companies/WFInfo";
 
 import SearchPanel from "./career/SearchPanel";
+import SearchResult from "./career/SearchResult";
 import JobList from "./career/JobList";
 import UIDesigner from "./career/jobs/UIDesigner";
 import BusinessAnalyst from "./career/jobs/BusinessAnalyst";
@@ -269,6 +270,7 @@ class App extends Component {
                 <Route exact path="/software-engineer" component={SoftwareEngineer} />
                 <PrivateRoute exact path="/email-verification" component={EmailVerification} />
                 <Route exact path="/career" component={SearchPanel} />
+                <Route exact path="/career-details" component={SearchResult} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />

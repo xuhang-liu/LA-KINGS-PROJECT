@@ -60,3 +60,5 @@ export const UPDATE_USER_EMAIL = "UPDATE_USER_EMAIL";
 
 export const ADD_WP_VIDEO = "ADD_WP_VIDEO";
 export const GET_RANDOM_QUESTION = "GET_RANDOM_QUESTION";
+
+export const GET_ZP_JOBS = "GET_ZP_JOBS";

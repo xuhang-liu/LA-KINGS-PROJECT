@@ -13,6 +13,7 @@ import {
   INCREASE_VIDEO_COUNT,
   INCREASE_RESUME_COUNT,
   UPGRADE_ACCOUNTS,
+  GET_ZP_JOBS,
 } from "../actions/action_types";
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
   profile: {},
   premiums: [],
   userfullname: "",
+  zpJobs: [],
 };
 
 export default function (state = initialState, action) {
@@ -90,6 +92,10 @@ export default function (state = initialState, action) {
       return {
         ...state,
         premiums: action.payload,
+      };
+    case GET_ZP_JOBS:
+      return {
+        zpJobs: action.payload.data,
       };
     default:
       return state;
