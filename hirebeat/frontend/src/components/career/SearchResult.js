@@ -123,6 +123,7 @@ const JobCard = (props) => {
                 <div className="col"><p>Post date: {props.postDate}</p></div>
                 <div className="col" style={{paddingRight: "2rem"}}>
                     <a
+                        target="_blank" rel="noopener noreferrer"
                         href={props.jobLink}
                         className="default-btn"
                         style={{color:"white", backgroundColor:"#090D3A", paddingLeft: "1rem", paddingRight: "1rem", float: "right"}}
