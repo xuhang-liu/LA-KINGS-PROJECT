@@ -2224,3 +2224,92 @@ color: #080A3C;
   justify-content: center;
   margin: auto;
 }
+
+.career-h3 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #000000;
+}
+
+.career-bg {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 29px rgba(125, 125, 125, 0.1);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.career-bg2 {
+  background: #FFFFFF;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.career-txt1 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #090D3A;
+}
+
+.career-txt2 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.career-txt3 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #090D3A;
+}
+
+.career-txt4 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.career-txt5 {
+  background: #E8EDFC;
+  border-radius: 5px;
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: #4A6F8A;
+}
+
+.career-txt6 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: #4A6F8A;
+}
+
+.career-txt7 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: #67A3F3;
+}
+
+.career-search {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}

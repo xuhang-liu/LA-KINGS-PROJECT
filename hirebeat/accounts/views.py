@@ -21,6 +21,7 @@ from django.utils.encoding import force_bytes
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 load_dotenv()
+import requests
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -152,3 +153,13 @@ def get_user_fullname(request):
     print("==get user fullname")
     user = User.objects.get(pk=request.data["id"])
     return Response({user.get_full_name()})
+
+@api_view(['GET'])
+def get_ziprecruiter_jobs(request):
+    url = 'https://api.ziprecruiter.com/jobs/v1?search={}&location={}&api_key={}'
+    search= request.query_params.get("search")
+    location=request.query_params.get("location")
+    api_key = os.getenv('REACT_APP_ZR_API_KEY')
+    data = requests.get(url.format(search, location, api_key)).json()
+
+    return Response({"data": data})

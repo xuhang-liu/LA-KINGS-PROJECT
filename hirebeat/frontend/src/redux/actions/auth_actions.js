@@ -16,6 +16,7 @@ import {
   RESEND_ACTIVATION_EMAIL,
   UPDATE_USER_EMAIL,
   UPDATE_USER_PASSWORD,
+  GET_ZP_JOBS,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -265,6 +266,20 @@ export const updateUserPassword = (user) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_USER_PASSWORD,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getZipRecruiterJobs = (search, location) => (dispatch, getState) => {
+  axios
+    .get(`get-ziprecruiter-jobs?search=${search}&location=${location}`)
+    .then((res) => {
+      dispatch({
+        type: GET_ZP_JOBS,
         payload: res.data,
       });
     })
