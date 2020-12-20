@@ -88,6 +88,11 @@ export class Header extends Component {
                  text-left order-xl-0">  
               <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item ">
+                <Link to="/career" className="nav-link text-white navbar-font">
+                  <span className="header-text">Career</span>
+                </Link>
+              </li>
+              <li className="nav-item ">
                 <Link to="/practice" className="nav-link text-white navbar-font">
                   <span className="header-text">Interview Practice</span>
                 </Link>
@@ -172,6 +177,11 @@ export class Header extends Component {
             <ul className="navbar-nav order-xl-0 ml-auto mr-5
                text-left">
               <MediaQuery minDeviceWidth={1224}>
+              <li className="nav-item ">
+                <Link to="/career" className="nav-link text-white navbar-font">
+                  <span className="header-text">Career</span>
+                </Link>
+              </li>
               <li className="nav-item ">
                 <Link to="/practice" className="nav-link text-white navbar-font">
                   <span className="header-text">Interview Practice</span>
