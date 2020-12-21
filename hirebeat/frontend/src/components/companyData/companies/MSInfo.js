@@ -28,7 +28,7 @@ class MSInfo extends Component {
                     <title>HireBeat Company Data – Morgan Stanley</title>
                     <meta name="Description" CONTENT="Morgan Stanley is a global financial services firm that advises, originates, trades, manages, and distributes capital. It operates in three business segments: Institutional Securities, Wealth Management, and Investment Management. The Institutional Securities segment provides institutions with capital raising and financial advisory services in the areas of mergers and acquisitions, restructurings, real estate and project finance, and corporate lending. The segment also encompasses the Equities and the Fixed Income divisions of the firm. The Wealth Management segment provides brokerage, investment advisory, and financial and wealth planning services. The Investment Management provides asset management products and services in equity, fixed income, alternative investments, real estate investment, and private equity to institutional and retail clients through third-party retail distribution channels, intermediaries, and Morgan Stanley's institutional distribution channel." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/companydata/morgan-stanley"/>
+                    <link rel="canonical" href="https://hirebeat.co/morgan-stanley"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

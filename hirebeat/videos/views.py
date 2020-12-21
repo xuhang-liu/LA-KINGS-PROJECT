@@ -3,7 +3,7 @@ from django.http import HttpResponseBadRequest
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenceSerializer
-from .models import Video, Label, Transcript, Sentence
+from .models import Video, Label, Transcript, Sentence, WPVideo
 from django.contrib.auth.models import User
 from accounts.models import ReviewerInfo, Profile
 from questions.models import Categorys, SubCategory
@@ -12,6 +12,20 @@ from questions.serializers import SubcategorySerializer
 from django.db.models import Q
 
 from django.contrib.auth.decorators import user_passes_test
+from rest_framework import status
+import boto
+import json
+from django.http import HttpResponse
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+# boto and s3 configuration
+if not boto.config.get('s3', 'use-sigv4'):
+    boto.config.add_section('s3')
+    boto.config.set('s3', 'use-sigv4', 'True')
+boto.config.set('s3', 'host', 's3.amazonaws.com')
+conn = boto.connect_s3(os.getenv("AWSAccessKeyId"), os.getenv("AWSSecretKey"))
 
 #decorator
 def allowed_users(allowed_groups=[]):
@@ -209,3 +223,37 @@ def delete_video(request):
     id = request.data["id"]
     Video.objects.filter(id=id).delete()
     return Response({"deleted_video_id": id})
+
+@api_view(['POST'])
+def add_wp_video(request):
+    print("===Save WP Video Called===")
+    email = request.data["email"]
+    url = request.data["url"]
+    question_id = request.data["question_id"]
+    question_desc = request.data["question_desc"]
+
+    wp_video = WPVideo(
+        email = email,
+        url = url,
+        question_id = question_id,
+        question_desc = question_desc
+    )
+    wp_video.save()
+
+    return Response("Saved data to database successfully", status=status.HTTP_200_OK)
+
+def sign_s3_upload_wp_video(request):
+    print("===== wp video sign api called =======")
+    object_name = request.GET['objectName']
+    content_type = request.GET['contentType']
+    # content_type = mimetypes.guess_type(object_name)[0]
+    # content_type = content_type + ";codecs=vp8,opus" ### ATTENTION: this added part is required if upload dirctly from the browser. If used for uploading local files, comment this line out.###
+
+    signed_url = conn.generate_url(
+        300,
+        "PUT",
+        os.getenv("WPVideo_Bucket"),
+        object_name,
+        headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
+
+    return HttpResponse(json.dumps({'signedUrl': signed_url}))

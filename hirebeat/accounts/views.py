@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.auth import authenticate
+from django.contrib.auth.hashers import check_password
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from .models import Profile
@@ -19,6 +21,7 @@ from django.utils.encoding import force_bytes
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 load_dotenv()
+import requests
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -126,3 +129,37 @@ def update_user_email(request):
     return Response({
         "email": email
     })
+
+@api_view(['POST'])
+def update_user_password(request):
+    print("===Update User Password Called===")
+    newPassword = request.data["newPassword"]
+    user = User.objects.get(pk=request.data["id"])
+    user.set_password(newPassword)
+    user.save()
+    return Response({
+        "newPassword": newPassword
+    })
+
+@api_view(['POST'])
+def check_password(request):
+    print("==check password")
+    user = User.objects.get(pk=request.data["id"])
+    password = request.data['password']
+    return Response({user.check_password(password)})
+
+@api_view(['POST'])
+def get_user_fullname(request):
+    print("==get user fullname")
+    user = User.objects.get(pk=request.data["id"])
+    return Response({user.get_full_name()})
+
+@api_view(['GET'])
+def get_ziprecruiter_jobs(request):
+    url = 'https://api.ziprecruiter.com/jobs/v1?search={}&location={}&api_key={}'
+    search= request.query_params.get("search")
+    location=request.query_params.get("location")
+    api_key = os.getenv('REACT_APP_ZR_API_KEY')
+    data = requests.get(url.format(search, location, api_key)).json()
+
+    return Response({"data": data})

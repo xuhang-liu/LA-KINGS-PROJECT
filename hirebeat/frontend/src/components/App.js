@@ -33,6 +33,8 @@ import BlogDetail10 from "./blog/blog-details10";
 import BlogDetail11 from "./blog/blog-details11";
 import BlogDetail12 from "./blog/blog-details12";
 import BlogDetail13 from "./blog/blog-details13";
+import BlogDetail14 from "./blog/blog-details14";
+import BlogDetail15 from "./blog/blog-details15";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -64,14 +66,35 @@ import MSInfo from"./companyData/companies/MSInfo";
 import MUFGInfo from"./companyData/companies/MUFGInfo";
 import NDQInfo from"./companyData/companies/NDQInfo";
 import TSMInfo from"./companyData/companies/TSMInfo";
+import BancoSInfo from"./companyData/companies/BancoSInfo";
+import BLUSAInfo from"./companyData/companies/BLUSAInfo";
+import CFGInfo from"./companyData/companies/CFGInfo";
+import EJInfo from"./companyData/companies/EJInfo";
+import FTBInfo from"./companyData/companies/FTBInfo";
+import HFInfo from"./companyData/companies/HFInfo";
+import HSBCInfo from"./companyData/companies/HSBCInfo";
+import JBInfo from"./companyData/companies/JBInfo";
+import KCInfo from"./companyData/companies/KCInfo";
+import LazardInfo from"./companyData/companies/LazardInfo";
+import MTBInfo from"./companyData/companies/MTBInfo";
+import NTInfo from"./companyData/companies/NTInfo";
+import PictetInfo from"./companyData/companies/PictetInfo";
+import PNCInfo from"./companyData/companies/PNCInfo";
+import RCInfo from"./companyData/companies/RCInfo";
+import RFInfo from"./companyData/companies/RFInfo";
+import RJInfo from"./companyData/companies/RJInfo";
+import SSInfo from"./companyData/companies/SSInfo";
+import WFInfo from"./companyData/companies/WFInfo";
 
+import SearchPanel from "./career/SearchPanel";
+import SearchResult from "./career/SearchResult";
 import JobList from "./career/JobList";
 import UIDesigner from "./career/jobs/UIDesigner";
 import BusinessAnalyst from "./career/jobs/BusinessAnalyst";
 import Marketing from "./career/jobs/Marketing";
 import ProductManager from "./career/jobs/ProductManager";
 import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
-
+import CareerVideoRecorder from "./videoInterview/CareerVideoRecorder";
 import Contact from "./contact/contact";
 
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
@@ -124,6 +147,7 @@ class App extends Component {
       <Helmet>
         <meta charSet="utf-8" />
         <title>HireBeat – The Best Video Interview Prep Tool For Jobseekers</title>
+        <meta name="description" CONTENT="Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!"></meta>
         <link rel="canonical" href="https://hirebeat.co"/>
       </Helmet>
       <React.Fragment>
@@ -173,6 +197,7 @@ class App extends Component {
                   component={QuestionTypeChoices}
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
+                <Route exact path="/video-interview" component={CareerVideoRecorder}/>
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/bloghome" component={bloggrid} />
@@ -189,6 +214,8 @@ class App extends Component {
                 <Route exact path="/guidelines-on-how-to-answer-what-is-your-biggest-strength" component={BlogDetail11} />
                 <Route exact path="/how-to-answer-what-is-your-weakness-question-in-an-interview" component={BlogDetail12} />
                 <Route exact path="/3-fastest-growing-jobs-you-might-not-know-about" component={BlogDetail13} />
+                <Route exact path="/why-do-you-want-to-work-here" component={BlogDetail14} />
+                <Route exact path="/top-3-jobs-you-should-apply-for-finance-major" component={BlogDetail15} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
@@ -200,31 +227,52 @@ class App extends Component {
                 <Route exact path="/quiz" component={QuizHome} />
                 <Route exact path="/quizresult" component={QuizResultPage} />
                 <Route exact path="/companydata" component={CompanyList} />
-                <Route exact path="/companydata/american-international-group" component={AIGInfo} />
-                <Route exact path="/companydata/american-express" component={AEInfo} />
-                <Route exact path="/companydata/bloomberg" component={BBInfo} />
-                <Route exact path="/companydata/bny-mellon" component={BMInfo} />
-                <Route exact path="/companydata/blackrock" component={BRInfo} />
-                <Route exact path="/companydata/blackstone" component={BSInfo} />
-                <Route exact path="/companydata/citi" component={CityInfo} />
-                <Route exact path="/companydata/evercore" component={ECInfo} />
-                <Route exact path="/companydata/goldman-sachs" component={GSInfo} />
-                <Route exact path="/companydata/jefferies-financial-group" component={JFInfo} />
-                <Route exact path="/companydata/jll-partners" component={JLLPInfo} />
-                <Route exact path="/companydata/jpmorgan-chase" component={JPMInfo} />
-                <Route exact path="/companydata/jane-street-capital" component={JSInfo} />
-                <Route exact path="/companydata/moodys" component={MDInfo} />
-                <Route exact path="/companydata/morgan-stanley" component={MSInfo} />
-                <Route exact path="/companydata/mufg" component={MUFGInfo} />
-                <Route exact path="/companydata/nasdaq" component={NDQInfo} />
-                <Route exact path="/companydata/two-sigma" component={TSMInfo} />
+                <Route exact path="/american-international-group" component={AIGInfo} />
+                <Route exact path="/american-express" component={AEInfo} />
+                <Route exact path="/bloomberg" component={BBInfo} />
+                <Route exact path="/bny-mellon" component={BMInfo} />
+                <Route exact path="/blackrock" component={BRInfo} />
+                <Route exact path="/blackstone" component={BSInfo} />
+                <Route exact path="/citi" component={CityInfo} />
+                <Route exact path="/evercore" component={ECInfo} />
+                <Route exact path="/goldman-sachs" component={GSInfo} />
+                <Route exact path="/jefferies-financial-group" component={JFInfo} />
+                <Route exact path="/jll-partners" component={JLLPInfo} />
+                <Route exact path="/jpmorgan-chase" component={JPMInfo} />
+                <Route exact path="/jane-street-capital" component={JSInfo} />
+                <Route exact path="/moodys" component={MDInfo} />
+                <Route exact path="/morgan-stanley" component={MSInfo} />
+                <Route exact path="/mufg" component={MUFGInfo} />
+                <Route exact path="/nasdaq" component={NDQInfo} />
+                <Route exact path="/two-sigma" component={TSMInfo} />
+                <Route exact path="/banco-santander" component={BancoSInfo} />
+                <Route exact path="/bank-leumi" component={BLUSAInfo} />
+                <Route exact path="/citizens-financial-group" component={CFGInfo} />
+                <Route exact path="/edward-jones" component={EJInfo} />
+                <Route exact path="/fifth-third-bancorp" component={FTBInfo} />
+                <Route exact path="/hanmi-financial" component={HFInfo} />
+                <Route exact path="/hsbc" component={HSBCInfo} />
+                <Route exact path="/julius-baer" component={JBInfo} />
+                <Route exact path="/keycorp" component={KCInfo} />
+                <Route exact path="/lazard" component={LazardInfo} />
+                <Route exact path="/mt-bank" component={MTBInfo} />
+                <Route exact path="/northern-trust" component={NTInfo} />
+                <Route exact path="/pictet" component={PictetInfo} />
+                <Route exact path="/pnc-financial-services-group" component={PNCInfo} />
+                <Route exact path="/rothschild-co" component={RCInfo} />
+                <Route exact path="/regions-financial" component={RFInfo} />
+                <Route exact path="/raymond-james" component={RJInfo} />
+                <Route exact path="/state-street" component={SSInfo} />
+                <Route exact path="/wells-fargo" component={WFInfo} />
                 <Route exact path="/jobs" component={JobList} />
-                <Route exact path="/jobs/ui-designer" component={UIDesigner} />
-                <Route exact path="/jobs/business-analyst" component={BusinessAnalyst} />
-                <Route exact path="/jobs/marketing" component={Marketing} />
-                <Route exact path="/jobs/product-manager" component={ProductManager} />
-                <Route exact path="/jobs/software-engineer" component={SoftwareEngineer} />
+                <Route exact path="/ui-designer" component={UIDesigner} />
+                <Route exact path="/business-analyst" component={BusinessAnalyst} />
+                <Route exact path="/marketing" component={Marketing} />
+                <Route exact path="/product-manager" component={ProductManager} />
+                <Route exact path="/software-engineer" component={SoftwareEngineer} />
                 <PrivateRoute exact path="/email-verification" component={EmailVerification} />
+                <Route exact path="/career" component={SearchPanel} />
+                <Route exact path="/career-details" component={SearchResult} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />

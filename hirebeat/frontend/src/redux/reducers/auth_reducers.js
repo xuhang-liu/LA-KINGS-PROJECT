@@ -1,6 +1,7 @@
 import {
   USER_LOADED,
   USER_LOADING,
+  USER_FULLNAME_LOADED,
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
@@ -12,6 +13,7 @@ import {
   INCREASE_VIDEO_COUNT,
   INCREASE_RESUME_COUNT,
   UPGRADE_ACCOUNTS,
+  GET_ZP_JOBS,
 } from "../actions/action_types";
 
 const initialState = {
@@ -21,6 +23,8 @@ const initialState = {
   user: null,
   profile: {},
   premiums: [],
+  userfullname: "",
+  zpJobs: [],
 };
 
 export default function (state = initialState, action) {
@@ -36,6 +40,11 @@ export default function (state = initialState, action) {
         isLoading: false,
         isAuthenticated: true,
         user: action.payload,
+      };
+    case USER_FULLNAME_LOADED:
+      return {
+        ...state,
+        userfullname: action.payload,
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:
@@ -83,6 +92,10 @@ export default function (state = initialState, action) {
       return {
         ...state,
         premiums: action.payload,
+      };
+    case GET_ZP_JOBS:
+      return {
+        zpJobs: action.payload.data,
       };
     default:
       return state;

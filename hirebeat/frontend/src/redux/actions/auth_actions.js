@@ -3,6 +3,7 @@ import { returnErrors } from "./message_actions";
 import {
   USER_LOADED,
   USER_LOADING,
+  USER_FULLNAME_LOADED,
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
@@ -14,6 +15,8 @@ import {
   UPGRADE_ACCOUNTS,
   RESEND_ACTIVATION_EMAIL,
   UPDATE_USER_EMAIL,
+  UPDATE_USER_PASSWORD,
+  GET_ZP_JOBS,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -29,6 +32,28 @@ export const loadUser = () => (dispatch, getState) => {
       console.log("user loaded");
       dispatch({
         type: USER_LOADED,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR,
+      });
+      // Used to suppress error message printed by Chrome
+      console.clear();
+    });
+};
+
+// ********  LOAD USER FULLNAME  ********
+export const loadUserFullname = (user) => (dispatch, getState) => {
+
+  return axios
+    .post("api/userfullname", user, tokenConfig(getState))
+    .then((res) => {
+      console.log("user fullname loaded");
+      dispatch({
+        type: USER_FULLNAME_LOADED,
         payload: res.data,
       });
     })
@@ -73,12 +98,12 @@ export const login = (username, password) => (dispatch) => {
     .post("api/auth/login", body, config)
     .then((res) =>
       dispatch({
-        type: LOGIN_SUCCESS,
+        type: LOGIN_SUCCESS,    //update the data base and the state and front end;
         payload: res.data,
       })
     )
     .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch(returnErrors(err.response.data, err.response.status)); //prevent the log out and then update the interface
       dispatch({
         type: LOGIN_FAIL,
       });
@@ -227,6 +252,34 @@ export const updateUserEmail = (user) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_USER_EMAIL,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateUserPassword = (user) => (dispatch, getState) => {
+  axios
+    .post("api/update-user-password", user, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_USER_PASSWORD,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getZipRecruiterJobs = (search, location) => (dispatch, getState) => {
+  axios
+    .get(`get-ziprecruiter-jobs?search=${search}&location=${location}`)
+    .then((res) => {
+      dispatch({
+        type: GET_ZP_JOBS,
         payload: res.data,
       });
     })

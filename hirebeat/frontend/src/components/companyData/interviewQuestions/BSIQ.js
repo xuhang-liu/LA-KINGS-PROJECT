@@ -1,24 +1,15 @@
 import React, { useState, Component } from 'react';
 import { Link } from "react-router-dom";
-//import {SwitchButton} from './../Components';
+import {decideClassName} from './../Components';
 
 
 export default function BSIQ(props){
-    const [filter, setFilter] = useState("swe");
+    const [filter, setFilter] = useState("Analyst");
     return(
         <div style={{marginTop: '5%'}}>
             <h3 className="companydata-text1">Interview Questions</h3>
-            {/*SwitchButton(filter, setFilter)*/}
-            {/*renderContent(filter)*/}
-            <div>
-                  <p className="companydata-text2"><li>Tell us about a time you failed.</li></p>
-                  <p className="companydata-text2"><li>What's something interesting you've read in the news lately?</li></p>
-                  <p className="companydata-text2"><li>Tell me about your work experience.</li></p>
-                  <p className="companydata-text2"><li>What does this group do? Describe a time you worked on a team. </li></p>
-                  <p className="companydata-text2"><li>What are valuation methods? </li></p>
-                  <p className="companydata-text2"><li>What's your favorite book?</li></p>
-                  <p className="companydata-text2"><li>Why would an investor prefer to invest in secondary private equity over traditional private equity?</li></p>
-            </div>
+            {SwitchButton(filter, setFilter)}
+            {renderContent(filter)}
             <div className="row" style={{marginTop: "0.5rem"}}>
                 <div className="col-lg-7 col-md-7 align-center">
                     <p className="companydata-text5">View more and prepare your answer</p>
@@ -53,31 +44,54 @@ export default function BSIQ(props){
     )
 };
 
+const SwitchButton = (filter, setFilter)=>{
+  return(
+      <div style={{marginBottom: "5px"}} className="container d-flex justify-content-start">
+          <button
+              className={decideClassName(filter, "Analyst")}
+              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("Analyst")}
+          >
+              Analyst
+          </button>
+          <button
+              className={decideClassName(filter, "Software Engineer")}
+              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("Software Engineer")}
+          >
+              SDE
+          </button>
+      </div>
+  );
+}
+
 function renderContent(filter)  {
     switch (filter) {
-        case "swe":
+        default: case "Analyst":
             return (
                 <div>
-                  <p className="companydata-text2">The usual interview process usually takes about 4 weeks </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 1:</span> An online coding test, solving two algorithms in the language of the candidate's choice each with a time limit of 70 mins </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 2:</span> Two technical phone interviews conducted one after the other with different interviewers. </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 3:</span> A technical phone screen with either a technical recruiter or an engineer. </p>
-                  <p className="companydata-text2"><span style={{fontWeight: "700"}}>Stage 4:</span> An onsite interview consisting of 6 sessions, 5 technical and one with HR. Technical questions cover things like graph problems, sorting streams of integers, checking if a given list of words are contained in a magazine. Every problem is coupled with an analysis of computational complexity and memory trade offs.</p>
+                  <p className="companydata-text2"><li>Why would an investor prefer to invest in secondary private equity over traditional private equity?</li></p>
+                  <p className="companydata-text2"><li>What are the drivers of return in an LBO?</li></p>
+                  <p className="companydata-text2"><li>Can you tell me about a deal you have worked on?</li></p>
+                  <p className="companydata-text2"><li>Have you ever encountered a situation that was challenging to you, and if so, how did you work through it?</li></p>
+                  <p className="companydata-text2"><li>How do you rank the following three sites/assets in terms of most risky to least? (undeveloped plot of land, an office building in Chicago, a strip mall in Texas)</li></p>
+                  <p className="companydata-text2"><li>What’s your opinion on the hotel industry in New York City?</li></p>
+                  <p className="companydata-text2"><li>If you could be any animal, which animal would you be? </li></p>
+                  <p className="companydata-text2"><li>What’s your outlook for real estate? which REITs would you invest in?</li></p>
+                  <p className="companydata-text2"><li>If two neighboring buildings had the same cap rate but different NOIs, what factors would cause those buildings to have the same cap rate?</li></p>
+                  <p className="companydata-text2"><li>How would you design a news application?</li></p>
                 </div>
             );
-        case "data":
+        case "Software Engineer":
             return(
-              <div>data</div>
+                <div>
+                    <p className="companydata-text2">Job Title: Software Engineer</p>
+                    <p className="companydata-text2"><li>Given an array of prices for one stock in chronological order, find the time to buy and sell to maximize profit.</li></p>
+                    <p className="companydata-text2"><li>Given 2 arrays, return an array consisting of everything in Array 1 that isn‘t in Array 2.</li></p>
+                    <p className="companydata-text2"><li>Write a function to evaluate an arithmetic expression, structured as a tree where each node is a number or an operator and the operands are the child nodes.</li></p>
+                    <p className="companydata-text2"><li>Given a list of general development tools like git, SQL, etc., pick one and write as much as you can about how it works and why it is useful.</li></p>
+                    <p className="companydata-text2"><li>Given an array of lights, how would you (most efficiently) toggle a range of lights on and off when given two numbers representing the beginning and end of the range respectively? </li></p>
+                </div>
             );
-        case "design":
-            return(
-              <div>design</div>
-            );
-        case "pm":
-            return(
-              <div>pm</div>
-            );
-        default:
-            return null;
     }
 };

@@ -32,10 +32,6 @@ class BlogDetailsContent extends Component {
                                     <div className="article-image">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog5-pic.jpg" alt="image" />
                                     </div>
-
-                                    <p>
-                                        <i><b>Meta Description: </b>To have a successful interview, you need to be prepared. Learn about the things you should do before an interview to help you stay prepared.</i>
-                                    </p>
                                     <p>
                                     Landing an interview for your dream job is not easy. The job market is smaller than the number of job seekers; more so, it is a very competitive space.
                                     </p>

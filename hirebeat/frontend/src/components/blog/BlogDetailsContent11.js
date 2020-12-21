@@ -28,10 +28,6 @@ class BlogDetailsContent extends Component {
                                     </div>
 
                                     <h2>Guidelines on How to Answer "What Is Your Biggest Strength" In An Interview with a List of Strength</h2>
-
-                                    <p>
-                                        <i><b>Meta Description: </b>"What is your greatest strength" is a common question in interviews. Learn why employers ask the question and the best way to answer it.</i>
-                                    </p>
                                     <div className="article-image">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog11-pic1.jpg" alt="image" />
                                     </div>

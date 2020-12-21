@@ -62,3 +62,13 @@ class Label(models.Model):
     sentence = models.BigIntegerField()
     subCategory = models.BigIntegerField()
     label = models.BooleanField(default=False)
+
+class WPVideo(models.Model):
+    email = models.CharField(max_length=50, null=True, blank=True)
+    url = models.URLField(max_length=200)
+    question_id = models.BigIntegerField()
+    question_desc = models.CharField(max_length=500, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.wpvideo

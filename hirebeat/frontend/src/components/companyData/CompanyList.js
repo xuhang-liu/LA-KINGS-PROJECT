@@ -48,103 +48,221 @@ class CompanyList extends Component {
                         </div>
                         <div className="clients-logo-list align-items-center">
                             <div className="single-clients-logo">
-                                <Link to="/companydata/american-international-group">
+                                <Link to="/american-international-group">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/AIG.png" alt="AIG logo"/>
                                 </Link>
                             </div>
                             <div className="single-clients-logo">
-                                <Link to="/companydata/american-express">
+                                <Link to="/american-express">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/AE.png" alt="AE logo" />
                                 </Link>
                             </div>
                             <div className="single-clients-logo">
-                                <Link to="/companydata/bny-mellon">
+                                <Link to="/bny-mellon">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/BNYM.png" alt="BNYM logo" />
                                 </Link>
                             </div>
                             <div className="single-clients-logo">
-                                <Link to="/companydata/blackrock">
+                                <Link to="/blackrock">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/BR.png" alt="BR logo"/>
                                 </Link>
                             </div>
                             <div className="single-clients-logo">
-                                <Link to="/companydata/blackstone">
+                                <Link to="/blackstone">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/BMT.png" alt="BMT logo" />
                                 </Link>
                             </div>
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/bloomberg">
+                                <Link to="/bloomberg">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Bloomberg.png" alt="BB logo"/>
                                 </Link>
                             </div>
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/citi">
+                                <Link to="/citi">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/citibank.png" alt="City logo"/>
                                 </Link>
                             </div>
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/evercore">
+                                <Link to="/evercore">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Evercore.png" alt="Evercore logo"/>
                                 </Link>
                             </div>
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/goldman-sachs">
+                                <Link to="/goldman-sachs">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/GS.png" alt="GS logo"/>
                                 </Link>
                             </div>
                         </div>
                         <div className="clients-logo-list align-items-center" style={{marginTop: "1rem"}}>
                             <div className="single-clients-logo">
-                                <Link to="/companydata/jane-street-capital">
+                                <Link to="/jane-street-capital">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/JS.png" alt="JS logo"/>
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo">
-                                <Link to="/companydata/jefferies-financial-group">
+                                <Link to="/jefferies-financial-group">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Jefferies.png" alt="Jesseries logo" />
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo">
-                                <Link to="/companydata/jll-partners">
+                                <Link to="/jll-partners">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/JLLP.png" alt="JLLP logo" />
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo">
-                                <Link to="/companydata/jpmorgan-chase">
+                                <Link to="/jpmorgan-chase">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/JPM.png" alt="JPC logo"/>
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo">
-                                <Link to="/companydata/moodys">
+                                <Link to="/moodys">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Moody.png" alt="Moody logo" />
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/morgan-stanley">
+                                <Link to="/morgan-stanley">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/MS.png" alt="MS logo"/>
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/mufg">
+                                <Link to="/mufg">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/MUFG.png" alt="MUFG logo"/>
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/nasdaq">
+                                <Link to="/nasdaq">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Nasdaq.png" alt="Nasdaq logo"/>
                                 </Link>
                             </div>
 
                             <div className="single-clients-logo" style={{marginTop: "1rem"}}>
-                                <Link to="/companydata/two-sigma">
+                                <Link to="/two-sigma">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/TSV.png" alt="2 sigma logo"/>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="clients-logo-list align-items-center" style={{marginTop: "1rem"}}>
+                            <div className="single-clients-logo">
+                                <Link to="/banco-santander">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Santander.png" alt="Santander logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/bank-leumi">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Leumi.png" alt="Leumi logo" />
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/citizens-financial-group">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Citizens.png" alt="Citizens logo" />
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/edward-jones">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/EdwardJones.png" alt="Edward Jones logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/fifth-third-bancorp">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/53Bank.png" alt="53 Bank logo" />
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo" style={{marginTop: "1rem"}}>
+                                <Link to="/hanmi-financial">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/HanmiBank.png" alt="HanmiBank logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo" style={{marginTop: "1rem"}}>
+                                <Link to="/hsbc">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/HSBC.png" alt="HSBC logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo" style={{marginTop: "1rem"}}>
+                                <Link to="/julius-baer">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/JuliusBar.png" alt="JuliusBar logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo" style={{marginTop: "1rem"}}>
+                                <Link to="/keycorp">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/KeyBank.png" alt="KeyBank logo"/>
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="clients-logo-list align-items-center" style={{marginTop: "1rem"}}>
+                            <div className="single-clients-logo">
+                                <Link to="/lazard">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Larzard.png" alt="Lazard logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/mt-bank">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/M&TBank.png" alt="M&TBank logo" />
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/northern-trust">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Northerntrust.png" alt="Northern trust logo" />
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/pictet">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Pictet.png" alt="Pictet logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/pnc-financial-services-group">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/PNCBank.png" alt="PNC Bank logo" />
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo" style={{marginTop: "1rem"}}>
+                                <Link to="/rothschild-co">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Rothschild.png" alt="Rothschild logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo" style={{marginTop: "1rem"}}>
+                                <Link to="/regions-financial">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Regions.png" alt="Regions logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo" style={{marginTop: "1rem"}}>
+                                <Link to="/raymond-james">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Raymondjames.png" alt="Raymond james logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo" style={{marginTop: "1rem"}}>
+                                <Link to="/state-street">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/Statestreet.png" alt="State Street logo"/>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="clients-logo-list align-items-center" style={{marginTop: "1rem"}}>
+                            <div className="single-clients-logo">
+                                <Link to="/wells-fargo">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/WellsFargo.png" alt="Wells Fargo logo"/>
                                 </Link>
                             </div>
                         </div>

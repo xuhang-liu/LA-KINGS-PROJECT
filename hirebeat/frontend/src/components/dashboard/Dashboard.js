@@ -7,7 +7,7 @@ import EssentialUserInfo from "./essentials/EssentialUserInfo";
 import { Interview } from "./videos/Interview";
 import { Resume } from "./videos/Resume";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
+import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 import { DbRow } from "./DashboardComponents";
 import { DbCenterRow } from "./DashboardComponents";
@@ -43,6 +43,8 @@ export class Dashboard extends Component {
   componentDidMount() {
     this.props.loadProfile();
     this.activateEmail();
+    var user = { "id": this.props.user.id};
+    this.props.loadUserFullname(user);
   }
 
   // params passed from resume page
@@ -96,6 +98,7 @@ export class Dashboard extends Component {
                 <div className="container">
                   <div className="page-title-content" style={{color:"#FFFFFF"}}>
                     <EssentialUserInfo
+                      userfullname={this.props.userfullname}
                       user={this.props.user}
                       profile={this.props.profile}
                       updateProfile={this.props.updateProfile}
@@ -180,8 +183,9 @@ export class Dashboard extends Component {
 const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
   user: state.auth_reducer.user,
+  userfullname: state.auth_reducer.userfullname,
 });
 
-export default connect(mapStateToProps, { loadProfile, updateProfile })(
+export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname })(
   Dashboard
 );

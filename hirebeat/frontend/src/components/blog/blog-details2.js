@@ -20,7 +20,7 @@ class BlogDetail2 extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – Video interview practice</title>
-                    <meta name="Description" CONTENT="Video interview practice"></meta>
+                    <meta name="description" CONTENT="Video interview practice"></meta>
                     <link rel="canonical" href="https://hirebeat.co/video-interview-practice"/>
                 </Helmet>
                 <ScrollToTopOnMount />

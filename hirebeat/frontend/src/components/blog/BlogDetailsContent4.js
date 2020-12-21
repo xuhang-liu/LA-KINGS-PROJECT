@@ -32,10 +32,6 @@ class BlogDetailsContent extends Component {
                                     <div className="article-image">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog4-pic.jpg" alt="image" />
                                     </div>
-
-                                    <p>
-                                        <i><b>Meta Description: </b>Career fair helps students and graduates get more information about a company and deeper insights into the roles they are interested in. Get tips on the questions you should ask at career fairs to draw the recruiters' attention and know if a company is a good fit for you.</i>
-                                    </p>
                                     <p>
                                     Before we even get started, did you know that people get hired at career fairs? Well, they do. However, it is only those that stand out get lucky. Career fairs give students and people looking to gain experience in the business world and the opportunity to be in the same space with potential employers and benefit from each other.
                                     </p>

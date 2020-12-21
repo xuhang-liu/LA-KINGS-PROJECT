@@ -32,9 +32,6 @@ class BlogDetailsContent extends Component {
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog12-pic.jpg" alt="image" />
                                     </div>
                                     <p>
-                                        <i><b>Meta Description: </b>"What is your weakness?" is one of the most common interview questions. Get tips on how to answer the question in an interview.</i>
-                                    </p>
-                                    <p>
                                     You have an interview around the corner, and in the spirit of preparation, you are speculating the possible questions you will be asked. One of the things that most employers want to know about employees is what their weaknesses are. What makes this question tricky is that one cannot possibly highlight their downsides to a possible employer. Well, you are not expected to do that. Understanding what the employers are looking for when asking this question and how to answer it will go a long way.</p>
                                     <br/>
                                     <h3 className="mb-0">What do employers look for when they ask about your weaknesses?</h3>                                    
