@@ -85,31 +85,29 @@ export class Header extends Component {
 
             <ul
               className="navbar-nav ml-auto mr-5
-                 text-left order-xl-0">  
-              <MediaQuery minDeviceWidth={1224}>
-              {/*<li className="nav-item ">
-                <Link to="/career" className="nav-link text-white navbar-font">
-                  <span className="header-text">Career</span>
-                </Link>
-              </li>*/}
-              <li className="nav-item ">
-                <Link to="/practice" className="nav-link text-white navbar-font">
-                  <span className="header-text">Interview Practice</span>
-                </Link>
-              </li>
-              <li className="nav-item ">
-                <Link to="/resume" className="nav-link text-white navbar-font">
-                  <span className="header-text">Resume</span>
-                </Link>
-                </li>
-              </MediaQuery>
+                 text-left order-xl-0">
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
-                  <span className="header-text" style={{cursor:'pointer'}}>
-                    Career Tips <i className="bx bx-chevron-down"></i>
+                <span className="header-text" style={{cursor:'pointer'}}>
+                    Features <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
-                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Top Companies</Link></li>
-                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
+                    <MediaQuery minDeviceWidth={1224}>
+                        <li>
+                        <Link to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><i className="bx bx-video-recording" style={{color:"white", top:"0.5rem"}}></i></span>Interview Practice</Link></li>
+                        <li>
+                        <Link to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><i className="bx bx-file-find" style={{color:"white"}}></i></span>Resume Optimization</Link></li>
+                        </MediaQuery>
+                        <li>
+                        <Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
+                        {/*<li>
+                        <Link to="/how-it-works" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        How it works</Link></li>*/}
+                        <li>
+                        <Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Career Quiz</Link></li>
                     </ul>
                   </span>
                 </a>
@@ -139,18 +137,6 @@ export class Header extends Component {
   };
 
   renderGuestLinks = () => {
-    /*const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-      <a
-        ref={ref}
-        onClick={(e) => {
-          e.preventDefault();
-          onClick(e);
-        }}
-        style={{textDecoration:"none", cursor:"pointer"}}
-      >
-        {children}
-      </a>
-    ));*/
     return (
         <React.Fragment>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
@@ -176,30 +162,28 @@ export class Header extends Component {
 
             <ul className="navbar-nav order-xl-0 ml-auto mr-5
                text-left">
-              <MediaQuery minDeviceWidth={1224}>
-              {/*<li className="nav-item ">
-                <Link to="/career" className="nav-link text-white navbar-font">
-                  <span className="header-text">Career</span>
-                </Link>
-              </li>*/}
-              <li className="nav-item ">
-                <Link to="/practice" className="nav-link text-white navbar-font">
-                  <span className="header-text">Interview Practice</span>
-                </Link>
-              </li>
-              <li className="nav-item ">
-                <Link to="/resume" className="nav-link text-white navbar-font">
-                  <span className="header-text">Resume</span>
-                </Link>
-                </li>
-              </MediaQuery>
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
-                  <span className="header-text" style={{cursor:'pointer'}}>
-                  Career Tips <i className="bx bx-chevron-down"></i>
+                <span className="header-text" style={{cursor:'pointer'}}>
+                    Features <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu">
-                      <li><Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Top Companies</Link></li>
-                      <li><Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Career Quiz</Link></li>
+                    <MediaQuery minDeviceWidth={1224}>
+                        <li>
+                        <Link to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><i className="bx bx-video-recording" style={{color:"white", top:"0.5rem"}}></i></span>Interview Practice</Link></li>
+                        <li>
+                        <Link to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><i className="bx bx-file-find" style={{color:"white"}}></i></span>Resume Optimization</Link></li>
+                        </MediaQuery>
+                        <li>
+                        <Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
+                        {/*<li>
+                        <Link to="/how-it-works" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        How it works</Link></li>*/}
+                        <li>
+                        <Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Career Quiz</Link></li>
                     </ul>
                   </span>
                 </a>

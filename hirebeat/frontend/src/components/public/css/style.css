@@ -58,8 +58,8 @@ body {
 }
 
 a {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 0s;
+  transition: 0s;
   color: #080a3c;
   text-decoration: none;
   outline: 0 !important;

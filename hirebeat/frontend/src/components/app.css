@@ -757,12 +757,24 @@ h5 {
   font-family: Avenir Next, Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 1rem;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 0s;
+  transition: 0s;
 }
 
 .header-text:hover{
   color: #FF6B00;
+}
+
+.nav_submenu li span{
+  margin-right: 1rem;
+  border-radius: 10%;
+  background-color: #56a3fa;
+}
+
+.nav_submenu li span i{
+  text-align: center;
+  color: #ffffff;
+  margin: 3%;
 }
 
 .nav_submenu {
@@ -772,7 +784,7 @@ h5 {
   position: absolute;
   text-align: left;
   border: none;
-  width: 9rem;
+  width: 15rem;
   z-index: 99;
   display: block;
   visibility: hidden;
