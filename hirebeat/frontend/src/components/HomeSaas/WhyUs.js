@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactWOW from 'react-wow';
 import {Link} from "react-router-dom";
 import ModalVideo from 'react-modal-video';
-import videobg from "../public/images/video-bg.jpg";
 
 class WhyUs extends Component {
     state = {
@@ -33,7 +32,7 @@ class WhyUs extends Component {
                         <div className="row" style={{width: "80%", margin: "auto"}}>
                             <div className="col-lg-8 col-md-8">
                                 <div className="video-box">
-                                    <img src={videobg} className="main-image" alt="image" />
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/home_bg.png" className="main-image" alt="image" />
 
                                     <Link href="#play-video">
                                         <a

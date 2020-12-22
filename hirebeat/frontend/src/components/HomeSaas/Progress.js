@@ -11,28 +11,43 @@ class Progress extends Component {
                         <h2>Our Customers Are Making Progress</h2>
                     </div>
 
-                    <div className="row" style={{width: "50%", margin: "auto"}}>
-                        <div className="col-lg-6 col-md-6">
-                            <div className="justify-items">
-                                <p className="section-txt1">
-                                    The average score increased by <br />
-                                    <span className="section-txt2">80%</span> after a month of practice
-                                </p>
-                            </div>
+                    <div className="row" style={{width: "80%", margin: "auto"}}>
+                        <div className="col-lg-4 col-md-4">
                             <div className="justify-items   ">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/progress1.png" alt="Progress figure" />
                             </div>
-                        </div>
-
-                        <div className="col-lg-6 col-md-6">
                             <div className="justify-items">
                                 <p className="section-txt1">
-                                    The average score increased by <br />
-                                    <span className="section-txt2">21%</span> after 5 practices
+                                    <span className="section-txt2">82%</span> of companies already <br />
+                                    use virtual interview screening <br />
+                                    and AI analysis in hiring process
                                 </p>
                             </div>
+                        </div>
+
+                        <div className="col-lg-4 col-md-4">
                             <div className="justify-items">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/progress2.png" alt="Progress figure" />
+                            </div>
+                            <div className="justify-items">
+                                <p className="section-txt1">
+                                    HireBeat saves job seeker <br />
+                                    more than <span className="section-txt2">68%</span> of <br />
+                                    interview preparation time
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-4 col-md-4">
+                            <div className="justify-items">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/progress3.png" alt="Progress figure" />
+                            </div>
+                            <div className="justify-items">
+                                <p className="section-txt1">
+                                    Our users on average <br />
+                                    increased their Resume <br />
+                                    competence by <span className="section-txt2">47%</span>
+                                </p>
                             </div>
                         </div>
                     </div>
