@@ -138,26 +138,20 @@ class MainBanner extends Component {
                                             
                                             <div className="banner-btn">
                                                 <div className="d-flex">
-                                                    <Link to="/practice">
-                                                        <a className="default-btn" style={{color:"white"}}>
-                                                            <i className="bx bxs-hot"></i>
-                                                            Try For Free 
-                                                            <span></span>
-                                                        </a>
-                                                    </Link>
-
-                                                    <Link to="/">
-                                                        <a
-                                                            onClick={e => {e.preventDefault(); this.openModal()}}
-                                                            className="video-btn popup-youtube"
-                                                        > 
-                                                            <i className='bx bxs-right-arrow'></i> Watch Video 
-                                                        </a>
-                                                    </Link>
+                                                    <a href={"/practice"}>
+                                                    <button className={"not-reviewed text-15"} style={{display: "inline-block",color: "white", "border-radius": "0.5rem", width: "11.125rem", "margin-right": "2.875rem", height: "2.475rem"}}>
+                                                        Practice Interview
+                                                    </button>
+                                                    </a>
+                                                    <a href={"/resume"}>
+                                                    <button className={"not-reviewed text-15"} style={{display: "inline-block", color: "white", width: "11.125rem", "border-radius": "0.5rem", height: "2.475rem"}}>
+                                                        Improve Resume
+                                                    </button>
+                                                    </a>
                                                 </div>
                                             </div>
-                                            <a href="https://www.producthunt.com/posts/hirebeat-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hirebeat-2" target="_blank">
-                                                    <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=275315&theme=dark" alt="HireBeat - All-in-one career training platform for job seekers | Product Hunt" style={{width:'11', height:'3.5rem', paddingTop:'1rem'}}/></a>
+                                            {/*<a href="https://www.producthunt.com/posts/hirebeat-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hirebeat-2" target="_blank">*/}
+                                            {/*        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=275315&theme=dark" alt="HireBeat - All-in-one career training platform for job seekers | Product Hunt" style={{width:'11', height:'3.5rem', paddingTop:'1rem'}}/></a>*/}
                                         </div>
                                     </div>
 
