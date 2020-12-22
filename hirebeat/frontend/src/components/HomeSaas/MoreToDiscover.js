@@ -19,13 +19,13 @@ class MoreToDiscover extends Component {
                     <div className="overview-item">
                     <div className="container max-width-1290">
                         <div className="row align-items-center">
-                            <div className="col-lg-7 col-md-7">
+                            <div className="col-lg-8 col-md-8">
                                 <div className="overview-left-img">
                                     <img src='https://hirebeat-assets.s3.amazonaws.com/gif/P:S.gif' alt="gif" />
                                 </div>
                             </div>
 
-                            <div className="col-lg-5 col-md-5">
+                            <div className="col-lg-4 col-md-4">
                                 <div className="overview-content pl-3">
                                     <span className="number">01</span>
                                     <h3>Practice/Simulate Modes</h3>
@@ -56,7 +56,7 @@ class MoreToDiscover extends Component {
                     <div className="overview-item">
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
-                                <div className="col-lg-5 col-md-5">
+                                <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
                                         <span className="number">02</span>
                                         <h3>Behavior/Technical Questions</h3>
@@ -79,7 +79,7 @@ class MoreToDiscover extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-lg-7 col-md-7">
+                                <div className="col-lg-8 col-md-8">
                                     <div className="overview-right-img">
                                         <img src='https://hirebeat-assets.s3.amazonaws.com/gif/B:T.gif' alt="gif" />
                                     </div>
@@ -93,13 +93,13 @@ class MoreToDiscover extends Component {
                     <div className="overview-item" id='i2'>
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
-                                <div className="col-lg-7 col-md-7">
+                                <div className="col-lg-8 col-md-8">
                                     <div className="overview-left-img">
                                         <img src='https://hirebeat-assets.s3.amazonaws.com/gif/Analytics.gif' alt="gif" />
                                     </div>
                                 </div>
 
-                                <div className="col-lg-5 col-md-5">
+                                <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
                                         <span className="number">03</span>
                                         <h3>AI/Expert Analytics</h3>
@@ -130,7 +130,7 @@ class MoreToDiscover extends Component {
                     <div className="overview-item">
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
-                                <div className="col-lg-5 col-md-5">
+                                <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
                                         <span className="number">04</span>
                                         <h3>Optimize Resume Matching</h3>
@@ -154,7 +154,7 @@ class MoreToDiscover extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-lg-7 col-md-7">
+                                <div className="col-lg-8 col-md-8">
                                     <div className="overview-right-img">
                                         <img src='https://hirebeat-assets.s3.amazonaws.com/gif/Resume.gif' alt="gif" />
                                     </div>
@@ -168,13 +168,13 @@ class MoreToDiscover extends Component {
                     <div className="overview-item" id='i2'>
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
-                                <div className="col-lg-7 col-md-7">
+                                <div className="col-lg-8 col-md-8">
                                     <div className="overview-left-img">
                                         <img src='https://hirebeat-assets.s3.amazonaws.com/gif/Company.gif' alt="gif" />
                                     </div>
                                 </div>
 
-                                <div className="col-lg-5 col-md-5">
+                                <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
                                         <span className="number">05</span>
                                         <h3>Top Companies Tips</h3>
