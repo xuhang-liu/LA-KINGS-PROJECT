@@ -8,6 +8,7 @@ import MoreToDiscover from '../HomeSaas/MoreToDiscover';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import Loader from '../shared/Loader';
 import { useEffect } from "react";
+import AmazingFeatures from "../HomeSaas/AmazingFeatures"
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -29,7 +30,7 @@ class IndexSaas extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <MainBanner />
-                <Features />
+                <AmazingFeatures />
                 <MoreToDiscover />
                 <ClientsFeedbackSlider/>
                 <FreeTrialArea />
