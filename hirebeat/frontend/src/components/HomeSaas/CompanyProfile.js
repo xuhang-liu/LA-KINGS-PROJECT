@@ -222,6 +222,24 @@ class CompanyProfile extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/WellsFargo.png" alt="Wells Fargo logo"/>
                             </Link>
                         </div>
+
+                        <div className="item">
+                            <Link to="/charles-schwab">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/charles.png" alt="Charles Schwab logo"/>
+                            </Link>
+                        </div>
+
+                        <div className="item">
+                            <Link to="/fidelity-investments">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/fidelity.png" alt="Fidelity logo"/>
+                            </Link>
+                        </div>
+
+                        <div className="item">
+                            <Link to="/vanguard">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/vanguard.png" alt="Vanguard logo"/>
+                            </Link>
+                        </div>
                     </OwlCarousel>
                     <a href="/companydata" style={{color: "#13C4A1", marginLeft: "10rem"}}>Explore our company data-></a>
                 </div>

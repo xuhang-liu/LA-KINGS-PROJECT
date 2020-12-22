@@ -32,7 +32,7 @@ class Progress extends Component {
                             <div className="justify-items">
                                 <p className="section-txt1">
                                     HireBeat saves job seeker <br />
-                                    more than <span className="section-txt2">68%</span> of <br />
+                                    more than <span className="section-txt2" style={{color: "#13C4A1"}}>68%</span> of <br />
                                     interview preparation time
                                 </p>
                             </div>
@@ -46,7 +46,7 @@ class Progress extends Component {
                                 <p className="section-txt1">
                                     Our users on average <br />
                                     increased their Resume <br />
-                                    competence by <span className="section-txt2">47%</span>
+                                    competence by <span className="section-txt2" style={{color: "#FF6B00"}}>47%</span>
                                 </p>
                             </div>
                         </div>
