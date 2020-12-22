@@ -15,7 +15,7 @@ class AmazingFeatures extends Component {
                             <ReactWOW animation='fadeInRight' delay='0.1s'>
                                 <div className="single-features-box" >
                                     <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bxs-badge-check'></i>
+                                        <i className='bx bx-mouse'></i>
                                     </div>
                                     <h3>Easy-to-use product</h3>
                                     <p>Your interview practice is just few clicks away, practice interview anytime anywhere</p>
@@ -27,7 +27,7 @@ class AmazingFeatures extends Component {
                             <ReactWOW animation='fadeInLeft' delay='0.2s'>
                                 <div className="single-features-box">
                                     <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-cog'></i>
+                                        <i className='bx bx-alarm'></i>
                                     </div>
                                     <h3>Real-time simulation</h3>
                                     <p>You'll never know what question is coming next, just like a live interview</p>
@@ -39,7 +39,7 @@ class AmazingFeatures extends Component {
                             <ReactWOW animation='fadeInRight' delay='0.3s'>
                                 <div className="single-features-box">
                                     <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-conversation'></i>
+                                        <i className='bx bx-coin-stack'></i>
                                     </div>
                                     <h3>Full-scale question bank</h3>
                                     <p>Get thousands of interview questions across different industries</p>
@@ -51,7 +51,7 @@ class AmazingFeatures extends Component {
                             <ReactWOW animation='fadeInRight' delay='0.4s'>
                                 <div className="single-features-box">
                                     <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bxs-dashboard'></i>
+                                        <i className='bx bx-coin-stack'></i>
                                     </div>
                                     <h3>Review for self-evaluation</h3>
                                     <p>Secured stage allows you to track and revisit your training progress</p>
@@ -63,7 +63,7 @@ class AmazingFeatures extends Component {
                             <ReactWOW animation='fadeInRight' delay='0.5s'>
                                 <div className="single-features-box">
                                     <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bxs-info-circle'></i>
+                                        <i className='bx bx-wallet'></i>
                                     </div>
                                     <h3>Affordable cost</h3>
                                     <p>Believe or not? You can enjoy our premium service for just $0.65/day</p>
@@ -75,7 +75,7 @@ class AmazingFeatures extends Component {
                             <ReactWOW animation='fadeInRight' delay='0.6s'>
                                 <div className="single-features-box">
                                     <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bxs-bell-ring'></i>
+                                        <i className='bx bx-task'></i>
                                     </div>
                                     <h3>All-inclusive feedback</h3>
                                     <p>Our data-driven parameters guarantee you the best performance</p>
