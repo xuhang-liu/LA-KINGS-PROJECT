@@ -19,13 +19,13 @@ class MoreToDiscover extends Component {
                     <div className="overview-item">
                     <div className="container max-width-1290">
                         <div className="row align-items-center">
-                            <div className="col-lg-6 col-md-6">
+                            <div className="col-lg-7 col-md-7">
                                 <div className="overview-left-img">
-                                    <img src='https://hirebeat-assets.s3.amazonaws.com/PS.gif' alt="gif" />
+                                    <img src='https://hirebeat-assets.s3.amazonaws.com/gif/P:S.gif' alt="gif" />
                                 </div>
                             </div>
 
-                            <div className="col-lg-6 col-md-6">
+                            <div className="col-lg-5 col-md-5">
                                 <div className="overview-content pl-3">
                                     <span className="number">01</span>
                                     <h3>Practice/Simulate Modes</h3>
@@ -56,7 +56,7 @@ class MoreToDiscover extends Component {
                     <div className="overview-item">
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
-                                <div className="col-lg-6 col-md-6">
+                                <div className="col-lg-5 col-md-5">
                                     <div className="overview-content pl-3">
                                         <span className="number">02</span>
                                         <h3>Behavior/Technical Questions</h3>
@@ -79,9 +79,9 @@ class MoreToDiscover extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-lg-6 col-md-6">
+                                <div className="col-lg-7 col-md-7">
                                     <div className="overview-right-img">
-                                        <img src='https://hirebeat-assets.s3.amazonaws.com/BT.gif' alt="gif" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/gif/B:T.gif' alt="gif" />
                                     </div>
                                 </div>
                             </div>
@@ -93,13 +93,13 @@ class MoreToDiscover extends Component {
                     <div className="overview-item" id='i2'>
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
-                                <div className="col-lg-6 col-md-6">
+                                <div className="col-lg-7 col-md-7">
                                     <div className="overview-left-img">
-                                        <img src='https://hirebeat-assets.s3.amazonaws.com/AI.gif' alt="gif" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/gif/Analytics.gif' alt="gif" />
                                     </div>
                                 </div>
 
-                                <div className="col-lg-6 col-md-6">
+                                <div className="col-lg-5 col-md-5">
                                     <div className="overview-content pl-3">
                                         <span className="number">03</span>
                                         <h3>AI/Expert Analytics</h3>
@@ -130,7 +130,7 @@ class MoreToDiscover extends Component {
                     <div className="overview-item">
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
-                                <div className="col-lg-6 col-md-6">
+                                <div className="col-lg-5 col-md-5">
                                     <div className="overview-content pl-3">
                                         <span className="number">04</span>
                                         <h3>Optimize Resume Matching</h3>
@@ -154,9 +154,46 @@ class MoreToDiscover extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-lg-6 col-md-6">
+                                <div className="col-lg-7 col-md-7">
                                     <div className="overview-right-img">
-                                        <img src='https://hirebeat-assets.s3.amazonaws.com/Resume.gif' alt="gif" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/gif/Resume.gif' alt="gif" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ReactWOW>
+
+                <ReactWOW animation='fadeInUp' delay='0.2s'>
+                    <div className="overview-item" id='i2'>
+                        <div className="container max-width-1290">
+                            <div className="row align-items-center">
+                                <div className="col-lg-7 col-md-7">
+                                    <div className="overview-left-img">
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/gif/Company.gif' alt="gif" />
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-5 col-md-5">
+                                    <div className="overview-content pl-3">
+                                        <span className="number">05</span>
+                                        <h3>Top Companies Tips</h3>
+                                        <p>We provide recruitment data of popular companies to help you target dream job</p>
+                                        <ul>
+                                            <li>
+                                                <i className='bx bx-badge-check'></i>
+                                                Top interview questions for positions
+                                            </li>
+                                            <li>
+                                                <i className='bx bx-badge-check'></i>
+                                                Vivid and informative visualization charts
+                                            </li>
+                                        </ul>
+                                        <Link to='/practice' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <i className="bx bxs-arrow-to-right"></i>
+                                            Start Now
+                                        <span></span>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -165,22 +202,22 @@ class MoreToDiscover extends Component {
                 </ReactWOW>
                 </section>
                 <section className="video-presentation-area pb-100">
-            <div className="container">
-            <ReactWOW animation='fadeInUp' delay='0.8s'>
-                <div className="contact-cta-box mwidth-1000">
-                    <h3>Get ready to optimize your job hunting?</h3>
-                    <p>Sign up now for your free account.</p>
+                    <div className="container">
+                        <ReactWOW animation='fadeInUp' delay='0.8s'>
+                        <div className="contact-cta-box mwidth-1000">
+                            <h3>Get ready to optimize your job hunting?</h3>
+                            <p>Sign up now for your free account.</p>
 
-                    <Link to="/register">
-                        <a className="default-btn" style={{color:"white"}}>
-                            Try For Free
+                            <Link to="/register">
+                            <a className="default-btn" style={{color:"white"}}>
+                                Try For Free
                             <span></span>
-                        </a>
-                    </Link>
-                </div>
-            </ReactWOW>
-            </div>
-            </section>
+                            </a>
+                            </Link>
+                        </div>
+                        </ReactWOW>
+                    </div>
+                </section>
             </React.Fragment>
         );
     }

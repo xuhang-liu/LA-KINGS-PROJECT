@@ -30,7 +30,6 @@ class IndexSaas extends Component {
                 <ScrollToTopOnMount />
                 <MainBanner />
                 <Features />
-                <MoreToDiscover />
                 <ClientsFeedbackSlider/>
                 <FreeTrialArea />
                       {/* Preloader */}
