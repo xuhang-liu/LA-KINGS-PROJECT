@@ -164,6 +164,23 @@ class MoreToDiscover extends Component {
                     </div>
                 </ReactWOW>
                 </section>
+                <section className="video-presentation-area pb-100">
+            <div className="container">
+            <ReactWOW animation='fadeInUp' delay='0.8s'>
+                <div className="contact-cta-box mwidth-1000">
+                    <h3>Get ready to optimize your job hunting?</h3>
+                    <p>Sign up now for your free account.</p>
+
+                    <Link to="/register">
+                        <a className="default-btn" style={{color:"white"}}>
+                            Try For Free
+                            <span></span>
+                        </a>
+                    </Link>
+                </div>
+            </ReactWOW>
+            </div>
+            </section>
             </React.Fragment>
         );
     }

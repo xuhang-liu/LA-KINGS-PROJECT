@@ -102,9 +102,9 @@ export class Header extends Component {
                         <li>
                         <Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
-                        {/*<li>
-                        <Link to="/how-it-works" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        How it works</Link></li>*/}
+                        <li>
+                        <Link to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        How it works</Link></li>
                         <li>
                         <Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
@@ -178,9 +178,9 @@ export class Header extends Component {
                         <li>
                         <Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
-                        {/*<li>
-                        <Link to="/how-it-works" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        How it works</Link></li>*/}
+                        <li>
+                        <Link to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        How it works</Link></li>
                         <li>
                         <Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
