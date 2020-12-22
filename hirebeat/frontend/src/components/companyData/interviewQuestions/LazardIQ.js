@@ -68,6 +68,20 @@ const SwitchButton = (filter, setFilter)=>{
           >
               M&A
           </button>
+          <button
+              className={decideClassName(filter, "Summer Associate")}
+              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("Summer Associate")}
+          >
+              SA
+          </button>
+          <button
+              className={decideClassName(filter, "Intern")}
+              style = {{width: "90px", height: "42px", outline: "none", borderRadius: "5px"}}
+              onClick={() => setFilter("Intern")}
+          >
+              Intern
+          </button>
       </div>
   );
 }
@@ -78,6 +92,7 @@ function renderContent(filter)  {
             return(
                 <div>
                     <p className="companydata-text2">Job Title: Investment Banking Analyst</p>
+                    <p className="companydata-text2"><li>What’s your biggest weakness and strength?</li></p>
                     <p className="companydata-text2"><li>Walk me through your resume.</li></p>
                     <p className="companydata-text2"><li>How do the 3 financial statements relate?</li></p>
                     <p className="companydata-text2"><li>Business M&A case study.</li></p>
@@ -117,10 +132,44 @@ function renderContent(filter)  {
         case "M&A":
             return(
                 <div>
+                    <p className="companydata-text2">Job Title: M&A Analyst</p>
                     <p className="companydata-text2"><li>How does Private Equity make money?</li></p>
                     <p className="companydata-text2"><li>Define Success.</li></p>
                     <p className="companydata-text2"><li>Walk me through your CV.</li></p>
+                    <p className="companydata-text2"><li>Tell us something unique about yourself.</li></p>
+                    <p className="companydata-text2"><li>Tell us about a recent deal that interests you. What factors do you think will impact M&A over the next year?</li></p>
+                    <p className="companydata-text2"><li>Tell us about the most significant challenge you have ever faced. How did you overcome the challenge, and what was the outcome?</li></p>
+                    <p className="companydata-text2"><li>How does Private Equity make money?</li></p>
                 </div>
             );
+        case "Summer Associate":
+            return(
+                <div>
+                    <p className="companydata-text2">Job Title: Summer Associate</p>
+                    <p className="companydata-text2"><li>Tell me about a recent M&A deal you saw on the news.</li></p>
+                    <p className="companydata-text2"><li>Can you walk me through a DCF?</li></p>
+                    <p className="companydata-text2"><li>Do we use unlevered or levered cash flows on DCF calculations?</li></p>
+                    <p className="companydata-text2"><li>Give us an example of a time that you led a team and failed.</li></p>
+                    <p className="companydata-text2"><li>What other firms were you interviewing at?</li></p>
+                </div>
+            );
+        case "Intern":
+            return(
+                <div>
+                    <p className="companydata-text2"><li>Tell us about a time you exercised leadership.</li></p>
+                    <p className="companydata-text2"><li>Who is your ideal dinner guest (dead or alive)?</li></p>
+                    <p className="companydata-text2"><li>Tell me about a time where you had to work with someone you didn't get along with.</li></p>
+                    <p className="companydata-text2"><li>Why did you choose Lazard? Why did you choose private equity?</li></p>
+                    <p className="companydata-text2"><li>Tell me about yourself and what you do.</li></p>
+                    <p className="companydata-text2"><li>How do you overcome the difficulty?</li></p>
+                    <p className="companydata-text2"><li>A company with 20 P/E acquires a company 10 P/E in an all-scrip deal. All else held constant, is the deal accretive/dilutive?</li></p>
+                    <p className="companydata-text2"><li>Can you talk about financial statements?</li></p>
+                    <p className="companydata-text2"><li>What does Lazard do in a downturn?</li></p>
+                    <p className="companydata-text2"><li>Why did you choose investment banking?</li></p>
+                    <p className="companydata-text2"><li>Why did you choose Lazard, and how are we different from others?</li></p>
+                    <p className="companydata-text2"><li>Explain a time where you were challenged. How did you overcome it? And how has this benefited you?</li></p>
+                </div>
+            );
+
     }
 };

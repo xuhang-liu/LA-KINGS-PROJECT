@@ -85,6 +85,9 @@ import RFInfo from"./companyData/companies/RFInfo";
 import RJInfo from"./companyData/companies/RJInfo";
 import SSInfo from"./companyData/companies/SSInfo";
 import WFInfo from"./companyData/companies/WFInfo";
+import CharlesInfo from"./companyData/companies/CharlesInfo";
+import FIInfo from"./companyData/companies/FIInfo";
+import VanguardInfo from"./companyData/companies/VanguardInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -266,6 +269,9 @@ class App extends Component {
                 <Route exact path="/raymond-james" component={RJInfo} />
                 <Route exact path="/state-street" component={SSInfo} />
                 <Route exact path="/wells-fargo" component={WFInfo} />
+                <Route exact path="/charles-schwab" component={CharlesInfo} />
+                <Route exact path="/fidelity-investments" component={FIInfo} />
+                <Route exact path="/vanguard" component={VanguardInfo} />
                 <Route exact path="/jobs" component={JobList} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />

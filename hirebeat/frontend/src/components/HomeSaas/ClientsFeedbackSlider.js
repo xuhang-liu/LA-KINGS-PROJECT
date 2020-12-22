@@ -55,7 +55,7 @@ class ClientsFeedbackSlider extends Component {
     render() {
         return (
             <React.Fragment>
-            <section className="feedback-area pt-100 bg-f4f6fc" style={{paddingBottom:'2rem'}}>
+            <section className="feedback-area pt-100" style={{paddingBottom:'2rem'}}>
                 <div className="container">
                     <div className="section-title">
                         <h2>What's Our Clients Said About <span>HireBeat</span></h2>
