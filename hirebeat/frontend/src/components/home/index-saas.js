@@ -34,7 +34,7 @@ class IndexSaas extends Component {
                 <ScrollToTopOnMount />
                 <MainBanner />
                 <AmazingFeatures />
-                <Features />
+                {/*<Features />*/}
                 <Progress />
                 <WhyUs />
                 <CompanyProfile />
