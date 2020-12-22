@@ -99,6 +99,7 @@ import ProductManager from "./career/jobs/ProductManager";
 import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
 import CareerVideoRecorder from "./videoInterview/CareerVideoRecorder";
 import Contact from "./contact/contact";
+import Howitworks from "./home/Howitworks"
 
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
 
@@ -203,6 +204,7 @@ class App extends Component {
                 <Route exact path="/video-interview" component={CareerVideoRecorder}/>
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
+                <Route exact path="/howitworks" component={Howitworks} />
                 <Route exact path="/bloghome" component={bloggrid} />
                 <Route exact path="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/video-interview-practice" component={BlogDetail2} />
