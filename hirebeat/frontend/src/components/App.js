@@ -35,6 +35,7 @@ import BlogDetail12 from "./blog/blog-details12";
 import BlogDetail13 from "./blog/blog-details13";
 import BlogDetail14 from "./blog/blog-details14";
 import BlogDetail15 from "./blog/blog-details15";
+import BlogDetail16 from "./blog/blog-details16";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -85,6 +86,9 @@ import RFInfo from"./companyData/companies/RFInfo";
 import RJInfo from"./companyData/companies/RJInfo";
 import SSInfo from"./companyData/companies/SSInfo";
 import WFInfo from"./companyData/companies/WFInfo";
+import CharlesInfo from"./companyData/companies/CharlesInfo";
+import FIInfo from"./companyData/companies/FIInfo";
+import VanguardInfo from"./companyData/companies/VanguardInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -96,6 +100,7 @@ import ProductManager from "./career/jobs/ProductManager";
 import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
 import CareerVideoRecorder from "./videoInterview/CareerVideoRecorder";
 import Contact from "./contact/contact";
+import Howitworks from "./home/Howitworks"
 
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
 
@@ -200,6 +205,7 @@ class App extends Component {
                 <Route exact path="/video-interview" component={CareerVideoRecorder}/>
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
+                <Route exact path="/howitworks" component={Howitworks} />
                 <Route exact path="/bloghome" component={bloggrid} />
                 <Route exact path="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/video-interview-practice" component={BlogDetail2} />
@@ -216,6 +222,7 @@ class App extends Component {
                 <Route exact path="/3-fastest-growing-jobs-you-might-not-know-about" component={BlogDetail13} />
                 <Route exact path="/why-do-you-want-to-work-here" component={BlogDetail14} />
                 <Route exact path="/top-3-jobs-you-should-apply-for-finance-major" component={BlogDetail15} />
+                <Route exact path="/10-tips-to-deal-with-job-hunting-stress" component={BlogDetail16} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
@@ -264,6 +271,9 @@ class App extends Component {
                 <Route exact path="/raymond-james" component={RJInfo} />
                 <Route exact path="/state-street" component={SSInfo} />
                 <Route exact path="/wells-fargo" component={WFInfo} />
+                <Route exact path="/charles-schwab" component={CharlesInfo} />
+                <Route exact path="/fidelity-investments" component={FIInfo} />
+                <Route exact path="/vanguard" component={VanguardInfo} />
                 <Route exact path="/jobs" component={JobList} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />

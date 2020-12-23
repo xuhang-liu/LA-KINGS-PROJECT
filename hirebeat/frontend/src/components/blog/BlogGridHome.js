@@ -87,6 +87,7 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/10-tips-to-deal-with-job-hunting-stress",
     "/top-3-jobs-you-should-apply-for-finance-major",
     "/why-do-you-want-to-work-here",
     "/3-fastest-growing-jobs-you-might-not-know-about",
@@ -105,6 +106,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog16.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog15.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog14.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog13.jpg",
@@ -123,6 +125,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Dec 23, 2020",
     "Dec 15, 2020",
     "Dec 08, 2020",
     "Dec 01, 2020",
@@ -141,6 +144,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "10 TIPS TO DEAL WITH JOB HUNTING STRESS",
     "TOP 3 JOBS YOU SHOULD APPLY FOR FINANCE MAJOR ",
     "WHY DO YOU WANT TO WORK HERE",
     "FASTEST-GROWING JOBS YOU MIGHT NOT KNOW ABOUT",

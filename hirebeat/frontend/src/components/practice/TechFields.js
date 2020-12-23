@@ -175,16 +175,17 @@ export class TechFields extends Component {
       <img src={retail} alt="image"/>
       </button>  
       </div>
-      <div>
+      <div style={{marginLeft:"3rem"}}>
       <button style={{
         width: "15%",
         border: "none",
         marginLeft: "15px",
         marginRight: "15px",
         marginBottom: "15px",
+        marginTop: "15px",
         backgroundColor: "white",}}
         onClick={this.DisplayText}>
-      <img src={nofind} alt="image"/>
+      <img src={nofind} alt="image" style={{marginRight:"0.5rem"}}/> Can't find position
       </button>
       <form style={{display:"inline", visibility:this.state.display, marginLeft: "15px"}} onSubmit={sendEmail}>
       <input type="text" name="field" placeholder="What industry are you looking for?"

@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import MainBanner from '../HomeSaas/MainBanner';
-import Features from '../HomeSaas/Features';
+//import Features from '../HomeSaas/Features';
 //import FeaturedFeature from '../HomeSaas/FeaturedFeature';
 import ClientsFeedbackSlider from '../HomeSaas/ClientsFeedbackSlider';
-import MoreToDiscover from '../HomeSaas/MoreToDiscover';
+//import MoreToDiscover from '../HomeSaas/MoreToDiscover';
 //import WhyChooseUs from '../Common/WhyChooseUs';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import Loader from '../shared/Loader';
 import { useEffect } from "react";
+import AmazingFeatures from "../HomeSaas/AmazingFeatures"
+import Progress from '../HomeSaas/Progress';
+import WhyUs from '../HomeSaas/WhyUs';
+import CompanyProfile from '../HomeSaas/CompanyProfile';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -29,8 +33,12 @@ class IndexSaas extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <MainBanner />
-                <Features />
-                <MoreToDiscover />
+                <AmazingFeatures />
+                {/*<Features />*/}
+                <Progress />
+                <WhyUs />
+                <CompanyProfile />
+                {/*<MoreToDiscover />*/}
                 <ClientsFeedbackSlider/>
                 <FreeTrialArea />
                       {/* Preloader */}

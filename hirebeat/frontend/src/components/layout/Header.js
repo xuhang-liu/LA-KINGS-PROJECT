@@ -90,7 +90,7 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
                     Features <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu">
+                    <ul className="nav_submenu" style={{height:"12rem",width:"17rem"}}>
                     <MediaQuery minDeviceWidth={1224}>
                         <li>
                         <Link to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
@@ -102,9 +102,9 @@ export class Header extends Component {
                         <li>
                         <Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
-                        {/*<li>
-                        <Link to="/how-it-works" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        How it works</Link></li>*/}
+                        <li>
+                        <Link to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        How it works</Link></li>
                         <li>
                         <Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
@@ -121,7 +121,7 @@ export class Header extends Component {
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Company <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu">
+                    <ul className="nav_submenu" style={{height:"10rem"}}>
                       <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
                       <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
                       <li><Link to="/jobs" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Join Us</Link></li>
@@ -166,7 +166,7 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
                     Features <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu">
+                    <ul className="nav_submenu" style={{height:"12rem",width:"17rem"}}>
                     <MediaQuery minDeviceWidth={1224}>
                         <li>
                         <Link to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
@@ -178,9 +178,9 @@ export class Header extends Component {
                         <li>
                         <Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
-                        {/*<li>
-                        <Link to="/how-it-works" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        How it works</Link></li>*/}
+                        <li>
+                        <Link to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        How it works</Link></li>
                         <li>
                         <Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
@@ -197,7 +197,7 @@ export class Header extends Component {
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Company <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu">
+                    <ul className="nav_submenu" style={{height:"10rem"}}>
                       <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
                       <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
                       <li><Link to="/jobs" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Join Us</Link></li>
