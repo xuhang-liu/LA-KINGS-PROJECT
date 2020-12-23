@@ -90,7 +90,7 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
                     Features <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu" style={{height:"12rem",width:"17rem"}}>
+                    <ul className="nav_submenu" style={{height:"14.6rem",width:"18rem"}}>
                     <MediaQuery minDeviceWidth={1224}>
                         <li>
                         <Link to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
@@ -108,14 +108,12 @@ export class Header extends Component {
                         <li>
                         <Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
+                        <li>
+                        <Link to="/pricing" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Pricing</Link></li>
                     </ul>
                   </span>
                 </a>
-              </li>
-              <li className="nav-item">
-                <Link to="/pricing" className="nav-link text-white navbar-font">
-                  <span className="header-text">Pricing</span>
-                </Link>
               </li>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
@@ -166,7 +164,7 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
                     Features <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu" style={{height:"12rem",width:"17rem"}}>
+                    <ul className="nav_submenu" style={{height:"14.6rem",width:"18rem"}}>
                     <MediaQuery minDeviceWidth={1224}>
                         <li>
                         <Link to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
@@ -184,13 +182,11 @@ export class Header extends Component {
                         <li>
                         <Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
+                        <li>
+                        <Link to="/pricing" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Pricing</Link></li>
                     </ul>
                   </span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/pricing" className="nav-link text-white navbar-font">
-                <span className="header-text">Pricing</span>
                 </a>
               </li>
               <li className="nav-item">

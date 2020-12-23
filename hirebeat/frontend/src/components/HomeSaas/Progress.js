@@ -17,7 +17,7 @@ class Progress extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/progress1.png" alt="Progress figure" />
                             </div>
                             <div className="justify-items">
-                                <p className="section-txt1" style={{lineHeight:"36px"}}>
+                                <p className="section-txt1" style={{lineHeight:"36px", marginTop:"0.5rem"}}>
                                     <span className="section-txt2">82%</span> of companies already <br />
                                     use virtual interview screening <br />
                                     and AI analysis in hiring process
@@ -27,7 +27,7 @@ class Progress extends Component {
 
                         <div className="col-lg-4 col-md-4">
                             <div className="justify-items">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/progress2.png" alt="Progress figure" />
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/chart2.png" alt="Progress figure" />
                             </div>
                             <div className="justify-items">
                                 <p className="section-txt1" style={{lineHeight:"36px"}}>
@@ -40,7 +40,7 @@ class Progress extends Component {
 
                         <div className="col-lg-4 col-md-4">
                             <div className="justify-items">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/progress3.png" alt="Progress figure" />
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/chart3.png" alt="Progress figure" />
                             </div>
                             <div className="justify-items">
                                 <p className="section-txt1" style={{lineHeight:"36px"}}>

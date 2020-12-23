@@ -38,6 +38,7 @@ class WhyUs extends Component {
                                         <a
                                             onClick={e => {e.preventDefault(); this.openModal()}}
                                             className="video-btn popup-youtube"
+                                            style={{top:"45%"}}
                                         >
                                             <i className="bx bx-play" style={{color:"white"}}></i>
                                         </a>
