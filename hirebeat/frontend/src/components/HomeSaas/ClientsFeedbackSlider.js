@@ -14,7 +14,6 @@ import user5 from '../../assets/user5.png';
 const options = {
     loop: true,
     nav: false,
-    dots: true,
     autoplayHoverPause: true,
     autoplay: false,
     margin: 30,
@@ -58,7 +57,7 @@ class ClientsFeedbackSlider extends Component {
             <section className="feedback-area pt-100" style={{paddingBottom:'2rem'}}>
                 <div className="container">
                     <div className="section-title">
-                        <h2>What's Our Clients Said About <span>HireBeat</span></h2>
+                        <h2>See What Our Customers Have to Say About <span>HireBeat</span></h2>
                     </div>
 
                     {this.state.display ? <OwlCarousel 
@@ -183,7 +182,7 @@ class ClientsFeedbackSlider extends Component {
 
             <ReactWOW animation='fadeInUp' delay='0.8s'>
                 <div className="contact-cta-box mwidth-1000">
-                    <h3>Join us and give a try</h3>
+                    <h3>JOIN TODAY AND SEE FOR YOURSELF!</h3>
                     <p>Let HireBeat be your secret weapon to ace your next interview</p>
 
                     <Link to="/register">

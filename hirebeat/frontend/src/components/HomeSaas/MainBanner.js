@@ -134,20 +134,23 @@ class MainBanner extends Component {
                                     <div className="col-lg-7 col-md-12">
                                         <div className="hero-content pl-6">
                                             <h1>All-in-one platform to land your next dream job</h1>
-                                            <p>Gain confidence and competence with AI-powered interview training and resume matching to boost your career path</p>
+                                            <p>HireBeat is the AI-powered interview training and resume optimization tool that helps you get hired</p>
                                             
                                             <div className="banner-btn">
                                                 <div className="d-flex">
-                                                    <a href={"/practice"}>
-                                                    <button className={"not-reviewed text-15"} style={{display: "inline-block",color: "white", "border-radius": "0.5rem", width: "11.125rem", "margin-right": "2.875rem", height: "2.475rem"}}>
-                                                        Practice Interview
-                                                    </button>
-                                                    </a>
-                                                    <a href={"/resume"}>
-                                                    <button className={"not-reviewed text-15"} style={{display: "inline-block", color: "white", width: "11.125rem", "border-radius": "0.5rem", height: "2.475rem"}}>
-                                                        Improve Resume
-                                                    </button>
-                                                    </a>
+                                                    <Link to="/practice">
+                                                        <a className="default-btn2" style={{color:"white", marginRight:"1rem", fontWeight:"600", fontsize:"18px", lineHeight:"25px"}}>
+                                                        Interview Practice
+                                                            <span></span>
+                                                        </a>
+                                                    </Link>
+
+                                                    <Link to="/resume">
+                                                        <a className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"18px", lineHeight:"25px"}}>
+                                                        Optimize Resume
+                                                            <span></span>
+                                                        </a>
+                                                    </Link>
                                                 </div>
                                             </div>
                                             {/*<a href="https://www.producthunt.com/posts/hirebeat-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hirebeat-2" target="_blank">*/}

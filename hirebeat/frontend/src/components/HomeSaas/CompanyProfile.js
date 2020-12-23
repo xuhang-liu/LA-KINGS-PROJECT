@@ -11,11 +11,13 @@ class CompanyProfile extends Component {
             <section className="features-area pt-100 pb-70 bg-f4f6fc">
                 <div className="container max-width-1290">
                     <div>
-                        <h2 className="section-title2">View Company Profile to Prepare</h2>
+                        <h2 className="section-title2">HireBeat Helps You Do Your Research</h2>
+                        <p className="section-txt4">We have insider information and important details you need to know when interviewing with top companies</p>
+                        <br/>
                     </div>
 
                     <OwlCarousel
-                        className="owl-carousel owl-theme"
+                        className="feedback-slides owl-carousel owl-theme"
                         {...options}
                     >
                         <div className="item">
@@ -241,7 +243,7 @@ class CompanyProfile extends Component {
                             </Link>
                         </div>
                     </OwlCarousel>
-                    <a href="/companydata" style={{color: "#13C4A1", marginLeft: "10rem"}}>Explore our company data-></a>
+                    <a href="/companydata" className="read-more" style={{color: "#13C4A1", marginLeft: "2rem", fontSize:"1rem", textDecoration:"none"}}>Explore our company data <i class="bx bx-right-arrow-alt"></i></a>
                 </div>
             </section>
         );
@@ -253,8 +255,9 @@ const options = {
     loop: true,
     margin: 10,
     autoplay:true,
-    autoplayTimeout:1000,
-    autoplayHoverPause:true
+    autoplayTimeout:2000,
+    autoplayHoverPause:true,
+    smartSpeed:250
 }
 
 

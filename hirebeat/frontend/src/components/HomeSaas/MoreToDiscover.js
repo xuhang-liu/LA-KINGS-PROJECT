@@ -206,7 +206,7 @@ class MoreToDiscover extends Component {
                         <ReactWOW animation='fadeInUp' delay='0.8s'>
                         <div className="contact-cta-box mwidth-1000">
                             <h3>Get ready to optimize your job hunting?</h3>
-                            <p>Sign up now for your free account.</p>
+                            <p>Sign up now for your free account</p>
 
                             <Link to="/register">
                             <a className="default-btn" style={{color:"white"}}>

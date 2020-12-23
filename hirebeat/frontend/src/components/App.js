@@ -35,6 +35,7 @@ import BlogDetail12 from "./blog/blog-details12";
 import BlogDetail13 from "./blog/blog-details13";
 import BlogDetail14 from "./blog/blog-details14";
 import BlogDetail15 from "./blog/blog-details15";
+import BlogDetail16 from "./blog/blog-details16";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -221,6 +222,7 @@ class App extends Component {
                 <Route exact path="/3-fastest-growing-jobs-you-might-not-know-about" component={BlogDetail13} />
                 <Route exact path="/why-do-you-want-to-work-here" component={BlogDetail14} />
                 <Route exact path="/top-3-jobs-you-should-apply-for-finance-major" component={BlogDetail15} />
+                <Route exact path="/10-tips-to-deal-with-job-hunting-stress" component={BlogDetail16} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />

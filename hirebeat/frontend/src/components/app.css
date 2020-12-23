@@ -756,7 +756,7 @@ h5 {
   color: #ffffff;
   font-family: Avenir Next, Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.2rem;
   -webkit-transition: 0s;
   transition: 0s;
 }
@@ -784,13 +784,13 @@ h5 {
   position: absolute;
   text-align: left;
   border: none;
-  width: 15rem;
+  width: 14rem;
   z-index: 99;
   display: block;
   visibility: hidden;
   border-radius: 0;
   font-size: x-large;
-  font-weight: 500;
+  font-weight: 600;
   font-family: 'Avenir Next';
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -1707,7 +1707,8 @@ color: #080A3C;
   color: #56a3fa;
   font-family:"Avenir Next";
   font-weight: 500;
-  font-size: 15px;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .header-dropdown-custom:hover {

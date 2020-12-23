@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MainBanner from '../HomeSaas/MainBanner';
-import Features from '../HomeSaas/Features';
+//import Features from '../HomeSaas/Features';
 //import FeaturedFeature from '../HomeSaas/FeaturedFeature';
 import ClientsFeedbackSlider from '../HomeSaas/ClientsFeedbackSlider';
 //import MoreToDiscover from '../HomeSaas/MoreToDiscover';
