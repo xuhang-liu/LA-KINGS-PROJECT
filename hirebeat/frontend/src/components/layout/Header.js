@@ -147,7 +147,7 @@ export class Header extends Component {
             </li>
             <li className="nav-item">
             <Link to="/register">
-            <a className="default-btn" style={{color:"white"}}>
+            <a className="default-btn" style={{color:"white", backgroundColor:"#ff612f"}}>
               <i className="bx bxs-hot"></i>Sign Up <span></span>
             </a>
             </Link>
