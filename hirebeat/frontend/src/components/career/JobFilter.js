@@ -35,11 +35,11 @@ export class JobFilter extends Component {
                 <div className="row career-search">
                     <div className="col-5 career-bg" style={{marginLeft: "5%"}} >
                         <label className="career-txt1" style={{margin: "0rem"}}><i className="bx bxs-user" style={{color: "#67A3F3"}}></i></label>
-                        <input id="what" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeholder="Job title, keywords, or company"></input>
+                        <input id="what" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} value={this.props.jobTitle}></input>
                     </div>
                     <div className="col-5 career-bg" style={{marginLeft: "2rem"}}>
                         <label className="career-txt1" style={{margin: "0rem"}}><i className="bx bxs-city" style={{color: "#67A3F3"}}></i></label>
-                        <input id="where" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeholder="Location or Remote"></input>
+                        <input id="where" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} value={this.props.location}></input>
                     </div>
                 </div>
                 <div className="row career-search">

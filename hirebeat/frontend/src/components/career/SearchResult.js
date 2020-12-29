@@ -8,9 +8,13 @@ import JobFilter from "./JobFilter";
 export class SearchResult extends Component {
     // data passed from job search page
     zpJobs = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["zpJobs"];
+    jobTitle = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["jobTitle"];
+    location = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["location"];
 
     state = {
         zpJobs: this.zpJobs == null ? null : this.zpJobs,
+        jobTitle: this.jobTitle == null ? "Job title, keywords, or company" : this.jobTitle,
+        location: this.location == null ? "Location or Remote" : this.location,
         show: false,
     }
 
@@ -49,11 +53,11 @@ export class SearchResult extends Component {
                 <div className="row career-search" >
                     <div className="col-4 career-bg" >
                         <label className="career-txt1" style={{margin: "0rem"}}>What?</label>
-                        <input id="what" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeholder="Job title, keywords, or company"></input>
+                        <input id="what" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeholder={this.state.jobTitle}></input>
                     </div>
                     <div className="col-4 career-bg" style={{marginLeft: "2rem"}}>
                         <label className="career-txt1" style={{margin: "0rem"}}>Where?</label>
-                        <input id="where" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeholder="Location or Remote"></input>
+                        <input id="where" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeholder={this.state.location}></input>
                     </div>
                     <div className="col-1">
                         <button
@@ -129,6 +133,8 @@ export class SearchResult extends Component {
                 <MyVerticallyCenteredModal
                     show={this.state.show}
                     onHide={this.hideFilter}
+                    jobTitle={this.state.jobTitle}
+                    location={this.state.location}
                 />
             </React.Fragment>
         );
@@ -166,10 +172,10 @@ const JobCard = (props) => {
 }
 
 function MyVerticallyCenteredModal(props) {
-    const { ...rest } = props;
+    const { jobTitle, location, ...rest } = props;
     return (
         <MyModal {...rest}>
-            <JobFilter />
+            <JobFilter jobTitle={jobTitle} location={location} />
         </MyModal>
     );
 };
