@@ -87,22 +87,22 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
-    "/10-tips-to-deal-with-job-hunting-stress",
-    "/top-3-jobs-you-should-apply-for-finance-major",
-    "/why-do-you-want-to-work-here",
-    "/3-fastest-growing-jobs-you-might-not-know-about",
-    "/how-to-answer-what-is-your-weakness-question-in-an-interview",
-    "/guidelines-on-how-to-answer-what-is-your-biggest-strength",
-    "/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview",
-    "/tips-for-getting-your-resume-past-an-applicant-tracking-system",
-    "/keywords-to-include-on-a-resume",
-    "/how-to-write-a-thank-you-email-after-a-job-interview",
-    "/4-common-interview-questions-and-how-to-answer-them",
-    "/things-to-do-before-an-interview",
-    "/questions-to-ask-at-career-fairs",
-    "/how-to-prepare-for-an-AI-interview",
-    "/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job",
-    "/video-interview-practice",
+    "/blog-10-tips-to-deal-with-job-hunting-stress",
+    "/blog-top-3-jobs-you-should-apply-for-finance-major",
+    "/blog-why-do-you-want-to-work-here",
+    "/blog-3-fastest-growing-jobs-you-might-not-know-about",
+    "/blog-how-to-answer-what-is-your-weakness-question-in-an-interview",
+    "/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength",
+    "/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview",
+    "/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system",
+    "/blog-keywords-to-include-on-a-resume",
+    "/blog-how-to-write-a-thank-you-email-after-a-job-interview",
+    "/blog-4-common-interview-questions-and-how-to-answer-them",
+    "/blog-things-to-do-before-an-interview",
+    "/blog-questions-to-ask-at-career-fairs",
+    "/blog-how-to-prepare-for-an-AI-interview",
+    "/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job",
+    "/blog-video-interview-practice",
 ];
 
 const blogImgs = [

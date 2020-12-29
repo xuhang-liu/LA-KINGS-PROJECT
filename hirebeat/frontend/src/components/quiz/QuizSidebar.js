@@ -24,7 +24,7 @@ class QuizSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
-                        <Link to="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
+                        <Link to="/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog10.jpg" alt="image"/>
                             </a>
@@ -32,7 +32,7 @@ class QuizSidebar extends Component {
                         <div className="info">
                             <time>Nov 10, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
+                                <Link to="/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
                                     <a>"Where Do You To See Yourself In 5 Years"</a>
                                 </Link>
                             </h4>
@@ -41,7 +41,7 @@ class QuizSidebar extends Component {
                     </article>
 
                     <article className="item">
-                        <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
+                        <Link to="/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog9.jpg" alt="image"/>
                             </a>
@@ -49,7 +49,7 @@ class QuizSidebar extends Component {
                         <div className="info">
                             <time>Nov 02, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/tips-for-getting-your-resume-past-an-applicant-tracking-system">
+                                <Link to="/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system">
                                     <a>Tips for Getting Your Resume Past an Applicant Tracking System</a>
                                 </Link>
                             </h4>
@@ -58,7 +58,7 @@ class QuizSidebar extends Component {
                     </article>
 
                     <article className="item">
-                        <Link to="/keywords-to-include-on-a-resume">
+                        <Link to="/blog-keywords-to-include-on-a-resume">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog8.jpg" alt="image"/>
                             </a>
@@ -66,7 +66,7 @@ class QuizSidebar extends Component {
                         <div className="info">
                             <time>Oct 26, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/keywords-to-include-on-a-resume">
+                                <Link to="/blog-keywords-to-include-on-a-resume">
                                     <a>Keywords to Include on A Resume</a>
                                 </Link>
                             </h4>
@@ -75,7 +75,7 @@ class QuizSidebar extends Component {
                     </article>
 
                     <article className="item">
-                        <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
+                        <Link to="/blog-how-to-write-a-thank-you-email-after-a-job-interview">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog7.jpg" alt="image"/>
                             </a>
@@ -83,7 +83,7 @@ class QuizSidebar extends Component {
                         <div className="info">
                             <time>Oct 19, 2020</time>
                             <h4 className="title usmall">
-                                <Link to="/how-to-write-a-thank-you-email-after-a-job-interview">
+                                <Link to="/blog-how-to-write-a-thank-you-email-after-a-job-interview">
                                     <a>How to Write a Thank-You Email</a>
                                 </Link>
                             </h4>

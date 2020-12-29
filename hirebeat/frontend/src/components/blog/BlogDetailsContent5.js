@@ -63,7 +63,7 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/things-to-do-before-an-interview"}
+                                        url={"https://hirebeat.co/blog-things-to-do-before-an-interview"}
                                         quote={"Things to Do Before an Interview"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
@@ -73,7 +73,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/things-to-do-before-an-interview"}
+                                           url={"https://hirebeat.co/blog-things-to-do-before-an-interview"}
                                            title={"Things to Do Before an Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -84,7 +84,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/things-to-do-before-an-interview"}
+                                            url={"https://hirebeat.co/blog-things-to-do-before-an-interview"}
                                             title={"Things to Do Before an Interview"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
@@ -94,7 +94,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/things-to-do-before-an-interview"}
+                                            url={"https://hirebeat.co/blog-things-to-do-before-an-interview"}
                                             title={"Things to Do Before an Interview"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>

@@ -103,7 +103,7 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/10-tips-to-deal-with-job-hunting-stress"}
+                                        url={"https://hirebeat.co/blog-10-tips-to-deal-with-job-hunting-stress"}
                                         quote={"10 Tips to Deal with Job Hunting Stress"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
@@ -113,7 +113,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/10-tips-to-deal-with-job-hunting-stress"}
+                                           url={"https://hirebeat.co/blog-10-tips-to-deal-with-job-hunting-stress"}
                                            title={"10 Tips to Deal with Job Hunting Stress"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -124,7 +124,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/10-tips-to-deal-with-job-hunting-stress"}
+                                            url={"https://hirebeat.co/blog-10-tips-to-deal-with-job-hunting-stress"}
                                             title={"10 Tips to Deal with Job Hunting Stress"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
@@ -134,7 +134,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/10-tips-to-deal-with-job-hunting-stress"}
+                                            url={"https://hirebeat.co/blog-10-tips-to-deal-with-job-hunting-stress"}
                                             title={"10 Tips to Deal with Job Hunting Stress"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>
