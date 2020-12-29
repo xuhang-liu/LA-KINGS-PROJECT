@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
 import { connect } from "react-redux";
 import { getZipRecruiterJobs } from "../../redux/actions/auth_actions";
+import { MyModal } from "./../dashboard/DashboardComponents";
+import JobFilter from "./JobFilter";
 
 export class SearchResult extends Component {
     // data passed from job search page
@@ -9,6 +11,7 @@ export class SearchResult extends Component {
 
     state = {
         zpJobs: this.zpJobs == null ? null : this.zpJobs,
+        show: false,
     }
 
     componentDidUpdate(prevProps){
@@ -17,7 +20,6 @@ export class SearchResult extends Component {
             this.setState({
               zpJobs: this.props.zpJobs,
             });
-            console.log(this.props.zpJobs);
         }
      }
 
@@ -27,6 +29,18 @@ export class SearchResult extends Component {
         let location = document.getElementById("where").value;
         // fetch data from ZipRecruiter API
         this.props.getZipRecruiterJobs(search, location);
+    }
+
+    showFilter = () => {
+        this.setState({
+            show: true
+        });
+    }
+
+    hideFilter = () => {
+        this.setState({
+            show: false
+        });
     }
 
     render() {
@@ -53,7 +67,18 @@ export class SearchResult extends Component {
                         </button>
                     </div>
                 </div>
-                <div className="row" style={{width: "90%", paddingBottom: "10%", margin: "auto", marginTop: "5rem"}}>
+                <div className="row" style={{marginTop: "3rem"}}>
+                    <div className="col-1" style={{marginLeft: "10rem"}}>
+                        <button
+                            className="filter-btn"
+                            onClick={this.showFilter}
+                        >
+                            <i className="bx bx-filter bx-md"></i>
+                            Show filters
+                        </button>
+                    </div>
+                </div>
+                <div className="row" style={{width: "90%", paddingBottom: "10%", margin: "auto", marginTop: "2rem"}}>
                     <div className="col-8">
                     {
                         this.state.zpJobs != null ? (
@@ -101,7 +126,10 @@ export class SearchResult extends Component {
                         </div>
                     </div>
                 </div>
-
+                <MyVerticallyCenteredModal
+                    show={this.state.show}
+                    onHide={this.hideFilter}
+                />
             </React.Fragment>
         );
     }
@@ -136,6 +164,15 @@ const JobCard = (props) => {
         </div>
     );
 }
+
+function MyVerticallyCenteredModal(props) {
+    const { ...rest } = props;
+    return (
+        <MyModal {...rest}>
+            <JobFilter />
+        </MyModal>
+    );
+};
 
 const mapStateToProps = (state) => ({
     zpJobs: state.auth_reducer.zpJobs
