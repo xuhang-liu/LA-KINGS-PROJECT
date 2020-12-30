@@ -242,7 +242,7 @@ class CompanyProfile extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/vanguard.png" alt="Vanguard logo"/>
                             </Link>
                         </div>
-                        <div className="item">
+                        {/*<div className="item">
                             <Link to="/absa-group">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/absa.png" alt="Absa logo"/>
                             </Link>
@@ -251,7 +251,7 @@ class CompanyProfile extends Component {
                             <Link to="/abu-dhabi-islamic-bank">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/ADIB.png" alt="ADIB logo"/>
                             </Link>
-                        </div>
+                        </div>*/}
                         <div className="item">
                             <Link to="/amazon">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/amazon.png" alt="Amazon logo"/>

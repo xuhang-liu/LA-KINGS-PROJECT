@@ -285,7 +285,7 @@ class CompanyList extends Component {
                                 </Link>
                             </div>
 
-                            <div className="single-clients-logo">
+                            {/*<div className="single-clients-logo">
                                 <Link to="/absa-group">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/absa.png" alt="Absa logo"/>
                                 </Link>
@@ -295,7 +295,7 @@ class CompanyList extends Component {
                                 <Link to="/abu-dhabi-islamic-bank">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/ADIB.png" alt="ADIB logo"/>
                                 </Link>
-                            </div>
+                            </div>*/}
 
                             <div className="single-clients-logo">
                                 <Link to="/amazon">
