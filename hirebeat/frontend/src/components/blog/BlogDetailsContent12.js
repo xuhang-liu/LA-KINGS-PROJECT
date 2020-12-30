@@ -79,7 +79,7 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/how-to-answer-what-is-your-weakness-question-in-an-interview"}
+                                        url={"https://hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview"}
                                         quote={"How To Answer 'What Is Your Weakness' Question In An Interview"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
@@ -89,7 +89,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/how-to-answer-what-is-your-weakness-question-in-an-interview"}
+                                           url={"https://hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview"}
                                            title={"How To Answer 'What Is Your Weakness' Question In An Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -100,7 +100,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/how-to-answer-what-is-your-weakness-question-in-an-interview"}
+                                            url={"https://hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview"}
                                             title={"How To Answer 'What Is Your Weakness' Question In An Interview"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
@@ -110,7 +110,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/how-to-answer-what-is-your-weakness-question-in-an-interview"}
+                                            url={"https://hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview"}
                                             title={"How To Answer 'What Is Your Weakness' Question In An Interview"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>

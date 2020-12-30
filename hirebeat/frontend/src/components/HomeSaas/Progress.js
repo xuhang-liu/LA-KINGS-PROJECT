@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactWOW from 'react-wow';
+//import ReactWOW from 'react-wow';
 
 
 class Progress extends Component {
@@ -14,7 +14,7 @@ class Progress extends Component {
                     <div className="row" style={{width: "80%", margin: "auto"}}>
                         <div className="col-lg-4 col-md-4">
                             <div className="justify-items   ">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/progress1.png" alt="Progress figure" />
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/c1.png" alt="Progress figure" />
                             </div>
                             <div className="justify-items">
                                 <p className="section-txt1" style={{lineHeight:"36px", marginTop:"0.5rem"}}>
@@ -27,12 +27,12 @@ class Progress extends Component {
 
                         <div className="col-lg-4 col-md-4">
                             <div className="justify-items">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/chart2.png" alt="Progress figure" />
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/c2.png" alt="Progress figure" />
                             </div>
                             <div className="justify-items">
-                                <p className="section-txt1" style={{lineHeight:"36px"}}>
+                                <p className="section-txt1" style={{lineHeight:"36px", marginTop:"0.5rem"}}>
                                     HireBeat saves job seeker <br />
-                                    more than <span className="section-txt2" style={{color: "#13C4A1"}}>68%</span> of <br />
+                                    more than <span className="section-txt2">68%</span> of <br />
                                     interview preparation time
                                 </p>
                             </div>
@@ -40,13 +40,13 @@ class Progress extends Component {
 
                         <div className="col-lg-4 col-md-4">
                             <div className="justify-items">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/chart3.png" alt="Progress figure" />
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/c3.png" alt="Progress figure" />
                             </div>
                             <div className="justify-items">
-                                <p className="section-txt1" style={{lineHeight:"36px"}}>
+                                <p className="section-txt1" style={{lineHeight:"36px", marginTop:"0.5rem"}}>
                                     Our users on average <br />
                                     increased their Resume <br />
-                                    competence by <span className="section-txt2" style={{color: "#FF6B00"}}>47%</span>
+                                    competence by <span className="section-txt2">47%</span>
                                 </p>
                             </div>
                         </div>

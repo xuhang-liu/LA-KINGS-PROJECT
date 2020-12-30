@@ -80,7 +80,7 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/3-fastest-growing-jobs-you-might-not-know-about"}
+                                        url={"https://hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about"}
                                         quote={"3 Fastest-growing Jobs You Might Not Know About"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
@@ -90,7 +90,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/3-fastest-growing-jobs-you-might-not-know-about"}
+                                           url={"https://hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about"}
                                            title={"3 Fastest-growing Jobs You Might Not Know About"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -101,7 +101,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/3-fastest-growing-jobs-you-might-not-know-about"}
+                                            url={"https://hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about"}
                                             title={"3 Fastest-growing Jobs You Might Not Know About"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
@@ -111,7 +111,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/3-fastest-growing-jobs-you-might-not-know-about"}
+                                            url={"https://hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about"}
                                             title={"3 Fastest-growing Jobs You Might Not Know About"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>

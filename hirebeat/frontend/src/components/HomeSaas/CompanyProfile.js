@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactWOW from 'react-wow';
+//import ReactWOW from 'react-wow';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';

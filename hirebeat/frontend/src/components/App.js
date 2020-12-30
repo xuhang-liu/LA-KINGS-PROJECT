@@ -212,22 +212,22 @@ class App extends Component {
                 <Route exact path="/company" component={about} />
                 <Route exact path="/howitworks" component={Howitworks} />
                 <Route exact path="/bloghome" component={bloggrid} />
-                <Route exact path="/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
-                <Route exact path="/video-interview-practice" component={BlogDetail2} />
-                <Route exact path="/how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
-                <Route exact path="/questions-to-ask-at-career-fairs" component={BlogDetail4} />
-                <Route exact path="/things-to-do-before-an-interview" component={BlogDetail5} />
-                <Route exact path="/4-common-interview-questions-and-how-to-answer-them" component={BlogDetail6} />
-                <Route exact path="/how-to-write-a-thank-you-email-after-a-job-interview" component={BlogDetail7} />
-                <Route exact path="/keywords-to-include-on-a-resume" component={BlogDetail8} />
-                <Route exact path="/tips-for-getting-your-resume-past-an-applicant-tracking-system" component={BlogDetail9} />
-                <Route exact path="/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview" component={BlogDetail10} />
-                <Route exact path="/guidelines-on-how-to-answer-what-is-your-biggest-strength" component={BlogDetail11} />
-                <Route exact path="/how-to-answer-what-is-your-weakness-question-in-an-interview" component={BlogDetail12} />
-                <Route exact path="/3-fastest-growing-jobs-you-might-not-know-about" component={BlogDetail13} />
-                <Route exact path="/why-do-you-want-to-work-here" component={BlogDetail14} />
-                <Route exact path="/top-3-jobs-you-should-apply-for-finance-major" component={BlogDetail15} />
-                <Route exact path="/10-tips-to-deal-with-job-hunting-stress" component={BlogDetail16} />
+                <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
+                <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
+                <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
+                <Route exact path="/blog-questions-to-ask-at-career-fairs" component={BlogDetail4} />
+                <Route exact path="/blog-things-to-do-before-an-interview" component={BlogDetail5} />
+                <Route exact path="/blog-4-common-interview-questions-and-how-to-answer-them" component={BlogDetail6} />
+                <Route exact path="/blog-how-to-write-a-thank-you-email-after-a-job-interview" component={BlogDetail7} />
+                <Route exact path="/blog-keywords-to-include-on-a-resume" component={BlogDetail8} />
+                <Route exact path="/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system" component={BlogDetail9} />
+                <Route exact path="/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview" component={BlogDetail10} />
+                <Route exact path="/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength" component={BlogDetail11} />
+                <Route exact path="/blog-how-to-answer-what-is-your-weakness-question-in-an-interview" component={BlogDetail12} />
+                <Route exact path="/blog-3-fastest-growing-jobs-you-might-not-know-about" component={BlogDetail13} />
+                <Route exact path="/blog-why-do-you-want-to-work-here" component={BlogDetail14} />
+                <Route exact path="/blog-top-3-jobs-you-should-apply-for-finance-major" component={BlogDetail15} />
+                <Route exact path="/blog-10-tips-to-deal-with-job-hunting-stress" component={BlogDetail16} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/upload" component={MyVideoUploader} />
