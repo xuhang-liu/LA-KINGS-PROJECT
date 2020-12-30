@@ -10,8 +10,8 @@ class MoreToDiscover extends Component {
             <section className="ptb-100">
                 <div className="container" id='i1'>
                     <div className="section-title">
-                        <h2 className="mb-2">More to Discover</h2>
-                        <p>We are transforming the way of career pivoting to improve job-hunting efficiency. Use our interview practicing and resume matching tools to impress recruiters in just a few clicks</p>
+                        <h2 className="mb-2">All You Need to Succeed in Your Job Application</h2>
+                        <p>We are transforming the way of career coaching to improve job-hunting efficiency. Use our interview practicing and resume matching tools to impress recruiters in just a few clicks</p>
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@ class MoreToDiscover extends Component {
 
                             <div className="col-lg-4 col-md-4">
                                 <div className="overview-content pl-3">
-                                    <span className="number">01</span>
+                                    <span className="number" style={{marginRight:'0.5rem'}}>01</span><p style={{color:"#56a3fa", display:"inline-block"}}>Interview Preparation</p>
                                     <h3>Practice/Simulate Modes</h3>
                                     <p>Choose your own set of questions and practice your customized interview</p>
                                     <ul>
@@ -58,7 +58,7 @@ class MoreToDiscover extends Component {
                             <div className="row align-items-center">
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <span className="number">02</span>
+                                        <span className="number" style={{marginRight:'0.5rem'}}>02</span><p style={{color:"#56a3fa", display:"inline-block"}}>Interview Preparation</p>
                                         <h3>Behavior/Technical Questions</h3>
                                         <p>Ace your interview skills for both behavioral and technical questions with our help</p>
                                         <ul>
@@ -101,9 +101,9 @@ class MoreToDiscover extends Component {
 
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <span className="number">03</span>
-                                        <h3>AI/Expert Analytics</h3>
-                                        <p>Get comprehensive feedback on your interview performance with our AI/expert analytics</p>
+                                        <span className="number" style={{marginRight:'0.5rem'}}>03</span><p style={{color:"#56a3fa", display:"inline-block"}}>Interview Preparation</p>
+                                        <h3>AI/Expert Feedback</h3>
+                                        <p>Get comprehensive analysis on your interview performance with our AI or expert review</p>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
@@ -132,13 +132,13 @@ class MoreToDiscover extends Component {
                             <div className="row align-items-center">
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <span className="number">04</span>
-                                        <h3>Optimize Resume Matching</h3>
+                                        <span className="number" style={{marginRight:'0.5rem'}}>04</span><p style={{color:"#56a3fa", display:"inline-block"}}>Resume Refine</p>
+                                        <h3>Resume Optimization</h3>
                                         <p>Optimize the matching rate between resume and target job based on AI suggestions on key words</p>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Matching rate
+                                                Key Word Matching
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
@@ -176,9 +176,9 @@ class MoreToDiscover extends Component {
 
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <span className="number">05</span>
+                                        <span className="number" style={{marginRight:'0.5rem'}}>05</span><p style={{color:"#56a3fa", display:"inline-block"}}>Career Resources</p>
                                         <h3>Top Companies Tips</h3>
-                                        <p>We provide recruitment data of popular companies to help you target dream job</p>
+                                        <p>We provide recruitment data of popular companies to help you target your dream job</p>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
@@ -205,8 +205,8 @@ class MoreToDiscover extends Component {
                     <div className="container">
                         <ReactWOW animation='fadeInUp' delay='0.8s'>
                         <div className="contact-cta-box mwidth-1000">
-                            <h3>Get ready to optimize your job hunting?</h3>
-                            <p>Sign up now for your free account</p>
+                            <h3>Join today and see for yourself</h3>
+                            <p>Let HireBeat be your secret weapon to ace your next interview</p>
 
                             <Link to="/register">
                             <a className="default-btn" style={{color:"white"}}>
