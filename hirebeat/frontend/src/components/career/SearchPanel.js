@@ -2,21 +2,48 @@ import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
 import { connect } from "react-redux";
 import { getZipRecruiterJobs } from "../../redux/actions/auth_actions";
+import { confirmAlert } from 'react-confirm-alert';
 
 export class SearchPanel extends Component {
 
+    state = {
+        jobTitle: "",
+        location: "",
+    }
+
     componentDidUpdate(prevProps){
-        // sync pass fetched data to search results page
-         if(prevProps.zpJobs !== this.props.zpJobs){
-             // redirect to result page
-             this.redirectToResults();
+        // validate search bar inputs
+        if (this.state.jobTitle == "" || this.state.location == "") {
+            this.alert();
+        }
+        // sync transmitting fetched data to search results page
+        else if(prevProps.zpJobs !== this.props.zpJobs){
+            // redirect to result page
+            this.redirectToResults();
         }
      }
+
+    alert = () => {
+        confirmAlert({
+            title: "Invalid Inputs",
+            message: "Please enter correct job title and location",
+            buttons: [
+                {
+                  label: 'Ok'
+                }
+            ]
+        });
+    }
 
     handleSearch = () => {
         // parse search bar inputs
         let search = document.getElementById("what").value;
         let location = document.getElementById("where").value;
+        // update states
+        this.setState({
+            jobTitle: search,
+            location: location,
+        })
         // fetch data from ZipRecruiter API
         this.props.getZipRecruiterJobs(search, location);
     }
@@ -25,7 +52,11 @@ export class SearchPanel extends Component {
         const { history } = this.props;
         if (history) history.push({
             pathname: "/career-details",
-            params: {zpJobs: this.props.zpJobs}
+            params: {
+                zpJobs: this.props.zpJobs,
+                jobTitle: this.state.jobTitle,
+                location: this.state.location,
+            }
         });
     }
 
@@ -39,11 +70,21 @@ export class SearchPanel extends Component {
                 <div className="row career-search">
                     <div className="col-4 career-bg" style={{marginLeft: "5%"}} >
                         <label className="career-txt1" style={{margin: "0rem"}}>What?</label>
-                        <input id="what" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeholder="Job title, keywords, or company"></input>
+                        <input
+                            id="what"
+                            type="text"
+                            style={{border: "none", width: "13rem", marginLeft: "0.5rem"}}
+                            placeholder="Job title, keywords, or company">
+                        </input>
                     </div>
                     <div className="col-4 career-bg" style={{marginLeft: "2rem"}}>
                         <label className="career-txt1" style={{margin: "0rem"}}>Where?</label>
-                        <input id="where" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeholder="Location or Remote"></input>
+                        <input
+                            id="where"
+                            type="text"
+                            style={{border: "none", width: "13rem", marginLeft: "0.5rem"}}
+                            placeholder="Location or Remote">
+                        </input>
                     </div>
                     <div className="col-1">
                         <button
