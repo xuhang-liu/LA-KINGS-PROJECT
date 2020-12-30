@@ -2319,6 +2319,14 @@ color: #080A3C;
   color: #67A3F3;
 }
 
+.career-txt8 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #090D3A
+}
+
 .career-search {
   width: 90%;
   margin: auto;
@@ -2365,4 +2373,17 @@ color: #080A3C;
   font-size: 1.25rem;
   text-align: center;
   color: #090D3A;
+}
+
+.filter-btn {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #13C4A1;
+  width: 9rem;
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
 }

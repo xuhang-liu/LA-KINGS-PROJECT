@@ -242,6 +242,31 @@ class CompanyProfile extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/vanguard.png" alt="Vanguard logo"/>
                             </Link>
                         </div>
+                        {/*<div className="item">
+                            <Link to="/absa-group">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/absa.png" alt="Absa logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/abu-dhabi-islamic-bank">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/ADIB.png" alt="ADIB logo"/>
+                            </Link>
+                        </div>*/}
+                        <div className="item">
+                            <Link to="/amazon">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/amazon.png" alt="Amazon logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/facebook">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/facebook.png" alt="Facebook logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/skandinaviska-enskilda-banken">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/SEB.png" alt="SEB logo"/>
+                            </Link>
+                        </div>
                     </OwlCarousel>
                     <a href="/companydata" className="read-more" style={{color: "#13C4A1", marginLeft: "2rem", fontSize:"1rem", textDecoration:"none"}}>Explore our company data <i class="bx bx-right-arrow-alt"></i></a>
                 </div>

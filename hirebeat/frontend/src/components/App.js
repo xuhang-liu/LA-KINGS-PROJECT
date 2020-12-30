@@ -89,6 +89,11 @@ import WFInfo from"./companyData/companies/WFInfo";
 import CharlesInfo from"./companyData/companies/CharlesInfo";
 import FIInfo from"./companyData/companies/FIInfo";
 import VanguardInfo from"./companyData/companies/VanguardInfo";
+import ABSAInfo from"./companyData/companies/ABSAInfo";
+import ADIBInfo from"./companyData/companies/ADIBInfo";
+import AmazonInfo from"./companyData/companies/AmazonInfo";
+import FBInfo from"./companyData/companies/FBInfo";
+import SEBInfo from"./companyData/companies/SEBInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -274,6 +279,11 @@ class App extends Component {
                 <Route exact path="/charles-schwab" component={CharlesInfo} />
                 <Route exact path="/fidelity-investments" component={FIInfo} />
                 <Route exact path="/vanguard" component={VanguardInfo} />
+                <Route exact path="/absa-group" component={ABSAInfo} />
+                <Route exact path="/abu-dhabi-islamic-bank" component={ADIBInfo} />
+                <Route exact path="/amazon" component={AmazonInfo} />
+                <Route exact path="/facebook" component={FBInfo} />
+                <Route exact path="/skandinaviska-enskilda-banken" component={SEBInfo} />
                 <Route exact path="/jobs" component={JobList} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
