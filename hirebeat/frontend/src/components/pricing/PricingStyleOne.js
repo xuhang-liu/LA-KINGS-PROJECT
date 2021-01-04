@@ -423,7 +423,7 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
-                                                <a className="default-btn" style={{color:"white"}}>
+                                                <a id="id-tifn1" className="default-btn" style={{color:"white"}}>
                                                     <i className="bx bxs-hot"></i> 
                                                     Try It Free Now
                                                     <span></span>
@@ -491,7 +491,7 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
-                                                <a className="default-btn" style={{color:"white"}}>
+                                                <a id="id-tifn2" className="default-btn" style={{color:"white"}}>
                                                     <i className="bx bxs-hot"></i> 
                                                     Try It Free Now
                                                     <span></span>
@@ -502,7 +502,7 @@ class PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white"}} onClick={this.handleYearUpgrade}>
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white"}} onClick={this.handleYearUpgrade}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Upgrade Now
                                                         <span></span>
@@ -559,7 +559,7 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
-                                                <a className="default-btn" style={{color:"white"}}>
+                                                <a id="id-tifn3" className="default-btn" style={{color:"white"}}>
                                                     <i className="bx bxs-hot"></i> 
                                                     Try It Free Now
                                                     <span></span>
@@ -625,7 +625,7 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
-                                                <a className="default-btn" style={{color:"white"}}>
+                                                <a id="id-tifn4" className="default-btn" style={{color:"white"}}>
                                                     <i className="bx bxs-hot"></i> 
                                                     Try It Free Now
                                                     <span></span>
@@ -636,7 +636,7 @@ class PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white"}} onClick={this.handleUpgrade}>
+                                                    <button id="id-tifn6" className="default-btn" style={{color:"white"}} onClick={this.handleUpgrade}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Upgrade Now
                                                         <span></span>

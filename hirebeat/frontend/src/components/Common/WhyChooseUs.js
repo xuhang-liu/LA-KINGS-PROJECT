@@ -48,6 +48,7 @@ class WhyChooseUs extends Component {
 
                             <Link href="#play-video">
                                 <a
+                                    id="id-video2"
                                     onClick={e => {e.preventDefault(); this.openModal()}}
                                     className="video-btn popup-youtube"
                                 > 
