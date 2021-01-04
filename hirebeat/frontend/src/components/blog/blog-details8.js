@@ -21,7 +21,7 @@ class BlogDetail8 extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – Keywords to Include on A Resume</title>
                     <meta name="description" CONTENT="Hiring managers look for words in resumes that show that a candidate is ideal for a role. Learn about the different keywords to include in your resume and what they mean."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/keywords-to-include-on-a-resume"/>
+                    <link rel="canonical" href="https://hirebeat.co/blog-keywords-to-include-on-a-resume"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

@@ -259,10 +259,59 @@ class CompanyList extends Component {
                                 </Link>
                             </div>
                         </div>
+
                         <div className="clients-logo-list align-items-center" style={{marginTop: "1rem"}}>
                             <div className="single-clients-logo">
                                 <Link to="/wells-fargo">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/WellsFargo.png" alt="Wells Fargo logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/charles-schwab">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/charles.png" alt="Charles Schwab logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/fidelity-investments">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/fidelity.png" alt="Fidelity logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/vanguard">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/vanguard.png" alt="Vanguard logo"/>
+                                </Link>
+                            </div>
+
+                            {/*<div className="single-clients-logo">
+                                <Link to="/absa-group">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/absa.png" alt="Absa logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/abu-dhabi-islamic-bank">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/ADIB.png" alt="ADIB logo"/>
+                                </Link>
+                            </div>*/}
+
+                            <div className="single-clients-logo">
+                                <Link to="/amazon">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/amazon.png" alt="Amazon logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/facebook">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/facebook.png" alt="Facebook logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/skandinaviska-enskilda-banken">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/SEB.png" alt="SEB logo"/>
                                 </Link>
                             </div>
                         </div>

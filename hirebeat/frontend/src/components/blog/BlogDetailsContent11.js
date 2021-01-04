@@ -88,7 +88,7 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/guidelines-on-how-to-answer-what-is-your-biggest-strength"}
+                                        url={"https://hirebeat.co/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength"}
                                         quote={"Guidelines on How to Answer 'What Is Your Biggest Strength' In An Interview with a List of Strength"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
@@ -98,7 +98,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/guidelines-on-how-to-answer-what-is-your-biggest-strength"}
+                                           url={"https://hirebeat.co/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength"}
                                            title={"Guidelines on How to Answer 'What Is Your Biggest Strength' In An Interview with a List of Strength"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -109,7 +109,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/guidelines-on-how-to-answer-what-is-your-biggest-strength"}
+                                            url={"https://hirebeat.co/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength"}
                                             title={"Guidelines on How to Answer 'What Is Your Biggest Strength' In An Interview with a List of Strength"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
@@ -119,7 +119,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/guidelines-on-how-to-answer-what-is-your-biggest-strength"}
+                                            url={"https://hirebeat.co/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength"}
                                             title={"Guidelines on How to Answer 'What Is Your Biggest Strength' In An Interview with a List of Strength"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>

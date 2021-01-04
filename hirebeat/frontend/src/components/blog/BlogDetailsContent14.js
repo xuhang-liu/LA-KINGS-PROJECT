@@ -77,7 +77,7 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/why-do-you-want-to-work-here"}
+                                        url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
                                         quote={"'Why do you want to work here?' Your Ultimate Interview Tips"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
@@ -87,7 +87,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/why-do-you-want-to-work-here"}
+                                           url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
                                            title={"'Why do you want to work here?' Your Ultimate Interview Tips"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -98,7 +98,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/why-do-you-want-to-work-here"}
+                                            url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
                                             title={"'Why do you want to work here?' Your Ultimate Interview Tips"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
@@ -108,7 +108,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/why-do-you-want-to-work-here"}
+                                            url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
                                             title={"'Why do you want to work here?' Your Ultimate Interview Tips"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>

@@ -58,8 +58,8 @@ body {
 }
 
 a {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 0s;
+  transition: 0s;
   color: #080a3c;
   text-decoration: none;
   outline: 0 !important;
@@ -114,7 +114,7 @@ img {
 }
 
 .pb-100 {
-  padding-bottom: 30px;
+  padding-bottom: 80px;
 }
 
 .pt-70 {
@@ -135,6 +135,10 @@ img {
 
 .max-width-1290 {
   max-width: 1290px;
+}
+
+.max-width-1440 {
+  max-width: 1440px;
 }
 
 .blt-radius-0 {
@@ -227,6 +231,26 @@ p:last-child {
   padding-bottom: 13px;
 }
 
+.default-btn2 {
+  border: none;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+  color: #ffffff;
+  background-color: #ff612f;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
 .default-btn i {
   position: absolute;
   left: 25px;
@@ -262,6 +286,18 @@ p:last-child {
 }
 
 .default-btn:hover span, .default-btn:focus span {
+  width: 225%;
+  height: 562.5px;
+}
+
+.default-btn2:hover, .default-btn2:focus {
+  background-color: #080a3c;
+  color: #ffffff;
+  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+          box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+}
+
+.default-btn2:hover span, .default-btn2:focus span {
   width: 225%;
   height: 562.5px;
 }
@@ -2399,6 +2435,7 @@ Features Area CSS
 }
 
 .single-features-box h3 {
+  color:#090D3A;
   margin-bottom: 10px;
   font-size: 22px;
   font-weight: 600;
@@ -2501,6 +2538,12 @@ Features Area CSS
   display: inline-block;
 }
 
+.read-more {
+  margin-top: 5px;
+  color: #56a3fa;
+  display: inline-block;
+}
+
 .features-box .read-more i {
   color: #56a3fa;
   width: 0;
@@ -2516,16 +2559,20 @@ Features Area CSS
   letter-spacing: 1.1px;
 }
 
+.read-more:hover {
+  letter-spacing: 1.1px;
+}
+
 .col-lg-4:nth-child(1) .single-features-box .icon {
-  background-color: #ff612f;
+  background-color: #56A3FA;
 }
 
 .col-lg-4:nth-child(1) .single-features-box .icon::before {
-  border-color: #ff612f;
+  border-color: #56A3FA;
 }
 
 .col-lg-4:nth-child(1) .features-box .icon {
-  background-color: #ffd7cb;
+  background-color: #56A3FA;
   color: #ff612f;
 }
 
@@ -2534,20 +2581,20 @@ Features Area CSS
 }
 
 .col-lg-4:nth-child(1) .features-box:hover .icon {
-  background-color: #ff612f;
+  background-color: #56A3FA;
   color: #ffffff;
 }
 
 .col-lg-4:nth-child(3) .single-features-box .icon {
-  background-color: #080a3c;
+  background-color: #56A3FA;
 }
 
 .col-lg-4:nth-child(3) .single-features-box .icon::before {
-  border-color: #080a3c;
+  border-color: #56A3FA;
 }
 
 .col-lg-4:nth-child(3) .features-box .icon {
-  background-color: #b2b3c3;
+  background-color: #56A3FA;
   color: #080a3c;
 }
 
@@ -2556,20 +2603,20 @@ Features Area CSS
 }
 
 .col-lg-4:nth-child(3) .features-box:hover .icon {
-  background-color: #080a3c;
+  background-color: #56A3FA;
   color: #ffffff;
 }
 
 .col-lg-4:nth-child(4) .single-features-box .icon {
-  background-color: #fc4c86;
+  background-color: #56A3FA;
 }
 
 .col-lg-4:nth-child(4) .single-features-box .icon::before {
-  border-color: #fc4c86;
+  border-color: #56A3FA;
 }
 
 .col-lg-4:nth-child(4) .features-box .icon {
-  background-color: #fed2e1;
+  background-color: #56A3FA;
   color: #fc4c86;
 }
 
@@ -2578,51 +2625,51 @@ Features Area CSS
 }
 
 .col-lg-4:nth-child(4) .features-box:hover .icon {
-  background-color: #fc4c86;
+  background-color: #56A3FA;
   color: #ffffff;
 }
 
 .col-lg-4:nth-child(5) .single-features-box .icon {
-  background-color: #ffb300;
+  background-color: #56A3FA;
 }
 
 .col-lg-4:nth-child(5) .single-features-box .icon::before {
-  border-color: #ffb300;
+  border-color: #56A3FA;
 }
 
 .col-lg-4:nth-child(5) .features-box .icon {
-  background-color: #ffecbf;
-  color: #ffb300;
+  background-color: #56A3FA;
+  color: #56A3FA;
 }
 
 .col-lg-4:nth-child(5) .features-box .back-icon {
-  color: #ffb300;
+  color: #56A3FA;
 }
 
 .col-lg-4:nth-child(5) .features-box:hover .icon {
-  background-color: #ffb300;
+  background-color: #56A3FA;
   color: #ffffff;
 }
 
 .col-lg-4:nth-child(6) .single-features-box .icon {
-  background-color: #286efa;
+  background-color: #56A3FA;
 }
 
 .col-lg-4:nth-child(6) .single-features-box .icon::before {
-  border-color: #286efa;
+  border-color: #56A3FA;
 }
 
 .col-lg-4:nth-child(6) .features-box .icon {
-  background-color: #bcd2fd;
-  color: #286efa;
+  background-color: #56A3FA;
+  color: #56A3FA;
 }
 
 .col-lg-4:nth-child(6) .features-box .back-icon {
-  color: #286efa;
+  color: #56A3FA;
 }
 
 .col-lg-4:nth-child(6) .features-box:hover .icon {
-  background-color: #286efa;
+  background-color: #56A3FA;
   color: #ffffff;
 }
 
