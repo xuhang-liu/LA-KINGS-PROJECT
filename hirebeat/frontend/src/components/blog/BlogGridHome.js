@@ -87,24 +87,26 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
-    "/top-3-jobs-you-should-apply-for-finance-major",
-    "/why-do-you-want-to-work-here",
-    "/3-fastest-growing-jobs-you-might-not-know-about",
-    "/how-to-answer-what-is-your-weakness-question-in-an-interview",
-    "/guidelines-on-how-to-answer-what-is-your-biggest-strength",
-    "/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview",
-    "/tips-for-getting-your-resume-past-an-applicant-tracking-system",
-    "/keywords-to-include-on-a-resume",
-    "/how-to-write-a-thank-you-email-after-a-job-interview",
-    "/4-common-interview-questions-and-how-to-answer-them",
-    "/things-to-do-before-an-interview",
-    "/questions-to-ask-at-career-fairs",
-    "/how-to-prepare-for-an-AI-interview",
-    "/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job",
-    "/video-interview-practice",
+    "/blog-10-tips-to-deal-with-job-hunting-stress",
+    "/blog-top-3-jobs-you-should-apply-for-finance-major",
+    "/blog-why-do-you-want-to-work-here",
+    "/blog-3-fastest-growing-jobs-you-might-not-know-about",
+    "/blog-how-to-answer-what-is-your-weakness-question-in-an-interview",
+    "/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength",
+    "/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview",
+    "/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system",
+    "/blog-keywords-to-include-on-a-resume",
+    "/blog-how-to-write-a-thank-you-email-after-a-job-interview",
+    "/blog-4-common-interview-questions-and-how-to-answer-them",
+    "/blog-things-to-do-before-an-interview",
+    "/blog-questions-to-ask-at-career-fairs",
+    "/blog-how-to-prepare-for-an-AI-interview",
+    "/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job",
+    "/blog-video-interview-practice",
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog16.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog15.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog14.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog13.jpg",
@@ -123,6 +125,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Dec 23, 2020",
     "Dec 15, 2020",
     "Dec 08, 2020",
     "Dec 01, 2020",
@@ -141,6 +144,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "10 TIPS TO DEAL WITH JOB HUNTING STRESS",
     "TOP 3 JOBS YOU SHOULD APPLY FOR FINANCE MAJOR ",
     "WHY DO YOU WANT TO WORK HERE",
     "FASTEST-GROWING JOBS YOU MIGHT NOT KNOW ABOUT",

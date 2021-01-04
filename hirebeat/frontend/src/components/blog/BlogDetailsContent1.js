@@ -66,7 +66,7 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-details1"}
+                                        url={"https://hirebeat.co/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job"}
                                         quote={"Why video inteview practice platforms are essential for landing your dream job"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
@@ -76,7 +76,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-details1"}
+                                           url={"https://hirebeat.co/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job"}
                                            title={"Why video inteview practice platforms are essential for landing your dream job"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -87,7 +87,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job"}
+                                            url={"https://hirebeat.co/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job"}
                                             title={"Why video inteview practice platforms are essential for landing your dream job"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
@@ -97,7 +97,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job"}
+                                            url={"https://hirebeat.co/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job"}
                                             title={"Why video inteview practice platforms are essential for landing your dream job"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>

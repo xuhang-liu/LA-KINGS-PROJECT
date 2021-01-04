@@ -74,7 +74,7 @@ class BlogDetailsContent extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview"}
+                                        url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview"}
                                         quote={"How To Answer The Question 'Where Do You To See Yourself In 5 Years' In An Interview"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
@@ -84,7 +84,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview"}
+                                           url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview"}
                                            title={"How To Answer The Question 'Where Do You To See Yourself In 5 Years' In An Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -95,7 +95,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview"}
+                                            url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview"}
                                             title={"How To Answer The Question 'Where Do You To See Yourself In 5 Years' In An Interview"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
@@ -105,7 +105,7 @@ class BlogDetailsContent extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview"}
+                                            url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview"}
                                             title={"How To Answer The Question 'Where Do You To See Yourself In 5 Years' In An Interview"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>

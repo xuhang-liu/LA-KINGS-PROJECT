@@ -21,7 +21,7 @@ class BlogDetail10 extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – 3 Fastest-growing Jobs You Might Not Know About</title>
                     <meta name="description" CONTENT="Learn about the careers experiencing high growth in the job market for insight on the paths you should pursue."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/3-fastest-growing-jobs-you-might-not-know-about"/>
+                    <link rel="canonical" href="https://hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
