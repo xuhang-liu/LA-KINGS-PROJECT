@@ -71,18 +71,32 @@ export class SearchPanel extends Component {
                     <div className="col-4 career-bg" style={{marginLeft: "5%"}} >
                         <label className="career-txt1" style={{margin: "0rem"}}>What?</label>
                         <input
+                            className="form-control"
+                            style={{
+                                fontFamily: "Avenir Next",
+                                background: "#FFFFFF",
+                                borderRadius: "0.5rem",
+                                paddingLeft: "1rem",
+                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                              }}
                             id="what"
                             type="text"
-                            style={{border: "none", width: "13rem", marginLeft: "0.5rem"}}
                             placeholder="Job title, keywords, or company">
                         </input>
                     </div>
                     <div className="col-4 career-bg" style={{marginLeft: "2rem"}}>
                         <label className="career-txt1" style={{margin: "0rem"}}>Where?</label>
                         <input
+                            className="form-control"
+                            style={{
+                                fontFamily: "Avenir Next",
+                                background: "#FFFFFF",
+                                borderRadius: "0.5rem",
+                                paddingLeft: "1rem",
+                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                              }}
                             id="where"
                             type="text"
-                            style={{border: "none", width: "13rem", marginLeft: "0.5rem"}}
                             placeholder="Location or Remote">
                         </input>
                     </div>
@@ -98,7 +112,8 @@ export class SearchPanel extends Component {
                         </button>
                     </div>
                 </div>
-                <div className="row" style={{margin: "auto", width: "90%", paddingTop: "8%", paddingBottom: "10%"}}>
+                <div className="container">
+                <div className="row" style={{margin: "auto", width: "100.8%", paddingTop: "8%", paddingBottom: "10%"}}>
                     <div className="col" style={{marginLeft: "5%"}}>
                         <h3 className="career-h3">Want to prepare for top companies?</h3>
                         <p className="mode-col-text1">HireBeat have hiring up-to-date information of more than 30 companies.</p>
@@ -109,6 +124,7 @@ export class SearchPanel extends Component {
                         <p className="mode-col-text1">Your HireBeat profile tells companies your competence and lets you apply to any job you’re interested in.</p>
                         <p className="mode-col-text2"><a href="/register" style={{color: "#13C4A1"}}>Build profile-> </a></p>
                     </div>
+                </div>
                 </div>
             </React.Fragment>
         );

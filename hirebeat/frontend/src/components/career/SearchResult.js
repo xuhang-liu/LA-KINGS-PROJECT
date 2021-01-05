@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import PageTitleArea from '../Common/PageTitleArea';
+//import PageTitleArea from '../Common/PageTitleArea';
 import { connect } from "react-redux";
 import { getZipRecruiterJobs } from "../../redux/actions/auth_actions";
 import { MyModal } from "./../dashboard/DashboardComponents";
 import JobFilter from "./JobFilter";
 import ReactPaginate from 'react-paginate';
+import {Link} from "react-router-dom";
 
 export class SearchResult extends Component {
     // data passed from job search page
@@ -65,11 +66,35 @@ export class SearchResult extends Component {
                 <div className="row career-search" >
                     <div className="col-4 career-bg" >
                         <label className="career-txt1" style={{margin: "0rem"}}>What?</label>
-                        <input id="what" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeholder={this.state.jobTitle}></input>
+                        <input
+                            className="form-control"
+                            style={{
+                                fontFamily: "Avenir Next",
+                                background: "#FFFFFF",
+                                borderRadius: "0.5rem",
+                                paddingLeft: "1rem",
+                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                              }}
+                            id="what"
+                            type="text"
+                            placeholder={this.state.jobTitle}>
+                        </input>
                     </div>
                     <div className="col-4 career-bg" style={{marginLeft: "2rem"}}>
                         <label className="career-txt1" style={{margin: "0rem"}}>Where?</label>
-                        <input id="where" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeholder={this.state.location}></input>
+                        <input
+                            className="form-control"
+                            style={{
+                                fontFamily: "Avenir Next",
+                                background: "#FFFFFF",
+                                borderRadius: "0.5rem",
+                                paddingLeft: "1rem",
+                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                              }}
+                            id="where"
+                            type="text"
+                            placeholder={this.state.location}>
+                        </input>
                     </div>
                     <div className="col-1">
                         <button
@@ -123,8 +148,8 @@ export class SearchResult extends Component {
                     <div className="col-4">
                         <div>
                             <p className="career-txt2">View interview questions and prepare answers</p>
+                            <Link to="/practice">
                             <a
-                                href="/practice"
                                 className="default-btn"
                                 style={{color:"white", backgroundColor:"#FF6B00"}}
                             >
@@ -132,13 +157,14 @@ export class SearchResult extends Component {
                                  Practice Now
                                 <span></span>
                             </a>
+                            </Link>
                         </div>
                         <div style={{marginTop: "4rem"}}>
                             <p className="career-txt2">Improve your resume’s matching rate</p>
                             <a
                                 href="/resume"
                                 className="default-btn"
-                                style={{color:"white", backgroundColor:"#FF6B00"}}
+                                style={{color:"white", backgroundColor:"#FF6B00", textDecoration:"none"}}
                             >
                                 <i className="bx bxs-arrow-to-right"></i>
                                  Optimize Now

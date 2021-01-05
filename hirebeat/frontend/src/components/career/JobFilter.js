@@ -66,17 +66,41 @@ export class JobFilter extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="row career-search">
+                <div className="row career-search1">
                     <div className="col-5 career-bg" style={{marginLeft: "5%"}} >
                         <label className="career-txt1" style={{margin: "0rem"}}><i className="bx bxs-user" style={{color: "#67A3F3"}}></i></label>
-                        <input id="what" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeHolder={this.props.jobTitle}></input>
+                        <input
+                            className="form-control"
+                            style={{
+                                fontFamily: "Avenir Next",
+                                background: "#FFFFFF",
+                                borderRadius: "0.5rem",
+                                paddingLeft: "1rem",
+                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                              }}
+                            id="what"
+                            type="text"
+                            placeholder={this.props.jobTitle}>
+                        </input>
                     </div>
                     <div className="col-5 career-bg" style={{marginLeft: "2rem"}}>
                         <label className="career-txt1" style={{margin: "0rem"}}><i className="bx bxs-city" style={{color: "#67A3F3"}}></i></label>
-                        <input id="where" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeHolder={this.props.location}></input>
+                        <input
+                            className="form-control"
+                            style={{
+                                fontFamily: "Avenir Next",
+                                background: "#FFFFFF",
+                                borderRadius: "0.5rem",
+                                paddingLeft: "1rem",
+                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                              }}
+                            id="where"
+                            type="text"
+                            placeholder={this.props.location}>
+                        </input>
                     </div>
                 </div>
-                <div className="row career-search">
+                <div className="row career-search1">
                     <div className="col-5" style={{marginLeft: "5%"}} >
                         <h3 className="career-txt8">Job Types</h3>
                         <div className="career-txt2" style={{fontWeight: "normal"}}>
@@ -106,7 +130,7 @@ export class JobFilter extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="row career-search" style={{marginTop: "2rem"}}>
+                <div className="row career-search1" style={{marginTop: "2rem"}}>
                     <div className="col-5" style={{marginLeft: "5%"}}>
                         <h3 className="career-txt8">Salary</h3>
                         <div className="career-txt2" style={{fontWeight: "normal"}}>

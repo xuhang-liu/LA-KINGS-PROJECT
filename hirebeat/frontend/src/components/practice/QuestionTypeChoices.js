@@ -8,6 +8,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 import { connect } from "react-redux";
 import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
 import { confirmAlert } from 'react-confirm-alert';
+import PropTypes from "prop-types";
 //import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function ScrollToTopOnMount() {
@@ -19,6 +20,14 @@ function ScrollToTopOnMount() {
 }
 
 export class QuestionTypeChoices extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+  };
 
   redirectToRegister = () => {
       const { history } = this.props;
