@@ -525,7 +525,7 @@ export class EssentialUserInfo extends Component {
                         <Link to="/pricing">
                           <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}}>
                           <i className="bx bxs-hot"></i>
-                            Upgrade
+                            Upgrade 1
                             <span></span>
                           </a>
                         </Link>

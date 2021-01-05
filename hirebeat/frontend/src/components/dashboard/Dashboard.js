@@ -92,6 +92,22 @@ export class Dashboard extends Component {
         <ScrollToTopOnMount />
         {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
+          <div className="row no-gutters">
+            <div className='col-3'>
+              <div className='dashboard-sidebar'>
+                  the bar 
+              </div>
+              The bar
+            </div>
+            <div className='col-9'>
+              <div className="dashboard-main"> 
+                The main
+              </div>
+            </div>
+          </div>
+
+  
+          {/* comment out to rework the dashboard. 
           <DbRow>
             <div className="col-12" style={{padding:"0%"}}>
               <div className="page-title-area">
@@ -124,7 +140,7 @@ export class Dashboard extends Component {
               </div>
               <div className="col-11" style={{marginBottom:"auto", height:"auto", paddingBottom:'10%'}}>{this.renderSubpage()}</div>
             </DbCenterRow>
-          </div>
+          </div> */}
           </MediaQuery>
           {/*<MediaQuery maxDeviceWidth={1223}>
           <DbRow>
@@ -173,7 +189,7 @@ export class Dashboard extends Component {
               </a>
             </Link>
             </div>
-    </MediaQuery>
+            </MediaQuery>
       {/* </div> */}
       </React.Fragment>
     );
