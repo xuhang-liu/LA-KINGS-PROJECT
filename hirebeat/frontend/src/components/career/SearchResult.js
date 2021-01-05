@@ -164,7 +164,7 @@ export class SearchResult extends Component {
 const JobCard = (props) => {
     return (
         <div className="career-bg2" style={{paddingLeft: "2rem"}}>
-            <h3 className="career-txt3" style={{paddingTop: "2rem"}}>{props.jobTitle}</h3>
+            <a target="_blank" href={props.jobLink}><h3 className="career-txt3" style={{paddingTop: "2rem"}}>{props.jobTitle}</h3></a>
             <p className="career-txt4">{props.company} | {props.location}</p>
             <p className="career-txt2">{props.minSalary  == null ? null : "$ " + props.minSalary + " - "} {props.maxSalary  == null ? null : "$ " + props.maxSalary + " a year"}</p>
             {/*<div className="row">
@@ -179,7 +179,7 @@ const JobCard = (props) => {
                         target="_blank" rel="noopener noreferrer"
                         href={props.jobLink}
                         className="default-btn"
-                        style={{color:"white", backgroundColor:"#090D3A", paddingLeft: "1rem", paddingRight: "1rem", float: "right"}}
+                        style={{color:"white", backgroundColor:"#090D3A", paddingLeft: "1rem", paddingRight: "1rem", float: "right", textDecoration: "None"}}
                     >
                          Apply
                         <span></span>
@@ -197,6 +197,13 @@ const JobList = (props) => {
     return (
         <div>
             {jobs.map((j) => {
+                let jobDesc = j.snippet;
+                // exclude html tags in job description
+                jobDesc = jobDesc.replace(/<.*?>/ig,"");
+                // exclude space
+                jobDesc = jobDesc.replace(/&nbsp;/, "");
+                // the single quote
+                jobDesc = jobDesc.replace(/&#x27;/, "'");
                 return (
                     <JobCard
                         jobTitle={j.name}
@@ -204,7 +211,7 @@ const JobList = (props) => {
                         location={j.location}
                         minSalary={j.salary_min == null ? null : j.salary_min}
                         maxSalary={j.salary_max == null ? null : j.salary_max}
-                        jobDesc={j.snippet}
+                        jobDesc={jobDesc}
                         postDate={j.posted_time_friendly}
                         jobLink={j.url}
                     />
