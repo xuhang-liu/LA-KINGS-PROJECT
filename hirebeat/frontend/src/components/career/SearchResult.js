@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getZipRecruiterJobs } from "../../redux/actions/auth_actions";
 import { MyModal } from "./../dashboard/DashboardComponents";
 import JobFilter from "./JobFilter";
+import ReactPaginate from 'react-paginate';
 
 export class SearchResult extends Component {
     // data passed from job search page
@@ -16,7 +17,16 @@ export class SearchResult extends Component {
         jobTitle: this.jobTitle == null ? "Job title, keywords, or company" : this.jobTitle,
         location: this.location == null ? "Location or Remote" : this.location,
         show: false,
+        offset: 0,
+        perPage: 10,
     }
+
+    handlePageClick = (data) => {
+        let selected = data.selected;
+        let offset = Math.ceil(selected * this.state.perPage);
+
+        this.setState({ offset: offset });
+    };
 
     componentDidUpdate(prevProps){
         // sync data in current result page
@@ -32,7 +42,7 @@ export class SearchResult extends Component {
         let search = document.getElementById("what").value;
         let location = document.getElementById("where").value;
         // fetch data from ZipRecruiter API
-        this.props.getZipRecruiterJobs(search, location);
+        this.props.getZipRecruiterJobs(search, location, 30, 0);
     }
 
     showFilter = () => {
@@ -48,6 +58,8 @@ export class SearchResult extends Component {
     }
 
     render() {
+        let numOfJobs = this.zpJobs != null ? this.zpJobs.jobs.length : 0;
+        let pageCount = numOfJobs == 0 ? 0 : Math.ceil(numOfJobs / 10);
         return (
             <React.Fragment>
                 <div className="row career-search" >
@@ -72,7 +84,10 @@ export class SearchResult extends Component {
                     </div>
                 </div>
                 <div className="row" style={{marginTop: "3rem"}}>
-                    <div className="col-1" style={{marginLeft: "10rem"}}>
+                    <div className="col-2" style={{marginLeft: "10rem"}}>
+                        <p className="career-txt8">{numOfJobs} Results</p>
+                    </div>
+                    <div className="col-1">
                         <button
                             className="filter-btn"
                             onClick={this.showFilter}
@@ -86,20 +101,22 @@ export class SearchResult extends Component {
                     <div className="col-8">
                     {
                         this.state.zpJobs != null ? (
-                            this.state.zpJobs.jobs.map((j) => {
-                                return (
-                                    <JobCard
-                                        jobTitle={j.name}
-                                        company={j.hiring_company.name}
-                                        location={j.location}
-                                        minsalary={j.salary_min == null ? null : j.salary_min}
-                                        maxsalary={j.salary_max == null ? null : j.salary_max}
-                                        jobDesc={j.snippet}
-                                        postDate={j.posted_time_friendly}
-                                        jobLink={j.url}
-                                    />
-                                )
-                            })
+                            <div>
+                                <JobList jobs={this.state.zpJobs.jobs} offset={this.state.offset} />
+                                 <ReactPaginate
+                                     previousLabel={'previous'}
+                                     nextLabel={'next'}
+                                     breakLabel={'...'}
+                                     breakClassName={'break-me'}
+                                     pageCount={this.pageCount}
+                                     marginPagesDisplayed={2}
+                                     pageRangeDisplayed={5}
+                                     onPageChange={this.handlePageClick}
+                                     containerClassName={'pagination'}
+                                     subContainerClassName={'pages pagination'}
+                                     activeClassName={'active'}
+                                 />
+                            </div>
                         ) : null
                     }
                     </div>
@@ -135,6 +152,8 @@ export class SearchResult extends Component {
                     onHide={this.hideFilter}
                     jobTitle={this.state.jobTitle}
                     location={this.state.location}
+                    history={this.props}
+                    hidePage={this.hideFilter}
                 />
             </React.Fragment>
         );
@@ -171,11 +190,35 @@ const JobCard = (props) => {
     );
 }
 
+const JobList = (props) => {
+    // get current page jobs(10)
+    let index = props.offset; // start index at zpJobs array
+    let jobs = props.jobs.slice(index, index + 10); // each page has 10 jobs at most
+    return (
+        <div>
+            {jobs.map((j) => {
+                return (
+                    <JobCard
+                        jobTitle={j.name}
+                        company={j.hiring_company.name}
+                        location={j.location}
+                        minSalary={j.salary_min == null ? null : j.salary_min}
+                        maxSalary={j.salary_max == null ? null : j.salary_max}
+                        jobDesc={j.snippet}
+                        postDate={j.posted_time_friendly}
+                        jobLink={j.url}
+                    />
+                )
+            })}
+        </div>
+    );
+}
+
 function MyVerticallyCenteredModal(props) {
-    const { jobTitle, location, ...rest } = props;
+    const { jobTitle, location, history, hidePage, ...rest } = props;
     return (
         <MyModal {...rest}>
-            <JobFilter jobTitle={jobTitle} location={location} />
+            <JobFilter jobTitle={jobTitle} location={location} history={history} hidePage={hidePage} />
         </MyModal>
     );
 };

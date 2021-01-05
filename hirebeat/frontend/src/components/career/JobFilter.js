@@ -8,24 +8,58 @@ export class JobFilter extends Component {
     componentDidUpdate(prevProps){
         // sync pass fetched data to search results page
          if(prevProps.zpJobs !== this.props.zpJobs){
+             // hide filter modal
+             this.props.hidePage();
              // redirect to result page
              this.redirectToResults();
         }
      }
 
-    handleSearch = () => {
-        // parse search bar inputs
-        let search = document.getElementById("what").value;
-        let location = document.getElementById("where").value;
-        // fetch data from ZipRecruiter API
-        this.props.getZipRecruiterJobs(search, location);
+    handleFilter = () => {
+        // collect filter metrics
+        // search and location
+        let what = document.getElementById("what");
+        let where = document.getElementById("where")
+        let search = what.value == "" ? this.props.jobTitle : what.value;
+        let location = where.value == "" ? this.props.location : where.value;
+        // job type
+        let jobTypes = document.getElementsByClassName("jobType");
+        for (let i = 0; i < jobTypes.length; i++) {
+            if (jobTypes[i].checked == true) {
+                search += " " + jobTypes[i].value;
+            }
+        }
+        // post date
+        let postDate = 30; // default post date is within last month
+        let postDates = document.getElementsByClassName("postDate");
+        for (let i = 0; i < postDates.length; i++) {
+            if (postDates[i].checked == true) {
+                postDate = Number(postDates[i].value);
+                break;
+            }
+        }
+        // min salary
+        let salary = 0;
+        let salaries = document.getElementsByClassName("salary");
+        for (let i = 0; i < salaries.length; i++) {
+            if (salaries[i].checked == true) {
+                salary = Number(salaries[i].value);
+                break;
+            }
+        }
+        // get jobs from zipRecruiter API
+        this.props.getZipRecruiterJobs(search, location, postDate, salary);
     }
 
     redirectToResults = () => {
-        const { history } = this.props;
+        const { history } = this.props.history;
         if (history) history.push({
             pathname: "/career-details",
-            params: {zpJobs: this.props.zpJobs}
+            params: {
+                zpJobs: this.props.zpJobs,
+                jobTitle: this.props.jobTitle,
+                location: this.props.location,
+            }
         });
     }
 
@@ -35,76 +69,81 @@ export class JobFilter extends Component {
                 <div className="row career-search">
                     <div className="col-5 career-bg" style={{marginLeft: "5%"}} >
                         <label className="career-txt1" style={{margin: "0rem"}}><i className="bx bxs-user" style={{color: "#67A3F3"}}></i></label>
-                        <input id="what" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} value={this.props.jobTitle}></input>
+                        <input id="what" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeHolder={this.props.jobTitle}></input>
                     </div>
                     <div className="col-5 career-bg" style={{marginLeft: "2rem"}}>
                         <label className="career-txt1" style={{margin: "0rem"}}><i className="bx bxs-city" style={{color: "#67A3F3"}}></i></label>
-                        <input id="where" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} value={this.props.location}></input>
+                        <input id="where" type="text" style={{border: "none", width: "13rem", marginLeft: "0.5rem"}} placeHolder={this.props.location}></input>
                     </div>
                 </div>
                 <div className="row career-search">
                     <div className="col-5" style={{marginLeft: "5%"}} >
                         <h3 className="career-txt8">Job Types</h3>
-                        <input type="checkbox" id="fullTime" value="fullTime"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Full Time</label><br />
-                        <input type="checkbox" id="internship" value="internship"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Internship</label><br />
-                        <input type="checkbox" id="contract" value="contract"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Contract</label><br />
-                        <input type="checkbox" id="partTime" value="partTime"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Part Time</label><br />
-                        <input type="checkbox" id="temporary" value="temporary"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Temporary</label><br />
+                        <div className="career-txt2" style={{fontWeight: "normal"}}>
+                            <input className="jobType" type="checkbox" id="fullTime" value="full time"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Full Time</label><br />
+                            <input className="jobType" type="checkbox" id="internship" value="internship"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Internship</label><br />
+                            <input className="jobType" type="checkbox" id="contract" value="contract"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Contract</label><br />
+                            <input className="jobType" type="checkbox" id="partTime" value="part time"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Part Time</label><br />
+                            <input className="jobType" type="checkbox" id="temporary" value="temporary"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Temporary</label><br />
+                        </div>
                     </div>
-                    <div className="col-5" style={{marginLeft: "2rem"}}>
-                        <h3 className="career-txt8">Required Experience</h3>
-                        <input type="checkbox" id="internshipRequired" value="internshipRequired"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Internship</label><br />
-                        <input type="checkbox" id="entryLevel" value="entryLevel"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Entry Level</label><br />
-                        <input type="checkbox" id="midSeniorLevel" value="midSeniorLevel"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Mid Senior Level</label><br />
-                        <input type="checkbox" id="director" value="director"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Director</label><br />
-                        <input type="checkbox" id="executive" value="executive"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Executive</label><br />
+                    <div className="col-5" style={{marginLeft: "2rem"}} >
+                        <h3 className="career-txt8">Posted Time</h3>
+                        <div className="career-txt2" style={{fontWeight: "normal"}}>
+                            <input className="postDate" name="postDate" type="radio" id="lastWeek" value="7"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Last Week</label><br />
+                            <input className="postDate" name="postDate" type="radio" id="last2Weeks" value="14"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Last 2 Weeks</label><br />
+                            <input className="postDate" name="postDate" type="radio" id="lastMonth" value="30"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Last Month</label><br />
+                            <input className="postDate" name="postDate" type="radio" id="last3Months" value="90"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Last 3 Months</label><br />
+                        </div>
                     </div>
                 </div>
                 <div className="row career-search" style={{marginTop: "2rem"}}>
-                    <div className="col-5" style={{marginLeft: "5%"}} >
-                        <h3 className="career-txt8">Posted Time</h3>
-                        <input type="checkbox" id="lastWeek" value="lastWeek"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Last Week</label><br />
-                        <input type="checkbox" id="last2Weeks" value="last2Weeks"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Last 2 Weeks</label><br />
-                        <input type="checkbox" id="lastMonth" value="lastMonth"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Last Month</label><br />
-                        <input type="checkbox" id="last3Months" value="last3Months"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Last 3 Months</label><br />
-                    </div>
-                    <div className="col-5" style={{marginLeft: "2rem"}}>
+                    <div className="col-5" style={{marginLeft: "5%"}}>
                         <h3 className="career-txt8">Salary</h3>
-                        <input type="checkbox" id="salaryRange" value="salaryRange"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Salary Range</label><br />
-                        <input type="checkbox" id="noSalary" value="noSalary"></input>
-                        <label style={{marginLeft: "0.5rem"}}>Include jobs with no salary data</label><br />
+                        <div className="career-txt2" style={{fontWeight: "normal"}}>
+                            <input className="salary" name="salary" type="radio" id="50k" value="50000"></input>
+                            <label style={{marginLeft: "0.5rem"}}>50K-60K</label><br />
+                            <input className="salary" name="salary" type="radio" id="60k" value="60000"></input>
+                            <label style={{marginLeft: "0.5rem"}}>60K-70K</label><br />
+                            <input className="salary" name="salary" type="radio" id="70k" value="70000"></input>
+                            <label style={{marginLeft: "0.5rem"}}>70K-80K</label><br />
+                            <input className="salary" name="salary" type="radio" id="noSalary" value="0"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Any Salary</label><br />
+                        </div>
+                    </div>
+                    <div className="col-5" style={{marginLeft: "2rem", marginTop: "2rem"}}>
+                        <div className="career-txt2" style={{fontWeight: "normal"}}>
+                            <input className="salary" name="salary" type="radio" id="80k" value="80000"></input>
+                            <label style={{marginLeft: "0.5rem"}}>80K-90K</label><br />
+                            <input className="salary" name="salary" type="radio" id="90k" value="90000"></input>
+                            <label style={{marginLeft: "0.5rem"}}>90K-100K</label><br />
+                            <input className="salary" name="salary" type="radio" id="100k" value="100000"></input>
+                            <label style={{marginLeft: "0.5rem"}}>Above 100K</label><br />
+                        </div>
                     </div>
                 </div>
-                <div className="row career-search" style={{marginTop: "2rem", marginBottom: "2rem"}}>
-                    <div className="col-5" style={{display: "flex", alignItems: "center"}}>
+                <div className="row" style={{marginTop: "2rem", marginBottom: "2rem", justifyContent: "center"}}>
+                    {/*<div className="col-5" style={{display: "flex", alignItems: "center"}}>
                         <label className="career-txt8" style={{marginRight: "0.5rem"}}>Remote Only</label>
                         <input type="checkbox" id="remote" value="remote"></input>
-                    </div>
-                    <div className="col-5">
+                    </div>*/}
                         <button
-                            onClick={this.handleSearch}
+                            onClick={this.handleFilter}
                             className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A", padding: "0.8rem", float: "right"}}
+                            style={{color:"white", backgroundColor:"#090D3A", padding: "0.8rem"}}
                         >
                              View Results
                             <span></span>
                         </button>
-                    </div>
                 </div>
             </React.Fragment>
         );

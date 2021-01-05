@@ -45,7 +45,7 @@ export class SearchPanel extends Component {
             location: location,
         })
         // fetch data from ZipRecruiter API
-        this.props.getZipRecruiterJobs(search, location);
+        this.props.getZipRecruiterJobs(search, location, 30, 0);
     }
 
     redirectToResults = () => {
