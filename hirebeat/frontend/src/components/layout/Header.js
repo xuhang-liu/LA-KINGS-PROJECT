@@ -64,12 +64,12 @@ export class Header extends Component {
                     <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username}  ` : ""}
                     <ul className="nav_submenu"> 
                       <li>
-                      <Link to="/dashboard" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
+                      <Link id="id-dash" to="/dashboard" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
                         Dashboard
                       </Link>
                       </li>
                       <li>
-                      <Link to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
+                      <Link id="id-logout" to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
                         Log out
                       </Link>
                       </li>
@@ -91,24 +91,22 @@ export class Header extends Component {
                 <span className="header-text" style={{cursor:'pointer'}}>
                     Features <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"14.6rem",width:"18rem"}}>
-                    <MediaQuery minDeviceWidth={1224}>
                         <li>
                         <Link to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><i className="bx bx-video-recording" style={{color:"white", top:"0.5rem"}}></i></span>Interview Practice</Link></li>
                         <li>
                         <Link to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><i className="bx bx-file-find" style={{color:"white"}}></i></span>Resume Optimization</Link></li>
-                        </MediaQuery>
-                        <li>
+                        <li id="id-topcompany">
                         <Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
-                        <li>
+                        <li id="id-howitworks">
                         <Link to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         How it works</Link></li>
-                        <li>
+                        <li id="id-careerquiz">
                         <Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
-                        <li>
+                        <li id="id-pricing">
                         <Link to="/pricing" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Pricing</Link></li>
                     </ul>
@@ -120,10 +118,10 @@ export class Header extends Component {
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Company <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"10rem"}}>
-                      <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
-                      <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
-                      <li><Link to="/jobs" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Join Us</Link></li>
-                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                      <li id="id-aboutus"><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li id="id-contact"><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li id="id-joinus"><Link to="/jobs" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Join Us</Link></li>
+                      <li id="id-blog"><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
                     </ul>
                   </span>
                 </a>
@@ -140,14 +138,14 @@ export class Header extends Component {
           <ul className="navbar-nav d-flex flex-row order-xl-1">
           <li className="nav-item">
             <Link to="/login">
-              <a className="default-btn mr-3" style={{color:"white"}}>
+              <a className="default-btn mr-3" id="id-login" style={{color:"white"}}>
                 <i className="bx bx-log-in"></i> Log In <span></span>
               </a>
             </Link>
             </li>
             <li className="nav-item">
             <Link to="/register">
-            <a className="default-btn" style={{color:"white", backgroundColor:"#ff612f"}}>
+            <a className="default-btn" id="id-signup" style={{color:"white", backgroundColor:"#ff612f"}}>
               <i className="bx bxs-hot"></i>Sign Up <span></span>
             </a>
             </Link>
@@ -165,24 +163,22 @@ export class Header extends Component {
                 <span className="header-text" style={{cursor:'pointer'}}>
                     Features <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"14.6rem",width:"18rem"}}>
-                    <MediaQuery minDeviceWidth={1224}>
                         <li>
                         <Link to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><i className="bx bx-video-recording" style={{color:"white", top:"0.5rem"}}></i></span>Interview Practice</Link></li>
                         <li>
                         <Link to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><i className="bx bx-file-find" style={{color:"white"}}></i></span>Resume Optimization</Link></li>
-                        </MediaQuery>
-                        <li>
+                        <li id="id-topcompany1">
                         <Link to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
-                        <li>
+                        <li id="id-howitworks1">
                         <Link to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         How it works</Link></li>
-                        <li>
+                        <li id="id-careerquiz1">
                         <Link to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
-                        <li>
+                        <li id="id-pricing1">
                         <Link to="/pricing" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Pricing</Link></li>
                     </ul>
@@ -194,10 +190,10 @@ export class Header extends Component {
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Company <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"10rem"}}>
-                      <li><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
-                      <li><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
-                      <li><Link to="/jobs" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Join Us</Link></li>
-                      <li><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                      <li id="id-aboutus1"><Link to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li id="id-contact1"><Link to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li id="id-joinus1"><Link to="/jobs" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Join Us</Link></li>
+                      <li id="id-blog1"><Link to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
                     </ul>
                   </span>
                 </a>

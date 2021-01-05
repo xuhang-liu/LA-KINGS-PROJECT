@@ -15,7 +15,7 @@ class FreeTrialArea extends Component {
                         <p>Our AI-powered technology is customized to your needs and helps you prepare for you interview with REAL and ENGAGING questions.  We’ll help you evaluate, track and improve your responses so you’re prepared when the pressure is on</p>
 
                         <Link to="/register">
-                            <a className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>
+                            <a id="f-tff" className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>
                                 <i className="bx bxs-hot"></i> 
                                 Try For Free
                                 <span></span>
