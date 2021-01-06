@@ -186,7 +186,7 @@ class ClientsFeedbackSlider extends Component {
                     <p>Let HireBeat be your secret weapon to ace your next interview</p>
 
                     <Link to="/register">
-                        <a className="default-btn" style={{color:"white"}}>
+                        <a id="id-tff" className="default-btn" style={{color:"white"}}>
                             Try For Free
                             <span></span>
                         </a>
