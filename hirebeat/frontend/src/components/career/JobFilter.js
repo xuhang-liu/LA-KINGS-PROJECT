@@ -5,21 +5,38 @@ import { getZipRecruiterJobs } from "../../redux/actions/auth_actions";
 
 export class JobFilter extends Component {
 
+    state = {
+        checked: [],
+    }
+
     componentDidUpdate(prevProps){
         // sync pass fetched data to search results page
          if(prevProps.zpJobs !== this.props.zpJobs){
+            // log previous checked boxes
+//            let checkedBoxes = this.state.checked;
+//            if (checkedBoxes.length != 0) {
+//                for (let i = 0; i < checkedBoxes.length; i++) {
+//                    let element = document.getElementById(checkedBoxes[i]);
+//                    element.checked = true;
+//                    console.log(element.checked);
+//                }
+//            }
+
              // hide filter modal
-             this.props.hidePage();
+            this.props.hidePage();
+
              // redirect to result page
-             this.redirectToResults();
+             // this.redirectToResults();
         }
      }
 
     handleFilter = () => {
+        // collect checked boxes
+        let checked = [];
         // collect filter metrics
         // search and location
-        let what = document.getElementById("what");
-        let where = document.getElementById("where")
+        let what = document.getElementById("what2");
+        let where = document.getElementById("where2")
         let search = what.value == "" ? this.props.jobTitle : what.value;
         let location = where.value == "" ? this.props.location : where.value;
         // job type
@@ -27,6 +44,7 @@ export class JobFilter extends Component {
         for (let i = 0; i < jobTypes.length; i++) {
             if (jobTypes[i].checked == true) {
                 search += " " + jobTypes[i].value;
+                checked.push(jobTypes[i].id);
             }
         }
         // post date
@@ -35,6 +53,7 @@ export class JobFilter extends Component {
         for (let i = 0; i < postDates.length; i++) {
             if (postDates[i].checked == true) {
                 postDate = Number(postDates[i].value);
+                checked.push(postDates[i].id);
                 break;
             }
         }
@@ -44,9 +63,12 @@ export class JobFilter extends Component {
         for (let i = 0; i < salaries.length; i++) {
             if (salaries[i].checked == true) {
                 salary = Number(salaries[i].value);
+                checked.push(salaries[i].id);
                 break;
             }
         }
+        // update checked state
+        this.setState({checked: checked});
         // get jobs from zipRecruiter API
         this.props.getZipRecruiterJobs(search, location, postDate, salary);
     }
@@ -59,6 +81,7 @@ export class JobFilter extends Component {
                 zpJobs: this.props.zpJobs,
                 jobTitle: this.props.jobTitle,
                 location: this.props.location,
+                checked: this.state.checked,
             }
         });
     }
@@ -78,7 +101,7 @@ export class JobFilter extends Component {
                                 paddingLeft: "1rem",
                                 boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                               }}
-                            id="what"
+                            id="what2"
                             type="text"
                             placeholder={this.props.jobTitle}>
                         </input>
@@ -94,7 +117,7 @@ export class JobFilter extends Component {
                                 paddingLeft: "1rem",
                                 boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                               }}
-                            id="where"
+                            id="where2"
                             type="text"
                             placeholder={this.props.location}>
                         </input>
