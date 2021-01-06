@@ -166,6 +166,7 @@ class App extends Component {
                   path="/practice/modes"
                   component={BehaviorQuestionMode}
                 />
+
                 <PrivateRoute
                   exact
                   path="/practice/modes/practice"

@@ -8,13 +8,10 @@ import ClientsFeedbackSlider from '../HomeSaas/ClientsFeedbackSlider';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import Loader from '../shared/Loader';
 import { useEffect } from "react";
-<<<<<<< HEAD
 import AmazingFeatures from "../HomeSaas/AmazingFeatures"
-=======
 import Progress from '../HomeSaas/Progress';
 import WhyUs from '../HomeSaas/WhyUs';
 import CompanyProfile from '../HomeSaas/CompanyProfile';
->>>>>>> upstream/daniel
 
 function ScrollToTopOnMount() {
   useEffect(() => {
