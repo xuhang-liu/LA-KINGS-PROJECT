@@ -156,11 +156,13 @@ def get_user_fullname(request):
 
 @api_view(['GET'])
 def get_ziprecruiter_jobs(request):
-    url = 'https://api.ziprecruiter.com/jobs/v1?search={}&location={}&jobs_per_page={}&api_key={}'
+    url = 'https://api.ziprecruiter.com/jobs/v1?search={}&location={}&jobs_per_page={}&days_ago={}&refine_by_salary={}&api_key={}'
     search= request.query_params.get("search")
     location=request.query_params.get("location")
     jobs_per_page = 500
+    days_ago = request.query_params.get("days_ago")
+    refine_by_salary = request.query_params.get("refine_by_salary")
     api_key = os.getenv('REACT_APP_ZR_API_KEY')
-    data = requests.get(url.format(search, location, jobs_per_page, api_key)).json()
+    data = requests.get(url.format(search, location, jobs_per_page, days_ago, refine_by_salary, api_key)).json()
 
     return Response({"data": data})
