@@ -93,13 +93,18 @@ export class Dashboard extends Component {
         {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
           <div className="row no-gutters">
-            <div className='col-3'>
+            <div className='col-2'>
               <div className='dashboard-sidebar'>
-                  the bar 
+                <EssentialUserInfo
+                        userfullname={this.props.userfullname}
+                        user={this.props.user}
+                        profile={this.props.profile}
+                        updateProfile={this.props.updateProfile}
+                      />
               </div>
               The bar
             </div>
-            <div className='col-9'>
+            <div className='col-10'>
               <div className="dashboard-main"> 
                 The main
               </div>
@@ -142,40 +147,6 @@ export class Dashboard extends Component {
             </DbCenterRow>
           </div> */}
           </MediaQuery>
-          {/*<MediaQuery maxDeviceWidth={1223}>
-          <DbRow>
-            <div className="col-12" style={{padding:"0%"}}>
-              <div className="page-title-area">
-                <div className="container">
-                  <div className="page-title-content" style={{color:"#FFFFFF"}}>
-                    <EssentialUserInfo
-                      user={this.props.user}
-                      profile={this.props.profile}
-                      updateProfile={this.props.updateProfile}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </DbRow>
-          <br />
-          <br />
-          <div className="container" style={{marginBottom:"0%"}}>
-          <div style={{marginBottom:"auto"}}>
-                <ButtonPanel
-                  profile={this.props.profile}
-                  renderVideos={this.renderVideos}
-                  renderProfile={this.renderProfile}
-                  renderAnalytics={this.renderAnalytics}
-                  renderResume={this.renderResume}
-                  subpage={this.state.subpage}
-                />
-              </div>
-            <DbCenterRow>
-              <div id="subpage_scroll_overflow" style={{marginBottom:"auto", height:"38rem"}}>{this.renderSubpage()}</div>
-            </DbCenterRow>
-          </div>
-          </MediaQuery>*/}
           <MediaQuery maxDeviceWidth={1223}>
             <PageTitleArea
               pageTitle="Welcome to Hirebeat!"

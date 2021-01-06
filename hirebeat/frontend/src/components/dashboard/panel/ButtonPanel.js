@@ -115,15 +115,7 @@ function ButtonPanel(props) {
               <Link to="/pricing" style={{textDecoration: "none"}}>
                 <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
               </Link>
-              </div>
-{/* changes from Liam Reference */}
-            <div className="row justify-items">
-              <Link to="/pricing" style={{textDecoration: "none"}}>
-                <p style={{color:"#FF6B00", fontSize:"12px"}}>Refer friends to get more reviews</p>
-              </Link>
-            </div>
-              {/* Liam changes end */}
-            
+              </div>       
           </div>
       }
       </MediaQuery>

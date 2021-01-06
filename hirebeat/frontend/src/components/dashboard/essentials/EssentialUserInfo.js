@@ -221,92 +221,91 @@ export class EssentialUserInfo extends Component {
       <MediaQuery minDeviceWidth={1224}>
       <div className="container">
           <DbCenterRow>
-            {/* <div className="col-2">
-                <div className="row justify-content-center">
-                  <img
-                    style = {{width:"100px",
-                              height:"100px",
-                              objectFit:"cover"}}
-
-                    src={this.state.filePhoto}
-
-                    className = {"d-flex mb-2"}/>
-
-                </div>
-
-                <div className="row justify-content-center">
-                  <input
-                    style={{display:"none"}}
-                    type="file"
-                    onChange={this.upload}
-                    ref={fileInput => this.fileInput = fileInput}
-                  />
-
-                  <button
-                    type = "button"
-                    onClick={() => this.fileInput.click()}
-                    className = {"btn btn-sm"}
-                    style={{color: "#FFFFFF",
-                            fontSize: "0.8rem"
-                    }}
-                    >
-                  Upload Image
-                  </button>
-                </div>
-
-            </div> */}
-
-
-
             <div className="col-9">
-              <div className="row">
+              <div className="row" style={{marginTop:"20%"}}>
                 <div className="col d-flex align-items-center">
-                  <h1
+                  <h3
                     style={{
                       fontWeight: "bold",
                       marginRight: "0.8rem",
                     }}
                   >
                     {this.props.user.username}
-                  </h1>
+                  </h3>
                 </div>
               </div>
 
               <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
-                  <div className="col-12" style={{padding:"0%"}}>
-                    <div className="row">
-                      <div className="col-3">
                         <IconText
                           iconName={"bx bx-phone bx-sm"}
                           textDisplayed={this.props.profile.phone_number}
                           textSize={"15px"}
-                          textColor={"#FFFFFF"}
+                          textColor={"#0B3861"}
                           iconMargin={"3px"}
                         />
-                      </div>
-                      <div className="col-4">
+                </div>
+              </div>
+              <div className="row" style={{marginTop:"1%"}}>
+                <div className="col d-flex align-items-center">
                         <IconText
                           iconName={"bx bx-envelope bx-sm"}
                           textDisplayed={this.props.user.email}
                           textSize={"15px"}
-                          textColor={"#FFFFFF"}
+                          textColor={"#0B3861"}
                           iconMargin={"5px"}
                         />
-                      </div>
-                      <div className="col-3">
+                </div>
+              </div>
+              <div className="row" style={{marginTop:"1%"}}>
+                <div className="col d-flex align-items-center">
                         <IconText
                           iconName={"bx bx-location-plus bx-sm"}
                           textDisplayed={this.props.profile.location}
                           textSize={"15px"}
-                          textColor={"#FFFFFF"}
+                          textColor={"#0B3861"}
                           iconMargin={"3px"}
                         />
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
+
+              <div className="row" style={{marginTop:"1%"}}>
+                <div className="col d-flex align-items-center">
+                  <button
+                    type="button"
+                    className="panel-button"
+                    style={{outline: "none", margin:"1%"}}
+                  >
+                    <IconText
+                      textSize={"18px"}
+                      textDisplayed={"Practiced Interview"}
+                      iconName={"bx bx-slideshow 1 bx-md"}
+                      iconMargin={"4px"}
+                      textColor={"gray"}
+                    />
+                  </button>
+                </div>
+              </div>
+
+                         
+              <div className="row" style={{marginTop:"1%"}}>
+                <div className="col d-flex align-items-center">
+                  <button
+                    type="button"
+                    className="panel-button"
+                    style={{outline: "none", margin:"1%"}}
+                  >
+                    <IconText
+                      textSize={"18px"}
+                      textDisplayed={"Scanned Resume"}
+                      iconName={"bx bx-file 1 bx-md"}
+                      iconMargin={"4px"}
+                      textColor={"gray"}
+                    />
+                  </button>
+                </div>
+              </div>
+           
               {/* for premium user */}
               {
                 this.props.profile.plan_interval == "Premium" &&
@@ -437,15 +436,15 @@ export class EssentialUserInfo extends Component {
               this.props.profile.membership == "Regular" &&
               <div className="col-2">
                 <div className="row">
-                  <Link to="/pricing">
+                  {/* <Link to="/pricing">
                     <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}}>
                       <i className="bx bxs-hot"></i>
                         Upgrade
                         <span></span>
                     </a>
-                  </Link>
+                  </Link> */}
                 </div>
-
+{/* 
                 <div className="row" style={{marginTop:"8%"}}>
                   <Link>
                     <a 
@@ -459,9 +458,9 @@ export class EssentialUserInfo extends Component {
                         <span></span>
                     </a>
                   </Link>
-                </div>
+                </div> */}
 {/* Here is the change made: I have added another buttom as password editing*/}
-                {this.props.userfullname == "" &&
+                {/* {this.props.userfullname == "" &&
                 <div className="row" style={{marginTop:"8%"}}>
                   <Link>
                     <a 
@@ -475,27 +474,27 @@ export class EssentialUserInfo extends Component {
                         <span></span>
                     </a>
                   </Link>
-                </div>}
+                </div>} */}
 {/* Changes end here #################### Finished */}
               </div>
             }                
           </DbCenterRow>
-        <EditModal
+        {/* <EditModal
           show={this.state.show}
           location={this.state.location}
           phone_number={this.state.phone_number}
           saveChanges={this.saveChanges}
           handleInputChange={this.handleInputChange}
           hide={this.finishEditing}
-        />
+        /> */}
 
 {/* Making Changes Here */}
-        <PasswordChangingInterface
+        {/* <PasswordChangingInterface
           updateUserPassword={this.props.updateUserPassword}
           show={this.state.passwordChanging}
           hide={this.finishedPasswordChanging}
           user={this.props.user}
-        />
+        /> */}
 {/* Changes Ends here */}
 
 
