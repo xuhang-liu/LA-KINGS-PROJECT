@@ -79,6 +79,7 @@ export class SearchResult extends Component {
                         <input
                             className="form-control"
                             style={{
+                                fontSize: "1rem",
                                 fontFamily: "Avenir Next",
                                 background: "#FFFFFF",
                                 borderRadius: "0.5rem",
@@ -95,6 +96,7 @@ export class SearchResult extends Component {
                         <input
                             className="form-control"
                             style={{
+                                fontSize: "1rem",
                                 fontFamily: "Avenir Next",
                                 background: "#FFFFFF",
                                 borderRadius: "0.5rem",
@@ -225,7 +227,7 @@ export class SearchResult extends Component {
 
 const JobCard = (props) => {
     return (
-        <div className="career-bg2" style={{paddingLeft: "2rem"}}>
+        <div className="career-bg2" style={{paddingLeft: "2rem", marginBottom: "0.8rem"}}>
             <a target="_blank" href={props.jobLink}><h3 className="career-txt3" style={{paddingTop: "2rem"}}>{props.jobTitle}</h3></a>
             <p className="career-txt4">{props.company} | {props.location}</p>
             <p className="career-txt2">{props.minSalary  == null ? null : "$ " + props.minSalary + " - "} {props.maxSalary  == null ? null : "$ " + props.maxSalary}</p>

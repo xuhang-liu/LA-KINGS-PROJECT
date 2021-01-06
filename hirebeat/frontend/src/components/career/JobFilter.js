@@ -95,6 +95,7 @@ export class JobFilter extends Component {
                         <input
                             className="form-control"
                             style={{
+                                fontSize: "1rem",
                                 fontFamily: "Avenir Next",
                                 background: "#FFFFFF",
                                 borderRadius: "0.5rem",
@@ -111,6 +112,7 @@ export class JobFilter extends Component {
                         <input
                             className="form-control"
                             style={{
+                                fontSize: "1rem",
                                 fontFamily: "Avenir Next",
                                 background: "#FFFFFF",
                                 borderRadius: "0.5rem",
