@@ -13,7 +13,7 @@ export class SearchPanel extends Component {
 
     componentDidUpdate(prevProps){
         // validate search bar inputs
-        if (this.state.jobTitle == "" || this.state.location == "") {
+        if (this.state.jobTitle == "" && this.state.location == "") {
             this.alert();
         }
         // sync transmitting fetched data to search results page
@@ -65,7 +65,7 @@ export class SearchPanel extends Component {
             <React.Fragment>
                 <PageTitleArea
                     pageTitle="Find Your Dream Job"
-                    pageDescription="HireBeat helps you find exiting job opportunities and pivot your profile to stand out."
+                    pageDescription="HireBeat helps you find exciting job opportunities and pivot your profile to stand out."
                 />
                 <div className="row career-search">
                     <div className="col-4 career-bg" style={{marginLeft: "5%"}} >
@@ -82,7 +82,7 @@ export class SearchPanel extends Component {
                               }}
                             id="what"
                             type="text"
-                            placeholder="Job title, keywords, or company">
+                            placeholder="Job title, Skills, or Remote">
                         </input>
                     </div>
                     <div className="col-4 career-bg" style={{marginLeft: "2rem"}}>
@@ -99,7 +99,7 @@ export class SearchPanel extends Component {
                               }}
                             id="where"
                             type="text"
-                            placeholder="Location or Remote">
+                            placeholder="City, State, Zip">
                         </input>
                     </div>
                     <div className="col-1">
