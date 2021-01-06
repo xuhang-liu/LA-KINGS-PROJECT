@@ -96,6 +96,11 @@ import ADIBInfo from"./companyData/companies/ADIBInfo";
 import AmazonInfo from"./companyData/companies/AmazonInfo";
 import FBInfo from"./companyData/companies/FBInfo";
 import SEBInfo from"./companyData/companies/SEBInfo";
+import AllstateInfo from"./companyData/companies/AllstateInfo";
+import DeloitteInfo from"./companyData/companies/DeloitteInfo";
+import DeutscheBankInfo from"./companyData/companies/DeutscheBankInfo";
+import ErnstYoungInfo from"./companyData/companies/ErnstYoungInfo";
+import MerrillLynchInfo from"./companyData/companies/MerrillLynchInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -288,6 +293,11 @@ class App extends Component {
                 <Route exact path="/amazon" component={AmazonInfo} />
                 <Route exact path="/facebook" component={FBInfo} />
                 <Route exact path="/skandinaviska-enskilda-banken" component={SEBInfo} />
+                <Route exact path="/allstate" component={AllstateInfo} />
+                <Route exact path="/deloitte" component={DeloitteInfo} />
+                <Route exact path="/deutsche-bank" component={DeutscheBankInfo} />
+                <Route exact path="/ernst-young" component={ErnstYoungInfo} />
+                <Route exact path="/merrill-lynch" component={MerrillLynchInfo} />
                 <Route exact path="/jobs" component={JobList} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
