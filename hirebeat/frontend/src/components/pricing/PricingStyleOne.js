@@ -37,7 +37,11 @@ class PricingStyleOne extends Component {
             let user = {"id": this.props.user.id , "email": email2};
             this.props.updateUserEmail(user);
             // redirect to payment
-            this.handleClickCouponUpgrade2(email2);
+            if(this.state.coupon_match == 'PRODUCTHUNT2020' || this.state.coupon_match == 'DBCVIP' || this.state.coupon_match == 'BETALIST2020'){
+                this.handleClickCouponUpgrade2(email2);
+            }else if(this.state.coupon_match == 'DRNANCYLI'){
+                this.handleClickCouponUpgrade4(email2);
+            }
         }
     }
 
@@ -130,7 +134,7 @@ class PricingStyleOne extends Component {
     }
 
       handleCounponUpgrade = () => {
-        if(this.state.coupon_match != 'PRODUCTHUNT2020' && this.state.coupon_match != 'DBCVIP' && this.state.coupon_match != 'BETALIST2020'){
+        if(this.state.coupon_match != 'PRODUCTHUNT2020' && this.state.coupon_match != 'DBCVIP' && this.state.coupon_match != 'BETALIST2020' && this.state.coupon_match != 'DRNANCYLI'){
           confirmAlert({
             title: 'Enter A Valid Code',
             message: '',
@@ -143,7 +147,11 @@ class PricingStyleOne extends Component {
         }else if (this.props.user.email == "" || this.props.user.email == null) {
             this.addUserEmailCoupon();
         }else{
-          this.handleClickCouponUpgrade();
+            if(this.state.coupon_match == 'PRODUCTHUNT2020' || this.state.coupon_match == 'DBCVIP' || this.state.coupon_match == 'BETALIST2020'){
+                this.handleClickCouponUpgrade();
+            }else if(this.state.coupon_match == 'DRNANCYLI'){
+                this.handleClickCouponUpgrade3();
+            }
         }
         /*if(this.handleClickUpgrade()){
           var profile = this.makeProfile();
@@ -174,6 +182,40 @@ class PricingStyleOne extends Component {
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{
             price: 'price_1HRUQJKxU1MN2zWMo9p8tKjJ', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: email,
+        });
+        error.message;
+    };
+
+    handleClickCouponUpgrade3 = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1I3o3eKxU1MN2zWM2sNedHQ9', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
+    handleClickCouponUpgrade4 = async (email) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1I3o3eKxU1MN2zWM2sNedHQ9', // Replace with the ID of your price
             quantity: 1,
           }],
           mode: 'subscription',
@@ -381,7 +423,7 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
-                                                <a className="default-btn" style={{color:"white"}}>
+                                                <a id="id-tifn1" className="default-btn" style={{color:"white"}}>
                                                     <i className="bx bxs-hot"></i> 
                                                     Try It Free Now
                                                     <span></span>
@@ -449,7 +491,7 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
-                                                <a className="default-btn" style={{color:"white"}}>
+                                                <a id="id-tifn2" className="default-btn" style={{color:"white"}}>
                                                     <i className="bx bxs-hot"></i> 
                                                     Try It Free Now
                                                     <span></span>
@@ -460,7 +502,7 @@ class PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white"}} onClick={this.handleYearUpgrade}>
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white"}} onClick={this.handleYearUpgrade}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Upgrade Now
                                                         <span></span>
@@ -517,7 +559,7 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
-                                                <a className="default-btn" style={{color:"white"}}>
+                                                <a id="id-tifn3" className="default-btn" style={{color:"white"}}>
                                                     <i className="bx bxs-hot"></i> 
                                                     Try It Free Now
                                                     <span></span>
@@ -583,7 +625,7 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
-                                                <a className="default-btn" style={{color:"white"}}>
+                                                <a id="id-tifn4" className="default-btn" style={{color:"white"}}>
                                                     <i className="bx bxs-hot"></i> 
                                                     Try It Free Now
                                                     <span></span>
@@ -594,7 +636,7 @@ class PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white"}} onClick={this.handleUpgrade}>
+                                                    <button id="id-tifn6" className="default-btn" style={{color:"white"}} onClick={this.handleUpgrade}>
                                                         <i className="bx bxs-hot"></i> 
                                                         Upgrade Now
                                                         <span></span>

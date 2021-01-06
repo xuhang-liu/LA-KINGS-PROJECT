@@ -11,11 +11,11 @@ class FreeTrialArea extends Component {
             <section className="free-trial-area pb-100 bg-f4f5fe">
                 <div className="container">
                     <div className="free-trial-content">
-                        <h2 style={{paddingTop:"2rem", paddingBottom:"1.5rem"}}>We are here to best support you in landing your dream job</h2>
-                        <p>Your training will be specifically tailored to your industry/job role and to engage in a real interview simulation with AI or expert evaluation</p>
+                        <h2 style={{paddingTop:"2rem", paddingBottom:"1.5rem"}}>Our Goal is to Help You Land Your Dream Job!</h2>
+                        <p>Our AI-powered technology is customized to your needs and helps you prepare for you interview with REAL and ENGAGING questions.  We’ll help you evaluate, track and improve your responses so you’re prepared when the pressure is on</p>
 
                         <Link to="/register">
-                            <a className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>
+                            <a id="f-tff" className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>
                                 <i className="bx bxs-hot"></i> 
                                 Try For Free
                                 <span></span>

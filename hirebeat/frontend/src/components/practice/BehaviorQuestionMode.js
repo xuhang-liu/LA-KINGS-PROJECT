@@ -60,7 +60,7 @@ export class BehaviorQuestionMode extends Component {
                 <div className="icon">
                   <i className='bx bx-bolt-circle'></i>
                 </div>
-                  <h3 className="practice-h3">Simulate Mode</h3>
+                  <h3 className="practice-h3">Simulation Mode</h3>
                   <p className="mode-col-text1">Include all categories and <br/> practice questions randomly.</p>
                   <p className="mode-col-text2">Next Step -> </p>
                 </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactWOW from 'react-wow';
+//import ReactWOW from 'react-wow';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -11,11 +11,13 @@ class CompanyProfile extends Component {
             <section className="features-area pt-100 pb-70 bg-f4f6fc">
                 <div className="container max-width-1290">
                     <div>
-                        <h2 className="section-title2">View Company Profile to Prepare</h2>
+                        <h2 className="section-title2">HireBeat Helps You Do Your Research</h2>
+                        <p className="section-txt4">We have insider information and important details you need to know when interviewing with top companies</p>
+                        <br/>
                     </div>
 
                     <OwlCarousel
-                        className="owl-carousel owl-theme"
+                        className="feedback-slides owl-carousel owl-theme"
                         {...options}
                     >
                         <div className="item">
@@ -222,8 +224,51 @@ class CompanyProfile extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/WellsFargo.png" alt="Wells Fargo logo"/>
                             </Link>
                         </div>
+
+                        <div className="item">
+                            <Link to="/charles-schwab">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/charles.png" alt="Charles Schwab logo"/>
+                            </Link>
+                        </div>
+
+                        <div className="item">
+                            <Link to="/fidelity-investments">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/fidelity.png" alt="Fidelity logo"/>
+                            </Link>
+                        </div>
+
+                        <div className="item">
+                            <Link to="/vanguard">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/vanguard.png" alt="Vanguard logo"/>
+                            </Link>
+                        </div>
+                        {/*<div className="item">
+                            <Link to="/absa-group">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/absa.png" alt="Absa logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/abu-dhabi-islamic-bank">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/ADIB.png" alt="ADIB logo"/>
+                            </Link>
+                        </div>*/}
+                        <div className="item">
+                            <Link to="/amazon">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/amazon.png" alt="Amazon logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/facebook">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/facebook.png" alt="Facebook logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/skandinaviska-enskilda-banken">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/SEB.png" alt="SEB logo"/>
+                            </Link>
+                        </div>
                     </OwlCarousel>
-                    <a href="/companydata" style={{color: "#13C4A1", marginLeft: "10rem"}}>Explore our company data-></a>
+                    <a href="/companydata" className="read-more" style={{color: "#13C4A1", marginLeft: "2rem", fontSize:"1rem", textDecoration:"none"}}>Explore our company data <i class="bx bx-right-arrow-alt"></i></a>
                 </div>
             </section>
         );
@@ -235,8 +280,9 @@ const options = {
     loop: true,
     margin: 10,
     autoplay:true,
-    autoplayTimeout:1000,
-    autoplayHoverPause:true
+    autoplayTimeout:2000,
+    autoplayHoverPause:true,
+    smartSpeed:250
 }
 
 

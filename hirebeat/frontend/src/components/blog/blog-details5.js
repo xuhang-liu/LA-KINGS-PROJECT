@@ -21,7 +21,7 @@ class BlogDetail5 extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – Things to Do Before an Interview</title>
                     <meta name="description" CONTENT="To have a successful interview, you need to be prepared. Learn about the things you should do before an interview to help you stay prepared."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/things-to-do-before-an-interview"/>
+                    <link rel="canonical" href="https://hirebeat.co/blog-things-to-do-before-an-interview"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
