@@ -150,7 +150,7 @@ export class Header extends Component {
             </li>
             <li className="nav-item">
             <Link to="/register">
-            <a className="default-btn" id="id-signup" style={{color:"white", backgroundColor:"#ff612f"}}>
+            <a className="default-btn mr-3" id="id-signup" style={{color:"white", backgroundColor:"#ff612f"}}>
               <i className="bx bxs-hot"></i>Sign Up <span></span>
             </a>
             </Link>
@@ -207,6 +207,11 @@ export class Header extends Component {
                     </ul>
                   </span>
                 </a>
+              </li>
+              <li className="nav-item ">
+                <Link to="/employer" className="nav-link text-white navbar-font">
+                  <span className="header-text">For Employer</span>
+                </Link>
               </li>
             </ul>
           </div>
