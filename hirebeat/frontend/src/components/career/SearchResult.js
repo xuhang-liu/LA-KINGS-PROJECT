@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import PageTitleArea from '../Common/PageTitleArea';
 import { connect } from "react-redux";
 import { getZipRecruiterJobs } from "../../redux/actions/auth_actions";
 import { MyModal } from "./../dashboard/DashboardComponents";
@@ -12,11 +11,15 @@ export class SearchResult extends Component {
     zpJobs = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["zpJobs"];
     jobTitle = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["jobTitle"];
     location = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["location"];
+    checked = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["checked"];
 
     state = {
         zpJobs: this.zpJobs == null ? null : this.zpJobs,
         jobTitle: this.jobTitle == null ? "Job title, keywords, or company" : this.jobTitle,
         location: this.location == null ? "Location or Remote" : this.location,
+        numOfJobs: this.zpJobs == null ? 0 : this.zpJobs.jobs.length,
+        pageCount: this.zpJobs == null ? 0 : Math.ceil(this.zpJobs.jobs.length / 10),
+        checked: this.checked == null ? [] : this.checked,
         show: false,
         offset: 0,
         perPage: 10,
@@ -34,6 +37,8 @@ export class SearchResult extends Component {
          if(prevProps.zpJobs !== this.props.zpJobs){
             this.setState({
               zpJobs: this.props.zpJobs,
+              numOfJobs: this.props.zpJobs.jobs.length,
+              pageCount: Math.ceil(this.props.zpJobs.length / 10),
             });
         }
      }
@@ -42,6 +47,13 @@ export class SearchResult extends Component {
         // parse search bar inputs
         let search = document.getElementById("what").value;
         let location = document.getElementById("where").value;
+
+        // update states
+        this.setState({
+            jobTitle: search,
+            location: location,
+        })
+
         // fetch data from ZipRecruiter API
         this.props.getZipRecruiterJobs(search, location, 30, 0);
     }
@@ -59,8 +71,6 @@ export class SearchResult extends Component {
     }
 
     render() {
-        let numOfJobs = this.zpJobs != null ? this.zpJobs.jobs.length : 0;
-        let pageCount = numOfJobs == 0 ? 0 : Math.ceil(numOfJobs / 10);
         return (
             <React.Fragment>
                 <div className="row career-search" >
@@ -110,7 +120,7 @@ export class SearchResult extends Component {
                 </div>
                 <div className="row" style={{marginTop: "3rem"}}>
                     <div className="col-2" style={{marginLeft: "10rem"}}>
-                        <p className="career-txt8">{numOfJobs} Results</p>
+                        <p className="career-txt8">{this.state.numOfJobs} Results</p>
                     </div>
                     <div className="col-1">
                         <button
@@ -126,6 +136,31 @@ export class SearchResult extends Component {
                     <div className="col-8">
                     {
                         this.state.zpJobs != null ? (
+                            this.state.zpJobs.jobs.map((j) => {
+                                let jobDesc = j.snippet;
+                                // exclude html tags in job description
+                                jobDesc = jobDesc.replace(/<.*?>/ig,"");
+                                // exclude space
+                                jobDesc = jobDesc.replace(/&nbsp;/, "");
+                                // the single quote
+                                jobDesc = jobDesc.replace(/&#x27;/, "'");
+                                return (
+                                    <JobCard
+                                        jobTitle={j.name}
+                                        company={j.hiring_company.name}
+                                        location={j.location}
+                                        minSalary={j.salary_min == null ? null : j.salary_min}
+                                        maxSalary={j.salary_max == null ? null : j.salary_max}
+                                        jobDesc={jobDesc}
+                                        postDate={j.posted_time_friendly}
+                                        jobLink={j.url}
+                                    />
+                                )
+                            })
+                        ) : null
+                    }
+                    {/*
+                        this.state.zpJobs != null ? (
                             <div>
                                 <JobList jobs={this.state.zpJobs.jobs} offset={this.state.offset} />
                                  <ReactPaginate
@@ -133,7 +168,7 @@ export class SearchResult extends Component {
                                      nextLabel={'next'}
                                      breakLabel={'...'}
                                      breakClassName={'break-me'}
-                                     pageCount={this.pageCount}
+                                     pageCount={this.state.pageCount}
                                      marginPagesDisplayed={2}
                                      pageRangeDisplayed={5}
                                      onPageChange={this.handlePageClick}
@@ -143,7 +178,7 @@ export class SearchResult extends Component {
                                  />
                             </div>
                         ) : null
-                    }
+                    */}
                     </div>
                     <div className="col-4">
                         <div>
@@ -180,6 +215,7 @@ export class SearchResult extends Component {
                     location={this.state.location}
                     history={this.props}
                     hidePage={this.hideFilter}
+                    checked={this.state.checked}
                 />
             </React.Fragment>
         );
@@ -192,7 +228,7 @@ const JobCard = (props) => {
         <div className="career-bg2" style={{paddingLeft: "2rem"}}>
             <a target="_blank" href={props.jobLink}><h3 className="career-txt3" style={{paddingTop: "2rem"}}>{props.jobTitle}</h3></a>
             <p className="career-txt4">{props.company} | {props.location}</p>
-            <p className="career-txt2">{props.minSalary  == null ? null : "$ " + props.minSalary + " - "} {props.maxSalary  == null ? null : "$ " + props.maxSalary + " a year"}</p>
+            <p className="career-txt2">{props.minSalary  == null ? null : "$ " + props.minSalary + " - "} {props.maxSalary  == null ? null : "$ " + props.maxSalary}</p>
             {/*<div className="row">
                 <label className="career-txt5" style={{marginLeft: "15px", padding: "0.3rem"}}>{props.jobType}</label>
                 <label className="career-txt5" style={{marginLeft: "1.5rem", padding: "0.3rem"}}>{props.employeeNum} employees</label>
@@ -248,10 +284,10 @@ const JobList = (props) => {
 }
 
 function MyVerticallyCenteredModal(props) {
-    const { jobTitle, location, history, hidePage, ...rest } = props;
+    const { jobTitle, location, history, hidePage, checked, ...rest } = props;
     return (
         <MyModal {...rest}>
-            <JobFilter jobTitle={jobTitle} location={location} history={history} hidePage={hidePage} />
+            <JobFilter jobTitle={jobTitle} location={location} history={history} hidePage={hidePage} checked={checked} />
         </MyModal>
     );
 };
