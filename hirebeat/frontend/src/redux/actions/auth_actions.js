@@ -151,6 +151,33 @@ export const register = (username, email, password) => (dispatch) => {
     });
 };
 
+// ******** EMPLOYER REGISTER  ********
+export const employer_register = (username, email, password) => (dispatch) => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  // Request body
+  const body = JSON.stringify({ username, email, password });
+
+  axios
+    .post("api/auth/employer_register", body, config)
+    .then((res) =>
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: REGISTER_FAIL,
+      });
+    });
+};
+
 export const exchangeToken = (token, backend) => (dispatch) => {
   const config = {
     headers: {

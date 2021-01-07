@@ -2,13 +2,12 @@ import React, {Component} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {register, exchangeToken} from "../../redux/actions/auth_actions";
+import {employer_register, exchangeToken} from "../../redux/actions/auth_actions";
 import {createMessage} from "../../redux/actions/message_actions";
 //import SocialButtons from "./SocialButtons";
 //import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import badge from '../../assets/badge.png';
-import leftbg from '../../assets/Login.png';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -28,7 +27,7 @@ export class EmployerRegister extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    register: PropTypes.func.isRequired,
+    employer_register: PropTypes.func.isRequired,
     createMessage: PropTypes.func.isRequired,
     user: PropTypes.object,
   };
@@ -41,7 +40,7 @@ export class EmployerRegister extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     if (this.passwordsMatch()) {
-      this.props.register(
+      this.props.employer_register(
           this.state.username,
           this.state.email,
           this.state.password
@@ -67,7 +66,7 @@ export class EmployerRegister extends Component {
   render() {
     const {username, email, password, password2} = this.state;
     if (this.props.auth.isAuthenticated) {
-      return <Redirect to="/employer-dashboard"/>;
+      return <Redirect to="/employer_dashboard"/>;
     }
     return (
         <React.Fragment>
@@ -76,14 +75,14 @@ export class EmployerRegister extends Component {
             <section className="signup-area">
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0"> 
-                      <img src={leftbg} alt="image"></img>
+                      <img src="https://hirebeat-assets.s3.amazonaws.com/Login.png" alt="image"></img>
                     </div>
 
                     <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"3rem"}}>
                                     <div className="signup-form">
                                       <div style={{marginBottom:"3rem"}}>
-                                        <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next"}}><b>Start your interview management with HireBeat</b></h3>
+                                        <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next"}}><b>Become an Employer at HireBeat</b></h3>
                                       </div>
 
                     <form onSubmit={this.onSubmit}>
@@ -247,4 +246,4 @@ const mapStateToProps = (state) => ({
   user: state.auth_reducer.user,
 });
 
-export default connect(mapStateToProps, {register, createMessage, exchangeToken})(EmployerRegister);
+export default connect(mapStateToProps, {employer_register, createMessage, exchangeToken})(EmployerRegister);

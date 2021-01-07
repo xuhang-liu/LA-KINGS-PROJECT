@@ -25,6 +25,7 @@ class Profile(models.Model):
         default=MembershipCategory.Regular
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_employer = models.BooleanField(default=False)
     phone_number = models.CharField(max_length=12, default="Not provided")
     summary = models.TextField(default="Not provided")
     intro_video_link = models.URLField(null=True, blank=True)

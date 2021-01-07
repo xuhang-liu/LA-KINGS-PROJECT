@@ -176,7 +176,7 @@ class App extends Component {
               <Alerts />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                <PrivateRoute exact path="/employer-dashboard" component={EmployerDashboard} />
+                <PrivateRoute exact path="/employer_dashboard" component={EmployerDashboard} />
                 <Route exact path="/resume" component={Resume} />
                 <PrivateRoute exact path="/review" component={ReviewListPreload} />
                 <PrivateRoute

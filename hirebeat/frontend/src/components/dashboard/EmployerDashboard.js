@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import ButtonPanel from "./panel/ButtonPanel";
-import { Link } from "react-router-dom";
+//import { Link, Redirect } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import VideoPreviewList from "./videos/VideoPreviewList";
 //import { Analytics } from "./videos/Analytics";
 import { Interview } from "./videos/Interview";
 import { Resume } from "./videos/Resume";
-import PageTitleArea from '../Common/PageTitleArea';
+//import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 import { DbRow } from "./DashboardComponents";
 import { DbCenterRow } from "./DashboardComponents";
-import MediaQuery from 'react-responsive';
+//import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -24,7 +24,7 @@ function ScrollToTopOnMount() {
 }
 
 
-export class Dashboard extends Component {
+export class EmployerDashboard extends Component {
 
   constructor(props) {
     super(props);
@@ -101,7 +101,6 @@ export class Dashboard extends Component {
       <React.Fragment>
         <ScrollToTopOnMount />
         {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
-          <MediaQuery minDeviceWidth={1224}>
           <DbRow>
             <div className="col-12" style={{padding:"0%"}}>
               <div className="page-title-area">
@@ -135,22 +134,6 @@ export class Dashboard extends Component {
               <div className="col-11" style={{marginBottom:"auto", height:"auto", paddingBottom:'10%'}}>{this.renderSubpage()}</div>
             </DbCenterRow>
           </div>
-          </MediaQuery>
-          <MediaQuery maxDeviceWidth={1223}>
-            <PageTitleArea
-              pageTitle="Welcome to Hirebeat!"
-              pageDescription="Our mobile functionality is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
-            />
-            <div style={{textAlign: "center"}}>
-            <Link to="/">
-              <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00", marginTop:"1rem",marginBottom:"1rem"}}>
-                <i className="bx bxs-hot"></i>
-                Back to Home Page
-              </a>
-            </Link>
-            </div>
-    </MediaQuery>
-      {/* </div> */}
       </React.Fragment>
     );
   }
@@ -164,5 +147,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname })(
-  Dashboard
+  EmployerDashboard
 );

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-import {logout} from "../../redux/actions/auth_actions";
+import {logout, loadProfile} from "../../redux/actions/auth_actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 //import MediaQuery from 'react-responsive';
@@ -22,6 +22,7 @@ export class Header extends Component {
       });
   }
   componentDidMount() {
+    this.props.loadProfile();
       let elementId = document.getElementById("navbar");
       document.addEventListener("scroll", () => {
           if (window.scrollY > 170) {
@@ -43,18 +44,6 @@ export class Header extends Component {
 
   renderUserLinks = () => {
     const {user} = this.props.auth;
-    /*const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-      <a
-        ref={ref}
-        onClick={(e) => {
-          e.preventDefault();
-          onClick(e);
-        }}
-        style={{textDecoration:"none", cursor:"pointer"}}
-      >
-        {children}
-      </a>
-    ));*/
     return (
         <React.Fragment>
           <div className="nav-item order-xl-1 align-self-center">
@@ -218,6 +207,57 @@ export class Header extends Component {
         </React.Fragment>
     );
   };
+  
+  renderEmployerLinks = () => {
+    const {user} = this.props.auth;
+    return (
+        <React.Fragment>
+          <div className="nav-item order-xl-1 align-self-center">
+            <div className="nav-link text-white navbar-font">
+              <div className="row">
+                    <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px'}}></i>        
+                    <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username}  ` : ""}
+                    <ul className="nav_submenu"> 
+                      <li>
+                      <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
+                        Dashboard
+                      </Link>
+                      </li>
+                      <li>
+                      <Link id="id-logout" to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
+                        Log out
+                      </Link>
+                      </li>
+                    </ul>
+                    </span>
+              </div>
+            </div>
+          </div>
+
+
+          <div className="collapse navbar-collapse"
+               id="navbarSupportedContent">
+
+            <ul
+              className="navbar-nav ml-auto mr-5
+                 text-left order-xl-0">
+              <li className="nav-item">
+              <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Company <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu" style={{height:"8rem"}}>
+                      <li><Link id="id-aboutus" to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link id="id-contact" to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link id="id-blog" to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                    </ul>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </React.Fragment>
+    );
+  };
 
   renderReviewerLinks = () => {
     return (
@@ -284,6 +324,8 @@ export class Header extends Component {
             {isAuthenticated
                 ? user.groups[0] == "reviewers"
                     ? this.renderReviewerLinks()
+                    : this.props.profile.is_employer
+                    ? this.renderEmployerLinks()
                     : this.renderUserLinks()
                 : this.renderGuestLinks()
             }
@@ -296,7 +338,8 @@ export class Header extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  profile: state.auth_reducer.profile,
   auth: state.auth_reducer,
 });
 
-export default connect(mapStateToProps, {logout})(Header);
+export default connect(mapStateToProps, {logout, loadProfile})(Header);
