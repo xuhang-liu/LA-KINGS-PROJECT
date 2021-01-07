@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from questions.models import Positions
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
@@ -13,6 +14,10 @@ class ReviewerInfo(models.Model):
     def __str__(self):
         return self.user.username
 
+class CandidatesInterview(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    positions = models.OneToOneField(Positions, on_delete=models.CASCADE)
+    email = models.CharField(max_length=300, null=True, blank=True)
 
 class Profile(models.Model):
     class MembershipCategory(models.TextChoices):
@@ -50,6 +55,7 @@ class Profile(models.Model):
     customer_id = models.CharField(max_length=30,null=True, blank=True)
     sub_id = models.CharField(max_length=30,null=True, blank=True)
     plan_interval = models.CharField(max_length=30,null=True, blank=True)
+    company_name = models.CharField(max_length=30,null=True, blank=True)
 
     def __str__(self):
         return self.user.username
