@@ -9,8 +9,7 @@ import { Resume } from "./videos/Resume";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
-import { DbRow } from "./DashboardComponents";
-import { DbCenterRow } from "./DashboardComponents";
+import { DbRow, DbCenterRow, RowBoxes} from "./DashboardComponents";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 
@@ -45,6 +44,7 @@ export class Dashboard extends Component {
     this.activateEmail();
     var user = { "id": this.props.user.id};
     this.props.loadUserFullname(user);
+    
   }
 
   // params passed from resume page
@@ -97,12 +97,13 @@ export class Dashboard extends Component {
               <div className="page-title-area">
                 <div className="container">
                   <div className="page-title-content" style={{color:"#FFFFFF"}}>
-                    <EssentialUserInfo
-                      userfullname={this.props.userfullname}
-                      user={this.props.user}
-                      profile={this.props.profile}
-                      updateProfile={this.props.updateProfile}
-                    />
+                    {/*<EssentialUserInfo*/}
+                    {/*  userfullname={this.props.userfullname}*/}
+                    {/*  user={this.props.user}*/}
+                    {/*  profile={this.props.profile}*/}
+                    {/*  updateProfile={this.props.updateProfile}*/}
+                    {/*/>*/}
+                    <RowBoxes/>
                   </div>
                 </div>
               </div>

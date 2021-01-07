@@ -3,7 +3,8 @@ import Modal from "react-bootstrap/Modal";
 import Chart from "react-apexcharts";
 import { customBarData } from "../../constants/constants";
 import MediaQuery from 'react-responsive';
-
+import CountUp from "react-countup";
+import LazyLoad from "react-lazyload";
 export const DbRow = (props) => {
     return <div className="dashboard-row">{props.children}</div>;
 };
@@ -11,7 +12,48 @@ export const DbRow = (props) => {
 export const DbCenterRow = (props) => {
     return <div className="dashboard-align-center-row">{props.children}</div>;
 };
+const RowBox = (props) => {
+    return (
+        <div className="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
+            {/* <!-- Single Category --> */}
+            <a
+                href="/#"
+                className="d-flex align-items-center bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8"
+            >
+                <div className="text-blue bg-blue-opacity-1 circle-56 font-size-6 mr-7">
+                    <i className="fas bx bxs-video"/>
+                </div>
+                {/* <!-- Category Content --> */}
+                <div className="">
+                    <h5 className="d-flex font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-0 mt-2">
+                        <LazyLoad>
+                        <span className="counter">
+                          <CountUp duration={6} end={5} />
+                        </span>
+                        </LazyLoad>
+                    </h5>
+                    <p className="font-size-4 font-weight-normal text-gray mt-0 mb-2">
+                        Video Practiced
+                    </p>
+                </div>
+            </a>
+            {/* <!-- End Single Category --> */}
+        </div>
+    )
+};
+export const RowBoxes = (props) => {
+    return (
+        <div className="dashboard-main-container mt-25 mt-lg-31">
+            <div className={"container"}>
+                <div className="row mb-7">
+                    <RowBox/>
 
+                </div>
+
+            </div>
+        </div>
+    )
+};
 const Icon = (props) => {
     return (
         <i

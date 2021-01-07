@@ -44,6 +44,7 @@ This files table contents are outlined below>>>>>
 Default CSS
 =================================================*/
 @import url("https://fonts.googleapis.com/css?family=Avenir Next:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
+
 * {
   font-family: 'Avenir Next', sans-serif;
 }
@@ -6884,6 +6885,69 @@ SaaS Home Page CSS
 .text-container ul li ul, .text-container ol li ul {
   margin-top: 5px;
 }
+
+
+@media (min-width: 768px) {
+  .dashboard-main-container {
+    padding-left: 290px;
+  }
+}
+@media (min-width: 1600px) {
+  .dashboard-main-container {
+    max-width: calc(100% - 290px);
+    margin-left: auto;
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+}
+.font-size-6{font-size:calc(1.25625rem + .075vw)}
+.font-size-8{font-size:calc(1.3375rem + 1.05vw)}
+.shadow-8{box-shadow:2px 2px 4px hsla(0,0%,51%,.16)}
+.rounded-4{border-radius:10px}
+.bg-blue-opacity-15{background-color:rgba(71,67,219,.15)}
+.bg-blue-opacity-1{background-color:rgba(71,67,219,.1)}
+.text-black-2{color:#2b3940!important}a.text-black-2:focus,a.text-black-2:hover{color:#0c1012!important}
+.text-gray{color:#6b6e6f!important}a.text-gray:focus,a.text-gray:hover{color:#454748!important}
+.font-size-4{font-size:1rem;line-height:1.625;letter-spacing:-.08px}
+.fas {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+.font-weight-semibold{
+  font-weight: 600;
+}
+.line-height-reset{
+  line-height: 1;
+}
+.fa-briefcase:before {
+  content: "\f0b1";
+}
+.line-height-reset{
+  line-height: 1;
+}
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+.font-weight-normal {
+  font-weight: 400 !important;
+}
+.circle-56{
+  max-width:56px;
+  min-width:56px;
+  max-height:56px;
+  min-height:56px;
+  border-radius: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hover-shadow-1 {
+  transition: 0.4s;
+}
+.hover-shadow-1:hover {
+  box-shadow: 20px 20px 40px rgba(175, 175, 175, 0.16);
+}
+
 
 /* End  Text container */
 /*# sourceMappingURL=style.css.map */
