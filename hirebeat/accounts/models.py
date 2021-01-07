@@ -16,7 +16,7 @@ class ReviewerInfo(models.Model):
 
 class CandidatesInterview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    positions = models.OneToOneField(Positions, on_delete=models.CASCADE)
+    positions = models.ForeignKey(Positions, on_delete=models.CASCADE)
     email = models.CharField(max_length=300, null=True, blank=True)
 
 class Profile(models.Model):
