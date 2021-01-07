@@ -222,7 +222,7 @@ export class EssentialUserInfo extends Component {
       <div className="container">
           <DbCenterRow>
             <div className="col-9">
-              <div className="row" style={{marginTop:"20%"}}>
+              <div className="row" style={{marginTop:"20%", marginBottom:"10%"}}>
                 <div className="col d-flex align-items-center">
                   <h3
                     style={{
@@ -268,19 +268,35 @@ export class EssentialUserInfo extends Component {
                         />
                 </div>
               </div>
-
               <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
                   <button
                     type="button"
                     className="panel-button"
-                    style={{outline: "none", margin:"1%"}}
+                    style={{outline: "none", margin:"1%", padding:"0px"}}
                   >
                     <IconText
-                      textSize={"18px"}
+                      textSize={"15px"}
+                      textDisplayed={"Settings"}
+                      iconName={"bx bx-wrench 1 bx-xs"}
+                      iconMargin={"3px"}
+                      textColor={"blue"}
+                    />
+                  </button>
+                </div>
+              </div>
+              <div className="row" style={{marginTop:"20%"}}>
+                <div className="col d-flex align-items-center">
+                  <button
+                    type="button"
+                    className="panel-button"
+                    style={{outline: "none", margin:"1%", padding:"0px"}}
+                  >
+                    <IconText
+                      textSize={"15px"}
                       textDisplayed={"Practiced Interview"}
-                      iconName={"bx bx-slideshow 1 bx-md"}
-                      iconMargin={"4px"}
+                      iconName={"bx bx-slideshow 1 bx-sm"}
+                      iconMargin={"3px"}
                       textColor={"gray"}
                     />
                   </button>
@@ -293,19 +309,46 @@ export class EssentialUserInfo extends Component {
                   <button
                     type="button"
                     className="panel-button"
-                    style={{outline: "none", margin:"1%"}}
+                    style={{outline: "none", margin:"1%", padding:"0px"}}
                   >
                     <IconText
-                      textSize={"18px"}
+                      textSize={"15px"}
                       textDisplayed={"Scanned Resume"}
-                      iconName={"bx bx-file 1 bx-md"}
-                      iconMargin={"4px"}
+                      iconName={"bx bx-file 1 bx-sm"}
+                      iconMargin={"3px"}
                       textColor={"gray"}
                     />
                   </button>
                 </div>
               </div>
-           
+          
+              <div className="row" style={{marginTop:"8%"}}>
+                <Link>
+                  <a 
+                  onClick={() => {
+                  this.setState({ ...this.state, passwordChanging: true });
+                  }}
+                  className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"133%"}} 
+                  >
+                    <i className="bx bxs-key"></i>
+                      New Practice
+                      <span></span>
+                  </a>
+                </Link>
+              </div>
+              <div>
+                <div className="row">
+                  <div >Interview left: 1</div>
+                  <div className="float-right">
+                    <Link to="/pricing" style={{textDecoration: "none"}}>
+                      <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
+                    </Link>
+                  </div>
+                  {/* {props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Reviews Left: {saves_left}</p> : null}
+                  {props.subpage == "resume" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {cv_saves_left}</p> : null} */}
+ 
+                </div>     
+              </div>
               {/* for premium user */}
               {
                 this.props.profile.plan_interval == "Premium" &&
@@ -388,7 +431,7 @@ export class EssentialUserInfo extends Component {
                       <i className="bx bxs-hot"></i>
                         Confirm
                         <span></span>
-                    </button>
+                    </button> 
                   </form>
                 </div>
             </div>

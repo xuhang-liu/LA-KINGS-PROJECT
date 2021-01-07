@@ -262,7 +262,7 @@ video {
 
 .panel-button {
   display: block;
-  width: 140px;
+  width: auto;
   background-color: white;
   border: none;
   padding: 15px;
@@ -2406,5 +2406,6 @@ h5 {
 .dashboard-main {
   height: 100vh;
   width: 100%;
-  background-color: #e0ecf8;
+  background-color: #07305a;
 }
+

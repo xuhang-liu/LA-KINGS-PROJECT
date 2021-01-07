@@ -93,7 +93,7 @@ export class Dashboard extends Component {
         {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
           <div className="row no-gutters">
-            <div className='col-2'>
+            <div className='col-3'>
               <div className='dashboard-sidebar'>
                 <EssentialUserInfo
                         userfullname={this.props.userfullname}
@@ -101,10 +101,9 @@ export class Dashboard extends Component {
                         profile={this.props.profile}
                         updateProfile={this.props.updateProfile}
                       />
-              </div>
-              The bar
+              </div>  
             </div>
-            <div className='col-10'>
+            <div className='col-9'>
               <div className="dashboard-main"> 
                 The main
               </div>
