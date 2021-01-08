@@ -55,7 +55,7 @@ export function VideoImagePreview(props) {
   const dispatch = useDispatch();
   // control status, render modal
   return (
-    <div className="height-20">
+    <div className="height-20 mt-6">
       <div className="row">
         <MediaQuery minDeviceWidth={1224}>
         <div className="col-5">
@@ -65,9 +65,9 @@ export function VideoImagePreview(props) {
           }
         </div>
         </MediaQuery>
-        <div className="col d-flex flex-column justify-content-start container">
+        <div className="col d-flex flex-column justify-content-start container" style={{backgroundColor: "white", "border-radius": "0.5rem"}}>
         <MediaQuery minDeviceWidth={1224}>
-          <h3 className="height-50">Q:{renderQDes(props.v.q_description)}</h3>
+          <h3 className="height-50 mt-5">Q:{renderQDes(props.v.q_description)}</h3>
           <div className="d-flex justify-content-start">
             <p className="text-secondary">{props.v.q_type}({props.v.q_category})</p>
             <p
@@ -98,7 +98,7 @@ export function VideoImagePreview(props) {
           </MediaQuery>
           <MediaQuery minDeviceWidth={1224}>
             { props.isBQ ? (
-                <div className="row">
+                <div className="row mb-6">
                     <div className="col">
                       <ReviewStatusButton
                         v={props.v}
@@ -131,7 +131,7 @@ export function VideoImagePreview(props) {
                         </Link>
                     </div>
                 </div>) : (  // TQ
-                <div className="row">
+                <div className="row mb-6">
                   <div className="col">
                     <TQReviewStatus
                       v={props.v}

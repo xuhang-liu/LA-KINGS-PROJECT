@@ -6282,7 +6282,7 @@ SaaS Home Page CSS
 
 .saas-banner .saas-image.mt-70 {
   margin-top: 70px;
-}
+}F
 
 .saas-banner .hero-content {
   z-index: 1;
@@ -6904,8 +6904,7 @@ SaaS Home Page CSS
 .font-size-8{font-size:calc(1.3375rem + 1.05vw)}
 .shadow-8{box-shadow:2px 2px 4px hsla(0,0%,51%,.16)}
 .rounded-4{border-radius:10px}
-.bg-blue-opacity-15{background-color:rgba(71,67,219,.15)}
-.bg-blue-opacity-1{background-color:rgba(71,67,219,.1)}
+.hirebeat-blue-bg {background-color: #67a3f3}
 .text-black-2{color:#2b3940!important}a.text-black-2:focus,a.text-black-2:hover{color:#0c1012!important}
 .text-gray{color:#6b6e6f!important}a.text-gray:focus,a.text-gray:hover{color:#454748!important}
 .font-size-4{font-size:1rem;line-height:1.625;letter-spacing:-.08px}

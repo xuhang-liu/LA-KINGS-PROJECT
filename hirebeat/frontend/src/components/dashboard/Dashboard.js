@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ButtonPanel from "./panel/ButtonPanel";
 import { Link } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import VideoPreviewList from "./videos/VideoPreviewList";
@@ -76,11 +75,11 @@ export class Dashboard extends Component {
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "videos":
-        return <Interview />;
+        return <Resume/>;
       //case "analytics":
         //return <Analytics />;
       case "resume":
-        return <Resume />;
+        return <Resume/>;
       default:
       //Do nothing
     }
@@ -104,48 +103,16 @@ export class Dashboard extends Component {
               </div>  
             </div>
             <div className='col-9'>
-              <div className="dashboard-main"> 
-                The main
-              </div>
-            </div>
-          </div>
-
-  
-          {/* comment out to rework the dashboard. 
-          <DbRow>
-            <div className="col-12" style={{padding:"0%"}}>
-              <div className="page-title-area">
-                <div className="container">
-                  <div className="page-title-content" style={{color:"#FFFFFF"}}>
-                    {/*<EssentialUserInfo*/}
-                    {/*  userfullname={this.props.userfullname}*/}
-                    {/*  user={this.props.user}*/}
-                    {/*  profile={this.props.profile}*/}
-                    {/*  updateProfile={this.props.updateProfile}*/}
-                    {/*/>*/}
-                    <RowBoxes/>
+              <div className="dashboard-main">
+                {this.state.subpage === "settings" ? null : <RowBoxes/>}
+                <div className="container" style={{marginBottom:"0%"}}>
+                  <div className="" style={{marginBottom:"auto", height:"auto", paddingBottom:'10%', paddingTop:'5%'}}>
+                    {this.renderSubpage()}
                   </div>
                 </div>
               </div>
             </div>
-          </DbRow>
-          <br />
-          <br />
-          <div className="container" style={{marginBottom:"0%"}}>
-            <DbCenterRow>
-              <div className="col-2" style={{marginBottom:"auto", paddingBottom:'10%'}}>
-                <ButtonPanel
-                  profile={this.props.profile}
-                  renderVideos={this.renderVideos}
-                  renderProfile={this.renderProfile}
-                  renderAnalytics={this.renderAnalytics}
-                  renderResume={this.renderResume}
-                  subpage={this.state.subpage}
-                />
-              </div>
-              <div className="col-11" style={{marginBottom:"auto", height:"auto", paddingBottom:'10%'}}>{this.renderSubpage()}</div>
-            </DbCenterRow>
-          </div> */}
+          </div>
           </MediaQuery>
           <MediaQuery maxDeviceWidth={1223}>
             <PageTitleArea

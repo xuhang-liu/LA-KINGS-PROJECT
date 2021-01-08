@@ -9,7 +9,7 @@ export const Interview = () => {
   const [filter, setFilter] = useState("bq");
   return (
     <div>
-      <div style={{marginBottom: "20px"}} className="container d-flex justify-content-start">
+      <div style={{marginBottom: "20px"}} className="container d-flex justify-content-start pl-0">
         <button
           className={decideClassName(filter, "bq")}
           style = {{outline: "none", borderRadius: "2px"}}
@@ -25,7 +25,7 @@ export const Interview = () => {
           Technical Questions
         </button>
       </div>
-      <VideoPreviewList filter={filter} />
+      <VideoPreviewList filter={filter}/>
     </div>
   );
 };
