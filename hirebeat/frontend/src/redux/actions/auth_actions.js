@@ -274,9 +274,9 @@ export const updateUserPassword = (user) => (dispatch, getState) => {
     );
 };
 
-export const getZipRecruiterJobs = (search, location) => (dispatch, getState) => {
+export const getZipRecruiterJobs = (search, location, daysAgo, minSalary) => (dispatch, getState) => {
   axios
-    .get(`get-ziprecruiter-jobs?search=${search}&location=${location}`)
+    .get(`get-ziprecruiter-jobs?search=${search}&location=${location}&days_ago=${daysAgo}&refine_by_salary=${minSalary}`)
     .then((res) => {
       dispatch({
         type: GET_ZP_JOBS,

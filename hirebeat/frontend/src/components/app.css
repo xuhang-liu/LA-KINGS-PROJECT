@@ -2257,8 +2257,8 @@ h5 {
 }
 
 .career-bg {
-  background: #ffffff;
-  box-shadow: 0px 0px 29px rgba(125, 125, 125, 0.1);
+  background: #FFFFFF;
+  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -2276,7 +2276,8 @@ h5 {
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
-  color: #090d3a;
+  color: #090D3A;
+  
 }
 
 .career-txt2 {
@@ -2338,6 +2339,16 @@ h5 {
 }
 
 .career-search {
+  width: 100.8%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+  background-color: #E8EDFC;
+  padding-bottom: 5%;
+}
+
+.career-search1 {
   width: 90%;
   margin: auto;
   display: flex;
@@ -2404,6 +2415,7 @@ h5 {
 }
 
 .dashboard-main {
+  overflow: scroll;
   height: 100vh;
   width: 100%;
   background-color: #07305a;

@@ -244,7 +244,7 @@ p:last-child {
   transition: 0.5s;
   border-radius: 5px;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 20px;
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 13px;
@@ -5810,6 +5810,40 @@ Contact Area CSS
   padding-top: 15px;
 }
 
+form .form-group .form-control {
+  height: 48px;
+  padding: 0 15px;
+  line-height: initial;
+  color: #080a3c;
+  background-color: transparent;
+  border: 1px solid #cecfdf;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-box-shadow: unset !important;
+          box-shadow: unset !important;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+form .form-group .form-control:focus {
+  border-color: #13c4a1;
+}
+form .form-group .form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+form .form-group .form-control:-ms-input-placeholder {
+  color: #999999;
+}
+
+form .form-group .form-control::-ms-input-placeholder {
+  color: #999999;
+}
+
+form .form-group .form-control::placeholder {
+  color: #999999;
+}
+
 .contact-form form .default-btn {
   -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.3) !important;
           box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.3) !important;
@@ -6281,6 +6315,19 @@ SaaS Home Page CSS
 
 .saas-banner .saas-image.mt-70 {
   margin-top: 70px;
+}
+
+.saas-banner .hero-content .number {
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  line-height: 45px;
+  font-size: 24px;
+  text-align: center;
+  border-radius: 100%;
+  color: #ff612f;
+  display: inline-block;
+  font-weight: 600;
 }
 
 .saas-banner .hero-content {

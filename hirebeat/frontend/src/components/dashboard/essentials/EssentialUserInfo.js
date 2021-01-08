@@ -216,6 +216,11 @@ export class EssentialUserInfo extends Component {
   };
 
   render() {
+
+    var selectColor = "#090D3A";
+    var defaultColor = "#7d7d7d";
+    var selectDecoration = "underline";
+    var defaultDecoration = "none";
     return (
       <React.Fragment>
       <MediaQuery minDeviceWidth={1224}>
@@ -234,6 +239,18 @@ export class EssentialUserInfo extends Component {
                   </h3>
                 </div>
               </div>
+              {this.props.profile.membership == "Premium" &&
+              <div className="row" style={{marginTop:"1%"}}>
+                <div className="col d-flex align-items-center">
+                        <IconText
+                          iconName={"bx bx-diamond bx-sm"}
+                          textDisplayed={"Premium Member"}
+                          textSize={"15px"}
+                          textColor={"#FE9A2E"}
+                          iconMargin={"3px"}
+                        />
+                </div>
+              </div>}
 
               <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
@@ -290,14 +307,16 @@ export class EssentialUserInfo extends Component {
                   <button
                     type="button"
                     className="panel-button"
+                    onClick={this.props.renderVideos}
                     style={{outline: "none", margin:"1%", padding:"0px"}}
                   >
                     <IconText
-                      textSize={"15px"}
+                      textSize={"16px"}
                       textDisplayed={"Practiced Interview"}
                       iconName={"bx bx-slideshow 1 bx-sm"}
                       iconMargin={"3px"}
-                      textColor={"gray"}
+                      textColor={this.props.subpage == "videos" ? selectColor : defaultColor}
+                      textDecoration={this.props.subpage == "videos" ? selectDecoration : defaultDecoration}
                     />
                   </button>
                 </div>
@@ -309,14 +328,16 @@ export class EssentialUserInfo extends Component {
                   <button
                     type="button"
                     className="panel-button"
+                    onClick={this.props.renderResume}
                     style={{outline: "none", margin:"1%", padding:"0px"}}
                   >
                     <IconText
-                      textSize={"15px"}
+                      textSize={"16px"}
                       textDisplayed={"Scanned Resume"}
                       iconName={"bx bx-file 1 bx-sm"}
                       iconMargin={"3px"}
-                      textColor={"gray"}
+                      textColor={this.props.subpage == "resume" ? selectColor : defaultColor}
+                      textDecoration={this.props.subpage == "resume" ? selectDecoration: defaultDecoration}
                     />
                   </button>
                 </div>
@@ -338,207 +359,20 @@ export class EssentialUserInfo extends Component {
               </div>
               <div>
                 <div className="row">
-                  <div >Interview left: 1</div>
-                  <div className="float-right">
-                    <Link to="/pricing" style={{textDecoration: "none"}}>
-                      <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
-                    </Link>
-                  </div>
+                  <div className="col">Interview left: 1 </div>
+                  {this.props.profile.membership == 'Regular' &&
+                    <div className="col-5">
+                      <Link to="/pricing" style={{textDecoration: "none"}}>
+                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
+                      </Link>
+                    </div>}
                   {/* {props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Reviews Left: {saves_left}</p> : null}
                   {props.subpage == "resume" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {cv_saves_left}</p> : null} */}
  
                 </div>     
               </div>
-              {/* for premium user */}
-              {
-                this.props.profile.plan_interval == "Premium" &&
-                <div className="row">
-                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%", fontSize:'1rem', fontWeight:'600'}}>
-                    <i className='bx bx-diamond' style={{display:'inline', fontSize:'1.5rem'}}></i> 
-                    <span style={{marginLeft: "6px", display:'inline'}}>Premium</span>
-                  </div>
-                  <div className="col-8">
-                    <input
-                    className="form-control"
-                    type="text"
-                    name={"email_match"}
-                    placeholder={"Type your email to cancel subscription."}
-                    onChange={this.handleInputChange}
-                    style={{
-                      backgroundColor:"#FFFFFF",
-                      fontSize: "12px",
-                      borderRadius: "5px",
-                      paddingLeft: "20px",
-                      color:"grey"
-                    }}
-                  />
-                  </div>
-                </div>
-              }
-              {
-                this.props.profile.plan_interval == "Regular" &&
-                <div className="row">
-                  <div className="col-2" style={{marginTop:"0.8rem", paddingRight:"5%", fontSize:'1rem', fontWeight:'600'}}>
-                    <i className='bx bx-diamond' style={{display:'inline', fontSize:'1.5rem'}}></i> 
-                    <span style={{marginLeft: "6px", display:'inline'}}>Premium</span>
-                  </div>
-                </div>
-              }        
             </div>
-
-          {/* for premium user */}
-          {
-            this.props.profile.plan_interval == "Premium" &&
-            <div className="col-2" style={{marginTop:"2%"}}>
-                <div className="row" style={{marginTop:"8%"}}>
-                  <Link>
-                      <a 
-                      onClick={() => {
-                      this.setState({ ...this.state, show: true });
-                      }}
-                      className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"127%"}} 
-                      >
-                        <i className="bx bx-edit 2"></i>
-                          Edit
-                          <span></span>
-                      </a>
-                    </Link>
-                </div>
-                {/* Here is the change made: I have added another buttom as password editing*/}
-                {this.props.userfullname == "" &&
-                <div className="row" style={{marginTop:"8%"}}>
-                  <Link>
-                    <a 
-                    onClick={() => {
-                    this.setState({ ...this.state, passwordChanging: true });
-                    }}
-                    className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"133%"}} 
-                    >
-                      <i className="bx bxs-key"></i>
-                        Change Password
-                        <span></span>
-                    </a>
-                  </Link>
-                </div>}
-                {/* Changes end here #################### Finished */}
-                <div className="row" style={{marginTop:"8%"}}>
-                  <form onSubmit={this.cancelSub}>
-                  <input type="email" value={this.props.user.email} name='useremail' style={{display:"none"}}/>
-                    <button
-                    type="submit"
-                    className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}} 
-                    >
-                      <i className="bx bxs-hot"></i>
-                        Confirm
-                        <span></span>
-                    </button> 
-                  </form>
-                </div>
-            </div>
-          }
-
-{
-            this.props.profile.plan_interval == "Regular" &&
-            <div className="col-2" style={{marginTop:"2%"}}>
-                <div className="row" style={{marginTop:"8%"}}>
-                  <Link>
-                      <a 
-                      onClick={() => {
-                      this.setState({ ...this.state, show: true });
-                      }}
-                      className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"127%"}} 
-                      >
-                        <i className="bx bx-edit 2"></i>
-                          Edit
-                          <span></span>
-                      </a>
-                    </Link>
-                </div>
-                {/* Here is the change made: I have added another buttom as password editing*/}
-                {this.props.userfullname == "" &&
-                <div className="row" style={{marginTop:"8%"}}>
-                  <Link>
-                    <a 
-                    onClick={() => {
-                    this.setState({ ...this.state, passwordChanging: true });
-                    }}
-                    className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"133%"}} 
-                    >
-                      <i className="bx bxs-key"></i>
-                        Change Password
-                        <span></span>
-                    </a>
-                  </Link>
-                </div>}
-                {/* Changes end here #################### Finished */}
-            </div>
-          }
-
-          {/* for regular user */}
-            {
-              this.props.profile.membership == "Regular" &&
-              <div className="col-2">
-                <div className="row">
-                  {/* <Link to="/pricing">
-                    <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}}>
-                      <i className="bx bxs-hot"></i>
-                        Upgrade
-                        <span></span>
-                    </a>
-                  </Link> */}
-                </div>
-{/* 
-                <div className="row" style={{marginTop:"8%"}}>
-                  <Link>
-                    <a 
-                    onClick={() => {
-                    this.setState({ ...this.state, show: true });
-                    }}
-                    className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"133%"}} 
-                    >
-                      <i className="bx bx-edit 2"></i>
-                        Edit
-                        <span></span>
-                    </a>
-                  </Link>
-                </div> */}
-{/* Here is the change made: I have added another buttom as password editing*/}
-                {/* {this.props.userfullname == "" &&
-                <div className="row" style={{marginTop:"8%"}}>
-                  <Link>
-                    <a 
-                    onClick={() => {
-                    this.setState({ ...this.state, passwordChanging: true });
-                    }}
-                    className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"133%"}} 
-                    >
-                      <i className="bx bxs-key"></i>
-                        Change Password
-                        <span></span>
-                    </a>
-                  </Link>
-                </div>} */}
-{/* Changes end here #################### Finished */}
-              </div>
-            }                
           </DbCenterRow>
-        {/* <EditModal
-          show={this.state.show}
-          location={this.state.location}
-          phone_number={this.state.phone_number}
-          saveChanges={this.saveChanges}
-          handleInputChange={this.handleInputChange}
-          hide={this.finishEditing}
-        /> */}
-
-{/* Making Changes Here */}
-        {/* <PasswordChangingInterface
-          updateUserPassword={this.props.updateUserPassword}
-          show={this.state.passwordChanging}
-          hide={this.finishedPasswordChanging}
-          user={this.props.user}
-        /> */}
-{/* Changes Ends here */}
 
 
       </div>

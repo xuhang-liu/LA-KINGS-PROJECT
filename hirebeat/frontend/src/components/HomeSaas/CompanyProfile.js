@@ -267,6 +267,31 @@ class CompanyProfile extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/SEB.png" alt="SEB logo"/>
                             </Link>
                         </div>
+                        <div className="item">
+                            <Link to="/allstate">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/allstate.png" alt="Allstate logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/deloitte">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/deloitte.png" alt="Deloitte logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/deutsche-bank">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/deutsche-bank.png" alt="Deutsche Bank logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/ernst-young">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/ernst-young.png" alt="Ernst Young logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/merrill-lynch">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/merrill-lynch.png" alt="Merrill Lynch logo"/>
+                            </Link>
+                        </div>
                     </OwlCarousel>
                     <a href="/companydata" className="read-more" style={{color: "#13C4A1", marginLeft: "2rem", fontSize:"1rem", textDecoration:"none"}}>Explore our company data <i class="bx bx-right-arrow-alt"></i></a>
                 </div>
