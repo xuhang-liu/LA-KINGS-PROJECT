@@ -85,7 +85,7 @@ export class Dashboard extends Component {
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "videos":
-        return <Resume/>;
+        return <Interview/>;
       //case "analytics":
         //return <Analytics />;
       case "resume":

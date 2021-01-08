@@ -60,7 +60,10 @@ export function VideoImagePreview(props) {
         <MediaQuery minDeviceWidth={1224}>
         <div className="col-5">
           {
-            (props.isAudio) ? <AudioPlayer url={props.v.url} />
+            (props.isAudio) ?
+                <div className="d-flex justify-content-center align-items-center" style={{height: "100%"}} >
+                    <AudioPlayer url={props.v.url} />
+                </div>
                 : <VideoPlayer url={props.v.url} />
           }
         </div>
