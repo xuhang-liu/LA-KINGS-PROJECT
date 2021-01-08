@@ -13,7 +13,8 @@ import { DbRow } from "./DashboardComponents";
 import { DbCenterRow } from "./DashboardComponents";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
-import SubpageSetting from './SubpageSetting' 
+import PropTypes from "prop-types";
+import SubpageSetting from './SubpageSetting';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -25,6 +26,15 @@ function ScrollToTopOnMount() {
 
 
 export class Dashboard extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+  }
+
   makeProfile = () => {
     return {
       user: this.props.user.id,
@@ -179,6 +189,7 @@ const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
   user: state.auth_reducer.user,
   userfullname: state.auth_reducer.userfullname,
+  isAuthenticated: state.auth_reducer.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname })(

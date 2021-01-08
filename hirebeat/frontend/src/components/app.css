@@ -2257,8 +2257,8 @@ h5 {
 }
 
 .career-bg {
-  background: #ffffff;
-  box-shadow: 0px 0px 29px rgba(125, 125, 125, 0.1);
+  background: #FFFFFF;
+  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -2276,7 +2276,7 @@ h5 {
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
-  color: #090d3a;
+  color: #090D3A;
 }
 
 .career-txt2 {
