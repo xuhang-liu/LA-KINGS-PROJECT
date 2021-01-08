@@ -15,15 +15,15 @@ function ScrollToTopOnMount() {
 }
 
 export class BehaviorQuestionMode extends Component {
-//  redirectToBQPracticeMode = () => {
-//    const { history } = this.props;
-//    if (history) history.push(`/practice/modes/practice`);
-//  };
-//
-//   redirectToBQSimulateMode = () => {
-//    const { history } = this.props;
-//    if (history) history.push(`/practice/modes/simulate`);
-//  };
+  redirectToBQPracticeMode = () => {
+    const { history } = this.props;
+    if (history) history.push(`/practice/modes/practice`);
+  };
+
+   redirectToBQSimulateMode = () => {
+    const { history } = this.props;
+    if (history) history.push(`/practice/modes/simulate`);
+  };
 
   componentDidMount() {
     safariAlert();
@@ -43,8 +43,8 @@ export class BehaviorQuestionMode extends Component {
         />
         <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
           <div className="col features-box" style={{marginLeft: "5%", backgroundColor:"#ffffff"}}>
-              <Link style={{textDecoration: "none"}} to="/practice/modes/practice">
-                <div style={{padding: "10%"}}>
+              <button onClick={this.redirectToBQPracticeMode} style={{border: "none", background: "white", width: "21.6rem"}}>
+                <div style={{padding: "10%", textAlign: "left"}}>
                 <div className="icon">
                   <i className='bx bx-bullseye'></i>
                 </div>
@@ -52,11 +52,11 @@ export class BehaviorQuestionMode extends Component {
                   <p className="mode-col-text1">Select one specific category and <br/> practice to perfect.</p>
                   <p className="mode-col-text2">Next Step -> </p>
                 </div>
-              </Link>
+              </button>
           </div>
           <div className="col features-box" style={{marginLeft: "6rem", backgroundColor:"#ffffff"}}>
-              <Link style={{textDecoration: "none"}} to="/practice/modes/simulate">
-                <div style={{padding: "10%"}}>
+              <button onClick={this.redirectToBQSimulateMode} style={{border: "none", background: "white", width: "21.6rem"}} >
+                <div style={{padding: "10%", textAlign: "left"}}>
                 <div className="icon">
                   <i className='bx bx-bolt-circle'></i>
                 </div>
@@ -64,7 +64,7 @@ export class BehaviorQuestionMode extends Component {
                   <p className="mode-col-text1">Include all categories and <br/> practice questions randomly.</p>
                   <p className="mode-col-text2">Next Step -> </p>
                 </div>
-              </Link>
+              </button>
           </div>
         </div>
       </MediaQuery>

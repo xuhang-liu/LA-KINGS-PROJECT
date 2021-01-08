@@ -245,7 +245,7 @@ p:last-child {
   transition: 0.5s;
   border-radius: 5px;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 20px;
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 13px;
@@ -6283,6 +6283,19 @@ SaaS Home Page CSS
 .saas-banner .saas-image.mt-70 {
   margin-top: 70px;
 }F
+
+.saas-banner .hero-content .number {
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  line-height: 45px;
+  font-size: 24px;
+  text-align: center;
+  border-radius: 100%;
+  color: #ff612f;
+  display: inline-block;
+  font-weight: 600;
+}
 
 .saas-banner .hero-content {
   z-index: 1;

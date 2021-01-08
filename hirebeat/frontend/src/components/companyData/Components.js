@@ -141,7 +141,7 @@ export const SalaryBar = (props) => {
                     yaxis: [
                         {
                           min: 0,
-                          max: 200000,
+                          max: 250000,
                           tickAmount: 4,
                           seriesName: "Salary",
                           labels: {
