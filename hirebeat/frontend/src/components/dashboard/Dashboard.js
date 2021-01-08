@@ -13,6 +13,7 @@ import { DbRow } from "./DashboardComponents";
 import { DbCenterRow } from "./DashboardComponents";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
+import SubpageSetting from './SubpageSetting' 
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -96,16 +97,24 @@ export class Dashboard extends Component {
             <div className='col-3'>
               <div className='dashboard-sidebar'>
                 <EssentialUserInfo
-                        userfullname={this.props.userfullname}
-                        user={this.props.user}
-                        profile={this.props.profile}
-                        updateProfile={this.props.updateProfile}
+                  userfullname={this.props.userfullname}
+                  user={this.props.user}
+                  profile={this.props.profile}
+                  updateProfile={this.props.updateProfile}
+                  renderVideos={this.renderVideos}
+                  renderResume={this.renderResume}
+                  subpage={this.state.subpage}
                       />
               </div>  
             </div>
             <div className='col-9'>
-              <div className="dashboard-main"> 
-                The main
+              <div className="dashboard-main">
+              {this.renderSubpage()}
+                  <SubpageSetting
+                  user={this.props.user}
+                  profile={this.props.profile}
+                  location={this.props.profile.location}
+                  phone_number={this.props.profile.phone_number}/>
               </div>
             </div>
           </div>
