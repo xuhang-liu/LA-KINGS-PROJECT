@@ -2277,6 +2277,7 @@ h5 {
   font-weight: 600;
   font-size: 1.25rem;
   color: #090D3A;
+  
 }
 
 .career-txt2 {
@@ -2338,6 +2339,16 @@ h5 {
 }
 
 .career-search {
+  width: 100.8%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+  background-color: #E8EDFC;
+  padding-bottom: 5%;
+}
+
+.career-search1 {
   width: 90%;
   margin: auto;
   display: flex;

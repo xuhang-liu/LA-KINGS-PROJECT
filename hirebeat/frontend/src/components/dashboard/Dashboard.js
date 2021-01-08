@@ -33,7 +33,7 @@ export class Dashboard extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
-  }
+  };
 
   makeProfile = () => {
     return {

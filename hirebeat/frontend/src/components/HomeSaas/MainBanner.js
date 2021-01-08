@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import ReactWOW from 'react-wow';
 import Particles from 'react-particles-js';
 import ModalVideo from 'react-modal-video';
-import MediaQuery from 'react-responsive';
+//import MediaQuery from 'react-responsive';
 import arrow from "../public/images/saas-shape/arrow.png";
 import box1 from "../public/images/saas-shape/box1.png";
 import boy1 from "../public/images/saas-shape/boy1.png";
@@ -139,16 +139,24 @@ class MainBanner extends Component {
                                             <div className="banner-btn">
                                                 <div className="d-flex">
                                                     <Link to="/practice">
-                                                        <a className="default-btn2" style={{color:"white", marginRight:"1rem", fontWeight:"600", fontsize:"18px", lineHeight:"25px"}}>
+                                                        <a id="id-interviewpractice" className="default-btn2" style={{color:"white", marginRight:"1rem", fontWeight:"600", fontsize:"20px", lineHeight:"26px"}}>
                                                         Interview Practice
                                                             <span></span>
                                                         </a>
                                                     </Link>
 
                                                     <Link to="/resume">
-                                                        <a className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"18px", lineHeight:"25px"}}>
+                                                        <a id="id-resumeoptimize" className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"20px", lineHeight:"26px"}}>
                                                         Optimize Resume
                                                             <span></span>
+                                                        </a>
+                                                    </Link>
+                                                </div>
+                                                <div className="d-flex" style={{marginTop:"1.5rem"}}>
+                                                    <Link to="/career" style={{textDecoration:"none"}}>
+                                                        <a id="id-findjobs">
+                                                        <span className="number" style={{marginRight:'0.5rem'}}><i className="bx bx-search-alt"></i></span>
+                                                        <p style={{color:"white", fontWeight:"600", fontsize:"20px", lineHeight:"26px", display:"inline-block"}}>Find Jobs</p>
                                                         </a>
                                                     </Link>
                                                 </div>

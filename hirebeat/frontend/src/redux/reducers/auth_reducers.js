@@ -95,6 +95,7 @@ export default function (state = initialState, action) {
       };
     case GET_ZP_JOBS:
       return {
+        ...state,
         zpJobs: action.payload.data,
       };
     default:
