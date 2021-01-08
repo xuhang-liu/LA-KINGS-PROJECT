@@ -166,3 +166,14 @@ def get_ziprecruiter_jobs(request):
     data = requests.get(url.format(search, location, jobs_per_page, days_ago, refine_by_salary, api_key)).json()
 
     return Response({"data": data})
+
+@api_view(['POST'])
+def check_user_registration(request):
+    is_registered = False
+    email = request.data["email"]
+    user = User.objects.filter(email=email)
+    # queryset is empty if user not exist
+    if len(user) == 1:
+        is_registered = True
+
+    return Response({"is_registered": is_registered})

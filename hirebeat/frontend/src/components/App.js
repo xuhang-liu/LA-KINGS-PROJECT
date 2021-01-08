@@ -114,6 +114,8 @@ import CareerVideoRecorder from "./videoInterview/CareerVideoRecorder";
 import Contact from "./contact/contact";
 import Howitworks from "./home/Howitworks"
 
+import CandidateLogin from "./videoInterview/CandidateLogin";
+
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
 
 import VideoReplayPage from "./dashboard/videos/VideoReplayPage";
@@ -215,7 +217,7 @@ class App extends Component {
                   component={QuestionTypeChoices}
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
-                <Route exact path="/video-interview" component={CareerVideoRecorder}/>
+                <PrivateRoute exact path="/video-interview" component={CareerVideoRecorder}/>
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/howitworks" component={Howitworks} />
@@ -307,6 +309,7 @@ class App extends Component {
                 <PrivateRoute exact path="/email-verification" component={EmailVerification} />
                 <Route exact path="/career" component={SearchPanel} />
                 <Route exact path="/career-details" component={SearchResult} />
+                <Route exact path="/candidate-login" component={CandidateLogin} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />

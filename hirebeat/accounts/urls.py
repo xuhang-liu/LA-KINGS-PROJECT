@@ -1,7 +1,8 @@
 from django.urls import path,include
 from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, Employer_ResgisterAPI
 from knox import views as knox_views
-from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, resend_activation_email, update_user_email, update_user_password, check_password, get_user_fullname, get_ziprecruiter_jobs
+from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, resend_activation_email, update_user_email,\
+    update_user_password, check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -49,5 +50,8 @@ urlpatterns = [
 
     ### get ziprecruiter jobs
     path('get-ziprecruiter-jobs', get_ziprecruiter_jobs, name='get ziprecruiter jobs'),
+
+    ### check user registration
+    path('check-user-registration', check_user_registration, name="check user registration"),
 ]
 
