@@ -52,21 +52,6 @@ function ButtonPanel(props) {
         />
       </button>
       <br />
-      {/* <button
-        type="button"
-        className="panel-button"
-        onClick={props.renderAnalytics}
-        style={{outline: "none"}}
-      >
-        <IconText
-          textSize={"18px"}
-          textDisplayed={"Analytics"}
-          iconName={"track_changes"}
-          iconMargin={"4px"}
-          textColor={props.subpage == "analytics" ? selectColor : defaultColor}
-        />
-      </button>
-      <br /> */}
       <button
         type="button"
         className="panel-button"
@@ -115,7 +100,7 @@ function ButtonPanel(props) {
               <Link to="/pricing" style={{textDecoration: "none"}}>
                 <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
               </Link>
-            </div>
+              </div>       
           </div>
       }
       </MediaQuery>
