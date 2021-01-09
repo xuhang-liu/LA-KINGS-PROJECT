@@ -8,12 +8,12 @@ import { Resume } from "./videos/Resume";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
-import { DbRow, DbCenterRow, RowBoxes} from "./DashboardComponents";
+import { DbRow, DbCenterRow, } from "./DashboardComponents";
+import RowBoxes from "./Rowboxes"
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import SubpageSetting from './SubpageSetting';
-
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -133,7 +133,7 @@ export class Dashboard extends Component {
               </div>
               <div className='col-9'>
                 <div className="dashboard-main">
-                  {this.state.subpage === "settings" ? null : <RowBoxes/>}
+                  {this.state.subpage === "settings" ? null : <RowBoxes userId={this.props.user.id}/>}
                   <div className="container" style={{marginBottom: "0%"}}>
                     <div className=""
                          style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>

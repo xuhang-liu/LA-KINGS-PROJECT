@@ -61,7 +61,7 @@ export function VideoImagePreview(props) {
         <div className="col-5">
           {
             (props.isAudio) ?
-                <div className="d-flex justify-content-center align-items-center" style={{height: "100%"}} >
+                <div className="d-flex align-items-center" style={{height: "100%"}} >
                     <AudioPlayer url={props.v.url} />
                 </div>
                 : <VideoPlayer url={props.v.url} />

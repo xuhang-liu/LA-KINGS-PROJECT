@@ -5,61 +5,13 @@ import { customBarData } from "../../constants/constants";
 import MediaQuery from 'react-responsive';
 import CountUp from "react-countup";
 import LazyLoad from "react-lazyload";
+import axios from "axios";
 export const DbRow = (props) => {
     return <div className="dashboard-row">{props.children}</div>;
 };
 
 export const DbCenterRow = (props) => {
     return <div className="dashboard-align-center-row">{props.children}</div>;
-};
-const RowBox = (props) => {
-    return (
-        <div className="col-xxl col-xl col-lg col-sm col-md ">
-            {/* <!-- Single Category --> */}
-            <a
-                href="/#"
-                className="d-flex align-items-center justify-content-around bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 mt-5 shadow-8"
-                style={{"text-decoration": "none", height: "100%"}}
-            >
-                <div className="hirebeat-blue-bg circle-56 font-size-6 ml-2 mr-0" >
-                    <i className={`fas bx ${props.icon}`} style={{color:"white"}}/>
-                </div>
-                {/* <!-- Category Content --> */}
-                <div className="mr-2 ml-0">
-                    <h5 className="d-flex font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-0 mt-2 ">
-                        <LazyLoad>
-                        <span className="counter">
-                          <CountUp duration={6} end={props.count} />
-                        </span>
-                        </LazyLoad>
-                    </h5>
-                    <p className="font-size-4 font-weight-normal text-gray mt-0 mb-2">
-                        {props.children}
-                    </p>
-                </div>
-            </a>
-            {/* <!-- End Single Category --> */}
-        </div>
-    )
-};
-export const RowBoxes = (props) => {
-    let video_practiced = 5;
-    let resume_scanned = 256;
-    let video_reviewed = 160;
-    let recorded_interviewed = 0;
-
-    return (
-        <div className="mt-25 mt-lg-31">
-            <div className={"container"}>
-                <div className="row mb-7">
-                    <RowBox count={video_practiced} icon={"bxs-video"}>Video Practiced</RowBox>
-                    <RowBox count={resume_scanned} icon={"bxs-file-pdf"}>Resume Scanned</RowBox>
-                    <RowBox count={video_reviewed} icon={"bxs-bot"}>Videos Reviewed</RowBox>
-                    <RowBox count={recorded_interviewed} icon={"bx-brain"}>Recorded Interview</RowBox>
-                </div>
-            </div>
-        </div>
-    )
 };
 const Icon = (props) => {
     return (
