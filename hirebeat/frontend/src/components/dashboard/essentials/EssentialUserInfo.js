@@ -22,11 +22,13 @@ const config = {
     region: 'us-east-1',
     accessKeyId: '',
     secretAccessKey: '',
+    interviewLeft: "",
+    scanLeft: "",
 }
 
 
 export class EssentialUserInfo extends Component {
-  state = {
+  state = { 
     // changemaking: I am adding the state to control the show/hide of the password chaning Modal
     passwordChanging: false,
     // changefinishes
@@ -44,6 +46,34 @@ export class EssentialUserInfo extends Component {
   };
 
   componentDidMount() {
+    var save_limit = this.props.profile.save_limit;
+    var saved_video = this.props.profile.saved_video_count;
+    var saves_left = 0;
+    console.log('1', save_limit);
+
+    if(Number(save_limit)>900){
+       saves_left = "unlimited";
+       console.log('2');
+    }else{
+      if((Number(save_limit) - Number(saved_video))>0){
+        saves_left = Number(save_limit) - Number(saved_video);
+        console.log('3');
+      }
+    }
+    console.log('4');
+    // resume save left
+    var cv_save_limit = this.props.profile.save_resume_limit;
+    var saved_resume = this.props.profile.saved_resume_count;
+    var cv_saves_left = 0;
+    if (Number(cv_save_limit) > 900) {
+        cv_saves_left = "unlimited";
+    } else {
+        if((Number(cv_save_limit) - Number(saved_resume)) > 0){
+            cv_saves_left = Number(cv_save_limit) - Number(saved_resume);
+            console.log("cv left?", cv_saves_left)
+        }
+    }
+
     this.setState({
       phone_number: this.props.profile.phone_number,
       location: this.props.profile.location,
@@ -52,8 +82,13 @@ export class EssentialUserInfo extends Component {
       email_confirmed: this.props.profile.email_confirmed,
       saved_video_count: this.props.profile.saved_video_count,
       filePhoto: this.props.profile.avatar_url,
+      interviewLeft: saves_left,
+      scanLeft: cv_saves_left,
     });
-  }
+
+  
+  };
+
 
   handleInputChange = (e) => {
     this.setState({
@@ -75,67 +110,6 @@ export class EssentialUserInfo extends Component {
     this.setState({...this.state, passwordChanging: false});
   }
 
-
-
-  /*sendEmail = () => {
-    //alert
-    confirmAlert({
-      title: 'Activation Code Sent!',
-      message: 'Please check your email for the activation code.(Make sure to check spam also)',
-      buttons: [
-        {
-          label: 'OK'
-        }
-      ]
-    });
-    //email
-    Email.send({
-      Host : "smtp.elasticemail.com",
-      Username : "tech@hirebeat.co",
-      Password : "599A223E6635EB53171C06E9D1747653A5E7",
-      To : this.props.user.email,
-      From : "Hirebeat<tech@hirebeat.co>",
-      Subject : "Welcome Email From Hirebeat",
-      Body : "<html><h1>Hi Welcome!</h1><br></br>Please copy the activation code below and apply into the Dashboard page to verify your email address: <br></br> <strong>DAHF@-13123-#@B@V-ADADA</strong></html>",
-  });
-  }*/
-
-  /*verifyEmail = (props) => {
-    if(this.state.active_code == "DAHF@-13123-#@B@V-ADADA"){
-      confirmAlert({
-        title: 'Email Verified',
-        message: 'You can save up to 5 videos now.',
-        buttons: [
-          {
-            label: 'OK'
-          }
-        ]
-      });
-      var profile = this.makeEmailConfirm();
-      this.props.updateProfile(profile);
-      this.finishEditing();
-    }else{
-      //alert
-    confirmAlert({
-      title: 'Code Invalid',
-      message: 'Click [Get Code] to get the activation code.',
-      buttons: [
-        {
-          label: 'OK'
-        }
-      ]
-    });
-    }
-  };*/
-
-  /*makeEmailConfirm = () => {
-    return {
-      user: this.props.user.id,
-      id: this.props.profile.id,
-      email_confirmed: true,
-      save_limit: 5,
-    };
-  };*/
   sendEmail (e) {
     e.preventDefault();
     emailjs.sendForm('service_s8700fg', 'template_992v1vd', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
@@ -290,6 +264,7 @@ export class EssentialUserInfo extends Component {
                   <button
                     type="button"
                     className="panel-button"
+                    onClick={this.props.renderSetting}
                     style={{outline: "none", margin:"1%", padding:"0px"}}
                   >
                     <IconText
@@ -343,34 +318,43 @@ export class EssentialUserInfo extends Component {
                 </div>
               </div>
           
-              <div className="row" style={{marginTop:"8%"}}>
-                <Link>
-                  <a 
-                  onClick={() => {
-                  this.setState({ ...this.state, passwordChanging: true });
-                  }}
-                  className="default-btn" style={{color:"white", backgroundColor:"#090D3A", width:"133%"}} 
-                  >
-                    <i className="bx bxs-key"></i>
-                      New Practice
-                      <span></span>
+              {this.props.subpage == 'videos' &&
+                <Link to="/practice">
+                  <a className="default-btn" 
+                  style={{color:"white", backgroundColor:"#090D3A"}}>
+                    <i className="bx bxs-hot"></i> 
+                    New Practice
+                    <span></span>
                   </a>
                 </Link>
-              </div>
+              }
+
+              {this.props.subpage == 'resume' &&
+                <Link to="/resume">
+                  <a className="default-btn" 
+                  style={{color:"white", backgroundColor:"#090D3A", marginLeft:"4%"}}>
+                    <i className="bx bxs-hot"></i> 
+                    New Scan
+                    <span></span>
+                  </a>
+                </Link> 
+              }
+
+              {this.props.profile.membership == 'Regular' &&
               <div>
                 <div className="row">
-                  <div className="col">Interview left: 1 </div>
-                  {this.props.profile.membership == 'Regular' &&
+                  <div className="col">            
+                    {this.props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Reviews Left: {this.state.interviewLeft}</p> : null}
+                    {this.props.subpage == "resume" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {this.state.scanLeft}</p> : null}
+                  </div>
+                  
                     <div className="col-5">
                       <Link to="/pricing" style={{textDecoration: "none"}}>
                         <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
                       </Link>
-                    </div>}
-                  {/* {props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Reviews Left: {saves_left}</p> : null}
-                  {props.subpage == "resume" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {cv_saves_left}</p> : null} */}
- 
+                    </div>
                 </div>     
-              </div>
+              </div>}
             </div>
           </DbCenterRow>
 
