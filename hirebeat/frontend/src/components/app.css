@@ -214,7 +214,7 @@ video {
 }
 
 .height-20 {
-  height: 20%;
+  height: 20.4rem;
 }
 
 .height-50 {
@@ -237,7 +237,18 @@ video {
   line-height: 18px;
   color: #000000;
 }
-
+.mt-6 {
+  margin-top: 3.6rem;
+}
+.mt-7 {
+  margin-top: 4.2rem;
+}
+.mb-6 {
+  margin-bottom: 3.6rem;
+}
+.mb-7 {
+  margin-bottom: 4.2rem;
+}
 .margin-right-20 {
   margin-right: 20px;
 }
@@ -712,7 +723,7 @@ h5 {
   height: 2.125rem;
   background: #ff6b00;
   box-shadow: 0px 4px 25px rgba(255, 107, 0, 0.25);
-  border-radius: 3.125rem;
+  border-radius: 5px;
   border: 0px;
 }
 
@@ -721,8 +732,8 @@ h5 {
   height: 2.125rem;
   background: #7d7d7d;
   box-shadow: 0px 4px 25px rgba(125, 125, 125, 0.25);
-  border-radius: 3.125rem;
-  border: 0px;
+  border-radius: 5px;
+  border: none;
 }
 
 .reviewed {
@@ -730,7 +741,7 @@ h5 {
   height: 2.125rem;
   background: #14cc75;
   box-shadow: 0px 4px 25px rgba(20, 204, 117, 0.25);
-  border-radius: 3.125rem;
+  border-radius: 5px;
   border: 0px;
 }
 
@@ -2338,6 +2349,16 @@ h5 {
 }
 
 .career-search {
+  width: 100.8%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+  background-color: #E8EDFC;
+  padding-bottom: 5%;
+}
+
+.career-search1 {
   width: 90%;
   margin: auto;
   display: flex;
@@ -2407,6 +2428,6 @@ h5 {
   overflow: scroll;
   height: 100vh;
   width: 100%;
-  background-color: #07305a;
+  background-color: #e8edfc;
 }
 

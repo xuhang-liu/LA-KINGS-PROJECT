@@ -8,7 +8,7 @@ import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import badge from '../../assets/badge.png';
-import leftbg from '../../assets/Login.png';
+//import leftbg from '../../assets/Login.png';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -99,7 +99,7 @@ export class Register extends Component {
             <section className="signup-area">
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0"> 
-                      <img src={leftbg} alt="image"></img>
+                      <img src="https://hirebeat-assets.s3.amazonaws.com/Login.png" alt="image"></img>
                     </div>
 
                     <div className="col-lg-6 col-md-12 p-0">
@@ -185,7 +185,7 @@ export class Register extends Component {
                             required/>
                       </div>
 
-                      <p className="d-flex flex-wrap justify-content-end"
+                      <p className=" flex-wrap justify-content-end"
                          style={{
                            fontSize: "0.9rem",
                            color: "grey",
@@ -193,7 +193,7 @@ export class Register extends Component {
                          }}>
                         Have an account?
                         <a href="/login"
-                           className="active d-flex ml-2"
+                           className="active  ml-2"
                            style={{
                              textDecoration: "underline",
                              color: "orange",
@@ -215,7 +215,7 @@ export class Register extends Component {
                           Try For Free
                         </button>
                       </div>
-                      <p className="d-flex flex-wrap justify-content-end"
+                      <p className=" flex-wrap justify-content-end"
                          style={{
                            fontSize: "0.9rem",
                            color: "grey",

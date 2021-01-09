@@ -314,6 +314,38 @@ class CompanyList extends Component {
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/SEB.png" alt="SEB logo"/>
                                 </Link>
                             </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/allstate">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/allstate.png" alt="Allstate logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/deloitte">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/deloitte.png" alt="Deloitte logo"/>
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="clients-logo-list align-items-center" style={{marginTop: "1rem"}}>
+                            <div className="single-clients-logo">
+                                <Link to="/deutsche-bank">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/deutsche-bank.png" alt="Deutsche Bank logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/ernst-young">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/ernst-young.png" alt="Ernst Young logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/merrill-lynch">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/merrill-lynch.png" alt="Merrill Lynch logo"/>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <MediaQuery minDeviceWidth={1224}>

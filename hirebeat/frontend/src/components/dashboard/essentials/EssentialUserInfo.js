@@ -290,6 +290,7 @@ export class EssentialUserInfo extends Component {
                   <button
                     type="button"
                     className="panel-button"
+                    onClick={this.props.renderSetting}
                     style={{outline: "none", margin:"1%", padding:"0px"}}
                   >
                     <IconText

@@ -99,8 +99,10 @@ export class MyVideoUploader extends Component {
     var name = this.props.video.name;
 
     // change bucket to "hirebeat-test-video-bucket" when run in local
-    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
-    // var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
+
+   var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
+//     var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
+
 
     if (this.props.retry) {
         let retry_q_meta = this.props.retry_q_meta;

@@ -1,10 +1,10 @@
 import React from "react";
-import ResumePreviewList from "./ResumePreviewList";
+import ResumePreviewList from "./ResumePreviewList.js";
 
 export const Resume = () => {
   return (
     <div>
-      <ResumePreviewList />
+      <ResumePreviewList/>
     </div>
   );
 };

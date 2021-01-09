@@ -37,7 +37,7 @@ export class ReviewList extends Component {
         let offset = Math.ceil(selected * this.state.perPage);
 
         this.setState({ offset: offset }, () => {
-            this.props.getUnreviewedVideoList();
+            this.props.getUnreviewedVideoList();  // todo check here, maybe its redundant
         });
     };
 
