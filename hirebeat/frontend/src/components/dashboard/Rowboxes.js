@@ -1,7 +1,7 @@
 import CountUp from "react-countup";
 import LazyLoad from "react-lazyload";
-import {loadProfile, loadUserFullname, updateProfile} from "../../redux/actions/auth_actions";
-import {Dashboard} from "./Dashboard";
+//import {loadProfile, loadUserFullname, updateProfile} from "../../redux/actions/auth_actions";
+//import {Dashboard} from "./Dashboard";
 import {get_practice_info} from "../../redux/actions/practice_info_actions";
 import React from "react";
 import { connect } from "react-redux";
@@ -10,7 +10,7 @@ const RowBox = (props) => {
         <div className="col-xxl col-xl col-lg col-sm col-md ">
             {/* <!-- Single Category --> */}
             <a
-                href="/#"
+                href="#"
                 className="d-flex align-items-center justify-content-around bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 mt-5 shadow-8"
                 style={{"text-decoration": "none", height: "100%"}}
             >

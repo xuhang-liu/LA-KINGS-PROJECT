@@ -2,7 +2,7 @@ import React from "react";
 import { IconText } from "../DashboardComponents";
 //import {PanelSelect} from "../DashboardComponents";
 import { Link } from "react-router-dom";
-import MediaQuery from 'react-responsive';
+//import MediaQuery from 'react-responsive';
 
 function ButtonPanel(props) {
   // video & audio save left
@@ -35,7 +35,6 @@ function ButtonPanel(props) {
   var defaultDecoration = "none";
   return (
     <div>
-      <MediaQuery minDeviceWidth={1224}>
       <button
         type="button"
         className="panel-button"
@@ -103,7 +102,6 @@ function ButtonPanel(props) {
               </div>       
           </div>
       }
-      </MediaQuery>
       {/*<MediaQuery maxDeviceWidth={1223}>*/}
       {/*<button*/}
       {/*  type="button"*/}

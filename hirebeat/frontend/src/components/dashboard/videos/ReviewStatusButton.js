@@ -91,7 +91,7 @@ function ReviewStatusButton(props) {
         >
           {text}
         </button>
-      </div >
+      </div>
       <MyVerticallyCenteredModal
         show={show}
         subPage={subPage}

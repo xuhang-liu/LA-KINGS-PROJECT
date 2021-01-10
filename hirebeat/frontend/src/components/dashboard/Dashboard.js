@@ -8,7 +8,7 @@ import { Resume } from "./videos/Resume";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
-import { DbRow, DbCenterRow, } from "./DashboardComponents";
+//import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
@@ -142,6 +142,20 @@ export class Dashboard extends Component {
                   </div>
                 </div>
               </div>
+            </div>
+          </MediaQuery>
+          <MediaQuery maxDeviceWidth={1223}>
+            <PageTitleArea
+              pageTitle="Welcome to Hirebeat!"
+              pageDescription="Our mobile functionality is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
+            />
+            <div style={{textAlign: "center"}}>
+            <Link to="/">
+              <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00", marginTop:"1rem",marginBottom:"1rem"}}>
+                <i className="bx bxs-hot"></i>
+                Back to Home Page
+              </a>
+            </Link>
             </div>
           </MediaQuery>
         </React.Fragment>
