@@ -62,3 +62,4 @@ export const ADD_WP_VIDEO = "ADD_WP_VIDEO";
 export const GET_RANDOM_QUESTION = "GET_RANDOM_QUESTION";
 
 export const GET_ZP_JOBS = "GET_ZP_JOBS";
+export const FETCH_PRACTICE_INFO = "FETCH_PRACTICE_INFO";

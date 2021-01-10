@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ButtonPanel from "./panel/ButtonPanel";
 import { Link } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import VideoPreviewList from "./videos/VideoPreviewList";
@@ -9,12 +8,12 @@ import { Resume } from "./videos/Resume";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
-import { DbRow } from "./DashboardComponents";
-import { DbCenterRow } from "./DashboardComponents";
+//import { DbRow, DbCenterRow, } from "./DashboardComponents";
+import RowBoxes from "./Rowboxes"
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
-
+import SubpageSetting from './SubpageSetting';
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,7 +32,7 @@ export class Dashboard extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool,
   };
-  
+
   makeProfile = () => {
     return {
       user: this.props.user.id,
@@ -44,7 +43,7 @@ export class Dashboard extends Component {
 
   activateEmail = () => {
     // only for FB social login
-    if (this.props.user.email == "" || this.props.user.email == null ) {
+    if (this.props.user.email == "" || this.props.user.email == null) {
       var profile = this.makeProfile();
       this.props.updateProfile(profile);
     }
@@ -53,13 +52,14 @@ export class Dashboard extends Component {
   componentDidMount() {
     this.props.loadProfile();
     this.activateEmail();
-    var user = { "id": this.props.user.id};
+    var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
+
   }
 
   // params passed from resume page
   param = this.props.location.params;
-  page = (typeof(this.param) == "undefined" ? "" : this.param.subpage);
+  page = (typeof (this.param) == "undefined" ? "" : this.param.subpage);
 
   state = {
     subpage: (this.page == "" ? "videos" : this.page),
@@ -83,93 +83,67 @@ export class Dashboard extends Component {
     });
   };
 
+  renderSetting = () => {
+    this.setState({
+          subpage: "settings",
+        }
+    )
+  }
+
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "videos":
-        return <Interview />;
-      //case "analytics":
+        return <Interview/>;
+        //case "analytics":
         //return <Analytics />;
       case "resume":
-        return <Resume />;
+        return <Resume/>;
+      case "settings":
+        return <SubpageSetting
+            user={this.props.user}
+            profile={this.props.profile}
+            location={this.props.profile.location}
+            phone_number={this.props.profile.phone_number}
+        />;
       default:
-      //Do nothing
+        //Do nothing
     }
   };
 
   render() {
     return (
-      <React.Fragment>
-        <ScrollToTopOnMount />
-        {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
+        <React.Fragment>
+          <ScrollToTopOnMount/>
+          {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
-          <DbRow>
-            <div className="col-12" style={{padding:"0%"}}>
-              <div className="page-title-area">
-                <div className="container">
-                  <div className="page-title-content" style={{color:"#FFFFFF"}}>
-                    <EssentialUserInfo
+            <div className="row no-gutters">
+              <div className='col-3'>
+                <div className='dashboard-sidebar'>
+                  <EssentialUserInfo
                       userfullname={this.props.userfullname}
                       user={this.props.user}
                       profile={this.props.profile}
                       updateProfile={this.props.updateProfile}
-                    />
+                      renderSetting={this.renderSetting}
+                      renderVideos={this.renderVideos}
+                      renderResume={this.renderResume}
+                      subpage={this.state.subpage}
+                  />
+                </div>
+              </div>
+              <div className='col-9'>
+                <div className="dashboard-main">
+                  {this.state.subpage === "settings" ? null : <RowBoxes userId={this.props.user.id}/>}
+                  <div className="container" style={{marginBottom: "0%"}}>
+                    <div className=""
+                         style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
+                      {this.renderSubpage()}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </DbRow>
-          <br />
-          <br />
-          <div className="container" style={{marginBottom:"0%"}}>
-            <DbCenterRow>
-              <div className="col-2" style={{marginBottom:"auto", paddingBottom:'10%'}}>
-                <ButtonPanel
-                  profile={this.props.profile}
-                  renderVideos={this.renderVideos}
-                  renderProfile={this.renderProfile}
-                  renderAnalytics={this.renderAnalytics}
-                  renderResume={this.renderResume}
-                  subpage={this.state.subpage}
-                />
-              </div>
-              <div className="col-11" style={{marginBottom:"auto", height:"auto", paddingBottom:'10%'}}>{this.renderSubpage()}</div>
-            </DbCenterRow>
-          </div>
           </MediaQuery>
-          {/*<MediaQuery maxDeviceWidth={1223}>
-          <DbRow>
-            <div className="col-12" style={{padding:"0%"}}>
-              <div className="page-title-area">
-                <div className="container">
-                  <div className="page-title-content" style={{color:"#FFFFFF"}}>
-                    <EssentialUserInfo
-                      user={this.props.user}
-                      profile={this.props.profile}
-                      updateProfile={this.props.updateProfile}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </DbRow>
-          <br />
-          <br />
-          <div className="container" style={{marginBottom:"0%"}}>
-          <div style={{marginBottom:"auto"}}>
-                <ButtonPanel
-                  profile={this.props.profile}
-                  renderVideos={this.renderVideos}
-                  renderProfile={this.renderProfile}
-                  renderAnalytics={this.renderAnalytics}
-                  renderResume={this.renderResume}
-                  subpage={this.state.subpage}
-                />
-              </div>
-            <DbCenterRow>
-              <div id="subpage_scroll_overflow" style={{marginBottom:"auto", height:"38rem"}}>{this.renderSubpage()}</div>
-            </DbCenterRow>
-          </div>
-          </MediaQuery>*/}
           <MediaQuery maxDeviceWidth={1223}>
             <PageTitleArea
               pageTitle="Welcome to Hirebeat!"
@@ -183,9 +157,8 @@ export class Dashboard extends Component {
               </a>
             </Link>
             </div>
-    </MediaQuery>
-      {/* </div> */}
-      </React.Fragment>
+          </MediaQuery>
+        </React.Fragment>
     );
   }
 }

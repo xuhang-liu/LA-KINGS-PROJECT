@@ -4,7 +4,7 @@ import ResumePreviewList from "./ResumePreviewList";
 export const Resume = () => {
   return (
     <div>
-      <ResumePreviewList />
+      <ResumePreviewList/>
     </div>
   );
 };
