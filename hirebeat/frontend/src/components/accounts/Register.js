@@ -185,7 +185,7 @@ export class Register extends Component {
                             required/>
                       </div>
 
-                      <p className=" flex-wrap justify-content-end"
+                      <p className=" flex-wrap d-flex justify-content-end"
                          style={{
                            fontSize: "0.9rem",
                            color: "grey",
@@ -193,7 +193,7 @@ export class Register extends Component {
                          }}>
                         Have an account?
                         <a href="/login"
-                           className="active  ml-2"
+                           className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
                              color: "orange",
@@ -215,7 +215,7 @@ export class Register extends Component {
                           Try For Free
                         </button>
                       </div>
-                      <p className=" flex-wrap justify-content-end"
+                      <p className="d-flex flex-wrap justify-content-end"
                          style={{
                            fontSize: "0.9rem",
                            color: "grey",

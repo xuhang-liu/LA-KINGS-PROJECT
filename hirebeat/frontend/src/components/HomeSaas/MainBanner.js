@@ -152,7 +152,7 @@ class MainBanner extends Component {
                                                         </a>
                                                     </Link>
                                                 </div>
-                                                <div style={{marginTop:"1.5rem"}}>
+                                                <div className="d-flex" style={{marginTop:"1.5rem"}}>
                                                     <Link to="/career" style={{textDecoration:"none"}}>
                                                         <a id="id-findjobs">
                                                         <span className="number" 
