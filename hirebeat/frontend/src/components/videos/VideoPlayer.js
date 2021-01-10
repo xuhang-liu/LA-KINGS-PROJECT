@@ -13,7 +13,7 @@ export class VideoPlayer extends Component {
     return (
       <div
         style={{
-          borderRadius: 5,
+          borderRadius: "0.5rem",
           border: "2px solid #8db1f5",
           boxShadow: "0px 0px 4px #8db1f5",
           boxSizing: "content-box",

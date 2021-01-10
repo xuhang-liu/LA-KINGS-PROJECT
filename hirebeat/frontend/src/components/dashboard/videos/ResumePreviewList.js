@@ -27,15 +27,15 @@ export class Resume extends Component {
           {this.props.loaded ?
             this.props.resumes.map((r) => {
               return (
-                <ResumePreview
-                  resume={r}
-                  percent={r.result_rate}
-                  jobTitle={r.job_title}
-                  jdText={r.jd_text}
-                  getResumes={this.props.getResumes}
-                  deleteResume={this.props.deleteResume}
-                  createdAt={r.created_at.slice(0, 10)}
-                />
+                  <ResumePreview
+                      resume={r}
+                      percent={r.result_rate}
+                      jobTitle={r.job_title}
+                      jdText={r.jd_text}
+                      getResumes={this.props.getResumes}
+                      deleteResume={this.props.deleteResume}
+                      createdAt={r.created_at.slice(0, 10)}
+                  />
               )
             }) : null
           }

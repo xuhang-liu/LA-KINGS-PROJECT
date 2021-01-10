@@ -41,31 +41,35 @@ export const ResumePreview = (props) => {
   }
 
   return (
-      <div className="container d-flex justify-content-start" style={{marginTop:"2%"}}>
-        <div className="col-2">
+      <div className="container d-flex justify-content-start " style={{marginTop:"2%", backgroundColor: "white", "border-radius": "0.5rem"}}>
+        <div className="col-2 d-flex justify-content-center align-items-center pl-0 ml-0">
           { reviewed ? <OverallScore percent={props.percent} bgColor={"#FAC046"} barColor={"#FF6B00"}/> : null }
         </div>
         <div className="col-10" style={{fontFamily: "Avenir Next" }}>
-          <div>
+          <div className="mt-3">
             <h3>{props.jobTitle}</h3>
           </div>
           <div className="row">
             <div className="col-9">
-              <p style={{color:"#7D7D7D"}}>{props.jdText.substring(0, 110)+'...'}</p>
+              <p style={{color:"#7D7D7D"}}>{props.jdText.substring(0, 60)+'...'}</p>
             </div>
             <div className="col-3" style={{color:"#7D7D7D", borderLeft:"outset"}}>
               <p>{props.createdAt}</p>
             </div>
           </div>
-          <div className="row">
+          <div className="row mb-3">
+          <div className="col-9 d-flex align-items-center">
             <div>
               <button onClick={reviewToggle} className="reviewed text-15 resume-btn">
                 View Result
               </button>
             </div>
-            <div style={{marginLeft: "2rem"}}>
-              <button onClick={deleteAlert} className="delete-btn"><i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i></button>
+            <div style={{marginLeft: "1rem"}}>
+              <button onClick={deleteAlert} className="delete-btn">
+                  <i className="bx bx-trash bx-sm" style={{color:'#bbbbbb', paddingTop:'30%'}}></i>
+              </button>
             </div>
+          </div>
           </div>
           <MyVerticallyCenteredModal
             show={show}

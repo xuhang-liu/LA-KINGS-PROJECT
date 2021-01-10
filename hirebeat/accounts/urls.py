@@ -1,7 +1,9 @@
 from django.urls import path,include
-from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, Employer_ResgisterAPI
+from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, RetrievePracticeInfoAPI, Employer_ResgisterAPI
 from knox import views as knox_views
-from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, resend_activation_email, update_user_email, update_user_password, check_password, get_user_fullname, get_ziprecruiter_jobs
+from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
+    resend_activation_email, update_user_email, update_user_password, \
+    check_password, get_user_fullname, get_ziprecruiter_jobs
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -15,11 +17,13 @@ urlpatterns = [
     path('api/userfullname', get_user_fullname, name='get user fullname'), 
     path('api/auth/logout', knox_views.LogoutView.as_view(),name="knox_logout"), # invalidate the token
 
+    ### get user's practice information
+    path('get_practice_info/<int:userId>', RetrievePracticeInfoAPI.as_view()),
     ### email confirm ###
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
 
     ### Profile ###
-    path('get_profile',RetrieveProfileAPI.as_view()),
+    path('get_profile', RetrieveProfileAPI.as_view()),
     path('profile/<int:id>/', UpdateProfileAPI.as_view()),
 
     ### AWS S3 signed url ###
