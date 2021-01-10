@@ -4,10 +4,12 @@ import React, { Component } from "react";
 export class AudioPlayer extends Component {
   render() {
     return (
-      <ReactAudioPlayer
-        src={this.props.url}
-        controls
-      />
+        <div>
+            <ReactAudioPlayer
+              src={this.props.url}
+              controls
+            />
+        </div>
     );
   }
 }

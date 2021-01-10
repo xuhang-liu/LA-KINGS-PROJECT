@@ -1,9 +1,11 @@
-from rest_framework import generics,permissions
+from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileSerializer
 from accounts.models import Profile
+from resume.models import Resume
+from videos.models import Video
 from rest_framework import status
 from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
@@ -12,11 +14,14 @@ from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import send_mail
+from django.db.models import Q
 
-#Register API
+
+# Register API
 
 class ResgisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
+
     def post(self, request, *args, **kwargs):
         ## user info
         serializer = self.get_serializer(data=request.data)
@@ -24,12 +29,12 @@ class ResgisterAPI(generics.GenericAPIView):
         user = serializer.save()
 
         ## welcome email
-        #subject = 'Welcome letter from Hirebeat'
-        #html_message = render_to_string('mail_template.html', {'context': 'values'})
-        #plain_message = strip_tags(html_message)
-        #from_email = 'hirebeat.tech@gmail.com'
-        #to_list = [request.data['email']]
-        #send_mail(subject,plain_message,from_email,to_list,html_message=html_message,fail_silently=True)
+        # subject = 'Welcome letter from Hirebeat'
+        # html_message = render_to_string('mail_template.html', {'context': 'values'})
+        # plain_message = strip_tags(html_message)
+        # from_email = 'hirebeat.tech@gmail.com'
+        # to_list = [request.data['email']]
+        # send_mail(subject,plain_message,from_email,to_list,html_message=html_message,fail_silently=True)
 
         ## email
         account_activation_token = PasswordResetTokenGenerator()
@@ -58,10 +63,11 @@ class ResgisterAPI(generics.GenericAPIView):
         ### profile is autocreated
         profile = Profile.objects.filter(user=user.id)[0]
         return Response({
-            "user":UserSerializer(user, context=self.get_serializer_context()).data,
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": token,
             "profile": ProfileSerializer(profile).data,
         })
+
 
 # Login API
 
@@ -81,10 +87,11 @@ class LoginAPI(generics.GenericAPIView):
             profile = Profile.objects.filter(user=user)[0]
             profile_data = ProfileSerializer(profile).data
         return Response({
-            "user":UserSerializer(user, context=self.get_serializer_context()).data,
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": token,
             "profile": profile_data,
         })
+
 
 # GET User API
 
@@ -97,6 +104,7 @@ class UserAPI(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
 
 class RetrieveProfileAPI(generics.RetrieveAPIView):
     permission_classes = [
@@ -111,6 +119,7 @@ class RetrieveProfileAPI(generics.RetrieveAPIView):
         if profile:
             profile_obj = profile[0]
         return profile_obj
+
 
 class UpdateProfileAPI(APIView):
     def get_object(self, id):
@@ -131,8 +140,21 @@ class UpdateProfileAPI(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
 
 
-
-
+class RetrievePracticeInfoAPI(APIView):
+    def get(self, request, userId):
+        videos = Video.objects.filter(owner_id=userId)
+        resumes = Resume.objects.filter(owner_id=userId)
+        videos_practiced = len(videos)
+        videos_reviewed = len(videos.filter(Q(is_ai_reviewed=True) | Q(is_expert_reviewed=True)))
+        resume_scanned = len(resumes)
+        interviews_recorded = 0
+        return Response(
+            {
+                "videos_practiced": videos_practiced,
+                "videos_reviewed": videos_reviewed,
+                "resume_scanned": resume_scanned,
+                "interviews_recorded": interviews_recorded
+            }
+        )
