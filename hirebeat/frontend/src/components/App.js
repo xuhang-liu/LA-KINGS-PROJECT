@@ -4,6 +4,7 @@ import {Helmet} from "react-helmet";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Dashboard from "./dashboard/Dashboard";
+import EmployerDashboard from "./dashboard/EmployerDashboard";
 import { Provider } from "react-redux";
 import AlertTemplate from "react-alert-template-basic";
 import { Provider as AlertProvider } from "react-alert";
@@ -15,6 +16,7 @@ import indexsaas from "./home/index-saas";
 import EmailVerification from "./accounts/EmailVerification";
 import Login from "./accounts/Login";
 import Register from "./accounts/Register";
+import EmployerRegister from "./accounts/EmployerRegister";
 import PrivateRoute from "./basic/PrivateRoute";
 import pricings from "./pricing/pricings";
 import Payment from "./payment/Payment"
@@ -174,6 +176,7 @@ class App extends Component {
               <Alerts />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/employer_dashboard" component={EmployerDashboard} />
                 <Route exact path="/resume" component={Resume} />
                 <PrivateRoute exact path="/review" component={ReviewListPreload} />
                 <PrivateRoute
@@ -236,6 +239,7 @@ class App extends Component {
                 <Route exact path="/blog-10-tips-to-deal-with-job-hunting-stress" component={BlogDetail16} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/employer" component={EmployerRegister} />
                 <Route exact path="/upload" component={MyVideoUploader} />
                 <Route exact path="/" component={indexsaas} />
                 <Route exact path="/payment" component={Payment} />

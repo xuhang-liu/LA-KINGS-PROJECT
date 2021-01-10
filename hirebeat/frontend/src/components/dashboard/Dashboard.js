@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import ButtonPanel from "./panel/ButtonPanel";
+import { Link, Redirect } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import VideoPreviewList from "./videos/VideoPreviewList";
 //import { Analytics } from "./videos/Analytics";
@@ -111,6 +112,9 @@ export class Dashboard extends Component {
   };
 
   render() {
+    if (this.props.profile.is_employer) {
+        return <Redirect to="/employer_dashboard"/>;
+    }else{
     return (
         <React.Fragment>
           <ScrollToTopOnMount/>
@@ -160,6 +164,7 @@ export class Dashboard extends Component {
           </MediaQuery>
         </React.Fragment>
     );
+    }
   }
 }
 
