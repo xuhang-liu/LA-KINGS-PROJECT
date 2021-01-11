@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ButtonPanel from "./panel/ButtonPanel";
+//import ButtonPanel from "./panel/ButtonPanel";
 import { Link, Redirect } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import VideoPreviewList from "./videos/VideoPreviewList";
