@@ -7,16 +7,24 @@ import { PracticeCard} from "../practice/CardComponents";
 import NotePad from "../practice/NotePad";
 import { connect } from "react-redux";
 import PrepCountdown from "../practice/PrepCountdown";
-import TestDevice from "../practice/TestDevice";
+import TestDevice from "./TestDevice";
 import { getRandomQuestion } from "../../redux/actions/question_actions";
 import VideoRecorder from "../practice/VideoRecorder";
-export class CareerVideoRecorder extends Component {
+export class CareerResponseWindow extends Component {
+    // data passed from login page
+    email = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["email"];
+    questions = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["questions"];
+    questionIds = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["questionIds"];
+
     constructor(props) {
         super(props);
         this.state = {
             status: "Preparation",
             type: "behavior",
             deviceTested: false,
+            email: this.email == null ? "" : this.email,
+            questions: this.questions == null ? [] : this.questions,
+            questionIds: this.questionIds == null ? [] : this.questionIds,
         };
     }
 
@@ -62,15 +70,10 @@ export class CareerVideoRecorder extends Component {
     };
 
     render() {
-        let countTime = this.state.status == "Preparation" ? 30 : 120;
+        let countTime = this.state.status == "Preparation" ? 30 : 60;
             videoRecorderOptions.plugins.record.maxLength =
-                120;
+                60;
             videoRecorderOptions.controlBar.recordToggle = false;
-        let currentUrl = window.location.href;
-        let email = currentUrl.split("=")[1];
-        if(email == null || email == ""){
-            return <Redirect to="/"/>;
-        }
         return (
             (!this.state.deviceTested) ? (
                 <TestDevice testDeviceDone={this.testDeviceDone} />
@@ -129,12 +132,12 @@ export class CareerVideoRecorder extends Component {
                                     recordingDone={this.recordingDone}
                                     resetCountdownBar={this.resetCountdownBar}
                                     isTesting={false}
-                                    last_q={true}
+                                    last_q={this.props.last_q}
                                     isSimulate={true}
                                     isCareerVideo={true}
                                     question={this.props.random_question}
                                     questionId={this.props.random_question_id}
-                                    email={email}
+                                    email={this.state.email}
                                 />
                             )
                         )}
@@ -148,9 +151,10 @@ export class CareerVideoRecorder extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    last_q: state.question_reducer.last_q,
     loaded: state.question_reducer.loaded,
     random_question: state.question_reducer.random_question,
     random_question_id: state.question_reducer.random_question_id,
 });
 
-export default connect(mapStateToProps, {getRandomQuestion })(CareerVideoRecorder);
+export default connect(mapStateToProps, {getRandomQuestion })(CareerResponseWindow);
