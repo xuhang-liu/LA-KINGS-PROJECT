@@ -185,7 +185,7 @@ export class Register extends Component {
                             required/>
                       </div>
 
-                      <p className="d-flex flex-wrap justify-content-end"
+                      <p className=" flex-wrap d-flex justify-content-end"
                          style={{
                            fontSize: "0.9rem",
                            color: "grey",

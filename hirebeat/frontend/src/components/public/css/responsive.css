@@ -43,6 +43,27 @@
     padding-top: 12px;
     padding-bottom: 12px;
   }
+  .under-review {
+    font-size: 12px;
+    padding-left: 45px;
+    padding-right: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .reviewed {
+    font-size: 12px;
+    padding-left: 45px;
+    padding-right: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .not-reviewed {
+    font-size: 12px;
+    padding-left: 45px;
+    padding-right: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
   .default-btn i {
     font-size: 18px;
     left: 20px;
@@ -1149,6 +1170,15 @@
   .default-btn {
     font-size: 12px;
   }
+  .under-review {
+    font-size: 12px;
+  }
+  .reviewed {
+    font-size: 12px;
+  }
+  .not-reviewed {
+    font-size: 12px;
+  }
   .navbar-area .container {
     max-width: 720px;
   }
@@ -1723,6 +1753,15 @@
     font-size: 34px;
   }
   .default-btn {
+    font-size: 14px;
+  }
+  .under-review {
+    font-size: 14px;
+  }
+  .reviewed {
+    font-size: 14px;
+  }
+  .not-reviewed {
     font-size: 14px;
   }
   .navbar-area {

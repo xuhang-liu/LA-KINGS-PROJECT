@@ -1,14 +1,14 @@
 import React from "react";
 import { IconText } from "../Components";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 export function ButtonPanel(props) {
   var selectColor = "#090D3A";
   var defaultColor = "#7d7d7d";
   var selectDecoration = "underline";
   var defaultDecoration = "none";
-  var selectWeight = "600";
-  var defaultWeight = "normal";
+  //var selectWeight = "600";
+  //var defaultWeight = "normal";
   return (
     <div>
       <button

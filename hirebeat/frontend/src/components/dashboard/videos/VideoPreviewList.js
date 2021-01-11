@@ -23,7 +23,7 @@ export class VideoPreviewList extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container pl-0">
         {this.props.loaded
           ? this.props.videos.map((v) => {
               if (this.props.filter) {
@@ -57,7 +57,7 @@ export class VideoPreviewList extends Component {
                 }
               }
               return (
-                <div key={v.id} style={{marginTop: "2rem"}}>
+                <div key={v.id} style={{marginTop: "2rem","border-radius": "1rem"}}>
                   <VideoImagePreview
                     isAudio={(v.url.slice(-3) === "wav") ? true : false}
                     v={v}

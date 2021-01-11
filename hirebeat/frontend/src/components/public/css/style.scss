@@ -54,7 +54,24 @@ $white-color: #ffffff;
 $paragraph-color: #4a6f8a;
 $font-size: 15px;
 $transition: .5s;
-
+$font-weight-normal: 400 !default;
+$font-weight-bold: 700 !default;
+$screen-xxxl: 1600px;
+$screen-md: 768px;
+$shadow-1  : 20px 20px 40px rgba(175, 175, 175, 0.16);
+$shadow-8  : 2px 2px 4px rgba(130, 130, 130, 0.16);
+$grid-breakpoints: ();
+$grid-breakpoints: (
+        xxs: 0,
+        xs: 480px,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1366px,
+        xxxl: 1600px,
+);
+$print-body-min-width: map-get($grid-breakpoints, "lg") !default;
 * {
     font-family: 'Avenir Next', sans-serif;
 }
@@ -6380,4 +6397,84 @@ SaaS Home Page CSS
         }
     }
 }
+.media {
+    display: flex;
+    align-items: flex-start;
+}
+.hover-shadow-1 {
+    transition: .4s;
+
+    &:hover {
+        box-shadow: $shadow-1;
+    }
+}
+.fas {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+.font-weight-semibold{
+    font-weight: 600;
+}
+.line-height-reset{
+    line-height: 1;
+}
+.fa-briefcase:before {
+    content: "\f0b1";
+}
+.line-height-reset{
+    line-height: 1;
+}
+.font-weight-bold    {
+    font-weight: $font-weight-bold !important;
+}
+.font-weight-normal  {
+    font-weight: $font-weight-normal !important;
+}
+@mixin tablet {
+    @media(min-width: $screen-md) {
+        @content;
+    }
+}
+@mixin extra-large-desktops {
+    @media(min-width: $screen-xxxl) {
+        @content;
+    }
+}
+.container {
+    min-width: $print-body-min-width !important;
+}
+.dashboard-main-container {
+    @include tablet {
+        padding-left: 290px;
+    }
+    @include extra-large-desktops {
+        max-width: calc(100% - 290px);
+        margin-left: auto;
+        padding-left: 75px;
+        padding-right: 75px;
+    }
+}
+.circle-56{max-width:56px;min-width:56px;max-height:56px;min-height:56px}
+.font-size-6{font-size:calc(1.25625rem + .075vw)}
+.font-size-8{font-size:calc(1.3375rem + 1.05vw)}
+.shadow-8{box-shadow:2px 2px 4px hsla(0,0%,51%,.16)}.shadow-9{box-shadow:0 10px 35px hsla(0,0%,69.8%,.16)}
+.rounded-4{border-radius:10px}
+.bg-blue-opacity-15{background-color:rgba(71,67,219,.15)}
+.bg-blue-opacity-1{background-color:rgba(71,67,219,.1)}
+.text-blue{color:#4743db!important}a.text-blue:focus,a.text-blue:hover{color:#2522b0!important}
+.text-black-2{color:#2b3940!important}a.text-black-2:focus,a.text-black-2:hover{color:#0c1012!important}
+//.text-gray{color:#6b6e6f!important}a.text-gray:focus,a.text-gray:hover{color:#454748!important}
+.font-size-4{font-size:1rem;line-height:1.625;letter-spacing:-.08px}
+.fa,
+.fas,
+.far,
+.fal,
+.fab {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1; }
 /* End  Text container */
