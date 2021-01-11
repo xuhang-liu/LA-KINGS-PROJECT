@@ -155,7 +155,13 @@ class MainBanner extends Component {
                                                 <div className="d-flex" style={{marginTop:"1.5rem"}}>
                                                     <Link to="/career" style={{textDecoration:"none"}}>
                                                         <a id="id-findjobs">
-                                                        <span className="number" style={{marginRight:'0.5rem'}}><i className="bx bx-search-alt"></i></span>
+                                                        <span className="number" 
+                                                           style={{marginRight:'0.5rem', 
+                                                           backgroundColor:"#ffffff",
+                                                           width:"2.5rem", height:"2.5rem", lineHeight:"2.81rem", fontsize:"1.5rem",
+                                                           textAlign:"center", borderRadius:"100%", color:"#ff612f",
+                                                           display:"inline-block", fontWeight:"600"}}>
+                                                               <i className="bx bx-search-alt bx-sm"></i></span>
                                                         <p style={{color:"white", fontWeight:"600", fontsize:"20px", lineHeight:"26px", display:"inline-block"}}>Find Jobs</p>
                                                         </a>
                                                     </Link>

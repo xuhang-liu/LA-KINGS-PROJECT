@@ -149,7 +149,7 @@ export class SubpageSetting extends Component {
                                 iconName={"bx bx-user bx-md"}
                                 textDisplayed={"Profile Change"}
                                 textSize={"24px"}
-                                textColor={"white"}
+                                textColor={"#090D3A"}
                                 iconMargin={"3px"}
                             />
                     </div>
@@ -200,7 +200,7 @@ export class SubpageSetting extends Component {
                                 iconName={"bx bx-key bx-md"}
                                 textDisplayed={"Change Password"}
                                 textSize={"24px"}
-                                textColor={"white"}
+                                textColor={"#090D3A"}
                                 iconMargin={"3px"}
                             />
                     </div>
@@ -265,7 +265,7 @@ export class SubpageSetting extends Component {
                                 iconName={"bx bx-key bx-md"}
                                 textDisplayed={"Membership"}
                                 textSize={"24px"}
-                                textColor={"white"}
+                                textColor={"#090D3A"}
                                 iconMargin={"3px"}
                             />
                     </div>
