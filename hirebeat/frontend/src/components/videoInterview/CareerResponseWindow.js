@@ -8,13 +8,13 @@ import NotePad from "../practice/NotePad";
 import { connect } from "react-redux";
 import PrepCountdown from "../practice/PrepCountdown";
 import TestDevice from "./TestDevice";
-import { getRandomQuestion } from "../../redux/actions/question_actions";
-import VideoRecorder from "../practice/VideoRecorder";
+import VideoRecorder from "./VideoRecorder";
+import {getInterviewQuestions} from "../../redux/actions/question_actions";
+
 export class CareerResponseWindow extends Component {
     // data passed from login page
     email = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["email"];
-    questions = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["questions"];
-    questionIds = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["questionIds"];
+    positionId = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["positionId"];
 
     constructor(props) {
         super(props);
@@ -23,8 +23,7 @@ export class CareerResponseWindow extends Component {
             type: "behavior",
             deviceTested: false,
             email: this.email == null ? "" : this.email,
-            questions: this.questions == null ? [] : this.questions,
-            questionIds: this.questionIds == null ? [] : this.questionIds,
+            positionId: this.positionId == null ? 0 : this.positionId,
         };
     }
 
@@ -35,9 +34,24 @@ export class CareerResponseWindow extends Component {
                 behavior: "smooth",
             });
         }, 200);
-        this.props.getRandomQuestion();
+        this.props.getInterviewQuestions();
+        // intercept reloading
+        window.addEventListener('beforeunload', this.beforeunload);
     }
 
+    componentWillUnmount () {
+        // destroy reloading interception
+        window.removeEventListener('beforeunload', this.beforeunload);
+    }
+
+    beforeunload = (e) => {
+        // cancel the event
+        e.preventDefault();
+        // not support for custom message
+        let confirmationMessage = 'All the data in current page will lose if you reload';
+        (e || window.event).returnValue = confirmationMessage;
+        return confirmationMessage;
+    }
 
     finishCountdown = () => {
         const audioStart = document.getElementsByClassName("audio-start")[0];
@@ -87,7 +101,8 @@ export class CareerResponseWindow extends Component {
                 </audio>
                 {this.props.loaded ? (
                 <PracticeCard>
-                    <h4 style={{marginTop: "2rem"}}>Q: {this.props.random_question}</h4>
+                    <h4 style={{marginTop: "2rem"}}>
+                        <span style={{color:"#67A3F3"}}>Q{this.props.q_index+1}</span>: {this.props.questions[this.props.q_index]}</h4>
                     <div style={{ marginTop: 20 }}>
                         <div
                             className="video-recorder-row"
@@ -134,10 +149,11 @@ export class CareerResponseWindow extends Component {
                                     isTesting={false}
                                     last_q={this.props.last_q}
                                     isSimulate={true}
-                                    isCareerVideo={true}
-                                    question={this.props.random_question}
-                                    questionId={this.props.random_question_id}
                                     email={this.state.email}
+                                    positionId={this.state.positionId}
+                                    questions={this.props.questions}
+                                    question_ids={this.props.question_ids}
+                                    q_index={this.props.q_index}
                                 />
                             )
                         )}
@@ -150,11 +166,14 @@ export class CareerResponseWindow extends Component {
     }
 }
 
+
 const mapStateToProps = (state) => ({
-    last_q: state.question_reducer.last_q,
-    loaded: state.question_reducer.loaded,
-    random_question: state.question_reducer.random_question,
-    random_question_id: state.question_reducer.random_question_id,
+  questions: state.question_reducer.interview_questions,
+  question_ids: state.question_reducer.interview_question_ids,
+  loaded: state.question_reducer.loaded,
+  last_q: state.question_reducer.last_q,
+  q_count: state.question_reducer.q_count,
+  q_index: state.question_reducer.q_index,
 });
 
-export default connect(mapStateToProps, {getRandomQuestion })(CareerResponseWindow);
+export default connect(mapStateToProps, { getInterviewQuestions })(CareerResponseWindow);

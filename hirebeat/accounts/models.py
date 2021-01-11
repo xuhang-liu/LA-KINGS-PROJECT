@@ -15,9 +15,9 @@ class ReviewerInfo(models.Model):
         return self.user.username
 
 class CandidatesInterview(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     positions = models.ForeignKey(Positions, on_delete=models.CASCADE)
-    email = models.CharField(max_length=300, null=True, blank=True)
+    email = models.CharField(max_length=50, null=True, blank=True)
+    is_recorded = models.BooleanField(default=False)
 
 class Profile(models.Model):
     class MembershipCategory(models.TextChoices):

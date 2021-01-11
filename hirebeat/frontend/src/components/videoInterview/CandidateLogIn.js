@@ -2,17 +2,38 @@ import React, {Component} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {login, exchangeToken, loadProfile, register, checkUserRegistration} from "../../redux/actions/auth_actions";
+import {login, exchangeToken, loadProfile,
+        register, checkUserRegistration, getCompanyName} from "../../redux/actions/auth_actions";
 import {createMessage} from "../../redux/actions/message_actions";
 import PageTitleArea from './../Common/PageTitleArea';
 //import MediaQuery from 'react-responsive';
 //import { confirmAlert } from 'react-confirm-alert';
 
 export class CandidateLogin extends Component {
-  state = {
-    email: window.location.href.split("=")[1],
-    password: "",
-    password2: "",
+  constructor(props) {
+      super(props);
+      // parse params from url
+      let params = this.getParams();
+      this.state = {
+        email: params[0],
+        positionId: params[1],
+        password: "",
+        password2: "",
+      };
+
+  };
+
+  getParams =() => {
+    let params = [];
+    let uri = window.location.search;
+    uri = uri.substring(1, uri.length); // remove "?" from uri
+    uri = window.atob(uri); // decode
+    let arr = uri.split("&") // split by "&" to get key value pairs
+    for (let i = 0; i < arr.length; i++) {
+        let param = arr[i].split("=")[1]; // get value
+        params.push(param);
+    }
+    return params;
   };
 
   static propTypes = {
@@ -22,6 +43,7 @@ export class CandidateLogin extends Component {
     user: PropTypes.object,
     createMessage: PropTypes.func.isRequired,
     user: PropTypes.object,
+    checkUserRegistration: PropTypes.func.isRequired,
   };
 
   onSubmit = (e) => {
@@ -84,28 +106,40 @@ export class CandidateLogin extends Component {
     this.props.exchangeToken(user.token.accessToken, provider);
   };
 
+  redirectToInterview = () => {
+    const { history } = this.props;
+    if (history) history.push({
+        pathname: "/interview-info",
+        params: {
+            email: this.state.email,
+            positionId: this.state.positionId,
+            companyName: this.props.companyName,
+        }
+    });
+  }
+
   render() {
-    if (this.props.isAuthenticated) {
-      if (this.props.user.groups[0] == "reviewers") {
-        return <Redirect to="/review"/>;
-      } else {
-        return <Redirect to="/dashboard"/>;
-      }
-    }
     const {email, password, password2} = this.state;
+    // redirect to interview after login
+    if (this.props.isAuthenticated) {
+        this.redirectToInterview();
+    }
 
     // check user exists or not
     let userEmail = this.state.email;
     let emailData = {email: userEmail}; // json stringfy
     this.props.checkUserRegistration(emailData);
 
+    // get company name
+    this.props.getCompanyName(this.state.positionId);
+
     return (
         <React.Fragment>
             <PageTitleArea
-                pageTitle="Interview with" // todo add company name
+                pageTitle={ "Interview with " + this.props.companyName} // todo add company name
                 pageDescription="Log in to start. Good luck to your interview!"
             />
-           {/* login page*/}
+          {/* login page*/}
           {this.props.isRegistered && <div className="container-fluid bg-white p-0">
             <section className="card border-bottom-0 shadow-none bg-white">
               <div className="card-body" style={{marginTop: "5rem"}}>
@@ -175,7 +209,7 @@ export class CandidateLogin extends Component {
                         }}
                     />
 
-                    <div className="row" style={{justifyContent: "center"}}>
+                    <div className="row" style={{justifyContent: "center", marginBottom: "3rem"}}>
                         <button onClick={this.handleSocialLogin} style={{border: "none", background: "white"}}>
                             <img src="https://hirebeat-assets.s3.amazonaws.com/google-plus.png" alt="google logo"></img>
                         </button>
@@ -300,9 +334,10 @@ const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
   auth: state.auth_reducer,
   isRegistered: state.auth_reducer.isRegistered,
+  companyName: state.auth_reducer.companyName,
 });
 
 export default connect(mapStateToProps, {
     login, exchangeToken, loadProfile,
-    register, createMessage, checkUserRegistration
+    register, createMessage, checkUserRegistration, getCompanyName
     })(CandidateLogin);
