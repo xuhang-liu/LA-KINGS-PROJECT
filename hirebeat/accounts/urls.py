@@ -12,6 +12,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('api/auth', include('knox.urls')),
     path('api/auth/register', ResgisterAPI.as_view()),
+    path('api/auth/employer_register', Employer_ResgisterAPI.as_view()),
     path('api/auth/login', LoginAPI.as_view()),
     path('api/auth/user', UserAPI.as_view()),
     path('api/userfullname', get_user_fullname, name='get user fullname'), 
