@@ -75,7 +75,7 @@ export class EmployerRegister extends Component {
             <section className="signup-area">
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0"> 
-                      <img src="https://hirebeat-assets.s3.amazonaws.com/Login.png" alt="image"></img>
+                      <img src="https://hirebeat-assets.s3.amazonaws.com/EmployerRegister.jpg" alt="image"></img>
                     </div>
 
                     <div className="col-lg-6 col-md-12 p-0">

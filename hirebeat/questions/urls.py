@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import QuestionAPIView, get_subcategories, get_random_question, get_interview_questions
+from .views import QuestionAPIView, get_subcategories, get_random_question, get_interview_questions, add_position
 from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
@@ -7,5 +7,6 @@ urlpatterns = [
     path('subcategories', get_subcategories),
     path('random-question', get_random_question),
     path('get-interview-questions', get_interview_questions),
+    path('add-position', add_position),
 ]
 # The API URLs are now determined automatically by the router.
