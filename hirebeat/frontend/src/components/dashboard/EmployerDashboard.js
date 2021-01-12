@@ -17,6 +17,8 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import SubpageSetting from './SubpageSetting';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,10 +82,26 @@ export class EmployerDashboard extends Component {
     });
   };*/
   renderPosition = () => {
-    this.setState({
-          subpage: "position",
+    if(this.props.profile.company_name == "" || this.props.profile.company_name == null){
+      confirmAlert({
+        title: 'One More Step!',
+        message: 'We Need Your Company Name to Start 😢',
+        buttons: [
+          {
+            label: 'Ok',
+          }
+        ]
+        });
+      this.setState({
+        subpage: "settings",
         }
-    )
+      )
+    }else{
+      this.setState({
+        subpage: "position",
+        }
+      )
+    }
   }
 
   renderSetting = () => {
