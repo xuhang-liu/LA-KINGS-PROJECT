@@ -17,6 +17,10 @@ import {
   UPDATE_USER_EMAIL,
   UPDATE_USER_PASSWORD,
   GET_ZP_JOBS,
+  CHECK_USER_REGISTRATION,
+  GET_COMPANY_NAME,
+  UPDATE_RECORD,
+  GET_RECORD_STATUS,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -307,6 +311,62 @@ export const getZipRecruiterJobs = (search, location, daysAgo, minSalary) => (di
     .then((res) => {
       dispatch({
         type: GET_ZP_JOBS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const checkUserRegistration = (email) => (dispatch, getState) => {
+  axios
+    .post("check-user-registration", email)
+    .then((res) => {
+      dispatch({
+        type: CHECK_USER_REGISTRATION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getCompanyName = (positionId) => (dispatch, getState) => {
+  axios
+    .get(`get-company-name?position_id=${positionId}`)
+    .then((res) => {
+      dispatch({
+        type: GET_COMPANY_NAME,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateRecord = (user) => (dispatch, getState) => {
+  axios
+    .post("update-record", user, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_RECORD,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getRecordStatus = (positionId, email) => (dispatch, getState) => {
+  axios
+    .get(`get-company-name?position_id=${positionId}&email=${email}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_RECORD_STATUS,
         payload: res.data,
       });
     })

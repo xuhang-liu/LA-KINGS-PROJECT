@@ -1,4 +1,12 @@
-import { GET_QUESTIONS, NEXT_QUESTION, RETRY_B_QUESTION , RETRY_T_QUESTION, GET_RANDOM_QUESTION, ADD_POSITION } from "./action_types";
+import {
+    GET_QUESTIONS,
+    NEXT_QUESTION,
+    RETRY_B_QUESTION ,
+    RETRY_T_QUESTION,
+    GET_RANDOM_QUESTION,
+    GET_INTERVIEW_QUESTIONS,
+    ADD_POSITION ,
+    } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
 import { returnErrors } from "./message_actions";
@@ -64,6 +72,21 @@ export const getRandomQuestion = () => (dispatch) => {
         type: GET_RANDOM_QUESTION,
         payload: res.data,
       });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getInterviewQuestions = (positionId) => (dispatch, getState) => {
+  axios
+    .get(`/get-interview-questions?position_id=${positionId}`)
+    .then((res) => {
+      dispatch({
+        type: GET_INTERVIEW_QUESTIONS,
+        payload: res.data,
+      });
+      console.log("question loaded");
     })
     .catch((err) =>
       dispatch(returnErrors(err.response.data, err.response.status))

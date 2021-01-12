@@ -1,4 +1,4 @@
-from .models import Question, Categorys, SubCategory, Positions
+from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, SubcategorySerializer
 from rest_framework.decorators import api_view
@@ -50,6 +50,23 @@ def get_random_question(request):
     return Response({
         "question": question[0].description,
         "id": question[0].id,
+    })
+
+@api_view(['GET'])
+def get_interview_questions(request):
+    questions = []
+    question_ids = []
+
+    position_id = request.query_params.get("position_id")
+    interview_questions = InterviewQuestions.objects.filter(positions_id=position_id)
+    for i in range(len(interview_questions)):
+        obj = interview_questions[i]
+        questions.append(obj.description)
+        question_ids.append(obj.id)
+
+    return Response({
+        "questions": questions,
+        "question_ids": question_ids,
     })
 
 @api_view(['POST'])

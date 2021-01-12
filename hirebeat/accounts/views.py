@@ -13,13 +13,15 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from .models import Profile
+from .models import Profile, CandidatesInterview
+from questions.models import Positions
 from rest_framework.response import Response
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
+from rest_framework import status
 load_dotenv()
 import requests
 
@@ -166,3 +168,43 @@ def get_ziprecruiter_jobs(request):
     data = requests.get(url.format(search, location, jobs_per_page, days_ago, refine_by_salary, api_key)).json()
 
     return Response({"data": data})
+
+@api_view(['POST'])
+def check_user_registration(request):
+    is_registered = False
+    email = request.data["email"]
+    user = User.objects.filter(email=email)
+    # queryset is empty if user not exist
+    if len(user) == 1:
+        is_registered = True
+
+    return Response({"is_registered": is_registered})
+
+@api_view(['GET'])
+def get_company_name(request):
+    position_id = request.query_params.get("position_id")
+    position = Positions.objects.get(id=position_id)
+    user_id = position.user_id
+    profile = Profile.objects.get(user_id=user_id)
+    company_name = profile.company_name
+
+    return Response({"company_name": company_name})
+
+@api_view(['POST'])
+def update_record(request):
+    email = request.data["email"]
+    positions = request.data["positions"]
+    interview_obj = CandidatesInterview.objects.get(email=email, positions=positions)
+    interview_obj.is_recorded = True
+    interview_obj.save()
+
+    return Response("Update record status successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_record_status(request):
+    position_id = request.query_params.get("position_id")
+    email = request.query_params.get("email")
+    interview_info = CandidatesInterview.objects.get(positions=position_id, email=email)
+    is_recorded = interview_info.is_recorded
+
+    return Response({"is_recorded": is_recorded})

@@ -110,9 +110,12 @@ import BusinessAnalyst from "./career/jobs/BusinessAnalyst";
 import Marketing from "./career/jobs/Marketing";
 import ProductManager from "./career/jobs/ProductManager";
 import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
-import CareerVideoRecorder from "./videoInterview/CareerVideoRecorder";
+import CareerResponseWindow from "./videoInterview/CareerResponseWindow";
 import Contact from "./contact/contact";
 import Howitworks from "./home/Howitworks"
+
+import CandidateLogin from "./videoInterview/CandidateLogin";
+import InterviewInfo from "./videoInterview/InterviewInfo";
 
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
 
@@ -216,7 +219,7 @@ class App extends Component {
                   component={QuestionTypeChoices}
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
-                <Route exact path="/video-interview" component={CareerVideoRecorder}/>
+                <PrivateRoute exact path="/video-interview" component={CareerResponseWindow}/>
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/howitworks" component={Howitworks} />
@@ -308,6 +311,8 @@ class App extends Component {
                 <PrivateRoute exact path="/email-verification" component={EmailVerification} />
                 <Route exact path="/career" component={SearchPanel} />
                 <Route exact path="/career-details" component={SearchResult} />
+                <Route exact path="/candidate-login" component={CandidateLogin} />
+                <PrivateRoute exact path="/interview-info" component={InterviewInfo} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />
