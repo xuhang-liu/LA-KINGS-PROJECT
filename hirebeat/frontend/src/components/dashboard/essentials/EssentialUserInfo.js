@@ -229,7 +229,7 @@ export class EssentialUserInfo extends Component {
                 </button>
               </div>
             </div> 
-                <button className="default-btn"
+                <button className="default-btn" onClick={this.props.renderPosition}
                   style={{color:"white", backgroundColor:"#090D3A"}}>
                   <i className="bx bxs-hot"></i> 
                     New Position

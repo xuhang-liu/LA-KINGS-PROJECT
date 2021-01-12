@@ -5,9 +5,11 @@ import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import VideoPreviewList from "./videos/VideoPreviewList";
 //import { Analytics } from "./videos/Analytics";
 import { Interview } from "./videos/Interview";
-import { Resume } from "./videos/Resume";
+//import { Resume } from "./videos/Resume";
+import {CreatePosition} from "./position/CreatePosition";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
+import { addPosition } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -77,12 +79,12 @@ export class EmployerDashboard extends Component {
       subpage: "analytics",
     });
   };*/
-
-  renderResume = () => {
+  renderPosition = () => {
     this.setState({
-      subpage: "resume",
-    });
-  };
+          subpage: "position",
+        }
+    )
+  }
 
   renderSetting = () => {
     this.setState({
@@ -97,14 +99,20 @@ export class EmployerDashboard extends Component {
         return <Interview/>;
         //case "analytics":
         //return <Analytics />;
-      case "resume":
-        return <Resume/>;
+      case "position":
+        return <CreatePosition
+            user={this.props.user}
+            profile={this.props.profile}
+            renderVideos={this.renderVideos}
+            addPosition={this.props.addPosition}
+        />;
       case "settings":
         return <SubpageSetting
             user={this.props.user}
             profile={this.props.profile}
             location={this.props.profile.location}
             phone_number={this.props.profile.phone_number}
+            renderVideos={this.renderVideos}
         />;
       default:
         //Do nothing
@@ -127,7 +135,7 @@ export class EmployerDashboard extends Component {
                       updateProfile={this.props.updateProfile}
                       renderSetting={this.renderSetting}
                       renderVideos={this.renderVideos}
-                      renderResume={this.renderResume}
+                      renderPosition={this.renderPosition}
                       subpage={this.state.subpage}
                   />
                 </div>
@@ -171,6 +179,6 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth_reducer.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname })(
+export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, addPosition })(
   EmployerDashboard
 );
