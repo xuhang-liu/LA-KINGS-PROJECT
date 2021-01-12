@@ -199,3 +199,12 @@ def update_record(request):
     interview_obj.save()
 
     return Response("Update record status successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_record_status(request):
+    position_id = request.query_params.get("position_id")
+    email = request.query_params.get("email")
+    interview_info = CandidatesInterview.objects.get(positions=position_id, email=email)
+    is_recorded = interview_info.is_recorded
+
+    return Response({"is_recorded": is_recorded})

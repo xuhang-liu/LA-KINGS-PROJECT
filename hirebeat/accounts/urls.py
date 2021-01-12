@@ -4,7 +4,7 @@ from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     resend_activation_email, update_user_email, update_user_password, \
     check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, \
-    update_record
+    update_record, get_record_status
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -57,10 +57,13 @@ urlpatterns = [
     ### check user registration
     path('check-user-registration', check_user_registration, name="check user registration"),
 
-    ### check user registration
+    ### get company name
     path('get-company-name', get_company_name, name="get company name"),
 
-    ### check user registration
+    ### update video records status
     path('update-record', update_record, name="update record"),
+
+    ### get video records status
+    path('get-record-status', get_record_status, name="get record status"),
 ]
 

@@ -20,6 +20,7 @@ import {
   CHECK_USER_REGISTRATION,
   GET_COMPANY_NAME,
   UPDATE_RECORD,
+  GET_RECORD_STATUS,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -352,6 +353,20 @@ export const updateRecord = (user) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_RECORD,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getRecordStatus = (positionId, email) => (dispatch, getState) => {
+  axios
+    .get(`get-company-name?position_id=${positionId}&email=${email}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_RECORD_STATUS,
         payload: res.data,
       });
     })
