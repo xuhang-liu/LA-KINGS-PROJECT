@@ -104,6 +104,8 @@ export class Dashboard extends Component {
             profile={this.props.profile}
             location={this.props.profile.location}
             phone_number={this.props.profile.phone_number}
+            subpage={this.state.subpage}
+            renderVideos={this.renderVideos}
         />;
       default:
         //Do nothing
