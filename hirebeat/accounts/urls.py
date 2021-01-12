@@ -1,9 +1,10 @@
 from django.urls import path,include
-from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, RetrievePracticeInfoAPI
+from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, RetrievePracticeInfoAPI, Employer_ResgisterAPI
 from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     resend_activation_email, update_user_email, update_user_password, \
-    check_password, get_user_fullname, get_ziprecruiter_jobs
+    check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, \
+    update_record, get_record_status
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -11,6 +12,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('api/auth', include('knox.urls')),
     path('api/auth/register', ResgisterAPI.as_view()),
+    path('api/auth/employer_register', Employer_ResgisterAPI.as_view()),
     path('api/auth/login', LoginAPI.as_view()),
     path('api/auth/user', UserAPI.as_view()),
     path('api/userfullname', get_user_fullname, name='get user fullname'), 
@@ -52,5 +54,17 @@ urlpatterns = [
 
     ### get ziprecruiter jobs
     path('get-ziprecruiter-jobs', get_ziprecruiter_jobs, name='get ziprecruiter jobs'),
+
+    ### check user registration
+    path('check-user-registration', check_user_registration, name="check user registration"),
+
+    ### get company name
+    path('get-company-name', get_company_name, name="get company name"),
+
+    ### update video records status
+    path('update-record', update_record, name="update record"),
+
+    ### get video records status
+    path('get-record-status', get_record_status, name="get record status"),
 ]
 

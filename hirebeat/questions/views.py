@@ -1,8 +1,9 @@
-from .models import Question, Categorys, SubCategory
+from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, SubcategorySerializer
 from rest_framework.decorators import api_view
 from rest_framework import viewsets
+from django.contrib.auth.models import User
 from rest_framework.decorators import action
 from rest_framework.response import Response
 import random
@@ -49,4 +50,32 @@ def get_random_question(request):
     return Response({
         "question": question[0].description,
         "id": question[0].id,
+    })
+
+@api_view(['GET'])
+def get_interview_questions(request):
+    questions = []
+    question_ids = []
+
+    position_id = request.query_params.get("position_id")
+    interview_questions = InterviewQuestions.objects.filter(positions_id=position_id)
+    for i in range(len(interview_questions)):
+        obj = interview_questions[i]
+        questions.append(obj.description)
+        question_ids.append(obj.id)
+
+    return Response({
+        "questions": questions,
+        "question_ids": question_ids,
+    })
+
+@api_view(['POST'])
+def add_position(request):
+    print("==add position==")
+    jobtitle = request.data['jobtitle']
+    jobid = request.data['jobid']
+    user = User.objects.get(pk=request.data["userid"])
+    data = Positions.objects.create(user=user, job_title=jobtitle, job_id=jobid)
+    return Response({
+        "jobtitle": jobtitle
     })

@@ -231,12 +231,16 @@ def add_wp_video(request):
     url = request.data["url"]
     question_id = request.data["question_id"]
     question_desc = request.data["question_desc"]
+    # get user id by email
+    user = User.objects.get(email=email)
+    owner_id = user.id
 
     wp_video = WPVideo(
         email = email,
         url = url,
         question_id = question_id,
-        question_desc = question_desc
+        question_desc = question_desc,
+        owner_id = owner_id
     )
     wp_video.save()
 
