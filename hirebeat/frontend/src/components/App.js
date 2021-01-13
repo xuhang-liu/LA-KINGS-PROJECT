@@ -101,6 +101,9 @@ import DeloitteInfo from"./companyData/companies/DeloitteInfo";
 import DeutscheBankInfo from"./companyData/companies/DeutscheBankInfo";
 import ErnstYoungInfo from"./companyData/companies/ErnstYoungInfo";
 import MerrillLynchInfo from"./companyData/companies/MerrillLynchInfo";
+import HCIGroupInfo from"./companyData/companies/HCIGroupInfo";
+import KPMGInfo from"./companyData/companies/KPMGInfo";
+import PWCInfo from"./companyData/companies/PWCInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -302,6 +305,9 @@ class App extends Component {
                 <Route exact path="/deutsche-bank" component={DeutscheBankInfo} />
                 <Route exact path="/ernst-young" component={ErnstYoungInfo} />
                 <Route exact path="/merrill-lynch" component={MerrillLynchInfo} />
+                <Route exact path="/hci-group" component={HCIGroupInfo} />
+                <Route exact path="/kpmg" component={KPMGInfo} />
+                <Route exact path="/pwc" component={PWCInfo} />
                 <Route exact path="/jobs" component={JobList} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
