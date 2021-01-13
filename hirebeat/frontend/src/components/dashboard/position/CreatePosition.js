@@ -13,6 +13,9 @@ export class CreatePosition extends Component{
     state = {
         jobtitle: "",
         jobid: "",
+        question1: "",
+        question2: "",
+        question3: "",
         position_added: true,
     }
     
@@ -22,12 +25,18 @@ export class CreatePosition extends Component{
         });
       };
 
-    savePosition = (e) => {
-        e.preventDefault();
+    savePosition = () => {
         var jobtitle = this.state.jobtitle;
         var jobid = this.state.jobid;
         var userid = this.props.user.id;
-        this.props.addPosition(jobtitle, jobid, userid);
+        var question1 = this.state.question1;
+        var question2 = this.state.question2;
+        var question3 = this.state.question3;
+        this.props.addPosition(jobtitle, jobid, userid, question1, question2, question3);
+    }
+
+    hideSave = (e) => {
+        e.preventDefault();
         this.setState({position_added: false})
     }
 
@@ -62,7 +71,7 @@ export class CreatePosition extends Component{
                     </div>
                 </div>
                 <div className="card container" style={{marginTop:"1%"}}>
-                    <form onSubmit={this.savePosition}>
+                    <form>
                         <div className="form-row">
                             <div className="form-group col-5">
                                 <label style={{ fontSize: "17px", margin:"2%"}}>
@@ -83,7 +92,7 @@ export class CreatePosition extends Component{
                                 <button
                                     type="submit"
                                     onClick={this.hideSave}
-                                    className="btn btn-primary" style={{marginBottom:"1.5%"}}
+                                    className="default-btn1" style={{marginBottom:"1.5%", paddingLeft:"25px"}}
                                 >
                                     Save
                                 </button>
@@ -92,17 +101,37 @@ export class CreatePosition extends Component{
                         </div>
                     </form>
                     {!position_added &&
-                    <div className="form-group" style={{marginLeft:"0.5%"}}>
-                        <label className="row" style={{ fontSize: "17px", paddingLeft:"1.8%"}}>
-                            Questions
-                        </label>
-                        <button
-                            className="btn btn-primary row" 
-                            style={{marginLeft:"0%"}} 
-                        >
-                            + new interview question
-                        </button>
-                    </div>}
+                    <form onSubmit={this.savePosition}>
+                    <div className="form-row">
+                        <div className="form-group col-10">
+                                <label style={{ fontSize: "17px", margin:"1%"}}>
+                                    Question 1:
+                                </label>
+                                <input type="text" name="question1" value={this.state.question1}
+                                onChange={this.handleInputChange} className="form-control" required="required"/>
+                        </div>
+                        <div className="form-group col-10">
+                                <label style={{ fontSize: "17px", margin:"1%"}}>
+                                    Question 2:
+                                </label>
+                                <input type="text" name="question2" value={this.state.question2}
+                                onChange={this.handleInputChange} className="form-control"/>
+                        </div>
+                        <div className="form-group col-10">
+                                <label style={{ fontSize: "17px", margin:"1%"}}>
+                                    Question 3:
+                                </label>
+                                <input type="text" name="question3" value={this.state.question3}
+                                onChange={this.handleInputChange} className="form-control"/>
+                        </div>
+                        <div className="form-group col-12" style={{marginTop:"1rem"}}>
+                            <button className="default-btn1"
+                                type="submit"
+                                style={{paddingLeft:"25px", display:"inline"}}>Done</button>
+                            <p style={{marginLeft:"0.6rem", display:"inline"}}>Currently we only support at most 3 questions. <a href="/contact">Contact us</a> for more features.</p>
+                        </div>
+                    </div>
+                    </form>}
                 </div>
             </div>
         )

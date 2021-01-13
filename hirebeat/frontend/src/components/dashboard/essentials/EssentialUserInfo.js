@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import emailjs from 'emailjs-com';
-import MediaQuery from 'react-responsive';
+//import MediaQuery from 'react-responsive';
 import { connect } from 'react-redux';
 import { updateUserPassword } from "../../../redux/actions/auth_actions";
 
@@ -156,7 +156,19 @@ export class EssentialUserInfo extends Component {
                         />
                 </div>
               </div>}
-
+              {this.props.profile.is_employer &&
+              <div className="row" style={{marginTop:"1%"}}>
+                <div className="col d-flex align-items-center">
+                        <IconText
+                          iconName={"bx bx-briefcase  bx-sm"}
+                          textDisplayed={this.props.profile.company_name}
+                          textSize={"15px"}
+                          textColor={"#0B3861"}
+                          iconMargin={"3px"}
+                        />
+                </div>
+              </div>}
+              {!this.props.profile.is_employer &&
               <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
                         <IconText
@@ -167,7 +179,7 @@ export class EssentialUserInfo extends Component {
                           iconMargin={"3px"}
                         />
                 </div>
-              </div>
+              </div>}
               <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
                         <IconText

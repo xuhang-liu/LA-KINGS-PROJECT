@@ -15,12 +15,14 @@ export class SubpageSetting extends Component {
         oldPassword: "",
         newPassword: "",
         confirmPassword: "",
+        company_name: "",
     };
 
     componentDidMount() {
         this.setState({
           phone_number: this.props.profile.phone_number,
           location: this.props.profile.location,
+          company_name: this.props.profile.company_name,
         });
       }
 
@@ -41,7 +43,8 @@ export class SubpageSetting extends Component {
           user: this.props.user.id,
           id: this.props.profile.id,
           phone_number: this.state.phone_number,
-          location: this.state.location
+          location: this.state.location,
+          company_name: this.state.company_name,
         };
       };
     
@@ -171,6 +174,7 @@ export class SubpageSetting extends Component {
                 <div className="card container">
                     <form style={{ marginBottom: "3%" }} onSubmit={this.saveChanges}>
                             <div className="form-row" style={{marginTop:"1%"}}>
+                                {!this.props.profile.is_employer &&
                                 <div className="form-group col-6">
                                     <label style={{ fontSize: "17px" }}>Phone Number</label>
                                     <input
@@ -182,7 +186,20 @@ export class SubpageSetting extends Component {
                                         placeholder={"Phone Number"}
                                         required="required"
                                     />
-                                </div>
+                                </div>}
+                                {this.props.profile.is_employer &&
+                                <div className="form-group col-6">
+                                    <label style={{ fontSize: "17px" }}>Company Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        name={"company_name"}
+                                        value={this.state.company_name}
+                                        onChange={this.handleInputChange}
+                                        placeholder={"Company Name"}
+                                        required="required"
+                                    />
+                                </div>}
                                 <div className="form-group col-6">
                                     <label style={{ fontSize: "17px" }}>Location</label>
                                     <input
