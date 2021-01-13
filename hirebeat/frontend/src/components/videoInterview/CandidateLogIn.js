@@ -22,6 +22,15 @@ export class CandidateLogin extends Component {
       };
 
   };
+  componentDidMount() {
+    // check user exists or not
+    let userEmail = this.state.email;
+    let emailData = {email: userEmail}; // json stringfy
+    this.props.checkUserRegistration(emailData);
+
+    // get company name
+    this.props.getCompanyName(this.state.positionId);
+  }
 
   getParams =() => {
     let params = [];
@@ -124,14 +133,6 @@ export class CandidateLogin extends Component {
     if (this.props.isAuthenticated) {
         this.redirectToInterview();
     }
-
-    // check user exists or not
-    let userEmail = this.state.email;
-    let emailData = {email: userEmail}; // json stringfy
-    this.props.checkUserRegistration(emailData);
-
-    // get company name
-    this.props.getCompanyName(this.state.positionId);
 
     return (
         <React.Fragment>

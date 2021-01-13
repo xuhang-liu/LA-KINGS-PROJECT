@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
 class InterviewInfo extends Component {
-    // todo get questions here
     // data passed from login page
     email = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["email"];
     positionId = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["positionId"];
@@ -24,6 +23,8 @@ class InterviewInfo extends Component {
     };
 
     componentDidMount() {
+        // confirm user recorded videos or not
+        this.props.getRecordStatus(this.state.positionId, this.state.email);
         // get interview questions
         this.props.getInterviewQuestions(this.state.positionId);
         // intercept reloading
@@ -56,12 +57,9 @@ class InterviewInfo extends Component {
     };
 
     render() {
-        // confirm user recorded videos or not
-        this.props.getRecordStatus(this.state.positionId, this.state.email);
-
         return (
             <React.Fragment>
-                {this.props.isRecorded ?
+                {!this.props.isRecorded ?
                     <div>
                         <PageTitleArea
                             pageTitle={this.state.companyName}

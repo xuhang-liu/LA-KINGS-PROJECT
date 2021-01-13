@@ -45,6 +45,7 @@ export class CareerResponseWindow extends Component {
     }
 
     beforeunload = (e) => {
+        // todo submit video when click reload
         // cancel the event
         e.preventDefault();
         // not support for custom message
