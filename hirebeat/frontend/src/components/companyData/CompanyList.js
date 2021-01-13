@@ -346,6 +346,24 @@ class CompanyList extends Component {
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/merrill-lynch.png" alt="Merrill Lynch logo"/>
                                 </Link>
                             </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/hci-group">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/HCIGroup.png" alt="HCI Group logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/kpmg">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/KPMG.png" alt="KPMG logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/pwc">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/PWC.png" alt="PWC logo"/>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <MediaQuery minDeviceWidth={1224}>
