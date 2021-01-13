@@ -6,8 +6,11 @@ export class ReceivedInterviewList extends Component {
     render() {
         return (
             <React.Fragment>
-                <ReceivedInterview/>
-                <div>{this.props.received_interview}</div>
+                {this.props.loaded &&
+                <ReceivedInterview
+                received_interview={this.props.received_interview}
+                user={this.props.user}
+                />}
             </React.Fragment>
         );
     };

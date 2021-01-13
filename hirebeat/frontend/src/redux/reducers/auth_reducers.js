@@ -33,6 +33,7 @@ const initialState = {
   company_name: "",
   isRecorded: false,
   received_interview: [],
+  loaded: false,
 };
 
 export default function (state = initialState, action) {
@@ -125,6 +126,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         received_interview: action.payload.received_interview,
+        loaded: true,
       }
     default:
       return state;

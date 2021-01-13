@@ -110,7 +110,9 @@ export class Dashboard extends Component {
         return <Resume/>;
       case "interview":
         return <ReceivedInterviewList
-              received_interview={this.props.received_interview[0].job_title}
+              received_interview={this.props.received_interview[0]}
+              user={this.props.user}
+              loaded={this.props.loaded}
             />;
       case "settings":
         return <SubpageSetting
@@ -190,6 +192,7 @@ const mapStateToProps = (state) => ({
   userfullname: state.auth_reducer.userfullname,
   isAuthenticated: state.auth_reducer.isAuthenticated,
   received_interview: state.auth_reducer.received_interview,
+  loaded: state.auth_reducer.loaded,
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, getReceivedInterview })(
