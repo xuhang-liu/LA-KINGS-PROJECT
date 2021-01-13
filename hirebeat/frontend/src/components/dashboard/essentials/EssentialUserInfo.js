@@ -283,7 +283,10 @@ export class EssentialUserInfo extends Component {
                   </div>
                     <div className="col">
                       <Link to="/pricing" style={{textDecoration: "none"}}>
-                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
+                        {this.props.subpage == "videos" &&
+                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>}
+                        {this.props.subpage == "resume" &&
+                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>}
                       </Link>
                     </div>
                 </div>     
