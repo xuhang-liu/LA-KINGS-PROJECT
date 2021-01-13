@@ -292,6 +292,21 @@ class CompanyProfile extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/merrill-lynch.png" alt="Merrill Lynch logo"/>
                             </Link>
                         </div>
+                        <div className="item">
+                            <Link to="/hci-group">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/HCIGroup.png" alt="HCI Group logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/kpmg">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/KPMG.png" alt="KPMG logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/pwc">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/PWC.png" alt="PWC logo"/>
+                            </Link>
+                        </div>
                     </OwlCarousel>
                     <a href="/companydata" className="read-more" style={{color: "#13C4A1", marginLeft: "2rem", fontSize:"1rem", textDecoration:"none"}}>Explore our company data <i class="bx bx-right-arrow-alt"></i></a>
                 </div>
