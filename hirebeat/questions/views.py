@@ -75,7 +75,16 @@ def add_position(request):
     jobtitle = request.data['jobtitle']
     jobid = request.data['jobid']
     user = User.objects.get(pk=request.data["userid"])
-    data = Positions.objects.create(user=user, job_title=jobtitle, job_id=jobid)
+    question1 = request.data['question1']
+    question2 = request.data['question2']
+    question3 = request.data['question3']
+    position = Positions.objects.create(user=user, job_title=jobtitle, job_id=jobid)
+    if question1 != "":
+        data1 = InterviewQuestions.objects.create(description=question1, positions=position)
+    if question2 != "":
+        data2 = InterviewQuestions.objects.create(description=question2, positions=position)
+    if question3 != "":
+        data3 = InterviewQuestions.objects.create(description=question3, positions=position)
     return Response({
         "jobtitle": jobtitle
     })
