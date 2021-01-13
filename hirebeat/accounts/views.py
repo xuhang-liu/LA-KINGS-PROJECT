@@ -208,3 +208,16 @@ def get_record_status(request):
     is_recorded = interview_info.is_recorded
 
     return Response({"is_recorded": is_recorded})
+
+@api_view(['GET'])
+def get_received_interview(request):
+    received_interview = []
+    email = request.query_params.get("email")
+    can_int = CandidatesInterview.objects.filter(email=email)
+    for i in range(len(can_int)):
+        obj = can_int[i]
+        position = Positions.objects.get(pk=obj.positions_id)
+        int_info = {"job_title": position.job_title}
+        received_interview.append(int_info)
+
+    return Response({"received_interview": received_interview})

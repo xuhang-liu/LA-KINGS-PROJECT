@@ -21,6 +21,7 @@ import {
   GET_COMPANY_NAME,
   UPDATE_RECORD,
   GET_RECORD_STATUS,
+  GET_RECEIVED_INTERVIEW,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -367,6 +368,20 @@ export const getRecordStatus = (positionId, email) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_RECORD_STATUS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getReceivedInterview = (email) => (dispatch, getState) => {
+  axios
+    .get(`get-received-interview?email=${email}`)
+    .then((res) => {
+      dispatch({
+        type: GET_RECEIVED_INTERVIEW,
         payload: res.data,
       });
     })
