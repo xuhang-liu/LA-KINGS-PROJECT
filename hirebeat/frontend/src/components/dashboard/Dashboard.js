@@ -6,6 +6,7 @@ import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import { Analytics } from "./videos/Analytics";
 import { Interview } from "./videos/Interview";
 import { Resume } from "./videos/Resume";
+import { ReceivedInterview } from "./position/ReceivedInterview";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
@@ -72,6 +73,12 @@ export class Dashboard extends Component {
     });
   };
 
+  renderInterview = () => {
+    this.setState({
+      subpage: "interview",
+    });
+  };
+
   /*renderAnalytics = () => {
     this.setState({
       subpage: "analytics",
@@ -99,6 +106,8 @@ export class Dashboard extends Component {
         //return <Analytics />;
       case "resume":
         return <Resume/>;
+      case "interview":
+        return <ReceivedInterview/>;
       case "settings":
         return <SubpageSetting
             user={this.props.user}
@@ -133,6 +142,7 @@ export class Dashboard extends Component {
                       renderSetting={this.renderSetting}
                       renderVideos={this.renderVideos}
                       renderResume={this.renderResume}
+                      renderInterview={this.renderInterview}
                       subpage={this.state.subpage}
                   />
                 </div>
