@@ -31,6 +31,7 @@ const initialState = {
   isRegistered: false,
   company_name: "",
   isRecorded: false,
+  urlClicked: false,
 };
 
 export default function (state = initialState, action) {
@@ -118,6 +119,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isRecorded: action.payload.is_recorded,
+        urlClicked: action.payload.url_clicked,
       };
     default:
       return state;

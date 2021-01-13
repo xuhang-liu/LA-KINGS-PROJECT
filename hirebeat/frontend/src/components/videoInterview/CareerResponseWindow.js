@@ -10,6 +10,7 @@ import PrepCountdown from "../practice/PrepCountdown";
 import TestDevice from "./TestDevice";
 import VideoRecorder from "./VideoRecorder";
 import {getInterviewQuestions} from "../../redux/actions/question_actions";
+import { confirmAlert } from 'react-confirm-alert';
 
 export class CareerResponseWindow extends Component {
     // data passed from login page
@@ -45,7 +46,7 @@ export class CareerResponseWindow extends Component {
     }
 
     beforeunload = (e) => {
-        // todo submit video when click reload
+//        this.alert();
         // cancel the event
         e.preventDefault();
         // not support for custom message
@@ -75,14 +76,28 @@ export class CareerResponseWindow extends Component {
             status: "Your Answer",
         });
     };
+
     testDeviceDone = () => {
         this.setState({ deviceTested: true });
     };
+
     resetCountdownBar = () => {
         this.setState({
             status: "Preparation",
         });
     };
+
+    alert = () => {
+        confirmAlert({
+          title: "Warning",
+          message: "You will lost all of your recording data and the interview link will become invalid!",
+          buttons: [
+            {
+              label: 'Ok'
+            }
+          ]
+          });
+    }
 
     render() {
         let countTime = this.state.status == "Preparation" ? 30 : 60;

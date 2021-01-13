@@ -59,8 +59,8 @@ class InterviewInfo extends Component {
     render() {
         return (
             <React.Fragment>
-                {!this.props.isRecorded ?
-                    <div>
+                {(!this.props.urlClicked && !this.props.isRecorded) ?
+                    (<div>
                         <PageTitleArea
                             pageTitle={this.state.companyName}
                             pageDescription="Get to know more details and test everything before you start."
@@ -96,15 +96,16 @@ class InterviewInfo extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div> : <div>
-                                <PageTitleArea
-                                    pageTitle={this.state.companyName}
-                                    pageDescription="Get to know more details and test everything before you start."
-                                />
-                                <div className="Container" style={{margin: "2% 3% 10rem 3%"}}>
-                                    <h4 className="interview-txt2" style={{textAlign: "center"}}>You've already finished this session!</h4>
-                                </div>
-                            </div>
+                    </div>) :
+                    <div>
+                        <PageTitleArea
+                            pageTitle={this.state.companyName}
+                            pageDescription="Get to know more details and test everything before you start."
+                        />
+                        <div className="Container" style={{margin: "2% 3% 10rem 3%"}}>
+                            <h4 className="interview-txt2" style={{textAlign: "center"}}>You've already finished this session!</h4>
+                        </div>
+                    </div>
                 }
             </React.Fragment>
         );
@@ -114,6 +115,7 @@ class InterviewInfo extends Component {
 const mapStateToProps = (state) => ({
   interview_questions: state.question_reducer.interview_questions,
   isRecorded: state.auth_reducer.isRecorded,
+  urlClicked: state.auth_reducer.urlClicked,
 });
 
 export default connect(mapStateToProps, {getInterviewQuestions, getRecordStatus})(InterviewInfo);

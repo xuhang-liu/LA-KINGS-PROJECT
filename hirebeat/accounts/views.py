@@ -206,5 +206,8 @@ def get_record_status(request):
     email = request.query_params.get("email")
     interview_info = CandidatesInterview.objects.get(positions=position_id, email=email)
     is_recorded = interview_info.is_recorded
+    url_clicked = interview_info.url_clicked
 
-    return Response({"is_recorded": is_recorded})
+    return Response({"is_recorded": is_recorded,
+                     "url_clicked": url_clicked,
+                     })
