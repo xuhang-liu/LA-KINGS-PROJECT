@@ -87,9 +87,9 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/blog-why-do-you-want-to-work-here",
     "/blog-10-tips-to-deal-with-job-hunting-stress",
     "/blog-top-3-jobs-you-should-apply-for-finance-major",
-    "/blog-why-do-you-want-to-work-here",
     "/blog-3-fastest-growing-jobs-you-might-not-know-about",
     "/blog-how-to-answer-what-is-your-weakness-question-in-an-interview",
     "/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength",
@@ -106,9 +106,9 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog14.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog16.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog15.jpg",
-    "https://hirebeat-assets.s3.amazonaws.com/blog/blog14.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog13.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog12.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog11.jpg",
@@ -125,9 +125,9 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Jan 13, 2021",
     "Dec 23, 2020",
     "Dec 15, 2020",
-    "Dec 08, 2020",
     "Dec 01, 2020",
     "Nov 25, 2020",
     "Nov 18, 2020",
@@ -144,9 +144,9 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "WHY DO YOU WANT TO WORK HERE",
     "10 TIPS TO DEAL WITH JOB HUNTING STRESS",
     "TOP 3 JOBS YOU SHOULD APPLY FOR FINANCE MAJOR ",
-    "WHY DO YOU WANT TO WORK HERE",
     "FASTEST-GROWING JOBS YOU MIGHT NOT KNOW ABOUT",
     "HOW TO ANSWER 'WHAT IS YOUR WEAKNESS' QUESTION",
     "GUIDELINES ON 'WHAT IS YOUR BIGGEST STRENGTH'",
