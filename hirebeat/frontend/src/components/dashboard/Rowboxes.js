@@ -47,10 +47,21 @@ class RowBoxes extends React.Component{
             <div className="mt-25 mt-lg-31">
                 <div className={"container"}>
                     <div className="row mb-7">
-                        <RowBox count={this.props.videos_practiced} icon={"bxs-video"}>Video Practiced</RowBox>
-                        <RowBox count={this.props.resume_scanned} icon={"bxs-file-pdf"}>Resume Scanned</RowBox>
-                        <RowBox count={this.props.videos_reviewed} icon={"bxs-bot"}>Videos Reviewed</RowBox>
-                        <RowBox count={this.props.interviews_recorded} icon={"bx-brain"}>Recorded Interview</RowBox>
+                        {this.props.isEmployer ? (
+                            <React.Fragment>
+                                <RowBox count={this.props.videos_practiced} icon={"bxs-briefcase-alt"}>Jobs Posted</RowBox>
+                                <RowBox count={this.props.resume_scanned} icon={"bxs-user-pin"}>Total Applicants</RowBox>
+                                <RowBox count={this.props.videos_reviewed} icon={"bxs-video"}>Videos Received</RowBox>
+                                <RowBox count={this.props.interviews_recorded} icon={"bxs-pie-chart"}>Recorded Rate</RowBox>
+                            </React.Fragment>
+                        ) : (
+                            <React.Fragment>
+                                <RowBox count={this.props.videos_practiced} icon={"bxs-video"}>Video Practiced</RowBox>
+                                <RowBox count={this.props.resume_scanned} icon={"bxs-file-pdf"}>Resume Scanned</RowBox>
+                                <RowBox count={this.props.videos_reviewed} icon={"bxs-bot"}>Videos Reviewed</RowBox>
+                                <RowBox count={this.props.interviews_recorded} icon={"bxs-briefcase-alt"}>Recorded Interview</RowBox>
+                            </React.Fragment>
+                            )}
                     </div>
                 </div>
             </div>
