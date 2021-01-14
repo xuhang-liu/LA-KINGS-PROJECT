@@ -17,6 +17,7 @@ import {
   CHECK_USER_REGISTRATION,
   GET_COMPANY_NAME,
   GET_RECORD_STATUS,
+  GET_RECEIVED_INTERVIEW,
 } from "../actions/action_types";
 
 const initialState = {
@@ -31,6 +32,8 @@ const initialState = {
   isRegistered: false,
   company_name: "",
   isRecorded: false,
+  received_interview: [],
+  loaded: false,
 };
 
 export default function (state = initialState, action) {
@@ -119,6 +122,12 @@ export default function (state = initialState, action) {
         ...state,
         isRecorded: action.payload.is_recorded,
       };
+    case GET_RECEIVED_INTERVIEW:
+      return {
+        ...state,
+        received_interview: action.payload.received_interview,
+        loaded: true,
+      }
     default:
       return state;
   }

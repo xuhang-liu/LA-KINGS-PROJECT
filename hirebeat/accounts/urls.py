@@ -4,7 +4,7 @@ from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     resend_activation_email, update_user_email, update_user_password, \
     check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, \
-    update_record, get_record_status
+    update_record, get_record_status, get_received_interview
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -66,5 +66,8 @@ urlpatterns = [
 
     ### get video records status
     path('get-record-status', get_record_status, name="get record status"),
+
+    ### get received interview info
+    path('get-received-interview', get_received_interview, name="get received interview"),
 ]
 

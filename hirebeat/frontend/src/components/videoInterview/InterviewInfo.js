@@ -61,7 +61,7 @@ class InterviewInfo extends Component {
 
         return (
             <React.Fragment>
-                {this.props.isRecorded ?
+                {!this.props.isRecorded ?
                     <div>
                         <PageTitleArea
                             pageTitle={this.state.companyName}

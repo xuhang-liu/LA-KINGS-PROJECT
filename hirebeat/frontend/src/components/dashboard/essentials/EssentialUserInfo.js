@@ -259,7 +259,7 @@ export class EssentialUserInfo extends Component {
                     <IconText
                       textSize={"16px"}
                       textDisplayed={"Practiced Interview"}
-                      iconName={"bx bx-slideshow 1 bx-sm"}
+                      iconName={"bx bx-slideshow bx-sm"}
                       iconMargin={"3px"}
                       textColor={this.props.subpage == "videos" ? selectColor : defaultColor}
                       textDecoration={this.props.subpage == "videos" ? selectDecoration : defaultDecoration}
@@ -267,7 +267,7 @@ export class EssentialUserInfo extends Component {
                   </button>
                 </div>
               </div>      
-              <div className="row" style={{marginTop:"1%", marginBottom:"2rem"}}>
+              <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
                   <button
                     type="button"
@@ -278,10 +278,29 @@ export class EssentialUserInfo extends Component {
                     <IconText
                       textSize={"16px"}
                       textDisplayed={"Scanned Resume"}
-                      iconName={"bx bx-file 1 bx-sm"}
+                      iconName={"bx bx-file bx-sm"}
                       iconMargin={"3px"}
                       textColor={this.props.subpage == "resume" ? selectColor : defaultColor}
                       textDecoration={this.props.subpage == "resume" ? selectDecoration: defaultDecoration}
+                    />
+                  </button>
+                </div>
+              </div>
+              <div className="row" style={{marginTop:"1%", marginBottom:"2rem"}}>
+                <div className="col d-flex align-items-center">
+                  <button
+                    type="button"
+                    className="panel-button"
+                    onClick={this.props.renderInterview}
+                    style={{outline: "none", margin:"1%", padding:"0px"}}
+                  >
+                    <IconText
+                      textSize={"16px"}
+                      textDisplayed={"Received Interview"}
+                      iconName={"bx bx-briefcase bx-sm"}
+                      iconMargin={"3px"}
+                      textColor={this.props.subpage == "interview" ? selectColor : defaultColor}
+                      textDecoration={this.props.subpage == "interview" ? selectDecoration: defaultDecoration}
                     />
                   </button>
                 </div>
@@ -319,7 +338,10 @@ export class EssentialUserInfo extends Component {
                   </div>
                     <div className="col">
                       <Link to="/pricing" style={{textDecoration: "none"}}>
-                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
+                        {this.props.subpage == "videos" &&
+                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>}
+                        {this.props.subpage == "resume" &&
+                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>}
                       </Link>
                     </div>
                 </div>     

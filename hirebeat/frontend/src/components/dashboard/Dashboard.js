@@ -6,8 +6,9 @@ import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import { Analytics } from "./videos/Analytics";
 import { Interview } from "./videos/Interview";
 import { Resume } from "./videos/Resume";
+import { ReceivedInterviewList } from "./position/ReceivedInterviewList";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
+import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -32,6 +33,7 @@ export class Dashboard extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
+    getReceivedInterview: PropTypes.func.isRequired,
   };
 
   makeProfile = () => {
@@ -53,6 +55,7 @@ export class Dashboard extends Component {
   componentDidMount() {
     this.props.loadProfile();
     this.activateEmail();
+    this.props.getReceivedInterview(this.props.user.email);
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
 
@@ -69,6 +72,12 @@ export class Dashboard extends Component {
   renderVideos = () => {
     this.setState({
       subpage: "videos",
+    });
+  };
+
+  renderInterview = () => {
+    this.setState({
+      subpage: "interview",
     });
   };
 
@@ -99,6 +108,12 @@ export class Dashboard extends Component {
         //return <Analytics />;
       case "resume":
         return <Resume/>;
+      case "interview":
+        return <ReceivedInterviewList
+              received_interview={this.props.received_interview}
+              user={this.props.user}
+              loaded={this.props.loaded}
+            />;
       case "settings":
         return <SubpageSetting
             user={this.props.user}
@@ -133,6 +148,7 @@ export class Dashboard extends Component {
                       renderSetting={this.renderSetting}
                       renderVideos={this.renderVideos}
                       renderResume={this.renderResume}
+                      renderInterview={this.renderInterview}
                       subpage={this.state.subpage}
                   />
                 </div>
@@ -175,8 +191,10 @@ const mapStateToProps = (state) => ({
   user: state.auth_reducer.user,
   userfullname: state.auth_reducer.userfullname,
   isAuthenticated: state.auth_reducer.isAuthenticated,
+  received_interview: state.auth_reducer.received_interview,
+  loaded: state.auth_reducer.loaded,
 });
 
-export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname })(
+export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, getReceivedInterview })(
   Dashboard
 );
