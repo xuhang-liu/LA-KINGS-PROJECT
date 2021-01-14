@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export class ReceivedInterview extends Component {
 
     render() {
-        var param = "email="+this.props.user.email+"positionId="+this.props.received_interview.position_id;
+        var param = "email="+this.props.user.email+"&positionId="+this.props.received_interview.position_id;
         var encodedParam = window.btoa(param);
         var url = "/candidate-login?"+encodedParam;
         var d = this.props.received_interview.create_date;

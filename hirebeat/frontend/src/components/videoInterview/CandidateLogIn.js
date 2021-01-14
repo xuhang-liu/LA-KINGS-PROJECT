@@ -46,6 +46,11 @@ export class CandidateLogin extends Component {
     checkUserRegistration: PropTypes.func.isRequired,
   };
 
+  componentDidMount() {
+    // get company name
+    this.props.getCompanyName(this.state.positionId);
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     this.props.login(this.state.email, this.state.password);
@@ -129,9 +134,6 @@ export class CandidateLogin extends Component {
     let userEmail = this.state.email;
     let emailData = {email: userEmail}; // json stringfy
     this.props.checkUserRegistration(emailData);
-
-    // get company name
-    this.props.getCompanyName(this.state.positionId);
 
     return (
         <React.Fragment>
