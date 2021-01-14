@@ -1,8 +1,31 @@
-import { GET_QUESTIONS, NEXT_QUESTION, RETRY_B_QUESTION , RETRY_T_QUESTION, GET_RANDOM_QUESTION } from "./action_types";
+import {
+    GET_QUESTIONS,
+    NEXT_QUESTION,
+    RETRY_B_QUESTION ,
+    RETRY_T_QUESTION,
+    GET_RANDOM_QUESTION,
+    GET_INTERVIEW_QUESTIONS,
+    ADD_POSITION ,
+    } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
 import { returnErrors } from "./message_actions";
 import { useDispatch } from 'react-redux';
+
+export const addPosition = (jobtitle, jobid, userid, question1, question2, question3) => (dispatch, getState) => {
+  const body = JSON.stringify({jobtitle, jobid, userid, question1, question2, question3});
+  axios
+    .post("add-position", body, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_POSITION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
 
 export const getQuestions = (number, category) => (dispatch, getState) => {
   axios
@@ -49,6 +72,21 @@ export const getRandomQuestion = () => (dispatch) => {
         type: GET_RANDOM_QUESTION,
         payload: res.data,
       });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getInterviewQuestions = (positionId) => (dispatch, getState) => {
+  axios
+    .get(`/get-interview-questions?position_id=${positionId}`)
+    .then((res) => {
+      dispatch({
+        type: GET_INTERVIEW_QUESTIONS,
+        payload: res.data,
+      });
+      console.log("question loaded");
     })
     .catch((err) =>
       dispatch(returnErrors(err.response.data, err.response.status))

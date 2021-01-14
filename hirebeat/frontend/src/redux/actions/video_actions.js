@@ -10,10 +10,27 @@ import {
   GET_REVIEW_COUNT,
   VIDEO_UNDER_REVIEW,
   INCREASE_VIDEO_COUNT,
+  GET_VIDEOS_APPLICANT,
   ADD_WP_VIDEO,
 } from "./action_types";
 import { createMessage, returnErrors } from "./message_actions";
 import { tokenConfig } from "./auth_actions";
+
+export const getVideos = () => (dispatch, getState) => {
+  axios
+    .get("/api/videos/applicant", tokenConfig(getState))
+    .then((res) => {
+      console.log("get videos applicant");
+      console.log(res.data);
+      dispatch({
+        type: GET_VIDEOS_APPLICANT,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
 
 export const getVideos = () => (dispatch, getState) => {
   axios

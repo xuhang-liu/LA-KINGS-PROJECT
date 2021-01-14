@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import emailjs from 'emailjs-com';
-import MediaQuery from 'react-responsive';
+//import MediaQuery from 'react-responsive';
 import { connect } from 'react-redux';
 import { updateUserPassword } from "../../../redux/actions/auth_actions";
 
@@ -129,7 +129,6 @@ export class EssentialUserInfo extends Component {
     var defaultDecoration = "none";
     return (
       <React.Fragment>
-      <MediaQuery minDeviceWidth={1224}>
       <div className="container">
           <DbCenterRow>
             <div className="col-9">
@@ -157,7 +156,19 @@ export class EssentialUserInfo extends Component {
                         />
                 </div>
               </div>}
-
+              {this.props.profile.is_employer &&
+              <div className="row" style={{marginTop:"1%"}}>
+                <div className="col d-flex align-items-center">
+                        <IconText
+                          iconName={"bx bx-briefcase  bx-sm"}
+                          textDisplayed={this.props.profile.company_name}
+                          textSize={"15px"}
+                          textColor={"#0B3861"}
+                          iconMargin={"3px"}
+                        />
+                </div>
+              </div>}
+              {!this.props.profile.is_employer &&
               <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
                         <IconText
@@ -168,7 +179,7 @@ export class EssentialUserInfo extends Component {
                           iconMargin={"3px"}
                         />
                 </div>
-              </div>
+              </div>}
               <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
                         <IconText
@@ -209,6 +220,34 @@ export class EssentialUserInfo extends Component {
                   </button>
                 </div>
               </div>
+              {this.props.profile.is_employer ? 
+              <div>
+              <div className="row" style={{marginTop:"20%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderVideos}
+                  style={{outline: "none", margin:"1%", padding:"0px"}}
+                >
+                  <IconText
+                    textSize={"16px"}
+                    textDisplayed={"Posted Interview"}
+                    iconName={"bx bx-slideshow 1 bx-sm"}
+                    iconMargin={"3px"}
+                    textColor={this.props.subpage == "videos" ? selectColor : defaultColor}
+                    textDecoration={this.props.subpage == "videos" ? selectDecoration : defaultDecoration}
+                  />
+                </button>
+              </div>
+            </div> 
+                <button className="default-btn" onClick={this.props.renderPosition}
+                  style={{color:"white", backgroundColor:"#090D3A"}}>
+                  <i className="bx bxs-hot"></i> 
+                    New Position
+                  <span></span>
+                </button></div> : 
+              <div> 
               <div className="row" style={{marginTop:"20%"}}>
                 <div className="col d-flex align-items-center">
                   <button
@@ -220,17 +259,15 @@ export class EssentialUserInfo extends Component {
                     <IconText
                       textSize={"16px"}
                       textDisplayed={"Practiced Interview"}
-                      iconName={"bx bx-slideshow 1 bx-sm"}
+                      iconName={"bx bx-slideshow bx-sm"}
                       iconMargin={"3px"}
                       textColor={this.props.subpage == "videos" ? selectColor : defaultColor}
                       textDecoration={this.props.subpage == "videos" ? selectDecoration : defaultDecoration}
                     />
                   </button>
                 </div>
-              </div>
-
-                         
-              <div className="row" style={{marginTop:"1%", marginBottom:"2rem"}}>
+              </div>      
+              <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
                   <button
                     type="button"
@@ -241,7 +278,7 @@ export class EssentialUserInfo extends Component {
                     <IconText
                       textSize={"16px"}
                       textDisplayed={"Scanned Resume"}
-                      iconName={"bx bx-file 1 bx-sm"}
+                      iconName={"bx bx-file bx-sm"}
                       iconMargin={"3px"}
                       textColor={this.props.subpage == "resume" ? selectColor : defaultColor}
                       textDecoration={this.props.subpage == "resume" ? selectDecoration: defaultDecoration}
@@ -249,7 +286,25 @@ export class EssentialUserInfo extends Component {
                   </button>
                 </div>
               </div>
-          
+              <div className="row" style={{marginTop:"1%", marginBottom:"2rem"}}>
+                <div className="col d-flex align-items-center">
+                  <button
+                    type="button"
+                    className="panel-button"
+                    onClick={this.props.renderInterview}
+                    style={{outline: "none", margin:"1%", padding:"0px"}}
+                  >
+                    <IconText
+                      textSize={"16px"}
+                      textDisplayed={"Received Interview"}
+                      iconName={"bx bx-briefcase bx-sm"}
+                      iconMargin={"3px"}
+                      textColor={this.props.subpage == "interview" ? selectColor : defaultColor}
+                      textDecoration={this.props.subpage == "interview" ? selectDecoration: defaultDecoration}
+                    />
+                  </button>
+                </div>
+              </div>
               {this.props.subpage == 'videos' &&
                 <Link to="/practice">
                   <a className="default-btn" 
@@ -291,75 +346,12 @@ export class EssentialUserInfo extends Component {
                     </div>
                 </div>     
               </div>}
+              </div>}
             </div>
           </DbCenterRow>
 
 
       </div>
-      </MediaQuery>
-      <MediaQuery maxDeviceWidth={1223}>
-        <DbCenterRow>
-          <div className="container">
-            <div className="col-9">
-              <div className="row">
-                <div className="col d-flex align-items-center">
-                  <h1
-                    style={{
-                      fontWeight: "bold",
-                      marginRight: "0.8rem",
-                    }}
-                  >
-                    {this.props.user.username}
-                  </h1>
-                </div>
-              </div>
-                {/* for regular user */}
-                {
-                    this.props.profile.membership == "Regular" &&
-                      <div className="row">
-                        <div style={{paddingLeft:'10px', paddingBottom:'5px'}}>
-                        <Link to="/pricing">
-                          <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00"}}>
-                          <i className="bx bxs-hot"></i>
-                            Upgrade 1
-                            <span></span>
-                          </a>
-                        </Link>
-                        </div>
-                        <div style={{paddingLeft:'10px'}}>
-                        <Link to="/practice">
-                        <a className="default-btn" 
-                          style={{color:"white", backgroundColor:"#090D3A"}}>
-                          <i className="bx bxs-hot"></i> 
-                            New Practice
-                          <span></span>
-                        </a>
-                      </Link>
-                      </div>
-                      </div>
-                  }
-                  {/* for premium user */}
-                  {
-                    this.props.profile.membership == "Premium" &&
-                    <div className="row">
-                      <div style={{marginTop:"0.5rem", paddingRight:'20px', paddingLeft:'10px'}}>
-                        <i className='bx bx-diamond'></i>
-                          <span style={{marginLeft: "2px"}}>Premium</span>
-                      </div>
-                      <Link to="/practice">
-                        <a className="default-btn" 
-                          style={{color:"white", backgroundColor:"#090D3A"}}>
-                          <i className="bx bxs-hot"></i> 
-                            New Practice
-                          <span></span>
-                        </a>
-                      </Link>
-                    </div>
-                  }
-            </div>
-          </div>
-        </DbCenterRow>
-      </MediaQuery>
       </React.Fragment>
     );
   }

@@ -5,10 +5,12 @@ import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import VideoPreviewList from "./videos/VideoPreviewList";
 //import { Analytics } from "./videos/Analytics";
 import { Interview } from "./videos/Interview";
-import { Resume } from "./videos/Resume";
-import { ReceivedInterviewList } from "./position/ReceivedInterviewList";
+//import { Resume } from "./videos/Resume";
+import { CreatePosition } from "./position/CreatePosition";
+import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview } from "../../redux/actions/auth_actions";
+import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
+import { addPosition } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -16,6 +18,8 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import SubpageSetting from './SubpageSetting';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,7 +29,7 @@ function ScrollToTopOnMount() {
 }
 
 
-export class Dashboard extends Component {
+export class EmployerDashboard extends Component {
 
   constructor(props) {
     super(props);
@@ -33,7 +37,6 @@ export class Dashboard extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
-    getReceivedInterview: PropTypes.func.isRequired,
   };
 
   makeProfile = () => {
@@ -55,7 +58,6 @@ export class Dashboard extends Component {
   componentDidMount() {
     this.props.loadProfile();
     this.activateEmail();
-    this.props.getReceivedInterview(this.props.user.email);
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
 
@@ -66,7 +68,7 @@ export class Dashboard extends Component {
   page = (typeof (this.param) == "undefined" ? "" : this.param.subpage);
 
   state = {
-    subpage: (this.page == "" ? "videos" : this.page),
+    subpage: "",//(this.page == "" ? "videos" : this.page),
   };
 
   renderVideos = () => {
@@ -75,23 +77,33 @@ export class Dashboard extends Component {
     });
   };
 
-  renderInterview = () => {
-    this.setState({
-      subpage: "interview",
-    });
-  };
-
   /*renderAnalytics = () => {
     this.setState({
       subpage: "analytics",
     });
   };*/
-
-  renderResume = () => {
-    this.setState({
-      subpage: "resume",
-    });
-  };
+  renderPosition = () => {
+    if(this.props.profile.company_name == "" || this.props.profile.company_name == null){
+      confirmAlert({
+        title: 'One More Step!',
+        message: 'We Need Your Company Name to Start 😢',
+        buttons: [
+          {
+            label: 'Ok',
+          }
+        ]
+        });
+      this.setState({
+        subpage: "settings",
+        }
+      )
+    }else{
+      this.setState({
+        subpage: "position",
+        }
+      )
+    }
+  }
 
   renderSetting = () => {
     this.setState({
@@ -106,32 +118,32 @@ export class Dashboard extends Component {
         return <Interview/>;
         //case "analytics":
         //return <Analytics />;
-      case "resume":
-        return <Resume/>;
-      case "interview":
-        return <ReceivedInterviewList
-              received_interview={this.props.received_interview}
-              user={this.props.user}
-              loaded={this.props.loaded}
-            />;
+      case "position":
+        return <CreatePosition
+            user={this.props.user}
+            profile={this.props.profile}
+            renderVideos={this.renderVideos}
+            addPosition={this.props.addPosition}
+        />;
       case "settings":
         return <SubpageSetting
             user={this.props.user}
             profile={this.props.profile}
             location={this.props.profile.location}
             phone_number={this.props.profile.phone_number}
-            subpage={this.state.subpage}
             renderVideos={this.renderVideos}
         />;
       default:
+         return <ReviewApplication
+                  renderVideos={this.renderVideos}
+                  candidate={this.props.user}
+                  candidate_profile={this.props.profile}
+                />;
         //Do nothing
     }
   };
 
   render() {
-    if (this.props.profile.is_employer) {
-        return <Redirect to="/employer_dashboard"/>;
-    }else{
     return (
         <React.Fragment>
           <ScrollToTopOnMount/>
@@ -147,15 +159,14 @@ export class Dashboard extends Component {
                       updateProfile={this.props.updateProfile}
                       renderSetting={this.renderSetting}
                       renderVideos={this.renderVideos}
-                      renderResume={this.renderResume}
-                      renderInterview={this.renderInterview}
+                      renderPosition={this.renderPosition}
                       subpage={this.state.subpage}
                   />
                 </div>
               </div>
               <div className='col-9'>
                 <div className="dashboard-main">
-                  {this.state.subpage === "settings" ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
+                  {this.state.subpage === "settings" ? null : <RowBoxes userId={this.props.user.id}/>}
                   <div className="container" style={{marginBottom: "0%"}}>
                     <div className=""
                          style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
@@ -182,7 +193,6 @@ export class Dashboard extends Component {
           </MediaQuery>
         </React.Fragment>
     );
-    }
   }
 }
 
@@ -191,10 +201,8 @@ const mapStateToProps = (state) => ({
   user: state.auth_reducer.user,
   userfullname: state.auth_reducer.userfullname,
   isAuthenticated: state.auth_reducer.isAuthenticated,
-  received_interview: state.auth_reducer.received_interview,
-  loaded: state.auth_reducer.loaded,
 });
 
-export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, getReceivedInterview })(
-  Dashboard
+export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, addPosition })(
+  EmployerDashboard
 );
