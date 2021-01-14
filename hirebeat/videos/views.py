@@ -218,6 +218,19 @@ def get_video_user(request):
         "email": email
     })
 
+@api_view(['GET'])
+def get_videos_applicant(request):
+    print("===Get Video Candidate Called===") ## pass in the applicant id and the position id->get the question ids. Use the question id and applicant id.
+    question_id = request.postion_id.
+    video_id = request.query_params.get("videoID")
+    video = Video.objects.filter(id=video_id)
+    user = User.objects.filter(id=video[0].owner_id)[0]
+    email = user.email
+
+    return Response({
+        "email": email
+    })
+
 @api_view(['POST'])
 def delete_video(request):
     id = request.data["id"]
