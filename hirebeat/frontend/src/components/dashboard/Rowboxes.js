@@ -40,7 +40,11 @@ class RowBoxes extends React.Component{
         super(props);
     }
     componentDidMount() {
-       this.props.get_practice_info(this.props.userId);
+        if (this.props.isEmployer) {
+            this.props.get_practice_info(this.props.userId);
+        } else {
+
+        }
     }
     render() {
         return (

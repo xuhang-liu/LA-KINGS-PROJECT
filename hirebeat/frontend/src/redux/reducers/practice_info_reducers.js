@@ -4,6 +4,10 @@ const initialState = {
     resume_scanned : 0,
     videos_reviewed : 0,
     interviews_recorded : 0,
+    jobs_posted: 0,
+    total_applicants: 0,
+    videos_received: 0,
+    recorded_rate: 0,
 };
 export default function (state = initialState, action) {
     switch (action.type) {
