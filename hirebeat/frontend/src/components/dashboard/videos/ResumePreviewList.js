@@ -24,7 +24,6 @@ export class Resume extends Component {
   render() {
       return (
         <React.Fragment>
-          {console.log(this.props.loaded)}
           {this.props.loaded ?
             this.props.resumes.map((r) => {
               return (

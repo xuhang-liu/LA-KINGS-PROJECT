@@ -1,5 +1,4 @@
 import React, { Component, useReducer, useRef, useState } from "react";
-import S3FileUpload from "react-s3";
 import axios from "axios";
 //import Input, { isPossiblePhoneNumber } from 'react-phone-number-input';
 
@@ -16,18 +15,13 @@ import MediaQuery from 'react-responsive';
 import { connect } from 'react-redux';
 import { updateUserPassword } from "../../../redux/actions/auth_actions";
 
-const config = {
-    bucketName: 'hirebeat-avatar',
-    dirName: '',
-    region: 'us-east-1',
-    accessKeyId: '',
-    secretAccessKey: '',
-    interviewLeft: "",
-    scanLeft: "",
-}
-
 
 export class EssentialUserInfo extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   state = { 
     // changemaking: I am adding the state to control the show/hide of the password chaning Modal
     passwordChanging: false,
@@ -35,58 +29,18 @@ export class EssentialUserInfo extends Component {
     show: false,
     phone_number: "",
     location: "",
-    filePhoto: "https://hirebeat-assets.s3.amazonaws.com/user.png",
-    avatar_url:"https://hirebeat-assets.s3.amazonaws.com/user.png",
-    isActive: true,
     membership: "",
-    email_confirmed: this.props.profile.email_confirmed,
     email_match: "",
-    saved_video_count: "",
     plan_interval: "",
   };
 
   componentDidMount() {
-    var save_limit = this.props.profile.save_limit;
-    var saved_video = this.props.profile.saved_video_count;
-    var saves_left = 0;
-    console.log('1', save_limit);
-
-    if(Number(save_limit)>900){
-       saves_left = "unlimited";
-       console.log('2');
-    }else{
-      if((Number(save_limit) - Number(saved_video))>0){
-        saves_left = Number(save_limit) - Number(saved_video);
-        console.log('3');
-      }
-    }
-    console.log('4');
-    // resume save left
-    var cv_save_limit = this.props.profile.save_resume_limit;
-    var saved_resume = this.props.profile.saved_resume_count;
-    var cv_saves_left = 0;
-    if (Number(cv_save_limit) > 900) {
-        cv_saves_left = "unlimited";
-    } else {
-        if((Number(cv_save_limit) - Number(saved_resume)) > 0){
-            cv_saves_left = Number(cv_save_limit) - Number(saved_resume);
-            console.log("cv left?", cv_saves_left)
-        }
-    }
-
     this.setState({
       phone_number: this.props.profile.phone_number,
       location: this.props.profile.location,
       membership: this.props.profile.membership,
       plan_interval: this.props.profile.plan_interval,
-      email_confirmed: this.props.profile.email_confirmed,
-      saved_video_count: this.props.profile.saved_video_count,
-      filePhoto: this.props.profile.avatar_url,
-      interviewLeft: saves_left,
-      scanLeft: cv_saves_left,
     });
-
-  
   };
 
 
@@ -165,28 +119,6 @@ export class EssentialUserInfo extends Component {
       phone_number: this.state.phone_number,
       location: this.state.location
     };
-  };
-
-
-
-  upload = (e) => {
-    console.log("upload starts");
-    e.persist();
-    S3FileUpload.uploadFile(e.target.files[0], config)
-      .then(data => {
-        this.setState({
-          filePhoto: URL.createObjectURL(e.target.files[0]),
-          avatar_url: data.location
-        });
-        console.log(this.state.avatar_url);
-
-        this.saveChanges();
-        console.log(this.props.profile.avatar_url);
-
-      })
-      .catch((err) => console.error(err));
-    // this.setState({});
-
   };
 
   render() {
@@ -298,7 +230,7 @@ export class EssentialUserInfo extends Component {
               </div>
 
                          
-              <div className="row" style={{marginTop:"1%"}}>
+              <div className="row" style={{marginTop:"1%", marginBottom:"2rem"}}>
                 <div className="col d-flex align-items-center">
                   <button
                     type="button"
@@ -344,13 +276,17 @@ export class EssentialUserInfo extends Component {
               <div>
                 <div className="row">
                   <div className="col">            
-                    {this.props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Reviews Left: {this.state.interviewLeft}</p> : null}
-                    {this.props.subpage == "resume" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: {this.state.scanLeft}</p> : null}
+                    {this.props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Reviews Left: 
+                    {(this.props.profile.save_limit - this.props.profile.saved_video_count)>0?(this.props.profile.save_limit - this.props.profile.saved_video_count):0}</p> : null}
+                    {this.props.subpage == "resume" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: 
+                    {(this.props.profile.save_resume_limit - this.props.profile.saved_resume_count)>0?(this.props.profile.save_resume_limit - this.props.profile.saved_resume_count):0}</p> : null}
                   </div>
-                  
-                    <div className="col-5">
+                    <div className="col">
                       <Link to="/pricing" style={{textDecoration: "none"}}>
-                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>
+                        {this.props.subpage == "videos" &&
+                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>}
+                        {this.props.subpage == "resume" &&
+                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>}
                       </Link>
                     </div>
                 </div>     
