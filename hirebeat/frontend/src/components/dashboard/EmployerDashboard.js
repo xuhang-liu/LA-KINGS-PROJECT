@@ -10,6 +10,7 @@ import { CreatePosition } from "./position/CreatePosition";
 import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
+import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
@@ -37,6 +38,7 @@ export class EmployerDashboard extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
+    int_ques: PropTypes.array.isRequired,
   };
 
   makeProfile = () => {
@@ -60,7 +62,8 @@ export class EmployerDashboard extends Component {
     this.activateEmail();
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
-
+    this.props.getApplicantsVideos("liuxuhangtc@hotmail.com", "24");
+    this.props.getApplicantsInfo("liuxuhangtc@hotmail.com");
   }
 
   // params passed from resume page
@@ -68,7 +71,7 @@ export class EmployerDashboard extends Component {
   page = (typeof (this.param) == "undefined" ? "" : this.param.subpage);
 
   state = {
-    subpage: "",//(this.page == "" ? "videos" : this.page),
+    subpage: (this.page == "" ? "videos" : this.page),
   };
 
   renderVideos = () => {
@@ -112,6 +115,13 @@ export class EmployerDashboard extends Component {
     )
   }
 
+  renderReviewApplication = () => {
+    this.setState({
+          subpage: "reviewApplication",
+        }
+    )
+  }
+
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "videos":
@@ -133,12 +143,16 @@ export class EmployerDashboard extends Component {
             phone_number={this.props.profile.phone_number}
             renderVideos={this.renderVideos}
         />;
-      default:
-         return <ReviewApplication
+      case "reviewApplication":
+        return <ReviewApplication
+                  int_ques={this.props.int_ques}
                   renderVideos={this.renderVideos}
-                  candidate={this.props.user}
-                  candidate_profile={this.props.profile}
+                  username_candidate={this.props.username_candidate}
+                  email_candidate={this.props.email_candidate}
+                  phone_candidate={this.props.phone_candidate}
+                  location_candidate={this.props.location_candidate}
                 />;
+      default:
         //Do nothing
     }
   };
@@ -201,8 +215,13 @@ const mapStateToProps = (state) => ({
   user: state.auth_reducer.user,
   userfullname: state.auth_reducer.userfullname,
   isAuthenticated: state.auth_reducer.isAuthenticated,
+  int_ques: state.video_reducer.int_ques,
+  username_candidate: state.video_reducer.username_candidate,
+  email_candidate: state.video_reducer.email_candidate,
+  phone_candidate: state.video_reducer.phone_candidate,
+  location_candidate: state.video_reducer.location_candidate,
 });
 
-export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, addPosition })(
+export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, addPosition, getApplicantsVideos, getApplicantsInfo })(
   EmployerDashboard
 );
