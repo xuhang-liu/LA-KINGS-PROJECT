@@ -1,8 +1,12 @@
 import React from 'react';
 import { IconText } from "./DashboardComponents";
-import ApplicationVideo from "./videos/ApplicationVideo"
+import ApplicationVideo from "./videos/ApplicationVideo";
+import { connect } from "react-redux";
 
 class ReviewApplication extends React.Component{
+    constructor(props) {
+        super(props);
+      }
     render() {
         return(
             <div className="container" style={{width:'95%'}}>
@@ -36,7 +40,7 @@ class ReviewApplication extends React.Component{
                                         marginRight: "0.8rem",
                                         }}
                                     >
-                                        {this.props.candidate.username}  
+                                        {this.props.username_candidate}
                                     </h4>
                                     </div>
                                 </div>
@@ -44,7 +48,7 @@ class ReviewApplication extends React.Component{
                                     <div className="col d-flex align-items-center">
                                             <IconText
                                             iconName={"bx bx-phone bx-sm"}
-                                            textDisplayed={this.props.candidate_profile.phone_number}
+                                            textDisplayed={this.props.phone_candidate}
                                             textSize={"12px"}
                                             textColor={"#0B3861"}
                                             iconMargin={"3px"}
@@ -55,7 +59,7 @@ class ReviewApplication extends React.Component{
                                     <div className="col d-flex align-items-center">
                                             <IconText
                                             iconName={"bx bx-envelope bx-sm"}
-                                            textDisplayed={this.props.candidate.email}
+                                            textDisplayed={this.props.email_candidate}
                                             textSize={"12px"}
                                             textColor={"#0B3861"}
                                             iconMargin={"5px"}
@@ -66,7 +70,7 @@ class ReviewApplication extends React.Component{
                                     <div className="col d-flex align-items-center">
                                             <IconText
                                             iconName={"bx bx-location-plus bx-sm"}
-                                            textDisplayed={this.props.candidate_profile.location}
+                                            textDisplayed={this.props.location_candidate}
                                             textSize={"12px"}
                                             textColor={"#0B3861"}
                                             iconMargin={"3px"}
@@ -75,7 +79,7 @@ class ReviewApplication extends React.Component{
                                 </div>
                         </div>
                         <div className="col-7 container mt-4">
-                            <ApplicationVideo />
+                            <ApplicationVideo int_ques={this.props.int_ques}/>
                         </div>
                         <div className="col-2 container" style={{marginTop:"2.5%"}}>
                             <div className="container mt-3">
@@ -97,4 +101,6 @@ class ReviewApplication extends React.Component{
     };
 };
 
-export default ReviewApplication;
+export default connect(null)(
+    ReviewApplication
+  );

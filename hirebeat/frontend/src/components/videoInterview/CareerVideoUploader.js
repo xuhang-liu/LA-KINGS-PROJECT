@@ -36,8 +36,8 @@ export class CareerVideoUploader extends Component {
     var name = this.props.video.name;
 
     // change bucket to "hirebeat-test-video-bucket" when run in local
-   // var url = "https://hirebeat-wp-video.s3.amazonaws.com/" + name;
-    var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
+    var url = "https://hirebeat-wp-video.s3.amazonaws.com/" + name;
+    //var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
 
     // save data to database
     var metaData = {

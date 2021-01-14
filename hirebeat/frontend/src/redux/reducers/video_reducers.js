@@ -8,6 +8,8 @@ import {
   GET_UNREVIEWED_VIDEO_LIST,
   GET_REVIEW_COUNT,
   VIDEO_UNDER_REVIEW,
+  GET_VIDEOS_APPLICANT,
+  GET_APPLICANT_INFO,
 } from "../actions/action_types";
 
 const initialState = {
@@ -20,6 +22,11 @@ const initialState = {
   review_count: 0,
   nums: 0,
   deleted_video_id: 0,
+  int_ques: [],
+  username_candidate: '',
+  email_candidate: '',
+  phone_candidate: '',
+  location_candidate: '',
 };
 
 export default function (state = initialState, action) {
@@ -77,6 +84,19 @@ export default function (state = initialState, action) {
       };
     case ADD_REVIEWS:
     case ADD_LABELS:
+    case GET_VIDEOS_APPLICANT:
+      return {
+        ...state,
+        int_ques: action.payload.int_ques,
+      }
+    case GET_APPLICANT_INFO:
+      return {
+        ...state,
+        username_candidate: action.payload.username_candidate,
+        email_candidate: action.payload.email_candidate,
+        phone_candidate: action.payload.phone_candidate,
+        location_candidate: action.payload.location_candidate,
+      }
     default:
       return state;
   }

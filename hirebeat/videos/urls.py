@@ -2,7 +2,7 @@ from rest_framework import routers
 from videos.api.viewsets import VideoViewSet
 from .views import get_unreviewed_video, mark_video_as_needed_review, \
     add_video_label, get_video_sentences, get_video_user, get_unreviewed_video_list, get_review_count, delete_video, \
-    add_wp_video, sign_s3_upload_wp_video, get_videos_applicant
+    add_wp_video, sign_s3_upload_wp_video, get_applicants_videos, get_applicants_info
 from django.urls import path
 
 router = routers.DefaultRouter()
@@ -24,5 +24,6 @@ urlpatterns.append(path('api/video-user', get_video_user))
 urlpatterns.append(path('api/video/deletion', delete_video))
 urlpatterns.append(path('api/wp-videos', add_wp_video))
 urlpatterns.append(path('sign-wp-video',sign_s3_upload_wp_video))
-urlpatterns.append(path('/api/videos/applicant', get_videos_applicant))
+urlpatterns.append(path('get-applicants-videos', get_applicants_videos))
+urlpatterns.append(path('get-applicants-info', get_applicants_info))
 

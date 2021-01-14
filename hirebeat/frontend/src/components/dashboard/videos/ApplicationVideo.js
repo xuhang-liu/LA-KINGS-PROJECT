@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import ApplicationVideoPanel from "./ApplicationVideoPanel";
 import { connect } from "react-redux";
 
@@ -11,32 +11,27 @@ export class ApplicationVideo extends Component {
 //     deleteVideo: PropTypes.func.isRequired,
 //     filter: PropTypes.string,
 //   };
+constructor(props) {
+        super(props);
+      }
 
   render() {
         return (
                 <React.Fragment>
+                {this.props.int_ques.map((i) => {
+                return (
                     <div>
                     <ApplicationVideoPanel
-                            question="This is the question 1"
-                            url="https://test-hb-videos.s3.amazonaws.com/1599189185358.webm"
+                            question={i.question_desc}
+                            url={i.url}
                     />
-                    </div>
-                    <div>
-                    <ApplicationVideoPanel
-                            question="This is the question 2"
-                            url="https://test-hb-videos.s3.amazonaws.com/1599189185358.webm"
-                    />
-                    </div>
-                    <div>
-                    <ApplicationVideoPanel
-                            question="This is the question 3"
-                            url="https://test-hb-videos.s3.amazonaws.com/1599189185358.webm"
-                    />
-                    </div>
+                    </div>) })}
                 </React.Fragment>
         );
   }
 }
 
 
-export default ApplicationVideo;
+export default connect(null)(
+        ApplicationVideo
+      );
