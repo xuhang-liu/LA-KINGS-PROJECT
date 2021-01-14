@@ -31,12 +31,11 @@ class WhyUs extends Component {
 
                         <div className="row" style={{width: "100%", margin: "auto"}}>
                             <div className="col-lg-8 col-md-8">
-                                <div className="video-box">
+                                <div className="video-box" id="id-video1">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/home_bg.png" className="main-image" alt="image" />
 
                                     <Link href="#play-video">
                                         <a
-                                            id="id-video1"
                                             onClick={e => {e.preventDefault(); this.openModal()}}
                                             className="video-btn popup-youtube"
                                             style={{top:"45%"}}

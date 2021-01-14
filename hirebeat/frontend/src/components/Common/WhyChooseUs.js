@@ -43,12 +43,11 @@ class WhyChooseUs extends Component {
                             <h2>Watch this video to know more</h2>
                        </div>
 
-                        <div className="video-box">
+                        <div className="video-box" id="id-video2">
                             <img src={videobg} className="main-image" alt="image" />
 
                             <Link href="#play-video">
                                 <a
-                                    id="id-video2"
                                     onClick={e => {e.preventDefault(); this.openModal()}}
                                     className="video-btn popup-youtube"
                                 > 
