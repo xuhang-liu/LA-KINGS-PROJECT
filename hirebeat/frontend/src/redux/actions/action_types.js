@@ -1,4 +1,5 @@
 export const GET_VIDEOS = "GET_VIDEOS";
+export const GET_VIDEOS_APPLICANT = "GET_VIDEOS_APPLICANT";
 export const GET_AUDIOS = "GET_AUDIOS";
 export const DELETE_VIDEO = "DELETE_VIDEOS";
 export const DELETE_AUDIO = "DELETE_AUDIOS";

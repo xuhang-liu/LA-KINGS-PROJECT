@@ -6,7 +6,8 @@ import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import { Analytics } from "./videos/Analytics";
 import { Interview } from "./videos/Interview";
 //import { Resume } from "./videos/Resume";
-import {CreatePosition} from "./position/CreatePosition";
+import { CreatePosition } from "./position/CreatePosition";
+import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
 import { addPosition } from "../../redux/actions/question_actions";
@@ -67,7 +68,7 @@ export class EmployerDashboard extends Component {
   page = (typeof (this.param) == "undefined" ? "" : this.param.subpage);
 
   state = {
-    subpage: (this.page == "" ? "videos" : this.page),
+    subpage: "",//(this.page == "" ? "videos" : this.page),
   };
 
   renderVideos = () => {
@@ -133,6 +134,11 @@ export class EmployerDashboard extends Component {
             renderVideos={this.renderVideos}
         />;
       default:
+         return <ReviewApplication
+                  renderVideos={this.renderVideos}
+                  candidate={this.props.user}
+                  candidate_profile={this.props.profile}
+                />;
         //Do nothing
     }
   };
