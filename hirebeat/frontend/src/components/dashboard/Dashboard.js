@@ -110,7 +110,7 @@ export class Dashboard extends Component {
         return <Resume/>;
       case "interview":
         return <ReceivedInterviewList
-              received_interview={this.props.received_interview[0]}
+              received_interview={this.props.received_interview}
               user={this.props.user}
               loaded={this.props.loaded}
             />;
