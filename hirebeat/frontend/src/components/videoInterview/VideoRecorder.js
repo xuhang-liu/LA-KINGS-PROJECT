@@ -8,7 +8,7 @@ import "videojs-record/dist/css/videojs.record.css";
 import CareerVideoUploader from "./CareerVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_INTERVIEW_QUESTION } from "../../redux/actions/action_types";
-import { RecordDoneButton } from "./../practice/CardComponents";
+import { RecordDoneButton, CardButton } from "./../practice/CardComponents";
 
 export class VideoRecorder extends Component {
   constructor() {
@@ -28,6 +28,7 @@ export class VideoRecorder extends Component {
   };
 
   componentDidMount() {
+    console.log(1);
     this.player = videojs(this.videoNode, this.props, () => {
       var version_info =
         "Using video.js " +
@@ -105,6 +106,11 @@ export class VideoRecorder extends Component {
     this.player.record().reset();
   };
 
+  recordAgain = () => {
+    this.player.record().reset();
+    this.player.record().getDevice();
+  }
+
   startCamera = () => {
     this.player.record().getDevice();
   };
@@ -128,6 +134,25 @@ export class VideoRecorder extends Component {
           </div>
         </div>
         <div className="col-3">
+          {
+            this.props.isTesting && this.props.retry &&
+              <div style={{marginTop: "4rem"}}>
+                <p className="text-muted">Test device again</p>
+                <CardButton
+                  onTap={this.recordAgain}
+                  textDisplayed={"Retry"}
+                  buttonWidth={"10rem"}
+                  fontFamily={"Avenir Next"}
+                />
+                <p className="text-muted" style={{marginTop: "2rem"}}>Everything goes well?</p>
+                <CardButton
+                  onTap={this.props.testDeviceDone}
+                  textDisplayed={"Start Interview"}
+                  buttonWidth={"14rem"}
+                  fontFamily={"Avenir Next"}
+                />
+              </div>
+          }
           {
             !this.props.isTesting && this.props.isSimulate ? (
               <div style={{display: this.state.display}}>
