@@ -1,5 +1,6 @@
 from django.urls import path,include
-from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, RetrievePracticeInfoAPI, Employer_ResgisterAPI
+from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, RetrievePracticeInfoAPI, Employer_ResgisterAPI, \
+    RetrieveInterviewJobAPI
 from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     resend_activation_email, update_user_email, update_user_password, \
@@ -20,6 +21,8 @@ urlpatterns = [
 
     ### get user's practice information
     path('get_practice_info/<int:userId>', RetrievePracticeInfoAPI.as_view()),
+    ### get employer's posted jobs and interviews info
+    path('get_interview_job/<int:employerId>', RetrieveInterviewJobAPI.as_view()),
     ### email confirm ###
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
 
