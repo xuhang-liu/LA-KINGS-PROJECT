@@ -14,6 +14,10 @@ import {
   INCREASE_RESUME_COUNT,
   UPGRADE_ACCOUNTS,
   GET_ZP_JOBS,
+  CHECK_USER_REGISTRATION,
+  GET_COMPANY_NAME,
+  GET_RECORD_STATUS,
+  GET_RECEIVED_INTERVIEW,
 } from "../actions/action_types";
 
 const initialState = {
@@ -25,6 +29,11 @@ const initialState = {
   premiums: [],
   userfullname: "",
   zpJobs: [],
+  isRegistered: false,
+  company_name: "",
+  isRecorded: false,
+  received_interview: [],
+  loaded: false,
 };
 
 export default function (state = initialState, action) {
@@ -98,6 +107,27 @@ export default function (state = initialState, action) {
         ...state,
         zpJobs: action.payload.data,
       };
+    case CHECK_USER_REGISTRATION:
+      return {
+        ...state,
+        isRegistered: action.payload.is_registered,
+      };
+    case GET_COMPANY_NAME:
+      return {
+        ...state,
+        companyName: action.payload.company_name,
+      };
+    case GET_RECORD_STATUS:
+      return {
+        ...state,
+        isRecorded: action.payload.is_recorded,
+      };
+    case GET_RECEIVED_INTERVIEW:
+      return {
+        ...state,
+        received_interview: action.payload.received_interview,
+        loaded: true,
+      }
     default:
       return state;
   }

@@ -291,6 +291,18 @@ p:last-child {
   height: 562.5px;
 }
 
+.default-btn1:hover, .default-btn:focus {
+  background-color: #ff612f;
+  color: #ffffff;
+  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+          box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+}
+
+.default-btn1:hover span, .default-btn:focus span {
+  width: 225%;
+  height: 562.5px;
+}
+
 .default-btn2:hover, .default-btn2:focus {
   background-color: #080a3c;
   color: #ffffff;

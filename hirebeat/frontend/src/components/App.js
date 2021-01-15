@@ -4,6 +4,7 @@ import {Helmet} from "react-helmet";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Dashboard from "./dashboard/Dashboard";
+import EmployerDashboard from "./dashboard/EmployerDashboard";
 import { Provider } from "react-redux";
 import AlertTemplate from "react-alert-template-basic";
 import { Provider as AlertProvider } from "react-alert";
@@ -15,6 +16,7 @@ import indexsaas from "./home/index-saas";
 import EmailVerification from "./accounts/EmailVerification";
 import Login from "./accounts/Login";
 import Register from "./accounts/Register";
+import EmployerRegister from "./accounts/EmployerRegister";
 import PrivateRoute from "./basic/PrivateRoute";
 import pricings from "./pricing/pricings";
 import Payment from "./payment/Payment"
@@ -111,9 +113,13 @@ import BusinessAnalyst from "./career/jobs/BusinessAnalyst";
 import Marketing from "./career/jobs/Marketing";
 import ProductManager from "./career/jobs/ProductManager";
 import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
-import CareerVideoRecorder from "./videoInterview/CareerVideoRecorder";
+import CareerResponseWindow from "./videoInterview/CareerResponseWindow";
 import Contact from "./contact/contact";
-import Howitworks from "./home/Howitworks"
+import Howitworks from "./home/Howitworks";
+import InterviewCompletion from "./videoInterview/InterviewCompletion";
+
+import CandidateLogin from "./videoInterview/CandidateLogin";
+import InterviewInfo from "./videoInterview/InterviewInfo";
 
 import { loadUser, loadProfile } from "../redux/actions/auth_actions";
 
@@ -177,6 +183,7 @@ class App extends Component {
               <Alerts />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/employer_dashboard" component={EmployerDashboard} />
                 <Route exact path="/resume" component={Resume} />
                 <PrivateRoute exact path="/review" component={ReviewListPreload} />
                 <PrivateRoute
@@ -216,7 +223,8 @@ class App extends Component {
                   component={QuestionTypeChoices}
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
-                <Route exact path="/video-interview" component={CareerVideoRecorder}/>
+                <PrivateRoute exact path="/video-interview" component={CareerResponseWindow}/>
+                <Route exact path="/interview_Completion" component={InterviewCompletion} />
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/howitworks" component={Howitworks} />
@@ -239,6 +247,7 @@ class App extends Component {
                 <Route exact path="/blog-10-tips-to-deal-with-job-hunting-stress" component={BlogDetail16} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/employer" component={EmployerRegister} />
                 <Route exact path="/upload" component={MyVideoUploader} />
                 <Route exact path="/" component={indexsaas} />
                 <Route exact path="/payment" component={Payment} />
@@ -310,6 +319,8 @@ class App extends Component {
                 <PrivateRoute exact path="/email-verification" component={EmailVerification} />
                 <Route exact path="/career" component={SearchPanel} />
                 <Route exact path="/career-details" component={SearchResult} />
+                <Route exact path="/candidate-login" component={CandidateLogin} />
+                <PrivateRoute exact path="/interview-info" component={InterviewInfo} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />
