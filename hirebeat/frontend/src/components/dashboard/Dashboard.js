@@ -29,6 +29,10 @@ export class Dashboard extends Component {
 
   constructor(props) {
     super(props);
+    this.renderInterview = this.renderInterview.bind(this);
+    this.renderResume = this.renderResume.bind(this);
+    this.renderSetting = this.renderSetting.bind(this);
+    this.renderVideos = this.renderVideos.bind(this);
   }
 
   static propTypes = {
@@ -155,7 +159,14 @@ export class Dashboard extends Component {
               </div>
               <div className='col-9'>
                 <div className="dashboard-main">
-                  {this.state.subpage === "settings" ? null : <RowBoxes userId={this.props.user.id}/>}
+                  {this.state.subpage === "settings" ? null :
+                      <RowBoxes
+                          renderVideos={this.renderVideos}
+                          renderResume={this.renderResume}
+                          renderInterview={this.renderInterview}
+                          userId={this.props.user.id}
+                          isEmployer={false}
+                      />}
                   <div className="container" style={{marginBottom: "0%"}}>
                     <div className=""
                          style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>

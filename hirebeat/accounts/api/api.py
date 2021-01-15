@@ -3,9 +3,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileSerializer
-from accounts.models import Profile
+from accounts.models import Profile, CandidatesInterview
 from resume.models import Resume
 from videos.models import Video
+from questions.models import Positions, InvitedCandidates
 from rest_framework import status
 from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
@@ -68,10 +69,12 @@ class ResgisterAPI(generics.GenericAPIView):
             "profile": ProfileSerializer(profile).data,
         })
 
-#Employer Register API
+
+# Employer Register API
 
 class Employer_ResgisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
+
     def post(self, request, *args, **kwargs):
         ## user info
         serializer = self.get_serializer(data=request.data)
@@ -107,10 +110,11 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         profile.is_employer = True
         profile.save()
         return Response({
-            "user":UserSerializer(user, context=self.get_serializer_context()).data,
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": token,
             "profile": ProfileSerializer(profile).data,
         })
+
 
 # Login API
 
@@ -199,5 +203,32 @@ class RetrievePracticeInfoAPI(APIView):
                 "videos_reviewed": videos_reviewed,
                 "resume_scanned": resume_scanned,
                 "interviews_recorded": interviews_recorded
+            }
+        )
+
+
+class RetrieveInterviewJobAPI(APIView):
+    def get(self, request, employerId):
+        positions = Positions.objects.filter(user_id=employerId)
+        jobs_posted = len(positions)
+        total_applicants = 0
+        videos_to_be_received = 0
+        videos_received = 0
+        recorded_rate = 0
+        for position in positions:
+            invited_candidates = InvitedCandidates.objects.filter(positions_id=position.id)
+            total_applicants += len(invited_candidates)
+            videos = CandidatesInterview.objects.filter(positions_id=position.id)
+            videos_to_be_received += len(videos)
+            videos_received += len(videos.filter(is_recorded=True))
+        if videos_to_be_received > 0:
+            recorded_rate = (videos_received / videos_to_be_received)
+        print(recorded_rate)
+        return Response(
+            {
+                "jobs_posted": jobs_posted,
+                "total_applicants": total_applicants,
+                "videos_received": videos_received,
+                "recorded_rate": recorded_rate * 100,
             }
         )
