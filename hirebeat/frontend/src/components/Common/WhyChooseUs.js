@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import ModalVideo from 'react-modal-video';
-import videobg from "../public/images/video-bg.jpg";
 import shape1 from "../public/images/shape/shape1.png";
 import shape2 from "../public/images/shape/shape2.png";
 import shape3 from "../public/images/shape/shape3.png";
@@ -32,7 +31,7 @@ class WhyChooseUs extends Component {
                         mute: 1
                       }}
                     isOpen={this.state.isOpen} 
-                    videoId='Ct82zEpHUf8' 
+                    videoId='Uja3ZefBRe8' 
                     onClose={() => this.setState({isOpen: false})} 
                 />
 
@@ -44,7 +43,7 @@ class WhyChooseUs extends Component {
                        </div>
 
                         <div className="video-box" id="id-video2">
-                            <img src={videobg} className="main-image" alt="image" />
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/home_bg.png" className="main-image" alt="image" />
 
                             <Link href="#play-video">
                                 <a
