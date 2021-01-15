@@ -2,11 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponseBadRequest
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenceSerializer
+from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenceSerializer, WPVideoSerializer
 from .models import Video, Label, Transcript, Sentence, WPVideo
 from django.contrib.auth.models import User
 from accounts.models import ReviewerInfo, Profile
+from questions.models import InterviewQuestions, Positions
 from questions.models import Categorys, SubCategory
+from videos.models import WPVideo
 from questions.serializers import SubcategorySerializer
 # For fake ai
 from django.db.models import Q
@@ -216,6 +218,43 @@ def get_video_user(request):
 
     return Response({
         "email": email
+    })
+
+@api_view(['GET'])
+def get_applicants_videos(request):
+    print("===Get Candidate Videos Called===")
+    int_ques = []
+    email = request.query_params.get("email")
+    user = User.objects.filter(email=email)
+    positionId = request.query_params.get("positionId")
+    position = Positions.objects.get(pk=positionId)
+    questions = InterviewQuestions.objects.filter(positions=position)
+    for i in range(len(questions)):
+        obj = questions[i]
+        ques_id = obj.id
+        user_id = user[0].id
+        wpvideo = WPVideo.objects.filter(question_id=ques_id, owner_id=user_id)
+        if wpvideo.exists() :
+            video = wpvideo[0]
+        serializer = WPVideoSerializer(video)
+        int_ques.append(serializer.data)
+    
+    return Response({
+        "int_ques": int_ques,
+    })
+
+@api_view(['GET'])
+def get_applicants_info(request):
+    print("===Get Candidate Info Called===")
+    email = request.query_params.get("email")
+    user = User.objects.filter(email=email)[0]
+    profile = Profile.objects.get(user_id=user.id)
+
+    return Response({
+        "username_candidate": user.username,
+        "email_candidate": user.email,
+        "phone_candidate": profile.phone_number,
+        "location_candidate": profile.location,
     })
 
 @api_view(['POST'])

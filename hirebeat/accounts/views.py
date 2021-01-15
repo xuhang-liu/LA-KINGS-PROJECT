@@ -14,7 +14,7 @@ from django.contrib.auth.hashers import check_password
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from .models import Profile, CandidatesInterview
-from questions.models import Positions
+from questions.models import Positions, InterviewQuestions, InvitedCandidates
 from rest_framework.response import Response
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
@@ -208,6 +208,26 @@ def get_record_status(request):
     is_recorded = interview_info.is_recorded
     url_clicked = interview_info.url_clicked
 
-    return Response({"is_recorded": is_recorded,
-                     "url_clicked": url_clicked,
-                     })
+    return Response({
+        "is_recorded": is_recorded,
+         "url_clicked": url_clicked,
+         })
+
+@api_view(['GET'])
+def get_received_interview(request):
+    received_interview = []
+    email = request.query_params.get("email")
+    can_int = CandidatesInterview.objects.filter(email=email)
+    for i in range(len(can_int)):
+        obj = can_int[i]
+        position = Positions.objects.get(pk=obj.positions_id)
+        interview_questions = InterviewQuestions.objects.filter(positions_id=obj.positions_id)
+        iq_count = len(interview_questions)
+        create_date = InvitedCandidates.objects.get(email=email, positions_id=obj.positions_id).invite_date
+        user = User.objects.get(pk=position.user_id)
+        profile = Profile.objects.get(user_id=user.id)
+        company_name = profile.company_name
+        int_info = {"job_title": position.job_title, "is_recorded": obj.is_recorded, "position_id": obj.positions_id, "iq_count": iq_count, "create_date": create_date, "company_name": company_name}
+        received_interview.append(int_info)
+
+    return Response({"received_interview": received_interview})

@@ -4,8 +4,7 @@ import videojs from "video.js";
 import "webrtc-adapter";
 import RecordRTC from "recordrtc";
 import "videojs-record/dist/css/videojs.record.css";
-import Record from "videojs-record/dist/videojs.record.js";
-
+//import Record from "videojs-record/dist/videojs.record.js";
 import CareerVideoUploader from "./CareerVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_INTERVIEW_QUESTION } from "../../redux/actions/action_types";

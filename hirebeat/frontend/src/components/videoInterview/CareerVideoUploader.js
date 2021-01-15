@@ -37,7 +37,7 @@ export class CareerVideoUploader extends Component {
 
     // change bucket to "hirebeat-test-video-bucket" when run in local
     var url = "https://hirebeat-wp-video.s3.amazonaws.com/" + name;
-//    var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
+    //var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
 
     // save data to database
     var metaData = {
@@ -71,13 +71,13 @@ export class CareerVideoUploader extends Component {
     this.props.updateRecord(user);
 
     this.uploader.uploadFile(this.props.video);
-    this.redirectToDashboard();
+    this.redirectToCompletion();
   };
 
-  redirectToDashboard = () => {
+  redirectToCompletion = () => {
     // redirect to profile
     const { history } = this.props;
-    if (history) history.push("/dashboard");
+    if (history) history.push("/interview_Completion");
   };
 
   render() {

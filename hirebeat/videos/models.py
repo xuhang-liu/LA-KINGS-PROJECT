@@ -71,4 +71,4 @@ class WPVideo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     owner_id = models.BigIntegerField(null=True, blank=True)
     def __str__(self):
-        return self.wpvideo
+        return self.email

@@ -4,8 +4,10 @@ import { Link, Redirect } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 import { JobApplication } from "./applications/JobApplication";
 import {CreatePosition} from "./position/CreatePosition";
+import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
+import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition, getPostedJobs, addInterviews } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
@@ -33,6 +35,7 @@ export class EmployerDashboard extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
+    int_ques: PropTypes.array.isRequired,
   };
 
   makeProfile = () => {
@@ -57,6 +60,8 @@ export class EmployerDashboard extends Component {
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
     this.props.getPostedJobs(user.id);
+    this.props.getApplicantsVideos("liuxuhangtc@hotmail.com", "24");
+    this.props.getApplicantsInfo("liuxuhangtc@hotmail.com");
   }
 
   state = {
@@ -99,6 +104,13 @@ export class EmployerDashboard extends Component {
     )
   }
 
+  renderReviewApplication = () => {
+    this.setState({
+          subpage: "reviewApplication",
+        }
+    )
+  }
+
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "applications":
@@ -123,6 +135,15 @@ export class EmployerDashboard extends Component {
             phone_number={this.props.profile.phone_number}
             renderApplications={this.renderApplications}
         />;
+      case "reviewApplication":
+        return <ReviewApplication
+                  int_ques={this.props.int_ques}
+                  renderVideos={this.renderVideos}
+                  username_candidate={this.props.username_candidate}
+                  email_candidate={this.props.email_candidate}
+                  phone_candidate={this.props.phone_candidate}
+                  location_candidate={this.props.location_candidate}
+                />;
       default:
         //Do nothing
     }
@@ -151,7 +172,7 @@ export class EmployerDashboard extends Component {
               </div>
               <div className='col-9'>
                 <div className="dashboard-main">
-                  {this.state.subpage === "settings" ? null : <RowBoxes userId={this.props.user.id}/>}
+                  {this.state.subpage === "settings" ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
                   <div className="container" style={{marginBottom: "0%"}}>
                     <div className=""
                          style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
@@ -188,9 +209,14 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth_reducer.isAuthenticated,
   loaded: state.question_reducer.loaded,
   postedJobs: state.question_reducer.postedJobs,
+  int_ques: state.video_reducer.int_ques,
+  username_candidate: state.video_reducer.username_candidate,
+  email_candidate: state.video_reducer.email_candidate,
+  phone_candidate: state.video_reducer.phone_candidate,
+  location_candidate: state.video_reducer.location_candidate,
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
-    addPosition, getPostedJobs, addInterviews })(
+    addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo })(
     EmployerDashboard
 );

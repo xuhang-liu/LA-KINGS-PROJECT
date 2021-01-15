@@ -1,10 +1,11 @@
 from django.urls import path,include
-from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, RetrievePracticeInfoAPI, Employer_ResgisterAPI
+from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, UpdateProfileAPI, RetrievePracticeInfoAPI, Employer_ResgisterAPI, \
+    RetrieveInterviewJobAPI
 from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     resend_activation_email, update_user_email, update_user_password, \
     check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, \
-    update_record, get_record_status
+    update_record, get_record_status, get_received_interview
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -20,6 +21,8 @@ urlpatterns = [
 
     ### get user's practice information
     path('get_practice_info/<int:userId>', RetrievePracticeInfoAPI.as_view()),
+    ### get employer's posted jobs and interviews info
+    path('get_interview_job/<int:employerId>', RetrieveInterviewJobAPI.as_view()),
     ### email confirm ###
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
 
@@ -66,5 +69,8 @@ urlpatterns = [
 
     ### get video records status
     path('get-record-status', get_record_status, name="get record status"),
+
+    ### get received interview info
+    path('get-received-interview', get_received_interview, name="get received interview"),
 ]
 
