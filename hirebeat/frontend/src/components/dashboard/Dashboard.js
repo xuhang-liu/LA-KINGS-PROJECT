@@ -29,6 +29,10 @@ export class Dashboard extends Component {
 
   constructor(props) {
     super(props);
+    this.renderInterview = this.renderInterview.bind(this);
+    this.renderResume = this.renderResume.bind(this);
+    this.renderSetting = this.renderSetting.bind(this);
+    this.renderVideos = this.renderVideos.bind(this);
   }
 
   static propTypes = {
@@ -159,6 +163,7 @@ export class Dashboard extends Component {
                       <RowBoxes
                           renderVideos={this.renderVideos}
                           renderResume={this.renderResume}
+                          renderInterview={this.renderInterview}
                           userId={this.props.user.id}
                           isEmployer={false}
                       />}

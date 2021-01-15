@@ -34,6 +34,7 @@ const RowBox = (props) => {
             ) : (
                 <a
                     href={"#"}
+                    onClick={props.onClick}
                     className="d-flex align-items-center justify-content-around bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 mt-5 shadow-8"
                     style={{"text-decoration": "none", height: "100%"}}
                 >
@@ -84,10 +85,10 @@ class RowBoxes extends React.Component{
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
-                                <RowBox count={this.props.videos_practiced} icon={"bxs-video"}>Video Practiced&nbsp;&nbsp;&nbsp;</RowBox>
-                                <RowBox count={this.props.resume_scanned} icon={"bxs-file-pdf"}>Resume Scanned&nbsp;&nbsp;&nbsp;&nbsp;</RowBox>
-                                <RowBox count={this.props.videos_reviewed} icon={"bxs-bot"}>Videos Reviewed&nbsp;&nbsp;&nbsp;</RowBox>
-                                <RowBox count={this.props.interviews_recorded} icon={"bxs-briefcase-alt"} >Recorded Interview</RowBox>
+                                <RowBox onClick={this.props.renderVideos} count={this.props.videos_practiced} icon={"bxs-video"}>Video Practiced&nbsp;&nbsp;&nbsp;</RowBox>
+                                <RowBox onClick={this.props.renderResume} count={this.props.resume_scanned} icon={"bxs-file-pdf"}>Resume Scanned&nbsp;&nbsp;&nbsp;&nbsp;</RowBox>
+                                <RowBox onClick={this.props.renderVideos} count={this.props.videos_reviewed} icon={"bxs-bot"}>Videos Reviewed&nbsp;&nbsp;&nbsp;</RowBox>
+                                <RowBox onClick={this.props.renderInterview} count={this.props.interviews_recorded} icon={"bxs-briefcase-alt"} >Recorded Interview</RowBox>
                             </React.Fragment>
                             )}
                     </div>
