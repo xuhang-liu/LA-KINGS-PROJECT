@@ -13,6 +13,7 @@ export class JobApplication extends Component{
                             let p = this.props.postedJobs[key];
                             return(
                                 <JobCard
+                                    companyName={this.props.companyName}
                                     positionId={p.position_id}
                                     jobId={p.job_id}
                                     jobTitle={p.job_title}
@@ -49,16 +50,35 @@ const JobCard = (props) => {
     const [email5, setEmail5] = useState("");
 
     function sendInvitation() {
+        let companyName = props.companyName;
+        let jobTitle = props.jobTitle;
+        let positionId = props.positionId;
+        let emails=[email1, email2, email3, email4, email5];
+        let names = [name1, name2, name3, name4, name5];
+        // generate interview urls and send emails
+        let urls = [];
+        for (let i = 0; i < emails.length; i++) {
+            // make sure urls have the same size of emails and names
+            let url = "";
+            if (emails[i] != "" && names[i] != "") {
+                let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+//                let prefix = "https://hirebeat.co/candidate-login?";  // online
+                let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
+                let encode = window.btoa(params);
+                url = prefix + encode;
+            }
+            urls.push(url);
+        }
         let meta = {
-            position_id: props.positionId,
-            emails: [email1, email2, email3, email4, email5],
-            names: [name1, name2, name3, name4, name5]
+            company_name: companyName,
+            job_title: jobTitle,
+            position_id: positionId,
+            emails: emails,
+            names: names,
+            urls: urls,
         }
         // save data to db
         props.addInterviews(meta);
-        // generate interview urls and send emails
-
-
     }
 
     return (

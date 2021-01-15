@@ -9,6 +9,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 import random
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
 
 class QuestionAPIView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
@@ -116,14 +118,40 @@ def get_posted_jobs(request):
 
 @api_view(['POST'])
 def add_interviews(request):
+    company_name = request.data["company_name"]
+    job_title= request.data["job_title"]
     position_id = request.data["position_id"]
     emails = request.data["emails"]
     names = request.data["names"]
+    urls = request.data["urls"]
 
     for i in range(len(emails)):
         if emails[i] != "" and names[i] != "":
+            # save data
             CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
             invited = InvitedCandidates(positions_id=position_id, email=emails[i], name=names[i])
             invited.save()
+            # send email
+            send_interviews(names[i], emails[i], urls[i], job_title, company_name)
 
     return Response("Add interviews data successfully", status=status.HTTP_200_OK)
+
+def send_interviews(name, email, url, job_title, company_name):
+    subject = 'Follow up on your application of ' + job_title + " at " + company_name
+    message = get_template("questions/interview_email.html")
+    context = {
+        'name': name,
+        'url': url,
+        'job_title': job_title,
+        'company_name': company_name,
+    }
+    from_email = 'hirebeat.tech@gmail.com'
+    to_list = [email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.send()

@@ -103,6 +103,7 @@ export class EmployerDashboard extends Component {
     switch (this.state.subpage) {
       case "applications":
         return <JobApplication
+            companyName={this.props.profile.company_name}
             loaded={this.props.loaded}
             postedJobs={this.props.postedJobs}
             addInterviews={this.props.addInterviews}

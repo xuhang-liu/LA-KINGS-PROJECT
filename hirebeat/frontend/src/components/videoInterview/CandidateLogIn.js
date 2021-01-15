@@ -137,7 +137,7 @@ export class CandidateLogin extends Component {
     return (
         <React.Fragment>
             <PageTitleArea
-                pageTitle={ "Interview with " + this.props.companyName} // todo add company name
+                pageTitle={ "Interview with " + this.props.companyName}
                 pageDescription="Log in to start. Good luck to your interview!"
             />
           {/* login page*/}
