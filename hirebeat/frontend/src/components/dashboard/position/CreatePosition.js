@@ -49,7 +49,7 @@ export class CreatePosition extends Component{
                         <button 
                             type="button" 
                             className="panel-button"
-                            onClick={this.props.renderVideos}
+                            onClick={this.props.renderApplications}
                             style={{outline: "none", margin:"0%", padding:"0px", background:"#e8edfc"}}
                         >
                             <IconText

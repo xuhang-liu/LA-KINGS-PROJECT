@@ -30,6 +30,7 @@ const initialState = {
   zpJobs: [],
   isRegistered: false,
   company_name: "",
+  dataLoaded: false,
   isRecorded: false,
   urlClicked: false,
 };
@@ -118,6 +119,7 @@ export default function (state = initialState, action) {
     case GET_RECORD_STATUS:
       return {
         ...state,
+        dataLoaded: true,
         isRecorded: action.payload.is_recorded,
         urlClicked: action.payload.url_clicked,
       };

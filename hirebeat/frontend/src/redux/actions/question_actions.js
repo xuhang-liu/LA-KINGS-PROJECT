@@ -5,7 +5,9 @@ import {
     RETRY_T_QUESTION,
     GET_RANDOM_QUESTION,
     GET_INTERVIEW_QUESTIONS,
-    ADD_POSITION ,
+    ADD_POSITION,
+    GET_POSTED_JOBS,
+    ADD_INTERVIEWS,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -87,6 +89,35 @@ export const getInterviewQuestions = (positionId) => (dispatch, getState) => {
         payload: res.data,
       });
       console.log("question loaded");
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getPostedJobs = (userId) => (dispatch, getState) => {
+  axios
+    .get(`/get-posted-jobs?user_id=${userId}`, tokenConfig(getState))
+    .then((res) => {
+      console.log("get posted jobs");
+      dispatch({
+        type: GET_POSTED_JOBS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const addInterviews = (data) => (dispatch, getState) => {
+  axios
+    .post("add-interviews", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_INTERVIEWS,
+        payload: res.data,
+      });
     })
     .catch((err) =>
       dispatch(returnErrors(err.response.data, err.response.status))

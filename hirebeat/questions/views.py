@@ -1,4 +1,5 @@
-from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions
+from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates
+from accounts.models import CandidatesInterview
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, SubcategorySerializer
 from rest_framework.decorators import api_view
@@ -6,6 +7,7 @@ from rest_framework import viewsets
 from django.contrib.auth.models import User
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework import status
 import random
 
 class QuestionAPIView(generics.ListCreateAPIView):
@@ -88,3 +90,40 @@ def add_position(request):
     return Response({
         "jobtitle": jobtitle
     })
+
+@api_view(['GET'])
+def get_posted_jobs(request):
+    data = {}
+
+    user_id = request.query_params.get("user_id")
+    positions = Positions.objects.filter(user_id=user_id)
+    for i in range(len(positions)):
+        positions_id = positions[i].id
+        # get each position applicants
+        applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
+        job_details = {
+            "position_id": positions_id,
+            "job_id": positions[i].job_id,
+            "job_title": positions[i].job_title,
+            "applicants": applicants,
+        }
+        # convert to json
+        data[positions_id] = job_details
+
+    return Response({
+        "data": data,
+    })
+
+@api_view(['POST'])
+def add_interviews(request):
+    position_id = request.data["position_id"]
+    emails = request.data["emails"]
+    names = request.data["names"]
+
+    for i in range(len(emails)):
+        if emails[i] != "" and names[i] != "":
+            CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
+            invited = InvitedCandidates(positions_id=position_id, email=emails[i], name=names[i])
+            invited.save()
+
+    return Response("Add interviews data successfully", status=status.HTTP_200_OK)

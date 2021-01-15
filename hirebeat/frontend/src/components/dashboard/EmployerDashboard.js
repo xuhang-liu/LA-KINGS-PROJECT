@@ -2,14 +2,11 @@ import React, { Component } from "react";
 //import ButtonPanel from "./panel/ButtonPanel";
 import { Link, Redirect } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
-//import VideoPreviewList from "./videos/VideoPreviewList";
-//import { Analytics } from "./videos/Analytics";
-import { Interview } from "./videos/Interview";
-//import { Resume } from "./videos/Resume";
+import { JobApplication } from "./applications/JobApplication";
 import {CreatePosition} from "./position/CreatePosition";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
-import { addPosition } from "../../redux/actions/question_actions";
+import { addPosition, getPostedJobs, addInterviews } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -59,28 +56,19 @@ export class EmployerDashboard extends Component {
     this.activateEmail();
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
-
+    this.props.getPostedJobs(user.id);
   }
 
-  // params passed from resume page
-  param = this.props.location.params;
-  page = (typeof (this.param) == "undefined" ? "" : this.param.subpage);
-
   state = {
-    subpage: (this.page == "" ? "videos" : this.page),
+    subpage: "applications",
   };
 
-  renderVideos = () => {
+  renderApplications = () => {
     this.setState({
-      subpage: "videos",
+      subpage: "applications",
     });
   };
 
-  /*renderAnalytics = () => {
-    this.setState({
-      subpage: "analytics",
-    });
-  };*/
   renderPosition = () => {
     if(this.props.profile.company_name == "" || this.props.profile.company_name == null){
       confirmAlert({
@@ -113,15 +101,17 @@ export class EmployerDashboard extends Component {
 
   renderSubpage = () => {
     switch (this.state.subpage) {
-      case "videos":
-        return <Interview/>;
-        //case "analytics":
-        //return <Analytics />;
+      case "applications":
+        return <JobApplication
+            loaded={this.props.loaded}
+            postedJobs={this.props.postedJobs}
+            addInterviews={this.props.addInterviews}
+        />;
       case "position":
         return <CreatePosition
             user={this.props.user}
             profile={this.props.profile}
-            renderVideos={this.renderVideos}
+            renderApplications={this.renderApplications}
             addPosition={this.props.addPosition}
         />;
       case "settings":
@@ -130,7 +120,7 @@ export class EmployerDashboard extends Component {
             profile={this.props.profile}
             location={this.props.profile.location}
             phone_number={this.props.profile.phone_number}
-            renderVideos={this.renderVideos}
+            renderApplications={this.renderApplications}
         />;
       default:
         //Do nothing
@@ -152,7 +142,7 @@ export class EmployerDashboard extends Component {
                       profile={this.props.profile}
                       updateProfile={this.props.updateProfile}
                       renderSetting={this.renderSetting}
-                      renderVideos={this.renderVideos}
+                      renderApplications={this.renderApplications}
                       renderPosition={this.renderPosition}
                       subpage={this.state.subpage}
                   />
@@ -195,8 +185,11 @@ const mapStateToProps = (state) => ({
   user: state.auth_reducer.user,
   userfullname: state.auth_reducer.userfullname,
   isAuthenticated: state.auth_reducer.isAuthenticated,
+  loaded: state.question_reducer.loaded,
+  postedJobs: state.question_reducer.postedJobs,
 });
 
-export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, addPosition })(
-  EmployerDashboard
+export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
+    addPosition, getPostedJobs, addInterviews })(
+    EmployerDashboard
 );

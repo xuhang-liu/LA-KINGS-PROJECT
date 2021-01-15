@@ -59,7 +59,7 @@ class InterviewInfo extends Component {
     render() {
         return (
             <React.Fragment>
-                {(!this.props.urlClicked && !this.props.isRecorded) ?
+                {(this.props.dataLoaded && !this.props.urlClicked && !this.props.isRecorded) ?
                     (<div>
                         <PageTitleArea
                             pageTitle={this.state.companyName}
@@ -113,6 +113,7 @@ class InterviewInfo extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  dataLoaded: state.auth_reducer.dataLoaded,
   interview_questions: state.question_reducer.interview_questions,
   isRecorded: state.auth_reducer.isRecorded,
   urlClicked: state.auth_reducer.urlClicked,
