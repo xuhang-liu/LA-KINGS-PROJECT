@@ -11,6 +11,7 @@ import TestDevice from "./TestDevice";
 import VideoRecorder from "./VideoRecorder";
 import {getInterviewQuestions} from "../../redux/actions/question_actions";
 import { confirmAlert } from 'react-confirm-alert';
+import { updateRecord } from "../../redux/actions/auth_actions";
 
 export class CareerResponseWindow extends Component {
     // data passed from login page
@@ -46,7 +47,12 @@ export class CareerResponseWindow extends Component {
     }
 
     beforeunload = (e) => {
-//        this.alert();
+        // update is_recorded to true when refresh
+        let user = {
+            "email": this.state.email,
+            "positions": this.state.positionId,
+        };
+        this.props.updateRecord(user);
         // cancel the event
         e.preventDefault();
         // not support for custom message
@@ -192,4 +198,4 @@ const mapStateToProps = (state) => ({
   q_index: state.question_reducer.q_index,
 });
 
-export default connect(mapStateToProps, { getInterviewQuestions })(CareerResponseWindow);
+export default connect(mapStateToProps, { getInterviewQuestions, updateRecord })(CareerResponseWindow);
