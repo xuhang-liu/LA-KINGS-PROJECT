@@ -71,13 +71,13 @@ export class CareerVideoUploader extends Component {
     this.props.updateRecord(user);
 
     this.uploader.uploadFile(this.props.video);
-    this.redirectToDashboard();
+    this.redirectToCompletion();
   };
 
-  redirectToDashboard = () => {
+  redirectToCompletion = () => {
     // redirect to profile
     const { history } = this.props;
-    if (history) history.push("/dashboard");
+    if (history) history.push("/interview_Completion");
   };
 
   render() {

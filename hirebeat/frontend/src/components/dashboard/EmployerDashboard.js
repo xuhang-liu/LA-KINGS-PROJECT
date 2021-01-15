@@ -180,7 +180,7 @@ export class EmployerDashboard extends Component {
               </div>
               <div className='col-9'>
                 <div className="dashboard-main">
-                  {this.state.subpage === "settings" ? null : <RowBoxes userId={this.props.user.id}/>}
+                  {this.state.subpage === "settings" ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
                   <div className="container" style={{marginBottom: "0%"}}>
                     <div className=""
                          style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
