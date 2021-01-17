@@ -2451,6 +2451,52 @@ h5 {
   color: #4A6F8A;
 }
 
+.interview-txt5 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #090D3A;
+}
+
+.interview-txt6 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #FFFFFF;
+}
+
+.interview-txt7 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.interview-txt8 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.interview-txt9 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.interview-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .dashboard-sidebar {
   height: 100vh;
   width: 100%;

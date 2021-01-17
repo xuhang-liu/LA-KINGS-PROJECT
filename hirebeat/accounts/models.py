@@ -18,6 +18,7 @@ class CandidatesInterview(models.Model):
     positions = models.ForeignKey(Positions, on_delete=models.CASCADE)
     email = models.CharField(max_length=50, null=True, blank=True)
     is_recorded = models.BooleanField(default=False)
+    url_clicked = models.BooleanField(default=False)
 
 class Profile(models.Model):
     class MembershipCategory(models.TextChoices):

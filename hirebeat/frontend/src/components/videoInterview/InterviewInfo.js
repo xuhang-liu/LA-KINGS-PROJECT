@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
 class InterviewInfo extends Component {
-    // todo get questions here
     // data passed from login page
     email = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["email"];
     positionId = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["positionId"];
@@ -24,6 +23,8 @@ class InterviewInfo extends Component {
     };
 
     componentDidMount() {
+        // confirm user recorded videos or not
+        this.props.getRecordStatus(this.state.positionId, this.state.email);
         // get interview questions
         this.props.getInterviewQuestions(this.state.positionId);
         // intercept reloading
@@ -56,57 +57,56 @@ class InterviewInfo extends Component {
     };
 
     render() {
-        // confirm user recorded videos or not
-        this.props.getRecordStatus(this.state.positionId, this.state.email);
-
         return (
             <React.Fragment>
-                {!this.props.isRecorded ?
-                    <div>
-                        <PageTitleArea
-                            pageTitle={this.state.companyName}
-                            pageDescription="Get to know more details and test everything before you start."
-                        />
-                        <div className="Container" style={{margin: "2% 3% 10rem 3%"}}>
-                            <div className="row">
-                                <div className="col-lg-5 col-md-5" style={{marginLeft: "5%", marginTop: "5%"}} >
-                                    <h3 className="interview-txt1">Interview Information</h3>
-                                    <h4 className="interview-txt2">
-                                        Total: {this.props.interview_questions.length} Questions | Estimate Time: {this.props.interview_questions.length * 1.5} Minutes
-                                    </h4>
-                                    <ol className="interview-txt2" style={{color: "#4A6F8A", paddingLeft: "1rem"}}>
-                                        <li>Once you start recording the video, you <span style={{color: "red"}}>cannot go back or re-record again.</span></li>
-                                        <li>Please <span style={{color: "red"}}>do not refresh or exit the page</span> until you complete the interview.</li>
-                                        <li>Before the actual interview, we provide a <span style={{color: "red"}}>sample question</span> for you to test your device.</li>
-                                        <li>You have <span style={{color: "red"}}>30 seconds preparation</span> time for each question. You can take notes in that period.</li>
-                                        <li>Your questions and answers will be kept confidential.</li>
-                                    </ol>
-                                    <button
-                                        onClick={this.redirectToRecord}
-                                        className="default-btn"
-                                        style={{color:"white", backgroundColor:"#090D3A", paddingLeft: "25px", width: "12rem"}}
-                                    >
-                                         I'm Ready
-                                        <span></span>
-                                    </button>
-                                </div>
+                {this.props.dataLoaded ?
+                    !this.props.isRecorded ?
+                        (<div>
+                            <PageTitleArea
+                                pageTitle={this.state.companyName}
+                                pageDescription="Get to know more details and test everything before you start."
+                            />
+                            <div className="Container" style={{margin: "2% 3% 10rem 3%"}}>
+                                <div className="row">
+                                    <div className="col-lg-5 col-md-5" style={{marginLeft: "5%", marginTop: "5%"}} >
+                                        <h3 className="interview-txt1">Interview Information</h3>
+                                        <h4 className="interview-txt2">
+                                            Total: {this.props.interview_questions.length} Questions | Estimate Time: {this.props.interview_questions.length * 1.5} Minutes
+                                        </h4>
+                                        <ol className="interview-txt2" style={{color: "#4A6F8A", paddingLeft: "1rem"}}>
+                                            <li>Once you start recording the video, you <span style={{color: "red"}}>cannot go back or re-record again.</span></li>
+                                            <li>Please <span style={{color: "red"}}>do not refresh or exit the page</span> until you complete the interview.</li>
+                                            <li>Before the actual interview, we provide a <span style={{color: "red"}}>sample question</span> for you to test your device.</li>
+                                            <li>You have <span style={{color: "red"}}>30 seconds preparation</span> time for each question. You can take notes in that period.</li>
+                                            <li>Your questions and answers will be kept confidential.</li>
+                                        </ol>
+                                        <button
+                                            onClick={this.redirectToRecord}
+                                            className="default-btn"
+                                            style={{color:"white", backgroundColor:"#090D3A", paddingLeft: "25px", width: "12rem"}}
+                                        >
+                                             I'm Ready
+                                            <span></span>
+                                        </button>
+                                    </div>
 
-                                <div className="col-lg-5 col-md-5" style={{marginLeft: "5%", marginTop: "5%"}} >
-                                    <h4 className="interview-txt2" style={{marginTop: "2rem"}}>What will the process look like?</h4>
-                                    {/*insert gif here*/}
-                                    <div style={{marginTop: "1rem", width: "26.375rem", height: "16rem", backgroundColor: "#E8EDFC"}}></div>
+                                    <div className="col-lg-5 col-md-5" style={{marginLeft: "5%", marginTop: "5%"}} >
+                                        <h4 className="interview-txt2" style={{marginTop: "2rem"}}>What will the process look like?</h4>
+                                        {/*insert gif here*/}
+                                        <div style={{marginTop: "1rem", width: "26.375rem", height: "16rem", backgroundColor: "#E8EDFC"}}></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> : <div>
-                                <PageTitleArea
-                                    pageTitle={this.state.companyName}
-                                    pageDescription="Get to know more details and test everything before you start."
-                                />
-                                <div className="Container" style={{margin: "2% 3% 10rem 3%"}}>
-                                    <h4 className="interview-txt2" style={{textAlign: "center"}}>You've already finished this session!</h4>
-                                </div>
+                        </div>) :
+                        <div>
+                            <PageTitleArea
+                                pageTitle={this.state.companyName}
+                                pageDescription="Get to know more details and test everything before you start."
+                            />
+                            <div className="Container" style={{margin: "2% 3% 10rem 3%"}}>
+                                <h4 className="interview-txt2" style={{textAlign: "center"}}>You've already finished this session!</h4>
                             </div>
+                        </div> : null
                 }
             </React.Fragment>
         );
@@ -114,8 +114,10 @@ class InterviewInfo extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  dataLoaded: state.auth_reducer.dataLoaded,
   interview_questions: state.question_reducer.interview_questions,
   isRecorded: state.auth_reducer.isRecorded,
+  urlClicked: state.auth_reducer.urlClicked,
 });
 
 export default connect(mapStateToProps, {getInterviewQuestions, getRecordStatus})(InterviewInfo);

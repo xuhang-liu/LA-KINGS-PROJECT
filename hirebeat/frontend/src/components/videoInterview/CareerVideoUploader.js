@@ -58,18 +58,18 @@ export class CareerVideoUploader extends Component {
   };
 
   handleUpload() {
-    this.uploader.uploadFile(this.props.video);
-    this.props.resetDeviceAndNextQuestion();
-  }
-
-  handleUploadAndFinish = () => {
-    // mark all videos are recorded
+  // mark recorded to true
     let user = {
         "email": this.props.email,
         "positions": this.props.positionId,
     };
     this.props.updateRecord(user);
 
+    this.uploader.uploadFile(this.props.video);
+    this.props.resetDeviceAndNextQuestion();
+  }
+
+  handleUploadAndFinish = () => {
     this.uploader.uploadFile(this.props.video);
     this.redirectToCompletion();
   };

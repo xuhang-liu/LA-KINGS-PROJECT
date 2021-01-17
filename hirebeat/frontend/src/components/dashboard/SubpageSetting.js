@@ -148,7 +148,7 @@ export class SubpageSetting extends Component {
             <div className="container" style={{width:'60%'}}>
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>
-                        <button type="button" style={{backgroundColor:"#e8edfc", border:"none"}} onClick={this.props.renderVideos}>
+                        <button type="button" style={{backgroundColor:"#e8edfc", border:"none"}} onClick={this.props.renderApplications}>
                             <IconText
                                 iconName={"bx bx-arrow-back bx-sm"}
                                 textDisplayed={"Back"}

@@ -364,8 +364,9 @@ export const updateRecord = (user) => (dispatch, getState) => {
 
 export const getRecordStatus = (positionId, email) => (dispatch, getState) => {
   axios
-    .get(`get-company-name?position_id=${positionId}&email=${email}`, tokenConfig(getState))
+    .get(`get-record-status?position_id=${positionId}&email=${email}`, tokenConfig(getState))
     .then((res) => {
+      console.log("get record status");
       dispatch({
         type: GET_RECORD_STATUS,
         payload: res.data,

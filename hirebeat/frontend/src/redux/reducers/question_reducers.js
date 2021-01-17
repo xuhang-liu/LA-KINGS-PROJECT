@@ -1,4 +1,4 @@
-import { GET_QUESTIONS, NEXT_QUESTION, GET_RANDOM_QUESTION, GET_INTERVIEW_QUESTIONS, NEXT_INTERVIEW_QUESTION } from "../actions/action_types";
+import { GET_QUESTIONS, NEXT_QUESTION, GET_RANDOM_QUESTION, GET_INTERVIEW_QUESTIONS, NEXT_INTERVIEW_QUESTION, GET_POSTED_JOBS } from "../actions/action_types";
 
 const initialState = {
   questions: [],
@@ -10,6 +10,7 @@ const initialState = {
   random_question_id: 0,
   interview_questions: [],
   interview_question_ids: [],
+  postedJobs: [],
 };
 
 export default function (state = initialState, action) {
@@ -69,6 +70,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         q_index: state.q_index + 1,
+      };
+    case GET_POSTED_JOBS:
+      return {
+        ...state,
+        loaded: true,
+        postedJobs: action.payload.data,
       };
     default:
       return state;
