@@ -5,7 +5,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 import Rating from 'react-simple-star-rating';
 import { MyModal } from "../../components/dashboard/DashboardComponents";
 import ModalVideo from 'react-modal-video';
-import videobg from "../public/images/video-bg.jpg"
+//import videobg from "../public/images/video-bg.jpg"
 
 export class InterviewCompletion extends Component {
     state = {

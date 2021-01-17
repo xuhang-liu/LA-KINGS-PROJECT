@@ -129,8 +129,7 @@ def add_interviews(request):
         if emails[i] != "" and names[i] != "":
             # save data
             CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
-            invited = InvitedCandidates(positions_id=position_id, email=emails[i], name=names[i])
-            invited.save()
+            InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i])
             # send email
             send_interviews(names[i], emails[i], urls[i], job_title, company_name)
 

@@ -2472,7 +2472,7 @@ h5 {
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
-  color: #4A6F8A;
+  color: #7d7d7d;
 }
 
 .interview-txt8 {
@@ -2492,9 +2492,8 @@ h5 {
 }
 
 .interview-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
 }
 
 .dashboard-sidebar {

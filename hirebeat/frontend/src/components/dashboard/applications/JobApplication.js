@@ -29,7 +29,13 @@ export class JobApplication extends Component{
     }
 };
 
-export default JobApplication;
+const mapStateToProps = (state) => ({
+    received_interview: state.auth_reducer.received_interview,
+});
+
+export default connect(mapStateToProps)(
+    JobApplication
+);
 
 const JobCard = (props) => {
     const [invite, setInvite] = useState(false);
@@ -103,7 +109,7 @@ const JobCard = (props) => {
                         <div className="interview-center">
                             <button
                                 onClick={hideSwitch}
-                                style={{border: "none", background: "white", borderRadius: "50%"}}
+                                style={{border: "none", background: "white", borderRadius: "50%", color:"#56a3fa"}}
                                 >
                                 <i className="bx bx-question-mark 2"></i>
                             </button>
@@ -124,15 +130,6 @@ const JobCard = (props) => {
                             <div className="col-3" />
                             <div className="col-3" />
                         </div>
-                        <hr
-                            style={{
-                                color: "#E8EDFC",
-                                backgroundColor: "#E8EDFC",
-                                height: 3,
-                                marginBottom: "0rem",
-                                marginTop: "0rem"
-                            }}
-                        />
                         {/* todo add pagination */}
                         {props.applicants.map((a) => {
                             return(
@@ -150,8 +147,8 @@ const JobCard = (props) => {
 
             {/* Invitation Form */}
             {invite &&
-                <div className="card container" style={{marginTop:"1%"}}>
-                    <div className="row interview-center" style={{marginTop: "2rem"}}>
+                <div className="card container" style={{marginTop:"1%", marginBottom:"2%"}}>
+                    <div className="row interview-center" style={{marginTop: "2rem", marginLeft: "1%"}}>
                             <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                         </div>
                     <form onSubmit={sendInvitation}>
@@ -231,21 +228,21 @@ const Applicant = (props) => {
     let positionId = props.positionId;
     return (
         <div>
+            <hr
+                style={{
+                    color: "#E8EDFC",
+                    backgroundColor: "#E8EDFC",
+                    height: 3,
+                    marginBottom: "0.5rem",
+                    marginTop: "0rem"
+                }}
+            />
             <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
                 <div className="col-3 interview-txt9">{props.name}</div>
                 <div className="col-3 interview-txt9">{props.date}</div>
                 <div className="col-3"></div>
                 <div className="col-3"></div>
             </div>
-            <hr
-                style={{
-                    color: "#E8EDFC",
-                    backgroundColor: "#E8EDFC",
-                    height: 3,
-                    marginBottom: "0rem",
-                    marginTop: "0rem"
-                }}
-            />
         </div>
     )
 };
