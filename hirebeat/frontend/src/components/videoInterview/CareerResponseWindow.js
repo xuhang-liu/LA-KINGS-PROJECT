@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import RetryVideoRecorder from "../practice/RetryVideoRecorder";
-import {Redirect} from "react-router-dom";
+//import {Redirect} from "react-router-dom";
 import CountdownBar from "../practice/CountdownBar";
 import { videoRecorderOptions } from "../../constants/constants";
 import { PracticeCard} from "../practice/CardComponents";

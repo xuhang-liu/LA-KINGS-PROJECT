@@ -7,6 +7,8 @@ import Rating from 'react-simple-star-rating';
 import {submitFeedback} from "../../redux/actions/question_actions";
 import { MyModal } from "../../components/dashboard/DashboardComponents";
 import ModalVideo from 'react-modal-video';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 //import videobg from "../public/images/video-bg.jpg"
 
 export class InterviewCompletion extends Component {
@@ -66,6 +68,15 @@ const CustomerFeedback = (props) => {
     const submitFeedback = () => {
         props.hide();
         props.submitFeedback(rating, props.feedback);
+        confirmAlert({
+            title: 'Thanks for the feedback!😃',
+            message: '',
+            buttons: [
+                {
+                    label: 'ok',
+                }
+            ],
+        });
     };
     return(
         <MyModal show={props.show} onHide={props.hide}>
