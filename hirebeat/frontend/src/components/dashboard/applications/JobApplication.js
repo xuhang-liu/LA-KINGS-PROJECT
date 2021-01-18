@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import ReviewApplication from "./../ReviewApplication";
 import { MyModal } from "./../DashboardComponents";
+import { confirmAlert } from 'react-confirm-alert';
 
 export class JobApplication extends Component{
 
@@ -32,6 +33,7 @@ export class JobApplication extends Component{
                                     email_candidate={this.props.email_candidate}
                                     phone_candidate={this.props.phone_candidate}
                                     location_candidate={this.props.location_candidate}
+                                    resendInvitation={this.props.resendInvitation}
                                 />
                             )
                         })}
@@ -161,6 +163,9 @@ const JobCard = (props) => {
                                     email_candidate={props.email_candidate}
                                     phone_candidate={props.phone_candidate}
                                     location_candidate={props.location_candidate}
+                                    resendInvitation={props.resendInvitation}
+                                    companyName={props.companyName}
+                                    jobTitle={props.jobTitle}
                                 />
                             )
                         })}
@@ -249,6 +254,9 @@ const JobCard = (props) => {
 const Applicant = (props) => {
     let email = props.email;
     let positionId = props.positionId;
+    let companyName = props.companyName;
+    let jobTitle = props.jobTitle;
+    let name = props.name;
 
     function viewResult() {
         // get record status, videos and info
@@ -257,6 +265,27 @@ const Applicant = (props) => {
         props.getApplicantsInfo(email);
         setShow(true);
     };
+
+    function inviteAgain() {
+        // encode url
+        let url = "";
+        let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+//        let prefix = "https://hirebeat.co/candidate-login?";  // online
+        let params = "email=" + email + "&" + "positionId=" + positionId;
+        let encode = window.btoa(params);
+        url = prefix + encode;
+
+        let meta = {
+            company_name: companyName,
+            job_title: jobTitle,
+            email: email,
+            name: name,
+            url: url,
+        };
+
+        props.resendInvitation(meta);
+        alert();
+    }
 
     const [show, setShow] = useState(false);
 
@@ -284,12 +313,13 @@ const Applicant = (props) => {
                     </button>
                 </div>
                 <div className="col-3">
-                    {/*<button
+                    {<button
+                        onClick={ () => inviteAgain()}
                         className="interview-txt9"
                         style={{color: "#67A3F3", border: "none", background: "white"}}
                     >
                         Resend
-                    </button>*/}
+                    </button>}
                 </div>
             </div>
             {/* Interview Result */}
@@ -323,4 +353,16 @@ function MyVerticallyCenteredModal(props) {
       />
     </MyModal>
   );
+};
+
+function alert() {
+    confirmAlert({
+      title: "Invitation Sent",
+      message: "You resend the interview invitation successfully",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
 };

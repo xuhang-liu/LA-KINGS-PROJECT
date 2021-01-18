@@ -8,7 +8,7 @@ import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
-import { addPosition, getPostedJobs, addInterviews } from "../../redux/actions/question_actions";
+import { addPosition, getPostedJobs, addInterviews, resendInvitation } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -131,6 +131,7 @@ export class EmployerDashboard extends Component {
             email_candidate={this.props.email_candidate}
             phone_candidate={this.props.phone_candidate}
             location_candidate={this.props.location_candidate}
+            resendInvitation={this.props.resendInvitation}
         />;
       case "position":
         return <CreatePosition
@@ -232,6 +233,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
-    getRecordStatus})(
+    getRecordStatus, resendInvitation})(
     EmployerDashboard
 );

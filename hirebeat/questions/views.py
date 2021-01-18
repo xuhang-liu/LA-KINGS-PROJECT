@@ -162,6 +162,17 @@ def send_interviews(name, email, url, job_title, company_name):
     email.send()
 
 @api_view(['POST'])
+def resend_invitation(request):
+    company_name = request.data["company_name"]
+    job_title = request.data["job_title"]
+    email = request.data["email"]
+    name = request.data["name"]
+    url = request.data["url"]
+    send_interviews(name, email, url, job_title, company_name)
+
+    return Response("Submit feedback data successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
 def submit_feedback(request):
     rating = request.data["rating"]
     feedback = request.data["feedback"]
