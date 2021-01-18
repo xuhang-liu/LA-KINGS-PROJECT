@@ -3,9 +3,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileSerializer
-from accounts.models import Profile
+from accounts.models import Profile, CandidatesInterview
+from django.contrib.auth.models import User
 from resume.models import Resume
 from videos.models import Video
+from questions.models import Positions, InvitedCandidates
 from rest_framework import status
 from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
@@ -62,6 +64,52 @@ class ResgisterAPI(generics.GenericAPIView):
         _, token = AuthToken.objects.create(user)
         ### profile is autocreated
         profile = Profile.objects.filter(user=user.id)[0]
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": token,
+            "profile": ProfileSerializer(profile).data,
+        })
+
+
+# Employer Register API
+
+class Employer_ResgisterAPI(generics.GenericAPIView):
+    serializer_class = RegisterSerializer
+
+    def post(self, request, *args, **kwargs):
+        ## user info
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+
+        ## email
+        account_activation_token = PasswordResetTokenGenerator()
+        current_site = get_current_site(request)
+        subject = 'Please Activate Your Hirebeat Account'
+        message = get_template("accounts/account_activation_email.txt")
+        context = {
+            'user': user,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'token': account_activation_token.make_token(user),
+        }
+        from_email = 'hirebeat.tech@gmail.com'
+        to_list = [user.email]
+        content = message.render(context)
+        email = EmailMessage(
+            subject,
+            content,
+            from_email,
+            to_list,
+        )
+        email.send()
+
+        ### token
+        _, token = AuthToken.objects.create(user)
+        ### profile is autocreated
+        profile = Profile.objects.filter(user=user.id)[0]
+        profile.is_employer = True
+        profile.save()
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": token,
@@ -146,15 +194,44 @@ class RetrievePracticeInfoAPI(APIView):
     def get(self, request, userId):
         videos = Video.objects.filter(owner_id=userId)
         resumes = Resume.objects.filter(owner_id=userId)
+        user = User.objects.get(pk=userId)
+        interviews = CandidatesInterview.objects.filter(Q(email=user.email) & Q(is_recorded=True))
         videos_practiced = len(videos)
         videos_reviewed = len(videos.filter(Q(is_ai_reviewed=True) | Q(is_expert_reviewed=True)))
         resume_scanned = len(resumes)
-        interviews_recorded = 0
+        interviews_recorded = len(interviews)
         return Response(
             {
                 "videos_practiced": videos_practiced,
                 "videos_reviewed": videos_reviewed,
                 "resume_scanned": resume_scanned,
                 "interviews_recorded": interviews_recorded
+            }
+        )
+
+
+class RetrieveInterviewJobAPI(APIView):
+    def get(self, request, employerId):
+        positions = Positions.objects.filter(user_id=employerId)
+        jobs_posted = len(positions)
+        total_applicants = 0
+        videos_to_be_received = 0
+        videos_received = 0
+        recorded_rate = 0
+        for position in positions:
+            invited_candidates = InvitedCandidates.objects.filter(positions_id=position.id)
+            total_applicants += len(invited_candidates)
+            videos = CandidatesInterview.objects.filter(positions_id=position.id)
+            videos_to_be_received += len(videos)
+            videos_received += len(videos.filter(is_recorded=True))
+        if videos_to_be_received > 0:
+            recorded_rate = (videos_received / videos_to_be_received)
+        print(recorded_rate)
+        return Response(
+            {
+                "jobs_posted": jobs_posted,
+                "total_applicants": total_applicants,
+                "videos_received": videos_received,
+                "recorded_rate": recorded_rate * 100,
             }
         )

@@ -47,6 +47,34 @@ class Question(models.Model):
     answer = models.TextField(blank=True, null=True)
     explain = models.TextField(blank=True, null=True)
 
+class Positions(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job_title = models.CharField(max_length=300, null=True, blank=True)
+    job_id = models.CharField(max_length=100, null=True, blank=True)
+    def __str__(self):
+        return self.job_title
+
+
+class InterviewQuestions(models.Model): 
+    description = models.TextField(default="No description",null=True)
+    positions = models.ForeignKey(Positions, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.description
+
+class InvitedCandidates(models.Model):
+    positions = models.ForeignKey(Positions, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    email = models.CharField(max_length=300, null=True, blank=True)
+    invite_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.name + '|' + self.email
+
+class InterviewFeedback(models.Model):
+    rating = models.BigIntegerField()
+    feedback = models.TextField(default="Not Provided",null=True)
+    def __str__(self):
+        return self.rating + '|' + self.feedback
+
 class Categorys(models.Model):
 
     subCategorys = models.CharField(max_length=300, null=True, blank=True)
