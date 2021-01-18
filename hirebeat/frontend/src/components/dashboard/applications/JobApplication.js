@@ -1,6 +1,10 @@
 import React, { Component, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import ReviewApplication from "./../ReviewApplication";
+import { MyModal } from "./../DashboardComponents";
+import { confirmAlert } from 'react-confirm-alert';
 
 export class JobApplication extends Component{
 
@@ -19,6 +23,17 @@ export class JobApplication extends Component{
                                     jobTitle={p.job_title}
                                     applicants={p.applicants}
                                     addInterviews={this.props.addInterviews}
+                                    getApplicantsVideos={this.props.getApplicantsVideos}
+                                    getApplicantsInfo={this.props.getApplicantsInfo}
+                                    getRecordStatus={this.props.getRecordStatus}
+                                    dataLoaded={this.props.dataLoaded}
+                                    isRecorded={this.props.isRecorded}
+                                    int_ques={this.props.int_ques}
+                                    username_candidate={this.props.username_candidate}
+                                    email_candidate={this.props.email_candidate}
+                                    phone_candidate={this.props.phone_candidate}
+                                    location_candidate={this.props.location_candidate}
+                                    resendInvitation={this.props.resendInvitation}
                                 />
                             )
                         })}
@@ -138,6 +153,19 @@ const JobCard = (props) => {
                                     date={a.invite_date.substring(0, 10)}
                                     email={a.email}
                                     positionId={a.positions_id}
+                                    getApplicantsVideos={props.getApplicantsVideos}
+                                    getApplicantsInfo={props.getApplicantsInfo}
+                                    getRecordStatus={props.getRecordStatus}
+                                    dataLoaded={props.dataLoaded}
+                                    isRecorded={props.isRecorded}
+                                    int_ques={props.int_ques}
+                                    username_candidate={props.username_candidate}
+                                    email_candidate={props.email_candidate}
+                                    phone_candidate={props.phone_candidate}
+                                    location_candidate={props.location_candidate}
+                                    resendInvitation={props.resendInvitation}
+                                    companyName={props.companyName}
+                                    jobTitle={props.jobTitle}
                                 />
                             )
                         })}
@@ -226,6 +254,41 @@ const JobCard = (props) => {
 const Applicant = (props) => {
     let email = props.email;
     let positionId = props.positionId;
+    let companyName = props.companyName;
+    let jobTitle = props.jobTitle;
+    let name = props.name;
+
+    function viewResult() {
+        // get record status, videos and info
+        props.getRecordStatus(positionId, email);
+        props.getApplicantsVideos(email, positionId);
+        props.getApplicantsInfo(email);
+        setShow(true);
+    };
+
+    function inviteAgain() {
+        // encode url
+        let url = "";
+        let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+//        let prefix = "https://hirebeat.co/candidate-login?";  // online
+        let params = "email=" + email + "&" + "positionId=" + positionId;
+        let encode = window.btoa(params);
+        url = prefix + encode;
+
+        let meta = {
+            company_name: companyName,
+            job_title: jobTitle,
+            email: email,
+            name: name,
+            url: url,
+        };
+
+        props.resendInvitation(meta);
+        alert();
+    }
+
+    const [show, setShow] = useState(false);
+
     return (
         <div>
             <hr
@@ -240,9 +303,66 @@ const Applicant = (props) => {
             <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
                 <div className="col-3 interview-txt9">{props.name}</div>
                 <div className="col-3 interview-txt9">{props.date}</div>
-                <div className="col-3"></div>
-                <div className="col-3"></div>
+                <div className="col-3">
+                    <button
+                        onClick={() => viewResult()}
+                        className="interview-txt9"
+                        style={{color: "#67A3F3", border: "none", background: "white"}}
+                    >
+                        View Interview
+                    </button>
+                </div>
+                <div className="col-3">
+                    {<button
+                        onClick={ () => inviteAgain()}
+                        className="interview-txt9"
+                        style={{color: "#67A3F3", border: "none", background: "white"}}
+                    >
+                        Resend
+                    </button>}
+                </div>
             </div>
+            {/* Interview Result */}
+            <MyVerticallyCenteredModal
+                show={show}
+                onHide={() => setShow(false)}
+                dataLoaded={props.dataLoaded}
+                isRecorded={props.isRecorded}
+                int_ques={props.int_ques}
+                username_candidate={props.username_candidate}
+                email_candidate={props.email_candidate}
+                phone_candidate={props.phone_candidate}
+                location_candidate={props.location_candidate}
+            />
         </div>
     )
+};
+
+function MyVerticallyCenteredModal(props) {
+  const { ...rest } = props;
+  return (
+    <MyModal {...rest}>
+      <ReviewApplication
+        dataLoaded={props.dataLoaded}
+        isRecorded={props.isRecorded}
+        int_ques={props.int_ques}
+        username_candidate={props.username_candidate}
+        email_candidate={props.email_candidate}
+        phone_candidate={props.phone_candidate}
+        location_candidate={props.location_candidate}
+      />
+    </MyModal>
+  );
+};
+
+function alert() {
+    confirmAlert({
+      title: "Invitation Sent",
+      message: "You resend the interview invitation successfully",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
 };

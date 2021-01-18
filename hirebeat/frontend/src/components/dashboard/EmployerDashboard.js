@@ -6,9 +6,9 @@ import { JobApplication } from "./applications/JobApplication";
 import {CreatePosition} from "./position/CreatePosition";
 import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview } from "../../redux/actions/auth_actions";
+import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
-import { addPosition, getPostedJobs, addInterviews } from "../../redux/actions/question_actions";
+import { addPosition, getPostedJobs, addInterviews, resendInvitation } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -60,8 +60,8 @@ export class EmployerDashboard extends Component {
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
     this.props.getPostedJobs(user.id);
-    this.props.getApplicantsVideos("liuxuhangtc@hotmail.com", "24");
-    this.props.getApplicantsInfo("liuxuhangtc@hotmail.com");
+//    this.props.getApplicantsVideos("liuxuhangtc@hotmail.com", "24");
+//    this.props.getApplicantsInfo("liuxuhangtc@hotmail.com");
   }
 
   state = {
@@ -120,6 +120,18 @@ export class EmployerDashboard extends Component {
             postedJobs={this.props.postedJobs}
             addInterviews={this.props.addInterviews}
             getReceivedInterview={this.props.getReceivedInterview}
+            getApplicantsVideos={this.props.getApplicantsVideos}
+            getApplicantsInfo={this.props.getApplicantsInfo}
+            getRecordStatus={this.props.getRecordStatus}
+            renderVideos={this.renderVideos}
+            dataLoaded={this.props.dataLoaded}
+            isRecorded={this.props.isRecorded}
+            int_ques={this.props.int_ques}
+            username_candidate={this.props.username_candidate}
+            email_candidate={this.props.email_candidate}
+            phone_candidate={this.props.phone_candidate}
+            location_candidate={this.props.location_candidate}
+            resendInvitation={this.props.resendInvitation}
         />;
       case "position":
         return <CreatePosition
@@ -210,6 +222,8 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth_reducer.isAuthenticated,
   loaded: state.question_reducer.loaded,
   postedJobs: state.question_reducer.postedJobs,
+  dataLoaded: state.auth_reducer.dataLoaded,
+  isRecorded: state.auth_reducer.isRecorded,
   int_ques: state.video_reducer.int_ques,
   username_candidate: state.video_reducer.username_candidate,
   email_candidate: state.video_reducer.email_candidate,
@@ -218,6 +232,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
-    addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview })(
+    addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
+    getRecordStatus, resendInvitation})(
     EmployerDashboard
 );
