@@ -1,5 +1,5 @@
 import React from "react";
-import VideoPlayer from "../../videos/VideoPlayer";
+import ReactPlayer from 'react-player';
 
 
 export function ApplicationVideoPanel (props) {
@@ -13,7 +13,7 @@ export function ApplicationVideoPanel (props) {
         <div>
             <div className="row">
                 <div className="col-12">
-                    <VideoPlayer url={props.url} />
+                    <ReactPlayer id="rw-video" url={props.url} controls={true} width={"600px"} height={"450px"}/>
                 </div>
             </div>
         </div>
