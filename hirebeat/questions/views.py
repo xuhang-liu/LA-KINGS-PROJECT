@@ -150,7 +150,7 @@ def send_interviews(name, email, url, job_title, company_name):
         'job_title': job_title,
         'company_name': company_name,
     }
-    from_email = 'hirebeat.tech@gmail.com'
+    from_email = 'HireBeat Team'
     to_list = [email]
     content = message.render(context)
     email = EmailMessage(

@@ -13,7 +13,7 @@ export class JobApplication extends Component{
             <React.Fragment>
                 {this.props.loaded &&
                     <div>
-                        {Object.keys(this.props.postedJobs).map((key) => {
+                        {Object.keys(this.props.postedJobs).reverse().map((key) => {
                             let p = this.props.postedJobs[key];
                             return(
                                 <JobCard
@@ -82,8 +82,8 @@ const JobCard = (props) => {
             // make sure urls have the same size of emails and names
             let url = "";
             if (emails[i] != "" && names[i] != "") {
-                let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-//                let prefix = "https://hirebeat.co/candidate-login?";  // online
+                //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+                let prefix = "https://hirebeat.co/candidate-login?";  // online
                 let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
                 let encode = window.btoa(params);
                 url = prefix + encode;
@@ -124,7 +124,7 @@ const JobCard = (props) => {
                         <div className="interview-center">
                             <button
                                 onClick={hideSwitch}
-                                style={{border: "none", background: "white", borderRadius: "50%", color:"#56a3fa"}}
+                                style={{border: "none", background: "white", borderRadius: "50%", color:"#56a3fa", marginTop:"0.6rem"}}
                                 >
                                 <i className="bx bx-question-mark 2"></i>
                             </button>
@@ -139,7 +139,7 @@ const JobCard = (props) => {
                         }
                     </div>
                     <div className="card container" style={{marginTop:"1%"}}>
-                        <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
+                        <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem"}}>
                             <div className="col-3">Name</div>
                             <div className="col-3">Invited On</div>
                             <div className="col-3" />
@@ -300,7 +300,7 @@ const Applicant = (props) => {
                     marginTop: "0rem"
                 }}
             />
-            <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
+            <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem", marginTop:"1rem"}}>
                 <div className="col-3 interview-txt9">{props.name}</div>
                 <div className="col-3 interview-txt9">{props.date}</div>
                 <div className="col-3">
