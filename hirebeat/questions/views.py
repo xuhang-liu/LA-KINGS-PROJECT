@@ -11,6 +11,7 @@ from rest_framework import status
 import random
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
+from django.core.exceptions import ObjectDoesNotExist
 
 class QuestionAPIView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
@@ -127,11 +128,16 @@ def add_interviews(request):
 
     for i in range(len(emails)):
         if emails[i] != "" and names[i] != "":
-            # save data
-            CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
-            InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i])
-            # send email
-            send_interviews(names[i], emails[i], urls[i], job_title, company_name)
+            # avoid duplicate data
+            try:
+                candidate = CandidatesInterview.objects.get(email=emails[i], positions_id=position_id)
+                invited = InvitedCandidates.objects.get(email=emails[i], positions_id=position_id)
+            except ObjectDoesNotExist:
+                # save data
+                CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
+                InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i])
+                # send email
+                send_interviews(names[i], emails[i], urls[i], job_title, company_name)
 
     return Response("Add interviews data successfully", status=status.HTTP_200_OK)
 
