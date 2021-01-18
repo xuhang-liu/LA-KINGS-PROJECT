@@ -1,4 +1,4 @@
-from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates
+from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback
 from accounts.models import CandidatesInterview
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, SubcategorySerializer
@@ -154,3 +154,11 @@ def send_interviews(name, email, url, job_title, company_name):
         to_list,
     )
     email.send()
+
+@api_view(['POST'])
+def submit_feedback(request):
+    rating = request.data["rating"]
+    feedback = request.data["feedback"]
+    InterviewFeedback.objects.create(rating=rating, feedback=feedback)
+
+    return Response("Submit feedback data successfully", status=status.HTTP_200_OK)
