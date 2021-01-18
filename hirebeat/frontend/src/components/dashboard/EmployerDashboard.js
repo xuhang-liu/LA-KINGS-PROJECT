@@ -6,7 +6,7 @@ import { JobApplication } from "./applications/JobApplication";
 import {CreatePosition} from "./position/CreatePosition";
 import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
+import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview } from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition, getPostedJobs, addInterviews } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
@@ -119,6 +119,7 @@ export class EmployerDashboard extends Component {
             loaded={this.props.loaded}
             postedJobs={this.props.postedJobs}
             addInterviews={this.props.addInterviews}
+            getReceivedInterview={this.props.getReceivedInterview}
         />;
       case "position":
         return <CreatePosition
@@ -217,6 +218,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
-    addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo })(
+    addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview })(
     EmployerDashboard
 );

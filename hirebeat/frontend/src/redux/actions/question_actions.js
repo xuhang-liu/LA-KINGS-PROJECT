@@ -8,6 +8,7 @@ import {
     ADD_POSITION,
     GET_POSTED_JOBS,
     ADD_INTERVIEWS,
+    SUBMIT_FEEDBACK
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -116,6 +117,21 @@ export const addInterviews = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: ADD_INTERVIEWS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const submitFeedback = (rating, feedback) => (dispatch, getState) => {
+  const body = JSON.stringify({rating, feedback});
+  axios
+    .post("submit-feedback", body, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: SUBMIT_FEEDBACK,
         payload: res.data,
       });
     })

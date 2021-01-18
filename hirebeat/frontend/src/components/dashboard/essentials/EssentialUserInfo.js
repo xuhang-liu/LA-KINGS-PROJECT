@@ -215,7 +215,7 @@ export class EssentialUserInfo extends Component {
                       textDisplayed={"Settings"}
                       iconName={"bx bx-wrench 1 bx-xs"}
                       iconMargin={"3px"}
-                      textColor={"blue"}
+                      textColor={"#56a3fa"}
                     />
                   </button>
                 </div>

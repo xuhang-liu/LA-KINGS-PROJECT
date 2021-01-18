@@ -91,9 +91,11 @@ class InterviewInfo extends Component {
                                     </div>
 
                                     <div className="col-lg-5 col-md-5" style={{marginLeft: "5%", marginTop: "5%"}} >
-                                        <h4 className="interview-txt2" style={{marginTop: "2rem"}}>What will the process look like?</h4>
+                                        <h4 className="interview-txt2">What will the process look like?</h4>
                                         {/*insert gif here*/}
-                                        <div style={{marginTop: "1rem", width: "26.375rem", height: "16rem", backgroundColor: "#E8EDFC"}}></div>
+                                        <div style={{width: "100%", height: "100%"}}>
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/guide.gif' alt="gif" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
