@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import {login, exchangeToken, loadProfile,
         register, checkUserRegistration, getCompanyName} from "../../redux/actions/auth_actions";
 import {createMessage} from "../../redux/actions/message_actions";
-import PageTitleArea from './../Common/PageTitleArea';
+import PageTitleArea from '../Common/PageTitleArea';
 //import MediaQuery from 'react-responsive';
 //import { confirmAlert } from 'react-confirm-alert';
 
