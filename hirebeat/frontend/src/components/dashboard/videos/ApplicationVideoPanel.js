@@ -13,7 +13,12 @@ export function ApplicationVideoPanel (props) {
         <div>
             <div className="row">
                 <div className="col-12">
-                    <ReactPlayer id="rw-video" url={props.url} controls={true} width={"600px"} height={"450px"}/>
+                <ReactPlayer id="rw-video" url={props.url} controls={true}
+                // Disable download button
+                config={{ file: { attributes: { controlsList: 'nodownload' } } }}
+                // Disable right click
+                onContextMenu={e => e.preventDefault()}
+                width={"600px"} height={"450px"}/>
                 </div>
             </div>
         </div>
