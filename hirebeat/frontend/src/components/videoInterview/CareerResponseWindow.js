@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import RetryVideoRecorder from "../practice/RetryVideoRecorder";
-import {Redirect} from "react-router-dom";
+//import {Redirect} from "react-router-dom";
 import CountdownBar from "../practice/CountdownBar";
 import { videoRecorderOptions } from "../../constants/constants";
 import { PracticeCard} from "../practice/CardComponents";
@@ -10,6 +10,8 @@ import PrepCountdown from "../practice/PrepCountdown";
 import TestDevice from "./TestDevice";
 import VideoRecorder from "./VideoRecorder";
 import {getInterviewQuestions} from "../../redux/actions/question_actions";
+import { confirmAlert } from 'react-confirm-alert';
+import { updateRecord } from "../../redux/actions/auth_actions";
 
 export class CareerResponseWindow extends Component {
     // data passed from login page
@@ -45,6 +47,12 @@ export class CareerResponseWindow extends Component {
     }
 
     beforeunload = (e) => {
+        // update is_recorded to true when refresh
+        let user = {
+            "email": this.state.email,
+            "positions": this.state.positionId,
+        };
+        this.props.updateRecord(user);
         // cancel the event
         e.preventDefault();
         // not support for custom message
@@ -74,14 +82,28 @@ export class CareerResponseWindow extends Component {
             status: "Your Answer",
         });
     };
+
     testDeviceDone = () => {
         this.setState({ deviceTested: true });
     };
+
     resetCountdownBar = () => {
         this.setState({
             status: "Preparation",
         });
     };
+
+    alert = () => {
+        confirmAlert({
+          title: "Warning",
+          message: "You will lost all of your recording data and the interview link will become invalid!",
+          buttons: [
+            {
+              label: 'Ok'
+            }
+          ]
+          });
+    }
 
     render() {
         let countTime = this.state.status == "Preparation" ? 30 : 60;
@@ -176,4 +198,4 @@ const mapStateToProps = (state) => ({
   q_index: state.question_reducer.q_index,
 });
 
-export default connect(mapStateToProps, { getInterviewQuestions })(CareerResponseWindow);
+export default connect(mapStateToProps, { getInterviewQuestions, updateRecord })(CareerResponseWindow);

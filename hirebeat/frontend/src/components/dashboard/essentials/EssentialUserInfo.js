@@ -215,7 +215,7 @@ export class EssentialUserInfo extends Component {
                       textDisplayed={"Settings"}
                       iconName={"bx bx-wrench 1 bx-xs"}
                       iconMargin={"3px"}
-                      textColor={"blue"}
+                      textColor={"#56a3fa"}
                     />
                   </button>
                 </div>
@@ -227,16 +227,16 @@ export class EssentialUserInfo extends Component {
                 <button
                   type="button"
                   className="panel-button"
-                  onClick={this.props.renderVideos}
+                  onClick={this.props.renderApplications}
                   style={{outline: "none", margin:"1%", padding:"0px"}}
                 >
                   <IconText
                     textSize={"16px"}
-                    textDisplayed={"Posted Interview"}
+                    textDisplayed={"Job Applications"}
                     iconName={"bx bx-slideshow 1 bx-sm"}
                     iconMargin={"3px"}
-                    textColor={this.props.subpage == "videos" ? selectColor : defaultColor}
-                    textDecoration={this.props.subpage == "videos" ? selectDecoration : defaultDecoration}
+                    textColor={this.props.subpage == "applications" ? selectColor : defaultColor}
+                    textDecoration={this.props.subpage == "applications" ? selectDecoration : defaultDecoration}
                   />
                 </button>
               </div>

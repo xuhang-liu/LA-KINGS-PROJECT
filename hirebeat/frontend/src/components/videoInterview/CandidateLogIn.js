@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import {Redirect} from "react-router-dom";
+//import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {login, exchangeToken, loadProfile,
         register, checkUserRegistration, getCompanyName} from "../../redux/actions/auth_actions";
 import {createMessage} from "../../redux/actions/message_actions";
-import PageTitleArea from './../Common/PageTitleArea';
+import PageTitleArea from '../Common/PageTitleArea';
 //import MediaQuery from 'react-responsive';
 //import { confirmAlert } from 'react-confirm-alert';
 
@@ -22,6 +22,15 @@ export class CandidateLogin extends Component {
       };
 
   };
+  componentDidMount() {
+    // check user exists or not
+    let userEmail = this.state.email;
+    let emailData = {email: userEmail}; // json stringfy
+    this.props.checkUserRegistration(emailData);
+
+    // get company name
+    this.props.getCompanyName(this.state.positionId);
+  }
 
   getParams =() => {
     let params = [];
@@ -45,11 +54,6 @@ export class CandidateLogin extends Component {
     user: PropTypes.object,
     checkUserRegistration: PropTypes.func.isRequired,
   };
-
-  componentDidMount() {
-    // get company name
-    this.props.getCompanyName(this.state.positionId);
-  }
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -130,15 +134,10 @@ export class CandidateLogin extends Component {
         this.redirectToInterview();
     }
 
-    // check user exists or not
-    let userEmail = this.state.email;
-    let emailData = {email: userEmail}; // json stringfy
-    this.props.checkUserRegistration(emailData);
-
     return (
         <React.Fragment>
             <PageTitleArea
-                pageTitle={ "Interview with " + this.props.companyName} // todo add company name
+                pageTitle={ "Interview with " + this.props.companyName}
                 pageDescription="Log in to start. Good luck to your interview!"
             />
           {/* login page*/}

@@ -2,15 +2,28 @@ import React, { Component, useState } from 'react';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import PageTitleArea from '../Common/PageTitleArea';
+import PropTypes from "prop-types";
 import Rating from 'react-simple-star-rating';
+import {submitFeedback} from "../../redux/actions/question_actions";
 import { MyModal } from "../../components/dashboard/DashboardComponents";
 import ModalVideo from 'react-modal-video';
-import videobg from "../public/images/video-bg.jpg"
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+//import videobg from "../public/images/video-bg.jpg"
 
 export class InterviewCompletion extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     state = {
         show: true,
+        feedback: "",
     }
+
+    static propTypes = {
+        submitFeedback: PropTypes.func.isRequired,
+      };
 
     hide = () => {
         this.setState({
@@ -18,12 +31,21 @@ export class InterviewCompletion extends Component {
         })
     }
 
+    handleInputChange = (e) => {
+        this.setState({
+          [e.target.name]: e.target.value,
+        });
+      };
+
     render() {
         return (
             <React.Fragment>
                 <CustomerFeedback
                     show={this.state.show}
                     hide={this.hide}
+                    feedback={this.state.feedback}
+                    handleInputChange={this.handleInputChange}
+                    submitFeedback={this.props.submitFeedback}
                 />
                 <PageTitleArea 
                     pageTitle="Congratulations!" 
@@ -38,15 +60,28 @@ export class InterviewCompletion extends Component {
 }
 
 const CustomerFeedback = (props) => {
-    const [rating, setRating] = useState(0) // initial rating value
+    const [rating, setRating] = useState(0); // initial rating value
  
     const handleRating = (rate) => {
         setRating(rate)
-    }
+    };
+    const submitFeedback = () => {
+        props.hide();
+        props.submitFeedback(rating, props.feedback);
+        confirmAlert({
+            title: 'Thanks for the feedback!😃',
+            message: '',
+            buttons: [
+                {
+                    label: 'ok',
+                }
+            ],
+        });
+    };
     return(
         <MyModal show={props.show} onHide={props.hide}>
         <div className='container' style={{width:"60%"}}>
-          <p style={{color:"#67A3F3"}}>send your feedback</p>
+          <h3 style={{color:"#56a3fa"}}>Send your Feedback</h3>
           <p>You are almost there! Before you leave, tell us about your experience! Your answer will not affect your interview evaluation.</p>
           <h3>Please rate your interview experience</h3>
           <div className="mt-3 mb-3" style={{margin:"auto"}}>
@@ -56,18 +91,24 @@ const CustomerFeedback = (props) => {
                 size={55}
                 label={false}    
                 transition={true}
-                fillColor='#67A3F3'
+                fillColor='#56a3fa'
                 emptyColor='gray'
             />
           </div>
           <h3>Any additional comment?</h3>
           <div className="row">
-              <textarea className="col-11 ml-3"></textarea>
+              <textarea className="col-11 ml-3" className="contact-form" placeholder="Your feedback (Optional)"
+              style={{marginLeft:"1rem", width:"36rem", height:"5rem"}}
+              name={"feedback"}
+              value={props.feedback}
+              onChange={props.handleInputChange}></textarea>
           </div>
           <div className="row mb-5">
               <div className="col-12">
                   <button className="default-btn mt-4 mr-2 float-right"
                           style={{paddingLeft:"25px"}}
+                          type="button"
+                          onClick={submitFeedback}
                   >
                   Submit 
                   </button>
@@ -127,15 +168,19 @@ class FeedbackVideo extends Component {
                 <div className="container" style={{width:"56%"}}>
                     <div className="row">
                         <div className="col-5">
+                            <Link to="/howitworks" style={{textDecoration:"none"}}>
                             <button className="default-btn btn-block" style={{paddingLeft:"25px"}}>
                                 Learn How Hirebeat Works
                             </button>
+                            </Link>
                         </div>
                         <div className ="col-2" />
                         <div className="col-5 float-right">
+                            <Link to={{pathname:'/dashboard', params:{subpage:"interview"}}} style={{textDecoration:"none"}}>
                             <button className="default-btn btn-block" style={{paddingLeft:"25px"}}>
                                 Go to Dashboard
                             </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -144,4 +189,4 @@ class FeedbackVideo extends Component {
     }
 }
 
-export default connect(null)(InterviewCompletion);
+export default connect(null, {submitFeedback})(InterviewCompletion);

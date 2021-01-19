@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileSerializer
 from accounts.models import Profile, CandidatesInterview
+from django.contrib.auth.models import User
 from resume.models import Resume
 from videos.models import Video
 from questions.models import Positions, InvitedCandidates
@@ -193,10 +194,12 @@ class RetrievePracticeInfoAPI(APIView):
     def get(self, request, userId):
         videos = Video.objects.filter(owner_id=userId)
         resumes = Resume.objects.filter(owner_id=userId)
+        user = User.objects.get(pk=userId)
+        interviews = CandidatesInterview.objects.filter(Q(email=user.email) & Q(is_recorded=True))
         videos_practiced = len(videos)
         videos_reviewed = len(videos.filter(Q(is_ai_reviewed=True) | Q(is_expert_reviewed=True)))
         resume_scanned = len(resumes)
-        interviews_recorded = 0
+        interviews_recorded = len(interviews)
         return Response(
             {
                 "videos_practiced": videos_practiced,

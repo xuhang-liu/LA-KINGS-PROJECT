@@ -2,16 +2,13 @@ import React, { Component } from "react";
 //import ButtonPanel from "./panel/ButtonPanel";
 import { Link, Redirect } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
-//import VideoPreviewList from "./videos/VideoPreviewList";
-//import { Analytics } from "./videos/Analytics";
-import { Interview } from "./videos/Interview";
-//import { Resume } from "./videos/Resume";
-import { CreatePosition } from "./position/CreatePosition";
+import { JobApplication } from "./applications/JobApplication";
+import {CreatePosition} from "./position/CreatePosition";
 import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile, loadUserFullname } from "../../redux/actions/auth_actions";
+import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
-import { addPosition } from "../../redux/actions/question_actions";
+import { addPosition, getPostedJobs, addInterviews, resendInvitation } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -62,29 +59,21 @@ export class EmployerDashboard extends Component {
     this.activateEmail();
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
-    this.props.getApplicantsVideos("liuxuhangtc@hotmail.com", "24");
-    this.props.getApplicantsInfo("liuxuhangtc@hotmail.com");
+    this.props.getPostedJobs(user.id);
+//    this.props.getApplicantsVideos("liuxuhangtc@hotmail.com", "24");
+//    this.props.getApplicantsInfo("liuxuhangtc@hotmail.com");
   }
 
-  // params passed from resume page
-  param = this.props.location.params;
-  page = (typeof (this.param) == "undefined" ? "" : this.param.subpage);
-
   state = {
-    subpage: (this.page == "" ? "videos" : this.page),
+    subpage: "applications",
   };
 
-  renderVideos = () => {
+  renderApplications = () => {
     this.setState({
-      subpage: "videos",
+      subpage: "applications",
     });
   };
 
-  /*renderAnalytics = () => {
-    this.setState({
-      subpage: "analytics",
-    });
-  };*/
   renderPosition = () => {
     if(this.props.profile.company_name == "" || this.props.profile.company_name == null){
       confirmAlert({
@@ -124,15 +113,31 @@ export class EmployerDashboard extends Component {
 
   renderSubpage = () => {
     switch (this.state.subpage) {
-      case "videos":
-        return <Interview/>;
-        //case "analytics":
-        //return <Analytics />;
+      case "applications":
+        return <JobApplication
+            companyName={this.props.profile.company_name}
+            loaded={this.props.loaded}
+            postedJobs={this.props.postedJobs}
+            addInterviews={this.props.addInterviews}
+            getReceivedInterview={this.props.getReceivedInterview}
+            getApplicantsVideos={this.props.getApplicantsVideos}
+            getApplicantsInfo={this.props.getApplicantsInfo}
+            getRecordStatus={this.props.getRecordStatus}
+            renderVideos={this.renderVideos}
+            dataLoaded={this.props.dataLoaded}
+            isRecorded={this.props.isRecorded}
+            int_ques={this.props.int_ques}
+            username_candidate={this.props.username_candidate}
+            email_candidate={this.props.email_candidate}
+            phone_candidate={this.props.phone_candidate}
+            location_candidate={this.props.location_candidate}
+            resendInvitation={this.props.resendInvitation}
+        />;
       case "position":
         return <CreatePosition
             user={this.props.user}
             profile={this.props.profile}
-            renderVideos={this.renderVideos}
+            renderApplications={this.renderApplications}
             addPosition={this.props.addPosition}
         />;
       case "settings":
@@ -141,7 +146,7 @@ export class EmployerDashboard extends Component {
             profile={this.props.profile}
             location={this.props.profile.location}
             phone_number={this.props.profile.phone_number}
-            renderVideos={this.renderVideos}
+            renderApplications={this.renderApplications}
         />;
       case "reviewApplication":
         return <ReviewApplication
@@ -172,7 +177,7 @@ export class EmployerDashboard extends Component {
                       profile={this.props.profile}
                       updateProfile={this.props.updateProfile}
                       renderSetting={this.renderSetting}
-                      renderVideos={this.renderVideos}
+                      renderApplications={this.renderApplications}
                       renderPosition={this.renderPosition}
                       subpage={this.state.subpage}
                   />
@@ -215,6 +220,10 @@ const mapStateToProps = (state) => ({
   user: state.auth_reducer.user,
   userfullname: state.auth_reducer.userfullname,
   isAuthenticated: state.auth_reducer.isAuthenticated,
+  loaded: state.question_reducer.loaded,
+  postedJobs: state.question_reducer.postedJobs,
+  dataLoaded: state.auth_reducer.dataLoaded,
+  isRecorded: state.auth_reducer.isRecorded,
   int_ques: state.video_reducer.int_ques,
   username_candidate: state.video_reducer.username_candidate,
   email_candidate: state.video_reducer.email_candidate,
@@ -222,6 +231,8 @@ const mapStateToProps = (state) => ({
   location_candidate: state.video_reducer.location_candidate,
 });
 
-export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, addPosition, getApplicantsVideos, getApplicantsInfo })(
-  EmployerDashboard
+export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
+    addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
+    getRecordStatus, resendInvitation})(
+    EmployerDashboard
 );
