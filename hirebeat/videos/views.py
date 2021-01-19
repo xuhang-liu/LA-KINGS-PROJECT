@@ -234,10 +234,10 @@ def get_applicants_videos(request):
         ques_id = obj.id
         user_id = user[0].id
         wpvideo = WPVideo.objects.filter(question_id=ques_id, owner_id=user_id)
-        if wpvideo.exists() :
+        if len(wpvideo) > 0:
             video = wpvideo[0]
-        serializer = WPVideoSerializer(video)
-        int_ques.append(serializer.data)
+            serializer = WPVideoSerializer(video)
+            int_ques.append(serializer.data)
     
     return Response({
         "int_ques": int_ques,
