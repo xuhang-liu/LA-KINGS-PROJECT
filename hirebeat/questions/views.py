@@ -135,7 +135,7 @@ def add_interviews(request):
             except ObjectDoesNotExist:
                 # save data
                 CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
-                InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i])
+                InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0)
                 # send email
                 send_interviews(names[i], emails[i], urls[i], job_title, company_name)
 

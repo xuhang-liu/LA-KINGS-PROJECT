@@ -152,6 +152,7 @@ const JobCard = (props) => {
                                     name={a.name}
                                     date={a.invite_date.substring(0, 10)}
                                     email={a.email}
+                                    comment_status={a.comment_status}
                                     positionId={a.positions_id}
                                     getApplicantsVideos={props.getApplicantsVideos}
                                     getApplicantsInfo={props.getApplicantsInfo}
@@ -303,7 +304,7 @@ const Applicant = (props) => {
             <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem", marginTop:"1rem"}}>
                 <div className="col-3 interview-txt9">{props.name}</div>
                 <div className="col-3 interview-txt9">{props.date}</div>
-                <div className="col-3">
+                <div className="col-2">
                     <button
                         onClick={() => viewResult()}
                         className="interview-txt9"
@@ -312,7 +313,7 @@ const Applicant = (props) => {
                         View Interview
                     </button>
                 </div>
-                <div className="col-3">
+                <div className="col-2">
                     {<button
                         onClick={ () => inviteAgain()}
                         className="interview-txt9"
@@ -320,6 +321,15 @@ const Applicant = (props) => {
                     >
                         Resend
                     </button>}
+                </div>
+                <div className="col-2">
+                    <button
+                        onClick={() => viewResult()}
+                        className="interview-txt9"
+                        style={{color: "#67A3F3", border: "none", background: "white"}}
+                    >
+                        {props.comment_status}
+                    </button>
                 </div>
             </div>
             {/* Interview Result */}
