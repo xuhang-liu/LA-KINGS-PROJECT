@@ -153,11 +153,11 @@ const JobCard = (props) => {
                                     date={a.invite_date.substring(0, 10)}
                                     email={a.email}
                                     positionId={a.positions_id}
+                                    isRecorded={a.is_recorded}
                                     getApplicantsVideos={props.getApplicantsVideos}
                                     getApplicantsInfo={props.getApplicantsInfo}
                                     getRecordStatus={props.getRecordStatus}
                                     dataLoaded={props.dataLoaded}
-                                    isRecorded={props.isRecorded}
                                     int_ques={props.int_ques}
                                     username_candidate={props.username_candidate}
                                     email_candidate={props.email_candidate}
@@ -259,8 +259,7 @@ const Applicant = (props) => {
     let name = props.name;
 
     function viewResult() {
-        // get record status, videos and info
-        props.getRecordStatus(positionId, email);
+        // get videos and info
         props.getApplicantsVideos(email, positionId);
         props.getApplicantsInfo(email);
         setShow(true);
@@ -269,8 +268,8 @@ const Applicant = (props) => {
     function inviteAgain() {
         // encode url
         let url = "";
-        let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-//        let prefix = "https://hirebeat.co/candidate-login?";  // online
+        //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+        let prefix = "https://hirebeat.co/candidate-login?";  // online
         let params = "email=" + email + "&" + "positionId=" + positionId;
         let encode = window.btoa(params);
         url = prefix + encode;
@@ -304,30 +303,37 @@ const Applicant = (props) => {
                 <div className="col-3 interview-txt9">{props.name}</div>
                 <div className="col-3 interview-txt9">{props.date}</div>
                 <div className="col-3">
-                    <button
-                        onClick={() => viewResult()}
-                        className="interview-txt9"
-                        style={{color: "#67A3F3", border: "none", background: "white"}}
-                    >
-                        View Interview
-                    </button>
+                    {props.isRecorded ?
+                        <button
+                            onClick={() => viewResult()}
+                            className="interview-txt9"
+                            style={{color: "#67A3F3", border: "none", background: "white"}}
+                        >
+                            View Interview
+                        </button> :
+                        <div className="row" style={{alignItems: "center"}}>
+                            <div className="interview-txt9">
+                                <p style={{color: "#7D7D7D"}}>Pending</p>
+                            </div>
+                            <div>
+                                <button
+                                    onClick={ () => inviteAgain()}
+                                    className="interview-txt9"
+                                    style={{color: "#67A3F3", border: "none", background: "white"}}
+                                >
+                                    <i className="bx bx-redo bx-sm"></i>
+                                    Resend
+                                </button>
+                            </div>
+                        </div>
+                    }
                 </div>
-                <div className="col-3">
-                    {<button
-                        onClick={ () => inviteAgain()}
-                        className="interview-txt9"
-                        style={{color: "#67A3F3", border: "none", background: "white"}}
-                    >
-                        Resend
-                    </button>}
-                </div>
+                <div className="col-3"></div>
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
                 show={show}
                 onHide={() => setShow(false)}
-                dataLoaded={props.dataLoaded}
-                isRecorded={props.isRecorded}
                 int_ques={props.int_ques}
                 username_candidate={props.username_candidate}
                 email_candidate={props.email_candidate}
@@ -343,8 +349,6 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       <ReviewApplication
-        dataLoaded={props.dataLoaded}
-        isRecorded={props.isRecorded}
         int_ques={props.int_ques}
         username_candidate={props.username_candidate}
         email_candidate={props.email_candidate}
