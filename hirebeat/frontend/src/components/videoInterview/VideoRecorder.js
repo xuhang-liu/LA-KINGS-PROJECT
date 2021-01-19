@@ -137,13 +137,14 @@ export class VideoRecorder extends Component {
           {
             this.props.isTesting && this.props.retry &&
               <div style={{marginTop: "4rem"}}>
-                <p className="text-muted">Test device again</p>
-                <button
-                  onClick={this.recordAgain}
-                  className="default-btn"
-                  style={{fontFamily:"Avenir Next", fontWeight:'bolder', paddingLeft:"25px", backgroundColor:"#e8edfc", color:"#67a3f3"}}
-                >Retry</button>
-                <p className="text-muted" style={{marginTop: "2rem"}}>Everything goes well?</p>
+                <p className="text-muted" style={{marginTop: "2rem", display:"inline-block", marginBottom:"2rem"}}>Test device again?</p>
+                <button onClick={this.recordAgain}
+                style={{
+                  marginLeft:"1rem", marginBottom:"2rem",
+                  backgroundColor:"#ff612f",
+                  width:"2.5rem", height:"2.5rem", 
+                  textAlign:"center", borderRadius:"100%", color:"#ffffff", border:"none",
+                  display:"inline-block", fontWeight:"600"}}><i className="bx bx-revision" style={{fontSize:"1.5rem"}}></i></button>
                 <CardButton
                   onTap={this.props.testDeviceDone}
                   textDisplayed={"Start Interview"}
