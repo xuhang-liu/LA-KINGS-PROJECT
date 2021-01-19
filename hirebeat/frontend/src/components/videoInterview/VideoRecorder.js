@@ -138,12 +138,11 @@ export class VideoRecorder extends Component {
             this.props.isTesting && this.props.retry &&
               <div style={{marginTop: "4rem"}}>
                 <p className="text-muted">Test device again</p>
-                <CardButton
-                  onTap={this.recordAgain}
-                  textDisplayed={"Retry"}
-                  buttonWidth={"10rem"}
-                  fontFamily={"Avenir Next"}
-                />
+                <button
+                  onClick={this.recordAgain}
+                  className="default-btn"
+                  style={{fontFamily:"Avenir Next", fontWeight:'bolder', paddingLeft:"25px", backgroundColor:"#e8edfc", color:"#67a3f3"}}
+                >Retry</button>
                 <p className="text-muted" style={{marginTop: "2rem"}}>Everything goes well?</p>
                 <CardButton
                   onTap={this.props.testDeviceDone}
