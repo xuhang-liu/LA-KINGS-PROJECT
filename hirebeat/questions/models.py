@@ -67,6 +67,8 @@ class InvitedCandidates(models.Model):
     email = models.CharField(max_length=300, null=True, blank=True)
     invite_date = models.DateTimeField(auto_now_add=True)
     comment_status = models.IntegerField(default=0)
+    is_recorded = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name + '|' + self.email
 
