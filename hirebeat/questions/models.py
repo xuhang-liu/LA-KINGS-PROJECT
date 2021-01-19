@@ -73,6 +73,7 @@ class InvitedCandidates(models.Model):
 class InterviewFeedback(models.Model):
     rating = models.BigIntegerField()
     feedback = models.TextField(default="Not Provided",null=True)
+    email = models.CharField(max_length=100, null=True, blank=True)
     def __str__(self):
         return self.rating + '|' + self.feedback
 

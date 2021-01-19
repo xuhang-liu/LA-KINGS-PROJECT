@@ -77,7 +77,10 @@ export class CareerVideoUploader extends Component {
   redirectToCompletion = () => {
     // redirect to profile
     const { history } = this.props;
-    if (history) history.push("/interview_Completion");
+    if (history) history.push({
+        pathname: "/interview_completion",
+        params: {user_email: this.props.email}
+      });
   };
 
   render() {
