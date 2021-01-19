@@ -40,7 +40,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create_user(validated_data['username'],validated_data['email'],validated_data['password'])
-        # user.is_active = True
+        user.is_active = True
         user.save()
         return user
         
@@ -51,7 +51,17 @@ class LoginSerializer(serializers.Serializer): #not creating a user, just valida
     password = serializers.CharField()
 
     def validate(self,data):  # from django auth, rest_framework, knox documentation
-        user = authenticate(**data)
+        # enable both username and email authentication
+        # parse data, refer to python orderedDict()
+        items = list(data.items())
+        username = items[0][1]
+        password = items[1][1]
+        # if login with email, convert email to username
+        if '@' in username:
+            username = User.objects.get(email=username).username
+        user = authenticate(username=username, password=password)
+
+        # user = authenticate(**data)
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Incorrect Credientials")

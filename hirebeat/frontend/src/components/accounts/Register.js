@@ -261,7 +261,7 @@ export class Register extends Component {
               </div>
             </section>
             </MediaQuery>
-            <MediaQuery maxDeviceWidth={1224}>    
+            <MediaQuery maxDeviceWidth={1223}>    
             <div id="login-intro"
                     style={{
                       background: "#56a3fa",

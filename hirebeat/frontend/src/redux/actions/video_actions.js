@@ -10,10 +10,44 @@ import {
   GET_REVIEW_COUNT,
   VIDEO_UNDER_REVIEW,
   INCREASE_VIDEO_COUNT,
+  GET_VIDEOS_APPLICANT,
   ADD_WP_VIDEO,
+  GET_APPLICANT_INFO,
 } from "./action_types";
 import { createMessage, returnErrors } from "./message_actions";
 import { tokenConfig } from "./auth_actions";
+
+export const getApplicantsVideos = (email, positionId) => (dispatch, getState) => {
+  axios
+    .get(`get-applicants-videos?email=${email}&positionId=${positionId}`, tokenConfig(getState))
+    .then((res) => {
+      console.log("get applicant video");
+      console.log(res.data);
+      dispatch({
+        type: GET_VIDEOS_APPLICANT,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getApplicantsInfo = (email) => (dispatch, getState) => {
+  axios
+    .get(`get-applicants-info?email=${email}`, tokenConfig(getState))
+    .then((res) => {
+      console.log("get applicant info");
+      console.log(res.data);
+      dispatch({
+        type: GET_APPLICANT_INFO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
 
 export const getVideos = () => (dispatch, getState) => {
   axios
