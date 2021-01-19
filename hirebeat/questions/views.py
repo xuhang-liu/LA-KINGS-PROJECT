@@ -159,6 +159,7 @@ def send_interviews(name, email, url, job_title, company_name):
         from_email,
         to_list,
     )
+    email.content_subtype = "html"
     email.send()
 
 @api_view(['POST'])
