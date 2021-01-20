@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {login, exchangeToken, loadProfile,
         register, checkUserRegistration, getCompanyName} from "../../redux/actions/auth_actions";
+//import SocialButton from "../accounts/SocialButton";
 import {createMessage} from "../../redux/actions/message_actions";
 import PageTitleArea from '../Common/PageTitleArea';
 //import MediaQuery from 'react-responsive';
@@ -97,22 +98,15 @@ export class CandidateLogin extends Component {
         // Do nothing
     }
   };
-    decideProvider = (provider) => {
-    switch (provider) {
-      case "facebook":
-        return provider;
-      case "google":
-      case "linkedin":
-        return provider + "-oauth2";
-      default:
-        // Do nothing
-    }
-  };
 
   handleSocialLogin = (user) => {
     console.log(user);
     var provider = this.decideProvider(user.provider);
     this.props.exchangeToken(user.token.accessToken, provider);
+  };
+
+  handleSocialLoginFailure = (err) => {
+    console.error(err);
   };
 
   redirectToInterview = () => {
@@ -201,7 +195,7 @@ export class CandidateLogin extends Component {
                       </div>
                     </form>
 
-                    <hr className="style-four"
+                    {/*<hr className="style-four"
                         data-content="Or use"
                         style={{
                           marginTop:"4rem",
@@ -211,10 +205,16 @@ export class CandidateLogin extends Component {
                     />
 
                     <div className="row" style={{justifyContent: "center", marginBottom: "3rem"}}>
-                        <button onClick={this.handleSocialLogin} style={{border: "none", background: "white"}}>
-                            <img src="https://hirebeat-assets.s3.amazonaws.com/google-plus.png" alt="google logo"></img>
-                        </button>
-                    </div>
+                    <SocialButton
+                      provider="google"
+                      appId="1060033467220-e88kdicq7lbj3pnftht2aife3f4n1psd.apps.googleusercontent.com"
+                      onLoginSuccess={this.handleSocialLogin}
+                      onLoginFailure={this.handleSocialLoginFailure}
+                      type="google"
+                    >
+                      Login with Google
+                    </SocialButton>
+                      </div>*/}
                   </div>
                 </div>
               </div>

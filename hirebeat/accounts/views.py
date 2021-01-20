@@ -198,6 +198,10 @@ def update_record(request):
     interview_obj.is_recorded = True
     interview_obj.save()
 
+    invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
+    invited_obj.is_recorded = True
+    invited_obj.save()
+
     return Response("Update record status successfully", status=status.HTTP_200_OK)
 
 @api_view(['GET'])

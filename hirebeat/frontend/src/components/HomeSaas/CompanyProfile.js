@@ -307,6 +307,31 @@ class CompanyProfile extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/PWC.png" alt="PWC logo"/>
                             </Link>
                         </div>
+                        <div className="item">
+                            <Link to="/bank-of-montreal">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/bmo.png" alt="BMO logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/barclays">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/barclays.png" alt="Barclays logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/credit-suisse">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/creditsuisse.png" alt="Credit Suisse logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/houlihan-lokey">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/houlihanlocky.png" alt="Houlihan Lokey logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/metlife">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/MetLife.png" alt="MetLife logo"/>
+                            </Link>
+                        </div>
                     </OwlCarousel>
                     <a href="/companydata" className="read-more" style={{color: "#13C4A1", marginLeft: "2rem", fontSize:"1rem", textDecoration:"none"}}>Explore our company data <i class="bx bx-right-arrow-alt"></i></a>
                 </div>

@@ -66,12 +66,14 @@ class InvitedCandidates(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     email = models.CharField(max_length=300, null=True, blank=True)
     invite_date = models.DateTimeField(auto_now_add=True)
+    is_recorded = models.BooleanField(default=False)
     def __str__(self):
         return self.name + '|' + self.email
 
 class InterviewFeedback(models.Model):
     rating = models.BigIntegerField()
     feedback = models.TextField(default="Not Provided",null=True)
+    email = models.CharField(max_length=100, null=True, blank=True)
     def __str__(self):
         return self.rating + '|' + self.feedback
 
