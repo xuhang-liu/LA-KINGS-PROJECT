@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { IconText } from "./DashboardComponents";
 import ApplicationVideo from "./videos/ApplicationVideo";
 import { connect } from "react-redux";
-import { updateCommentStatus } from "../../redux/actions/question_actions"
 
-class ReviewApplication extends React.Component{
+class ReviewApplication extends Component{
     constructor(props) {
         super(props);
       }
@@ -92,13 +91,13 @@ class ReviewApplication extends React.Component{
                         </div>
                         <div className="col-2 container" style={{marginTop:"2.5%"}}>
                             <div className="container mt-3">
-                                <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1); this.props.updateCommentStatus(1)}}>
+                                <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1)}}>
                                     Accept
                                 </button>
-                                <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2); this.props.updateCommentStatus(2)}}>
+                                <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2)}}>
                                     On Hold
                                 </button>
-                                <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(3); this.props.updateCommentStatus(3)}}>
+                                <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(3)}}>
                                     Reject
                                 </button>
                             </div>
@@ -110,4 +109,4 @@ class ReviewApplication extends React.Component{
     };
 };
 
-export default connect(null, { updateCommentStatus })(ReviewApplication);
+export default connect(null)(ReviewApplication);

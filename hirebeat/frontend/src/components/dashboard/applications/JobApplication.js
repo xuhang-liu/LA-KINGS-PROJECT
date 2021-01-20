@@ -1,11 +1,10 @@
 import React, { Component, useState } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
+//import PropTypes from "prop-types";
+//import {Link} from "react-router-dom";
 import ReviewApplication from "./../ReviewApplication";
 import { MyModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
-import { updateCommentStatus } from "../../../redux/actions/question_actions";
 
 export class JobApplication extends Component{
 
@@ -35,6 +34,7 @@ export class JobApplication extends Component{
                                     phone_candidate={this.props.phone_candidate}
                                     location_candidate={this.props.location_candidate}
                                     resendInvitation={this.props.resendInvitation}
+                                    updateCommentStatus={this.props.updateCommentStatus}
                                 />
                             )
                         })}
@@ -168,6 +168,7 @@ const JobCard = (props) => {
                                     resendInvitation={props.resendInvitation}
                                     companyName={props.companyName}
                                     jobTitle={props.jobTitle}
+                                    updateCommentStatus={props.updateCommentStatus}
                                 />
                             )
                         })}
@@ -294,15 +295,15 @@ const Applicant = (props) => {
     const renderStatus = (status) => {
         switch(status){
             case 1:
-                return <button className="btn btn-success" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
+                return <button className="btn btn-success" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => {setShow(true)}}>
                     Accepted
                 </button>
             case 2:
-                return <button className="btn btn-warning"  style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
+                return <button className="btn btn-warning"  style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => {setShow(true)}}>
                     On Hold
                 </button>
             case 3:
-                return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
+                return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => {setShow(true)}}>
                     Rejected
                 </button>
             default:
@@ -366,6 +367,7 @@ const Applicant = (props) => {
                 phone_candidate={props.phone_candidate}
                 location_candidate={props.location_candidate}
                 positionId={props.positionId}
+                updateCommentStatus={props.updateCommentStatus}
             />
         </div>
     )
@@ -384,6 +386,7 @@ function MyVerticallyCenteredModal(props) {
         phone_candidate={props.phone_candidate}
         location_candidate={props.location_candidate}
         positionId={props.positionId}
+        updateCommentStatus={props.updateCommentStatus}
       />
     </MyModal>
   );

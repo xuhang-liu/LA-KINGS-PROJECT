@@ -156,10 +156,10 @@ export const resendInvitation = (data) => (dispatch, getState) => {
     );
 };
 
-export const updateCommentStatus = (data) => (dispatch) => {
+export const updateCommentStatus = (data) => (dispatch, getState) => {
   console.log("I am updating the status")
   axios
-    .post("update-comment-status", data)
+    .post("update-comment-status", data, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: UPDATE_COMMENT_STATUS,
