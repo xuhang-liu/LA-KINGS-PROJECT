@@ -127,8 +127,8 @@ export const addInterviews = (data) => (dispatch, getState) => {
     );
 };
 
-export const submitFeedback = (rating, feedback) => (dispatch, getState) => {
-  const body = JSON.stringify({rating, feedback});
+export const submitFeedback = (rating, feedback, email) => (dispatch, getState) => {
+  const body = JSON.stringify({rating, feedback, email});
   axios
     .post("submit-feedback", body, tokenConfig(getState))
     .then((res) => {

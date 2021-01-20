@@ -177,7 +177,8 @@ def resend_invitation(request):
 def submit_feedback(request):
     rating = request.data["rating"]
     feedback = request.data["feedback"]
-    InterviewFeedback.objects.create(rating=rating, feedback=feedback)
+    email = request.data["email"]
+    InterviewFeedback.objects.create(rating=rating, feedback=feedback, email=email)
 
     return Response("Submit feedback data successfully", status=status.HTTP_200_OK)
 

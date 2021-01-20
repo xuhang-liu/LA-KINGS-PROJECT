@@ -16,6 +16,9 @@ export class InterviewCompletion extends Component {
         super(props);
     }
 
+    param = this.props.location.params;
+    user_email = (typeof (this.param) == "undefined" ? "" : this.param.user_email);
+
     state = {
         show: true,
         feedback: "",
@@ -46,6 +49,7 @@ export class InterviewCompletion extends Component {
                     feedback={this.state.feedback}
                     handleInputChange={this.handleInputChange}
                     submitFeedback={this.props.submitFeedback}
+                    user_email={this.user_email}
                 />
                 <PageTitleArea 
                     pageTitle="Congratulations!" 
@@ -67,7 +71,7 @@ const CustomerFeedback = (props) => {
     };
     const submitFeedback = () => {
         props.hide();
-        props.submitFeedback(rating, props.feedback);
+        props.submitFeedback(rating, props.feedback, props.user_email);
         confirmAlert({
             title: 'Thanks for the feedback!😃',
             message: '',
@@ -189,4 +193,8 @@ class FeedbackVideo extends Component {
     }
 }
 
-export default connect(null, {submitFeedback})(InterviewCompletion);
+const mapStateToProps = (state) => ({
+    user: state.auth_reducer.user,
+  });
+
+export default connect(mapStateToProps, {submitFeedback})(InterviewCompletion);

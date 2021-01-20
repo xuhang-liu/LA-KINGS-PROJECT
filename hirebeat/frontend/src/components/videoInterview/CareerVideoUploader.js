@@ -77,19 +77,22 @@ export class CareerVideoUploader extends Component {
   redirectToCompletion = () => {
     // redirect to profile
     const { history } = this.props;
-    if (history) history.push("/interview_Completion");
+    if (history) history.push({
+        pathname: "/interview_completion",
+        params: {user_email: this.props.email}
+      });
   };
 
   render() {
     var saveOnTap = this.handleUpload;
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
-    var saveText = "Save and Next";
+    var saveText = "Next";
     var skipText = "Discard and Next";
 
     if (this.props.last_q) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
-      saveText = "Save and Finish";
+      saveText = "Finish";
       skipText = "Discard and Finish";
     }
     return (

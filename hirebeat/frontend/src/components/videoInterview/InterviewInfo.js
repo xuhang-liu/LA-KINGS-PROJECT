@@ -93,8 +93,8 @@ class InterviewInfo extends Component {
                                         </h4>
                                         <ul className="interview-txt2" style={{color: "#4A6F8A", paddingLeft: "1rem"}}>
                                             <li style={{marginTop:"2rem"}}><span style={{color:"#ff6b00"}}>Practice with our sample question</span> before the interview starts.</li>
-                                            <li style={{marginTop:"2rem"}}><span style={{color:"#ff6b00"}}>30 seconds preparation time</span> for each interview question.</li>
-                                            <li style={{marginTop:"2rem", marginBottom:"1.5rem"}}><span style={{color:"#ff6b00"}}>Be mind of the time</span> while you are answering the question.</li>
+                                            <li style={{marginTop:"2rem"}}><span style={{color:"#ff6b00"}}>30 seconds of preparation time</span> for each interview question.</li>
+                                            <li style={{marginTop:"2rem", marginBottom:"1.5rem"}}><span style={{color:"#ff6b00"}}>Be mindful of the time</span> while you are answering the question.</li>
                                         </ul>
                                         <button
                                             onClick={this.redirectToRecord}
@@ -107,10 +107,10 @@ class InterviewInfo extends Component {
                                     </div>
 
                                     <div className="col-lg-5 col-md-5" style={{marginLeft: "5%", marginTop: "5%"}} >
-                                        <h4 className="interview-txt2">What will the process look like?</h4>
+                                        <h3 className="interview-txt1" style={{textAlign:"center"}}>What will the process look like?</h3>
                                         {/*insert gif here*/}
                                         <div style={{width: "100%", height: "100%"}}>
-                                        <img src='https://hirebeat-assets.s3.amazonaws.com/guide.gif' alt="gif" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/guide.gif' alt="gif" style={{border:"groove"}} />
                                         </div>
                                     </div>
                                 </div>
