@@ -135,7 +135,7 @@ def add_interviews(request):
             except ObjectDoesNotExist:
                 # save data
                 CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
-                InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i])
+                InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0)
                 # send email
                 send_interviews(names[i], emails[i], urls[i], job_title, company_name)
 
@@ -181,3 +181,14 @@ def submit_feedback(request):
     InterviewFeedback.objects.create(rating=rating, feedback=feedback, email=email)
 
     return Response("Submit feedback data successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def update_comment_status(request):
+    position_id = request.data["positionId"]
+    email = request.data["email"]
+    ss = request.data["status"]
+    The_candidate = InvitedCandidates.objects.get(positions=position_id, email=email)
+    The_candidate.comment_status = ss
+    The_candidate.save()
+
+    return Response("Update comment status successfully", status=status.HTTP_200_OK)
