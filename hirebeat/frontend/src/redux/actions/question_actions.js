@@ -10,6 +10,7 @@ import {
     ADD_INTERVIEWS,
     SUBMIT_FEEDBACK,
     RESEND_INVITATION,
+    UPDATE_COMMENT_STATUS,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -154,3 +155,18 @@ export const resendInvitation = (data) => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
+
+export const updateCommentStatus = (data) => (dispatch) => {
+  console.log("I am updating the status")
+  axios
+    .post("update-comment-status", data)
+    .then((res) => {
+      dispatch({
+        type: UPDATE_COMMENT_STATUS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}

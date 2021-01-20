@@ -180,3 +180,14 @@ def submit_feedback(request):
     InterviewFeedback.objects.create(rating=rating, feedback=feedback)
 
     return Response("Submit feedback data successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def update_comment_status(request):
+    position_id = request.data["positionId"]
+    email = request.data["email"]
+    status = request.data["status"]
+    The_candidate = InvitedCandidates.objects.get(positions=position_id, email=email)
+    The_candidate.comment_status = status
+    The_candidate.save()
+
+    return Response("Submit feedback data successfully", status=status.HTTP_200_OK)

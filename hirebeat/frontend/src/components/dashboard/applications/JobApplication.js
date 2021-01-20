@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import ReviewApplication from "./../ReviewApplication";
 import { MyModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
+import { updateCommentStatus } from "../../../redux/actions/question_actions";
 
 export class JobApplication extends Component{
 
@@ -259,6 +260,8 @@ const Applicant = (props) => {
     let jobTitle = props.jobTitle;
     let name = props.name;
 
+    const [comment_status, set_comment_status] = useState(props.comment_status);
+
     function viewResult() {
         // get videos and info
         props.getApplicantsVideos(email, positionId);
@@ -287,6 +290,25 @@ const Applicant = (props) => {
         alert();
     }
 
+
+    const renderStatus = (status) => {
+        switch(status){
+            case 1:
+                return <button className="btn btn-success" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
+                    Accepted
+                </button>
+            case 2:
+                return <button className="btn btn-warning"  style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
+                    On Hold
+                </button>
+            case 3:
+                return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
+                    Rejected
+                </button>
+            default:
+        }
+    }
+
     const [show, setShow] = useState(false);
 
     return (
@@ -300,14 +322,14 @@ const Applicant = (props) => {
                     marginTop: "0rem"
                 }}
             />
-            <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem", marginTop:"1rem"}}>
-                <div className="col-3 interview-txt9">{props.name}</div>
-                <div className="col-3 interview-txt9">{props.date}</div>
+            <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
+                <div className="col-3 interview-txt9 mt-2">{props.name}</div>
+                <div className="col-3 interview-txt9 mt-2">{props.date}</div>
                 <div className="col-3">
                     {props.isRecorded ?
                         <button
                             onClick={() => viewResult()}
-                            className="interview-txt9"
+                            className="interview-txt9 mt-2"
                             style={{color: "#67A3F3", border: "none", background: "white"}}
                         >
                             View Interview
@@ -329,10 +351,13 @@ const Applicant = (props) => {
                         </div>
                     }
                 </div>
-                <div className="col-3"></div>
+                <div className="col-3" >
+                    {renderStatus(comment_status)}
+                </div>
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
+                set_comment_status={set_comment_status}
                 show={show}
                 onHide={() => setShow(false)}
                 int_ques={props.int_ques}
@@ -340,6 +365,7 @@ const Applicant = (props) => {
                 email_candidate={props.email_candidate}
                 phone_candidate={props.phone_candidate}
                 location_candidate={props.location_candidate}
+                positionId={props.positionId}
             />
         </div>
     )
@@ -350,11 +376,14 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       <ReviewApplication
+        set_comment_status={props.set_comment_status}
+        hide={props.onHide}
         int_ques={props.int_ques}
         username_candidate={props.username_candidate}
         email_candidate={props.email_candidate}
         phone_candidate={props.phone_candidate}
         location_candidate={props.location_candidate}
+        positionId={props.positionId}
       />
     </MyModal>
   );
