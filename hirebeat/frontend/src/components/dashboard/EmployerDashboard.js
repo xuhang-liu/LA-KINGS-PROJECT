@@ -4,11 +4,11 @@ import { Link, Redirect } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 import { JobApplication } from "./applications/JobApplication";
 import {CreatePosition} from "./position/CreatePosition";
-import ReviewApplication from "./ReviewApplication";
+//import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
-import { addPosition, getPostedJobs, addInterviews, resendInvitation } from "../../redux/actions/question_actions";
+import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -132,6 +132,7 @@ export class EmployerDashboard extends Component {
             phone_candidate={this.props.phone_candidate}
             location_candidate={this.props.location_candidate}
             resendInvitation={this.props.resendInvitation}
+            updateCommentStatus={this.props.updateCommentStatus}
         />;
       case "position":
         return <CreatePosition
@@ -148,7 +149,7 @@ export class EmployerDashboard extends Component {
             phone_number={this.props.profile.phone_number}
             renderApplications={this.renderApplications}
         />;
-      case "reviewApplication":
+      {/*case "reviewApplication":
         return <ReviewApplication
                   int_ques={this.props.int_ques}
                   renderVideos={this.renderVideos}
@@ -156,7 +157,7 @@ export class EmployerDashboard extends Component {
                   email_candidate={this.props.email_candidate}
                   phone_candidate={this.props.phone_candidate}
                   location_candidate={this.props.location_candidate}
-                />;
+    />;*/}
       default:
         //Do nothing
     }
@@ -233,6 +234,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
-    getRecordStatus, resendInvitation})(
+    getRecordStatus, resendInvitation, updateCommentStatus})(
     EmployerDashboard
 );
