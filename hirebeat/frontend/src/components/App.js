@@ -13,6 +13,7 @@ import store from "../store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import indexsaas from "./home/index-saas";
+import IndexEmployer from "./home/index-employer";
 import EmailVerification from "./accounts/EmailVerification";
 import Login from "./accounts/Login";
 import Register from "./accounts/Register";
@@ -230,6 +231,7 @@ class App extends Component {
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
                 <PrivateRoute exact path="/video-interview" component={CareerResponseWindow}/>
+                <Route exact path="/employer" component={IndexEmployer} />
                 <Route exact path="/interview_Completion" component={InterviewCompletion} />
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/company" component={about} />
@@ -254,7 +256,7 @@ class App extends Component {
                 <Route exact path="/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr" component={BlogDetail17} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/employer" component={EmployerRegister} />
+                <Route exact path="/employer_register" component={EmployerRegister} />
                 <Route exact path="/upload" component={MyVideoUploader} />
                 <Route exact path="/" component={indexsaas} />
                 <Route exact path="/payment" component={Payment} />
