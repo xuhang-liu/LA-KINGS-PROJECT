@@ -110,7 +110,7 @@ const JobCard = (props) => {
                 <div style={{marginBottom: "2rem"}}>
                     <div className="row">
                         <div className="col-4 interview-center">
-                            <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
+                            <h3 className="interview-txt5">{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                         </div>
                         <div className="col-3 interview-center" style={{paddingRight: "0px"}}>
                             <button
@@ -141,8 +141,8 @@ const JobCard = (props) => {
                     </div>
                     <div className="card container" style={{marginTop:"1%"}}>
                         <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem"}}>
-                            <div className="col-3">Name</div>
-                            <div className="col-3">Invited On</div>
+                            <div className="col-4">Name</div>
+                            <div className="col-2">Invited On</div>
                             <div className="col-3" />
                             <div className="col-3" />
                         </div>
@@ -324,8 +324,8 @@ const Applicant = (props) => {
                 }}
             />
             <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
-                <div className="col-3 interview-txt9 mt-2">{props.name}</div>
-                <div className="col-3 interview-txt9 mt-2">{props.date}</div>
+                <div className="col-4 interview-txt9 mt-2">{props.name} ({props.email})</div>
+                <div className="col-2 interview-txt9 mt-2">{props.date}</div>
                 <div className="col-3">
                     {props.isRecorded ?
                         <button
