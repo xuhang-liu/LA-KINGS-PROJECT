@@ -104,6 +104,11 @@ import MerrillLynchInfo from"./companyData/companies/MerrillLynchInfo";
 import HCIGroupInfo from"./companyData/companies/HCIGroupInfo";
 import KPMGInfo from"./companyData/companies/KPMGInfo";
 import PWCInfo from"./companyData/companies/PWCInfo";
+import BankOfMontrealInfo from"./companyData/companies/BankOfMontrealInfo";
+import BarclaysInfo from"./companyData/companies/BarclaysInfo";
+import CreditSuisseInfo from"./companyData/companies/CreditSuisseInfo";
+import HoulihanLokeyInfo from"./companyData/companies/HoulihanLokeyInfo";
+import MetLifeInfo from"./companyData/companies/MetLifeInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -310,6 +315,11 @@ class App extends Component {
                 <Route exact path="/hci-group" component={HCIGroupInfo} />
                 <Route exact path="/kpmg" component={KPMGInfo} />
                 <Route exact path="/pwc" component={PWCInfo} />
+                <Route exact path="/bank-of-montreal" component={BankOfMontrealInfo} />
+                <Route exact path="/barclays" component={BarclaysInfo} />
+                <Route exact path="/credit-suisse" component={CreditSuisseInfo} />
+                <Route exact path="/houlihan-lokey" component={HoulihanLokeyInfo} />
+                <Route exact path="/metlife" component={MetLifeInfo} />
                 <Route exact path="/jobs" component={JobList} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
