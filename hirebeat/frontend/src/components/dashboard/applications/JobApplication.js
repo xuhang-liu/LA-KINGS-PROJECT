@@ -1,18 +1,23 @@
 import React, { Component, useState } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
+//import PropTypes from "prop-types";
+//import {Link} from "react-router-dom";
 import ReviewApplication from "./../ReviewApplication";
 import { MyModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
+import 'boxicons';
 
 export class JobApplication extends Component{
+    refreshPage() {
+        window.location.reload(false);
+    }
 
     render() {
         return(
             <React.Fragment>
                 {this.props.loaded &&
                     <div>
+                        <button onClick={this.refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right"}}><p><box-icon name="refresh" color="#4a6f8a"></box-icon>Refresh</p></button>
                         {Object.keys(this.props.postedJobs).reverse().map((key) => {
                             let p = this.props.postedJobs[key];
                             return(
@@ -34,6 +39,7 @@ export class JobApplication extends Component{
                                     phone_candidate={this.props.phone_candidate}
                                     location_candidate={this.props.location_candidate}
                                     resendInvitation={this.props.resendInvitation}
+                                    updateCommentStatus={this.props.updateCommentStatus}
                                 />
                             )
                         })}
@@ -109,7 +115,7 @@ const JobCard = (props) => {
                 <div style={{marginBottom: "2rem"}}>
                     <div className="row">
                         <div className="col-4 interview-center">
-                            <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
+                            <h3 className="interview-txt5">{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                         </div>
                         <div className="col-3 interview-center" style={{paddingRight: "0px"}}>
                             <button
@@ -140,8 +146,8 @@ const JobCard = (props) => {
                     </div>
                     <div className="card container" style={{marginTop:"1%"}}>
                         <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem"}}>
-                            <div className="col-3">Name</div>
-                            <div className="col-3">Invited On</div>
+                            <div className="col-4">Name</div>
+                            <div className="col-2">Invited On</div>
                             <div className="col-3" />
                             <div className="col-3" />
                         </div>
@@ -152,6 +158,7 @@ const JobCard = (props) => {
                                     name={a.name}
                                     date={a.invite_date.substring(0, 10)}
                                     email={a.email}
+                                    comment_status={a.comment_status}
                                     positionId={a.positions_id}
                                     isRecorded={a.is_recorded}
                                     getApplicantsVideos={props.getApplicantsVideos}
@@ -166,6 +173,7 @@ const JobCard = (props) => {
                                     resendInvitation={props.resendInvitation}
                                     companyName={props.companyName}
                                     jobTitle={props.jobTitle}
+                                    updateCommentStatus={props.updateCommentStatus}
                                 />
                             )
                         })}
@@ -258,6 +266,8 @@ const Applicant = (props) => {
     let jobTitle = props.jobTitle;
     let name = props.name;
 
+    const [comment_status, set_comment_status] = useState(props.comment_status);
+
     function viewResult() {
         // get videos and info
         props.getApplicantsVideos(email, positionId);
@@ -286,6 +296,25 @@ const Applicant = (props) => {
         alert();
     }
 
+
+    const renderStatus = (status) => {
+        switch(status){
+            case 1:
+                return <button className="btn btn-success" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => {setShow(true)}}>
+                    Accepted
+                </button>
+            case 2:
+                return <button className="btn btn-warning"  style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => {setShow(true)}}>
+                    On Hold
+                </button>
+            case 3:
+                return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => {setShow(true)}}>
+                    Rejected
+                </button>
+            default:
+        }
+    }
+
     const [show, setShow] = useState(false);
 
     return (
@@ -299,14 +328,14 @@ const Applicant = (props) => {
                     marginTop: "0rem"
                 }}
             />
-            <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem", marginTop:"1rem"}}>
-                <div className="col-3 interview-txt9">{props.name}</div>
-                <div className="col-3 interview-txt9">{props.date}</div>
+            <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
+                <div className="col-4 interview-txt9 mt-2">{props.name} ({props.email})</div>
+                <div className="col-2 interview-txt9 mt-2">{props.date}</div>
                 <div className="col-3">
                     {props.isRecorded ?
                         <button
                             onClick={() => viewResult()}
-                            className="interview-txt9"
+                            className="interview-txt9 mt-2"
                             style={{color: "#67A3F3", border: "none", background: "white"}}
                         >
                             View Interview
@@ -328,10 +357,13 @@ const Applicant = (props) => {
                         </div>
                     }
                 </div>
-                <div className="col-3"></div>
+                <div className="col-3" >
+                    {renderStatus(comment_status)}
+                </div>
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
+                set_comment_status={set_comment_status}
                 show={show}
                 onHide={() => setShow(false)}
                 int_ques={props.int_ques}
@@ -339,6 +371,8 @@ const Applicant = (props) => {
                 email_candidate={props.email_candidate}
                 phone_candidate={props.phone_candidate}
                 location_candidate={props.location_candidate}
+                positionId={props.positionId}
+                updateCommentStatus={props.updateCommentStatus}
             />
         </div>
     )
@@ -349,11 +383,15 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       <ReviewApplication
+        set_comment_status={props.set_comment_status}
+        hide={props.onHide}
         int_ques={props.int_ques}
         username_candidate={props.username_candidate}
         email_candidate={props.email_candidate}
         phone_candidate={props.phone_candidate}
         location_candidate={props.location_candidate}
+        positionId={props.positionId}
+        updateCommentStatus={props.updateCommentStatus}
       />
     </MyModal>
   );

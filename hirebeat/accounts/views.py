@@ -106,7 +106,7 @@ def resend_activation_email(request):
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
     }
-    from_email = 'hirebeat.tech@gmail.com'
+    from_email = 'HireBeat Team'
     to_list = [user.email]
     content = message.render(context)
     email = EmailMessage(
