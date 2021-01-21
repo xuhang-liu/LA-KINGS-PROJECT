@@ -138,6 +138,8 @@ export class EssentialUserInfo extends Component {
                     style={{
                       fontWeight: "bold",
                       marginRight: "0.8rem",
+                      wordWrap: "break-word",
+                      wordBreak: "break-all",
                     }}
                   >
                     {this.props.user.username}
