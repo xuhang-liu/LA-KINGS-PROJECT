@@ -54,14 +54,37 @@ export class EmployerDashboard extends Component {
     }
   };
 
+  redirectToEmailVerification = () => {
+    const { history } = this.props;
+    if (history) history.push(`/email-verification`);
+  }; 
+
+  verifyEmail = () => {
+    if(!this.props.profile.email_confirmed){
+      this.redirectToEmailVerification();
+      return this.alert("Account Activation Needed", "Please check the activation email and activate your account");
+    }
+  }
+
+  alert = (title, message) => {
+    confirmAlert({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+      });
+  }
+
   componentDidMount() {
     this.props.loadProfile();
     this.activateEmail();
+    this.verifyEmail();
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
     this.props.getPostedJobs(user.id);
-//    this.props.getApplicantsVideos("liuxuhangtc@hotmail.com", "24");
-//    this.props.getApplicantsInfo("liuxuhangtc@hotmail.com");
   }
 
   state = {
