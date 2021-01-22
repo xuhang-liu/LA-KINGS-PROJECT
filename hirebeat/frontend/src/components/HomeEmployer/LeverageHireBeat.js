@@ -5,7 +5,7 @@ import 'boxicons';
 class LeverageHireBeat extends Component {
     render() {
         return (
-            <section className="features-area pt-100 pb-70 bg-f4f6fc" style={{backgroundImage:"linear-gradient(to right, rgba(153, 193, 248, 0.8), rgba(159, 191, 248, 0))"}}>
+            <section className="features-area pt-100 pb-70 bg-f4f6fc" style={{backgroundImage:"linear-gradient(103.24deg, rgba(103, 163, 243, 0.8) 18.41%, #E8EDFC 107.46%)"}}>
                 <div style={{width:"85vw", margin:"auto"}}>
                     <div className="text-center" style={{color:"#090D3A"}}>
                         <h1><b>Leverage HireBeat to Enrich Your Recruiting Efforts</b></h1>
