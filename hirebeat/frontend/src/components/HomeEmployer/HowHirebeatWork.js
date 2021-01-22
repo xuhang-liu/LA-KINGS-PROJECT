@@ -46,7 +46,7 @@ class HowHirebeatWork extends Component {
                                                 Modify specific questions for your candidate.
                                             </li>
                                         </ul>
-                                        <Link to='/practice' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <Link to='/employer_dashboard' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
                                             <i className="bx bxs-arrow-to-right"></i>
                                                 Post Positions Now
                                             <span></span>
