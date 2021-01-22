@@ -48,9 +48,9 @@ class MainBanner extends Component {
                         </h1>
                     </div>
                     <div className="my-3">
-                        <h5 style={{color:"#4A6F8A"}}>
+                        <h4 style={{color:"#090D3A", paddingTop:"1rem"}}>
                             We help recuitment team hire talents much faster than ever
-                        </h5>
+                        </h4>
                     </div>
                     <div className="mt-5">
                         <Link to="/employer_register" id="id-employer_signup2">

@@ -12,7 +12,8 @@ class FreeTrialArea extends Component {
                 <div className="container">
                     <div className="free-trial-content">
                         <h2 style={{paddingTop:"2rem", paddingBottom:"1.5rem", color: "#090D3A"}}>Start Your Next Hire from HireBeat</h2>
-                        <p style={{paddingBottom:"10%"}}>We Ensures Perfect Candidates Signs with Your Company. Hiring talents never to be such easy!</p>
+                        <p style={{marginBottom:"-0.5rem"}}>We Ensures Perfect Candidates Signs with Your Company.</p>
+                        <p style={{paddingBottom:"10%"}}>Hiring talents never to be such easy!</p>
                     </div>
                 </div>
 
