@@ -1,88 +1,74 @@
 import React, { Component } from 'react';
 import ReactWOW from 'react-wow';
+import 'boxicons';
 
 class LeverageHireBeat extends Component {
     render() {
         return (
-            <section className="features-area pt-100 pb-70 bg-f4f6fc">
-                <div className="container">
-                    <div className="section-title">
-                        <h2>We're Here to Help</h2>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-lg-4 col-sm-6" >
-                            <ReactWOW animation='fadeInRight' delay='0.1s'>
-                                <div className="single-features-box" >
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-mouse'></i>
-                                    </div>
-                                    <h3>Quick and Easy-to-use</h3>
-                                    <p style={{fontSize: "1.25rem"}}>Practice industry specific interview questions at home or on the go</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-
-                        <div className="col-lg-4 col-sm-6">
-                            <ReactWOW animation='fadeInRight' delay='0.2s'>
-                                <div className="single-features-box">
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-alarm'></i>
-                                    </div>
-                                    <h3>Real-time Simulation</h3>
-                                    <p style={{fontSize: "1.25rem"}}>You’ll never know what question is coming next, just like a live interview</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-
-                        <div className="col-lg-4 col-sm-6">
-                            <ReactWOW animation='fadeInRight' delay='0.3s'>
-                                <div className="single-features-box">
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-coin-stack'></i>
-                                    </div>
-                                    <h3>Multiple Industries</h3>
-                                    <p style={{fontSize: "1.25rem"}}>Get thousands of interview questions across different industries</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-
-                        <div className="col-lg-4 col-sm-6">
-                            <ReactWOW animation='fadeInRight' delay='0.4s'>
-                                <div className="single-features-box">
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-revision'></i>
-                                    </div>
-                                    <h3>Review and Evaluate</h3>
-                                    <p style={{fontSize: "1.25rem"}}>Progress tracking allows you to monitor and manage your progress</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-
-                        <div className="col-lg-4 col-sm-6">
-                            <ReactWOW animation='fadeInRight' delay='0.5s'>
-                                <div className="single-features-box">
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-wallet'></i>
-                                    </div>
-                                    <h3>Affordable</h3>
-                                    <p style={{fontSize: "1.25rem"}}>Believe it or not, you can use HireBeat for as little as $0.65/day</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-
-                        <div className="col-lg-4 col-sm-6">
-                            <ReactWOW animation='fadeInRight' delay='0.6s'>
-                                <div className="single-features-box">
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-task'></i>
-                                    </div>
-                                    <h3>Comprehensive Feedback</h3>
-                                    <p style={{fontSize: "1.25rem"}}>Our data-driven parameters guarantee you the best performance</p>
-                                </div>
-                            </ReactWOW>
+            <section className="features-area pt-100 pb-70 bg-f4f6fc" style={{backgroundImage:"linear-gradient(to right, rgba(153, 193, 248, 0.8), rgba(159, 191, 248, 0))"}}>
+                <div style={{width:"85vw", margin:"auto"}}>
+                    <div className="text-center" style={{color:"#090D3A"}}>
+                        <h1><b>Leverage HireBeat to Enrich Your Recruiting Efforts</b></h1>
+                        <div className="my-4">
+                            <h5 style={{color:"#090D3A"}}>Set up the interview once and review hundreds of candidates anytime and anywhere.</h5>
                         </div>
                     </div>
+                    <ReactWOW animation='fadeInRight' delay='0.1s'>
+                    <div className="row my-5">
+                        <div className="col-lg-3 col-6 mt-2" >
+                            <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                                    <div className="card-body">
+                                        <div className="p-3">
+                                            <box-icon name='stopwatch' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#13C4A1", borderRadius:"0.3em", padding:"1em"}}/>
+                                        </div>
+                                        <div className="px-3 employer-landing-card">
+                                            <h3><b>Time</b></h3>
+                                            <h5>Streamline screening process and reduce time up to 80%</h5>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-6 mt-2" >
+                            <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                                    <div className="card-body">
+                                        <div className="p-3">
+                                            <box-icon name='money' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#FAC046", borderRadius:"0.3em", padding:"1em"}}/>
+                                        </div>
+                                        <div className="px-3 employer-landing-card">
+                                            <h3><b>Cost</b></h3>
+                                            <h5>Save hiring and recruiting cost by up to 50% </h5>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-6 mt-2" >
+                            <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                                    <div className="card-body">
+                                        <div className="p-3">
+                                            <box-icon name='trip' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#FF6B00", borderRadius:"0.3em", padding:"1em"}}/>
+                                        </div>
+                                        <div className="px-3 employer-landing-card">
+                                            <h3><b>Engagement</b></h3>
+                                            <h5>Review candidate with no time or place limitation</h5>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-6 mt-2" >
+                            <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                                    <div className="card-body">
+                                        <div className="p-3">
+                                            <box-icon name='devices' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#6E6BFF", borderRadius:"0.3em", padding:"1em"}}/>
+                                        </div>
+                                        <div className="px-3 employer-landing-card">
+                                            <h3><b>Collaboration</b></h3>
+                                            <h5>Invite team to work on candidate screening virtually</h5>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    </ReactWOW>
                 </div>
             </section>
         );
