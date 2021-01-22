@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactWOW from 'react-wow';
 import 'boxicons';
 
 class LeverageHireBeat extends Component {
@@ -12,12 +13,13 @@ class LeverageHireBeat extends Component {
                             <h5 style={{color:"#090D3A"}}>Set up the interview once and review hundreds of candidates anytime and anywhere.</h5>
                         </div>
                     </div>
+                    <ReactWOW animation='fadeInRight' delay='0.1s'>
                     <div className="row my-5">
                         <div className="col-lg-3 col-6 mt-2" >
                             <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='stopwatch' color="white" size="3em" style={{backgroundColor:"#13C4A1", borderRadius:"0.3em", padding:"1em"}}/>
+                                            <box-icon name='stopwatch' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#13C4A1", borderRadius:"0.3em", padding:"1em"}}/>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3><b>Time</b></h3>
@@ -30,7 +32,7 @@ class LeverageHireBeat extends Component {
                             <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='money' color="white" size="3em" style={{backgroundColor:"#FAC046", borderRadius:"0.3em", padding:"1em"}}/>
+                                            <box-icon name='money' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#FAC046", borderRadius:"0.3em", padding:"1em"}}/>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3><b>Cost</b></h3>
@@ -43,7 +45,7 @@ class LeverageHireBeat extends Component {
                             <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='trip' color="white" size="3em" style={{backgroundColor:"#FF6B00", borderRadius:"0.3em", padding:"1em"}}/>
+                                            <box-icon name='trip' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#FF6B00", borderRadius:"0.3em", padding:"1em"}}/>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3><b>Engagement</b></h3>
@@ -56,7 +58,7 @@ class LeverageHireBeat extends Component {
                             <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='devices' color="white" size="3em" style={{backgroundColor:"#6E6BFF", borderRadius:"0.3em", padding:"1em"}}/>
+                                            <box-icon name='devices' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#6E6BFF", borderRadius:"0.3em", padding:"1em"}}/>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3><b>Collaboration</b></h3>
@@ -66,6 +68,7 @@ class LeverageHireBeat extends Component {
                             </div>
                         </div>
                     </div>
+                    </ReactWOW>
                 </div>
             </section>
         );

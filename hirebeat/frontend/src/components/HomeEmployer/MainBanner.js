@@ -69,26 +69,12 @@ class MainBanner extends Component {
                     <div className="row">
                         <div className="col-12 col-lg-6 mt-5">
                             <div className="container ml-5 pl-5">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/before.png"></img>
-                                <div className="before">
-                                    <h3>
-                                        Total 500 Candidates
-                                    </h3>
-                                    <h5>
-                                        Interview 20 candidates per day
-                                    </h5>
-                                    <h3>
-                                        25 days needed
-                                    </h3>
-                                    <h5>
-                                        10% efficiency
-                                    </h5>
-                                </div>
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/result1.png"></img>
                             </div>
                         </div>
                         <div className="col-12 col-lg-6 mt-5 after">
                             <div className="container pr-5 mr-5">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/now.png"></img>
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/result2.png"></img>
                             </div>
                         </div>
                     </div>
