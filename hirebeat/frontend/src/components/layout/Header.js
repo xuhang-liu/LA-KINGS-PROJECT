@@ -346,6 +346,27 @@ export class Header extends Component {
                   aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"/>
               </button>
+              {this.props.profile.is_employer ? 
+              <a href="/employer" className="navbar-brand mr-auto">
+              <img
+                src={hirebeatlogo}
+                className="img-fluid mr-3"
+                alt="logo"
+                style={{
+                  width: "16%",
+                  height:"16%",
+                }}
+              />
+              <img
+                src={hirebeatlogotext}
+                className="img-fluid mr-2"
+                alt="logotext"
+                style={{
+                  width: "50%",
+                  height:"100%",
+                }}
+              />
+              </a> :
               <a href="/" className="navbar-brand mr-auto">
                 <img
                   src={hirebeatlogo}
@@ -365,7 +386,7 @@ export class Header extends Component {
                     height:"100%",
                   }}
                 />
-              </a>
+              </a>}
             {/*</div>*/}
             {isAuthenticated
                 ? user.groups[0] == "reviewers"

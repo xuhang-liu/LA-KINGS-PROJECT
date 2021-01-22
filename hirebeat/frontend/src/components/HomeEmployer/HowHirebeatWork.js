@@ -10,7 +10,7 @@ class HowHirebeatWork extends Component {
     render() {
         return (
             <React.Fragment>
-            <section className="ptb-100">
+            <section className="pt-100 pb-100">
                 <div className="container" id='i1'>
                     <div className="section-title">
                         <h2 className="mb-2">How HireBeat Works</h2>
@@ -46,7 +46,7 @@ class HowHirebeatWork extends Component {
                                                 Modify specific questions for your candidate.
                                             </li>
                                         </ul>
-                                        <Link to='/employer_dashboard' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <Link to='/employer_register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
                                             <i className="bx bxs-arrow-to-right"></i>
                                                 Post Positions Now
                                             <span></span>
@@ -82,7 +82,7 @@ class HowHirebeatWork extends Component {
                                                 Send video interview invitation by on click.
                                             </li>
                                         </ul>
-                                        <Link to='/employer_dashboard' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <Link to='/employer_register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
                                             <i className="bx bxs-arrow-to-right"></i>
                                                 Send Invitations Now
                                             <span></span>
@@ -118,7 +118,7 @@ class HowHirebeatWork extends Component {
                                                 Make decision at your leisure and optimized the hiring process by 80%.
                                             </li>
                                         </ul>
-                                        <Link to='/employer_dashboard' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <Link to='/employer_register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
                                             <i className="bx bxs-arrow-to-right"></i>
                                                 Access Candidates Now
                                             <span></span>
@@ -132,7 +132,7 @@ class HowHirebeatWork extends Component {
                 </OwlCarousel>
 
                 <ReactWOW>
-                    <div className="overview-item">
+                    <div className="overview-item pt-100">
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
                                 <div className="col-lg-6 col-md-6">
@@ -145,7 +145,7 @@ class HowHirebeatWork extends Component {
                                     <div className="overview-content pl-3">
                                         <h3 style={{fontSize: "2.625rem"}}>About HireBeat</h3>
                                         <p>HireBeat is a convenient web platform that decreases 90% of your time to hire right candidates via customized interview questions and pre-recorded video interviews.</p>
-                                        <Link to='/employer_dashboard' className='default-btn' style={{backgroundColor: "#67A3F3", textDecoration:'none'}}>
+                                        <Link to='/employer_register' id="id-employer_signup2" className='default-btn' style={{backgroundColor: "#67A3F3", textDecoration:'none'}}>
                                         <i className="bx bxs-arrow-to-right"></i>
                                             Create Interviews For Free
                                         <span></span>

@@ -16,7 +16,7 @@ class LeverageHireBeat extends Component {
                     <ReactWOW animation='fadeInRight' delay='0.1s'>
                     <div className="row my-5">
                         <div className="col-lg-3 col-6 mt-2" >
-                            <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                            <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
                                             <box-icon name='stopwatch' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#13C4A1", borderRadius:"0.3em", padding:"1em"}}/>
@@ -29,7 +29,7 @@ class LeverageHireBeat extends Component {
                             </div>
                         </div>
                         <div className="col-lg-3 col-6 mt-2" >
-                            <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                            <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
                                             <box-icon name='money' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#FAC046", borderRadius:"0.3em", padding:"1em"}}/>
@@ -42,7 +42,7 @@ class LeverageHireBeat extends Component {
                             </div>
                         </div>
                         <div className="col-lg-3 col-6 mt-2" >
-                            <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                            <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
                                             <box-icon name='trip' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#FF6B00", borderRadius:"0.3em", padding:"1em"}}/>
@@ -55,7 +55,7 @@ class LeverageHireBeat extends Component {
                             </div>
                         </div>
                         <div className="col-lg-3 col-6 mt-2" >
-                            <div className="card" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                            <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
                                             <box-icon name='devices' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#6E6BFF", borderRadius:"0.3em", padding:"1em"}}/>

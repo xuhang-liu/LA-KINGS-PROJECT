@@ -53,7 +53,7 @@ class MainBanner extends Component {
                         </h5>
                     </div>
                     <div className="mt-5">
-                        <Link to="/employer_register">
+                        <Link to="/employer_register" id="id-employer_signup2">
                             <button className="default-btn1 px-4">
                                 Create Interviews for Free
                             </button>
