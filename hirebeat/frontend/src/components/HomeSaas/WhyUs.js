@@ -38,7 +38,7 @@ class WhyUs extends Component {
                                         <a
                                             onClick={e => {e.preventDefault(); this.openModal()}}
                                             className="video-btn popup-youtube"
-                                            style={{top:"45%"}}
+                                            style={{top:"45%", backgroundColor:"ff6b00"}}
                                         >
                                             <i className="bx bx-play" style={{color:"white"}}></i>
                                         </a>
@@ -47,8 +47,10 @@ class WhyUs extends Component {
                             </div>
 
                             <div className="col-lg-4 col-md-4">
-                                <p className="section-txt3" style={{marginTop:"3rem"}}>We Lead You to Success</p>
-                                <p className="section-txt4">Watch this short video to see why you should sign up for HireBeat</p>
+                                <p className="section-txt3" style={{marginTop:"3rem", color:"#090d3a"}}>We Lead You to Success</p>
+                                <p className="section-txt4">Watch this video to know more</p>
+                                <a href="/howitworks" className="read-more" style={{color: "#ffffff", fontSize:"1rem", textDecoration:"none", marginLeft:"20%"}}>
+                                    Learn how HireBeat works <i class="bx bx-right-arrow-alt"></i></a>
                             </div>
                         </div>
                     </div>
