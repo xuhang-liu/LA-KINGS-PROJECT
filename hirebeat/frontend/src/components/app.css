@@ -2507,3 +2507,49 @@ h5 {
   width: 100%;
   background-color: #e8edfc;
 }
+
+.employer-landing-card h3{
+  color: #090D3A;
+}
+
+.employer-landing-card h5{
+  color: #090D3A;
+  font-size: 1rem; 
+  line-height: 1.8rem;
+  margin-top: 0.7rem;
+}
+
+.employer-main-banner{
+  height: 100vh;
+  min-height: 760px;
+  width: auto;
+  background-image: url(https://hirebeat-assets.s3.amazonaws.com/Employer/bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 20vh;
+  padding-left: 7vw;
+  color: #090D3A;
+}
+
+.employer-main-banner .title{
+  width: 40vw;
+}
+
+.before-after{
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.before-after .before{
+  position: absolute;
+  top: 37%;
+  left: 57%
+}
+
+.before-after .before h3{
+  font-size: 1.6vw;
+}
+
+.before-after .before h5{
+  font-size: 1vw;
+}

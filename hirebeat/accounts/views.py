@@ -99,7 +99,7 @@ def resend_activation_email(request):
     account_activation_token = PasswordResetTokenGenerator()
     current_site = get_current_site(request)
     subject = 'Please Activate Your Hirebeat Account'
-    message = get_template("accounts/account_activation_email.txt")
+    message = get_template("accounts/account_activation_email.html")
     context = {
         'user': user,
         'domain': current_site.domain,
@@ -115,6 +115,7 @@ def resend_activation_email(request):
         from_email,
         to_list,
     )
+    email.content_subtype = "html"
     email.send()
 
     return Response({

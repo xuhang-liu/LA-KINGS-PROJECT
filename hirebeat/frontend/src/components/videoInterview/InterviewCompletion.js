@@ -64,7 +64,7 @@ export class InterviewCompletion extends Component {
 }
 
 const CustomerFeedback = (props) => {
-    const [rating, setRating] = useState(0); // initial rating value
+    const [rating, setRating] = useState(5); // initial rating value
  
     const handleRating = (rate) => {
         setRating(rate)
@@ -149,12 +149,13 @@ class FeedbackVideo extends Component {
 
                 <section className="video-presentation-area ptb-100">
                     <div className="container">
-                        <div className="section-title">
+                        <div className="section-title" style={{maxWidth:"1224px"}}>
                             <h2>Do you feel confident for your next interview?</h2>
                             <p>HireBeat can help! We provide AI-powered interview training and resume optimization tool that helps you get hired.</p>
                        </div>
-
-                        <div className="video-box" id="id-video2">
+                       <div className="row align-items-center">
+                           <div className="col-lg-6 col-md-6">
+                           <div className="video-box" id="id-video2">
                             <img src="https://hirebeat-assets.s3.amazonaws.com/home_bg.png" className="main-image" alt="image" />
 
                             <Link href="#play-video">
@@ -166,28 +167,29 @@ class FeedbackVideo extends Component {
                                     <i className="bx bx-play" style={{color:"white"}}></i>
                                 </a>
                             </Link>
-                        </div>
+                            </div>
+                           </div>
+                           <div className="col-lg-6 col-md-6">
+                            <div className="container">
+                                <div style={{width:"50%", margin:"auto", marginBottom:"3rem", marginTop:"-4rem"}}>
+                                    <Link to={{pathname:'/dashboard', params:{subpage:"interview"}}} style={{textDecoration:"none"}}>
+                                        <button className="default-btn btn-block" style={{paddingLeft:"25px", fontWeight:"600"}}>
+                                            Go to Dashboard
+                                        </button>
+                                    </Link>
+                                </div>
+                                <div style={{width:"50%", margin:"auto"}}>
+                                    <Link to="/howitworks" style={{textDecoration:"none"}}>
+                                        <button className="default-btn btn-block" style={{paddingLeft:"25px", fontWeight:"600", backgroundColor:"#e8edfc", color:"#090d3a"}}>
+                                            Learn How Hirebeat Works
+                                        </button>
+                                    </Link>
+                                </div>
+                           </div>
+                       </div>
+                    </div>
                     </div>
                 </section>
-                <div className="container" style={{width:"56%"}}>
-                    <div className="row">
-                        <div className="col-5">
-                            <Link to="/howitworks" style={{textDecoration:"none"}}>
-                            <button className="default-btn btn-block" style={{paddingLeft:"25px"}}>
-                                Learn How Hirebeat Works
-                            </button>
-                            </Link>
-                        </div>
-                        <div className ="col-2" />
-                        <div className="col-5 float-right">
-                            <Link to={{pathname:'/dashboard', params:{subpage:"interview"}}} style={{textDecoration:"none"}}>
-                            <button className="default-btn btn-block" style={{paddingLeft:"25px"}}>
-                                Go to Dashboard
-                            </button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
             </React.Fragment>
         );
     }

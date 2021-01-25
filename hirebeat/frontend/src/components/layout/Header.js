@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 //import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
 import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
+import 'boxicons';
 //import Dropdown from 'react-bootstrap/Dropdown'
 
 export class Header extends Component {
@@ -82,13 +83,13 @@ export class Header extends Component {
                     <ul className="nav_submenu" style={{height:"14.6rem",width:"18rem"}}>
                         <li>
                         <Link id="id-interviewpr" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bx-video-recording" style={{color:"white", top:"0.5rem"}}></i></span>Interview Practice</Link></li>
+                        <span><box-icon name='video-recording' color="white" size="0.9rem" style={{padding:"0.5rem"}}/></span>Interview Practice</Link></li>
                         <li>
                         <Link id="id-resumeop" to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bx-file-find" style={{color:"white"}}></i></span>Resume Optimization</Link></li>
+                        <span><box-icon name='file-find' color="white" size="0.9rem" style={{padding:"0.5rem"}}/></span>Resume Optimization</Link></li>
                         <li>
                         <Link id="id-topcompany" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
+                        <span><box-icon name='meteor' color="white" size="0.9rem" style={{padding:"0.5rem"}}/></span>Top Companies Tips</Link></li>
                         <li>
                         <Link id="id-howitworks" to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         How it works</Link></li>
@@ -133,14 +134,14 @@ export class Header extends Component {
           <li className="nav-item">
             <Link to="/login">
               <a className="default-btn mr-3" id="id-login" style={{color:"white"}}>
-                <i className="bx bx-log-in"></i> Log In <span></span>
+                <i className="bx bx-log-in"></i>Log In<span></span>
               </a>
             </Link>
             </li>
             <li className="nav-item">
             <Link to="/register">
             <a className="default-btn mr-3" id="id-signup" style={{color:"white", backgroundColor:"#ff612f"}}>
-              <i className="bx bxs-hot"></i>Sign Up <span></span>
+              <i className="bx bxs-hot"></i>Sign Up<span></span>
             </a>
             </Link>
             </li>
@@ -157,15 +158,15 @@ export class Header extends Component {
                 <span className="header-text" style={{cursor:'pointer'}}>
                     Features <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"14.6rem",width:"18rem"}}>
+                    <li>
+                        <Link id="id-interviewpr" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><box-icon name='video-recording' color="white" size="0.9rem" style={{padding:"0.5rem"}}/></span>Interview Practice</Link></li>
                         <li>
-                        <Link id="id-interviewpr1" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bx-video-recording" style={{color:"white", top:"0.5rem"}}></i></span>Interview Practice</Link></li>
+                        <Link id="id-resumeop" to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><box-icon name='file-find' color="white" size="0.9rem" style={{padding:"0.5rem"}}/></span>Resume Optimization</Link></li>
                         <li>
-                        <Link id="id-resumeop1" to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bx-file-find" style={{color:"white"}}></i></span>Resume Optimization</Link></li>
-                        <li>
-                        <Link id="id-topcompany1" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
+                        <Link id="id-topcompany" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><box-icon name='meteor' color="white" size="0.9rem" style={{padding:"0.5rem"}}/></span>Top Companies Tips</Link></li>
                         <li>
                         <Link id="id-howitworks1" to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         How it works</Link></li>
@@ -246,9 +247,54 @@ export class Header extends Component {
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Company <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"8rem"}}>
-                      <li><Link id="id-aboutus" to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
-                      <li><Link id="id-contact" to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
-                      <li><Link id="id-blog" to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                      <li><Link id="id-aboutus2" to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link id="id-contact2" to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link id="id-blog2" to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
+                    </ul>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </React.Fragment>
+    );
+  };
+
+  renderEmployerGuestLinks = () => {
+    return (
+        <React.Fragment>
+          <ul className="navbar-nav d-flex flex-row order-xl-1">
+          <li className="nav-item">
+            <Link to="/login">
+              <a className="default-btn mr-3" id="id-login-employer" style={{color:"white"}}>
+                <i className="bx bx-log-in"></i>Log In<span></span>
+              </a>
+            </Link>
+            </li>
+            <li className="nav-item">
+            <Link to="/employer_register">
+            <a className="default-btn mr-3" id="id-signup-employer" style={{color:"white", backgroundColor:"#ff612f"}}>
+              <i className="bx bxs-hot"></i>Employer Sign Up<span></span>
+            </a>
+            </Link>
+            </li>
+          </ul>
+
+
+          <div className="collapse navbar-collapse"
+               id="navbarSupportedContent">
+
+            <ul
+              className="navbar-nav ml-auto mr-5
+                 text-left order-xl-0">
+              <li className="nav-item">
+              <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Company <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu" style={{height:"8rem"}}>
+                      <li><Link id="id-aboutus3" to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link id="id-contact3" to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link id="id-blog3" to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
                     </ul>
                   </span>
                 </a>
@@ -277,6 +323,8 @@ export class Header extends Component {
 
   render() {
     const {isAuthenticated, user} = this.props.auth;
+    var uri = window.location.pathname;
+    uri = uri.substring(1, uri.length);
     return (
       <div id="navbar" className="navbar-area bg-white">
         <nav
@@ -298,8 +346,28 @@ export class Header extends Component {
                   aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"/>
               </button>
-              <Link to="/">
-              <a className="navbar-brand mr-auto">
+              {this.props.profile.is_employer ? 
+              <a href="/employer" className="navbar-brand mr-auto">
+              <img
+                src={hirebeatlogo}
+                className="img-fluid mr-3"
+                alt="logo"
+                style={{
+                  width: "16%",
+                  height:"16%",
+                }}
+              />
+              <img
+                src={hirebeatlogotext}
+                className="img-fluid mr-2"
+                alt="logotext"
+                style={{
+                  width: "50%",
+                  height:"100%",
+                }}
+              />
+              </a> :
+              <a href="/" className="navbar-brand mr-auto">
                 <img
                   src={hirebeatlogo}
                   className="img-fluid mr-3"
@@ -318,8 +386,7 @@ export class Header extends Component {
                     height:"100%",
                   }}
                 />
-              </a>
-              </Link>
+              </a>}
             {/*</div>*/}
             {isAuthenticated
                 ? user.groups[0] == "reviewers"
@@ -327,6 +394,8 @@ export class Header extends Component {
                     : this.props.profile.is_employer
                     ? this.renderEmployerLinks()
                     : this.renderUserLinks()
+                : uri == ("employer" || "employer_register") ?
+                  this.renderEmployerGuestLinks()
                 : this.renderGuestLinks()
             }
 

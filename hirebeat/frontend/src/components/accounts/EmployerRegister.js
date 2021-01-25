@@ -80,11 +80,10 @@ export class EmployerRegister extends Component {
 
                     <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"3rem"}}>
-                                    <div className="signup-form">
-                                      <div style={{marginBottom:"3rem"}}>
-                                        <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next"}}><b>Become an Employer at HireBeat</b></h3>
-                                      </div>
-
+                        <div style={{marginBottom:"3rem", paddingTop:"3rem"}}>
+                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next", textAlign:"center"}}><b>Become an Employer at HireBeat</b></h1>
+                        </div>
+                    <div className="signup-form">
                     <form onSubmit={this.onSubmit}>
                       <div className="form-group">
                         <input

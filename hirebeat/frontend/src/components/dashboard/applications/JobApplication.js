@@ -193,37 +193,37 @@ const JobCard = (props) => {
                                 <label style={{ fontSize: "17px", margin:"2%"}}>
                                     Candidate Name
                                 </label>
-                                <input type="text" name="name1" onChange={(e) => {setName1(e.target.value)}} className="form-control" required="required" placeHolder="Jack"/>
+                                <input type="text" name="name1" onChange={(e) => {setName1(e.target.value)}} className="form-control" required="required" placeHolder="Enter your 1st candidate here"/>
                             </div>
                             <div className="form-group col-6">
                                 <label style={{ fontSize: "17px", margin:"2%"}}>
                                     Candidate Email
                                 </label>
-                                <input type="email" name="email1" onChange={(e) => {setEmail1(e.target.value)}} className="form-control" required="required" placeHolder="jack@gmail.com"/>
+                                <input type="email" name="email1" onChange={(e) => {setEmail1(e.target.value)}} className="form-control" required="required" placeHolder="Enter your 1st candidate’s email here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name2" onChange={(e) => {setName2(e.target.value)}} className="form-control" />
+                                <input type="text" name="name2" onChange={(e) => {setName2(e.target.value)}} className="form-control" placeHolder="Enter your 2nd candidate here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email2" onChange={(e) => {setEmail2(e.target.value)}} className="form-control" />
+                                <input type="email" name="email2" onChange={(e) => {setEmail2(e.target.value)}} className="form-control" placeHolder="Enter your 2nd candidate’s email here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name3" onChange={(e) => {setName3(e.target.value)}} className="form-control" />
+                                <input type="text" name="name3" onChange={(e) => {setName3(e.target.value)}} className="form-control" placeHolder="Enter your 3rd candidate here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email3" onChange={(e) => {setEmail3(e.target.value)}} className="form-control" />
+                                <input type="email" name="email3" onChange={(e) => {setEmail3(e.target.value)}} className="form-control" placeHolder="Enter your 3rd candidate’s email here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name4" onChange={(e) => {setName4(e.target.value)}} className="form-control" />
+                                <input type="text" name="name4" onChange={(e) => {setName4(e.target.value)}} className="form-control" placeHolder="Enter your 4th candidate here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email4" onChange={(e) => {setEmail4(e.target.value)}} className="form-control" />
+                                <input type="email" name="email4" onChange={(e) => {setEmail4(e.target.value)}} className="form-control" placeHolder="Enter your 4th candidate’s email here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name5" onChange={(e) => {setName5(e.target.value)}} className="form-control" />
+                                <input type="text" name="name5" onChange={(e) => {setName5(e.target.value)}} className="form-control" placeHolder="Enter your 5th candidate here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email5" onChange={(e) => {setEmail5(e.target.value)}} className="form-control" />
+                                <input type="email" name="email5" onChange={(e) => {setEmail5(e.target.value)}} className="form-control" placeHolder="Enter your 5th candidate’s email here"/>
                             </div>
 
 
