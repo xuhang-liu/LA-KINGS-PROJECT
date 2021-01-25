@@ -5,10 +5,10 @@ import 'boxicons';
 class LeverageHireBeat extends Component {
     render() {
         return (
-            <section className="features-area pt-100 pb-70 bg-f4f6fc" style={{backgroundImage:"linear-gradient(103.24deg, rgba(103, 163, 243, 0.8) 18.41%, #E8EDFC 107.46%)"}}>
+            <section className="features-area pt-100 pb-70 bg-leverageHirebeat">
                 <div style={{width:"85vw", margin:"auto"}}>
                     <div className="text-center" style={{color:"#090D3A"}}>
-                        <h1><b>Leverage HireBeat to Enrich Your Recruiting Efforts</b></h1>
+                        <h1 style={{fontWeight:"600"}}>Leverage HireBeat to Enrich Your Recruiting Efforts</h1>
                         <div className="my-4">
                             <h5 style={{color:"#090D3A"}}>Set up the interview once and review hundreds of candidates anytime and anywhere.</h5>
                         </div>
@@ -22,7 +22,7 @@ class LeverageHireBeat extends Component {
                                             <box-icon name='stopwatch' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#13C4A1", borderRadius:"0.3em", padding:"1em"}}/>
                                         </div>
                                         <div className="px-3 employer-landing-card">
-                                            <h3><b>Time</b></h3>
+                                            <h3 style={{fontWeight:"600"}}>Time</h3>
                                             <h5>Streamline screening process and reduce time up to 80%</h5>
                                         </div>
                                     </div>
@@ -35,7 +35,7 @@ class LeverageHireBeat extends Component {
                                             <box-icon name='money' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#FAC046", borderRadius:"0.3em", padding:"1em"}}/>
                                         </div>
                                         <div className="px-3 employer-landing-card">
-                                            <h3><b>Cost</b></h3>
+                                            <h3 style={{fontWeight:"600"}}>Cost</h3>
                                             <h5>Save hiring and recruiting cost by up to 50% </h5>
                                         </div>
                                     </div>
@@ -48,7 +48,7 @@ class LeverageHireBeat extends Component {
                                             <box-icon name='trip' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#FF6B00", borderRadius:"0.3em", padding:"1em"}}/>
                                         </div>
                                         <div className="px-3 employer-landing-card">
-                                            <h3><b>Engagement</b></h3>
+                                            <h3 style={{fontWeight:"600"}}>Engagement</h3>
                                             <h5>Review candidate with no time or place limitation</h5>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@ class LeverageHireBeat extends Component {
                                             <box-icon name='devices' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#6E6BFF", borderRadius:"0.3em", padding:"1em"}}/>
                                         </div>
                                         <div className="px-3 employer-landing-card">
-                                            <h3><b>Collaboration</b></h3>
+                                            <h3 style={{fontWeight:"600"}}>Collaboration</h3>
                                             <h5>Invite team to work on candidate screening virtually</h5>
                                         </div>
                                     </div>
