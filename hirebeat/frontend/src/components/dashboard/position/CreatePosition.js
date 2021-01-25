@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { IconText } from "../DashboardComponents";
 import PropTypes from "prop-types";
 import { addPosition } from "../../../redux/actions/question_actions";
+import 'boxicons';
 
 export class CreatePosition extends Component{
 
@@ -103,6 +104,7 @@ export class CreatePosition extends Component{
                     {!position_added &&
                     <form onSubmit={this.savePosition}>
                     <div className="form-row">
+                        <p className="interview-txt7"><box-icon name='message-square-error' color="#56a3fa"/> Do not ask questions that are discriminatory, illegal, or otherwise violate the HireBeat site rules.</p>
                         <div className="form-group col-10">
                                 <label style={{ fontSize: "17px", margin:"1%"}}>
                                     Question 1:

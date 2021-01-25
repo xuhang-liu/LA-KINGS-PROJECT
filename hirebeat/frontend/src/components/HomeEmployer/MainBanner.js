@@ -43,18 +43,18 @@ class MainBanner extends Component {
             <React.Fragment>
                 <div className="employer-main-banner">
                     <div className="title">
-                        <h1 style={{fontSize:"2.4rem", fontWeight:"600"}}>
+                        <h1 style={{fontSize:"2.4rem", fontWeight:"600", color:"#ffffff"}}>
                             Video Interview Platform that Transformed the Hiring Porcess
                         </h1>
                     </div>
                     <div className="my-3">
-                        <h5 style={{color:"#4A6F8A"}}>
+                        <h4 style={{color:"#ffffff", paddingTop:"1rem"}}>
                             We help recuitment team hire talents much faster than ever
-                        </h5>
+                        </h4>
                     </div>
                     <div className="mt-5">
-                        <Link to="/employer_register">
-                            <button className="default-btn1 px-4">
+                        <Link to="/employer_register" id="id-employer_signup2">
+                            <button className="default-btn px-4">
                                 Create Interviews for Free
                             </button>
                         </Link>

@@ -282,8 +282,8 @@ p:last-child {
 .default-btn:hover, .default-btn:focus {
   background-color: #ff612f;
   color: #ffffff;
-  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+  -webkit-box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
+          box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
 }
 
 .default-btn:hover span, .default-btn:focus span {
@@ -294,8 +294,8 @@ p:last-child {
 .default-btn1:hover, .default-btn:focus {
   background-color: #ff612f;
   color: #ffffff;
-  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+  -webkit-box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
+          box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
 }
 
 .default-btn1:hover span, .default-btn:focus span {
@@ -306,8 +306,8 @@ p:last-child {
 .default-btn2:hover, .default-btn2:focus {
   background-color: #080a3c;
   color: #ffffff;
-  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+  -webkit-box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
+          box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
 }
 
 .default-btn2:hover span, .default-btn2:focus span {
@@ -5863,8 +5863,8 @@ form .form-group .form-control::placeholder {
 }
 
 .contact-form form .default-btn:hover, .contact-form form .default-btn:focus {
-  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(43, 160, 255, 0.678) !important;
+          box-shadow: 0px 5px 28.5px 1.5px rgba(43, 160, 255, 0.678) !important;
 }
 
 .contact-form .with-errors ul {
