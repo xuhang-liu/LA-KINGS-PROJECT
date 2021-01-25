@@ -134,25 +134,18 @@ class MainBanner extends Component {
                                     <div className="col-lg-7 col-md-12">
                                         <div className="hero-content pl-6">
                                             <h1>All-in-one platform to land your next dream job</h1>
-                                            <p>HireBeat is the AI-powered interview training and resume optimization tool that helps you get hired</p>
+                                            <p>AI-powered interview training and resume optimization tool that helps you pass the resume screening and nail your job interview</p>
                                             
                                             <div className="banner-btn">
                                                 <div className="d-flex">
-                                                    <Link to="/practice">
+                                                    <Link to="/register">
                                                         <a id="id-interviewpractice" className="default-btn2" style={{color:"white", marginRight:"1rem", fontWeight:"600", fontsize:"20px", lineHeight:"26px"}}>
-                                                        Interview Practice
-                                                            <span></span>
-                                                        </a>
-                                                    </Link>
-
-                                                    <Link to="/resume">
-                                                        <a id="id-resumeoptimize" className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"20px", lineHeight:"26px"}}>
-                                                        Optimize Resume
+                                                        Sign up for Free
                                                             <span></span>
                                                         </a>
                                                     </Link>
                                                 </div>
-                                                <div className="d-flex" style={{marginTop:"1.5rem"}}>
+                                                {/*<div className="d-flex" style={{marginTop:"1.5rem"}}>
                                                     <Link to="/career" style={{textDecoration:"none"}}>
                                                         <a id="id-findjobs">
                                                         <span className="number" 
@@ -165,7 +158,7 @@ class MainBanner extends Component {
                                                         <p style={{color:"white", fontWeight:"600", fontsize:"20px", lineHeight:"26px", display:"inline-block"}}>Find Jobs</p>
                                                         </a>
                                                     </Link>
-                                                </div>
+                                                </div>*/}
                                             </div>
                                             {/*<a href="https://www.producthunt.com/posts/hirebeat-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hirebeat-2" target="_blank">*/}
                                             {/*        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=275315&theme=dark" alt="HireBeat - All-in-one career training platform for job seekers | Product Hunt" style={{width:'11', height:'3.5rem', paddingTop:'1rem'}}/></a>*/}

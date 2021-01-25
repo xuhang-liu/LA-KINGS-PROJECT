@@ -93,6 +93,14 @@ img {
   vertical-align: middle;
 }
 
+.bg-highback {
+  background-image: linear-gradient(101.6deg, rgba(103, 163, 243, 0.5) 10.77%, #E8EDFC 106.67%);
+}
+
+.bg-leverageHirebeat {
+  background-image: linear-gradient(103.24deg, #E7ECF2 18.41%, #FFFFFF 107.46%);
+}
+
 .bg-f4f6fc {
   background-color: #f4f6fc;
 }
@@ -1956,7 +1964,7 @@ Video Presentation Area CSS
           transform: translateY(-50%);
   width: 80px;
   height: 80px;
-  background-color: #56a3fa;
+  background-color: #ff612f;
   border-radius: 5px;
   color: #ffffff;
   font-size: 60px;
@@ -1975,7 +1983,7 @@ Video Presentation Area CSS
   bottom: 0;
   left: 0;
   border-radius: 5px;
-  border: 1px solid #56a3fa;
+  border: 1px solid #ff612f;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
@@ -2003,12 +2011,12 @@ Video Presentation Area CSS
 }
 
 .video-box .video-btn:hover, .video-box .video-btn:focus {
-  background-color: #ff612f;
+  background-color: #56a3fa;
   color: #ffffff;
 }
 
 .video-box .video-btn:hover::after, .video-box .video-btn:hover::before, .video-box .video-btn:focus::after, .video-box .video-btn:focus::before {
-  border-color: #ff612f;
+  border-color: #56a3fa;
 }
 
 .shape-map1 {

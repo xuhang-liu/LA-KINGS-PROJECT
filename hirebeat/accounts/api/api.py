@@ -58,6 +58,7 @@ class ResgisterAPI(generics.GenericAPIView):
             from_email,
             to_list,
         )
+        email.content_subtype = "html"
         email.send()
 
         ### token
@@ -102,6 +103,7 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
             from_email,
             to_list,
         )
+        email.content_subtype = "html"
         email.send()
 
         ### token
