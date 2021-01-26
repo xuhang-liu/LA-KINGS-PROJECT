@@ -4,7 +4,7 @@ import ReactWOW from 'react-wow';
 class AmazingFeatures extends Component {
     render() {
         return (
-            <section className="features-area pt-100 pb-70 bg-f4f6fc">
+            <section className="features-area pt-100 pb-100 bg-f4f6fc">
                 <div className="container">
                     <div className="section-title">
                         <h2>Why Choose HireBeat</h2>

@@ -6,7 +6,7 @@ import 'boxicons';
 class HighlitedFeatures extends Component {
     render() {
         return (
-            <section className="features-area pt-100 pb-70 bg-highback">
+            <section className="features-area pt-100 pb-100 bg-highback">
                 <div className="container max-width-1290" style={{maxWidth:"1440px"}}>
                     <div className="section-title">
                         <h2>Our Highlighted Features</h2>

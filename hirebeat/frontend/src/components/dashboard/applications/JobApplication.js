@@ -306,7 +306,7 @@ const Applicant = (props) => {
                 </button>
             case 2:
                 return <button className="btn btn-warning"  style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => viewResult()}>
-                    On Hold
+                    Hold
                 </button>
             case 3:
                 return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => viewResult()}>

@@ -95,7 +95,7 @@ class ReviewApplication extends Component{
                                     Accept
                                 </button>
                                 <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2)}}>
-                                    On Hold
+                                    Hold
                                 </button>
                                 <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(3)}}>
                                     Reject

@@ -8,8 +8,8 @@ import {Link} from "react-router-dom";
 class CompanyProfile extends Component {
     render() {
         return (
-            <section className="features-area pt-100 pb-70 bg-f4f6fc">
-                <div className="container max-width-1290">
+            <section className="features-area pt-100 pb-100 bg-f4f6fc">
+                <div className="container max-width-1290" style={{maxWidth:"100rem"}}>
                     <div>
                         <h2 className="section-title2">HireBeat Helps You Do Your Research</h2>
                         <br/>
