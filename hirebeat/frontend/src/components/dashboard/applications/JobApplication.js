@@ -161,6 +161,7 @@ const JobCard = (props) => {
                                     comment_status={a.comment_status}
                                     positionId={a.positions_id}
                                     isRecorded={a.is_recorded}
+                                    videoCount={a.video_count}
                                     getApplicantsVideos={props.getApplicantsVideos}
                                     getApplicantsInfo={props.getApplicantsInfo}
                                     getRecordStatus={props.getRecordStatus}
@@ -333,13 +334,17 @@ const Applicant = (props) => {
                 <div className="col-2 interview-txt9 mt-2">{props.date}</div>
                 <div className="col-3">
                     {props.isRecorded ?
-                        <button
-                            onClick={() => viewResult()}
-                            className="interview-txt9 mt-2"
-                            style={{color: "#67A3F3", border: "none", background: "white"}}
-                        >
-                            View Interview
-                        </button> :
+                        (props.videoCount > 0 ?
+                            <button
+                                onClick={() => viewResult()}
+                                className="interview-txt9 mt-2"
+                                style={{color: "#67A3F3", border: "none", background: "white"}}
+                            >
+                                View Interview
+                            </button> :
+                            <div className="interview-txt9">
+                                <p style={{color: "#7D7D7D"}}>Incomplete Interview</p>
+                            </div>) :
                         <div className="row" style={{alignItems: "center"}}>
                             <div className="interview-txt9">
                                 <p style={{color: "#7D7D7D"}}>Pending</p>

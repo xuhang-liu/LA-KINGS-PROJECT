@@ -201,9 +201,25 @@ def update_record(request):
 
     invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
     invited_obj.is_recorded = True
+    # update saved video count
+    invited_obj.video_count += 1;
     invited_obj.save()
 
     return Response("Update record status successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def update_record_refresh(request):
+    email = request.data["email"]
+    positions = request.data["positions"]
+    interview_obj = CandidatesInterview.objects.get(email=email, positions=positions)
+    interview_obj.is_recorded = True
+    interview_obj.save()
+
+    invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
+    invited_obj.is_recorded = True
+    invited_obj.save()
+
+    return Response("Update record status successfully after reloading", status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 def get_record_status(request):
