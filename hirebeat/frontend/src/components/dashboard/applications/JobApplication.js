@@ -335,15 +335,21 @@ const Applicant = (props) => {
                 <div className="col-3">
                     {props.isRecorded ?
                         (props.videoCount > 0 ?
+                            <div>
+                            <div className="interview-txt9">
+                                <p style={{color: "#090d3a", display:"inline-block"}}><strong>Completed</strong></p>
+                            
                             <button
                                 onClick={() => viewResult()}
-                                className="interview-txt9 mt-2"
-                                style={{color: "#67A3F3", border: "none", background: "white"}}
+                                className="interview-txt9"
+                                style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
                             >
-                                View Interview
-                            </button> :
+                                View
+                            </button>
+                            </div>
+                            </div> :
                             <div className="interview-txt9">
-                                <p style={{color: "#7D7D7D"}}>Incomplete Interview</p>
+                                <p style={{color: "#7D7D7D"}}>Withdrawn</p>
                             </div>) :
                         <div className="row" style={{alignItems: "center"}}>
                             <div className="interview-txt9">
@@ -356,7 +362,7 @@ const Applicant = (props) => {
                                     style={{color: "#67A3F3", border: "none", background: "white"}}
                                 >
                                     <i className="bx bx-redo bx-sm"></i>
-                                    Resend
+                                    Invite Again
                                 </button>
                             </div>
                         </div>

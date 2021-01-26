@@ -5,7 +5,7 @@ from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     resend_activation_email, update_user_email, update_user_password, \
     check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, \
-    update_record, get_record_status, get_received_interview, update_record_refresh
+    update_record, get_record_status, get_received_interview, update_record_refresh, employer_notification
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -66,6 +66,9 @@ urlpatterns = [
 
     ### update video records status
     path('update-record', update_record, name="update record"),
+
+    ### send employer notification
+    path('employer-notification', employer_notification, name="employer notification"),
 
     ### update video records status after refresh
     path('update-record-refresh', update_record_refresh, name="update record refresh"),

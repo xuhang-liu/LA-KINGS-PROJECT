@@ -23,6 +23,7 @@ import {
   GET_RECORD_STATUS,
   GET_RECEIVED_INTERVIEW,
   UPDATE_RECORD_REFRESH,
+  EMPLOYER_NOTIFICATION,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -355,6 +356,20 @@ export const updateRecord = (user) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_RECORD,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const employerNotification = (user) => (dispatch, getState) => {
+  axios
+    .post("employer-notification", user, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: EMPLOYER_NOTIFICATION,
         payload: res.data,
       });
     })
