@@ -70,6 +70,13 @@ export class CareerVideoUploader extends Component {
   }
 
   handleUploadAndFinish = () => {
+    // update video count
+    let user = {
+        "email": this.props.email,
+        "positions": this.props.positionId,
+    };
+    this.props.updateRecord(user);
+
     this.uploader.uploadFile(this.props.video);
     this.redirectToCompletion();
   };
