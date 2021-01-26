@@ -344,7 +344,7 @@ const Applicant = (props) => {
                                 className="interview-txt9"
                                 style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
                             >
-                                View
+                                <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
                             </button>
                             </div>
                             </div> :
@@ -361,7 +361,7 @@ const Applicant = (props) => {
                                     className="interview-txt9"
                                     style={{color: "#67A3F3", border: "none", background: "white"}}
                                 >
-                                    <i className="bx bx-redo bx-sm"></i>
+                                    <i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>
                                     Invite Again
                                 </button>
                             </div>
