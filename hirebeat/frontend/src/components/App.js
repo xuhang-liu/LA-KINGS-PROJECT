@@ -112,6 +112,10 @@ import BarclaysInfo from"./companyData/companies/BarclaysInfo";
 import CreditSuisseInfo from"./companyData/companies/CreditSuisseInfo";
 import HoulihanLokeyInfo from"./companyData/companies/HoulihanLokeyInfo";
 import MetLifeInfo from"./companyData/companies/MetLifeInfo";
+import AccentureInfo from"./companyData/companies/AccentureInfo";
+import BainInfo from"./companyData/companies/BainInfo";
+import BCGInfo from"./companyData/companies/BCGInfo";
+import OliverWymanInfo from"./companyData/companies/OliverWymanInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -326,6 +330,10 @@ class App extends Component {
                 <Route exact path="/credit-suisse" component={CreditSuisseInfo} />
                 <Route exact path="/houlihan-lokey" component={HoulihanLokeyInfo} />
                 <Route exact path="/metlife" component={MetLifeInfo} />
+                <Route exact path="/oliver-wyman" component={OliverWymanInfo} />
+                <Route exact path="/accenture" component={AccentureInfo} />
+                <Route exact path="/bain" component={BainInfo} />
+                <Route exact path="/boston-consulting-group" component={BCGInfo} />
                 <Route exact path="/jobs" component={JobList} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
