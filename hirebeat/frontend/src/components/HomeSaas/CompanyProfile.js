@@ -331,6 +331,26 @@ class CompanyProfile extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/MetLife.png" alt="MetLife logo"/>
                             </Link>
                         </div>
+                        <div className="item">
+                            <Link to="/accenture">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/accenture.png" alt="Accenture logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/bain">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/bain.png" alt="Bain logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/boston-consulting-group">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/bcg.png" alt="Boston Consulting Group logo"/>
+                            </Link>
+                        </div>
+                        <div className="item">
+                            <Link to="/oliver-wyman">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/oliverwyman.png" alt="Oliver Wyman logo"/>
+                            </Link>
+                        </div>
                     </OwlCarousel>
                     <a href="/companydata" className="read-more" style={{color: "#56a3fa", marginLeft: "76%", fontSize:"1rem", textDecoration:"none"}}>Explore our company data <i class="bx bx-right-arrow-alt"></i></a>
                 </div>
