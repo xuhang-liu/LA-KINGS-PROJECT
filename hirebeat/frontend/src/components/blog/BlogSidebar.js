@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/blog-how-to-answer-the-teamwork-type-question-in-an-interview">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog18.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Jan 27, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/blog-how-to-answer-the-teamwork-type-question-in-an-interview">
+                                    <a>How to answer the teamwork type question in an interview</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog17.jpg" alt="image"/>
@@ -320,25 +339,6 @@ class BlogSidebar extends Component {
                             <h4 className="title usmall">
                                 <Link to="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
                                     <a>Video interview platforms</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/blog-video-interview-practice">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog2.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Aug 16, 2020</time>
-                            <h4 className="title usmall">
-                                <Link to="/blog-video-interview-practice">
-                                    <a>Video interview practice</a>
                                 </Link>
                             </h4>
                         </div>
