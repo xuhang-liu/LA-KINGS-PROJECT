@@ -396,6 +396,30 @@ class CompanyList extends Component {
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/MetLife.png" alt="MetLife logo"/>
                                 </Link>
                             </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/accenture">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/accenture.png" alt="Accenture logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/bain">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/bain.png" alt="Bain logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/boston-consulting-group">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/bcg.png" alt="Boston Consulting Group logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/oliver-wyman">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/oliverwyman.png" alt="Oliver Wyman logo"/>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <MediaQuery minDeviceWidth={1224}>

@@ -87,7 +87,8 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
-    "blog-11-mistakes-made-by-the-most-interviewees-according-to-hr",
+    "/blog-how-to-answer-the-teamwork-type-question-in-an-interview",
+    "/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr",
     "/blog-why-do-you-want-to-work-here",
     "/blog-10-tips-to-deal-with-job-hunting-stress",
     "/blog-top-3-jobs-you-should-apply-for-finance-major",
@@ -107,6 +108,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog18.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog17.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog14.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog16.jpg",
@@ -127,6 +129,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Jan 27, 2021",
     "Jan 19, 2021",
     "Jan 13, 2021",
     "Dec 23, 2020",
@@ -147,6 +150,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "HOW TO ANSWER THE TEAMWORK TYPE QUESTION",
     "11 MISTAKES MADE BY THE MOST INTERVIEWEES",
     "WHY DO YOU WANT TO WORK HERE",
     "10 TIPS TO DEAL WITH JOB HUNTING STRESS",

@@ -17,7 +17,7 @@ class Progress extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/progress01.png" alt="Progress figure" />
                             </div>
                             <div className="justify-items">
-                            <h3 style={{marginTop:"1rem", fontWeight:"600"}}>1000+ Job Landed</h3>
+                            <h3 style={{marginTop:"1rem", fontWeight:"600", color:"#090d3a"}}>1000+ Job Landed</h3>
                             </div>
                             <div className="justify-items">
                                 <p className="section-txt1" style={{lineHeight:"36px", marginTop:"0.5rem", textAlign:"center", width:"70%", color:"#090d3a"}}>
@@ -31,7 +31,7 @@ class Progress extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/progress02.png" alt="Progress figure" />
                             </div>
                             <div className="justify-items">
-                            <h3 style={{marginTop:"1rem", fontWeight:"600"}}>68% Time Saved</h3>
+                            <h3 style={{marginTop:"1rem", fontWeight:"600", color:"#090d3a"}}>68% Time Saved</h3>
                             </div>
                             <div className="justify-items">
                                 <p className="section-txt1" style={{lineHeight:"36px", marginTop:"0.5rem", textAlign:"center", width:"70%", color:"#090d3a"}}>
@@ -45,7 +45,7 @@ class Progress extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/progress03.png" alt="Progress figure" />
                             </div>
                             <div className="justify-items">
-                            <h3 style={{marginTop:"1rem", fontWeight:"600"}}>82% Effectiveness</h3>
+                            <h3 style={{marginTop:"1rem", fontWeight:"600", color:"#090d3a"}}>82% Effectiveness</h3>
                             </div>
                             <div className="justify-items">
                                 <p className="section-txt1" style={{lineHeight:"36px", marginTop:"0.5rem", textAlign:"center", width:"70%", color:"#090d3a"}}>
