@@ -16,7 +16,7 @@ class AmazingFeatures extends Component {
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='door-open' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#13C4A1", borderRadius:"0.3em", padding:"1em"}}/>
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc1.png" alt="img"></img>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>A Standout Resume</h3>
@@ -32,7 +32,7 @@ class AmazingFeatures extends Component {
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='movie-play' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#ff6b00", borderRadius:"0.3em", padding:"1em"}}/>
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc2.png" alt="img"></img>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Improve Interview Skills</h3>
@@ -48,7 +48,7 @@ class AmazingFeatures extends Component {
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='chart' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#4689fa", borderRadius:"0.3em", padding:"1em"}}/>
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc3.png" alt="img"></img>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>In-depth Feedback</h3>
@@ -64,7 +64,7 @@ class AmazingFeatures extends Component {
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='book-alt' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#2fc2f0", borderRadius:"0.3em", padding:"1em"}}/>
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc4.png" alt="img"></img>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Extensive Question Bank</h3>
@@ -80,7 +80,7 @@ class AmazingFeatures extends Component {
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='meteor' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#fac046", borderRadius:"0.3em", padding:"1em"}}/>
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc5.png" alt="img"></img>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Get Hired Faster</h3>
@@ -96,7 +96,7 @@ class AmazingFeatures extends Component {
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='category-alt' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#7cd30d", borderRadius:"0.3em", padding:"1em"}}/>
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc6.png" alt="img"></img>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Company Data</h3>
