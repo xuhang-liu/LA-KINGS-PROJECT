@@ -10,6 +10,7 @@ import {
   VIDEO_UNDER_REVIEW,
   GET_VIDEOS_APPLICANT,
   GET_APPLICANT_INFO,
+  UPDATE_VIDEO_COMMENTS,
 } from "../actions/action_types";
 
 const initialState = {
@@ -37,6 +38,10 @@ export default function (state = initialState, action) {
         videos: action.payload,
         loaded: true,
       };
+    case UPDATE_VIDEO_COMMENTS:
+      return{
+        ...state,
+      }
     case GET_UNREVIEWED_VIDEO:
       return {
         q_type: action.payload.video.q_type,
