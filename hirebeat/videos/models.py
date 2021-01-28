@@ -70,5 +70,7 @@ class WPVideo(models.Model):
     question_desc = models.CharField(max_length=500, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     owner_id = models.BigIntegerField(null=True, blank=True)
+    video_stars = models.IntegerField(default=5)
+    video_comment = models.TextField(default="No comments yet")
     def __str__(self):
         return self.email

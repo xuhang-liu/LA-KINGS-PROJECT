@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
 import { JobApplication } from "./applications/JobApplication";
-import {CreatePosition} from "./position/CreatePosition";
+import { CreatePosition } from "./position/CreatePosition";
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";

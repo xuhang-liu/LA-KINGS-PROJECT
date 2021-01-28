@@ -37,7 +37,7 @@ class ReviewApplication extends Component{
                     </div>
                 </div> */}
 
-                <div className="card container" style={{marginTop:"1%"}}>
+                <div className="card container mb-5" style={{marginTop:"1%"}}>
                     <div className="row">
                         <div className="col-3 container">
                                 <div className="row" style={{marginTop:"10%", marginBottom:"2%"}}>
@@ -46,6 +46,8 @@ class ReviewApplication extends Component{
                                         style={{
                                         fontWeight: "bold",
                                         marginRight: "0.8rem",
+                                        wordWrap: "break-word",
+                                        wordBreak: "break-all",
                                         }}
                                     >
                                         {this.props.username_candidate}
