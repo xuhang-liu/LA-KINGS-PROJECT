@@ -161,6 +161,7 @@ const JobCard = (props) => {
                                     comment_status={a.comment_status}
                                     positionId={a.positions_id}
                                     isRecorded={a.is_recorded}
+                                    videoCount={a.video_count}
                                     getApplicantsVideos={props.getApplicantsVideos}
                                     getApplicantsInfo={props.getApplicantsInfo}
                                     getRecordStatus={props.getRecordStatus}
@@ -300,15 +301,15 @@ const Applicant = (props) => {
     const renderStatus = (status) => {
         switch(status){
             case 1:
-                return <button className="btn btn-success" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => {setShow(true)}}>
+                return <button className="btn btn-success" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => viewResult()}>
                     Accepted
                 </button>
             case 2:
-                return <button className="btn btn-warning"  style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => {setShow(true)}}>
-                    On Hold
+                return <button className="btn btn-warning"  style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => viewResult()}>
+                    Hold
                 </button>
             case 3:
-                return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => {setShow(true)}}>
+                return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => viewResult()}>
                     Rejected
                 </button>
             default:
@@ -333,13 +334,23 @@ const Applicant = (props) => {
                 <div className="col-2 interview-txt9 mt-2">{props.date}</div>
                 <div className="col-3">
                     {props.isRecorded ?
-                        <button
-                            onClick={() => viewResult()}
-                            className="interview-txt9 mt-2"
-                            style={{color: "#67A3F3", border: "none", background: "white"}}
-                        >
-                            View Interview
-                        </button> :
+                        (props.videoCount > 0 ?
+                            <div>
+                            <div className="interview-txt9">
+                                <p style={{color: "#090d3a", display:"inline-block"}}><strong>Completed</strong></p>
+                            
+                            <button
+                                onClick={() => viewResult()}
+                                className="interview-txt9"
+                                style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
+                            >
+                                <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
+                            </button>
+                            </div>
+                            </div> :
+                            <div className="interview-txt9">
+                                <p style={{color: "#7D7D7D"}}>Withdrawn</p>
+                            </div>) :
                         <div className="row" style={{alignItems: "center"}}>
                             <div className="interview-txt9">
                                 <p style={{color: "#7D7D7D"}}>Pending</p>
@@ -350,8 +361,8 @@ const Applicant = (props) => {
                                     className="interview-txt9"
                                     style={{color: "#67A3F3", border: "none", background: "white"}}
                                 >
-                                    <i className="bx bx-redo bx-sm"></i>
-                                    Resend
+                                    <i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>
+                                    Invite Again
                                 </button>
                             </div>
                         </div>

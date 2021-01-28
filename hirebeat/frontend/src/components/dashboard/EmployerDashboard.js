@@ -18,6 +18,7 @@ import PropTypes from "prop-types";
 import SubpageSetting from './SubpageSetting';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import safariAlert from "../basic/SafariAlert";
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -79,6 +80,7 @@ export class EmployerDashboard extends Component {
   }
 
   componentDidMount() {
+    safariAlert();
     this.props.loadProfile();
     this.activateEmail();
     this.verifyEmail();

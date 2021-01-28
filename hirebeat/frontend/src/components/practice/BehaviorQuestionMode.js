@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
-import safariAlert from "../basic/SafariAlert";
+//import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
 //import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
 import { useEffect } from "react";
@@ -24,10 +24,6 @@ export class BehaviorQuestionMode extends Component {
     const { history } = this.props;
     if (history) history.push(`/practice/modes/simulate`);
   };
-
-  componentDidMount() {
-    safariAlert();
-  }
 
   render() {
     return (

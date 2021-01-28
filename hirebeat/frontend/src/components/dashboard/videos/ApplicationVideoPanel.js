@@ -3,11 +3,8 @@ import { connect } from "react-redux";
 import ReactPlayer from 'react-player';
 import Rating from 'react-simple-star-rating';
 import { updateComments } from "./../../../redux/actions/video_actions"
-import reducers from "video-react/lib/reducers";
-//import { data } from "jquery";
 
 export function ApplicationVideoPanel (props) {
-
     const [ratings, setRating] = useState(props.stars);
     const [comments, setComment] = useState(props.comments);
     const [page, setPage] = useState(props.page);

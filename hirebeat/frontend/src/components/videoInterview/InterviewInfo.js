@@ -4,7 +4,7 @@ import {getInterviewQuestions} from "../../redux/actions/question_actions";
 import {getRecordStatus} from "../../redux/actions/auth_actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import safariAlert from "./../basic/SafariAlert";
+//import safariAlert from "./../basic/SafariAlert";
 import Modal from "react-bootstrap/Modal";
 
 class InterviewInfo extends Component {
@@ -26,7 +26,6 @@ class InterviewInfo extends Component {
     };
 
     componentDidMount() {
-        safariAlert();
         // confirm user recorded videos or not
         this.props.getRecordStatus(this.state.positionId, this.state.email);
         // get interview questions

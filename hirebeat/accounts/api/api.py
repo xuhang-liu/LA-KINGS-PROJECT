@@ -223,12 +223,10 @@ class RetrieveInterviewJobAPI(APIView):
         for position in positions:
             invited_candidates = InvitedCandidates.objects.filter(positions_id=position.id)
             total_applicants += len(invited_candidates)
-            videos = CandidatesInterview.objects.filter(positions_id=position.id)
-            videos_to_be_received += len(videos)
-            videos_received += len(videos.filter(is_recorded=True))
+            videos_to_be_received += len(invited_candidates)
+            videos_received += len(invited_candidates.filter(Q(is_recorded=True) & (Q(video_count=1) | Q(video_count=2) | Q(video_count=3))))
         if videos_to_be_received > 0:
             recorded_rate = (videos_received / videos_to_be_received)
-        print(recorded_rate)
         return Response(
             {
                 "jobs_posted": jobs_posted,

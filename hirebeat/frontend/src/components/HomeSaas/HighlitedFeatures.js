@@ -6,7 +6,7 @@ import 'boxicons';
 class HighlitedFeatures extends Component {
     render() {
         return (
-            <section className="features-area pt-100 pb-70 bg-highback">
+            <section className="features-area pt-100 pb-100 bg-highback">
                 <div className="container max-width-1290" style={{maxWidth:"1440px"}}>
                     <div className="section-title">
                         <h2>Our Highlighted Features</h2>
@@ -32,7 +32,7 @@ class HighlitedFeatures extends Component {
                             <ReactWOW animation='fadeInLeft' delay='0.2s'>
                             <a href='/resume' style={{textDecoration:'none'}}>
                                 <div className="features-box-one">
-                                    <i className='bx bx-laptop'></i>
+                                    <i className='bx bx-file'></i>
                                     <h3>Target Resume</h3>
                                     <p style={{textAlign:"left", marginTop:"1rem", marginLeft:"10%"}}><box-icon name='badge-check' size="0.8rem" color="#13c4a1" style={{marginRight:"0.5rem"}}/>
                                     Match resume with job description</p>
@@ -47,7 +47,7 @@ class HighlitedFeatures extends Component {
                             <ReactWOW animation='fadeInLeft' delay='0.2s'>
                             <a href='/companydata' style={{textDecoration:'none'}}>
                                 <div className="features-box-one">
-                                    <i className='bx bx-laptop'></i>
+                                    <i className='bx bx-data'></i>
                                     <h3>Popular Company Data</h3>
                                     <p style={{textAlign:"left", marginTop:"1rem"}}><box-icon name='badge-check' size="0.8rem" color="#13c4a1" style={{marginRight:"0.5rem"}}/>
                                     Explore job openings from 500+ companies</p>
