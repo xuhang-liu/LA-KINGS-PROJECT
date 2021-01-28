@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
-import safariAlert from "../basic/SafariAlert";
+//import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
 //import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
 import { useEffect } from "react";
@@ -84,7 +84,6 @@ export class QuestionTypeChoices extends Component {
   };
 
   componentDidMount() {
-    safariAlert();
     this.props.loadProfile();
     if(this.props.user != null){
       this.activateEmail();

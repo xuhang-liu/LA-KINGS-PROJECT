@@ -2,7 +2,7 @@ var ReactS3Uploader = require("react-s3-uploader");
 import React, { Component } from "react";
 import { addWPVideo } from "../../redux/actions/video_actions";
 import { createMessage } from "../../redux/actions/message_actions";
-import { updateRecord } from "../../redux/actions/auth_actions";
+import { updateRecord, employerNotification } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -70,6 +70,13 @@ export class CareerVideoUploader extends Component {
   }
 
   handleUploadAndFinish = () => {
+    // update video count
+    let user = {
+        "email": this.props.email,
+        "positions": this.props.positionId,
+    };
+    this.props.updateRecord(user);
+    this.props.employerNotification(user);
     this.uploader.uploadFile(this.props.video);
     this.redirectToCompletion();
   };
@@ -139,6 +146,6 @@ export class CareerVideoUploader extends Component {
 }
 
 
-export default connect(null, { createMessage, addWPVideo, updateRecord })(
+export default connect(null, { createMessage, addWPVideo, updateRecord, employerNotification })(
   withRouter(CareerVideoUploader)
 );

@@ -18,7 +18,7 @@ export function ApplicationVideoPanel (props) {
                 config={{ file: { attributes: { controlsList: 'nodownload' } } }}
                 // Disable right click
                 onContextMenu={e => e.preventDefault()}
-                width={"32rem"} height={"24rem"}/>
+                width={"32vw"} height={"auto"}/>
                 </div>
             </div>
         </div>

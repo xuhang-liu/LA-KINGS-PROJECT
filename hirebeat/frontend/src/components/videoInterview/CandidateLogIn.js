@@ -7,6 +7,7 @@ import {login, exchangeToken, loadProfile,
 //import SocialButton from "../accounts/SocialButton";
 import {createMessage} from "../../redux/actions/message_actions";
 import PageTitleArea from '../Common/PageTitleArea';
+//import safariAlert from "./../basic/SafariAlert";
 //import MediaQuery from 'react-responsive';
 //import { confirmAlert } from 'react-confirm-alert';
 
@@ -28,7 +29,6 @@ export class CandidateLogin extends Component {
     let userEmail = this.state.email;
     let emailData = {email: userEmail}; // json stringfy
     this.props.checkUserRegistration(emailData);
-
     // get company name
     this.props.getCompanyName(this.state.positionId);
   }
