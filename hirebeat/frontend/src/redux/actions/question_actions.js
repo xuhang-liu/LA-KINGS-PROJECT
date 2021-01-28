@@ -11,6 +11,8 @@ import {
     SUBMIT_FEEDBACK,
     RESEND_INVITATION,
     UPDATE_COMMENT_STATUS,
+    CLOSE_POSITION,
+    DELETE_POSITION,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -163,6 +165,34 @@ export const updateCommentStatus = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_COMMENT_STATUS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const closePosition = (positionId) => (dispatch, getState) => {
+  axios
+    .post("close-job", positionId, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: CLOSE_POSITION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const deletePosition = (positionId) => (dispatch, getState) => {
+  axios
+    .post("delete-job", positionId, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: DELETE_POSITION,
         payload: res.data,
       });
     })
