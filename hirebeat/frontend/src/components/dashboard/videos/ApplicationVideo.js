@@ -18,7 +18,7 @@ constructor(props) {
   render() {
         return (
                 <React.Fragment>
-                {this.props.int_ques.length == 0 && <div><h3 style={{marginTop:"10%", textAlign:"center"}}>Candidate does not record any videos.</h3></div>}
+                {this.props.int_ques.length == 0 && <div><h3 style={{marginTop:"10%", textAlign:"center"}}>Candidate did not record any videos.</h3></div>}
                 {this.props.int_ques.map((i) => {
                 return (
                     <div>
