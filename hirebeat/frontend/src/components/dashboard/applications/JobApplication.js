@@ -9,6 +9,7 @@ import 'boxicons';
 //import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
+import Select from 'react-select'
 
 export class JobApplication extends Component{
     refreshPage() {
@@ -272,6 +273,19 @@ const JobCard = (props) => {
         setOffset(offset);
     };
 
+    // filter selections
+    const options = [
+        { value: 'Pending', label: 'Pending' },
+        { value: 'Withdrawn', label: 'Withdrawn' },
+        { value: 'Completed', label: 'Completed' },
+        { value: 'All', label: 'All' }
+    ];
+
+    const [category, setCategory] = useState({ value: 'All', label: 'All' });
+    function onFilter(category) {
+        setCategory(category);
+    }
+
     return (
         <React.Fragment>
             {/* Job Applications */}
@@ -321,14 +335,20 @@ const JobCard = (props) => {
                         }
                     </div>
                     <div className="card container" style={{marginTop:"1%"}}>
-                        <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem"}}>
+                        <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                             <div className="col-4">Name</div>
                             <div className="col-2">Invited On</div>
-                            <div className="col-3" />
-                            <div className="col-3" />
+                            <div className="col-3">Status</div>
+                            <div className="col-3">
+                                <div className="row">
+                                    <div className="center-items" style={{marginRight: "1rem"}}>Filter by Result: </div>
+                                    <Select value={category} onChange={onFilter} options={options} className="select-category" />
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <ApplicantList
+                                category={category}
                                 applicants={props.applicants}
                                 getApplicantsVideos={props.getApplicantsVideos}
                                 getApplicantsInfo={props.getApplicantsInfo}
@@ -448,6 +468,20 @@ const ApplicantList = (props) => {
     return (
         <div>
             {props.applicants.map((a) => {
+                // filter applicants by status
+                if (props.category.value != "All") {
+                    switch (props.category.value) {
+                        case "Pending":
+                            if (a.is_recorded) return null;
+                            break;
+                        case "Withdrawn":
+                            if (!a.is_recorded || (a.is_recorded && a.video_count > 0)) return null;
+                            break;
+                        case "Completed":
+                            if (!a.is_recorded || (a.is_recorded && a.video_count <= 0)) return null;
+                            break;
+                    }
+                }
                 return (
                     <Applicant
                         name={a.name}
