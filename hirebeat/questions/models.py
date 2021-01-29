@@ -53,7 +53,7 @@ class Positions(models.Model):
     job_title = models.CharField(max_length=300, null=True, blank=True)
     job_id = models.CharField(max_length=100, null=True, blank=True)
     is_closed = models.BooleanField(default=False)
-    invite_date = models.DateTimeField(default=datetime.datetime.now(), blank=True)
+    invite_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.job_title
 

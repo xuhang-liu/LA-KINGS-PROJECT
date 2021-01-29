@@ -85,24 +85,25 @@ const JobViewDetail = (props) => {
     };
 
     function closeJob() {
-        let applicantNum = props.applicants.length;
-        // only close jobs without applicants
-        if (applicantNum <= 0) {
-            props.closePosition(position);
-            // refresh dashboard
-            window.location.reload();
-        }
-        else {
-            confirmAlert({
-              title: "Close Failure",
-              message: "You can't close a position that has applicants",
-              buttons: [
+        confirmAlert({
+            title: "Confirm to Close",
+            message: "Are you sure to close this position?",
+            buttons: [
                 {
-                  label: 'Ok'
+                  label: 'Yes',
+                  onClick: () => confirmClose()
+                },
+                {
+                  label: 'No'
                 }
-              ]
-            });
-        }
+            ]
+        });
+    }
+
+    function confirmClose() {
+        props.closePosition(position);
+            // refresh dashboard
+        window.location.reload();
     }
 
     function deleteAlert() {
@@ -146,8 +147,8 @@ const JobViewDetail = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-2" />
-                                <div className="col-2 center-items" style={{color:"#56A3FA"}}>
+                                <div className="col-1" />
+                                <div className="col-3 center-items" style={{color:"#56A3FA"}}>
                                     <button
                                         onClick={() => {setView(true)}}
                                         className="default-btn"
@@ -156,24 +157,24 @@ const JobViewDetail = (props) => {
                                         View Position
                                     </button>
                                 </div>
-                                {!props.isClosed &&
                                     <div className="col-3 center-items">
+                                    {!props.isClosed &&
                                         <button
                                             onClick={closeJob}
                                             className="default-btn"
-                                            style={{paddingLeft:"25px", color: "#E8EDFC"}}
+                                            style={{paddingLeft:"25px", backgroundColor: "#E8EDFC", color:"#090d3a"}}
                                         >
                                             Close Position
-                                        </button>
+                                        </button>}
+                                        {props.applicants.length <= 0 &&
                                         <button
                                             type="submit"
                                             onClick={deleteAlert}
                                             style={{border: "none", backgroundColor: "white"}}
                                         >
                                             <i className="bx bx-trash bx-md" style={{color: "#67A3F3"}}></i>
-                                        </button>
+                                        </button>}
                                     </div>
-                                }
                             </div>
                         </div>
                     </div>
@@ -276,20 +277,13 @@ const JobCard = (props) => {
             {/* Job Applications */}
             {!invite &&
                 <div style={{marginTop: "4rem"}}>
-                    <div className="col d-flex align-items-center">
+                    <div className="col-2 interview-center" style={{marginLeft:"-1.1rem", marginBottom:"1rem"}}>
                         <button
                             type="button"
-                            className="panel-button"
+                            className="default-btn"
                             onClick={props.hideView}
-                            style={{outline: "none", margin:"0%", padding:"0px", background:"#e8edfc"}}
                         >
-                            <IconText
-                                iconName={"bx bx-arrow-back bx-sm"}
-                                textDisplayed={"Back"}
-                                textSize={"20px"}
-                                textColor={"#67A3F3"}
-                                iconMargin={"3px"}
-                            />
+                            <i className="bx bx-collapse"></i>Collapse
                         </button>
                     </div>
                     <div className="row">
@@ -308,21 +302,22 @@ const JobCard = (props) => {
                                 </button>
                             }
                         </div>
-                        <div className="interview-center">
+                        <div className="col-1 interview-center">
+                            {!props.isClosed &&
                             <button
                                 onClick={hideSwitch}
                                 style={{border: "none", background: "white", borderRadius: "50%", color:"#56a3fa", marginTop:"0.6rem"}}
                                 >
                                 <i className="bx bx-question-mark 2"></i>
-                            </button>
+                            </button>}
                         </div>
                         {!hide &&
-                            <div
-                                className="col interview-center"
-                                style={{justifyContent: "left", background: "#FFFFFF", marginLeft: "1rem"}}
-                            >
-                                <p className="interview-txt7">Enter Candidate information and send email invitation.</p>
-                            </div>
+                        <div
+                            className="col-3 interview-center"
+                            style={{justifyContent: "left", background: "#FFFFFF", marginLeft: "1rem"}}
+                        >
+                            <p className="interview-txt7">Enter Candidate information and send email invitation.</p>
+                        </div>
                         }
                     </div>
                     <div className="card container" style={{marginTop:"1%"}}>
@@ -351,8 +346,8 @@ const JobCard = (props) => {
                                 offset={offset}
                             />
                              <ReactPaginate
-                                 previousLabel={'previous'}
-                                 nextLabel={'next'}
+                                 previousLabel={'<'}
+                                 nextLabel={'>'}
                                  breakLabel={'...'}
                                  breakClassName={'break-me'}
                                  pageCount={pageCount}
@@ -364,32 +359,6 @@ const JobCard = (props) => {
                                  activeClassName={'active'}
                              />
                         </div>
-                        {/*props.applicants.map((a) => {
-                            return(
-                                <Applicant
-                                    name={a.name}
-                                    date={a.invite_date.substring(0, 10)}
-                                    email={a.email}
-                                    comment_status={a.comment_status}
-                                    positionId={a.positions_id}
-                                    isRecorded={a.is_recorded}
-                                    videoCount={a.video_count}
-                                    getApplicantsVideos={props.getApplicantsVideos}
-                                    getApplicantsInfo={props.getApplicantsInfo}
-                                    getRecordStatus={props.getRecordStatus}
-                                    dataLoaded={props.dataLoaded}
-                                    int_ques={props.int_ques}
-                                    username_candidate={props.username_candidate}
-                                    email_candidate={props.email_candidate}
-                                    phone_candidate={props.phone_candidate}
-                                    location_candidate={props.location_candidate}
-                                    resendInvitation={props.resendInvitation}
-                                    companyName={props.companyName}
-                                    jobTitle={props.jobTitle}
-                                    updateCommentStatus={props.updateCommentStatus}
-                                />
-                            )
-                        })*/}
                     </div>
                 </div>
             }

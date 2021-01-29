@@ -208,4 +208,6 @@ def delete_job(request):
     position_id = request.data["position_id"]
     position_obj = Positions.objects.get(id=position_id)
     position_obj.delete()
+    interview_que = InterviewQuestions.objects.filter(positions_id=position_id)
+    interview_que.delete()
     return Response("Delete current position successfully", status=status.HTTP_200_OK)
