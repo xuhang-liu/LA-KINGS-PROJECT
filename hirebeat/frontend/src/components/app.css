@@ -2553,3 +2553,30 @@ h5 {
 .before-after .before h5{
   font-size: 1vw;
 }
+
+.btn-selected2 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #090D3A;
+  background: #e8edfc;
+  border: none;
+  text-decoration: underline;
+}
+
+.btn-unselected2 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #7D7D7D;
+  background: #e8edfc;
+  border: none;
+}
+
+.center-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

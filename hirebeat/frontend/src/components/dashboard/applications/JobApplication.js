@@ -6,6 +6,9 @@ import ReviewApplication from "./../ReviewApplication";
 import { MyModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import 'boxicons';
+import { IconText } from "../DashboardComponents";
+import { closePosition, deletePosition } from "./../../../redux/actions/question_actions";
+import ReactPaginate from 'react-paginate';
 
 export class JobApplication extends Component{
     refreshPage() {
@@ -20,12 +23,27 @@ export class JobApplication extends Component{
                         <button onClick={this.refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right"}}><p><box-icon name="refresh" color="#4a6f8a"></box-icon>Refresh</p></button>
                         {Object.keys(this.props.postedJobs).reverse().map((key) => {
                             let p = this.props.postedJobs[key];
+                            // filter positions according to is_closed attribute
+                            if (this.props.filter) {
+                                switch (this.props.filter) {
+                                    case "active":
+                                        if (p.is_closed) return null;
+                                        break;
+                                    case "closed":
+                                        if (!p.is_closed) return null;
+                                        break;
+                                    default:
+                                        return null;
+                                }
+                            }
                             return(
-                                <JobCard
+                                <JobViewDetail
                                     companyName={this.props.companyName}
                                     positionId={p.position_id}
                                     jobId={p.job_id}
                                     jobTitle={p.job_title}
+                                    isClosed={p.is_closed}
+                                    inviteDate={p.invite_date}
                                     applicants={p.applicants}
                                     addInterviews={this.props.addInterviews}
                                     getApplicantsVideos={this.props.getApplicantsVideos}
@@ -40,6 +58,8 @@ export class JobApplication extends Component{
                                     location_candidate={this.props.location_candidate}
                                     resendInvitation={this.props.resendInvitation}
                                     updateCommentStatus={this.props.updateCommentStatus}
+                                    closePosition={this.props.closePosition}
+                                    deletePosition={this.props.deletePosition}
                                 />
                             )
                         })}
@@ -54,9 +74,141 @@ const mapStateToProps = (state) => ({
     received_interview: state.auth_reducer.received_interview,
 });
 
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, { closePosition, deletePosition })(
     JobApplication
 );
+
+const JobViewDetail = (props) => {
+    const [view, setView] = useState(false);
+    let position = {
+        position_id: props.positionId,
+    };
+
+    function closeJob() {
+        let applicantNum = props.applicants.length;
+        // only close jobs without applicants
+        if (applicantNum <= 0) {
+            props.closePosition(position);
+            // refresh dashboard
+            window.location.reload();
+        }
+        else {
+            confirmAlert({
+              title: "Close Failure",
+              message: "You can't close a position that has applicants",
+              buttons: [
+                {
+                  label: 'Ok'
+                }
+              ]
+            });
+        }
+    }
+
+    function deleteAlert() {
+        confirmAlert({
+            title: "Confirm to delete",
+            message: "Are you sure to delete this position?",
+            buttons: [
+                {
+                  label: 'Yes',
+                  onClick: () => deleteJob()
+                },
+                {
+                  label: 'No'
+                }
+            ]
+        });
+    }
+
+    function deleteJob() {
+        props.deletePosition(position);
+        // refresh current page
+        window.location.reload();
+    }
+
+    return (
+        <React.Fragment>
+            {/* Summarize */}
+            {!view &&
+                <div className="container d-flex justify-content-start " style={{marginTop:"3rem", backgroundColor: "white", "border-radius": "0.5rem"}}>
+                    <div className="col-12" style={{fontFamily: "Avenir Next" }}>
+                        <div className="mt-4">
+                            <div className="row">
+                                <div className="col-5" style={{color:"#090D3A"}}>
+                                    <h3>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
+                                    <div className="row mb-2 mt-1">
+                                        <div className="col-6">
+                                            <p style={{color:"#4A6F8A"}}>Invited Applicants: {props.applicants.length}</p>
+                                        </div>
+                                        <div className="col-6 mb-4" style={{color:"#4A6F8A", borderLeft:"outset"}}>
+                                            <p>Created On: {props.inviteDate.substring(0, 10)}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-2" />
+                                <div className="col-2 center-items" style={{color:"#56A3FA"}}>
+                                    <button
+                                        onClick={() => {setView(true)}}
+                                        className="default-btn"
+                                        style={{paddingLeft:"25px"}}
+                                    >
+                                        View Position
+                                    </button>
+                                </div>
+                                {!props.isClosed &&
+                                    <div className="col-3 center-items">
+                                        <button
+                                            onClick={closeJob}
+                                            className="default-btn"
+                                            style={{paddingLeft:"25px", color: "#E8EDFC"}}
+                                        >
+                                            Close Position
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            onClick={deleteAlert}
+                                            style={{border: "none", backgroundColor: "white"}}
+                                        >
+                                            <i className="bx bx-trash bx-md" style={{color: "#67A3F3"}}></i>
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            {/* Application detail*/}
+            {view &&
+                <JobCard
+                    companyName={props.companyName}
+                    positionId={props.positionId}
+                    jobId={props.jobId}
+                    jobTitle={props.jobTitle}
+                    isClosed={props.isClosed}
+                    inviteDate={props.inviteDate}
+                    applicants={props.applicants}
+                    addInterviews={props.addInterviews}
+                    getApplicantsVideos={props.getApplicantsVideos}
+                    getApplicantsInfo={props.getApplicantsInfo}
+                    getRecordStatus={props.getRecordStatus}
+                    dataLoaded={props.dataLoaded}
+                    isRecorded={props.isRecorded}
+                    int_ques={props.int_ques}
+                    username_candidate={props.username_candidate}
+                    email_candidate={props.email_candidate}
+                    phone_candidate={props.phone_candidate}
+                    location_candidate={props.location_candidate}
+                    resendInvitation={props.resendInvitation}
+                    updateCommentStatus={props.updateCommentStatus}
+                    hideView={() => setView(false)}
+                />
+            }
+        </React.Fragment>
+    );
+}
 
 const JobCard = (props) => {
     const [invite, setInvite] = useState(false);
@@ -108,24 +260,53 @@ const JobCard = (props) => {
         props.addInterviews(meta);
     }
 
+    // pagination
+    const [offset, setOffset] = useState(0);
+    const [perPage, setPerPage] = useState(8);
+    let pageCount = Math.ceil(props.applicants.length / 8);
+
+    function handlePageClick(data) {
+        let selected = data.selected;
+        let offset = Math.ceil(selected * perPage);
+        setOffset(offset);
+    };
+
     return (
         <React.Fragment>
             {/* Job Applications */}
             {!invite &&
-                <div style={{marginBottom: "2rem"}}>
+                <div style={{marginTop: "4rem"}}>
+                    <div className="col d-flex align-items-center">
+                        <button
+                            type="button"
+                            className="panel-button"
+                            onClick={props.hideView}
+                            style={{outline: "none", margin:"0%", padding:"0px", background:"#e8edfc"}}
+                        >
+                            <IconText
+                                iconName={"bx bx-arrow-back bx-sm"}
+                                textDisplayed={"Back"}
+                                textSize={"20px"}
+                                textColor={"#67A3F3"}
+                                iconMargin={"3px"}
+                            />
+                        </button>
+                    </div>
                     <div className="row">
                         <div className="col-4 interview-center">
                             <h3 className="interview-txt5">{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                         </div>
                         <div className="col-3 interview-center" style={{paddingRight: "0px"}}>
-                            <button
-                                className="default-btn interview-txt6"
-                                style={{paddingLeft: "25px"}}
-                                onClick={() => setInvite(true)}
-                            >
-                                + Invite Candidates
-                                <span></span>
-                            </button>
+                            {!props.isClosed &&
+                                <button
+                                    className="default-btn interview-txt6"
+                                    style={{paddingLeft: "25px"}}
+                                    onClick={() => setInvite(true)}
+                                >
+                                    + Invite Candidates
+                                    <span></span>
+                                </button>
+                            }
                         </div>
                         <div className="interview-center">
                             <button
@@ -151,8 +332,39 @@ const JobCard = (props) => {
                             <div className="col-3" />
                             <div className="col-3" />
                         </div>
-                        {/* todo add pagination */}
-                        {props.applicants.map((a) => {
+                        <div>
+                            <ApplicantList
+                                applicants={props.applicants}
+                                getApplicantsVideos={props.getApplicantsVideos}
+                                getApplicantsInfo={props.getApplicantsInfo}
+                                getRecordStatus={props.getRecordStatus}
+                                dataLoaded={props.dataLoaded}
+                                int_ques={props.int_ques}
+                                username_candidate={props.username_candidate}
+                                email_candidate={props.email_candidate}
+                                phone_candidate={props.phone_candidate}
+                                location_candidate={props.location_candidate}
+                                resendInvitation={props.resendInvitation}
+                                companyName={props.companyName}
+                                jobTitle={props.jobTitle}
+                                updateCommentStatus={props.updateCommentStatus}
+                                offset={offset}
+                            />
+                             <ReactPaginate
+                                 previousLabel={'previous'}
+                                 nextLabel={'next'}
+                                 breakLabel={'...'}
+                                 breakClassName={'break-me'}
+                                 pageCount={pageCount}
+                                 marginPagesDisplayed={2}
+                                 pageRangeDisplayed={5}
+                                 onPageChange={handlePageClick}
+                                 containerClassName={'pagination'}
+                                 subContainerClassName={'pages pagination'}
+                                 activeClassName={'active'}
+                             />
+                        </div>
+                        {/*props.applicants.map((a) => {
                             return(
                                 <Applicant
                                     name={a.name}
@@ -177,7 +389,7 @@ const JobCard = (props) => {
                                     updateCommentStatus={props.updateCommentStatus}
                                 />
                             )
-                        })}
+                        })*/}
                     </div>
                 </div>
             }
@@ -259,6 +471,42 @@ const JobCard = (props) => {
         </React.Fragment>
     )
 };
+
+const ApplicantList = (props) => {
+    // get current page applicants(8)
+    let index = props.offset; // start index at applicants array
+    let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
+    return (
+        <div>
+            {applicants.map((a) => {
+                return (
+                    <Applicant
+                        name={a.name}
+                        date={a.invite_date.substring(0, 10)}
+                        email={a.email}
+                        comment_status={a.comment_status}
+                        positionId={a.positions_id}
+                        isRecorded={a.is_recorded}
+                        videoCount={a.video_count}
+                        getApplicantsVideos={props.getApplicantsVideos}
+                        getApplicantsInfo={props.getApplicantsInfo}
+                        getRecordStatus={props.getRecordStatus}
+                        dataLoaded={props.dataLoaded}
+                        int_ques={props.int_ques}
+                        username_candidate={props.username_candidate}
+                        email_candidate={props.email_candidate}
+                        phone_candidate={props.phone_candidate}
+                        location_candidate={props.location_candidate}
+                        resendInvitation={props.resendInvitation}
+                        companyName={props.companyName}
+                        jobTitle={props.jobTitle}
+                        updateCommentStatus={props.updateCommentStatus}
+                    />
+                )
+            })}
+        </div>
+    );
+}
 
 const Applicant = (props) => {
     let email = props.email;

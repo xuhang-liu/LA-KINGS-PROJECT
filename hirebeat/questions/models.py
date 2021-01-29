@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+import datetime
 
 class SubCategory(models.Model):
     sub_category = models.CharField(max_length=300, default="Not Provided", null=True)
@@ -51,6 +52,8 @@ class Positions(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=300, null=True, blank=True)
     job_id = models.CharField(max_length=100, null=True, blank=True)
+    is_closed = models.BooleanField(default=False)
+    invite_date = models.DateTimeField(default=datetime.datetime.now(), blank=True)
     def __str__(self):
         return self.job_title
 
