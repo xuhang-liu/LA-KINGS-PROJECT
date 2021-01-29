@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 //import ButtonPanel from "./panel/ButtonPanel";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
+
+//import { JobApplication } from "./applications/JobApplication";
+import { CreatePosition } from "./position/CreatePosition";
 import { ApplicationCover } from "./applications/ApplicationCover";
-import {CreatePosition} from "./position/CreatePosition";
+
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";

@@ -6,9 +6,10 @@ import ReviewApplication from "./../ReviewApplication";
 import { MyModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import 'boxicons';
-import { IconText } from "../DashboardComponents";
+//import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition } from "./../../../redux/actions/question_actions";
-import ReactPaginate from 'react-paginate';
+//import ReactPaginate from 'react-paginate';
+import Select from 'react-select'
 
 export class JobApplication extends Component{
     refreshPage() {
@@ -272,6 +273,19 @@ const JobCard = (props) => {
         setOffset(offset);
     };
 
+    // filter selections
+    const options = [
+        { value: 'Completed', label: 'Completed' },
+        { value: 'Pending', label: 'Pending' },
+        { value: 'Withdrawn', label: 'Withdrawn' },
+        { value: 'All', label: 'All' },
+    ];
+
+    const [category, setCategory] = useState({ value: 'All', label: 'All' });
+    function onFilter(category) {
+        setCategory(category);
+    }
+
     return (
         <React.Fragment>
             {/* Job Applications */}
@@ -321,14 +335,20 @@ const JobCard = (props) => {
                         }
                     </div>
                     <div className="card container" style={{marginTop:"1%"}}>
-                        <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem"}}>
+                        <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                             <div className="col-4">Name</div>
                             <div className="col-2">Invited On</div>
-                            <div className="col-3" />
-                            <div className="col-3" />
+                            <div className="col-3">Status</div>
+                            <div className="col-3">
+                                <div className="row">
+                                    <div className="center-items" style={{marginRight: "1rem"}}>Filter by Result: </div>
+                                    <Select value={category} onChange={onFilter} options={options} className="select-category" />
+                                </div>
+                            </div>
                         </div>
-                        <div>
+                        <div style={{paddingBottom:"3rem", marginBottom:"2rem"}}>
                             <ApplicantList
+                                category={category}
                                 applicants={props.applicants}
                                 getApplicantsVideos={props.getApplicantsVideos}
                                 getApplicantsInfo={props.getApplicantsInfo}
@@ -345,7 +365,7 @@ const JobCard = (props) => {
                                 updateCommentStatus={props.updateCommentStatus}
                                 offset={offset}
                             />
-                             <ReactPaginate
+                             {/*<ReactPaginate
                                  previousLabel={'<'}
                                  nextLabel={'>'}
                                  breakLabel={'...'}
@@ -357,7 +377,7 @@ const JobCard = (props) => {
                                  containerClassName={'pagination'}
                                  subContainerClassName={'pages pagination'}
                                  activeClassName={'active'}
-                             />
+                             />*/}
                         </div>
                     </div>
                 </div>
@@ -443,11 +463,25 @@ const JobCard = (props) => {
 
 const ApplicantList = (props) => {
     // get current page applicants(8)
-    let index = props.offset; // start index at applicants array
-    let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
+    //let index = props.offset; // start index at applicants array
+    //let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
     return (
         <div>
-            {applicants.map((a) => {
+            {props.applicants.map((a) => {
+                // filter applicants by status
+                if (props.category.value != "All") {
+                    switch (props.category.value) {
+                        case "Pending":
+                            if (a.is_recorded) return null;
+                            break;
+                        case "Withdrawn":
+                            if (!a.is_recorded || (a.is_recorded && a.video_count > 0)) return null;
+                            break;
+                        case "Completed":
+                            if (!a.is_recorded || (a.is_recorded && a.video_count <= 0)) return null;
+                            break;
+                    }
+                }
                 return (
                     <Applicant
                         name={a.name}
@@ -591,9 +625,10 @@ const Applicant = (props) => {
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
+                comment_status={comment_status}
                 set_comment_status={set_comment_status}
                 show={show}
-                onHide={() => setShow(false)}
+                onHide={()=>{setShow(false);}}
                 int_ques={props.int_ques}
                 username_candidate={props.username_candidate}
                 email_candidate={props.email_candidate}
@@ -611,6 +646,7 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       <ReviewApplication
+        comment_status={props.comment_status}
         set_comment_status={props.set_comment_status}
         hide={props.onHide}
         int_ques={props.int_ques}
