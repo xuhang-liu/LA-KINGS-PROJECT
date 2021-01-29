@@ -202,7 +202,6 @@ def update_record(request):
     invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
     invited_obj.is_recorded = True
     # update saved video count
-    invited_obj.video_count += 1;
     invited_obj.save()
 
     return Response("Update record status successfully", status=status.HTTP_200_OK)
