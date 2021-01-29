@@ -182,9 +182,9 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item ">
-                <Link to="/employer" className="nav-link text-white navbar-font">
+                <a href="/employer" className="nav-link text-white navbar-font">
                   <span className="header-text">For Employer</span>
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
@@ -324,7 +324,7 @@ export class Header extends Component {
     return (
       <div id="navbar" className="navbar-area bg-white">
         <nav
-            className="navbar navbar-expand-md
+            className="navbar navbar-expand-xl
             navbar-dark pb-2 pt-2"
             style={{
               background: "#080a3c",

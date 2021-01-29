@@ -2,8 +2,11 @@ import React, { Component } from "react";
 //import ButtonPanel from "./panel/ButtonPanel";
 import { Link, Redirect } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
+
 import { JobApplication } from "./applications/JobApplication";
 import { CreatePosition } from "./position/CreatePosition";
+import { ApplicationCover } from "./applications/ApplicationCover";
+
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
@@ -139,7 +142,7 @@ export class EmployerDashboard extends Component {
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "applications":
-        return <JobApplication
+        return <ApplicationCover
             companyName={this.props.profile.company_name}
             loaded={this.props.loaded}
             postedJobs={this.props.postedJobs}
