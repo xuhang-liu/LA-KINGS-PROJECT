@@ -275,10 +275,10 @@ const JobCard = (props) => {
 
     // filter selections
     const options = [
+        { value: 'Completed', label: 'Completed' },
         { value: 'Pending', label: 'Pending' },
         { value: 'Withdrawn', label: 'Withdrawn' },
-        { value: 'Completed', label: 'Completed' },
-        { value: 'All', label: 'All' }
+        { value: 'All', label: 'All' },
     ];
 
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
@@ -346,7 +346,7 @@ const JobCard = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div style={{paddingBottom:"3rem", marginBottom:"2rem"}}>
                             <ApplicantList
                                 category={category}
                                 applicants={props.applicants}
