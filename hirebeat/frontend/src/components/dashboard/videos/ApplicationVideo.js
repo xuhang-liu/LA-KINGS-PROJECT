@@ -58,6 +58,7 @@ render() {
                                     <Pagination 
                                         totalVideos = {this.props.int_ques.length}
                                         setPage={this.setPage}
+                                        page={this.state.currentVideo}
                                     />
                                 </div>
                 }
@@ -75,13 +76,21 @@ const Pagination = (props) => {
         return(
                 <nav>
                         <ul className="pagination">
-                                {pageNumbers.map(number => (
-                                        <li className="page-item">
-                                                <a onClick={ () => { props.setPage(number-1) } } className='page-link'>
-                                                        {number}
-                                                </a>
-                                        </li>
-                                ))}
+                                {pageNumbers.map((number) => {
+                                        if(number == props.page + 1)
+                                        {
+                                                return  <li className="page-item">
+                                                                <a href="#"  style={{color:"white", backgroundColor:"#56a3fa"}} onClick={ () => { props.setPage(number-1) } } className='page-link'>
+                                                                        {number}
+                                                                </a>
+                                                        </li>
+                                        }
+                                        return   <li className="page-item">
+                                                        <a href="#" onClick={ () => { props.setPage(number-1) } } className='page-link'>
+                                                                {number}
+                                                        </a>
+                                                </li>
+                                })}
                         </ul>
                 </nav>
         )

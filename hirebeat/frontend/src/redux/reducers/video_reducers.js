@@ -28,6 +28,8 @@ const initialState = {
   email_candidate: '',
   phone_candidate: '',
   location_candidate: '',
+  new_comment: '',
+  new_stars: 0,
 };
 
 export default function (state = initialState, action) {
@@ -41,6 +43,8 @@ export default function (state = initialState, action) {
     case UPDATE_VIDEO_COMMENTS:
       return{
         ...state,
+        new_stars: action.payload.new_stars,
+        new_comment: action.payload.new_comment,
       }
     case GET_UNREVIEWED_VIDEO:
       return {

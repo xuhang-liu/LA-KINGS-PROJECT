@@ -7,6 +7,10 @@ class ReviewApplication extends Component{
     constructor(props) {
         super(props);
       }
+    
+    state = {
+        case: this.props.comment_status,
+    }
 
     updateStatus = (status) => {
         let data = {"email": this.props.email_candidate, "positionId": this.props.positionId, "status": status};
@@ -18,25 +22,6 @@ class ReviewApplication extends Component{
     render() {
         return(
             <div className="container" style={{width:'95%'}}>
-                {/*<div className="row">
-                    <div className="col d-flex align-items-center">
-                        <button 
-                            type="button" 
-                            className="panel-button"
-                            onClick={this.props.renderVideos}
-                            style={{outline: "none", margin:"0%", padding:"0px", background:"#e8edfc"}}
-                        >
-                            <IconText
-                                iconName={"bx bx-arrow-back bx-sm"}
-                                textDisplayed={"Back"}
-                                textSize={"20px"}
-                                textColor={"#67A3F3"}
-                                iconMargin={"3px"}
-                            />
-                        </button>
-                    </div>
-                </div> */}
-
                 <div className="card container mb-5" style={{marginTop:"1%"}}>
                     <div className="row">
                         <div className="col-3 container">
@@ -93,15 +78,27 @@ class ReviewApplication extends Component{
                         </div>
                         <div className="col-2 container" style={{marginTop:"2.5%"}}>
                             <div className="container mt-3">
-                                <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1)}}>
+                                {this.state.case == 1 ? <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1); this.setState({case: 1})}}>
                                     Accept
                                 </button>
-                                <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2)}}>
-                                    Hold
+                                : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(1); this.setState({case: 1})}}>
+                                    Accept
                                 </button>
-                                <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(3)}}>
+                                }
+                                {this.state.case == 2 ? <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2); this.setState({case: 2})}}>
+                                    On Hold
+                                </button>
+                                : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(2); this.setState({case: 2})}}>
+                                    On Hold
+                                </button>
+                                }
+                                {this.state.case == 3 ? <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(3); this.setState({case: 3})}}>
                                     Reject
                                 </button>
+                                : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(3); this.setState({case: 3})}}>
+                                    Reject
+                                </button>
+                                }
                             </div>
                         </div>
                     </div>

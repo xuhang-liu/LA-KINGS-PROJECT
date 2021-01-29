@@ -374,9 +374,10 @@ const Applicant = (props) => {
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
+                comment_status={comment_status}
                 set_comment_status={set_comment_status}
                 show={show}
-                onHide={() => setShow(false)}
+                onHide={()=>{setShow(false)}}
                 int_ques={props.int_ques}
                 username_candidate={props.username_candidate}
                 email_candidate={props.email_candidate}
@@ -394,6 +395,7 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       <ReviewApplication
+        comment_status={props.comment_status}
         set_comment_status={props.set_comment_status}
         hide={props.onHide}
         int_ques={props.int_ques}

@@ -313,5 +313,8 @@ def update_video_comments(request):
     wpv.video_comment = new_comment
     wpv.save()
 
-    return Response("updated comments successfully", status=status.HTTP_200_OK)
+    return Response({
+        "new_stars": new_stars,
+        "new_comment": new_comment,
+    })
 
