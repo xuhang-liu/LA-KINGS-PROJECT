@@ -6,9 +6,9 @@ import ReviewApplication from "./../ReviewApplication";
 import { MyModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import 'boxicons';
-import { IconText } from "../DashboardComponents";
+//import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition } from "./../../../redux/actions/question_actions";
-import ReactPaginate from 'react-paginate';
+//import ReactPaginate from 'react-paginate';
 import Select from 'react-select'
 
 export class JobApplication extends Component{
@@ -365,7 +365,7 @@ const JobCard = (props) => {
                                 updateCommentStatus={props.updateCommentStatus}
                                 offset={offset}
                             />
-                             <ReactPaginate
+                             {/*<ReactPaginate
                                  previousLabel={'<'}
                                  nextLabel={'>'}
                                  breakLabel={'...'}
@@ -377,7 +377,7 @@ const JobCard = (props) => {
                                  containerClassName={'pagination'}
                                  subContainerClassName={'pages pagination'}
                                  activeClassName={'active'}
-                             />
+                             />*/}
                         </div>
                     </div>
                 </div>
@@ -463,11 +463,11 @@ const JobCard = (props) => {
 
 const ApplicantList = (props) => {
     // get current page applicants(8)
-    let index = props.offset; // start index at applicants array
-    let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
+    //let index = props.offset; // start index at applicants array
+    //let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
     return (
         <div>
-            {applicants.map((a) => {
+            {props.applicants.map((a) => {
                 // filter applicants by status
                 if (props.category.value != "All") {
                     switch (props.category.value) {
@@ -625,9 +625,10 @@ const Applicant = (props) => {
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
+                comment_status={comment_status}
                 set_comment_status={set_comment_status}
                 show={show}
-                onHide={() => setShow(false)}
+                onHide={()=>{setShow(false);}}
                 int_ques={props.int_ques}
                 username_candidate={props.username_candidate}
                 email_candidate={props.email_candidate}
@@ -645,6 +646,7 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       <ReviewApplication
+        comment_status={props.comment_status}
         set_comment_status={props.set_comment_status}
         hide={props.onHide}
         int_ques={props.int_ques}

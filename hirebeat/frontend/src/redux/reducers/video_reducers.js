@@ -10,6 +10,7 @@ import {
   VIDEO_UNDER_REVIEW,
   GET_VIDEOS_APPLICANT,
   GET_APPLICANT_INFO,
+  UPDATE_VIDEO_COMMENTS,
 } from "../actions/action_types";
 
 const initialState = {
@@ -27,6 +28,8 @@ const initialState = {
   email_candidate: '',
   phone_candidate: '',
   location_candidate: '',
+  new_comment: '',
+  new_stars: 0,
 };
 
 export default function (state = initialState, action) {
@@ -37,6 +40,12 @@ export default function (state = initialState, action) {
         videos: action.payload,
         loaded: true,
       };
+    case UPDATE_VIDEO_COMMENTS:
+      return{
+        ...state,
+        new_stars: action.payload.new_stars,
+        new_comment: action.payload.new_comment,
+      }
     case GET_UNREVIEWED_VIDEO:
       return {
         q_type: action.payload.video.q_type,
