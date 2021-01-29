@@ -2497,14 +2497,14 @@ h5 {
 }
 
 .dashboard-sidebar {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: #5b92d9;
 }
 
 .dashboard-main {
-  overflow: scroll;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   width: 100%;
   background-color: #e8edfc;
 }

@@ -6,9 +6,9 @@ import ReviewApplication from "./../ReviewApplication";
 import { MyModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import 'boxicons';
-import { IconText } from "../DashboardComponents";
+//import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition } from "./../../../redux/actions/question_actions";
-import ReactPaginate from 'react-paginate';
+//import ReactPaginate from 'react-paginate';
 
 export class JobApplication extends Component{
     refreshPage() {
@@ -345,7 +345,7 @@ const JobCard = (props) => {
                                 updateCommentStatus={props.updateCommentStatus}
                                 offset={offset}
                             />
-                             <ReactPaginate
+                             {/*<ReactPaginate
                                  previousLabel={'<'}
                                  nextLabel={'>'}
                                  breakLabel={'...'}
@@ -357,7 +357,7 @@ const JobCard = (props) => {
                                  containerClassName={'pagination'}
                                  subContainerClassName={'pages pagination'}
                                  activeClassName={'active'}
-                             />
+                             />*/}
                         </div>
                     </div>
                 </div>
@@ -443,11 +443,11 @@ const JobCard = (props) => {
 
 const ApplicantList = (props) => {
     // get current page applicants(8)
-    let index = props.offset; // start index at applicants array
-    let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
+    //let index = props.offset; // start index at applicants array
+    //let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
     return (
         <div>
-            {applicants.map((a) => {
+            {props.applicants.map((a) => {
                 return (
                     <Applicant
                         name={a.name}
@@ -594,7 +594,7 @@ const Applicant = (props) => {
                 comment_status={comment_status}
                 set_comment_status={set_comment_status}
                 show={show}
-                onHide={()=>{setShow(false)}}
+                onHide={()=>{setShow(false);}}
                 int_ques={props.int_ques}
                 username_candidate={props.username_candidate}
                 email_candidate={props.email_candidate}
