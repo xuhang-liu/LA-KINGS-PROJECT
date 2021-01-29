@@ -2493,7 +2493,7 @@ h5 {
 
 .interview-center {
   justify-content: left;
-  align-items: left;
+  align-items: center;
 }
 
 .dashboard-sidebar {
@@ -2579,4 +2579,8 @@ h5 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.select-category {
+  width: 8rem;
 }
