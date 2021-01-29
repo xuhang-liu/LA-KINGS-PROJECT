@@ -306,3 +306,21 @@ def sign_s3_upload_wp_video(request):
         headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
+
+@api_view(['POST'])
+def update_video_comments(request):
+    print("==It works==")
+    primary_key = request.data["pk"]
+    new_stars = request.data["stars"]
+    new_comment = request.data["comment"]
+    print("==It works fine==")
+    wpv = WPVideo.objects.get(pk=primary_key)
+    wpv.video_stars = new_stars
+    wpv.video_comment = new_comment
+    wpv.save()
+
+    return Response({
+        "new_stars": new_stars,
+        "new_comment": new_comment,
+    })
+
