@@ -234,7 +234,7 @@ const JobCard = (props) => {
         let companyName = props.companyName;
         let jobTitle = props.jobTitle;
         let positionId = props.positionId;
-        let emails=[email1, email2, email3, email4, email5];
+        let emails=[email1.toLowerCase(), email2.toLowerCase(), email3.toLowerCase(), email4.toLowerCase(), email5.toLowerCase()];
         let names = [name1, name2, name3, name4, name5];
         // generate interview urls and send emails
         let urls = [];
