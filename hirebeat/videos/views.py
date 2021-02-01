@@ -6,7 +6,7 @@ from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenc
 from .models import Video, Label, Transcript, Sentence, WPVideo
 from django.contrib.auth.models import User
 from accounts.models import ReviewerInfo, Profile
-from questions.models import InterviewQuestions, Positions
+from questions.models import InterviewQuestions, Positions, InvitedCandidates
 from questions.models import Categorys, SubCategory
 from videos.models import WPVideo
 from questions.serializers import SubcategorySerializer
@@ -267,6 +267,7 @@ def delete_video(request):
 def add_wp_video(request):
     print("===Save WP Video Called===")
     email = request.data["email"]
+    positions = request.data["positions"]
     url = request.data["url"]
     question_id = request.data["question_id"]
     question_desc = request.data["question_desc"]
@@ -282,6 +283,11 @@ def add_wp_video(request):
         owner_id = owner_id
     )
     wp_video.save()
+    invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
+    invited_obj.is_recorded = True
+    # update saved video count
+    invited_obj.video_count += 1;
+    invited_obj.save()
 
     return Response("Saved data to database successfully", status=status.HTTP_200_OK)
 

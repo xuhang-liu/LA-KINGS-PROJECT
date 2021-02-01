@@ -103,7 +103,7 @@ export class Register extends Component {
                     </div>
 
                     <div className="col-lg-6 col-md-12 p-0">
-                        <div className="signup-content" style={{marginTop:"3rem"}}>
+                        <div className="signup-content" style={{marginTop:"6rem"}}>
                                     <div className="signup-form">
                                       <div>
                                         <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next"}}><b>Start your career with HireBeat</b></h3>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 export class ReceivedInterview extends Component {
 
@@ -28,11 +28,11 @@ export class ReceivedInterview extends Component {
                             </div>
                             <div className="col-3 mt-2">
                             {!this.props.received_interview.is_recorded &&
-                            <Link to={url}>
+                            <a href={url}>
                             <button className="default-btn" style={{paddingLeft:"25px"}}>
                                 Start Interview
                             </button>
-                            </Link>}
+                            </a>}
                         </div>
                         </div>
                     </div>
