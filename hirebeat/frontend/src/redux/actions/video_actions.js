@@ -15,6 +15,7 @@ import {
   GET_APPLICANT_INFO,
   UPDATE_COMMENT_STATUS,
   UPDATE_VIDEO_COMMENTS,
+  ADD_TQ_VIDEO_LIMIT,
 } from "./action_types";
 import { createMessage, returnErrors } from "./message_actions";
 import { tokenConfig } from "./auth_actions";
@@ -240,3 +241,23 @@ export const updateComments = (data) => (dispatch) =>
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 }
+
+export const addTQVideoLimit = (owner_id, id, type) => (dispatch, getState) => {
+  const body = JSON.stringify({
+    owner_id,
+    id,
+    type
+  });
+  return axios
+    .post(`add-tq-video-limit`, body, tokenConfig(getState))
+    .then((res) => {
+      console.log(res.data);
+      dispatch({
+        type: ADD_TQ_VIDEO_LIMIT,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};

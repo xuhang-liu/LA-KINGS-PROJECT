@@ -33,9 +33,15 @@ if (props.isSampleAns) {
   function reviewToggle() {
     // view result
     if (text == "View AI Result") {
+      if(props.v.is_tq_ai_clicked == false){
+        props.addTQVideoLimit(props.v.owner, props.v.id, "ai");
+      }
         setSubPage("ai");
         setShow(true);
     } else if (text == "Sample Answer")  {
+      if(props.v.is_tq_sample_clicked == false){
+        props.addTQVideoLimit(props.v.owner, props.v.id, "sample");
+      }
         setSubPage("sampleAns");
         setShow(true);
     }

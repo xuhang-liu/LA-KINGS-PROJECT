@@ -8,7 +8,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'boxicons';
 //import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition } from "./../../../redux/actions/question_actions";
-//import ReactPaginate from 'react-paginate';
+import ReactPaginate from 'react-paginate';
 import Select from 'react-select'
 
 export class JobApplication extends Component{
@@ -365,7 +365,7 @@ const JobCard = (props) => {
                                 updateCommentStatus={props.updateCommentStatus}
                                 offset={offset}
                             />
-                             {/*<ReactPaginate
+                             <ReactPaginate
                                  previousLabel={'<'}
                                  nextLabel={'>'}
                                  breakLabel={'...'}
@@ -377,7 +377,7 @@ const JobCard = (props) => {
                                  containerClassName={'pagination'}
                                  subContainerClassName={'pages pagination'}
                                  activeClassName={'active'}
-                             />*/}
+                             />
                         </div>
                     </div>
                 </div>
@@ -463,11 +463,11 @@ const JobCard = (props) => {
 
 const ApplicantList = (props) => {
     // get current page applicants(8)
-    //let index = props.offset; // start index at applicants array
-    //let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
+    let index = props.offset; // start index at applicants array
+    let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
     return (
         <div>
-            {props.applicants.map((a) => {
+            {applicants.map((a) => {
                 // filter applicants by status
                 if (props.category.value != "All") {
                     switch (props.category.value) {
@@ -522,7 +522,7 @@ const Applicant = (props) => {
         // get videos and info
         props.getApplicantsVideos(email, positionId);
         props.getApplicantsInfo(email);
-        setTimeout(()=>{setShow(true);}, 500)
+        setTimeout(()=>{setShow(true);}, 300)
     };
 
     function inviteAgain() {

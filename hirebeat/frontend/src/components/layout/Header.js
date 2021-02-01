@@ -154,7 +154,7 @@ export class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
-                  For Candidates <i className="bx bx-chevron-down"></i>
+                  For Candidate <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"16.8rem",width:"18rem"}}>
                     <li>
                         <Link id="id-interviewpr" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
