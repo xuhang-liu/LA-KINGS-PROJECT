@@ -4,13 +4,7 @@ import ReactPlayer from 'react-player';
 import { updateComments } from "./../../../redux/actions/video_actions";
 
 
-export function ApplicationVideoPanel (props) {
- //   console.log("The props now", props)
-    const [ratings, setRating] = useState(props.stars);
-    const [comments, setComment] = useState(props.comments);
-    const [page, setPage] = useState(props.page);
- //   setTimeout(()=>{console.log("The props after 1 sec", props)}, 1000);
- //   console.log("the State after constructor", ratings, comments, page);
+class ApplicationVideoPanel extends Component {
 
     state = {
         ratings: this.props.stars,
@@ -34,10 +28,6 @@ export function ApplicationVideoPanel (props) {
         this.setState({
             ratings: this.props.stars,
         });
-    }
-
-    componentWillUnmount () {
-        console.log("bye bye");
     }
 
     componentDidUpdate () {

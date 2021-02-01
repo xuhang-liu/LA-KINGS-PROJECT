@@ -9,8 +9,6 @@ export class ApplicationVideo extends Component {
         this.state = {
                 currentVideo: 0,
         };
-
-        console.log("this is the state on the end of the constractor", this.state);
       }
 
         setPage = (number) => {
@@ -20,7 +18,6 @@ export class ApplicationVideo extends Component {
       }
 
 render() {
-        console.log("this is the state, right at the beginning of rendering", this.state);
         return (
                 <React.Fragment>
                 {this.props.int_ques.length == 0 && <div><h3 style={{marginTop:"10%", textAlign:"center"}}>Candidate does not record any videos.</h3></div>}
