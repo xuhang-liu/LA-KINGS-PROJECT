@@ -324,3 +324,28 @@ def update_video_comments(request):
         "new_comment": new_comment,
     })
 
+@api_view(['POST'])
+def add_tq_video_limit(request):
+    print("==It works==")
+    owner_id = request.data["owner_id"]
+    id = request.data["id"]
+    type = request.data["type"]
+    video = Video.objects.get(pk=id)
+    if type == "ai":
+        if video.is_tq_ai_clicked == False:
+            video.is_tq_ai_clicked = True
+            video.save()
+            user = User.objects.get(pk=owner_id)
+            profile = Profile.objects.get(user_id=user)
+            profile.saved_video_count +=1
+            profile.save()
+    if type == "sample":
+        if video.is_tq_sample_clicked == False:
+            video.is_tq_sample_clicked = True
+            video.save()
+            user = User.objects.get(pk=owner_id)
+            profile = Profile.objects.get(user_id=user)
+            profile.saved_video_count +=1
+            profile.save()
+
+    return Response("Saved data to database successfully", status=status.HTTP_200_OK)
