@@ -15,11 +15,13 @@ export class ApplicationVideo extends Component {
 //   };
       constructor(props) {
         super(props);
-      }
 
-      state={
-        currentVideo: 0,
-      };
+        this.state = {
+                currentVideo: 0,
+        };
+
+        console.log("this is the state on the end of the constractor", this.state);
+      }
 
         setPage = (number) => {
               this.setState({
@@ -28,31 +30,18 @@ export class ApplicationVideo extends Component {
       }
 
 render() {
-        var quesiton_array = [];
-        var video_array = [];
-        var stars = [];
-        var comments = [];
-        var pk = [];
-
-        this.props.int_ques.map((i) => {
-                stars.push(i.video_stars);
-                comments.push(i.video_comment)
-                quesiton_array.push(i.question_desc);
-                video_array.push(i.url);
-                pk.push(i.id)
-        });
-
+        console.log("this is the state, right at the beginning of rendering", this.state);
         return (
                 <React.Fragment>
                 {this.props.int_ques.length == 0 && <div><h3 style={{marginTop:"10%", textAlign:"center"}}>Candidate does not record any videos.</h3></div>}
                 {this.props.int_ques.length != 0 &&
                                 <div>
                                     <ApplicationVideoPanel
-                                            question={quesiton_array[this.state.currentVideo]}
-                                            url={video_array[this.state.currentVideo]}
-                                            stars={stars}
-                                            comments={comments}
-                                            videopk={pk[this.state.currentVideo]}
+                                            question={this.props.quesiton_array[this.state.currentVideo]}
+                                            url={this.props.video_array[this.state.currentVideo]}
+                                            stars={this.props.stars}
+                                            comments={this.props.comments}
+                                            videopk={this.props.pk[this.state.currentVideo]}
                                             page={this.state.currentVideo}
                                     />
                                     <Pagination 

@@ -7,9 +7,12 @@ import { updateComments } from "./../../../redux/actions/video_actions";
 import { confirmAlert } from 'react-confirm-alert';
 
 export function ApplicationVideoPanel (props) {
+ //   console.log("The props now", props)
     const [ratings, setRating] = useState(props.stars);
     const [comments, setComment] = useState(props.comments);
     const [page, setPage] = useState(props.page);
+ //   setTimeout(()=>{console.log("The props after 1 sec", props)}, 1000);
+ //   console.log("the State after constructor", ratings, comments, page);
 
     const handleRating = (x) => {
         var new_rating = [...ratings];
