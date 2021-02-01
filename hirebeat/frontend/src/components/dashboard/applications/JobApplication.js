@@ -518,13 +518,11 @@ const Applicant = (props) => {
     let jobTitle = props.jobTitle;
     let name = props.name;
 
-    const [comment_status, set_comment_status] = useState(props.comment_status);
-
     function viewResult() {
         // get videos and info
         props.getApplicantsVideos(email, positionId);
         props.getApplicantsInfo(email);
-        setShow(true);
+        setTimeout(()=>{setShow(true);}, 500)
     };
 
     function inviteAgain() {
@@ -620,13 +618,12 @@ const Applicant = (props) => {
                     }
                 </div>
                 <div className="col-3" >
-                    {renderStatus(comment_status)}
+                    {renderStatus(props.comment_status)}
                 </div>
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
-                comment_status={comment_status}
-                set_comment_status={set_comment_status}
+                comment_status={props.comment_status}
                 show={show}
                 onHide={()=>{setShow(false);}}
                 int_ques={props.int_ques}
