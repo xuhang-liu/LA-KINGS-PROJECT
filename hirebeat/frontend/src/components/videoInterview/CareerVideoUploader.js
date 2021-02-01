@@ -42,6 +42,7 @@ export class CareerVideoUploader extends Component {
     // save data to database
     var metaData = {
         "url": url,
+        "positions": this.props.positionId,
         "email": this.props.email,
         "question_id": this.props.question_ids[this.props.q_index],
         "question_desc": this.props.questions[this.props.q_index],
