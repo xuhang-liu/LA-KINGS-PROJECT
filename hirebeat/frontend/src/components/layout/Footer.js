@@ -10,7 +10,6 @@ class Footer extends Component {
         let currentYear = new Date().getFullYear();
         return (
             <footer className="footer-area">
-                <div className="divider"></div>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-4 col-md-6 col-sm-6">

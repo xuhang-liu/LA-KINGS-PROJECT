@@ -104,7 +104,7 @@ export class SelectParam extends Component {
           this.state.categoryOfQuestion,
           this.handleChangeCatogary,
           categoryOfQuestionOptions,
-          "select-category"
+          "select-category1"
           )}
         {selectParam(
           "How many questions do you want to practice?",

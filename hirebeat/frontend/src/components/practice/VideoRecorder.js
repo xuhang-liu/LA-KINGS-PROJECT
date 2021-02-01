@@ -4,7 +4,7 @@ import videojs from "video.js";
 import "webrtc-adapter";
 import RecordRTC from "recordrtc";
 import "videojs-record/dist/css/videojs.record.css";
-import Record from "videojs-record/dist/videojs.record.js";
+//import Record from "videojs-record/dist/videojs.record.js";
 
 import MyVideoUploader from "../videos/MyVideoUploader";
 import { connect } from "react-redux";
@@ -57,7 +57,7 @@ export class VideoRecorder extends Component {
       if (!this.props.isTesting) {
         this.recordFinished();
       }
-      this.player.bigPlayButton.show();
+      //this.player.bigPlayButton.show();
     });
 
     this.player.on("error", (element, error) => {

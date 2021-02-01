@@ -1,18 +1,8 @@
 import React, { Component } from "react";
-//import PropTypes from "prop-types";
 import ApplicationVideoPanel from "./ApplicationVideoPanel";
 import { connect } from "react-redux";
-import ReactPaginate from 'react-paginate';
-import { number } from "prop-types";
 
 export class ApplicationVideo extends Component {
-//   static propTypes = {
-//     videos: PropTypes.array.isRequired,
-//     loaded: PropTypes.bool.isRequired,
-//     getVideos: PropTypes.func.isRequired,
-//     deleteVideo: PropTypes.func.isRequired,
-//     filter: PropTypes.string,
-//   };
       constructor(props) {
         super(props);
 
@@ -51,7 +41,6 @@ render() {
                                     />
                                 </div>
                 }
-
                 </React.Fragment>
         );
   }
