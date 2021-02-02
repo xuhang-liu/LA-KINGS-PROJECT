@@ -284,11 +284,10 @@ const JobCard = (props) => {
     }
 
     // add extra invitation form
-    const [addForm, setAddForm] = useState(false);
-    function addMoreForms() {
-        setAddForm(true);
-    }
-
+    const [addForm1, setAddForm1] = useState(false);
+    const [addForm2, setAddForm2] = useState(false);
+    const [addForm3, setAddForm3] = useState(false);
+    const [addForm4, setAddForm4] = useState(false);
     return (
         <React.Fragment>
             {/* Job Applications */}
@@ -433,9 +432,93 @@ const JobCard = (props) => {
                         </div>
 
                         {/* add additional form */}
-                        {addForm &&
+                        {addForm1 &&
                             <InvitationForm />
                         }
+                        {addForm2 &&
+                            <InvitationForm />
+                        }
+                        {addForm3 &&
+                            <InvitationForm />
+                        }
+                        {addForm4 &&
+                            <InvitationForm />
+                        }
+
+                        <div className="form-row justify-items" style={{marginBottom: "1rem"}}>
+                            <div className="col-3 d-flex justify-items">
+                                {!addForm1 ?
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                        onClick={() => setAddForm1(true)}
+                                    >
+                                        Add Candidates
+                                    </button> :
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#FF0000"}}
+                                        onClick={() => setAddForm1(false)}
+                                    >
+                                        Remove Candidates
+                                    </button>
+                                }
+                            </div>
+                            <div className="col-3 d-flex justify-items">
+                                {!addForm2 ?
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                        onClick={() => setAddForm2(true)}
+                                    >
+                                        Add Candidates
+                                    </button> :
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#FF0000"}}
+                                        onClick={() => setAddForm2(false)}
+                                    >
+                                        Remove Candidates
+                                    </button>
+                                }
+                            </div>
+                            <div className="col-3 d-flex justify-items">
+                                {!addForm3 ?
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                        onClick={() => setAddForm3(true)}
+                                    >
+                                        Add Candidates
+                                    </button> :
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#FF0000"}}
+                                        onClick={() => setAddForm3(false)}
+                                    >
+                                        Remove Candidates
+                                    </button>
+                                }
+                            </div>
+                            <div className="col-3 d-flex justify-items">
+                                {!addForm4 ?
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                        onClick={() => setAddForm4(true)}
+                                    >
+                                        Add Candidates
+                                    </button> :
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#FF0000"}}
+                                        onClick={() => setAddForm4(false)}
+                                    >
+                                        Remove Candidates
+                                    </button>
+                                }
+                            </div>
+                        </div>
 
                         <div className="form-row justify-items" style={{marginBottom: "1rem"}}>
                             <div className="col-2 d-flex justify-items">
@@ -446,16 +529,6 @@ const JobCard = (props) => {
                                 >
                                     Cancel
                                     <span></span>
-                                </button>
-                            </div>
-                            <div className="col-3 d-flex justify-items">
-                                <button
-                                    className="default-btn interview-txt6"
-                                    style={!addForm ? {paddingLeft: "25px", background: "#67A3F3"} : {paddingLeft: "25px", background: "#E5E5E5"}}
-                                    onClick={addMoreForms}
-                                    disabled={addForm}
-                                >
-                                    Add More Candidates
                                 </button>
                             </div>
                             {/*<div className="col-7 interview-center">
@@ -485,37 +558,37 @@ const InvitationForm = () => {
                 <label style={{ fontSize: "17px", margin:"2%"}}>
                     Candidate Name
                 </label>
-                <input type="text" name="name1" className="form-control candidate-name" placeHolder="Enter your 6th candidate here"/>
+                <input type="text" name="name1" className="form-control candidate-name" placeHolder="Enter your candidate's name here"/>
             </div>
             <div className="form-group col-6">
                 <label style={{ fontSize: "17px", margin:"2%"}}>
                     Candidate Email
                 </label>
-                <input type="email" name="email1" className="form-control candidate-email" placeHolder="Enter your 6th candidate’s email here"/>
+                <input type="email" name="email1" className="form-control candidate-email" placeHolder="Enter your candidate’s email here"/>
             </div>
             <div className="form-group col-6">
-                <input type="text" name="name2" className="form-control candidate-name" placeHolder="Enter your 7th candidate here"/>
+                <input type="text" name="name2" className="form-control candidate-name" placeHolder="Enter your candidate's name here"/>
             </div>
             <div className="form-group col-6">
-                <input type="email" name="email2" className="form-control candidate-email" placeHolder="Enter your 7th candidate’s email here"/>
+                <input type="email" name="email2" className="form-control candidate-email" placeHolder="Enter your candidate’s email here"/>
             </div>
             <div className="form-group col-6">
-                <input type="text" name="name3" className="form-control candidate-name" placeHolder="Enter your 8th candidate here"/>
+                <input type="text" name="name3" className="form-control candidate-name" placeHolder="Enter your candidate's name here"/>
             </div>
             <div className="form-group col-6">
-                <input type="email" name="email3" className="form-control candidate-email" placeHolder="Enter your 8th candidate’s email here"/>
+                <input type="email" name="email3" className="form-control candidate-email" placeHolder="Enter your candidate’s email here"/>
             </div>
             <div className="form-group col-6">
-                <input type="text" name="name4" className="form-control candidate-name" placeHolder="Enter your 9th candidate here"/>
+                <input type="text" name="name4" className="form-control candidate-name" placeHolder="Enter your candidate's name here"/>
             </div>
             <div className="form-group col-6">
-                <input type="email" name="email4" className="form-control candidate-email" placeHolder="Enter your 9th candidate’s email here"/>
+                <input type="email" name="email4" className="form-control candidate-email" placeHolder="Enter your candidate’s email here"/>
             </div>
             <div className="form-group col-6">
-                <input type="text" name="name5" className="form-control candidate-name" placeHolder="Enter your 10th candidate here"/>
+                <input type="text" name="name5" className="form-control candidate-name" placeHolder="Enter your candidate's name here"/>
             </div>
             <div className="form-group col-6">
-                <input type="email" name="email5" className="form-control candidate-email" placeHolder="Enter your 10th candidate’s email here"/>
+                <input type="email" name="email5" className="form-control candidate-email" placeHolder="Enter your candidate’s email here"/>
             </div>
         </div>
     )
