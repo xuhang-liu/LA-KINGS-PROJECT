@@ -8,7 +8,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'boxicons';
 //import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition } from "./../../../redux/actions/question_actions";
-//import ReactPaginate from 'react-paginate';
+import ReactPaginate from 'react-paginate';
 import Select from 'react-select'
 
 export class JobApplication extends Component{
@@ -368,7 +368,7 @@ const JobCard = (props) => {
                                 updateCommentStatus={props.updateCommentStatus}
                                 offset={offset}
                             />
-                             {/*<ReactPaginate
+                             <ReactPaginate
                                  previousLabel={'<'}
                                  nextLabel={'>'}
                                  breakLabel={'...'}
@@ -380,7 +380,7 @@ const JobCard = (props) => {
                                  containerClassName={'pagination'}
                                  subContainerClassName={'pages pagination'}
                                  activeClassName={'active'}
-                             />*/}
+                             />
                         </div>
                     </div>
                 </div>
@@ -523,11 +523,11 @@ const InvitationForm = () => {
 
 const ApplicantList = (props) => {
     // get current page applicants(8)
-    //let index = props.offset; // start index at applicants array
-    //let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
+    let index = props.offset; // start index at applicants array
+    let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
     return (
         <div>
-            {props.applicants.map((a) => {
+            {applicants.map((a) => {
                 // filter applicants by status
                 if (props.category.value != "All") {
                     switch (props.category.value) {
@@ -578,13 +578,11 @@ const Applicant = (props) => {
     let jobTitle = props.jobTitle;
     let name = props.name;
 
-    const [comment_status, set_comment_status] = useState(props.comment_status);
-
     function viewResult() {
         // get videos and info
         props.getApplicantsVideos(email, positionId);
         props.getApplicantsInfo(email);
-        setShow(true);
+        setTimeout(()=>{setShow(true);}, 300)
     };
 
     function inviteAgain() {
@@ -680,13 +678,12 @@ const Applicant = (props) => {
                     }
                 </div>
                 <div className="col-3" >
-                    {renderStatus(comment_status)}
+                    {renderStatus(props.comment_status)}
                 </div>
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
-                comment_status={comment_status}
-                set_comment_status={set_comment_status}
+                comment_status={props.comment_status}
                 show={show}
                 onHide={()=>{setShow(false);}}
                 int_ques={props.int_ques}

@@ -38,6 +38,9 @@ class Video(models.Model):
     # TQ answer
     q_answer = models.TextField(blank=True, null=True)
     q_explain = models.TextField(blank=True, null=True)
+    # TQ limit Control
+    is_tq_ai_clicked = models.BooleanField(default=False)
+    is_tq_sample_clicked = models.BooleanField(default=False)
 
     def __str__(self):
         return self.owner.username + '|' + self.created_at.strftime("%m/%d/%Y")

@@ -8,7 +8,7 @@ import { AIReview } from "./AIReview";
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 import { connect } from "react-redux";
-import {Link} from "react-router-dom";
+//import {Link} from "react-router-dom";
 
 function ReviewStatusButton(props) {
   const [show, setShow] = useState(false);

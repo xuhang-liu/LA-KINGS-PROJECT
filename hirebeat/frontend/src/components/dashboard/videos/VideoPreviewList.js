@@ -6,6 +6,7 @@ import {
   getVideos,
   sendVideoForReview,
   deleteVideo,
+  addTQVideoLimit,
 } from "../../../redux/actions/video_actions";
 
 export class VideoPreviewList extends Component {
@@ -14,6 +15,7 @@ export class VideoPreviewList extends Component {
     loaded: PropTypes.bool.isRequired,
     getVideos: PropTypes.func.isRequired,
     deleteVideo: PropTypes.func.isRequired,
+    addTQVideoLimit: PropTypes.func.isRequired,
     filter: PropTypes.string,
   };
 
@@ -67,6 +69,7 @@ export class VideoPreviewList extends Component {
                         : null}
                     isBQ={v.q_type === "Behavior Question" ? true : false}
                     deleteVideo={this.props.deleteVideo}
+                    addTQVideoLimit={this.props.addTQVideoLimit}
                   />
                 </div>
               );
@@ -86,4 +89,5 @@ export default connect(mapStateToProps, {
   getVideos,
   sendVideoForReview,
   deleteVideo,
+  addTQVideoLimit,
 })(VideoPreviewList);
