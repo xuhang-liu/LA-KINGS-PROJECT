@@ -217,25 +217,22 @@ const JobCard = (props) => {
     const [hide, setHide] = useState(true);
     const hideSwitch = () => {setHide(hide => !hide)};
 
-    // collect input name and email
-    const [name1, setName1] = useState("");
-    const [name2, setName2] = useState("");
-    const [name3, setName3] = useState("");
-    const [name4, setName4] = useState("");
-    const [name5, setName5] = useState("");
-
-    const [email1, setEmail1] = useState("");
-    const [email2, setEmail2] = useState("");
-    const [email3, setEmail3] = useState("");
-    const [email4, setEmail4] = useState("");
-    const [email5, setEmail5] = useState("");
-
     function sendInvitation() {
         let companyName = props.companyName;
         let jobTitle = props.jobTitle;
         let positionId = props.positionId;
-        let emails=[email1.toLowerCase(), email2.toLowerCase(), email3.toLowerCase(), email4.toLowerCase(), email5.toLowerCase()];
-        let names = [name1, name2, name3, name4, name5];
+        // collect input name and email
+        const emails = [];
+        const names = [];
+        let nameElements = document.getElementsByClassName("candidate-name");
+        let emailElements = document.getElementsByClassName("candidate-email");
+        for (let i = 0; i < nameElements.length; i++) {
+            // name
+            names.push(nameElements[i].value);
+            // email
+            let value = emailElements[i].value;
+            emails.push(value.toLowerCase());
+        }
         // generate interview urls and send emails
         let urls = [];
         for (let i = 0; i < emails.length; i++) {
@@ -284,6 +281,12 @@ const JobCard = (props) => {
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
     function onFilter(category) {
         setCategory(category);
+    }
+
+    // add extra invitation form
+    const [addForm, setAddForm] = useState(false);
+    function addMoreForms() {
+        setAddForm(true);
     }
 
     return (
@@ -395,42 +398,46 @@ const JobCard = (props) => {
                                 <label style={{ fontSize: "17px", margin:"2%"}}>
                                     Candidate Name
                                 </label>
-                                <input type="text" name="name1" onChange={(e) => {setName1(e.target.value)}} className="form-control" required="required" placeHolder="Enter your 1st candidate here"/>
+                                <input type="text" name="name1" className="form-control candidate-name" required="required" placeHolder="Enter your 1st candidate here"/>
                             </div>
                             <div className="form-group col-6">
                                 <label style={{ fontSize: "17px", margin:"2%"}}>
                                     Candidate Email
                                 </label>
-                                <input type="email" name="email1" onChange={(e) => {setEmail1(e.target.value)}} className="form-control" required="required" placeHolder="Enter your 1st candidate’s email here"/>
+                                <input type="email" name="email1" className="form-control candidate-email" required="required" placeHolder="Enter your 1st candidate’s email here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name2" onChange={(e) => {setName2(e.target.value)}} className="form-control" placeHolder="Enter your 2nd candidate here"/>
+                                <input type="text" name="name2" className="form-control candidate-name" placeHolder="Enter your 2nd candidate here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email2" onChange={(e) => {setEmail2(e.target.value)}} className="form-control" placeHolder="Enter your 2nd candidate’s email here"/>
+                                <input type="email" name="email2" className="form-control candidate-email" placeHolder="Enter your 2nd candidate’s email here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name3" onChange={(e) => {setName3(e.target.value)}} className="form-control" placeHolder="Enter your 3rd candidate here"/>
+                                <input type="text" name="name3" className="form-control candidate-name" placeHolder="Enter your 3rd candidate here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email3" onChange={(e) => {setEmail3(e.target.value)}} className="form-control" placeHolder="Enter your 3rd candidate’s email here"/>
+                                <input type="email" name="email3" className="form-control candidate-email" placeHolder="Enter your 3rd candidate’s email here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name4" onChange={(e) => {setName4(e.target.value)}} className="form-control" placeHolder="Enter your 4th candidate here"/>
+                                <input type="text" name="name4" className="form-control candidate-name" placeHolder="Enter your 4th candidate here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email4" onChange={(e) => {setEmail4(e.target.value)}} className="form-control" placeHolder="Enter your 4th candidate’s email here"/>
+                                <input type="email" name="email4" className="form-control candidate-email" placeHolder="Enter your 4th candidate’s email here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name5" onChange={(e) => {setName5(e.target.value)}} className="form-control" placeHolder="Enter your 5th candidate here"/>
+                                <input type="text" name="name5" className="form-control candidate-name" placeHolder="Enter your 5th candidate here"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email5" onChange={(e) => {setEmail5(e.target.value)}} className="form-control" placeHolder="Enter your 5th candidate’s email here"/>
+                                <input type="email" name="email5" className="form-control candidate-email" placeHolder="Enter your 5th candidate’s email here"/>
                             </div>
-
-
                         </div>
-                        <div className="form-row" style={{marginBottom: "1rem"}}>
+
+                        {/* add additional form */}
+                        {addForm &&
+                            <InvitationForm />
+                        }
+
+                        <div className="form-row justify-items" style={{marginBottom: "1rem"}}>
                             <div className="col-2 d-flex justify-items">
                                 <button
                                     className="default-btn interview-txt6"
@@ -441,9 +448,19 @@ const JobCard = (props) => {
                                     <span></span>
                                 </button>
                             </div>
-                            <div className="col-7 interview-center">
-                                <p className="interview-txt8">Currently we only support adding up to 5 candidates at a time.</p>
+                            <div className="col-3 d-flex justify-items">
+                                <button
+                                    className="default-btn interview-txt6"
+                                    style={!addForm ? {paddingLeft: "25px", background: "#67A3F3"} : {paddingLeft: "25px", background: "#E5E5E5"}}
+                                    onClick={addMoreForms}
+                                    disabled={addForm}
+                                >
+                                    Add More Candidates
+                                </button>
                             </div>
+                            {/*<div className="col-7 interview-center">
+                                <p className="interview-txt8">Currently we only support adding up to 5 candidates at a time.</p>
+                            </div>*/}
                             <div className="col-3 d-flex justify-items">
                                 <button
                                     type="submit"
@@ -460,6 +477,49 @@ const JobCard = (props) => {
         </React.Fragment>
     )
 };
+
+const InvitationForm = () => {
+    return (
+        <div className="form-row">
+            <div className="form-group col-6">
+                <label style={{ fontSize: "17px", margin:"2%"}}>
+                    Candidate Name
+                </label>
+                <input type="text" name="name1" className="form-control candidate-name" placeHolder="Enter your 6th candidate here"/>
+            </div>
+            <div className="form-group col-6">
+                <label style={{ fontSize: "17px", margin:"2%"}}>
+                    Candidate Email
+                </label>
+                <input type="email" name="email1" className="form-control candidate-email" placeHolder="Enter your 6th candidate’s email here"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="text" name="name2" className="form-control candidate-name" placeHolder="Enter your 7th candidate here"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="email" name="email2" className="form-control candidate-email" placeHolder="Enter your 7th candidate’s email here"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="text" name="name3" className="form-control candidate-name" placeHolder="Enter your 8th candidate here"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="email" name="email3" className="form-control candidate-email" placeHolder="Enter your 8th candidate’s email here"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="text" name="name4" className="form-control candidate-name" placeHolder="Enter your 9th candidate here"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="email" name="email4" className="form-control candidate-email" placeHolder="Enter your 9th candidate’s email here"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="text" name="name5" className="form-control candidate-name" placeHolder="Enter your 10th candidate here"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="email" name="email5" className="form-control candidate-email" placeHolder="Enter your 10th candidate’s email here"/>
+            </div>
+        </div>
+    )
+}
 
 const ApplicantList = (props) => {
     // get current page applicants(8)
