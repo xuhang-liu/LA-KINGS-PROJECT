@@ -117,6 +117,9 @@ import AccentureInfo from"./companyData/companies/AccentureInfo";
 import BainInfo from"./companyData/companies/BainInfo";
 import BCGInfo from"./companyData/companies/BCGInfo";
 import OliverWymanInfo from"./companyData/companies/OliverWymanInfo";
+import ATKearneyInfo from"./companyData/companies/ATKearneyInfo";
+import AnalysisGroupInfo from"./companyData/companies/AnalysisGroupInfo";
+import CornerstoneInfo from"./companyData/companies/CornerstoneInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -337,6 +340,9 @@ class App extends Component {
                 <Route exact path="/bain" component={BainInfo} />
                 <Route exact path="/boston-consulting-group" component={BCGInfo} />
                 <Route exact path="/jobs" component={JobList} />
+                <Route exact path="/kearney" component={ATKearneyInfo} />
+                <Route exact path="/analysis-group" component={AnalysisGroupInfo} />
+                <Route exact path="/cornerstone-research" component={CornerstoneInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />
