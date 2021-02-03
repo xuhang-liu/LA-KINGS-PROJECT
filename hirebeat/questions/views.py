@@ -104,6 +104,7 @@ def get_posted_jobs(request):
         positions_id = positions[i].id
         # get each position applicants
         applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
+        questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
         job_details = {
             "position_id": positions_id,
             "job_id": positions[i].job_id,
@@ -111,6 +112,7 @@ def get_posted_jobs(request):
             "is_closed": positions[i].is_closed,
             "invite_date": positions[i].invite_date,
             "applicants": applicants,
+            "questions": questions,
         }
         # convert to json
         data[positions_id] = job_details
