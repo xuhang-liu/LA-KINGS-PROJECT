@@ -10,6 +10,7 @@ const initialState = {
   random_question_id: 0,
   interview_questions: [],
   interview_question_ids: [],
+  questionTime: 0,
   postedJobs: [],
 };
 
@@ -55,6 +56,7 @@ export default function (state = initialState, action) {
         q_count: action.payload.questions.length,
         interview_questions: action.payload.questions,
         interview_question_ids: action.payload.question_ids,
+        questionTime: action.payload.questionTime,
       };
     case NEXT_INTERVIEW_QUESTION:
       if (state.q_index == state.q_count - 2) {

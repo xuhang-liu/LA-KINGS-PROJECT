@@ -61,8 +61,9 @@ def get_random_question(request):
 def get_interview_questions(request):
     questions = []
     question_ids = []
-
     position_id = request.query_params.get("position_id")
+    
+    questionTime = Positions.objects.get(pk=position_id)
     interview_questions = InterviewQuestions.objects.filter(positions_id=position_id)
     for i in range(len(interview_questions)):
         obj = interview_questions[i]
@@ -72,6 +73,7 @@ def get_interview_questions(request):
     return Response({
         "questions": questions,
         "question_ids": question_ids,
+        "questionTime": questionTime,
     })
 
 @api_view(['POST'])
