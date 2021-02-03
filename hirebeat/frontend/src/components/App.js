@@ -111,6 +111,9 @@ import BarclaysInfo from"./companyData/companies/BarclaysInfo";
 import CreditSuisseInfo from"./companyData/companies/CreditSuisseInfo";
 import HoulihanLokeyInfo from"./companyData/companies/HoulihanLokeyInfo";
 import MetLifeInfo from"./companyData/companies/MetLifeInfo";
+import ATKearneyInfo from"./companyData/companies/ATKearneyInfo";
+import AnalysisGroupInfo from"./companyData/companies/AnalysisGroupInfo";
+import CornerstoneInfo from"./companyData/companies/CornerstoneInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -325,6 +328,9 @@ class App extends Component {
                 <Route exact path="/houlihan-lokey" component={HoulihanLokeyInfo} />
                 <Route exact path="/metlife" component={MetLifeInfo} />
                 <Route exact path="/jobs" component={JobList} />
+                <Route exact path="/kearney" component={ATKearneyInfo} />
+                <Route exact path="/analysis-group" component={AnalysisGroupInfo} />
+                <Route exact path="/cornerstone-research" component={CornerstoneInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />
