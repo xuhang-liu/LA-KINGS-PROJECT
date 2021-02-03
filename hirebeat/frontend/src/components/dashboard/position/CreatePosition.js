@@ -1,6 +1,8 @@
 import React,  { Component } from "react";
 import { connect } from "react-redux";
 import { IconText } from "../DashboardComponents";
+import { selectParamEnployer } from "../../../components/practice/CardComponents"
+import { lengthOfResponseOptions } from "../../../constants/constants"
 import PropTypes from "prop-types";
 import { addPosition } from "../../../redux/actions/question_actions";
 import 'boxicons';
@@ -18,6 +20,7 @@ export class CreatePosition extends Component{
         question2: "",
         question3: "",
         position_added: true,
+        lengthOfResponse: { value: 1, label: "60s" },
     }
     
     handleInputChange = (e) => {
@@ -25,6 +28,11 @@ export class CreatePosition extends Component{
           [e.target.name]: e.target.value,
         });
       };
+    
+    handleChangeTime = ( lengthOfResponse ) => {
+        this.setState({ lengthOfResponse });
+        console.log(this.state.lengthOfResponse);
+    }
 
     savePosition = () => {
         var jobtitle = this.state.jobtitle;
@@ -33,7 +41,8 @@ export class CreatePosition extends Component{
         var question1 = this.state.question1;
         var question2 = this.state.question2;
         var question3 = this.state.question3;
-        this.props.addPosition(jobtitle, jobid, userid, question1, question2, question3);
+        var questionTime = this.state.lengthOfResponse.value * 60
+        this.props.addPosition(jobtitle, jobid, userid, question1, question2, question3, questionTime);
     }
 
     hideSave = (e) => {
@@ -125,6 +134,15 @@ export class CreatePosition extends Component{
                                 </label>
                                 <input type="text" name="question3" value={this.state.question3}
                                 onChange={this.handleInputChange} className="form-control"/>
+                        </div>
+                        <div className="form-group col-12 " style={{marginTop:"1rem"}}>
+                            {selectParamEnployer(
+                                "Time for Each Question",
+                                this.state.lengthOfResponse,
+                                this.handleChangeTime,
+                                lengthOfResponseOptions,
+                                "select-time"
+                            )}
                         </div>
                         <div className="form-group col-12" style={{marginTop:"1rem"}}>
                             <button className="default-btn1"
