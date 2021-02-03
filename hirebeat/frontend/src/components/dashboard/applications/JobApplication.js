@@ -137,7 +137,15 @@ const JobViewDetail = (props) => {
                     <div className="col-12" style={{fontFamily: "Avenir Next" }}>
                         <div className="mt-4">
                             <div className="row">
-                                <div className="col-5" style={{color:"#090D3A"}}>
+                                <div className="col-6" style={{color:"#090D3A"}}>
+                                    <button
+                                        type="button"
+                                        className="read-more"
+                                        style={{marginBottom:"1rem", border:"none", backgroundColor:"#ffffff", fontSize:"1.2rem", fontWeight:"500", marginLeft:"-0.5rem"}}
+                                        onClick={() => {setView(true)}}
+                                    >
+                                        <i className="bx bx-expand pr-1"></i> Expand
+                                    </button>
                                     <h3>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                                     <div className="row mb-2 mt-1">
                                         <div className="col-6">
@@ -148,15 +156,7 @@ const JobViewDetail = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-1" />
                                 <div className="col-3 center-items" style={{color:"#56A3FA"}}>
-                                    <button
-                                        onClick={() => {setView(true)}}
-                                        className="default-btn"
-                                        style={{paddingLeft:"25px"}}
-                                    >
-                                        View Position
-                                    </button>
                                 </div>
                                     <div className="col-3 center-items">
                                     {!props.isClosed &&
@@ -214,8 +214,8 @@ const JobViewDetail = (props) => {
 
 const JobCard = (props) => {
     const [invite, setInvite] = useState(false);
-    const [hide, setHide] = useState(true);
-    const hideSwitch = () => {setHide(hide => !hide)};
+    //const [hide, setHide] = useState(true);
+    //const hideSwitch = () => {setHide(hide => !hide)};
 
     // collect input name and email
     const [name1, setName1] = useState("");
@@ -290,25 +290,35 @@ const JobCard = (props) => {
         <React.Fragment>
             {/* Job Applications */}
             {!invite &&
-                <div style={{marginTop: "4rem"}}>
-                    <div className="col-2 interview-center" style={{marginLeft:"-1.1rem", marginBottom:"1rem"}}>
+                <div className="card container mt-3 pt-2 pb-3">
+                    <div className="interview-center" style={{marginLeft:"-0.5rem", marginBottom:"1.4rem"}}>
                         <button
                             type="button"
-                            className="default-btn"
+                            className="read-more"
+                            style={{border:"none", backgroundColor:"#ffffff", fontSize:"1.2rem", fontWeight:"500"}}
                             onClick={props.hideView}
                         >
-                            <i className="bx bx-collapse"></i>Collapse
+                            <i className="bx bx-collapse pr-1"></i> Collapse
                         </button>
                     </div>
                     <div className="row">
                         <div className="col-4 interview-center">
-                            <h3 className="interview-txt5">{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
+                            <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                         </div>
-                        <div className="col-3 interview-center" style={{paddingRight: "0px"}}>
+                        <div className="col-2 interview-txt7 interview-center">
+                            <button
+                            type="button"
+                            className="read-more"
+                            style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
+                            >
+                            <i className="bx bx-info-circle pr-1"></i> View Questions
+                            </button>
+                        </div>
+                        <div className="col-3 interview-center">
                             {!props.isClosed &&
                                 <button
                                     className="default-btn interview-txt6"
-                                    style={{paddingLeft: "25px"}}
+                                    style={{paddingLeft: "25px", marginBottom:"1rem"}}
                                     onClick={() => setInvite(true)}
                                 >
                                     + Invite Candidates
@@ -316,23 +326,6 @@ const JobCard = (props) => {
                                 </button>
                             }
                         </div>
-                        <div className="col-1 interview-center">
-                            {!props.isClosed &&
-                            <button
-                                onClick={hideSwitch}
-                                style={{border: "none", background: "white", borderRadius: "50%", color:"#56a3fa", marginTop:"0.6rem"}}
-                                >
-                                <i className="bx bx-question-mark 2"></i>
-                            </button>}
-                        </div>
-                        {!hide &&
-                        <div
-                            className="col-3 interview-center"
-                            style={{justifyContent: "left", background: "#FFFFFF", marginLeft: "1rem"}}
-                        >
-                            <p className="interview-txt7">Enter Candidate information and send email invitation.</p>
-                        </div>
-                        }
                     </div>
                     <div className="card container" style={{marginTop:"1%"}}>
                         <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
@@ -341,12 +334,12 @@ const JobCard = (props) => {
                             <div className="col-3">Status</div>
                             <div className="col-3">
                                 <div className="row">
-                                    <div className="center-items" style={{marginRight: "1rem"}}>Filter by Result: </div>
+                                    <div className="center-items" style={{marginRight: "1rem"}}>Filter: </div>
                                     <Select value={category} onChange={onFilter} options={options} className="select-category" />
                                 </div>
                             </div>
                         </div>
-                        <div style={{paddingBottom:"3rem", marginBottom:"2rem"}}>
+                        <div style={{marginBottom:"2rem"}}>
                             <ApplicantList
                                 category={category}
                                 applicants={props.applicants}
@@ -437,7 +430,7 @@ const JobCard = (props) => {
                                     style={{paddingLeft: "25px", background: "#67A3F3"}}
                                     onClick={() => setInvite(false)}
                                 >
-                                    Cancel
+                                    Back
                                     <span></span>
                                 </button>
                             </div>

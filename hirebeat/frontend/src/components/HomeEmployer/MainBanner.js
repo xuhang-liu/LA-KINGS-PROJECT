@@ -43,12 +43,12 @@ class MainBanner extends Component {
             <React.Fragment>
                 <div className="employer-main-banner">
                     <div className="title">
-                        <h1 style={{fontSize:"2.4rem", fontWeight:"600", color:"#ffffff"}}>
+                        <h1 style={{fontSize:"2.4vw", fontWeight:"600", color:"#ffffff"}}>
                             Video Interview Platform that Transformed the Hiring Porcess
                         </h1>
                     </div>
                     <div className="my-3">
-                        <h4 style={{color:"#ffffff", paddingTop:"1rem"}}>
+                        <h4 style={{fontSize:"1.6vw", color:"#ffffff", paddingTop:"1rem"}}>
                             We help recuitment team hire talents much faster than ever
                         </h4>
                     </div>
@@ -68,12 +68,12 @@ class MainBanner extends Component {
                     </div>
                     <div className="row">
                         <div className="col-12 col-lg-6 mt-5">
-                            <div className="container ml-5 pl-5">
+                            <div className="container justify-content-center align-items-center">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/result1.png"></img>
                             </div>
                         </div>
                         <div className="col-12 col-lg-6 mt-5 after">
-                            <div className="container pr-5 mr-5">
+                            <div className="container justify-content-center align-items-center">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/result2.png"></img>
                             </div>
                         </div>
