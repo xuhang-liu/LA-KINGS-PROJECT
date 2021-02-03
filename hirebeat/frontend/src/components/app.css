@@ -2496,6 +2496,19 @@ h5 {
   align-items: center;
 }
 
+.search-candidate-input {
+  color: #67a3f3;
+  padding-left: 0.5rem;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.search-candidate-input::placeholder {
+  padding-left: 0.5rem;
+  color: #67a3f3;
+}
+
 .dashboard-sidebar {
   height: 100%;
   width: 100%;
