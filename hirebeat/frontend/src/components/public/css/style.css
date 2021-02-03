@@ -46,7 +46,7 @@ Default CSS
 @import url("https://fonts.googleapis.com/css?family=Avenir Next:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
 
 * {
-  font-family: 'Avenir Next', sans-serif;
+  font-family: 'Avenir Next', 'Helvetica', sans-serif;
 }
 
 body {
@@ -144,6 +144,10 @@ img {
 
 .max-width-1290 {
   max-width: 1290px;
+}
+
+.min-width-1290 {
+  min-width: 1290px;
 }
 
 .max-width-1440 {
@@ -571,6 +575,7 @@ Navbar Area CSS
   top: 0;
   left: 0;
   width: 100%;
+  min-width: 1290px;
   background-color: transparent;
   height: auto;
   z-index: 1040;
@@ -579,7 +584,7 @@ Navbar Area CSS
 }
 
 .navbar-area .container {
-  max-width: 1440px;
+  position: relative;
 }
 
 .navbar-area.is-sticky {
@@ -3986,33 +3991,37 @@ Blog Details Area CSS
 }
 
 .blog-details-desc .article-content h1 {
-  font-size: 30px;
+  font-size: 34px;
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
 .blog-details-desc .article-content h2 {
-  font-size: 26px;
+  font-size: 30px;
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
 .blog-details-desc .article-content h3 {
-  font-size: 22px;
+  font-size: 26px;
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
 .blog-details-desc .article-content h4 {
-  font-size: 18px;
+  font-size: 22px;
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
 .blog-details-desc .article-content h5 {
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 10px;
   line-height: 1.5;
+}
+
+.blog-details-desc .article-content p {
+  font-size: 17px;
 }
 
 .blog-details-desc .article-content .block-gallery.columns-3 {
@@ -5976,6 +5985,7 @@ form .form-group .form-control::placeholder {
 Footer Area CSS
 =================================================*/
 .footer-area {
+  min-width: 1290px;
   background-color: #080a3c;
   position: relative;
   z-index: 1;

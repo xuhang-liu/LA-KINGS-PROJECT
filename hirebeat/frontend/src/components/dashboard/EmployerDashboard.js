@@ -197,7 +197,7 @@ export class EmployerDashboard extends Component {
           <ScrollToTopOnMount/>
           {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
-            <div className="row no-gutters">
+            <div className="row no-gutters min-width-1290">
               <div className='col-3'>
                 <div className='dashboard-sidebar'>
                   <EssentialUserInfo

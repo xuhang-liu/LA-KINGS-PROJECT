@@ -131,7 +131,7 @@ export class EssentialUserInfo extends Component {
       <React.Fragment>
       <div className="container">
           <DbCenterRow>
-            <div className="col-9">
+            <div>
               <div className="row" style={{marginTop:"20%", marginBottom:"10%"}}>
                 <div className="col d-flex align-items-center">
                   <h3
@@ -184,7 +184,8 @@ export class EssentialUserInfo extends Component {
                 </div>
               </div>}
               <div className="row" style={{marginTop:"1%"}}>
-                <div className="col d-flex align-items-center">
+                <div className="col d-flex align-items-center" style={{wordWrap: "break-word",
+                      wordBreak: "break-all"}}>
                         <IconText
                           iconName={"bx bx-envelope bx-sm"}
                           textDisplayed={this.props.user.email}

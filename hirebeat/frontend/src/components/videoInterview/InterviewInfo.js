@@ -4,6 +4,7 @@ import {getInterviewQuestions} from "../../redux/actions/question_actions";
 import {getRecordStatus} from "../../redux/actions/auth_actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import { confirmAlert } from 'react-confirm-alert';
 //import safariAlert from "./../basic/SafariAlert";
 import Modal from "react-bootstrap/Modal";
 
@@ -68,7 +69,20 @@ class InterviewInfo extends Component {
         });
     }
 
+    logoutUser = () => {
+        this.props.logout;
+    }
+
     render() {
+        if(this.props.user.email != this.state.email){
+            confirmAlert({
+                title: 'Wrong Account!',
+                message: 'Please Logout current account and Re-click the invitation link to compelete this interview!😢',
+                buttons: [
+                  {label: 'Got It'}
+                ]
+              });
+        };
         return (
             <React.Fragment>
                 <SampleQuestion
@@ -172,6 +186,7 @@ const SampleQuestion = (props) => {
   }
 
 const mapStateToProps = (state) => ({
+  user: state.auth_reducer.user,
   dataLoaded: state.auth_reducer.dataLoaded,
   interview_questions: state.question_reducer.interview_questions,
   isRecorded: state.auth_reducer.isRecorded,

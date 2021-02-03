@@ -87,6 +87,7 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/blog-acing-pandemic-job-interview-questions",
     "/blog-how-to-answer-the-teamwork-type-question-in-an-interview",
     "/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr",
     "/blog-why-do-you-want-to-work-here",
@@ -108,6 +109,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog19.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog18.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog17.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog14.jpg",
@@ -129,6 +131,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Feb 02, 2021",
     "Jan 27, 2021",
     "Jan 19, 2021",
     "Jan 13, 2021",
@@ -150,6 +153,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "ACING PANDEMIC JOB INTERVIEW QUESTIONS",
     "HOW TO ANSWER THE TEAMWORK TYPE QUESTION",
     "11 MISTAKES MADE BY THE MOST INTERVIEWEES",
     "WHY DO YOU WANT TO WORK HERE",

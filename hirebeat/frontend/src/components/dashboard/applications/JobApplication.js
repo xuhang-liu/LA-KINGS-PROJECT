@@ -137,7 +137,15 @@ const JobViewDetail = (props) => {
                     <div className="col-12" style={{fontFamily: "Avenir Next" }}>
                         <div className="mt-4">
                             <div className="row">
-                                <div className="col-5" style={{color:"#090D3A"}}>
+                                <div className="col-6" style={{color:"#090D3A"}}>
+                                    <button
+                                        type="button"
+                                        className="read-more"
+                                        style={{marginBottom:"1rem", border:"none", backgroundColor:"#ffffff", fontSize:"1.2rem", fontWeight:"500", marginLeft:"-0.5rem"}}
+                                        onClick={() => {setView(true)}}
+                                    >
+                                        <i className="bx bx-expand pr-1"></i> Expand
+                                    </button>
                                     <h3>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                                     <div className="row mb-2 mt-1">
                                         <div className="col-6">
@@ -148,15 +156,7 @@ const JobViewDetail = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-1" />
                                 <div className="col-3 center-items" style={{color:"#56A3FA"}}>
-                                    <button
-                                        onClick={() => {setView(true)}}
-                                        className="default-btn"
-                                        style={{paddingLeft:"25px"}}
-                                    >
-                                        View Position
-                                    </button>
                                 </div>
                                     <div className="col-3 center-items">
                                     {!props.isClosed &&
@@ -214,28 +214,25 @@ const JobViewDetail = (props) => {
 
 const JobCard = (props) => {
     const [invite, setInvite] = useState(false);
-    const [hide, setHide] = useState(true);
-    const hideSwitch = () => {setHide(hide => !hide)};
-
-    // collect input name and email
-    const [name1, setName1] = useState("");
-    const [name2, setName2] = useState("");
-    const [name3, setName3] = useState("");
-    const [name4, setName4] = useState("");
-    const [name5, setName5] = useState("");
-
-    const [email1, setEmail1] = useState("");
-    const [email2, setEmail2] = useState("");
-    const [email3, setEmail3] = useState("");
-    const [email4, setEmail4] = useState("");
-    const [email5, setEmail5] = useState("");
+    //const [hide, setHide] = useState(true);
+    //const hideSwitch = () => {setHide(hide => !hide)};
 
     function sendInvitation() {
         let companyName = props.companyName;
         let jobTitle = props.jobTitle;
         let positionId = props.positionId;
-        let emails=[email1.toLowerCase(), email2.toLowerCase(), email3.toLowerCase(), email4.toLowerCase(), email5.toLowerCase()];
-        let names = [name1, name2, name3, name4, name5];
+        // collect input name and email
+        const emails = [];
+        const names = [];
+        let nameElements = document.getElementsByClassName("candidate-name");
+        let emailElements = document.getElementsByClassName("candidate-email");
+        for (let i = 0; i < nameElements.length; i++) {
+            // name
+            names.push(nameElements[i].value);
+            // email
+            let value = emailElements[i].value;
+            emails.push(value.toLowerCase());
+        }
         // generate interview urls and send emails
         let urls = [];
         for (let i = 0; i < emails.length; i++) {
@@ -286,29 +283,45 @@ const JobCard = (props) => {
         setCategory(category);
     }
 
+    // add extra invitation form
+    const [addForm1, setAddForm1] = useState(false);
+    const [addForm2, setAddForm2] = useState(false);
+    const [addForm3, setAddForm3] = useState(false);
+    const [addForm4, setAddForm4] = useState(false);
+    const [addForm5, setAddForm5] = useState(false);
     return (
         <React.Fragment>
             {/* Job Applications */}
             {!invite &&
-                <div style={{marginTop: "4rem"}}>
-                    <div className="col-2 interview-center" style={{marginLeft:"-1.1rem", marginBottom:"1rem"}}>
+                <div className="card container mt-3 pt-2 pb-3">
+                    <div className="interview-center" style={{marginLeft:"-0.5rem", marginBottom:"1.4rem"}}>
                         <button
                             type="button"
-                            className="default-btn"
+                            className="read-more"
+                            style={{border:"none", backgroundColor:"#ffffff", fontSize:"1.2rem", fontWeight:"500"}}
                             onClick={props.hideView}
                         >
-                            <i className="bx bx-collapse"></i>Collapse
+                            <i className="bx bx-collapse pr-1"></i> Collapse
                         </button>
                     </div>
                     <div className="row">
                         <div className="col-4 interview-center">
-                            <h3 className="interview-txt5">{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
+                            <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                         </div>
-                        <div className="col-3 interview-center" style={{paddingRight: "0px"}}>
+                        <div className="col-2 interview-txt7 interview-center">
+                            <button
+                            type="button"
+                            className="read-more"
+                            style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
+                            >
+                            <i className="bx bx-info-circle pr-1"></i> View Questions
+                            </button>
+                        </div>
+                        <div className="col-3 interview-center">
                             {!props.isClosed &&
                                 <button
                                     className="default-btn interview-txt6"
-                                    style={{paddingLeft: "25px"}}
+                                    style={{paddingLeft: "25px", marginBottom:"1rem"}}
                                     onClick={() => setInvite(true)}
                                 >
                                     + Invite Candidates
@@ -316,23 +329,6 @@ const JobCard = (props) => {
                                 </button>
                             }
                         </div>
-                        <div className="col-1 interview-center">
-                            {!props.isClosed &&
-                            <button
-                                onClick={hideSwitch}
-                                style={{border: "none", background: "white", borderRadius: "50%", color:"#56a3fa", marginTop:"0.6rem"}}
-                                >
-                                <i className="bx bx-question-mark 2"></i>
-                            </button>}
-                        </div>
-                        {!hide &&
-                        <div
-                            className="col-3 interview-center"
-                            style={{justifyContent: "left", background: "#FFFFFF", marginLeft: "1rem"}}
-                        >
-                            <p className="interview-txt7">Enter Candidate information and send email invitation.</p>
-                        </div>
-                        }
                     </div>
                     <div className="card container" style={{marginTop:"1%"}}>
                         <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
@@ -341,12 +337,12 @@ const JobCard = (props) => {
                             <div className="col-3">Status</div>
                             <div className="col-3">
                                 <div className="row">
-                                    <div className="center-items" style={{marginRight: "1rem"}}>Filter by Result: </div>
+                                    <div className="center-items" style={{marginRight: "1rem"}}>Filter: </div>
                                     <Select value={category} onChange={onFilter} options={options} className="select-category" />
                                 </div>
                             </div>
                         </div>
-                        <div style={{paddingBottom:"3rem", marginBottom:"2rem"}}>
+                        <div style={{marginBottom:"2rem"}}>
                             <ApplicantList
                                 category={category}
                                 applicants={props.applicants}
@@ -395,54 +391,124 @@ const JobCard = (props) => {
                                 <label style={{ fontSize: "17px", margin:"2%"}}>
                                     Candidate Name
                                 </label>
-                                <input type="text" name="name1" onChange={(e) => {setName1(e.target.value)}} className="form-control" required="required" placeHolder="Enter your 1st candidate here"/>
+                                <input type="text" name="name1" className="form-control candidate-name" required="required" placeHolder="John"/>
                             </div>
                             <div className="form-group col-6">
                                 <label style={{ fontSize: "17px", margin:"2%"}}>
                                     Candidate Email
                                 </label>
-                                <input type="email" name="email1" onChange={(e) => {setEmail1(e.target.value)}} className="form-control" required="required" placeHolder="Enter your 1st candidate’s email here"/>
+                                <input type="email" name="email1" className="form-control candidate-email" required="required" placeHolder="john@example.com"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name2" onChange={(e) => {setName2(e.target.value)}} className="form-control" placeHolder="Enter your 2nd candidate here"/>
+                            <input type="text" name="name2" className="form-control candidate-name"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email2" onChange={(e) => {setEmail2(e.target.value)}} className="form-control" placeHolder="Enter your 2nd candidate’s email here"/>
+                            <input type="email" name="email2" className="form-control candidate-email"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name3" onChange={(e) => {setName3(e.target.value)}} className="form-control" placeHolder="Enter your 3rd candidate here"/>
+                            <input type="text" name="name3" className="form-control candidate-name"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email3" onChange={(e) => {setEmail3(e.target.value)}} className="form-control" placeHolder="Enter your 3rd candidate’s email here"/>
+                            <input type="email" name="email3" className="form-control candidate-email"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name4" onChange={(e) => {setName4(e.target.value)}} className="form-control" placeHolder="Enter your 4th candidate here"/>
+                            <input type="text" name="name4" className="form-control candidate-name"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email4" onChange={(e) => {setEmail4(e.target.value)}} className="form-control" placeHolder="Enter your 4th candidate’s email here"/>
+                            <input type="email" name="email4" className="form-control candidate-email"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="text" name="name5" onChange={(e) => {setName5(e.target.value)}} className="form-control" placeHolder="Enter your 5th candidate here"/>
+                            <input type="text" name="name5" className="form-control candidate-name"/>
                             </div>
                             <div className="form-group col-6">
-                                <input type="email" name="email5" onChange={(e) => {setEmail5(e.target.value)}} className="form-control" placeHolder="Enter your 5th candidate’s email here"/>
+                            <input type="email" name="email5" className="form-control candidate-email"/>
                             </div>
-
-
+                            </div>
+                            <div className="col d-flex justify-items">
+                                {!addForm1 &&
+                                    <button
+                                        className="default-btn"
+                                        style={{paddingLeft: "25px"}}
+                                        onClick={() => setAddForm1(true)}
+                                    >
+                                        Add 5 More
+                                    </button>}
+                            </div>
+                        {/* add additional form */}
+                        {addForm1 &&
+                            <InvitationForm />
+                        }
+                        {addForm2 &&
+                            <InvitationForm />
+                        }
+                        {addForm3 &&
+                            <InvitationForm />
+                        }
+                        {addForm4 &&
+                            <InvitationForm />
+                        }
+                        {addForm5 &&
+                            <InvitationForm />
+                        }
+                        <div>
+                            <div className="col d-flex justify-items">
+                                {(addForm1 && !addForm2) &&
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                        onClick={() => setAddForm2(true)}
+                                    >
+                                        Add 5 More
+                                    </button>
+                                }
+                            </div>
+                            <div className="col d-flex justify-items">
+                                {(addForm2 && !addForm3) &&
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                        onClick={() => setAddForm3(true)}
+                                    >
+                                        Add 5 More
+                                    </button>
+                                }
+                            </div>
+                            <div className="col d-flex justify-items">
+                                {(addForm3 && !addForm4) &&
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                        onClick={() => setAddForm4(true)}
+                                    >
+                                        Add 5 More
+                                    </button>}
+                            </div>
+                            <div className="col d-flex justify-items">
+                                {(addForm4 && !addForm5) &&
+                                    <button
+                                        className="default-btn interview-txt6"
+                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                        onClick={() => setAddForm5(true)}
+                                    >
+                                        Add 5 More
+                                    </button>
+                                }
+                            </div>
                         </div>
-                        <div className="form-row" style={{marginBottom: "1rem"}}>
+
+                        <div className="form-row justify-items" style={{marginBottom: "1rem"}}>
                             <div className="col-2 d-flex justify-items">
                                 <button
                                     className="default-btn interview-txt6"
                                     style={{paddingLeft: "25px", background: "#67A3F3"}}
                                     onClick={() => setInvite(false)}
                                 >
-                                    Cancel
+                                    Back
                                     <span></span>
                                 </button>
                             </div>
                             <div className="col-7 interview-center">
-                                <p className="interview-txt8">Currently we only support adding up to 5 candidates at a time.</p>
+                                {/*<p className="interview-txt8">Currently we only support adding up to 5 candidates at a time.</p>*/}
                             </div>
                             <div className="col-3 d-flex justify-items">
                                 <button
@@ -460,6 +526,49 @@ const JobCard = (props) => {
         </React.Fragment>
     )
 };
+
+const InvitationForm = () => {
+    return (
+        <div className="form-row">
+            <div className="form-group col-6">
+                <label style={{ fontSize: "17px", margin:"2%"}}>
+                    Candidate Name
+                </label>
+                <input type="text" name="name1" className="form-control candidate-name"/>
+            </div>
+            <div className="form-group col-6">
+                <label style={{ fontSize: "17px", margin:"2%"}}>
+                    Candidate Email
+                </label>
+                <input type="email" name="email1" className="form-control candidate-email"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="text" name="name2" className="form-control candidate-name"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="email" name="email2" className="form-control candidate-email"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="text" name="name3" className="form-control candidate-name"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="email" name="email3" className="form-control candidate-email"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="text" name="name4" className="form-control candidate-name"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="email" name="email4" className="form-control candidate-email"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="text" name="name5" className="form-control candidate-name"/>
+            </div>
+            <div className="form-group col-6">
+                <input type="email" name="email5" className="form-control candidate-email"/>
+            </div>
+        </div>
+    )
+}
 
 const ApplicantList = (props) => {
     // get current page applicants(8)
