@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import ReactPlayer from 'react-player';
 import { updateComments } from "./../../../redux/actions/video_actions";
 
-class ApplicationVideoPanel extends Component{
+
+class ApplicationVideoPanel extends Component {
 
     state = {
         ratings: this.props.stars,
@@ -27,10 +28,6 @@ class ApplicationVideoPanel extends Component{
         this.setState({
             ratings: this.props.stars,
         });
-    }
-
-    componentWillUnmount () {
-        console.log("bye bye");
     }
 
     componentDidUpdate () {

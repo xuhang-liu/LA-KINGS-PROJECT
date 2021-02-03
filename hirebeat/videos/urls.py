@@ -2,7 +2,7 @@ from rest_framework import routers
 from videos.api.viewsets import VideoViewSet
 from .views import get_unreviewed_video, mark_video_as_needed_review, \
     add_video_label, get_video_sentences, get_video_user, get_unreviewed_video_list, get_review_count, delete_video, \
-    add_wp_video, sign_s3_upload_wp_video, get_applicants_videos, get_applicants_info, update_video_comments
+    add_wp_video, sign_s3_upload_wp_video, get_applicants_videos, get_applicants_info, update_video_comments, add_tq_video_limit
 from django.urls import path
 
 router = routers.DefaultRouter()
@@ -27,4 +27,5 @@ urlpatterns.append(path('sign-wp-video',sign_s3_upload_wp_video))
 urlpatterns.append(path('get-applicants-videos', get_applicants_videos))
 urlpatterns.append(path('get-applicants-info', get_applicants_info))
 urlpatterns.append(path('updating-video-comments', update_video_comments))
+urlpatterns.append(path('add-tq-video-limit', add_tq_video_limit))
 

@@ -104,7 +104,6 @@ export const getPostedJobs = (userId) => (dispatch, getState) => {
   axios
     .get(`/get-posted-jobs?user_id=${userId}`, tokenConfig(getState))
     .then((res) => {
-      console.log("get posted jobs");
       dispatch({
         type: GET_POSTED_JOBS,
         payload: res.data,

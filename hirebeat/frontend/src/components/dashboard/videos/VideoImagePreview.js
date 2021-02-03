@@ -140,6 +140,7 @@ export function VideoImagePreview(props) {
                       v={props.v}
                       aiReview={true}  // review type： AI
                       isTQ={true}
+                      addTQVideoLimit={props.addTQVideoLimit}
                     />
                   </div>
                   <div className="col">
@@ -148,6 +149,7 @@ export function VideoImagePreview(props) {
                       aiReview={true}  // review type： AI
                       isTQ={true}
                       isSampleAns={true}
+                      addTQVideoLimit={props.addTQVideoLimit}
                     />
                   </div>
                   <div className="col-1">
@@ -194,6 +196,7 @@ export function VideoImagePreview(props) {
                       v={props.v}
                       aiReview={true}  // review type： AI
                       isTQ={true}
+                      addTQVideoLimit={props.addTQVideoLimit}
                     />
                   </div>
                   <div className="col">
@@ -202,6 +205,7 @@ export function VideoImagePreview(props) {
                       aiReview={true}  // review type： AI
                       isTQ={true}
                       isSampleAns={true}
+                      addTQVideoLimit={props.addTQVideoLimit}
                     />
                   </div>
                 </div>)
