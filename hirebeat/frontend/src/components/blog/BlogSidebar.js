@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/blog-acing-pandemic-job-interview-questions">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog19.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Feb 02, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/blog-acing-pandemic-job-interview-questions">
+                                    <a>Acing Pandemic Job Interview Questions</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/blog-how-to-answer-the-teamwork-type-question-in-an-interview">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog18.jpg" alt="image"/>
@@ -320,25 +339,6 @@ class BlogSidebar extends Component {
                             <h4 className="title usmall">
                                 <Link to="/blog-how-to-prepare-for-an-AI-interview">
                                     <a>How to Prepare for an AI Interview</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog1.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Aug 24, 2020</time>
-                            <h4 className="title usmall">
-                                <Link to="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job">
-                                    <a>Video interview platforms</a>
                                 </Link>
                             </h4>
                         </div>

@@ -11,7 +11,7 @@ class AmazingFeatures extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-lg-4 col-sm-6" >
+                        <div className="col-lg-4 col-sm-6" style={{marginTop:"2rem"}}>
                             <ReactWOW animation='fadeInRight' delay='0.1s'>
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
@@ -27,7 +27,7 @@ class AmazingFeatures extends Component {
                             </ReactWOW>
                         </div>
 
-                        <div className="col-lg-4 col-sm-6">
+                        <div className="col-lg-4 col-sm-6" style={{marginTop:"2rem"}}>
                             <ReactWOW animation='fadeInRight' delay='0.2s'>
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
@@ -43,7 +43,7 @@ class AmazingFeatures extends Component {
                             </ReactWOW>
                         </div>
 
-                        <div className="col-lg-4 col-sm-6">
+                        <div className="col-lg-4 col-sm-6" style={{marginTop:"2rem"}}>
                             <ReactWOW animation='fadeInRight' delay='0.3s'>
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
