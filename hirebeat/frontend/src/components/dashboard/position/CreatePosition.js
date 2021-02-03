@@ -6,7 +6,6 @@ import { lengthOfResponseOptions } from "../../../constants/constants"
 import PropTypes from "prop-types";
 import { addPosition } from "../../../redux/actions/question_actions";
 import 'boxicons';
-import SelectParam from "../../practice/SelectParam";
 
 export class CreatePosition extends Component{
 

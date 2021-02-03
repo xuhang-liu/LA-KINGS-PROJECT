@@ -62,8 +62,9 @@ def get_interview_questions(request):
     questions = []
     question_ids = []
     position_id = request.query_params.get("position_id")
-    
-    questionTime = Positions.objects.get(pk=position_id)
+    question_Obj = Positions.objects.get(pk=position_id)
+    questionTime s= question_Obj.questionTime
+
     interview_questions = InterviewQuestions.objects.filter(positions_id=position_id)
     for i in range(len(interview_questions)):
         obj = interview_questions[i]
