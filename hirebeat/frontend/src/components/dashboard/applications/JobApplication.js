@@ -8,7 +8,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'boxicons';
 //import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition } from "./../../../redux/actions/question_actions";
-import ReactPaginate from 'react-paginate';
+//import ReactPaginate from 'react-paginate';
 import Select from 'react-select'
 
 export class JobApplication extends Component{
@@ -283,6 +283,10 @@ const JobCard = (props) => {
         setCategory(category);
     }
 
+    const [keyWords, setkeyWords] = useState("");
+    function onChange (e) {
+        setkeyWords(e.target.value);
+    };
     // add extra invitation form
     const [addForm1, setAddForm1] = useState(false);
     const [addForm2, setAddForm2] = useState(false);
@@ -329,6 +333,10 @@ const JobCard = (props) => {
                                 </button>
                             }
                         </div>
+                        <div className="col-3 interview-txt7 interview-center" style={{color:"#67a3f3"}}>
+                            <label><i className="bx bx-search"></i></label>
+                            <input placeholder="Search candidate" className="search-candidate-input" value={keyWords} onChange={onChange}></input>
+                        </div>
                     </div>
                     <div className="card container" style={{marginTop:"1%"}}>
                         <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
@@ -344,6 +352,7 @@ const JobCard = (props) => {
                         </div>
                         <div style={{marginBottom:"2rem"}}>
                             <ApplicantList
+                                keyWords={keyWords}
                                 category={category}
                                 applicants={props.applicants}
                                 getApplicantsVideos={props.getApplicantsVideos}
@@ -361,7 +370,7 @@ const JobCard = (props) => {
                                 updateCommentStatus={props.updateCommentStatus}
                                 offset={offset}
                             />
-                             <ReactPaginate
+                             {/*<ReactPaginate
                                  previousLabel={'<'}
                                  nextLabel={'>'}
                                  breakLabel={'...'}
@@ -373,7 +382,7 @@ const JobCard = (props) => {
                                  containerClassName={'pagination'}
                                  subContainerClassName={'pages pagination'}
                                  activeClassName={'active'}
-                             />
+                             />*/}
                         </div>
                     </div>
                 </div>
@@ -572,11 +581,11 @@ const InvitationForm = () => {
 
 const ApplicantList = (props) => {
     // get current page applicants(8)
-    let index = props.offset; // start index at applicants array
-    let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
+    //let index = props.offset; // start index at applicants array
+    //let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
     return (
         <div>
-            {applicants.map((a) => {
+            {props.applicants.map((a) => {
                 // filter applicants by status
                 if (props.category.value != "All") {
                     switch (props.category.value) {
@@ -590,6 +599,11 @@ const ApplicantList = (props) => {
                             if (!a.is_recorded || (a.is_recorded && a.video_count <= 0)) return null;
                             break;
                     }
+                }
+                else if (props.keyWords != "") {
+                    var canEmail = a.email;
+                    var canName = a.name;
+                    if((!canEmail.toLowerCase().includes(props.keyWords)) && (!canName.toLowerCase().includes(props.keyWords))) return null;
                 }
                 return (
                     <Applicant
