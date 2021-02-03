@@ -54,10 +54,10 @@ class ClientsFeedbackSlider extends Component {
     render() {
         return (
             <React.Fragment>
-            <section className="feedback-area pt-100" style={{paddingBottom:'2rem'}}>
+            <section className="feedback-area pt-100 pb-100">
                 <div className="container">
-                    <div className="section-title">
-                        <h2>See What Our Customers Have to Say About <span>HireBeat</span></h2>
+                    <div className="section-title" style={{maxWidth:"800px"}}>
+                        <h2>Customers Feedback of <span>HireBeat</span></h2>
                     </div>
 
                     {this.state.display ? <OwlCarousel 
@@ -174,26 +174,6 @@ class ClientsFeedbackSlider extends Component {
                         
                     </OwlCarousel> : ''}
                 </div>
-            </section>
-            <section className="video-presentation-area pb-100">
-            <div className="container">
-            {/* Fun Facts Style One */}
-            <FunFacts />
-
-            <ReactWOW animation='fadeInUp' delay='0.8s'>
-                <div className="contact-cta-box mwidth-1000">
-                    <h3>JOIN TODAY AND SEE FOR YOURSELF!</h3>
-                    <p>Let HireBeat be your secret weapon to ace your next interview</p>
-
-                    <Link to="/register">
-                        <a id="id-tff" className="default-btn" style={{color:"white"}}>
-                            Try For Free
-                            <span></span>
-                        </a>
-                    </Link>
-                </div>
-            </ReactWOW>
-            </div>
             </section>
             </React.Fragment>
         );

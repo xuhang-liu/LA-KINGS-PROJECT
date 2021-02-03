@@ -3,7 +3,7 @@ import VideoRecorder from "./VideoRecorder";
 import { CardButton, TestDeviceCard } from "./../practice/CardComponents";
 import { videoRecorderOptions } from "./../../constants/constants";
 import NotePad from "./../practice/NotePad";
-import safariAlert from "./../basic/SafariAlert";
+//import safariAlert from "./../basic/SafariAlert";
 import Modal from "react-bootstrap/Modal";
 
 function TestDevice(props) {
@@ -15,7 +15,6 @@ function TestDevice(props) {
 //  videoRecorderOptions.width = window.innerWidth / 2.4;
 //  videoRecorderOptions.height = window.innerWidth / 3.6;
   videoRecorderOptions.controlBar.recordToggle = true;
-  safariAlert();
   return (
     <React.Fragment>
       <ReadBeforeStart

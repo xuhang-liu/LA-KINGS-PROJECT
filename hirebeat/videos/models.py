@@ -38,6 +38,9 @@ class Video(models.Model):
     # TQ answer
     q_answer = models.TextField(blank=True, null=True)
     q_explain = models.TextField(blank=True, null=True)
+    # TQ limit Control
+    is_tq_ai_clicked = models.BooleanField(default=False)
+    is_tq_sample_clicked = models.BooleanField(default=False)
 
     def __str__(self):
         return self.owner.username + '|' + self.created_at.strftime("%m/%d/%Y")
@@ -70,5 +73,7 @@ class WPVideo(models.Model):
     question_desc = models.CharField(max_length=500, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     owner_id = models.BigIntegerField(null=True, blank=True)
+    video_stars = models.IntegerField(default=5)
+    video_comment = models.TextField(default="No comments yet")
     def __str__(self):
         return self.email

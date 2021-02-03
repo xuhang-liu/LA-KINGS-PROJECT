@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 //import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
 import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
+import 'boxicons';
 //import Dropdown from 'react-bootstrap/Dropdown'
 
 export class Header extends Component {
@@ -79,19 +80,22 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
                     Features <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu" style={{height:"14.6rem",width:"18rem"}}>
+                    <ul className="nav_submenu" style={{height:"16.8rem",width:"18rem"}}>
                         <li>
                         <Link id="id-interviewpr" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bx-video-recording" style={{color:"white", top:"0.5rem"}}></i></span>Interview Practice</Link></li>
+                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd1.png" alt="img"></img></span>Interview Practice</Link></li>
                         <li>
                         <Link id="id-resumeop" to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bx-file-find" style={{color:"white"}}></i></span>Resume Optimization</Link></li>
+                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd2.png" alt="img"></img></span>Resume Optimization</Link></li>
                         <li>
                         <Link id="id-topcompany" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
+                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd3.png" alt="img"></img></span>Top Companies Tips</Link></li>
                         <li>
                         <Link id="id-howitworks" to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         How it works</Link></li>
+                        <li>
+                        <Link id="id-findajob" to="/career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Find a Job</Link></li>
                         <li>
                         <Link id="id-careerquiz" to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
@@ -101,11 +105,6 @@ export class Header extends Component {
                     </ul>
                   </span>
                 </a>
-              </li>
-              <li className="nav-item ">
-                <Link to="/career" className="nav-link text-white navbar-font">
-                  <span className="header-text">Find a Job</span>
-                </Link>
               </li>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
@@ -155,20 +154,23 @@ export class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
-                    Features <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu" style={{height:"14.6rem",width:"18rem"}}>
+                  For Candidate <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu" style={{height:"16.8rem",width:"18rem"}}>
+                    <li>
+                        <Link id="id-interviewpr" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd1.png" alt="img"></img></span>Interview Practice</Link></li>
                         <li>
-                        <Link id="id-interviewpr1" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bx-video-recording" style={{color:"white", top:"0.5rem"}}></i></span>Interview Practice</Link></li>
+                        <Link id="id-resumeop" to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd2.png" alt="img"></img></span>Resume Optimization</Link></li>
                         <li>
-                        <Link id="id-resumeop1" to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bx-file-find" style={{color:"white"}}></i></span>Resume Optimization</Link></li>
-                        <li>
-                        <Link id="id-topcompany1" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><i className="bx bxs-meteor" style={{color:"white"}}></i></span>Top Companies Tips</Link></li>
+                        <Link id="id-topcompany" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd3.png" alt="img"></img></span>Top Companies Tips</Link></li>
                         <li>
                         <Link id="id-howitworks1" to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         How it works</Link></li>
+                        <li>
+                        <Link id="id-findajob1" to="/career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Find a Job</Link></li>
                         <li>
                         <Link id="id-careerquiz1" to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
@@ -180,9 +182,9 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item ">
-                <Link to="/career" className="nav-link text-white navbar-font">
-                  <span className="header-text">Find a Job</span>
-                </Link>
+                <a href="/employer" className="nav-link text-white navbar-font">
+                  <span className="header-text">For Employer</span>
+                </a>
               </li>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
@@ -196,11 +198,6 @@ export class Header extends Component {
                     </ul>
                   </span>
                 </a>
-              </li>
-              <li className="nav-item ">
-                <Link to="/employer" className="nav-link text-white navbar-font">
-                  <span className="header-text">For Employer</span>
-                </Link>
               </li>
             </ul>
           </div>
@@ -327,7 +324,7 @@ export class Header extends Component {
     return (
       <div id="navbar" className="navbar-area bg-white">
         <nav
-            className="navbar navbar-expand-md
+            className="navbar navbar-expand-xl
             navbar-dark pb-2 pt-2"
             style={{
               background: "#080a3c",
@@ -345,6 +342,27 @@ export class Header extends Component {
                   aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"/>
               </button>
+              {this.props.profile.is_employer ? 
+              <a href="/employer" className="navbar-brand mr-auto">
+              <img
+                src={hirebeatlogo}
+                className="img-fluid mr-3"
+                alt="logo"
+                style={{
+                  width: "16%",
+                  height:"16%",
+                }}
+              />
+              <img
+                src={hirebeatlogotext}
+                className="img-fluid mr-2"
+                alt="logotext"
+                style={{
+                  width: "50%",
+                  height:"100%",
+                }}
+              />
+              </a> :
               <a href="/" className="navbar-brand mr-auto">
                 <img
                   src={hirebeatlogo}
@@ -364,7 +382,7 @@ export class Header extends Component {
                     height:"100%",
                   }}
                 />
-              </a>
+              </a>}
             {/*</div>*/}
             {isAuthenticated
                 ? user.groups[0] == "reviewers"

@@ -6,7 +6,8 @@ import { renderQDes, renderSuccessTag, renderWaitTag, MyModal } from "../Dashboa
 import { SampleAnswer } from "./SampleAnswer";
 import { AIReview } from "./AIReview";
 import MediaQuery from 'react-responsive';
-//import { confirmAlert } from 'react-confirm-alert';
+import { connect } from "react-redux";
+import { confirmAlert } from 'react-confirm-alert';
 
 function TQReviewStatus(props) {
   const [show, setShow] = useState(false);
@@ -28,17 +29,49 @@ if (props.isSampleAns) {
     }
 }
 
+function redirectPricing() {
+  window.location.href = "/pricing";
+}
+
+function upgradeMessage() {
+  confirmAlert({
+    title: 'Upgrade',
+    message: 'No more free review left.😢 Upgrade now to get unlimite reviews',
+    buttons: [
+      {label: 'OK'},
+      {label: 'Upgrade Now', onClick: () => redirectPricing()}
+    ]
+  });
+}
 
 
   function reviewToggle() {
     // view result
     if (text == "View AI Result") {
-        setSubPage("ai");
-        setShow(true);
+      if (props.saved_video_count >= props.save_limit) {
+        if(props.v.is_tq_ai_clicked == true){
+            setSubPage("ai");
+            setShow(true);
+        }else{upgradeMessage();}
+      }else{
+          props.addTQVideoLimit(props.v.owner, props.v.id, "ai");
+          setSubPage("ai");
+          setTimeout(()=>{setShow(true);}, 300)
+      }
     } else if (text == "Sample Answer")  {
-        setSubPage("sampleAns");
-        setShow(true);
-    }
+      if (props.saved_video_count >= props.save_limit) {
+        if(props.v.is_tq_sample_clicked == true){
+          setSubPage("sampleAns");
+          setShow(true);
+      }else{
+        upgradeMessage();
+      }
+      }else{
+          props.addTQVideoLimit(props.v.owner, props.v.id, "sample");
+          setSubPage("sampleAns");
+          setTimeout(()=>{setShow(true);}, 300)
+      }
+  }
   }
 
   return (
@@ -99,4 +132,10 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
-export default TQReviewStatus;
+const mapStateToProps = (state) => ({
+  save_limit: state.auth_reducer.profile.save_limit,
+  saved_video_count: state.auth_reducer.profile.saved_video_count,
+});
+
+
+export default connect(mapStateToProps)(TQReviewStatus);

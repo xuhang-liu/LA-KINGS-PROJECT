@@ -13,6 +13,9 @@ import {
   GET_VIDEOS_APPLICANT,
   ADD_WP_VIDEO,
   GET_APPLICANT_INFO,
+  UPDATE_COMMENT_STATUS,
+  UPDATE_VIDEO_COMMENTS,
+  ADD_TQ_VIDEO_LIMIT,
 } from "./action_types";
 import { createMessage, returnErrors } from "./message_actions";
 import { tokenConfig } from "./auth_actions";
@@ -216,6 +219,41 @@ export const addWPVideo = (video) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: ADD_WP_VIDEO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateComments = (data) => (dispatch) =>
+{
+  axios
+    .post("updating-video-comments", data)
+    .then((res) => {
+      dispatch({
+        type: UPDATE_VIDEO_COMMENTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const addTQVideoLimit = (owner_id, id, type) => (dispatch, getState) => {
+  const body = JSON.stringify({
+    owner_id,
+    id,
+    type
+  });
+  return axios
+    .post(`add-tq-video-limit`, body, tokenConfig(getState))
+    .then((res) => {
+      console.log(res.data);
+      dispatch({
+        type: ADD_TQ_VIDEO_LIMIT,
         payload: res.data,
       });
     })

@@ -2,42 +2,45 @@ import React, {Component} from 'react';
 import { IconText } from "./DashboardComponents";
 import ApplicationVideo from "./videos/ApplicationVideo";
 import { connect } from "react-redux";
+import { getPostedJobs } from "../../redux/actions/question_actions"
 
 class ReviewApplication extends Component{
     constructor(props) {
         super(props);
+
+        var quesiton_array = [];
+        var video_array = [];
+        var stars = [];
+        var comments = [];
+        var pk = [];
+
+        this.props.int_ques.map((i) => {
+                stars.push(i.video_stars);
+                comments.push(i.video_comment)
+                quesiton_array.push(i.question_desc);
+                video_array.push(i.url);
+                pk.push(i.id)
+        });
+
+        this.state = {
+                quesiton_array: quesiton_array,
+                video_array: video_array,
+                stars: stars,
+                comments: comments,
+                pk: pk,
+        };
       }
 
     updateStatus = (status) => {
-        let data = {"email": this.props.email_candidate, "positionId": this.props.positionId, "status": status};
+        let data = {"email": this.props.email_candidate, "positionId": this.props.positionId, "status": status, "userId": this.props.user.id};
         this.props.updateCommentStatus(data);
         this.props.hide();
-        this.props.set_comment_status(status);
     }
     
     render() {
         return(
             <div className="container" style={{width:'95%'}}>
-                {/*<div className="row">
-                    <div className="col d-flex align-items-center">
-                        <button 
-                            type="button" 
-                            className="panel-button"
-                            onClick={this.props.renderVideos}
-                            style={{outline: "none", margin:"0%", padding:"0px", background:"#e8edfc"}}
-                        >
-                            <IconText
-                                iconName={"bx bx-arrow-back bx-sm"}
-                                textDisplayed={"Back"}
-                                textSize={"20px"}
-                                textColor={"#67A3F3"}
-                                iconMargin={"3px"}
-                            />
-                        </button>
-                    </div>
-                </div> */}
-
-                <div className="card container" style={{marginTop:"1%"}}>
+                <div className="card container mb-5" style={{marginTop:"1%"}}>
                     <div className="row">
                         <div className="col-3 container">
                                 <div className="row" style={{marginTop:"10%", marginBottom:"2%"}}>
@@ -46,6 +49,8 @@ class ReviewApplication extends Component{
                                         style={{
                                         fontWeight: "bold",
                                         marginRight: "0.8rem",
+                                        wordWrap: "break-word",
+                                        wordBreak: "break-all",
                                         }}
                                     >
                                         {this.props.username_candidate}
@@ -87,19 +92,38 @@ class ReviewApplication extends Component{
                                 </div>
                         </div>
                         <div className="col-7 container mt-4">
-                            <ApplicationVideo int_ques={this.props.int_ques}/>
+                            <ApplicationVideo   int_ques={this.props.int_ques} 
+                                                positionId={this.props.positionId}
+                                                quesiton_array = {this.state.quesiton_array}
+                                                video_array = {this.state.video_array}
+                                                stars = {this.state.stars}
+                                                comments = {this.state.comments}
+                                                pk = {this.state.pk}
+                            />
                         </div>
                         <div className="col-2 container" style={{marginTop:"2.5%"}}>
                             <div className="container mt-3">
-                                <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1)}}>
+                                {this.props.comment_status == 1 ? <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
                                     Accept
                                 </button>
-                                <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2)}}>
+                                : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
+                                    Accept
+                                </button>
+                                }
+                                {this.props.comment_status == 2 ? <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2);}}>
                                     On Hold
                                 </button>
-                                <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(3)}}>
+                                : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(2);}}>
+                                    On Hold
+                                </button>
+                                }
+                                {this.props.comment_status == 3 ? <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(3);}}>
                                     Reject
                                 </button>
+                                : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(3);}}>
+                                    Reject
+                                </button>
+                                }
                             </div>
                         </div>
                     </div>
@@ -109,4 +133,8 @@ class ReviewApplication extends Component{
     };
 };
 
-export default connect(null)(ReviewApplication);
+const mapStateToProps = (state) => ({
+    user: state.auth_reducer.user,
+});
+
+export default connect(mapStateToProps, { getPostedJobs })(ReviewApplication);

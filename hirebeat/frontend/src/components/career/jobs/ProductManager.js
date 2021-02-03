@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
 import PageTitleArea from '../../Common/PageTitleArea';
 import { useEffect } from "react";
 //import MediaQuery from 'react-responsive';
@@ -21,7 +20,7 @@ class ProductManager extends Component {
                     pageTitle="Product Manager Intern"
                     pageDescription="New York / Remote"
                 />
-                <div className="container" style={{marginTop: "2rem"}}>
+                <div className="container pb-100" style={{marginTop: "2rem"}}>
                     <div>
                         <h2 className="job-txt1">About the position</h2>
                         <p className="job-txt2" style={{marginTop: "2rem"}}>
@@ -64,35 +63,6 @@ class ProductManager extends Component {
                             <li>Excellent verbal and written communication skills</li>
                             <li>The desire to work in a startup environment – things can be ambiguous here and move very quickly</li>
                         </ul>
-                    </div>
-                </div>
-                <div className="row job-tail">
-                    <div className="container" style={{paddingBottom: "6rem"}}>
-                        <h2 className="job-txt1" style={{paddingTop: "2rem", color:'#ff6b00'}}>Instructions:</h2>
-                        <p style={{marginTop: "1rem", marginBottom: "0"}}>
-                        To move forward with your application, we would like to invite you to finish our online video interview process. Please follow the instruction below carefully:
-                         </p>
-                        <p style={{marginBottom: "0"}}>
-                            <span className="job-step">Step1:</span> Use a laptop to create an account by click <Link to='/register'>apply now</Link> or visit our website at <Link to='/register'>https://www.hirebeat.co/register</Link> (Please make sure that your email address is consistent with your resume)
-                        </p>
-                        <p style={{marginBottom: "0"}}>
-                            <span className="job-step">Step2:</span> <Link to='/resume'>Upload your resume</Link>
-                            <li>Navigate to the resume section on the left-hand side of the dashboard, click new scan.</li>
-                            <li>Upload your resume with the match job description you are applying for, then click scan.</li>
-                        </p>
-                        <p style={{marginBottom: "0"}}>
-                            <span className="job-step">Step3:</span> <Link to='/practice'>Video Interview</Link>
-                            <li>Navigate to the interview section on the left-hand side of the dashboard and click new practice.</li>
-                            <li>Chose the <b>Behavior Question</b> and select the <b>Simulate Mode</b>.</li>
-                            <li>Begin your interview with the default setting; after you finish, simply send for an <b>AI review</b> in your dashboard.</li>
-                        </p>
-                        <p style={{marginTop: "1rem"}}>We will be in touch with you shortly after reviewing your result.</p>
-                        <Link to="/register">
-                            <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A", paddingLeft:'25px'}}>
-                                Apply Now
-                                <span></span>
-                            </a>
-                        </Link>
                     </div>
                 </div>
             </React.Fragment>

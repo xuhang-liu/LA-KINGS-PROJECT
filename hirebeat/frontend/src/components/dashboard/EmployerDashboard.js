@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 //import ButtonPanel from "./panel/ButtonPanel";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
-import { JobApplication } from "./applications/JobApplication";
-import {CreatePosition} from "./position/CreatePosition";
+
+//import { JobApplication } from "./applications/JobApplication";
+import { CreatePosition } from "./position/CreatePosition";
+import { ApplicationCover } from "./applications/ApplicationCover";
+
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
@@ -18,6 +21,7 @@ import PropTypes from "prop-types";
 import SubpageSetting from './SubpageSetting';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import safariAlert from "../basic/SafariAlert";
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -79,6 +83,7 @@ export class EmployerDashboard extends Component {
   }
 
   componentDidMount() {
+    safariAlert();
     this.props.loadProfile();
     this.activateEmail();
     this.verifyEmail();
@@ -137,7 +142,7 @@ export class EmployerDashboard extends Component {
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "applications":
-        return <JobApplication
+        return <ApplicationCover
             companyName={this.props.profile.company_name}
             loaded={this.props.loaded}
             postedJobs={this.props.postedJobs}
@@ -192,7 +197,7 @@ export class EmployerDashboard extends Component {
           <ScrollToTopOnMount/>
           {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
-            <div className="row no-gutters">
+            <div className="row no-gutters min-width-1290">
               <div className='col-3'>
                 <div className='dashboard-sidebar'>
                   <EssentialUserInfo

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main163.js",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main163.js",
+    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main182.js",
+    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main182.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
@@ -28,6 +28,7 @@
     "node-sass": "^4.14.1",
     "react-scripts": "1.0.7",
     "sass-loader": "^9.0.3",
+    "video.js": "^7.10.2",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   },
@@ -50,7 +51,7 @@
     "bluebird": "^3.7.2",
     "bootstrap": "^4.5.2",
     "bootswatch": "^4.5.0",
-    "boxicons": "^2.0.5",
+    "boxicons": "^2.0.7",
     "css-loader": "^3.5.2",
     "dotenv": "^8.2.0",
     "emailjs": "^3.3.0",
@@ -102,7 +103,7 @@
     "react-responsive": "^8.1.0",
     "react-router-dom": "^5.1.2",
     "react-s3": "^1.3.1",
-    "react-s3-uploader": "^4.9.2",
+    "react-s3-uploader": "^4.9.3",
     "react-script-tag": "^1.1.2",
     "react-scripts": "^3.4.1",
     "react-select": "^3.1.0",

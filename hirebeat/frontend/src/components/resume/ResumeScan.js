@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
-import safariAlert from "../basic/SafariAlert";
+//import safariAlert from "../basic/SafariAlert";
 import { confirmAlert } from 'react-confirm-alert';
 import PropTypes from "prop-types";
 import { addResume } from "../../redux/actions/resume_actions";
@@ -11,7 +11,6 @@ var ReactS3Uploader = require("react-s3-uploader");
 
 export class ResumeScan extends Component {
   componentDidMount() {
-    safariAlert();
     if(this.props.user != null){
       this.activateEmail();
     }

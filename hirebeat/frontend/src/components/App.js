@@ -40,6 +40,8 @@ import BlogDetail14 from "./blog/blog-details14";
 import BlogDetail15 from "./blog/blog-details15";
 import BlogDetail16 from "./blog/blog-details16";
 import BlogDetail17 from "./blog/blog-details17";
+import BlogDetail18 from "./blog/blog-details18";
+import BlogDetail19 from "./blog/blog-details19";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -111,6 +113,10 @@ import BarclaysInfo from"./companyData/companies/BarclaysInfo";
 import CreditSuisseInfo from"./companyData/companies/CreditSuisseInfo";
 import HoulihanLokeyInfo from"./companyData/companies/HoulihanLokeyInfo";
 import MetLifeInfo from"./companyData/companies/MetLifeInfo";
+import AccentureInfo from"./companyData/companies/AccentureInfo";
+import BainInfo from"./companyData/companies/BainInfo";
+import BCGInfo from"./companyData/companies/BCGInfo";
+import OliverWymanInfo from"./companyData/companies/OliverWymanInfo";
 import ATKearneyInfo from"./companyData/companies/ATKearneyInfo";
 import AnalysisGroupInfo from"./companyData/companies/AnalysisGroupInfo";
 import CornerstoneInfo from"./companyData/companies/CornerstoneInfo";
@@ -257,6 +263,8 @@ class App extends Component {
                 <Route exact path="/blog-top-3-jobs-you-should-apply-for-finance-major" component={BlogDetail15} />
                 <Route exact path="/blog-10-tips-to-deal-with-job-hunting-stress" component={BlogDetail16} />
                 <Route exact path="/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr" component={BlogDetail17} />
+                <Route exact path="/blog-how-to-answer-the-teamwork-type-question-in-an-interview" component={BlogDetail18} />
+                <Route exact path="/blog-acing-pandemic-job-interview-questions" component={BlogDetail19} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer_register" component={EmployerRegister} />
@@ -327,6 +335,10 @@ class App extends Component {
                 <Route exact path="/credit-suisse" component={CreditSuisseInfo} />
                 <Route exact path="/houlihan-lokey" component={HoulihanLokeyInfo} />
                 <Route exact path="/metlife" component={MetLifeInfo} />
+                <Route exact path="/oliver-wyman" component={OliverWymanInfo} />
+                <Route exact path="/accenture" component={AccentureInfo} />
+                <Route exact path="/bain" component={BainInfo} />
+                <Route exact path="/boston-consulting-group" component={BCGInfo} />
                 <Route exact path="/jobs" component={JobList} />
                 <Route exact path="/kearney" component={ATKearneyInfo} />
                 <Route exact path="/analysis-group" component={AnalysisGroupInfo} />

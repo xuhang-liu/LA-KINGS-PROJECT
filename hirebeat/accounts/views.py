@@ -99,7 +99,7 @@ def resend_activation_email(request):
     account_activation_token = PasswordResetTokenGenerator()
     current_site = get_current_site(request)
     subject = 'Please Activate Your Hirebeat Account'
-    message = get_template("accounts/account_activation_email.txt")
+    message = get_template("accounts/account_activation_email.html")
     context = {
         'user': user,
         'domain': current_site.domain,
@@ -115,6 +115,7 @@ def resend_activation_email(request):
         from_email,
         to_list,
     )
+    email.content_subtype = "html"
     email.send()
 
     return Response({
@@ -200,9 +201,53 @@ def update_record(request):
 
     invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
     invited_obj.is_recorded = True
+    # update saved video count
     invited_obj.save()
 
     return Response("Update record status successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def employer_notification(request):
+    email = request.data["email"]
+    positions = request.data["positions"]
+    invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
+    can_name = invited_obj.name
+    position = Positions.objects.get(id=positions)
+    user = User.objects.get(pk=position.user_id)
+    print("===Employer Notify Email Called===")
+    subject = 'Interview Completed: ' + position.job_title + " from " + can_name
+    message = get_template("accounts/employer_notification_email.html")
+    context = {
+        'name': can_name,
+        'email': email,
+    }
+    from_email = 'HireBeat Team'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+
+    return Response("Send employer notification successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def update_record_refresh(request):
+    email = request.data["email"]
+    positions = request.data["positions"]
+    interview_obj = CandidatesInterview.objects.get(email=email, positions=positions)
+    interview_obj.is_recorded = True
+    interview_obj.save()
+
+    invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
+    invited_obj.is_recorded = True
+    invited_obj.save()
+
+    return Response("Update record status successfully after reloading", status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 def get_record_status(request):

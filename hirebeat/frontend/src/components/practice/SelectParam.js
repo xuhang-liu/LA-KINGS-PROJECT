@@ -83,6 +83,15 @@ export class SelectParam extends Component {
   };
 
   getQuestionsParams = () => {
+    var notSafari = true;
+    if (
+      (navigator.userAgent.indexOf("Opera") ||
+        navigator.userAgent.indexOf("OPR")) != -1
+    ) {
+    } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+    } else if (navigator.userAgent.indexOf("Safari") != -1) {
+      notSafari = false;
+    };
     return (
       <div>
         <PageTitleArea
@@ -95,7 +104,7 @@ export class SelectParam extends Component {
           this.state.categoryOfQuestion,
           this.handleChangeCatogary,
           categoryOfQuestionOptions,
-          "select-category"
+          "select-category1"
           )}
         {selectParam(
           "How many questions do you want to practice?",
@@ -114,10 +123,11 @@ export class SelectParam extends Component {
         <CardRow>
           <h4 className="practice-txt2">This will cost you {this.getEstimateTime()} on average</h4>
         </CardRow>
+        {notSafari &&
         <CardRow>
           <h3 className="practice-txt3" style={{marginRight: "1rem"}}>Start with video? </h3>
           <Switch onChange={this.handleChange} checked={this.state.checked} />
-        </CardRow>
+        </CardRow>}
         <CardRow>
           <button className="start-btn" onClick={this.selectMedia}>Start Exercise</button>
         </CardRow>

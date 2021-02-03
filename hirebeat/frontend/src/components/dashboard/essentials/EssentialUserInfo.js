@@ -123,15 +123,15 @@ export class EssentialUserInfo extends Component {
 
   render() {
 
-    var selectColor = "#090D3A";
-    var defaultColor = "#7d7d7d";
+    var selectColor = "#ffffff";
+    var defaultColor = "#CAD9FC";
     var selectDecoration = "underline";
     var defaultDecoration = "none";
     return (
       <React.Fragment>
       <div className="container">
           <DbCenterRow>
-            <div className="col-9">
+            <div>
               <div className="row" style={{marginTop:"20%", marginBottom:"10%"}}>
                 <div className="col d-flex align-items-center">
                   <h3
@@ -140,6 +140,7 @@ export class EssentialUserInfo extends Component {
                       marginRight: "0.8rem",
                       wordWrap: "break-word",
                       wordBreak: "break-all",
+                      color:"#CAD9FC"
                     }}
                   >
                     {this.props.user.username}
@@ -153,7 +154,7 @@ export class EssentialUserInfo extends Component {
                           iconName={"bx bx-diamond bx-sm"}
                           textDisplayed={"Premium Member"}
                           textSize={"15px"}
-                          textColor={"#FE9A2E"}
+                          textColor={"#fac046"}
                           iconMargin={"3px"}
                         />
                 </div>
@@ -165,7 +166,7 @@ export class EssentialUserInfo extends Component {
                           iconName={"bx bx-briefcase  bx-sm"}
                           textDisplayed={this.props.profile.company_name}
                           textSize={"15px"}
-                          textColor={"#0B3861"}
+                          textColor={"#CAD9FC"}
                           iconMargin={"3px"}
                         />
                 </div>
@@ -177,18 +178,19 @@ export class EssentialUserInfo extends Component {
                           iconName={"bx bx-phone bx-sm"}
                           textDisplayed={this.props.profile.phone_number}
                           textSize={"15px"}
-                          textColor={"#0B3861"}
+                          textColor={"#CAD9FC"}
                           iconMargin={"3px"}
                         />
                 </div>
               </div>}
               <div className="row" style={{marginTop:"1%"}}>
-                <div className="col d-flex align-items-center">
+                <div className="col d-flex align-items-center" style={{wordWrap: "break-word",
+                      wordBreak: "break-all"}}>
                         <IconText
                           iconName={"bx bx-envelope bx-sm"}
                           textDisplayed={this.props.user.email}
                           textSize={"15px"}
-                          textColor={"#0B3861"}
+                          textColor={"#CAD9FC"}
                           iconMargin={"5px"}
                         />
                 </div>
@@ -199,7 +201,7 @@ export class EssentialUserInfo extends Component {
                           iconName={"bx bx-location-plus bx-sm"}
                           textDisplayed={this.props.profile.location}
                           textSize={"15px"}
-                          textColor={"#0B3861"}
+                          textColor={"#CAD9FC"}
                           iconMargin={"3px"}
                         />
                 </div>
@@ -210,14 +212,14 @@ export class EssentialUserInfo extends Component {
                     type="button"
                     className="panel-button"
                     onClick={this.props.renderSetting}
-                    style={{outline: "none", margin:"1%", padding:"0px"}}
+                    style={{outline: "none", margin:"1%", padding:"0px", backgroundColor:"#5b92d9"}}
                   >
                     <IconText
                       textSize={"15px"}
                       textDisplayed={"Settings"}
                       iconName={"bx bx-wrench 1 bx-xs"}
                       iconMargin={"3px"}
-                      textColor={"#56a3fa"}
+                      textColor={"#ffffff"}
                     />
                   </button>
                 </div>
@@ -230,7 +232,7 @@ export class EssentialUserInfo extends Component {
                   type="button"
                   className="panel-button"
                   onClick={this.props.renderApplications}
-                  style={{outline: "none", margin:"1%", padding:"0px"}}
+                  style={{outline: "none", margin:"1%", padding:"0px", backgroundColor:"#5b92d9"}}
                 >
                   <IconText
                     textSize={"16px"}
@@ -256,7 +258,7 @@ export class EssentialUserInfo extends Component {
                     type="button"
                     className="panel-button"
                     onClick={this.props.renderVideos}
-                    style={{outline: "none", margin:"1%", padding:"0px"}}
+                    style={{outline: "none", margin:"1%", padding:"0px", backgroundColor:"#5b92d9"}}
                   >
                     <IconText
                       textSize={"16px"}
@@ -275,7 +277,7 @@ export class EssentialUserInfo extends Component {
                     type="button"
                     className="panel-button"
                     onClick={this.props.renderResume}
-                    style={{outline: "none", margin:"1%", padding:"0px"}}
+                    style={{outline: "none", margin:"1%", padding:"0px", backgroundColor:"#5b92d9"}}
                   >
                     <IconText
                       textSize={"16px"}
@@ -294,7 +296,7 @@ export class EssentialUserInfo extends Component {
                     type="button"
                     className="panel-button"
                     onClick={this.props.renderInterview}
-                    style={{outline: "none", margin:"1%", padding:"0px"}}
+                    style={{outline: "none", margin:"1%", padding:"0px", backgroundColor:"#5b92d9"}}
                   >
                     <IconText
                       textSize={"16px"}
@@ -333,17 +335,17 @@ export class EssentialUserInfo extends Component {
               <div>
                 <div className="row">
                   <div className="col">            
-                    {this.props.subpage == "videos" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Reviews Left: 
+                    {this.props.subpage == "videos" ? <p style={{color:"#CAD9FC", fontSize:"12px"}}>Reviews Left: 
                     {(this.props.profile.save_limit - this.props.profile.saved_video_count)>0?(this.props.profile.save_limit - this.props.profile.saved_video_count):0}</p> : null}
-                    {this.props.subpage == "resume" ? <p style={{color:"#7D7D7D", fontSize:"12px"}}>Saves Left: 
+                    {this.props.subpage == "resume" ? <p style={{color:"#CAD9FC", fontSize:"12px"}}>Saves Left: 
                     {(this.props.profile.save_resume_limit - this.props.profile.saved_resume_count)>0?(this.props.profile.save_resume_limit - this.props.profile.saved_resume_count):0}</p> : null}
                   </div>
                     <div className="col">
                       <Link to="/pricing" style={{textDecoration: "none"}}>
                         {this.props.subpage == "videos" &&
-                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>}
+                        <p style={{color:"#fac046", fontSize:"12px"}}>Upgrade -></p>}
                         {this.props.subpage == "resume" &&
-                        <p style={{color:"#FF6B00", fontSize:"12px"}}>Upgrade -></p>}
+                        <p style={{color:"#fac046", fontSize:"12px"}}>Upgrade -></p>}
                       </Link>
                     </div>
                 </div>     

@@ -6,7 +6,7 @@ from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenc
 from .models import Video, Label, Transcript, Sentence, WPVideo
 from django.contrib.auth.models import User
 from accounts.models import ReviewerInfo, Profile
-from questions.models import InterviewQuestions, Positions
+from questions.models import InterviewQuestions, Positions, InvitedCandidates
 from questions.models import Categorys, SubCategory
 from videos.models import WPVideo
 from questions.serializers import SubcategorySerializer
@@ -267,6 +267,7 @@ def delete_video(request):
 def add_wp_video(request):
     print("===Save WP Video Called===")
     email = request.data["email"]
+    positions = request.data["positions"]
     url = request.data["url"]
     question_id = request.data["question_id"]
     question_desc = request.data["question_desc"]
@@ -282,6 +283,11 @@ def add_wp_video(request):
         owner_id = owner_id
     )
     wp_video.save()
+    invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
+    invited_obj.is_recorded = True
+    # update saved video count
+    invited_obj.video_count += 1;
+    invited_obj.save()
 
     return Response("Saved data to database successfully", status=status.HTTP_200_OK)
 
@@ -300,3 +306,46 @@ def sign_s3_upload_wp_video(request):
         headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
+
+@api_view(['POST'])
+def update_video_comments(request):
+    print("==It works==")
+    primary_key = request.data["pk"]
+    new_stars = request.data["stars"]
+    new_comment = request.data["comment"]
+    print("==It works fine==")
+    wpv = WPVideo.objects.get(pk=primary_key)
+    wpv.video_stars = new_stars
+    wpv.video_comment = new_comment
+    wpv.save()
+
+    return Response({
+        "new_stars": new_stars,
+        "new_comment": new_comment,
+    })
+
+@api_view(['POST'])
+def add_tq_video_limit(request):
+    print("==It works==")
+    owner_id = request.data["owner_id"]
+    id = request.data["id"]
+    type = request.data["type"]
+    video = Video.objects.get(pk=id)
+    if type == "ai":
+        if video.is_tq_ai_clicked == False:
+            video.is_tq_ai_clicked = True
+            video.save()
+            user = User.objects.get(pk=owner_id)
+            profile = Profile.objects.get(user_id=user)
+            profile.saved_video_count +=1
+            profile.save()
+    if type == "sample":
+        if video.is_tq_sample_clicked == False:
+            video.is_tq_sample_clicked = True
+            video.save()
+            user = User.objects.get(pk=owner_id)
+            profile = Profile.objects.get(user_id=user)
+            profile.saved_video_count +=1
+            profile.save()
+
+    return Response("Saved data to database successfully", status=status.HTTP_200_OK)

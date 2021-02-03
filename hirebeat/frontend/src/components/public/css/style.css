@@ -46,7 +46,7 @@ Default CSS
 @import url("https://fonts.googleapis.com/css?family=Avenir Next:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
 
 * {
-  font-family: 'Avenir Next', sans-serif;
+  font-family: 'Avenir Next', 'Helvetica', sans-serif;
 }
 
 body {
@@ -93,6 +93,14 @@ img {
   vertical-align: middle;
 }
 
+.bg-highback {
+  background-image: linear-gradient(101.6deg, rgba(103, 163, 243, 0.5) 10.77%, #E8EDFC 106.67%);
+}
+
+.bg-leverageHirebeat {
+  background-image: linear-gradient(103.24deg, #E7ECF2 18.41%, #FFFFFF 107.46%);
+}
+
 .bg-f4f6fc {
   background-color: #f4f6fc;
 }
@@ -136,6 +144,10 @@ img {
 
 .max-width-1290 {
   max-width: 1290px;
+}
+
+.min-width-1290 {
+  min-width: 1290px;
 }
 
 .max-width-1440 {
@@ -204,7 +216,7 @@ p:last-child {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   border-radius: 5px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 15px;
   padding-left: 50px;
   padding-right: 25px;
@@ -224,7 +236,7 @@ p:last-child {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   border-radius: 5px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 15px;
   padding-left: 50px;
   padding-right: 25px;
@@ -244,7 +256,7 @@ p:last-child {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   border-radius: 5px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 20px;
   padding-left: 25px;
   padding-right: 25px;
@@ -282,8 +294,8 @@ p:last-child {
 .default-btn:hover, .default-btn:focus {
   background-color: #ff612f;
   color: #ffffff;
-  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+  -webkit-box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
+          box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
 }
 
 .default-btn:hover span, .default-btn:focus span {
@@ -294,8 +306,8 @@ p:last-child {
 .default-btn1:hover, .default-btn:focus {
   background-color: #ff612f;
   color: #ffffff;
-  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+  -webkit-box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
+          box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
 }
 
 .default-btn1:hover span, .default-btn:focus span {
@@ -306,8 +318,8 @@ p:last-child {
 .default-btn2:hover, .default-btn2:focus {
   background-color: #080a3c;
   color: #ffffff;
-  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+  -webkit-box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
+          box-shadow: 2px 2px 6px 1.5px rgba(103, 163, 243, 0.3) !important;
 }
 
 .default-btn2:hover span, .default-btn2:focus span {
@@ -563,6 +575,7 @@ Navbar Area CSS
   top: 0;
   left: 0;
   width: 100%;
+  min-width: 1290px;
   background-color: transparent;
   height: auto;
   z-index: 1040;
@@ -571,7 +584,7 @@ Navbar Area CSS
 }
 
 .navbar-area .container {
-  max-width: 1290px;
+  position: relative;
 }
 
 .navbar-area.is-sticky {
@@ -1956,7 +1969,7 @@ Video Presentation Area CSS
           transform: translateY(-50%);
   width: 80px;
   height: 80px;
-  background-color: #56a3fa;
+  background-color: #ff612f;
   border-radius: 5px;
   color: #ffffff;
   font-size: 60px;
@@ -1975,7 +1988,7 @@ Video Presentation Area CSS
   bottom: 0;
   left: 0;
   border-radius: 5px;
-  border: 1px solid #56a3fa;
+  border: 1px solid #ff612f;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
@@ -2003,12 +2016,12 @@ Video Presentation Area CSS
 }
 
 .video-box .video-btn:hover, .video-box .video-btn:focus {
-  background-color: #ff612f;
+  background-color: #56a3fa;
   color: #ffffff;
 }
 
 .video-box .video-btn:hover::after, .video-box .video-btn:hover::before, .video-box .video-btn:focus::after, .video-box .video-btn:focus::before {
-  border-color: #ff612f;
+  border-color: #56a3fa;
 }
 
 .shape-map1 {
@@ -3978,33 +3991,37 @@ Blog Details Area CSS
 }
 
 .blog-details-desc .article-content h1 {
-  font-size: 30px;
+  font-size: 34px;
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
 .blog-details-desc .article-content h2 {
-  font-size: 26px;
+  font-size: 30px;
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
 .blog-details-desc .article-content h3 {
-  font-size: 22px;
+  font-size: 26px;
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
 .blog-details-desc .article-content h4 {
-  font-size: 18px;
+  font-size: 22px;
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
 .blog-details-desc .article-content h5 {
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 10px;
   line-height: 1.5;
+}
+
+.blog-details-desc .article-content p {
+  font-size: 17px;
 }
 
 .blog-details-desc .article-content .block-gallery.columns-3 {
@@ -5863,8 +5880,8 @@ form .form-group .form-control::placeholder {
 }
 
 .contact-form form .default-btn:hover, .contact-form form .default-btn:focus {
-  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(19, 196, 161, 0.3) !important;
+  -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(43, 160, 255, 0.678) !important;
+          box-shadow: 0px 5px 28.5px 1.5px rgba(43, 160, 255, 0.678) !important;
 }
 
 .contact-form .with-errors ul {
@@ -5968,6 +5985,7 @@ form .form-group .form-control::placeholder {
 Footer Area CSS
 =================================================*/
 .footer-area {
+  min-width: 1290px;
   background-color: #080a3c;
   position: relative;
   z-index: 1;

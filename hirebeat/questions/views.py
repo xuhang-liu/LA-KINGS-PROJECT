@@ -108,6 +108,8 @@ def get_posted_jobs(request):
             "position_id": positions_id,
             "job_id": positions[i].job_id,
             "job_title": positions[i].job_title,
+            "is_closed": positions[i].is_closed,
+            "invite_date": positions[i].invite_date,
             "applicants": applicants,
         }
         # convert to json
@@ -191,4 +193,41 @@ def update_comment_status(request):
     The_candidate.comment_status = ss
     The_candidate.save()
 
-    return Response("Update comment status successfully", status=status.HTTP_200_OK)
+    data = {}
+    user_id = request.data["userId"]
+    positions = Positions.objects.filter(user_id=user_id)
+    for i in range(len(positions)):
+        positions_id = positions[i].id
+        # get each position applicants
+        applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
+        job_details = {
+            "position_id": positions_id,
+            "job_id": positions[i].job_id,
+            "job_title": positions[i].job_title,
+            "is_closed": positions[i].is_closed,
+            "invite_date": positions[i].invite_date,
+            "applicants": applicants,
+        }
+        # convert to json
+        data[positions_id] = job_details
+
+    return Response({
+        "data": data,
+    })
+
+@api_view(['POST'])
+def close_job(request):
+    position_id = request.data["position_id"]
+    position_obj = Positions.objects.get(id=position_id)
+    position_obj.is_closed = True
+    position_obj.save()
+    return Response("Close current position successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def delete_job(request):
+    position_id = request.data["position_id"]
+    position_obj = Positions.objects.get(id=position_id)
+    position_obj.delete()
+    interview_que = InterviewQuestions.objects.filter(positions_id=position_id)
+    interview_que.delete()
+    return Response("Delete current position successfully", status=status.HTTP_200_OK)

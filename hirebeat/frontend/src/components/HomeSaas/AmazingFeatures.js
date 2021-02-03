@@ -4,82 +4,106 @@ import ReactWOW from 'react-wow';
 class AmazingFeatures extends Component {
     render() {
         return (
-            <section className="features-area pt-100 pb-70 bg-f4f6fc">
+            <section className="features-area pt-100 pb-100 bg-f4f6fc">
                 <div className="container">
                     <div className="section-title">
-                        <h2>We're Here to Help</h2>
+                        <h2>Why Choose HireBeat</h2>
                     </div>
 
                     <div className="row">
-                        <div className="col-lg-4 col-sm-6" >
+                        <div className="col-lg-4 col-sm-6" style={{marginTop:"2rem"}}>
                             <ReactWOW animation='fadeInRight' delay='0.1s'>
-                                <div className="single-features-box" >
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-mouse'></i>
+                            <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                                    <div className="card-body">
+                                        <div className="p-3">
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc1.png" alt="img"></img>
+                                        </div>
+                                        <div className="px-3 employer-landing-card">
+                                            <h3 style={{fontWeight:"600"}}>A Standout Resume</h3>
+                                            <h5>We analyze and refine your resume to make you pop up among all candidates</h5>
+                                        </div>
                                     </div>
-                                    <h3>Quick and Easy-to-use</h3>
-                                    <p style={{fontSize: "1.25rem"}}>Practice industry specific interview questions at home or on the go</p>
-                                </div>
+                            </div>
                             </ReactWOW>
                         </div>
 
-                        <div className="col-lg-4 col-sm-6">
+                        <div className="col-lg-4 col-sm-6" style={{marginTop:"2rem"}}>
                             <ReactWOW animation='fadeInRight' delay='0.2s'>
-                                <div className="single-features-box">
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-alarm'></i>
+                            <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                                    <div className="card-body">
+                                        <div className="p-3">
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc2.png" alt="img"></img>
+                                        </div>
+                                        <div className="px-3 employer-landing-card">
+                                            <h3 style={{fontWeight:"600"}}>Improve Interview Skills</h3>
+                                            <h5>We ensure you are comfortable, confident, and successful in the interview</h5>
+                                        </div>
                                     </div>
-                                    <h3>Real-time Simulation</h3>
-                                    <p style={{fontSize: "1.25rem"}}>You’ll never know what question is coming next, just like a live interview</p>
-                                </div>
+                            </div>
                             </ReactWOW>
                         </div>
 
-                        <div className="col-lg-4 col-sm-6">
+                        <div className="col-lg-4 col-sm-6" style={{marginTop:"2rem"}}>
                             <ReactWOW animation='fadeInRight' delay='0.3s'>
-                                <div className="single-features-box">
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-coin-stack'></i>
+                            <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                                    <div className="card-body">
+                                        <div className="p-3">
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc3.png" alt="img"></img>
+                                        </div>
+                                        <div className="px-3 employer-landing-card">
+                                            <h3 style={{fontWeight:"600"}}>In-depth Feedback</h3>
+                                            <h5>With our AI and expert analysis, you can receive customized performance feedback</h5>
+                                        </div>
                                     </div>
-                                    <h3>Multiple Industries</h3>
-                                    <p style={{fontSize: "1.25rem"}}>Get thousands of interview questions across different industries</p>
-                                </div>
+                            </div>
                             </ReactWOW>
                         </div>
 
-                        <div className="col-lg-4 col-sm-6">
+                        <div className="col-lg-4 col-sm-6" style={{marginTop:"2rem"}}>
                             <ReactWOW animation='fadeInRight' delay='0.4s'>
-                                <div className="single-features-box">
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-revision'></i>
+                            <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                                    <div className="card-body">
+                                        <div className="p-3">
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc4.png" alt="img"></img>
+                                        </div>
+                                        <div className="px-3 employer-landing-card">
+                                            <h3 style={{fontWeight:"600"}}>Extensive Question Bank</h3>
+                                            <h5>Explore our 6000+ interview questions which you can practice anytime and anywhere</h5>
+                                        </div>
                                     </div>
-                                    <h3>Review and Evaluate</h3>
-                                    <p style={{fontSize: "1.25rem"}}>Progress tracking allows you to monitor and manage your progress</p>
-                                </div>
+                            </div>
                             </ReactWOW>
                         </div>
 
-                        <div className="col-lg-4 col-sm-6">
+                        <div className="col-lg-4 col-sm-6" style={{marginTop:"2rem"}}>
                             <ReactWOW animation='fadeInRight' delay='0.5s'>
-                                <div className="single-features-box">
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-wallet'></i>
+                            <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                                    <div className="card-body">
+                                        <div className="p-3">
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc5.png" alt="img"></img>
+                                        </div>
+                                        <div className="px-3 employer-landing-card">
+                                            <h3 style={{fontWeight:"600"}}>Get Hired Faster</h3>
+                                            <h5>Join the many users of our community and land your dream job!</h5>
+                                        </div>
                                     </div>
-                                    <h3>Affordable</h3>
-                                    <p style={{fontSize: "1.25rem"}}>Believe it or not, you can use HireBeat for as little as $0.65/day</p>
-                                </div>
+                            </div>
                             </ReactWOW>
                         </div>
 
-                        <div className="col-lg-4 col-sm-6">
+                        <div className="col-lg-4 col-sm-6" style={{marginTop:"2rem"}}>
                             <ReactWOW animation='fadeInRight' delay='0.6s'>
-                                <div className="single-features-box">
-                                    <div className="icon" style={{"background-color": "#56A3FA"}}>
-                                        <i className='bx bx-task'></i>
+                            <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
+                                    <div className="card-body">
+                                        <div className="p-3">
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/wc6.png" alt="img"></img>
+                                        </div>
+                                        <div className="px-3 employer-landing-card">
+                                            <h3 style={{fontWeight:"600"}}>Company Data</h3>
+                                            <h5>We have all details you need to know when interviewing with top companies</h5>
+                                        </div>
                                     </div>
-                                    <h3>Comprehensive Feedback</h3>
-                                    <p style={{fontSize: "1.25rem"}}>Our data-driven parameters guarantee you the best performance</p>
-                                </div>
+                            </div>
                             </ReactWOW>
                         </div>
                     </div>
