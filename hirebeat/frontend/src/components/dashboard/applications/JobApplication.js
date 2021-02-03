@@ -39,6 +39,7 @@ export class JobApplication extends Component{
                             }
                             return(
                                 <JobViewDetail
+                                    questions={p.questions}
                                     companyName={this.props.companyName}
                                     positionId={p.position_id}
                                     jobId={p.job_id}
@@ -185,6 +186,7 @@ const JobViewDetail = (props) => {
             {/* Application detail*/}
             {view &&
                 <JobCard
+                    questions={props.questions}
                     companyName={props.companyName}
                     positionId={props.positionId}
                     jobId={props.jobId}
@@ -270,6 +272,24 @@ const JobCard = (props) => {
         setOffset(offset);
     };
 
+    function viewQuestions() {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+              return (
+                <div className="interview-txt7" style={{backgroundColor:'#ffffff', borderRadius:"10px", border:"2px solid #E8EDFC", padding:"1rem", paddingLeft:"3rem", paddingRight:"3rem"}}>
+                  <h3>Interview Questions:</h3>
+                  <ul>
+                  {props.questions.map((q) => {
+                      return (
+                          <li><h5>{q.description}</h5></li>
+                    )})}
+                  </ul>
+                </div>
+              );
+            }
+        });
+    }
+
     // filter selections
     const options = [
         { value: 'Completed', label: 'Completed' },
@@ -317,6 +337,7 @@ const JobCard = (props) => {
                             type="button"
                             className="read-more"
                             style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
+                            onClick={viewQuestions}
                             >
                             <i className="bx bx-info-circle pr-1"></i> View Questions
                             </button>
@@ -591,12 +612,27 @@ const ApplicantList = (props) => {
                     switch (props.category.value) {
                         case "Pending":
                             if (a.is_recorded) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email;
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords)) && (!canName.toLowerCase().includes(props.keyWords))) return null;
+                            };
                             break;
                         case "Withdrawn":
                             if (!a.is_recorded || (a.is_recorded && a.video_count > 0)) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email;
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords)) && (!canName.toLowerCase().includes(props.keyWords))) return null;
+                            };
                             break;
                         case "Completed":
                             if (!a.is_recorded || (a.is_recorded && a.video_count <= 0)) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email;
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords)) && (!canName.toLowerCase().includes(props.keyWords))) return null;
+                            };
                             break;
                     }
                 }
