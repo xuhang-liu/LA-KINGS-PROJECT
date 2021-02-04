@@ -138,16 +138,10 @@ const JobViewDetail = (props) => {
                     <div className="col-12" style={{fontFamily: "Avenir Next" }}>
                         <div className="mt-4">
                             <div className="row">
-                                <div className="col-6" style={{color:"#090D3A"}}>
-                                    <button
-                                        type="button"
-                                        className="read-more"
-                                        style={{marginBottom:"1rem", border:"none", backgroundColor:"#ffffff", fontSize:"1.2rem", fontWeight:"500", marginLeft:"-0.5rem"}}
-                                        onClick={() => {setView(true)}}
-                                    >
-                                        <i className="bx bx-expand pr-1"></i> Expand
+                                <div className="col-9" style={{color:"#090D3A"}}>
+                                    <button className="title-button" onClick={() => {setView(true)}}>
+                                        {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                     </button>
-                                    <h3>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                                     <div className="row mb-2 mt-1">
                                         <div className="col-6">
                                             <p style={{color:"#4A6F8A"}}>Invited Applicants: {props.applicants.length}</p>
@@ -157,9 +151,7 @@ const JobViewDetail = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-3 center-items" style={{color:"#56A3FA"}}>
-                                </div>
-                                    <div className="col-3 center-items">
+                                <div className="col-3 center-items">
                                     {!props.isClosed &&
                                         <button
                                             onClick={closeJob}
@@ -176,7 +168,7 @@ const JobViewDetail = (props) => {
                                         >
                                             <i className="bx bx-trash bx-md" style={{color: "#67A3F3"}}></i>
                                         </button>}
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -325,7 +317,7 @@ const JobCard = (props) => {
                             style={{border:"none", backgroundColor:"#ffffff", fontSize:"1.2rem", fontWeight:"500"}}
                             onClick={props.hideView}
                         >
-                            <i className="bx bx-collapse pr-1"></i> Collapse
+                            <i className="bx bx-chevrons-left pr-1"></i> Back
                         </button>
                     </div>
                     <div className="row">
@@ -361,12 +353,12 @@ const JobCard = (props) => {
                     </div>
                     <div className="card container" style={{marginTop:"1%"}}>
                         <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
-                            <div className="col-4">Name</div>
-                            <div className="col-2">Invited On</div>
-                            <div className="col-3">Status</div>
+                            <div className="col-2">Name</div>
+                            <div className="col-4">Email</div>
+                            <div className="col-3">Reviews</div>
                             <div className="col-3">
                                 <div className="row">
-                                    <div className="center-items" style={{marginRight: "1rem"}}>Filter: </div>
+                                    <div className="center-items" style={{marginRight: "1rem"}}>Status: </div>
                                     <Select value={category} onChange={onFilter} options={options} className="select-category" />
                                 </div>
                             </div>
@@ -738,8 +730,21 @@ const Applicant = (props) => {
                 }}
             />
             <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
-                <div className="col-4 interview-txt9 mt-2">{props.name} ({props.email})</div>
-                <div className="col-2 interview-txt9 mt-2">{props.date}</div>
+                {props.videoCount > 0 ? 
+                <div className="col-2 mt-2">
+                    <button className="title-button1" onClick={() => viewResult()}>
+                        {props.name}</button></div>
+                : <div className="col-2 interview-txt9 mt-2">{props.name}</div>
+                }
+                {props.videoCount > 0 ? 
+                <div className="col-4 mt-2">
+                    <button className="title-button1" onClick={() => viewResult()}>
+                        {props.email}</button></div>
+                : <div className="col-4 interview-txt9 mt-2">{props.email}</div>
+                }
+                <div className="col-3" >
+                    {renderStatus(props.comment_status)}
+                </div>
                 <div className="col-3">
                     {props.isRecorded ?
                         (props.videoCount > 0 ?
@@ -775,9 +780,6 @@ const Applicant = (props) => {
                             </div>
                         </div>
                     }
-                </div>
-                <div className="col-3" >
-                    {renderStatus(props.comment_status)}
                 </div>
             </div>
             {/* Interview Result */}
