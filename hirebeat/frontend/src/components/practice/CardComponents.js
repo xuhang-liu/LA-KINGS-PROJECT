@@ -303,6 +303,19 @@ export const selectParam = (question, value, onTap, options, className) => {
   );
 };
 
+export const selectParamEnployer = (question, value, onTap, options, className) => {
+  return (
+    <div className="row pl-3">
+      <div className="react-select-container">
+        <p className="practice-txt" style={{fontWeight:"300"}}>{question}</p>
+      </div>
+      <SelectCol>
+        <Select className={className} value={value} onChange={onTap} options={options} styles={s} isSearchable={false}/>
+      </SelectCol>
+    </div>
+  );
+};
+
 export const QuestionCol = (props) => {
   return <div className="col-4">{props.children}</div>;
 };
