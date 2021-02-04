@@ -150,6 +150,10 @@ img {
   min-width: 1290px;
 }
 
+.min-width-980 {
+  min-width: 980px;
+}
+
 .max-width-1440 {
   max-width: 1440px;
 }

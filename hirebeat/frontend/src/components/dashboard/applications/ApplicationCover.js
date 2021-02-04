@@ -9,7 +9,7 @@ export const ApplicationCover = (props) => {
   const [filter, setFilter] = useState("active");
   return (
     <div>
-      <div style={{marginBottom: "20px"}} className="container d-flex justify-content-start pl-0">
+      <div style={{marginBottom: "20px"}} className="container min-width-1290">
         <button
           className={decideClassName(filter, "active")}
           onClick={() => setFilter("active")}
@@ -22,6 +22,12 @@ export const ApplicationCover = (props) => {
           onClick={() => setFilter("closed")}
         >
           Closed
+        </button>
+        <button className="default-btn" onClick={props.renderPosition}
+          style={{color:"white", marginLeft:"8%"}}>
+            <i className="bx bx-plus"></i> 
+              Create New Position
+            <span></span>
         </button>
       </div>
       <JobApplication

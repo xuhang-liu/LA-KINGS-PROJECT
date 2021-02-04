@@ -20,7 +20,7 @@ export class CreatePosition extends Component{
         question2: "",
         question3: "",
         position_added: true,
-        lengthOfResponse: { value: 1, label: "60s" },
+        lengthOfResponse: { value: 2, label: "120s" },
     }
     
     handleInputChange = (e) => {
