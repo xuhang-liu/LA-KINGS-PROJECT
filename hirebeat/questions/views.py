@@ -61,8 +61,10 @@ def get_random_question(request):
 def get_interview_questions(request):
     questions = []
     question_ids = []
-
     position_id = request.query_params.get("position_id")
+    question_Obj = Positions.objects.get(pk=position_id)
+    questionTime = question_Obj.questionTime
+
     interview_questions = InterviewQuestions.objects.filter(positions_id=position_id)
     for i in range(len(interview_questions)):
         obj = interview_questions[i]
@@ -72,6 +74,7 @@ def get_interview_questions(request):
     return Response({
         "questions": questions,
         "question_ids": question_ids,
+        "questionTime": questionTime,
     })
 
 @api_view(['POST'])
@@ -79,11 +82,12 @@ def add_position(request):
     print("==add position==")
     jobtitle = request.data['jobtitle']
     jobid = request.data['jobid']
+    questionTime = request.data['questionTime']
     user = User.objects.get(pk=request.data["userid"])
     question1 = request.data['question1']
     question2 = request.data['question2']
     question3 = request.data['question3']
-    position = Positions.objects.create(user=user, job_title=jobtitle, job_id=jobid)
+    position = Positions.objects.create(user=user, job_title=jobtitle, job_id=jobid, questionTime=questionTime)
     if question1 != "":
         data1 = InterviewQuestions.objects.create(description=question1, positions=position)
     if question2 != "":

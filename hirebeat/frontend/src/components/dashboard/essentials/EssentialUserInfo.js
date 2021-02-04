@@ -6,6 +6,7 @@ import {
   DbCenterRow,
   IconText,
   MyModal,
+  IconEmployerText,
 } from "../DashboardComponents";
 import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
@@ -125,13 +126,23 @@ export class EssentialUserInfo extends Component {
 
     var selectColor = "#ffffff";
     var defaultColor = "#CAD9FC";
+    var selectEColor = "#67a3fa";
+    var defaultEColor = "#ffffff";
+    var selectBack = "#090d3a";
+    var defaultBack = "none";
     var selectDecoration = "underline";
     var defaultDecoration = "none";
+    var selectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/dashboard-selected.png";
+    var nonselectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/dashboard-non.png";
+    var selectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-settings-select.png";
+    var nonselectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-settings.png";
     return (
       <React.Fragment>
       <div className="container">
           <DbCenterRow>
             <div>
+            {!this.props.profile.is_employer &&
+              <div>
               <div className="row" style={{marginTop:"20%", marginBottom:"10%"}}>
                 <div className="col d-flex align-items-center">
                   <h3
@@ -159,19 +170,6 @@ export class EssentialUserInfo extends Component {
                         />
                 </div>
               </div>}
-              {this.props.profile.is_employer &&
-              <div className="row" style={{marginTop:"1%"}}>
-                <div className="col d-flex align-items-center">
-                        <IconText
-                          iconName={"bx bx-briefcase  bx-sm"}
-                          textDisplayed={this.props.profile.company_name}
-                          textSize={"15px"}
-                          textColor={"#CAD9FC"}
-                          iconMargin={"3px"}
-                        />
-                </div>
-              </div>}
-              {!this.props.profile.is_employer &&
               <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
                         <IconText
@@ -182,7 +180,7 @@ export class EssentialUserInfo extends Component {
                           iconMargin={"3px"}
                         />
                 </div>
-              </div>}
+              </div>
               <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center" style={{wordWrap: "break-word",
                       wordBreak: "break-all"}}>
@@ -212,7 +210,7 @@ export class EssentialUserInfo extends Component {
                     type="button"
                     className="panel-button"
                     onClick={this.props.renderSetting}
-                    style={{outline: "none", margin:"1%", padding:"0px", backgroundColor:"#5b92d9"}}
+                    style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                   >
                     <IconText
                       textSize={"15px"}
@@ -224,33 +222,84 @@ export class EssentialUserInfo extends Component {
                   </button>
                 </div>
               </div>
+              </div>}
+              {this.props.profile.is_employer &&
+              <div>
+                <div className="row" style={{marginTop:"2rem", marginLeft:"0.6rem"}}>
+                  <div className="col d-flex align-items-center">
+                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-dash-icon.png" alt="company-icon"></img>
+                  </div>
+                </div>
+                <div className="row" style={{marginTop:"0.6rem", textAlign:"center"}}>
+                  <div className="col d-flex align-items-center">
+                        <IconText
+                          textDisplayed={this.props.profile.company_name}
+                          textSize={"1rem"}
+                          textColor={"#CAD9FC"}
+                        />
+                  </div>
+                </div>
+                <hr style={{border:"1px solid #E8EDFC"}}></hr>
+
+              </div>}
               {this.props.profile.is_employer ? 
               <div>
-              <div className="row" style={{marginTop:"20%", marginBottom:"2rem"}}>
+              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
               <div className="col d-flex align-items-center">
                 <button
                   type="button"
                   className="panel-button"
                   onClick={this.props.renderApplications}
-                  style={{outline: "none", margin:"1%", padding:"0px", backgroundColor:"#5b92d9"}}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                 >
-                  <IconText
-                    textSize={"16px"}
-                    textDisplayed={"Job Applications"}
-                    iconName={"bx bx-slideshow 1 bx-sm"}
-                    iconMargin={"3px"}
-                    textColor={this.props.subpage == "applications" ? selectColor : defaultColor}
-                    textDecoration={this.props.subpage == "applications" ? selectDecoration : defaultDecoration}
+                  <IconEmployerText
+                    textSize={"12px"}
+                    textDisplayed={"Dashboard"}
+                    backColor={this.props.subpage == "applications" ? selectBack : defaultBack}
+                    iconSrc={this.props.subpage == "applications" ? selectDash : nonselectDash}
+                    textColor={this.props.subpage == "applications" ? selectEColor : defaultEColor}
                   />
                 </button>
               </div>
-            </div> 
-                <button className="default-btn" onClick={this.props.renderPosition}
-                  style={{color:"white", backgroundColor:"#090D3A"}}>
-                  <i className="bx bxs-hot"></i> 
-                    New Position
-                  <span></span>
-                </button></div> : 
+              </div>
+              <div className="row" style={{marginTop:"20%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderSetting}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconEmployerText
+                    textSize={"12px"}
+                    textDisplayed={"Settings"}
+                    backColor={this.props.subpage == "settings" ? selectBack : defaultBack}
+                    iconSrc={this.props.subpage == "settings" ? selectSetting : nonselectSetting}
+                    textColor={this.props.subpage == "settings" ? selectEColor : defaultEColor}
+                  />
+                </button>
+              </div>
+              </div>
+              <div className="row" style={{marginTop:"20%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderPosition}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconEmployerText
+                    className="icon-employer-text-hover"
+                    textSize={"12px"}
+                    textDisplayed={"New Position"}
+                    backColor={"#56a3fa"}
+                    iconSrc={"https://hirebeat-assets.s3.amazonaws.com/Employer/bx-plus.png"}
+                    textColor={"#ffffff"}
+                  />
+                </button>
+              </div>
+              </div>
+              </div> : 
               <div> 
               <div className="row" style={{marginTop:"20%"}}>
                 <div className="col d-flex align-items-center">
@@ -258,7 +307,7 @@ export class EssentialUserInfo extends Component {
                     type="button"
                     className="panel-button"
                     onClick={this.props.renderVideos}
-                    style={{outline: "none", margin:"1%", padding:"0px", backgroundColor:"#5b92d9"}}
+                    style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                   >
                     <IconText
                       textSize={"16px"}
@@ -277,7 +326,7 @@ export class EssentialUserInfo extends Component {
                     type="button"
                     className="panel-button"
                     onClick={this.props.renderResume}
-                    style={{outline: "none", margin:"1%", padding:"0px", backgroundColor:"#5b92d9"}}
+                    style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                   >
                     <IconText
                       textSize={"16px"}
@@ -296,7 +345,7 @@ export class EssentialUserInfo extends Component {
                     type="button"
                     className="panel-button"
                     onClick={this.props.renderInterview}
-                    style={{outline: "none", margin:"1%", padding:"0px", backgroundColor:"#5b92d9"}}
+                    style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                   >
                     <IconText
                       textSize={"16px"}

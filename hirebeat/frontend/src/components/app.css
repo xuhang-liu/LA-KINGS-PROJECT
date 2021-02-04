@@ -283,6 +283,13 @@ video {
   margin-left: 100px;
 }
 
+.icon-employer-text {
+  width: 5rem;
+  height: 5rem;
+  padding-top: 0.6rem;
+  border-radius: 10px;
+}
+
 .card-container {
   padding-top: 60px;
 }
@@ -1604,6 +1611,33 @@ h5 {
   color: #080a3c;
 }
 
+.title-button {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.375rem;
+  color: #090D3A;
+  border: none;
+  margin-bottom: 1rem;
+  background-color: #ffffff;
+  margin-left: -0.5rem;
+}
+
+.title-button1 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
+  border: none;
+  background-color: #ffffff;
+  margin-left: -0.3rem;
+}
+
+.title-button1:hover {
+  color: #ff6b00;
+}
+
 #quize-result {
   background-color: #f4f5fd;
   height: 10%;
@@ -2512,7 +2546,7 @@ h5 {
 .dashboard-sidebar {
   height: 100%;
   width: 100%;
-  background-color: #5b92d9;
+  background: linear-gradient(180deg, #090D3A 0%, #4689FA 100%);
 }
 
 .dashboard-main {
