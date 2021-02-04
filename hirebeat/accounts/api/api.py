@@ -17,6 +17,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import send_mail
 from django.db.models import Q
+import datetime
 
 
 # Register API
@@ -129,6 +130,8 @@ class LoginAPI(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
+        user.last_login = datetime.datetime.now()
+        user.save(update_fields=['last_login'])
         ### token
         _, token = AuthToken.objects.create(user)
         ### profile

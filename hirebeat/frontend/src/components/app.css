@@ -283,6 +283,13 @@ video {
   margin-left: 100px;
 }
 
+.icon-employer-text {
+  width: 5rem;
+  height: 5rem;
+  padding-top: 0.6rem;
+  border-radius: 10px;
+}
+
 .card-container {
   padding-top: 60px;
 }
@@ -2539,7 +2546,7 @@ h5 {
 .dashboard-sidebar {
   height: 100%;
   width: 100%;
-  background-color: #5b92d9;
+  background: linear-gradient(180deg, #090D3A 0%, #4689FA 100%);
 }
 
 .dashboard-main {
