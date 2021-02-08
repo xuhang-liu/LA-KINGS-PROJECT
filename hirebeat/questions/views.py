@@ -1,4 +1,4 @@
-from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback
+from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes
 from accounts.models import CandidatesInterview
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, SubcategorySerializer
@@ -237,3 +237,17 @@ def delete_job(request):
     interview_que = InterviewQuestions.objects.filter(positions_id=position_id)
     interview_que.delete()
     return Response("Delete current position successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def add_interview_resume(request):
+    print("== 3 called interview resume==")
+    position_id = request.data["positionId"]
+    print(position_id)
+    candidate_id = request.data["candidateId"]
+    print(candidate_id)
+    resume_URL = request.data["resume_url"]
+    print(resume_URL)
+    InterviewResumes.objects.create(positionId = position_id, candidateId = candidate_id, resumeURL = resume_URL)
+    print("2")
+    return Response("Added the interview resume", status=status.HTTP_200_OK)
+
