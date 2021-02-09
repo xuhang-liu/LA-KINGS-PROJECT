@@ -32,6 +32,22 @@ def sign_s3_upload_cv(request):
         headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
+ 
+def upload_interview_resume(request):
+    print("===== upload interview resume called =======")
+    object_name = request.GET['objectName']
+    content_type = request.GET['contentType']
+    # content_type = mimetypes.guess_type(object_name)[0]
+    # content_type = content_type + ";codecs=vp8,opus" ### ATTENTION: this added part is required if upload dirctly from the browser. If used for uploading local files, comment this line out.###
+
+    signed_url = conn.generate_url(
+        300,
+        "PUT",
+        os.getenv("CV_Interview_Bucket"),
+        object_name,
+        headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
+
+    return HttpResponse(json.dumps({'signedUrl': signed_url}))
 
 @api_view(['POST'])
 def delete_resume(request):

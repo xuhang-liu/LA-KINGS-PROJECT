@@ -11,6 +11,7 @@ import {
   GET_VIDEOS_APPLICANT,
   GET_APPLICANT_INFO,
   UPDATE_VIDEO_COMMENTS,
+  GET_RESUME_URL,
 } from "../actions/action_types";
 
 const initialState = {
@@ -30,6 +31,8 @@ const initialState = {
   location_candidate: '',
   new_comment: '',
   new_stars: 0,
+  recordTime: null,
+  resumeURL: '',
 };
 
 export default function (state = initialState, action) {
@@ -105,6 +108,12 @@ export default function (state = initialState, action) {
         email_candidate: action.payload.email_candidate,
         phone_candidate: action.payload.phone_candidate,
         location_candidate: action.payload.location_candidate,
+      }
+    case GET_RESUME_URL:
+      return {
+        ...state,
+        resumeURL: action.payload.resumeURL,
+        recordTime: action.payload.recordTime,
       }
     default:
       return state;

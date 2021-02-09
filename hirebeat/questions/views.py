@@ -1,4 +1,4 @@
-from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback
+from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes
 from accounts.models import CandidatesInterview
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, SubcategorySerializer
@@ -237,3 +237,28 @@ def delete_job(request):
     interview_que = InterviewQuestions.objects.filter(positions_id=position_id)
     interview_que.delete()
     return Response("Delete current position successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def add_interview_resume(request):
+    position_id = request.data["positionId"]
+    positions = Positions.objects.get(pk=position_id)
+    candidate_id = request.data["candidateId"]
+    candidates = User.objects.get(pk=candidate_id)
+    resume_URL = request.data["resume_url"]
+    InterviewResumes.objects.create(positionId = positions, candidateId= candidates, resumeURL = resume_URL)
+    return Response("Added the interview resume", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def get_resume_url(request):
+    position_id = request.data["positionId"]
+    candidate_id = request.data["userId"]
+    uploadedResume = InterviewResumes.objects.get(positionId = position_id, candidateId = candidate_id)
+    print('loading')
+    uploadTime = uploadedResume.invite_date
+    print(uploadTime)
+    resumeURL = uploadedResume.resumeURL
+    return Response({
+        "resumeURL": resumeURL,
+        "recordTime": uploadTime,
+    })
+
