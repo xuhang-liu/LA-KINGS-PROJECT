@@ -57,6 +57,8 @@ class InterviewInfo extends Component {
     }
 
     redirectToRecord = () => {
+        console.log(this.state.resume);
+        this.uploader.uploadFile(this.state.resume);
         this.setState({
             showFirst: true,
         });
@@ -83,11 +85,7 @@ class InterviewInfo extends Component {
     selectFile = () => {
         if(!this.props.isAuthenticated){
             this.redirectToDashboard();
-          }
-        else if(!this.props.profile.email_confirmed){
-          this.redirectToEmailVerification();
-          return this.alert("Account Activation Needed", "Please check the activation email and activate your account");
-        }else{
+        } else {
         // toggle input element
         let input = document.getElementById('uploadFile');
         input.click();
@@ -147,7 +145,7 @@ class InterviewInfo extends Component {
     
         // insert MetaData to resume table
         const resumeMetaData = {
-          candidateId: "1",
+          candidateId: this.props.user.id,
           resume_url: resume_url,
           positionId: this.state.positionId,
           email: this.state.email,
@@ -179,16 +177,6 @@ class InterviewInfo extends Component {
             params: {subpage: "resume"}
         });
     };
-    
-
-        redirectToDashboard = () => {
-    const { history } = this.props;
-    if (history) history.push({
-            pathname: "/dashboard",
-            params: {subpage: "resume"}
-        });
-  };
-
 
     render() {
         if(this.props.user.email != this.state.email){
@@ -227,8 +215,8 @@ class InterviewInfo extends Component {
                                         <h3 className="interview-txt1">Upload Resume</h3>
                                         <p>The company requires your resume along with the interview. </p>
                                         <div className="row pl-3 mb-5">
-                                            <button style={{width: "12rem", paddingLeft: "25px"}} className="default-btn my-3 mr-3" onClick={this.selectFile}>
-                                                Upload Resume
+                                            <button style={{width: "12rem"}} className="default-btn my-3 mr-3" onClick={this.selectFile}>
+                                                <i className="bx bx-cloud-upload"></i>Upload Resume
                                             </button>
                                             {
                                             this.state.selected ? (
@@ -253,9 +241,9 @@ class InterviewInfo extends Component {
                                         {this.state.selected ? <button
                                             onClick={this.redirectToRecord}
                                             className="default-btn mt-3"
-                                            style={{color:"white", backgroundColor:"#56a3fa", paddingLeft: "25px", width: "12rem"}}
+                                            style={{color:"white", backgroundColor:"#56a3fa", width: "12rem"}}
                                         >
-                                             I'm Ready
+                                             <i className="bx bx-rocket"></i>I'm Ready
                                             <span></span>
                                         </button> 
                                         :
@@ -276,7 +264,7 @@ class InterviewInfo extends Component {
                                             onError={this.onUploadError}
                                             onFinish={this.onUploadFinish}
                                             uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
-                                            scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/gi, "")}
+                                            scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/ig, '')}
                                             inputRef={(cmp) => (this.uploadInput = cmp)}
                                             ref={(uploader) => {
                                                 this.uploader = uploader;

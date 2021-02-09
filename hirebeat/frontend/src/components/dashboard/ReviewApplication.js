@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { IconText } from "./DashboardComponents";
 import ApplicationVideo from "./videos/ApplicationVideo";
 import { connect } from "react-redux";
-import { getPostedJobs } from "../../redux/actions/question_actions"
+import { getPostedJobs, getResumeURL } from "../../redux/actions/question_actions"
 
 class ReviewApplication extends Component{
     constructor(props) {
@@ -29,6 +29,7 @@ class ReviewApplication extends Component{
                 comments: comments,
                 pk: pk,
         };
+        this.props.getResumeURL(this.props.positionId, this.props.user.id);
       }
 
     updateStatus = (status) => {
@@ -90,6 +91,15 @@ class ReviewApplication extends Component{
                                             />
                                     </div>
                                 </div>
+                                <div className="row mt-5 pl-3">
+                                        Recorded on: {this.props.recordTime}
+                                        {console.log("the_record_time", this.props.recordTime)}
+                                </div>
+                                <div className="row">
+                                    <button className="default-btn mt-3 ml-3" onClick={() => {this.props.setShowResume(true)}} >
+                                        <i className="bx bx-file"></i>View Resume
+                                    </button>
+                                </div>
                         </div>
                         <div className="col-7 container mt-4">
                             <ApplicationVideo   int_ques={this.props.int_ques} 
@@ -135,6 +145,8 @@ class ReviewApplication extends Component{
 
 const mapStateToProps = (state) => ({
     user: state.auth_reducer.user,
+    recordTime: state.video_reducer.recordTime,
+    resumeURL: state.video_reducer.resumeURL,
 });
 
-export default connect(mapStateToProps, { getPostedJobs })(ReviewApplication);
+export default connect(mapStateToProps, { getPostedJobs, getResumeURL })(ReviewApplication);

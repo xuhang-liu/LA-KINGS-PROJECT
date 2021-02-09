@@ -240,14 +240,25 @@ def delete_job(request):
 
 @api_view(['POST'])
 def add_interview_resume(request):
-    print("== 3 called interview resume==")
     position_id = request.data["positionId"]
-    print(position_id)
+    positions = Positions.objects.get(pk=position_id)
     candidate_id = request.data["candidateId"]
-    print(candidate_id)
+    candidates = User.objects.get(pk=candidate_id)
     resume_URL = request.data["resume_url"]
-    print(resume_URL)
-    InterviewResumes.objects.create(positionId = position_id, candidateId = candidate_id, resumeURL = resume_URL)
-    print("2")
+    InterviewResumes.objects.create(positionId = positions, candidateId= candidates, resumeURL = resume_URL)
     return Response("Added the interview resume", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def get_resume_url(request):
+    position_id = request.data["positionId"]
+    candidate_id = request.data["userId"]
+    uploadedResume = InterviewResumes.objects.get(positionId = position_id, candidateId = candidate_id)
+    print('loading')
+    uploadTime = uploadedResume.invite_date
+    print(uploadTime)
+    resumeURL = uploadedResume.resumeURL
+    return Response({
+        "resumeURL": resumeURL,
+        "recordTime": uploadTime,
+    })
 

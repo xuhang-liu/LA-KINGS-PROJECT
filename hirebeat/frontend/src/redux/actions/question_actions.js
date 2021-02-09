@@ -13,6 +13,7 @@ import {
     UPDATE_COMMENT_STATUS,
     CLOSE_POSITION,
     DELETE_POSITION,
+    GET_RESUME_URL
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -158,7 +159,6 @@ export const resendInvitation = (data) => (dispatch, getState) => {
 };
 
 export const updateCommentStatus = (data) => (dispatch, getState) => {
-  console.log("I am updating the status")
   axios
     .post("update-comment-status", data, tokenConfig(getState))
     .then((res) => {
@@ -192,6 +192,21 @@ export const deletePosition = (positionId) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: DELETE_POSITION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getResumeURL = (positionId, userId) => (dispatch) => {
+  var data = {"positionId": positionId, "userId": userId}
+  axios
+    .post("get-resume-url", data)
+    .then((res) => {
+      dispatch({
+        type: GET_RESUME_URL,
         payload: res.data,
       });
     })
