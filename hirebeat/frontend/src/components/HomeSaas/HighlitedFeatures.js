@@ -15,7 +15,7 @@ class HighlitedFeatures extends Component {
                     <div className="row">
                         <div className="col-lg-4 col-md-4">
                             <ReactWOW animation='fadeInLeft' delay='0.1s'>
-                                <a href='/practice' style={{textDecoration:'none'}}>
+                                <a href='/practice' style={{textDecoration:'none'}} id="id-record-video-review">
                                 <div className="features-box-one">
                                     <i className='bx bx-laptop'></i>
                                     <h3>Record Video & Review</h3>
@@ -30,7 +30,7 @@ class HighlitedFeatures extends Component {
 
                         <div className="col-lg-4 col-md-4">
                             <ReactWOW animation='fadeInLeft' delay='0.2s'>
-                            <a href='/resume' style={{textDecoration:'none'}}>
+                            <a href='/resume' style={{textDecoration:'none'}} id="id-target-resume">
                                 <div className="features-box-one">
                                     <i className='bx bx-file'></i>
                                     <h3>Target Resume</h3>
@@ -45,7 +45,7 @@ class HighlitedFeatures extends Component {
 
                         <div className="col-lg-4 col-md-4">
                             <ReactWOW animation='fadeInLeft' delay='0.2s'>
-                            <a href='/companydata' style={{textDecoration:'none'}}>
+                            <a href='/companydata' style={{textDecoration:'none'}} id="id-popular-company-data">
                                 <div className="features-box-one">
                                     <i className='bx bx-data'></i>
                                     <h3>Popular Company Data</h3>
@@ -60,7 +60,7 @@ class HighlitedFeatures extends Component {
                     </div>
                     <div style={{marginTop:"1rem", textAlign:"center"}}>
                     <Link to="/register">
-                        <a className="default-btn mr-3" id="id-login" style={{color:"white"}}>
+                        <a className="default-btn mr-3" style={{color:"white"}}>
                             <i className="bx bx-log-in"></i>Sign up and Try for Free Now<span></span>
                         </a>
                     </Link>

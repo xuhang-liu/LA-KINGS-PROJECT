@@ -16,7 +16,7 @@ class Features extends Component {
                     <div className="row">
                         <div className="col-lg-6 col-md-6">
                             <ReactWOW animation='fadeInLeft' delay='0.1s'>
-                                <a href='#i1' style={{textDecoration:'none'}}>
+                                <a href='#i1' style={{textDecoration:'none'}} id="id-interview-practice-feedback">
                                 <div className="features-box-one">
                                     <i className='bx bx-laptop'></i>
                                     <h3>Interview Practicing & Feedback</h3>
@@ -28,7 +28,7 @@ class Features extends Component {
 
                         <div className="col-lg-6 col-md-6">
                             <ReactWOW animation='fadeInLeft' delay='0.2s'>
-                                <a href='#i2' style={{textDecoration:'none'}}>
+                                <a href='#i2' style={{textDecoration:'none'}} id="id-resume-optimizations">
                                 <div className="features-box-one">
                                     <i className='bx bx-file'></i>
                                     <h3>Resume Optimization</h3>
