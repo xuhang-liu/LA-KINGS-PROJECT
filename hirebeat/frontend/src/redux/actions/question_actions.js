@@ -201,7 +201,7 @@ export const deletePosition = (positionId) => (dispatch, getState) => {
 }
 
 export const getResumeURL = (positionId, userId) => (dispatch) => {
-  var data = {"positionId": positionId, "userId": userId}
+  var data = {"positionId": positionId, "userId": userId};
   axios
     .post("get-resume-url", data)
     .then((res) => {

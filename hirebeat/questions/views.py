@@ -245,18 +245,22 @@ def add_interview_resume(request):
     candidate_id = request.data["candidateId"]
     candidates = User.objects.get(pk=candidate_id)
     resume_URL = request.data["resume_url"]
-    InterviewResumes.objects.create(positionId = positions, candidateId= candidates, resumeURL = resume_URL)
+    InterviewResumes.objects.create(positionId=positions, candidateId=candidates, resumeURL=resume_URL)
     return Response("Added the interview resume", status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def get_resume_url(request):
+    print('Get Resume Called')
+    uploadTime = ""
+    resumeURL = ""
     position_id = request.data["positionId"]
     candidate_id = request.data["userId"]
-    uploadedResume = InterviewResumes.objects.get(positionId = position_id, candidateId = candidate_id)
-    print('loading')
+    positions = Positions.objects.get(pk=position_id)
+    candidates = User.objects.get(pk=candidate_id)
+    uploadedResume = InterviewResumes.objects.get(positionId=positions, candidateId=candidates)
     uploadTime = uploadedResume.invite_date
-    print(uploadTime)
     resumeURL = uploadedResume.resumeURL
+
     return Response({
         "resumeURL": resumeURL,
         "recordTime": uploadTime,

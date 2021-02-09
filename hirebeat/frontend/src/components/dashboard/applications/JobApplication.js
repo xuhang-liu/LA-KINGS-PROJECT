@@ -58,6 +58,7 @@ export class JobApplication extends Component{
                                     dataLoaded={this.props.dataLoaded}
                                     isRecorded={this.props.isRecorded}
                                     int_ques={this.props.int_ques}
+                                    id_candidate={this.props.id_candidate}
                                     username_candidate={this.props.username_candidate}
                                     email_candidate={this.props.email_candidate}
                                     phone_candidate={this.props.phone_candidate}
@@ -199,6 +200,7 @@ const JobViewDetail = (props) => {
                     dataLoaded={props.dataLoaded}
                     isRecorded={props.isRecorded}
                     int_ques={props.int_ques}
+                    id_candidate={props.id_candidate}
                     username_candidate={props.username_candidate}
                     email_candidate={props.email_candidate}
                     phone_candidate={props.phone_candidate}
@@ -381,6 +383,7 @@ const JobCard = (props) => {
                                 getRecordStatus={props.getRecordStatus}
                                 dataLoaded={props.dataLoaded}
                                 int_ques={props.int_ques}
+                                id_candidate={props.id_candidate}
                                 username_candidate={props.username_candidate}
                                 email_candidate={props.email_candidate}
                                 phone_candidate={props.phone_candidate}
@@ -657,6 +660,7 @@ const ApplicantList = (props) => {
                         getRecordStatus={props.getRecordStatus}
                         dataLoaded={props.dataLoaded}
                         int_ques={props.int_ques}
+                        id_candidate={props.id_candidate}
                         username_candidate={props.username_candidate}
                         email_candidate={props.email_candidate}
                         phone_candidate={props.phone_candidate}
@@ -801,6 +805,7 @@ const Applicant = (props) => {
                 setShowResume={setShowResume}
                 onHide={()=>{setShow(false);}}
                 int_ques={props.int_ques}
+                id_candidate={props.id_candidate}
                 username_candidate={props.username_candidate}
                 email_candidate={props.email_candidate}
                 phone_candidate={props.phone_candidate}
@@ -812,8 +817,8 @@ const Applicant = (props) => {
                 show={showResume}
                 onHide={()=>{setShowResume(false); setShow(true);}}
             >
-                <div className="m-auto p-auto">
-                    <iframe src={props.resumeURL} height="1000px" width="1000px"/>
+                <div class="iframe-container">
+                    <iframe className="responsive-iframe" src={props.resumeURL}/>
                 </div>
             </MyModal>
                 
@@ -831,6 +836,7 @@ function MyVerticallyCenteredModal(props) {
         set_comment_status={props.set_comment_status}
         hide={props.onHide}
         int_ques={props.int_ques}
+        id_candidate={props.id_candidate}
         username_candidate={props.username_candidate}
         email_candidate={props.email_candidate}
         phone_candidate={props.phone_candidate}

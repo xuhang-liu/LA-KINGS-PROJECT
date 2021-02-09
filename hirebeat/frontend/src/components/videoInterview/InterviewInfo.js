@@ -117,7 +117,7 @@ class InterviewInfo extends Component {
                 this.setState({cvName: cvName});
                 this.setState({resume: newResume});
             } else {
-                return this.alert("Wrong File Type", "Please upload PDF or DOCX version of your resume");
+                return this.alert("Wrong File Type", "Please upload PDF version of your resume");
             }
           }
         }

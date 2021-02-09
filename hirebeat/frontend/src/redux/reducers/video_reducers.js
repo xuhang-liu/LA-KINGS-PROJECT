@@ -25,6 +25,7 @@ const initialState = {
   nums: 0,
   deleted_video_id: 0,
   int_ques: [],
+  id_candidate: 0,
   username_candidate: '',
   email_candidate: '',
   phone_candidate: '',
@@ -104,6 +105,7 @@ export default function (state = initialState, action) {
     case GET_APPLICANT_INFO:
       return {
         ...state,
+        id_candidate: action.payload.id_candidate,
         username_candidate: action.payload.username_candidate,
         email_candidate: action.payload.email_candidate,
         phone_candidate: action.payload.phone_candidate,

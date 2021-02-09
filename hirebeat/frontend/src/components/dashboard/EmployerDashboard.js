@@ -155,6 +155,7 @@ export class EmployerDashboard extends Component {
             dataLoaded={this.props.dataLoaded}
             isRecorded={this.props.isRecorded}
             int_ques={this.props.int_ques}
+            id_candidate={this.props.id_candidate}
             username_candidate={this.props.username_candidate}
             email_candidate={this.props.email_candidate}
             phone_candidate={this.props.phone_candidate}
@@ -255,6 +256,7 @@ const mapStateToProps = (state) => ({
   dataLoaded: state.auth_reducer.dataLoaded,
   isRecorded: state.auth_reducer.isRecorded,
   int_ques: state.video_reducer.int_ques,
+  id_candidate: state.video_reducer.id_candidate,
   username_candidate: state.video_reducer.username_candidate,
   email_candidate: state.video_reducer.email_candidate,
   phone_candidate: state.video_reducer.phone_candidate,
