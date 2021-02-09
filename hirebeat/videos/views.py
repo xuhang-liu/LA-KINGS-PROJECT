@@ -251,6 +251,7 @@ def get_applicants_info(request):
     profile = Profile.objects.get(user_id=user.id)
 
     return Response({
+        "id_candidate": user.id,
         "username_candidate": user.username,
         "email_candidate": user.email,
         "phone_candidate": profile.phone_number,

@@ -41,6 +41,7 @@ export class JobApplication extends Component{
                             }
                             return(
                                 <JobViewDetail
+                                    resumeURL={this.props.resumeURL}
                                     addSelected={this.props.setselectedId}
                                     questions={p.questions}
                                     companyName={this.props.companyName}
@@ -57,6 +58,7 @@ export class JobApplication extends Component{
                                     dataLoaded={this.props.dataLoaded}
                                     isRecorded={this.props.isRecorded}
                                     int_ques={this.props.int_ques}
+                                    id_candidate={this.props.id_candidate}
                                     username_candidate={this.props.username_candidate}
                                     email_candidate={this.props.email_candidate}
                                     phone_candidate={this.props.phone_candidate}
@@ -77,6 +79,7 @@ export class JobApplication extends Component{
 
 const mapStateToProps = (state) => ({
     received_interview: state.auth_reducer.received_interview,
+    resumeURL: state.video_reducer.resumeURL,
 });
 
 export default connect(mapStateToProps, { closePosition, deletePosition })(
@@ -181,6 +184,7 @@ const JobViewDetail = (props) => {
             {/* Application detail*/}
             {view &&
                 <JobCard
+                    resumeURL={props.resumeURL}
                     questions={props.questions}
                     companyName={props.companyName}
                     positionId={props.positionId}
@@ -196,6 +200,7 @@ const JobViewDetail = (props) => {
                     dataLoaded={props.dataLoaded}
                     isRecorded={props.isRecorded}
                     int_ques={props.int_ques}
+                    id_candidate={props.id_candidate}
                     username_candidate={props.username_candidate}
                     email_candidate={props.email_candidate}
                     phone_candidate={props.phone_candidate}
@@ -368,6 +373,7 @@ const JobCard = (props) => {
                         </div>
                         <div style={{marginBottom:"2rem"}}>
                             <ApplicantList
+                                resumeURL={props.resumeURL}
                                 isClosed={props.isClosed}
                                 keyWords={keyWords}
                                 category={category}
@@ -377,6 +383,7 @@ const JobCard = (props) => {
                                 getRecordStatus={props.getRecordStatus}
                                 dataLoaded={props.dataLoaded}
                                 int_ques={props.int_ques}
+                                id_candidate={props.id_candidate}
                                 username_candidate={props.username_candidate}
                                 email_candidate={props.email_candidate}
                                 phone_candidate={props.phone_candidate}
@@ -639,6 +646,7 @@ const ApplicantList = (props) => {
                 }
                 return (
                     <Applicant
+                        resumeURL={props.resumeURL}
                         isClosed={props.isClosed}
                         name={a.name}
                         date={a.invite_date.substring(0, 10)}
@@ -652,6 +660,7 @@ const ApplicantList = (props) => {
                         getRecordStatus={props.getRecordStatus}
                         dataLoaded={props.dataLoaded}
                         int_ques={props.int_ques}
+                        id_candidate={props.id_candidate}
                         username_candidate={props.username_candidate}
                         email_candidate={props.email_candidate}
                         phone_candidate={props.phone_candidate}
@@ -722,6 +731,7 @@ const Applicant = (props) => {
     }
 
     const [show, setShow] = useState(false);
+    const [showResume, setShowResume] = useState(false);
 
     return (
         <div>
@@ -792,8 +802,10 @@ const Applicant = (props) => {
             <MyVerticallyCenteredModal
                 comment_status={props.comment_status}
                 show={show}
+                setShowResume={setShowResume}
                 onHide={()=>{setShow(false);}}
                 int_ques={props.int_ques}
+                id_candidate={props.id_candidate}
                 username_candidate={props.username_candidate}
                 email_candidate={props.email_candidate}
                 phone_candidate={props.phone_candidate}
@@ -801,6 +813,15 @@ const Applicant = (props) => {
                 positionId={props.positionId}
                 updateCommentStatus={props.updateCommentStatus}
             />
+            <MyModal
+                show={showResume}
+                onHide={()=>{setShowResume(false); setShow(true);}}
+            >
+                <div class="iframe-container">
+                    <iframe className="responsive-iframe" src={props.resumeURL}/>
+                </div>
+            </MyModal>
+                
         </div>
     )
 };
@@ -810,10 +831,12 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       <ReviewApplication
+        setShowResume={props.setShowResume}
         comment_status={props.comment_status}
         set_comment_status={props.set_comment_status}
         hide={props.onHide}
         int_ques={props.int_ques}
+        id_candidate={props.id_candidate}
         username_candidate={props.username_candidate}
         email_candidate={props.email_candidate}
         phone_candidate={props.phone_candidate}
