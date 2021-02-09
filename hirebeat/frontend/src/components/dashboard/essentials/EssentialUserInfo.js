@@ -132,10 +132,10 @@ export class EssentialUserInfo extends Component {
     var defaultBack = "none";
     var selectDecoration = "underline";
     var defaultDecoration = "none";
-    var selectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/dashboard-selected.png";
-    var nonselectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/dashboard-non.png";
-    var selectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-settings-select.png";
-    var nonselectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-settings.png";
+    var selectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/dashboard-selected1.png";
+    var nonselectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/dashboard-non1.png";
+    var selectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-settings-select1.png";
+    var nonselectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-settings1.png";
     return (
       <React.Fragment>
       <div className="container">
@@ -227,7 +227,7 @@ export class EssentialUserInfo extends Component {
               <div>
                 <div className="row" style={{marginTop:"2rem", marginLeft:"0.6rem"}}>
                   <div className="col d-flex align-items-center">
-                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-dash-icon.png" alt="company-icon"></img>
+                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-dash-icon2.png" alt="company-icon" style={{width:"36px", height:"36px"}}></img>
                   </div>
                 </div>
                 <div className="row" style={{marginTop:"0.6rem", textAlign:"center"}}>
@@ -293,7 +293,7 @@ export class EssentialUserInfo extends Component {
                     textSize={"12px"}
                     textDisplayed={"New Position"}
                     backColor={"#56a3fa"}
-                    iconSrc={"https://hirebeat-assets.s3.amazonaws.com/Employer/bx-plus.png"}
+                    iconSrc={"https://hirebeat-assets.s3.amazonaws.com/Employer/bx-plus1.png"}
                     textColor={"#ffffff"}
                   />
                 </button>

@@ -182,6 +182,12 @@ export class SubpageSetting extends Component {
                 </div>
 
                 <div className="card container">
+                    <div className="form-row" style={{marginTop:"1%"}}>
+                        <div className="form-group col">
+                            <label style={{ fontSize: "17px", display:'inline-block' }}>Email:</label>
+                            <p style={{display:'inline-block', fontSize:"15px", marginLeft:"1rem"}}>{this.props.user.email}</p>
+                        </div>
+                    </div>
                     <form style={{ marginBottom: "3%" }} onSubmit={this.saveChanges}>
                             <div className="form-row" style={{marginTop:"1%"}}>
                                 {!this.props.profile.is_employer &&
