@@ -31,7 +31,7 @@ class WhyUs extends Component {
 
                         <div className="row" style={{width: "100%", margin: "auto"}}>
                             <div className="col-lg-8 col-md-8">
-                                <div className="video-box" id="id-video1">
+                                <div className="video-box">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/home_bg.png" className="main-image" alt="image" />
 
                                     <Link href="#play-video">
@@ -40,7 +40,7 @@ class WhyUs extends Component {
                                             className="video-btn popup-youtube"
                                             style={{top:"45%", backgroundColor:"ff6b00"}}
                                         >
-                                            <i className="bx bx-play" style={{color:"white"}}></i>
+                                            <i id="id-video1" className="bx bx-play" style={{color:"white"}}></i>
                                         </a>
                                     </Link>
                                 </div>

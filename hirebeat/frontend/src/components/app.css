@@ -1623,6 +1623,10 @@ h5 {
   margin-left: -0.5rem;
 }
 
+.title-button:hover {
+  color: #ff6b00;
+}
+
 .title-button1 {
   font-family: Avenir Next;
   font-style: normal;
@@ -2532,6 +2536,7 @@ h5 {
 
 .search-candidate-input {
   color: #67a3f3;
+  width: fit-content;
   padding-left: 0.5rem;
   border: 2px solid #E8EDFC;
   box-sizing: border-box;
