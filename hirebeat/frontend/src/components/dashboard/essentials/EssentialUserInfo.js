@@ -227,7 +227,7 @@ export class EssentialUserInfo extends Component {
               <div>
                 <div className="row" style={{marginTop:"2rem", marginLeft:"0.6rem"}}>
                   <div className="col d-flex align-items-center">
-                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-dash-icon1.png" alt="company-icon" style={{width:"36px", height:"36px"}}></img>
+                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-dash-icon2.png" alt="company-icon" style={{width:"36px", height:"36px"}}></img>
                   </div>
                 </div>
                 <div className="row" style={{marginTop:"0.6rem", textAlign:"center"}}>

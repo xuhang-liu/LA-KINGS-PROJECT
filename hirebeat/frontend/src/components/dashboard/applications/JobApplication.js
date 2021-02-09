@@ -29,9 +29,11 @@ export class JobApplication extends Component{
                                 switch (this.props.filter) {
                                     case "active":
                                         if (p.is_closed) return null;
+                                        if ((this.props.selectedId != 0) && (this.props.selectedId != p.position_id)) return null;
                                         break;
                                     case "closed":
                                         if (!p.is_closed) return null;
+                                        if ((this.props.selectedId != 0) && (this.props.selectedId != p.position_id)) return null;
                                         break;
                                     default:
                                         return null;
@@ -39,6 +41,7 @@ export class JobApplication extends Component{
                             }
                             return(
                                 <JobViewDetail
+                                    addSelected={this.props.setselectedId}
                                     questions={p.questions}
                                     companyName={this.props.companyName}
                                     positionId={p.position_id}
@@ -139,7 +142,7 @@ const JobViewDetail = (props) => {
                         <div className="mt-4">
                             <div className="row">
                                 <div className="col-9" style={{color:"#090D3A"}}>
-                                    <button className="title-button" onClick={() => {setView(true)}}>
+                                    <button className="title-button" onClick={() => {setView(true), props.addSelected(props.positionId)}}>
                                         {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                     </button>
                                     <div className="row mb-2 mt-1">
@@ -199,7 +202,7 @@ const JobViewDetail = (props) => {
                     location_candidate={props.location_candidate}
                     resendInvitation={props.resendInvitation}
                     updateCommentStatus={props.updateCommentStatus}
-                    hideView={() => setView(false)}
+                    hideView={() => (setView(false), props.addSelected(0))}
                 />
             }
         </React.Fragment>
@@ -346,25 +349,26 @@ const JobCard = (props) => {
                                 </button>
                             }
                         </div>
-                        <div className="col-3 interview-txt7 interview-center" style={{color:"#67a3f3"}}>
-                            <label><i className="bx bx-search"></i></label>
-                            <input placeholder="Search candidate" className="search-candidate-input" value={keyWords} onChange={onChange}></input>
-                        </div>
                     </div>
-                    <div className="card container" style={{marginTop:"1%"}}>
+                    <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem"}}>
+                        <label><i className="bx bx-search"></i></label>
+                        <input placeholder="Search candidate" className="search-candidate-input" value={keyWords} onChange={onChange}></input>
+                    </div>
+                    <div className="card container" style={{marginTop:"2%"}}>
                         <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                             <div className="col-2">Name</div>
                             <div className="col-4">Email</div>
-                            <div className="col-3">Reviews</div>
                             <div className="col-3">
                                 <div className="row">
                                     <div className="center-items" style={{marginRight: "1rem"}}>Status: </div>
                                     <Select value={category} onChange={onFilter} options={options} className="select-category" />
                                 </div>
                             </div>
+                            <div className="col-3">Reviews</div>
                         </div>
                         <div style={{marginBottom:"2rem"}}>
                             <ApplicantList
+                                isClosed={props.isClosed}
                                 keyWords={keyWords}
                                 category={category}
                                 applicants={props.applicants}
@@ -605,36 +609,37 @@ const ApplicantList = (props) => {
                         case "Pending":
                             if (a.is_recorded) return null;
                             if (props.keyWords != "") {
-                                var canEmail = a.email;
+                                var canEmail = a.email.split("@")[0];
                                 var canName = a.name;
-                                if((!canEmail.toLowerCase().includes(props.keyWords)) && (!canName.toLowerCase().includes(props.keyWords))) return null;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
                             };
                             break;
                         case "Withdrawn":
                             if (!a.is_recorded || (a.is_recorded && a.video_count > 0)) return null;
                             if (props.keyWords != "") {
-                                var canEmail = a.email;
+                                var canEmail = a.email.split("@")[0];
                                 var canName = a.name;
-                                if((!canEmail.toLowerCase().includes(props.keyWords)) && (!canName.toLowerCase().includes(props.keyWords))) return null;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
                             };
                             break;
                         case "Completed":
                             if (!a.is_recorded || (a.is_recorded && a.video_count <= 0)) return null;
                             if (props.keyWords != "") {
-                                var canEmail = a.email;
+                                var canEmail = a.email.split("@")[0];
                                 var canName = a.name;
-                                if((!canEmail.toLowerCase().includes(props.keyWords)) && (!canName.toLowerCase().includes(props.keyWords))) return null;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
                             };
                             break;
                     }
                 }
                 else if (props.keyWords != "") {
-                    var canEmail = a.email;
+                    var canEmail = a.email.split("@")[0];
                     var canName = a.name;
-                    if((!canEmail.toLowerCase().includes(props.keyWords)) && (!canName.toLowerCase().includes(props.keyWords))) return null;
+                    if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
                 }
                 return (
                     <Applicant
+                        isClosed={props.isClosed}
                         name={a.name}
                         date={a.invite_date.substring(0, 10)}
                         email={a.email}
@@ -742,9 +747,6 @@ const Applicant = (props) => {
                         {props.email}</button></div>
                 : <div className="col-4 interview-txt9 mt-2">{props.email}</div>
                 }
-                <div className="col-3" >
-                    {renderStatus(props.comment_status)}
-                </div>
                 <div className="col-3">
                     {props.isRecorded ?
                         (props.videoCount > 0 ?
@@ -768,6 +770,7 @@ const Applicant = (props) => {
                             <div className="interview-txt9">
                                 <p style={{color: "#7D7D7D"}}>Pending</p>
                             </div>
+                            {!props.isClosed && 
                             <div>
                                 <button
                                     onClick={ () => inviteAgain()}
@@ -777,9 +780,12 @@ const Applicant = (props) => {
                                     <i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>
                                     Invite Again
                                 </button>
-                            </div>
+                            </div>}
                         </div>
                     }
+                </div>
+                <div className="col-3" >
+                    {renderStatus(props.comment_status)}
                 </div>
             </div>
             {/* Interview Result */}

@@ -7,19 +7,20 @@ const decideClassName = (filter, text) => {
 
 export const ApplicationCover = (props) => {
   const [filter, setFilter] = useState("active");
+  const [selectedId, setselectedId] = useState(0);
   return (
     <div>
       <div style={{marginBottom: "20px"}} className="container min-width-1290">
         <button
           className={decideClassName(filter, "active")}
-          onClick={() => setFilter("active")}
+          onClick={() => (setFilter("active"), setselectedId(0))}
         >
           Active
         </button>
         <button
           className={decideClassName(filter, "closed")}
           style={{marginLeft: "2rem"}}
-          onClick={() => setFilter("closed")}
+          onClick={() => (setFilter("closed"), setselectedId(0))}
         >
           Closed
         </button>
@@ -31,6 +32,8 @@ export const ApplicationCover = (props) => {
         </button>
       </div>
       <JobApplication
+        selectedId={selectedId}
+        setselectedId={setselectedId}
         filter={filter}
         companyName={props.companyName}
         loaded={props.loaded}
