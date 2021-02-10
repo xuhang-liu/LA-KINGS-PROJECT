@@ -121,6 +121,11 @@ import OliverWymanInfo from"./companyData/companies/OliverWymanInfo";
 import ATKearneyInfo from"./companyData/companies/ATKearneyInfo";
 import AnalysisGroupInfo from"./companyData/companies/AnalysisGroupInfo";
 import CornerstoneInfo from"./companyData/companies/CornerstoneInfo";
+import LEKConsultingInfo from"./companyData/companies/LEKConsultingInfo";
+import ZSAssociatesInfo from"./companyData/companies/ZSAssociatesInfo";
+import BoozeAllenHamiltonInfo from"./companyData/companies/BoozeAllenHamiltonInfo";
+import MastercardInfo from"./companyData/companies/MastercardInfo";
+import CapitalOneInfo from"./companyData/companies/CapitalOneInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -345,6 +350,11 @@ class App extends Component {
                 <Route exact path="/kearney" component={ATKearneyInfo} />
                 <Route exact path="/analysis-group" component={AnalysisGroupInfo} />
                 <Route exact path="/cornerstone-research" component={CornerstoneInfo} />
+                <Route exact path="/lek-consulting" component={LEKConsultingInfo} />
+                <Route exact path="/zs-associates" component={ZSAssociatesInfo} />
+                <Route exact path="/booz-allen-hamilton" component={BoozeAllenHamiltonInfo} />
+                <Route exact path="/mastercard" component={MastercardInfo} />
+                <Route exact path="/capital-one" component={CapitalOneInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />
