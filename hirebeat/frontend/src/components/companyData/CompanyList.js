@@ -439,6 +439,38 @@ class CompanyList extends Component {
                                 </Link>
                             </div>
                         </div>
+
+                        <div className="clients-logo-list align-items-center" style={{marginTop: "1rem"}}>
+                            <div className="single-clients-logo">
+                                <Link to="/lek-consulting">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/lek.png" alt="L.E.K.Consulting logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/zs-associates">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/zs.png" alt="ZS Associates logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/booz-allen-hamilton">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/booz.png" alt="Booze Allen Hamilton logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/mastercard">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/mastercard.png" alt="Mastercard logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/capital-one">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/capitalone.png" alt="Capital One logo"/>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                     <MediaQuery minDeviceWidth={1224}>
                     <div className="row company-list-help-box">
