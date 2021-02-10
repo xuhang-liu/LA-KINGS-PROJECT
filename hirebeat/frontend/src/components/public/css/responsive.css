@@ -10,6 +10,10 @@
     padding-top: 60px;
     padding-bottom: 60px;
   }
+  .ptb-150 {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
   .pt-100 {
     padding-top: 60px;
   }
@@ -1143,6 +1147,10 @@
     padding-top: 50px;
     padding-bottom: 50px;
   }
+  .ptb-150 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
   .pt-100 {
     padding-top: 50px;
   }
@@ -1911,7 +1919,7 @@
   }
   /* SaaS Home */
   .saas-banner {
-    height: 750px;
+    height: 515px;
   }
   .saas-banner .row.align-items-center.pt-5 {
     padding: 0 !important;

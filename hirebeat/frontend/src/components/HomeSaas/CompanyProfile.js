@@ -366,6 +366,35 @@ class CompanyProfile extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/cornerstoneresearch.png" alt="Cornerstone Research logo"/>
                             </Link>
                         </div>
+                        <div className="item">
+                            <Link to="/lek-consulting">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/lek.png" alt="L.E.K.Consulting logo"/>
+                            </Link>
+                        </div>
+
+                        <div className="item">
+                            <Link to="/zs-associates">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/zs.png" alt="ZS Associates logo"/>
+                            </Link>
+                        </div>
+
+                        <div className="item">
+                            <Link to="/booz-allen-hamilton">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/booz.png" alt="Booz Allen Hamilton logo"/>
+                            </Link>
+                        </div>
+
+                        <div className="item">
+                            <Link to="/mastercard">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/mastercard.png" alt="Mastercard logo"/>
+                            </Link>
+                        </div>
+
+                        <div className="item">
+                            <Link to="/capital-one">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/capitalone.png" alt="Capital One logo"/>
+                            </Link>
+                        </div>
                     </OwlCarousel>
                     <a href="/companydata" className="read-more" style={{color: "#56a3fa", marginLeft: "76%", fontSize:"1rem", textDecoration:"none"}}>Explore our company data <i class="bx bx-right-arrow-alt"></i></a>
                 </div>

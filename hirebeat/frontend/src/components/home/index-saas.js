@@ -7,8 +7,8 @@ import Loader from '../shared/Loader';
 import { useEffect } from "react";
 import AmazingFeatures from "../HomeSaas/AmazingFeatures"
 import Progress from '../HomeSaas/Progress';
-import WhyUs from '../HomeSaas/WhyUs';
-import CompanyProfile from '../HomeSaas/CompanyProfile';
+//import WhyUs from '../HomeSaas/WhyUs';
+//import CompanyProfile from '../HomeSaas/CompanyProfile';
 
 
 function ScrollToTopOnMount() {
@@ -29,18 +29,18 @@ class IndexSaas extends Component {
     render() {
         return (
             <React.Fragment>
+              <div className="min-width-1290">
                 <ScrollToTopOnMount />
                 <MainBanner />
-                <AmazingFeatures />
                 <HighlitedFeatures />
+                <AmazingFeatures />
                 <Progress />
-                <WhyUs />
-                <CompanyProfile />
                 {/*<MoreToDiscover />*/}
                 <ClientsFeedbackSlider/>
                 <FreeTrialArea />
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
+              </div>
             </React.Fragment>
         );
     }
