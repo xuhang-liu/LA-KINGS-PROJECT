@@ -47,7 +47,7 @@ export class Header extends Component {
     const {user} = this.props.auth;
     return (
         <React.Fragment>
-          <div className="nav-item order-xl-1 align-self-center">
+          <div className="nav-item order-xl-1 align-self-center mr-5">
             <div className="nav-link text-white navbar-font">
               <div className="row">
                     <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px'}}></i>        
@@ -143,6 +143,11 @@ export class Header extends Component {
             </a>
             </Link>
             </li>
+            <li className="nav-item ">
+                <a href="/employer" className="nav-link text-white navbar-font">
+                  <span className="header-text">For Employer</span>
+                </a>
+              </li>
           </ul>
 
 
@@ -181,11 +186,6 @@ export class Header extends Component {
                   </span>
                 </a>
               </li>
-              <li className="nav-item ">
-                <a href="/employer" className="nav-link text-white navbar-font">
-                  <span className="header-text">For Employer</span>
-                </a>
-              </li>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
@@ -209,7 +209,7 @@ export class Header extends Component {
     const {user} = this.props.auth;
     return (
         <React.Fragment>
-          <div className="nav-item order-xl-1 align-self-center">
+          <div className="nav-item order-xl-1 align-self-center mr-5">
             <div className="nav-link text-white navbar-font">
               <div className="row">
                     <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px'}}></i>        
@@ -330,7 +330,7 @@ export class Header extends Component {
               background: "#080a3c",
             }}
         >
-          <div className="container pb-0">
+          <div className="container-fluid pb-0">
             {/*<div className="align-self-start">*/}
               <button
                   className="navbar-toggler mr-2 bg-dark"

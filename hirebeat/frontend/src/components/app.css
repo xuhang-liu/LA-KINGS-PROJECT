@@ -2551,7 +2551,13 @@ h5 {
 .dashboard-sidebar {
   height: 100%;
   width: 100%;
-  background: linear-gradient(180deg, #090D3A 0%, #4689FA 100%);
+  background: #2C448C;
+}
+
+.dashboard-sidebar1 {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(180deg, #4153AF 0%, rgba(65, 83, 175, 0.75) 100%);
 }
 
 .dashboard-main {

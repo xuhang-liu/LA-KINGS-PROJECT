@@ -225,12 +225,7 @@ export class EssentialUserInfo extends Component {
               </div>}
               {this.props.profile.is_employer &&
               <div>
-                <div className="row" style={{marginTop:"2rem", marginLeft:"0.6rem"}}>
-                  <div className="col d-flex align-items-center">
-                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-dash-icon2.png" alt="company-icon" style={{width:"36px", height:"36px"}}></img>
-                  </div>
-                </div>
-                <div className="row" style={{marginTop:"0.6rem", textAlign:"center"}}>
+                <div className="row" style={{marginTop:"2rem", textAlign:"center"}}>
                   <div className="col d-flex align-items-center">
                         <IconText
                           textDisplayed={this.props.profile.company_name}
@@ -239,7 +234,7 @@ export class EssentialUserInfo extends Component {
                         />
                   </div>
                 </div>
-                <hr style={{border:"1px solid #E8EDFC"}}></hr>
+                <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)"}}></hr>
 
               </div>}
               {this.props.profile.is_employer ? 
@@ -289,11 +284,13 @@ export class EssentialUserInfo extends Component {
                   style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                 >
                   <IconEmployerText
+                    hasIcon={"hasIcon"}
                     className="icon-employer-text-hover"
-                    textSize={"12px"}
+                    textWeight={"600"}
+                    textSize={"16px"}
                     textDisplayed={"New Position"}
                     backColor={"#56a3fa"}
-                    iconSrc={"https://hirebeat-assets.s3.amazonaws.com/Employer/bx-plus1.png"}
+                    iconSrc={""}
                     textColor={"#ffffff"}
                   />
                 </button>

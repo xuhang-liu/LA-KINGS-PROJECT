@@ -24,6 +24,7 @@ class IndexEmployer extends Component {
     render() {
         return (
             <React.Fragment>
+              <div className="min-width-1290">
                 <ScrollToTopOnMount />
                 <MainBanner/>
                 <LeverageHireBeat/>
@@ -31,6 +32,7 @@ class IndexEmployer extends Component {
                 <FreeTrialArea/>
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
+              </div>
             </React.Fragment>
         );
     }

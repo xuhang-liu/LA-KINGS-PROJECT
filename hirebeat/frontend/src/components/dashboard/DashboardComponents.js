@@ -75,9 +75,10 @@ export const IconEmployerText = (props) => {
     //textSize, textDisplayed, iconName, textColor?
     return (
         <div className="icon-employer-text align-items-center" style={{background: props.backColor}}>
-            <img src={props.iconSrc} style={{width:"36px", height:"36px"}}></img>
+            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{width:"36px", height:"36px"}}></img>}
             <p
                 style={{
+                    fontWeight: props.textWeight,
                     fontSize: props.textSize,
                     color: props.textColor ?? "#7d7d7d",
                 }}
