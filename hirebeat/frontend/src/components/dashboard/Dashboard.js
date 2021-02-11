@@ -143,7 +143,7 @@ export class Dashboard extends Component {
           <MediaQuery minDeviceWidth={1224}>
             <div className="row no-gutters min-width-1290">
               <div className='col-3'>
-                <div className='dashboard-sidebar'>
+                <div className='dashboard-sidebar1'>
                   <EssentialUserInfo
                       userfullname={this.props.userfullname}
                       user={this.props.user}

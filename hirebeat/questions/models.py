@@ -91,3 +91,11 @@ class Categorys(models.Model):
     questions = models.CharField(max_length=500, null=True, blank=True)
     def __str__(self):
         return self.category_des + '|' + self.subCategorys
+
+class InterviewResumes(models.Model):
+    positionId = models.ForeignKey(Positions, on_delete=models.CASCADE)
+    candidateId = models.ForeignKey(User, on_delete=models.CASCADE)
+    resumeURL = models.URLField(max_length=200)
+    invite_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.resumeURL

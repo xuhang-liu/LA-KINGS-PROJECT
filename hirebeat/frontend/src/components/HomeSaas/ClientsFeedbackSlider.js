@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactWOW from 'react-wow';
-import FunFacts from '../Common/FunFacts';
-import {Link} from "react-router-dom";
+//import ReactWOW from 'react-wow';
+//import FunFacts from '../Common/FunFacts';
+//import {Link} from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -54,7 +54,7 @@ class ClientsFeedbackSlider extends Component {
     render() {
         return (
             <React.Fragment>
-            <section className="feedback-area pt-100 pb-100">
+            <section className="feedback-area pt-100 pb-100 bg-e8edfc">
                 <div className="container">
                     <div className="section-title" style={{maxWidth:"800px"}}>
                         <h2>Customers Feedback of <span>HireBeat</span></h2>
@@ -65,7 +65,7 @@ class ClientsFeedbackSlider extends Component {
                         {...options}
                     >
                         {/*1*/}
-                        <div className="single-feedback-item">
+                        <div className="single-feedback-item h-100">
 
                             <div className="feedback-desc">
                                 <p>My frustration with being insecure about doing badly in interviews ultimately ended after I started using HireBeat. After practicing and getting feedback for a wide variety of behavioral questions, I can now fully articulate and concisely deliver my answers during interviews!</p>
@@ -87,7 +87,7 @@ class ClientsFeedbackSlider extends Component {
                         </div>
 
                         {/*2*/}
-                        <div className="single-feedback-item">
+                        <div className="single-feedback-item h-100">
 
                             <div className="feedback-desc">
                                 <p>Since I started using HireBeat’s resume matching service, I have received more interview invitations than ever! After learning missing vital aspects of my resume, I wrote a more detailed resume for each job position that I was applying to. I highly recommend HireBeat!</p>
@@ -109,7 +109,7 @@ class ClientsFeedbackSlider extends Component {
                         </div>
 
                         {/*3*/}
-                        <div className="single-feedback-item">
+                        <div className="single-feedback-item h-100">
 
                             <div className="feedback-desc">
                                 <p>I’ve been using hirebeat to improve my interviewing in technical roles to compete in this challenging job market. It has helped me improve my skills and my demeanor in interviews to a great extent. I’m much more prepared for my career than ever before!</p>
@@ -130,7 +130,7 @@ class ClientsFeedbackSlider extends Component {
                             </div>
                         </div>
                         {/*4*/}
-                        <div className="single-feedback-item">
+                        <div className="single-feedback-item h-100">
 
                             <div className="feedback-desc">
                                 <p>I used HireBeat to improve my interview performance, and the result exceeded my expectations. It’s like hiring a personal interview tutor for myself, but with a way lower price. Now I have also got an offer from my dream company!</p>
@@ -151,10 +151,10 @@ class ClientsFeedbackSlider extends Component {
                             </div>
                         </div>
                         {/*5*/}
-                        <div className="single-feedback-item">
+                        <div className="single-feedback-item h-100">
 
                             <div className="feedback-desc">
-                                <p>After struggling during many job interviews, I decided to use HireBeat to help me better prepare. Within two weeks of usage, my interview confidence increases significantly. Now, I am more ready than ever to enter the interview room.</p>
+                                <p>After struggling during many job interviews, I decided to use HireBeat to help me better prepare. Within two weeks of usage, my interview confidence increases significantly. Now, I am more ready than ever to take the interview.</p>
                                 <br/>
                                 <div className="rating">
                                     <i className="bx bxs-star"></i>

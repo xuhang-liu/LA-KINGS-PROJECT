@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import ReactWOW from 'react-wow';
-import Particles from 'react-particles-js';
+//import ReactWOW from 'react-wow';
+//import Particles from 'react-particles-js';
 import ModalVideo from 'react-modal-video';
 //import MediaQuery from 'react-responsive';
-import arrow from "../public/images/saas-shape/arrow.png";
-import box1 from "../public/images/saas-shape/box1.png";
-import boy1 from "../public/images/saas-shape/boy1.png";
-import boy2 from "../public/images/saas-shape/boy2.png";
-import boy3 from "../public/images/saas-shape/boy3.png";
-import digitalscreen from "../public/images/saas-shape/digital-screen.png";
-import filter1 from "../public/images/saas-shape/filter1.png";
-import filter2 from "../public/images/saas-shape/filter2.png";
-import filter3 from "../public/images/saas-shape/filter3.png";
-import girl1 from "../public/images/saas-shape/girl1.png";
-import girl2 from "../public/images/saas-shape/girl2.png";
-import mainimage from "../public/images/saas-shape/main-image.png";
-import monitor from "../public/images/saas-shape/monitor.png";
-import shape from "../public/images/saas-shape/shape-rotate.png";
+//import arrow from "../public/images/saas-shape/arrow.png";
+//import box1 from "../public/images/saas-shape/box1.png";
+//import boy1 from "../public/images/saas-shape/boy1.png";
+//import boy2 from "../public/images/saas-shape/boy2.png";
+//import boy3 from "../public/images/saas-shape/boy3.png";
+//import digitalscreen from "../public/images/saas-shape/digital-screen.png";
+//import filter1 from "../public/images/saas-shape/filter1.png";
+//import filter2 from "../public/images/saas-shape/filter2.png";
+//import filter3 from "../public/images/saas-shape/filter3.png";
+//import girl1 from "../public/images/saas-shape/girl1.png";
+//import girl2 from "../public/images/saas-shape/girl2.png";
+//import mainimage from "../public/images/saas-shape/main-image.png";
+//import monitor from "../public/images/saas-shape/monitor.png";
+//import shape from "../public/images/saas-shape/shape-rotate.png";
 
 
 const particleOpt = {
@@ -70,12 +70,12 @@ class MainBanner extends Component {
                     onClose={() => this.setState({isOpen: false})} 
                 />
 
-                <div className="saas-banner">
+                <div className="saas-banner pt-100 pb-100">
                     <div className="d-table">
                         <div className="d-table-cell">
                             <div className="container max-width-1440">
                                 <div className="row align-items-center pt-8">
-                                    <div className="col-lg-5 col-md-12">
+                                    {/*<div className="col-lg-5 col-md-12">
                                         <div className="saas-image mt-70">
                                             <ReactWOW animation='fadeInDown' delay='0.6s'>
                                                 <img src={arrow} alt="arrow" />
@@ -125,40 +125,41 @@ class MainBanner extends Component {
                                                 <img src={monitor} alt="monitor" />
                                             </ReactWOW>
     
-                                            {/* Main image */}
                                             <ReactWOW animation='zoomIn' delay='0.6s'>
                                                 <img src={mainimage} alt="Main image" />
                                             </ReactWOW>
                                         </div>
-                                    </div>
-                                    <div className="col-lg-7 col-md-12">
-                                        <div className="hero-content pl-6">
-                                            <h1>All-in-one platform to land your next dream job</h1>
-                                            <p>AI-powered interview training and resume optimization tool that helps you pass the resume screening and nail your job interview</p>
+                                    </div>*/}
+                                    <div className="col-lg-6 col-md-12">
+                                        <div className="hero-content pl-6 pt-5">
+                                            <h1>Build the Bridge to your Dream Job</h1>
+                                            <div>
+                                                <p style={{display:"inline-block", minWidth:"15rem"}}>AI-powered interview training</p>
+                                                <p style={{display:"inline-block", marginLeft:"1rem"}}>Resume optimization</p>
+                                            </div>
+                                            <div className="pb-5">
+                                                <p style={{display:"inline-block", minWidth:"15rem"}}>Access to millions of jobs</p>
+                                                <p style={{display:"inline-block", marginLeft:"1rem"}}>Company hiring advice</p>
+                                            </div>
                                             
                                             <div className="banner-btn">
                                                 <div className="d-flex">
                                                     <Link to="/register">
                                                         <a id="id-interviewpractice" className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"1.5vmin", lineHeight:"26px"}}>
-                                                        Sign up for Free
+                                                        Start for Free
                                                             <span></span>
                                                         </a>
                                                     </Link>
-                                                </div>
-                                                {/*<div className="d-flex" style={{marginTop:"1.5rem"}}>
-                                                    <Link to="/career" style={{textDecoration:"none"}}>
-                                                        <a id="id-findjobs">
-                                                        <span className="number" 
-                                                           style={{marginRight:'0.5rem', 
-                                                           backgroundColor:"#ffffff",
-                                                           width:"2.5rem", height:"2.5rem",
-                                                           textAlign:"center", borderRadius:"100%", color:"#ff612f",
-                                                           display:"inline-block", fontWeight:"600"}}>
-                                                               <i className="bx bx-search-alt bx-sm" style={{marginTop:"20%"}}></i></span>
-                                                        <p style={{color:"white", fontWeight:"600", fontsize:"20px", lineHeight:"26px", display:"inline-block"}}>Find Jobs</p>
-                                                        </a>
+                                                    <Link href="#play-video">
+                                                    <a
+                                                        onClick={e => {e.preventDefault(); this.openModal()}}
+                                                        className="video-btn popup-youtube"
+                                                        style={{top:"5%"}}
+                                                    >
+                                                        <i id="id-video1" className="bx bx-play" style={{color:"#56a3fa"}}></i>
+                                                    </a>
                                                     </Link>
-                                                </div>*/}
+                                                </div>
                                             </div>
                                             {/*<a href="https://www.producthunt.com/posts/hirebeat-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hirebeat-2" target="_blank">*/}
                                             {/*        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=275315&theme=dark" alt="HireBeat - All-in-one career training platform for job seekers | Product Hunt" style={{width:'11', height:'3.5rem', paddingTop:'1rem'}}/></a>*/}
@@ -170,7 +171,7 @@ class MainBanner extends Component {
                         </div>
                     </div>
 
-                    <div className="shape-rotate rotateme">
+                    {/*<div className="shape-rotate rotateme">
                         <img src={shape} alt="image" />
                     </div>
                     
@@ -178,7 +179,7 @@ class MainBanner extends Component {
                         <Particles
                             params={{...particleOpt}}
                         />
-                    </div>
+                    </div>*/}
                 </div>
             </React.Fragment>
         );

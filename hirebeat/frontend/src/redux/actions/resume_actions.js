@@ -37,6 +37,18 @@ export const addResume = (resume) => (dispatch, getState) => {
     );
 };
 
+export const addInterviewResume = (resume) => (dispatch) => {
+  axios
+    .post("/add-interview-resume", resume)
+    .then((res) => {
+      //dispatch(createMessage({ successMessage: "Video Saved" }));
+      console.log("I have added Interview Resume without getting error")
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
 export const deleteResume = (resumeId) => (dispatch, getState) => {
   axios
     .post("/api/resume/deletion", resumeId, tokenConfig(getState))

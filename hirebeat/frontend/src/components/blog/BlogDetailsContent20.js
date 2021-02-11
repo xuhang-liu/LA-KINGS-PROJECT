@@ -27,7 +27,7 @@ class BlogDetailsContent extends Component {
                                         </ul>
                                     </div>
 
-                                    <h2>How to Handle the Question You don’t Know How to Answer in an Interview</h2>
+                                    <h2>How to Handle an Interview Question You Don't Know</h2>
                                     <div className="article-image">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog20-pic.jpg" alt="interview, interview tips, job interview, interview question, job-hunting" />
                                     </div>
@@ -43,7 +43,7 @@ class BlogDetailsContent extends Component {
                                     <p>
                                     Great question. Here we have provided you with some magical tips that are going to help you answer such questions for sure.
                                     </p>
-                                    <h3 className="mb-0">1. Obviously, try to Stay Calm and Don’t Panic</h3>
+                                    <h3 className="mb-0">1. Obviously, Try to Stay Calm and Don’t Panic</h3>
                                     <p>
                                     Sometimes the interviewer asks tricky questions, not to judge your learning capability, but to check your confidence and your method of dealing with tough situations. So try to stay calm when such a question comes from their side that you don’t know even a bit about.
                                     </p>
@@ -80,7 +80,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                     <FacebookShareButton 
                                         url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
-                                        quote={"How to Handle the Question You don’t Know How to Answer in an Interview"}
+                                        quote={"How to Handle an Interview Question You Don't Know"}
                                         hashtag="#hirebeat">
                                         <a target="_blank">
                                             <i className="bx bxl-facebook"></i>
@@ -90,7 +90,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <TwitterShareButton
                                            url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
-                                           title={"How to Handle the Question You don’t Know How to Answer in an Interview"}
+                                           title={"How to Handle an Interview Question You Don't Know"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
                                            <a target="_blank">
@@ -101,7 +101,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <LinkedinShareButton
                                             url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
-                                            title={"How to Handle the Question You don’t Know How to Answer in an Interview"}
+                                            title={"How to Handle an Interview Question You Don't Know"}
                                             source={"HireBeat"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-linkedin"></i>
@@ -111,7 +111,7 @@ class BlogDetailsContent extends Component {
                                     <li>
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
-                                            title={"How to Handle the Question You don’t Know How to Answer in an Interview"}>
+                                            title={"How to Handle an Interview Question You Don't Know"}>
                                             <a target="_blank">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
