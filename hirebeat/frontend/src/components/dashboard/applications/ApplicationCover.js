@@ -48,6 +48,7 @@ export const ApplicationCover = (props) => {
         isRecorded={props.isRecorded}
         int_ques={props.int_ques}
         setInt_ques={props.setInt_ques}
+        id_candidate={props.id_candidate}
         username_candidate={props.username_candidate}
         email_candidate={props.email_candidate}
         phone_candidate={props.phone_candidate}

@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 class Progress extends Component {
     render() {
         return (
-            <section className="features-area pt-100 pb-100 bg-f4f6fc">
+            <section className="features-area pt-100 pb-100">
                 <div className="container max-width-1290" style={{maxWidth:"1440px"}}>
                     <div className="section-title" style={{maxWidth: "50rem"}}>
                         <h2>Our Customers Are Making Progress</h2>
