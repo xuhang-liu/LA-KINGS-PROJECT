@@ -5,6 +5,7 @@ import MainBanner from "../HomeEmployer/MainBanner";
 import LeverageHireBeat from "../HomeEmployer/LeverageHireBeat";
 import HowHirebeatWork from "../HomeEmployer/HowHirebeatWork";
 import FreeTrialArea from "../HomeEmployer/FreeTrialArea";
+import MediaQuery from 'react-responsive';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -24,6 +25,7 @@ class IndexEmployer extends Component {
     render() {
         return (
             <React.Fragment>
+              <MediaQuery minDeviceWidth={1224}>
               <div className="min-width-1290">
                 <ScrollToTopOnMount />
                 <MainBanner/>
@@ -33,6 +35,16 @@ class IndexEmployer extends Component {
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
               </div>
+              </MediaQuery>
+              <MediaQuery maxDeviceWidth={1223}>
+                <ScrollToTopOnMount />
+                <MainBanner/>
+                <LeverageHireBeat/>
+                <HowHirebeatWork/>
+                <FreeTrialArea/>
+                      {/* Preloader */}
+                <Loader loading={this.state.loading} />
+              </MediaQuery>
             </React.Fragment>
         );
     }

@@ -10,7 +10,7 @@ class HighlitedFeatures extends Component {
             <section className="pt-100 pb-100">
                 <div className="container pt-2 pb-5" id='i1'>
                     <div className="section-title">
-                        <h2 className="mb-2">Our Highlited Features</h2>
+                        <h2 className="mb-2">Our Highlighted Features</h2>
                     </div>
                 </div>
                 <ReactWOW animation='fadeInUp' delay='0.2s'>

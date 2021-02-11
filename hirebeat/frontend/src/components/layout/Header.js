@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {logout, loadProfile} from "../../redux/actions/auth_actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-//import MediaQuery from 'react-responsive';
+import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
 import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
 import 'boxicons';
@@ -143,11 +143,13 @@ export class Header extends Component {
             </a>
             </Link>
             </li>
+            <MediaQuery minDeviceWidth={1224}>
             <li className="nav-item ">
                 <a href="/employer" className="nav-link text-white navbar-font">
                   <span className="header-text">For Employer</span>
                 </a>
               </li>
+            </MediaQuery>
           </ul>
 
 
@@ -186,6 +188,13 @@ export class Header extends Component {
                   </span>
                 </a>
               </li>
+              <MediaQuery maxDeviceWidth={1223}>
+              <li className="nav-item ">
+                <a href="/employer" className="nav-link text-white navbar-font">
+                  <span className="header-text">For Employer</span>
+                </a>
+              </li>
+              </MediaQuery>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
@@ -322,6 +331,8 @@ export class Header extends Component {
     var uri = window.location.pathname;
     uri = uri.substring(1, uri.length);
     return (
+      <React.Fragment>
+      <MediaQuery minDeviceWidth={1224}>
       <div id="navbar" className="navbar-area bg-white">
         <nav
             className="navbar navbar-expand-xl
@@ -398,6 +409,86 @@ export class Header extends Component {
           </div>
         </nav>
         </div>
+        </MediaQuery>
+        <MediaQuery maxDeviceWidth={1223}>
+      <div id="navbar" className="navbar-area bg-white" style={{minWidth:"0px"}}>
+        <nav
+            className="navbar navbar-expand-md
+            navbar-dark pb-2 pt-2"
+            style={{
+              background: "#080a3c",
+            }}
+        >
+          <div className="container pb-0">
+            {/*<div className="align-self-start">*/}
+              <button
+                  className="navbar-toggler mr-2 bg-dark"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarSupportedContent"
+                  data-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"/>
+              </button>
+              {this.props.profile.is_employer ? 
+              <a href="/employer" className="navbar-brand mr-auto">
+              <img
+                src={hirebeatlogo}
+                className="img-fluid mr-3"
+                alt="logo"
+                style={{
+                  width: "16%",
+                  height:"16%",
+                }}
+              />
+              <img
+                src={hirebeatlogotext}
+                className="img-fluid mr-2"
+                alt="logotext"
+                style={{
+                  width: "50%",
+                  height:"100%",
+                }}
+              />
+              </a> :
+              <a href="/" className="navbar-brand mr-auto">
+                <img
+                  src={hirebeatlogo}
+                  className="img-fluid mr-3"
+                  alt="logo"
+                  style={{
+                    width: "16%",
+                    height:"16%",
+                  }}
+                />
+                <img
+                  src={hirebeatlogotext}
+                  className="img-fluid mr-2"
+                  alt="logotext"
+                  style={{
+                    width: "50%",
+                    height:"100%",
+                  }}
+                />
+              </a>}
+            {/*</div>*/}
+            {isAuthenticated
+                ? user.groups[0] == "reviewers"
+                    ? this.renderReviewerLinks()
+                    : this.props.profile.is_employer
+                    ? this.renderEmployerLinks()
+                    : this.renderUserLinks()
+                : uri == ("employer" || "employer_register") ?
+                  this.renderEmployerGuestLinks()
+                : this.renderGuestLinks()
+            }
+
+          </div>
+        </nav>
+        </div>
+        </MediaQuery>
+      </React.Fragment>
     );
   }
 }
