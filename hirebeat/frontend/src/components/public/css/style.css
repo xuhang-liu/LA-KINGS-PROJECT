@@ -6348,8 +6348,11 @@ SaaS Home Page CSS
 
 /* Saas banner */
 .saas-banner {
-  height: auto;
+  width: 100%;
+  height: 100%;
   background-image: url("https://hirebeat-assets.s3.amazonaws.com/saas-backgroud.jpg");
+  background-size: cover;
+  overflow: hidden;
   position: relative;
 }
 

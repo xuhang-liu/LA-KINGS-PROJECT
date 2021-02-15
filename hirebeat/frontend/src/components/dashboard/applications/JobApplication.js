@@ -715,17 +715,35 @@ const Applicant = (props) => {
     const renderStatus = (status) => {
         switch(status){
             case 1:
+                if (props.videoCount > 0){
                 return <button className="btn btn-success" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => viewResult()}>
                     Accepted
+                </button>}
+                else{
+                return <button className="btn btn-success" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
+                    Accepted
                 </button>
+                }
             case 2:
+                if (props.videoCount > 0){
                 return <button className="btn btn-warning"  style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => viewResult()}>
                     Hold
+                </button>}
+                else{
+                return <button className="btn btn-warning"  style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
+                    Hold
                 </button>
+                }
             case 3:
+                if (props.videoCount > 0){
                 return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => viewResult()}>
                     Rejected
+                </button>}
+                else{
+                return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
+                    Rejected
                 </button>
+                }
             default:
         }
     }

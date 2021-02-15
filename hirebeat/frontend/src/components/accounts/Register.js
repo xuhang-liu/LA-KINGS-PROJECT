@@ -213,6 +213,7 @@ export class Register extends Component {
                         >
                           <i className="bx bxs-hot"></i>
                           Try For Free
+                          <img src="https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10145429&ea=HOC1"/>
                         </button>
                       </div>
                       <p className="d-flex flex-wrap justify-content-end"
@@ -392,6 +393,7 @@ export class Register extends Component {
                         >
                           <i className="bx bxs-hot"></i>
                           Try For Free
+                          <img src="https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10145429&ea=HOC1"/>
                         </button>
                       </div>
 

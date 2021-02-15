@@ -122,10 +122,10 @@ class ReviewApplication extends Component{
                                 </button>
                                 }
                                 {this.props.comment_status == 2 ? <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2);}}>
-                                    On Hold
+                                    Hold
                                 </button>
                                 : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(2);}}>
-                                    On Hold
+                                    Hold
                                 </button>
                                 }
                                 {this.props.comment_status == 3 ? <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(3);}}>
