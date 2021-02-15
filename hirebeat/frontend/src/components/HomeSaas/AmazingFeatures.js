@@ -20,7 +20,7 @@ class AmazingFeatures extends Component {
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Stand Out Resume</h3>
-                                            <h5>We analyze and refine your resume to be pop up among all candidates</h5>
+                                            <h5>We analyze and refine your resume to shine among all other candidates</h5>
                                         </div>
                                     </div>
                             </div>
@@ -100,7 +100,7 @@ class AmazingFeatures extends Component {
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Company Data</h3>
-                                            <h5>We have all details you need when interviewing with top companies</h5>
+                                            <h5>We have all the details you need to interview with top companies</h5>
                                         </div>
                                     </div>
                             </div>
