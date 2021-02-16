@@ -20,7 +20,7 @@ class CompanyList extends Component {
                 <ScrollToTopOnMount />
                 <PageTitleArea 
                     pageTitle="Company Data" 
-                    pageDescription="Ace the interview process at top tech companies like JP Morgan, American Express, BlackRock, Nasdaq, Goldman Sachs."
+                    pageDescription="Ace the interview process at popular companies like JP Morgan, American Express, BlackRock, Nasdaq, Goldman Sachs."
                 />
                 <section className="blog-details-area ptb-100" style={{backgroundColor:"#f4f5fe"}}>
                     <div className="container" style={{marginBottom:"3%"}}>

@@ -8,7 +8,7 @@ import shape12 from "../public/images/shape/shape12.png";
 class FreeTrialArea extends Component {
     render() {
         return (
-            <section className="free-trial-area pb-100 bg-f4f5fe">
+            <section className="free-trial-area bg-f4f5fe" style={{paddingBottom: "1rem"}}>
                 <div className="container">
                     <div className="free-trial-content">
                         <h2 style={{paddingTop:"2rem", paddingBottom:"1.5rem", color:"#090d3a"}}>Start Your Journey to Your Dream Job</h2>
