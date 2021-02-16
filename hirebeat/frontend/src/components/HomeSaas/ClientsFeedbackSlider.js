@@ -55,7 +55,7 @@ class ClientsFeedbackSlider extends Component {
         return (
             <React.Fragment>
             <section className="feedback-area bg-e8edfc" style={{paddingTop: "3rem"}}>
-                <div className="container">
+                <div style={{marginLeft: "auto", marginRight: "auto", paddingRight: "1.5rem", paddingLeft: "1.5rem"}}>
                     <div className="section-title" style={{maxWidth:"900px"}}>
                         <h2>What Our Customers Are Saying About Us</h2>
                     </div>
@@ -65,7 +65,9 @@ class ClientsFeedbackSlider extends Component {
                             <div className="feedback-bg" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
                                 <div className="row" style={{padding: "1rem"}}>
                                     <div className="col-4">
-                                        <img src="https://hirebeat-assets.s3.amazonaws.com/harrison.png"  alt="harrison"/>
+                                        <div className="justify-items">
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/harrison.png"  alt="harrison"/>
+                                        </div>
                                         <h3 className="feedback-name">Harrison</h3>
                                     </div>
                                     <div className="col-8">
@@ -79,7 +81,9 @@ class ClientsFeedbackSlider extends Component {
                             <div className="feedback-bg" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
                                 <div className="row" style={{padding: "1rem"}}>
                                     <div className="col-4">
-                                        <img src="https://hirebeat-assets.s3.amazonaws.com/rebecca.png"  alt="rebecca"/>
+                                        <div className="justify-items">
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/rebecca.png"  alt="rebecca"/>
+                                        </div>
                                         <h3 className="feedback-name">Rebecca</h3>
                                     </div>
                                     <div className="col-8">
@@ -93,7 +97,9 @@ class ClientsFeedbackSlider extends Component {
                             <div className="feedback-bg" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
                                 <div className="row" style={{padding: "1rem"}}>
                                     <div className="col-4">
-                                        <img src="https://hirebeat-assets.s3.amazonaws.com/daniel.png"  alt="daniel"/>
+                                        <div className="justify-items">
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/daniel.png"  alt="daniel"/>
+                                        </div>
                                         <h3 className="feedback-name">Daniel</h3>
                                     </div>
                                     <div className="col-8">
