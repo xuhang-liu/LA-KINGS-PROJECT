@@ -103,7 +103,7 @@ class ClientsFeedbackSlider extends Component {
                                         <h3 className="feedback-name">Daniel</h3>
                                     </div>
                                     <div className="col-8">
-                                        <p className="feedback-desc">I used HireBeat to improve my interview performance, and the result exceeded my expectations. It’s like hiring a personal interview tutor for myself, but with way cheaper price.        </p>
+                                        <p className="feedback-desc">I used HireBeat to improve my interview performance, and the result exceeded my expectations. It’s like hiring a personal interview tutor, but with much cheaper price.</p>
                                     </div>
                                 </div>
                             </div>
