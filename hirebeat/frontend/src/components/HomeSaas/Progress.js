@@ -21,7 +21,7 @@ class Progress extends Component {
                             </div>
                             <div className="justify-items">
                                 <p className="section-txt1" style={{lineHeight:"36px", marginTop:"0.5rem", textAlign:"center", width:"70%", color:"#090d3a"}}>
-                                HireBeat has helped 1000+ job seakers land their dream jobs, and is still counting
+                                HireBeat has helped 1000+ job seekers land their dream jobs, and is still counting
                                 </p>
                             </div>
                         </div>
@@ -35,7 +35,7 @@ class Progress extends Component {
                             </div>
                             <div className="justify-items">
                                 <p className="section-txt1" style={{lineHeight:"36px", marginTop:"0.5rem", textAlign:"center", width:"70%", color:"#090d3a"}}>
-                                HireBeat has saved jobseaker more than 68% of interview preparation time
+                                HireBeat has saved job seeker more than 68% of interview preparation time
                                 </p>
                             </div>
                         </div>
