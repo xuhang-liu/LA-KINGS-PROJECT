@@ -2661,3 +2661,26 @@ h5 {
   height: 100%;
   border: none;
 }
+
+.feedback-bg {
+  background: #FFFFFF;
+  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
+  border-radius: 10px;
+}
+
+.feedback-name {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #090D3A;
+  text-align: center;
+}
+
+.feedback-desc {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
