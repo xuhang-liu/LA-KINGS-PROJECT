@@ -16,6 +16,7 @@ export class CreatePosition extends Component{
     state = {
         jobtitle: "",
         jobid: "",
+        jobdescription: "",
         question1: "",
         question2: "",
         question3: "",
@@ -37,12 +38,13 @@ export class CreatePosition extends Component{
     savePosition = () => {
         var jobtitle = this.state.jobtitle;
         var jobid = this.state.jobid;
+        var jobdescription = this.state.jobdescription;
         var userid = this.props.user.id;
         var question1 = this.state.question1;
         var question2 = this.state.question2;
         var question3 = this.state.question3;
         var questionTime = this.state.lengthOfResponse.value * 60
-        this.props.addPosition(jobtitle, jobid, userid, question1, question2, question3, questionTime);
+        this.props.addPosition(jobtitle, jobid, jobdescription, userid, question1, question2, question3, questionTime);
     }
 
     hideSave = (e) => {
@@ -96,6 +98,16 @@ export class CreatePosition extends Component{
                                 </label>
                                 <input type="text" name="jobid" value={this.state.jobid}
                                 onChange={this.handleInputChange} className="form-control"/>
+                            </div>  
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-10">
+                                <label style={{ fontSize: "17px", margin:"2%"}}>
+                                    Job Description
+                                </label>
+                                <textarea type="text" name="jobdescription" value={this.state.jobdescription} style={{minHeight:"5rem"}}
+                                onChange={this.handleInputChange} className="form-control" required="required" 
+                                placeholder="Paste job description here. Be sure to include titles such as 'basic qualifications' and 'preferred qualifications'."/>
                             </div>
                             {position_added &&
                             <div className="form-group col-2 d-flex align-items-end">
@@ -106,8 +118,7 @@ export class CreatePosition extends Component{
                                 >
                                     Save
                                 </button>
-                            </div>}
-                            {/* Here we need to add in the questions  */}      
+                            </div>}  
                         </div>
                     </form>
                     {!position_added &&

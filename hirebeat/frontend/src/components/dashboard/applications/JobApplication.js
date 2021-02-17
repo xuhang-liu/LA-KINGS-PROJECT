@@ -687,7 +687,7 @@ const Applicant = (props) => {
         // get videos and info
         props.getApplicantsVideos(email, positionId);
         props.getApplicantsInfo(email);
-        setTimeout(()=>{setShow(true);}, 300)
+        setTimeout(()=>{setShow(true);}, 400)
     };
 
     function inviteAgain() {

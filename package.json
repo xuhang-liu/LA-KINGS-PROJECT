@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main195.js",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main195.js",
+    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main196.js",
+    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main196.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
