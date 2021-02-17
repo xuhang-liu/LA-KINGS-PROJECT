@@ -50,7 +50,7 @@ class HighlitedFeatures extends Component {
                 </ReactWOW>
 
                 <ReactWOW animation='fadeInUp' delay='0.2s'>
-                    <div className="overview-item pb-5 mb-5">
+                    <div className="overview-item pb-5 mb-5" style={{backgroundColor: "#fbfbfe"}}>
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
                                 <div className="col-lg-5 col-md-5">
@@ -76,7 +76,7 @@ class HighlitedFeatures extends Component {
                                     </div>
                                 </div>
                                 <div className="col-lg-1 col-md-1"></div>
-                                <div className="col-lg-6 col-md-6">
+                                <div className="col-lg-6 col-md-6" style={{marginTop: "3rem"}}>
                                     <div className="overview-right-img">
                                         <img src='https://hirebeat-assets.s3.amazonaws.com/gif/land-resume.gif' alt="gif" />
                                     </div>

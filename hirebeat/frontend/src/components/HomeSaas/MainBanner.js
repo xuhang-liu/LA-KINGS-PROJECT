@@ -134,7 +134,7 @@ class MainBanner extends Component {
                                         <div className="hero-content pl-6 pt-5">
                                             <h1>Build the Bridge to your Dream Job</h1>
                                             <div>
-                                                <p style={{display:"inline-block", minWidth:"15rem"}}>AI-powered interview training</p>
+                                                <p style={{display:"inline-block", minWidth:"15rem"}}>Video interview practice</p>
                                                 <p style={{display:"inline-block", marginLeft:"1rem"}}>Resume optimization</p>
                                             </div>
                                             <div className="pb-5">
@@ -156,7 +156,7 @@ class MainBanner extends Component {
                                                         className="video-btn popup-youtube"
                                                         style={{top:"5%"}}
                                                     >
-                                                        <i id="id-video1" className="bx bx-play" style={{color:"#56a3fa"}}></i>
+                                                        <i id="id-video1" className="bx bx-play" style={{color:"#FF6B00"}}></i>
                                                     </a>
                                                     </Link>
                                                 </div>

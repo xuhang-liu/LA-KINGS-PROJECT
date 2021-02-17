@@ -97,7 +97,7 @@ class ReviewApplication extends Component{
                                         Recorded on: {this.props.recordTime.substring(0, 10)}
                                 </div>
                                 <div className="row">
-                                    <button className="default-btn mt-3 ml-3" onClick={() => {this.props.setShowResume(true)}} >
+                                    <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 300)}} >
                                         <i className="bx bx-file"></i>View Resume
                                     </button>
                                 </div></div>}
