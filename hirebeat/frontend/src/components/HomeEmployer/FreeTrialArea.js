@@ -8,7 +8,7 @@ import shape12 from "../public/images/shape/shape12.png";
 class FreeTrialArea extends Component {
     render() {
         return (
-            <section className="free-trial-area pb-100 pt-70 bg-f4f5fe">
+            <section className="free-trial-area pb-70 pt-70 bg-f4f5fe">
                 <div className="container">
                     <div className="free-trial-content">
                         <h2 style={{paddingTop:"2rem", paddingBottom:"1.5rem", color: "#090D3A"}}>Start Your Next Hire from HireBeat</h2>
