@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 import datetime
@@ -52,6 +53,7 @@ class Positions(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=300, null=True, blank=True)
     job_id = models.CharField(max_length=100, null=True, blank=True)
+    job_description = models.TextField(blank=True, null=True)
     is_closed = models.BooleanField(default=False)
     invite_date = models.DateTimeField(auto_now_add=True)
     questionTime = models.IntegerField(default=60)
@@ -96,6 +98,19 @@ class InterviewResumes(models.Model):
     positionId = models.ForeignKey(Positions, on_delete=models.CASCADE)
     candidateId = models.ForeignKey(User, on_delete=models.CASCADE)
     resumeURL = models.URLField(max_length=200)
+    result_rate = models.CharField(max_length=50, null=True, blank=True)
+    hard_skill_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    hard_skill_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    hard_skill_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    soft_skill_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    soft_skill_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    soft_skill_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    other_keyword_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    other_keyword_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    other_keyword_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    basic_cri_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    basic_cri_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    basic_cri_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
     invite_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.resumeURL

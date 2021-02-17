@@ -54,15 +54,15 @@ class ClientsFeedbackSlider extends Component {
     render() {
         return (
             <React.Fragment>
-            <section className="feedback-area bg-e8edfc" style={{paddingTop: "3rem"}}>
+            <section className="feedback-area bg-e8edfc pb-70 pt-100">
                 <div style={{marginLeft: "auto", marginRight: "auto", paddingRight: "1.5rem", paddingLeft: "1.5rem"}}>
                     <div className="section-title" style={{maxWidth:"900px"}}>
                         <h2>What Our Customers Are Saying About Us</h2>
                     </div>
 
                     <div className="row" style={{paddingBottom: "1rem", justifyContent: "center"}}>
-                        <div className="col-sm-12 col-md-4 col-lg-4">
-                            <div className="feedback-bg" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
+                        <div className="col-sm-12 col-md-4 col-lg-4" style={{paddingBottom:"1rem"}}>
+                            <div className="feedback-bg h-100" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
                                 <div className="row" style={{padding: "1rem"}}>
                                     <div className="col-4">
                                         <div className="justify-items">
@@ -77,8 +77,8 @@ class ClientsFeedbackSlider extends Component {
                             </div>
                         </div>
 
-                        <div className="col-sm-12 col-md-4 col-lg-4">
-                            <div className="feedback-bg" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
+                        <div className="col-sm-12 col-md-4 col-lg-4" style={{paddingBottom:"1rem"}}>
+                            <div className="feedback-bg h-100" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
                                 <div className="row" style={{padding: "1rem"}}>
                                     <div className="col-4">
                                         <div className="justify-items">
@@ -93,8 +93,8 @@ class ClientsFeedbackSlider extends Component {
                             </div>
                         </div>
 
-                        <div className="col-sm-12 col-md-4 col-lg-4">
-                            <div className="feedback-bg" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
+                        <div className="col-sm-12 col-md-4 col-lg-4" style={{paddingBottom:"1rem"}}>
+                            <div className="feedback-bg h-100" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
                                 <div className="row" style={{padding: "1rem"}}>
                                     <div className="col-4">
                                         <div className="justify-items">

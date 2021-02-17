@@ -43,6 +43,7 @@ import BlogDetail17 from "./blog/blog-details17";
 import BlogDetail18 from "./blog/blog-details18";
 import BlogDetail19 from "./blog/blog-details19";
 import BlogDetail20 from "./blog/blog-details20";
+import BlogDetail21 from "./blog/blog-details21";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -126,6 +127,10 @@ import ZSAssociatesInfo from"./companyData/companies/ZSAssociatesInfo";
 import BoozeAllenHamiltonInfo from"./companyData/companies/BoozeAllenHamiltonInfo";
 import MastercardInfo from"./companyData/companies/MastercardInfo";
 import CapitalOneInfo from"./companyData/companies/CapitalOneInfo";
+import SelectQuoteInfo from"./companyData/companies/SelectQuoteInfo";
+import JacobsInfo from"./companyData/companies/JacobsInfo";
+import GartnerInfo from"./companyData/companies/GartnerInfo";
+import AonInfo from"./companyData/companies/AonInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -272,6 +277,7 @@ class App extends Component {
                 <Route exact path="/blog-how-to-answer-the-teamwork-type-question-in-an-interview" component={BlogDetail18} />
                 <Route exact path="/blog-acing-pandemic-job-interview-questions" component={BlogDetail19} />
                 <Route exact path="/blog-how-to-handle-the-question-you-donot-know" component={BlogDetail20} />
+                <Route exact path="/blog-4-amazing-tips-to-effectively-networking-during-covid-19" component={BlogDetail21} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer_register" component={EmployerRegister} />
@@ -355,6 +361,10 @@ class App extends Component {
                 <Route exact path="/booz-allen-hamilton" component={BoozeAllenHamiltonInfo} />
                 <Route exact path="/mastercard" component={MastercardInfo} />
                 <Route exact path="/capital-one" component={CapitalOneInfo} />
+                <Route exact path="/selectquote" component={SelectQuoteInfo} />
+                <Route exact path="/jacobs" component={JacobsInfo} />
+                <Route exact path="/gartner" component={GartnerInfo} />
+                <Route exact path="/aon" component={AonInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />

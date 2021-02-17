@@ -20,8 +20,8 @@ import { tokenConfig } from "./auth_actions";
 import { returnErrors } from "./message_actions";
 import { useDispatch } from 'react-redux';
 
-export const addPosition = (jobtitle, jobid, userid, question1, question2, question3, questionTime) => (dispatch, getState) => {
-  const body = JSON.stringify({jobtitle, jobid, userid, question1, question2, question3, questionTime});
+export const addPosition = (jobtitle, jobid, jobdescription, userid, question1, question2, question3, questionTime) => (dispatch, getState) => {
+  const body = JSON.stringify({jobtitle, jobid, jobdescription, userid, question1, question2, question3, questionTime});
   axios
     .post("add-position", body, tokenConfig(getState))
     .then((res) => {
