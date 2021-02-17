@@ -43,6 +43,7 @@ import BlogDetail17 from "./blog/blog-details17";
 import BlogDetail18 from "./blog/blog-details18";
 import BlogDetail19 from "./blog/blog-details19";
 import BlogDetail20 from "./blog/blog-details20";
+import BlogDetail21 from "./blog/blog-details21";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -272,6 +273,7 @@ class App extends Component {
                 <Route exact path="/blog-how-to-answer-the-teamwork-type-question-in-an-interview" component={BlogDetail18} />
                 <Route exact path="/blog-acing-pandemic-job-interview-questions" component={BlogDetail19} />
                 <Route exact path="/blog-how-to-handle-the-question-you-donot-know" component={BlogDetail20} />
+                <Route exact path="/blog-4-amazing-tips-to-effectively-networking-during-covid-19" component={BlogDetail21} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer_register" component={EmployerRegister} />

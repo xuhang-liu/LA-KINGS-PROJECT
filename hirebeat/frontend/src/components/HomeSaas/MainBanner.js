@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 //import ReactWOW from 'react-wow';
 //import Particles from 'react-particles-js';
 import ModalVideo from 'react-modal-video';
+import MediaQuery from 'react-responsive';
 //import MediaQuery from 'react-responsive';
 //import arrow from "../public/images/saas-shape/arrow.png";
 //import box1 from "../public/images/saas-shape/box1.png";
@@ -150,6 +151,18 @@ class MainBanner extends Component {
                                                             <span></span>
                                                         </a>
                                                     </Link>
+                                                    <MediaQuery minDeviceWidth={1224}>
+                                                    <Link href="#play-video">
+                                                    <a
+                                                        onClick={e => {e.preventDefault(); this.openModal()}}
+                                                        className="video-btn popup-youtube"
+                                                        style={{top:"5%"}}
+                                                    >
+                                                        <i id="id-video1" className="bx bx-play bx-md" style={{color:"#FF6B00"}}></i>
+                                                    </a>
+                                                    </Link>
+                                                    </MediaQuery>
+                                                    <MediaQuery maxDeviceWidth={1223}>
                                                     <Link href="#play-video">
                                                     <a
                                                         onClick={e => {e.preventDefault(); this.openModal()}}
@@ -159,6 +172,7 @@ class MainBanner extends Component {
                                                         <i id="id-video1" className="bx bx-play" style={{color:"#FF6B00"}}></i>
                                                     </a>
                                                     </Link>
+                                                    </MediaQuery>
                                                 </div>
                                             </div>
                                             {/*<a href="https://www.producthunt.com/posts/hirebeat-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hirebeat-2" target="_blank">*/}
