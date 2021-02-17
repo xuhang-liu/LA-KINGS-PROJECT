@@ -28,10 +28,10 @@ class MainBanner extends Component {
                     onClose={() => this.setState({isOpen: false})} 
                 />
                 <MediaQuery minDeviceWidth={1224}>
-                <div className="saas-banner" style={{height:"50.625vw", backgroundImage:"url(https://hirebeat-assets.s3.amazonaws.com/Employer/bg.jpg)"}}>
-                    <div className="container-fluid max-width-1440">
-                        <div className="row pt-5 pl-4">
-                            <div className="col-6 pt-5">
+                <div className="saas-banner" style={{height:"50.625vw", minHeight:"729px", backgroundImage:"url(https://hirebeat-assets.s3.amazonaws.com/Employer/bg.jpg)"}}>
+                    <div className="container-fluid">
+                        <div className="row pl-4">
+                            <div className="col-6" style={{paddingTop:"10vw"}}>
                                 <div className="hero-content">
                                     <h1 style={{fontSize:"40px", lineHeight:"46px", paddingBottom:"1.2rem"}}>Simplify the Hiring Process</h1>
                                     <h1 style={{fontSize:"40px", lineHeight:"46px"}}>Meet Candidate Behind the Resume</h1>
@@ -107,7 +107,7 @@ class MainBanner extends Component {
                 </MediaQuery>
                 <ReactWOW animation='fadeInUp' delay='0.2s'>
                     <div className="overview-item">
-                    <div className="container max-width-1290">
+                    <div className="container max-width-1440">
                         <div className="row align-items-center">
                             <div className="col-lg-5 col-md-5">
                                 <div className="overview-left-img">
@@ -128,7 +128,7 @@ class MainBanner extends Component {
 
                 <ReactWOW animation='fadeInUp' delay='0.2s'>
                     <div className="overview-item">
-                        <div className="container max-width-1290">
+                        <div className="container max-width-1440">
                             <div className="row align-items-center">
                                 <div className="col-lg-7 col-md-7">
                                     <div className="overview-content pl-3">
@@ -146,8 +146,8 @@ class MainBanner extends Component {
                         </div>
                     </div>
                 </ReactWOW>
-
                 <div className="before-after pb-100 pt-100">
+                    <div className="container max-width-1440">
                     <div className="text-center">
                         <h1 style={{fontSize:"2.4rem", fontWeight:"600", color:"#090D3A"}}>
                         The Hiring Trend is Changing
@@ -164,6 +164,7 @@ class MainBanner extends Component {
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/result2.png"></img>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </React.Fragment>

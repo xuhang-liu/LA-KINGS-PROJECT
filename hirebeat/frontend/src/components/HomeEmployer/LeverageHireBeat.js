@@ -72,7 +72,7 @@ class LeverageHireBeat extends Component {
             </section>
             <ReactWOW>
             <div className="overview-item pt-100">
-                <div className="container max-width-1290">
+                <div className="container max-width-1440">
                     <div className="row align-items-center">
                         <div className="col-lg-6 col-md-6">
                             <div className="overview-right-img">
