@@ -96,7 +96,25 @@ class ReviewApplication extends Component{
                                 <div className="row mt-5 pl-3">
                                         Recorded on: {this.props.recordTime.substring(0, 10)}
                                 </div>
+                                {((this.props.interviewResume.result_rate != "") && (this.props.interviewResume.result_rate != null)) &&
+                                <div className="row mt-3 pl-4" style={{width:"13vw"}}>
+                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 0) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 24)) && 
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/4.png" alt="pic"></img>}
+                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 25) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 50)) && 
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/3.png" alt="pic"></img>}
+                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 51) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 75)) && 
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/2.png" alt="pic"></img>}
+                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 76) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 100)) && 
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/1.png" alt="pic"></img>}
+                                </div>}
                                 <div className="row">
+                                    <button
+                                        onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 300)}}
+                                        className="interview-txt9 mt-3 ml-3"
+                                        style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
+                                    >
+                                        <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
+                                    </button>
                                     <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 300)}} >
                                         <i className="bx bx-file"></i>View Resume
                                     </button>
@@ -148,6 +166,7 @@ const mapStateToProps = (state) => ({
     user: state.auth_reducer.user,
     recordTime: state.video_reducer.recordTime,
     resumeURL: state.video_reducer.resumeURL,
+    interviewResume: state.video_reducer.interviewResume,
 });
 
 export default connect(mapStateToProps, { getPostedJobs, getResumeURL })(ReviewApplication);
