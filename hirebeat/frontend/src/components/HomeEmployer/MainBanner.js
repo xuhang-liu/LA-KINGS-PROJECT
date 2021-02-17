@@ -28,7 +28,7 @@ class MainBanner extends Component {
                     onClose={() => this.setState({isOpen: false})} 
                 />
                 <MediaQuery minDeviceWidth={1224}>
-                <div className="saas-banner" style={{height:"729px", backgroundImage:"url(https://hirebeat-assets.s3.amazonaws.com/Employer/bg.jpg)"}}>
+                <div className="saas-banner" style={{height:"50.625vw", backgroundImage:"url(https://hirebeat-assets.s3.amazonaws.com/Employer/bg.jpg)"}}>
                     <div className="container-fluid max-width-1440">
                         <div className="row pt-5 pl-4">
                             <div className="col-6 pt-5">

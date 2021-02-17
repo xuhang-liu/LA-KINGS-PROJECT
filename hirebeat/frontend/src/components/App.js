@@ -127,6 +127,10 @@ import ZSAssociatesInfo from"./companyData/companies/ZSAssociatesInfo";
 import BoozeAllenHamiltonInfo from"./companyData/companies/BoozeAllenHamiltonInfo";
 import MastercardInfo from"./companyData/companies/MastercardInfo";
 import CapitalOneInfo from"./companyData/companies/CapitalOneInfo";
+import SelectQuoteInfo from"./companyData/companies/SelectQuoteInfo";
+import JacobsInfo from"./companyData/companies/JacobsInfo";
+import GartnerInfo from"./companyData/companies/GartnerInfo";
+import AonInfo from"./companyData/companies/AonInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -357,6 +361,10 @@ class App extends Component {
                 <Route exact path="/booz-allen-hamilton" component={BoozeAllenHamiltonInfo} />
                 <Route exact path="/mastercard" component={MastercardInfo} />
                 <Route exact path="/capital-one" component={CapitalOneInfo} />
+                <Route exact path="/selectquote" component={SelectQuoteInfo} />
+                <Route exact path="/jacobs" component={JacobsInfo} />
+                <Route exact path="/gartner" component={GartnerInfo} />
+                <Route exact path="/aon" component={AonInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />

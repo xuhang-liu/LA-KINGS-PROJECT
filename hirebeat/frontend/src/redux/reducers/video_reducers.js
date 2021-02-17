@@ -34,6 +34,7 @@ const initialState = {
   new_stars: 0,
   recordTime: null,
   resumeURL: '',
+  interviewResume: [],
 };
 
 export default function (state = initialState, action) {
@@ -114,6 +115,7 @@ export default function (state = initialState, action) {
     case GET_RESUME_URL:
       return {
         ...state,
+        interviewResume: action.payload.interviewResume,
         resumeURL: action.payload.resumeURL,
         recordTime: action.payload.recordTime,
       }
