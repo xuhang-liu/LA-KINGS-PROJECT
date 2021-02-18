@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/blog-4-amazing-tips-to-effectively-networking-during-covid-19">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog21.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Feb 17, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/blog-4-amazing-tips-to-effectively-networking-during-covid-19">
+                                    <a>4 Amazing Tips to Effectively Networking During Covid-19</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/blog-how-to-handle-the-question-you-donot-know">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog20.jpg" alt="image"/>
@@ -320,25 +339,6 @@ class BlogSidebar extends Component {
                             <h4 className="title usmall">
                                 <Link to="/blog-things-to-do-before-an-interview">
                                     <a>Things to Do Before an Interview</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/blog-questions-to-ask-at-career-fairs">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog4.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Sep 21, 2020</time>
-                            <h4 className="title usmall">
-                                <Link to="/blog-questions-to-ask-at-career-fairs">
-                                    <a>Questions to Ask at Career Fairs</a>
                                 </Link>
                             </h4>
                         </div>

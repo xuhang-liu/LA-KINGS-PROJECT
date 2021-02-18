@@ -154,9 +154,9 @@ export class EssentialUserInfo extends Component {
                       color:"#CAD9FC"
                     }}
                   >
-                    {this.props.user.username}
+                    {this.props.user.email}
                   </h3>
-                </div>
+                  </div>
               </div>
               {this.props.profile.membership == "Premium" &&
               <div className="row" style={{marginTop:"1%"}}>
@@ -181,7 +181,7 @@ export class EssentialUserInfo extends Component {
                         />
                 </div>
               </div>
-              <div className="row" style={{marginTop:"1%"}}>
+              {/*<div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center" style={{wordWrap: "break-word",
                       wordBreak: "break-all"}}>
                         <IconText
@@ -192,7 +192,7 @@ export class EssentialUserInfo extends Component {
                           iconMargin={"5px"}
                         />
                 </div>
-              </div>
+                  </div>*/}
               <div className="row" style={{marginTop:"1%"}}>
                 <div className="col d-flex align-items-center">
                         <IconText
@@ -307,10 +307,10 @@ export class EssentialUserInfo extends Component {
                     style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                   >
                     <IconText
-                      textSize={"16px"}
+                      textSize={"15px"}
                       textDisplayed={"Practiced Interview"}
                       iconName={"bx bx-slideshow bx-sm"}
-                      iconMargin={"3px"}
+                      iconMargin={"2px"}
                       textColor={this.props.subpage == "videos" ? selectColor : defaultColor}
                       textDecoration={this.props.subpage == "videos" ? selectDecoration : defaultDecoration}
                     />
@@ -326,10 +326,10 @@ export class EssentialUserInfo extends Component {
                     style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                   >
                     <IconText
-                      textSize={"16px"}
+                      textSize={"15px"}
                       textDisplayed={"Scanned Resume"}
                       iconName={"bx bx-file bx-sm"}
-                      iconMargin={"3px"}
+                      iconMargin={"2px"}
                       textColor={this.props.subpage == "resume" ? selectColor : defaultColor}
                       textDecoration={this.props.subpage == "resume" ? selectDecoration: defaultDecoration}
                     />
@@ -345,10 +345,10 @@ export class EssentialUserInfo extends Component {
                     style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                   >
                     <IconText
-                      textSize={"16px"}
+                      textSize={"15px"}
                       textDisplayed={"Received Interview"}
                       iconName={"bx bx-briefcase bx-sm"}
-                      iconMargin={"3px"}
+                      iconMargin={"2px"}
                       textColor={this.props.subpage == "interview" ? selectColor : defaultColor}
                       textDecoration={this.props.subpage == "interview" ? selectDecoration: defaultDecoration}
                     />
