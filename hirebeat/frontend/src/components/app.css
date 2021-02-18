@@ -2685,3 +2685,20 @@ h5 {
   font-size: 0.9375rem;
   color: #090D3A;
 }
+
+.chart-bg {
+  background: #FFFFFF;
+  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
+  border-radius: 10px;
+  margin-top: 4rem;
+}
+
+.chart-legend {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #090D3A;
+  margin-left: 0.8rem;
+  margin-bottom: 0rem;
+}

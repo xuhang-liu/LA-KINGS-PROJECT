@@ -13,7 +13,8 @@ import {
     UPDATE_COMMENT_STATUS,
     CLOSE_POSITION,
     DELETE_POSITION,
-    GET_RESUME_URL
+    GET_RESUME_URL,
+    GET_APPLICANTS_DATA
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -214,3 +215,17 @@ export const getResumeURL = (positionId, userId) => (dispatch) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 }
+
+export const getApplicantsData = (employerId) => (dispatch, getState) => {
+  axios
+    .get(`/get-applicants-data?employerId=${employerId}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_APPLICANTS_DATA,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};

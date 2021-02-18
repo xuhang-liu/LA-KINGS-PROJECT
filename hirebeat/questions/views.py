@@ -322,7 +322,7 @@ def get_applicants_data(request):
             day_accepted = InvitedCandidates.objects.filter(
                 positions_id=position_id,
                 comment_status=1,
-                invite_date__contains=week[j]).count()
+                accept_date__contains=week[j]).count()
             total.append(day_total)
             accepted.append(day_accepted)
 

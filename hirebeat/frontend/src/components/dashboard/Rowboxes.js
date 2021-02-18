@@ -3,8 +3,10 @@ import LazyLoad from "react-lazyload";
 //import {loadProfile, loadUserFullname, updateProfile} from "../../redux/actions/auth_actions";
 //import {Dashboard} from "./Dashboard";
 import {get_practice_info, get_interview_job_info} from "../../redux/actions/practice_info_actions";
+import {getApplicantsData} from "../../redux/actions/question_actions";
 import React from "react";
 import { connect } from "react-redux";
+import { RateScore, VideoChart, ApplicationChart } from "./DashboardComponents";
 const RowBox = (props) => {
     return (
         <div className="col-xxl col-xl col-lg col-sm col-md ">
@@ -67,6 +69,7 @@ class RowBoxes extends React.Component{
     componentDidMount() {
         if (this.props.isEmployer) {
             this.props.get_interview_job_info(this.props.userId);
+            this.props.getApplicantsData(this.props.userId);
         } else {
             this.props.get_practice_info(this.props.userId);
         }
@@ -75,13 +78,45 @@ class RowBoxes extends React.Component{
         return (
             <div className="mt-25 mt-lg-31">
                 <div className={"container"}>
-                    <div className="row mb-7">
+                    <div className={this.props.isEmployer ? "row" : "row mb-7"}>
                         {this.props.isEmployer ? (
                             <React.Fragment>
-                                <RowBox isEmployer={this.props.isEmployer} count={this.props.jobs_posted} icon={"bxs-briefcase-alt"} >Jobs Posted&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</RowBox>
+                                {/*<RowBox isEmployer={this.props.isEmployer} count={this.props.jobs_posted} icon={"bxs-briefcase-alt"} >Jobs Posted&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</RowBox>
                                 <RowBox isEmployer={this.props.isEmployer} count={this.props.total_applicants} icon={"bxs-user-pin"}>Total Applicants</RowBox>
                                 <RowBox isEmployer={this.props.isEmployer} count={this.props.videos_received} icon={"bxs-video"} >Videos Received&nbsp;</RowBox>
-                                <RowBox isEmployer={this.props.isEmployer} count={this.props.recorded_rate} icon={"bxs-pie-chart"} isRate={true}>Recorded Rate&nbsp;&nbsp;&nbsp;</RowBox>
+                                <RowBox isEmployer={this.props.isEmployer} count={this.props.recorded_rate} icon={"bxs-pie-chart"} isRate={true}>Recorded Rate&nbsp;&nbsp;&nbsp;</RowBox>*/}
+                                <div className="chart-bg">
+                                    <div style={{padding: "0.6rem"}}>
+                                        <div className="row" style={{alignItems: "center"}}>
+                                            <i className="bx bxs-user-pin bx-md" style={{color: "#67A3F3", paddingLeft: "1rem"}}></i>
+                                            <h3 className="chart-legend">Applicants</h3>
+                                        </div>
+                                        <ApplicationChart
+                                            dates={this.props.applicantsData["date"]}
+                                            total={this.props.applicantsData["total"]}
+                                            accepted={this.props.applicantsData["accepted"]}
+                                            height={200} width={400}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="chart-bg" style={{marginLeft: "2rem"}}>
+                                     <div style={{padding: "0.6rem"}}>
+                                        <div className="row" style={{alignItems: "center"}}>
+                                            <i className="bx bxs-video bx-md" style={{color: "#67A3F3", paddingLeft: "1rem"}}></i>
+                                            <h3 className="chart-legend">Videos</h3>
+                                        </div>
+                                        <VideoChart dates={this.props.applicantsData["date"]} videos={this.props.applicantsData["recorded"]} height={200} width={400} />
+                                    </div>
+                                </div>
+                                <div className="chart-bg" style={{marginLeft: "2rem"}}>
+                                     <div style={{padding: "0.6rem"}}>
+                                        <div className="row" style={{alignItems: "center", marginBottom: "2rem"}}>
+                                            <i className="bx bxs-pie-chart bx-md" style={{color: "#67A3F3", paddingLeft: "1rem"}}></i>
+                                            <h3 className="chart-legend">Recorded Rate</h3>
+                                        </div>
+                                        <RateScore percent={this.props.recorded_rate} bgColor={"#FFFFFF"} barColor={"#67A3F3"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={150} width={200}/>
+                                    </div>
+                                </div>
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
@@ -106,8 +141,9 @@ const mapStateToProps = (state) => ({
     total_applicants: state.practice_info_reducers.total_applicants,
     videos_received: state.practice_info_reducers.videos_received,
     recorded_rate: state.practice_info_reducers.recorded_rate,
+    applicantsData: state.question_reducer.applicantsData,
 });
 
-export default connect(mapStateToProps, {get_practice_info, get_interview_job_info})(
+export default connect(mapStateToProps, {get_practice_info, get_interview_job_info, getApplicantsData})(
     RowBoxes
 );
