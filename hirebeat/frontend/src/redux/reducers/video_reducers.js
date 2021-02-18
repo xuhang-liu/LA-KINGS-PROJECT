@@ -12,6 +12,7 @@ import {
   GET_APPLICANT_INFO,
   UPDATE_VIDEO_COMMENTS,
   GET_RESUME_URL,
+  GET_RESUME_URL_ERROR,
 } from "../actions/action_types";
 
 const initialState = {
@@ -118,6 +119,13 @@ export default function (state = initialState, action) {
         interviewResume: action.payload.interviewResume,
         resumeURL: action.payload.resumeURL,
         recordTime: action.payload.recordTime,
+      }
+    case GET_RESUME_URL_ERROR:
+      return {
+        ...state,
+        interviewResume: [],
+        resumeURL: "",
+        recordTime: "",
       }
     default:
       return state;
