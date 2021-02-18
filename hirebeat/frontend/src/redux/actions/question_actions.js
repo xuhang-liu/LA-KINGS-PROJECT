@@ -14,6 +14,7 @@ import {
     CLOSE_POSITION,
     DELETE_POSITION,
     GET_RESUME_URL,
+    GET_APPLICANTS_DATA,
     UPDATE_SECONDROUND_STATUS,
     GET_RESUME_URL_ERROR,
     } from "./action_types";
@@ -235,3 +236,17 @@ export const getResumeURL = (positionId, userId) => (dispatch) => {
       console.clear();
     });
 }
+
+export const getApplicantsData = (employerId) => (dispatch, getState) => {
+  axios
+    .get(`/get-applicants-data?employerId=${employerId}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_APPLICANTS_DATA,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
