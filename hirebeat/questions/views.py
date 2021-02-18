@@ -201,6 +201,8 @@ def update_comment_status(request):
     ss = request.data["status"]
     The_candidate = InvitedCandidates.objects.get(positions=position_id, email=email)
     The_candidate.comment_status = ss
+    # update accept_date
+    The_candidate.accept_date = timezone.now()
     The_candidate.save()
 
     data = {}
