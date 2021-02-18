@@ -144,7 +144,7 @@ export class EssentialUserInfo extends Component {
             {!this.props.profile.is_employer &&
               <div>
               <div className="row" style={{marginTop:"20%", marginBottom:"10%"}}>
-                {/*<div className="col d-flex align-items-center">
+                <div className="col d-flex align-items-center">
                   <h3
                     style={{
                       fontWeight: "bold",
@@ -156,7 +156,7 @@ export class EssentialUserInfo extends Component {
                   >
                     {this.props.user.email}
                   </h3>
-                  </div>*/}
+                  </div>
               </div>
               {this.props.profile.membership == "Premium" &&
               <div className="row" style={{marginTop:"1%"}}>
