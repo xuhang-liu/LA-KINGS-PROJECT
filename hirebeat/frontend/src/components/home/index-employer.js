@@ -29,8 +29,8 @@ class IndexEmployer extends Component {
               <div className="min-width-1290">
                 <ScrollToTopOnMount />
                 <MainBanner/>
-                <LeverageHireBeat/>
                 <HowHirebeatWork/>
+                <LeverageHireBeat/>
                 <FreeTrialArea/>
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
@@ -39,8 +39,8 @@ class IndexEmployer extends Component {
               <MediaQuery maxDeviceWidth={1223}>
                 <ScrollToTopOnMount />
                 <MainBanner/>
-                <LeverageHireBeat/>
                 <HowHirebeatWork/>
+                <LeverageHireBeat/>
                 <FreeTrialArea/>
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
