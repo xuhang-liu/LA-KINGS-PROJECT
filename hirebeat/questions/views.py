@@ -283,6 +283,7 @@ def add_interview_resume(request):
 @api_view(['POST'])
 def get_resume_url(request):
     print('Get Resume Called')
+    data = {}
     uploadTime = ""
     resumeURL = ""
     position_id = request.data["positionId"]
@@ -292,8 +293,24 @@ def get_resume_url(request):
     uploadedResume = InterviewResumes.objects.get(positionId=positions, candidateId=candidates)
     uploadTime = uploadedResume.invite_date
     resumeURL = uploadedResume.resumeURL
+    data = {
+            "result_rate": uploadedResume.result_rate,
+            "hard_skill_jd_list": uploadedResume.hard_skill_jd_list,
+            "hard_skill_resume_list": uploadedResume.hard_skill_resume_list,
+            "hard_skill_info_list": uploadedResume.hard_skill_info_list,
+            "soft_skill_resume_list": uploadedResume.soft_skill_resume_list,
+            "soft_skill_jd_list": uploadedResume.soft_skill_jd_list,
+            "soft_skill_info_list": uploadedResume.soft_skill_info_list,
+            "other_keyword_resume_list": uploadedResume.other_keyword_resume_list,
+            "other_keyword_jd_list": uploadedResume.other_keyword_jd_list,
+            "other_keyword_info_list": uploadedResume.other_keyword_info_list,
+            "basic_cri_resume_list": uploadedResume.basic_cri_resume_list,
+            "basic_cri_jd_list": uploadedResume.basic_cri_jd_list,
+            "basic_cri_info_list": uploadedResume.basic_cri_info_list
+    }
 
     return Response({
+        "interviewResume": data,
         "resumeURL": resumeURL,
         "recordTime": uploadTime,
     })
