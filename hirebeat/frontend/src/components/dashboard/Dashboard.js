@@ -142,7 +142,7 @@ export class Dashboard extends Component {
           {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
             <div className="row no-gutters min-width-1290">
-              <div className='col-2'>
+              <div className='col-3'>
                 <div className='dashboard-sidebar1'>
                   <EssentialUserInfo
                       userfullname={this.props.userfullname}
@@ -157,7 +157,7 @@ export class Dashboard extends Component {
                   />
                 </div>
               </div>
-              <div className='col-10'>
+              <div className='col-9'>
                 <div className="dashboard-main">
                   {this.state.subpage === "settings" ? null :
                       <RowBoxes
