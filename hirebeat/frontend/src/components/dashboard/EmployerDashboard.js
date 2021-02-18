@@ -6,6 +6,7 @@ import EssentialUserInfo from "./essentials/EssentialUserInfo";
 //import { JobApplication } from "./applications/JobApplication";
 import { CreatePosition } from "./position/CreatePosition";
 import { ApplicationCover } from "./applications/ApplicationCover";
+import ShortList from "./ShortList";
 
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
@@ -90,6 +91,7 @@ export class EmployerDashboard extends Component {
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
     this.props.getPostedJobs(user.id);
+    setTimeout(() => {console.log("here is the props", this.props)}, 1000);
   }
 
   state = {
@@ -139,6 +141,12 @@ export class EmployerDashboard extends Component {
     )
   }
 
+  renderShortlist = () => {
+    this.setState({
+      subpage: "shortlist",
+    });
+  };
+
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "applications":
@@ -179,6 +187,18 @@ export class EmployerDashboard extends Component {
             phone_number={this.props.profile.phone_number}
             renderApplications={this.renderApplications}
         />;
+        case "shortlist":
+          return <ShortList 
+            postedJobs={this.props.postedJobs}
+            int_ques={this.props.int_ques}
+            getApplicantsVideos={this.props.getApplicantsVideos}
+            getApplicantsInfo={this.props.getApplicantsInfo}
+            id_candidate={this.props.id_candidate}
+            username_candidate={this.props.username_candidate}
+            email_candidate={this.props.email_candidate}
+            phone_candidate={this.props.phone_candidate}
+            location_candidate={this.props.location_candidate}
+            />
       {/*case "reviewApplication":
         return <ReviewApplication
                   int_ques={this.props.int_ques}
@@ -210,13 +230,14 @@ export class EmployerDashboard extends Component {
                       renderSetting={this.renderSetting}
                       renderApplications={this.renderApplications}
                       renderPosition={this.renderPosition}
+                      renderShortlist={this.renderShortlist}
                       subpage={this.state.subpage}
                   />
                 </div>
               </div>
               <div className='col-11'>
                 <div className="dashboard-main">
-                  {this.state.subpage === "settings" ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
+                  {this.state.subpage === "settings" || "shortlist" ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
                   <div className="container" style={{marginBottom: "0%"}}>
                     <div className=""
                          style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>

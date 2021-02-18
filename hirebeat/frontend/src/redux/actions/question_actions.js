@@ -14,7 +14,8 @@ import {
     CLOSE_POSITION,
     DELETE_POSITION,
     GET_RESUME_URL,
-    GET_RESUME_URL_ERROR
+    UPDATE_SECONDROUND_STATUS,
+    GET_RESUME_URL_ERROR,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -165,6 +166,20 @@ export const updateCommentStatus = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_COMMENT_STATUS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const updateSecondroundStatus = (data) => (dispatch) => {
+  axios
+    .post("update-secondround-status", data)
+    .then((res) => {
+      dispatch({
+        type: UPDATE_SECONDROUND_STATUS,
         payload: res.data,
       });
     })

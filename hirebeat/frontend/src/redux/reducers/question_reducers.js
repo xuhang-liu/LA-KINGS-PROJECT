@@ -1,4 +1,4 @@
-import { GET_QUESTIONS, NEXT_QUESTION, GET_RANDOM_QUESTION, GET_INTERVIEW_QUESTIONS, NEXT_INTERVIEW_QUESTION, GET_POSTED_JOBS, UPDATE_COMMENT_STATUS } from "../actions/action_types";
+import { GET_QUESTIONS, NEXT_QUESTION, UPDATE_SECONDROUND_STATUS, GET_RANDOM_QUESTION, GET_INTERVIEW_QUESTIONS, NEXT_INTERVIEW_QUESTION, GET_POSTED_JOBS, UPDATE_COMMENT_STATUS } from "../actions/action_types";
 
 const initialState = {
   questions: [],
@@ -80,6 +80,11 @@ export default function (state = initialState, action) {
         postedJobs: action.payload.data,
       };
     case UPDATE_COMMENT_STATUS:
+      return {
+        ...state,
+        postedJobs: action.payload.data,
+      }
+    case UPDATE_SECONDROUND_STATUS:
       return {
         ...state,
         postedJobs: action.payload.data,
