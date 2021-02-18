@@ -5,9 +5,10 @@ import { connect } from "react-redux";
 import ReviewApplication from "./../ReviewApplication";
 import { MyModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
+import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
 //import { IconText } from "../DashboardComponents";
-import { closePosition, deletePosition } from "./../../../redux/actions/question_actions";
+import { closePosition, deletePosition, getResumeURL } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
 import Select from 'react-select'
 
@@ -67,6 +68,9 @@ export class JobApplication extends Component{
                                     updateCommentStatus={this.props.updateCommentStatus}
                                     closePosition={this.props.closePosition}
                                     deletePosition={this.props.deletePosition}
+                                    getResumeURL={this.props.getResumeURL}
+                                    recordTime={this.props.recordTime}
+                                    interviewResume={this.props.interviewResume}
                                 />
                             )
                         })}
@@ -80,9 +84,11 @@ export class JobApplication extends Component{
 const mapStateToProps = (state) => ({
     received_interview: state.auth_reducer.received_interview,
     resumeURL: state.video_reducer.resumeURL,
+    recordTime: state.video_reducer.recordTime,
+    interviewResume: state.video_reducer.interviewResume,
 });
 
-export default connect(mapStateToProps, { closePosition, deletePosition })(
+export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL })(
     JobApplication
 );
 
@@ -184,6 +190,9 @@ const JobViewDetail = (props) => {
             {/* Application detail*/}
             {view &&
                 <JobCard
+                    recordTime={props.recordTime}
+                    interviewResume={props.interviewResume}
+                    getResumeURL={props.getResumeURL}
                     resumeURL={props.resumeURL}
                     questions={props.questions}
                     companyName={props.companyName}
@@ -373,6 +382,9 @@ const JobCard = (props) => {
                         </div>
                         <div style={{marginBottom:"2rem"}}>
                             <ApplicantList
+                                recordTime={props.recordTime}
+                                interviewResume={props.interviewResume}
+                                getResumeURL={props.getResumeURL}
                                 resumeURL={props.resumeURL}
                                 isClosed={props.isClosed}
                                 keyWords={keyWords}
@@ -646,6 +658,9 @@ const ApplicantList = (props) => {
                 }
                 return (
                     <Applicant
+                        recordTime={props.recordTime}
+                        interviewResume={props.interviewResume}
+                        getResumeURL={props.getResumeURL}
                         resumeURL={props.resumeURL}
                         isClosed={props.isClosed}
                         name={a.name}
@@ -685,6 +700,7 @@ const Applicant = (props) => {
 
     function viewResult() {
         // get videos and info
+        props.getResumeURL(positionId, props.id_candidate);
         props.getApplicantsVideos(email, positionId);
         props.getApplicantsInfo(email);
         setTimeout(()=>{setShow(true);}, 400)
@@ -750,6 +766,7 @@ const Applicant = (props) => {
 
     const [show, setShow] = useState(false);
     const [showResume, setShowResume] = useState(false);
+    const [showEva, setShowEva] = useState(false);
 
     return (
         <div>
@@ -818,9 +835,12 @@ const Applicant = (props) => {
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
+                recordTime={props.recordTime}
+                interviewResume={props.interviewResume}
                 comment_status={props.comment_status}
                 show={show}
                 setShowResume={setShowResume}
+                setShowEva={setShowEva}
                 onHide={()=>{setShow(false);}}
                 int_ques={props.int_ques}
                 id_candidate={props.id_candidate}
@@ -839,7 +859,12 @@ const Applicant = (props) => {
                     <iframe className="responsive-iframe" src={props.resumeURL}/>
                 </div>
             </MyModal>
-                
+            <MyModal
+                show={showEva}
+                onHide={()=>{setShowEva(false); setShow(true);}}
+            >
+                <ResumeEva interviewResume={props.interviewResume}/>
+            </MyModal>
         </div>
     )
 };
@@ -849,7 +874,10 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       <ReviewApplication
+        recordTime={props.recordTime}
+        interviewResume={props.interviewResume}
         setShowResume={props.setShowResume}
+        setShowEva={props.setShowEva}
         comment_status={props.comment_status}
         set_comment_status={props.set_comment_status}
         hide={props.onHide}

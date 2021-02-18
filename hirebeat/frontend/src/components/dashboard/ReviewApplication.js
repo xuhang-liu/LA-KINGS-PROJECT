@@ -39,6 +39,8 @@ class ReviewApplication extends Component{
     }
     
     render() {
+        const recordTime = this.props.recordTime;
+        const interviewResume = this.props.interviewResume;
         return(
             <div className="container" style={{width:'95%'}}>
                 <div className="card container mb-5" style={{marginTop:"1%"}}>
@@ -108,16 +110,18 @@ class ReviewApplication extends Component{
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/1.png" alt="pic"></img>}
                                 </div>}
                                 <div className="row">
+                                    {((this.props.interviewResume.result_rate != "") && (this.props.interviewResume.result_rate != null)) &&
                                     <button
-                                        onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 300)}}
+                                        onClick={() => {setTimeout(()=>{this.props.setShowEva(true);}, 300)}}
                                         className="interview-txt9 mt-3 ml-3"
                                         style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
                                     >
                                         <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
-                                    </button>
+                                    </button>}
+                                    {((this.props.resumeURL != "")&&(this.props.resumeURL != null)) &&
                                     <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 300)}} >
                                         <i className="bx bx-file"></i>View Resume
-                                    </button>
+                                    </button>}
                                 </div></div>}
                         </div>
                         <div className="col-7 container mt-4">
@@ -164,8 +168,8 @@ class ReviewApplication extends Component{
 
 const mapStateToProps = (state) => ({
     user: state.auth_reducer.user,
-    recordTime: state.video_reducer.recordTime,
     resumeURL: state.video_reducer.resumeURL,
+    recordTime: state.video_reducer.recordTime,
     interviewResume: state.video_reducer.interviewResume,
 });
 
