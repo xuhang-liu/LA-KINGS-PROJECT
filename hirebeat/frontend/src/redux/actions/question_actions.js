@@ -13,12 +13,14 @@ import {
     UPDATE_COMMENT_STATUS,
     CLOSE_POSITION,
     DELETE_POSITION,
-    GET_RESUME_URL
+    GET_RESUME_URL,
+    UPDATE_SECONDROUND_STATUS,
+    GET_RESUME_URL_ERROR,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
 import { returnErrors } from "./message_actions";
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
 
 export const addPosition = (jobtitle, jobid, jobdescription, userid, question1, question2, question3, questionTime) => (dispatch, getState) => {
   const body = JSON.stringify({jobtitle, jobid, jobdescription, userid, question1, question2, question3, questionTime});
@@ -172,6 +174,20 @@ export const updateCommentStatus = (data) => (dispatch, getState) => {
     );
 }
 
+export const updateSecondroundStatus = (data) => (dispatch) => {
+  axios
+    .post("update-secondround-status", data)
+    .then((res) => {
+      dispatch({
+        type: UPDATE_SECONDROUND_STATUS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
 export const closePosition = (positionId) => (dispatch, getState) => {
   axios
     .post("close-job", positionId, tokenConfig(getState))
@@ -210,7 +226,12 @@ export const getResumeURL = (positionId, userId) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: GET_RESUME_URL_ERROR,
+      });
+      // Used to suppress error message printed by Chrome
+      console.clear();
+    });
 }

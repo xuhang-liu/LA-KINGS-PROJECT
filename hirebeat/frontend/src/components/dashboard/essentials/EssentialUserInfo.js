@@ -136,6 +136,9 @@ export class EssentialUserInfo extends Component {
     var nonselectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/dashboard-non1.png";
     var selectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-settings-select1.png";
     var nonselectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-settings1.png";
+    var selectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-list-selected.png";
+    var nonSelectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-list.png";
+
     return (
       <React.Fragment>
       <div className="container">
@@ -253,6 +256,24 @@ export class EssentialUserInfo extends Component {
                     backColor={this.props.subpage == "applications" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "applications" ? selectDash : nonselectDash}
                     textColor={this.props.subpage == "applications" ? selectEColor : defaultEColor}
+                  />
+                </button>
+              </div>
+              </div>
+              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderShortlist}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconEmployerText
+                    textSize={"12px"}
+                    textDisplayed={"Shortlist"}
+                    backColor={this.props.subpage == "shortlist" ? selectBack : defaultBack}
+                    iconSrc={this.props.subpage == "shortlist" ? selectShortlist : nonSelectShortlist}
+                    textColor={this.props.subpage == "shortlist" ? selectEColor : defaultEColor}
                   />
                 </button>
               </div>

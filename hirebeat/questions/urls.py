@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import QuestionAPIView, get_subcategories, get_random_question, get_interview_questions, add_position, \
-    get_posted_jobs, add_interviews, submit_feedback, resend_invitation, update_comment_status, close_job, delete_job, add_interview_resume, get_resume_url
+    get_posted_jobs, add_interviews, update_secondround_status, submit_feedback, resend_invitation, update_comment_status, close_job, delete_job, add_interview_resume, get_resume_url
 from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
@@ -14,6 +14,7 @@ urlpatterns = [
     path('submit-feedback', submit_feedback),
     path('resend-invitation', resend_invitation),
     path('update-comment-status', update_comment_status),
+    path('update-secondround-status', update_secondround_status),
     path('close-job', close_job),
     path('delete-job', delete_job),
     path('add-interview-resume', add_interview_resume),
