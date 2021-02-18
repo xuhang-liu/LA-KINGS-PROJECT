@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import SecondReview from './SecondReview';
 import { MyModal } from './DashboardComponents';
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 
 const ShortList = (props) => {
@@ -17,17 +16,11 @@ const ShortList = (props) => {
     return <div>
             <div className="row">
                 <h3 className="pt-2 mr-5 col-9">{props.postedJobs[jobId].job_title} {props.postedJobs[jobId].job_id}</h3>
-                <div class="dropdown">
-                    <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select Position <i class='bx bxs-down-arrow'></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">   
+                <DropdownButton id="dropdown-menu-align-left" size="lg" title="Select Position" >
                         {Object.keys(props.postedJobs).map((key) => {
-                            return <a class="dropdown-item" href="#" onClick={() => {selectPosition(key)}}>{props.postedJobs[key].job_title} {props.postedJobs[key].job_id}</a>
+                            return <Dropdown.Item as="button" onClick={() => {selectPosition(key)}}>{props.postedJobs[key].job_title} {props.postedJobs[key].job_id}</Dropdown.Item>
                         })}
-                    </div>
-                </div>
-
+                </DropdownButton>
             </div>
             <AcceptedCandidate 
                 id_candidate={props.id_candidate}
@@ -110,6 +103,7 @@ const CandidateCard = (props) => {
         setTimeout(()=>{setShow(true);}, 400)
     };
 
+    const mailTo = "mailto:" + props.applicant.email;
     return (       
     <React.Fragment>
         <div onClick={()=>{viewResult();}} className="ml-0 d-flex justify-content-start container" style={{marginTop:"3rem", backgroundColor: "white", "border-radius": "0.5rem"}}>
@@ -125,11 +119,18 @@ const CandidateCard = (props) => {
                                     <p style={{color:"#4A6F8A"}}>Video Recorded: {props.applicant.video_count}</p>
                                 </div>
                                 <div className="col-6 mb-4" style={{color:"#4A6F8A", borderLeft:"outset"}}>
-                                    <p>Created On: {props.applicant.invite_date}</p>
+                                    <p>Created On: {props.applicant.invite_date.substring(0, 10)}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-3 center-items">
+                        <a
+                                href={mailTo}
+                                className="interview-txt9"
+                                style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
+                            >
+                                <i className="bx bx-mail-send"></i> Send Email
+                        </a>
                         </div>
                     </div>
                 </div>

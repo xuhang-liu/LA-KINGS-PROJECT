@@ -97,11 +97,11 @@ class SecondReview extends Component{
                                 <div className="row mt-5 pl-3">
                                         Recorded on: {this.props.recordTime.substring(0, 10)}
                                 </div>
-                                <div className="row">
+                                {/*<div className="row">
                                     <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 300)}} >
                                         <i className="bx bx-file"></i>View Resume
                                     </button>
-                                </div></div>}
+                                    </div>*/}</div>}
                         </div>
                         <div className="col-7 container mt-4">
                             <ApplicationVideo   int_ques={this.props.int_ques} 

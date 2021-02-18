@@ -703,7 +703,7 @@ const Applicant = (props) => {
         props.getResumeURL(positionId, props.id_candidate);
         props.getApplicantsVideos(email, positionId);
         props.getApplicantsInfo(email);
-        setTimeout(()=>{setShow(true);}, 400)
+        setTimeout(()=>{setShow(true);}, 200)
     };
 
     function inviteAgain() {

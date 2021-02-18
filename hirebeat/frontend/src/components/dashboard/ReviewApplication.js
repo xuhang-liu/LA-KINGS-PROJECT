@@ -112,14 +112,14 @@ class ReviewApplication extends Component{
                                 <div className="row">
                                     {((this.props.interviewResume.result_rate != "") && (this.props.interviewResume.result_rate != null)) &&
                                     <button
-                                        onClick={() => {setTimeout(()=>{this.props.setShowEva(true);}, 300)}}
+                                        onClick={() => {setTimeout(()=>{this.props.setShowEva(true);}, 200)}}
                                         className="interview-txt9 mt-3 ml-3"
                                         style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
                                     >
                                         <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
                                     </button>}
                                     {((this.props.resumeURL != "")&&(this.props.resumeURL != null)) &&
-                                    <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 300)}} >
+                                    <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 200)}} >
                                         <i className="bx bx-file"></i>View Resume
                                     </button>}
                                 </div></div>}
