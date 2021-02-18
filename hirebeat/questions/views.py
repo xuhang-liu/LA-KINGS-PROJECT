@@ -228,6 +228,37 @@ def update_comment_status(request):
     })
 
 @api_view(['POST'])
+def update_secondround_status(request):
+    position_id = request.data["positionId"]
+    email = request.data["email"]
+    ss = request.data["status"]
+    The_candidate = InvitedCandidates.objects.get(positions=position_id, email=email)
+    The_candidate.secondround_status = ss
+    The_candidate.save()
+
+    data = {}
+    user_id = request.data["userId"]
+    positions = Positions.objects.filter(user_id=user_id)
+    for i in range(len(positions)):
+        positions_id = positions[i].id
+        # get each position applicants
+        applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
+        job_details = {
+            "position_id": positions_id,
+            "job_id": positions[i].job_id,
+            "job_title": positions[i].job_title,
+            "is_closed": positions[i].is_closed,
+            "invite_date": positions[i].invite_date,
+            "applicants": applicants,
+        }
+        # convert to json
+        data[positions_id] = job_details
+
+    return Response({
+        "data": data,
+    })
+
+@api_view(['POST'])
 def close_job(request):
     position_id = request.data["position_id"]
     position_obj = Positions.objects.get(id=position_id)

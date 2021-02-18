@@ -74,6 +74,7 @@ class InvitedCandidates(models.Model):
     invite_date = models.DateTimeField(auto_now_add=True)
     accept_date = models.DateTimeField(auto_now_add=True)
     comment_status = models.IntegerField(default=0)  # 1 is accept， 2 is hold, 3 is reject
+    secondround_status = models.IntegerField(default=0)
     is_recorded = models.BooleanField(default=False)
     video_count = models.IntegerField(default=0)
 

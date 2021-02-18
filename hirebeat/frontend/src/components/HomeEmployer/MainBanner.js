@@ -30,7 +30,7 @@ class MainBanner extends Component {
                 <MediaQuery minDeviceWidth={1224}>
                 <div className="saas-banner" style={{height:"50.625vw", minHeight:"729px", backgroundImage:"url(https://hirebeat-assets.s3.amazonaws.com/Employer/bg.jpg)"}}>
                     <div className="container-fluid">
-                        <div className="row pl-4">
+                        <div className="row pl-5">
                             <div className="col-6" style={{paddingTop:"10vw"}}>
                                 <div className="hero-content">
                                     <h1 style={{fontSize:"40px", lineHeight:"46px", paddingBottom:"1.2rem"}}>Simplify the Hiring Process</h1>

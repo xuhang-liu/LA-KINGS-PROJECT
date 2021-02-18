@@ -22,7 +22,7 @@ class LeverageHireBeat extends Component {
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Time</h3>
-                                            <h5>Streamline screening process and reduce time up to 80%</h5>
+                                            <h5>Save up to 80% of your hiring time</h5>
                                         </div>
                                     </div>
                             </div>
@@ -35,7 +35,7 @@ class LeverageHireBeat extends Component {
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Cost</h3>
-                                            <h5>Save hiring and recruiting cost by up to 50% </h5>
+                                            <h5>Save up to 50% of your hiring cost</h5>
                                         </div>
                                     </div>
                             </div>
@@ -48,7 +48,7 @@ class LeverageHireBeat extends Component {
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Engagement</h3>
-                                            <h5>Review candidate with no time or place limitation</h5>
+                                            <h5>Review candidate without time or place limitation</h5>
                                         </div>
                                     </div>
                             </div>
@@ -61,7 +61,7 @@ class LeverageHireBeat extends Component {
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Collaboration</h3>
-                                            <h5>Invite team to work on candidate screening virtually</h5>
+                                            <h5>Invite teams to work on candidate screening virtually</h5>
                                         </div>
                                     </div>
                             </div>
@@ -83,7 +83,7 @@ class LeverageHireBeat extends Component {
                         <div className="col-lg-6 col-md-6">
                             <div className="overview-content pl-3">
                                 <h3 style={{fontSize: "2.625rem"}}>About HireBeat</h3>
-                                <p>HireBeat is a convenient web platform that decreases 90% of your time to hire right candidates via customized interview questions and pre-recorded video interviews.</p>
+                                <p>HireBeat is a convenient web platform that save 90% of your time to hire the right candidates via customized interview questions and pre-recorded video interviews.</p>
                                 <Link to='/employer_register' id="id-employer_signup2" className='default-btn' style={{backgroundColor: "#67A3F3", textDecoration:'none'}}>
                                 <i className="bx bxs-arrow-to-right"></i>
                                     Create Interviews For Free
