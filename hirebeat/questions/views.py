@@ -338,7 +338,7 @@ def get_applicants_data(request):
         data["date"].append(curr_date.strftime("%b %d"))
 
     employer_id = request.query_params.get('employerId')
-    positions = Positions.objects.filter(user_id=employer_id)
+    positions = Positions.objects.filter(user_id=employer_id, is_closed=False)  # ignore closed jobs
     # positions loop
     for i in range(len(positions)):
         position_id = positions[i].id
