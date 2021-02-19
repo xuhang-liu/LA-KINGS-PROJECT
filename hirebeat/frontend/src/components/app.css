@@ -290,6 +290,13 @@ video {
   border-radius: 10px;
 }
 
+.icon-user-text {
+  width: 6rem;
+  height: 6rem;
+  padding-top: 0.6rem;
+  border-radius: 10px;
+}
+
 .card-container {
   padding-top: 60px;
 }
@@ -2552,12 +2559,6 @@ h5 {
   height: 100%;
   width: 100%;
   background: #2C448C;
-}
-
-.dashboard-sidebar1 {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(180deg, #4153AF 0%, rgba(65, 83, 175, 0.75) 100%);
 }
 
 .dashboard-main {
