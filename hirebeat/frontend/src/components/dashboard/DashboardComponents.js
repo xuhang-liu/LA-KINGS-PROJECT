@@ -89,6 +89,24 @@ export const IconEmployerText = (props) => {
     );
 };
 
+export const IconUserText = (props) => {
+    //textSize, textDisplayed, iconName, textColor?
+    return (
+        <div className="icon-user-text align-items-center" style={{background: props.backColor}}>
+            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{width:"36px", height:"36px"}}></img>}
+            <p
+                style={{
+                    fontWeight: props.textWeight,
+                    fontSize: props.textSize,
+                    color: props.textColor ?? "#7d7d7d",
+                }}
+            >
+                {props.textDisplayed}
+            </p>
+        </div>
+    );
+};
+
 export const renderQDes = (des) => {
     var length = 65;
     var i = 0;
