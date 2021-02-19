@@ -341,6 +341,37 @@ export class SubpageSetting extends Component {
                     </form>
                 </div>
                 </div>}
+                {this.props.profile.membership == "Regular" && <div>
+                <div className="row" >
+                    <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>
+                            <IconText
+                                iconName={"bx bx-key bx-md"}
+                                textDisplayed={"Membership"}
+                                textSize={"24px"}
+                                textColor={"#090D3A"}
+                                iconMargin={"3px"}
+                            />
+                    </div>
+                </div>
+                <div className="card container">
+                    <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
+                            <div className="form-row" style={{marginTop:"1%"}}>
+                                <div className="form-group col">
+                                    <label style={{ fontSize: "17px" }}>Current User Group:</label>
+                                    <br/>
+                                    <label style={{ fontSize: "15px" }}>Free account</label>
+                                </div>
+                            </div>
+                            <a
+                                href="/pricing"
+                                type="submit"
+                                className="btn btn-primary"
+                            >
+                                Subscribe To Premium Member    
+                            </a>
+                    </form>
+                </div>
+                </div>}
             </div>
         )
     };

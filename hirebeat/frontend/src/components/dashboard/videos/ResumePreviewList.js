@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getResumes, deleteResume } from "../../../redux/actions/resume_actions";
 import { ResumePreview } from "./ResumePreview";
+import { Link } from "react-router-dom";
 
 export class Resume extends Component {
   static propTypes = {
@@ -24,6 +25,15 @@ export class Resume extends Component {
   render() {
       return (
         <React.Fragment>
+          <div style={{marginBottom: "20px"}} className="container d-flex justify-content-start pl-0">
+          <Link to="/resume" style={{marginLeft:"80%"}}>
+            <button className="default-btn">
+              <i className="bx bx-plus"></i> 
+              New Scan
+              <span></span>
+            </button>
+          </Link>
+          </div>
           {this.props.loaded ?
             this.props.resumes.map((r) => {
               return (
