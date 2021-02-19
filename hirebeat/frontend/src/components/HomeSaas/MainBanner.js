@@ -71,7 +71,7 @@ class MainBanner extends Component {
                     onClose={() => this.setState({isOpen: false})} 
                 />
 
-                <div className="saas-banner pt-100 pb-100">
+                <div className="saas-banner" style={{paddingTop: "12rem", paddingBottom: "12rem"}}>
                     <div className="d-table">
                         <div className="d-table-cell">
                             <div className="container max-width-1440">
@@ -135,12 +135,12 @@ class MainBanner extends Component {
                                         <div className="hero-content pl-6 pt-5">
                                             <h1>Build the Bridge to your Dream Job</h1>
                                             <div>
-                                                <p style={{display:"inline-block", minWidth:"15rem"}}>Video interview practice</p>
-                                                <p style={{display:"inline-block", marginLeft:"1rem"}}>Resume optimization</p>
+                                                <p style={{display:"inline-block", minWidth:"15rem"}}>Video Interview Practice</p>
+                                                <p style={{display:"inline-block", marginLeft:"1rem"}}>Resume Optimization</p>
                                             </div>
                                             <div className="pb-5">
-                                                <p style={{display:"inline-block", minWidth:"15rem"}}>Access to millions of jobs</p>
-                                                <p style={{display:"inline-block", marginLeft:"1rem"}}>Company hiring advice</p>
+                                                <p style={{display:"inline-block", minWidth:"15rem"}}>Access to Millions of jobs</p>
+                                                <p style={{display:"inline-block", marginLeft:"1rem"}}>Company Hiring Advice</p>
                                             </div>
                                             
                                             <div className="banner-btn">

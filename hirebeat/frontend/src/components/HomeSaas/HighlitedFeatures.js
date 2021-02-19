@@ -53,7 +53,7 @@ class HighlitedFeatures extends Component {
                     <div className="overview-item pb-5 mb-5" style={{backgroundColor: "#fbfbfe"}}>
                         <div className="container max-width-1290">
                             <div className="row align-items-center">
-                                <div className="col-lg-5 col-md-5">
+                                <div className="col-lg-5 col-md-5" style={{marginTop: "3rem"}}>
                                     <div className="overview-content pl-3">
                                         <h3>Target Resume</h3>
                                         <p>Optimize the matching rate between resume and target job based on AI suggestions on key words</p>
@@ -78,7 +78,7 @@ class HighlitedFeatures extends Component {
                                 <div className="col-lg-1 col-md-1"></div>
                                 <div className="col-lg-6 col-md-6" style={{marginTop: "3rem"}}>
                                     <div className="overview-right-img">
-                                        <img src='https://hirebeat-assets.s3.amazonaws.com/gif/land-resume.gif' alt="gif" />
+                                        <img src='https://hirebeat-assets.s3.amazonaws.com/gif/resume.gif' alt="gif" />
                                     </div>
                                 </div>
                             </div>
