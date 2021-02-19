@@ -10,7 +10,7 @@ export const ApplicationCover = (props) => {
   const [selectedId, setselectedId] = useState(0);
   return (
     <div>
-      <div style={{marginBottom: "20px"}} className="container min-width-1290">
+      <div style={{marginBottom: "20px"}} className="container min-width-980">
         <button
           className={decideClassName(filter, "active")}
           onClick={() => (setFilter("active"), setselectedId(0))}
@@ -25,7 +25,7 @@ export const ApplicationCover = (props) => {
           Closed
         </button>
         <button className="default-btn" onClick={props.renderPosition}
-          style={{color:"white", marginLeft:"8%"}}>
+          style={{color:"white", marginLeft:"5%"}}>
             <i className="bx bx-plus"></i> 
               Create New Position
             <span></span>

@@ -168,8 +168,7 @@ export class Dashboard extends Component {
                           isEmployer={false}
                       />}
                   <div className="container" style={{marginBottom: "0%"}}>
-                    <div className=""
-                         style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
+                    <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
                       {this.renderSubpage()}
                     </div>
                   </div>

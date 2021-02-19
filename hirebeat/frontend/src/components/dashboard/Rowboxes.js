@@ -114,7 +114,7 @@ class RowBoxes extends React.Component{
                                             <i className="bx bxs-pie-chart bx-md" style={{color: "#67A3F3", paddingLeft: "1rem"}}></i>
                                             <h3 className="chart-legend">Recorded Rate</h3>
                                         </div>
-                                        <RateScore percent={this.props.recorded_rate} bgColor={"#FFFFFF"} barColor={"#67A3F3"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={150} width={200}/>
+                                        <RateScore percent={Math.round(this.props.recorded_rate)} bgColor={"#FFFFFF"} barColor={"#67A3F3"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={150} width={200}/>
                                     </div>
                                 </div>
                             </React.Fragment>
