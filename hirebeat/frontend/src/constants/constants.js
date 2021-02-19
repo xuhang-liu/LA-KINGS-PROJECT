@@ -253,6 +253,30 @@ export const customBarData = (scoreNumber, bgColor, barColor) => {
   return options;
 };
 
+export const customBarData2 = (scoreNumber, bgColor, barColor, label, ftSize, ftColor) => {
+  var options = deepCopyFunction(radialBarOptions);
+  options.series[0] = scoreNumber;
+  options.options.labels[0] = typeof(bgColor) != "undefined" ? scoreNumber + label : scoreNumber;
+  // configure color params
+  if (typeof(bgColor) != "undefined") {
+    options.options.plotOptions.radialBar.hollow.background = bgColor;
+  }
+  if (typeof(barColor) != "undefined") {
+    options.options.colors[0] = barColor;
+  }
+  // configure data labels
+  if (typeof(ftSize) != "undefined") {
+    options.options.plotOptions.radialBar.dataLabels.name.fontSize = ftSize;
+  }
+  if (typeof(ftColor) != "undefined") {
+    options.options.plotOptions.radialBar.dataLabels.name.color = ftColor;
+  }
+  // set font weight and offset
+  options.options.plotOptions.radialBar.dataLabels.name.offsetY = 5;
+  options.options.plotOptions.radialBar.dataLabels.name.fontWeight = "bold" // seems not work here
+  return options;
+};
+
 export const infillOverallData = (scoreNumber) => {
   var options = deepCopyFunction(radialBarOptions);
   options.options.plotOptions.radialBar.hollow = {

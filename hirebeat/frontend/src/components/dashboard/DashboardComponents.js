@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Chart from "react-apexcharts";
-import { customBarData } from "../../constants/constants";
+import { customBarData, customBarData2 } from "../../constants/constants";
 import MediaQuery from 'react-responsive';
 import CountUp from "react-countup";
 import LazyLoad from "react-lazyload";
@@ -214,3 +214,121 @@ export const OverallScore = (props) => {
     />
   );
 };
+
+export const RateScore = (props) => {
+  var options = customBarData2(props.percent, props.bgColor, props.barColor, props.label, props.ftSize, props.ftColor);
+  return (
+    <Chart
+      options={options.options}
+      series={options.series}
+      type="radialBar"
+      height={props.height}
+      width={props.width}
+      key={"rate"}
+    />
+  );
+};
+
+export const VideoChart = (props) => {
+    var labelFormatter = function(value) {
+        // remove decimal
+        return value.toFixed(0);
+    };
+    return (
+        <Chart
+            options= {{
+                chart: {
+                    type: 'line',
+                    height: 350,
+                },
+                grid: {
+                    show: true,
+                },
+                stroke: {
+                    curve: 'smooth',
+                },
+                dataLabels: {
+                    enabled: true,
+                    enabledOnSeries: [0]
+                },
+                labels: props.dates,
+                xaxis:{
+                    labels: {
+                        show: true,
+                    },
+                },
+                yaxis:{
+                    labels: {
+                        show:true,
+                        formatter: labelFormatter,
+                    },
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+            }}
+            series={[{
+                name: 'videos',
+                data: props.videos,
+                },
+            ]}
+            type="line"
+            height={props.height}
+            width={props.width}
+        />
+    )
+}
+
+export const ApplicationChart = (props) => {
+    var labelFormatter = function(value) {
+        // remove decimal
+        return value.toFixed(0);
+    };
+    return (
+        <Chart
+            options= {{
+                chart: {
+                    type: 'line',
+                },
+                grid: {
+                    show: true,
+                },
+                stroke: {
+                    curve: 'smooth',
+                },
+                dataLabels: {
+                    enabled: true,
+                    enabledOnSeries: [0]
+                },
+                labels: props.dates,
+                xaxis:{
+                    labels: {
+                        show: true,
+                    },
+                },
+                yaxis:{
+                    labels: {
+                        show:true,
+                        formatter: labelFormatter,
+                    },
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+            }}
+            series={[
+                {
+                    name: 'total applicants',
+                    data: props.total,
+                },
+                {
+                    name: 'accepted applicants',
+                    data: props.accepted,
+                },
+            ]}
+            type="line"
+            height={props.height}
+            width={props.width}
+        />
+    )
+}
