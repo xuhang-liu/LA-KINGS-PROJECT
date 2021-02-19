@@ -47,7 +47,7 @@ const AcceptedCandidate = (props) => {
     const [filter, setFilter] = useState("Waitlist");
 
     return <div>
-              <div style={{marginBottom: "20px"}} className="min-width-1290 mt-3">
+              <div style={{marginBottom: "20px"}} className="container min-width-980 mt-3">
                 <button
                 className={decideClassName(filter, "Waitlist")}
                 onClick={() => (setFilter("Waitlist"))}

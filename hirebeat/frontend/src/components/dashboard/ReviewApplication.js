@@ -124,7 +124,7 @@ class ReviewApplication extends Component{
                                     </button>}
                                 </div></div>}
                         </div>
-                        <div className="col-7 container mt-4">
+                        <div className="col-6 container mt-4">
                             <ApplicationVideo   int_ques={this.props.int_ques} 
                                                 positionId={this.props.positionId}
                                                 quesiton_array = {this.state.quesiton_array}
@@ -134,13 +134,13 @@ class ReviewApplication extends Component{
                                                 pk = {this.state.pk}
                             />
                         </div>
-                        <div className="col-2 container" style={{marginTop:"2.5%"}}>
-                            <div className="container mt-3">
+                        <div className="col-3 container" style={{marginTop:"2.5%"}}>
+                            <div className="container mt-3 ml-2">
                                 {this.props.comment_status == 1 ? <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
-                                    Accept
+                                    Shortlist
                                 </button>
                                 : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
-                                    Accept
+                                    Shortlist
                                 </button>
                                 }
                                 {this.props.comment_status == 2 ? <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2);}}>

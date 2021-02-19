@@ -733,11 +733,11 @@ const Applicant = (props) => {
             case 1:
                 if (props.videoCount > 0){
                 return <button className="btn btn-success" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => viewResult()}>
-                    Accepted
+                    Shortlist
                 </button>}
                 else{
                 return <button className="btn btn-success" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
-                    Accepted
+                    Shortlist
                 </button>
                 }
             case 2:
@@ -753,11 +753,11 @@ const Applicant = (props) => {
             case 3:
                 if (props.videoCount > 0){
                 return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}} onClick={() => viewResult()}>
-                    Rejected
+                    Reject
                 </button>}
                 else{
                 return <button className="btn btn-danger" style={{minWidth:"7rem", maxHeight:"2.4rem", paddingTop:"0.6rem"}}>
-                    Rejected
+                    Reject
                 </button>
                 }
             default:

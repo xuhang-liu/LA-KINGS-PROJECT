@@ -52,7 +52,7 @@ export class Header extends Component {
               <div className="row">
                     <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px'}}></i>        
                     <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username}  ` : ""}
-                    <ul className="nav_submenu"> 
+                    <ul className="nav_submenu" style={{width:"10rem"}}> 
                       <li>
                       <Link id="id-dash" to="/dashboard" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
                         Dashboard
@@ -223,7 +223,7 @@ export class Header extends Component {
               <div className="row">
                     <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px'}}></i>        
                     <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username}  ` : ""}
-                    <ul className="nav_submenu"> 
+                    <ul className="nav_submenu" style={{width:"10rem"}}> 
                       <li>
                       <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
                         Dashboard
