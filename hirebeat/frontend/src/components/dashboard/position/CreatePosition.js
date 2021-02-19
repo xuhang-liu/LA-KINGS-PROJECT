@@ -105,7 +105,7 @@ export class CreatePosition extends Component{
                                 <label style={{ fontSize: "17px", margin:"2%"}}>
                                     Job Description
                                 </label>
-                                <textarea type="text" name="jobdescription" value={this.state.jobdescription} style={{minHeight:"5rem"}}
+                                <textarea type="text" name="jobdescription" value={this.state.jobdescription} style={{minHeight:"15rem"}}
                                 onChange={this.handleInputChange} className="form-control" required="required" 
                                 placeholder="Paste job description here. Be sure to include titles such as 'basic qualifications' and 'preferred qualifications'."/>
                             </div>
