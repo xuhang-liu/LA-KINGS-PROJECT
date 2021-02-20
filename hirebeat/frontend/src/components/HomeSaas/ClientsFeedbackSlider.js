@@ -54,7 +54,7 @@ class ClientsFeedbackSlider extends Component {
     render() {
         return (
             <React.Fragment>
-            <section className="feedback-area bg-e8edfc pb-70 pt-100">
+            <section className="feedback-area bg-e8edfc pt-100">
                 <div style={{marginLeft: "auto", marginRight: "auto", paddingRight: "1.5rem", paddingLeft: "1.5rem"}}>
                     <div className="section-title" style={{maxWidth:"900px"}}>
                         <h2>What Our Customers Are Saying About Us</h2>
@@ -63,7 +63,7 @@ class ClientsFeedbackSlider extends Component {
                     <div className="row" style={{paddingBottom: "1rem", justifyContent: "center"}}>
                         <div className="col-sm-12 col-md-4 col-lg-4" style={{paddingBottom:"1rem"}}>
                             <div className="feedback-bg h-100" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
-                                <div className="row" style={{padding: "1rem"}}>
+                                <div className="row" style={{padding: "1rem", paddingBottom: "0rem"}}>
                                     <div className="col-4">
                                         <div className="justify-items">
                                             <img src="https://hirebeat-assets.s3.amazonaws.com/harrison.png"  alt="harrison"/>
@@ -71,7 +71,7 @@ class ClientsFeedbackSlider extends Component {
                                         <h3 className="feedback-name">Harrison</h3>
                                     </div>
                                     <div className="col-8">
-                                        <p className="feedback-desc">After struggling during many job interviews, I decided to use HireBeat to help me better prepare. Within two weeks of usage, my interview confidence increase significantly!</p>
+                                        <span className="feedback-desc">After struggling during many job interviews, I decided to use HireBeat to help me better prepare. Within two weeks of usage, my interview confidence increase significantly!</span>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@ class ClientsFeedbackSlider extends Component {
 
                         <div className="col-sm-12 col-md-4 col-lg-4" style={{paddingBottom:"1rem"}}>
                             <div className="feedback-bg h-100" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
-                                <div className="row" style={{padding: "1rem"}}>
+                                <div className="row" style={{padding: "1rem", paddingBottom: "0rem"}}>
                                     <div className="col-4">
                                         <div className="justify-items">
                                             <img src="https://hirebeat-assets.s3.amazonaws.com/rebecca.png"  alt="rebecca"/>
@@ -87,7 +87,7 @@ class ClientsFeedbackSlider extends Component {
                                         <h3 className="feedback-name">Rebecca</h3>
                                     </div>
                                     <div className="col-8">
-                                        <p className="feedback-desc">I used HireBeat to improve my interview in this difficult job market. It improved my skills to a great extent. I’m much more prepared for my career than ever before!</p>
+                                        <span className="feedback-desc">I used HireBeat to improve my interview in this difficult job market. It improved my skills to a great extent. I’m much more prepared for my career than ever before!</span>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@ class ClientsFeedbackSlider extends Component {
 
                         <div className="col-sm-12 col-md-4 col-lg-4" style={{paddingBottom:"1rem"}}>
                             <div className="feedback-bg h-100" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
-                                <div className="row" style={{padding: "1rem"}}>
+                                <div className="row" style={{padding: "1rem", paddingBottom: "0rem"}}>
                                     <div className="col-4">
                                         <div className="justify-items">
                                             <img src="https://hirebeat-assets.s3.amazonaws.com/daniel.png"  alt="daniel"/>
@@ -103,7 +103,7 @@ class ClientsFeedbackSlider extends Component {
                                         <h3 className="feedback-name">Daniel</h3>
                                     </div>
                                     <div className="col-8">
-                                        <p className="feedback-desc">I used HireBeat to improve my interview performance, and the result exceeded my expectations. It’s like hiring a personal interview tutor, but with much cheaper price.</p>
+                                        <span className="feedback-desc">I used HireBeat to improve my interview performance, and the result exceeded my expectations. It’s like hiring a personal interview tutor, but with much cheaper price.</span>
                                     </div>
                                 </div>
                             </div>
