@@ -132,15 +132,15 @@ class MainBanner extends Component {
                                         </div>
                                     </div>*/}
                                     <div className="col-lg-6 col-md-12">
-                                        <div className="hero-content pl-6 pt-5">
+                                        <div className="hero-content pl-6 pt-3">
                                             <h1>Build the Bridge to your Dream Job</h1>
                                             <div>
-                                                <p style={{display:"inline-block", minWidth:"15rem"}}>Video Interview Practice</p>
-                                                <p style={{display:"inline-block", marginLeft:"1rem"}}>Resume Optimization</p>
+                                                <p style={{display:"inline-block", minWidth:"15rem"}}><i className='bx bx-badge-check'></i> Video Interview Practice</p>
+                                                <p style={{display:"inline-block", marginLeft:"1rem"}}><i className='bx bx-badge-check'></i> Resume Optimization</p>
                                             </div>
                                             <div className="pb-5">
-                                                <p style={{display:"inline-block", minWidth:"15rem"}}>Access to Millions of jobs</p>
-                                                <p style={{display:"inline-block", marginLeft:"1rem"}}>Company Hiring Advice</p>
+                                                <p style={{display:"inline-block", minWidth:"15rem"}}><i className='bx bx-badge-check'></i> Access to Millions of Jobs</p>
+                                                <p style={{display:"inline-block", marginLeft:"1rem"}}><i className='bx bx-badge-check'></i> Company Hiring Advice</p>
                                             </div>
                                             
                                             <div className="banner-btn">
