@@ -62,7 +62,7 @@ class ClientsFeedbackSlider extends Component {
 
                     <div className="row" style={{paddingBottom: "1rem", justifyContent: "center"}}>
                         <div className="col-sm-12 col-md-4 col-lg-4" style={{paddingBottom:"1rem"}}>
-                            <div className="feedback-bg" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
+                            <div className="feedback-bg h-100" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
                                 <div className="row" style={{padding: "1rem", paddingBottom: "0rem"}}>
                                     <div className="col-4">
                                         <div className="justify-items">
@@ -78,7 +78,7 @@ class ClientsFeedbackSlider extends Component {
                         </div>
 
                         <div className="col-sm-12 col-md-4 col-lg-4" style={{paddingBottom:"1rem"}}>
-                            <div className="feedback-bg" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
+                            <div className="feedback-bg h-100" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
                                 <div className="row" style={{padding: "1rem", paddingBottom: "0rem"}}>
                                     <div className="col-4">
                                         <div className="justify-items">
@@ -94,7 +94,7 @@ class ClientsFeedbackSlider extends Component {
                         </div>
 
                         <div className="col-sm-12 col-md-4 col-lg-4" style={{paddingBottom:"1rem"}}>
-                            <div className="feedback-bg" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
+                            <div className="feedback-bg h-100" style={{paddingRight: "1rem", marginBottom: "1rem"}}>
                                 <div className="row" style={{padding: "1rem", paddingBottom: "0rem"}}>
                                     <div className="col-4">
                                         <div className="justify-items">

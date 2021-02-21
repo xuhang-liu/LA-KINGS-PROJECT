@@ -8,7 +8,7 @@ class HighlitedFeatures extends Component {
         return (
             <React.Fragment>
             <section className="pt-100 pb-100">
-                <div className="container pt-2 pb-5" id='i1'>
+                <div className="container-fluid pt-2 pb-5" id='i1'>
                     <div className="section-title">
                         <h2 className="mb-2">Our Highlighted Features</h2>
                     </div>

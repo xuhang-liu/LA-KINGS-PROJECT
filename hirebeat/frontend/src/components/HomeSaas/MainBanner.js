@@ -74,8 +74,8 @@ class MainBanner extends Component {
                 <div className="saas-banner" style={{paddingTop: "12rem", paddingBottom: "12rem"}}>
                     <div className="d-table">
                         <div className="d-table-cell">
-                            <div className="container max-width-1440">
-                                <div className="row align-items-center pt-8">
+                            <div className="container-fluid max-width-1440">
+                                <div className="row align-items-center">
                                     {/*<div className="col-lg-5 col-md-12">
                                         <div className="saas-image mt-70">
                                             <ReactWOW animation='fadeInDown' delay='0.6s'>
@@ -132,15 +132,15 @@ class MainBanner extends Component {
                                         </div>
                                     </div>*/}
                                     <div className="col-lg-6 col-md-12">
-                                        <div className="hero-content pl-6 pt-5">
+                                        <div className="hero-content pl-5">
                                             <h1>Build the Bridge to your Dream Job</h1>
                                             <div>
-                                                <p style={{display:"inline-block", minWidth:"15rem"}}>Video Interview Practice</p>
-                                                <p style={{display:"inline-block", marginLeft:"1rem"}}>Resume Optimization</p>
+                                                <p style={{display:"inline-block", minWidth:"15rem"}}><i className='bx bx-badge-check'></i> Video Interview Practice</p>
+                                                <p style={{display:"inline-block", marginLeft:"1rem"}}><i className='bx bx-badge-check'></i> Resume Optimization</p>
                                             </div>
                                             <div className="pb-5">
-                                                <p style={{display:"inline-block", minWidth:"15rem"}}>Access to Millions of jobs</p>
-                                                <p style={{display:"inline-block", marginLeft:"1rem"}}>Company Hiring Advice</p>
+                                                <p style={{display:"inline-block", minWidth:"15rem"}}><i className='bx bx-badge-check'></i> Access to Millions of Jobs</p>
+                                                <p style={{display:"inline-block", marginLeft:"1rem"}}><i className='bx bx-badge-check'></i> Company Hiring Advice</p>
                                             </div>
                                             
                                             <div className="banner-btn">
@@ -173,6 +173,7 @@ class MainBanner extends Component {
                                                     </a>
                                                     </Link>
                                                     </MediaQuery>
+                                                    <p className="ml-2 mt-3">Demo</p>
                                                 </div>
                                             </div>
                                             {/*<a href="https://www.producthunt.com/posts/hirebeat-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hirebeat-2" target="_blank">*/}

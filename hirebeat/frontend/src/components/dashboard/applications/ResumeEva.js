@@ -39,7 +39,7 @@ export class ResumeEva extends Component {
                             className={"resume-text3"}
                             jd={["Job Description"]}
                             resume={["Resume"]}
-                            info={["Info"]}
+                            info={["Occurrence"]}
                         />
                         <KeywordsRow
                             background={"#ffffff"}
@@ -59,7 +59,7 @@ export class ResumeEva extends Component {
                             className={"resume-text3"}
                             jd={["Job Description"]}
                             resume={["Resume"]}
-                            info={["Info"]}
+                            info={["Occurrence"]}
                         />
                         <KeywordsRow
                             background={"#ffffff"}
@@ -81,7 +81,7 @@ export class ResumeEva extends Component {
                             className={"resume-text3"}
                             jd={["Job Description"]}
                             resume={["Resume"]}
-                            info={["Info"]}
+                            info={["Occurrence"]}
                         />
                         <KeywordsRow
                             background={"#ffffff"}
@@ -101,7 +101,7 @@ export class ResumeEva extends Component {
                             className={"resume-text3"}
                             jd={["Job Description"]}
                             resume={["Resume"]}
-                            info={["Info"]}
+                            info={["Occurrence"]}
                         />
                         <KeywordsRow
                             background={"#ffffff"}
