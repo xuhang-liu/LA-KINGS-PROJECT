@@ -31,6 +31,10 @@ def exchange_token(request, backend):
         user = request.backend.do_auth(serializer.validated_data['access_token'])
         if user:
             _, token = AuthToken.objects.create(user)
+            ### profile is autocreated
+            profile = Profile.objects.filter(user=user.id)[0]
+            profile.email_confirmed = True
+            profile.save()
             return Response({
                    "user": UserSerializer(user).data,
                     "token": token,
