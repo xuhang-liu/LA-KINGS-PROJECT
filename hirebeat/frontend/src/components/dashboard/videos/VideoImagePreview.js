@@ -55,7 +55,7 @@ export function VideoImagePreview(props) {
   const dispatch = useDispatch();
   // control status, render modal
   return (
-    <div className="height-20 mt-6">
+    <div className="mt-5 pt-3">
       <div className="row">
         <MediaQuery minDeviceWidth={1224}>
         <div className="col-5">

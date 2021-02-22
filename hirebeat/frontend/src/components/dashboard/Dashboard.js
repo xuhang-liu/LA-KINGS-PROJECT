@@ -167,7 +167,7 @@ export class Dashboard extends Component {
                           userId={this.props.user.id}
                           isEmployer={false}
                       />}
-                  <div className="container" style={{marginBottom: "0%"}}>
+                  <div className="container-fluid" style={{marginBottom: "0%"}}>
                     <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
                       {this.renderSubpage()}
                     </div>

@@ -25,9 +25,29 @@ export class VideoPreviewList extends Component {
 
   render() {
     return (
-      <div className="container pl-0">
+      <div className="container-xl" style={{backgroundColor: "white", "border-radius": "0.5rem"}}>
+        <div className="row">
+          <div className="col-2 interview-txt8 interview-center">
+            Question
+          </div>
+          <div className="col-2 interview-txt8 interview-center">
+            Recorded on
+          </div>
+          <div className="col-1 interview-txt8 interview-center">
+            Score
+          </div>
+          <div className="col-2 interview-txt8 interview-center">
+            Performance
+          </div>
+          <div className="col-4 interview-txt8 interview-center">
+            In-depth Review
+          </div>
+          <div className="col-1 interview-txt8 interview-center">
+          </div>
+        </div>
         {this.props.loaded
-          ? this.props.videos.map((v) => {
+          ?
+          this.props.videos.map((v) => {
               if (this.props.filter) {
                 // filter videos according to question type
                 switch (this.props.filter) {
