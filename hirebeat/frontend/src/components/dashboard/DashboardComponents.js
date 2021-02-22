@@ -108,7 +108,7 @@ export const IconUserText = (props) => {
 };
 
 export const renderQDes = (des) => {
-    var length = 65;
+    var length = 48;
     var i = 0;
     if (des.length > length) {
         var ans = des.substring(0, length);

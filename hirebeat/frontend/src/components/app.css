@@ -222,7 +222,7 @@ video {
 }
 
 .height-30 {
-  height: 30px;
+  height: 1.8rem;
 }
 
 .borderless {
@@ -733,6 +733,7 @@ h5 {
 }
 
 .not-reviewed {
+  text-align: center;
   width: 14.125rem;
   height: 2.125rem;
   background: #ff6b00;
@@ -742,6 +743,7 @@ h5 {
 }
 
 .under-review {
+  text-align: center;
   width: 14.125rem;
   height: 2.125rem;
   background: #7d7d7d;
@@ -751,6 +753,7 @@ h5 {
 }
 
 .reviewed {
+  text-align: center;
   width: 14.125rem;
   height: 2.125rem;
   background: #14cc75;
@@ -761,6 +764,7 @@ h5 {
 
 @media only screen and (max-width: 767px) {
   .not-reviewed {
+    text-align: center;
     font-size: 10px;
     width: 150px;
     height: 24px;
@@ -771,6 +775,7 @@ h5 {
   }
 
   .under-review {
+    text-align: center;
     font-size: 10px;
     width: 150px;
     height: 24px;
@@ -781,6 +786,7 @@ h5 {
   }
 
   .reviewed {
+    text-align: center;
     font-size: 10px;
     width: 150px;
     height: 24px;
