@@ -1,5 +1,6 @@
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes
 from accounts.models import CandidatesInterview
+from videos.models import WPVideo
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, SubcategorySerializer
 from rest_framework.decorators import api_view
@@ -12,6 +13,8 @@ import random
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.core.exceptions import ObjectDoesNotExist
+from datetime import timedelta
+from django.utils import timezone
 
 class QuestionAPIView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
@@ -198,6 +201,39 @@ def update_comment_status(request):
     ss = request.data["status"]
     The_candidate = InvitedCandidates.objects.get(positions=position_id, email=email)
     The_candidate.comment_status = ss
+    # update accept_date
+    The_candidate.accept_date = timezone.now()
+    The_candidate.save()
+
+    data = {}
+    user_id = request.data["userId"]
+    positions = Positions.objects.filter(user_id=user_id)
+    for i in range(len(positions)):
+        positions_id = positions[i].id
+        # get each position applicants
+        applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
+        job_details = {
+            "position_id": positions_id,
+            "job_id": positions[i].job_id,
+            "job_title": positions[i].job_title,
+            "is_closed": positions[i].is_closed,
+            "invite_date": positions[i].invite_date,
+            "applicants": applicants,
+        }
+        # convert to json
+        data[positions_id] = job_details
+
+    return Response({
+        "data": data,
+    })
+
+@api_view(['POST'])
+def update_secondround_status(request):
+    position_id = request.data["positionId"]
+    email = request.data["email"]
+    ss = request.data["status"]
+    The_candidate = InvitedCandidates.objects.get(positions=position_id, email=email)
+    The_candidate.secondround_status = ss
     The_candidate.save()
 
     data = {}
@@ -284,3 +320,60 @@ def get_resume_url(request):
         "recordTime": uploadTime,
     })
 
+@api_view(['GET'])
+def get_applicants_data(request):
+    data = {
+        "date": [],
+        "total": [0, 0, 0, 0, 0, 0, 0],
+        "accepted": [0, 0, 0, 0, 0, 0, 0],
+        "recorded": [0, 0, 0, 0, 0, 0, 0],
+    }
+
+    week = []
+    # get the most recent week dates
+    for day in range(6, -1, -1):
+        # use timezone.now() to get current time since timezone is enabled
+        curr_date = timezone.now() - timedelta(days=day)
+        week.append(curr_date.strftime("%Y-%m-%d"))
+        data["date"].append(curr_date.strftime("%b %d"))
+
+    employer_id = request.query_params.get('employerId')
+    positions = Positions.objects.filter(user_id=employer_id, is_closed=False)  # ignore closed jobs
+    # positions loop
+    for i in range(len(positions)):
+        position_id = positions[i].id
+        # get current position each day total and accepted applicants
+        total = []
+        accepted = []
+        recorded = []
+        candidates = list(InvitedCandidates.objects.filter(positions_id=position_id).values())
+        # dates loop
+        for j in range(len(week)):
+            day_total = InvitedCandidates.objects.filter(
+                positions_id=position_id,
+                invite_date__contains=week[j]).count()
+            day_accepted = InvitedCandidates.objects.filter(
+                positions_id=position_id,
+                comment_status=1,
+                accept_date__contains=week[j]).count()
+            total.append(day_total)
+            accepted.append(day_accepted)
+
+            count = 0
+            # candidates loop
+            for c in range(len(candidates)):
+                candidate = candidates[c]
+                day_recorded = WPVideo.objects.filter(
+                    email=candidate["email"],
+                    created_at__contains=week[j]).count()
+                count += day_recorded
+            recorded.append(count)
+        # sum loop
+        for k in range(len(week)):
+            data["total"][k] += total[k]
+            data["accepted"][k] += accepted[k]
+            data["recorded"][k] += recorded[k]
+
+    return Response({
+        "data": data,
+    })

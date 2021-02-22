@@ -50,7 +50,7 @@ export class Dashboard extends Component {
 
   activateEmail = () => {
     // only for FB social login
-    if (this.props.user.email == "" || this.props.user.email == null) {
+    if (this.props.user.email == "" || this.props.user.email == null || (this.props.user.email.toLowerCase().includes("gmail.com"))) {
       var profile = this.makeProfile();
       this.props.updateProfile(profile);
     }
@@ -142,8 +142,8 @@ export class Dashboard extends Component {
           {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
             <div className="row no-gutters min-width-1290">
-              <div className='col-2'>
-                <div className='dashboard-sidebar1'>
+              <div className='col-1'>
+                <div className='dashboard-sidebar'>
                   <EssentialUserInfo
                       userfullname={this.props.userfullname}
                       user={this.props.user}
@@ -157,7 +157,7 @@ export class Dashboard extends Component {
                   />
                 </div>
               </div>
-              <div className='col-10'>
+              <div className='col-11'>
                 <div className="dashboard-main">
                   {this.state.subpage === "settings" ? null :
                       <RowBoxes
@@ -168,8 +168,7 @@ export class Dashboard extends Component {
                           isEmployer={false}
                       />}
                   <div className="container" style={{marginBottom: "0%"}}>
-                    <div className=""
-                         style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
+                    <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
                       {this.renderSubpage()}
                     </div>
                   </div>

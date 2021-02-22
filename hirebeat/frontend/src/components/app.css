@@ -290,6 +290,13 @@ video {
   border-radius: 10px;
 }
 
+.icon-user-text {
+  width: 6rem;
+  height: 6rem;
+  padding-top: 0.6rem;
+  border-radius: 10px;
+}
+
 .card-container {
   padding-top: 60px;
 }
@@ -2554,12 +2561,6 @@ h5 {
   background: #2C448C;
 }
 
-.dashboard-sidebar1 {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(180deg, #4153AF 0%, rgba(65, 83, 175, 0.75) 100%);
-}
-
 .dashboard-main {
   min-height: 100vh;
   height: auto;
@@ -2684,4 +2685,21 @@ h5 {
   font-weight: 500;
   font-size: 0.9375rem;
   color: #090D3A;
+}
+
+.chart-bg {
+  background: #FFFFFF;
+  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
+  border-radius: 10px;
+  margin-top: 4rem;
+}
+
+.chart-legend {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #090D3A;
+  margin-left: 0.8rem;
+  margin-bottom: 0rem;
 }

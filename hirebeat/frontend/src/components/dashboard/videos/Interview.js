@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import VideoPreviewList from "./VideoPreviewList";
+import { Link } from "react-router-dom";
 
 const decideClassName = (filter, text) => {
     return filter == text ? "btn-selected" : "btn-unselected";
@@ -24,6 +25,13 @@ export const Interview = () => {
         >
           Technical Questions
         </button>
+        <Link to="/practice" style={{marginLeft:"40%"}}>
+        <button className="default-btn">
+            <i className="bx bx-plus"></i> 
+             New Practice
+            <span></span>
+        </button>
+        </Link>
       </div>
       <VideoPreviewList filter={filter}/>
     </div>

@@ -8,17 +8,18 @@ class LeverageHireBeat extends Component {
         return (
             <React.Fragment>
             <section className="features-area pt-100 pb-70 bg-leverageHirebeat">
-                <div style={{width:"85vw", margin:"auto"}}>
-                    <div className="text-center" style={{color:"#090D3A"}}>
-                        <h1 style={{fontWeight:"600"}}>The Platform that Works for You</h1>
+                <div className="container">
+                    <div className="section-title">
+                        <h2>The Platform that Works for You</h2>
                     </div>
-                    <ReactWOW animation='fadeInRight' delay='0.1s'>
-                    <div className="row my-5">
-                        <div className="col-lg-3 col-6 mt-2" >
+
+                    <div className="row">
+                        <div className="col-lg-3 col-sm-3" style={{marginTop:"2rem"}}>
+                            <ReactWOW animation='fadeInRight' delay='0.1s'>
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='stopwatch' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#13C4A1", borderRadius:"0.3em", padding:"1em"}}/>
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/WC1.png" alt="img"></img>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Time</h3>
@@ -26,12 +27,15 @@ class LeverageHireBeat extends Component {
                                         </div>
                                     </div>
                             </div>
+                            </ReactWOW>
                         </div>
-                        <div className="col-lg-3 col-6 mt-2" >
+
+                        <div className="col-lg-3 col-sm-3" style={{marginTop:"2rem"}}>
+                            <ReactWOW animation='fadeInRight' delay='0.2s'>
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='money' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#FAC046", borderRadius:"0.3em", padding:"1em"}}/>
+                                            <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/WC2.png" alt="img"></img>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Cost</h3>
@@ -39,12 +43,15 @@ class LeverageHireBeat extends Component {
                                         </div>
                                     </div>
                             </div>
+                            </ReactWOW>
                         </div>
-                        <div className="col-lg-3 col-6 mt-2" >
+
+                        <div className="col-lg-3 col-sm-3" style={{marginTop:"2rem"}}>
+                            <ReactWOW animation='fadeInRight' delay='0.3s'>
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='trip' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#FF6B00", borderRadius:"0.3em", padding:"1em"}}/>
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/WC3.png" alt="img"></img>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Engagement</h3>
@@ -52,12 +59,15 @@ class LeverageHireBeat extends Component {
                                         </div>
                                     </div>
                             </div>
+                            </ReactWOW>
                         </div>
-                        <div className="col-lg-3 col-6 mt-2" >
+
+                        <div className="col-lg-3 col-sm-3" style={{marginTop:"2rem"}}>
+                            <ReactWOW animation='fadeInRight' delay='0.4s'>
                             <div className="card h-100" style={{boxShadow:"2px 2px 4px 0px rgba(128,128,128,0.16)"}}>
                                     <div className="card-body">
                                         <div className="p-3">
-                                            <box-icon name='devices' color="white" size="3em" animation='tada-hover' style={{backgroundColor:"#6E6BFF", borderRadius:"0.3em", padding:"1em"}}/>
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/WC4.png" alt="img"></img>
                                         </div>
                                         <div className="px-3 employer-landing-card">
                                             <h3 style={{fontWeight:"600"}}>Collaboration</h3>
@@ -65,9 +75,9 @@ class LeverageHireBeat extends Component {
                                         </div>
                                     </div>
                             </div>
+                            </ReactWOW>
                         </div>
                     </div>
-                    </ReactWOW>
                 </div>
             </section>
             <ReactWOW>

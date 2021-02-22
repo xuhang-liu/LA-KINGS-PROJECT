@@ -1,4 +1,4 @@
-import React, { Component, useReducer, useRef, useState } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
 //import Input, { isPossiblePhoneNumber } from 'react-phone-number-input';
 
@@ -7,6 +7,7 @@ import {
   IconText,
   MyModal,
   IconEmployerText,
+  IconUserText
 } from "../DashboardComponents";
 import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
@@ -124,105 +125,29 @@ export class EssentialUserInfo extends Component {
 
   render() {
 
-    var selectColor = "#ffffff";
-    var defaultColor = "#CAD9FC";
-    var selectEColor = "#67a3fa";
-    var defaultEColor = "#ffffff";
+    var selectEColor = "#e8edfc";
+    var defaultEColor = "#CAD9FC";
     var selectBack = "#090d3a";
     var defaultBack = "none";
-    var selectDecoration = "underline";
-    var defaultDecoration = "none";
-    var selectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/dashboard-selected1.png";
-    var nonselectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/dashboard-non1.png";
-    var selectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-settings-select1.png";
-    var nonselectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-settings1.png";
+    //var selectDecoration = "underline";
+    //var defaultDecoration = "none";
+    var selectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-dashboard-select.png";
+    var nonselectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-dashboard-non.png";
+    var selectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-cog-select.png";
+    var nonselectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-cog-non.png";
+    var selectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-list-ul-select.png";
+    var nonSelectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-list-ul-non.png";
+    var selectVideos = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-slideshow-select.png";
+    var nonSelectVideos = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-slideshow-non.png";
+    var selectResume = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-file-select.png";
+    var nonselectResume = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-file-non.png";
+    var selectInterview = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-briefcase-select.png";
+    var nonselectInterview = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-briefcase-non.png";
     return (
       <React.Fragment>
       <div className="container">
           <DbCenterRow>
             <div>
-            {!this.props.profile.is_employer &&
-              <div>
-              <div className="row" style={{marginTop:"20%", marginBottom:"10%"}}>
-                <div className="col d-flex align-items-center">
-                  <h3
-                    style={{
-                      fontWeight: "bold",
-                      marginRight: "0.8rem",
-                      wordWrap: "break-word",
-                      wordBreak: "break-all",
-                      color:"#CAD9FC"
-                    }}
-                  >
-                    {this.props.user.email}
-                  </h3>
-                  </div>
-              </div>
-              {this.props.profile.membership == "Premium" &&
-              <div className="row" style={{marginTop:"1%"}}>
-                <div className="col d-flex align-items-center">
-                        <IconText
-                          iconName={"bx bx-diamond bx-sm"}
-                          textDisplayed={"Premium Member"}
-                          textSize={"15px"}
-                          textColor={"#fac046"}
-                          iconMargin={"3px"}
-                        />
-                </div>
-              </div>}
-              <div className="row" style={{marginTop:"1%"}}>
-                <div className="col d-flex align-items-center">
-                        <IconText
-                          iconName={"bx bx-phone bx-sm"}
-                          textDisplayed={this.props.profile.phone_number}
-                          textSize={"15px"}
-                          textColor={"#CAD9FC"}
-                          iconMargin={"3px"}
-                        />
-                </div>
-              </div>
-              {/*<div className="row" style={{marginTop:"1%"}}>
-                <div className="col d-flex align-items-center" style={{wordWrap: "break-word",
-                      wordBreak: "break-all"}}>
-                        <IconText
-                          iconName={"bx bx-envelope bx-sm"}
-                          textDisplayed={this.props.user.email}
-                          textSize={"15px"}
-                          textColor={"#CAD9FC"}
-                          iconMargin={"5px"}
-                        />
-                </div>
-                  </div>*/}
-              <div className="row" style={{marginTop:"1%"}}>
-                <div className="col d-flex align-items-center">
-                        <IconText
-                          iconName={"bx bx-location-plus bx-sm"}
-                          textDisplayed={this.props.profile.location}
-                          textSize={"15px"}
-                          textColor={"#CAD9FC"}
-                          iconMargin={"3px"}
-                        />
-                </div>
-              </div>
-              <div className="row" style={{marginTop:"1%"}}>
-                <div className="col d-flex align-items-center">
-                  <button
-                    type="button"
-                    className="panel-button"
-                    onClick={this.props.renderSetting}
-                    style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                  >
-                    <IconText
-                      textSize={"15px"}
-                      textDisplayed={"Settings"}
-                      iconName={"bx bx-wrench 1 bx-xs"}
-                      iconMargin={"3px"}
-                      textColor={"#ffffff"}
-                    />
-                  </button>
-                </div>
-              </div>
-              </div>}
               {this.props.profile.is_employer &&
               <div>
                 <div className="row" style={{marginTop:"2rem", textAlign:"center"}}>
@@ -253,6 +178,24 @@ export class EssentialUserInfo extends Component {
                     backColor={this.props.subpage == "applications" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "applications" ? selectDash : nonselectDash}
                     textColor={this.props.subpage == "applications" ? selectEColor : defaultEColor}
+                  />
+                </button>
+              </div>
+              </div>
+              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderShortlist}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconEmployerText
+                    textSize={"12px"}
+                    textDisplayed={"Shortlist"}
+                    backColor={this.props.subpage == "shortlist" ? selectBack : defaultBack}
+                    iconSrc={this.props.subpage == "shortlist" ? selectShortlist : nonSelectShortlist}
+                    textColor={this.props.subpage == "shortlist" ? selectEColor : defaultEColor}
                   />
                 </button>
               </div>
@@ -297,8 +240,117 @@ export class EssentialUserInfo extends Component {
               </div>
               </div>
               </div> : 
-              <div> 
-              <div className="row" style={{marginTop:"20%"}}>
+              <div>
+              <div className="row" style={{marginTop:"2rem", textAlign:"center"}}>
+                <div className="col align-items-center">
+                  <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle.png" 
+                      style={{width:"36px"}} alt="icon"></img>
+                </div>
+              </div>
+              {this.props.profile.membership == "Premium" ?
+              <div className="row">
+                <div className="col d-flex align-items-center mt-2">
+                        <IconText
+                          iconName={"bx bx-diamond bx-sm"}
+                          textDisplayed={"Premium"}
+                          textSize={"14px"}
+                          textColor={"#fac046"}
+                          iconMargin={"2px"}
+                        />
+                </div>
+              </div> :
+              <div>
+              <div className="row">
+              <div className="col d-flex align-items-center mt-2">
+                      <IconText
+                        iconName={"bx bx-diamond bx-sm"}
+                        textDisplayed={"Freemium"}
+                        textSize={"14px"}
+                        textColor={"#cad9fc"}
+                        iconMargin={"2px"}
+                      />
+              </div>
+            </div>
+            <div className="row" style={{textAlign:"center"}}>
+              <div className="col align-items-center mt-1">
+                <Link to="/pricing" style={{textDecoration:"none"}}><p style={{color:"#fac046", fontSize:"14px"}}>Upgrade</p></Link>
+              </div>
+            </div>
+            </div>}
+            <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)", width:"100%"}}></hr>
+            <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderVideos}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconUserText
+                    textSize={"12px"}
+                    textDisplayed={"Practiced Interview"}
+                    backColor={this.props.subpage == "videos" ? selectBack : defaultBack}
+                    iconSrc={this.props.subpage == "videos" ? selectVideos : nonSelectVideos}
+                    textColor={this.props.subpage == "videos" ? selectEColor : defaultEColor}
+                  />
+                </button>
+              </div>
+              </div>
+              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderResume}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconUserText
+                    textSize={"12px"}
+                    textDisplayed={"Scanned Resume"}
+                    backColor={this.props.subpage == "resume" ? selectBack : defaultBack}
+                    iconSrc={this.props.subpage == "resume" ? selectResume : nonselectResume}
+                    textColor={this.props.subpage == "resume" ? selectEColor : defaultEColor}
+                  />
+                </button>
+              </div>
+              </div>
+              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderInterview}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconUserText
+                    textSize={"12px"}
+                    textDisplayed={"Received Interview"}
+                    backColor={this.props.subpage == "interview" ? selectBack : defaultBack}
+                    iconSrc={this.props.subpage == "interview" ? selectInterview : nonselectInterview}
+                    textColor={this.props.subpage == "interview" ? selectEColor : defaultEColor}
+                  />
+                </button>
+              </div>
+              </div>
+              <div className="row" style={{marginTop:"20%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderSetting}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconUserText
+                    textSize={"12px"}
+                    textDisplayed={"Settings"}
+                    backColor={this.props.subpage == "settings" ? selectBack : defaultBack}
+                    iconSrc={this.props.subpage == "settings" ? selectSetting : nonselectSetting}
+                    textColor={this.props.subpage == "settings" ? selectEColor : defaultEColor}
+                  />
+                </button>
+              </div>
+              </div>
+              {/*<div className="row" style={{marginTop:"20%"}}>
                 <div className="col d-flex align-items-center">
                   <button
                     type="button"
@@ -395,12 +447,10 @@ export class EssentialUserInfo extends Component {
                       </Link>
                     </div>
                 </div>     
-              </div>}
+              </div>}*/}
               </div>}
             </div>
           </DbCenterRow>
-
-
       </div>
       </React.Fragment>
     );
@@ -437,26 +487,6 @@ const EditModal = (props) => {
                 pattern="[0-9 a-z A-Z ]+"
                 title="Alphabet letters only!"
               />
-              {/*
-              <label style={{ fontSize: "20px" }}>Personal Website</label>
-              <input
-                type="url"
-                className="form-control"
-                name={"website"}
-                value={props.website}
-                placeholder={"Personal Website"}
-                onChange={props.handleInputChange}
-              />
-              <br />
-              <label style={{ fontSize: "20px" }}>About</label>
-              <input
-                type="text"
-                className="form-control"
-                name={"about"}
-                value={props.about}
-                placeholder={"About Yourself"}
-                onChange={props.handleInputChange}
-              />*/}
             </div>
             <button
               type="submit"

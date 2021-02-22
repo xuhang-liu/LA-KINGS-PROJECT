@@ -55,6 +55,7 @@ class MainBanner extends Component {
                                                 <i id="id-video3" className="bx bx-play bx-md" style={{color:"#FF6B00"}}></i>
                                             </a>
                                             </Link>
+                                            <p className="ml-2 mt-3">Learn More</p>
                                         </div>
                                     </div>
                                 </div>

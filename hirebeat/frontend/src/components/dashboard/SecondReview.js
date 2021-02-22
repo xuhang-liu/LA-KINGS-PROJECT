@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import { IconText } from "./DashboardComponents";
 import ApplicationVideo from "./videos/ApplicationVideo";
 import { connect } from "react-redux";
-import { getPostedJobs, getResumeURL } from "../../redux/actions/question_actions"
+import { getPostedJobs, getResumeURL, updateSecondroundStatus} from "../../redux/actions/question_actions"
 
-class ReviewApplication extends Component{
+class SecondReview extends Component{
     constructor(props) {
         super(props);
 
@@ -34,13 +34,12 @@ class ReviewApplication extends Component{
 
     updateStatus = (status) => {
         let data = {"email": this.props.email_candidate, "positionId": this.props.positionId, "status": status, "userId": this.props.user.id};
-        this.props.updateCommentStatus(data);
+        console.log("the data is ", data);
+        this.props.updateSecondroundStatus(data);
         this.props.hide();
     }
     
     render() {
-        const recordTime = this.props.recordTime;
-        const interviewResume = this.props.interviewResume;
         return(
             <div className="container" style={{width:'95%'}}>
                 <div className="card container mb-5" style={{marginTop:"1%"}}>
@@ -98,33 +97,13 @@ class ReviewApplication extends Component{
                                 <div className="row mt-5 pl-3">
                                         Recorded on: {this.props.recordTime.substring(0, 10)}
                                 </div>
-                                {((this.props.interviewResume.result_rate != "") && (this.props.interviewResume.result_rate != null)) &&
-                                <div className="row mt-3 pl-4" style={{width:"13vw"}}>
-                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 0) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 24)) && 
-                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/4.png" alt="pic"></img>}
-                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 25) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 50)) && 
-                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/3.png" alt="pic"></img>}
-                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 51) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 75)) && 
-                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/2.png" alt="pic"></img>}
-                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 76) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 100)) && 
-                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/1.png" alt="pic"></img>}
-                                </div>}
-                                <div className="row">
-                                    {((this.props.interviewResume.result_rate != "") && (this.props.interviewResume.result_rate != null)) &&
-                                    <button
-                                        onClick={() => {setTimeout(()=>{this.props.setShowEva(true);}, 200)}}
-                                        className="interview-txt9 mt-3 ml-3"
-                                        style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
-                                    >
-                                        <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
-                                    </button>}
-                                    {((this.props.resumeURL != "")&&(this.props.resumeURL != null)) &&
-                                    <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 200)}} >
+                                {/*<div className="row">
+                                    <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 300)}} >
                                         <i className="bx bx-file"></i>View Resume
-                                    </button>}
-                                </div></div>}
+                                    </button>
+                                    </div>*/}</div>}
                         </div>
-                        <div className="col-6 container mt-4">
+                        <div className="col-7 container mt-4">
                             <ApplicationVideo   int_ques={this.props.int_ques} 
                                                 positionId={this.props.positionId}
                                                 quesiton_array = {this.state.quesiton_array}
@@ -134,27 +113,20 @@ class ReviewApplication extends Component{
                                                 pk = {this.state.pk}
                             />
                         </div>
-                        <div className="col-3 container" style={{marginTop:"2.5%"}}>
-                            <div className="container mt-3 ml-2">
-                                {this.props.comment_status == 1 ? <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
-                                    Shortlist
+                        <div className="col-2 container" style={{marginTop:"2.5%"}}>
+                            <div className="container mt-3">
+                                {this.props.secondround_status == 1 ? <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
+                                    Approve
                                 </button>
                                 : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
-                                    Shortlist
+                                    Approve
                                 </button>
                                 }
-                                {this.props.comment_status == 2 ? <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2);}}>
-                                    Hold
+                                {this.props.secondround_status == 2 ? <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2);}}>
+                                    Archive
                                 </button>
                                 : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(2);}}>
-                                    Hold
-                                </button>
-                                }
-                                {this.props.comment_status == 3 ? <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(3);}}>
-                                    Reject
-                                </button>
-                                : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(3);}}>
-                                    Reject
+                                    Archive
                                 </button>
                                 }
                             </div>
@@ -168,9 +140,8 @@ class ReviewApplication extends Component{
 
 const mapStateToProps = (state) => ({
     user: state.auth_reducer.user,
-    resumeURL: state.video_reducer.resumeURL,
     recordTime: state.video_reducer.recordTime,
-    interviewResume: state.video_reducer.interviewResume,
+    resumeURL: state.video_reducer.resumeURL,
 });
 
-export default connect(mapStateToProps, { getPostedJobs, getResumeURL })(ReviewApplication);
+export default connect(mapStateToProps, { getPostedJobs, getResumeURL, updateSecondroundStatus})(SecondReview);
