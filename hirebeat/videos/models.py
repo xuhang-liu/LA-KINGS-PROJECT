@@ -35,6 +35,17 @@ class Video(models.Model):
     ai_words_per_minute = models.CharField(null=True, max_length=50)
     ai_filter_words = ArrayField(models.CharField(null=True, max_length=100), blank=True, null=True)
     ai_auto_ready = models.BooleanField(default=False)
+    
+    # Performance scores
+    ai_performance_ready = models.BooleanField(default=False)
+    ai_performance_total_score = models.CharField(null=True, max_length=50)
+    ai_um_counter_score = models.CharField(null=True, max_length=50)
+    ai_filter_words_score = models.CharField(null=True, max_length=50)
+    ai_pace_of_speech_score = models.CharField(null=True, max_length=50)
+    ai_power_words_score = models.CharField(null=True, max_length=50)
+    ai_pause_counter_score = models.CharField(null=True, max_length=50)
+    ai_vocabulary_score = models.CharField(null=True, max_length=50)
+
     # TQ answer
     q_answer = models.TextField(blank=True, null=True)
     q_explain = models.TextField(blank=True, null=True)
