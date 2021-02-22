@@ -50,7 +50,7 @@ export class Dashboard extends Component {
 
   activateEmail = () => {
     // only for FB social login
-    if (this.props.user.email == "" || this.props.user.email == null) {
+    if (this.props.user.email == "" || this.props.user.email == null || (this.props.user.email.toLowerCase().includes("gmail.com"))) {
       var profile = this.makeProfile();
       this.props.updateProfile(profile);
     }
