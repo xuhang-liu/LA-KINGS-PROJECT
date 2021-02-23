@@ -55,10 +55,92 @@ export function VideoImagePreview(props) {
   const dispatch = useDispatch();
   // control status, render modal
   return (
-    <div className="height-20 mt-6">
+    <div className="pt-3">
       <div className="row">
-        <MediaQuery minDeviceWidth={1224}>
-        <div className="col-5">
+        <div className="col-2 interview-txt9 interview-center">
+          {renderQDes(props.v.q_description)}
+        </div>
+        <div className="col-2 interview-txt7 interview-center pt-3">
+          {props.v.created_at.substring(0, 10)}
+        </div>
+        <div className="col-1">
+          <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/gold-medal.png" alt="icon" style={{width:"3rem"}}></img>
+        </div>
+        { props.isBQ ? (
+        <div className="col-2 pt-2">
+          <TQReviewStatus
+            v={props.v}
+            aiReview={true}  // Performance
+            isTQ={true}
+            addTQVideoLimit={props.addTQVideoLimit}
+            width={"8rem"}
+            isAudio={props.isAudio}
+          />
+        </div>
+
+        ):
+        (<div className="col-2 pt-2">
+        <TQReviewStatus
+          v={props.v}
+          aiReview={true}  // Performance
+          isTQ={true}
+          addTQVideoLimit={props.addTQVideoLimit}
+          width={"8rem"}
+          isAudio={props.isAudio}
+        />
+        </div>
+        )}
+        { props.isBQ &&
+        <div className="col-2 pt-2">
+          <ReviewStatusButton
+            v={props.v}
+            sendVideoForReview={props.sendVideoForReview}
+            aiReview={true}  // review type： AI
+            width={"7.5rem"}
+            isAudio={props.isAudio}
+          />
+        </div>}
+        { props.isBQ &&
+        <div className="col-2 pt-2">
+          <ReviewStatusButton
+            v={props.v}
+            sendVideoForReview={props.sendVideoForReview}
+            aiReview={false}  // review type： Expert
+            width={"9.5rem"}
+            isAudio={props.isAudio}
+          />
+        </div>}
+        { !props.isBQ &&
+        <div className="col-3 pt-2">
+          <TQReviewStatus
+            v={props.v}
+            aiReview={true}  // Sample Answer
+            isTQ={true}
+            isSampleAns={true}
+            addTQVideoLimit={props.addTQVideoLimit}
+            width={"12rem"}
+            isAudio={props.isAudio}
+          />
+        </div>}
+        { props.isBQ &&
+        <div className="col-1 pt-2">
+          <button onClick={deleteAlert} className="delete-btn">
+            <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
+          </button>
+        </div>}
+        { !props.isBQ &&
+        <div className="col-1 pt-2">
+          <Link to={"/practice/modes/retry"} onClick={retry}>
+            <i className="bx bx-revision text-30"></i>
+          </Link>
+        </div>}
+        { !props.isBQ &&
+        <div className="col-1 pt-2">
+          <button onClick={deleteAlert} className="delete-btn">
+            <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
+          </button>
+        </div>}
+        {/*<div className="col-5">
           {
             (props.isAudio) ?
                 <div className="d-flex align-items-center" style={{height: "100%"}} >
@@ -66,10 +148,8 @@ export function VideoImagePreview(props) {
                 </div>
                 : <VideoPlayer url={props.v.url} />
           }
-        </div>
-        </MediaQuery>
-        <div className="col d-flex flex-column justify-content-start container" style={{backgroundColor: "white", "border-radius": "0.5rem"}}>
-        <MediaQuery minDeviceWidth={1224}>
+        </div>*/}
+        {/*<div className="col d-flex flex-column justify-content-start container" style={{backgroundColor: "white", "border-radius": "0.5rem"}}>
           <h3 className="height-50 mt-5">Q:{renderQDes(props.v.q_description)}</h3>
           <div className="d-flex justify-content-start">
             <p className="text-secondary">{props.v.q_type}({props.v.q_category})</p>
@@ -83,23 +163,6 @@ export function VideoImagePreview(props) {
               {props.v.created_at.substring(0, 10)}
             </p>
           </div>
-          </MediaQuery>
-          <MediaQuery maxDeviceWidth={1223}>
-          <h5 className="height-50">Q:{renderQDes(props.v.q_description)}</h5>
-          <div className="d-flex justify-content-start">
-            <p className="text-secondary" style={{fontSize:'11px'}}>{props.v.q_type}({props.v.q_category})</p>
-            <p
-              className="text-secondary"
-              style={{ marginLeft: "10px", marginRight: "10px" ,fontSize:"11px"}}
-            >
-              {" | "}
-            </p>
-            <p className="text-secondary" style={{fontSize:'11px'}}>
-              {props.v.created_at.substring(0, 10)}
-            </p>
-          </div>
-          </MediaQuery>
-          <MediaQuery minDeviceWidth={1224}>
             { props.isBQ ? (
                 <div className="row mb-6">
                     <div className="col">
@@ -171,47 +234,7 @@ export function VideoImagePreview(props) {
                   </div>
                 </div>)
             }
-            </MediaQuery>
-            <MediaQuery maxDeviceWidth={1223}>
-            { props.isBQ ? (
-                <div className="row" style={{width: "90%"}}>
-                    <div className="col">
-                      <ReviewStatusButton
-                        v={props.v}
-                        sendVideoForReview={props.sendVideoForReview}
-                        aiReview={true}  // review type： AI
-                      />
-                    </div>
-                    <div className="col">
-                      <ReviewStatusButton
-                        v={props.v}
-                        sendVideoForReview={props.sendVideoForReview}
-                        aiReview={false}  // review type： Expert
-                      />
-                    </div>
-                </div>) : (  // TQ
-                <div className="row" style={{width: "90%"}}>
-                  <div className="col">
-                    <TQReviewStatus
-                      v={props.v}
-                      aiReview={true}  // review type： AI
-                      isTQ={true}
-                      addTQVideoLimit={props.addTQVideoLimit}
-                    />
-                  </div>
-                  <div className="col">
-                    <TQReviewStatus
-                      v={props.v}
-                      aiReview={true}  // review type： AI
-                      isTQ={true}
-                      isSampleAns={true}
-                      addTQVideoLimit={props.addTQVideoLimit}
-                    />
-                  </div>
-                </div>)
-            }
-            </MediaQuery>
-        </div>
+          </div>*/}
       </div>
     </div>
   );

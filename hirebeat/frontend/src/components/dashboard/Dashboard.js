@@ -159,6 +159,7 @@ export class Dashboard extends Component {
               </div>
               <div className='col-11'>
                 <div className="dashboard-main">
+                <div className="container-fluid">
                   {this.state.subpage === "settings" ? null :
                       <RowBoxes
                           renderVideos={this.renderVideos}
@@ -167,7 +168,8 @@ export class Dashboard extends Component {
                           userId={this.props.user.id}
                           isEmployer={false}
                       />}
-                  <div className="container" style={{marginBottom: "0%"}}>
+                </div>
+                  <div className="container-fluid" style={{marginBottom: "0%"}}>
                     <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
                       {this.renderSubpage()}
                     </div>
