@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog22.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Feb 23, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years">
+                                    <a>How to Answer: 'Where do you see yourself in 5 years?'</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/blog-4-amazing-tips-to-effectively-networking-during-covid-19">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog21.jpg" alt="image"/>
@@ -53,7 +72,7 @@ class BlogSidebar extends Component {
                             <time>Feb 08, 2021</time>
                             <h4 className="title usmall">
                                 <Link to="/blog-how-to-handle-the-question-you-donot-know">
-                                    <a>How to Handle the Question You don’t Know How to Answer in an Interview</a>
+                                    <a>How to Handle the Question You don’t Know in an Interview</a>
                                 </Link>
                             </h4>
                         </div>
