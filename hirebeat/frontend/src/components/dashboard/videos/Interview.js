@@ -30,7 +30,7 @@ export const Interview = () => {
         </div>
         <div className="col-3">
         <Link to="/practice">
-        <button className="default-btn">
+        <button className="default-btn float-xl-right">
             <i className="bx bx-plus"></i> 
              New Practice
             <span></span>

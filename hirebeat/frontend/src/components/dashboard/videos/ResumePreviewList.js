@@ -25,15 +25,20 @@ export class Resume extends Component {
   render() {
       return (
         <React.Fragment>
-          <div style={{marginBottom: "20px"}} className="container d-flex justify-content-start pl-0">
-          <Link to="/resume" style={{marginLeft:"80%"}}>
-            <button className="default-btn">
+          <div style={{marginBottom: "20px"}} className="container-xl justify-content-start pl-0">
+          <div className="row">
+          <div className="col-9"></div>
+          <div className="col-3">
+          <Link to="/resume">
+            <button className="default-btn float-xl-right">
               <i className="bx bx-plus"></i> 
               New Scan
               <span></span>
             </button>
           </Link>
           </div>
+          </div>
+          <div className="row">
           {this.props.loaded ?
             this.props.resumes.map((r) => {
               return (
@@ -49,6 +54,8 @@ export class Resume extends Component {
               )
             }) : null
           }
+          </div>
+          </div>
         </React.Fragment>
       );
   }

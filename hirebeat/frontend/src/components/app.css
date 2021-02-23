@@ -163,7 +163,7 @@ video {
 .text-30 {
   font-family: Avenir Next, Segoe UI;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 30px;
   line-height: 48px;
   display: flex;
@@ -175,7 +175,7 @@ video {
 .text-15 {
   font-family: Avenir Next, Segoe UI;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 15px;
   line-height: 18px;
   display: flex;
