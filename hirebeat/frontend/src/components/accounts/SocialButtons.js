@@ -10,7 +10,7 @@ export class SocialButtons extends Component {
     return (
       <SocialButton
         provider="facebook"
-        appId="248485152931865"
+        appId="2133269236804598"
         onLoginSuccess={this.props.handleSocialLogin}
         onLoginFailure={this.handleSocialLoginFailure}
         type="facebook"
@@ -51,8 +51,8 @@ export class SocialButtons extends Component {
   render() {
     return (
       <div style={{ marginTop: 15 , marginBottom: 50}}>
-        {/*this.renderFacebookButton()*/}
         {this.renderGoogleButton()}
+        {this.renderFacebookButton()}
         {/*this.renderLinkedinButton()*/}
       </div>
     );

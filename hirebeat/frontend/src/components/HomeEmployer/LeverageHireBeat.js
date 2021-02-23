@@ -92,13 +92,8 @@ class LeverageHireBeat extends Component {
 
                         <div className="col-lg-6 col-md-6">
                             <div className="overview-content pl-3">
-                                <h3 style={{fontSize: "2.625rem"}}>About HireBeat</h3>
+                                <h3 className="mt-5" style={{fontSize: "2.625rem"}}>About HireBeat</h3>
                                 <p>HireBeat is a convenient web platform that save 90% of your time to hire the right candidates via customized interview questions and pre-recorded video interviews.</p>
-                                <Link to='/employer_register' id="id-employer_signup2" className='default-btn' style={{backgroundColor: "#67A3F3", textDecoration:'none'}}>
-                                <i className="bx bxs-arrow-to-right"></i>
-                                    Create Interviews For Free
-                                <span></span>
-                            </Link>
                             </div>
                         </div>
                     </div>
