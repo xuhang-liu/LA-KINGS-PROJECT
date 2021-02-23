@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main211.js",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main211.js",
+    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main214.js",
+    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main214.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
@@ -114,7 +114,7 @@
     "react-share": "^4.2.1",
     "react-show-more-text": "^1.4.6",
     "react-simple-star-rating": "^1.0.6",
-    "react-social-login": "^3.4.7",
+    "react-social-login": "^3.4.10",
     "react-social-login-buttons": "^3.1.0",
     "react-star-ratings": "^2.3.0",
     "react-switch": "^5.0.1",

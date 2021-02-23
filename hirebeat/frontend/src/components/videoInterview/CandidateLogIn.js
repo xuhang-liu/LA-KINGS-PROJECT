@@ -151,7 +151,7 @@ export class CandidateLogin extends Component {
                             onChange={this.onChange}
                             value={email}
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               border: "0.5px solid #E5E5E5",
                               borderRadius: "0.5rem",
@@ -170,7 +170,7 @@ export class CandidateLogin extends Component {
                             onChange={this.onChange}
                             value={password}
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               border: "0.5px solid #E5E5E5",
                               borderRadius: "0.5rem",
@@ -200,7 +200,7 @@ export class CandidateLogin extends Component {
                         style={{
                           marginTop:"4rem",
                           marginBottom:"2rem",
-                          fontFamily: "Avenir Next",
+                          fontFamily: "Avenir Next, Segoe UI",
                         }}
                     />
 
@@ -238,7 +238,7 @@ export class CandidateLogin extends Component {
                                         onChange={this.onChange}
                                         value={email}
                                         style={{
-                                          fontFamily: "Avenir Next",
+                                          fontFamily: "Avenir Next, Segoe UI",
                                           background: "#FFFFFF",
                                           borderRadius: "5px",
                                           paddingLeft: "1rem",
@@ -258,7 +258,7 @@ export class CandidateLogin extends Component {
                                         placeholder="Create Password"
                                         minLength="8"
                                         style={{
-                                          fontFamily: "Avenir Next",
+                                          fontFamily: "Avenir Next, Segoe UI",
                                           background: "#FFFFFF",
                                           borderRadius: "5px",
                                           paddingLeft: "1rem",
@@ -277,7 +277,7 @@ export class CandidateLogin extends Component {
                                         placeholder="Confirm Password"
                                         minLength="8"
                                         style={{
-                                          fontFamily: "Avenir Next",
+                                          fontFamily: "Avenir Next, Segoe UI",
                                           background: "#FFFFFF",
                                           borderRadius: "5px",
                                           paddingLeft: "1rem",

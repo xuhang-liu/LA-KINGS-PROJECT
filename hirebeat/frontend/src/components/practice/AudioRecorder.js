@@ -144,7 +144,7 @@ export class AudioRecorder extends Component {
             !this.props.isTesting && this.props.isSimulate ? (
               <div style={{display: this.state.display}}>
                 <RecordDoneButton
-                  fontFamily={"Avenir Next"}
+                  fontFamily={"Avenir Next, Segoe UI"}
                   onTap={this.stopMic}
                   textDisplayed={"Finish Now"}
                   buttonWidth={"100%"}
