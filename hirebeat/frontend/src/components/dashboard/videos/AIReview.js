@@ -7,10 +7,12 @@ import {
 } from "../../../constants/constants";
 import {
   ReviewHeader,
-  QuestionTitle,
   CategoryTitle,
 } from "../DashboardComponents";
-import MediaQuery from 'react-responsive';
+import VideoPlayer from "../../videos/VideoPlayer";
+import AudioPlayer from "../../audios/AudioPlayer";
+import { Link } from "react-router-dom";
+//import MediaQuery from 'react-responsive';
 
 export function AIReview(props) {
   var categoryArray = convertStringToArray(props.v.ai_review_categories);
@@ -27,15 +29,38 @@ export function AIReview(props) {
   }
   infillChartData(categoryArray, percentArray);
   return (
-    <div className="container">
-      <ReviewHeader setSubPage={() => props.setSubPage("status")} />
-      <QuestionTitle title={props.v.q_description} />
-      {!props.isTQ ?
-        (<div>
-          <CategoryTitle title={"Overall Score"} />
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-5">
+            <h3 className="ml-4" style={{color:"#4A6F8A"}}>{props.v.q_description} </h3>
+            <div className="ml-4" style={{maxWidth:"40rem"}}>
+            {
+            (props.isAudio) ?
+                    <AudioPlayer url={props.v.url} />
+                : <VideoPlayer url={props.v.url} />
+            }
+            </div>
+            <h6 className="ml-5 my-5" style={{color:"#13C4A1"}}>
+                You really aced this question!  You have scored higher than 90% of other candidates.
+            </h6>
+            <h6 className="ml-4" style={{color:"#4A6F8A"}}>
+                Review your score breakdown by category to learn more about what you’re doing well what could be improved.
+            </h6>
+            <hr className="ml-4" style={{height:"1px", borderWidth:"2", color:"E8EDFC",backgroundColor:"E8EDFC"}}></hr>
+            <h6 className="ml-4" style={{color:"#4A6F8A "}}>
+                Check our personalized action plan to help you improve.
+            </h6>
+            <div className="row pl-4">
+                <Link to={"/practice/modes/retry"}>
+                  <button className='default-btn ml-5 my-4' onClick={props.retry}><i class='bx bx-revision'></i>Re-practice</button>
+                </Link>
+            </div>
+        </div>
+        <div className="col-7 mb-4">
+        <ReviewHeader setSubPage={() => props.setSubPage("status")} />
+        <CategoryTitle title={"Overall Score"} />
           <ProgressBar color={"blue"} height={15} percent={props.v.ai_score} />
           <div className="row">
-          <MediaQuery minDeviceWidth={1224}>
             <div className="col-6">
               <div id="chart">
                 <Chart
@@ -58,9 +83,26 @@ export function AIReview(props) {
                 );
               })}
             </div>
-            </MediaQuery>
-            <MediaQuery maxDeviceWidth={1223}>
-            <div style={{marginLeft:'4%'}}>
+          </div>
+        </div>
+      </div>
+      {/*<ReviewHeader setSubPage={() => props.setSubPage("status")} />
+      <QuestionTitle title={props.v.q_description} />
+      <div>
+          <CategoryTitle title={"Overall Score"} />
+          <ProgressBar color={"blue"} height={15} percent={props.v.ai_score} />
+          <div className="row">
+            <div className="col-6">
+              <div id="chart">
+                <Chart
+                  options={radialChartOptions.options}
+                  series={radialChartOptions.series}
+                  type="radar"
+                  height={350}
+                />
+              </div>
+            </div>
+            <div className="col-6">
               <CategoryTitle title={"Details"} />
               {categoryArray.map((c, index) => {
                 return (
@@ -72,13 +114,8 @@ export function AIReview(props) {
                 );
               })}
             </div>
-            </MediaQuery>
           </div>
-        </div>) : null}
-      <WordReview
-        talkSpeed={talkSpeed}
-        wordArray={wordArray}
-        />
+        </div>*/}
     </div>
   );
 }

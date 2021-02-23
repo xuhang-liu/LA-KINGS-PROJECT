@@ -3,9 +3,9 @@ import Modal from "react-bootstrap/Modal";
 import Chart from "react-apexcharts";
 import { customBarData, customBarData2 } from "../../constants/constants";
 import MediaQuery from 'react-responsive';
-import CountUp from "react-countup";
-import LazyLoad from "react-lazyload";
-import axios from "axios";
+//import CountUp from "react-countup";
+//import LazyLoad from "react-lazyload";
+//import axios from "axios";
 export const DbRow = (props) => {
     return <div className="dashboard-row">{props.children}</div>;
 };

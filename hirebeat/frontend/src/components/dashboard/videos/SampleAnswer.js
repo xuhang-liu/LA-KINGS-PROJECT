@@ -2,22 +2,67 @@ import React from "react";
 //import Chart from "react-apexcharts";
 
 import {
-  DbRow,
-  QuestionTitle,
+  DbRow
 } from "../DashboardComponents";
+import VideoPlayer from "../../videos/VideoPlayer";
+import AudioPlayer from "../../audios/AudioPlayer";
+import { Link } from "react-router-dom";
 
 export function SampleAnswer(props) {
   var explain = props.v.q_explain;
   var answer = props.v.q_answer;
   return (
-    <div className="container">
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-5">
+            <h3 className="ml-4" style={{color:"#4A6F8A"}}>{props.v.q_description} </h3>
+            <div className="ml-4" style={{maxWidth:"40rem"}}>
+            {
+            (props.isAudio) ?
+                    <AudioPlayer url={props.v.url} />
+                : <VideoPlayer url={props.v.url} />
+            }
+            </div>
+            <h6 className="ml-5 my-5" style={{color:"#13C4A1"}}>
+                You really aced this question!  You have scored higher than 90% of other candidates.
+            </h6>
+            <h6 className="ml-4" style={{color:"#4A6F8A"}}>
+                Review your score breakdown by category to learn more about what you’re doing well what could be improved.
+            </h6>
+            <hr className="ml-4" style={{height:"1px", borderWidth:"2", color:"E8EDFC",backgroundColor:"E8EDFC"}}></hr>
+            <h6 className="ml-4" style={{color:"#4A6F8A "}}>
+                Check our personalized action plan to help you improve.
+            </h6>
+            <div className="row pl-4">
+                <Link to={"/practice/modes/retry"}>
+                  <button className='default-btn ml-5 my-4' onClick={props.retry}><i class='bx bx-revision'></i>Re-practice</button>
+                </Link>
+            </div>
+        </div>
+        <div className="col-7 mb-4">
+          <DbRow>
+            <div className="col-2"/>
+            <div className="col-8 d-flex justify-content-center align-items-center">
+              <strong className="text-20" style={{color: "#7D7D7D"}}>See Your Sample Answer</strong>
+            </div>
+            <div className="col-2"/>
+          </DbRow>
+          <div style={{marginBottom: "3rem", marginLeft: "1rem"}}>
+            <h3>Sample Answer: </h3>
+            <p style={{marginLeft: "1rem"}}>{answer}</p>
+            <h3>Explanation: </h3>
+            <p style={{marginLeft: "1rem"}}>{explain}</p>
+          </div>
+        </div>
+      </div>
+    {/*<div className="container">
       <DbRow>
         <div className="col-2"/>
         <div className="col-8 d-flex justify-content-center align-items-center">
             <strong className="text-20" style={{color: "#7D7D7D"}}>See Your Sample Answer</strong>
         </div>
         <div className="col-2"/>
-        </DbRow>
+      </DbRow>
       <QuestionTitle title={props.v.q_description} />
       <div style={{marginBottom: "3rem", marginLeft: "1rem"}}>
         <h3>Sample Answer: </h3>
@@ -25,7 +70,8 @@ export function SampleAnswer(props) {
         <h3>Explanation: </h3>
         <p style={{marginLeft: "1rem"}}>{explain}</p>
       </div>
-    </div>
+    </div>*/}
+  </div>
   );
 }
 

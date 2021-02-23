@@ -98,6 +98,8 @@ function ReviewStatusButton(props) {
         onHide={() => setShow(false)}
         v={props.v}
         sendVideoForReview={props.sendVideoForReview}
+        isAudio={props.isAudio}
+        retry={props.retry}
       />
     </div>
   );
@@ -108,9 +110,9 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       {subPage == "expert" ? (
-        <ExpertReview v={v} setSubPage={setSubPage} />
+        <ExpertReview v={v} setSubPage={setSubPage} isAudio={props.isAudio} retry={props.retry}/>
       ) : (
-        <AIReview v={v} setSubPage={setSubPage} />
+        <AIReview v={v} setSubPage={setSubPage} isAudio={props.isAudio} retry={props.retry}/>
       )}
     </MyModal>
   );

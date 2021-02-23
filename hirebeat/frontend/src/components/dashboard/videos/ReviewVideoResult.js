@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import ReactPlayer from 'react-player';
+//import ReactPlayer from 'react-player';
 import VideoPlayer from "../../videos/VideoPlayer";
 import AudioPlayer from "../../audios/AudioPlayer";
 
 const ReviewVideoResult = (props) => {
     const [left, setLeft] = useState(true);
-    console.log(props);
-    return <div className="row">
+    return (
+    <div className="container-fluid">
+        <div className="row">
         <div className="col-5">
             <h3 className="ml-4" style={{color:"#4A6F8A"}}>{props.v.q_description} </h3>
             <div className="ml-4" style={{maxWidth:"40rem"}}>
@@ -32,7 +33,8 @@ const ReviewVideoResult = (props) => {
                 <button className='btn btn-secondary ml-5 my-4' style={{paddingLeft:"25px", paddingRight:"25px"}}><i class='bx bx-revision'></i>Re-practice</button>}
             </div>
         </div>
-
-    </div>};
+        </div>
+    </div>
+    )};
 
 export default ReviewVideoResult;

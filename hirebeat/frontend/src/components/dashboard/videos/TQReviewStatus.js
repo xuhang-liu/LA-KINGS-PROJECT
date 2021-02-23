@@ -88,6 +88,7 @@ function upgradeMessage() {
         v={props.v}
         isTQ={props.isTQ}
         isAudio={props.isAudio}
+        retry={props.retry}
       />
     </div>
   );
@@ -98,9 +99,9 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       {subPage == "sampleAns" ? (
-        <SampleAnswer v={v} setSubPage={setSubPage} />
+        <SampleAnswer v={v} setSubPage={setSubPage} retry={props.retry} isAudio={props.isAudio}/>
       ) : (
-        <ReviewVideoResult v={v} setSubPage={setSubPage} isTQ={isTQ} isAudio={props.isAudio}/>
+        <ReviewVideoResult v={v} setSubPage={setSubPage} isTQ={isTQ} isAudio={props.isAudio} retry={props.retry}/>
       )}
     </MyModal>
   );
