@@ -194,7 +194,7 @@ export const Comments = (props) => {
 };
 
 const sectionTitleStyle = {
-    fontFamily: "Avenir Next",
+    fontFamily: "Avenir Next, Segoe UI",
     fontStyle: "normal",
     fontWeight: "300",
     fontSize: "15px",

@@ -239,7 +239,7 @@ export class MyVideoUploader extends Component {
         <BglessCardButton1
           textDisplayed={"Upgrade Now ->"}
           buttonWidth={"100%"}
-          fontFamily={"Avenir Next"}
+          fontFamily={"Avenir Next, Segoe UI"}
           isAudio={this.props.isAudio}
         />
         }*/}
@@ -248,7 +248,7 @@ export class MyVideoUploader extends Component {
                   onTap={skipOnTap}
                   textDisplayed={skipText}
                   buttonWidth={"100%"}
-                  fontFamily={"Avenir Next"}
+                  fontFamily={"Avenir Next, Segoe UI"}
                   isAudio={this.props.isAudio}
               />
           )}

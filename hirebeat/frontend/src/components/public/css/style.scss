@@ -46,7 +46,7 @@ Default CSS
 =================================================*/
 @import url('https://fonts.googleapis.com/css?family=Avenir Next:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
 
-$font-family: 'Avenir Next', sans-serif;
+$font-family: 'Avenir Next','Segoe UI', sans-serif;
 $main-color: #13c4a1;
 $optional-color: #ff612f;
 $black-color: #080a3c;
@@ -73,7 +73,7 @@ $grid-breakpoints: (
 );
 $print-body-min-width: map-get($grid-breakpoints, "lg") !default;
 * {
-    font-family: 'Avenir Next', sans-serif;
+    font-family: 'Avenir Next', 'Segoe UI', sans-serif;
 }
 
 body {

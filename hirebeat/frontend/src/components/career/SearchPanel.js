@@ -74,7 +74,7 @@ export class SearchPanel extends Component {
                             className="form-control"
                             style={{
                                 fontSize: "1rem",
-                                fontFamily: "Avenir Next",
+                                fontFamily: "Avenir Next, Segoe UI",
                                 background: "#FFFFFF",
                                 borderRadius: "0.5rem",
                                 paddingLeft: "1rem",
@@ -91,7 +91,7 @@ export class SearchPanel extends Component {
                             className="form-control"
                             style={{
                                 fontSize: "1rem",
-                                fontFamily: "Avenir Next",
+                                fontFamily: "Avenir Next, Segoe UI",
                                 background: "#FFFFFF",
                                 borderRadius: "0.5rem",
                                 paddingLeft: "1rem",

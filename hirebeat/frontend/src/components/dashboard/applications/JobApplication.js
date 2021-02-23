@@ -147,7 +147,7 @@ const JobViewDetail = (props) => {
             {/* Summarize */}
             {!view &&
                 <div className="container d-flex justify-content-start " style={{marginTop:"3rem", backgroundColor: "white", "border-radius": "0.5rem"}}>
-                    <div className="col-12" style={{fontFamily: "Avenir Next" }}>
+                    <div className="col-12" style={{fontFamily: "Avenir Next, Segoe UI" }}>
                         <div className="mt-4">
                             <div className="row">
                                 <div className="col-9" style={{color:"#090D3A"}}>

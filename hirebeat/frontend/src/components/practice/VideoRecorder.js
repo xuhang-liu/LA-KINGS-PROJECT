@@ -133,7 +133,7 @@ export class VideoRecorder extends Component {
             !this.props.isTesting && this.props.isSimulate ? (
               <div style={{display: this.state.display}}>
                 <RecordDoneButton
-                  fontFamily={"Avenir Next"}
+                  fontFamily={"Avenir Next, Segoe UI"}
                   onTap={this.stopCamera}
                   textDisplayed={"Finish Now"}
                   buttonWidth={"100%"}
