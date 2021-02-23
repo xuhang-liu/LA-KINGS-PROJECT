@@ -74,6 +74,7 @@ export function VideoImagePreview(props) {
             isTQ={true}
             addTQVideoLimit={props.addTQVideoLimit}
             width={"8rem"}
+            isAudio={props.isAudio}
           />
         </div>
 
@@ -85,6 +86,7 @@ export function VideoImagePreview(props) {
           isTQ={true}
           addTQVideoLimit={props.addTQVideoLimit}
           width={"8rem"}
+          isAudio={props.isAudio}
         />
         </div>
         )}
@@ -95,6 +97,7 @@ export function VideoImagePreview(props) {
             sendVideoForReview={props.sendVideoForReview}
             aiReview={true}  // review type： AI
             width={"7.5rem"}
+            isAudio={props.isAudio}
           />
         </div>}
         { props.isBQ &&
@@ -104,6 +107,7 @@ export function VideoImagePreview(props) {
             sendVideoForReview={props.sendVideoForReview}
             aiReview={false}  // review type： Expert
             width={"9.5rem"}
+            isAudio={props.isAudio}
           />
         </div>}
         { !props.isBQ &&
@@ -115,6 +119,7 @@ export function VideoImagePreview(props) {
             isSampleAns={true}
             addTQVideoLimit={props.addTQVideoLimit}
             width={"12rem"}
+            isAudio={props.isAudio}
           />
         </div>}
         { props.isBQ &&

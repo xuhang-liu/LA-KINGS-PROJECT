@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { renderQDes, renderSuccessTag, renderWaitTag, MyModal } from "../DashboardComponents";
 import { SampleAnswer } from "./SampleAnswer";
 import { AIReview } from "./AIReview";
+import ReviewVideoResult from './ReviewVideoResult';
 //import MediaQuery from 'react-responsive';
 import { connect } from "react-redux";
 import { confirmAlert } from 'react-confirm-alert';
@@ -86,6 +87,7 @@ function upgradeMessage() {
         onHide={() => setShow(false)}
         v={props.v}
         isTQ={props.isTQ}
+        isAudio={props.isAudio}
       />
     </div>
   );
@@ -98,7 +100,7 @@ function MyVerticallyCenteredModal(props) {
       {subPage == "sampleAns" ? (
         <SampleAnswer v={v} setSubPage={setSubPage} />
       ) : (
-        <AIReview v={v} setSubPage={setSubPage} isTQ={isTQ} />
+        <ReviewVideoResult v={v} setSubPage={setSubPage} isTQ={isTQ} isAudio={props.isAudio}/>
       )}
     </MyModal>
   );

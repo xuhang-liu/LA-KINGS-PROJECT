@@ -86,7 +86,7 @@ function ReviewStatusButton(props) {
         <button
           onClick={reviewToggle}
           className={className}
-          style={{ color: "#FFFFFF", marginBottom: "0px", outline: "none", width: props.width }}
+          style={{ color: "#FFFFFF", marginBottom: "0px", display: "inline-block", outline: "none", width: props.width }}
         >
           {text}
         </button>
