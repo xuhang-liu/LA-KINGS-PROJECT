@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-
+from accounts.models import Profile
 from knox.models import AuthToken
 from requests.exceptions import HTTPError
 from social_django.utils import psa
@@ -31,6 +31,10 @@ def exchange_token(request, backend):
         user = request.backend.do_auth(serializer.validated_data['access_token'])
         if user:
             _, token = AuthToken.objects.create(user)
+            ### profile is autocreated
+            profile = Profile.objects.filter(user=user.id)[0]
+            profile.email_confirmed = True
+            profile.save()
             return Response({
                    "user": UserSerializer(user).data,
                     "token": token,

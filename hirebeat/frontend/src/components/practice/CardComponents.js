@@ -89,7 +89,7 @@ export const CardButton = (props) => {
     >
       <p
         style={{
-          fontFamily: "Avenir Next",
+          fontFamily: "Avenir Next, Segoe UI",
           fontStyle: "normal",
           fontWeight: "bold",
           fontSize: "1.2rem",
@@ -130,7 +130,7 @@ export const BglessCardButton = (props) => {
       >
         <p
         style={{
-          fontFamily: "Avenir Next",
+          fontFamily: "Avenir Next, Segoe UI",
           fontStyle: "normal",
           fontWeight: "bold",
           fontSize: "1.2rem",
@@ -245,7 +245,7 @@ export const ButtonContainer = (src, onTap, textDisplayed, btnClassName) => {
           textDisplayed={textDisplayed}
           buttonWidth={"85%"}
           WebkitBorderRadius={"40px"}
-          fontFamily={"Avenir Next"}
+          fontFamily={"Avenir Next, Segoe UI"}
           btnClassName={btnClassName ?? "btn btn-warning"}
         />
       </CardRow>

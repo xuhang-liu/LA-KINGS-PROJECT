@@ -87,6 +87,7 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years",
     "/blog-4-amazing-tips-to-effectively-networking-during-covid-19",
     "/blog-how-to-handle-the-question-you-donot-know",
     "/blog-acing-pandemic-job-interview-questions",
@@ -111,6 +112,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog22.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog21.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog20.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog19.jpg",
@@ -135,6 +137,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Feb 23, 2021",
     "Feb 17, 2021",
     "Feb 08, 2021",
     "Feb 02, 2021",
@@ -159,6 +162,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "WHERE DO YOU SEE YOURSELF IN 5 YEARS",
     "EFFECTIVELY NETWORKING DURING COVID-19",
     "HANDLE THE QUESTIONS YOU DON'T KNOW",
     "ACING PANDEMIC JOB INTERVIEW QUESTIONS",

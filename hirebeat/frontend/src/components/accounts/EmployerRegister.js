@@ -81,7 +81,7 @@ export class EmployerRegister extends Component {
                     <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"3rem"}}>
                         <div style={{marginBottom:"3rem", paddingTop:"3rem"}}>
-                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next", textAlign:"center"}}><b>Become an Employer at HireBeat</b></h1>
+                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Become an Employer at HireBeat</b></h1>
                         </div>
                     <div className="signup-form">
                     <form onSubmit={this.onSubmit}>
@@ -94,7 +94,7 @@ export class EmployerRegister extends Component {
                             onChange={this.onChange}
                             value={username}
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -113,7 +113,7 @@ export class EmployerRegister extends Component {
                             required
                             onChange={this.onChange}
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -132,7 +132,7 @@ export class EmployerRegister extends Component {
                             placeholder="Create Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -151,7 +151,7 @@ export class EmployerRegister extends Component {
                             placeholder="Confirm Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -212,7 +212,7 @@ export class EmployerRegister extends Component {
                       <hr className="style-four"
                           data-content="Or use"
                           style={{
-                            fontFamily: "Avenir Next",
+                            fontFamily: "Avenir Next, Segoe UI",
                             marginBottom:"2rem",
                             marginTop:"4rem",
                           }}
@@ -222,7 +222,7 @@ export class EmployerRegister extends Component {
                     <div>
                       <div>
                         <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
-                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next"}}>
+                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI"}}>
                         <a>No credit card information needed during signup. Enjoy your free plan.</a>
                         </div></div>
                     </div>

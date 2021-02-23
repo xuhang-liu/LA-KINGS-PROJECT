@@ -42,7 +42,7 @@ function TestDevice(props) {
               onTap={props.testDeviceDone}
               textDisplayed={"Start Practice"}
               buttonWidth={"75%"}
-              fontFamily={"Avenir Next"}
+              fontFamily={"Avenir Next, Segoe UI"}
             />
           </div>
         </div>

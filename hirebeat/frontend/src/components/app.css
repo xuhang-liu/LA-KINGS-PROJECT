@@ -4,11 +4,11 @@
 @import "./public/css/style.scss";
 
 * {
-  font-family: "Avenir Next", sans-serif;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
 }
 
 p {
-  font-family: "Avenir Next";
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
 }
 
 .navbar-font {
@@ -161,7 +161,7 @@ video {
 }
 
 .text-30 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
@@ -173,7 +173,7 @@ video {
 }
 
 .text-15 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
@@ -230,7 +230,7 @@ video {
 }
 
 .comments {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -291,6 +291,8 @@ video {
 }
 
 .icon-user-text {
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
   width: 6rem;
   height: 6rem;
   padding-top: 0.6rem;
@@ -611,7 +613,7 @@ h5 {
 }
 
 .btn-selected {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -629,7 +631,7 @@ h5 {
 }
 
 .btn-unselected {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -647,7 +649,7 @@ h5 {
 
 @media only screen and (max-width: 767px) {
   .btn-selected {
-    font-family: Avenir Next;
+    font-family: Avenir Next, Segoe UI;
     font-style: normal;
     font-weight: 500;
     font-size: 11px;
@@ -665,7 +667,7 @@ h5 {
   }
 
   .btn-unselected {
-    font-family: Avenir Next;
+    font-family: Avenir Next, Segoe UI;
     font-style: normal;
     font-weight: 400;
     font-size: 11px;
@@ -683,7 +685,7 @@ h5 {
 }
 
 .text-secondary {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -691,13 +693,13 @@ h5 {
 }
 
 .h3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   color: #000000;
 }
 
 .review-text {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 25px;
@@ -706,7 +708,7 @@ h5 {
 }
 
 .text-20 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -715,7 +717,7 @@ h5 {
 }
 
 .text-10 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 10px;
@@ -726,7 +728,7 @@ h5 {
 }
 
 .text-12 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.75rem;
@@ -793,7 +795,7 @@ h5 {
 
 .header-text {
   color: #ffffff;
-  font-family: Avenir Next, Arial, Helvetica, sans-serif;
+  font-family: Avenir Next, Segoe UI, Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 1.2rem;
   -webkit-transition: 0s;
@@ -830,7 +832,7 @@ h5 {
   border-radius: 0;
   font-size: x-large;
   font-weight: 600;
-  font-family: "Avenir Next";
+  font-family: "Avenir Next", "Segoe UI";
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   margin-top: 20px;
@@ -896,7 +898,7 @@ h5 {
   left: 10px;
   top: 84px;
 
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -944,7 +946,7 @@ h5 {
   height: 96px;
   left: 307.96px;
   top: 338px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -958,7 +960,7 @@ h5 {
   height: 20px;
   left: calc(50% - 87px / 2 - 368.5px);
   top: 442px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -972,7 +974,7 @@ h5 {
   height: 18px;
   left: calc(50% - 74px / 2 - 375px);
   top: 538px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1003,7 +1005,7 @@ h5 {
   height: 36px;
   left: 19px;
   top: 182px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
@@ -1016,7 +1018,7 @@ h5 {
   height: 42px;
   left: 19px;
   top: 231px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1029,7 +1031,7 @@ h5 {
   height: 20.03px;
   left: 19px;
   top: 294px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1042,7 +1044,7 @@ h5 {
   height: 28px;
   left: 19px;
   top: 327.27px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1055,7 +1057,7 @@ h5 {
   height: 28px;
   left: 205px;
   top: 327.57px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1088,7 +1090,7 @@ h5 {
   height: 173px;
   left: 76px;
   top: 37px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
@@ -1118,7 +1120,7 @@ h5 {
   left: 27.99%;
   right: 27.99%;
   top: 185px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
@@ -1138,7 +1140,7 @@ h5 {
   height: 18px;
   left: 23.12%;
   top: 906px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1151,7 +1153,7 @@ h5 {
   height: 18px;
   left: 33.33%;
   top: 906px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1164,7 +1166,7 @@ h5 {
   height: 18px;
   left: 43.12%;
   top: 906px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1199,7 +1201,7 @@ h5 {
   left: 23.12%;
   right: 22.71%;
   top: 980px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -1213,7 +1215,7 @@ h5 {
   left: 22.92%;
   right: 22.92%;
   top: 1031px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1227,7 +1229,7 @@ h5 {
   left: 23.12%;
   right: 22.71%;
   top: 1387px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -1241,7 +1243,7 @@ h5 {
   left: 22.92%;
   right: 22.92%;
   top: 1438px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1255,7 +1257,7 @@ h5 {
   height: 17px;
   left: 222px;
   top: 1861px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1293,7 +1295,7 @@ h5 {
   height: 36.09px;
   left: 19.05px;
   top: 182.44px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
@@ -1306,7 +1308,7 @@ h5 {
   height: 42.1px;
   left: 19.05px;
   top: 231.56px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1319,7 +1321,7 @@ h5 {
   height: 20.08px;
   left: 19.05px;
   top: 294.72px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1332,7 +1334,7 @@ h5 {
   height: 28.07px;
   left: 19.05px;
   top: 328.06px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1345,7 +1347,7 @@ h5 {
   height: 28.07px;
   left: 205.5px;
   top: 328.37px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -1534,7 +1536,7 @@ h5 {
 }
 
 .mode-col-title {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.375rem;
@@ -1542,7 +1544,7 @@ h5 {
 }
 
 .mode-col-text1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.9375rem;
@@ -1550,7 +1552,7 @@ h5 {
 }
 
 .mode-col-text2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.9375rem;
@@ -1558,7 +1560,7 @@ h5 {
 }
 
 .practice-txt {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 1.25rem;
@@ -1566,7 +1568,7 @@ h5 {
 }
 
 .practice-txt2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1574,7 +1576,7 @@ h5 {
 }
 
 .practice-txt3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 1.25rem;
@@ -1588,7 +1590,7 @@ h5 {
   border: none;
   background: #090d3a;
   border-radius: 10px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 1.25rem;
@@ -1611,7 +1613,7 @@ h5 {
 }
 
 .practice-h3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.375rem;
@@ -1619,7 +1621,7 @@ h5 {
 }
 
 .title-button {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 1.375rem;
@@ -1635,7 +1637,7 @@ h5 {
 }
 
 .title-button1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -1666,7 +1668,7 @@ h5 {
 }
 
 #quize-result .headline {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-size: 45px;
   font-style: normal;
   font-weight: 600;
@@ -1678,7 +1680,7 @@ h5 {
 
 @media only screen and (max-width: 767px) {
   #quize-result .headline {
-    font-family: Avenir Next;
+    font-family: Avenir Next, Segoe UI;
     font-size: 25px;
     font-style: normal;
     font-weight: 600;
@@ -1689,7 +1691,7 @@ h5 {
 }
 
 #quize-result .maintext {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -1701,7 +1703,7 @@ h5 {
 }
 
 #quiz-detail-headline {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-size: 25px;
   font-style: normal;
   font-weight: 500;
@@ -1712,7 +1714,7 @@ h5 {
 }
 
 .quiz-detail-headline-1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -1722,7 +1724,7 @@ h5 {
   color: #090d3a;
 }
 .quiz-detail-content {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -1733,13 +1735,13 @@ h5 {
 }
 
 .quiz-title {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: bold;
 }
 
 .quiz-text {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1747,7 +1749,7 @@ h5 {
 }
 
 .quiz-list {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   padding-left: 0;
   list-style-type: none;
   color: #4a6f8a;
@@ -1755,7 +1757,7 @@ h5 {
 }
 
 .quiz-text2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
@@ -1773,7 +1775,7 @@ h5 {
 
 .header-dropdown-custom {
   color: #56a3fa;
-  font-family: "Avenir Next";
+  font-family: "Avenir Next", "Segoe UI";
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
@@ -1784,7 +1786,7 @@ h5 {
 }
 
 .ai-review-text1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -1792,7 +1794,7 @@ h5 {
 }
 
 .ai-review-text2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.75rem;
@@ -1800,7 +1802,7 @@ h5 {
 }
 
 .ai-review-text3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.75rem;
@@ -1808,13 +1810,13 @@ h5 {
 }
 
 .resume-subtitle {
-  font-family: "Avenir Next";
+  font-family: "Avenir Next", "Segoe UI";
   font-weight: bold;
   margin-top: 2%;
 }
 
 .resume-textarea {
-  font-family: "Avenir Next";
+  font-family: "Avenir Next", "Segoe UI";
   width: 300%;
   height: 625%;
   border: 1px solid #e6e8f6;
@@ -1827,7 +1829,7 @@ h5 {
 }
 
 .resume-upload {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -1835,7 +1837,7 @@ h5 {
 }
 
 .resume-type {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.9375rem;
@@ -1849,7 +1851,7 @@ h5 {
 }
 
 .resume-name {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -1857,7 +1859,7 @@ h5 {
 }
 
 .resume-success {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 15px;
@@ -1877,7 +1879,7 @@ h5 {
 }
 
 .resume-res {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.9375rem;
@@ -1885,7 +1887,7 @@ h5 {
 }
 
 .resume-h1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 2.8125rem;
@@ -1893,7 +1895,7 @@ h5 {
 }
 
 .resume-text1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.9375rem;
@@ -1901,7 +1903,7 @@ h5 {
 }
 
 .resume-text2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.5625rem;
@@ -1910,7 +1912,7 @@ h5 {
 }
 
 .resume-text3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -1918,7 +1920,7 @@ h5 {
 }
 
 .resume-text4 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.75rem;
@@ -1926,7 +1928,7 @@ h5 {
 }
 
 .resume-text5 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.9375rem;
@@ -1950,14 +1952,14 @@ h5 {
 }
 
 .review-text1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-size: 1.25rem;
   font-style: normal;
   color: #4689fa;
 }
 
 .review-text2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-size: 0.9375rem;
   font-style: normal;
   text-align: left;
@@ -1970,7 +1972,7 @@ h5 {
 }
 
 .company-list-help-text {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-weight: 600;
   font-size: 1.625rem;
   color: #090d3a;
@@ -1993,7 +1995,7 @@ h5 {
   margin-top: 2rem;
   margin-bottom: 2rem;
   margin-left: 2rem;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.375rem;
@@ -2001,7 +2003,7 @@ h5 {
 }
 
 .companydata-text2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.9375rem;
@@ -2009,7 +2011,7 @@ h5 {
 }
 
 .companydata-text3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -2017,7 +2019,7 @@ h5 {
 }
 
 .companydata-text5 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -2193,7 +2195,7 @@ h5 {
 }
 
 .company-data-title {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 2.5rem;
@@ -2226,7 +2228,7 @@ h5 {
 }
 
 .job-title {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.125rem;
@@ -2234,7 +2236,7 @@ h5 {
 }
 
 .job-des {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.8rem;
@@ -2243,7 +2245,7 @@ h5 {
 }
 
 .job-txt1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 2.625rem;
@@ -2251,7 +2253,7 @@ h5 {
 }
 
 .job-txt2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: normal;
   font-size: 0.9375rem;
@@ -2259,7 +2261,7 @@ h5 {
 }
 
 .job-txt3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -2267,7 +2269,7 @@ h5 {
 }
 
 .job-txt4 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -2305,7 +2307,7 @@ h5 {
 }
 
 .career-h3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -2328,7 +2330,7 @@ h5 {
 }
 
 .career-txt1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -2336,7 +2338,7 @@ h5 {
 }
 
 .career-txt2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -2344,7 +2346,7 @@ h5 {
 }
 
 .career-txt3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -2352,7 +2354,7 @@ h5 {
 }
 
 .career-txt4 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2362,7 +2364,7 @@ h5 {
 .career-txt5 {
   background: #e8edfc;
   border-radius: 5px;
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.75rem;
@@ -2370,7 +2372,7 @@ h5 {
 }
 
 .career-txt6 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.75rem;
@@ -2378,7 +2380,7 @@ h5 {
 }
 
 .career-txt7 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.75rem;
@@ -2386,7 +2388,7 @@ h5 {
 }
 
 .career-txt8 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -2412,7 +2414,7 @@ h5 {
 }
 
 .section-title2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 2.625rem;
@@ -2421,7 +2423,7 @@ h5 {
 }
 
 .section-txt1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2434,7 +2436,7 @@ h5 {
 }
 
 .section-txt3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 2.625rem;
@@ -2443,7 +2445,7 @@ h5 {
 }
 
 .section-txt4 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 1.25rem;
@@ -2452,7 +2454,7 @@ h5 {
 }
 
 .filter-btn {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -2465,7 +2467,7 @@ h5 {
 }
 
 .interview-txt1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.5625rem;
@@ -2473,7 +2475,7 @@ h5 {
 }
 
 .interview-txt2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2481,7 +2483,7 @@ h5 {
 }
 
 .interview-txt3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.5625rem;
@@ -2489,7 +2491,7 @@ h5 {
 }
 
 .interview-txt4 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2497,7 +2499,7 @@ h5 {
 }
 
 .interview-txt5 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -2505,7 +2507,7 @@ h5 {
 }
 
 .interview-txt6 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
@@ -2513,7 +2515,7 @@ h5 {
 }
 
 .interview-txt7 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2521,7 +2523,7 @@ h5 {
 }
 
 .interview-txt8 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2529,7 +2531,7 @@ h5 {
 }
 
 .interview-txt9 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -2616,7 +2618,7 @@ h5 {
 }
 
 .btn-selected2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
@@ -2627,7 +2629,7 @@ h5 {
 }
 
 .btn-unselected2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
@@ -2671,7 +2673,7 @@ h5 {
 }
 
 .feedback-name {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -2680,7 +2682,7 @@ h5 {
 }
 
 .feedback-desc {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2695,7 +2697,7 @@ h5 {
 }
 
 .chart-legend {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
