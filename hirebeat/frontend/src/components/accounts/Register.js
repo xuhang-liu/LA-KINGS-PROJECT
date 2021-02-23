@@ -106,7 +106,7 @@ export class Register extends Component {
                         <div className="signup-content" style={{marginTop:"6rem"}}>
                                     <div className="signup-form">
                                       <div>
-                                        <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next"}}><b>Start your career with HireBeat</b></h3>
+                                        <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI"}}><b>Start your career with HireBeat</b></h3>
                                       </div>
 
                     <form onSubmit={this.onSubmit}>
@@ -119,7 +119,7 @@ export class Register extends Component {
                             onChange={this.onChange}
                             value={username}
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -138,7 +138,7 @@ export class Register extends Component {
                             required
                             onChange={this.onChange}
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -157,7 +157,7 @@ export class Register extends Component {
                             placeholder="Create Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -176,7 +176,7 @@ export class Register extends Component {
                             placeholder="Confirm Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -238,7 +238,7 @@ export class Register extends Component {
                       <hr className="style-four"
                           data-content="Or use"
                           style={{
-                            fontFamily: "Avenir Next",
+                            fontFamily: "Avenir Next, Segoe UI",
                             marginBottom:"2rem",
                             marginTop:"4rem",
                           }}
@@ -251,7 +251,7 @@ export class Register extends Component {
                     <div>
                       <div>
                         <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
-                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next"}}>
+                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI"}}>
                         <a>No credit card information needed during signup. Enjoy your free plan.</a>
                         </div></div>
                     </div>
@@ -298,7 +298,7 @@ export class Register extends Component {
                             onChange={this.onChange}
                             value={username}
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               border: "1px solid #E5E5E5",
                               background: "#FFFFFF",
                               borderRadius: "5px",
@@ -318,7 +318,7 @@ export class Register extends Component {
                             required
                             onChange={this.onChange}
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
                               border: "1px solid #E5E5E5",
                               borderRadius: "5px",
@@ -338,7 +338,7 @@ export class Register extends Component {
                             placeholder="Create Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               border: "1px solid #E5E5E5",
                               background: "#FFFFFF",
                               borderRadius: "5px",
@@ -358,7 +358,7 @@ export class Register extends Component {
                             placeholder="Confirm Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Avenir Next",
+                              fontFamily: "Avenir Next, Segoe UI",
                               border: "1px solid #E5E5E5",
                               background: "#FFFFFF",
                               borderRadius: "5px",

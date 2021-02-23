@@ -245,7 +245,7 @@ export function ResumeFooter() {
                 <h3 className="quiz-title">Want to land your dream role? </h3>
                 <p className="quiz-text">We are here to enhance your interview skills</p>
                 <Link to="/practice">
-                    <a className="default-btn" style={{color:"white", fontFamily:"Avenir Next"}}>
+                    <a className="default-btn" style={{color:"white", fontFamily:"Avenir Next, Segoe UI"}}>
                         Practice with HireBeat
                         <span></span>
                     </a>
