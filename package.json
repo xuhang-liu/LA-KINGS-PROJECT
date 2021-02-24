@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main216.js",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main216.js",
+    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main217.js",
+    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main217.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
@@ -73,7 +73,6 @@
     "next-fonts": "^1.5.1",
     "nodemailer": "^6.4.10",
     "pdfjs-dist": "^2.6.347",
-    "pdfreader": "^1.2.8",
     "plupload": "^2.3.6",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
@@ -122,7 +121,6 @@
     "react-switch": "^5.0.1",
     "react-transition-group": "^4.3.0",
     "react-wow": "^1.0.0",
-    "reactjs-pdf-reader": "^1.0.12",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",

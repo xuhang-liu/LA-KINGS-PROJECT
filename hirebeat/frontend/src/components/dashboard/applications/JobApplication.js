@@ -344,8 +344,8 @@ const JobCard = (props) => {
         input.click();
         input.onchange = () => {
             let num = input.files.length;
-            // limit 5 pdfs at one time
-            if (num > 5) {
+            // limit 10 pdfs at one time
+            if (num > 10) {
                 return overwhelm();
             }
             // get selected files
@@ -356,7 +356,7 @@ const JobCard = (props) => {
                 resumeNames.push(pdf.name);
             }
             let fileNames = resumeNames.toString();
-            uploadSuccess(num, fileNames);
+            uploadSuccess(num, fileNames, autofill);
 //            setCvUploaded(num + "resumes uploaded");
 //            setParsed(true);
 
@@ -587,15 +587,15 @@ const JobCard = (props) => {
                     <div className="row interview-center" style={{marginTop: "2rem", marginLeft: "1%"}}>
                         <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                     </div>
-                    <div className="row">
-                        <button type="button" className="default-btn resume-upload" onClick={uploadResume} style={{marginLeft: "2rem"}}>
+                    <div className="row m-3">
+                        <button type="button" className="default-btn resume-upload" onClick={uploadResume}>
                             <i className="bx bx-cloud-upload bx-sm"></i>
                               Upload Resume
                         </button>
                         <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
-                        <div style={{marginLeft: "1rem", marginTop: "1.5rem"}}>
+                        <div style={{marginLeft: "1rem", marginTop: "1rem"}}>
                             <span className="upload-txt">
-                                pdf only
+                                Only support .pdf
                             </span>
                         </div>
                         {/*parsed &&
@@ -606,7 +606,7 @@ const JobCard = (props) => {
                                     <i className="bx bxs-check-circle" style={{color: "#13C4A1", marginLeft: "0.5rem"}}></i>
                                 </span>
                             </div>*/}
-                        <button type="button" className="default-btn" style={{backgroundColor: "#090D3A", paddingLeft: "25px", marginLeft: "2rem"}} onClick={autofill}>Autofill</button>
+                        {/*<button type="button" className="default-btn" style={{backgroundColor: "#090D3A", paddingLeft: "25px", marginLeft: "2rem"}} onClick={autofill}>Autofill</button>*/}
                     </div>
                     <form onSubmit={sendInvitation}>
                         <div className="form-row">
@@ -645,6 +645,36 @@ const JobCard = (props) => {
                             </div>
                             <div className="form-group col-6">
                             <input type="email" name="email5" className="form-control candidate-email"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="text" name="name6" className="form-control candidate-name"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="email" name="email6" className="form-control candidate-email"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="text" name="name7" className="form-control candidate-name"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="email" name="email7" className="form-control candidate-email"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="text" name="name8" className="form-control candidate-name"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="email" name="email8" className="form-control candidate-email"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="text" name="name9" className="form-control candidate-name"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="email" name="email9" className="form-control candidate-email"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="text" name="name10" className="form-control candidate-name"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="email" name="email10" className="form-control candidate-email"/>
                             </div>
                             </div>
                             <div className="col d-flex justify-items">
@@ -1111,7 +1141,7 @@ function alert() {
 function overwhelm() {
     confirmAlert({
       title: "Too Many Resumes",
-      message: "You can only upload 5 resumes at most each time",
+      message: "You can only upload 10 resumes at most each time",
       buttons: [
         {
           label: 'Ok'
@@ -1132,13 +1162,14 @@ function uploadFirst() {
     });
 };
 
-function uploadSuccess(num, fileNames) {
+function uploadSuccess(num, fileNames, autofill) {
     confirmAlert({
       title: "Upload Resume Success",
       message: "You have uploaded " + num + " resumes：" + fileNames,
       buttons: [
         {
-          label: 'Ok'
+          label: 'Auto Fill Now',
+          onClick: () => autofill()
         }
       ]
     });
@@ -1147,7 +1178,7 @@ function uploadSuccess(num, fileNames) {
 function nameError() {
     confirmAlert({
       title: "Name Error",
-      message: "The candidate name in your resume file is invalid, please type it manually",
+      message: "The candidate name in the resume file is invalid, please type it manually",
       buttons: [
         {
           label: 'Ok'
@@ -1159,7 +1190,7 @@ function nameError() {
 function emailError() {
     confirmAlert({
       title: "Email Error",
-      message: "The candidate email in your resume file is invalid, please type it manually",
+      message: "The candidate email in the resume file is invalid, please type it manually",
       buttons: [
         {
           label: 'Ok'
