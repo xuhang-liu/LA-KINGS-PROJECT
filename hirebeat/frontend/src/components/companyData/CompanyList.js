@@ -495,6 +495,32 @@ class CompanyList extends Component {
                                 </Link>
                             </div>
                         </div>
+
+                        <div className="clients-logo-list align-items-center" style={{marginTop: "1rem"}}>
+                            <div className="single-clients-logo">
+                                <Link to="/forrester-research">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/forrester.png" alt="Forrester Research logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/huron">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/huron.png" alt="Huron logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/perficient">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/perficient.png" alt="Perficient logo"/>
+                                </Link>
+                            </div>
+
+                            <div className="single-clients-logo">
+                                <Link to="/willis-towers-waston">
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/company-logo/willis.png" alt="Willis Towers Waston logo"/>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                     <MediaQuery minDeviceWidth={1224}>
                     <div className="row company-list-help-box">

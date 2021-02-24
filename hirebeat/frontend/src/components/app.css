@@ -2705,3 +2705,11 @@ h5 {
   margin-left: 0.8rem;
   margin-bottom: 0rem;
 }
+
+.upload-txt {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
