@@ -327,6 +327,7 @@ const JobCard = (props) => {
     // upload resumes
     var candidateNames = [];
     var candidateEmails = [];
+    var resumeNames = [];
     // state refreshed the whole page, so candidateNames and candidateEmails set to []
 //    const [cvUploaded, setCvUploaded] = useState("");
 //    const [parsed, setParsed] = useState(false);
@@ -352,8 +353,10 @@ const JobCard = (props) => {
                 // extract emails from pdf
                 let pdf = input.files[i]
                 getTextByPdf(pdf);
+                resumeNames.push(pdf.name);
             }
-            uploadSuccess(num);
+            let fileNames = resumeNames.toString();
+            uploadSuccess(num, fileNames);
 //            setCvUploaded(num + "resumes uploaded");
 //            setParsed(true);
 
@@ -585,7 +588,7 @@ const JobCard = (props) => {
                         <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                     </div>
                     <div className="row">
-                        <button className="default-btn resume-upload" onClick={uploadResume} style={{marginLeft: "2rem"}}>
+                        <button type="button" className="default-btn resume-upload" onClick={uploadResume} style={{marginLeft: "2rem"}}>
                             <i className="bx bx-cloud-upload bx-sm"></i>
                               Upload Resume
                         </button>
@@ -603,7 +606,7 @@ const JobCard = (props) => {
                                     <i className="bx bxs-check-circle" style={{color: "#13C4A1", marginLeft: "0.5rem"}}></i>
                                 </span>
                             </div>*/}
-                        <button className="default-btn" style={{backgroundColor: "#090D3A", paddingLeft: "25px", marginLeft: "2rem"}} onClick={autofill}>Autofill</button>
+                        <button type="button" className="default-btn" style={{backgroundColor: "#090D3A", paddingLeft: "25px", marginLeft: "2rem"}} onClick={autofill}>Autofill</button>
                     </div>
                     <form onSubmit={sendInvitation}>
                         <div className="form-row">
@@ -647,6 +650,7 @@ const JobCard = (props) => {
                             <div className="col d-flex justify-items">
                                 {/*!addForm1 &&
                                     <button
+                                        type="button"
                                         className="default-btn"
                                         style={{paddingLeft: "25px"}}
                                         onClick={() => setAddForm1(true)}
@@ -656,19 +660,19 @@ const JobCard = (props) => {
                             </div>
                         {/* add additional form */}
                         {addForm1 &&
-                            <InvitationForm />
+                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
                         }
                         {addForm2 &&
-                            <InvitationForm />
+                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
                         }
                         {addForm3 &&
-                            <InvitationForm />
+                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
                         }
                         {addForm4 &&
-                            <InvitationForm />
+                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
                         }
                         {addForm5 &&
-                            <InvitationForm />
+                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
                         }
                         <div>
                             <div className="col d-flex justify-items">
@@ -747,44 +751,67 @@ const JobCard = (props) => {
     )
 };
 
-const InvitationForm = () => {
+const InvitationForm = (props) => {
     return (
-        <div className="form-row">
-            <div className="form-group col-6">
-                <label style={{ fontSize: "17px", margin:"2%"}}>
-                    Candidate Name
-                </label>
-                <input type="text" name="name1" className="form-control candidate-name"/>
+        <div>
+            <div className="row">
+                <button type="button" className="default-btn resume-upload" onClick={props.uploadResume} style={{marginLeft: "2rem"}}>
+                    <i className="bx bx-cloud-upload bx-sm"></i>
+                      Upload Resume
+                </button>
+                <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
+                <div style={{marginLeft: "1rem", marginTop: "1.5rem"}}>
+                    <span className="upload-txt">
+                        pdf only
+                    </span>
+                </div>
+                {/*parsed &&
+                    <div style={{display: "flex", alignItems: "center", marginLeft: "1rem"}}>
+                        <span className="upload-txt">
+                            <i className="bx bx-file"></i>
+                            {cvUploaded}
+                            <i className="bx bxs-check-circle" style={{color: "#13C4A1", marginLeft: "0.5rem"}}></i>
+                        </span>
+                    </div>*/}
+                <button type="button" className="default-btn" style={{backgroundColor: "#090D3A", paddingLeft: "25px", marginLeft: "2rem"}} onClick={props.autofill}>Autofill</button>
             </div>
-            <div className="form-group col-6">
-                <label style={{ fontSize: "17px", margin:"2%"}}>
-                    Candidate Email
-                </label>
-                <input type="email" name="email1" className="form-control candidate-email"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="text" name="name2" className="form-control candidate-name"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="email" name="email2" className="form-control candidate-email"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="text" name="name3" className="form-control candidate-name"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="email" name="email3" className="form-control candidate-email"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="text" name="name4" className="form-control candidate-name"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="email" name="email4" className="form-control candidate-email"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="text" name="name5" className="form-control candidate-name"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="email" name="email5" className="form-control candidate-email"/>
+            <div className="form-row">
+                <div className="form-group col-6">
+                    <label style={{ fontSize: "17px", margin:"2%"}}>
+                        Candidate Name
+                    </label>
+                    <input type="text" name="name1" className="form-control candidate-name"/>
+                </div>
+                <div className="form-group col-6">
+                    <label style={{ fontSize: "17px", margin:"2%"}}>
+                        Candidate Email
+                    </label>
+                    <input type="email" name="email1" className="form-control candidate-email"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="text" name="name2" className="form-control candidate-name"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="email" name="email2" className="form-control candidate-email"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="text" name="name3" className="form-control candidate-name"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="email" name="email3" className="form-control candidate-email"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="text" name="name4" className="form-control candidate-name"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="email" name="email4" className="form-control candidate-email"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="text" name="name5" className="form-control candidate-name"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="email" name="email5" className="form-control candidate-email"/>
+                </div>
             </div>
         </div>
     )
@@ -1105,10 +1132,10 @@ function uploadFirst() {
     });
 };
 
-function uploadSuccess(num) {
+function uploadSuccess(num, fileNames) {
     confirmAlert({
       title: "Upload Resume Success",
-      message: "You have uploaded " + num + " resumes",
+      message: "You have uploaded " + num + " resumes：" + fileNames,
       buttons: [
         {
           label: 'Ok'
