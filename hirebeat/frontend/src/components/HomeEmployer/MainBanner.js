@@ -108,7 +108,7 @@ class MainBanner extends Component {
                 </MediaQuery>
                 <ReactWOW animation='fadeInUp' delay='0.2s'>
                     <div className="overview-item">
-                    <div className="container max-width-1440">
+                    <div className="container mt-4 max-width-1440">
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-left-img">
@@ -147,6 +147,7 @@ class MainBanner extends Component {
                         </div>
                     </div>
                 </ReactWOW>
+                <MediaQuery minDeviceWidth={1224}>
                 <div className="before-after pb-100 pt-100">
                     <div className="container-fluid max-width-1440">
                     <div className="text-center">
@@ -155,19 +156,20 @@ class MainBanner extends Component {
                         </h1>
                     </div>
                     <div className="row">
-                        <div className="col-6 col-lg-6 mt-5">
-                            <div className="container justify-content-center align-items-center">
+                        <div className="col-md-6 col-lg-6 mt-5">
+                            <div className="justify-content-center align-items-center">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/result3.png" alt="pic" style={{maxWidth:"591px"}}></img>
                             </div>
                         </div>
-                        <div className="col-6 col-lg-6 mt-5 after">
-                            <div className="container justify-content-center align-items-center">
+                        <div className="col-md-6 col-lg-6 mt-5 after">
+                            <div className="justify-content-center align-items-center">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/result4.png" alt="pic" style={{maxWidth:"617px"}}></img>
                             </div>
                         </div>
                     </div>
                     </div>
                 </div>
+                </MediaQuery>
             </React.Fragment>
         );
     }
