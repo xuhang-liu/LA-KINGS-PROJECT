@@ -132,6 +132,10 @@ import SelectQuoteInfo from"./companyData/companies/SelectQuoteInfo";
 import JacobsInfo from"./companyData/companies/JacobsInfo";
 import GartnerInfo from"./companyData/companies/GartnerInfo";
 import AonInfo from"./companyData/companies/AonInfo";
+import ForresterResearchInfo from"./companyData/companies/ForresterResearchInfo";
+import HuronInfo from"./companyData/companies/HuronInfo";
+import PerficientInfo from"./companyData/companies/PerficientInfo";
+import WillisTowersWastonInfo from"./companyData/companies/WillisTowersWastonInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -367,6 +371,10 @@ class App extends Component {
                 <Route exact path="/jacobs" component={JacobsInfo} />
                 <Route exact path="/gartner" component={GartnerInfo} />
                 <Route exact path="/aon" component={AonInfo} />
+                <Route exact path="/forrester-research" component={ForresterResearchInfo} />
+                <Route exact path="/huron" component={HuronInfo} />
+                <Route exact path="/perficient" component={PerficientInfo} />
+                <Route exact path="/willis-towers-waston" component={WillisTowersWastonInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />

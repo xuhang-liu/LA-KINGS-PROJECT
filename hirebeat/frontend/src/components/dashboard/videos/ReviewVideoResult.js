@@ -14,8 +14,7 @@ const ReviewVideoResult = (props) => {
         setFilter("right");
         setSubFilter(filter);
     }
-
-    console.log(props);
+  
     return <div className="container-flud row">
         <div className="col-5 pl-5">
             <h3 className="ml-4 mb-3" style={{color:"#4A6F8A"}}>{props.v.q_description} </h3>
@@ -185,9 +184,7 @@ const VideoCardII = (props) => {
                 src={props.imgurl} />
             <h6 style={{color:"#4A6F8A", marginBottom:"0.3rem"}}>{props.comment}</h6>
         </div>
-    )
-};
-
+    )};
 const DetailCard = (props) => {
     const renderClass = (filter, button) => {
         if(filter == button)
