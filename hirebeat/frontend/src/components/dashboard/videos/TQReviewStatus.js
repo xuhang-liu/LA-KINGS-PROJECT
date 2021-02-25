@@ -21,7 +21,7 @@ if (props.isSampleAns) {
     text = "View Sample Answer";
     className = "reviewed text-15";
 } else {
-    if (props.v.ai_auto_ready) {
+    if (props.v.ai_performance_ready) {
       text = "View Result";
       className = "reviewed text-15";
     } else {
@@ -49,14 +49,13 @@ function upgradeMessage() {
   function reviewToggle() {
     // view result
     if (text == "View Result") {
-        props.addTQVideoLimit(props.v.owner, props.v.id, "ai");
         setSubPage("ai");
         setTimeout(()=>{setShow(true);}, 300);
     } else if (text == "View Sample Answer")  {
       if (props.saved_video_count >= props.save_limit) {
         if(props.v.is_tq_sample_clicked == true){
           setSubPage("sampleAns");
-          setShow(true);
+          setTimeout(()=>{setShow(true);}, 300);
       }else{
         upgradeMessage();
       }

@@ -54,6 +54,18 @@ export function VideoImagePreview(props) {
 
   const dispatch = useDispatch();
   // control status, render modal
+  const medal_url_1 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/gold-medal.png";
+  const medal_url_2 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/silver-medal.png";
+  const medal_url_3 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bronze-medal.png";
+  var medal_url = "";
+    if((Number(props.v.ai_performance_total_score) > 0) && (Number(props.v.ai_performance_total_score) <= 33)){
+        medal_url=medal_url_3;
+    }else if((Number(props.v.ai_performance_total_score) >= 34) && (Number(props.v.ai_performance_total_score) <= 66)){
+        medal_url=medal_url_2;
+    }else if((Number(props.v.ai_performance_total_score) >= 67) && (Number(props.v.ai_performance_total_score) <= 100)){
+        medal_url=medal_url_1;
+    }
+
   return (
     <div className="pt-3">
       <div className="row">
@@ -64,7 +76,8 @@ export function VideoImagePreview(props) {
           {props.v.created_at.substring(0, 10)}
         </div>
         <div className="col-1">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/gold-medal.png" alt="icon" style={{width:"3rem"}}></img>
+          {(Number(props.v.ai_performance_total_score) > 0) &&
+          <img src={medal_url} alt="icon" style={{width:"3rem"}}></img>}
         </div>
         { props.isBQ ? (
         <div className="col-2 pt-2">

@@ -28,11 +28,22 @@ export function AIReview(props) {
       talkSpeed = "0";
   }
   infillChartData(categoryArray, percentArray);
+  const medal_url_1 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/gold-medal.png";
+  const medal_url_2 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/silver-medal.png";
+  const medal_url_3 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bronze-medal.png";
+  var medal_url = "";
+    if((Number(props.v.ai_performance_total_score) >= 0) && (Number(props.v.ai_performance_total_score) <= 33)){
+        medal_url=medal_url_3;
+    }else if((Number(props.v.ai_performance_total_score) >= 34) && (Number(props.v.ai_performance_total_score) <= 66)){
+        medal_url=medal_url_2;
+    }else if((Number(props.v.ai_performance_total_score) >= 67) && (Number(props.v.ai_performance_total_score) <= 100)){
+        medal_url=medal_url_1;
+    }
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-5">
-            <h3 className="ml-4" style={{color:"#4A6F8A"}}>{props.v.q_description} </h3>
+      <div className="col-5 pl-3">
+            <h3 className="ml-4 mb-3" style={{color:"#4A6F8A"}}>{props.v.q_description} </h3>
             <div className="ml-4" style={{maxWidth:"40rem"}}>
             {
             (props.isAudio) ?
@@ -40,9 +51,16 @@ export function AIReview(props) {
                 : <VideoPlayer url={props.v.url} />
             }
             </div>
-            <h6 className="ml-5 my-5" style={{color:"#13C4A1"}}>
-                You really aced this question!  You have scored higher than 90% of other candidates.
-            </h6>
+            <div className="row ml-3 my-4">
+                <div className="col-2">
+                    <img src={medal_url} alt="icon" style={{width:"6rem"}}></img>
+                </div>
+                <div className="col-10">
+                <h6 style={{color:"#13C4A1"}}>
+                    You really aced this question!  You have scored higher than 90% of other candidates.
+                </h6>
+                </div>
+            </div>
             <h6 className="ml-4" style={{color:"#4A6F8A"}}>
                 Review your score breakdown by category to learn more about what you’re doing well what could be improved.
             </h6>
@@ -60,7 +78,7 @@ export function AIReview(props) {
         <ReviewHeader setSubPage={() => props.setSubPage("status")} />
         <CategoryTitle title={"Overall Score"} />
           <ProgressBar color={"blue"} height={15} percent={props.v.ai_score} />
-          <div className="row">
+          <div className="row mr-2">
             <div className="col-6">
               <div id="chart">
                 <Chart

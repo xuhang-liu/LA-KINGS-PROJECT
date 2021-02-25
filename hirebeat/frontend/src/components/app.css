@@ -2713,11 +2713,17 @@ h5 {
 }
 
 .selectedTag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: Avenir Next, Segoe UI;
   color: white;
   background-color: #090D3A;
 }
 
 .unselectedTag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: Avenir Next, Segoe UI;
   color: #4A6F8A;
   background-color: white;
 }

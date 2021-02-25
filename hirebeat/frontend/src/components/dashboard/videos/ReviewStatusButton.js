@@ -70,11 +70,11 @@ function ReviewStatusButton(props) {
     // view result
     else if (text == "View AI Result") {
         setSubPage("ai");
-        setShow(true);
+        setTimeout(()=>{setShow(true);}, 300);
     }
     else if (text == "View Expert Result") {
         setSubPage("expert");
-        setShow(true);
+        setTimeout(()=>{setShow(true);}, 300);
     }
   }
 
