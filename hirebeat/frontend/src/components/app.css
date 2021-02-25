@@ -2711,3 +2711,13 @@ h5 {
   margin-left: 0.8rem;
   margin-bottom: 0rem;
 }
+
+.selectedTag {
+  color: white;
+  background-color: #090D3A;
+}
+
+.unselectedTag {
+  color: #4A6F8A;
+  background-color: white;
+}

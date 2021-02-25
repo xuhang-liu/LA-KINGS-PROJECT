@@ -7,6 +7,14 @@ const ReviewVideoResult = (props) => {
         return filter == text ? "btn-selected2" : "btn-unselected2";
     };
     const [filter, setFilter] = useState("left");
+    const [subFilter, setSubFilter] = useState("PACE OF SPEECH");
+
+    const setLeft = (filter) =>
+    {
+        setFilter("right");
+        setSubFilter(filter);
+    }
+
     console.log(props);
     return <div className="container-flud row">
         <div className="col-5 pl-5">
@@ -55,6 +63,7 @@ const ReviewVideoResult = (props) => {
                         <div className="col-5 card m-3" style={{height:"17.5vw"}}>
                             <VideoCard 
                                 imgurl="https://hirebeat-assets.s3.amazonaws.com/User-dash/Performance-icon/milometer-1.png"
+                                setLeft={()=>{setLeft("UM COUNTER")}}
                                 green="100"
                                 toper="topper words"
                                 lower="/lower words"
@@ -66,6 +75,7 @@ const ReviewVideoResult = (props) => {
                         <div className="col-5 card m-3" style={{height:"17.5vw"}}>
                             <VideoCard 
                                 imgurl="https://hirebeat-assets.s3.amazonaws.com/User-dash/Performance-icon/milometer-1.png"
+                                setLeft={()=>{setLeft("FILTER WORDS")}}
                                 green="100"
                                 toper="topper words"
                                 lower="/lower words"
@@ -77,6 +87,7 @@ const ReviewVideoResult = (props) => {
                         <div className="col-5 card m-3" style={{height:"17.5vw"}}>
                             <VideoCard 
                                 imgurl="https://hirebeat-assets.s3.amazonaws.com/User-dash/Performance-icon/feedback-1.png"
+                                setLeft={()=>{setLeft("PACE OF SPEECH")}}
                                 green="100"
                                 toper="topper words"
                                 lower="/lower words"
@@ -88,10 +99,11 @@ const ReviewVideoResult = (props) => {
                         <div className="col-5 card m-3" style={{height:"17.5vw"}}>
                             <VideoCard 
                                 imgurl="https://hirebeat-assets.s3.amazonaws.com/User-dash/Performance-icon/ai-rate-1.png"
+                                setLeft={()=>{setLeft("POWER WORDS")}}
                                 green="100"
                                 toper="topper words"
                                 lower="/lower words"
-                                comment="the testing comments for every card is here let me know what else you want to put here"
+                                comment="the testing comments for every card is here let me know what else you want to put here"    
                                 score="78"
                                 title="the testing title"
                             />
@@ -99,6 +111,7 @@ const ReviewVideoResult = (props) => {
                         <div className="col-5 card m-3 mb-5" style={{height:"17.5vw"}}>
                             <VideoCardII 
                                 imgurl="https://hirebeat-assets.s3.amazonaws.com/User-dash/Performance-icon/milometer-1.png"
+                                setLeft={()=>{setLeft("PAUSE COUNTER")}}
                                 green="100"
                                 toper="topper words"
                                 lower="/lower words"
@@ -110,6 +123,7 @@ const ReviewVideoResult = (props) => {
                         <div className="col-5 card m-3 mb-5" style={{height:"17.5vw"}}>
                             <VideoCardII 
                                 imgurl="https://hirebeat-assets.s3.amazonaws.com/User-dash/Performance-icon/feedback-1.png"
+                                setLeft={()=>{setLeft("VOCABULARY")}}
                                 green="100"
                                 toper="topper words"
                                 lower="/lower words"
@@ -121,6 +135,12 @@ const ReviewVideoResult = (props) => {
                     </div>
                     
                 }
+                {filter == "right" && <div>
+                    <DetailCard 
+                        setSubFilter={setSubFilter}
+                        subFilter={subFilter}
+                    />
+                </div>}
         </div>
     </div>
 };
@@ -132,7 +152,7 @@ const VideoCard = (props) => {
         <div>
             <div className="row">
                 <h5 className="col-7 my-auto" style={{color:"#090D3A"}}>{props.title} </h5>
-                <button className="col-5 btn btn-link">
+                <button className="col-5 btn btn-link" onClick={()=>{props.setLeft()}}>
                     Learn more<i class='bx bx-right-arrow-alt'></i>
                 </button>
             </div>
@@ -156,7 +176,7 @@ const VideoCardII = (props) => {
         <div>
             <div className="row">
                 <h5 className="col-7 my-auto" style={{color:"#090D3A"}}>{props.title} </h5>
-                <button className="col-5 btn btn-link">
+                <button className="col-5 btn btn-link" onClick={()=>{props.setLeft()}}>
                     Learn more<i class='bx bx-right-arrow-alt'></i>
                 </button>
             </div>
@@ -167,3 +187,44 @@ const VideoCardII = (props) => {
         </div>
     )
 };
+
+const DetailCard = (props) => {
+    const renderClass = (filter, button) => {
+        if(filter == button)
+            return "selectedTag";
+        else
+            return "unselectedTag"
+    };
+
+    const renderText = filter => {
+        return "ASDF 3 is the current successor to Daniel Barlow's ASDF (created on August 1st 2001) and François-René Rideau's ASDF 2 (released May 31st 2010). It was rewritten for improved portability, robustness, usability, extensibility, configurability, internal consistency, and the ability to deliver standalone executables, all while maintaining substantial backward compatibility. Its notable versions include pre-release 2.27 on February 1st 2013, first stable release 3.0.1 on May 16th 2013, major releases 3.1.2 on May 6th 2014, 3.2.0 on January 10th 2017 and 3.3.0 on October 6th 2017. The latest release is 3.3.4, published on February 14th, 2019."
+    }
+
+    return (
+        <div className="container-fluid row">
+            <div className="col-2 px-0 mt-3">
+                <button onClick={() => {props.setSubFilter("PACE OF SPEECH")}} className={renderClass(props.subFilter, "PACE OF SPEECH")} style={{height:"2.5rem", width:"101%", border:"1px solid #E8EDFC", borderRadius:"5px 0px 0px 0px"}}>
+                    PACE OF SPEECH
+                </button>
+                <button onClick={() => {props.setSubFilter("UM COUNTER")}} className={renderClass(props.subFilter, "UM COUNTER")} style={{height:"2.5rem", width:"101%", border:"1px solid #E8EDFC"}}>
+                    UM COUNTER
+                </button>
+                <button onClick={() => {props.setSubFilter("FILTER WORDS")}} className={renderClass(props.subFilter, "FILTER WORDS")} style={{height:"2.5rem", width:"101%", border:"1px solid #E8EDFC"}}>
+                    FILTER WORDS
+                </button>
+                <button onClick={() => {props.setSubFilter("POWER WORDS")}} className={renderClass(props.subFilter, "POWER WORDS")} style={{height:"2.5rem", width:"101%", border:"1px solid #E8EDFC"}}>
+                    POWER WORDS
+                </button>
+                <button onClick={() => {props.setSubFilter("PAUSE COUNTER")}} className={renderClass(props.subFilter, "PAUSE COUNTER")} style={{height:"2.5rem", width:"101%", border:"1px solid #E8EDFC"}}>
+                    PAUSE COUNTER
+                </button>
+                <button onClick={() => {props.setSubFilter("VOCABULARY")}} className={renderClass(props.subFilter, "VOCABULARY")} style={{height:"2.5rem", width:"101%", border:"1px solid #E8EDFC", borderRadius:"0px 0px 0px 5px"}}>
+                    VOCABULARY
+                </button>
+            </div>
+            <div className="col-10 mt-3" style={{border:"2px solid #E8EDFC", borderRadius:"0px 5px 5px 5px", height:"42vw"}}>
+                {renderText(props.subFilter)}
+            </div>
+        </div>
+    )
+}
