@@ -495,10 +495,10 @@ const JobCard = (props) => {
                         </button>
                     </div>
                     <div className="row">
-                        <div className="col-4 interview-center">
+                        <div className="col-4 interview-center mt-2">
                             <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                         </div>
-                        <div className="col-2 interview-txt7 interview-center">
+                        <div className="col-2 interview-txt7 interview-center mt-2">
                             <button
                             type="button"
                             className="read-more"
@@ -595,7 +595,7 @@ const JobCard = (props) => {
                         <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
                         <div style={{marginLeft: "1rem", marginTop: "1rem"}}>
                             <span className="upload-txt">
-                                Only support .pdf
+                                Multi-Upload Support (.pdf only)
                             </span>
                         </div>
                         {/*parsed &&
