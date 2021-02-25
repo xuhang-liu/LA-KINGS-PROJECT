@@ -2712,6 +2712,16 @@ h5 {
   margin-bottom: 0rem;
 }
 
+.selectedTag {
+  color: white;
+  background-color: #090D3A;
+}
+
+.unselectedTag {
+  color: #4A6F8A;
+  background-color: white;
+}
+
 .upload-txt {
   font-family: Avenir Next;
   font-style: normal;
