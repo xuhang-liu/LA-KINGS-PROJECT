@@ -54,6 +54,25 @@ export function VideoImagePreview(props) {
 
   const dispatch = useDispatch();
   // control status, render modal
+  const medal_url_1 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/gold-medal.png";
+    const medal_url_2 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/silver-medal.png";
+    const medal_url_3 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bronze-medal.png";
+    const medal_comment_1 = "Exceptional Congratulations! Based on our analysis, you did very well on this question!";
+    const medal_comment_2 = "Good! Some work may be needed. Based on our analysis, you could make some improvements in some areas.";
+    const medal_comment_3 = "weak answer. Based on our analysis, you need to make improvements in a few important areas.";
+    var medal_comment = "";
+    var medal_url = "";
+    if((Number(props.v.ai_performance_total_score) >= 0) && (Number(props.v.ai_performance_total_score) < 70)){
+        medal_url=medal_url_3;
+        medal_comment=medal_comment_3;
+    }else if((Number(props.v.ai_performance_total_score) >= 70) && (Number(props.v.ai_performance_total_score) < 85)){
+        medal_url=medal_url_2;
+        medal_comment=medal_comment_2;
+    }else if((Number(props.v.ai_performance_total_score) >= 85) && (Number(props.v.ai_performance_total_score) <= 100)){
+        medal_url=medal_url_1;
+        medal_comment=medal_comment_1;
+    }
+
   return (
     <div className="pt-3">
       <div className="row">
@@ -64,7 +83,8 @@ export function VideoImagePreview(props) {
           {props.v.created_at.substring(0, 10)}
         </div>
         <div className="col-1">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/gold-medal.png" alt="icon" style={{width:"3rem"}}></img>
+          {(Number(props.v.ai_performance_total_score) > 0) &&
+          <img src={medal_url} alt="icon" style={{width:"3rem"}}></img>}
         </div>
         { props.isBQ ? (
         <div className="col-2 pt-2">
@@ -75,6 +95,7 @@ export function VideoImagePreview(props) {
             addTQVideoLimit={props.addTQVideoLimit}
             width={"8rem"}
             isAudio={props.isAudio}
+            retry={retry}
           />
         </div>
 
@@ -87,6 +108,7 @@ export function VideoImagePreview(props) {
           addTQVideoLimit={props.addTQVideoLimit}
           width={"8rem"}
           isAudio={props.isAudio}
+          retry={retry}
         />
         </div>
         )}
@@ -98,6 +120,7 @@ export function VideoImagePreview(props) {
             aiReview={true}  // review type： AI
             width={"7.5rem"}
             isAudio={props.isAudio}
+            retry={retry}
           />
         </div>}
         { props.isBQ &&
@@ -108,6 +131,7 @@ export function VideoImagePreview(props) {
             aiReview={false}  // review type： Expert
             width={"9.5rem"}
             isAudio={props.isAudio}
+            retry={retry}
           />
         </div>}
         { !props.isBQ &&
@@ -120,6 +144,7 @@ export function VideoImagePreview(props) {
             addTQVideoLimit={props.addTQVideoLimit}
             width={"12rem"}
             isAudio={props.isAudio}
+            retry={retry}
           />
         </div>}
         { props.isBQ &&

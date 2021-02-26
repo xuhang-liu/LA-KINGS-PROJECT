@@ -2713,11 +2713,25 @@ h5 {
 }
 
 .selectedTag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: Avenir Next, Segoe UI;
   color: white;
   background-color: #090D3A;
 }
 
 .unselectedTag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: Avenir Next, Segoe UI;
   color: #4A6F8A;
   background-color: white;
+}
+
+.upload-txt {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
 }
