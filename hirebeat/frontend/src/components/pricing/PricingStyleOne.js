@@ -64,6 +64,44 @@ class PricingStyleOne extends Component {
             this.handleClickUpgrade2(email2);
         }
     }
+    confirmResumeEmailMonth1 = () => {
+        let email1 = document.getElementById("email1").value;
+        let email2 = document.getElementById("email2").value;
+        let reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+        if (email1 != email2) {
+            // check the input emails are equal
+            return alert("Your input email addresses are not consistent!");
+        } else if (!reg.test(email2)) {
+            // check email format
+            return alert("Please Enter Your Email In Correct Format.");
+        } else {
+            // save email to User model
+            let user = {"id": this.props.user.id , "email": email2};
+            this.props.updateUserEmail(user);
+            // redirect to payment
+            this.handleClickResumeUpgrade2(email2);
+        }
+    }
+    confirmInterviewEmailMonth1 = () => {
+        let email1 = document.getElementById("email1").value;
+        let email2 = document.getElementById("email2").value;
+        let reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+        if (email1 != email2) {
+            // check the input emails are equal
+            return alert("Your input email addresses are not consistent!");
+        } else if (!reg.test(email2)) {
+            // check email format
+            return alert("Please Enter Your Email In Correct Format.");
+        } else {
+            // save email to User model
+            let user = {"id": this.props.user.id , "email": email2};
+            this.props.updateUserEmail(user);
+            // redirect to payment
+            this.handleClickInterviewUpgrade2(email2);
+        }
+    }
 
     confirmEmailMonth3 = () => {
         let email1 = document.getElementById("email1").value;
@@ -82,6 +120,44 @@ class PricingStyleOne extends Component {
             this.props.updateUserEmail(user);
             // redirect to payment
             this.handleYearClickUpgrade2(email2);
+        }
+    }
+    confirmEmailResumeMonth3 = () => {
+        let email1 = document.getElementById("email1").value;
+        let email2 = document.getElementById("email2").value;
+        let reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+        if (email1 != email2) {
+            // check the input emails are equal
+            return alert("Your input email addresses are not consistent!");
+        } else if (!reg.test(email2)) {
+            // check email format
+            return alert("Please Enter Your Email In Correct Format.");
+        } else {
+            // save email to User model
+            let user = {"id": this.props.user.id , "email": email2};
+            this.props.updateUserEmail(user);
+            // redirect to payment
+            this.handleYearClickResumeUpgrade2(email2);
+        }
+    }
+    confirmEmailInterviewMonth3 = () => {
+        let email1 = document.getElementById("email1").value;
+        let email2 = document.getElementById("email2").value;
+        let reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+        if (email1 != email2) {
+            // check the input emails are equal
+            return alert("Your input email addresses are not consistent!");
+        } else if (!reg.test(email2)) {
+            // check email format
+            return alert("Please Enter Your Email In Correct Format.");
+        } else {
+            // save email to User model
+            let user = {"id": this.props.user.id , "email": email2};
+            this.props.updateUserEmail(user);
+            // redirect to payment
+            this.handleYearClickInterviewUpgrade2(email2);
         }
     }
 
@@ -116,6 +192,36 @@ class PricingStyleOne extends Component {
             ],
         });
     }
+    addUserResumeEmailMonth1 = () => {
+        confirmAlert({
+            title: 'Please enter your personal email',
+            message: <form>
+                        <label style={{width: "6rem"}}>Email</label><input id="email1" type="text"></input><br/>
+                        <label style={{width: "6rem"}}>Confirm Email</label><input id="email2" type="text"></input>
+                    </form>,
+            buttons: [
+                {
+                    label: 'ok',
+                    onClick: () => this.confirmResumeEmailMonth1()
+                }
+            ],
+        });
+    }
+    addUserInterviewEmailMonth1 = () => {
+        confirmAlert({
+            title: 'Please enter your personal email',
+            message: <form>
+                        <label style={{width: "6rem"}}>Email</label><input id="email1" type="text"></input><br/>
+                        <label style={{width: "6rem"}}>Confirm Email</label><input id="email2" type="text"></input>
+                    </form>,
+            buttons: [
+                {
+                    label: 'ok',
+                    onClick: () => this.confirmInterviewEmailMonth1()
+                }
+            ],
+        });
+    }
 
     addUserEmailMonth3 = () => {
         confirmAlert({
@@ -128,6 +234,36 @@ class PricingStyleOne extends Component {
                 {
                     label: 'ok',
                     onClick: () => this.confirmEmailMonth3()
+                }
+            ],
+        });
+    }
+    addUserEmailResumeMonth3 = () => {
+        confirmAlert({
+            title: 'Please enter your personal email',
+            message: <form>
+                        <label style={{width: "6rem"}}>Email</label><input id="email1" type="text"></input><br/>
+                        <label style={{width: "6rem"}}>Confirm Email</label><input id="email2" type="text"></input>
+                    </form>,
+            buttons: [
+                {
+                    label: 'ok',
+                    onClick: () => this.confirmEmailResumeMonth3()
+                }
+            ],
+        });
+    }
+    addUserEmailInterviewMonth3 = () => {
+        confirmAlert({
+            title: 'Please enter your personal email',
+            message: <form>
+                        <label style={{width: "6rem"}}>Email</label><input id="email1" type="text"></input><br/>
+                        <label style={{width: "6rem"}}>Confirm Email</label><input id="email2" type="text"></input>
+                    </form>,
+            buttons: [
+                {
+                    label: 'ok',
+                    onClick: () => this.confirmEmailInterviewMonth3()
                 }
             ],
         });
@@ -243,10 +379,40 @@ class PricingStyleOne extends Component {
         }else{
           this.handleClickUpgrade();
         }
-        /*if(this.handleClickUpgrade()){
-          var profile = this.makeProfile();
-          this.props.updateProfile(profile);
-        }*/
+    };
+    handleResumeUpgrade = () => {
+        if(this.props.profile.membership == 'Premium'){
+          confirmAlert({
+            title: 'Premium Member Already',
+            message: '',
+            buttons: [
+              {
+                label: 'Sure'
+              }
+            ]
+            });
+        }else if (this.props.user.email == "" || this.props.user.email == null) {
+            this.addUserResumeEmailMonth1();
+        }else{
+          this.handleClickResumeUpgrade();
+        }
+    };
+    handleInterviewUpgrade = () => {
+        if(this.props.profile.membership == 'Premium'){
+          confirmAlert({
+            title: 'Premium Member Already',
+            message: '',
+            buttons: [
+              {
+                label: 'Sure'
+              }
+            ]
+            });
+        }else if (this.props.user.email == "" || this.props.user.email == null) {
+            this.addUserInterviewEmailMonth1();
+        }else{
+          this.handleClickInterviewUpgrade();
+        }
     };
 
     handleClickUpgrade = async (event) => {
@@ -255,6 +421,38 @@ class PricingStyleOne extends Component {
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{
             price: 'price_1H8WhZKxU1MN2zWMo3Cu8kLn', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+    handleClickResumeUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1IPDzBKxU1MN2zWM2R4WdI69', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+    handleClickInterviewUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1IPBvWKxU1MN2zWMCfezKW7o', // Replace with the ID of your price
             quantity: 1,
           }],
           mode: 'subscription',
@@ -282,6 +480,38 @@ class PricingStyleOne extends Component {
         });
         error.message;
     };
+    handleClickResumeUpgrade2 = async (email) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1IPDzBKxU1MN2zWM2R4WdI69', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: email,
+        });
+        error.message;
+    };
+    handleClickInterviewUpgrade2 = async (email) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1IPBvWKxU1MN2zWMCfezKW7o', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: email,
+        });
+        error.message;
+    };
 
     handleYearUpgrade = () => {
         if(this.props.profile.membership == 'Premium'){
@@ -299,10 +529,40 @@ class PricingStyleOne extends Component {
         }else{
           this.handleYearClickUpgrade();
         }
-        /*if(this.handleClickUpgrade()){
-          var profile = this.makeProfile();
-          this.props.updateProfile(profile);
-        }*/
+    };
+    handleYearResumeUpgrade = () => {
+        if(this.props.profile.membership == 'Premium'){
+          confirmAlert({
+            title: 'Premium Member Already',
+            message: '',
+            buttons: [
+              {
+                label: 'Sure'
+              }
+            ]
+            });
+        }else if (this.props.user.email == "" || this.props.user.email == null) {
+            this.addUserEmailResumeMonth3();
+        }else{
+          this.handleYearClickResumeUpgrade();
+        }
+    };
+    handleYearInterviewUpgrade = () => {
+        if(this.props.profile.membership == 'Premium'){
+          confirmAlert({
+            title: 'Premium Member Already',
+            message: '',
+            buttons: [
+              {
+                label: 'Sure'
+              }
+            ]
+            });
+        }else if (this.props.user.email == "" || this.props.user.email == null) {
+            this.addUserEmailInterviewMonth3();
+        }else{
+          this.handleYearClickInterviewUpgrade();
+        }
     };
 
     handleYearClickUpgrade = async (event) => {
@@ -310,7 +570,39 @@ class PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{
-            price: 'price_1HmmhzKxU1MN2zWMlxYp4I0z', // Replace with the ID of your price
+            price: 'price_1IPDvWKxU1MN2zWM0ZgjDTYJ', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+    handleYearClickResumeUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1IPDxaKxU1MN2zWMSEdCAxBu', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+    handleYearClickInterviewUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1IPC0qKxU1MN2zWMnwuVC8L6', // Replace with the ID of your price
             quantity: 1,
           }],
           mode: 'subscription',
@@ -327,7 +619,39 @@ class PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{
-            price: 'price_1HmmhzKxU1MN2zWMlxYp4I0z', // Replace with the ID of your price
+            price: 'price_1IPDvWKxU1MN2zWM0ZgjDTYJ', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: email,
+        });
+        error.message;
+    };
+    handleYearClickResumeUpgrade2 = async (email) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1IPDxaKxU1MN2zWMSEdCAxBu', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: email,
+        });
+        error.message;
+    };
+    handleYearClickInterviewUpgrade2 = async (email) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1IPC0qKxU1MN2zWMnwuVC8L6', // Replace with the ID of your price
             quantity: 1,
           }],
           mode: 'subscription',
@@ -359,7 +683,7 @@ class PricingStyleOne extends Component {
     render() {
         return (
             <section className="pricing-area pt-100 pb-70 bg-f4f5fe">
-                <div className="container">
+                <div className="container-fluid px-4">
                     <div className="section-title">
                         <h2>Choose The Pricing Plan</h2>
                     </div>
@@ -389,7 +713,7 @@ class PricingStyleOne extends Component {
                         <div id="tab2" className="tabs_item">
                                 <div className="row">
                                     {/* Single pricing table */}
-                                    <div className="col-lg-6 col-md-6">
+                                    <div className="col-lg-3 col-md-3">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
                                                 <h3>Free</h3>
@@ -400,20 +724,22 @@ class PricingStyleOne extends Component {
                                                 <div style={{marginTop:'-1rem'}}><sub></sub></div>
                                             </div>
 
-                                            <ul className="pricing-features">
+                                            <ul className="pricing-features pb-3">
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited Interview simulations & practices
+                                                    3 interview simulations & practices
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    3 AI or expert reports on your interview performance
+                                                    2 AI or expert reports on your interview performance
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    2 resume-to-job evaluation reports
+                                                    1 resume-to-job evaluation reports
                                                 </li>
-                                                <li style={{color:"#ffffff"}}>empty
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Access to top company tips & data
                                                 </li>
                                                 <li style={{color:"#ffffff"}}>empty
                                                 </li>
@@ -455,15 +781,81 @@ class PricingStyleOne extends Component {
                                     </div>
 
                                     {/* Single pricing table */}
-                                    <div className="col-lg-6 col-md-6">
+                                    <div className="col-lg-3 col-md-3">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
-                                                <h3>3 Months Bundle</h3>
+                                                <h3>Resume Package</h3>
                                             </div>
 
-                                            <div className="price" style={{color:'#ff6b00'}}>
-                                                <sup>$</sup>9.99 <sub style={{color:'#ff6b00'}}>/ month</sub>
-                                                <div style={{marginTop:'-1rem'}}><sub>$29.97 in total - </sub><sub style={{color:'#ff6b00'}}><b>Save 50%</b></sub></div>
+                                            <div className="price">
+                                                <sup>$</sup>7.49 <sub>/ month</sub>
+                                                <div style={{marginTop:'-1rem'}}><sub>$22.49 in total - </sub><sub style={{color:'#ff6b00'}}><b>Save 25%</b></sub></div>
+                                            </div>
+
+                                            <ul className="pricing-features pb-3">
+                                            <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited resume-to-job evaluation reports
+                                                    </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Access to top company tips & data
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    24/7 customer support
+                                                </li>
+                                                <li style={{color:"#ffffff"}}>empty
+                                                </li>
+                                                <li style={{color:"#ffffff"}}>empty
+                                                </li>
+                                            </ul>
+
+                                            {
+                                                this.props.profile.membership == null && 
+                                                <div className="btn-box">
+                                                <Link to="/register">
+                                                <a id="id-tifn2" className="default-btn" style={{color:"white"}}>
+                                                    <i className="bx bxs-hot"></i> 
+                                                    Try It Free Now
+                                                    <span></span>
+                                                </a>
+                                                </Link>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Regular" &&
+                                                <div className="btn-box">
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white"}} onClick={this.handleYearResumeUpgrade}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Select Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Premium" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Premium Already
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    {/* Single pricing table */}
+                                    <div className="col-lg-3 col-md-3">
+                                        <div className="single-pricing-table left-align">
+                                            <div className="pricing-header">
+                                                <h3>Interview Package</h3>
+                                            </div>
+
+                                            <div className="price">
+                                                <sup>$</sup>11.25 <sub>/ month</sub>
+                                                <div style={{marginTop:'-1rem'}}><sub>$33.75 in total - </sub><sub style={{color:'#ff6b00'}}><b>Save 25%</b></sub></div>
                                             </div>
 
                                             <ul className="pricing-features">
@@ -473,15 +865,15 @@ class PricingStyleOne extends Component {
                                                     </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    <b>Unlimited</b> AI and expert reports on your interview performance
+                                                    Unlimited AI or expert reports on your interview performance
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    <b>Unlimited</b> resume-to-job evaluation reports
+                                                    Access to top company tips & data
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Priority 24/7 customer support</li>
+                                                    24/7 customer support</li>
                                                 
                                                 <li style={{color:"#ffffff"}}>empty
                                                 </li>
@@ -502,9 +894,77 @@ class PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white"}} onClick={this.handleYearInterviewUpgrade}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Select Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Premium" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Premium Already
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    {/* Single pricing table */}
+                                    <div className="col-lg-3 col-md-3">
+                                        <div className="single-pricing-table left-align">
+                                            <div className="pricing-header">
+                                                <h3>Professional Bundle</h3>
+                                            </div>
+
+                                            <div className="price" style={{color:'#ff6b00'}}>
+                                                <sup>$</sup>14.99<sub style={{color:'#ff6b00'}}>/ month</sub>
+                                                <div style={{marginTop:'-1rem'}}><sub>$44.99 in total - </sub><sub style={{color:'#ff6b00'}}><b>Save 25%</b></sub></div>
+                                            </div>
+
+                                            <ul className="pricing-features">
+                                            <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited interview simulations & practices
+                                                    </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited AI or expert reports on your interview performance
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited resume-to-job evaluation reports
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Access to top company tips & data</li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    24/7 customer support</li>
+                                            </ul>
+
+                                            {
+                                                this.props.profile.membership == null && 
+                                                <div className="btn-box">
+                                                <Link to="/register">
+                                                <a id="id-tifn2" className="default-btn" style={{color:"white"}}>
+                                                    <i className="bx bxs-hot"></i> 
+                                                    Try It Free Now
+                                                    <span></span>
+                                                </a>
+                                                </Link>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Regular" &&
+                                                <div className="btn-box">
                                                     <button id="id-tifn5" className="default-btn" style={{color:"white"}} onClick={this.handleYearUpgrade}>
                                                         <i className="bx bxs-hot"></i> 
-                                                        Upgrade Now
+                                                        Select Plan
                                                         <span></span>
                                                     </button>
                                                 </div>
@@ -523,10 +983,12 @@ class PricingStyleOne extends Component {
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Monthly */}
                             <div id="tab1" className="tabs_item">
                                 <div className="row">
                                     {/* Single pricing table */}
-                                    <div className="col-lg-6 col-sm-6">
+                                    <div className="col-lg-3 col-md-3">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
                                                 <h3>Free</h3>
@@ -536,20 +998,22 @@ class PricingStyleOne extends Component {
                                                 <sup>$</sup>0 <sub>/ month</sub>
                                             </div>
 
-                                            <ul className="pricing-features">
-                                            <li>
+                                            <ul className="pricing-features pb-3">
+                                                <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited Interview simulations & practices
+                                                    3 interview simulations & practices
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    3 AI or expert reports on your interview performance
+                                                    2 AI or expert reports on your interview performance
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    2 resume-to-job evaluation reports
+                                                    1 resume-to-job evaluation reports
                                                 </li>
-                                                <li style={{color:"#ffffff"}}>empty
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Access to top company tips & data
                                                 </li>
                                                 <li style={{color:"#ffffff"}}>empty
                                                 </li>
@@ -559,7 +1023,7 @@ class PricingStyleOne extends Component {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
-                                                <a id="id-tifn3" className="default-btn" style={{color:"white"}}>
+                                                <a id="id-tifn1" className="default-btn" style={{color:"white"}}>
                                                     <i className="bx bxs-hot"></i> 
                                                     Try It Free Now
                                                     <span></span>
@@ -591,41 +1055,40 @@ class PricingStyleOne extends Component {
                                     </div>
 
                                     {/* Single pricing table */}
-                                    <div className="col-lg-6 col-sm-6">
+                                    <div className="col-lg-3 col-md-3">
                                         <div className="single-pricing-table left-align">
                                             <div className="pricing-header">
-                                                <h3>Monthly</h3>
+                                                <h3>Resume Package</h3>
                                             </div>
 
                                             <div className="price">
-                                                <sup>$</sup>19.99<sub>/ month</sub>
+                                                <sup>$</sup>9.99 <sub>/ month</sub>
                                             </div>
 
-                                            <ul className="pricing-features">
+                                            <ul className="pricing-features pb-3">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited interview simulations & practices
+                                                    Unlimited resume-to-job evaluation reports
                                                     </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    <b>Unlimited</b> AI and expert reports on your interview performance
+                                                    Access to top company tips & data
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    <b>Unlimited</b> resume-to-job evaluation reports
+                                                    24/7 customer support
                                                 </li>
-                                                <li>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Priority 24/7 customer support</li>
-                                                
+                                                <li style={{color:"#ffffff"}}>empty
+                                                </li>
                                                 <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                             </ul>
+
                                             {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/register">
-                                                <a id="id-tifn4" className="default-btn" style={{color:"white"}}>
+                                                <a id="id-tifn2" className="default-btn" style={{color:"white"}}>
                                                     <i className="bx bxs-hot"></i> 
                                                     Try It Free Now
                                                     <span></span>
@@ -636,9 +1099,143 @@ class PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button id="id-tifn6" className="default-btn" style={{color:"white"}} onClick={this.handleUpgrade}>
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white"}} onClick={this.handleResumeUpgrade}>
                                                         <i className="bx bxs-hot"></i> 
-                                                        Upgrade Now
+                                                        Select Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Premium" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Premium Already
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    {/* Single pricing table */}
+                                    <div className="col-lg-3 col-md-3">
+                                        <div className="single-pricing-table left-align">
+                                            <div className="pricing-header">
+                                                <h3>Interview Package</h3>
+                                            </div>
+
+                                            <div className="price">
+                                                <sup>$</sup>14.99 <sub>/ month</sub>
+                                            </div>
+
+                                            <ul className="pricing-features">
+                                            <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited interview simulations & practices
+                                                    </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited AI or expert reports on your interview performance
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Access to top company tips & data
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    24/7 customer support</li>
+                                                
+                                                <li style={{color:"#ffffff"}}>empty
+                                                </li>
+                                            </ul>
+
+                                            {
+                                                this.props.profile.membership == null && 
+                                                <div className="btn-box">
+                                                <Link to="/register">
+                                                <a id="id-tifn2" className="default-btn" style={{color:"white"}}>
+                                                    <i className="bx bxs-hot"></i> 
+                                                    Try It Free Now
+                                                    <span></span>
+                                                </a>
+                                                </Link>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Regular" &&
+                                                <div className="btn-box">
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white"}} onClick={this.handleInterviewUpgrade}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Select Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Premium" &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c"}}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Premium Already
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    {/* Single pricing table */}
+                                    <div className="col-lg-3 col-md-3">
+                                        <div className="single-pricing-table left-align">
+                                            <div className="pricing-header">
+                                                <h3>Professional Bundle</h3>
+                                            </div>
+
+                                            <div className="price" style={{color:'#ff6b00'}}>
+                                                <sup>$</sup>19.99<sub style={{color:'#ff6b00'}}>/ month</sub>
+                                            </div>
+
+                                            <ul className="pricing-features">
+                                            <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited interview simulations & practices
+                                                    </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited AI or expert reports on your interview performance
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Unlimited resume-to-job evaluation reports
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Access to top company tips & data</li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    24/7 customer support</li>
+                                            </ul>
+
+                                            {
+                                                this.props.profile.membership == null && 
+                                                <div className="btn-box">
+                                                <Link to="/register">
+                                                <a id="id-tifn2" className="default-btn" style={{color:"white"}}>
+                                                    <i className="bx bxs-hot"></i> 
+                                                    Try It Free Now
+                                                    <span></span>
+                                                </a>
+                                                </Link>
+                                                </div>
+                                            }
+                                            {
+                                                this.props.profile.membership == "Regular" &&
+                                                <div className="btn-box">
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white"}} onClick={this.handleUpgrade}>
+                                                        <i className="bx bxs-hot"></i> 
+                                                        Select Plan
                                                         <span></span>
                                                     </button>
                                                 </div>
