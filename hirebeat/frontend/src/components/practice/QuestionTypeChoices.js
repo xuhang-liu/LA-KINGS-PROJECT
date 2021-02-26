@@ -40,6 +40,10 @@ export class QuestionTypeChoices extends Component {
   };
 
   redirectToBehaviorQuestions = () => {
+      // check save limit
+      if (this.props.saved_video_count >= this.props.save_limit) {
+          return upgradeMessage();
+      }
       if (!this.props.isAuthenticated) {
           return this.redirectToRegister();
       }
@@ -54,6 +58,10 @@ export class QuestionTypeChoices extends Component {
   };
 
   redirectToTechQuestions = () => {
+      // check save limit
+      if (this.props.saved_video_count >= this.props.save_limit) {
+          return upgradeMessage();
+      }
       if (!this.props.isAuthenticated) {
           return this.redirectToRegister();
       }
@@ -168,10 +176,27 @@ function alert() {
     });
 }
 
+function upgradeMessage() {
+  confirmAlert({
+    title: 'Upgrade',
+    message: 'No more free practice left.😢 Upgrade now to get unlimited practice',
+    buttons: [
+      {label: 'Upgrade Now', onClick: () => redirectPricing()},
+      {label: 'OK'},
+    ]
+  });
+}
+
+function redirectPricing() {
+  window.location.href = "/pricing";
+}
+
 const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
   user: state.auth_reducer.user,
   isAuthenticated: state.auth_reducer.isAuthenticated,
+  save_limit: state.auth_reducer.profile.save_limit,
+  saved_video_count: state.auth_reducer.profile.saved_video_count,
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile })(QuestionTypeChoices);
