@@ -120,13 +120,13 @@ const ReviewVideoResult = (props) => {
     const medal_comment_3 = "weak answer. Based on our analysis, you need to make improvements in a few important areas.";
     var medal_comment = "";
     var medal_url = "";
-    if((Number(props.v.ai_performance_total_score) >= 0) && (Number(props.v.ai_performance_total_score) < 70)){
+    if((Number(props.v.ai_performance_total_score) >= 0) && (Number(props.v.ai_performance_total_score) < 65)){
         medal_url=medal_url_3;
         medal_comment=medal_comment_3;
-    }else if((Number(props.v.ai_performance_total_score) >= 70) && (Number(props.v.ai_performance_total_score) < 85)){
+    }else if((Number(props.v.ai_performance_total_score) >= 65) && (Number(props.v.ai_performance_total_score) < 82)){
         medal_url=medal_url_2;
         medal_comment=medal_comment_2;
-    }else if((Number(props.v.ai_performance_total_score) >= 85) && (Number(props.v.ai_performance_total_score) <= 100)){
+    }else if((Number(props.v.ai_performance_total_score) >= 82) && (Number(props.v.ai_performance_total_score) <= 100)){
         medal_url=medal_url_1;
         medal_comment=medal_comment_1;
     }
@@ -281,7 +281,7 @@ const VideoCard = (props) => {
                 </button>
             </div>
             <h6 className="mb-0" style={{color:"#090D3A", marginTop:"-0.3rem"}}>Average Score: {props.score}</h6>
-            <img style={{height:"50%", margin:"auto", display:"block"}} 
+            <img style={{height:"8rem", margin:"auto", display:"block"}} 
                 src={props.imgurl} />
             <div className="row">
                 <h1 className="col-6 pr-2" style={{color:"#13C4A1", textAlign:"right"}}>{props.green}</h1>
@@ -290,7 +290,7 @@ const VideoCard = (props) => {
                     <h6>{props.lower}</h6>
                 </div>
             </div>
-            <h6 style={{color:"#4A6F8A"}}>{props.comment}</h6>
+            <h6 style={{color:"#4A6F8A", marginBottom:"1rem"}}>{props.comment}</h6>
         </div>
     )
 };
@@ -305,9 +305,9 @@ const VideoCardII = (props) => {
                 </button>
             </div>
             <h6 className="mb-0" style={{color:"#090D3A", marginTop:"-0.3rem"}}>Average Score: {props.score}</h6>
-            <img className="my-3" style={{height:"50%", margin:"auto", display:"block"}} 
+            <img className="my-3" style={{height:"10rem", margin:"auto", display:"block"}} 
                 src={props.imgurl} />
-            <h6 style={{color:"#4A6F8A", marginBottom:"0.3rem"}}>{props.comment}</h6>
+            <h6 style={{color:"#4A6F8A", marginBottom:"1rem"}}>{props.comment}</h6>
         </div>
     )};
 const DetailCard = (props) => {
