@@ -118,8 +118,8 @@ class MainBanner extends Component {
 
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-content pl-3">
-                                    <h3>Is your screeing method outdated?</h3>
-                                    <p>Repeated appointments with job applicants, time-consuming telephone interviews, and high labor to screen just one qualifed applicant.</p>
+                                    <h3>Is your screening method outdated?</h3>
+                                    <p>Repeated appointments with job applicants, time-consuming telephone interviews, and high labor and time costs to screen just one qualified applicant</p>
                                 </div>
                             </div>
                         </div>
