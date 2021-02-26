@@ -29,15 +29,22 @@ export function AIReview(props) {
   }
   infillChartData(categoryArray, percentArray);
   const medal_url_1 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/gold-medal.png";
-  const medal_url_2 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/silver-medal.png";
-  const medal_url_3 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bronze-medal.png";
-  var medal_url = "";
-    if((Number(props.v.ai_performance_total_score) >= 0) && (Number(props.v.ai_performance_total_score) <= 33)){
+    const medal_url_2 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/silver-medal.png";
+    const medal_url_3 = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bronze-medal.png";
+    const medal_comment_1 = "Exceptional Congratulations! Based on our analysis, you did very well on this question!";
+    const medal_comment_2 = "Good! Some work may be needed. Based on our analysis, you could make some improvements in some areas.";
+    const medal_comment_3 = "weak answer. Based on our analysis, you need to make improvements in a few important areas.";
+    var medal_comment = "";
+    var medal_url = "";
+    if((Number(props.v.ai_performance_total_score) >= 0) && (Number(props.v.ai_performance_total_score) < 70)){
         medal_url=medal_url_3;
-    }else if((Number(props.v.ai_performance_total_score) >= 34) && (Number(props.v.ai_performance_total_score) <= 66)){
+        medal_comment=medal_comment_3;
+    }else if((Number(props.v.ai_performance_total_score) >= 70) && (Number(props.v.ai_performance_total_score) < 85)){
         medal_url=medal_url_2;
-    }else if((Number(props.v.ai_performance_total_score) >= 67) && (Number(props.v.ai_performance_total_score) <= 100)){
+        medal_comment=medal_comment_2;
+    }else if((Number(props.v.ai_performance_total_score) >= 85) && (Number(props.v.ai_performance_total_score) <= 100)){
         medal_url=medal_url_1;
+        medal_comment=medal_comment_1;
     }
   return (
     <div className="container-fluid">
@@ -53,11 +60,11 @@ export function AIReview(props) {
             </div>
             <div className="row ml-3 my-4">
                 <div className="col-2">
-                    <img src={medal_url} alt="icon" style={{width:"6rem"}}></img>
+                    <img src={medal_url} alt="icon" style={{width:"3rem"}}></img>
                 </div>
                 <div className="col-10">
                 <h6 style={{color:"#13C4A1"}}>
-                    You really aced this question!  You have scored higher than 90% of other candidates.
+                    {medal_comment}
                 </h6>
                 </div>
             </div>
@@ -79,18 +86,19 @@ export function AIReview(props) {
         <CategoryTitle title={"Overall Score"} />
           <ProgressBar color={"blue"} height={15} percent={props.v.ai_score} />
           <div className="row mr-2">
-            <div className="col-6">
+            <div className="col-12">
               <div id="chart">
                 <Chart
                   options={radialChartOptions.options}
                   series={radialChartOptions.series}
                   type="radar"
-                  height={350}
+                  height={400}
                 />
               </div>
             </div>
-            <div className="col-6">
-              <CategoryTitle title={"Details"} />
+          </div>
+          <div className="row mr-2">
+            <div className="col-12">
               {categoryArray.map((c, index) => {
                 return (
                   <AICategoryReview

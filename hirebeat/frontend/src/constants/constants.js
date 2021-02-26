@@ -109,18 +109,18 @@ export var radialChartOptions = {
   ],
   options: {
     chart: {
-      height: 350,
+      height: 400,
       type: "radar",
     },
     title: {
       text: "Competency Map",
       style: {
-        fontFamily: "Lato",
+        fontFamily: "Avenir Next, Segoe UI",
         fontStyle: "normal",
-        fontWeight: "300",
+        fontWeight: "500",
         fontSize: "20px",
         lineHeight: "24px",
-        color: "#7d7d7d",
+        color: "#4a6f8a",
       },
     },
     xaxis: {
@@ -128,11 +128,11 @@ export var radialChartOptions = {
       labels: {
         show: true,
         style: {
-          colors: ["#000000", "#000000", "#000000", "#000000", "#000000"],
+          colors: ["#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a"],
           fontSize: "12px",
-          fontFamily: "Lato",
+          fontFamily: "Avenir Next, Segoe UI",
           fontStyle: "normal",
-          fontWeight: "normal",
+          fontWeight: "500",
           lineHeight: "7px"
         }
       }
@@ -143,11 +143,11 @@ export var radialChartOptions = {
       labels: {
         show: true,
         style: {
-          colors: ["#000000", "#000000", "#000000", "#000000", "#000000"],
+          colors: ["#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a"],
           fontSize: "12px",
-          fontFamily: "Lato",
+          fontFamily: "Avenir Next, Segoe UI",
           fontStyle: "normal",
-          fontWeight: "normal",
+          fontWeight: "500",
           lineHeight: "7px"
         }
       }
