@@ -11,6 +11,7 @@ import 'boxicons';
 import { closePosition, deletePosition, getResumeURL } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
 import Select from 'react-select'
+import * as pdfjsLib from 'pdfjs-dist';
 
 export class JobApplication extends Component{
     refreshPage() {
@@ -322,6 +323,162 @@ const JobCard = (props) => {
     const [addForm3, setAddForm3] = useState(false);
     const [addForm4, setAddForm4] = useState(false);
     const [addForm5, setAddForm5] = useState(false);
+
+    // upload resumes
+    var candidateNames = [];
+    var candidateEmails = [];
+    var resumeNames = [];
+    // state refreshed the whole page, so candidateNames and candidateEmails set to []
+//    const [cvUploaded, setCvUploaded] = useState("");
+//    const [parsed, setParsed] = useState(false);
+    function uploadResume() {
+        // parse pdf from urls directly
+        // let text = getTextByURL("https://hirebeat-resume.s3.amazonaws.com/CV_LiangXu.pdf")
+        // console.log(text);
+
+        // empty candidate emails and names every click
+        candidateNames = [];
+        candidateEmails = [];
+
+        let input = document.getElementById("resume");
+        input.click();
+        input.onchange = () => {
+            let num = input.files.length;
+            // limit 10 pdfs at one time
+            if (num > 10) {
+                return overwhelm();
+            }
+            // get selected files
+            for (let i = 0; i < num; i++) {
+                // extract emails from pdf
+                let pdf = input.files[i]
+                getTextByPdf(pdf);
+                resumeNames.push(pdf.name);
+            }
+            let fileNames = resumeNames.toString();
+            uploadSuccess(num, fileNames, autofill);
+//            setCvUploaded(num + "resumes uploaded");
+//            setParsed(true);
+
+        }
+    }
+
+    // autofill name & email
+    function autofill() {
+        if (candidateEmails.length <= 0 || candidateNames.length <= 0) {
+            return uploadFirst();
+        }
+        // prefill names and emails to form
+        let nameElements = document.getElementsByClassName("candidate-name");
+        let emailElements = document.getElementsByClassName("candidate-email");
+        let n = candidateNames.length;
+        for (let i = 0; i < n; i++) {
+            if (!checkName(candidateNames[i])) {
+                nameError();
+            }
+            nameElements[i].value = candidateNames[i];
+            emailElements[i].value = candidateEmails[i];
+        }
+    }
+
+    // parse resumes from url
+    function getTextByURL(pdfUrl){
+      // ensure workSrc version align with pdfjs version
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '//cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.worker.js';
+      var pdf = pdfjsLib.getDocument(pdfUrl);
+      return pdf.promise.then(function(pdf) { // get all pages text
+        var maxPages = pdf.numPages;
+        var countPromises = []; // collecting all page promises
+        for (var j = 1; j <= maxPages; j++) {
+          var page = pdf.getPage(j);
+
+          var txt = "";
+          countPromises.push(page.then(function(page) { // add page promise
+            var textContent = page.getTextContent();
+            return textContent.then(function(text){ // return content promise
+              return text.items.map(function(s) { return s.str; }).join(''); // value page text
+            });
+          }));
+        }
+        // Wait for all pages and join text
+        return Promise.all(countPromises).then(function (texts) {
+          return texts.join('');
+        });
+      });
+    }
+
+    // parse resume from local PDF files, fake upload
+    function getTextByPdf(pdf){
+        // step 1 read the file using file reader
+        let fileReader = new FileReader();
+        fileReader.onload = function() {
+            // step 3 turn array buffer into typed array
+            var typedArray = new Uint8Array(this.result);
+
+            //Step 4 PDFJS should be able to read this
+            // ensure workSrc version align with pdfjs version
+            pdfjsLib.GlobalWorkerOptions.workerSrc = '//cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.worker.js';
+            return pdfjsLib.getDocument(typedArray).promise.then(function(pdf) {
+                // convert pdf to string
+                var maxPages = pdf.numPages;
+                var countPromises = []; // collecting all page promises
+                for (var j = 1; j <= maxPages; j++) {
+                  var page = pdf.getPage(j);
+
+                  var txt = "";
+                  countPromises.push(page.then(function(page) { // add page promise
+                    var textContent = page.getTextContent();
+                    return textContent.then(function(text){ // return content promise
+                      return text.items.map(function(s) { return s.str; }).join(''); // value page text
+                    });
+                  }));
+                }
+                // Wait for all pages and join text
+                return Promise.all(countPromises).then(function (texts) {
+                  // extract email and name
+                  let text = texts.join('');
+                  let email = extractEmail(text);
+                  let name = extractName(text);
+                  // check email
+                  if (email != null) {
+                    candidateEmails.push(email[0]);
+                    candidateNames.push(name);
+                  }
+                });
+            });
+        }
+
+        // step2 read the file as ArrayBuffer
+        fileReader.readAsArrayBuffer(pdf);
+    }
+
+    function extractEmail(text) {
+        return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi);
+    }
+
+    function extractName(text) {
+        let array = text.split(" ");
+        let name = "";
+        let count = 0;
+        for (let i = 0; i < 3; i++) {
+            if (array[i] != "" && count < 1) {
+                name += array[i] + " ";
+                count++;
+            }
+            else if (array[i] != "" && count < 2) {
+                name += array[i];
+                count++
+            }
+        }
+        return name;
+    }
+
+    function checkName(text) {
+        // allow alphabets and space
+        var regex=/^[A-Za-z ]+$/ig;
+        return regex.test(text);
+    }
+
     return (
         <React.Fragment>
             {/* Job Applications */}
@@ -338,10 +495,10 @@ const JobCard = (props) => {
                         </button>
                     </div>
                     <div className="row">
-                        <div className="col-4 interview-center">
+                        <div className="col-4 interview-center mt-2">
                             <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                         </div>
-                        <div className="col-2 interview-txt7 interview-center">
+                        <div className="col-2 interview-txt7 interview-center mt-2">
                             <button
                             type="button"
                             className="read-more"
@@ -428,8 +585,29 @@ const JobCard = (props) => {
             {invite &&
                 <div className="card container" style={{marginTop:"1%", marginBottom:"2%"}}>
                     <div className="row interview-center" style={{marginTop: "2rem", marginLeft: "1%"}}>
-                            <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
+                        <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
+                    </div>
+                    <div className="row m-3">
+                        <button type="button" className="default-btn resume-upload" onClick={uploadResume}>
+                            <i className="bx bx-cloud-upload bx-sm"></i>
+                              Upload Resume
+                        </button>
+                        <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
+                        <div style={{marginLeft: "1rem", marginTop: "1rem"}}>
+                            <span className="upload-txt">
+                                Multi-Upload Support (.pdf only)
+                            </span>
                         </div>
+                        {/*parsed &&
+                            <div style={{display: "flex", alignItems: "center", marginLeft: "1rem"}}>
+                                <span className="upload-txt">
+                                    <i className="bx bx-file"></i>
+                                    {cvUploaded}
+                                    <i className="bx bxs-check-circle" style={{color: "#13C4A1", marginLeft: "0.5rem"}}></i>
+                                </span>
+                            </div>*/}
+                        {/*<button type="button" className="default-btn" style={{backgroundColor: "#090D3A", paddingLeft: "25px", marginLeft: "2rem"}} onClick={autofill}>Autofill</button>*/}
+                    </div>
                     <form onSubmit={sendInvitation}>
                         <div className="form-row">
                             <div className="form-group col-6">
@@ -468,32 +646,63 @@ const JobCard = (props) => {
                             <div className="form-group col-6">
                             <input type="email" name="email5" className="form-control candidate-email"/>
                             </div>
+                            <div className="form-group col-6">
+                            <input type="text" name="name6" className="form-control candidate-name"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="email" name="email6" className="form-control candidate-email"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="text" name="name7" className="form-control candidate-name"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="email" name="email7" className="form-control candidate-email"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="text" name="name8" className="form-control candidate-name"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="email" name="email8" className="form-control candidate-email"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="text" name="name9" className="form-control candidate-name"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="email" name="email9" className="form-control candidate-email"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="text" name="name10" className="form-control candidate-name"/>
+                            </div>
+                            <div className="form-group col-6">
+                            <input type="email" name="email10" className="form-control candidate-email"/>
+                            </div>
                             </div>
                             <div className="col d-flex justify-items">
-                                {!addForm1 &&
+                                {/*!addForm1 &&
                                     <button
+                                        type="button"
                                         className="default-btn"
                                         style={{paddingLeft: "25px"}}
                                         onClick={() => setAddForm1(true)}
                                     >
                                         Add 5 More
-                                    </button>}
+                                    </button>*/}
                             </div>
                         {/* add additional form */}
                         {addForm1 &&
-                            <InvitationForm />
+                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
                         }
                         {addForm2 &&
-                            <InvitationForm />
+                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
                         }
                         {addForm3 &&
-                            <InvitationForm />
+                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
                         }
                         {addForm4 &&
-                            <InvitationForm />
+                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
                         }
                         {addForm5 &&
-                            <InvitationForm />
+                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
                         }
                         <div>
                             <div className="col d-flex justify-items">
@@ -572,44 +781,67 @@ const JobCard = (props) => {
     )
 };
 
-const InvitationForm = () => {
+const InvitationForm = (props) => {
     return (
-        <div className="form-row">
-            <div className="form-group col-6">
-                <label style={{ fontSize: "17px", margin:"2%"}}>
-                    Candidate Name
-                </label>
-                <input type="text" name="name1" className="form-control candidate-name"/>
+        <div>
+            <div className="row">
+                <button type="button" className="default-btn resume-upload" onClick={props.uploadResume} style={{marginLeft: "2rem"}}>
+                    <i className="bx bx-cloud-upload bx-sm"></i>
+                      Upload Resume
+                </button>
+                <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
+                <div style={{marginLeft: "1rem", marginTop: "1.5rem"}}>
+                    <span className="upload-txt">
+                        pdf only
+                    </span>
+                </div>
+                {/*parsed &&
+                    <div style={{display: "flex", alignItems: "center", marginLeft: "1rem"}}>
+                        <span className="upload-txt">
+                            <i className="bx bx-file"></i>
+                            {cvUploaded}
+                            <i className="bx bxs-check-circle" style={{color: "#13C4A1", marginLeft: "0.5rem"}}></i>
+                        </span>
+                    </div>*/}
+                <button type="button" className="default-btn" style={{backgroundColor: "#090D3A", paddingLeft: "25px", marginLeft: "2rem"}} onClick={props.autofill}>Autofill</button>
             </div>
-            <div className="form-group col-6">
-                <label style={{ fontSize: "17px", margin:"2%"}}>
-                    Candidate Email
-                </label>
-                <input type="email" name="email1" className="form-control candidate-email"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="text" name="name2" className="form-control candidate-name"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="email" name="email2" className="form-control candidate-email"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="text" name="name3" className="form-control candidate-name"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="email" name="email3" className="form-control candidate-email"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="text" name="name4" className="form-control candidate-name"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="email" name="email4" className="form-control candidate-email"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="text" name="name5" className="form-control candidate-name"/>
-            </div>
-            <div className="form-group col-6">
-                <input type="email" name="email5" className="form-control candidate-email"/>
+            <div className="form-row">
+                <div className="form-group col-6">
+                    <label style={{ fontSize: "17px", margin:"2%"}}>
+                        Candidate Name
+                    </label>
+                    <input type="text" name="name1" className="form-control candidate-name"/>
+                </div>
+                <div className="form-group col-6">
+                    <label style={{ fontSize: "17px", margin:"2%"}}>
+                        Candidate Email
+                    </label>
+                    <input type="email" name="email1" className="form-control candidate-email"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="text" name="name2" className="form-control candidate-name"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="email" name="email2" className="form-control candidate-email"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="text" name="name3" className="form-control candidate-name"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="email" name="email3" className="form-control candidate-email"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="text" name="name4" className="form-control candidate-name"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="email" name="email4" className="form-control candidate-email"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="text" name="name5" className="form-control candidate-name"/>
+                </div>
+                <div className="form-group col-6">
+                    <input type="email" name="email5" className="form-control candidate-email"/>
+                </div>
             </div>
         </div>
     )
@@ -898,6 +1130,67 @@ function alert() {
     confirmAlert({
       title: "Invitation Sent",
       message: "You resend the interview invitation successfully",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function overwhelm() {
+    confirmAlert({
+      title: "Too Many Resumes",
+      message: "You can only upload 10 resumes at most each time",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function uploadFirst() {
+    confirmAlert({
+      title: "Upload Resume First",
+      message: "Please upload resumes to autofill candidate information",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function uploadSuccess(num, fileNames, autofill) {
+    confirmAlert({
+      title: "Upload Resume Success",
+      message: "You have uploaded " + num + " resumes：" + fileNames,
+      buttons: [
+        {
+          label: 'Auto Fill Now',
+          onClick: () => autofill()
+        }
+      ]
+    });
+};
+
+function nameError() {
+    confirmAlert({
+      title: "Name Error",
+      message: "The candidate name in the resume file is invalid, please type it manually",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function emailError() {
+    confirmAlert({
+      title: "Email Error",
+      message: "The candidate email in the resume file is invalid, please type it manually",
       buttons: [
         {
           label: 'Ok'
