@@ -48,7 +48,7 @@ function ReviewStatusButton(props) {
   function reviewToggle() {
     // send for review
     if (text == "Send For AI Review") {
-        if (props.saved_video_count >= props.save_limit) {
+        if (props.feedback_count >= props.feedback_limit) {
           upgradeMessage();
         }
         else{
@@ -58,7 +58,7 @@ function ReviewStatusButton(props) {
         }
     }
     else if (text == "Send For Expert Review") {
-        if (props.saved_video_count >= props.save_limit) {
+        if (props.feedback_count >= props.feedback_limit) {
           upgradeMessage();
         }
         else {
@@ -158,8 +158,8 @@ function upgradeMessage() {
     title: 'Upgrade',
     message: 'No more free review left.😢 Upgrade now to get unlimite reviews',
     buttons: [
+      {label: 'Upgrade Now', onClick: () => redirectPricing()},
       {label: 'OK'},
-      {label: 'Upgrade Now', onClick: () => redirectPricing()}
     ]
   });
 }
@@ -226,8 +226,8 @@ function upgradeMessage() {
 //}
 
 const mapStateToProps = (state) => ({
-  save_limit: state.auth_reducer.profile.save_limit,
-  saved_video_count: state.auth_reducer.profile.saved_video_count,
+  feedback_limit: state.auth_reducer.profile.feedback_limit,
+  feedback_count: state.auth_reducer.profile.feedback_count,
 });
 
 

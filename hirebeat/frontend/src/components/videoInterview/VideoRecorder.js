@@ -28,7 +28,6 @@ export class VideoRecorder extends Component {
   };
 
   componentDidMount() {
-    console.log(1);
     this.player = videojs(this.videoNode, this.props, () => {
       var version_info =
         "Using video.js " +
