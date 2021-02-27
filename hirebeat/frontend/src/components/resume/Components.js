@@ -244,9 +244,9 @@ export function ResumeFooter() {
             <div className="contact-cta-box mwidth-200" style={{width: "80%"}}>
                 <h3 className="quiz-title">Want to land your dream role? </h3>
                 <p className="quiz-text">We are here to enhance your interview skills</p>
-                <Link to="/practice">
+                <Link to="/resume">
                     <a className="default-btn" style={{color:"white", fontFamily:"Avenir Next, Segoe UI"}}>
-                        Practice with HireBeat
+                    Optimize with HireBeat
                         <span></span>
                     </a>
                 </Link>

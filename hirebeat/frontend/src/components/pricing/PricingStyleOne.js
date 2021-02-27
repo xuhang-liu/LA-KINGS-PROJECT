@@ -743,6 +743,8 @@ class PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"#ffffff"}}>empty
                                                 </li>
+                                                <li style={{color:"#ffffff"}}>empty
+                                                </li>
                                             </ul>
 
                                             {
@@ -792,11 +794,19 @@ class PricingStyleOne extends Component {
                                                 <div style={{marginTop:'-1rem'}}><sub>$22.49 in total - </sub><sub style={{color:'#ff6b00'}}><b>Save 25%</b></sub></div>
                                             </div>
 
-                                            <ul className="pricing-features pb-3">
+                                            <ul className="pricing-features">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited resume-to-job evaluation reports
+                                                    3 interview simulations & practices
                                                     </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    2 AI or expert reports on your interview performance
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    <strong>Unlimited</strong> resume-to-job evaluation reports
+                                                </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     Access to top company tips & data
@@ -804,8 +814,6 @@ class PricingStyleOne extends Component {
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     24/7 customer support
-                                                </li>
-                                                <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                                 <li style={{color:"#ffffff"}}>empty
                                                 </li>
@@ -861,11 +869,15 @@ class PricingStyleOne extends Component {
                                             <ul className="pricing-features">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited interview simulations & practices
+                                                    <strong>Unlimited</strong> interview simulations & practices
                                                     </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited AI or expert reports on your interview performance
+                                                    <strong>Unlimited</strong> AI or expert reports on your interview performance
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    1 resume-to-job evaluation reports
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
@@ -873,8 +885,8 @@ class PricingStyleOne extends Component {
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    24/7 customer support</li>
-                                                
+                                                    24/7 customer support
+                                                </li>
                                                 <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                             </ul>
@@ -926,18 +938,18 @@ class PricingStyleOne extends Component {
                                                 <div style={{marginTop:'-1rem'}}><sub>$44.99 in total - </sub><sub style={{color:'#ff6b00'}}><b>Save 25%</b></sub></div>
                                             </div>
 
-                                            <ul className="pricing-features">
+                                            <ul className="pricing-features pb-2">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited interview simulations & practices
+                                                    <strong>Unlimited</strong> interview simulations & practices
                                                     </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited AI or expert reports on your interview performance
+                                                    <strong>Unlimited</strong> AI or expert reports on your interview performance
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited resume-to-job evaluation reports
+                                                    <strong>Unlimited</strong> resume-to-job evaluation reports
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
@@ -1017,6 +1029,8 @@ class PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"#ffffff"}}>empty
                                                 </li>
+                                                <li style={{color:"#ffffff"}}>empty
+                                                </li>
                                             </ul>
 
                                             {
@@ -1065,11 +1079,19 @@ class PricingStyleOne extends Component {
                                                 <sup>$</sup>9.99 <sub>/ month</sub>
                                             </div>
 
-                                            <ul className="pricing-features pb-3">
+                                            <ul className="pricing-features">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited resume-to-job evaluation reports
+                                                    3 interview simulations & practices
                                                     </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    2 AI or expert reports on your interview performance
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    <strong>Unlimited</strong> resume-to-job evaluation reports
+                                                </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     Access to top company tips & data
@@ -1077,8 +1099,6 @@ class PricingStyleOne extends Component {
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     24/7 customer support
-                                                </li>
-                                                <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                                 <li style={{color:"#ffffff"}}>empty
                                                 </li>
@@ -1133,11 +1153,15 @@ class PricingStyleOne extends Component {
                                             <ul className="pricing-features">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited interview simulations & practices
+                                                    <strong>Unlimited</strong> interview simulations & practices
                                                     </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited AI or expert reports on your interview performance
+                                                    <strong>Unlimited</strong> AI or expert reports on your interview performance
+                                                </li>
+                                                <li>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    1 resume-to-job evaluation reports
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
@@ -1145,8 +1169,8 @@ class PricingStyleOne extends Component {
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    24/7 customer support</li>
-                                                
+                                                    24/7 customer support
+                                                </li>
                                                 <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                             </ul>
@@ -1197,18 +1221,18 @@ class PricingStyleOne extends Component {
                                                 <sup>$</sup>19.99<sub style={{color:'#ff6b00'}}>/ month</sub>
                                             </div>
 
-                                            <ul className="pricing-features">
+                                            <ul className="pricing-features pb-2">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited interview simulations & practices
+                                                    <strong>Unlimited</strong> interview simulations & practices
                                                     </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited AI or expert reports on your interview performance
+                                                    <strong>Unlimited</strong> AI or expert reports on your interview performance
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Unlimited resume-to-job evaluation reports
+                                                    <strong>Unlimited</strong> resume-to-job evaluation reports
                                                 </li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
