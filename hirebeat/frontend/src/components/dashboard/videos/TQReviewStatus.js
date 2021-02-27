@@ -5,7 +5,8 @@ import React, { useState } from "react";
 import { renderQDes, renderSuccessTag, renderWaitTag, MyModal } from "../DashboardComponents";
 import { SampleAnswer } from "./SampleAnswer";
 import { AIReview } from "./AIReview";
-import MediaQuery from 'react-responsive';
+import ReviewVideoResult from './ReviewVideoResult';
+//import MediaQuery from 'react-responsive';
 import { connect } from "react-redux";
 import { confirmAlert } from 'react-confirm-alert';
 
@@ -17,14 +18,14 @@ function TQReviewStatus(props) {
 
 // decide text, className based on review status
 if (props.isSampleAns) {
-    text = "Sample Answer";
+    text = "View Sample Answer";
     className = "reviewed text-15";
 } else {
-    if (props.v.ai_auto_ready) {
-      text = "View AI Result";
+    if (props.v.ai_performance_ready) {
+      text = "View Result";
       className = "reviewed text-15";
     } else {
-        text = "Please Wait for Result";
+        text = "In Progress";
         className = "under-review text-15 disabled";
     }
 }
@@ -47,42 +48,33 @@ function upgradeMessage() {
 
   function reviewToggle() {
     // view result
-    if (text == "View AI Result") {
-      if (props.feedback_count >= props.feedback_limit) {
-        if(props.v.is_tq_ai_clicked == true){
-            setSubPage("ai");
-            setShow(true);
-        }else{upgradeMessage();}
-      }else{
-          props.addTQVideoLimit(props.v.owner, props.v.id, "ai");
-          setSubPage("ai");
-          setTimeout(()=>{setShow(true);}, 300)
-      }
-    } else if (text == "Sample Answer")  {
+    if (text == "View Result") {
+        setSubPage("ai");
+        setTimeout(()=>{setShow(true);}, 300);
+    } else if (text == "View Sample Answer")  {
       if (props.feedback_count >= props.feedback_limit) {
         if(props.v.is_tq_sample_clicked == true){
           setSubPage("sampleAns");
-          setShow(true);
+          setTimeout(()=>{setShow(true);}, 300);
       }else{
         upgradeMessage();
       }
       }else{
           props.addTQVideoLimit(props.v.owner, props.v.id, "sample");
           setSubPage("sampleAns");
-          setTimeout(()=>{setShow(true);}, 300)
+          setTimeout(()=>{setShow(true);}, 300);
       }
   }
   }
 
   return (
     <div>
-      <MediaQuery minDeviceWidth={1224}>
-      {props.isSampleAns ? renderWaitTag("") : (props.v.ai_auto_ready ? renderSuccessTag("AI Reviewed") : renderWaitTag("In Progress"))}
+      {/*props.isSampleAns ? renderWaitTag("") : (props.v.ai_auto_ready ? renderSuccessTag("AI Reviewed") : renderWaitTag("In Progress"))*/}
       <div className="height-30">
         <button
           onClick={reviewToggle}
           className={className}
-          style={{ color: "#FFFFFF", marginBottom: "0px", display: "inline-block", outline: "none", width: "12rem" }}
+          style={{ color: "#FFFFFF", marginBottom: "0px", display: "inline-block", outline: "none", width: props.width }}
         >
           {text}
         </button>
@@ -94,27 +86,9 @@ function upgradeMessage() {
         onHide={() => setShow(false)}
         v={props.v}
         isTQ={props.isTQ}
+        isAudio={props.isAudio}
+        retry={props.retry}
       />
-      </MediaQuery>
-      <MediaQuery maxDeviceWidth={1223}>
-        <div className="height-30">
-        <button
-          onClick={reviewToggle}
-          className={className}
-          style={{ color: "#FFFFFF", marginBottom: "0px", display: "inline-block", outline: "none", width: "8.8rem" }}
-        >
-          {text}
-        </button>
-      </div>
-      <MyVerticallyCenteredModal
-        show={show}
-        subPage={subPage}
-        setSubPage={setSubPage}
-        onHide={() => setShow(false)}
-        v={props.v}
-        isTQ={props.isTQ}
-      />
-      </MediaQuery>
     </div>
   );
 }
@@ -124,9 +98,9 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal {...rest}>
       {subPage == "sampleAns" ? (
-        <SampleAnswer v={v} setSubPage={setSubPage} />
+        <SampleAnswer v={v} setSubPage={setSubPage} retry={props.retry} isAudio={props.isAudio}/>
       ) : (
-        <AIReview v={v} setSubPage={setSubPage} isTQ={isTQ} />
+        <ReviewVideoResult v={v} setSubPage={setSubPage} isTQ={isTQ} isAudio={props.isAudio} retry={props.retry}/>
       )}
     </MyModal>
   );
