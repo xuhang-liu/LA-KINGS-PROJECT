@@ -163,7 +163,7 @@ video {
 .text-30 {
   font-family: Avenir Next, Segoe UI;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 30px;
   line-height: 48px;
   display: flex;
@@ -175,7 +175,7 @@ video {
 .text-15 {
   font-family: Avenir Next, Segoe UI;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 15px;
   line-height: 18px;
   display: flex;
@@ -222,7 +222,7 @@ video {
 }
 
 .height-30 {
-  height: 30px;
+  height: 1.8rem;
 }
 
 .borderless {
@@ -423,7 +423,7 @@ card-row-third-high {
 }
 
 .my-modal {
-  min-width: 70%;
+  min-width: 90%;
   min-height: 600px;
 }
 
@@ -735,6 +735,7 @@ h5 {
 }
 
 .not-reviewed {
+  text-align: center;
   width: 14.125rem;
   height: 2.125rem;
   background: #ff6b00;
@@ -744,6 +745,7 @@ h5 {
 }
 
 .under-review {
+  text-align: center;
   width: 14.125rem;
   height: 2.125rem;
   background: #7d7d7d;
@@ -753,6 +755,7 @@ h5 {
 }
 
 .reviewed {
+  text-align: center;
   width: 14.125rem;
   height: 2.125rem;
   background: #14cc75;
@@ -763,6 +766,7 @@ h5 {
 
 @media only screen and (max-width: 767px) {
   .not-reviewed {
+    text-align: center;
     font-size: 10px;
     width: 150px;
     height: 24px;
@@ -773,6 +777,7 @@ h5 {
   }
 
   .under-review {
+    text-align: center;
     font-size: 10px;
     width: 150px;
     height: 24px;
@@ -783,6 +788,7 @@ h5 {
   }
 
   .reviewed {
+    text-align: center;
     font-size: 10px;
     width: 150px;
     height: 24px;
@@ -2704,6 +2710,22 @@ h5 {
   color: #090D3A;
   margin-left: 0.8rem;
   margin-bottom: 0rem;
+}
+
+.selectedTag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: Avenir Next, Segoe UI;
+  color: white;
+  background-color: #090D3A;
+}
+
+.unselectedTag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: Avenir Next, Segoe UI;
+  color: #4A6F8A;
+  background-color: white;
 }
 
 .upload-txt {

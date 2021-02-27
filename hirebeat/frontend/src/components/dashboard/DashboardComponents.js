@@ -3,9 +3,9 @@ import Modal from "react-bootstrap/Modal";
 import Chart from "react-apexcharts";
 import { customBarData, customBarData2 } from "../../constants/constants";
 import MediaQuery from 'react-responsive';
-import CountUp from "react-countup";
-import LazyLoad from "react-lazyload";
-import axios from "axios";
+//import CountUp from "react-countup";
+//import LazyLoad from "react-lazyload";
+//import axios from "axios";
 export const DbRow = (props) => {
     return <div className="dashboard-row">{props.children}</div>;
 };
@@ -108,7 +108,7 @@ export const IconUserText = (props) => {
 };
 
 export const renderQDes = (des) => {
-    var length = 65;
+    var length = 48;
     var i = 0;
     if (des.length > length) {
         var ans = des.substring(0, length);
