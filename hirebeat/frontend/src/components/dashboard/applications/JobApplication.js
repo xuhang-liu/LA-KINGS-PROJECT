@@ -608,7 +608,7 @@ const JobCard = (props) => {
                         <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
                         <div style={{marginLeft: "1rem", marginTop: "1rem"}}>
                             <span className="upload-txt">
-                                Multi-Upload Support (.pdf only)
+                            Bulk Upload (.pdf only; max:10)
                             </span>
                         </div>
                         {/*parsed &&
@@ -766,6 +766,7 @@ const JobCard = (props) => {
                         <div className="form-row justify-items" style={{marginBottom: "1rem"}}>
                             <div className="col-2 d-flex justify-items">
                                 <button
+                                    type="button"
                                     className="default-btn interview-txt6"
                                     style={{paddingLeft: "25px", background: "#67A3F3"}}
                                     onClick={() => setInvite(false)}
@@ -798,14 +799,14 @@ const InvitationForm = (props) => {
     return (
         <div>
             <div className="row">
-                <button type="button" className="default-btn resume-upload" onClick={props.uploadResume} style={{marginLeft: "2rem"}}>
+                <button type="button" className="default-btn resume-upload" onClick={uploadResume}>
                     <i className="bx bx-cloud-upload bx-sm"></i>
-                      Upload Resume
+                        Upload Resume
                 </button>
                 <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
-                <div style={{marginLeft: "1rem", marginTop: "1.5rem"}}>
+                <div style={{marginLeft: "1rem", marginTop: "1rem"}}>
                     <span className="upload-txt">
-                        pdf only
+                    Bulk Upload (.pdf only; max:10)
                     </span>
                 </div>
                 {/*parsed &&
@@ -1215,7 +1216,7 @@ function emailError() {
 function sendSuccessAlert() {
     confirmAlert({
       title: "Send Invitation Success",
-      message: "You have sent the invitation successfully",
+      message: "You have sent the invitation successfully.",
       buttons: [
         {
           label: 'Ok'
