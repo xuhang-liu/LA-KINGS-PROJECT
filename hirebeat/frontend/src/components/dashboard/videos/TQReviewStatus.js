@@ -38,8 +38,8 @@ function upgradeMessage() {
     title: 'Upgrade',
     message: 'No more free review left.😢 Upgrade now to get unlimite reviews',
     buttons: [
+      {label: 'Upgrade Now', onClick: () => redirectPricing()},
       {label: 'OK'},
-      {label: 'Upgrade Now', onClick: () => redirectPricing()}
     ]
   });
 }
@@ -48,7 +48,7 @@ function upgradeMessage() {
   function reviewToggle() {
     // view result
     if (text == "View AI Result") {
-      if (props.saved_video_count >= props.save_limit) {
+      if (props.feedback_count >= props.feedback_limit) {
         if(props.v.is_tq_ai_clicked == true){
             setSubPage("ai");
             setShow(true);
@@ -59,7 +59,7 @@ function upgradeMessage() {
           setTimeout(()=>{setShow(true);}, 300)
       }
     } else if (text == "Sample Answer")  {
-      if (props.saved_video_count >= props.save_limit) {
+      if (props.feedback_count >= props.feedback_limit) {
         if(props.v.is_tq_sample_clicked == true){
           setSubPage("sampleAns");
           setShow(true);
@@ -133,8 +133,8 @@ function MyVerticallyCenteredModal(props) {
 }
 
 const mapStateToProps = (state) => ({
-  save_limit: state.auth_reducer.profile.save_limit,
-  saved_video_count: state.auth_reducer.profile.saved_video_count,
+  feedback_limit: state.auth_reducer.profile.feedback_limit,
+  feedback_count: state.auth_reducer.profile.feedback_count,
 });
 
 

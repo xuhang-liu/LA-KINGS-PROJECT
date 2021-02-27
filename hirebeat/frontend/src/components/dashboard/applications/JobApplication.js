@@ -229,7 +229,16 @@ const JobCard = (props) => {
     //const [hide, setHide] = useState(true);
     //const hideSwitch = () => {setHide(hide => !hide)};
 
-    function sendInvitation() {
+    function clearInvitationForm() {
+        let nameElements = document.getElementsByClassName("candidate-name");
+        let emailElements = document.getElementsByClassName("candidate-email");
+        for (let i = 0; i < nameElements.length; i++) {
+            nameElements[i].value = "";
+            emailElements[i].value = "";
+        }
+    }
+
+    function sendInvitation(e) {
         let companyName = props.companyName;
         let jobTitle = props.jobTitle;
         let positionId = props.positionId;
@@ -269,6 +278,10 @@ const JobCard = (props) => {
         }
         // save data to db
         props.addInterviews(meta);
+        // disable webpage refresh
+        sendSuccessAlert();
+        clearInvitationForm();
+        e.preventDefault();
     }
 
     // pagination
@@ -1191,6 +1204,18 @@ function emailError() {
     confirmAlert({
       title: "Email Error",
       message: "The candidate email in the resume file is invalid, please type it manually",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function sendSuccessAlert() {
+    confirmAlert({
+      title: "Send Invitation Success",
+      message: "You have sent the invitation successfully",
       buttons: [
         {
           label: 'Ok'

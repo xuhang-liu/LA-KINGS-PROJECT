@@ -75,8 +75,8 @@ export class SelectParam extends Component {
   getEstimateTime = () => {
     return (
       <a style={{ color: "#f3a340", textDecorationLine: "underline" }}>
-        {(3 * this.state.lengthOfResponse.value + 0.5) *
-          this.state.numberOfQuestions.value}
+        {(this.state.lengthOfResponse.value + 0.5) *
+          (this.state.numberOfQuestions.value) + 0.5}
         mins
       </a>
     );

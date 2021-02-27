@@ -168,10 +168,9 @@ def mark_video_as_needed_review(request):
     profile = Profile.objects.filter(user_id=owner_id)[0]
     if type == "expert":
         video.needed_expert_review = True
-        profile.saved_video_count += 1
     if type == "ai":
         video.needed_ai_review = True
-        profile.saved_video_count += 1
+    profile.feedback_count += 1
     video.save()
     profile.save()
     serializer = VideoSerializer(video)
@@ -310,11 +309,9 @@ def sign_s3_upload_wp_video(request):
 
 @api_view(['POST'])
 def update_video_comments(request):
-    print("==It works==")
     primary_key = request.data["pk"]
     new_stars = request.data["stars"]
     new_comment = request.data["comment"]
-    print("==It works fine==")
     wpv = WPVideo.objects.get(pk=primary_key)
     wpv.video_stars = new_stars
     wpv.video_comment = new_comment
@@ -327,7 +324,6 @@ def update_video_comments(request):
 
 @api_view(['POST'])
 def add_tq_video_limit(request):
-    print("==It works==")
     owner_id = request.data["owner_id"]
     id = request.data["id"]
     type = request.data["type"]
@@ -338,7 +334,7 @@ def add_tq_video_limit(request):
             video.save()
             user = User.objects.get(pk=owner_id)
             profile = Profile.objects.get(user_id=user)
-            profile.saved_video_count +=1
+            profile.feedback_count += 1
             profile.save()
     if type == "sample":
         if video.is_tq_sample_clicked == False:
@@ -346,7 +342,7 @@ def add_tq_video_limit(request):
             video.save()
             user = User.objects.get(pk=owner_id)
             profile = Profile.objects.get(user_id=user)
-            profile.saved_video_count +=1
+            profile.feedback_count += 1
             profile.save()
 
     return Response("Saved data to database successfully", status=status.HTTP_200_OK)
