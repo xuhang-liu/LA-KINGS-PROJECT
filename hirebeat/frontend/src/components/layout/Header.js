@@ -230,7 +230,7 @@ export class Header extends Component {
                       </Link>
                       </li>
                       <li>
-                      <Link id="id-logout" to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
+                      <Link id="id-logout" to="/employer" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
                         Log out
                       </Link>
                       </li>
