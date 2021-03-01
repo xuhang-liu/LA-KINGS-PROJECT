@@ -82,6 +82,12 @@ export class EmployerDashboard extends Component {
       ]
       });
   }
+  
+  getPJobs = () => {
+    var user = {"id": this.props.user.id};
+    this.props.getPostedJobs(user.id);
+  }
+
 
   componentDidMount() {
     safariAlert();
@@ -91,7 +97,6 @@ export class EmployerDashboard extends Component {
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
     this.props.getPostedJobs(user.id);
-    setTimeout(() => {console.log("here is the props", this.props)}, 1000);
   }
 
   state = {
@@ -151,6 +156,7 @@ export class EmployerDashboard extends Component {
     switch (this.state.subpage) {
       case "applications":
         return <ApplicationCover
+            getPJobs={this.getPJobs}
             companyName={this.props.profile.company_name}
             loaded={this.props.loaded}
             postedJobs={this.props.postedJobs}

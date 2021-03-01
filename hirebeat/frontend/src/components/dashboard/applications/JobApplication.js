@@ -43,6 +43,7 @@ export class JobApplication extends Component{
                             }
                             return(
                                 <JobViewDetail
+                                    getPJobs={this.props.getPJobs}
                                     resumeURL={this.props.resumeURL}
                                     addSelected={this.props.setselectedId}
                                     questions={p.questions}
@@ -191,6 +192,7 @@ const JobViewDetail = (props) => {
             {/* Application detail*/}
             {view &&
                 <JobCard
+                    getPJobs={props.getPJobs}
                     recordTime={props.recordTime}
                     interviewResume={props.interviewResume}
                     getResumeURL={props.getResumeURL}
@@ -769,7 +771,7 @@ const JobCard = (props) => {
                                     type="button"
                                     className="default-btn interview-txt6"
                                     style={{paddingLeft: "25px", background: "#67A3F3"}}
-                                    onClick={() => setInvite(false)}
+                                    onClick={() => {setInvite(false); props.getPJobs()}}
                                 >
                                     Back
                                     <span></span>

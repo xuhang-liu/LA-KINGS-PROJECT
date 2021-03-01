@@ -18,6 +18,10 @@ const ShortList = (props) => {
     useEffect(() => {
         props.loadStarList(jobId);
     }, [jobId]);
+
+    function refreshPage() {
+        props.loadStarList(jobId);
+    }
     
     return <div>
             <div className="row">
@@ -29,7 +33,8 @@ const ShortList = (props) => {
                 </DropdownButton>
             </div>
             {console.log(props.star_list)}
-            <AcceptedCandidate 
+            <AcceptedCandidate
+                refreshPage={refreshPage} 
                 id_candidate={props.id_candidate}
                 username_candidate={props.username_candidate}
                 email_candidate={props.email_candidate}
@@ -60,6 +65,7 @@ const AcceptedCandidate = (props) => {
                                 {console.log(props.stars, "and applicant", applicant)}
 
                                 <CandidateCard
+                                    refreshPage={props.refreshPage}
                                     stars={props.stars[applicant.email]}
                                     applicant={applicant}
                                     getApplicantsVideos={props.getApplicantsVideos}
@@ -171,7 +177,7 @@ const CandidateCard = (props) => {
             secondround_status={props.applicant.secondround_status}
             show={show}
             setShowResume={setShowResume}
-            onHide={()=>{setShow(false);}}
+            onHide={()=>{setShow(false); props.refreshPage();}}
             int_ques={props.int_ques}
             positionId={props.applicant.positions_id}
         /> 
