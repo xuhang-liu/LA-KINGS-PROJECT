@@ -59,7 +59,7 @@ class ApplicationVideoPanel extends Component {
                         config={{ file: { attributes: { controlsList: 'nodownload' } } }}
                         // Disable right click
                         onContextMenu={e => e.preventDefault()}
-                        width="32vw" height="auto"/>
+                        width="29vw" height="auto"/>
                         </div>
                     </div>
                 </div>

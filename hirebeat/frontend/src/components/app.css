@@ -427,6 +427,11 @@ card-row-third-high {
   min-height: 600px;
 }
 
+.my-modal-80 {
+  min-width: 80%;
+  min-height: 600px;
+}
+
 .resume-modal {
   min-width: 90%;
 }

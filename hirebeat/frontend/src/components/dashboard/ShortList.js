@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import SecondReview from './SecondReview';
-import { MyModal } from './DashboardComponents';
+//import SecondReview from './SecondReview';
+import { MyModal80 } from './DashboardComponents';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ReviewApplication from './ReviewApplication';
@@ -189,9 +189,8 @@ const CandidateCard = (props) => {
 
 function MyVerticallyCenteredModal(props) {
     const { ...rest } = props;
-    console.log(props.id_candidate);
     return (
-      <MyModal {...rest}>
+      <MyModal80 {...rest}>
         <ReviewApplication
           {...rest}
           setShowResume={props.setShowResume}
@@ -206,6 +205,6 @@ function MyVerticallyCenteredModal(props) {
           updateCommentStatus={props.updateCommentStatus}
           comment_status={props.applicant.comment_status}
         />
-      </MyModal>
+      </MyModal80>
     );
   };
