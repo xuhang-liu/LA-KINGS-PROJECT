@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import ReviewStatusButton from "./ReviewStatusButton";
+import ReviewVideoResult from './ReviewVideoResult';
 import TQReviewStatus from "./TQReviewStatus";
 import { renderQDes } from "../DashboardComponents";
-import VideoPlayer from "../../videos/VideoPlayer";
-import AudioPlayer from "../../audios/AudioPlayer";
-import MediaQuery from 'react-responsive';
+//import VideoPlayer from "../../videos/VideoPlayer";
+//import AudioPlayer from "../../audios/AudioPlayer";
+//import MediaQuery from 'react-responsive';
+import { MyModal } from "../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import { Link } from "react-router-dom";
 import { retryBQuestion } from "../../../redux/actions/question_actions";
@@ -25,6 +27,9 @@ function showAns(ans) {
 }
 
 export function VideoImagePreview(props) {
+  const [show, setShow] = useState(false);
+  const [subPage, setSubPage] = useState("status");
+
   function removeVideo() {
     let id = props.v.id;
     props.deleteVideo({"id": id});
@@ -46,6 +51,11 @@ export function VideoImagePreview(props) {
         ]
     });
 
+  }
+
+  function reviewToggle() {
+    setSubPage("ai");
+    setTimeout(()=>{setShow(true);}, 300);
   }
 
   function retry() {
@@ -74,6 +84,7 @@ export function VideoImagePreview(props) {
     }
 
   return (
+    <div>
     <div className="pt-3">
       <div className="row">
         <div className="col-2 interview-txt9 interview-center">
@@ -84,7 +95,8 @@ export function VideoImagePreview(props) {
         </div>
         <div className="col-1">
           {(Number(props.v.ai_performance_total_score) > 0) &&
-          <img src={medal_url} alt="icon" style={{width:"3rem"}}></img>}
+          <button onClick={reviewToggle} style={{backgroundColor: "#ffffff", border: "none"}}>
+          <img src={medal_url} alt="icon" style={{width:"3rem"}}></img></button>}
         </div>
         { props.isBQ ? (
         <div className="col-2 pt-2">
@@ -262,6 +274,26 @@ export function VideoImagePreview(props) {
           </div>*/}
       </div>
     </div>
+    <MyVerticallyCenteredModal
+        show={show}
+        subPage={subPage}
+        setSubPage={setSubPage}
+        onHide={() => setShow(false)}
+        v={props.v}
+        isTQ={true}
+        isAudio={props.isAudio}
+        retry={retry}
+      />
+    </div>
+  );
+}
+
+function MyVerticallyCenteredModal(props) {
+  const { subPage, setSubPage, v, isTQ, ...rest } = props;
+  return (
+    <MyModal {...rest}>
+      <ReviewVideoResult v={v} setSubPage={setSubPage} isTQ={isTQ} isAudio={props.isAudio} retry={props.retry}/>
+    </MyModal>
   );
 }
 

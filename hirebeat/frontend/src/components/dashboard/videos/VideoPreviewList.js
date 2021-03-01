@@ -33,21 +33,21 @@ export class VideoPreviewList extends Component {
           <div className="col-2 interview-txt8 interview-center">
             Recorded on
           </div>
-          <div className="col-1 interview-txt8 interview-center">
+          <div className="col-1 interview-txt8 d-flex justify-content-center">
             Score
           </div>
           <div className="col-2 interview-txt8 interview-center">
             Performance
           </div>
           {this.props.filter == "bq" ?
-          <div className="col-4 interview-txt8 interview-center">
+          <div className="col-4 interview-txt8 d-flex justify-content-center">
             In-depth Review
           </div>:
           <div className="col-3 interview-txt8 interview-center">
             Sample Answer
           </div>}
           {this.props.filter == "bq" ?
-          <div className="col-1 interview-txt8 interview-center">
+          <div className="col-1 interview-txt8 d-flex justify-content-center">
           </div>:
           <div className="col-2 interview-txt8 interview-center">
             Actions
