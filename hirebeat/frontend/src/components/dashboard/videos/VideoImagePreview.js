@@ -94,7 +94,7 @@ export function VideoImagePreview(props) {
           {props.v.created_at.substring(0, 10)}
         </div>
         <div className="col-1">
-          {(Number(props.v.ai_performance_total_score) > 0) &&
+          {props.v.ai_performance_ready &&
           <button onClick={reviewToggle} style={{backgroundColor: "#ffffff", border: "none"}}>
           <img src={medal_url} alt="icon" style={{width:"3rem"}}></img></button>}
         </div>
