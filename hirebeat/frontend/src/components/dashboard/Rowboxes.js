@@ -77,7 +77,7 @@ class RowBoxes extends React.Component{
     render() {
         return (
             <div className="mt-25 mt-lg-31">
-                <div className={"container"}>
+                <div className={"container-xl"}>
                     <div className={this.props.isEmployer ? "row" : "row mb-7"}>
                         {this.props.isEmployer ? (
                             <React.Fragment>

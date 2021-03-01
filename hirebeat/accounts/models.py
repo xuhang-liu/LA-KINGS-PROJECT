@@ -45,13 +45,20 @@ class Profile(models.Model):
     saved_video_count = models.IntegerField(default=0,validators=[
             MaxValueValidator(1000)
         ])
-    save_resume_limit = models.IntegerField(default=2,validators=[
+    save_resume_limit = models.IntegerField(default=1,validators=[
             MaxValueValidator(1000),
-            MinValueValidator(2)
+            MinValueValidator(1)
         ])
     saved_resume_count = models.IntegerField(default=0,validators=[
             MaxValueValidator(1000)
         ])
+    feedback_limit = models.IntegerField(default=2, validators=[
+        MaxValueValidator(1000),
+        MinValueValidator(2)
+    ])
+    feedback_count = models.IntegerField(default=0, validators=[
+        MaxValueValidator(1000)
+    ])
     email_confirmed = models.BooleanField(default=False)
     customer_id = models.CharField(max_length=30,null=True, blank=True)
     sub_id = models.CharField(max_length=30,null=True, blank=True)
