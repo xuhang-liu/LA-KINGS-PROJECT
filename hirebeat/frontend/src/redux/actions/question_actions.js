@@ -17,6 +17,7 @@ import {
     GET_APPLICANTS_DATA,
     UPDATE_SECONDROUND_STATUS,
     GET_RESUME_URL_ERROR,
+    UPDATE_STARS_LIST
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -179,6 +180,7 @@ export const updateSecondroundStatus = (data) => (dispatch) => {
   axios
     .post("update-secondround-status", data)
     .then((res) => {
+      
       dispatch({
         type: UPDATE_SECONDROUND_STATUS,
         payload: res.data,
@@ -250,3 +252,18 @@ export const getApplicantsData = (employerId) => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
+
+export const loadStarList = JobId => dispatch => {
+  axios
+    .get(`/get-the-star-list?job_id=${JobId}`)
+    .then((res) => {
+      console.log("returned res are", res)
+      dispatch({
+        type: UPDATE_STARS_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}

@@ -377,3 +377,24 @@ def get_applicants_data(request):
     return Response({
         "data": data,
     })
+
+@api_view(['GET'])
+def get_stars_list(request):
+    pos_id = request.query_params.get("job_id")    
+    int_ques = InterviewQuestions.objects.filter(positions = pos_id)
+    candidates = InvitedCandidates.objects.filter(positions = pos_id)
+    data = {}
+    for candidate in candidates:
+        can_email = candidate.email
+        unit_star_list = WPVideo.objects.filter(email = can_email, question_id__in = int_ques)
+        star_sum = 0
+        video_amount = 0
+        for star in unit_star_list:
+            star_sum += star.video_stars
+            video_amount += 1
+        if(video_amount):
+            data[can_email] = round(star_sum / video_amount)
+        else:
+            data[can_email] = 5
+    return Response({ "data" : data } )
+        
