@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import SecondReview from './SecondReview';
-import { MyModal } from './DashboardComponents';
+//import SecondReview from './SecondReview';
+import { MyModal80 } from './DashboardComponents';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
-
+import ReviewApplication from './ReviewApplication';
+import { connect } from 'react-redux';
+import { loadStarList } from './../../redux/actions/question_actions';
 
 const ShortList = (props) => {
     const [jobId, setJobId] = useState(Object.keys(props.postedJobs)[0]);
-    console.log("int_ques", props.int_ques);
+
 
     const selectPosition = key => {
         setJobId(key);
     }
+
+    useEffect(() => {
+        props.loadStarList(jobId);
+    }, [jobId]);
     
     return <div>
             <div className="row">
@@ -22,6 +28,7 @@ const ShortList = (props) => {
                         })}
                 </DropdownButton>
             </div>
+            {console.log(props.star_list)}
             <AcceptedCandidate 
                 id_candidate={props.id_candidate}
                 username_candidate={props.username_candidate}
@@ -32,56 +39,37 @@ const ShortList = (props) => {
                 getApplicantsVideos={props.getApplicantsVideos}
                 getApplicantsInfo={props.getApplicantsInfo}
                 int_ques={props.int_ques}
+                stars={props.star_list}
             />
         </div>
 }
 
-export default ShortList; 
+const mapStateToProps = (state) => ({
+    star_list: state.question_reducer.star_list,
+  });
+  
+
+export default connect(mapStateToProps , { loadStarList })(ShortList); 
 
 const AcceptedCandidate = (props) => {
-
-    const decideClassName = (filter, text) => {
-        return filter == text ? "btn-selected2" : "btn-unselected2";
-    };
-    
-    const [filter, setFilter] = useState("Waitlist");
-
     return <div>
               <div style={{marginBottom: "20px"}} className="container min-width-980 mt-3">
-                <button
-                className={decideClassName(filter, "Waitlist")}
-                onClick={() => (setFilter("Waitlist"))}
-                >
-                Waitlist
-                </button>
-                <button
-                className={decideClassName(filter, "Approved")}
-                style={{marginLeft: "2rem"}}
-                onClick={() => (setFilter("Approved"))}
-                >
-                Approved
-                </button>
-                <button
-                className={decideClassName(filter, "Archived")}
-                style={{marginLeft: "2rem"}}
-                onClick={() => (setFilter("Archived"))}
-                >
-                Archived 
-                </button>
                 {props.theJob.applicants.map((applicant) => {
-                    if(applicant.comment_status == 1 && (filter == "Waitlist" && applicant.secondround_status == 0 || filter == "Approved" && applicant.secondround_status == 1 || filter == "Archived" && applicant.secondround_status == 2))
-                    {
-                        return <div> 
-                            <CandidateCard
-                                applicant={applicant}
-                                getApplicantsVideos={props.getApplicantsVideos}
-                                getApplicantsInfo={props.getApplicantsInfo}
-                                int_ques={props.int_ques}
-                                id_candidate={props.id_candidate}
-                                username_candidate={props.username_candidate}
-                                email_candidate={props.email_candidate}
-                                phone_candidate={props.phone_candidate}
-                                location_candidate={props.location_candidate}
+                    if(applicant.comment_status == 1)
+                    {   return <div> 
+                                {console.log(props.stars, "and applicant", applicant)}
+
+                                <CandidateCard
+                                    stars={props.stars[applicant.email]}
+                                    applicant={applicant}
+                                    getApplicantsVideos={props.getApplicantsVideos}
+                                    getApplicantsInfo={props.getApplicantsInfo}
+                                    int_ques={props.int_ques}
+                                    id_candidate={props.id_candidate}
+                                    username_candidate={props.username_candidate}
+                                    email_candidate={props.email_candidate}
+                                    phone_candidate={props.phone_candidate}
+                                    location_candidate={props.location_candidate}
                             />
                         </div>
                     }
@@ -92,7 +80,7 @@ const AcceptedCandidate = (props) => {
 
 const CandidateCard = (props) => {
 
-    console.log(props.applicant)
+    console.log(props.applicant);
     const [show, setShow] = useState(false);
     const [showResume, setShowResume] = useState(false);
 
@@ -100,8 +88,39 @@ const CandidateCard = (props) => {
         // get videos and info
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
         props.getApplicantsInfo(props.applicant.email);
-        setTimeout(()=>{setShow(true);}, 400)
+        setTimeout(()=>{setShow(true);}, 500)
     };
+
+    const renderStars = (stars) => {
+            return(
+                <div>
+                    <div className="row">
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-blue.png" alt="Blue" />
+                            <div className="ml-2" />
+                            {stars >= 2 ?
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-blue.png" alt="Blue" />
+                            : <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-grey.png" alt="Gray" />
+                            }        
+                            <div className="ml-2" />         
+                            {stars >= 3 ?
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-blue.png" alt="Blue" />
+                            : <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-grey.png" alt="Gray" />
+                            }        
+                            <div className="ml-2" />         
+                            {stars >= 4 ?
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-blue.png" alt="Blue" />
+                            : <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-grey.png" alt="Gray" />
+                            }    
+                            <div className="ml-2" />             
+                            {stars == 5 ?
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-blue.png" alt="Blue" />
+                            : <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-grey.png" alt="Gray" />
+                            }     
+                            <div className="ml-2" />            
+                    </div>
+                </div>
+            )
+    }
 
     const mailTo = "mailto:" + props.applicant.email;
     return (       
@@ -111,9 +130,14 @@ const CandidateCard = (props) => {
                 <div className="mt-4">
                     <div className="row">
                         <div className="col-9" style={{color:"#090D3A"}}>
-                            <button className="title-button">
-                                {props.applicant.name}
-                            </button>
+                            <div className="row ml-2">
+                                <button className="title-button">
+                                    {props.applicant.name}
+                                </button>
+                                <div className="ml-5 mt-2">
+                                    { renderStars(props.stars) }
+                                </div>
+                            </div>
                             <div className="row mb-2 mt-1">
                                 <div className="col-6">
                                     <p style={{color:"#4A6F8A"}}>Video Recorded: {props.applicant.video_count}</p>
@@ -137,6 +161,7 @@ const CandidateCard = (props) => {
             </div>
         </div>
         <MyVerticallyCenteredModal
+            applicant={props.applicant}
             id_candidate={props.id_candidate}
             username_candidate={props.username_candidate}
             email_candidate={props.email_candidate}
@@ -164,10 +189,9 @@ const CandidateCard = (props) => {
 
 function MyVerticallyCenteredModal(props) {
     const { ...rest } = props;
-    console.log(props.id_candidate);
     return (
-      <MyModal {...rest}>
-        <SecondReview
+      <MyModal80 {...rest}>
+        <ReviewApplication
           {...rest}
           setShowResume={props.setShowResume}
           hide={props.onHide}
@@ -179,7 +203,8 @@ function MyVerticallyCenteredModal(props) {
           location_candidate={props.location_candidate}
           positionId={props.positionId}
           updateCommentStatus={props.updateCommentStatus}
+          comment_status={props.applicant.comment_status}
         />
-      </MyModal>
+      </MyModal80>
     );
   };

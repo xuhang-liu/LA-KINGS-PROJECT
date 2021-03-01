@@ -198,6 +198,7 @@ export class EmployerDashboard extends Component {
             email_candidate={this.props.email_candidate}
             phone_candidate={this.props.phone_candidate}
             location_candidate={this.props.location_candidate}
+            star_list={this.props.star_list}
             />
       {/*case "reviewApplication":
         return <ReviewApplication
@@ -281,6 +282,7 @@ const mapStateToProps = (state) => ({
   email_candidate: state.video_reducer.email_candidate,
   phone_candidate: state.video_reducer.phone_candidate,
   location_candidate: state.video_reducer.location_candidate,
+  star_list: state.question_reducer.star_list,
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
