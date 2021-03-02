@@ -117,3 +117,11 @@ class InterviewResumes(models.Model):
     invite_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.resumeURL
+
+class SubReviewers(models.Model):
+    r_name = models.CharField(max_length=30, null=True, blank=True)
+    r_email = models.CharField(max_length=50, null=True, blank=True)
+    company_name = models.CharField(max_length=30,null=True, blank=True)
+    positions_id = ArrayField(models.CharField(default=0, max_length=10), blank=True, null=True)
+    def __str__(self):
+        return self.r_email
