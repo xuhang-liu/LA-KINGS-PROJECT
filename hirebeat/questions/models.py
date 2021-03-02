@@ -48,6 +48,7 @@ class Question(models.Model):
     )
     answer = models.TextField(blank=True, null=True)
     explain = models.TextField(blank=True, null=True)
+    level = models.IntegerField(default=1)
 
 class Positions(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
