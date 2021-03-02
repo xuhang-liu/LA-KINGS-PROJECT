@@ -122,6 +122,6 @@ class SubReviewers(models.Model):
     r_name = models.CharField(max_length=30, null=True, blank=True)
     r_email = models.CharField(max_length=50, null=True, blank=True)
     company_name = models.CharField(max_length=30,null=True, blank=True)
-    positions_id = ArrayField(models.CharField(default=0, max_length=10), blank=True, null=True)
+    position = models.ForeignKey(Positions, null=True, blank=True, on_delete=models.CASCADE)
     def __str__(self):
         return self.r_email
