@@ -177,6 +177,8 @@ export class EmployerDashboard extends Component {
             resendInvitation={this.props.resendInvitation}
             updateCommentStatus={this.props.updateCommentStatus}
             renderPosition={this.renderPosition}
+            user={this.props.user}
+            profile={this.props.profile}
         />;
       case "position":
         return <CreatePosition

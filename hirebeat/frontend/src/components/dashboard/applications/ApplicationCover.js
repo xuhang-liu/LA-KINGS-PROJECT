@@ -56,6 +56,8 @@ export const ApplicationCover = (props) => {
         location_candidate={props.location_candidate}
         resendInvitation={props.resendInvitation}
         updateCommentStatus={props.updateCommentStatus}
+        user={props.user}
+        profile={props.profile}
       />
     </div>
   );

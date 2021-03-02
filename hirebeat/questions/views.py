@@ -1,4 +1,4 @@
-from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes
+from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes, SubReviewers
 from accounts.models import CandidatesInterview
 from videos.models import WPVideo
 from rest_framework import generics, permissions
@@ -397,4 +397,13 @@ def get_stars_list(request):
         else:
             data[can_email] = 5
     return Response({ "data" : data } )
-        
+
+@api_view(['POST'])
+def add_sub_reviewer(request):
+    sub_name = request.data["sub_name"]
+    sub_email = request.data["sub_email"]
+    company_name = request.data["company_name"]
+    position_id = request.data["position_id"]
+    positions = Positions.objects.get(pk=position_id)
+    SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name, position=positions)
+    return Response("Add sub reviewer successfully", status=status.HTTP_200_OK)        
