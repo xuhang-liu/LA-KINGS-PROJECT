@@ -24,12 +24,13 @@ export const ApplicationCover = (props) => {
         >
           Closed
         </button>
+        {!props.profile.is_subreviwer &&
         <button className="default-btn" onClick={props.renderPosition}
           style={{color:"white", marginLeft:"5%"}}>
             <i className="bx bx-plus"></i> 
               Create New Position
             <span></span>
-        </button>
+        </button>}
       </div>
       <JobApplication
         getPJobs={props.getPJobs}
