@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { loadStarList } from './../../redux/actions/question_actions';
 
 const ShortList = (props) => {
+    if(props.postedJobs.length > 0){
     const [jobId, setJobId] = useState(Object.keys(props.postedJobs)[0]);
 
 
@@ -22,8 +23,11 @@ const ShortList = (props) => {
     function refreshPage() {
         props.loadStarList(jobId);
     }
+    }
     
     return <div>
+            {(props.postedJobs.length > 0) &&
+            <div>
             <div className="row">
                 <h3 className="pt-2 mr-5 col-9">{props.postedJobs[jobId].job_title} {props.postedJobs[jobId].job_id}</h3>
                 <DropdownButton id="dropdown-menu-align-left" size="lg" title="Select Position" >
@@ -46,6 +50,7 @@ const ShortList = (props) => {
                 int_ques={props.int_ques}
                 stars={props.star_list}
             />
+            </div>}
         </div>
 }
 

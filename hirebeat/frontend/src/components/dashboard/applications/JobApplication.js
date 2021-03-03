@@ -335,6 +335,7 @@ const JobCard = (props) => {
                 sub_email: sub_reviewer_email,
                 company_name: props.companyName,
                 position_id: props.positionId,
+                master_email: props.user.email,
             };
             props.addSubReviewer(data);
             let profile = {

@@ -404,6 +404,29 @@ def add_sub_reviewer(request):
     sub_email = request.data["sub_email"]
     company_name = request.data["company_name"]
     position_id = request.data["position_id"]
+    master_email = request.data["master_email"]
     positions = Positions.objects.get(pk=position_id)
     SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name, position=positions)
+    send_sub_invitation(sub_name, sub_email, company_name, master_email, positions.job_title)
     return Response("Add sub reviewer successfully", status=status.HTTP_200_OK)        
+
+def send_sub_invitation(name, email, company_name, master_email, position_name):
+    subject = 'Co-review Invitation to HireBeat for '+ company_name
+    message = get_template("questions/sub_reviewer_email.html")
+    context = {
+        'name': name,
+        'company_name': company_name,
+        'master_email': master_email,
+        'position_name': position_name,
+    }
+    from_email = 'HireBeat Team'
+    to_list = [email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
