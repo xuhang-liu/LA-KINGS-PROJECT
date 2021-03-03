@@ -95,6 +95,7 @@ export const IconUserText = (props) => {
         <div className="icon-user-text align-items-center" style={{background: props.backColor}}>
             {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{width:"36px", height:"36px"}}></img>}
             <p
+                className="pt-2"
                 style={{
                     fontWeight: props.textWeight,
                     fontSize: props.textSize,
@@ -211,6 +212,20 @@ export const MyModal = (props) => {
         <Modal
             {...props}
             dialogClassName= {!props.isResume ? "my-modal" : "resume-modal"}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton style={{border: "none", height: "6px"}}/>
+            {props.children}
+        </Modal>
+    );
+};
+
+export const MyModal80 = (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName= {!props.isResume ? "my-modal-80" : "resume-modal"}
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >

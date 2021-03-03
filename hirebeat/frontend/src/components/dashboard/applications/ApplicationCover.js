@@ -32,6 +32,7 @@ export const ApplicationCover = (props) => {
         </button>
       </div>
       <JobApplication
+        getPJobs={props.getPJobs}
         selectedId={selectedId}
         setselectedId={setselectedId}
         filter={filter}

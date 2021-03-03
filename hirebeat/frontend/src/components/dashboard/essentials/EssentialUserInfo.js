@@ -288,7 +288,7 @@ export class EssentialUserInfo extends Component {
                 >
                   <IconUserText
                     textSize={"12px"}
-                    textDisplayed={"Practiced Interview"}
+                    textDisplayed={"My Video"}
                     backColor={this.props.subpage == "videos" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "videos" ? selectVideos : nonSelectVideos}
                     textColor={this.props.subpage == "videos" ? selectEColor : defaultEColor}
@@ -306,7 +306,7 @@ export class EssentialUserInfo extends Component {
                 >
                   <IconUserText
                     textSize={"12px"}
-                    textDisplayed={"Scanned Resume"}
+                    textDisplayed={"My Resume"}
                     backColor={this.props.subpage == "resume" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "resume" ? selectResume : nonselectResume}
                     textColor={this.props.subpage == "resume" ? selectEColor : defaultEColor}
@@ -324,7 +324,7 @@ export class EssentialUserInfo extends Component {
                 >
                   <IconUserText
                     textSize={"12px"}
-                    textDisplayed={"Received Interview"}
+                    textDisplayed={"My Interview"}
                     backColor={this.props.subpage == "interview" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "interview" ? selectInterview : nonselectInterview}
                     textColor={this.props.subpage == "interview" ? selectEColor : defaultEColor}
