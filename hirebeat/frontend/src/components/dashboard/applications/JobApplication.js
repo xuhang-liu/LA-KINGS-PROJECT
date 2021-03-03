@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 //import PropTypes from "prop-types";
 //import {Link} from "react-router-dom";
 import ReviewApplication from "./../ReviewApplication";
-import { MyModal } from "./../DashboardComponents";
+import { MyModal80, MyModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
+import { updateProfile } from "./../../../redux/actions/auth_actions";
 //import { IconText } from "../DashboardComponents";
-import { closePosition, deletePosition, getResumeURL } from "./../../../redux/actions/question_actions";
+import { closePosition, deletePosition, getResumeURL, addSubReviewer } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
 import Select from 'react-select'
 import * as pdfjsLib from 'pdfjs-dist';
@@ -43,6 +44,9 @@ export class JobApplication extends Component{
                             }
                             return(
                                 <JobViewDetail
+                                    updateProfile={this.props.updateProfile}
+                                    addSubReviewer={this.props.addSubReviewer}
+                                    getPJobs={this.props.getPJobs}
                                     resumeURL={this.props.resumeURL}
                                     addSelected={this.props.setselectedId}
                                     questions={p.questions}
@@ -72,6 +76,8 @@ export class JobApplication extends Component{
                                     getResumeURL={this.props.getResumeURL}
                                     recordTime={this.props.recordTime}
                                     interviewResume={this.props.interviewResume}
+                                    user={this.props.user}
+                                    profile={this.props.profile}
                                 />
                             )
                         })}
@@ -89,7 +95,7 @@ const mapStateToProps = (state) => ({
     interviewResume: state.video_reducer.interviewResume,
 });
 
-export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL })(
+export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, updateProfile })(
     JobApplication
 );
 
@@ -191,6 +197,9 @@ const JobViewDetail = (props) => {
             {/* Application detail*/}
             {view &&
                 <JobCard
+                    updateProfile={props.updateProfile}
+                    addSubReviewer={props.addSubReviewer}
+                    getPJobs={props.getPJobs}
                     recordTime={props.recordTime}
                     interviewResume={props.interviewResume}
                     getResumeURL={props.getResumeURL}
@@ -218,6 +227,8 @@ const JobViewDetail = (props) => {
                     resendInvitation={props.resendInvitation}
                     updateCommentStatus={props.updateCommentStatus}
                     hideView={() => (setView(false), props.addSelected(0))}
+                    user={props.user}
+                    profile={props.profile}
                 />
             }
         </React.Fragment>
@@ -307,6 +318,70 @@ const JobCard = (props) => {
                           <li><h5>{q.description}</h5></li>
                     )})}
                   </ul>
+                </div>
+              );
+            }
+        });
+    }
+
+    function inviteReviever() {
+        let sub_reviewer_name = "";
+        let sub_reviewer_email = "";
+        function submitSubReviewer(e) {
+            sub_reviewer_name = document.getElementById("sub_reviewer_name").value;
+            sub_reviewer_email = document.getElementById("sub_reviewer_email").value;
+            let data = {
+                sub_name: sub_reviewer_name,
+                sub_email: sub_reviewer_email,
+                company_name: props.companyName,
+                position_id: props.positionId,
+                master_email: props.user.email,
+            };
+            props.addSubReviewer(data);
+            let profile = {
+                user: props.user.id,
+                id: props.profile.id,
+                reviewer_count: (Number(props.profile.reviewer_count) + 1),
+            };
+            props.updateProfile(profile);
+            e.preventDefault();
+            sendSuccessAlert();
+        }
+        
+        confirmAlert({
+            customUI: ({ onClose }) => {
+              return (
+                <div className="interview-txt7" style={{backgroundColor:'#ffffff', borderRadius:"10px", border:"2px solid #E8EDFC", padding:"1rem", paddingLeft:"3rem", paddingRight:"3rem"}}>
+                <form onSubmit={submitSubReviewer}>
+                <div className="form-row">
+                    <div className="form-group col-5">
+                        <label style={{ fontSize: "17px", margin:"2%"}}>
+                            Enter Name
+                        </label>
+                        <input type="text" id="sub_reviewer_name" className="form-control" required="required" placeHolder="John"/>
+                    </div>
+                    <div className="form-group col-7">
+                        <label style={{ fontSize: "17px", margin:"2%"}}>
+                            Enter Email
+                        </label>
+                        <input type="email" id="sub_reviewer_email" className="form-control" required="required" placeHolder="john@example.com"/>
+                    </div>
+                </div>
+                <div className="form-row justify-items">
+                    <div className="form-group col-9">
+                        <h5>Support up to 3 reviewers</h5>
+                    </div>
+                    <div className="form-group col-3">
+                    <button
+                        type="submit"
+                        className="default-btn1"
+                        style={{paddingLeft:"25px"}}
+                    >
+                        Invite
+                    </button>
+                    </div>
+                </div>
+                </form>
                 </div>
               );
             }
@@ -532,6 +607,19 @@ const JobCard = (props) => {
                                     <span></span>
                                 </button>
                             }
+                        </div>
+                        <div className="col-3 interview-center">
+                                <div className="mr-2" style={{display:"inline-block"}}>
+                                <p>XH</p>
+                                </div>
+                                <button
+                                    className="default-btn1 interview-txt6"
+                                    style={{paddingLeft: "25px", marginBottom:"1rem", display:"inline-block"}}
+                                    onClick={inviteReviever}
+                                >
+                                    + Invite Reviewer
+                                    <span></span>
+                                </button>
                         </div>
                     </div>
                     <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem"}}>
@@ -769,7 +857,7 @@ const JobCard = (props) => {
                                     type="button"
                                     className="default-btn interview-txt6"
                                     style={{paddingLeft: "25px", background: "#67A3F3"}}
-                                    onClick={() => setInvite(false)}
+                                    onClick={() => {setInvite(false); props.getPJobs()}}
                                 >
                                     Back
                                     <span></span>
@@ -1097,20 +1185,20 @@ const Applicant = (props) => {
                 positionId={props.positionId}
                 updateCommentStatus={props.updateCommentStatus}
             />
-            <MyModal
+            <MyModal80
                 show={showResume}
                 onHide={()=>{setShowResume(false); setShow(true);}}
             >
                 <div class="iframe-container">
                     <iframe className="responsive-iframe" src={props.resumeURL}/>
                 </div>
-            </MyModal>
-            <MyModal
+            </MyModal80>
+            <MyModal80
                 show={showEva}
                 onHide={()=>{setShowEva(false); setShow(true);}}
             >
                 <ResumeEva interviewResume={props.interviewResume}/>
-            </MyModal>
+            </MyModal80>
         </div>
     )
 };
@@ -1118,7 +1206,7 @@ const Applicant = (props) => {
 function MyVerticallyCenteredModal(props) {
   const { ...rest } = props;
   return (
-    <MyModal {...rest}>
+    <MyModal80 {...rest}>
       <ReviewApplication
         recordTime={props.recordTime}
         interviewResume={props.interviewResume}
@@ -1136,7 +1224,7 @@ function MyVerticallyCenteredModal(props) {
         positionId={props.positionId}
         updateCommentStatus={props.updateCommentStatus}
       />
-    </MyModal>
+    </MyModal80>
   );
 };
 
@@ -1144,6 +1232,18 @@ function alert() {
     confirmAlert({
       title: "Invitation Sent",
       message: "You resend the interview invitation successfully",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function alertSuccess() {
+    confirmAlert({
+      title: "Invitation Sent",
+      message: "Invitation of Reviewer successfully",
       buttons: [
         {
           label: 'Ok'

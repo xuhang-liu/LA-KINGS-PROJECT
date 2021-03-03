@@ -1,4 +1,4 @@
-import { GET_QUESTIONS, NEXT_QUESTION, UPDATE_SECONDROUND_STATUS, GET_RANDOM_QUESTION, GET_INTERVIEW_QUESTIONS, NEXT_INTERVIEW_QUESTION, GET_POSTED_JOBS, UPDATE_COMMENT_STATUS, GET_APPLICANTS_DATA } from "../actions/action_types";
+import { UPDATE_STARS_LIST, GET_QUESTIONS, NEXT_QUESTION, UPDATE_SECONDROUND_STATUS, GET_RANDOM_QUESTION, GET_INTERVIEW_QUESTIONS, NEXT_INTERVIEW_QUESTION, GET_POSTED_JOBS, UPDATE_COMMENT_STATUS, GET_APPLICANTS_DATA } from "../actions/action_types";
 
 const initialState = {
   questions: [],
@@ -13,6 +13,7 @@ const initialState = {
   questionTime: 0,
   postedJobs: [],
   applicantsData: {},
+  star_list: {1: 100}
 };
 
 export default function (state = initialState, action) {
@@ -28,7 +29,6 @@ export default function (state = initialState, action) {
       };
     case NEXT_QUESTION:
       if (state.q_index == state.q_count - 2) {
-        console.log("last q");
         return {
           ...state,
           last_q: true,
@@ -61,7 +61,6 @@ export default function (state = initialState, action) {
       };
     case NEXT_INTERVIEW_QUESTION:
       if (state.q_index == state.q_count - 2) {
-        console.log("last q");
         return {
           ...state,
           last_q: true,
@@ -95,6 +94,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         postedJobs: action.payload.data,
+      }
+    case UPDATE_STARS_LIST:
+      return {
+        ...state,
+        star_list: action.payload.data,
       }
     default:
       return state;

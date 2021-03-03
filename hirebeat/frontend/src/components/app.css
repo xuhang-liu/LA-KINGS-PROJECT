@@ -294,7 +294,7 @@ video {
   padding-left: 0.1rem;
   padding-right: 0.1rem;
   width: 6rem;
-  height: 6rem;
+  height: 5.6rem;
   padding-top: 0.6rem;
   border-radius: 10px;
 }
@@ -424,6 +424,11 @@ card-row-third-high {
 
 .my-modal {
   min-width: 90%;
+  min-height: 600px;
+}
+
+.my-modal-80 {
+  min-width: 80%;
   min-height: 600px;
 }
 

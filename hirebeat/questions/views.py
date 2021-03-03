@@ -1,4 +1,4 @@
-from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes
+from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes, SubReviewers
 from accounts.models import CandidatesInterview
 from videos.models import WPVideo
 from rest_framework import generics, permissions
@@ -377,3 +377,56 @@ def get_applicants_data(request):
     return Response({
         "data": data,
     })
+
+@api_view(['GET'])
+def get_stars_list(request):
+    pos_id = request.query_params.get("job_id")    
+    int_ques = InterviewQuestions.objects.filter(positions = pos_id)
+    candidates = InvitedCandidates.objects.filter(positions = pos_id)
+    data = {}
+    for candidate in candidates:
+        can_email = candidate.email
+        unit_star_list = WPVideo.objects.filter(email = can_email, question_id__in = int_ques)
+        star_sum = 0
+        video_amount = 0
+        for star in unit_star_list:
+            star_sum += star.video_stars
+            video_amount += 1
+        if(video_amount):
+            data[can_email] = round(star_sum / video_amount)
+        else:
+            data[can_email] = 5
+    return Response({ "data" : data } )
+
+@api_view(['POST'])
+def add_sub_reviewer(request):
+    sub_name = request.data["sub_name"]
+    sub_email = request.data["sub_email"]
+    company_name = request.data["company_name"]
+    position_id = request.data["position_id"]
+    master_email = request.data["master_email"]
+    positions = Positions.objects.get(pk=position_id)
+    SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name, position=positions)
+    send_sub_invitation(sub_name, sub_email, company_name, master_email, positions.job_title)
+    return Response("Add sub reviewer successfully", status=status.HTTP_200_OK)        
+
+def send_sub_invitation(name, email, company_name, master_email, position_name):
+    subject = 'Co-review Invitation to HireBeat for '+ company_name
+    message = get_template("questions/sub_reviewer_email.html")
+    context = {
+        'name': name,
+        'company_name': company_name,
+        'master_email': master_email,
+        'position_name': position_name,
+    }
+    from_email = 'HireBeat Team'
+    to_list = [email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()

@@ -82,6 +82,12 @@ export class EmployerDashboard extends Component {
       ]
       });
   }
+  
+  getPJobs = () => {
+    var user = {"id": this.props.user.id};
+    this.props.getPostedJobs(user.id);
+  }
+
 
   componentDidMount() {
     safariAlert();
@@ -91,7 +97,6 @@ export class EmployerDashboard extends Component {
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
     this.props.getPostedJobs(user.id);
-    setTimeout(() => {console.log("here is the props", this.props)}, 1000);
   }
 
   state = {
@@ -151,6 +156,7 @@ export class EmployerDashboard extends Component {
     switch (this.state.subpage) {
       case "applications":
         return <ApplicationCover
+            getPJobs={this.getPJobs}
             companyName={this.props.profile.company_name}
             loaded={this.props.loaded}
             postedJobs={this.props.postedJobs}
@@ -171,6 +177,8 @@ export class EmployerDashboard extends Component {
             resendInvitation={this.props.resendInvitation}
             updateCommentStatus={this.props.updateCommentStatus}
             renderPosition={this.renderPosition}
+            user={this.props.user}
+            profile={this.props.profile}
         />;
       case "position":
         return <CreatePosition
@@ -198,6 +206,7 @@ export class EmployerDashboard extends Component {
             email_candidate={this.props.email_candidate}
             phone_candidate={this.props.phone_candidate}
             location_candidate={this.props.location_candidate}
+            star_list={this.props.star_list}
             />
       {/*case "reviewApplication":
         return <ReviewApplication
@@ -237,7 +246,7 @@ export class EmployerDashboard extends Component {
               </div>
               <div className='col-11'>
                 <div className="dashboard-main">
-                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist")) ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
+                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") || (this.props.profile.is_subreviwer)) ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
                   <div className="container" style={{marginBottom: "0%"}}>
                     <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
                       {this.renderSubpage()}
@@ -281,6 +290,7 @@ const mapStateToProps = (state) => ({
   email_candidate: state.video_reducer.email_candidate,
   phone_candidate: state.video_reducer.phone_candidate,
   location_candidate: state.video_reducer.location_candidate,
+  star_list: state.question_reducer.star_list,
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
