@@ -1,5 +1,5 @@
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes, SubReviewers
-from accounts.models import CandidatesInterview
+from accounts.models import CandidatesInterview, Profile
 from videos.models import WPVideo
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, SubcategorySerializer
@@ -105,7 +105,6 @@ def add_position(request):
 @api_view(['GET'])
 def get_posted_jobs(request):
     data = {}
-
     user_id = request.query_params.get("user_id")
     positions = Positions.objects.filter(user_id=user_id)
     for i in range(len(positions)):
@@ -113,6 +112,10 @@ def get_posted_jobs(request):
         # get each position applicants
         applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
         questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
+        if (len(SubReviewers.objects.filter(position_id=positions_id))>0):
+            subreviewers = list(SubReviewers.objects.filter(position_id=positions_id).values())
+        else:
+            subreviewers = []
         job_details = {
             "position_id": positions_id,
             "job_id": positions[i].job_id,
@@ -121,10 +124,33 @@ def get_posted_jobs(request):
             "invite_date": positions[i].invite_date,
             "applicants": applicants,
             "questions": questions,
+            "subreviewers": subreviewers,
         }
         # convert to json
         data[positions_id] = job_details
 
+    profile = Profile.objects.get(user_id=user_id)
+    if profile.is_subreviwer:
+        user = User.objects.get(pk=user_id)
+        subreviewers = SubReviewers.objects.filter(r_email=user.email)
+        for i in range(len(subreviewers)):
+            position_id = subreviewers[i].position.id
+            # get each position applicants
+            applicants = list(InvitedCandidates.objects.filter(positions_id=position_id).values())
+            questions = list(InterviewQuestions.objects.filter(positions_id=position_id).values())
+            subs = []
+            job_details = {
+                "position_id": position_id,
+                "job_id": subreviewers[i].position.job_id,
+                "job_title": subreviewers[i].position.job_title,
+                "is_closed": subreviewers[i].position.is_closed,
+                "invite_date": subreviewers[i].position.invite_date,
+                "applicants": applicants,
+                "questions": questions,
+                "subreviewers": subs,
+            }
+            # convert to json
+            data[position_id] = job_details
     return Response({
         "data": data,
     })
@@ -206,23 +232,6 @@ def update_comment_status(request):
     The_candidate.save()
 
     data = {}
-    user_id = request.data["userId"]
-    positions = Positions.objects.filter(user_id=user_id)
-    for i in range(len(positions)):
-        positions_id = positions[i].id
-        # get each position applicants
-        applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
-        job_details = {
-            "position_id": positions_id,
-            "job_id": positions[i].job_id,
-            "job_title": positions[i].job_title,
-            "is_closed": positions[i].is_closed,
-            "invite_date": positions[i].invite_date,
-            "applicants": applicants,
-        }
-        # convert to json
-        data[positions_id] = job_details
-
     return Response({
         "data": data,
     })
@@ -430,3 +439,10 @@ def send_sub_invitation(name, email, company_name, master_email, position_name):
     )
     email.content_subtype = "html"
     email.send()
+
+@api_view(['POST'])
+def remove_sub_reviewer(request):
+    sub_id = request.data["sub_id"]
+    SubReviewers.objects.get(pk=sub_id).delete()
+
+    return Response("Remove sub reviewer successfully", status=status.HTTP_200_OK) 

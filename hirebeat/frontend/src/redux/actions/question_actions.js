@@ -18,7 +18,8 @@ import {
     UPDATE_SECONDROUND_STATUS,
     GET_RESUME_URL_ERROR,
     UPDATE_STARS_LIST,
-    ADD_SUB_REVIEWER
+    ADD_SUB_REVIEWER,
+    REMOVE_SUB_REVIEWER
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -275,6 +276,20 @@ export const addSubReviewer = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: ADD_SUB_REVIEWER,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const removeSubReviewer = (data) => (dispatch, getState) => {
+  axios
+    .post("remove_sub_reviewer", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: REMOVE_SUB_REVIEWER,
         payload: res.data,
       });
     })

@@ -82,7 +82,6 @@ export default function (state = initialState, action) {
     case UPDATE_COMMENT_STATUS:
       return {
         ...state,
-        postedJobs: action.payload.data,
       }
     case GET_APPLICANTS_DATA:
       return {
