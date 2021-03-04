@@ -1076,6 +1076,13 @@ const Applicant = (props) => {
         setTimeout(()=>{setShow(true);}, 200)
     };
 
+    const refresh = () =>
+    {
+        props.getResumeURL(positionId, props.id_candidate);
+        props.getApplicantsVideos(email, positionId);
+        props.getApplicantsInfo(email);
+    }
+
     function inviteAgain() {
         // encode url
         let url = "";
@@ -1208,6 +1215,7 @@ const Applicant = (props) => {
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
+                refresh={refresh}
                 getPJobs={props.getPJobs}
                 recordTime={props.recordTime}
                 interviewResume={props.interviewResume}
@@ -1248,6 +1256,7 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal80 {...rest}>
       <ReviewApplication
+        refresh={props.refresh}
         getPJobs={props.getPJobs}
         recordTime={props.recordTime}
         interviewResume={props.interviewResume}
