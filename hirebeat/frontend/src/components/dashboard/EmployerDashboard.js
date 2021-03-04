@@ -156,6 +156,7 @@ export class EmployerDashboard extends Component {
     switch (this.state.subpage) {
       case "applications":
         return <ApplicationCover
+            renderPostedjobs={this.renderPostedjobs}
             getPJobs={this.getPJobs}
             companyName={this.props.profile.company_name}
             loaded={this.props.loaded}
@@ -177,6 +178,8 @@ export class EmployerDashboard extends Component {
             resendInvitation={this.props.resendInvitation}
             updateCommentStatus={this.props.updateCommentStatus}
             renderPosition={this.renderPosition}
+            user={this.props.user}
+            profile={this.props.profile}
         />;
       case "position":
         return <CreatePosition
@@ -194,7 +197,9 @@ export class EmployerDashboard extends Component {
             renderApplications={this.renderApplications}
         />;
         case "shortlist":
+          if (Object.keys(this.props.postedJobs).length > 0){
           return <ShortList 
+            getPJobs={this.getPJobs}
             postedJobs={this.props.postedJobs}
             int_ques={this.props.int_ques}
             getApplicantsVideos={this.props.getApplicantsVideos}
@@ -205,7 +210,11 @@ export class EmployerDashboard extends Component {
             phone_candidate={this.props.phone_candidate}
             location_candidate={this.props.location_candidate}
             star_list={this.props.star_list}
+            updateCommentStatus={this.props.updateCommentStatus}
             />
+          }else{
+            return null
+          }
       {/*case "reviewApplication":
         return <ReviewApplication
                   int_ques={this.props.int_ques}
@@ -244,7 +253,7 @@ export class EmployerDashboard extends Component {
               </div>
               <div className='col-11'>
                 <div className="dashboard-main">
-                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist")) ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
+                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") || (this.props.profile.is_subreviwer)) ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
                   <div className="container" style={{marginBottom: "0%"}}>
                     <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
                       {this.renderSubpage()}
