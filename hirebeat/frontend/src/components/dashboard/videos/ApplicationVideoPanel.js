@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ReactPlayer from 'react-player';
-import { updateComments } from "./../../../redux/actions/video_actions";
+import { updateComments, getApplicantsVideos } from "./../../../redux/actions/video_actions";
 
 
 class ApplicationVideoPanel extends Component {
 
     state = {
         ratings: this.props.stars,
-        comments: this.props.comments,
+        comments: "",
         page: this.props.page
     };
 
@@ -38,8 +38,11 @@ class ApplicationVideoPanel extends Component {
 
     updateCommentsFunc = () =>
     {
-        var data = {"stars": this.state.ratings[this.state.page], "comment": this.state.comments[this.state.page], "pk": this.props.videopk};
+        let s = this.props.name + ": " + this.state.comments;
+        var data = {"stars": this.state.ratings[this.state.page], "comment": s, "pk": this.props.videopk};
         this.props.updateComments(data);
+        this.setState({comments: ""});
+        this.props.refresh();
         alert("Comment Updated!");
     }
 
@@ -80,21 +83,28 @@ class ApplicationVideoPanel extends Component {
                         <div className="col-3">
                             <h4 style={{fontWeight:"500", color:"#090D3A"}}>Comment</h4>
                         </div>
-                        <div style={{border:"2px solid #E8EDFC", borderRadius:"0.2rem", width:"63%"}}>
-                            <div className="col pl-0">
-                                <textarea style={{height:"20vh", marginBottom:"-3.4rem", border:"none", outline:"none", width:"104%", overflow: "auto", resize:"none", backgroundColor:"transparent"}}
-                                        value={this.state.comments[this.state.page]}
-                                        onChange={this.updateTheComment}
+                        <div style={{width:"63%"}}>
+                            <div className="col px-0">
+                                <div className="pl-1" style={{overflow:"auto", height:"20rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem"}}>
+                                    {this.props.comments[this.state.page].map((comment)=>{
+                                            return <div > {comment}</div> 
+                                    })}
+                                </div>
+                            </div>
+                            <textarea className="mt-3 p-1" style={{display:"inline", height:"3rem", border:"2px solid #090D3A", outline:"none", width:"100%", overflow: "auto", resize:"none", backgroundColor:"transparent"}}
+                                        value={this.state.comments}
+                                        onChange={(e)=>{this.setState({comments :e.target.value})}}
                                 >
                                 </textarea>
-                            </div>
-                            <div className="row" style={{float:"right"}}>
+                            <div className="mt-2">
                                 <button className="default-btn py-2 mr-4 mb-2" 
-                                        style={{float:"right"}}
+                                        style={{position: "absolute", right: "10"}}
                                         onClick={this.updateCommentsFunc}
                                 ><i className="bx bxs-send"></i>Post</button>
                             </div>
+                            
                         </div>
+                       
                     </div>
     
                 
@@ -141,4 +151,8 @@ const Stars = (props) => {
         )
 }
 
-export default connect(null, { updateComments })(ApplicationVideoPanel);
+const mapStateToProps = (state) => ({
+    name: state.auth_reducer.user.username
+})
+
+export default connect(mapStateToProps, { updateComments, getApplicantsVideos })(ApplicationVideoPanel);

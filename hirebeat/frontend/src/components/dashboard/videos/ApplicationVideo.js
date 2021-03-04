@@ -30,8 +30,9 @@ render() {
                                             comments={this.props.comments}
                                             videopk={this.props.pk[this.state.currentVideo]}
                                             page={this.state.currentVideo}
+                                            refresh={this.props.refresh}
                                     />
-                                    <Pagination 
+                                    <Pagination
                                         totalVideos = {this.props.int_ques.length}
                                         setPage={this.setPage}
                                         page={this.state.currentVideo}
@@ -49,7 +50,7 @@ const Pagination = (props) => {
                 pageNumbers.push(i);
 
         return(
-                <nav>
+                <nav className="mt-5">
                         <ul className="pagination">
                                 {pageNumbers.map((number) => {
                                         if(number == props.page + 1)
