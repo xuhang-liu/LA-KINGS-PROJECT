@@ -85,14 +85,15 @@ class ApplicationVideoPanel extends Component {
                         </div>
                         <div style={{width:"63%"}}>
                             <div className="col px-0">
-                                <div className="pl-1" style={{overflow:"auto", height:"20rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem"}}>
+                                <div className="pl-1" style={{overflow:"auto", height:"10rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem"}}>
                                     {this.props.comments[this.state.page].map((comment)=>{
                                             return <div > {comment}</div> 
                                     })}
                                 </div>
                             </div>
-                            <textarea className="mt-3 p-1" style={{display:"inline", height:"3rem", border:"2px solid #090D3A", outline:"none", width:"100%", overflow: "auto", resize:"none", backgroundColor:"transparent"}}
+                            <textarea className="mt-3 p-1" style={{display:"inline", height:"3rem", border:"2px solid #E8EDFC", outline:"none", width:"100%", overflow: "auto", resize:"none", backgroundColor:"transparent"}}
                                         value={this.state.comments}
+                                        placeholder="Type your comment here"
                                         onChange={(e)=>{this.setState({comments :e.target.value})}}
                                 >
                                 </textarea>

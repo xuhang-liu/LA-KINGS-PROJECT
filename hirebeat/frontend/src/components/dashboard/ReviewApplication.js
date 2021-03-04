@@ -1,8 +1,8 @@
-import React, {Component, useEffect} from 'react';
+import React, {Component} from 'react';
 import { IconText } from "./DashboardComponents";
 import ApplicationVideo from "./videos/ApplicationVideo";
 import { connect } from "react-redux";
-import { getPostedJobs, getResumeURL } from "../../redux/actions/question_actions"
+import { getPostedJobs, getResumeURL } from "../../redux/actions/question_actions";
 
 class ReviewApplication extends Component{
     constructor(props) {

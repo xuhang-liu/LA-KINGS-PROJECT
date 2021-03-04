@@ -114,6 +114,7 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         profile.is_employer = True
         subReviewer = SubReviewers.objects.filter(r_email=user.email)
         if (len(subReviewer)>0):
+            profile.email_confirmed = True
             profile.is_subreviwer = True
             profile.company_name = subReviewer[0].company_name
         profile.save()
