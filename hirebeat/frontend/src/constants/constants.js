@@ -5,9 +5,14 @@ import Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer.js';
 import RecordRTC from "recordrtc";
 
 export const numberOfQuestionOptions = [
+  { value: 1, label: "1" },
+  { value: 2, label: "2" },
   { value: 3, label: "3" },
   { value: 4, label: "4" },
   { value: 5, label: "5" },
+  { value: 6, label: "6" },
+  { value: 7, label: "7" },
+  { value: 8, label: "8" },
 ];
 
 export const lengthOfResponseOptions = [
@@ -18,17 +23,23 @@ export const lengthOfResponseOptions = [
 
 export const categoryOfQuestionOptions = [
   { value: 1, label: "Positive Attitude"},
-  { value: 2, label: "Work Commitment"},
-  { value: 3, label: "Teamwork Skill"},
+  { value: 2, label: "Commitment"},
+  { value: 3, label: "Teamwork"},
   { value: 4, label: "Leadership"},
   { value: 5, label: "Pressure Handling"},
-  { value: 6, label: "Proactive Skill"},
-  { value: 7, label: "Work Ethic"},
-  { value: 8, label: "Creativity"},
-  { value: 9, label: "Reliability"},
-  { value: 10, label: "Detail Oriented"},
-  { value: 11, label: "Communication Skill"},
+//  { value: 6, label: "Proactive Skill"},
+//  { value: 7, label: "Work Ethic"},
+//  { value: 8, label: "Creativity"},
+//  { value: 9, label: "Reliability"},
+//  { value: 10, label: "Detail Oriented"},
+//  { value: 11, label: "Communication Skill"},
   { value: 12, label: "Problem Solving"},
+];
+
+export const difficultyOfQuestionOptions = [
+  { value: 1, label: "Common question" },
+  { value: 2, label: "Medium question" },
+  { value: 3, label: "Hard question" },
 ];
 
 // The length changes
@@ -128,7 +139,7 @@ export var radialChartOptions = {
       labels: {
         show: true,
         style: {
-          colors: ["#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a"],
+          colors: ["#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a"],
           fontSize: "12px",
           fontFamily: "Avenir Next, Segoe UI",
           fontStyle: "normal",
@@ -143,7 +154,7 @@ export var radialChartOptions = {
       labels: {
         show: true,
         style: {
-          colors: ["#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a"],
+          colors: ["#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a"],
           fontSize: "12px",
           fontFamily: "Avenir Next, Segoe UI",
           fontStyle: "normal",

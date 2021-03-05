@@ -32,7 +32,7 @@ export class AudioResponseWindow extends Component {
         behavior: "smooth",
       });
     }, 200);
-    this.props.getQuestions(this.props.questionNumber, this.props.questionCategory);
+    this.props.getQuestions(this.props.questionNumber, this.props.questionCategory, this.props.questionDifficulty);
   }
 
   finishCountdown = () => {

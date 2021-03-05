@@ -16,6 +16,7 @@ export class Reviews extends Component {
     detailOriented: 0,
     teamSpirit: 0,
     stressTolerance: 0,
+    leadership: 0,
     comments: "",
     // ai
     ai_score: 0,
@@ -24,6 +25,7 @@ export class Reviews extends Component {
     ai_detailOriented: 0,
     ai_teamSpirit: 0,
     ai_stressTolerance: 0,
+    ai_leadership: 0,
     // ai label
     label: false,
     sentence: -1,
@@ -48,8 +50,8 @@ export class Reviews extends Component {
   handleInputChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-      score: Math.round((Number(this.state.postitiveAttitude)+Number(this.state.communication)+Number(this.state.detailOriented)+Number(this.state.teamSpirit)+Number(this.state.stressTolerance))/5),
-      ai_score: Math.round((Number(this.state.ai_positiveAttitude)+Number(this.state.ai_communication)+Number(this.state.ai_detailOriented)+Number(this.state.ai_teamSpirit)+Number(this.state.ai_stressTolerance))/5),
+      score: Math.round((Number(this.state.postitiveAttitude)+Number(this.state.communication)+Number(this.state.detailOriented)+Number(this.state.teamSpirit)+Number(this.state.stressTolerance)+Number(this.state.leadership))/6),
+      ai_score: Math.round((Number(this.state.ai_positiveAttitude)+Number(this.state.ai_communication)+Number(this.state.ai_detailOriented)+Number(this.state.ai_teamSpirit)+Number(this.state.ai_stressTolerance)+Number(this.state.ai_leadership))/6),
     });
   };
 
@@ -77,8 +79,9 @@ export class Reviews extends Component {
     ans += this.state.communication + ",";
     ans += this.state.detailOriented + ",";
     ans += this.state.teamSpirit + ",";
-    ans += this.state.stressTolerance;
-    console.log(ans);
+    ans += this.state.stressTolerance + ",";
+    ans += this.state.leadership;
+//    console.log(ans);
     return ans;
   };
 
@@ -88,8 +91,9 @@ export class Reviews extends Component {
     ans += this.state.ai_communication + ",";
     ans += this.state.ai_detailOriented + ",";
     ans += this.state.ai_teamSpirit + ",";
-    ans += this.state.ai_stressTolerance;
-    console.log(ans);
+    ans += this.state.ai_stressTolerance + ",";
+    ans += this.state.ai_leadership;
+//    console.log(ans);
     return ans;
   };
 
@@ -168,6 +172,7 @@ export class Reviews extends Component {
             {this.scoreField(categories[2], "detailOriented", this.state.detailOriented)}
             {this.scoreField(categories[3], "teamSpirit", this.state.teamSpirit)}
             {this.scoreField(categories[4], "stressTolerance", this.state.stressTolerance)}
+            {this.scoreField(categories[5], "leadership", this.state.leadership)}
             {this.scoreField("Overall", "score", this.state.score)}
           </div>
           <div className="col" style={{paddingLeft:"0px"}}>
@@ -198,6 +203,7 @@ export class Reviews extends Component {
           {this.scoreField(aiCategories[2], "ai_detailOriented", this.state.ai_detailOriented)}
           {this.scoreField(aiCategories[3], "ai_teamSpirit", this.state.ai_teamSpirit)}
           {this.scoreField(aiCategories[4], "ai_stressTolerance", this.state.ai_stressTolerance)}
+          {this.scoreField(aiCategories[5], "ai_leadership", this.state.ai_leadership)}
           {this.scoreField("Overall", "ai_score", this.state.ai_score)}
         </div>
       </div>
