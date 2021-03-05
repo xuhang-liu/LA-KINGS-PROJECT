@@ -142,6 +142,7 @@ class InterviewInfo extends Component {
     onUploadFinish = () => {
         var name = this.state.cvName;
         var resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + name;
+        //var resume_url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
     
         // insert MetaData to resume table
         const resumeMetaData = {

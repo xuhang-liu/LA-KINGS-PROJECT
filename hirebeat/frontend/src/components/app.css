@@ -2635,8 +2635,10 @@ h5 {
   font-size: 1rem;
   color: #090D3A;
   background: #e8edfc;
-  border: none;
-  text-decoration: underline;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid #090D3A;
 }
 
 .btn-unselected2 {

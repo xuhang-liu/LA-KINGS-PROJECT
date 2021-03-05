@@ -291,7 +291,9 @@ def add_interview_resume(request):
     candidate_id = request.data["candidateId"]
     candidates = User.objects.get(pk=candidate_id)
     resume_URL = request.data["resume_url"]
-    InterviewResumes.objects.create(positionId=positions, candidateId=candidates, resumeURL=resume_URL)
+    interviewResume = InterviewResumes.objects.filter(positionId=positions, candidateId=candidates)
+    if (len(interviewResume) == 0):
+        InterviewResumes.objects.create(positionId=positions, candidateId=candidates, resumeURL=resume_URL)
     return Response("Added the interview resume", status=status.HTTP_200_OK)
 
 @api_view(['POST'])
@@ -409,14 +411,19 @@ def get_stars_list(request):
 
 @api_view(['POST'])
 def add_sub_reviewer(request):
+    profile = {}
     sub_name = request.data["sub_name"]
     sub_email = request.data["sub_email"]
     company_name = request.data["company_name"]
     position_id = request.data["position_id"]
     master_email = request.data["master_email"]
     positions = Positions.objects.get(pk=position_id)
-    SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name, position=positions)
-    send_sub_invitation(sub_name, sub_email, company_name, master_email, positions.job_title)
+    user = User.objects.filter(email=sub_email)
+    for u in user:
+        profile = Profile.objects.filter(user_id=u.id, is_subreviwer=False)
+    if(len(profile) == 0):
+        SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name, position=positions)
+        send_sub_invitation(sub_name, sub_email, company_name, master_email, positions.job_title)
     return Response("Add sub reviewer successfully", status=status.HTTP_200_OK)        
 
 def send_sub_invitation(name, email, company_name, master_email, position_name):
