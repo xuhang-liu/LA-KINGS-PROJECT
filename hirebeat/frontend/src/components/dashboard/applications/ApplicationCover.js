@@ -24,14 +24,16 @@ export const ApplicationCover = (props) => {
         >
           Closed
         </button>
+        {!props.profile.is_subreviwer &&
         <button className="default-btn" onClick={props.renderPosition}
           style={{color:"white", marginLeft:"5%"}}>
             <i className="bx bx-plus"></i> 
               Create New Position
             <span></span>
-        </button>
+        </button>}
       </div>
       <JobApplication
+        getPJobs={props.getPJobs}
         selectedId={selectedId}
         setselectedId={setselectedId}
         filter={filter}
@@ -55,6 +57,8 @@ export const ApplicationCover = (props) => {
         location_candidate={props.location_candidate}
         resendInvitation={props.resendInvitation}
         updateCommentStatus={props.updateCommentStatus}
+        user={props.user}
+        profile={props.profile}
       />
     </div>
   );

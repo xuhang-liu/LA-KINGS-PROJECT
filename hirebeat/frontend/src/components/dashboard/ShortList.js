@@ -4,8 +4,10 @@ import { MyModal80 } from './DashboardComponents';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ReviewApplication from './ReviewApplication';
+import { ResumeEva } from "./applications/ResumeEva";
 import { connect } from 'react-redux';
 import { loadStarList } from './../../redux/actions/question_actions';
+import { getResumeURL } from "../../redux/actions/question_actions";
 
 const ShortList = (props) => {
     const [jobId, setJobId] = useState(Object.keys(props.postedJobs)[0]);
@@ -18,8 +20,13 @@ const ShortList = (props) => {
     useEffect(() => {
         props.loadStarList(jobId);
     }, [jobId]);
+
+    function refreshPage() {
+        props.loadStarList(jobId);
+    }
     
     return <div>
+            <div>
             <div className="row">
                 <h3 className="pt-2 mr-5 col-9">{props.postedJobs[jobId].job_title} {props.postedJobs[jobId].job_id}</h3>
                 <DropdownButton id="dropdown-menu-align-left" size="lg" title="Select Position" >
@@ -28,8 +35,9 @@ const ShortList = (props) => {
                         })}
                 </DropdownButton>
             </div>
-            {console.log(props.star_list)}
-            <AcceptedCandidate 
+            <AcceptedCandidate
+                getPJobs={props.getPJobs}
+                refreshPage={refreshPage} 
                 id_candidate={props.id_candidate}
                 username_candidate={props.username_candidate}
                 email_candidate={props.email_candidate}
@@ -40,16 +48,25 @@ const ShortList = (props) => {
                 getApplicantsInfo={props.getApplicantsInfo}
                 int_ques={props.int_ques}
                 stars={props.star_list}
+                resumeURL={props.resumeURL}
+                recordTime={props.recordTime}
+                interviewResume={props.interviewResume}
+                getResumeURL={props.getResumeURL}
+                updateCommentStatus={props.updateCommentStatus}
             />
+            </div>
         </div>
 }
 
 const mapStateToProps = (state) => ({
     star_list: state.question_reducer.star_list,
+    resumeURL: state.video_reducer.resumeURL,
+    recordTime: state.video_reducer.recordTime,
+    interviewResume: state.video_reducer.interviewResume,
   });
   
 
-export default connect(mapStateToProps , { loadStarList })(ShortList); 
+export default connect(mapStateToProps , { loadStarList, getResumeURL })(ShortList); 
 
 const AcceptedCandidate = (props) => {
     return <div>
@@ -60,6 +77,8 @@ const AcceptedCandidate = (props) => {
                                 {console.log(props.stars, "and applicant", applicant)}
 
                                 <CandidateCard
+                                    getPJobs={props.getPJobs}
+                                    refreshPage={props.refreshPage}
                                     stars={props.stars[applicant.email]}
                                     applicant={applicant}
                                     getApplicantsVideos={props.getApplicantsVideos}
@@ -70,6 +89,11 @@ const AcceptedCandidate = (props) => {
                                     email_candidate={props.email_candidate}
                                     phone_candidate={props.phone_candidate}
                                     location_candidate={props.location_candidate}
+                                    resumeURL={props.resumeURL}
+                                    recordTime={props.recordTime}
+                                    interviewResume={props.interviewResume}
+                                    getResumeURL={props.getResumeURL}
+                                    updateCommentStatus={props.updateCommentStatus}
                             />
                         </div>
                     }
@@ -83,12 +107,14 @@ const CandidateCard = (props) => {
     console.log(props.applicant);
     const [show, setShow] = useState(false);
     const [showResume, setShowResume] = useState(false);
+    const [showEva, setShowEva] = useState(false);
 
     function viewResult() {
         // get videos and info
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
         props.getApplicantsInfo(props.applicant.email);
-        setTimeout(()=>{setShow(true);}, 500)
+        props.getResumeURL(props.applicant.positions_id, props.id_candidate);
+        setTimeout(()=>{setShow(true);}, 300)
     };
 
     const renderStars = (stars) => {
@@ -161,6 +187,7 @@ const CandidateCard = (props) => {
             </div>
         </div>
         <MyVerticallyCenteredModal
+            getPJobs={props.getPJobs}
             applicant={props.applicant}
             id_candidate={props.id_candidate}
             username_candidate={props.username_candidate}
@@ -171,18 +198,29 @@ const CandidateCard = (props) => {
             secondround_status={props.applicant.secondround_status}
             show={show}
             setShowResume={setShowResume}
-            onHide={()=>{setShow(false);}}
+            setShowEva={setShowEva}
+            onHide={()=>{setShow(false); props.refreshPage();}}
             int_ques={props.int_ques}
             positionId={props.applicant.positions_id}
+            resumeURL={props.resumeURL}
+            recordTime={props.recordTime}
+            interviewResume={props.interviewResume}
+            updateCommentStatus={props.updateCommentStatus}
         /> 
-        {/* <MyModal
-            show={showResume}
-            onHide={()=>{setShowResume(false); setShow(true);}}
-        >
-            <div class="iframe-container">
-                <iframe className="responsive-iframe" src={props.resumeURL}/>
-            </div>
-        </MyModal> */}
+        <MyModal80
+                show={showResume}
+                onHide={()=>{setShowResume(false); setShow(true);}}
+            >
+                <div class="iframe-container">
+                    <iframe className="responsive-iframe" src={props.resumeURL}/>
+                </div>
+            </MyModal80>
+            <MyModal80
+                show={showEva}
+                onHide={()=>{setShowEva(false); setShow(true);}}
+            >
+                <ResumeEva interviewResume={props.interviewResume}/>
+            </MyModal80>
     </React.Fragment>     
 )}
 
@@ -193,7 +231,9 @@ function MyVerticallyCenteredModal(props) {
       <MyModal80 {...rest}>
         <ReviewApplication
           {...rest}
+          getPJobs={props.getPJobs}
           setShowResume={props.setShowResume}
+          setShowEva={props.setShowEva}
           hide={props.onHide}
           int_ques={props.int_ques}
           id_candidate={props.id_candidate}
@@ -204,6 +244,9 @@ function MyVerticallyCenteredModal(props) {
           positionId={props.positionId}
           updateCommentStatus={props.updateCommentStatus}
           comment_status={props.applicant.comment_status}
+          resumeURL={props.resumeURL}
+          recordTime={props.recordTime}
+          interviewResume={props.interviewResume}
         />
       </MyModal80>
     );

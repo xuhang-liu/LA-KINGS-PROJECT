@@ -7,7 +7,7 @@ from accounts.models import Profile, CandidatesInterview
 from django.contrib.auth.models import User
 from resume.models import Resume
 from videos.models import Video
-from questions.models import Positions, InvitedCandidates
+from questions.models import Positions, InvitedCandidates, SubReviewers
 from rest_framework import status
 from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
@@ -112,6 +112,11 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         ### profile is autocreated
         profile = Profile.objects.filter(user=user.id)[0]
         profile.is_employer = True
+        subReviewer = SubReviewers.objects.filter(r_email=user.email)
+        if (len(subReviewer)>0):
+            profile.email_confirmed = True
+            profile.is_subreviwer = True
+            profile.company_name = subReviewer[0].company_name
         profile.save()
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
