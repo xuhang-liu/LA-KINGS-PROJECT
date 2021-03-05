@@ -15,7 +15,7 @@ export const Interview = () => {
         <div className="col-9">
         <button
           className={decideClassName(filter, "bq")}
-          style = {{outline: "none", borderRadius: "2px"}}
+          style = {{outline: "none", borderRadius: "2px", marginRight:"2rem"}}
           onClick={() => setFilter("bq")}
         >
           Behavioral Questions

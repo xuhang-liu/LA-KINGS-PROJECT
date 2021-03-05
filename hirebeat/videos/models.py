@@ -85,6 +85,6 @@ class WPVideo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     owner_id = models.BigIntegerField(null=True, blank=True)
     video_stars = models.IntegerField(default=5)
-    video_comment = ArrayField(models.CharField(null=True, max_length=500), blank=True, null=True)
+    video_comment = ArrayField(models.CharField(null=True, max_length=500), default=list)
     def __str__(self):
         return self.email
