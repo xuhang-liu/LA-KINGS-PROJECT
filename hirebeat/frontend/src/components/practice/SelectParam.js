@@ -3,6 +3,7 @@ import {
   numberOfQuestionOptions,
   lengthOfResponseOptions,
   categoryOfQuestionOptions,
+  difficultyOfQuestionOptions
 } from "../../constants/constants";
 import ResponseWindow from "./ResponseWindow";
 import AudioResponseWindow from "./AudioResponseWindow";
@@ -27,6 +28,7 @@ export class SelectParam extends Component {
     numberOfQuestions: { value: 3, label: "3" },
     lengthOfResponse: { value: 1, label: "60s" },
     categoryOfQuestion: { value: 1, label: "Positive Attitude"},
+    difficultyOfQuestion: { value: 1, label: "Common Question"},
   };
 
   componentDidMount() {
@@ -69,6 +71,10 @@ export class SelectParam extends Component {
     this.setState({ categoryOfQuestion });
   }
 
+  handleChangeDifficulty = (difficultyOfQuestion) => {
+    this.setState({ difficultyOfQuestion });
+  }
+
   handleChange(checked) {
     this.setState({ checked });
   }
@@ -99,6 +105,13 @@ export class SelectParam extends Component {
           pageDescription="Create A New Mock Interview"
           style={{marginBottom: "2rem"}}
         />
+        {selectParam(
+          "Choose the difficulty for your questions",
+          this.state.difficultyOfQuestion,
+          this.handleChangeDifficulty,
+          difficultyOfQuestionOptions,
+          "select-difficulty"
+          )}
         {selectParam(
           "Select one specific category",
           this.state.categoryOfQuestion,
@@ -147,6 +160,7 @@ export class SelectParam extends Component {
                 questionNumber={this.state.numberOfQuestions.value}
                 responseLength={this.state.lengthOfResponse.value}
                 questionCategory={this.state.categoryOfQuestion.label}
+                questionDifficulty={this.state.difficultyOfQuestion.value}
                 isSimulate={false}
               />
               ) : (
@@ -166,6 +180,7 @@ export class SelectParam extends Component {
                 questionNumber={this.state.numberOfQuestions.value}
                 responseLength={this.state.lengthOfResponse.value}
                 questionCategory={this.state.categoryOfQuestion.label}
+                questionDifficulty={this.state.difficultyOfQuestion.value}
                 isSimulate={false}
               />
               ) : (

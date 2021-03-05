@@ -27,6 +27,7 @@ export class TechPracticeMode extends Component {
     numberOfQuestions: { value: 3, label: "3" },
     lengthOfResponse: { value: 1, label: "60s" },
     categoryOfQuestion: { value: 1, label: this.props.location.params.category},   // initialize this state with the params passed by TechFields.js
+    difficultyOfQuestion: { value: 1, label: "Common Question"},
   };
 
   componentDidMount() {
@@ -141,6 +142,7 @@ export class TechPracticeMode extends Component {
                 questionNumber={this.state.numberOfQuestions.value}
                 responseLength={this.state.lengthOfResponse.value}
                 questionCategory={this.state.categoryOfQuestion.label}
+                questionDifficulty={this.state.difficultyOfQuestion.value}
                 isSimulate={false}
               />
               ) : (
@@ -160,6 +162,7 @@ export class TechPracticeMode extends Component {
                 questionNumber={this.state.numberOfQuestions.value}
                 responseLength={this.state.lengthOfResponse.value}
                 questionCategory={this.state.categoryOfQuestion.label}
+                questionDifficulty={this.state.difficultyOfQuestion.value}
                 isSimulate={false}
               />
               ) : (

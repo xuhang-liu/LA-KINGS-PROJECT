@@ -1615,6 +1615,10 @@ h5 {
   width: 22rem;
 }
 
+.select-difficulty {
+  width: 24rem;
+}
+
 .select-question-count {
   width: 7rem;
 }

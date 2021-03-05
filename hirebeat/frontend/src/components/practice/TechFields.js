@@ -10,14 +10,6 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { withRouter } from "react-router-dom";
 
-import accounting from '../../assets/tech/Accounting.png';
-import admin from '../../assets/tech/Administrative.png';
-import consult from '../../assets/tech/Consulting.png';
-import finance from '../../assets/tech/Finance.png';
-import human from '../../assets/tech/Human.png';
-import market from '../../assets/tech/Marketing.png';
-import product from '../../assets/tech/Product.png';
-import retail from '../../assets/tech/Retail.png';
 import nofind from '../../assets/tech/Nofind.png';
 
 
@@ -99,7 +91,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Accounting")}>
-      <img src={accounting} alt="image"/>
+      <img src="https://hirebeat-assets.s3.amazonaws.com/accounting.png" alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -109,7 +101,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Administrate Support")}>
-      <img src={admin} alt="image"/>
+      <img src="https://hirebeat-assets.s3.amazonaws.com/administrative.png" alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -119,7 +111,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Consulting")}>
-      <img src={consult} alt="image"/>
+      <img src="https://hirebeat-assets.s3.amazonaws.com/consulting.png" alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -129,7 +121,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Finance")}>
-      <img src={finance} alt="image"/>
+      <img src="https://hirebeat-assets.s3.amazonaws.com/finance.png" alt="image"/>
       </button>  
       </div>
       <br/>
@@ -142,7 +134,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Human Resources")}>
-      <img src={human} alt="image"/>
+      <img src="https://hirebeat-assets.s3.amazonaws.com/hr.png" alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -152,7 +144,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Marketing")}>
-      <img src={market} alt="image"/>
+      <img src="https://hirebeat-assets.s3.amazonaws.com/marketing.png" alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -162,7 +154,7 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Product Management")}>
-      <img src={product} alt="image"/>
+      <img src="https://hirebeat-assets.s3.amazonaws.com/pm.png" alt="image"/>
       </button>
       <button style={{
         width: "15%",
@@ -172,14 +164,36 @@ export class TechFields extends Component {
         marginBottom: "15px",
         backgroundColor: "white",}}
         onClick={this.setCategory.bind(this, "Retail")}>
-      <img src={retail} alt="image"/>
+      <img src="https://hirebeat-assets.s3.amazonaws.com/retail.png" alt="image"/>
       </button>  
       </div>
-      <div style={{marginLeft:"3rem"}}>
+      <div>
       <button style={{
         width: "15%",
         border: "none",
         marginLeft: "15px",
+        marginRight: "15px",
+        marginBottom: "15px",
+        backgroundColor: "white",}}
+        onClick={this.setCategory.bind(this, "Supply Chain")}>
+      <img src="https://hirebeat-assets.s3.amazonaws.com/supplychain.png" alt="image"/>
+      </button>
+      <button style={{
+        width: "15%",
+        border: "none",
+        marginLeft: "15px",
+        marginRight: "15px",
+        marginBottom: "15px",
+        backgroundColor: "white",}}
+        onClick={this.setCategory.bind(this, "Business Analyst")}>
+      <img src="https://hirebeat-assets.s3.amazonaws.com/bussinessanalyst.png" alt="image"/>
+      </button>
+      </div>
+      <div>
+      <button style={{
+        minWidth: "15%",
+        border: "none",
+        marginLeft: "36px",
         marginRight: "15px",
         marginBottom: "15px",
         marginTop: "15px",

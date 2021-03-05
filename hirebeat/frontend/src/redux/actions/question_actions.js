@@ -41,9 +41,9 @@ export const addPosition = (jobtitle, jobid, jobdescription, userid, question1, 
     );
 };
 
-export const getQuestions = (number, category) => (dispatch, getState) => {
+export const getQuestions = (number, category, level) => (dispatch, getState) => {
   axios
-    .get(`/questions?number=${number}&category=${category}`, tokenConfig(getState))
+    .get(`/questions?number=${number}&category=${category}&level=${level}`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_QUESTIONS,
