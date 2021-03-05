@@ -7,7 +7,6 @@ import { MyModal80 } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
-import { updateProfile } from "./../../../redux/actions/auth_actions";
 //import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
@@ -45,7 +44,6 @@ export class JobApplication extends Component{
                             return(
                                 <JobViewDetail
                                     removeSubReviewer={this.props.removeSubReviewer}
-                                    updateProfile={this.props.updateProfile}
                                     addSubReviewer={this.props.addSubReviewer}
                                     getPJobs={this.props.getPJobs}
                                     resumeURL={this.props.resumeURL}
@@ -97,7 +95,7 @@ const mapStateToProps = (state) => ({
     interviewResume: state.video_reducer.interviewResume,
 });
 
-export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, updateProfile, removeSubReviewer })(
+export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer })(
     JobApplication
 );
 
@@ -165,12 +163,7 @@ const JobViewDetail = (props) => {
                 master_email: props.user.email,
             };
             props.addSubReviewer(data);
-            let profile = {
-                user: props.user.id,
-                id: props.profile.id,
-                reviewer_count: (Number(props.profile.reviewer_count) + 1),
-            };
-            props.updateProfile(profile);
+            props.getPJobs();
             e.preventDefault();
             sendSuccessAlert();
         }
@@ -267,7 +260,7 @@ const JobViewDetail = (props) => {
                                     <div>
                                         {props.applicants.length > 0 ?
                                         <div>
-                                        {((!props.isClosed) && (props.subreviewers.length <3)) &&
+                                        {((!props.isClosed) && (props.subreviewers.length < Number(props.profile.reviewer_count))) &&
                                         <button
                                             className="default-btn1 interview-txt6"
                                             style={{paddingLeft: "25px"}}

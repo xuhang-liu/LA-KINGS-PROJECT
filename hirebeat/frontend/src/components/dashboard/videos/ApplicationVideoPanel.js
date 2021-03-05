@@ -9,7 +9,9 @@ class ApplicationVideoPanel extends Component {
     state = {
         ratings: this.props.stars,
         comments: "",
-        page: this.props.page
+        page: this.props.page,
+        playbackRate: 1.0,
+        selectedSpeed: 1.0,
     };
 
     handleRating = (x) => {
@@ -46,7 +48,22 @@ class ApplicationVideoPanel extends Component {
         alert("Comment Updated!");
     }
 
+    handleSetPlaybackRate = e => {
+        this.setState({ playbackRate: parseFloat(e.target.value) });
+        this.setState({ selectedSpeed: parseFloat(e.target.value) });
+    }
+
     render() {
+        var selectedColor1 = "#56a3fa";
+        var selectedColor2 = "#56a3fa";
+        var selectedColor3 = "#56a3fa";
+        if (this.state.selectedSpeed == 1.0){
+            selectedColor1 = "#090d3a";
+        }else if (this.state.selectedSpeed == 1.5){
+            selectedColor2 = "#090d3a";
+        }else if (this.state.selectedSpeed == 2.0) {
+            selectedColor3 = "#090d3a";
+        }
         return (
             <div className="mb-4">
                 <div>
@@ -57,12 +74,25 @@ class ApplicationVideoPanel extends Component {
                 <div>
                     <div className="row">
                         <div className="col-12">
-                        <ReactPlayer id="rw-video" url={this.props.url} controls={true}
+                        <ReactPlayer id="rw-video" url={this.props.url} controls={true} playbackRate={this.state.playbackRate}
                         // Disable download button
                         config={{ file: { attributes: { controlsList: 'nodownload' } } }}
                         // Disable right click
                         onContextMenu={e => e.preventDefault()}
                         width="29vw" height="auto"/>
+                        </div>
+                    </div>
+                    <div className="row mt-2">
+                        <div className="col-3">
+                            <h4 style={{fontWeight:"500", color:"#090D3A"}}>Speed</h4>
+                        </div>
+                        <div className="col-6">
+                            <button className="default-btn2" style={{fontSize:"0.8rem", marginLeft:"-1rem", padding:"6px", backgroundColor: selectedColor1}}
+                            onClick={this.handleSetPlaybackRate} value={1}>Normal</button>
+                            <button className="default-btn2 ml-2" style={{fontSize:"0.8rem", padding:"6px", backgroundColor: selectedColor2}}
+                            onClick={this.handleSetPlaybackRate} value={1.5}>1.5x</button>
+                            <button className="default-btn2 ml-2" style={{fontSize:"0.8rem", padding:"6px", backgroundColor: selectedColor3}}
+                            onClick={this.handleSetPlaybackRate} value={2}>2x</button>
                         </div>
                     </div>
                 </div>
