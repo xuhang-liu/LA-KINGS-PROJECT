@@ -200,7 +200,7 @@ export class MyVideoUploader extends Component {
     var saveText = "Save and Next";
     var skipText = "Discard and Next";
 
-    if (this.props.last_q) {
+    if (this.props.last_q || this.props.questions.length == 1) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
       saveText = this.props.isCareerVideo ? "Submit" : "Save and Finish";
