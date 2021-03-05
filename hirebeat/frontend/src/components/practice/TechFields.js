@@ -188,10 +188,12 @@ export class TechFields extends Component {
         onClick={this.setCategory.bind(this, "Business Analyst")}>
       <img src="https://hirebeat-assets.s3.amazonaws.com/bussinessanalyst.png" alt="image"/>
       </button>
+      </div>
+      <div>
       <button style={{
-        width: "15%",
+        minWidth: "15%",
         border: "none",
-        marginLeft: "15px",
+        marginLeft: "36px",
         marginRight: "15px",
         marginBottom: "15px",
         marginTop: "15px",
