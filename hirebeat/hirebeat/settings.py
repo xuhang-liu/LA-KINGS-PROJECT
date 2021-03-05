@@ -92,8 +92,8 @@ WSGI_APPLICATION = 'hirebeat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'django',
+        'NAME': 'hirebeat',
+        'USER': 'postgres',
         'PASSWORD': os.getenv('DATABASE_SECRET_KEY'),
     }
 }
