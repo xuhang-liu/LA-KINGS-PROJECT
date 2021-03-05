@@ -23,12 +23,12 @@ class Video(models.Model):
     # expert
     comments = models.TextField(default="No comments yet")
     expert_score = models.FloatField(default=10.0)
-    expert_review_categories = models.CharField(default="Positive Attitude,Communication,Detail Oriented,Team Spirit,Stress Tolerance", max_length=500)
+    expert_review_categories = models.CharField(default="Positive Attitude, Pressure Handling, Problem Solving, Commitment, Leadership, Teamwork", max_length=500)
     expert_category_score = models.CharField(default="10,10,10,10,10,10", max_length=500)
     reviewer = models.ForeignKey(User, related_name="reviewed_videos", on_delete= models.SET_NULL, null=True, blank=True)
     # ai
     ai_score = models.FloatField(default=10.0)
-    ai_review_categories = models.CharField(default="Positive Attitude,Communication,Detail Oriented,Team Spirit,Stress Tolerance", max_length=500)
+    ai_review_categories = models.CharField(default="Positive Attitude, Pressure Handling, Problem Solving, Commitment, Leadership, Teamwork", max_length=500)
     #ai_category_score is a char b/c sqlite has no support for ArrayField. Now db is migrated to postgres, this filed can be an ArrayField. Code in frontend should change accordingly.
     ai_category_score = models.CharField(default="10,10,10,10,10, 10", max_length=500)
     # ai words and ummm... detection
