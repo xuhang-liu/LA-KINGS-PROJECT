@@ -14,16 +14,12 @@ import Select from 'react-select'
 import * as pdfjsLib from 'pdfjs-dist';
 
 export class JobApplication extends Component{
-    refreshPage() {
-        window.location.reload(false);
-    }
 
     render() {
         return(
             <React.Fragment>
                 {this.props.loaded &&
                     <div>
-                        <button onClick={this.refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right"}}><p><box-icon name="refresh" color="#4a6f8a"></box-icon>Refresh</p></button>
                         {Object.keys(this.props.postedJobs).reverse().map((key) => {
                             let p = this.props.postedJobs[key];
                             // filter positions according to is_closed attribute

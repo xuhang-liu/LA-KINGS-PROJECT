@@ -77,9 +77,9 @@ export class Header extends Component {
               className="navbar-nav ml-auto mr-5
                  text-left order-xl-0">
               <li className="nav-item ">
-                <a href="/dashboard" id="id-dash-out" className="nav-link text-white navbar-font">
+                <Link to="/dashboard" id="id-dash-out" className="nav-link text-white navbar-font">
                   <span className="header-text">My Dashboard</span>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
