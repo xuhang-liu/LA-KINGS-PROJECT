@@ -3,27 +3,23 @@ import { connect } from "react-redux";
 //import PropTypes from "prop-types";
 //import {Link} from "react-router-dom";
 import ReviewApplication from "./../ReviewApplication";
-import { MyModal80, MyModal } from "./../DashboardComponents";
+import { MyModal80 } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
 //import { IconText } from "../DashboardComponents";
-import { closePosition, deletePosition, getResumeURL } from "./../../../redux/actions/question_actions";
+import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
 import Select from 'react-select'
 import * as pdfjsLib from 'pdfjs-dist';
 
 export class JobApplication extends Component{
-    refreshPage() {
-        window.location.reload(false);
-    }
 
     render() {
         return(
             <React.Fragment>
                 {this.props.loaded &&
                     <div>
-                        <button onClick={this.refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right"}}><p><box-icon name="refresh" color="#4a6f8a"></box-icon>Refresh</p></button>
                         {Object.keys(this.props.postedJobs).reverse().map((key) => {
                             let p = this.props.postedJobs[key];
                             // filter positions according to is_closed attribute
@@ -43,6 +39,8 @@ export class JobApplication extends Component{
                             }
                             return(
                                 <JobViewDetail
+                                    removeSubReviewer={this.props.removeSubReviewer}
+                                    addSubReviewer={this.props.addSubReviewer}
                                     getPJobs={this.props.getPJobs}
                                     resumeURL={this.props.resumeURL}
                                     addSelected={this.props.setselectedId}
@@ -54,6 +52,7 @@ export class JobApplication extends Component{
                                     isClosed={p.is_closed}
                                     inviteDate={p.invite_date}
                                     applicants={p.applicants}
+                                    subreviewers={p.subreviewers}
                                     addInterviews={this.props.addInterviews}
                                     getApplicantsVideos={this.props.getApplicantsVideos}
                                     getApplicantsInfo={this.props.getApplicantsInfo}
@@ -73,6 +72,8 @@ export class JobApplication extends Component{
                                     getResumeURL={this.props.getResumeURL}
                                     recordTime={this.props.recordTime}
                                     interviewResume={this.props.interviewResume}
+                                    user={this.props.user}
+                                    profile={this.props.profile}
                                 />
                             )
                         })}
@@ -90,7 +91,7 @@ const mapStateToProps = (state) => ({
     interviewResume: state.video_reducer.interviewResume,
 });
 
-export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL })(
+export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer })(
     JobApplication
 );
 
@@ -144,6 +145,82 @@ const JobViewDetail = (props) => {
         window.location.reload();
     }
 
+    function inviteReviever() {
+        let sub_reviewer_name = "";
+        let sub_reviewer_email = "";
+        function submitSubReviewer(e) {
+            sub_reviewer_name = document.getElementById("sub_reviewer_name").value;
+            sub_reviewer_email = document.getElementById("sub_reviewer_email").value;
+            let data = {
+                sub_name: sub_reviewer_name,
+                sub_email: sub_reviewer_email,
+                company_name: props.companyName,
+                position_id: props.positionId,
+                master_email: props.user.email,
+            };
+            props.addSubReviewer(data);
+            props.getPJobs();
+            e.preventDefault();
+            sendSuccessAlert();
+        }
+        
+        confirmAlert({
+            customUI: ({ onClose }) => {
+              return (
+                <div className="interview-txt7" style={{backgroundColor:'#ffffff', borderRadius:"10px", border:"2px solid #E8EDFC", padding:"1rem", paddingLeft:"3rem", paddingRight:"3rem"}}>
+                <form onSubmit={submitSubReviewer}>
+                <div className="form-row">
+                    <div className="form-group col-5">
+                        <label style={{ fontSize: "17px", margin:"2%"}}>
+                            Enter Name
+                        </label>
+                        <input type="text" id="sub_reviewer_name" className="form-control" required="required" placeHolder="John"/>
+                    </div>
+                    <div className="form-group col-7">
+                        <label style={{ fontSize: "17px", margin:"2%"}}>
+                            Enter Email
+                        </label>
+                        <input type="email" id="sub_reviewer_email" className="form-control" required="required" placeHolder="john@example.com"/>
+                    </div>
+                </div>
+                <div className="form-row justify-items">
+                    <div className="form-group col-9">
+                        <h5>Support up to 3 reviewers</h5>
+                    </div>
+                    <div className="form-group col-3">
+                    <button
+                        type="submit"
+                        className="default-btn1"
+                        style={{paddingLeft:"25px"}}
+                    >
+                        Invite
+                    </button>
+                    </div>
+                </div>
+                </form>
+                </div>
+              );
+            }
+        });
+    }
+
+    function deleteReviever(sub_id) {
+        let data = {sub_id: sub_id};
+        confirmAlert({
+            title: "Confirm to remove",
+            message: "Do you want to remove this reviewer?",
+            buttons: [
+                {
+                  label: 'Yes',
+                  onClick: () => {props.removeSubReviewer(data); deletSuccessAlert(); props.getPJobs();}
+                },
+                {
+                  label: 'No'
+                }
+            ]
+        });
+    }
+
     return (
         <React.Fragment>
             {/* Summarize */}
@@ -152,7 +229,7 @@ const JobViewDetail = (props) => {
                     <div className="col-12" style={{fontFamily: "Avenir Next, Segoe UI" }}>
                         <div className="mt-4">
                             <div className="row">
-                                <div className="col-9" style={{color:"#090D3A"}}>
+                                <div className="col-7" style={{color:"#090D3A"}}>
                                     <button className="title-button" onClick={() => {setView(true), props.addSelected(props.positionId)}}>
                                         {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                     </button>
@@ -165,23 +242,46 @@ const JobViewDetail = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-3 center-items">
-                                    {!props.isClosed &&
+                                <div className="col-2 mt-2">
+                                {props.subreviewers.map((sub, i) => {
+                                    return (
+                                        <span onClick={() => {deleteReviever(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
+                                        <p className="sub_submenu" style={{minWidth:"6rem"}}>{sub.r_name}</p>
+                                        </span>
+                                    )
+                                })}
+                                </div>
+                                <div className="col-3">
+                                    {!props.profile.is_subreviwer &&
+                                    <div>
+                                        {props.applicants.length > 0 ?
+                                        <div>
+                                        {((!props.isClosed) && (props.subreviewers.length < Number(props.profile.reviewer_count))) &&
                                         <button
-                                            onClick={closeJob}
-                                            className="default-btn"
-                                            style={{paddingLeft:"25px", backgroundColor: "#E8EDFC", color:"#090d3a"}}
+                                            className="default-btn1 interview-txt6"
+                                            style={{paddingLeft: "25px"}}
+                                            onClick={inviteReviever}
+                                        >
+                                            + Invite Reviewer
+                                            <span></span>
+                                        </button>}
+                                        {!props.isClosed &&
+                                        <button
+                                        onClick={closeJob}
+                                        className="default-btn ml-4 mt-2 mb-3"
+                                        style={{paddingLeft:"25px", backgroundColor: "#E8EDFC", color:"#090d3a"}}
                                         >
                                             Close Position
                                         </button>}
-                                        {props.applicants.length <= 0 &&
+                                        </div> :
                                         <button
                                             type="submit"
                                             onClick={deleteAlert}
-                                            style={{border: "none", backgroundColor: "white"}}
+                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"3rem"}}
                                         >
                                             <i className="bx bx-trash bx-md" style={{color: "#67A3F3"}}></i>
                                         </button>}
+                                    </div>}
                                 </div>
                             </div>
                         </div>
@@ -220,6 +320,8 @@ const JobViewDetail = (props) => {
                     resendInvitation={props.resendInvitation}
                     updateCommentStatus={props.updateCommentStatus}
                     hideView={() => (setView(false), props.addSelected(0))}
+                    user={props.user}
+                    profile={props.profile}
                 />
             }
         </React.Fragment>
@@ -504,7 +606,7 @@ const JobCard = (props) => {
                             type="button"
                             className="read-more"
                             style={{border:"none", backgroundColor:"#ffffff", fontSize:"1.2rem", fontWeight:"500"}}
-                            onClick={props.hideView}
+                            onClick={() => {props.hideView(); props.getPJobs()}}
                         >
                             <i className="bx bx-chevrons-left pr-1"></i> Back
                         </button>
@@ -524,6 +626,8 @@ const JobCard = (props) => {
                             </button>
                         </div>
                         <div className="col-3 interview-center">
+                            {!props.profile.is_subreviwer &&
+                            <div>
                             {!props.isClosed &&
                                 <button
                                     className="default-btn interview-txt6"
@@ -534,6 +638,9 @@ const JobCard = (props) => {
                                     <span></span>
                                 </button>
                             }
+                            </div>}
+                        </div>
+                        <div className="col-3 interview-center">
                         </div>
                     </div>
                     <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem"}}>
@@ -554,6 +661,8 @@ const JobCard = (props) => {
                         </div>
                         <div style={{marginBottom:"2rem"}}>
                             <ApplicantList
+                                getPJobs={props.getPJobs}
+                                profile={props.profile}
                                 recordTime={props.recordTime}
                                 interviewResume={props.interviewResume}
                                 getResumeURL={props.getResumeURL}
@@ -906,6 +1015,8 @@ const ApplicantList = (props) => {
                 }
                 return (
                     <Applicant
+                        getPJobs={props.getPJobs}
+                        profile={props.profile}
                         recordTime={props.recordTime}
                         interviewResume={props.interviewResume}
                         getResumeURL={props.getResumeURL}
@@ -953,6 +1064,13 @@ const Applicant = (props) => {
         props.getApplicantsInfo(email);
         setTimeout(()=>{setShow(true);}, 200)
     };
+
+    const refresh = () =>
+    {
+        props.getResumeURL(positionId, props.id_candidate);
+        props.getApplicantsVideos(email, positionId);
+        props.getApplicantsInfo(email);
+    }
 
     function inviteAgain() {
         // encode url
@@ -1063,6 +1181,8 @@ const Applicant = (props) => {
                             <div className="interview-txt9">
                                 <p style={{color: "#7D7D7D"}}>Pending</p>
                             </div>
+                            {!props.profile.is_subreviwer &&
+                            <div>
                             {!props.isClosed && 
                             <div>
                                 <button
@@ -1074,6 +1194,7 @@ const Applicant = (props) => {
                                     Invite Again
                                 </button>
                             </div>}
+                            </div>}
                         </div>
                     }
                 </div>
@@ -1083,6 +1204,8 @@ const Applicant = (props) => {
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
+                refresh={refresh}
+                getPJobs={props.getPJobs}
                 recordTime={props.recordTime}
                 interviewResume={props.interviewResume}
                 comment_status={props.comment_status}
@@ -1122,6 +1245,8 @@ function MyVerticallyCenteredModal(props) {
   return (
     <MyModal80 {...rest}>
       <ReviewApplication
+        refresh={props.refresh}
+        getPJobs={props.getPJobs}
         recordTime={props.recordTime}
         interviewResume={props.interviewResume}
         setShowResume={props.setShowResume}
@@ -1146,6 +1271,18 @@ function alert() {
     confirmAlert({
       title: "Invitation Sent",
       message: "You resend the interview invitation successfully",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function alertSuccess() {
+    confirmAlert({
+      title: "Invitation Sent",
+      message: "Invitation of Reviewer successfully",
       buttons: [
         {
           label: 'Ok'
@@ -1219,6 +1356,18 @@ function sendSuccessAlert() {
     confirmAlert({
       title: "Send Invitation Success",
       message: "You have sent the invitation successfully.",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function deletSuccessAlert() {
+    confirmAlert({
+      title: "Remove Success",
+      message: "You have removed reviewer successfully.",
       buttons: [
         {
           label: 'Ok'

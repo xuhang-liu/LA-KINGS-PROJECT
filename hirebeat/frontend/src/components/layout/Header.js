@@ -76,6 +76,11 @@ export class Header extends Component {
             <ul
               className="navbar-nav ml-auto mr-5
                  text-left order-xl-0">
+              <li className="nav-item ">
+                <Link to="/dashboard" id="id-dash-out" className="nav-link text-white navbar-font">
+                  <span className="header-text">My Dashboard</span>
+                </Link>
+              </li>
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>

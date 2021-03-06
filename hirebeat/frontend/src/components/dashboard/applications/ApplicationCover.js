@@ -8,6 +8,9 @@ const decideClassName = (filter, text) => {
 export const ApplicationCover = (props) => {
   const [filter, setFilter] = useState("active");
   const [selectedId, setselectedId] = useState(0);
+  function refreshPage() {
+    window.location.reload(false);
+  }
   return (
     <div>
       <div style={{marginBottom: "20px"}} className="container min-width-980">
@@ -24,12 +27,15 @@ export const ApplicationCover = (props) => {
         >
           Closed
         </button>
+        {!props.profile.is_subreviwer &&
         <button className="default-btn" onClick={props.renderPosition}
           style={{color:"white", marginLeft:"5%"}}>
             <i className="bx bx-plus"></i> 
               Create New Position
             <span></span>
-        </button>
+        </button>}
+        {props.loaded &&
+        <button onClick={refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right", paddingTop:"1rem"}}><p><box-icon name="refresh" color="#4a6f8a" size="1.2rem"></box-icon>Refresh</p></button>}
       </div>
       <JobApplication
         getPJobs={props.getPJobs}
@@ -56,6 +62,8 @@ export const ApplicationCover = (props) => {
         location_candidate={props.location_candidate}
         resendInvitation={props.resendInvitation}
         updateCommentStatus={props.updateCommentStatus}
+        user={props.user}
+        profile={props.profile}
       />
     </div>
   );

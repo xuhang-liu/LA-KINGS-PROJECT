@@ -17,7 +17,9 @@ import {
     GET_APPLICANTS_DATA,
     UPDATE_SECONDROUND_STATUS,
     GET_RESUME_URL_ERROR,
-    UPDATE_STARS_LIST
+    UPDATE_STARS_LIST,
+    ADD_SUB_REVIEWER,
+    REMOVE_SUB_REVIEWER
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -39,9 +41,9 @@ export const addPosition = (jobtitle, jobid, jobdescription, userid, question1, 
     );
 };
 
-export const getQuestions = (number, category) => (dispatch, getState) => {
+export const getQuestions = (number, category, level) => (dispatch, getState) => {
   axios
-    .get(`/questions?number=${number}&category=${category}`, tokenConfig(getState))
+    .get(`/questions?number=${number}&category=${category}&level=${level}`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_QUESTIONS,
@@ -260,6 +262,34 @@ export const loadStarList = JobId => dispatch => {
       console.log("returned res are", res)
       dispatch({
         type: UPDATE_STARS_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const addSubReviewer = (data) => (dispatch, getState) => {
+  axios
+    .post("add_sub_reviewer", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_SUB_REVIEWER,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const removeSubReviewer = (data) => (dispatch, getState) => {
+  axios
+    .post("remove_sub_reviewer", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: REMOVE_SUB_REVIEWER,
         payload: res.data,
       });
     })

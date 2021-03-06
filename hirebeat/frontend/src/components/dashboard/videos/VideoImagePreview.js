@@ -88,7 +88,9 @@ export function VideoImagePreview(props) {
     <div className="pt-3">
       <div className="row">
         <div className="col-2 interview-txt9 interview-center">
-          {renderQDes(props.v.q_description)}
+        {props.v.ai_performance_ready ?
+        <span onClick={reviewToggle} style={{cursor:"pointer"}}>{renderQDes(props.v.q_description)}</span> :
+        <span>{renderQDes(props.v.q_description)}</span>}
         </div>
         <div className="col-2 interview-txt7 interview-center pt-3">
           {props.v.created_at.substring(0, 10)}
@@ -125,7 +127,7 @@ export function VideoImagePreview(props) {
         </div>
         )}
         { props.isBQ &&
-        <div className="col-2 pt-2">
+        <div className="col-2 pt-2 d-flex flex-row-reverse">
           <ReviewStatusButton
             v={props.v}
             sendVideoForReview={props.sendVideoForReview}
@@ -136,7 +138,7 @@ export function VideoImagePreview(props) {
           />
         </div>}
         { props.isBQ &&
-        <div className="col-2 pt-2">
+        <div className="col-2 pt-2 d-flex">
           <ReviewStatusButton
             v={props.v}
             sendVideoForReview={props.sendVideoForReview}

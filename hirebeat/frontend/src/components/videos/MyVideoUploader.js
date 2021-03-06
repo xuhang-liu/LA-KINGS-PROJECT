@@ -11,65 +11,66 @@ import {
   BglessCardButton1,
 } from "../practice/CardComponents";
 import { withRouter } from "react-router-dom";
-import {
-  random,
-  positiveAttitude,
-  workCommitment,
-  teamworkSkill,
-  leadership,
-  pressureHandling,
-  proactiveSkill,
-  workEthic,
-  creativity,
-  reliability,
-  detailOriented,
-  communicationSkill,
-  problemSolving
-} from "./../../constants/constants";
+//import {
+//  random,
+//  positiveAttitude,
+//  workCommitment,
+//  teamworkSkill,
+//  leadership,
+//  pressureHandling,
+//  proactiveSkill,
+//  workEthic,
+//  creativity,
+//  reliability,
+//  detailOriented,
+//  communicationSkill,
+//  problemSolving
+//} from "./../../constants/constants";
 
  // determine review categories
   function reviewCategories(q_category) {
-      var review_categories = "";
-      if(q_category === "Problem Solving") {
-        review_categories = problemSolving;
-      }
-      else if (q_category === "Positive Attitude") {
-        review_categories = positiveAttitude;
-      }
-      else if (q_category === "Work Commitment") {
-        review_categories = workCommitment;
-      }
-      else if (q_category === "Teamwork Skill") {
-        review_categories = teamworkSkill;
-      }
-      else if (q_category === "Leadership") {
-        review_categories = leadership;
-      }
-      else if (q_category === "Pressure Handling") {
-        review_categories = pressureHandling;
-      }
-      else if (q_category === "Proactive Skill") {
-        review_categories = proactiveSkill;
-      }
-      else if (q_category === "Work Ethic") {
-        review_categories = workEthic;
-      }
-      else if (q_category === "Creativity") {
-        review_categories = creativity;
-      }
-      else if (q_category === "Reliability") {
-        review_categories = reliability;
-      }
-      else if (q_category === "Detail Oriented") {
-        review_categories = detailOriented;
-      }
-      else if (q_category === "Communication Skill") {
-        review_categories = communicationSkill;
-      }
-      else {
-        review_categories = random;
-      }
-      return review_categories;
+//      var review_categories = "";
+//      if(q_category === "Problem Solving") {
+//        review_categories = problemSolving;
+//      }
+//      else if (q_category === "Positive Attitude") {
+//        review_categories = positiveAttitude;
+//      }
+//      else if (q_category === "Work Commitment") {
+//        review_categories = workCommitment;
+//      }
+//      else if (q_category === "Teamwork Skill") {
+//        review_categories = teamworkSkill;
+//      }
+//      else if (q_category === "Leadership") {
+//        review_categories = leadership;
+//      }
+//      else if (q_category === "Pressure Handling") {
+//        review_categories = pressureHandling;
+//      }
+//      else if (q_category === "Proactive Skill") {
+//        review_categories = proactiveSkill;
+//      }
+//      else if (q_category === "Work Ethic") {
+//        review_categories = workEthic;
+//      }
+//      else if (q_category === "Creativity") {
+//        review_categories = creativity;
+//      }
+//      else if (q_category === "Reliability") {
+//        review_categories = reliability;
+//      }
+//      else if (q_category === "Detail Oriented") {
+//        review_categories = detailOriented;
+//      }
+//      else if (q_category === "Communication Skill") {
+//        review_categories = communicationSkill;
+//      }
+//      else {
+//        review_categories = random;
+//      }
+//      return review_categories;
+      return "Positive Attitude, Pressure Handling, Problem Solving, Commitment, Leadership, Teamwork";
   }
 
   // map question title(question table) to question type(video table)
@@ -199,7 +200,7 @@ export class MyVideoUploader extends Component {
     var saveText = "Save and Next";
     var skipText = "Discard and Next";
 
-    if (this.props.last_q) {
+    if (this.props.last_q || this.props.questions.length == 1) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
       saveText = this.props.isCareerVideo ? "Submit" : "Save and Finish";

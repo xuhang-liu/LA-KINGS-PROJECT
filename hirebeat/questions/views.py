@@ -1,5 +1,5 @@
-from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes
-from accounts.models import CandidatesInterview
+from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes, SubReviewers
+from accounts.models import CandidatesInterview, Profile
 from videos.models import WPVideo
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, SubcategorySerializer
@@ -24,8 +24,9 @@ class QuestionAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         number = self.request.query_params.get('number')
         category = self.request.query_params.get('category')
+        level = self.request.query_params.get('level')
         if category != 'Random':
-            questions=Question.objects.filter(category=category)
+            questions=Question.objects.filter(category=category, level=level)
         else:
             questions=Question.objects.filter(title='BQ')
         questions = random.sample(list(questions), int(number))
@@ -105,7 +106,6 @@ def add_position(request):
 @api_view(['GET'])
 def get_posted_jobs(request):
     data = {}
-
     user_id = request.query_params.get("user_id")
     positions = Positions.objects.filter(user_id=user_id)
     for i in range(len(positions)):
@@ -113,6 +113,10 @@ def get_posted_jobs(request):
         # get each position applicants
         applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
         questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
+        if (len(SubReviewers.objects.filter(position_id=positions_id))>0):
+            subreviewers = list(SubReviewers.objects.filter(position_id=positions_id).values())
+        else:
+            subreviewers = []
         job_details = {
             "position_id": positions_id,
             "job_id": positions[i].job_id,
@@ -121,10 +125,33 @@ def get_posted_jobs(request):
             "invite_date": positions[i].invite_date,
             "applicants": applicants,
             "questions": questions,
+            "subreviewers": subreviewers,
         }
         # convert to json
         data[positions_id] = job_details
 
+    profile = Profile.objects.get(user_id=user_id)
+    if profile.is_subreviwer:
+        user = User.objects.get(pk=user_id)
+        subreviewers = SubReviewers.objects.filter(r_email=user.email)
+        for i in range(len(subreviewers)):
+            position_id = subreviewers[i].position.id
+            # get each position applicants
+            applicants = list(InvitedCandidates.objects.filter(positions_id=position_id).values())
+            questions = list(InterviewQuestions.objects.filter(positions_id=position_id).values())
+            subs = []
+            job_details = {
+                "position_id": position_id,
+                "job_id": subreviewers[i].position.job_id,
+                "job_title": subreviewers[i].position.job_title,
+                "is_closed": subreviewers[i].position.is_closed,
+                "invite_date": subreviewers[i].position.invite_date,
+                "applicants": applicants,
+                "questions": questions,
+                "subreviewers": subs,
+            }
+            # convert to json
+            data[position_id] = job_details
     return Response({
         "data": data,
     })
@@ -206,23 +233,6 @@ def update_comment_status(request):
     The_candidate.save()
 
     data = {}
-    user_id = request.data["userId"]
-    positions = Positions.objects.filter(user_id=user_id)
-    for i in range(len(positions)):
-        positions_id = positions[i].id
-        # get each position applicants
-        applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
-        job_details = {
-            "position_id": positions_id,
-            "job_id": positions[i].job_id,
-            "job_title": positions[i].job_title,
-            "is_closed": positions[i].is_closed,
-            "invite_date": positions[i].invite_date,
-            "applicants": applicants,
-        }
-        # convert to json
-        data[positions_id] = job_details
-
     return Response({
         "data": data,
     })
@@ -282,7 +292,9 @@ def add_interview_resume(request):
     candidate_id = request.data["candidateId"]
     candidates = User.objects.get(pk=candidate_id)
     resume_URL = request.data["resume_url"]
-    InterviewResumes.objects.create(positionId=positions, candidateId=candidates, resumeURL=resume_URL)
+    interviewResume = InterviewResumes.objects.filter(positionId=positions, candidateId=candidates)
+    if (len(interviewResume) == 0):
+        InterviewResumes.objects.create(positionId=positions, candidateId=candidates, resumeURL=resume_URL)
     return Response("Added the interview resume", status=status.HTTP_200_OK)
 
 @api_view(['POST'])
@@ -397,4 +409,48 @@ def get_stars_list(request):
         else:
             data[can_email] = 5
     return Response({ "data" : data } )
-        
+
+@api_view(['POST'])
+def add_sub_reviewer(request):
+    profile = {}
+    sub_name = request.data["sub_name"]
+    sub_email = request.data["sub_email"]
+    company_name = request.data["company_name"]
+    position_id = request.data["position_id"]
+    master_email = request.data["master_email"]
+    positions = Positions.objects.get(pk=position_id)
+    user = User.objects.filter(email=sub_email)
+    for u in user:
+        profile = Profile.objects.filter(user_id=u.id, is_subreviwer=False)
+    if(len(profile) == 0):
+        SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name, position=positions)
+        send_sub_invitation(sub_name, sub_email, company_name, master_email, positions.job_title)
+    return Response("Add sub reviewer successfully", status=status.HTTP_200_OK)        
+
+def send_sub_invitation(name, email, company_name, master_email, position_name):
+    subject = 'Co-review Invitation to HireBeat for '+ company_name
+    message = get_template("questions/sub_reviewer_email.html")
+    context = {
+        'name': name,
+        'company_name': company_name,
+        'master_email': master_email,
+        'position_name': position_name,
+    }
+    from_email = 'HireBeat Team'
+    to_list = [email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+
+@api_view(['POST'])
+def remove_sub_reviewer(request):
+    sub_id = request.data["sub_id"]
+    SubReviewers.objects.get(pk=sub_id).delete()
+
+    return Response("Remove sub reviewer successfully", status=status.HTTP_200_OK) 

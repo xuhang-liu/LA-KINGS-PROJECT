@@ -314,7 +314,7 @@ def update_video_comments(request):
     new_comment = request.data["comment"]
     wpv = WPVideo.objects.get(pk=primary_key)
     wpv.video_stars = new_stars
-    wpv.video_comment = new_comment
+    wpv.video_comment.append(new_comment)
     wpv.save()
 
     return Response({

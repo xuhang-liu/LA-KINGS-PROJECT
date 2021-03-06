@@ -2,39 +2,18 @@ import React, {Component} from 'react';
 import { IconText } from "./DashboardComponents";
 import ApplicationVideo from "./videos/ApplicationVideo";
 import { connect } from "react-redux";
-import { getPostedJobs, getResumeURL } from "../../redux/actions/question_actions"
+import { getPostedJobs, getResumeURL } from "../../redux/actions/question_actions";
 
 class ReviewApplication extends Component{
     constructor(props) {
         super(props);
-
-        var quesiton_array = [];
-        var video_array = [];
-        var stars = [];
-        var comments = [];
-        var pk = [];
-
-        this.props.int_ques.map((i) => {
-                stars.push(i.video_stars);
-                comments.push(i.video_comment)
-                quesiton_array.push(i.question_desc);
-                video_array.push(i.url);
-                pk.push(i.id)
-        });
-
-        this.state = {
-                quesiton_array: quesiton_array,
-                video_array: video_array,
-                stars: stars,
-                comments: comments,
-                pk: pk,
-        };
         this.props.getResumeURL(this.props.positionId, this.props.id_candidate);
       }
 
     updateStatus = (status) => {
         let data = {"email": this.props.email_candidate, "positionId": this.props.positionId, "status": status, "userId": this.props.user.id};
         this.props.updateCommentStatus(data);
+        this.props.getPJobs();
         this.props.hide();
     }
     
@@ -127,11 +106,12 @@ class ReviewApplication extends Component{
                         <div className="col-6 container mt-4">
                             <ApplicationVideo   int_ques={this.props.int_ques} 
                                                 positionId={this.props.positionId}
-                                                quesiton_array = {this.state.quesiton_array}
-                                                video_array = {this.state.video_array}
-                                                stars = {this.state.stars}
-                                                comments = {this.state.comments}
-                                                pk = {this.state.pk}
+                                                quesiton_array = {this.props.quesiton_array}
+                                                video_array = {this.props.video_array}
+                                                stars = {this.props.stars}
+                                                comments = {this.props.comments}
+                                                pk = {this.props.pk}
+                                                refresh={this.props.refresh}
                             />
                         </div>
                         <div className="col-3 container" style={{marginTop:"2.5%"}}>
@@ -166,11 +146,31 @@ class ReviewApplication extends Component{
     };
 };
 
-const mapStateToProps = (state) => ({
-    user: state.auth_reducer.user,
-    resumeURL: state.video_reducer.resumeURL,
-    recordTime: state.video_reducer.recordTime,
-    interviewResume: state.video_reducer.interviewResume,
-});
+const mapStateToProps = (state) => {
+    var quesiton_array = [];
+    var video_array = [];
+    var stars = [];
+    var comments = [];
+    var pk = [];
+
+    state.video_reducer.int_ques.map((i) => {
+        stars.push(i.video_stars);
+        comments.push(i.video_comment)
+        quesiton_array.push(i.question_desc);
+        video_array.push(i.url);
+        pk.push(i.id)
+    });
+
+    return {
+        quesiton_array: quesiton_array,
+        video_array: video_array,
+        stars: stars,
+        comments: comments,
+        pk: pk,
+        user: state.auth_reducer.user,
+        resumeURL: state.video_reducer.resumeURL,
+        recordTime: state.video_reducer.recordTime,
+        interviewResume: state.video_reducer.interviewResume}
+};
 
 export default connect(mapStateToProps, { getPostedJobs, getResumeURL })(ReviewApplication);

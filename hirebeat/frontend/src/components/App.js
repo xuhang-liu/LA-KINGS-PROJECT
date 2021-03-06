@@ -136,6 +136,10 @@ import ForresterResearchInfo from"./companyData/companies/ForresterResearchInfo"
 import HuronInfo from"./companyData/companies/HuronInfo";
 import PerficientInfo from"./companyData/companies/PerficientInfo";
 import WillisTowersWastonInfo from"./companyData/companies/WillisTowersWastonInfo";
+import AlvarezMarsalInfo from"./companyData/companies/AlvarezMarsalInfo";
+import HackettGroupInfo from"./companyData/companies/HackettGroupInfo";
+import StrategyInfo from"./companyData/companies/StrategyInfo";
+import NavigantConsultingInfo from"./companyData/companies/NavigantConsultingInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -375,6 +379,10 @@ class App extends Component {
                 <Route exact path="/huron" component={HuronInfo} />
                 <Route exact path="/perficient" component={PerficientInfo} />
                 <Route exact path="/willis-towers-waston" component={WillisTowersWastonInfo} />
+                <Route exact path="/alvarez-marsal" component={AlvarezMarsalInfo} />
+                <Route exact path="/hackett-group" component={HackettGroupInfo} />
+                <Route exact path="/strategy" component={StrategyInfo} />
+                <Route exact path="/navigant-consulting" component={NavigantConsultingInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />

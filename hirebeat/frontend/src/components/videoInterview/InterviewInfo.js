@@ -142,6 +142,7 @@ class InterviewInfo extends Component {
     onUploadFinish = () => {
         var name = this.state.cvName;
         var resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + name;
+        //var resume_url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
     
         // insert MetaData to resume table
         const resumeMetaData = {
@@ -226,7 +227,7 @@ class InterviewInfo extends Component {
                                                     <label className="resume-success" style={{marginLeft: "0.5rem"}}>selected</label>
                                                     <i className="bx bxs-check-circle resume-success" style={{marginLeft: "1rem"}}></i>
                                                 </div>
-                                            ) : <span className="ml-3 my-auto">Support .pdf only</span>
+                                            ) : <span className="ml-3 my-auto" style={{color:"#ff0000"}}>Support .pdf only</span>
                                             }
                                         </div>
                                         
@@ -235,7 +236,7 @@ class InterviewInfo extends Component {
                                             Total: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length} Questions</span> | Estimate Time: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length * 1.5} Minutes</span>
                                         </h4>
                                         <ul className="interview-txt2" style={{color: "#4A6F8A", paddingLeft: "1rem"}}>
-                                            <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>Practice with our sample question</span> before the interview starts.</li>
+                                            <li style={{marginTop:"1rem"}}><a href="/practice" style={{color:"#ff6b00"}}>Practice with our sample question</a> before the interview starts.</li>
                                             <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>30 seconds of preparation time</span> for each interview question.</li>
                                         </ul>
                                         {this.state.selected ? <button
