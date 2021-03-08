@@ -242,7 +242,7 @@ const JobViewDetail = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-2 mt-2">
+                                <div className="col-2 mt-4">
                                 {props.subreviewers.map((sub, i) => {
                                     return (
                                         <span onClick={() => {deleteReviever(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
@@ -258,7 +258,7 @@ const JobViewDetail = (props) => {
                                         <div>
                                         {((!props.isClosed) && (props.subreviewers.length < Number(props.profile.reviewer_count))) &&
                                         <button
-                                            className="default-btn1 interview-txt6"
+                                            className="default-btn1 interview-txt6 mt-4"
                                             style={{paddingLeft: "25px"}}
                                             onClick={inviteReviever}
                                         >
@@ -267,17 +267,17 @@ const JobViewDetail = (props) => {
                                         </button>}
                                         {!props.isClosed &&
                                         <button
-                                        onClick={closeJob}
-                                        className="default-btn ml-4 mt-2 mb-3"
-                                        style={{paddingLeft:"25px", backgroundColor: "#E8EDFC", color:"#090d3a"}}
+                                            type="submit"
+                                            onClick={closeJob}
+                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"2rem"}}
                                         >
-                                            Close Position
+                                            <i className="bx bx-box bx-md" style={{color: "#67A3F3"}}></i>
                                         </button>}
                                         </div> :
                                         <button
                                             type="submit"
                                             onClick={deleteAlert}
-                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"3rem"}}
+                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"2rem"}}
                                         >
                                             <i className="bx bx-trash bx-md" style={{color: "#67A3F3"}}></i>
                                         </button>}
