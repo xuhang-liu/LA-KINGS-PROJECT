@@ -119,6 +119,13 @@ const CandidateCard = (props) => {
         setTimeout(()=>{setShow(true);}, 300)
     };
 
+    const refresh = () =>
+    {
+        props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
+        props.getApplicantsInfo(props.applicant.email);
+        props.getResumeURL(props.applicant.positions_id, props.id_candidate);
+    }
+
     const renderStars = (stars) => {
             return(
                 <div>
@@ -189,6 +196,7 @@ const CandidateCard = (props) => {
             </div>
         </div>
         <MyVerticallyCenteredModal
+            refresh={refresh}
             getPJobs={props.getPJobs}
             applicant={props.applicant}
             id_candidate={props.id_candidate}
@@ -234,6 +242,7 @@ function MyVerticallyCenteredModal(props) {
       <MyModal80 {...rest}>
         <ReviewApplication
           {...rest}
+          refresh={props.refresh}
           getPJobs={props.getPJobs}
           setShowResume={props.setShowResume}
           setShowEva={props.setShowEva}

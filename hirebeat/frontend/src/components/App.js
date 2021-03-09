@@ -152,6 +152,7 @@ import ProductManager from "./career/jobs/ProductManager";
 import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
 import CareerResponseWindow from "./videoInterview/CareerResponseWindow";
 import Contact from "./contact/contact";
+import EmployerContact from "./contact/EmployerContact";
 import Howitworks from "./home/Howitworks";
 import InterviewCompletion from "./videoInterview/InterviewCompletion";
 
@@ -299,6 +300,7 @@ class App extends Component {
                 <Route exact path="/privacy" component={Privacy} />
                 <Route exact path="/term" component={Term} />
                 <Route exact path="/contact" component={Contact} />
+                <Route exact path="/employer_contact" component={EmployerContact} />
                 <Route exact path="/quiz" component={QuizHome} />
                 <Route exact path="/quizresult" component={QuizResultPage} />
                 <Route exact path="/companydata" component={CompanyList} />
