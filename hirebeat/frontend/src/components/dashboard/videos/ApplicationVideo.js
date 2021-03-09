@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ApplicationVideoPanel from "./ApplicationVideoPanel";
 import { connect } from "react-redux";
+import 'boxicons';
 
 export class ApplicationVideo extends Component {
       constructor(props) {
@@ -34,32 +35,32 @@ render() {
                                             refresh={this.props.refresh}
                                     />
                                 </div>
-                                <div className="row container-fliud" style={{marginLeft:"-2rem"}}>
-                                        <div className="col-7 mt-3 ml-0">
+                                <div className="row container-fliud" style={{marginLeft:"-5rem"}}>
+                                        <div className="col-8 mt-3 ml-0">
                                                 <div className="row">
                                                         <div className="col-2 p-0 pt-2">
                                                                 <h4 style={{fontWeight:"500", color:"#090D3A"}}>Action</h4>
                                                         </div>
                                                         <div className="col p-0">
-                                                        {this.props.comment_status == 1 ? <button className="btn btn-success ml-3" style={{marginBottom:"10%", width:"7rem"}} onClick={() => {this.props.updateStatus(1);}}>
-                                                        Shortlist
+                                                        {this.props.comment_status == 1 ? <button className="default-btn btn-success ml-0" style={{marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(1);}}>
+                                                        <i class='bx bx-bookmark-plus'></i>Shortlist
                                                         </button>
-                                                        : <button className="btn ml-3" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"7rem"}} onClick={() => {this.props.updateStatus(1);}}>
-                                                        Shortlist
-                                                        </button>
-                                                        }
-                                                        {this.props.comment_status == 2 ? <button className="btn btn-warning ml-3" style={{marginBottom:"10%", width:"7rem"}} onClick={() => {this.props.updateStatus(2);}}>
-                                                        Hold
-                                                        </button>
-                                                        : <button className="btn ml-3" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"7rem"}} onClick={() => {this.props.updateStatus(2);}}>
-                                                        Hold
+                                                        : <button className="default-btn ml-0" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(1);}}>
+                                                        <i class='bx bx-bookmark-plus'></i>Shortlist
                                                         </button>
                                                         }
-                                                        {this.props.comment_status == 3 ? <button className="btn btn-danger ml-3" style={{marginBottom:"10%", width:"7rem"}} onClick={() => {this.props.updateStatus(3);}}>
-                                                        Reject
+                                                        {this.props.comment_status == 2 ? <button className="default-btn btn-warning ml-2" style={{marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(2);}}>
+                                                        <i class='bx bx-help-circle'></i>Hold
                                                         </button>
-                                                        : <button className="btn ml-3" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"7rem"}} onClick={() => {this.props.updateStatus(3);}}>
-                                                        Reject
+                                                        : <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(2);}}>
+                                                        <i class='bx bx-help-circle'></i>Hold
+                                                        </button>
+                                                        }
+                                                        {this.props.comment_status == 3 ? <button className="default-btn btn-danger ml-2" style={{marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(3);}}>
+                                                        <i class='bx bx-x' ></i>Reject
+                                                        </button>
+                                                        : <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(3);}}>
+                                                        <i class='bx bx-x' ></i>Reject
                                                         </button>
                                                         }
                                                         </div>
