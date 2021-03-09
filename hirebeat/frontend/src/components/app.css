@@ -1952,11 +1952,26 @@ h5 {
 
 .resume-panel-btn {
   display: block;
+  min-width: 10rem;
   background-color: white;
-  border: none;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
   font-size: 1.125rem;
   cursor: pointer;
   text-align: center;
+  margin: 1%;
+}
+
+.resume-panel-btn1 {
+  display: block;
+  min-width: 10rem;
+  background-color: #090D3A;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
+  font-size: 1.125rem;
+  cursor: pointer;
+  text-align: center;
+  margin: 1%;
 }
 
 .review-align {

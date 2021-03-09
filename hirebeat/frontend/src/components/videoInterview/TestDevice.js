@@ -15,6 +15,24 @@ function TestDevice(props) {
 //  videoRecorderOptions.width = window.innerWidth / 2.4;
 //  videoRecorderOptions.height = window.innerWidth / 3.6;
   videoRecorderOptions.controlBar.recordToggle = true;
+  const constraints = {
+    audio: true,
+    video: { width: 640, height: 480 }
+  };
+  function openCamera() {
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(success)
+      .catch(error);
+  };
+  openCamera();
+  function success() {
+    console.log("Device Ready");
+  };
+
+  function error() {
+    alert("No camera detected! Please turn on your camera!");
+  };
   return (
     <React.Fragment>
       <ReadBeforeStart

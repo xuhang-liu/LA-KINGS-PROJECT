@@ -87,6 +87,29 @@ export const IconText = (props) => {
     );
 };
 
+export const IconText1 = (props) => {
+    //textSize, textDisplayed, iconName, textColor?
+    return (
+        <div className="d-flex align-items-center">
+            <p
+                style={{
+                    fontSize: props.textSize,
+                    marginTop: "6px",
+                    marginBottom: "6px",
+                    marginLeft:"5px",
+                    color: props.textColor,
+                    textDecoration: "none",
+                    fontWeight: props.textWeight ?? "normal",
+                    wordWrap: "revert",
+                    textAlign: "center",
+                }}
+            >
+                {props.textDisplayed}
+            </p>
+        </div>
+    );
+};
+
 export const AtsRow = (props) => {
     return (
         <div style={{borderBottom:'2px dashed white'}}>
