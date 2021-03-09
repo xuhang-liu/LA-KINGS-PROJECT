@@ -65,8 +65,8 @@ class Profile(models.Model):
     plan_interval = models.CharField(max_length=30,null=True, blank=True)
     company_name = models.CharField(max_length=30,null=True, blank=True)
     is_subreviwer = models.BooleanField(default=False)
-    reviewer_count = models.IntegerField(default=0, validators=[
-        MaxValueValidator(3)
+    reviewer_count = models.IntegerField(default=3, validators=[
+        MaxValueValidator(1000)
     ])
     def __str__(self):
         return self.user.username

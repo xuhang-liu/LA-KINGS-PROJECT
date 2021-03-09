@@ -199,6 +199,7 @@ export class EmployerDashboard extends Component {
         case "shortlist":
           if (Object.keys(this.props.postedJobs).length > 0){
           return <ShortList 
+            getPJobs={this.getPJobs}
             postedJobs={this.props.postedJobs}
             int_ques={this.props.int_ques}
             getApplicantsVideos={this.props.getApplicantsVideos}
@@ -209,6 +210,7 @@ export class EmployerDashboard extends Component {
             phone_candidate={this.props.phone_candidate}
             location_candidate={this.props.location_candidate}
             star_list={this.props.star_list}
+            updateCommentStatus={this.props.updateCommentStatus}
             />
           }else{
             return null

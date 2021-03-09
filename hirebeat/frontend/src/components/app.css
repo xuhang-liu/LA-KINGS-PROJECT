@@ -1615,6 +1615,10 @@ h5 {
   width: 22rem;
 }
 
+.select-difficulty {
+  width: 24rem;
+}
+
 .select-question-count {
   width: 7rem;
 }
@@ -1948,11 +1952,26 @@ h5 {
 
 .resume-panel-btn {
   display: block;
+  min-width: 10rem;
   background-color: white;
-  border: none;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
   font-size: 1.125rem;
   cursor: pointer;
   text-align: center;
+  margin: 1%;
+}
+
+.resume-panel-btn1 {
+  display: block;
+  min-width: 10rem;
+  background-color: #090D3A;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
+  font-size: 1.125rem;
+  cursor: pointer;
+  text-align: center;
+  margin: 1%;
 }
 
 .review-align {
@@ -2635,8 +2654,10 @@ h5 {
   font-size: 1rem;
   color: #090D3A;
   background: #e8edfc;
-  border: none;
-  text-decoration: underline;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid #090D3A;
 }
 
 .btn-unselected2 {

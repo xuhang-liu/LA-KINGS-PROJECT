@@ -158,7 +158,7 @@ export class VideoRecorder extends Component {
                 <RecordDoneButton
                   fontFamily={"Avenir Next, Segoe UI"}
                   onTap={this.stopCamera}
-                  textDisplayed={"Finish Now"}
+                  textDisplayed={"I'm Done"}
                   buttonWidth={"100%"}
                 />
               </div>) : null

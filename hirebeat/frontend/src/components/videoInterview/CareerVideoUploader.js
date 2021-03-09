@@ -100,7 +100,7 @@ export class CareerVideoUploader extends Component {
     if (this.props.last_q) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
-      saveText = "Finish";
+      saveText = "Finish and Submit";
       skipText = "Discard and Finish";
     }
     return (

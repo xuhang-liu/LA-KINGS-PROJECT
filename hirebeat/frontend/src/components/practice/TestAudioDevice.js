@@ -7,6 +7,23 @@ import { audioRecorderOptions } from "../../constants/constants";
 function TestAudioDevice(props) {
   audioRecorderOptions.plugins.record.maxLength = 15;
   audioRecorderOptions.controlBar.recordToggle = true;
+  const constraints = {
+    audio: true,
+  };
+  function openCamera() {
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(success)
+      .catch(error);
+  };
+  openCamera();
+  function success() {
+    console.log("Device Ready");
+  };
+
+  function error() {
+    alert("No microphone detected！ Please turn on your microphone!");
+  };
   return (
     <TestDeviceCard>
       <div

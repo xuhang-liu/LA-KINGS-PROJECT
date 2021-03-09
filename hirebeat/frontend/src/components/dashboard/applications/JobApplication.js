@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 //import PropTypes from "prop-types";
 //import {Link} from "react-router-dom";
 import ReviewApplication from "./../ReviewApplication";
-import { MyModal80, MyModal } from "./../DashboardComponents";
+import { MyModal80 } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
-import { updateProfile } from "./../../../redux/actions/auth_actions";
 //import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
@@ -15,16 +14,12 @@ import Select from 'react-select'
 import * as pdfjsLib from 'pdfjs-dist';
 
 export class JobApplication extends Component{
-    refreshPage() {
-        window.location.reload(false);
-    }
 
     render() {
         return(
             <React.Fragment>
                 {this.props.loaded &&
                     <div>
-                        <button onClick={this.refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right"}}><p><box-icon name="refresh" color="#4a6f8a"></box-icon>Refresh</p></button>
                         {Object.keys(this.props.postedJobs).reverse().map((key) => {
                             let p = this.props.postedJobs[key];
                             // filter positions according to is_closed attribute
@@ -45,7 +40,6 @@ export class JobApplication extends Component{
                             return(
                                 <JobViewDetail
                                     removeSubReviewer={this.props.removeSubReviewer}
-                                    updateProfile={this.props.updateProfile}
                                     addSubReviewer={this.props.addSubReviewer}
                                     getPJobs={this.props.getPJobs}
                                     resumeURL={this.props.resumeURL}
@@ -97,7 +91,7 @@ const mapStateToProps = (state) => ({
     interviewResume: state.video_reducer.interviewResume,
 });
 
-export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, updateProfile, removeSubReviewer })(
+export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer })(
     JobApplication
 );
 
@@ -165,12 +159,7 @@ const JobViewDetail = (props) => {
                 master_email: props.user.email,
             };
             props.addSubReviewer(data);
-            let profile = {
-                user: props.user.id,
-                id: props.profile.id,
-                reviewer_count: (Number(props.profile.reviewer_count) + 1),
-            };
-            props.updateProfile(profile);
+            props.getPJobs();
             e.preventDefault();
             sendSuccessAlert();
         }
@@ -253,7 +242,7 @@ const JobViewDetail = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-2 mt-2">
+                                <div className="col-2 mt-4">
                                 {props.subreviewers.map((sub, i) => {
                                     return (
                                         <span onClick={() => {deleteReviever(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
@@ -267,9 +256,9 @@ const JobViewDetail = (props) => {
                                     <div>
                                         {props.applicants.length > 0 ?
                                         <div>
-                                        {((!props.isClosed) && (props.subreviewers.length <3)) &&
+                                        {((!props.isClosed) && (props.subreviewers.length < Number(props.profile.reviewer_count))) &&
                                         <button
-                                            className="default-btn1 interview-txt6"
+                                            className="default-btn1 interview-txt6 mt-4"
                                             style={{paddingLeft: "25px"}}
                                             onClick={inviteReviever}
                                         >
@@ -278,17 +267,17 @@ const JobViewDetail = (props) => {
                                         </button>}
                                         {!props.isClosed &&
                                         <button
-                                        onClick={closeJob}
-                                        className="default-btn ml-4 mt-2 mb-3"
-                                        style={{paddingLeft:"25px", backgroundColor: "#E8EDFC", color:"#090d3a"}}
+                                            type="submit"
+                                            onClick={closeJob}
+                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"2rem"}}
                                         >
-                                            Close Position
+                                            <i className="bx bx-box bx-md" style={{color: "#67A3F3"}}></i>
                                         </button>}
                                         </div> :
                                         <button
                                             type="submit"
                                             onClick={deleteAlert}
-                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"3rem"}}
+                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"2rem"}}
                                         >
                                             <i className="bx bx-trash bx-md" style={{color: "#67A3F3"}}></i>
                                         </button>}

@@ -1,83 +1,76 @@
 import React from "react";
-import { IconText } from "../Components";
+import { IconText1 } from "../Components";
 //import { Link } from "react-router-dom";
 
 export function ButtonPanel(props) {
-  var selectColor = "#090D3A";
-  var defaultColor = "#7d7d7d";
-  var selectDecoration = "underline";
-  var defaultDecoration = "none";
+  var selectColor = "#ffffff";
+  var defaultColor = "#090D3A";
   //var selectWeight = "600";
   //var defaultWeight = "normal";
   return (
-    <div>
+    <div className="pt-4">
       <button
         type="button"
-        className="resume-panel-btn"
+        className={props.subpage == "atsFindings" ? "resume-panel-btn1" : "resume-panel-btn"}
         onClick={props.renderATS}
-        style={{outline: "none", margin:"1%"}}
+        style={{marginBottom:"0", borderRadius:"10px 10px 0px 0px"}}
       >
-        <IconText
+        <IconText1
           textSize={"15px"}
           textDisplayed={"ATS Findings"}
           textColor={props.subpage == "atsFindings" ? selectColor : defaultColor}
-          textDecoration={props.subpage == "atsFindings" ? selectDecoration : defaultDecoration}
           textWeight={props.subpage == "atsFindings" ? selectColor : defaultColor}
         />
       </button>
       <button
         type="button"
-        className="resume-panel-btn"
+        className={props.subpage == "recFindings" ? "resume-panel-btn1" : "resume-panel-btn"}
         onClick={props.renderRCF}
-        style={{outline: "none", margin:"1%"}}
+        style={{marginTop:"-2px", marginBottom:"0"}}
       >
-        <IconText
+        <IconText1
           textSize={"15px"}
           textDisplayed={"Recruiter Findings"}
           textColor={props.subpage == "recFindings" ? selectColor : defaultColor}
-          textDecoration={props.subpage == "recFindings" ? selectDecoration: defaultDecoration}
           textWeight={props.subpage == "recFindings" ? selectColor : defaultColor}
         />
       </button>
       <button
         type="button"
-        className="resume-panel-btn"
+        className={props.subpage == "hardSkills" ? "resume-panel-btn1" : "resume-panel-btn"}
         onClick={props.renderHSM}
-        style={{outline: "none", margin:"1%"}}
+        style={{marginTop:"-2px", marginBottom:"0"}}
       >
-        <IconText
+        <IconText1
           textSize={"15px"}
           textDisplayed={"Hard Skills Match"}
           textColor={props.subpage == "hardSkills" ? selectColor : defaultColor}
-          textDecoration={props.subpage == "hardSkills" ? selectDecoration: defaultDecoration}
           textWeight={props.subpage == "hardSkills" ? selectColor : defaultColor}
         />
       </button>
       <button
         type="button"
-        className="resume-panel-btn"
+        className={props.subpage == "softSkills" ? "resume-panel-btn1" : "resume-panel-btn"}
         onClick={props.renderSSM}
-        style={{outline: "none", margin:"1%"}}
+        style={{marginTop:"-2px", marginBottom:"0"}}
       >
-        <IconText
+        <IconText1
           textSize={"15px"}
           textDisplayed={"Soft Skills Match"}
           textColor={props.subpage == "softSkills" ? selectColor : defaultColor}
-          textDecoration={props.subpage == "softSkills" ? selectDecoration: defaultDecoration}
           textWeight={props.subpage == "softSkills" ? selectColor : defaultColor}
         />
       </button>
       <button
         type="button"
-        className="resume-panel-btn"
+        className={props.subpage == "keywords" ? "resume-panel-btn1" : "resume-panel-btn"}
         onClick={props.renderOKW}
-        style={{outline: "none", margin:"1%"}}
+        style={{marginTop:"-2px", borderRadius:"0px 0px 10px 10px"}}
       >
-        <IconText
+        <IconText1
           textSize={"15px"}
           textDisplayed={"Other Keywords"}
           textColor={props.subpage == "keywords" ? selectColor : defaultColor}
-          textDecoration={props.subpage == "keywords" ? selectDecoration: defaultDecoration}
           textWeight={props.subpage == "keywords" ? selectColor : defaultColor}
         />
       </button>

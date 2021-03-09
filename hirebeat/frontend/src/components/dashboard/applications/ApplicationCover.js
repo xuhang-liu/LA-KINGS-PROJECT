@@ -8,6 +8,9 @@ const decideClassName = (filter, text) => {
 export const ApplicationCover = (props) => {
   const [filter, setFilter] = useState("active");
   const [selectedId, setselectedId] = useState(0);
+  function refreshPage() {
+    window.location.reload(false);
+  }
   return (
     <div>
       <div style={{marginBottom: "20px"}} className="container min-width-980">
@@ -31,6 +34,8 @@ export const ApplicationCover = (props) => {
               Create New Position
             <span></span>
         </button>}
+        {props.loaded &&
+        <button onClick={refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right", paddingTop:"1rem"}}><p><box-icon name="refresh" color="#4a6f8a" size="1.2rem"></box-icon>Refresh</p></button>}
       </div>
       <JobApplication
         getPJobs={props.getPJobs}

@@ -46,9 +46,17 @@ export class Register extends Component {
           this.state.email,
           this.state.password
       );
+      this.gtag_report_conversion();
 //      this.redirectToEmailVerification();
     }
   };
+
+  gtag_report_conversion = () => {
+    window.gtag('event', 'conversion', {
+      'send_to': 'AW-443211953/vaMjCOOC7fABELHBq9MB',
+      'event_callback': callback
+    });
+  }
 
   passwordsMatch = () => {
     if (this.state.password !== this.state.password2) {

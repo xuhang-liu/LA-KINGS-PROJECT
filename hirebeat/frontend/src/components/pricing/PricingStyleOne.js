@@ -724,7 +724,7 @@ class PricingStyleOne extends Component {
                                                 <div style={{marginTop:'-1rem'}}><sub></sub></div>
                                             </div>
 
-                                            <ul className="pricing-features pb-3">
+                                            <ul className="pricing-features pb-3 pr-2">
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     3 interview simulations & practices
@@ -741,9 +741,9 @@ class PricingStyleOne extends Component {
                                                     <i className="bx bxs-check-circle"></i> 
                                                     Access to top company tips & data
                                                 </li>
-                                                <li style={{color:"#ffffff"}}>empty
-                                                </li>
-                                                <li style={{color:"#ffffff"}}>empty
+                                                <li style={{textDecoration:"line-through"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    24/7 customer support
                                                 </li>
                                             </ul>
 
@@ -794,7 +794,7 @@ class PricingStyleOne extends Component {
                                                 <div style={{marginTop:'-1rem'}}><sub>$22.49 in total - </sub><sub style={{color:'#ff6b00'}}><b>Save 25%</b></sub></div>
                                             </div>
 
-                                            <ul className="pricing-features">
+                                            <ul className="pricing-features pb-3 pr-2">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     3 interview simulations & practices
@@ -814,8 +814,6 @@ class PricingStyleOne extends Component {
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     24/7 customer support
-                                                </li>
-                                                <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                             </ul>
 
@@ -866,7 +864,7 @@ class PricingStyleOne extends Component {
                                                 <div style={{marginTop:'-1rem'}}><sub>$33.75 in total - </sub><sub style={{color:'#ff6b00'}}><b>Save 25%</b></sub></div>
                                             </div>
 
-                                            <ul className="pricing-features">
+                                            <ul className="pricing-features pb-3 pr-2">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     <strong>Unlimited</strong> interview simulations & practices
@@ -886,8 +884,6 @@ class PricingStyleOne extends Component {
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     24/7 customer support
-                                                </li>
-                                                <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                             </ul>
 
@@ -938,7 +934,7 @@ class PricingStyleOne extends Component {
                                                 <div style={{marginTop:'-1rem'}}><sub>$44.99 in total - </sub><sub style={{color:'#ff6b00'}}><b>Save 25%</b></sub></div>
                                             </div>
 
-                                            <ul className="pricing-features pb-2">
+                                            <ul className="pricing-features pb-3 pr-2">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     <strong>Unlimited</strong> interview simulations & practices
@@ -956,7 +952,8 @@ class PricingStyleOne extends Component {
                                                     Access to top company tips & data</li>
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    24/7 customer support</li>
+                                                    24/7 customer support
+                                                </li>
                                             </ul>
 
                                             {
@@ -1010,7 +1007,7 @@ class PricingStyleOne extends Component {
                                                 <sup>$</sup>0 <sub>/ month</sub>
                                             </div>
 
-                                            <ul className="pricing-features pb-3">
+                                            <ul className="pricing-features pb-3 pr-2">
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     3 interview simulations & practices
@@ -1027,9 +1024,9 @@ class PricingStyleOne extends Component {
                                                     <i className="bx bxs-check-circle"></i> 
                                                     Access to top company tips & data
                                                 </li>
-                                                <li style={{color:"#ffffff"}}>empty
-                                                </li>
-                                                <li style={{color:"#ffffff"}}>empty
+                                                <li style={{textDecoration:"line-through"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    24/7 customer support
                                                 </li>
                                             </ul>
 
@@ -1079,7 +1076,7 @@ class PricingStyleOne extends Component {
                                                 <sup>$</sup>9.99 <sub>/ month</sub>
                                             </div>
 
-                                            <ul className="pricing-features">
+                                            <ul className="pricing-features pb-3 pr-2">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     3 interview simulations & practices
@@ -1099,8 +1096,6 @@ class PricingStyleOne extends Component {
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     24/7 customer support
-                                                </li>
-                                                <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                             </ul>
 
@@ -1150,7 +1145,7 @@ class PricingStyleOne extends Component {
                                                 <sup>$</sup>14.99 <sub>/ month</sub>
                                             </div>
 
-                                            <ul className="pricing-features">
+                                            <ul className="pricing-features pb-3 pr-2">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     <strong>Unlimited</strong> interview simulations & practices
@@ -1170,8 +1165,6 @@ class PricingStyleOne extends Component {
                                                 <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     24/7 customer support
-                                                </li>
-                                                <li style={{color:"#ffffff"}}>empty
                                                 </li>
                                             </ul>
 
@@ -1221,7 +1214,7 @@ class PricingStyleOne extends Component {
                                                 <sup>$</sup>19.99<sub style={{color:'#ff6b00'}}>/ month</sub>
                                             </div>
 
-                                            <ul className="pricing-features pb-2">
+                                            <ul className="pricing-features pb-3 pr-2">
                                             <li>
                                                     <i className="bx bxs-check-circle"></i> 
                                                     <strong>Unlimited</strong> interview simulations & practices

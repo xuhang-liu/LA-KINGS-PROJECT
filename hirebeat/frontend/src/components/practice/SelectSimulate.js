@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import {
   numberOfQuestionOptions,
   lengthOfResponseOptions,
-  categoryOfQuestionOptions,
 } from "../../constants/constants";
 import ResponseWindow from "./ResponseWindow";
 import AudioResponseWindow from "./AudioResponseWindow";
 import TestDevice from "./TestDevice";
 import TestAudioDevice from "./TestAudioDevice";
-import { SetupCard, CardRow, CardButton, selectParam } from "./CardComponents";
+import { CardRow, selectParam } from "./CardComponents";
 import PageTitleArea from '../Common/PageTitleArea';
 import Switch from "react-switch";
 
@@ -28,7 +27,7 @@ export class SelectParam extends Component {
     audioParamIsSet: false,
     checked: true,
     deviceTested: false,
-    numberOfQuestions: { value: 3, label: "3" },
+    numberOfQuestions: { value: 2, label: "2" },
     lengthOfResponse: { value: 1, label: "60s" },
     categoryOfQuestion: { value: 1, label: "Random"},
   };
