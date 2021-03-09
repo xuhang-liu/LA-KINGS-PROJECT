@@ -309,12 +309,14 @@ def sign_s3_upload_wp_video(request):
 
 @api_view(['POST'])
 def update_video_comments(request):
+    print("updatestars")
     primary_key = request.data["pk"]
     new_stars = request.data["stars"]
     new_comment = request.data["comment"]
     wpv = WPVideo.objects.get(pk=primary_key)
     wpv.video_stars = new_stars
-    wpv.video_comment.append(new_comment)
+    if(new_comment != ""):
+        wpv.video_comment.append(new_comment)
     wpv.save()
 
     return Response({
