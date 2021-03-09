@@ -258,7 +258,7 @@ export class Header extends Component {
                     Company <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"8rem"}}>
                       <li><Link id="id-aboutus2" to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
-                      <li><Link id="id-contact2" to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link id="id-contact2" to="/employer_contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
                       <li><Link id="id-blog2" to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
                     </ul>
                   </span>
@@ -308,7 +308,7 @@ export class Header extends Component {
                     Company <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"8rem"}}>
                       <li><Link id="id-aboutus3" to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
-                      <li><Link id="id-contact3" to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
+                      <li><Link id="id-contact3" to="/employer_contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
                       <li><Link id="id-blog3" to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
                     </ul>
                   </span>
@@ -416,7 +416,7 @@ export class Header extends Component {
                     : this.props.profile.is_employer
                     ? this.renderEmployerLinks()
                     : this.renderUserLinks()
-                : uri == ("employer" || "employer_register") ?
+                : uri.includes("employer") ?
                   this.renderEmployerGuestLinks()
                 : this.renderGuestLinks()
             }
@@ -494,7 +494,7 @@ export class Header extends Component {
                     : this.props.profile.is_employer
                     ? this.renderEmployerLinks()
                     : this.renderUserLinks()
-                : uri == ("employer" || "employer_register") ?
+                : uri.includes("employer") ?
                   this.renderEmployerGuestLinks()
                 : this.renderGuestLinks()
             }

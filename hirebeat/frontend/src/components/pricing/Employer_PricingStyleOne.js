@@ -31,7 +31,7 @@ class Employer_PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{
-            price: 'price_1ITARFKxU1MN2zWMctTzCR0x', // Replace with the ID of your price
+            price: 'price_1ITDJGKxU1MN2zWMKd4L8TOH', // Replace with the ID of your price
             quantity: 1,
           }],
           mode: 'subscription',
@@ -113,7 +113,7 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Candidate rating
+                                                    Candidate rating & comments
                                                 </li>
                                                 <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
@@ -140,7 +140,7 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", color:"#ffffff"}}>
-                                                <sup style={{color:"#ffffff"}}>$</sup>199<sub style={{color:"#ffffff"}}>/ month</sub>
+                                                <sup style={{color:"#ffffff"}}>$</sup>169<sub style={{color:"#ffffff"}}>/ month</sub>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
@@ -224,7 +224,7 @@ class Employer_PricingStyleOne extends Component {
                                             <div style={{marginLeft:"-2rem", marginTop:"0.5rem"}}>
                                             {
                                                 <div className="btn-box">
-                                                <a href="mailto: admin@hirebeat.co" id="id-employer-select3" className="default-btn" style={{color:"white", backgroundColor:"#090d3a", paddingLeft:"25px"}}>
+                                                <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{color:"white", backgroundColor:"#090d3a", paddingLeft:"25px", textDecoration:"none"}}>
                                                     Contact Us
                                                     <span></span>
                                                 </a>

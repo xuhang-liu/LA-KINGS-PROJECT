@@ -78,7 +78,7 @@ class ApplicationVideoPanel extends Component {
                 <div className="row">
                     <div className="col-7">
                         <div className="row">
-                            <div className="col-12 mt-3">
+                            <div className="col-12 d-flex m-3">
                             <ReactPlayer id="rw-video" url={this.props.url} controls={true} playbackRate={this.state.playbackRate}
                             // Disable download button
                             config={{ file: { attributes: { controlsList: 'nodownload' } } }}
@@ -116,16 +116,16 @@ class ApplicationVideoPanel extends Component {
                                     <div className="row">
                                         <div className="col-7 pl-3 pr-0">
                                             <textarea  
-                                                        style={{display:"inline", outline:"none", overflow: "auto", border:"none", resize:"none", width:"105%", height:"2.94rem"}}
+                                                        style={{display:"inline-block", outline:"none", overflow: "auto", border:"none", resize:"none", width:"105%", height:"2.94rem"}}
                                                         value={this.state.comments}
                                                         placeholder="Type your comment here"
                                                         onChange={(e)=>{this.setState({comments :e.target.value})}}
                                                 >
                                             </textarea>
                                         </div>
-                                        <div className="mt-0 col" style={{display:"inline"}}>
-                                            <button className="default-btn py-2 mr-3 mt-1" 
-                                                    style={{position: "absolute", right: "10"}}
+                                        <div className="mt-0 col" style={{display:"inline-block"}}>
+                                            <button className="default-btn d-flex py-2 mr-3 mt-1 ml-1" 
+                                                    style={{position: "absolute", right: "0.1rem"}}
                                                     onClick={this.updateCommentsFunc}
                                             ><i className="bx bxs-send"></i>Post</button>
                                         </div>
