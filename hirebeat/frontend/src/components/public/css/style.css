@@ -4618,6 +4618,15 @@ Page Title Area CSS
   padding-bottom: 100px;
 }
 
+.page-title-area1 {
+  background-image: url("https://hirebeat-assets.s3.amazonaws.com/bg-pricing.jpg");
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
 .page-title-area::before {
   content: '';
   position: absolute;

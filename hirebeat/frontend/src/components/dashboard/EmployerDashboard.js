@@ -124,6 +124,15 @@ export class EmployerDashboard extends Component {
         subpage: "settings",
         }
       )
+    }else if((Object.keys(this.props.postedJobs).length)>=(this.props.profile.position_limit)){
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Exceed max number of positions! Upgrade now to create more positions',
+        buttons: [
+          {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
+          {label: 'OK'},
+        ]
+      });
     }else{
       this.setState({
         subpage: "position",
@@ -211,6 +220,7 @@ export class EmployerDashboard extends Component {
             location_candidate={this.props.location_candidate}
             star_list={this.props.star_list}
             updateCommentStatus={this.props.updateCommentStatus}
+            profile={this.props.profile}
             />
           }else{
             return null
