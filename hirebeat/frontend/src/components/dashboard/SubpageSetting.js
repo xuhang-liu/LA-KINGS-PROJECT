@@ -304,7 +304,7 @@ export class SubpageSetting extends Component {
                             </button>
                     </form>
                 </div>
-                {this.props.profile.plan_interval == "Premium" && <div>
+                {((this.props.profile.plan_interval == "Premium")&&(!this.props.profile.is_subreviwer)) &&  <div>
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>
                             <IconText
@@ -362,13 +362,23 @@ export class SubpageSetting extends Component {
                                     <label style={{ fontSize: "15px" }}>Free account</label>
                                 </div>
                             </div>
+                            {this.props.profile.is_employer ?
+                            <div>
+                            {!this.props.profile.is_subreviwer &&
+                            <a
+                                href="/employer-pricing"
+                                type="submit"
+                                className="btn btn-primary"
+                            >
+                                Subscribe To Premium Member    
+                            </a>}</div> :
                             <a
                                 href="/pricing"
                                 type="submit"
                                 className="btn btn-primary"
                             >
                                 Subscribe To Premium Member    
-                            </a>
+                            </a>}
                     </form>
                 </div>
                 </div>}

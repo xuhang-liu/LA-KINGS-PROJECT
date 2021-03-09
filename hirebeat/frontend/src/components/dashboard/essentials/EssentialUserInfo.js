@@ -159,6 +159,36 @@ export class EssentialUserInfo extends Component {
                         />
                   </div>
                 </div>
+                {this.props.profile.membership == "Premium" ?
+                  <div className="row">
+                    <div className="col d-flex align-items-center mt-2">
+                        <IconText
+                          iconName={"bx bx-diamond bx-sm"}
+                          textDisplayed={"Premium"}
+                          textSize={"14px"}
+                          textColor={"#fac046"}
+                          iconMargin={"2px"}
+                        />
+                    </div>
+                  </div> :
+                  <div>
+                    <div className="row">
+                      <div className="col d-flex align-items-center mt-2">
+                        <IconText
+                          iconName={"bx bx-diamond bx-sm"}
+                          textDisplayed={"Freemium"}
+                          textSize={"14px"}
+                          textColor={"#cad9fc"}
+                          iconMargin={"2px"}
+                        />
+                      </div>
+                    </div>
+                  <div className="row" style={{textAlign:"center"}}>
+                    <div className="col align-items-center mt-1">
+                      <Link to="/employer-pricing" style={{textDecoration:"none"}}><p style={{color:"#fac046", fontSize:"14px"}}>Upgrade</p></Link>
+                    </div>
+                  </div>
+                </div>}
                 <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)"}}></hr>
 
               </div>}
@@ -214,27 +244,6 @@ export class EssentialUserInfo extends Component {
                     backColor={this.props.subpage == "settings" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "settings" ? selectSetting : nonselectSetting}
                     textColor={this.props.subpage == "settings" ? selectEColor : defaultEColor}
-                  />
-                </button>
-              </div>
-              </div>
-              <div className="row" style={{marginTop:"20%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.props.renderPosition}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconEmployerText
-                    hasIcon={"hasIcon"}
-                    className="icon-employer-text-hover"
-                    textWeight={"600"}
-                    textSize={"16px"}
-                    textDisplayed={"New Position"}
-                    backColor={"#56a3fa"}
-                    iconSrc={""}
-                    textColor={"#ffffff"}
                   />
                 </button>
               </div>

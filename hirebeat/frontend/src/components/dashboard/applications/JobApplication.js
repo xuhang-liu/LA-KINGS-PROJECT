@@ -146,6 +146,7 @@ const JobViewDetail = (props) => {
     }
 
     function inviteReviever() {
+    if(props.profile.membership == "Premium"){
         let sub_reviewer_name = "";
         let sub_reviewer_email = "";
         function submitSubReviewer(e) {
@@ -202,6 +203,16 @@ const JobViewDetail = (props) => {
               );
             }
         });
+        }else{
+        confirmAlert({
+            title: 'Upgrade Now!',
+            message: 'Upgrade to unlock Team Collaboration.',
+            buttons: [
+                {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
+                {label: 'OK'},
+            ]
+        });
+        }
     }
 
     function deleteReviever(sub_id) {
@@ -596,6 +607,14 @@ const JobCard = (props) => {
         return regex.test(text);
     }
 
+    function inviteCandidates() {
+        if((props.applicants.length)>=(props.profile.candidate_limit)){
+            candidateLimitAlert();
+        }else{
+            setInvite(true);
+        }
+    }
+
     return (
         <React.Fragment>
             {/* Job Applications */}
@@ -632,7 +651,7 @@ const JobCard = (props) => {
                                 <button
                                     className="default-btn interview-txt6"
                                     style={{paddingLeft: "25px", marginBottom:"1rem"}}
-                                    onClick={() => setInvite(true)}
+                                    onClick={inviteCandidates}
                                 >
                                     + Invite Candidates
                                     <span></span>
@@ -1221,6 +1240,7 @@ const Applicant = (props) => {
                 location_candidate={props.location_candidate}
                 positionId={props.positionId}
                 updateCommentStatus={props.updateCommentStatus}
+                profile={props.profile}
             />
             <MyModal80
                 show={showResume}
@@ -1262,6 +1282,7 @@ function MyVerticallyCenteredModal(props) {
         location_candidate={props.location_candidate}
         positionId={props.positionId}
         updateCommentStatus={props.updateCommentStatus}
+        profile={props.profile}
       />
     </MyModal80>
   );
@@ -1374,4 +1395,15 @@ function deletSuccessAlert() {
         }
       ]
     });
+};
+
+function candidateLimitAlert() {
+    confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Exceed max number of candidates! Upgrade now to invite more candidates',
+        buttons: [
+          {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
+          {label: 'OK'},
+        ]
+      });
 };

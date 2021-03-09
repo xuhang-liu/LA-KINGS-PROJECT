@@ -20,6 +20,7 @@ import Register from "./accounts/Register";
 import EmployerRegister from "./accounts/EmployerRegister";
 import PrivateRoute from "./basic/PrivateRoute";
 import pricings from "./pricing/pricings";
+import Employer_pricing from "./pricing/Employer_pricing";
 import Payment from "./payment/Payment"
 import about from "./company/about";
 import bloggrid from "./blog/bloggrid";
@@ -263,6 +264,7 @@ class App extends Component {
                 <Route exact path="/employer" component={IndexEmployer} />
                 <Route exact path="/interview_Completion" component={InterviewCompletion} />
                 <Route exact path="/pricing" component={pricings} />
+                <Route exact path="/employer-pricing" component={Employer_pricing} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/howitworks" component={Howitworks} />
                 <Route exact path="/bloghome" component={bloggrid} />

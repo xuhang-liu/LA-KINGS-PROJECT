@@ -53,6 +53,7 @@ const ShortList = (props) => {
                 interviewResume={props.interviewResume}
                 getResumeURL={props.getResumeURL}
                 updateCommentStatus={props.updateCommentStatus}
+                profile={props.profile}
             />
             </div>
         </div>
@@ -94,6 +95,7 @@ const AcceptedCandidate = (props) => {
                                     interviewResume={props.interviewResume}
                                     getResumeURL={props.getResumeURL}
                                     updateCommentStatus={props.updateCommentStatus}
+                                    profile={props.profile}
                             />
                         </div>
                     }
@@ -206,6 +208,7 @@ const CandidateCard = (props) => {
             recordTime={props.recordTime}
             interviewResume={props.interviewResume}
             updateCommentStatus={props.updateCommentStatus}
+            profile={props.profile}
         /> 
         <MyModal80
                 show={showResume}
@@ -247,6 +250,7 @@ function MyVerticallyCenteredModal(props) {
           resumeURL={props.resumeURL}
           recordTime={props.recordTime}
           interviewResume={props.interviewResume}
+          profile={props.profile}
         />
       </MyModal80>
     );

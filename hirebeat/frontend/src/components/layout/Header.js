@@ -264,6 +264,11 @@ export class Header extends Component {
                   </span>
                 </a>
               </li>
+              <li className="nav-item ">
+                <a href="/employer-pricing" className="nav-link text-white navbar-font">
+                  <span className="header-text">Plan</span>
+                </a>
+              </li>
             </ul>
           </div>
         </React.Fragment>
@@ -307,6 +312,11 @@ export class Header extends Component {
                       <li><Link id="id-blog3" to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
                     </ul>
                   </span>
+                </a>
+              </li>
+              <li className="nav-item ">
+                <a href="/employer-pricing" className="nav-link text-white navbar-font">
+                  <span className="header-text">Plan</span>
                 </a>
               </li>
             </ul>
