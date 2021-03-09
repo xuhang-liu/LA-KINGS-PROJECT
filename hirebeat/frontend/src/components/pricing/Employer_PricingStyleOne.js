@@ -36,7 +36,7 @@ class Employer_PricingStyleOne extends Component {
           }],
           mode: 'subscription',
           successUrl: 'https://hirebeat.co/payment',
-          cancelUrl: 'https://hirebeat.co/pricing',
+          cancelUrl: 'https://hirebeat.co/employer-pricing',
           billingAddressCollection: 'auto',
           customerEmail: this.props.user.email,
         });
