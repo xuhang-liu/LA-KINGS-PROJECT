@@ -14,7 +14,6 @@ function ScrollToTopOnMount() {
 
 class Payment extends Component {
     componentDidMount() {
-
         this.renderRedirect();
       }
 
@@ -29,7 +28,7 @@ class Payment extends Component {
           }
         ]
         });
-        return <Redirect to='/' />
+        return <Redirect to='/login' />
       }
 
     render() {
