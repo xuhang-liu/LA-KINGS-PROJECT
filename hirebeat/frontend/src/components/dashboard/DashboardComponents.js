@@ -365,3 +365,87 @@ export const ApplicationChart = (props) => {
         />
     )
 }
+
+export const tourConfig = [
+  {
+    selector: '[data-tut="reactour-dashoboard"]',
+    content: () => (
+      <div>
+        <h3 className="tour-title">Start with a guided tour!</h3>
+        <div className="justify-items">
+          <img src="https://hirebeat-assets.s3.amazonaws.com/guide1.png" />
+        </div>
+        <p className="tour-text">To get a feel of the place, take our guided tour where we'll show you our amazing products to get your hired!</p>
+      </div>
+    )
+  },
+  {
+    selector: '[data-tut="reactour-myVideo"]',
+    content: () => (
+      <div>
+        <h3 className="tour-title">Interview Practice</h3>
+        <p className="tour-text">Have your ever felt nervous during an interview? Build your confidence by practicing
+        them under recording. Remember to visit back the videos for improvements.</p>
+      </div>
+    )
+  },
+  {
+    selector: '[data-tut="reactour-myResume"]',
+    content: () => (
+      <div>
+        <h3 className="tour-title">Resume Screen</h3>
+        <p className="tour-text">Resume Screening is always the most competitive stage of the hiring cycle. Get your
+        resume past the ATS by tailoring it towards the job description!</p>
+      </div>
+    )
+  },
+  {
+    selector: '[data-tut="reactour-myInterview"]',
+    content: () => (
+      <div>
+        <p className="tour-text">HireBeat collaborates with company affiliates to send candidate interview invitations!
+        Once you receive them, enter the tab to start the virtual interview, and always feel free to visit back to see
+        how you can improve for the betterment!</p>
+      </div>
+    )
+  },
+  {
+    selector: '[data-tut="reactour-rowbox"]',
+    content: () => (
+      <div>
+        <p className="tour-title">Here is a summary of your activities. keep motivated!</p>
+      </div>
+    )
+  },
+  {
+    selector: '[data-tut="reactour-bq"]',
+    content: () => (
+      <div>
+        <h3 className="tour-title">Behavior Questions</h3>
+        <p className="tour-text">Questions designed to learn how you would respond to a specific situation to achieve the best outcome.
+Technical Questions are questions specific to the roles you've applied for — usually involving expertise and knowledge.</p>
+      </div>
+    )
+  },
+  {
+    selector: '[data-tut="reactour-tq"]',
+    content: () => (
+      <div>
+        <h3 className="tour-title">Technical Questions</h3>
+        <p className="tour-text">Questions specific to the roles you've applied for — usually involving expertise and knowledge.</p>
+      </div>
+    )
+  },
+  {
+    selector: '[data-tut="reactour-practice"]',
+     content: () => (
+      <div>
+        <h3 className="tour-title">You've completed the tour</h3>
+        <div className="justify-items">
+          <img src="https://hirebeat-assets.s3.amazonaws.com/guide2.png" />
+        </div>
+        <p className="tour-text">Begin practice today to receive your dream offer tomorrow!</p>
+      </div>
+    )
+  },
+];
