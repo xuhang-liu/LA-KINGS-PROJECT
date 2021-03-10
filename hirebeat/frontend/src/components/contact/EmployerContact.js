@@ -69,7 +69,6 @@ class EmployerContact extends Component {
     render() {
         return (
             <React.Fragment>
-              <div className="min-width-1290">
               <ScrollToTopOnMount />
                 <PageTitleArea1 
                     pageTitle="Contact Us" 
@@ -77,6 +76,7 @@ class EmployerContact extends Component {
                 />
                 <MediaQuery minDeviceWidth={1224}>
                 {/* 5th part */}
+                <div className="min-width-1290">
           <div className="hero-content container-xl my-5">
             <div className="row">
               <div className="col-6">
@@ -130,6 +130,7 @@ class EmployerContact extends Component {
               </div>
             </div>
           </div>
+          </div>
           </MediaQuery>
         <MediaQuery maxDeviceWidth={1223}>
           <form className="contact-bg mt-2" style={{width: "90%", marginLeft:"5%"}} onSubmit={sendEmail}>
@@ -163,7 +164,6 @@ class EmployerContact extends Component {
           </form>
         </MediaQuery>
         <FreeTrialArea/>
-        </div>
             </React.Fragment>
         );
     }
