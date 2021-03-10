@@ -68,6 +68,9 @@ class Profile(models.Model):
     reviewer_count = models.IntegerField(default=3, validators=[
         MaxValueValidator(1000)
     ])
+    position_count = models.IntegerField(default=0, validators=[
+        MaxValueValidator(1000)
+    ])
     position_limit = models.IntegerField(default=1, validators=[
         MaxValueValidator(1000)
     ])

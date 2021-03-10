@@ -264,11 +264,12 @@ export class Header extends Component {
                   </span>
                 </a>
               </li>
+              {!this.props.profile.is_subreviwer &&
               <li className="nav-item ">
                 <a href="/employer-pricing" className="nav-link text-white navbar-font">
-                  <span className="header-text">Plan</span>
+                  <span className="header-text">Pricing</span>
                 </a>
-              </li>
+              </li>}
             </ul>
           </div>
         </React.Fragment>
@@ -316,7 +317,7 @@ export class Header extends Component {
               </li>
               <li className="nav-item ">
                 <a href="/employer-pricing" className="nav-link text-white navbar-font">
-                  <span className="header-text">Plan</span>
+                  <span className="header-text">Pricing</span>
                 </a>
               </li>
             </ul>

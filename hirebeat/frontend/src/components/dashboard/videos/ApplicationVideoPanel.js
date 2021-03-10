@@ -61,12 +61,15 @@ class ApplicationVideoPanel extends Component {
         var selectedColor1 = "#56a3fa";
         var selectedColor2 = "#56a3fa";
         var selectedColor3 = "#56a3fa";
+        var selectedColor4 = "#56a3fa";
         if (this.state.selectedSpeed == 1.0){
             selectedColor1 = "#090d3a";
         }else if (this.state.selectedSpeed == 1.5){
             selectedColor2 = "#090d3a";
-        }else if (this.state.selectedSpeed == 2.0) {
+        }else if (this.state.selectedSpeed == 1.75) {
             selectedColor3 = "#090d3a";
+        }else if (this.state.selectedSpeed == 2.0) {
+            selectedColor4 = "#090d3a";
         }
         return (
             <div className="mb-4 pl-0" style={{marginLeft:"-2rem"}}>
@@ -97,6 +100,8 @@ class ApplicationVideoPanel extends Component {
                                 <button className="default-btn2 ml-2" style={{fontSize:"0.8rem", padding:"6px", backgroundColor: selectedColor2}}
                                 onClick={this.handleSetPlaybackRate} value={1.5}>1.5x</button>
                                 <button className="default-btn2 ml-2" style={{fontSize:"0.8rem", padding:"6px", backgroundColor: selectedColor3}}
+                                onClick={this.handleSetPlaybackRate} value={1.75}>1.75x</button>
+                                <button className="default-btn2 ml-2" style={{fontSize:"0.8rem", padding:"6px", backgroundColor: selectedColor4}}
                                 onClick={this.handleSetPlaybackRate} value={2}>2x</button>
                             </div>
                         </div>

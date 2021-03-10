@@ -172,6 +172,21 @@ export class EssentialUserInfo extends Component {
                     </div>
                   </div> :
                   <div>
+                  {this.props.profile.is_subreviwer ?
+                  <div>
+                    <div className="row">
+                      <div className="col d-flex align-items-center mt-2">
+                        <IconText
+                          iconName={""}
+                          textDisplayed={"Sub-Reviewer"}
+                          textSize={"14px"}
+                          textColor={"#cad9fc"}
+                          iconMargin={"2px"}
+                        />
+                      </div>
+                    </div>
+                  </div> :
+                  <div>
                     <div className="row">
                       <div className="col d-flex align-items-center mt-2">
                         <IconText
@@ -188,6 +203,7 @@ export class EssentialUserInfo extends Component {
                       <Link to="/employer-pricing" style={{textDecoration:"none"}}><p style={{color:"#fac046", fontSize:"14px"}}>Upgrade</p></Link>
                     </div>
                   </div>
+                </div>}
                 </div>}
                 <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)"}}></hr>
 
