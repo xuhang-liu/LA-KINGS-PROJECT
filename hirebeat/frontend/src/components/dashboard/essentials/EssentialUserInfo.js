@@ -175,8 +175,8 @@ export class EssentialUserInfo extends Component {
                     <div className="row">
                       <div className="col d-flex align-items-center mt-2">
                         <IconText
-                          iconName={"bx bx-diamond bx-sm"}
-                          textDisplayed={"Freemium"}
+                          iconName={""}
+                          textDisplayed={"Free Member"}
                           textSize={"14px"}
                           textColor={"#cad9fc"}
                           iconMargin={"2px"}
@@ -272,8 +272,8 @@ export class EssentialUserInfo extends Component {
               <div className="row">
               <div className="col d-flex align-items-center mt-2">
                       <IconText
-                        iconName={"bx bx-diamond bx-sm"}
-                        textDisplayed={"Freemium"}
+                        iconName={""}
+                        textDisplayed={"Free Member"}
                         textSize={"14px"}
                         textColor={"#cad9fc"}
                         iconMargin={"2px"}
