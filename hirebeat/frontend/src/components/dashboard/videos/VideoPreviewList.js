@@ -8,6 +8,7 @@ import {
   deleteVideo,
   addTQVideoLimit,
 } from "../../../redux/actions/video_actions";
+import { loadProfile } from "../../../redux/actions/auth_actions";
 
 export class VideoPreviewList extends Component {
   static propTypes = {
@@ -20,6 +21,7 @@ export class VideoPreviewList extends Component {
   };
 
   componentDidMount() {
+    this.props.loadProfile();
     this.props.getVideos();
   }
 
@@ -90,6 +92,8 @@ export class VideoPreviewList extends Component {
               return (
                 <div key={v.id} style={{marginTop: "2rem","border-radius": "1rem"}}>
                   <VideoImagePreview
+                    user={this.props.user}
+                    profile={this.props.profile}
                     isAudio={(v.url.slice(-3) === "wav") ? true : false}
                     v={v}
                     key={v.id}
@@ -112,6 +116,8 @@ export class VideoPreviewList extends Component {
 const mapStateToProps = (state) => ({
   videos: state.video_reducer.videos,
   loaded: state.video_reducer.loaded,
+  profile: state.auth_reducer.profile,
+  user: state.auth_reducer.user,
 });
 
 export default connect(mapStateToProps, {
@@ -119,4 +125,5 @@ export default connect(mapStateToProps, {
   sendVideoForReview,
   deleteVideo,
   addTQVideoLimit,
+  loadProfile,
 })(VideoPreviewList);

@@ -129,6 +129,8 @@ export function VideoImagePreview(props) {
         { props.isBQ &&
         <div className="col-2 pt-2 d-flex flex-row-reverse">
           <ReviewStatusButton
+            user={props.user}
+            profile={props.profile}
             v={props.v}
             sendVideoForReview={props.sendVideoForReview}
             aiReview={true}  // review type： AI
@@ -140,6 +142,8 @@ export function VideoImagePreview(props) {
         { props.isBQ &&
         <div className="col-2 pt-2 d-flex">
           <ReviewStatusButton
+            user={props.user}
+            profile={props.profile}
             v={props.v}
             sendVideoForReview={props.sendVideoForReview}
             aiReview={false}  // review type： Expert
