@@ -14,6 +14,7 @@ export const Interview = () => {
         <div className="row">
         <div className="col-9">
         <button
+          data-tut="reactour-bq"
           className={decideClassName(filter, "bq")}
           style = {{outline: "none", borderRadius: "2px", marginRight:"2rem"}}
           onClick={() => setFilter("bq")}
@@ -21,6 +22,7 @@ export const Interview = () => {
           Behavioral Questions
         </button>
         <button
+          data-tut="reactour-tq"
           className={decideClassName(filter, "tq")}
           style = {{outline: "none", borderRadius: "2px"}}
           onClick={() => setFilter("tq")}
@@ -30,7 +32,7 @@ export const Interview = () => {
         </div>
         <div className="col-3">
         <Link to="/practice">
-        <button className="default-btn float-xl-right">
+        <button className="default-btn float-xl-right" data-tut="reactour-practice">
             <i className="bx bx-plus"></i> 
              New Practice
             <span></span>

@@ -304,7 +304,7 @@ export class EssentialUserInfo extends Component {
             </div>}
             <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)", width:"100%"}}></hr>
             <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
+              <div className="col d-flex align-items-center" data-tut="reactour-myVideo">
                 <button
                   type="button"
                   className="panel-button"
@@ -322,7 +322,7 @@ export class EssentialUserInfo extends Component {
               </div>
               </div>
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
+              <div className="col d-flex align-items-center" data-tut="reactour-myResume">
                 <button
                   type="button"
                   className="panel-button"
@@ -340,7 +340,7 @@ export class EssentialUserInfo extends Component {
               </div>
               </div>
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
+              <div className="col d-flex align-items-center" data-tut="reactour-myInterview">
                 <button
                   type="button"
                   className="panel-button"
