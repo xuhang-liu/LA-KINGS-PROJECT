@@ -141,6 +141,10 @@ import AlvarezMarsalInfo from"./companyData/companies/AlvarezMarsalInfo";
 import HackettGroupInfo from"./companyData/companies/HackettGroupInfo";
 import StrategyInfo from"./companyData/companies/StrategyInfo";
 import NavigantConsultingInfo from"./companyData/companies/NavigantConsultingInfo";
+import ResourcesGlobalProfessionalsInfo from"./companyData/companies/ResourcesGlobalProfessionalsInfo";
+import CRAInternationalInfo from"./companyData/companies/CRAInternationalInfo";
+import ICGInternationalInfo from"./companyData/companies/ICGInternationalInfo";
+import ADPInfo from"./companyData/companies/ADPInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -387,6 +391,10 @@ class App extends Component {
                 <Route exact path="/hackett-group" component={HackettGroupInfo} />
                 <Route exact path="/strategy" component={StrategyInfo} />
                 <Route exact path="/navigant-consulting" component={NavigantConsultingInfo} />
+                <Route exact path="/resources-global-professionals" component={ResourcesGlobalProfessionalsInfo} />
+                <Route exact path="/cra-international" component={CRAInternationalInfo} />
+                <Route exact path="/icg-international" component={ICGInternationalInfo} />
+                <Route exact path="/adp" component={ADPInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />

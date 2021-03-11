@@ -16,6 +16,9 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import SubpageSetting from './SubpageSetting';
+import { tourConfig } from "./DashboardComponents";
+import Tour from 'reactour';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -71,6 +74,19 @@ export class Dashboard extends Component {
 
   state = {
     subpage: (this.page == "" ? "videos" : this.page),
+    isTourOpen: this.props.profile.saved_video_count == 0 ? true: false,
+  };
+
+  // tour functions
+  disableBody = (target) => disableBodyScroll(target);
+  enableBody = (target) => enableBodyScroll(target);
+
+  closeTour = () => {
+    this.setState({ isTourOpen: false });
+  };
+
+  openTour = () => {
+    this.setState({ isTourOpen: true });
   };
 
   renderVideos = () => {
@@ -133,6 +149,8 @@ export class Dashboard extends Component {
   };
 
   render() {
+    const { isTourOpen } = this.state;
+    const accentColor = "#5cb7b7";
     if (this.props.profile.is_employer) {
         return <Redirect to="/employer_dashboard"/>;
     }else{
@@ -141,7 +159,17 @@ export class Dashboard extends Component {
           <ScrollToTopOnMount/>
           {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
-            <div className="row no-gutters min-width-1290">
+            <Tour
+              onRequestClose={this.closeTour}
+              steps={tourConfig}
+              isOpen={isTourOpen}
+              className="helper"
+              rounded={5}
+              accentColor={accentColor}
+              onAfterOpen={this.disableBody}
+              onBeforeClose={this.enableBody}
+            />
+            <div className="row no-gutters min-width-1290" data-tut="reactour-dashboard">
               <div className='col-1'>
                 <div className='dashboard-sidebar'>
                   <EssentialUserInfo
@@ -159,7 +187,7 @@ export class Dashboard extends Component {
               </div>
               <div className='col-11'>
                 <div className="dashboard-main">
-                <div className="container-fluid">
+                <div className="container-fluid" style={{height: "12rem"}} data-tut="reactour-rowbox">
                   {this.state.subpage === "settings" ? null :
                       <RowBoxes
                           renderVideos={this.renderVideos}
