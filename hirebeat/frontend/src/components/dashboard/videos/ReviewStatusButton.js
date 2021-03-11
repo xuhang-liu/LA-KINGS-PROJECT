@@ -49,7 +49,11 @@ function ReviewStatusButton(props) {
     // send for review
     if (text == "Get AI Review") {
         if (props.feedback_count >= props.feedback_limit) {
-          upgradeMessage();
+          if(props.profile.membership == "Premium"){
+            limitMessage();
+          }else{
+            upgradeMessage();
+          }
         }
         else{
           sendVideoForReview("ai", video.id);
@@ -59,7 +63,11 @@ function ReviewStatusButton(props) {
     }
     else if (text == "Get Expert Review") {
         if (props.feedback_count >= props.feedback_limit) {
-          upgradeMessage();
+          if(props.profile.membership == "Premium"){
+            limitMessage();
+          }else{
+            upgradeMessage();
+          }
         }
         else {
           sendVideoForReview("expert", video.id);
@@ -140,6 +148,16 @@ function upgradeMessage() {
     message: 'No more free review left.😢 Upgrade now to get unlimite reviews',
     buttons: [
       {label: 'Upgrade Now', onClick: () => redirectPricing()},
+      {label: 'OK'},
+    ]
+  });
+}
+
+function limitMessage() {
+  confirmAlert({
+    title: 'Limit Exceed',
+    message: 'You reach the max limit.😢',
+    buttons: [
       {label: 'OK'},
     ]
   });

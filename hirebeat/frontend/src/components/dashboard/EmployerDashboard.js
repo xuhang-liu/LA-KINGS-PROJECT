@@ -124,7 +124,7 @@ export class EmployerDashboard extends Component {
         subpage: "settings",
         }
       )
-    }else if((Object.keys(this.props.postedJobs).length)>=(this.props.profile.position_limit)){
+    }else if((this.props.profile.position_count)>=(this.props.profile.position_limit)){
       confirmAlert({
         title: 'Upgrade Now!',
         message: 'Exceed max number of positions! Upgrade now to create more positions',

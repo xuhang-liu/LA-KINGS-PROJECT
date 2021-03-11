@@ -122,7 +122,7 @@ class ReviewApplication extends Component{
                                     </button>}
                                 </div></div>}
                         </div>
-                        <div className="col-6 container mt-4">
+                        <div className="col-9 container mt-4">
                             <ApplicationVideo   int_ques={this.props.int_ques} 
                                                 positionId={this.props.positionId}
                                                 quesiton_array = {this.props.quesiton_array}
@@ -131,10 +131,12 @@ class ReviewApplication extends Component{
                                                 comments = {this.props.comments}
                                                 pk = {this.props.pk}
                                                 refresh={this.props.refresh}
+                                                updateStatus={this.updateStatus}
+                                                comment_status={this.props.comment_status}
                             />
                         </div>
-                        <div className="col-3 container" style={{marginTop:"2.5%"}}>
-                            <div className="container mt-3 ml-2">
+                        {/*<div className="col-3 container" style={{marginTop:"2.5%"}}>
+                             <div className="container mt-3 ml-2">
                                 {this.props.comment_status == 1 ? <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
                                     Shortlist
                                 </button>
@@ -156,8 +158,8 @@ class ReviewApplication extends Component{
                                     Reject
                                 </button>
                                 }
-                            </div>
-                        </div>
+                            </div> 
+                        </div>*/}
                     </div>
                 </div>
             </div>
