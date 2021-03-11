@@ -661,6 +661,10 @@
     padding-top: 60px;
     padding-bottom: 50px;
   }
+  .page-title-area1 {
+    padding-top: 60px;
+    padding-bottom: 50px;
+  }
   .page-title-content h2 {
     font-size: 25px;
   }
@@ -1527,6 +1531,10 @@
     max-width: 40%;
   }
   .page-title-area {
+    padding-top: 80px;
+    padding-bottom: 70px;
+  }
+  .page-title-area1 {
     padding-top: 80px;
     padding-bottom: 70px;
   }

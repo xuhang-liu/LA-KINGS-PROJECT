@@ -26,9 +26,9 @@ const ShortList = (props) => {
     }
     
     return <div>
-            <div>
+            <div className="container min-width-980">
             <div className="row">
-                <h3 className="pt-2 mr-5 col-9">{props.postedJobs[jobId].job_title} {props.postedJobs[jobId].job_id}</h3>
+                <h3 className="pt-2 ml-3 mr-5 col-9">{props.postedJobs[jobId].job_title} {props.postedJobs[jobId].job_id}</h3>
                 <DropdownButton id="dropdown-menu-align-left" size="lg" title="Select Position" >
                         {Object.keys(props.postedJobs).map((key) => {
                             return <Dropdown.Item as="button" onClick={() => {selectPosition(key)}}>{props.postedJobs[key].job_title} {props.postedJobs[key].job_id}</Dropdown.Item>
@@ -53,6 +53,7 @@ const ShortList = (props) => {
                 interviewResume={props.interviewResume}
                 getResumeURL={props.getResumeURL}
                 updateCommentStatus={props.updateCommentStatus}
+                profile={props.profile}
             />
             </div>
         </div>
@@ -70,7 +71,7 @@ export default connect(mapStateToProps , { loadStarList, getResumeURL })(ShortLi
 
 const AcceptedCandidate = (props) => {
     return <div>
-              <div style={{marginBottom: "20px"}} className="container min-width-980 mt-3">
+              <div style={{marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem"}} className="container min-width-980 mt-4">
                 {props.theJob.applicants.map((applicant) => {
                     if(applicant.comment_status == 1)
                     {   return <div> 
@@ -94,6 +95,7 @@ const AcceptedCandidate = (props) => {
                                     interviewResume={props.interviewResume}
                                     getResumeURL={props.getResumeURL}
                                     updateCommentStatus={props.updateCommentStatus}
+                                    profile={props.profile}
                             />
                         </div>
                     }
@@ -116,6 +118,13 @@ const CandidateCard = (props) => {
         props.getResumeURL(props.applicant.positions_id, props.id_candidate);
         setTimeout(()=>{setShow(true);}, 300)
     };
+
+    const refresh = () =>
+    {
+        props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
+        props.getApplicantsInfo(props.applicant.email);
+        props.getResumeURL(props.applicant.positions_id, props.id_candidate);
+    }
 
     const renderStars = (stars) => {
             return(
@@ -151,9 +160,9 @@ const CandidateCard = (props) => {
     const mailTo = "mailto:" + props.applicant.email;
     return (       
     <React.Fragment>
-        <div onClick={()=>{viewResult();}} className="ml-0 d-flex justify-content-start container" style={{marginTop:"3rem", backgroundColor: "white", "border-radius": "0.5rem"}}>
+        <div onClick={()=>{viewResult();}} className="ml-0 d-flex justify-content-start container">
             <div className="col-12" style={{fontFamily: "Avenir Next, Segoe UI" }}>
-                <div className="mt-4">
+                <div className="mt-3">
                     <div className="row">
                         <div className="col-9" style={{color:"#090D3A"}}>
                             <div className="row ml-2">
@@ -187,6 +196,7 @@ const CandidateCard = (props) => {
             </div>
         </div>
         <MyVerticallyCenteredModal
+            refresh={refresh}
             getPJobs={props.getPJobs}
             applicant={props.applicant}
             id_candidate={props.id_candidate}
@@ -206,6 +216,7 @@ const CandidateCard = (props) => {
             recordTime={props.recordTime}
             interviewResume={props.interviewResume}
             updateCommentStatus={props.updateCommentStatus}
+            profile={props.profile}
         /> 
         <MyModal80
                 show={showResume}
@@ -231,6 +242,7 @@ function MyVerticallyCenteredModal(props) {
       <MyModal80 {...rest}>
         <ReviewApplication
           {...rest}
+          refresh={props.refresh}
           getPJobs={props.getPJobs}
           setShowResume={props.setShowResume}
           setShowEva={props.setShowEva}
@@ -247,6 +259,7 @@ function MyVerticallyCenteredModal(props) {
           resumeURL={props.resumeURL}
           recordTime={props.recordTime}
           interviewResume={props.interviewResume}
+          profile={props.profile}
         />
       </MyModal80>
     );

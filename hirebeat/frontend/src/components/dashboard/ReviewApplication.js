@@ -3,6 +3,8 @@ import { IconText } from "./DashboardComponents";
 import ApplicationVideo from "./videos/ApplicationVideo";
 import { connect } from "react-redux";
 import { getPostedJobs, getResumeURL } from "../../redux/actions/question_actions";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class ReviewApplication extends Component{
     constructor(props) {
@@ -16,7 +18,24 @@ class ReviewApplication extends Component{
         this.props.getPJobs();
         this.props.hide();
     }
-    
+
+    showResumeEva = () => {
+        if(this.props.profile.membership == "Premium"){
+            this.props.setShowEva(true);
+        }else{
+            this.props.getPJobs();
+            this.props.hide();
+            confirmAlert({
+                title: 'Upgrade Now!',
+                message: 'Upgrade to unlock Resume Evaluation.',
+                buttons: [
+                    {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
+                    {label: 'OK'},
+                ]
+            });
+        }
+    }
+
     render() {
         const recordTime = this.props.recordTime;
         const interviewResume = this.props.interviewResume;
@@ -91,7 +110,7 @@ class ReviewApplication extends Component{
                                 <div className="row">
                                     {((this.props.interviewResume.result_rate != "") && (this.props.interviewResume.result_rate != null)) &&
                                     <button
-                                        onClick={() => {setTimeout(()=>{this.props.setShowEva(true);}, 200)}}
+                                        onClick={() => {setTimeout(()=>{this.showResumeEva()}, 200)}}
                                         className="interview-txt9 mt-3 ml-3"
                                         style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
                                     >
@@ -103,7 +122,7 @@ class ReviewApplication extends Component{
                                     </button>}
                                 </div></div>}
                         </div>
-                        <div className="col-6 container mt-4">
+                        <div className="col-9 container mt-4">
                             <ApplicationVideo   int_ques={this.props.int_ques} 
                                                 positionId={this.props.positionId}
                                                 quesiton_array = {this.props.quesiton_array}
@@ -112,10 +131,12 @@ class ReviewApplication extends Component{
                                                 comments = {this.props.comments}
                                                 pk = {this.props.pk}
                                                 refresh={this.props.refresh}
+                                                updateStatus={this.updateStatus}
+                                                comment_status={this.props.comment_status}
                             />
                         </div>
-                        <div className="col-3 container" style={{marginTop:"2.5%"}}>
-                            <div className="container mt-3 ml-2">
+                        {/*<div className="col-3 container" style={{marginTop:"2.5%"}}>
+                             <div className="container mt-3 ml-2">
                                 {this.props.comment_status == 1 ? <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
                                     Shortlist
                                 </button>
@@ -137,8 +158,8 @@ class ReviewApplication extends Component{
                                     Reject
                                 </button>
                                 }
-                            </div>
-                        </div>
+                            </div> 
+                        </div>*/}
                     </div>
                 </div>
             </div>

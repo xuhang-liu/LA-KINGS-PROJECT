@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MediaQuery from 'react-responsive';
 
-class PageTitleArea extends Component {
+class PageTitleArea1 extends Component {
     render() {
 
         let { pageTitle, pageDescription, style } = this.props;
@@ -9,7 +9,7 @@ class PageTitleArea extends Component {
         return (
             <React.Fragment>
             <MediaQuery minDeviceWidth={1224}>
-            <div className="page-title-area min-width-1290" style={style}>
+            <div className="page-title-area1 min-width-1290" style={style}>
                 <div className="container">
                     <div className="page-title-content">
                         <h2>{pageTitle}</h2>
@@ -19,7 +19,7 @@ class PageTitleArea extends Component {
             </div>
             </MediaQuery>
             <MediaQuery maxDeviceWidth={1223}>
-            <div className="page-title-area" style={style}>
+            <div className="page-title-area1" style={style}>
                 <div className="container">
                     <div className="page-title-content">
                         <h2>{pageTitle}</h2>
@@ -33,4 +33,4 @@ class PageTitleArea extends Component {
     }
 }
 
-export default PageTitleArea;
+export default PageTitleArea1;
