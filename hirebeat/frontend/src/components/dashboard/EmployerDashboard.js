@@ -217,10 +217,15 @@ export class EmployerDashboard extends Component {
             renderApplications={this.renderApplications}
           />;
       case "shortlist":
-        if (Object.keys(this.props.postedJobs).length > 0){
+        var job_list = [];
+        Object.keys(this.props.postedJobs).map((key)=>{
+          if(!this.props.postedJobs[key].is_closed) {
+              job_list.push(this.props.postedJobs[key]);
+          };});
+        if (job_list.length > 0){
           return <ShortList 
             getPJobs={this.getPJobs}
-            postedJobs={this.props.postedJobs}
+            postedJobs={job_list}
             int_ques={this.props.int_ques}
             getApplicantsVideos={this.props.getApplicantsVideos}
             getApplicantsInfo={this.props.getApplicantsInfo}
