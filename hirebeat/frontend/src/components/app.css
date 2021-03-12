@@ -2862,3 +2862,12 @@ h5 {
   color: #090D3A;
   line-height: 21px;
 }
+
+.btn-white {
+  color: #67A3F3 !important;
+  background-color: white !important;
+}
+
+.btn-white::before {
+  display:none !important; 
+}
