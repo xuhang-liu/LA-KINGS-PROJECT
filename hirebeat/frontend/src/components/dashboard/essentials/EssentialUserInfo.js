@@ -143,6 +143,8 @@ export class EssentialUserInfo extends Component {
     var nonselectResume = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-file-non.png";
     var selectInterview = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-briefcase-select.png";
     var nonselectInterview = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-briefcase-non.png";
+    var selectAnalytics = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-bar-chart-select.png";
+    var nonselectAnalytics = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-bar-chart-non.png";
     return (
       <React.Fragment>
       <div className="container">
@@ -209,7 +211,7 @@ export class EssentialUserInfo extends Component {
 
               </div>}
               {this.props.profile.is_employer ? 
-              <div>
+              <div style={{marginLeft:"0.3rem", marginRight:"0.2rem"}}>
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
               <div className="col d-flex align-items-center">
                 <button
@@ -242,6 +244,24 @@ export class EssentialUserInfo extends Component {
                     backColor={this.props.subpage == "shortlist" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "shortlist" ? selectShortlist : nonSelectShortlist}
                     textColor={this.props.subpage == "shortlist" ? selectEColor : defaultEColor}
+                  />
+                </button>
+              </div>
+              </div>
+              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderAnalytics}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconEmployerText
+                    textSize={"12px"}
+                    textDisplayed={"Analytics"}
+                    backColor={this.props.subpage == "analytics" ? selectBack : defaultBack}
+                    iconSrc={this.props.subpage == "analytics" ? selectAnalytics : nonselectAnalytics}
+                    textColor={this.props.subpage == "analytics" ? selectEColor : defaultEColor}
                   />
                 </button>
               </div>
@@ -304,7 +324,7 @@ export class EssentialUserInfo extends Component {
             </div>}
             <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)", width:"100%"}}></hr>
             <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
+              <div className="col d-flex align-items-center" data-tut="reactour-myVideo">
                 <button
                   type="button"
                   className="panel-button"
@@ -322,7 +342,7 @@ export class EssentialUserInfo extends Component {
               </div>
               </div>
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
+              <div className="col d-flex align-items-center" data-tut="reactour-myResume">
                 <button
                   type="button"
                   className="panel-button"
@@ -340,7 +360,7 @@ export class EssentialUserInfo extends Component {
               </div>
               </div>
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
+              <div className="col d-flex align-items-center" data-tut="reactour-myInterview">
                 <button
                   type="button"
                   className="panel-button"
