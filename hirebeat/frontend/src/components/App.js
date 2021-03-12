@@ -141,6 +141,10 @@ import AlvarezMarsalInfo from"./companyData/companies/AlvarezMarsalInfo";
 import HackettGroupInfo from"./companyData/companies/HackettGroupInfo";
 import StrategyInfo from"./companyData/companies/StrategyInfo";
 import NavigantConsultingInfo from"./companyData/companies/NavigantConsultingInfo";
+import ResourcesGlobalProfessionalsInfo from"./companyData/companies/ResourcesGlobalProfessionalsInfo";
+import CRAInternationalInfo from"./companyData/companies/CRAInternationalInfo";
+import ICGInternationalInfo from"./companyData/companies/ICGInternationalInfo";
+import ADPInfo from"./companyData/companies/ADPInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -152,6 +156,7 @@ import ProductManager from "./career/jobs/ProductManager";
 import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
 import CareerResponseWindow from "./videoInterview/CareerResponseWindow";
 import Contact from "./contact/contact";
+import EmployerContact from "./contact/EmployerContact";
 import Howitworks from "./home/Howitworks";
 import InterviewCompletion from "./videoInterview/InterviewCompletion";
 
@@ -299,6 +304,7 @@ class App extends Component {
                 <Route exact path="/privacy" component={Privacy} />
                 <Route exact path="/term" component={Term} />
                 <Route exact path="/contact" component={Contact} />
+                <Route exact path="/employer_contact" component={EmployerContact} />
                 <Route exact path="/quiz" component={QuizHome} />
                 <Route exact path="/quizresult" component={QuizResultPage} />
                 <Route exact path="/companydata" component={CompanyList} />
@@ -385,6 +391,10 @@ class App extends Component {
                 <Route exact path="/hackett-group" component={HackettGroupInfo} />
                 <Route exact path="/strategy" component={StrategyInfo} />
                 <Route exact path="/navigant-consulting" component={NavigantConsultingInfo} />
+                <Route exact path="/resources-global-professionals" component={ResourcesGlobalProfessionalsInfo} />
+                <Route exact path="/cra-international" component={CRAInternationalInfo} />
+                <Route exact path="/icg-international" component={ICGInternationalInfo} />
+                <Route exact path="/adp" component={ADPInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />

@@ -47,6 +47,7 @@ class Contact extends Component {
                 />
                 <MediaQuery minDeviceWidth={1224}>
                 {/* 5th part */}
+                <div className="min-width-1290">
           <div style={{width: "100%", marginBottom: "10%"}}>
             <div  style={{margin: "auto", marginBottom:"1rem"}}>
               <br/>
@@ -105,6 +106,7 @@ class Contact extends Component {
                 </div>
               </div>
             </div>
+          </div>
           </div>
           </MediaQuery>
         <MediaQuery maxDeviceWidth={1223}>

@@ -40,10 +40,10 @@ class ReviewApplication extends Component{
         const recordTime = this.props.recordTime;
         const interviewResume = this.props.interviewResume;
         return(
-            <div className="container" style={{width:'95%'}}>
-                <div className="card container mb-5" style={{marginTop:"1%"}}>
+            <div className="container-fluid" style={{width:"95%"}}>
+                <div className="card container-fluid mb-5" style={{marginTop:"1%"}}>
                     <div className="row">
-                        <div className="col-3 container">
+                        <div className="col-3">
                                 <div className="row" style={{marginTop:"10%", marginBottom:"2%"}}>
                                     <div className="col d-flex align-items-center">
                                     <h4
@@ -97,7 +97,7 @@ class ReviewApplication extends Component{
                                         Recorded on: {this.props.recordTime.substring(0, 10)}
                                 </div>
                                 {((this.props.interviewResume.result_rate != "") && (this.props.interviewResume.result_rate != null)) &&
-                                <div className="row mt-3 pl-4" style={{width:"13vw"}}>
+                                <div className="row mt-3 pl-4" style={{width:"20vmin"}}>
                                     {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 0) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 24)) && 
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/4.png" alt="pic"></img>}
                                     {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 25) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 50)) && 
@@ -112,17 +112,19 @@ class ReviewApplication extends Component{
                                     <button
                                         onClick={() => {setTimeout(()=>{this.showResumeEva()}, 200)}}
                                         className="interview-txt9 mt-3 ml-3"
-                                        style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
+                                        style={{color: "#67A3F3", border: "none", background: "white"}}
                                     >
                                         <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
                                     </button>}
+                                </div>
+                                <div className="row">
                                     {((this.props.resumeURL != "")&&(this.props.resumeURL != null)) &&
                                     <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 200)}} >
                                         <i className="bx bx-file"></i>View Resume
                                     </button>}
                                 </div></div>}
                         </div>
-                        <div className="col-9 container mt-4">
+                        <div className="col-9 mt-4">
                             <ApplicationVideo   int_ques={this.props.int_ques} 
                                                 positionId={this.props.positionId}
                                                 quesiton_array = {this.props.quesiton_array}

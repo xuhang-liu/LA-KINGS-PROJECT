@@ -89,6 +89,9 @@ def add_position(request):
     jobdescription = request.data['jobdescription']
     questionTime = request.data['questionTime']
     user = User.objects.get(pk=request.data["userid"])
+    profile = Profile.objects.get(user_id=user.id)
+    profile.position_count += 1
+    profile.save()
     question1 = request.data['question1']
     question2 = request.data['question2']
     question3 = request.data['question3']
@@ -280,7 +283,10 @@ def close_job(request):
 def delete_job(request):
     position_id = request.data["position_id"]
     position_obj = Positions.objects.get(id=position_id)
+    profile = Profile.objects.get(user_id=position_obj.user_id)
     position_obj.delete()
+    profile.position_count -= 1
+    profile.save()
     interview_que = InterviewQuestions.objects.filter(positions_id=position_id)
     interview_que.delete()
     return Response("Delete current position successfully", status=status.HTTP_200_OK)

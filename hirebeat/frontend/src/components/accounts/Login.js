@@ -73,7 +73,9 @@ export class Login extends Component {
               className="container-fluid bg-white p-0"
           >
             <MediaQuery minDeviceWidth={1224}>
-            <header id="login-intro"
+            <header
+            className="min-width-1290"
+             id="login-intro"
                     style={{
                       background: "#56a3fa",
                       minHeight: "14rem"
@@ -89,7 +91,7 @@ export class Login extends Component {
               </div>
             </header>
             </MediaQuery>
-            <MediaQuery maxDeviceWidth={1224}>
+            <MediaQuery maxDeviceWidth={1223}>
             <header id="login-intro"
                     style={{
                       background: "#56a3fa",

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main232.js",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main232.js",
+    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main239.js",
+    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main239.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
@@ -49,6 +49,7 @@
     "aws-sdk": "^2.663.0",
     "axios": "^0.19.2",
     "bluebird": "^3.7.2",
+    "body-scroll-lock": "^3.1.5",
     "bootstrap": "^4.6.0",
     "bootswatch": "^4.5.0",
     "boxicons": "^2.0.7",
@@ -121,6 +122,7 @@
     "react-switch": "^5.0.1",
     "react-transition-group": "^4.3.0",
     "react-wow": "^1.0.0",
+    "reactour": "^1.18.2",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",

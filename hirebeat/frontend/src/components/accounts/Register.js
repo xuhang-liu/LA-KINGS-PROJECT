@@ -104,7 +104,7 @@ export class Register extends Component {
           <ScrollToTopOnMount />
           <div>
             <MediaQuery minDeviceWidth={1224}>
-            <section className="signup-area">
+            <section className="signup-area min-width-1290">
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0"> 
                       <img src="https://hirebeat-assets.s3.amazonaws.com/Login.png" alt="image"></img>

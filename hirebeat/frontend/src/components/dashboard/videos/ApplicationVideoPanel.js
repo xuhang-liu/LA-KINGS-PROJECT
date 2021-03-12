@@ -61,12 +61,15 @@ class ApplicationVideoPanel extends Component {
         var selectedColor1 = "#56a3fa";
         var selectedColor2 = "#56a3fa";
         var selectedColor3 = "#56a3fa";
+        var selectedColor4 = "#56a3fa";
         if (this.state.selectedSpeed == 1.0){
             selectedColor1 = "#090d3a";
         }else if (this.state.selectedSpeed == 1.5){
             selectedColor2 = "#090d3a";
-        }else if (this.state.selectedSpeed == 2.0) {
+        }else if (this.state.selectedSpeed == 1.75) {
             selectedColor3 = "#090d3a";
+        }else if (this.state.selectedSpeed == 2.0) {
+            selectedColor4 = "#090d3a";
         }
         return (
             <div className="mb-4 pl-0" style={{marginLeft:"-2rem"}}>
@@ -78,7 +81,7 @@ class ApplicationVideoPanel extends Component {
                 <div className="row">
                     <div className="col-7">
                         <div className="row">
-                            <div className="col-12 mt-3">
+                            <div className="col-12 d-flex m-3">
                             <ReactPlayer id="rw-video" url={this.props.url} controls={true} playbackRate={this.state.playbackRate}
                             // Disable download button
                             config={{ file: { attributes: { controlsList: 'nodownload' } } }}
@@ -97,6 +100,8 @@ class ApplicationVideoPanel extends Component {
                                 <button className="default-btn2 ml-2" style={{fontSize:"0.8rem", padding:"6px", backgroundColor: selectedColor2}}
                                 onClick={this.handleSetPlaybackRate} value={1.5}>1.5x</button>
                                 <button className="default-btn2 ml-2" style={{fontSize:"0.8rem", padding:"6px", backgroundColor: selectedColor3}}
+                                onClick={this.handleSetPlaybackRate} value={1.75}>1.75x</button>
+                                <button className="default-btn2 ml-2" style={{fontSize:"0.8rem", padding:"6px", backgroundColor: selectedColor4}}
                                 onClick={this.handleSetPlaybackRate} value={2}>2x</button>
                             </div>
                         </div>
@@ -116,16 +121,16 @@ class ApplicationVideoPanel extends Component {
                                     <div className="row">
                                         <div className="col-7 pl-3 pr-0">
                                             <textarea  
-                                                        style={{display:"inline", outline:"none", overflow: "auto", border:"none", resize:"none", width:"105%", height:"2.94rem"}}
+                                                        style={{display:"inline-block", outline:"none", overflow: "auto", border:"none", resize:"none", width:"105%", height:"2.94rem"}}
                                                         value={this.state.comments}
                                                         placeholder="Type your comment here"
                                                         onChange={(e)=>{this.setState({comments :e.target.value})}}
                                                 >
                                             </textarea>
                                         </div>
-                                        <div className="mt-0 col" style={{display:"inline"}}>
-                                            <button className="default-btn py-2 mr-3 mt-1" 
-                                                    style={{position: "absolute", right: "10"}}
+                                        <div className="mt-0 col" style={{display:"inline-block"}}>
+                                            <button className="default-btn d-flex py-2 mr-3 mt-1 ml-1" 
+                                                    style={{position: "absolute", right: "0.1rem"}}
                                                     onClick={this.updateCommentsFunc}
                                             ><i className="bx bxs-send"></i>Post</button>
                                         </div>

@@ -22,7 +22,7 @@ class Employer_pricing extends Component {
                 <ScrollToTopOnMount />
                 <PageTitleArea1
                     pageTitle="Pricing & Plans" 
-                    pageDescription="Hiring superheroes, take back your time. We cost a lot less than spending 30% of your work day on screening calls" 
+                    pageDescription="Hiring talents, take back your time. We are here to help you save 50% of your work day on screening calls." 
                 />
                 <Employer_PricingStyleOne />
             </React.Fragment>

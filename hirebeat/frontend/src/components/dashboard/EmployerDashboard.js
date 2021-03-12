@@ -2,12 +2,10 @@ import React, { Component } from "react";
 //import ButtonPanel from "./panel/ButtonPanel";
 import { Link } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
-
 //import { JobApplication } from "./applications/JobApplication";
 import { CreatePosition } from "./position/CreatePosition";
 import { ApplicationCover } from "./applications/ApplicationCover";
 import ShortList from "./ShortList";
-
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
@@ -20,6 +18,7 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import SubpageSetting from './SubpageSetting';
+import Analytics from './Analytics';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import safariAlert from "../basic/SafariAlert";
@@ -124,7 +123,7 @@ export class EmployerDashboard extends Component {
         subpage: "settings",
         }
       )
-    }else if((Object.keys(this.props.postedJobs).length)>=(this.props.profile.position_limit)){
+    }else if((this.props.profile.position_count)>=(this.props.profile.position_limit)){
       confirmAlert({
         title: 'Upgrade Now!',
         message: 'Exceed max number of positions! Upgrade now to create more positions',
@@ -158,6 +157,12 @@ export class EmployerDashboard extends Component {
   renderShortlist = () => {
     this.setState({
       subpage: "shortlist",
+    });
+  };
+
+  renderAnalytics = () => {
+    this.setState({
+      subpage: "analytics",
     });
   };
 
@@ -205,8 +210,14 @@ export class EmployerDashboard extends Component {
             phone_number={this.props.profile.phone_number}
             renderApplications={this.renderApplications}
         />;
-        case "shortlist":
-          if (Object.keys(this.props.postedJobs).length > 0){
+      case "analytics":
+        return <Analytics
+            user={this.props.user}
+            profile={this.props.profile}
+            renderApplications={this.renderApplications}
+          />;
+      case "shortlist":
+        if (Object.keys(this.props.postedJobs).length > 0){
           return <ShortList 
             getPJobs={this.getPJobs}
             postedJobs={this.props.postedJobs}
@@ -222,18 +233,9 @@ export class EmployerDashboard extends Component {
             updateCommentStatus={this.props.updateCommentStatus}
             profile={this.props.profile}
             />
-          }else{
+        }else{
             return null
-          }
-      {/*case "reviewApplication":
-        return <ReviewApplication
-                  int_ques={this.props.int_ques}
-                  renderVideos={this.renderVideos}
-                  username_candidate={this.props.username_candidate}
-                  email_candidate={this.props.email_candidate}
-                  phone_candidate={this.props.phone_candidate}
-                  location_candidate={this.props.location_candidate}
-    />;*/}
+        }
       default:
         //Do nothing
     }
@@ -257,13 +259,14 @@ export class EmployerDashboard extends Component {
                       renderApplications={this.renderApplications}
                       renderPosition={this.renderPosition}
                       renderShortlist={this.renderShortlist}
+                      renderAnalytics={this.renderAnalytics}
                       subpage={this.state.subpage}
                   />
                 </div>
               </div>
               <div className='col-11'>
                 <div className="dashboard-main">
-                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") || (this.props.profile.is_subreviwer)) ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
+                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") || (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics")) ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
                   <div className="container" style={{marginBottom: "0%"}}>
                     <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
                       {this.renderSubpage()}
