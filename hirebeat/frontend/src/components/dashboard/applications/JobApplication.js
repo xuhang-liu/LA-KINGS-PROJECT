@@ -245,15 +245,15 @@ const JobViewDetail = (props) => {
                                         {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                     </button>
                                     <div className="row mb-2 mt-1">
-                                        <div className="col-6">
+                                        <div className="col-4">
                                             <p style={{color:"#4A6F8A"}}>Invited Applicants: {props.applicants.length}</p>
                                         </div>
-                                        <div className="col-6 mb-4" style={{color:"#4A6F8A", borderLeft:"outset"}}>
+                                        <div className="col-8 mb-4" style={{color:"#4A6F8A", borderLeft:"outset"}}>
                                             <p>Created On: {props.inviteDate.substring(0, 10)}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-2 mt-4">
+                                <div className="col-2 mt-4" style={{marginRight:"-2rem"}}>
                                 {props.subreviewers.map((sub, i) => {
                                     return (
                                         <span onClick={() => {deleteReviever(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}

@@ -1557,7 +1557,7 @@ h5 {
 .mode-col-text1 {
   font-family: Avenir Next, Segoe UI;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
   font-size: 0.9375rem;
   color: #4a6f8a;
 }
@@ -1565,7 +1565,7 @@ h5 {
 .mode-col-text2 {
   font-family: Avenir Next, Segoe UI;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
   font-size: 0.9375rem;
   color: #13c4a1;
 }

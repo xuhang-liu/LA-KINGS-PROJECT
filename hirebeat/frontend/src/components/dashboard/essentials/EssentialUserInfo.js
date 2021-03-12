@@ -155,13 +155,15 @@ export class EssentialUserInfo extends Component {
                 <div className="row" style={{marginTop:"2rem", textAlign:"center"}}>
                   <div className="col d-flex align-items-center">
                         <IconText
+                          textMarginLeft={"1rem"}
                           textDisplayed={this.props.profile.company_name}
                           textSize={"1rem"}
-                          textColor={"#CAD9FC"}
+                          textColor={"#ffffff"}
                         />
                   </div>
                 </div>
                 {this.props.profile.membership == "Premium" ?
+                <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
                   <div className="row">
                     <div className="col d-flex align-items-center mt-2">
                         <IconText
@@ -172,8 +174,9 @@ export class EssentialUserInfo extends Component {
                           iconMargin={"2px"}
                         />
                     </div>
-                  </div> :
-                  <div>
+                  </div> 
+                </div>:
+                <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
                   {this.props.profile.is_subreviwer ?
                   <div>
                     <div className="row">
@@ -206,12 +209,12 @@ export class EssentialUserInfo extends Component {
                     </div>
                   </div>
                 </div>}
-                </div>}
-                <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)"}}></hr>
+              </div>}
+              <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)"}}></hr>
 
               </div>}
               {this.props.profile.is_employer ? 
-              <div style={{marginLeft:"0.3rem", marginRight:"0.2rem"}}>
+              <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
               <div className="col d-flex align-items-center">
                 <button

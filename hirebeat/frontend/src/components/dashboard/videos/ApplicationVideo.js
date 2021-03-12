@@ -35,7 +35,7 @@ render() {
                                             refresh={this.props.refresh}
                                     />
                                 </div>
-                                <div className="row container-fliud" style={{marginLeft:"-5rem"}}>
+                                <div className="row container-fliud">
                                         <div className="col-8 mt-3 ml-0">
                                                 <div className="row">
                                                         <div className="col-2 p-0 pt-2">
@@ -46,28 +46,28 @@ render() {
                                                         <i class='bx bx-bookmark-plus'></i>Shortlist
                                                         </button>
                                                         : <button className="default-btn ml-0" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(1);this.props.refresh();}}>
-                                                        <i class='bx bx-bookmark-plus'></i>Shortlist
+                                                        <i class='bx bx-bookmark-plus' style={{color:"#090D3A"}}></i>Shortlist
                                                         </button>
                                                         }
                                                         {this.props.comment_status == 2 ? <button className="default-btn btn-warning ml-2" style={{marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(2);this.props.refresh();}}>
                                                         <i class='bx bx-help-circle'></i>Hold
                                                         </button>
                                                         : <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(2);this.props.refresh();}}>
-                                                        <i class='bx bx-help-circle'></i>Hold
+                                                        <i class='bx bx-help-circle' style={{color:"#090D3A"}}></i>Hold
                                                         </button>
                                                         }
                                                         {this.props.comment_status == 3 ? <button className="default-btn btn-danger ml-2" style={{marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(3);this.props.refresh();}}>
-                                                        <i class='bx bx-x' ></i>Reject
+                                                        <i class='bx bx-x'></i>Reject
                                                         </button>
                                                         : <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"9rem"}} onClick={() => {this.props.updateStatus(3);this.props.refresh();}}>
-                                                        <i class='bx bx-x' ></i>Reject
+                                                        <i class='bx bx-x' style={{color:"#090D3A"}}></i>Reject
                                                         </button>
                                                         }
                                                         </div>
                                                 </div>
                                                 
                                         </div> 
-                                        <div className="col">
+                                        <div className="col-4">
                                                 <Pagination
                                                         totalVideos = {this.props.int_ques.length}
                                                         setPage={this.setPage}
