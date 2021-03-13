@@ -118,11 +118,11 @@ export class QuestionTypeChoices extends Component {
             </div>
               <h3 className="practice-h3">Behavioral Question</h3>
               <p className="mode-col-text1">
-                Prepare about how you’ve <br/>
-                overcome previous professional <br/>
-                challenges reached success and <br/>
-                navigated difficult decisions.
+                You will practice answering how you <br/>
+                performed in certain situations and <br/>
+                the ways you handled issues.
               </p>
+              <p style={{fontSize:"12px", color:"#7d7d7d"}}>"Tell me about how you work within a group."</p>
               <p className="mode-col-text2">Next Step -> </p>
             </div>
           </button>
@@ -133,11 +133,11 @@ export class QuestionTypeChoices extends Component {
             </div>
               <h3 className="practice-h3">Technical Question</h3>
               <p className="mode-col-text1">
-                Polish your hard skills from project <br/>
-                management to analyzing <br/>
-                 business needs and executing <br/>
-                 quality testing.
+                You will practice industry-specific <br/>
+                questions that show your skills and <br/>
+                knowledge.
               </p>
+              <p style={{fontSize:"12px", color:"#7d7d7d"}}>"Pitch me a stock"</p>
               <p className="mode-col-text2">Next Step -> </p>
             </div>
           </button>
