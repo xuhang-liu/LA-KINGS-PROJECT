@@ -397,8 +397,8 @@ def get_applicants_data(request):
     })
 
 @api_view(['GET'])
-def get_stars_list(request):
-    pos_id = request.query_params.get("job_id")    
+def get_stars_list(request):  
+    pos_id = request.query_params.get("job_id") 
     int_ques = InterviewQuestions.objects.filter(positions = pos_id)
     candidates = InvitedCandidates.objects.filter(positions = pos_id)
     data = {}
@@ -414,6 +414,7 @@ def get_stars_list(request):
             data[can_email] = round(star_sum / video_amount)
         else:
             data[can_email] = 5
+    print("data again", data)
     return Response({ "data" : data } )
 
 @api_view(['POST'])
