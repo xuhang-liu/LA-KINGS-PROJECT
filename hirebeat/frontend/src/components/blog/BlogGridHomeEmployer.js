@@ -87,7 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
-    "/blog-how-does-a-one-way-interview-help-a-company-in-its-hiring",
+    "/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring",
 ];
 
 const blogImgs = [
