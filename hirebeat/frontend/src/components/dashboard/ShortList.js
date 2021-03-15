@@ -12,7 +12,6 @@ import { getResumeURL } from "../../redux/actions/question_actions";
 const ShortList = (props) => {
     const [jobId, setJobId] = useState(Object.keys(props.postedJobs)[0]);
 
-
     const selectPosition = key => {
         setJobId(key);
     }
@@ -29,7 +28,7 @@ const ShortList = (props) => {
             <div className="container min-width-980">
             <div className="row">
                 <h3 className="pt-2 ml-3 mr-5 col-9">{props.postedJobs[jobId].job_title} {props.postedJobs[jobId].job_id}</h3>
-                <DropdownButton id="dropdown-menu-align-left" size="lg" title="Select Position" >
+                <DropdownButton variant="white" id="dropdown-basic" size="lg" title="Select Position" >
                         {Object.keys(props.postedJobs).map((key) => {
                             return <Dropdown.Item as="button" onClick={() => {selectPosition(key)}}>{props.postedJobs[key].job_title} {props.postedJobs[key].job_id}</Dropdown.Item>
                         })}
@@ -71,12 +70,24 @@ export default connect(mapStateToProps , { loadStarList, getResumeURL })(ShortLi
 
 const AcceptedCandidate = (props) => {
     return <div>
-              <div style={{marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem"}} className="container min-width-980 mt-4">
+              <div style={{marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem"}} className="container min-width-980 mt-4 py-4">
+                <div style={{color:"#4A6F8A", fontSize:"1rem", fontWeight:"500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
+                    <div className="col-2">
+                        Name
+                    </div>
+                    <div className="col-3">
+                        Email
+                    </div>
+                    <div className="col-2">
+                        recorded
+                    </div>
+                    <div className="col-3">
+                        score
+                    </div>
+                </div>
                 {props.theJob.applicants.map((applicant) => {
                     if(applicant.comment_status == 1)
                     {   return <div> 
-                                {console.log(props.stars, "and applicant", applicant)}
-
                                 <CandidateCard
                                     getPJobs={props.getPJobs}
                                     refreshPage={props.refreshPage}
@@ -105,8 +116,6 @@ const AcceptedCandidate = (props) => {
 }
 
 const CandidateCard = (props) => {
-
-    console.log(props.applicant);
     const [show, setShow] = useState(false);
     const [showResume, setShowResume] = useState(false);
     const [showEva, setShowEva] = useState(false);
@@ -160,40 +169,35 @@ const CandidateCard = (props) => {
     const mailTo = "mailto:" + props.applicant.email;
     return (       
     <React.Fragment>
-        <div onClick={()=>{viewResult();}} className="ml-0 d-flex justify-content-start container">
-            <div className="col-12" style={{fontFamily: "Avenir Next, Segoe UI" }}>
-                <div className="mt-3">
-                    <div className="row">
-                        <div className="col-9" style={{color:"#090D3A"}}>
-                            <div className="row ml-2">
-                                <button className="title-button">
-                                    {props.applicant.name}
-                                </button>
-                                <div className="ml-5 mt-2">
-                                    { renderStars(props.stars) }
-                                </div>
-                            </div>
-                            <div className="row mb-2 mt-1">
-                                <div className="col-6">
-                                    <p style={{color:"#4A6F8A"}}>Video Recorded: {props.applicant.video_count}</p>
-                                </div>
-                                <div className="col-6 mb-4" style={{color:"#4A6F8A", borderLeft:"outset"}}>
-                                    <p>Created On: {props.applicant.invite_date.substring(0, 10)}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-3 center-items">
-                        <a
-                                href={mailTo}
-                                className="interview-txt9"
-                                style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
-                            >
-                                <i className="bx bx-mail-send"></i> Send Email
-                        </a>
-                        </div>
-                    </div>
+        <div className="px-4">
+            <hr/>
+        </div>
+        <div onClick={()=>{viewResult();}} style={{fontFamily: "Avenir Next, Segoe UI", fontWeight:"600" }} className="ml-0 d-flex justify-content-start container-fluid row">
+                <div className="col-2" style={{color:"#090D3A", fontSize:"1rem"}}> 
+                    {props.applicant.name}
                 </div>
-            </div>
+
+                <div className="col-3" style={{color:"#090D3A", fontSize:"1rem"}}> 
+                    {props.applicant.email}
+                </div>
+
+                <div className="col-2" style={{color:"#7D7D7D", fontSize:"1rem"}}> 
+                    {props.applicant.invite_date.substring(0, 10)}
+                </div>
+
+                <div className="col-3 ml-3"> 
+                        { renderStars(props.stars) }
+                </div>
+
+                <div className="col center-items">    
+                    <a
+                            href={mailTo}
+                            className="interview-txt9"
+                            style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
+                        >
+                            <i className="bx bx-mail-send"></i> Send Email
+                    </a>
+                </div>  
         </div>
         <MyVerticallyCenteredModal
             refresh={refresh}

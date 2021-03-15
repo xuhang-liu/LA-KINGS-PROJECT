@@ -217,10 +217,10 @@ export class EmployerDashboard extends Component {
             renderApplications={this.renderApplications}
           />;
       case "shortlist":
-        if (Object.keys(this.props.postedJobs).length > 0){
+        if (Object.keys(this.props.jobL).length > 0){
           return <ShortList 
             getPJobs={this.getPJobs}
-            postedJobs={this.props.postedJobs}
+            postedJobs={this.props.jobL}
             int_ques={this.props.int_ques}
             getApplicantsVideos={this.props.getApplicantsVideos}
             getApplicantsInfo={this.props.getApplicantsInfo}
@@ -295,7 +295,17 @@ export class EmployerDashboard extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+  var job_list = {};
+
+  Object.keys(state.question_reducer.postedJobs).map((key)=>{
+    if(!state.question_reducer.postedJobs[key].is_closed) {
+        job_list[key] = state.question_reducer.postedJobs[key];
+    };
+  });
+
+  return {
+  jobL: job_list,
   profile: state.auth_reducer.profile,
   user: state.auth_reducer.user,
   userfullname: state.auth_reducer.userfullname,
@@ -311,7 +321,8 @@ const mapStateToProps = (state) => ({
   phone_candidate: state.video_reducer.phone_candidate,
   location_candidate: state.video_reducer.location_candidate,
   star_list: state.question_reducer.star_list,
-});
+}
+};
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
