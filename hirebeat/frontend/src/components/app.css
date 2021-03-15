@@ -2871,3 +2871,13 @@ h5 {
 .btn-white::before {
   display:none !important; 
 }
+
+.short-list-text {
+  color: #090D3A;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.short-list-text:hover {
+  color: #ff6b00;
+}
