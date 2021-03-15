@@ -24,6 +24,8 @@ import Employer_pricing from "./pricing/Employer_pricing";
 import Payment from "./payment/Payment"
 import about from "./company/about";
 import bloggrid from "./blog/bloggrid";
+import bloggridEmployer from "./blog/bloggridEmployer";
+import BlogDetail1_Employer from "./blog/blog-details1-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -273,6 +275,8 @@ class App extends Component {
                 <Route exact path="/company" component={about} />
                 <Route exact path="/howitworks" component={Howitworks} />
                 <Route exact path="/bloghome" component={bloggrid} />
+                <Route exact path="/bloghome_employer" component={bloggridEmployer} />
+                <Route exact path="/blog-how-does-a-one-way-interview-help-a-company-in-its-hiring" component={BlogDetail1_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
