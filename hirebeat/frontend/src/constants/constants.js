@@ -223,6 +223,42 @@ export var radialBarOptions = {
   },
 };
 
+export var radialBarOptions2 = {
+  // input : number for series;
+  //         number for options.label
+  series: [80],
+  options: {
+    chart: {
+      height: "150px",
+      type: "line",
+    },
+    colors: ["#008ffb"],
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: "50%",
+          margin: 5,
+          background: "#cbdbfa",
+        },
+        dataLabels: {
+          show: true,
+          name: {
+            show: true,
+            fontSize: "40px",
+            fontWeight: 600,
+            color: "white",
+            offsetY: 13,
+          },
+          value: {
+            show: false,
+          },
+        },
+      },
+    },
+    labels: [8],
+  },
+};
+
 const deepCopyFunction = (inObject) => {
   let outObject, value, key;
   if (typeof inObject !== "object" || inObject === null) {
@@ -260,7 +296,7 @@ export const customBarData = (scoreNumber, bgColor, barColor) => {
 };
 
 export const customBarData2 = (scoreNumber, bgColor, barColor, label, ftSize, ftColor) => {
-  var options = deepCopyFunction(radialBarOptions);
+  var options = deepCopyFunction(radialBarOptions2);
   options.series[0] = scoreNumber;
   options.options.labels[0] = typeof(bgColor) != "undefined" ? scoreNumber + label : scoreNumber;
   // configure color params

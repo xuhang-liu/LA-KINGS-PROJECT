@@ -114,6 +114,21 @@ export class EssentialUserInfo extends Component {
     };
   };
 
+  renderApplications = () => {
+    if(this.props.profile.membership == "Premium"){
+      this.props.renderAnalytics();
+    }else{
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Upgrade now to access analytics page!',
+        buttons: [
+          {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
+          {label: 'OK'},
+        ]
+      });
+    }
+  };
+
   makeProfile = () => {
     return {
       user: this.props.user.id,
@@ -251,12 +266,13 @@ export class EssentialUserInfo extends Component {
                 </button>
               </div>
               </div>
+              {!this.props.profile.is_subreviwer &&
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
               <div className="col d-flex align-items-center">
                 <button
                   type="button"
                   className="panel-button"
-                  onClick={this.props.renderAnalytics}
+                  onClick={this.renderApplications}
                   style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                 >
                   <IconEmployerText
@@ -268,7 +284,7 @@ export class EssentialUserInfo extends Component {
                   />
                 </button>
               </div>
-              </div>
+              </div>}
               <div className="row" style={{marginTop:"20%", marginBottom:"2rem"}}>
               <div className="col d-flex align-items-center">
                 <button
