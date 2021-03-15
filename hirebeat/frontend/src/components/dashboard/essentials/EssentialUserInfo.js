@@ -120,12 +120,14 @@ export class EssentialUserInfo extends Component {
     }else{
       confirmAlert({
         title: 'Upgrade Now!',
-        message: 'Upgrade now to access analytics page!',
+        message: <div><h5>Upgrade now to access analytics page!</h5><img src="https://hirebeat-assets.s3.amazonaws.com/analytics-mohu.webp" alt="img"></img></div>,
         buttons: [
           {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
           {label: 'OK'},
-        ]
+        ],
+        afterClose: () => {this.props.renderApplications()}
       });
+      this.props.renderAnalytics();
     }
   };
 
