@@ -414,7 +414,6 @@ def get_stars_list(request):
             data[can_email] = round(star_sum / video_amount)
         else:
             data[can_email] = 5
-    print("data again", data)
     return Response({ "data" : data } )
 
 @api_view(['POST'])
