@@ -325,6 +325,17 @@ export const InterviewChart = (props) => {
                 chart: {
                     type: 'line',
                     height: 350,
+                    dropShadow: {
+                        enabled: true,
+                        color: '#000',
+                        top: 18,
+                        left: 7,
+                        blur: 10,
+                        opacity: 0.2
+                      },
+                },
+                markers: {
+                    size: 5,
                 },
                 grid: {
                     show: true,

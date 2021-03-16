@@ -3,24 +3,31 @@ import { RateScore, InterviewChart } from "./DashboardComponents";
 import 'boxicons';
 //import { connect } from "react-redux";
 import Chart from "react-apexcharts";
-import Select from 'react-select'
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 export class Analytics extends Component {
+    constructor(props) {
+        super(props);
+      }
+
     state = { 
-        category: { value: 'All', label: 'All' },
+        jobId1: Object.keys(this.props.position_list)[0],
+        jobId2: Object.keys(this.props.position_list)[0],
+        jobId3: Object.keys(this.props.position_list)[0],
         //chart        
         chartseries: [{
           name: 'Invitation',
-          data: [35, 42, 38]
+          data: this.props.analyticsInfo.invitation_list
         }, {
           name: 'Shortlist',
-          data: [20, 17, 17]
+          data: this.props.analyticsInfo.shortlist_list
         }, {
           name: 'Hold',
-          data: [10,3,3]
+          data: this.props.analyticsInfo.hold_list
         },{
             name: 'Reject',
-            data: [3,4,4]
+            data: this.props.analyticsInfo.reject_list
         }],
         chartoptions: {
           chart: {
@@ -69,11 +76,20 @@ export class Analytics extends Component {
         },
 
         //pie-chart
-        pieseries: [60.1, 30, 9.9],
+        pieseries: this.props.position_list[0].rate,
             pieoptions: {
-            labels: ['Shortlist', 'Hold', 'Reject'],
+            labels: ['Reject', 'Shortlist', 'Hold'],
               chart: {
                 type: 'donut',
+              },
+              fill: {
+                type: 'gradient',
+              },
+              plotOptions: {
+                pie: {
+                  startAngle: -90,
+                  endAngle: 270
+                }
               },
               responsive: [{
                 breakpoint: 480,
@@ -83,37 +99,43 @@ export class Analytics extends Component {
                   },
                   legend: {
                     position: 'center'
-                  }
+                  },
                 }
               }]
             },
       };
 
-      onFilter = (e) => {
-          this.setState({
-              category: {value: e.value, label: e.label}
-          })
+      selectPosition1 = (key) => {
+        this.setState({
+            jobId1: key,
+            pieseries: this.props.position_list[key].rate,
+        });
+      }
+      selectPosition2 = (key) => {
+        this.setState({
+            jobId2: key,
+        });
+      }
+      selectPosition3 = (key) => {
+        this.setState({
+            jobId3: key,
+        });
       }
 
     render() {
-        const options = [
-            { value: 'Completed', label: 'Completed' },
-            { value: 'Pending', label: 'Pending' },
-            { value: 'Withdrawn', label: 'Withdrawn' },
-            { value: 'All', label: 'All' },
-        ];
         return(
             <div className="container-fluid">
                 <div className="row">
                     <div className="col">
                         <div className="chart-bg" style={{marginTop:"2rem"}}>
-                            <div style={{padding: "0.6rem", paddingBottom:"0.1rem"}}>
+                            <div style={{padding: "0.6rem", paddingBottom:"1px"}}>
                                 <div className="row" style={{alignItems: "center", marginBottom: "0.6rem"}}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#56a3fa" style={{marginLeft:"1rem"}}></box-icon>
                                     <h3 className="chart-legend">Overview</h3>
                                     <div className="row ml-5">
                                         <box-icon type="solid" name="rectangle" size="12px" color="#e8edfc"></box-icon>
-                                        <p style={{fontSize:"12px", marginLeft:"0.5rem"}}>Total invitation sent</p>
+                                        <p className="analytics_text" style={{marginLeft:"0.5rem"}}>Total invitation sent
+                                        <span className="analytics_preview" style={{minWidth:"6rem"}}>The number of invitation: {this.props.analyticsInfo.invitation_total}</span></p>
                                     </div>
                                 </div>
                                 <div className="row" style={{alignItems: "center", marginBottom: "2rem"}}>
@@ -121,10 +143,10 @@ export class Analytics extends Component {
                                         <div className="row">
                                         <div className="col-6" style={{marginTop:"1rem"}}>
                                             <p style={{fontSize:"12px"}}>Interview received</p>
-                                            <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>81</h3>
+                                            <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>{this.props.analyticsInfo.interview_received}</h3>
                                         </div>
                                         <div className="col-6" style={{marginLeft:"-3rem"}}>
-                                            <RateScore percent={70.4} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={150} width={200}/>
+                                            <RateScore percent={Math.round(this.props.analyticsInfo.interview_received_rate)} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200}/>
                                         </div>
                                         </div>
                                     </div>
@@ -132,10 +154,10 @@ export class Analytics extends Component {
                                         <div className="row">
                                         <div className="col-6" style={{marginTop:"1rem"}}>
                                             <p style={{fontSize:"12px", marginLeft:"0.8rem"}}>Shortlist</p>
-                                            <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>54</h3>
+                                            <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>{this.props.analyticsInfo.shortlist_num}</h3>
                                         </div>
                                         <div className="col-6" style={{marginLeft:"-3rem"}}>
-                                            <RateScore percent={70.4} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={150} width={200}/>
+                                            <RateScore percent={Math.round(this.props.analyticsInfo.shortlist_num_rate)} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200}/>
                                         </div>
                                         </div>
                                     </div>
@@ -143,10 +165,10 @@ export class Analytics extends Component {
                                         <div className="row">
                                         <div className="col-6" style={{marginTop:"1rem"}}>
                                             <p style={{fontSize:"12px", marginLeft:"0.8rem"}}>Hold</p>
-                                            <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>81</h3>
+                                            <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>{this.props.analyticsInfo.hold_num}</h3>
                                         </div>
                                         <div className="col-6" style={{marginLeft:"-3rem"}}>
-                                            <RateScore percent={70.4} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={150} width={200}/>
+                                            <RateScore percent={Math.round(this.props.analyticsInfo.hold_num_rate)} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200}/>
                                         </div>
                                         </div>
                                     </div>
@@ -154,10 +176,10 @@ export class Analytics extends Component {
                                         <div className="row">
                                         <div className="col-6" style={{marginTop:"1rem"}}>
                                             <p style={{fontSize:"12px", marginLeft:"0.8rem"}}>Reject</p>
-                                            <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>81</h3>
+                                            <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>{this.props.analyticsInfo.reject_num}</h3>
                                         </div>
                                         <div className="col-6" style={{marginLeft:"-3rem"}}>
-                                            <RateScore percent={70.4} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={150} width={200}/>
+                                            <RateScore percent={Math.round(this.props.analyticsInfo.reject_num_rate)} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200}/>
                                         </div>
                                         </div>
                                     </div>
@@ -176,23 +198,17 @@ export class Analytics extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-3">
-                                        <p style={{fontSize:"12px", marginLeft:"0.5rem"}}>Position title</p>
-                                        <div style={{marginTop:"3rem"}}>
-                                            <h3 className="chart-legend" style={{marginLeft:"0.5rem"}}>Product Designer</h3>
-                                            <p style={{fontSize:"10px", marginTop:"2px", marginLeft:"0.5rem"}}>(ID: 10001)</p>
+                                        <p style={{fontSize:"12px", marginLeft:"0.5rem", marginBottom:"2rem"}}>Position title</p>
+                                        {this.props.position_list.map((pl) => {return(
+                                        <div style={{marginTop:"1rem"}}>
+                                            <h3 className="chart-legend" style={{marginLeft:"0.5rem"}}>{pl.title}</h3>
+                                            <p style={{fontSize:"10px", marginTop:"2px", marginLeft:"0.5rem"}}>{pl.jobid}</p>
                                         </div>
-                                        <div style={{marginTop:"3rem"}}>
-                                            <h3 className="chart-legend" style={{marginLeft:"0.5rem"}}>Product Designer 2021 Intern</h3>
-                                            <p style={{fontSize:"10px", marginTop:"2px", marginLeft:"0.5rem"}}>(ID: 10001)</p>
-                                        </div>
-                                        <div style={{marginTop:"3rem"}}>
-                                            <h3 className="chart-legend" style={{marginLeft:"0.5rem"}}>Software Engineer</h3>
-                                            <p style={{fontSize:"10px", marginTop:"2px", marginLeft:"0.5rem"}}>(ID: 10001)</p>
-                                        </div>
+                                        )})}
                                     </div>
                                     <div className="col-9">
                                         <div className="row">
-                                            <Chart options={this.state.chartoptions} series={this.state.chartseries} type="bar" height={350} width={500}/>
+                                            <Chart options={this.state.chartoptions} series={this.state.chartseries} type="bar" height={100+(this.props.position_list.length*50)} width={500}/>
                                         </div>
                                     </div>
                                 </div>
@@ -206,13 +222,17 @@ export class Analytics extends Component {
                                     <box-icon type="solid" name="pie-chart" size="sm" color="#56a3fa" style={{marginLeft:"1rem"}}></box-icon>
                                     <h3 className="chart-legend">Position chart</h3>
                                 </div>
-                                <div className="row mb-2">
+                                <div className="row mb-4">
                                     <p style={{fontSize:"14px", marginLeft:"2rem", paddingTop:"0.4rem"}}>Filter By</p>
                                     <div style={{marginLeft:"1.5rem"}}>
-                                        <Select value={this.state.category} onChange={this.onFilter} options={options} className="select-category2"/>
+                                    <DropdownButton variant="white" id="dropdown-basic" size="lg" title={(this.props.position_list[this.state.jobId1].title).substring(0,16)}>
+                                        {Object.keys(this.props.position_list).map((key) => {
+                                            return <Dropdown.Item as="button" onClick={() => {this.selectPosition1(key)}}>{this.props.position_list[key].title} {this.props.position_list[key].jobid}</Dropdown.Item>
+                                        })}
+                                    </DropdownButton>
                                     </div>
                                 </div>
-                                <div className="row mb-3">
+                                <div className="row mb-4">
                                     <Chart options={this.state.pieoptions} series={this.state.pieseries} type="donut" />
                                 </div>
                             </div>
@@ -227,25 +247,31 @@ export class Analytics extends Component {
                                     <box-icon type="solid" name="user-pin" size="sm" color="#56a3fa" style={{marginLeft:"1rem"}}></box-icon>
                                     <h3 className="chart-legend">Interview Conversion</h3>
                                 </div>
-                                <div className="row mb-3">
+                                <div className="row mb-2">
                                     <p style={{fontSize:"14px", marginLeft:"2rem", paddingTop:"0.4rem"}}>Filter By</p>
                                     <div style={{marginLeft:"1.5rem"}}>
-                                        <Select value={this.state.category} onChange={this.onFilter} options={options} className="select-category2"/>
+                                    <DropdownButton variant="white" id="dropdown-basic" size="lg" title={(this.props.position_list[this.state.jobId2].title).substring(0,22)} >
+                                        {Object.keys(this.props.position_list).map((key) => {
+                                            return <Dropdown.Item as="button" onClick={() => {this.selectPosition2(key)}}>{this.props.position_list[key].title} {this.props.position_list[key].jobid}</Dropdown.Item>
+                                        })}
+                                    </DropdownButton>
                                     </div>
                                 </div>
                                 <div className="row mb-2">
                                     <div className="col-6" style={{marginTop:"3.6rem"}}>
                                         <div className="row ml-2">
                                         <box-icon type="solid" name="rectangle" size="12px" color="#e8edfc"></box-icon>
-                                        <p style={{fontSize:"12px", marginLeft:"0.5rem"}}>Total invitation sent</p>
+                                        <p className="analytics_text" style={{marginLeft:"0.5rem", display:"block"}}>Total invitation sent
+                                        <span className="analytics_preview" style={{minWidth:"6rem", display:"block"}}>Number: {this.props.position_list[this.state.jobId2].total_sent}</span></p>
                                         </div>
                                         <div className="row ml-2">
                                         <box-icon type="solid" name="rectangle" size="12px" color="#56a3fa"></box-icon>
-                                        <p style={{fontSize:"12px", marginLeft:"0.5rem"}}>Total interview received</p>
+                                        <p className="analytics_text" style={{marginLeft:"0.5rem", display:"block"}}>Total interview received
+                                        <span className="analytics_preview" style={{minWidth:"6rem", display:"block"}}>Number: {this.props.position_list[this.state.jobId2].total_received}</span></p>
                                         </div>
                                     </div>
                                     <div className="col-6" style={{marginLeft:"-2rem"}}>
-                                        <RateScore percent={70.4} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={250}/>
+                                        <RateScore percent={this.props.position_list[this.state.jobId2].conversion} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={250}/>
                                     </div>
                                 </div>
                             </div>
@@ -261,11 +287,15 @@ export class Analytics extends Component {
                                 <div className="row mb-2">
                                     <p style={{fontSize:"14px", marginLeft:"2rem", paddingTop:"0.4rem"}}>Filter By</p>
                                     <div style={{marginLeft:"1.5rem"}}>
-                                        <Select value={this.state.category} onChange={this.onFilter} options={options} className="select-category2"/>
+                                    <DropdownButton variant="white" id="dropdown-basic" size="lg" title={(this.props.position_list[this.state.jobId3].title).substring(0,30)} >
+                                        {Object.keys(this.props.position_list).map((key) => {
+                                            return <Dropdown.Item as="button" onClick={() => {this.selectPosition3(key)}}>{this.props.position_list[key].title} {this.props.position_list[key].jobid}</Dropdown.Item>
+                                        })}
+                                    </DropdownButton>
                                     </div>
                                 </div>
                                 <div className="row ml-1">
-                                    <InterviewChart dates={["Mar-11", "Mar-12", "Mar-13", "Mar-14", "Mar-15", "Mar-16", "Mar-17"]} videos={[1,2,3,3,2,4,1]} height={200} width={600} />
+                                    <InterviewChart dates={this.props.interview_session.date} videos={this.props.position_list[this.state.jobId3].recorded} height={200} width={600} />
                                 </div>
                             </div>
                         </div>

@@ -19,7 +19,8 @@ import {
     GET_RESUME_URL_ERROR,
     UPDATE_STARS_LIST,
     ADD_SUB_REVIEWER,
-    REMOVE_SUB_REVIEWER
+    REMOVE_SUB_REVIEWER,
+    GET_ANALYTICS_INFO,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -297,3 +298,17 @@ export const removeSubReviewer = (data) => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 }
+
+export const getAnalyticsInfo = (userId) => (dispatch, getState) => {
+  axios
+    .get(`/get-analytics-info?user_id=${userId}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_ANALYTICS_INFO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};

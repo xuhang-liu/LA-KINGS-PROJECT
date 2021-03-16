@@ -186,7 +186,7 @@ export class EssentialUserInfo extends Component {
                         <IconText
                           iconName={"bx bx-diamond bx-sm"}
                           textDisplayed={"Premium"}
-                          textSize={"14px"}
+                          textSize={"12px"}
                           textColor={"#fac046"}
                           iconMargin={"2px"}
                         />

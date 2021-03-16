@@ -236,7 +236,7 @@ export var radialBarOptions2 = {
     plotOptions: {
       radialBar: {
         hollow: {
-          size: "50%",
+          size: "40%",
           margin: 5,
           background: "#cbdbfa",
         },
