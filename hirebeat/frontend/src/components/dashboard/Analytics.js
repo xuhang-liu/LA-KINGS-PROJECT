@@ -141,7 +141,7 @@ export class Analytics extends Component {
                                 <div className="row" style={{alignItems: "center", marginBottom: "2rem"}}>
                                     <div className="col-3" style={{borderRight:"1px solid #E8EDFC"}}>
                                         <div className="row">
-                                        <div className="col-6" style={{marginTop:"1rem"}}>
+                                        <div className="col-6" style={{marginTop:"2rem"}}>
                                             <p style={{fontSize:"12px"}}>Interview received</p>
                                             <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>{this.props.analyticsInfo.interview_received}</h3>
                                         </div>
@@ -152,7 +152,7 @@ export class Analytics extends Component {
                                     </div>
                                     <div className="col-3" style={{borderRight:"1px solid #E8EDFC"}}>
                                         <div className="row">
-                                        <div className="col-6" style={{marginTop:"1rem"}}>
+                                        <div className="col-6" style={{marginTop:"2rem"}}>
                                             <p style={{fontSize:"12px", marginLeft:"0.8rem"}}>Shortlist</p>
                                             <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>{this.props.analyticsInfo.shortlist_num}</h3>
                                         </div>
@@ -163,7 +163,7 @@ export class Analytics extends Component {
                                     </div>
                                     <div className="col-3" style={{borderRight:"1px solid #E8EDFC"}}>
                                         <div className="row">
-                                        <div className="col-6" style={{marginTop:"1rem"}}>
+                                        <div className="col-6" style={{marginTop:"2rem"}}>
                                             <p style={{fontSize:"12px", marginLeft:"0.8rem"}}>Hold</p>
                                             <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>{this.props.analyticsInfo.hold_num}</h3>
                                         </div>
@@ -174,7 +174,7 @@ export class Analytics extends Component {
                                     </div>
                                     <div className="col-3" style={{borderRight:"1px solid #E8EDFC"}}>
                                         <div className="row">
-                                        <div className="col-6" style={{marginTop:"1rem"}}>
+                                        <div className="col-6" style={{marginTop:"2rem"}}>
                                             <p style={{fontSize:"12px", marginLeft:"0.8rem"}}>Reject</p>
                                             <h3 className="chart-legend" style={{fontSize:"3rem", marginTop:"1rem"}}>{this.props.analyticsInfo.reject_num}</h3>
                                         </div>
@@ -198,17 +198,17 @@ export class Analytics extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-3">
-                                        <p style={{fontSize:"12px", marginLeft:"0.5rem", marginBottom:"2rem"}}>Position title</p>
+                                        <p style={{fontSize:"12px", marginLeft:"0.5rem", marginBottom:"2.5rem"}}>Position title</p>
                                         {this.props.position_list.map((pl) => {return(
                                         <div style={{marginTop:"1rem"}}>
                                             <h3 className="chart-legend" style={{marginLeft:"0.5rem"}}>{pl.title}</h3>
-                                            <p style={{fontSize:"10px", marginTop:"2px", marginLeft:"0.5rem"}}>{pl.jobid}</p>
+                                            <p style={{fontSize:"12px", marginTop:"2px", marginLeft:"0.5rem"}}>(ID: {pl.jobid})</p>
                                         </div>
                                         )})}
                                     </div>
                                     <div className="col-9">
                                         <div className="row">
-                                            <Chart options={this.state.chartoptions} series={this.state.chartseries} type="bar" height={100+(this.props.position_list.length*50)} width={500}/>
+                                            <Chart options={this.state.chartoptions} series={this.state.chartseries} type="bar" height={100+(this.props.position_list.length*57)} width={500}/>
                                         </div>
                                     </div>
                                 </div>
