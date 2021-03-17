@@ -9,6 +9,11 @@ import MediaQuery from 'react-responsive';
 class Footer extends Component {
     render() {
         let currentYear = new Date().getFullYear();
+        var uri = window.location.pathname;
+        uri = uri.substring(1, uri.length);
+        if((uri.includes("dashboard"))){
+            return null;
+        }else{
         return (
             <React.Fragment>
             <MediaQuery minDeviceWidth={1224}>
@@ -273,6 +278,7 @@ class Footer extends Component {
             </MediaQuery>
         </React.Fragment>
         );
+    }
     }
 }
 
