@@ -80,7 +80,7 @@ export class Analytics extends Component {
             pieoptions: {
             labels: ['Reject', 'Shortlist', 'Hold'],
               chart: {
-                type: 'donut',
+                type: 'pie',
               },
               fill: {
                 type: 'gradient',
@@ -279,7 +279,7 @@ export class Analytics extends Component {
                     </div>
                     <div className="col-7">
                         <div className="chart-bg" style={{marginTop:"2rem"}}>
-                            <div style={{padding: "0.6rem", paddingBottom:"0.1rem"}}>
+                            <div style={{padding: "0.6rem", paddingBottom:"0.2rem"}}>
                                 <div className="row" style={{alignItems: "center", marginBottom: "2rem"}}>
                                     <box-icon type="solid" name="chart" size="sm" color="#56a3fa" style={{marginLeft:"1rem"}}></box-icon>
                                     <h3 className="chart-legend">Interview Sessions</h3>

@@ -42,6 +42,25 @@ class BlogSidebarEmployer extends Component {
                         <div className="clear"></div>
                     </article>
 
+                    <article className="item">
+                        <Link to="/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer2.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Mar 17, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company">
+                                    <a>Benefits of hiring diverse candidates in your company</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
                 </div>
             </div>
         );

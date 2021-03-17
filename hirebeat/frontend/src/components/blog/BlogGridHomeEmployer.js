@@ -88,18 +88,22 @@ export class BlogGridHomeEmployer extends React.Component {
 
 const blogURLs = [
     "/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring",
+    "/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company",
 ];
 
 const blogImgs = [
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer1.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer2.jpg",
 ];
 
 const blogDates = [
     "Mar 15, 2021",
+    "Mar 17, 2021",
 ];
 
 const blogTitles = [
     "HOW ONE-WAY INTERVIEW HELP A COMPANY",
+    "BENEFITS OF HIRING DIVERSE CANDIDATES",
 ];
 
 const blogAuthors = [
