@@ -219,6 +219,10 @@ const companyNames = [
     "Charles River Associates",
     "ICF",
     "ADP",
+    "Workday",
+    "Alight",
+    "Massmutual",
+    "Sun Life Financial",
 ]
 
 const companyURLs = [
@@ -306,6 +310,10 @@ const companyURLs = [
     "/cra-international",
     "/icg-international",
     "/adp",
+    "/workday",
+    "/alight",
+    "/massmutual",
+    "/sun-life-financial",
 ];
 
 const companyLogos = [
@@ -393,6 +401,10 @@ const companyLogos = [
     "https://hirebeat-assets.s3.amazonaws.com/company-logo/CRA.png",
     "https://hirebeat-assets.s3.amazonaws.com/company-logo/ICF.png",
     "https://hirebeat-assets.s3.amazonaws.com/company-logo/ADP.png",
+    "https://hirebeat-assets.s3.amazonaws.com/company-logo/workday.png",
+    "https://hirebeat-assets.s3.amazonaws.com/company-logo/alight.png",
+    "https://hirebeat-assets.s3.amazonaws.com/company-logo/massmutual.png",
+    "https://hirebeat-assets.s3.amazonaws.com/company-logo/sunlife.png",
 ]
 
 export default CompanyList;

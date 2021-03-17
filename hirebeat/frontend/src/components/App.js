@@ -145,6 +145,10 @@ import ResourcesGlobalProfessionalsInfo from"./companyData/companies/ResourcesGl
 import CRAInternationalInfo from"./companyData/companies/CRAInternationalInfo";
 import ICGInternationalInfo from"./companyData/companies/ICGInternationalInfo";
 import ADPInfo from"./companyData/companies/ADPInfo";
+import WorkdayInfo from"./companyData/companies/WorkdayInfo";
+import AlightInfo from"./companyData/companies/AlightInfo";
+import MassmutualInfo from"./companyData/companies/MassmutualInfo";
+import SunLifeFinancialInfo from"./companyData/companies/SunLifeFinancialInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -395,6 +399,10 @@ class App extends Component {
                 <Route exact path="/cra-international" component={CRAInternationalInfo} />
                 <Route exact path="/icg-international" component={ICGInternationalInfo} />
                 <Route exact path="/adp" component={ADPInfo} />
+                <Route exact path="/workday" component={WorkdayInfo} />
+                <Route exact path="/alight" component={AlightInfo} />
+                <Route exact path="/massmutual" component={MassmutualInfo} />
+                <Route exact path="/sun-life-financial" component={SunLifeFinancialInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />
