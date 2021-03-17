@@ -484,7 +484,7 @@ def get_analytics_info(request):
     reject_list = []
     week = []
     # get the most recent week dates
-    for day in range(6, -1, -1):
+    for day in range(14, -1, -1):
         # use timezone.now() to get current time since timezone is enabled
         curr_date = timezone.now() - timedelta(days=day)
         week.append(curr_date.strftime("%Y-%m-%d"))

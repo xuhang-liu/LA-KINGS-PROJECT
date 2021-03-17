@@ -163,9 +163,10 @@ export class EmployerDashboard extends Component {
   };
 
   renderAnalytics = () => {
-    this.setState({
+    this.props.getAnalyticsInfo(this.props.user.id);
+    setTimeout(()=>{this.setState({
       subpage: "analytics",
-    });
+    });}, 200)
   };
 
   renderSubpage = () => {

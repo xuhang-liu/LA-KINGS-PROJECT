@@ -9,6 +9,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 export class Analytics extends Component {
     constructor(props) {
         super(props);
+        this.props.getAnalyticsInfo(this.props.user.id);
       }
 
     state = { 
