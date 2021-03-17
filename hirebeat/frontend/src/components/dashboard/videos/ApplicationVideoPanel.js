@@ -75,7 +75,7 @@ class ApplicationVideoPanel extends Component {
             <div className="mb-4 pl-0" style={{marginLeft:"-2rem"}}>
                 <div>
                     <h4>
-                        <span style={{color:"#67A3F3"}}>Question: </span>{this.props.question}
+                        <span style={{color:"#67A3F3", fontWeight:"600"}}>Question: </span><span style={{color:"#090d3a", fontWeight:"600"}}>{this.props.question}</span>
                     </h4>
                 </div>
                 <div className="row">
@@ -90,11 +90,11 @@ class ApplicationVideoPanel extends Component {
                             width="32vw" height="auto"/>
                             </div>
                         </div>
-                        <div className="row mt-3">
+                        <div className="row mt-3 ml-1">
                             <div className="col-3">
                                 <h4 style={{fontWeight:"500", color:"#090D3A"}}>Speed</h4>
                             </div>
-                            <div className="col-6">
+                            <div className="col-9">
                                 <button className="default-btn2" style={{fontSize:"0.8rem", marginLeft:"-1rem", padding:"6px", backgroundColor: selectedColor1}}
                                 onClick={this.handleSetPlaybackRate} value={1}>Normal</button>
                                 <button className="default-btn2 ml-2" style={{fontSize:"0.8rem", padding:"6px", backgroundColor: selectedColor2}}
@@ -113,7 +113,8 @@ class ApplicationVideoPanel extends Component {
                                 <div className="col px-0">
                                     <div className="p-1" style={{overflow:"auto", maxHeight:"15rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem"}}>
                                         {this.props.comments[this.state.page].map((comment)=>{
-                                                return <div > {comment}</div> 
+                                                return <div style={{marginTop:"5px"}}><span style={{fontWeight:"600", color:"#4a6f8a", fontFamily:"Avenir Next, Segoe UI", paddingLeft:"6px"}}>{comment.split(":")[0]}</span>
+                                                <span style={{fontWeight: "normal", color:"#7d7d7d", fontFamily:"Avenir Next, Segoe UI", paddingLeft:"10px"}}>{comment.split(":")[1]}</span></div> 
                                         })}
                                     </div>
                                 </div>
@@ -123,7 +124,7 @@ class ApplicationVideoPanel extends Component {
                                             <textarea  
                                                         style={{display:"inline-block", outline:"none", overflow: "auto", border:"none", resize:"none", width:"105%", height:"2.94rem"}}
                                                         value={this.state.comments}
-                                                        placeholder="Type your comment here"
+                                                        placeholder="Write your comments and leave your score"
                                                         onChange={(e)=>{this.setState({comments :e.target.value})}}
                                                 >
                                             </textarea>

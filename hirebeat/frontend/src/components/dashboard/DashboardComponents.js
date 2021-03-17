@@ -58,11 +58,13 @@ export const IconText = (props) => {
                 style={{
                     fontSize: props.textSize,
                     marginBottom: "10px",
-                    marginLeft:"5px",
-                    color: props.textColor ?? "#7d7d7d",
+                    marginLeft: props.textMarginLeft,
+                    marginRight: props.textMarginLeft,
+                    color: props.textColor ?? "#ffffff",
                     textDecoration: props.textDecoration ?? "none",
-                    wordWrap: "revert",
+                    wordWrap: "break-word",
                     textAlign: "center",
+                    wordBreak: "break-word",
                 }}
             >
                 {props.textDisplayed}
