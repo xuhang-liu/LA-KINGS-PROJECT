@@ -39,7 +39,7 @@ class HowHirebeatWork extends Component {
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Simply edit job title and ID to get ready to post.
+                                                Simply edit job title, job ID and the job description.
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
@@ -79,7 +79,7 @@ class HowHirebeatWork extends Component {
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Send video interview invitation by on click.
+                                                Send video interview invitation by one click.
                                             </li>
                                         </ul>
                                         <Link to='/employer_register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>

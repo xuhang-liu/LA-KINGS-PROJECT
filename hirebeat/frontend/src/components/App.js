@@ -27,6 +27,7 @@ import Employerabout from "./company/employerabout";
 import bloggrid from "./blog/bloggrid";
 import bloggridEmployer from "./blog/bloggridEmployer";
 import BlogDetail1_Employer from "./blog/blog-details1-employer";
+import BlogDetail2_Employer from "./blog/blog-details2-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -279,6 +280,7 @@ class App extends Component {
                 <Route exact path="/bloghome" component={bloggrid} />
                 <Route exact path="/bloghome_employer" component={bloggridEmployer} />
                 <Route exact path="/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring" component={BlogDetail1_Employer} />
+                <Route exact path="/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company" component={BlogDetail2_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />

@@ -10,7 +10,7 @@ import 'boxicons';
 //import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
-import Select from 'react-select'
+import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
 
 export class JobApplication extends Component{

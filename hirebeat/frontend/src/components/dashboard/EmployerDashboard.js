@@ -10,7 +10,7 @@ import ShortList from "./ShortList";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
-import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus } from "../../redux/actions/question_actions";
+import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -40,6 +40,7 @@ export class EmployerDashboard extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     int_ques: PropTypes.array.isRequired,
+    position_list: PropTypes.array.isRequired,
   };
 
   makeProfile = () => {
@@ -96,6 +97,7 @@ export class EmployerDashboard extends Component {
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
     this.props.getPostedJobs(user.id);
+    this.props.getAnalyticsInfo(this.props.user.id);
   }
 
   state = {
@@ -211,11 +213,19 @@ export class EmployerDashboard extends Component {
             renderApplications={this.renderApplications}
         />;
       case "analytics":
+        if (Object.keys(this.props.position_list).length > 0){
         return <Analytics
             user={this.props.user}
             profile={this.props.profile}
             renderApplications={this.renderApplications}
-          />;
+            analyticsInfo={this.props.analyticsInfo}
+            getAnalyticsInfo={this.props.getAnalyticsInfo}
+            position_list={this.props.position_list}
+            interview_session={this.props.interview_session}
+          />}
+          else{
+            return <p>You Don't have any active position.</p>
+          };
       case "shortlist":
         if (Object.keys(this.props.jobL).length > 0){
           return <ShortList 
@@ -321,11 +331,14 @@ const mapStateToProps = (state) => {
   phone_candidate: state.video_reducer.phone_candidate,
   location_candidate: state.video_reducer.location_candidate,
   star_list: state.question_reducer.star_list,
+  analyticsInfo: state.question_reducer.analyticsInfo,
+  position_list: state.question_reducer.position_list,
+  interview_session: state.question_reducer.interview_session,
 }
 };
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
-    getRecordStatus, resendInvitation, updateCommentStatus})(
+    getRecordStatus, resendInvitation, updateCommentStatus, getAnalyticsInfo})(
     EmployerDashboard
 );

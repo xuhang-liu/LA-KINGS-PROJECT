@@ -79,10 +79,10 @@ const AcceptedCandidate = (props) => {
                         Email
                     </div>
                     <div className="col-2">
-                        recorded
+                        Recorded
                     </div>
                     <div className="col-3">
-                        score
+                        Score
                     </div>
                 </div>
                 {props.theJob.applicants.map((applicant) => {
