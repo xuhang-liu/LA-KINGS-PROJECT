@@ -3,6 +3,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 import AboutContentEmployer from './AboutContentEmployer';
 import FreeTrialArea from '../HomeEmployer/FreeTrialArea';
 import { useEffect } from "react";
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -22,6 +23,7 @@ class Employerabout extends Component {
                 />
                 <AboutContentEmployer />
                 <FreeTrialArea />
+                <Footer />
             </React.Fragment>
         );
     }

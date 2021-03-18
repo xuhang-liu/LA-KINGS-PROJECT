@@ -3,6 +3,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 import { connect } from "react-redux";
 import { getZipRecruiterJobs } from "../../redux/actions/auth_actions";
 import { confirmAlert } from 'react-confirm-alert';
+import Footer from "../layout/Footer";
 
 export class SearchPanel extends Component {
 
@@ -128,6 +129,7 @@ export class SearchPanel extends Component {
                     </div>
                 </div>
                 </div>
+                <Footer />
             </React.Fragment>
         );
     }

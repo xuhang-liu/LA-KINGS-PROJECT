@@ -484,7 +484,7 @@ def get_analytics_info(request):
     reject_list = []
     week = []
     # get the most recent week dates
-    for day in range(14, -1, -1):
+    for day in range(6, -1, -1):
         # use timezone.now() to get current time since timezone is enabled
         curr_date = timezone.now() - timedelta(days=day)
         week.append(curr_date.strftime("%Y-%m-%d"))
@@ -521,7 +521,7 @@ def get_analytics_info(request):
         if(len(candidates) != 0):
             position_info["conversion"] = float(math.ceil(len(candidates_recorded)/len(candidates)*100))
         if(received != 0):
-            position_info["rate"] = [float(math.ceil(reject/received*100)), float(math.ceil(short/received*100)), float(math.ceil(hold/received*100))]
+            position_info["rate"] = [float(math.ceil(short/received*100)), float(math.ceil(hold/received*100)), float(math.ceil(reject/received*100))]
         position_list.append(position_info)
         record = []
         interQ = list(InterviewQuestions.objects.filter(positions_id=position_id).values())

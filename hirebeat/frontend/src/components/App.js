@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import DocumentMeta from 'react-document-meta';
 import {Helmet} from "react-helmet";
 import Header from "./layout/Header";
-import Footer from "./layout/Footer";
 import Dashboard from "./dashboard/Dashboard";
 import EmployerDashboard from "./dashboard/EmployerDashboard";
 import { Provider } from "react-redux";
@@ -423,7 +422,6 @@ class App extends Component {
                 <PrivateRoute exact path="/interview-info" component={InterviewInfo} />
                 <Route component={NotFoundPage} />
               </Switch>
-              <Footer />
             </Fragment>
           </Router>
         </AlertProvider>

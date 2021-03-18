@@ -78,8 +78,9 @@ export class Analytics extends Component {
 
         //pie-chart
         pieseries: this.props.position_list[0].rate,
-            pieoptions: {
-            labels: ['Reject', 'Shortlist', 'Hold'],
+        pieoptions: {
+            colors:['#13C4A1', '#FFCD00', '#FF0000'],
+            labels: ['Shortlist', 'Hold', 'Reject'],
               chart: {
                 type: 'pie',
               },

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import AmazingFeatures from "../HomeSaas/AmazingFeatures"
 import Progress from '../HomeSaas/Progress';
 import MediaQuery from 'react-responsive';
+import Footer from "../layout/Footer";
 //import WhyUs from '../HomeSaas/WhyUs';
 //import CompanyProfile from '../HomeSaas/CompanyProfile';
 
@@ -40,6 +41,7 @@ class IndexSaas extends Component {
                 {/*<MoreToDiscover />*/}
                 <ClientsFeedbackSlider/>
                 <FreeTrialArea />
+                <Footer />
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
               </div>
@@ -53,6 +55,7 @@ class IndexSaas extends Component {
                 {/*<MoreToDiscover />*/}
                 <ClientsFeedbackSlider/>
                 <FreeTrialArea />
+                <Footer />
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
               </MediaQuery>

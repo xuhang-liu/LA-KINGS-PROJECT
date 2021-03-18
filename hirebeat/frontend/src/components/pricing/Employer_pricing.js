@@ -4,6 +4,7 @@ import Employer_PricingStyleOne from './Employer_PricingStyleOne';
 //import FaqContent from '../Faq/FaqContent';
 //import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -25,6 +26,7 @@ class Employer_pricing extends Component {
                     pageDescription="Hiring talents, take back your time. We are here to help you save 50% of your work day on screening calls." 
                 />
                 <Employer_PricingStyleOne />
+                <Footer />
             </React.Fragment>
         );
     }

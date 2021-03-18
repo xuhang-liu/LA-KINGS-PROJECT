@@ -4,6 +4,7 @@ import FreeTrialArea from "../HomeEmployer/FreeTrialArea";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import emailjs from 'emailjs-com';
+import Footer from "../layout/Footer";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -164,7 +165,8 @@ class EmployerContact extends Component {
           </form>
         </MediaQuery>
         <FreeTrialArea/>
-            </React.Fragment>
+        <Footer />
+        </React.Fragment>
         );
     }
 }
