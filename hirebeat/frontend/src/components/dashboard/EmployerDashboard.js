@@ -277,8 +277,11 @@ export class EmployerDashboard extends Component {
               </div>
               <div className='col-11'>
                 <div className="dashboard-main">
-                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") || (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics")) ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
-                  <div className="container" style={{marginBottom: "0%"}}>
+                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") || (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics")) ? null : 
+                <div className="container-fluid" style={{height: "22rem"}} data-tut="reactour-rowbox">
+                  <RowBoxes userId={this.props.user.id} isEmployer={true}/>
+                </div>}
+                  <div className="container-fluid" style={{marginBottom: "0%"}}>
                     <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
                       {this.renderSubpage()}
                     </div>
