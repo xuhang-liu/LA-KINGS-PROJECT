@@ -10,7 +10,7 @@ import ShortList from "./ShortList";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
-import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus } from "../../redux/actions/question_actions";
+import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -194,6 +194,7 @@ export class EmployerDashboard extends Component {
             renderPosition={this.renderPosition}
             user={this.props.user}
             profile={this.props.profile}
+            updateViewStatus={this.props.updateViewStatus}
         />;
       case "position":
         return <CreatePosition
@@ -201,6 +202,8 @@ export class EmployerDashboard extends Component {
             profile={this.props.profile}
             renderApplications={this.renderApplications}
             addPosition={this.props.addPosition}
+            getQuestionList={this.props.getQuestionList}
+            bqList={this.props.bqList}
         />;
       case "settings":
         return <SubpageSetting
@@ -311,10 +314,11 @@ const mapStateToProps = (state) => ({
   phone_candidate: state.video_reducer.phone_candidate,
   location_candidate: state.video_reducer.location_candidate,
   star_list: state.question_reducer.star_list,
+  bqList: state.question_reducer.bqList,
 });
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
-    getRecordStatus, resendInvitation, updateCommentStatus})(
+    getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus})(
     EmployerDashboard
 );

@@ -1,4 +1,4 @@
-import { UPDATE_STARS_LIST, GET_QUESTIONS, NEXT_QUESTION, UPDATE_SECONDROUND_STATUS, GET_RANDOM_QUESTION, GET_INTERVIEW_QUESTIONS, NEXT_INTERVIEW_QUESTION, GET_POSTED_JOBS, UPDATE_COMMENT_STATUS, GET_APPLICANTS_DATA } from "../actions/action_types";
+import { UPDATE_STARS_LIST, GET_QUESTIONS, NEXT_QUESTION, UPDATE_SECONDROUND_STATUS, GET_RANDOM_QUESTION, GET_INTERVIEW_QUESTIONS, NEXT_INTERVIEW_QUESTION, GET_POSTED_JOBS, UPDATE_COMMENT_STATUS, GET_APPLICANTS_DATA, GET_QUESTION_LIST } from "../actions/action_types";
 
 const initialState = {
   questions: [],
@@ -13,7 +13,8 @@ const initialState = {
   questionTime: 0,
   postedJobs: [],
   applicantsData: {},
-  star_list: {1: 100}
+  star_list: {1: 100},
+  bqList: [],
 };
 
 export default function (state = initialState, action) {
@@ -98,6 +99,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         star_list: action.payload.data,
+      }
+    case GET_QUESTION_LIST:
+      return {
+        ...state,
+        bqList: action.payload.data,
       }
     default:
       return state;

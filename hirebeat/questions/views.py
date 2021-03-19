@@ -92,16 +92,10 @@ def add_position(request):
     profile = Profile.objects.get(user_id=user.id)
     profile.position_count += 1
     profile.save()
-    question1 = request.data['question1']
-    question2 = request.data['question2']
-    question3 = request.data['question3']
+    questions = request.data['questions']
     position = Positions.objects.create(user=user, job_title=jobtitle, job_id=jobid, job_description=jobdescription, questionTime=questionTime)
-    if question1 != "":
-        data1 = InterviewQuestions.objects.create(description=question1, positions=position)
-    if question2 != "":
-        data2 = InterviewQuestions.objects.create(description=question2, positions=position)
-    if question3 != "":
-        data3 = InterviewQuestions.objects.create(description=question3, positions=position)
+    for i in range(len(questions)):
+        InterviewQuestions.objects.create(description=questions[i], positions=position)
     return Response({
         "jobtitle": jobtitle
     })
@@ -459,4 +453,17 @@ def remove_sub_reviewer(request):
     sub_id = request.data["sub_id"]
     SubReviewers.objects.get(pk=sub_id).delete()
 
-    return Response("Remove sub reviewer successfully", status=status.HTTP_200_OK) 
+    return Response("Remove sub reviewer successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_question_list(request):
+    questions = Question.objects.filter(title="BQ").values();
+    return Response({"data": questions})
+
+@api_view(['POST'])
+def update_view_status(request):
+    id = request.data["candidate_id"]
+    candidate = InvitedCandidates.objects.get(id=id)
+    candidate.is_viewed = True
+    candidate.save();
+    return Response("Update is_reviewed successfully", status=status.HTTP_200_OK)

@@ -74,6 +74,7 @@ export class JobApplication extends Component{
                                     interviewResume={this.props.interviewResume}
                                     user={this.props.user}
                                     profile={this.props.profile}
+                                    updateViewStatus={this.props.updateViewStatus}
                                 />
                             )
                         })}
@@ -333,6 +334,7 @@ const JobViewDetail = (props) => {
                     hideView={() => (setView(false), props.addSelected(0))}
                     user={props.user}
                     profile={props.profile}
+                    updateViewStatus={props.updateViewStatus}
                 />
             }
         </React.Fragment>
@@ -705,6 +707,7 @@ const JobCard = (props) => {
                                 jobTitle={props.jobTitle}
                                 updateCommentStatus={props.updateCommentStatus}
                                 offset={offset}
+                                updateViewStatus={props.updateViewStatus}
                             />
                              {/*<ReactPaginate
                                  previousLabel={'<'}
@@ -1048,6 +1051,8 @@ const ApplicantList = (props) => {
                         positionId={a.positions_id}
                         isRecorded={a.is_recorded}
                         videoCount={a.video_count}
+                        candidateId={a.id}
+                        isViewed={a.is_viewed}
                         getApplicantsVideos={props.getApplicantsVideos}
                         getApplicantsInfo={props.getApplicantsInfo}
                         getRecordStatus={props.getRecordStatus}
@@ -1062,6 +1067,7 @@ const ApplicantList = (props) => {
                         companyName={props.companyName}
                         jobTitle={props.jobTitle}
                         updateCommentStatus={props.updateCommentStatus}
+                        updateViewStatus={props.updateViewStatus}
                     />
                 )
             })}
@@ -1075,8 +1081,15 @@ const Applicant = (props) => {
     let companyName = props.companyName;
     let jobTitle = props.jobTitle;
     let name = props.name;
+    let candidateId = props.candidateId;
+    const [isViewed, setIsViewed] = useState(props.isViewed);
+    const commentStatus = props.comment_status;
 
     function viewResult() {
+        if (!isViewed) {
+            props.updateViewStatus({"candidate_id": candidateId});
+            setIsViewed(true);
+        }
         // get videos and info
         props.getResumeURL(positionId, props.id_candidate);
         props.getApplicantsVideos(email, positionId);
@@ -1165,8 +1178,10 @@ const Applicant = (props) => {
                 }}
             />
             <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
+                {/* add unread lable here */}
                 {props.videoCount > 0 ? 
                 <div className="col-2 mt-2">
+                    {(!isViewed && commentStatus == 0) && <span class="dot"></span>}
                     <button className="title-button1" onClick={() => viewResult()}>
                         {props.name}</button></div>
                 : <div className="col-2 interview-txt9 mt-2">{props.name}</div>
