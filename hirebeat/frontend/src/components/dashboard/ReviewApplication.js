@@ -137,31 +137,6 @@ class ReviewApplication extends Component{
                                                 comment_status={this.props.comment_status}
                             />
                         </div>
-                        {/*<div className="col-3 container" style={{marginTop:"2.5%"}}>
-                             <div className="container mt-3 ml-2">
-                                {this.props.comment_status == 1 ? <button className="btn btn-success btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
-                                    Shortlist
-                                </button>
-                                : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(1);}}>
-                                    Shortlist
-                                </button>
-                                }
-                                {this.props.comment_status == 2 ? <button className="btn btn-warning btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(2);}}>
-                                    Hold
-                                </button>
-                                : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(2);}}>
-                                    Hold
-                                </button>
-                                }
-                                {this.props.comment_status == 3 ? <button className="btn btn-danger btn-block" style={{marginBottom:"10%"}} onClick={() => {this.updateStatus(3);}}>
-                                    Reject
-                                </button>
-                                : <button className="btn btn-block" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%"}} onClick={() => {this.updateStatus(3);}}>
-                                    Reject
-                                </button>
-                                }
-                            </div> 
-                        </div>*/}
                     </div>
                 </div>
             </div>

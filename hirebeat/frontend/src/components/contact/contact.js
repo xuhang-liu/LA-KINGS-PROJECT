@@ -4,6 +4,7 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import emailjs from 'emailjs-com';
 import {Link} from "react-router-dom";
+import Footer from "../layout/Footer";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -152,7 +153,8 @@ class Contact extends Component {
             </div>
           </div>
         </MediaQuery>
-            </React.Fragment>
+        <Footer />
+        </React.Fragment>
         );
     }
 }

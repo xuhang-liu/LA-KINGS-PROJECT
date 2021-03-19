@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import AboutContent from './AboutContent';
-import WhyChooseUs from '../Common/WhyChooseUs';
-import FaqContent from '../Faq/FaqContent';
+import BlogGridHomeEmployer from './BlogGridHomeEmployer';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Footer from "../layout/Footer";
@@ -15,18 +13,16 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class About extends Component {
+class bloggridEmployer extends Component {
     render() {
         return (
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
-                    pageTitle="Help job seekers gain core competence" 
-                    pageDescription="By implementing an intelligent talent database" 
+                    pageTitle="Blog" 
+                    pageDescription="News and Insights" 
                 />
-                <AboutContent />
-                <WhyChooseUs />
-                <FaqContent />
+                <BlogGridHomeEmployer />
                 <FreeTrialArea />
                 <Footer />
             </React.Fragment>
@@ -34,4 +30,4 @@ class About extends Component {
     }
 }
 
-export default About;
+export default bloggridEmployer;

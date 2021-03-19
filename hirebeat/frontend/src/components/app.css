@@ -744,7 +744,7 @@ h5 {
   width: 14.125rem;
   height: 2.125rem;
   background: #ff6b00;
-  box-shadow: 0px 4px 25px rgba(255, 107, 0, 0.25);
+  box-shadow: 2px 2px 4px rgba(255, 107, 0, 0.16);
   border-radius: 5px;
   border: 0px;
 }
@@ -754,7 +754,7 @@ h5 {
   width: 14.125rem;
   height: 2.125rem;
   background: #7d7d7d;
-  box-shadow: 0px 4px 25px rgba(125, 125, 125, 0.25);
+  box-shadow: 2px 2px 4px rgba(125, 125, 125, 0.16);
   border-radius: 5px;
   border: none;
 }
@@ -763,8 +763,8 @@ h5 {
   text-align: center;
   width: 14.125rem;
   height: 2.125rem;
-  background: #14cc75;
-  box-shadow: 0px 4px 25px rgba(20, 204, 117, 0.25);
+  background: #13c4a1;
+  box-shadow: 2px 2px 4px rgba(19, 196, 161, 0.16);
   border-radius: 5px;
   border: 0px;
 }
@@ -776,7 +776,7 @@ h5 {
     width: 150px;
     height: 24px;
     background: #ff6b00;
-    box-shadow: 0px 4px 25px rgba(255, 107, 0, 0.25);
+    box-shadow: 2px 2px 4px rgba(255, 107, 0, 0.16);
     border-radius: 30px;
     border: 0px;
   }
@@ -787,7 +787,7 @@ h5 {
     width: 150px;
     height: 24px;
     background: #7d7d7d;
-    box-shadow: 0px 4px 25px rgba(125, 125, 125, 0.25);
+    box-shadow: 2px 2px 4px rgba(125, 125, 125, 0.16);
     border-radius: 30px;
     border: 0px;
   }
@@ -797,8 +797,8 @@ h5 {
     font-size: 10px;
     width: 150px;
     height: 24px;
-    background: #14cc75;
-    box-shadow: 0px 4px 25px rgba(20, 204, 117, 0.25);
+    background: #13c4a1;
+    box-shadow: 2px 2px 4px rgba(19, 196, 161, 0.16);
     border-radius: 30px;
     border: 0px;
   }
@@ -1616,6 +1616,10 @@ h5 {
 }
 
 .select-category2 {
+  width: 12rem;
+}
+
+.select-category3 {
   width: 11rem;
 }
 
@@ -2578,15 +2582,23 @@ h5 {
 }
 
 .search-candidate-input {
+  font-family: Avenir Next, Segoe UI;
+  font-size: 20px;
+  font-weight: 500;
   color: #67a3f3;
   width: fit-content;
+  height: fit-content;
   padding-left: 0.5rem;
   border: 2px solid #E8EDFC;
   box-sizing: border-box;
+  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);;
   border-radius: 30px;
 }
 
 .search-candidate-input::placeholder {
+  font-family: Avenir Next, Segoe UI;
+  font-size: 20px;
+  font-weight: 500;
   padding-left: 0.5rem;
   color: #67a3f3;
 }
@@ -2937,4 +2949,52 @@ h5 {
   border-radius: 50%;
   display: inline-block;
   margin-right: 5px;
+}
+
+.btn-white {
+  color: #67A3F3 !important;
+  background-color: white !important;
+}
+
+.btn-white::before {
+  display:none !important; 
+}
+
+.short-list-text {
+  color: #090D3A;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.short-list-text:hover {
+  color: #ff6b00;
+}
+
+.analytics_text {
+  font-size: 14px;
+  cursor: pointer;
+  display: inline;
+}
+
+.analytics_preview {
+  margin-left: 1rem;
+  display: inline;
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16);
+  border-radius: 5px;
+  background: #ffffff;
+  color: #090d3a;
+  text-align: center;
+  width: auto;
+  visibility: hidden;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: "Avenir Next", "Segoe UI";
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  padding: 4px;
+}
+.analytics_text:hover .analytics_preview {
+  visibility: visible;
+  transition-delay: 0s;
 }

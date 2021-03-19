@@ -10,7 +10,7 @@ import ShortList from "./ShortList";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
-import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus } from "../../redux/actions/question_actions";
+import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -40,6 +40,7 @@ export class EmployerDashboard extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     int_ques: PropTypes.array.isRequired,
+    position_list: PropTypes.array.isRequired,
   };
 
   makeProfile = () => {
@@ -96,6 +97,7 @@ export class EmployerDashboard extends Component {
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
     this.props.getPostedJobs(user.id);
+    this.props.getAnalyticsInfo(this.props.user.id);
   }
 
   state = {
@@ -161,9 +163,10 @@ export class EmployerDashboard extends Component {
   };
 
   renderAnalytics = () => {
-    this.setState({
+    this.props.getAnalyticsInfo(this.props.user.id);
+    setTimeout(()=>{this.setState({
       subpage: "analytics",
-    });
+    });}, 200)
   };
 
   renderSubpage = () => {
@@ -214,16 +217,24 @@ export class EmployerDashboard extends Component {
             renderApplications={this.renderApplications}
         />;
       case "analytics":
+        if (Object.keys(this.props.position_list).length > 0){
         return <Analytics
             user={this.props.user}
             profile={this.props.profile}
             renderApplications={this.renderApplications}
-          />;
+            analyticsInfo={this.props.analyticsInfo}
+            getAnalyticsInfo={this.props.getAnalyticsInfo}
+            position_list={this.props.position_list}
+            interview_session={this.props.interview_session}
+          />}
+          else{
+            return <p>You Don't have any active position.</p>
+          };
       case "shortlist":
-        if (Object.keys(this.props.postedJobs).length > 0){
+        if (Object.keys(this.props.jobL).length > 0){
           return <ShortList 
             getPJobs={this.getPJobs}
-            postedJobs={this.props.postedJobs}
+            postedJobs={this.props.jobL}
             int_ques={this.props.int_ques}
             getApplicantsVideos={this.props.getApplicantsVideos}
             getApplicantsInfo={this.props.getApplicantsInfo}
@@ -269,8 +280,11 @@ export class EmployerDashboard extends Component {
               </div>
               <div className='col-11'>
                 <div className="dashboard-main">
-                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") || (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics")) ? null : <RowBoxes userId={this.props.user.id} isEmployer={true}/>}
-                  <div className="container" style={{marginBottom: "0%"}}>
+                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") || (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics")) ? null : 
+                <div className="container-fluid" style={{height: "22rem"}} data-tut="reactour-rowbox">
+                  <RowBoxes userId={this.props.user.id} isEmployer={true}/>
+                </div>}
+                  <div className="container-fluid" style={{marginBottom: "0%"}}>
                     <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
                       {this.renderSubpage()}
                     </div>
@@ -298,7 +312,17 @@ export class EmployerDashboard extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+  var job_list = {};
+
+  Object.keys(state.question_reducer.postedJobs).map((key)=>{
+    if(!state.question_reducer.postedJobs[key].is_closed) {
+        job_list[key] = state.question_reducer.postedJobs[key];
+    };
+  });
+
+  return {
+  jobL: job_list,
   profile: state.auth_reducer.profile,
   user: state.auth_reducer.user,
   userfullname: state.auth_reducer.userfullname,
@@ -315,10 +339,14 @@ const mapStateToProps = (state) => ({
   location_candidate: state.video_reducer.location_candidate,
   star_list: state.question_reducer.star_list,
   bqList: state.question_reducer.bqList,
-});
+  analyticsInfo: state.question_reducer.analyticsInfo,
+  position_list: state.question_reducer.position_list,
+  interview_session: state.question_reducer.interview_session,
+}
+};
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
-    getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus})(
+    getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo})(
     EmployerDashboard
 );

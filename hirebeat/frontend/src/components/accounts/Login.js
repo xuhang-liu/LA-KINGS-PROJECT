@@ -6,6 +6,7 @@ import {login, exchangeToken, loadProfile} from "../../redux/actions/auth_action
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -217,7 +218,7 @@ export class Login extends Component {
 
             </section>
           </div>
-
+          <Footer />
         </React.Fragment>
 
     );

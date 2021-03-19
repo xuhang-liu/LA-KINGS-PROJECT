@@ -6,6 +6,7 @@ import LeverageHireBeat from "../HomeEmployer/LeverageHireBeat";
 import HowHirebeatWork from "../HomeEmployer/HowHirebeatWork";
 import FreeTrialArea from "../HomeEmployer/FreeTrialArea";
 import MediaQuery from 'react-responsive';
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -32,6 +33,7 @@ class IndexEmployer extends Component {
                 <HowHirebeatWork/>
                 <LeverageHireBeat/>
                 <FreeTrialArea/>
+                <Footer />
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
               </div>
@@ -42,6 +44,7 @@ class IndexEmployer extends Component {
                 <HowHirebeatWork/>
                 <LeverageHireBeat/>
                 <FreeTrialArea/>
+                <Footer />
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
               </MediaQuery>

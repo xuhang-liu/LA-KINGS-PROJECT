@@ -4,6 +4,7 @@ import PricingStyleOne from './PricingStyleOne';
 import FaqContent from '../Faq/FaqContent';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -27,6 +28,7 @@ class Pricing extends Component {
                 <PricingStyleOne />
                 <FaqContent />
                 <FreeTrialArea />
+                <Footer />
             </React.Fragment>
         );
     }

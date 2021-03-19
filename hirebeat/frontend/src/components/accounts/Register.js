@@ -8,6 +8,7 @@ import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import badge from '../../assets/badge.png';
+import Footer from "../layout/Footer";
 //import leftbg from '../../assets/Login.png';
 
 function ScrollToTopOnMount() {
@@ -441,7 +442,7 @@ export class Register extends Component {
             </section>
             </MediaQuery>
           </div>
-
+          <Footer />
         </React.Fragment>
 
     );

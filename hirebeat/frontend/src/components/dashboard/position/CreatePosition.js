@@ -257,7 +257,7 @@ export class CreatePosition extends Component{
                                         </p>
                                         <div className="row" style={{marginBottom: "1rem"}}>
                                             <div className="center-items db-txt3" style={{marginRight: "1rem", marginLeft: "15px"}}>Category: </div>
-                                            <Select value={this.state.categoryOfQuestion} onChange={this.handleChangeCategory} options={options} className="select-category2" styles={customStyles} />
+                                            <Select value={this.state.categoryOfQuestion} onChange={this.handleChangeCategory} options={options} className="select-category3" styles={customStyles} />
                                         </div>
                                         <div className="category-border" style={{overflow: "auto", height: "27rem", padding: "0.5rem", marginBottom: "1rem"}}>
                                             {this.props.bqList.map((q) => {

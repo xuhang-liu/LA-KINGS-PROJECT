@@ -22,6 +22,7 @@ import {
     REMOVE_SUB_REVIEWER,
     GET_QUESTION_LIST,
     UPDATE_VIEW_STATUS,
+    GET_ANALYTICS_INFO,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -306,6 +307,20 @@ export const getQuestionList = () => (dispatch) => {
     .then((res) => {
       dispatch({
         type: GET_QUESTION_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getAnalyticsInfo = (userId) => (dispatch, getState) => {
+  axios
+    .get(`/get-analytics-info?user_id=${userId}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_ANALYTICS_INFO,
         payload: res.data,
       });
     })

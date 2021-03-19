@@ -187,16 +187,16 @@ export class Dashboard extends Component {
               </div>
               <div className='col-11'>
                 <div className="dashboard-main">
+                {this.state.subpage === "settings" ? null :
                 <div className="container-fluid" style={{height: "12rem"}} data-tut="reactour-rowbox">
-                  {this.state.subpage === "settings" ? null :
                       <RowBoxes
                           renderVideos={this.renderVideos}
                           renderResume={this.renderResume}
                           renderInterview={this.renderInterview}
                           userId={this.props.user.id}
                           isEmployer={false}
-                      />}
-                </div>
+                      />
+                </div>}
                   <div className="container-fluid" style={{marginBottom: "0%"}}>
                     <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
                       {this.renderSubpage()}
