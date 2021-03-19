@@ -281,7 +281,8 @@ export class CreatePosition extends Component{
                                             Added Questions &nbsp; <span className="db-txt3">Maximum: 6</span>
                                         </p>
                                         <div className="row">
-                                            <textarea id="q1" type="text" style={{width: "85%"}} className="db-question"></textarea>
+                                            <textarea id="q1" type="text" style={{width: "85%"}} className="db-question" 
+                                            placeholder="You can also type in your own question." required></textarea>
                                             <div className="col-1 center-items">
                                                 <button type="button" onClick={() => this.clearQuestion("q1")} className="delete-btn">
                                                     <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>

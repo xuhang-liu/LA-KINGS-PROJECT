@@ -2771,7 +2771,7 @@ h5 {
 }
 
 .upload-txt {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2852,14 +2852,14 @@ h5 {
 }
 
 .tour-title {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   color: #090D3A;
 }
 
 .tour-text {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   color: #090D3A;
@@ -2880,7 +2880,7 @@ h5 {
 }
 
 .db-txt1 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -2888,7 +2888,7 @@ h5 {
 }
 
 .db-txt2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -2896,7 +2896,7 @@ h5 {
 }
 
 .db-txt3 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2904,7 +2904,7 @@ h5 {
 }
 
 .db-txt4 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2912,7 +2912,7 @@ h5 {
 }
 
 .db-txt5 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -2920,6 +2920,9 @@ h5 {
 }
 
 .db-question {
+  font-family: Avenir Next, Segoe UI;
+  font-size: small;
+  color: #4a6f8a;
   background: #FFFFFF;
   border: 2px solid #E8EDFC;
   box-sizing: border-box;
@@ -2927,6 +2930,14 @@ h5 {
   height: 4rem;
   margin-left: 1.5rem;
   margin-bottom: 0.5rem;
+  padding: 5px;
+}
+
+.db-question::placeholder {
+  font-family: Avenir Next, Segoe UI;
+  font-size: small;
+  color: #4a6f8a;
+  padding: 5px;
 }
 
 .center-items {
