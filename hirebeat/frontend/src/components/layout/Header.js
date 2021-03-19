@@ -148,13 +148,6 @@ export class Header extends Component {
             </a>
             </Link>
             </li>
-            <MediaQuery minDeviceWidth={1224}>
-            <li className="nav-item ">
-                <a href="/employer" className="nav-link text-white navbar-font">
-                  <span className="header-text">For Employer</span>
-                </a>
-              </li>
-            </MediaQuery>
           </ul>
 
 
@@ -193,13 +186,11 @@ export class Header extends Component {
                   </span>
                 </a>
               </li>
-              <MediaQuery maxDeviceWidth={1223}>
               <li className="nav-item ">
                 <a href="/employer" className="nav-link text-white navbar-font">
                   <span className="header-text">For Employer</span>
                 </a>
               </li>
-              </MediaQuery>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>

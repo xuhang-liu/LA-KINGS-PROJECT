@@ -153,7 +153,7 @@ export class SelectParam extends Component {
     // video test
     if (paramsAreSet === true) {
         return (
-          <div className="container">
+          <div className="container-fluid">
             {this.state.deviceTested ? (
               <ResponseWindow
                 questionType={this.state.type}
@@ -173,7 +173,7 @@ export class SelectParam extends Component {
     // audio test
     else if (audioParamIsSet === true) {
         return (
-          <div className="container">
+          <div className="container-fluid">
             {this.state.deviceTested ? (
               <AudioResponseWindow
                 questionType={this.state.type}
@@ -192,7 +192,7 @@ export class SelectParam extends Component {
     }
     else {
         return(
-          <div>
+          <div style={{marginBottom:"5%"}}>
             { this.getQuestionsParams() }
           </div>
         );

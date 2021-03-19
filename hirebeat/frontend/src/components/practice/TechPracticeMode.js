@@ -173,7 +173,7 @@ export class TechPracticeMode extends Component {
     }
     else {
         return(
-          <div>
+          <div style={{marginBottom:"5%"}}>
             { this.getQuestionsParams() }
           </div>
         );
