@@ -20,6 +20,8 @@ import {
     UPDATE_STARS_LIST,
     ADD_SUB_REVIEWER,
     REMOVE_SUB_REVIEWER,
+    GET_QUESTION_LIST,
+    UPDATE_VIEW_STATUS,
     GET_ANALYTICS_INFO,
     } from "./action_types";
 import axios from "axios";
@@ -27,8 +29,8 @@ import { tokenConfig } from "./auth_actions";
 import { returnErrors } from "./message_actions";
 //import { useDispatch } from 'react-redux';
 
-export const addPosition = (jobtitle, jobid, jobdescription, userid, question1, question2, question3, questionTime) => (dispatch, getState) => {
-  const body = JSON.stringify({jobtitle, jobid, jobdescription, userid, question1, question2, question3, questionTime});
+export const addPosition = (jobtitle, jobid, jobdescription, userid, questions, questionTime) => (dispatch, getState) => {
+  const body = JSON.stringify({jobtitle, jobid, jobdescription, userid, questions, questionTime});
   axios
     .post("add-position", body, tokenConfig(getState))
     .then((res) => {
@@ -299,6 +301,20 @@ export const removeSubReviewer = (data) => (dispatch, getState) => {
     );
 }
 
+export const getQuestionList = () => (dispatch) => {
+  axios
+    .get("/get-question-list")
+    .then((res) => {
+      dispatch({
+        type: GET_QUESTION_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
 export const getAnalyticsInfo = (userId) => (dispatch, getState) => {
   axios
     .get(`/get-analytics-info?user_id=${userId}`, tokenConfig(getState))
@@ -311,4 +327,18 @@ export const getAnalyticsInfo = (userId) => (dispatch, getState) => {
     .catch((err) =>
       dispatch(returnErrors(err.response.data, err.response.status))
     );
-};
+}
+
+export const updateViewStatus = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-view-status", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_VIEW_STATUS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
