@@ -9,6 +9,9 @@ import AmazingFeatures from "../HomeSaas/AmazingFeatures"
 import Progress from '../HomeSaas/Progress';
 import MediaQuery from 'react-responsive';
 import Footer from "../layout/Footer";
+import {loadProfile} from "../../redux/actions/auth_actions";
+import {Redirect} from "react-router-dom";
+import {connect} from "react-redux";
 //import WhyUs from '../HomeSaas/WhyUs';
 //import CompanyProfile from '../HomeSaas/CompanyProfile';
 
@@ -26,9 +29,13 @@ class IndexSaas extends Component {
             loading: true
         };
       componentDidMount() {
+        this.props.loadProfile();
         this.timerHandle = setTimeout(() => this.setState({ loading: false }), 666); 
       }
     render() {
+      if(this.props.profile.is_employer){
+        return <Redirect to="/employer"/>;
+      }
         return (
             <React.Fragment>
               <MediaQuery minDeviceWidth={1224}>
@@ -64,4 +71,8 @@ class IndexSaas extends Component {
     }
 }
 
-export default IndexSaas;
+const mapStateToProps = (state) => ({
+  profile: state.auth_reducer.profile,
+});
+
+export default connect(mapStateToProps, {loadProfile})(IndexSaas);

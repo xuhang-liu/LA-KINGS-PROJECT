@@ -1193,8 +1193,8 @@ const Applicant = (props) => {
                 <div className="col-2 mt-2">
                     {(!isViewed && commentStatus == 0) && <span class="dot"></span>}
                     <button className="title-button1" onClick={() => viewResult()}>
-                        {props.name}</button></div>
-                : <div className="col-2 interview-txt9 mt-2">{props.name}</div>
+                        {props.name.split("(")[0]}</button></div>
+                : <div className="col-2 interview-txt9 mt-2">{props.name.split("(")[0]}</div>
                 }
                 {props.videoCount > 0 ? 
                 <div className="col-4 mt-2">
