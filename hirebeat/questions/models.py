@@ -78,6 +78,7 @@ class InvitedCandidates(models.Model):
     secondround_status = models.IntegerField(default=0)
     is_recorded = models.BooleanField(default=False)
     video_count = models.IntegerField(default=0)
+    is_viewed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name + '|' + self.email
