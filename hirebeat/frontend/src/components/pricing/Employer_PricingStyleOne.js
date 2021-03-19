@@ -97,7 +97,7 @@ class Employer_PricingStyleOne extends Component {
                                             <ul className="pricing-features pr-2" style={{paddingBottom:"3rem"}}>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    1 job position
+                                                    <strong>1</strong> job position
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
@@ -105,7 +105,7 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Customize questions
+                                                    <strong>3</strong> Customize questions
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
@@ -177,15 +177,15 @@ class Employer_PricingStyleOne extends Component {
                                             <ul className="pricing-features pr-2" style={{paddingBottom:"1.5rem"}}>
                                             <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    5 job positions
+                                                    <strong>5</strong> job positions
                                                     </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Up to 100 candidate invitaitons for each job position
+                                                    Up to <strong>100</strong> candidate invitaitons for each job position
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Customize questions
+                                                    Up to <strong>6</strong> Customize questions
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
@@ -193,7 +193,7 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Team collaboration
+                                                    3 Team collaboration
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
@@ -216,12 +216,12 @@ class Employer_PricingStyleOne extends Component {
                                         <div className="single-pricing-table left-align" style={{backgroundColor:"#67A3F3"}}>
                                             <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600"}}>Enterprise</h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Flexible team plan for growing organisations</p>
+                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Ideal chocie for large sized organizations</p>
                                             </div>
 
                                             <div className="price" style={{color:'#090d3a', borderTop:"none"}}>
-                                                <h5 style={{fontWeight:"600", color:'#090d3a', marginTop:"1.8rem"}}>Get customizable functionality</h5>
-                                            <div style={{marginLeft:"-2rem", marginTop:"0.5rem"}}>
+                                                <sup style={{color:"#090d3a"}}>$</sup>Customized
+                                            <div style={{marginLeft:"-2rem", marginTop:"-0.9rem"}}>
                                             {
                                                 <div className="btn-box">
                                                 <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{color:"white", backgroundColor:"#090d3a", paddingLeft:"25px", textDecoration:"none"}}>
@@ -240,7 +240,7 @@ class Employer_PricingStyleOne extends Component {
                                                     </li>
                                                 <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Customized candidate invitaitons for each job position
+                                                    Customized candidate invitaitons
                                                 </li>
                                                 <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
@@ -248,7 +248,7 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Customize questions</li>
+                                                    Calender Management</li>
                                                 <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
                                                     Candidate rating & comments

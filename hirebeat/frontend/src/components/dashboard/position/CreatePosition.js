@@ -1,9 +1,9 @@
 import React,  { Component } from "react";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { IconText } from "../DashboardComponents";
-import { selectParamEnployer } from "../../../components/practice/CardComponents"
-import { lengthOfResponseOptions } from "../../../constants/constants"
-import PropTypes from "prop-types";
+//import { selectParamEnployer } from "../../../components/practice/CardComponents"
+//import { lengthOfResponseOptions } from "../../../constants/constants"
+//import PropTypes from "prop-types";
 import 'boxicons';
 import Select from 'react-select'
 import { confirmAlert } from 'react-confirm-alert';
@@ -77,6 +77,9 @@ export class CreatePosition extends Component{
                 elements[i].value = question;
                 break;
             }
+            if ((i == 2) && (elements[i].value != "") && (this.props.profile.membership != "Premium")) {
+                return this.filledthreeQuestion();
+            }
             if (i == size - 1 && elements[i].value != "") {
                 return this.filledSuccess();
             }
@@ -98,6 +101,17 @@ export class CreatePosition extends Component{
                 },
             ]
         });
+    }
+
+    filledthreeQuestion = () => {
+        confirmAlert({
+            title: 'Upgrade Now!',
+            message: 'Exceed max number of questions! Upgrade now to add up to 6 questions',
+            buttons: [
+              {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
+              {label: 'OK'},
+            ]
+          });
     }
 
     incompleteAlert = () => {
@@ -277,9 +291,13 @@ export class CreatePosition extends Component{
                                         </div>
                                     </div>
                                     <div className="form-group col-6">
-                                        <p className="db-txt2">
+                                        {this.props.profile.membership != "Premium" ?
+                                        <p className="db-txt2 ml-2">
+                                            Added Questions &nbsp; <span className="db-txt3">Maximum: 3</span>
+                                        </p> :
+                                        <p className="db-txt2 ml-2">
                                             Added Questions &nbsp; <span className="db-txt3">Maximum: 6</span>
-                                        </p>
+                                        </p>}
                                         <div className="row">
                                             <textarea id="q1" type="text" style={{width: "85%"}} className="db-question" 
                                             placeholder="You can also type in your own question." required></textarea>
