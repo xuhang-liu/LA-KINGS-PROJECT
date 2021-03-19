@@ -1187,7 +1187,7 @@ const Applicant = (props) => {
                     marginTop: "0rem"
                 }}
             />
-            <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
+            <div className="row interview-center h-100" style={{color: "#7D7D7D", height: "3rem"}}>
                 {/* add unread lable here */}
                 {props.videoCount > 0 ? 
                 <div className="col-2 mt-2">

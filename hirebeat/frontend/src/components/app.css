@@ -2587,7 +2587,7 @@ h5 {
   font-weight: 500;
   color: #67a3f3;
   width: fit-content;
-  height: fit-content;
+  height: 4vh;
   padding-left: 0.5rem;
   border: 2px solid #E8EDFC;
   box-sizing: border-box;
@@ -2921,8 +2921,9 @@ h5 {
 
 .db-question {
   font-family: Avenir Next, Segoe UI;
-  font-size: small;
-  color: #4a6f8a;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #090d3a;
   background: #FFFFFF;
   border: 2px solid #E8EDFC;
   box-sizing: border-box;

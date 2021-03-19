@@ -74,14 +74,14 @@ export class Header extends Component {
                id="navbarSupportedContent">
 
             <ul
-              className="navbar-nav ml-auto mr-5
-                 text-left order-xl-0">
+              className="navbar-nav
+                 text-left order-xl-0" style={{marginLeft:"10px"}}>
               <li className="nav-item ">
                 <Link to="/dashboard" id="id-dash-out" className="nav-link text-white navbar-font">
-                  <span className="header-text">My Dashboard</span>
+                  <span className="header-text">Dashboard</span>
                 </Link>
               </li>
-              <li className="nav-item">
+              {/*<li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
                     Features <i className="bx bx-chevron-down"></i>
@@ -110,7 +110,7 @@ export class Header extends Component {
                     </ul>
                   </span>
                 </a>
-              </li>
+              /li>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
@@ -123,6 +123,16 @@ export class Header extends Component {
                     </ul>
                   </span>
                 </a>
+              </li>*/}
+              <li className="nav-item ">
+                <Link id="id-findajob" to="/career" className="nav-link text-white navbar-font">
+                  <span className="header-text">Find Jobs</span>
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link id="id-topcompany" to="/companydata" className="nav-link text-white navbar-font">
+                  <span className="header-text">Company Tips</span>
+                </Link>
               </li>
             </ul>
           </div>
@@ -133,33 +143,15 @@ export class Header extends Component {
   renderGuestLinks = () => {
     return (
         <React.Fragment>
-          <ul className="navbar-nav d-flex flex-row order-xl-1">
-          <li className="nav-item">
-            <Link to="/login">
-              <a className="default-btn mr-3" id="id-login" style={{color:"white"}}>
-                <i className="bx bx-log-in"></i>Log In<span></span>
-              </a>
-            </Link>
-            </li>
-            <li className="nav-item">
-            <Link to="/register">
-            <a className="default-btn mr-3" id="id-signup" style={{color:"white", backgroundColor:"#ff612f"}}>
-              <i className="bx bxs-hot"></i>Sign Up<span></span>
-            </a>
-            </Link>
-            </li>
-          </ul>
-
-
           <div className="collapse navbar-collapse"
                id="navbarSupportedContent">
 
-            <ul className="navbar-nav order-xl-0 ml-auto mr-5
-               text-left">
+            <ul className="navbar-nav order-xl-0
+               text-left" style={{marginLeft:"10px"}}>
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
-                  For Candidate <i className="bx bx-chevron-down"></i>
+                  For Candidates <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"16.8rem",width:"18rem"}}>
                     <li>
                         <Link id="id-interviewpr" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
@@ -186,11 +178,13 @@ export class Header extends Component {
                   </span>
                 </a>
               </li>
+              <MediaQuery maxDeviceWidth={1223}>
               <li className="nav-item ">
                 <a href="/employer" className="nav-link text-white navbar-font">
-                  <span className="header-text">For Employer</span>
+                  <span className="header-text">For Employers</span>
                 </a>
               </li>
+              </MediaQuery>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
@@ -206,6 +200,29 @@ export class Header extends Component {
               </li>
             </ul>
           </div>
+          <ul className="navbar-nav d-flex flex-row order-xl-1">
+            <li className="nav-item" style={{paddingTop:"10px"}}>
+            <Link to="/register">
+            <a className="default-btn mr-3" id="id-signup" style={{color:"white", paddingLeft:"25px"}}>
+              Start for Free
+            </a>
+            </Link>
+            </li>
+            <li className="nav-item" style={{paddingTop:"10px"}}>
+            <Link to="/login">
+              <a className="default-btn1 mr-3" id="id-login" style={{color:"white", paddingLeft:"25px", border:'2px solid #FFFFFF', paddingBottom:"12px", paddingTop:"12px"}}>
+                Log In
+              </a>
+            </Link>
+            </li>
+            <MediaQuery minDeviceWidth={1224}>
+            <li className="nav-item " style={{paddingTop:"10px"}}>
+                <a href="/employer" className="nav-link text-white navbar-font">
+                  <span className="header-text">For Employers</span>
+                </a>
+            </li>
+            </MediaQuery>
+          </ul>
         </React.Fragment>
     );
   };
