@@ -185,7 +185,7 @@ export class Dashboard extends Component {
                   />
                 </div>
               </div>
-              <div className='col-11'>
+              <div className='col-11' style={{backgroundColor:"#e8edfc"}}>
                 <div className="dashboard-main">
                 {this.state.subpage === "settings" ? null :
                 <div className="container-fluid" style={{height: "12rem"}} data-tut="reactour-rowbox">
@@ -197,8 +197,8 @@ export class Dashboard extends Component {
                           isEmployer={false}
                       />
                 </div>}
-                  <div className="container-fluid" style={{marginBottom: "0%"}}>
-                    <div style={{marginBottom: "auto", height: "auto", paddingBottom: '10%', paddingTop: '5%'}}>
+                  <div className="container-fluid" style={{marginBottom: "10%"}}>
+                    <div style={{marginBottom: "auto", height: "auto", paddingTop: '5%'}}>
                       {this.renderSubpage()}
                     </div>
                   </div>

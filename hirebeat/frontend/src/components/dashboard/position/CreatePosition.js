@@ -332,7 +332,7 @@ export class CreatePosition extends Component{
                                         <div className="row" style={{float: "right", marginRight: "2.5rem"}}>
                                             <button
                                                 type="submit"
-                                                className="default-btn1" style={{marginBottom:"1.5%", paddingLeft:"25px"}}
+                                                className="default-btn1" style={{marginBottom:"5vh", paddingLeft:"25px"}}
                                             >
                                                 Save
                                             </button>
