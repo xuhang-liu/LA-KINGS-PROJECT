@@ -244,6 +244,7 @@ export class EmployerDashboard extends Component {
             phone_candidate={this.props.phone_candidate}
             location_candidate={this.props.location_candidate}
             star_list={this.props.star_list}
+            resume_list={this.props.resume_list}
             updateCommentStatus={this.props.updateCommentStatus}
             profile={this.props.profile}
             />
@@ -338,6 +339,7 @@ const mapStateToProps = (state) => {
   phone_candidate: state.video_reducer.phone_candidate,
   location_candidate: state.video_reducer.location_candidate,
   star_list: state.question_reducer.star_list,
+  resume_list: state.question_reducer.resume_list,
   bqList: state.question_reducer.bqList,
   analyticsInfo: state.question_reducer.analyticsInfo,
   position_list: state.question_reducer.position_list,

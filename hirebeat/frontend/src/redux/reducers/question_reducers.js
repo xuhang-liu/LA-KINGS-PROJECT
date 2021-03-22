@@ -14,6 +14,7 @@ const initialState = {
   postedJobs: [],
   applicantsData: {},
   star_list: {1: 100},
+  resume_list: {1:0},
   bqList: [],
   analyticsInfo: {},
   position_list: [],
@@ -102,6 +103,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         star_list: action.payload.data,
+        resume_list: action.payload.data1,
       }
     case GET_QUESTION_LIST:
       return {

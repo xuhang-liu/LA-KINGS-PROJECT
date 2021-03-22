@@ -47,6 +47,7 @@ const ShortList = (props) => {
                 getApplicantsInfo={props.getApplicantsInfo}
                 int_ques={props.int_ques}
                 stars={props.star_list}
+                resume_list={props.resume_list}
                 resumeURL={props.resumeURL}
                 recordTime={props.recordTime}
                 interviewResume={props.interviewResume}
@@ -60,6 +61,7 @@ const ShortList = (props) => {
 
 const mapStateToProps = (state) => ({
     star_list: state.question_reducer.star_list,
+    resume_list: state.question_reducer.resume_list,
     resumeURL: state.video_reducer.resumeURL,
     recordTime: state.video_reducer.recordTime,
     interviewResume: state.video_reducer.interviewResume,
@@ -72,17 +74,23 @@ const AcceptedCandidate = (props) => {
     return <div>
               <div style={{marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem"}} className="container min-width-980 mt-4 py-4">
                 <div style={{color:"#4A6F8A", fontSize:"1rem", fontWeight:"500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
-                    <div className="col-2">
+                    <div className="col-1">
                         Name
                     </div>
                     <div className="col-3">
                         Email
                     </div>
                     <div className="col-2">
-                        Recorded
+                        Recorded On
                     </div>
                     <div className="col-3">
-                        Score
+                        Video Average Score
+                    </div>
+                    <div className="col-2">
+                        Resume Score
+                    </div>
+                    <div className="col-1">
+                        Contact
                     </div>
                 </div>
                 {props.theJob.applicants.map((applicant) => {
@@ -92,6 +100,7 @@ const AcceptedCandidate = (props) => {
                                     getPJobs={props.getPJobs}
                                     refreshPage={props.refreshPage}
                                     stars={props.stars[applicant.email]}
+                                    resume_list={props.resume_list[applicant.email]}
                                     applicant={applicant}
                                     getApplicantsVideos={props.getApplicantsVideos}
                                     getApplicantsInfo={props.getApplicantsInfo}
@@ -139,32 +148,43 @@ const CandidateCard = (props) => {
             return(
                 <div>
                     <div className="row">
-                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-blue.png" alt="Blue" />
+                            <div className="ml-3" />
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-star-blue.png" alt="Blue" />
                             <div className="ml-2" />
-                            {stars >= 2 ?
-                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-blue.png" alt="Blue" />
-                            : <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-grey.png" alt="Gray" />
-                            }        
+                            {stars >= 2 &&
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-star-blue.png" alt="Blue" />}        
                             <div className="ml-2" />         
-                            {stars >= 3 ?
-                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-blue.png" alt="Blue" />
-                            : <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-grey.png" alt="Gray" />
-                            }        
+                            {stars >= 3 &&
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-star-blue.png" alt="Blue" />}        
                             <div className="ml-2" />         
-                            {stars >= 4 ?
-                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-blue.png" alt="Blue" />
-                            : <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-grey.png" alt="Gray" />
-                            }    
+                            {stars >= 4 &&
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-star-blue.png" alt="Blue" />}    
                             <div className="ml-2" />             
-                            {stars == 5 ?
-                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-blue.png" alt="Blue" />
-                            : <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/star-grey.png" alt="Gray" />
-                            }     
+                            {stars == 5 &&
+                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-star-blue.png" alt="Blue" />}     
                             <div className="ml-2" />            
                     </div>
                 </div>
             )
     }
+
+    const renderResume = (resumes) => {
+        return(
+            <div>
+                <div className="row">
+                        <div className="ml-3" />
+                        {(resumes>=75 && resumes <=100) && 
+                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/resume_result_1.png" alt="img" />}
+                        {(resumes>=51 && resumes <=75) && 
+                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/resume_result_2.png" alt="img" />}
+                        {(resumes>=25 && resumes <=50) && 
+                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/resume_result_3.png" alt="img" />}
+                        {(resumes>=0 && resumes <=25) && 
+                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/resume_result_4.png" alt="img" />}            
+                </div>
+            </div>
+        )
+}
 
     const mailTo = "mailto:" + props.applicant.email;
     return (       
@@ -172,8 +192,8 @@ const CandidateCard = (props) => {
         <div className="px-4">
             <hr/>
         </div>
-        <div style={{fontFamily: "Avenir Next, Segoe UI", fontWeight:"600" }} className="ml-0 d-flex justify-content-start container-fluid row">
-                <div className="col-2 short-list-text" onClick={()=>{viewResult();}}> 
+        <div style={{fontFamily: "Avenir Next, Segoe UI", fontWeight:"600" }} className="ml-0 d-flex justify-content-start container-fluid row h-100">
+                <div className="col-1 short-list-text" onClick={()=>{viewResult();}}> 
                     {props.applicant.name}
                 </div>
 
@@ -185,17 +205,19 @@ const CandidateCard = (props) => {
                     {props.applicant.invite_date.substring(0, 10)}
                 </div>
 
-                <div className="col-3 ml-3"> 
+                <div className="col-3"> 
                         { renderStars(props.stars) }
                 </div>
-
-                <div className="col center-items">    
+                <div className="col-2"> 
+                        { renderResume(props.resume_list) }
+                </div>
+                <div className="col-1">    
                     <a
                             href={mailTo}
                             className="interview-txt9"
-                            style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
+                            style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block", fontSize:"0.8rem"}}
                         >
-                            <i className="bx bx-mail-send"></i> Send Email
+                            <i className="bx bx-mail-send"></i> Email
                     </a>
                 </div>  
         </div>

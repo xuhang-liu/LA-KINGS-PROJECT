@@ -87,21 +87,25 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-writing-a-good-job-posting-that-will-attract-employees",
     "/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring",
     "/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company",
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer3.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer1.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer2.jpg",
 ];
 
 const blogDates = [
+    "Mar 22, 2021",
     "Mar 15, 2021",
     "Mar 17, 2021",
 ];
 
 const blogTitles = [
+    "WRITING A GOOD JOB POSTING",
     "HOW ONE-WAY INTERVIEW HELP A COMPANY",
     "BENEFITS OF HIRING DIVERSE CANDIDATES",
 ];

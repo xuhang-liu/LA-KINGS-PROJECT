@@ -24,6 +24,25 @@ class BlogSidebarEmployer extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/employer_blog-writing-a-good-job-posting-that-will-attract-employees">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer3.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Mar 22, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-writing-a-good-job-posting-that-will-attract-employees">
+                                    <a>Writing a Good Job Posting that Will Attract Employees</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer1.jpg" alt="image"/>

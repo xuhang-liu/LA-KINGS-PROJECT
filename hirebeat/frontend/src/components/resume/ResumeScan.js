@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 //import safariAlert from "../basic/SafariAlert";
 import { confirmAlert } from 'react-confirm-alert';
 import PropTypes from "prop-types";

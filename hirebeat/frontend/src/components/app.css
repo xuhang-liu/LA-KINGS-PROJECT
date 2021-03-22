@@ -836,11 +836,11 @@ h5 {
   position: absolute;
   text-align: left;
   border: none;
+  border-radius: 5px;
   width: 14rem;
   z-index: 99;
   display: block;
   visibility: hidden;
-  border-radius: 0;
   font-size: x-large;
   font-weight: 600;
   font-family: "Avenir Next", "Segoe UI";
