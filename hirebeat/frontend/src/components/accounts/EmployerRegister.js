@@ -8,6 +8,7 @@ import {createMessage} from "../../redux/actions/message_actions";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import badge from '../../assets/badge.png';
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -397,7 +398,7 @@ export class EmployerRegister extends Component {
             </section>
           </MediaQuery>
           </div>
-
+          <Footer />
         </React.Fragment>
 
     );

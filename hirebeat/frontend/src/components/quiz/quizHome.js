@@ -4,6 +4,7 @@ import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import Quizdetail1 from './quizdetail1';
 import {Helmet} from "react-helmet";
 import { useEffect } from "react";
+import Footer from "../layout/Footer";
 
 
 function ScrollToTopOnMount() {
@@ -31,6 +32,7 @@ class QuizHome extends Component {
                 />
                 <Quizdetail1/>
                 <FreeTrialArea />
+                <Footer />
             </React.Fragment>
         );
     }

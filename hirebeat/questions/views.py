@@ -15,6 +15,7 @@ from django.core.mail import EmailMessage
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import timedelta
 from django.utils import timezone
+import math
 
 class QuestionAPIView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
@@ -92,16 +93,10 @@ def add_position(request):
     profile = Profile.objects.get(user_id=user.id)
     profile.position_count += 1
     profile.save()
-    question1 = request.data['question1']
-    question2 = request.data['question2']
-    question3 = request.data['question3']
+    questions = request.data['questions']
     position = Positions.objects.create(user=user, job_title=jobtitle, job_id=jobid, job_description=jobdescription, questionTime=questionTime)
-    if question1 != "":
-        data1 = InterviewQuestions.objects.create(description=question1, positions=position)
-    if question2 != "":
-        data2 = InterviewQuestions.objects.create(description=question2, positions=position)
-    if question3 != "":
-        data3 = InterviewQuestions.objects.create(description=question3, positions=position)
+    for i in range(len(questions)):
+        InterviewQuestions.objects.create(description=questions[i], positions=position)
     return Response({
         "jobtitle": jobtitle
     })
@@ -459,4 +454,120 @@ def remove_sub_reviewer(request):
     sub_id = request.data["sub_id"]
     SubReviewers.objects.get(pk=sub_id).delete()
 
-    return Response("Remove sub reviewer successfully", status=status.HTTP_200_OK) 
+    return Response("Remove sub reviewer successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_question_list(request):
+    questions = Question.objects.filter(title="BQ").values();
+    return Response({"data": questions})
+
+@api_view(['POST'])
+def update_view_status(request):
+    id = request.data["candidate_id"]
+    candidate = InvitedCandidates.objects.get(id=id)
+    candidate.is_viewed = True
+    candidate.save();
+    return Response("Update is_reviewed successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_analytics_info(request):
+    interview_session = {
+        "date": []
+    }
+    analyticsInfo = {}
+    invitation_total = 0
+    interview_received = 0
+    shortlist_num = 0
+    hold_num = 0
+    reject_num = 0
+    interview_received_rate = 0
+    shortlist_num_rate = 0
+    hold_num_rate = 0
+    reject_num_rate = 0
+    position_list = []
+    invitation_list = []
+    shortlist_list = []
+    hold_list = []
+    reject_list = []
+    week = []
+    # get the most recent week dates
+    for day in range(6, -1, -1):
+        # use timezone.now() to get current time since timezone is enabled
+        curr_date = timezone.now() - timedelta(days=day)
+        week.append(curr_date.strftime("%Y-%m-%d"))
+        interview_session["date"].append(curr_date.strftime("%b %d"))
+    user_id = request.query_params.get("user_id")
+    positions = Positions.objects.filter(user_id=user_id, is_closed=False)  # ignore closed jobs
+    # positions loop
+    for i in range(len(positions)):
+        position_id = positions[i].id
+        position_info = {}
+        position_info["title"] = positions[i].job_title
+        position_info["jobid"] = positions[i].job_id
+        position_info["is_closed"] = positions[i].is_closed
+        candidates = InvitedCandidates.objects.filter(positions_id=position_id)
+        candidates_recorded = InvitedCandidates.objects.filter(positions_id=position_id, is_recorded=True)
+        candidates_shortlist = InvitedCandidates.objects.filter(positions_id=position_id, is_recorded=True, comment_status=1)
+        candidates_hold = InvitedCandidates.objects.filter(positions_id=position_id, is_recorded=True, comment_status=2)
+        candidates_reject = InvitedCandidates.objects.filter(positions_id=position_id, is_recorded=True, comment_status=3)
+        invitation_total += len(candidates)
+        interview_received += len(candidates_recorded)
+        received = len(candidates_recorded)
+        shortlist_num += len(candidates_shortlist)
+        short = len(candidates_shortlist)
+        hold_num += len(candidates_hold)
+        hold = len(candidates_hold)
+        reject_num += len(candidates_reject)
+        reject = len(candidates_reject)
+        invitation_list.append(len(candidates))
+        shortlist_list.append(len(candidates_shortlist))
+        hold_list.append(len(candidates_hold))
+        reject_list.append(len(candidates_reject))
+        position_info["total_sent"] = len(candidates)
+        position_info["total_received"] = len(candidates_recorded)
+        if(len(candidates) != 0):
+            position_info["conversion"] = float(math.ceil(len(candidates_recorded)/len(candidates)*100))
+        if(received != 0):
+            position_info["rate"] = [float(math.ceil(short/received*100)), float(math.ceil(hold/received*100)), float(math.ceil(reject/received*100))]
+        position_list.append(position_info)
+        record = []
+        interQ = list(InterviewQuestions.objects.filter(positions_id=position_id).values())
+        # dates loop
+        for j in range(len(week)):
+            count = 0
+            # candidates loop
+            for c in range(len(interQ)):
+                day_recorded = 0
+                interviewQ = interQ[c]
+                day_recorded = WPVideo.objects.filter(
+                    question_id=interviewQ["id"],
+                    created_at__contains=week[j]).count()
+                count += day_recorded
+            record.append(count)
+        position_info["recorded"] = record
+
+    if(invitation_total != 0):
+        interview_received_rate = interview_received/invitation_total*100
+        shortlist_num_rate = shortlist_num/invitation_total*100
+        hold_num_rate = hold_num/invitation_total*100
+        reject_num_rate = reject_num/invitation_total*100
+    analyticsInfo = {
+        "invitation_total": invitation_total,
+        "interview_received": interview_received,
+        "interview_received_rate": interview_received_rate,
+        "shortlist_num": shortlist_num,
+        "shortlist_num_rate": shortlist_num_rate,
+        "hold_num": hold_num,
+        "hold_num_rate": hold_num_rate,
+        "reject_num": reject_num,
+        "reject_num_rate": reject_num_rate,
+        "invitation_list": invitation_list,
+        "shortlist_list": shortlist_list,
+        "hold_list": hold_list,
+        "reject_list": reject_list,
+    }
+    return Response({
+        "analyticsInfo": analyticsInfo,
+        "position_list": position_list,
+        "interview_session": interview_session,
+    })

@@ -4,6 +4,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 import Features from '../HomeSaas/Features';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -24,6 +25,7 @@ class Howitworks extends Component {
                 <Features />
                 <MoreToDiscover />
                 <FreeTrialArea />
+                <Footer />
             </React.Fragment>
         );
     }

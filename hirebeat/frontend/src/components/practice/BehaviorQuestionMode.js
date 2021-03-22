@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 //import safariAlert from "../basic/SafariAlert";
 import MediaQuery from 'react-responsive';
 //import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
@@ -8,7 +8,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
-    window.scrollTo(0, 100);
+    window.scrollTo(0, 0);
   }, []);
 
   return null;

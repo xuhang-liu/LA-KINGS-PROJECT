@@ -314,6 +314,67 @@ export const VideoChart = (props) => {
     )
 }
 
+export const InterviewChart = (props) => {
+    var labelFormatter = function(value) {
+        // remove decimal
+        return value.toFixed(0);
+    };
+    return (
+        <Chart
+            options= {{
+                chart: {
+                    type: 'line',
+                    height: 350,
+                    dropShadow: {
+                        enabled: true,
+                        color: '#000',
+                        top: 18,
+                        left: 7,
+                        blur: 10,
+                        opacity: 0.2
+                      },
+                },
+                markers: {
+                    size: 5,
+                },
+                grid: {
+                    show: true,
+                },
+                stroke: {
+                    curve: 'smooth',
+                },
+                dataLabels: {
+                    enabled: true,
+                    enabledOnSeries: [0]
+                },
+                labels: props.dates,
+                xaxis:{
+                    labels: {
+                        show: true,
+                    },
+                },
+                yaxis:{
+                    labels: {
+                        show:true,
+                        formatter: labelFormatter,
+                    },
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+            }}
+            series={[{
+                name: 'The number of interviews',
+                data: props.videos,
+                },
+            ]}
+            type="line"
+            height={props.height}
+            width={props.width}
+        />
+    )
+}
+
 export const ApplicationChart = (props) => {
     var labelFormatter = function(value) {
         // remove decimal

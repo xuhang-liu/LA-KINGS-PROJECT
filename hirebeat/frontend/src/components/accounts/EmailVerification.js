@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import {resendActivationEmail} from "../../redux/actions/auth_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import {CountdownButton} from "./CountdownButton";
+import Footer from "../layout/Footer";
 //import MediaQuery from 'react-responsive';
 
 function ScrollToTopOnMount() {
@@ -85,6 +86,7 @@ class EmailVerification extends Component {
                         </button>
                     </div>
                 </div>
+                <Footer />
             </React.Fragment>
         );
     }

@@ -3,6 +3,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 import BlogGridHomeEmployer from './BlogGridHomeEmployer';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -23,6 +24,7 @@ class bloggridEmployer extends Component {
                 />
                 <BlogGridHomeEmployer />
                 <FreeTrialArea />
+                <Footer />
             </React.Fragment>
         );
     }

@@ -4,6 +4,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import MediaQuery from 'react-responsive';
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -32,13 +33,13 @@ class CompanyList extends Component {
                 <section className="blog-details-area ptb-100" style={{backgroundColor:"#f4f5fe"}}>
                     <div className="container" style={{marginBottom:"3%"}}>
                         <div className="row" style={{marginBottom:"3%"}}>
-                            <div className="col-lg-8 col-md-12" style={{paddingLeft:"44%", paddingTop:"2%"}}>
+                            <div className="col-lg-8 col-md-12" style={{paddingLeft:"44%", paddingTop:"2%", marginBottom:"2rem"}}>
                                 <MediaQuery minDeviceWidth={1224}>
                                 <h1 className="company-data-title">Popular</h1>
                                 </MediaQuery>
                             </div>
-                            <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem", paddingTop: "2.5%"}}>
-                                <label><i className="bx bx-search"></i></label>
+                            <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem", paddingTop: "2.5%", marginBottom:'2rem'}}>
+                                <label><i className="bx bx-search bx-sm"></i></label>
                                 <input placeholder="Search company" className="search-candidate-input" onChange={this.onSearch}></input>
                             </div>
                             <div className="clients-logo-list align-items-center" style={{width: "100%"}}>
@@ -129,6 +130,7 @@ class CompanyList extends Component {
                     </MediaQuery>
                 </section>
                 <FreeTrialArea />
+                <Footer />
             </React.Fragment>
         );
     }
@@ -219,6 +221,10 @@ const companyNames = [
     "Charles River Associates",
     "ICF",
     "ADP",
+    "Workday",
+    "Alight",
+    "Massmutual",
+    "Sun Life Financial",
 ]
 
 const companyURLs = [
@@ -306,6 +312,10 @@ const companyURLs = [
     "/cra-international",
     "/icg-international",
     "/adp",
+    "/workday",
+    "/alight",
+    "/massmutual",
+    "/sun-life-financial",
 ];
 
 const companyLogos = [
@@ -393,6 +403,10 @@ const companyLogos = [
     "https://hirebeat-assets.s3.amazonaws.com/company-logo/CRA.png",
     "https://hirebeat-assets.s3.amazonaws.com/company-logo/ICF.png",
     "https://hirebeat-assets.s3.amazonaws.com/company-logo/ADP.png",
+    "https://hirebeat-assets.s3.amazonaws.com/company-logo/workday.png",
+    "https://hirebeat-assets.s3.amazonaws.com/company-logo/alight.png",
+    "https://hirebeat-assets.s3.amazonaws.com/company-logo/massmutual.png",
+    "https://hirebeat-assets.s3.amazonaws.com/company-logo/sunlife.png",
 ]
 
 export default CompanyList;

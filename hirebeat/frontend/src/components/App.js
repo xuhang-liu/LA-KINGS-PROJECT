@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import DocumentMeta from 'react-document-meta';
 import {Helmet} from "react-helmet";
 import Header from "./layout/Header";
-import Footer from "./layout/Footer";
 import Dashboard from "./dashboard/Dashboard";
 import EmployerDashboard from "./dashboard/EmployerDashboard";
 import { Provider } from "react-redux";
@@ -27,6 +26,7 @@ import Employerabout from "./company/employerabout";
 import bloggrid from "./blog/bloggrid";
 import bloggridEmployer from "./blog/bloggridEmployer";
 import BlogDetail1_Employer from "./blog/blog-details1-employer";
+import BlogDetail2_Employer from "./blog/blog-details2-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -49,6 +49,7 @@ import BlogDetail19 from "./blog/blog-details19";
 import BlogDetail20 from "./blog/blog-details20";
 import BlogDetail21 from "./blog/blog-details21";
 import BlogDetail22 from "./blog/blog-details22";
+import BlogDetail23 from "./blog/blog-details23";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -148,6 +149,10 @@ import ResourcesGlobalProfessionalsInfo from"./companyData/companies/ResourcesGl
 import CRAInternationalInfo from"./companyData/companies/CRAInternationalInfo";
 import ICGInternationalInfo from"./companyData/companies/ICGInternationalInfo";
 import ADPInfo from"./companyData/companies/ADPInfo";
+import WorkdayInfo from"./companyData/companies/WorkdayInfo";
+import AlightInfo from"./companyData/companies/AlightInfo";
+import MassmutualInfo from"./companyData/companies/MassmutualInfo";
+import SunLifeFinancialInfo from"./companyData/companies/SunLifeFinancialInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
@@ -201,13 +206,13 @@ class App extends Component {
 
   render() {
     const meta = {
-      title: 'HireBeat – The Best Career Prep Tool For Jobseekers',
+      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
       description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
       canonical: 'https://hirebeat.co/',
       meta: {
         charset: 'utf-8',
         name: {
-          keywords: 'react,meta,document,html,tags'
+          keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
         }
       }
     };
@@ -279,6 +284,7 @@ class App extends Component {
                 <Route exact path="/bloghome" component={bloggrid} />
                 <Route exact path="/bloghome_employer" component={bloggridEmployer} />
                 <Route exact path="/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring" component={BlogDetail1_Employer} />
+                <Route exact path="/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company" component={BlogDetail2_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
@@ -301,6 +307,7 @@ class App extends Component {
                 <Route exact path="/blog-how-to-handle-the-question-you-donot-know" component={BlogDetail20} />
                 <Route exact path="/blog-4-amazing-tips-to-effectively-networking-during-covid-19" component={BlogDetail21} />
                 <Route exact path="/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years" component={BlogDetail22} />
+                <Route exact path="/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview" component={BlogDetail23} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer_register" component={EmployerRegister} />
@@ -401,6 +408,10 @@ class App extends Component {
                 <Route exact path="/cra-international" component={CRAInternationalInfo} />
                 <Route exact path="/icg-international" component={ICGInternationalInfo} />
                 <Route exact path="/adp" component={ADPInfo} />
+                <Route exact path="/workday" component={WorkdayInfo} />
+                <Route exact path="/alight" component={AlightInfo} />
+                <Route exact path="/massmutual" component={MassmutualInfo} />
+                <Route exact path="/sun-life-financial" component={SunLifeFinancialInfo} />
                 <Route exact path="/ui-designer" component={UIDesigner} />
                 <Route exact path="/business-analyst" component={BusinessAnalyst} />
                 <Route exact path="/marketing" component={Marketing} />
@@ -413,7 +424,6 @@ class App extends Component {
                 <PrivateRoute exact path="/interview-info" component={InterviewInfo} />
                 <Route component={NotFoundPage} />
               </Switch>
-              <Footer />
             </Fragment>
           </Router>
         </AlertProvider>

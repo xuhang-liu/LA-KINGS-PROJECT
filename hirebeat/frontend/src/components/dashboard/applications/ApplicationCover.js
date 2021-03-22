@@ -12,7 +12,7 @@ export const ApplicationCover = (props) => {
     window.location.reload(false);
   }
   return (
-    <div>
+    <div style={{marginBottom: "5%"}} className="container min-width-980" >
       <div style={{marginBottom: "20px"}} className="container min-width-980">
         <button
           className={decideClassName(filter, "active")}
@@ -64,6 +64,7 @@ export const ApplicationCover = (props) => {
         updateCommentStatus={props.updateCommentStatus}
         user={props.user}
         profile={props.profile}
+        updateViewStatus={props.updateViewStatus}
       />
     </div>
   );

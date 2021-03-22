@@ -6,6 +6,8 @@ import LeverageHireBeat from "../HomeEmployer/LeverageHireBeat";
 import HowHirebeatWork from "../HomeEmployer/HowHirebeatWork";
 import FreeTrialArea from "../HomeEmployer/FreeTrialArea";
 import MediaQuery from 'react-responsive';
+import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -23,7 +25,19 @@ class IndexEmployer extends Component {
         this.timerHandle = setTimeout(() => this.setState({ loading: false }), 666); 
       }
     render() {
+      const meta = {
+        title: 'HireBeat – Your first step on a better recruiting journey',
+        description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+        canonical: 'https://hirebeat.co/employer',
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+          }
+        }
+      };
         return (
+          <DocumentMeta {...meta}>
             <React.Fragment>
               <MediaQuery minDeviceWidth={1224}>
               <div className="min-width-1290">
@@ -32,6 +46,7 @@ class IndexEmployer extends Component {
                 <HowHirebeatWork/>
                 <LeverageHireBeat/>
                 <FreeTrialArea/>
+                <Footer />
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
               </div>
@@ -42,10 +57,12 @@ class IndexEmployer extends Component {
                 <HowHirebeatWork/>
                 <LeverageHireBeat/>
                 <FreeTrialArea/>
+                <Footer />
                       {/* Preloader */}
                 <Loader loading={this.state.loading} />
               </MediaQuery>
             </React.Fragment>
+            </DocumentMeta>
         );
     }
 }

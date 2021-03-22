@@ -4,6 +4,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import MediaQuery from 'react-responsive';
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -78,6 +79,7 @@ class JobList extends Component {
                     </MediaQuery>
                 </section>
                 <FreeTrialArea />
+                <Footer />
             </React.Fragment>
         );
     }

@@ -10,7 +10,7 @@ import 'boxicons';
 //import { IconText } from "../DashboardComponents";
 import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
-import Select from 'react-select'
+import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
 
 export class JobApplication extends Component{
@@ -74,6 +74,7 @@ export class JobApplication extends Component{
                                     interviewResume={this.props.interviewResume}
                                     user={this.props.user}
                                     profile={this.props.profile}
+                                    updateViewStatus={this.props.updateViewStatus}
                                 />
                             )
                         })}
@@ -333,6 +334,7 @@ const JobViewDetail = (props) => {
                     hideView={() => (setView(false), props.addSelected(0))}
                     user={props.user}
                     profile={props.profile}
+                    updateViewStatus={props.updateViewStatus}
                 />
             }
         </React.Fragment>
@@ -705,6 +707,7 @@ const JobCard = (props) => {
                                 jobTitle={props.jobTitle}
                                 updateCommentStatus={props.updateCommentStatus}
                                 offset={offset}
+                                updateViewStatus={props.updateViewStatus}
                             />
                              {/*<ReactPaginate
                                  previousLabel={'<'}
@@ -905,8 +908,18 @@ const JobCard = (props) => {
                                     <span></span>
                                 </button>
                             </div>
-                            <div className="col-7 interview-center">
+                            <div className="col-4 interview-center">
                                 {/*<p className="interview-txt8">Currently we only support adding up to 5 candidates at a time.</p>*/}
+                            </div>
+                            <div className="col-3 d-flex justify-items">
+                                <button
+                                    onClick={() => {previewEmail(props.jobTitle, props.companyName)}}
+                                    type="button"
+                                    className="default-btn1"
+                                    style={{marginBottom:"1.5%", paddingLeft:"25px", backgroundColor:"#e8edfc", color:"#090d3a"}}
+                                >
+                                    Preview Email
+                                </button>
                             </div>
                             <div className="col-3 d-flex justify-items">
                                 <button
@@ -1048,6 +1061,8 @@ const ApplicantList = (props) => {
                         positionId={a.positions_id}
                         isRecorded={a.is_recorded}
                         videoCount={a.video_count}
+                        candidateId={a.id}
+                        isViewed={a.is_viewed}
                         getApplicantsVideos={props.getApplicantsVideos}
                         getApplicantsInfo={props.getApplicantsInfo}
                         getRecordStatus={props.getRecordStatus}
@@ -1062,6 +1077,7 @@ const ApplicantList = (props) => {
                         companyName={props.companyName}
                         jobTitle={props.jobTitle}
                         updateCommentStatus={props.updateCommentStatus}
+                        updateViewStatus={props.updateViewStatus}
                     />
                 )
             })}
@@ -1075,8 +1091,15 @@ const Applicant = (props) => {
     let companyName = props.companyName;
     let jobTitle = props.jobTitle;
     let name = props.name;
+    let candidateId = props.candidateId;
+    const [isViewed, setIsViewed] = useState(props.isViewed);
+    const commentStatus = props.comment_status;
 
     function viewResult() {
+        if (!isViewed) {
+            props.updateViewStatus({"candidate_id": candidateId});
+            setIsViewed(true);
+        }
         // get videos and info
         props.getResumeURL(positionId, props.id_candidate);
         props.getApplicantsVideos(email, positionId);
@@ -1164,12 +1187,14 @@ const Applicant = (props) => {
                     marginTop: "0rem"
                 }}
             />
-            <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
+            <div className="row interview-center h-100" style={{color: "#7D7D7D", height: "3rem"}}>
+                {/* add unread lable here */}
                 {props.videoCount > 0 ? 
                 <div className="col-2 mt-2">
+                    {(!isViewed && commentStatus == 0) && <span class="dot"></span>}
                     <button className="title-button1" onClick={() => viewResult()}>
-                        {props.name}</button></div>
-                : <div className="col-2 interview-txt9 mt-2">{props.name}</div>
+                        {props.name.split("(")[0]}</button></div>
+                : <div className="col-2 interview-txt9 mt-2">{props.name.split("(")[0]}</div>
                 }
                 {props.videoCount > 0 ? 
                 <div className="col-4 mt-2">
@@ -1405,5 +1430,46 @@ function candidateLimitAlert() {
           {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
           {label: 'OK'},
         ]
+      });
+};
+
+function previewEmail(jobTitle, companyName) {
+    confirmAlert({
+        closeOnEscape: true,
+        closeOnClickOutside: true,
+        customUI: ({ onClose }) => {
+          return (
+            <div className="container-fluid" style={{fontFamily:"Arial, Helvetica, sans-serif", margin:"auto", width:"50%", overflow:"auto", height:"40rem", backgroundColor:"#ffffff"}}>
+                <div onClick={() => {onClose();}} style={{float:"right", cursor:"pointer"}}><i className="bx bx-x bx-md"></i></div>
+                <div style={{marginBottom:"2rem", paddingTop:"2rem"}}>
+                    <img src="https://hirebeat-assets.s3.amazonaws.com/HireBeatLogo2.png" alt="HireBeat Logo" style={{display:"inline-block"}}></img>
+                    <h3 style={{display:"inline-block", color:"#56a3fa", marginLeft:"0.5rem", fontWeight:"600"}}>HireBeat</h3>
+                </div>
+                <div style={{backgroundColor:"#e8edfc", borderRadius:"5px", padding:"0.6rem"}}>
+                    <h2 style={{marginTop:"2rem", color:"#090d3a", fontWeight:"600"}}>Video Interview with <span style={{color:"#56a3fa"}}>{companyName}</span> for <span style={{color:"#56a3fa"}}>{jobTitle}</span></h2>
+                    <hr style={{height:"2px", borderWidth:0, color:"lightskyblue", backgroundColor:"lightskyblue"}}/>
+                    <p>Dear Candidate,</p>
+                    <p style={{marginTop:"2rem"}}>Thank you for submitting your application for the {jobTitle}. We are pleased to inform you that you have passed our initial resume scanning. <strong>To move forward with your application, we would like to invite you to finish our online video interview process powered by HireBeat.</strong></p>
+                    <p style={{marginTop:"2rem"}}>This is your opportunity to bring your resume to life and help our recruitment team to get to know you better. <strong>HireBeat will provide you with a series of questions for which you will need a computer with a camera function to record your responses.</strong> You can complete the interview on your own time and at a location of your choice.</p>
+                    <p style={{marginTop:"2rem"}}>If you are unfamiliar with online interview video, <strong>we encourage you to use the interview practice function on HireBeat before you officially start the interview.</strong></p>
+                    <p style={{marginTop:"2rem"}}>If you encounter any technical issues or disruption during your interview, please email <a href = "#">tech@hirebeat.co</a>.</p>
+                    <p style={{marginTop:"2rem"}}>To be considered, please submit your video as soon as possible. <strong>Please use the same email when registering HireBeat account.</strong></p>
+                    <div className="row">
+                        <div className="col-3">
+                            <button className="default-btn" style={{paddingLeft:"25px"}}>Interview Practice</button>
+                        </div>
+                        <div className="col-3">
+                            <button className="default-btn1" style={{paddingLeft:"25px"}}>Start Your Interview</button>
+                        </div>
+                    </div>
+                    <p style={{marginTop:"2rem"}}>Shortly after your finish, you will find a complete sign next to your job application in your HireBeat dashboard. This means that you have successfully submitted your answer, and the hiring manager may contact you regarding the next step.</p>
+                    <p style={{marginTop:"2rem"}}>Again, thank you for your interest in {companyName} for the role of {jobTitle}. We are looking forward to hearing from you soon.</p>
+                    <p style={{marginTop:"2rem"}}>Good luck!</p>
+                    <p style={{marginBottom:"2rem"}}>{companyName}</p>
+                </div>
+                <button onClick={() => {onClose();}} className="default-btn1" style={{paddingLeft:"25px", float:"right", marginTop:"2rem", marginBottom:'2rem'}}>Confirm</button>
+            </div>
+          );
+        }
       });
 };

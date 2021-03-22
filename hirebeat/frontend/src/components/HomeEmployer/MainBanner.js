@@ -65,10 +65,10 @@ class MainBanner extends Component {
                 </div>
                 </MediaQuery>
                 <MediaQuery maxDeviceWidth={1223}>
-                <div className="saas-banner pt-100 pb-100">
+                <div className="saas-banner" style={{minHeight:"100vh",backgroundImage:"url(https://hirebeat-assets.s3.amazonaws.com/Employer/bg.jpg)", marginBottom:"-10rem"}}>
                     <div className="d-table">
                         <div className="d-table-cell">
-                            <div className="container max-width-1440">
+                            <div className="container-fluid">
                                 <div className="row align-items-center pt-8">
                                     <div className="col-lg-6 col-md-12">
                                         <div className="hero-content pl-6 pt-5">

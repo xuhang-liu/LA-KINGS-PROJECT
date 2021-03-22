@@ -5,6 +5,7 @@ import WhyChooseUs from '../Common/WhyChooseUs';
 import FaqContent from '../Faq/FaqContent';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
+import Footer from "../layout/Footer";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -27,6 +28,7 @@ class About extends Component {
                 <WhyChooseUs />
                 <FaqContent />
                 <FreeTrialArea />
+                <Footer />
             </React.Fragment>
         );
     }
