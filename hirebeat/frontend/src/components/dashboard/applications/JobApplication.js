@@ -147,7 +147,7 @@ const JobViewDetail = (props) => {
     }
 
     function inviteReviever() {
-    if(props.profile.membership == "Premium"){
+    if((props.profile.membership == "Premium") && (props.profile.plan_interval == "Premium")){
         let sub_reviewer_name = "";
         let sub_reviewer_email = "";
         function submitSubReviewer(e) {
@@ -207,7 +207,7 @@ const JobViewDetail = (props) => {
         }else{
         confirmAlert({
             title: 'Upgrade Now!',
-            message: 'Upgrade to unlock Team Collaboration.',
+            message: 'You need Premium Plan to unlock Team Collaboration.',
             buttons: [
                 {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
                 {label: 'OK'},

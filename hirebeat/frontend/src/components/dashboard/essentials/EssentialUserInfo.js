@@ -181,17 +181,29 @@ export class EssentialUserInfo extends Component {
                 </div>
                 {this.props.profile.membership == "Premium" ?
                 <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
+                  {this.props.profile.plan_interval == "Pro" ?
                   <div className="row">
                     <div className="col d-flex align-items-center mt-2">
                         <IconText
                           iconName={"bx bx-diamond bx-sm"}
-                          textDisplayed={"Premium"}
+                          textDisplayed={"Pro Plan"}
                           textSize={"12px"}
                           textColor={"#fac046"}
                           iconMargin={"2px"}
                         />
                     </div>
-                  </div> 
+                  </div>:
+                   <div className="row">
+                   <div className="col d-flex align-items-center mt-2">
+                       <IconText
+                         iconName={"bx bx-diamond bx-sm"}
+                         textDisplayed={"Premium"}
+                         textSize={"12px"}
+                         textColor={"#fac046"}
+                         iconMargin={"2px"}
+                       />
+                   </div>
+                 </div>}
                 </div>:
                 <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
                   {this.props.profile.is_subreviwer ?
