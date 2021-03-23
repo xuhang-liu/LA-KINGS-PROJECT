@@ -54,19 +54,6 @@ export class Header extends Component {
                     <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username.split("@")[0]}  ` : ""}
                     <ul className="nav_submenu" style={{width:"10rem"}}> 
                       <li>
-                      <Link id="id-dash" to="/dashboard" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
-                        Dashboard
-                      </Link>
-                      </li>
-                      <li>
-                        <hr style={{border:'1px solid #E8EDFC'}}></hr>
-                      </li>
-                      <li>
-                      <Link id="id-contact" to="/contact" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
-                        Help
-                      </Link>
-                      </li>
-                      <li>
                       <Link id="id-logout" to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
                         Log out
                       </Link>

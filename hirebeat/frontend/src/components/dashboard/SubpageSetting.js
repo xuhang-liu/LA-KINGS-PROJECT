@@ -109,8 +109,10 @@ export class SubpageSetting extends Component {
         e.preventDefault();
         if(this.state.useremail == this.props.user.email){
           this.sendEmail(e);
-          var profile = this.makeCancelConfirm();
-          this.props.updateProfile(profile);
+          if(!this.props.profile.is_employer){
+            var profile = this.makeCancelConfirm();
+            this.props.updateProfile(profile);
+          }
           confirmAlert({
             title: 'Cancel Success',
             message: 'Your subscriptions will stop at the end of this cycle.',

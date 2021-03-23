@@ -204,6 +204,15 @@ class Employer_PricingStyleOne extends Component {
                                                 </div>
                                             }
                                             {
+                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
+                                                        Premium Already
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                 <div className="btn-box">
                                                     <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
@@ -288,6 +297,15 @@ class Employer_PricingStyleOne extends Component {
                                                 <div className="btn-box">
                                                     <button id="id-tifn5" className="default-btn" style={{color:"#090d3a", backgroundColor:"#e8edfc", paddingLeft:"25px"}} onClick={this.handlePremiumUpgrade}>
                                                         Select Plan
+                                                        <span></span>
+                                                    </button>
+                                                </div>
+                                            }
+                                            {
+                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
+                                                <div className="btn-box">
+                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
+                                                        Premium Already
                                                         <span></span>
                                                     </button>
                                                 </div>
