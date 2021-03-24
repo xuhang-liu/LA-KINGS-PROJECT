@@ -24,7 +24,7 @@ class MainBanner extends Component {
                         mute: 1
                       }}
                     isOpen={this.state.isOpen} 
-                    videoId='Ct82zEpHUf8'
+                    videoId='w6o75ewYbDc'
                     onClose={() => this.setState({isOpen: false})} 
                 />
                 <MediaQuery minDeviceWidth={1224}>
