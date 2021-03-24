@@ -77,13 +77,13 @@ export class EmployerRegister extends Component {
             <section className="signup-area min-width-1290">
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0"> 
-                      <img src="https://hirebeat-assets.s3.amazonaws.com/EmployerRegister.jpg" alt="image"></img>
+                      <img src="https://hirebeat-assets.s3.amazonaws.com/EmployerRegisterLeft.jpg" alt="image"></img>
                     </div>
 
                     <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"3rem"}}>
                         <div style={{marginBottom:"3rem", paddingTop:"3rem"}}>
-                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Become an Employer at HireBeat</b></h1>
+                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Cooperate with HireBeat</b></h1>
                         </div>
                     <div className="signup-form">
                     <form onSubmit={this.onSubmit}>

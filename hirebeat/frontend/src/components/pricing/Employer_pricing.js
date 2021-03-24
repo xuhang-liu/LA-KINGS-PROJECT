@@ -36,7 +36,7 @@ class Employer_pricing extends Component {
                 <ScrollToTopOnMount />
                 <PageTitleArea1
                     pageTitle="Pricing & Plans" 
-                    pageDescription="Hiring talents, take back your time. We are here to help you save 50% of your work day on screening calls." 
+                    pageDescription="Hiring talents, and take back your time. We are here to help you save 50% of your workday on screening calls." 
                 />
                 <Employer_PricingStyleOne />
                 <Footer />

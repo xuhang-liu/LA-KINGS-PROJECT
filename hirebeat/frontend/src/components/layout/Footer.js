@@ -9,6 +9,8 @@ import MediaQuery from 'react-responsive';
 class Footer extends Component {
     render() {
         let currentYear = new Date().getFullYear();
+        var uri = window.location.pathname;
+        uri = uri.substring(1, uri.length);
         return (
             <React.Fragment>
             <MediaQuery minDeviceWidth={1224}>
@@ -39,7 +41,9 @@ class Footer extends Component {
                                     />
                                     </a>
                                 </div>
-                                <p style={{marginRight:"2%"}}>The best career support platform that supercharges your performance to make a great impression at your next interview</p>
+                                {uri.includes("employer") ?
+                                <p style={{marginRight:"2%"}}>AI-analysis video-interview platform that can boost your hiring process. With HireBeat, you can interview and hire talented candidates faster than ever.</p>
+                                : <p style={{marginRight:"2%"}}>The best career support platform that supercharges your performance to make a great impression at your next interview</p>}
                             </div>
                         </div>
 
@@ -169,7 +173,9 @@ class Footer extends Component {
                                     />
                                     </a>
                                 </div>
-                                <p style={{marginRight:"2%"}}>The best career support platform that supercharges your performance to make a great impression at your next interview</p>
+                                {uri.includes("employer") ?
+                                <p style={{marginRight:"2%"}}>AI-analysis video-interview platform that can boost your hiring process. With HireBeat, you can interview and hire talented candidates faster than ever.</p>
+                                : <p style={{marginRight:"2%"}}>The best career support platform that supercharges your performance to make a great impression at your next interview</p>}
                             </div>
                         </div>
 

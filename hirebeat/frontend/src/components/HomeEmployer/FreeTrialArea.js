@@ -15,7 +15,7 @@ class FreeTrialArea extends Component {
                 <div className="container">
                     <div className="free-trial-content">
                         <h2 style={{paddingTop:"2rem", paddingBottom:"1rem", color: "#090D3A"}}>Start Your Next Hire from HireBeat</h2>
-                        <p>AI-analysis video-interview platform that can boost your hiring process. With HireBeat, you can interview and hire talented candidates faster than ever.</p>
+                        <p>Hiring is easy as never before!</p>
                         <Link id="id-employer_signup3" to='/employer_register' className='default-btn' style={{textDecoration:'none'}}>
                             <i className="bx bxs-arrow-to-right"></i>
                             Get Started for Free Now
@@ -44,7 +44,7 @@ class FreeTrialArea extends Component {
                 <div className="container">
                     <div className="free-trial-content">
                         <h2 style={{paddingTop:"2rem", paddingBottom:"1rem", color: "#090D3A"}}>Start Your Next Hire from HireBeat</h2>
-                        <p>AI-analysis video-interview platform that can boost your hiring process. With HireBeat, you can interview and hire talented candidates faster than ever.</p>
+                        <p>Hiring is easy as never before!</p>
                         <Link id="id-employer_signup3" to='/employer_register' className='default-btn' style={{textDecoration:'none'}}>
                             <i className="bx bxs-arrow-to-right"></i>
                             Get Started for Free Now
