@@ -147,7 +147,7 @@ const JobViewDetail = (props) => {
     }
 
     function inviteReviever() {
-    if(props.profile.membership == "Premium"){
+    if((props.profile.membership == "Premium") && (props.profile.plan_interval == "Premium")){
         let sub_reviewer_name = "";
         let sub_reviewer_email = "";
         function submitSubReviewer(e) {
@@ -207,7 +207,7 @@ const JobViewDetail = (props) => {
         }else{
         confirmAlert({
             title: 'Upgrade Now!',
-            message: 'Upgrade to unlock Team Collaboration.',
+            message: 'You need Premium Plan to unlock Team Collaboration.',
             buttons: [
                 {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
                 {label: 'OK'},
@@ -345,6 +345,10 @@ const JobCard = (props) => {
     const [invite, setInvite] = useState(false);
     //const [hide, setHide] = useState(true);
     //const hideSwitch = () => {setHide(hide => !hide)};
+    const [expire, setExpire] = useState({ value: 7, label: '7 days' });
+    function onFilter1(expire) {
+        setExpire(expire);
+    }
 
     function clearInvitationForm() {
         let nameElements = document.getElementsByClassName("candidate-name");
@@ -391,6 +395,7 @@ const JobCard = (props) => {
             position_id: positionId,
             emails: emails,
             names: names,
+            expire: expire.value,
             urls: urls,
         }
         // save data to db
@@ -438,9 +443,25 @@ const JobCard = (props) => {
         { value: 'All', label: 'All' },
     ];
 
+    const options1 = [
+        { value: 28, label: '28 days' },
+        { value: 21, label: '21 days' },
+        { value: 14, label: '14 days' },
+        { value: 7, label: '7 days' },
+    ];
+
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
     function onFilter(category) {
         setCategory(category);
+    }
+
+    const customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
+        singleValue: styles => ({    ...styles,
+                                     color: '#090D3A',
+                                     fontSize: '0.9375rem',
+                                     fontFamily: 'Avenir Next',
+                                     fontWeight: '500'}),
     }
 
     const [keyWords, setkeyWords] = useState("");
@@ -733,16 +754,26 @@ const JobCard = (props) => {
                     <div className="row interview-center" style={{marginTop: "2rem", marginLeft: "1%"}}>
                         <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                     </div>
-                    <div className="row m-3">
+                    <div className="row">
+                        <div className="col-3 mt-3 mb-3">
                         <button type="button" className="default-btn resume-upload" onClick={uploadResume}>
                             <i className="bx bx-cloud-upload bx-sm"></i>
                               Upload Resume
                         </button>
+                        </div>
+                        <div className="col-5" style={{marginLeft:"-2rem", marginTop:"2rem"}}>
                         <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
-                        <div style={{marginLeft: "1rem", marginTop: "1rem"}}>
+                        <div>
                             <span className="upload-txt">
                             Bulk Upload (.pdf only; max:10)
                             </span>
+                        </div>
+                        </div>
+                        <div className="col-4 d-flex float-fluid-right">
+                            <p style={{marginTop:"2rem", display:"inline-block"}}>Expire after</p>
+                            <div style={{marginTop:"1.6rem", display:"inline-block", marginLeft:"0.5vw"}}>
+                                <Select value={expire} onChange={onFilter1} options={options1} className="select-category" styles={customStyles}/>
+                            </div>
                         </div>
                         {/*parsed &&
                             <div style={{display: "flex", alignItems: "center", marginLeft: "1rem"}}>
@@ -913,7 +944,7 @@ const JobCard = (props) => {
                             </div>
                             <div className="col-3 d-flex justify-items">
                                 <button
-                                    onClick={() => {previewEmail(props.jobTitle, props.companyName)}}
+                                    onClick={() => {previewEmail(props.jobTitle, props.companyName, expire.value)}}
                                     type="button"
                                     className="default-btn1"
                                     style={{marginBottom:"1.5%", paddingLeft:"25px", backgroundColor:"#e8edfc", color:"#090d3a"}}
@@ -1129,6 +1160,7 @@ const Applicant = (props) => {
             email: email,
             name: name,
             url: url,
+            expire: 7,
         };
 
         props.resendInvitation(meta);
@@ -1433,7 +1465,7 @@ function candidateLimitAlert() {
       });
 };
 
-function previewEmail(jobTitle, companyName) {
+function previewEmail(jobTitle, companyName, expire) {
     confirmAlert({
         closeOnEscape: true,
         closeOnClickOutside: true,
@@ -1448,23 +1480,19 @@ function previewEmail(jobTitle, companyName) {
                 <div style={{backgroundColor:"#e8edfc", borderRadius:"5px", padding:"0.6rem"}}>
                     <h2 style={{marginTop:"2rem", color:"#090d3a", fontWeight:"600"}}>Video Interview with <span style={{color:"#56a3fa"}}>{companyName}</span> for <span style={{color:"#56a3fa"}}>{jobTitle}</span></h2>
                     <hr style={{height:"2px", borderWidth:0, color:"lightskyblue", backgroundColor:"lightskyblue"}}/>
-                    <p>Dear Candidate,</p>
-                    <p style={{marginTop:"2rem"}}>Thank you for submitting your application for the {jobTitle}. We are pleased to inform you that you have passed our initial resume scanning. <strong>To move forward with your application, we would like to invite you to finish our online video interview process powered by HireBeat.</strong></p>
-                    <p style={{marginTop:"2rem"}}>This is your opportunity to bring your resume to life and help our recruitment team to get to know you better. <strong>HireBeat will provide you with a series of questions for which you will need a computer with a camera function to record your responses.</strong> You can complete the interview on your own time and at a location of your choice.</p>
-                    <p style={{marginTop:"2rem"}}>If you are unfamiliar with online interview video, <strong>we encourage you to use the interview practice function on HireBeat before you officially start the interview.</strong></p>
-                    <p style={{marginTop:"2rem"}}>If you encounter any technical issues or disruption during your interview, please email <a href = "#">tech@hirebeat.co</a>.</p>
-                    <p style={{marginTop:"2rem"}}>To be considered, please submit your video as soon as possible. <strong>Please use the same email when registering HireBeat account.</strong></p>
-                    <div className="row">
-                        <div className="col-3">
-                            <button className="default-btn" style={{paddingLeft:"25px"}}>Interview Practice</button>
-                        </div>
-                        <div className="col-3">
-                            <button className="default-btn1" style={{paddingLeft:"25px"}}>Start Your Interview</button>
-                        </div>
+                    <p>Dear <strong style={{color:"#090d3a"}}>Candidate</strong>,</p>
+                    <p style={{marginTop:"2rem"}}>Thank you for submitting your application for the <strong style={{color:"#090d3a"}}>{jobTitle}</strong>. We are pleased to inform you that you have passed our initial resume scanning. To move forward with your application, we would like to invite you to finish our online video interview process powered by HireBeat.</p>
+                    <p style={{marginTop:"2rem"}}>To be considered, please submit your video as soon as possible. Your interview session will expire after <strong style={{color:"#090d3a"}}>{expire} days</strong>.</p>
+                    <p style={{color:"#090d3a"}}><strong>Please use the same email when you start the interview procedure.</strong></p>
+                    <div className="row ml-3 mt-2">
+                        <button className="default-btn" style={{paddingLeft:"25px"}}>Start Your Interview</button>
                     </div>
-                    <p style={{marginTop:"2rem"}}>Shortly after your finish, you will find a complete sign next to your job application in your HireBeat dashboard. This means that you have successfully submitted your answer, and the hiring manager may contact you regarding the next step.</p>
-                    <p style={{marginTop:"2rem"}}>Again, thank you for your interest in {companyName} for the role of {jobTitle}. We are looking forward to hearing from you soon.</p>
-                    <p style={{marginTop:"2rem"}}>Good luck!</p>
+                    <p style={{marginTop:"2rem"}}>If you are unfamiliar with online interview video, we encourage you to use the interview practice function on HireBeat before you officially start the interview.</p>
+                    <div className="row ml-3 mt-2">
+                        <button className="default-btn1" style={{paddingLeft:"25px"}}>Interview Practice</button>
+                    </div>
+                    <p style={{marginTop:"2rem"}}>If you encounter any technical issues or disruption during your interview, please email <a href = "#">tech@hirebeat.co</a>.</p>
+                    <p style={{marginTop:"2rem"}}>Best luck!</p>
                     <p style={{marginBottom:"2rem"}}>{companyName}</p>
                 </div>
                 <button onClick={() => {onClose();}} className="default-btn1" style={{paddingLeft:"25px", float:"right", marginTop:"2rem", marginBottom:'2rem'}}>Confirm</button>

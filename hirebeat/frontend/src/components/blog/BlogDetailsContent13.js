@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
 import BlogSidebar from './BlogSidebar';
 
-class BlogDetailsContent extends Component {
+class BlogDetailsContent13 extends Component {
     render() {
         return (
             <section className="blog-details-area ptb-100">
@@ -132,4 +132,4 @@ class BlogDetailsContent extends Component {
     }
 }
 
-export default BlogDetailsContent;
+export default BlogDetailsContent13;

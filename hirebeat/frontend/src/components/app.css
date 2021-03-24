@@ -299,6 +299,15 @@ video {
   border-radius: 10px;
 }
 
+.icon-user-text1 {
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+  width: 6rem;
+  height: 3.6rem;
+  padding-top: 0.6rem;
+  border-radius: 10px;
+}
+
 .card-container {
   padding-top: 60px;
 }
@@ -836,11 +845,11 @@ h5 {
   position: absolute;
   text-align: left;
   border: none;
+  border-radius: 5px;
   width: 14rem;
   z-index: 99;
   display: block;
   visibility: hidden;
-  border-radius: 0;
   font-size: x-large;
   font-weight: 600;
   font-family: "Avenir Next", "Segoe UI";

@@ -73,15 +73,15 @@ export class CreatePosition extends Component{
         let size = elements.length;
 
         for (let i = 0; i < size; i++) {
-            if (elements[i].value == "") {
-                elements[i].value = question;
-                break;
-            }
-            if ((i == 2) && (elements[i].value != "") && (this.props.profile.membership != "Premium")) {
+            if ((i == 2) && (elements[i].value != "") && (this.props.profile.plan_interval != "Premium")) {
                 return this.filledthreeQuestion();
             }
             if (i == size - 1 && elements[i].value != "") {
                 return this.filledSuccess();
+            }
+            if (elements[i].value == "") {
+                elements[i].value = question;
+                break;
             }
         }
     }
@@ -291,7 +291,7 @@ export class CreatePosition extends Component{
                                         </div>
                                     </div>
                                     <div className="form-group col-6">
-                                        {this.props.profile.membership != "Premium" ?
+                                        {this.props.profile.plan_interval != "Premium" ?
                                         <p className="db-txt2 ml-2">
                                             Added Questions &nbsp; <span className="db-txt3">Maximum: 3</span>
                                         </p> :
@@ -323,6 +323,8 @@ export class CreatePosition extends Component{
                                                 </button>
                                             </div>
                                         </div>
+                                        {this.props.profile.plan_interval == "Premium" &&
+                                        <div>
                                         <div className="row">
                                             <textarea id="q4" type="text" style={{width: "85%"}} className="db-question"></textarea>
                                             <div className="col-1 center-items">
@@ -347,6 +349,7 @@ export class CreatePosition extends Component{
                                                 </button>
                                             </div>
                                         </div>
+                                        </div>}
                                         <div className="row" style={{float: "right", marginRight: "2.5rem"}}>
                                             <button
                                                 type="submit"
