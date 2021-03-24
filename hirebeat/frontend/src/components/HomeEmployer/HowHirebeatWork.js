@@ -39,7 +39,7 @@ class HowHirebeatWork extends Component {
                                         <ul>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Simply edit job title, job ID and the job description.
+                                                Edit the job title, job ID, and the job description.
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
@@ -79,7 +79,7 @@ class HowHirebeatWork extends Component {
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Send video interview invitation by one click.
+                                                Send video interview invitation with one click.
                                             </li>
                                         </ul>
                                         <Link to='/employer_register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
@@ -115,7 +115,7 @@ class HowHirebeatWork extends Component {
                                             </li>
                                             <li>
                                                 <i className='bx bx-badge-check'></i>
-                                                Make decision at your leisure and optimized the hiring process by 80%.
+                                                Make decisions at your leisure and optimized the hiring process by 80%.
                                             </li>
                                         </ul>
                                         <Link to='/employer_register' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>

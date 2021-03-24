@@ -10,6 +10,65 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
 class Employer_PricingStyleOne extends Component {
+    handleInputChange = (e) => {
+        this.setState({
+          [e.target.name]: e.target.value,
+        });
+    };
+
+    handleCounponUpgrade = () => {
+        if(this.state.coupon_match != 'PH2021PRO' && this.state.coupon_match != 'PH2021PREMIUM' && this.state.coupon_match != 'BL2021PRO' && this.state.coupon_match != 'BL2021PREMIUM'){
+          confirmAlert({
+            title: 'Please Enter A Valid Code',
+            message: '',
+            buttons: [
+              {
+                label: 'Ok'
+              }
+            ]
+            });
+        }else{
+            if(this.state.coupon_match == 'PH2021PRO' || this.state.coupon_match == 'BL2021PRO'){
+                this.handleCouponProClickUpgrade();
+            }else if(this.state.coupon_match == 'PH2021PREMIUM' || this.state.coupon_match == 'BL2021PREMIUM'){
+                this.handleCouponPremiumClickUpgrade();
+            }
+        }
+    };
+
+    handleCouponProClickUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1IYahXKxU1MN2zWMFL1rjh6G', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/employer-pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
+    handleCouponPremiumClickUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1IYaihKxU1MN2zWMaSeWfXrU', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/employer-pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
 
     handleProUpgrade = () => {
         if(this.props.profile.membership == 'Premium'){
@@ -97,7 +156,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E8EDFC"}}>
                                             <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600"}}>Free</h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Great if you are going to start a new business</p>
+                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Great if you want to try the new fashion</p>
                                             </div>
 
                                             <div className="price" style={{borderTop:"none"}}>
@@ -158,7 +217,7 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
-                                                    ATS intergration
+                                                    Built- in ATS
                                                 </li>
                                                 <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
@@ -177,7 +236,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#090D3A"}}>
                                             <div className="pricing-header">
                                                 <h3 style={{color:"#ffffff", fontWeight:"600"}}>Pro</h3>
-                                                <p style={{color:"#ffffff", fontSize:"12px"}}>Perfect for small & medium-sized organisations</p>
+                                                <p style={{color:"#ffffff", fontSize:"12px"}}>Perfect for small-sized organizations</p>
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", color:"#ffffff"}}>
@@ -244,7 +303,7 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    <strong>3</strong> Customize questions
+                                                    <strong>3</strong> customized questions
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
@@ -260,10 +319,10 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    ATS intergration
+                                                    Built-in ATS
                                                 </li>
-                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
+                                                <li style={{color:"white", textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bx-x" style={{color:"#e8edfc"}}></i> 
                                                     Team collaboration
                                                 </li>
                                             </ul>
@@ -361,7 +420,7 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    ATS intergration
+                                                    Built-in ATS
                                                 </li>
                                             </ul>
                                         </div>
@@ -376,7 +435,7 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{color:'#090d3a', borderTop:"none", fontSize:"2rem"}}>
-                                                <sup style={{color:"#090d3a"}}>$</sup>Customized
+                                                Custom
                                             <div style={{marginLeft:"-2rem", marginBottom:"0.3rem"}}>
                                             {
                                                 <div className="btn-box">
@@ -416,7 +475,7 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    ATS intergration
+                                                    Built-in ATS
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
@@ -428,6 +487,35 @@ class Employer_PricingStyleOne extends Component {
                             </div>
                         </div>
                     </div>
+                    {this.props.profile.membership == "Regular" &&
+                    <div style={{textAlign:"center", marginBottom:"2rem"}}>
+                    <h2 style={{display:"inline-block", marginRight:'0.5rem'}}>Coupon:</h2>
+                    <input
+                    className="form-control"
+                    type="text"
+                    name={"coupon_match"}
+                    placeholder={"Enter your coupon code here and click apply"}
+                    onChange={this.handleInputChange}
+                    style={{  
+                      backgroundColor:"#FFFFFF",
+                      fontSize: "16px",
+                      borderRadius: "5px",
+                      color:"grey",
+                      width:"30%",
+                      display:"inline-block",
+                      paddingLeft: "0.5rem"
+                    }}
+                    />
+                    <button
+                    onClick={this.handleCounponUpgrade}
+                    type="button"
+                    className="default-btn" style={{color:"white", display:"inline-block", marginLeft:"1rem"}} 
+                    >
+                      <i className="bx bxs-hot"></i>
+                        Apply
+                        <span></span>
+                    </button>
+                    </div>}
                 </div>
             </section>
         );

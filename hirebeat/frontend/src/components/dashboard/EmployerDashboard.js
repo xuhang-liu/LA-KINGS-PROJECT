@@ -21,7 +21,7 @@ import SubpageSetting from './SubpageSetting';
 import Analytics from './Analytics';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import safariAlert from "../basic/SafariAlert";
+import DocumentMeta from 'react-document-meta';
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -90,7 +90,6 @@ export class EmployerDashboard extends Component {
 
 
   componentDidMount() {
-    safariAlert();
     this.props.loadProfile();
     this.activateEmail();
     this.verifyEmail();
@@ -257,7 +256,19 @@ export class EmployerDashboard extends Component {
   };
 
   render() {
+    const meta = {
+      title: 'HireBeat – Your first step to a better recruiting journey',
+      description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+      canonical: 'https://hirebeat.co/bloghome_employer',
+      meta: {
+        charset: 'utf-8',
+        name: {
+          keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+        }
+      }
+    };
     return (
+      <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount/>
           {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
@@ -309,6 +320,7 @@ export class EmployerDashboard extends Component {
             </div>
           </MediaQuery>
         </React.Fragment>
+        </DocumentMeta>
     );
   }
 }

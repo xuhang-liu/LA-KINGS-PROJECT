@@ -84,7 +84,7 @@ class BlogDetailsContentEmployer2 extends Component {
                                     While hiring a diverse working force provides massive success to a company, it helps to understand the kind of training and how they handle various issues to create an effective working environment where everyone feels included. The tips above will enable you to understand what it takes to create a diverse working environment to reap huge benefits.
                                     </p>
                                     <p>
-                                    HireBeat allows you to “meet” the candidate behind the resume. With our on-demand video interview solution and AI-driven analytical tools, we committed to reduce the hiring biases and help companies to find the best canadines in the fastest and most cost-efficient way. Visit HireBeat at <a href="/">www.hirebeat.co/employer</a>
+                                    HireBeat allows you to “meet” the candidate behind the resume. With our on-demand video interview solution and AI-driven analytical tools, we committed to reduce the hiring biases and help companies to find the best canadines in the fastest and most cost-efficient way. Visit HireBeat at <a href="/employer">www.hirebeat.co/employer</a>
                                     </p>
                                 </div>
                             </div>

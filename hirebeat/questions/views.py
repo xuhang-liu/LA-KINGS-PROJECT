@@ -273,7 +273,10 @@ def update_secondround_status(request):
 def close_job(request):
     position_id = request.data["position_id"]
     position_obj = Positions.objects.get(id=position_id)
-    position_obj.is_closed = True
+    if position_obj.is_closed:
+        position_obj.is_closed = False
+    else:
+        position_obj.is_closed = True
     position_obj.save()
     return Response("Close current position successfully", status=status.HTTP_200_OK)
 

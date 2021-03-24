@@ -10,6 +10,7 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import DocumentMeta from 'react-document-meta';
 
 function sendEmail(e) {
   e.preventDefault();
@@ -68,12 +69,24 @@ const options = {
 
 class EmployerContact extends Component {
     render() {
+      const meta = {
+        title: 'HireBeat – Your first step to a better recruiting journey',
+        description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+        canonical: 'https://hirebeat.co/bloghome_employer',
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+          }
+        }
+      };
         return (
+          <DocumentMeta {...meta}>
             <React.Fragment>
               <ScrollToTopOnMount />
                 <PageTitleArea1 
                     pageTitle="Contact Us" 
-                    pageDescription="Submit a resuest and our expert will take you on a tour of the platform, explain pricing and guide you get started." 
+                    pageDescription="Submit a request, and our expert will take you on a tour of the platform, explain pricing and guide you to get started." 
                 />
                 <MediaQuery minDeviceWidth={1224}>
                 {/* 5th part */}
@@ -84,11 +97,11 @@ class EmployerContact extends Component {
                 <h3 style={{color:"#090d3a", fontWeight:"600"}}>How HireBeat get your best candidate?</h3>
                 <div className="mt-3">
                   <p><i className="bx bxs-check-circle mr-2" style={{color:"#56a3fa"}}></i> 
-                    Help you determine candidate’s potential quickly</p>
+                    Help you determine a candidate’s potential quickly</p>
                   <p><i className="bx bxs-check-circle mr-2" style={{color:"#56a3fa"}}></i> 
                     Reduce up to 50% of the cost per hire</p>
                   <p><i className="bx bxs-check-circle mr-2" style={{color:"#56a3fa"}}></i> 
-                    Decrease the time-to-offer by team collobration</p>
+                    Decrease the time-to-offer by team collaboration</p>
                 </div>
                 <OwlCarousel
                   className="owl-carousel owl-theme mt-4"
@@ -167,6 +180,7 @@ class EmployerContact extends Component {
         <FreeTrialArea/>
         <Footer />
         </React.Fragment>
+        </DocumentMeta>
         );
     }
 }

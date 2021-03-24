@@ -110,7 +110,7 @@ class HighlitedFeatures extends Component {
                                                 Vivid and informative visualization charts
                                             </li>
                                         </ul>
-                                        <Link to='/practice' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
+                                        <Link to='/companydata' className='default-btn' style={{backgroundColor: "#090D3A", textDecoration:'none'}}>
                                         <i className="bx bxs-arrow-to-right"></i>
                                         Check Now
                                         <span></span>

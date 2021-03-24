@@ -5,6 +5,7 @@ import Employer_PricingStyleOne from './Employer_PricingStyleOne';
 //import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -18,7 +19,19 @@ class Employer_pricing extends Component {
     componentDidUpdate
     
     render() {
+        const meta = {
+            title: 'HireBeat – Your first step to a better recruiting journey',
+            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+            canonical: 'https://hirebeat.co/bloghome_employer',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+              }
+            }
+          };
         return (
+            <DocumentMeta {...meta}>
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea1
@@ -28,6 +41,7 @@ class Employer_pricing extends Component {
                 <Employer_PricingStyleOne />
                 <Footer />
             </React.Fragment>
+            </DocumentMeta>
         );
     }
 }

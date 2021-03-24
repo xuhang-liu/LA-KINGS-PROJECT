@@ -117,6 +117,21 @@ const JobViewDetail = (props) => {
             ]
         });
     }
+    function reactiveJob() {
+        confirmAlert({
+            title: "Confirm to Reactive",
+            message: "Are you sure to reactive this position?",
+            buttons: [
+                {
+                  label: 'Yes',
+                  onClick: () => confirmClose()
+                },
+                {
+                  label: 'No'
+                }
+            ]
+        });
+    }
 
     function confirmClose() {
         props.closePosition(position);
@@ -281,17 +296,28 @@ const JobViewDetail = (props) => {
                                         <button
                                             type="submit"
                                             onClick={closeJob}
-                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"2rem"}}
+                                            className="sub_close"
                                         >
-                                            <i className="bx bx-box bx-md" style={{color: "#67A3F3"}}></i>
+                                            <i className="bx bx-box bx-sm" style={{color: "#67A3F3"}}></i>
+                                            <p className="sub_closeText">Close</p>
+                                        </button>}
+                                        {props.isClosed &&
+                                        <button
+                                            className="default-btn1 interview-txt6 mt-4"
+                                            style={{paddingLeft: "25px", marginLeft:"4rem"}}
+                                            onClick={reactiveJob}
+                                        >
+                                            Reactive
+                                            <span></span>
                                         </button>}
                                         </div> :
                                         <button
                                             type="submit"
                                             onClick={deleteAlert}
-                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"2rem"}}
+                                            className="sub_close"
                                         >
-                                            <i className="bx bx-trash bx-md" style={{color: "#67A3F3"}}></i>
+                                            <i className="bx bx-trash bx-sm" style={{color: "#67A3F3"}}></i>
+                                            <p className="sub_closeText">Delete</p>
                                         </button>}
                                     </div>}
                                 </div>
@@ -668,6 +694,8 @@ const JobCard = (props) => {
                             </button>
                         </div>
                         <div className="col-3 interview-center">
+                        </div>
+                        <div className="col-3 interview-center">
                             {!props.profile.is_subreviwer &&
                             <div>
                             {!props.isClosed &&
@@ -681,8 +709,6 @@ const JobCard = (props) => {
                                 </button>
                             }
                             </div>}
-                        </div>
-                        <div className="col-3 interview-center">
                         </div>
                     </div>
                     <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem"}}>

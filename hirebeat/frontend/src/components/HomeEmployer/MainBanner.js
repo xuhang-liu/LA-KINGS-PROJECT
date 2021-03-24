@@ -36,7 +36,7 @@ class MainBanner extends Component {
                                     <h1 style={{fontSize:"40px", lineHeight:"46px", paddingBottom:"1.2rem"}}>Simplify the Hiring Process</h1>
                                     <div>
                                         <p>Meet Candidate Behind the Resume</p>
-                                        <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#f4c534"}}>One</span> Platform</p>
+                                        <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#ff6b00"}}>One</span> Platform</p>
                                     </div>
                                     <div className="banner-btn">
                                         <div className="d-flex">
@@ -75,7 +75,7 @@ class MainBanner extends Component {
                                             <h1>Simplify the Hiring Process</h1>
                                             <div>
                                             <p>Meet Candidate Behind the Resume</p>
-                                            <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#f4c534"}}>One</span> Platform</p>
+                                            <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#ff6b00"}}>One</span> Platform</p>
                                             </div>                               
                                             <div className="banner-btn">
                                                 <div className="d-flex">
@@ -119,7 +119,7 @@ class MainBanner extends Component {
                             <div className="col-lg-6 col-md-6">
                                 <div className="overview-content pl-3">
                                     <h3>Is your screening method outdated?</h3>
-                                    <p>Repeated appointments with job applicants, time-consuming telephone interviews, and high labor and time costs to screen just one qualified applicant</p>
+                                    <p>Repeated appointments with job applicants, time-consuming telephone interviews, and high labor&time costs to screen just one qualified applicant</p>
                                 </div>
                             </div>
                         </div>
@@ -133,8 +133,8 @@ class MainBanner extends Component {
                             <div className="row align-items-center">
                                 <div className="col-lg-6 col-md-6">
                                     <div className="overview-content pl-3">
-                                        <h3>Review your candidates, anytime and anywhere!</h3>
-                                        <p>No more time wasting! HireBeat can help you set up the interview and screen candidates all at once without the trouble of scheduling time</p>
+                                        <h3>Review your candidates anytime and anywhere!</h3>
+                                        <p>No more time-wasting! HireBeat can help you set up the interview and screen candidates all at once without the trouble of scheduling time</p>
                                     </div>
                                 </div>
 
