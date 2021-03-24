@@ -42,7 +42,7 @@ class Footer extends Component {
                                     </a>
                                 </div>
                                 {uri.includes("employer") ?
-                                <p style={{marginRight:"2%"}}>AI-analysis video-interview platform that can boost your hiring process. With HireBeat, you can interview and hire talented candidates faster than ever.</p>
+                                <p style={{marginRight:"2%"}}>The automated video-interview platform that saves employers time and money! We help our clients to screen candidate performance anytime, anywhere.</p>
                                 : <p style={{marginRight:"2%"}}>The best career support platform that supercharges your performance to make a great impression at your next interview</p>}
                             </div>
                         </div>
@@ -174,7 +174,7 @@ class Footer extends Component {
                                     </a>
                                 </div>
                                 {uri.includes("employer") ?
-                                <p style={{marginRight:"2%"}}>AI-analysis video-interview platform that can boost your hiring process. With HireBeat, you can interview and hire talented candidates faster than ever.</p>
+                                <p style={{marginRight:"2%"}}>The automated video-interview platform that saves employers time and money! We help our clients to screen candidate performance anytime, anywhere.</p>
                                 : <p style={{marginRight:"2%"}}>The best career support platform that supercharges your performance to make a great impression at your next interview</p>}
                             </div>
                         </div>

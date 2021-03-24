@@ -145,7 +145,7 @@ class Employer_PricingStyleOne extends Component {
 
     render() {
         return (
-            <section className="pricing-area pt-100 pb-70">
+            <section className="pricing-area pt-100">
                 <div className="container-fluid">
                     <div className="tab pricing-list-tab">
                         <div className="tab_content">
@@ -431,7 +431,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E8EDFC"}}>
                                         <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600"}}>Enterprise</h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Ideal chocie if you are large sized organizations</p>
+                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Ideal option for large-sized organizations</p>
                                             </div>
 
                                             <div className="price" style={{color:'#090d3a', borderTop:"none", fontSize:"2rem"}}>
@@ -488,18 +488,19 @@ class Employer_PricingStyleOne extends Component {
                         </div>
                     </div>
                     {this.props.profile.membership == "Regular" &&
-                    <div style={{textAlign:"center", marginBottom:"2rem"}}>
-                    <h2 style={{display:"inline-block", marginRight:'0.5rem'}}>Coupon:</h2>
+                    <div className="mt-3 pb-5 pt-5" style={{textAlign:"center", backgroundColor:"#e8edfc"}}>
+                    <h2 style={{width:"78%", fontWeight:"600", color:"#090d3a", marginBottom:"1rem"}}><i className="bx bxs-coupon bx-sm"></i> Enter Coupon Code</h2>
                     <input
                     className="form-control"
                     type="text"
                     name={"coupon_match"}
-                    placeholder={"Enter your coupon code here and click apply"}
+                    placeholder={"Enter coupon code"}
                     onChange={this.handleInputChange}
                     style={{  
                       backgroundColor:"#FFFFFF",
                       fontSize: "16px",
                       borderRadius: "5px",
+                      height: "3rem",
                       color:"grey",
                       width:"30%",
                       display:"inline-block",
@@ -509,7 +510,7 @@ class Employer_PricingStyleOne extends Component {
                     <button
                     onClick={this.handleCounponUpgrade}
                     type="button"
-                    className="default-btn" style={{color:"white", display:"inline-block", marginLeft:"1rem"}} 
+                    className="default-btn" style={{color:"white", display:"inline-block", marginLeft:"1rem", backgroundColor:"#ff6b00"}} 
                     >
                       <i className="bx bxs-hot"></i>
                         Apply
