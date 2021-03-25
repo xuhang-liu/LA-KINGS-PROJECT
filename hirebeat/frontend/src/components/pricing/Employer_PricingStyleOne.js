@@ -6,6 +6,7 @@ import { createMessage } from "../../redux/actions/message_actions";
 import { loadStripe } from '@stripe/stripe-js';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import 'boxicons';
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
@@ -150,13 +151,13 @@ class Employer_PricingStyleOne extends Component {
                     <div className="tab pricing-list-tab">
                         <div className="tab_content">
                         <div id="tab2" className="tabs_item">
-                                <div className="row pb-5">
+                                <div className="row pb-5 pt-3">
                                     {/* Single pricing table 1 */}
                                     <div className="col-lg-3 col-md-3 px-4">
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E8EDFC"}}>
                                             <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600"}}>Free</h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Great if you want to try the new fashion</p>
+                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Try the essentials to get started</p>
                                             </div>
 
                                             <div className="price" style={{borderTop:"none"}}>
@@ -176,10 +177,12 @@ class Employer_PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
+                                                    <Link to="/employer_dashboard">
                                                     <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c", paddingLeft:"25px"}}>
                                                         Current Plan
                                                         <span></span>
                                                     </button>
+                                                    </Link>
                                                 </div>
                                             }
                                             {
@@ -233,10 +236,12 @@ class Employer_PricingStyleOne extends Component {
 
                                     {/* Single pricing table 2 */}
                                     <div className="col-lg-3 col-md-3">
+                                        <p style={{marginTop:"-3rem", color:"#ff6b00", fontWeight:"600", fontSize:"16px"}}>
+                                        <box-icon type='solid' name='medal' color="#ff6b00"></box-icon> Most popular</p>
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#090D3A"}}>
                                             <div className="pricing-header">
                                                 <h3 style={{color:"#ffffff", fontWeight:"600"}}>Pro</h3>
-                                                <p style={{color:"#ffffff", fontSize:"12px"}}>Perfect for small-sized organizations</p>
+                                                <p style={{color:"#ffffff", fontSize:"12px"}}>Perfect for small-sized companies</p>
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", color:"#ffffff"}}>
@@ -334,7 +339,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#67A3F3"}}>
                                         <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600"}}>Premium</h3>
-                                                <p style={{fontSize:"12px", color:"#090d3a"}}>Flexible team plan for growing organizations</p>
+                                                <p style={{fontSize:"12px", color:"#090d3a"}}>Great for growing organizations</p>
                                             </div>
 
                                             <div className="price" style={{borderTop:"none"}}>
@@ -431,7 +436,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E8EDFC"}}>
                                         <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600"}}>Enterprise</h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Ideal option for large-sized organizations</p>
+                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Ideal for large organizations</p>
                                             </div>
 
                                             <div className="price" style={{color:'#090d3a', borderTop:"none", fontSize:"2rem"}}>
@@ -489,7 +494,7 @@ class Employer_PricingStyleOne extends Component {
                     </div>
                     {this.props.profile.membership == "Regular" &&
                     <div className="mt-3 pb-5 pt-5" style={{textAlign:"center", backgroundColor:"#e8edfc"}}>
-                    <h2 style={{width:"78%", fontWeight:"600", color:"#090d3a", marginBottom:"1rem"}}><i className="bx bxs-coupon bx-sm"></i> Enter Coupon Code</h2>
+                    <h2 style={{width:"80%", fontWeight:"600", color:"#090d3a", marginBottom:"1rem"}}><i className="bx bxs-coupon bx-sm"></i> Enter Coupon Code</h2>
                     <input
                     className="form-control"
                     type="text"

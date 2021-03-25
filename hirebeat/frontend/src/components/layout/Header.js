@@ -26,7 +26,7 @@ export class Header extends Component {
     this.props.loadProfile();
       let elementId = document.getElementById("navbar");
       document.addEventListener("scroll", () => {
-          if (window.scrollY > 170) {
+          if (window.scrollY > 100) {
               elementId.classList.add("is-sticky");
           } else {
               elementId.classList.remove("is-sticky");
@@ -355,7 +355,7 @@ export class Header extends Component {
       <div id="navbar" className="navbar-area bg-white">
         <nav
             className="navbar navbar-expand-xl
-            navbar-dark pb-2 pt-2"
+            navbar-dark pb-1 pt-1"
             style={{
               background: "#080a3c",
             }}

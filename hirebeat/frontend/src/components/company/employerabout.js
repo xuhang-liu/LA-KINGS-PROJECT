@@ -19,7 +19,7 @@ class Employerabout extends Component {
         const meta = {
             title: 'HireBeat – Your first step to a better recruiting journey',
             description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
-            canonical: 'https://hirebeat.co/bloghome_employer',
+            canonical: 'https://hirebeat.co/employer_company',
             meta: {
               charset: 'utf-8',
               name: {

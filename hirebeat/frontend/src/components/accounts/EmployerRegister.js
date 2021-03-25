@@ -9,6 +9,7 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import badge from '../../assets/badge.png';
 import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -65,11 +66,23 @@ export class EmployerRegister extends Component {
   };
 
   render() {
+    const meta = {
+      title: 'HireBeat – Your first step to a better recruiting journey',
+      description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+      canonical: 'https://hirebeat.co/employer_register',
+      meta: {
+        charset: 'utf-8',
+        name: {
+          keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+        }
+      }
+    };
     const {username, email, password, password2} = this.state;
     if (this.props.auth.isAuthenticated) {
-      return <Redirect to="/employer_dashboard"/>;
+      return <Redirect to="/employer-pricing"/>;
     }
     return (
+      <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
           <div>
@@ -83,7 +96,8 @@ export class EmployerRegister extends Component {
                     <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"3rem"}}>
                         <div style={{marginBottom:"3rem", paddingTop:"3rem"}}>
-                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Cooperate with HireBeat</b></h1>
+                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
+                          <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Get started in minutes</b></h3>
                         </div>
                     <div className="signup-form">
                     <form onSubmit={this.onSubmit}>
@@ -189,7 +203,7 @@ export class EmployerRegister extends Component {
                             style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
-                          Try For Free
+                          Start Free
                         </button>
                       </div>
                       <p className="d-flex flex-wrap justify-content-end"
@@ -245,7 +259,8 @@ export class EmployerRegister extends Component {
                     <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"3rem"}}>
                         <div style={{marginBottom:"3rem", paddingTop:"3rem"}}>
-                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Become an Employer at HireBeat</b></h1>
+                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
+                          <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Get started in minutes</b></h3>
                         </div>
                     <div className="signup-form">
                     <form onSubmit={this.onSubmit}>
@@ -351,7 +366,7 @@ export class EmployerRegister extends Component {
                             style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
-                          Try For Free
+                          Start Free
                         </button>
                       </div>
                       <p className="d-flex flex-wrap justify-content-end"
@@ -400,7 +415,7 @@ export class EmployerRegister extends Component {
           </div>
           <Footer />
         </React.Fragment>
-
+        </DocumentMeta>
     );
   }
 }
