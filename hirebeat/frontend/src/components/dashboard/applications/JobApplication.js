@@ -273,7 +273,7 @@ const JobViewDetail = (props) => {
                                 {props.subreviewers.map((sub, i) => {
                                     return (
                                         <span onClick={() => {deleteReviever(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
-                                        <p className="sub_submenu" style={{minWidth:"6rem"}}>{sub.r_name}</p>
+                                        <p className="sub_submenu" style={{minWidth:"6rem"}}>{sub.r_name.split(" ")[0]}</p>
                                         </span>
                                     )
                                 })}
@@ -1506,7 +1506,7 @@ function previewEmail(jobTitle, companyName, expire) {
                 <div style={{backgroundColor:"#e8edfc", borderRadius:"5px", padding:"0.6rem"}}>
                     <h2 style={{marginTop:"2rem", color:"#090d3a", fontWeight:"600"}}>Video Interview with <span style={{color:"#56a3fa"}}>{companyName}</span> for <span style={{color:"#56a3fa"}}>{jobTitle}</span></h2>
                     <hr style={{height:"2px", borderWidth:0, color:"lightskyblue", backgroundColor:"lightskyblue"}}/>
-                    <p>Dear <strong style={{color:"#090d3a"}}>Candidate</strong>,</p>
+                    <p>Dear Candidate,</p>
                     <p style={{marginTop:"2rem"}}>Thank you for submitting your application for the <strong style={{color:"#090d3a"}}>{jobTitle}</strong>. We are pleased to inform you that you have passed our initial resume scanning. To move forward with your application, we would like to invite you to finish our online video interview process powered by HireBeat.</p>
                     <p style={{marginTop:"2rem"}}>To be considered, please submit your video as soon as possible. Your interview session will expire after <strong style={{color:"#090d3a"}}>{expire} days</strong>.</p>
                     <p style={{color:"#090d3a"}}><strong>Please use the same email when you start the interview procedure.</strong></p>
@@ -1517,7 +1517,7 @@ function previewEmail(jobTitle, companyName, expire) {
                     <div className="row ml-3 mt-2">
                         <button className="default-btn1" style={{paddingLeft:"25px"}}>Interview Practice</button>
                     </div>
-                    <p style={{marginTop:"2rem"}}>If you encounter any technical issues or disruption during your interview, please email <a href = "#">tech@hirebeat.co</a>.</p>
+                    <p style={{marginTop:"2rem"}}>If you encounter any technical issues or disruptions during your interview, please email <a href = "#">tech@hirebeat.co</a>.</p>
                     <p style={{marginTop:"2rem"}}>Best luck!</p>
                     <p style={{marginBottom:"2rem"}}>{companyName}</p>
                 </div>

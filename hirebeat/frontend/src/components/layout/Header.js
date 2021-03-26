@@ -26,7 +26,7 @@ export class Header extends Component {
     this.props.loadProfile();
       let elementId = document.getElementById("navbar");
       document.addEventListener("scroll", () => {
-          if (window.scrollY > 100) {
+          if (window.scrollY > 80) {
               elementId.classList.add("is-sticky");
           } else {
               elementId.classList.remove("is-sticky");
@@ -47,6 +47,15 @@ export class Header extends Component {
     const {user} = this.props.auth;
     return (
         <React.Fragment>
+          <MediaQuery minDeviceWidth={1224}>
+          <div className="nav-item order-xl-1 align-self-center mr-3">
+            <div className="nav-link text-white navbar-font">
+              <Link to="/dashboard" id="id-dash-out" className="nav-link text-white navbar-font">
+                  <span className="header-text">Dashboard</span>
+                </Link>
+            </div>
+          </div>
+          </MediaQuery>
           <div className="nav-item order-xl-1 align-self-center mr-5">
             <div className="nav-link text-white navbar-font">
               <div className="row">
@@ -71,11 +80,25 @@ export class Header extends Component {
             <ul
               className="navbar-nav
                  text-left order-xl-0" style={{marginLeft:"10px"}}>
-              <li className="nav-item ">
-                <Link to="/dashboard" id="id-dash-out" className="nav-link text-white navbar-font">
-                  <span className="header-text">Dashboard</span>
-                </Link>
+              <MediaQuery minDeviceWidth={1224}>
+              <li className="nav-item">
+                <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Features <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu" style={{height:"6rem",width:"18rem"}}>
+                      <li>
+                        <Link id="id-interviewpr1" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd1.png" alt="img"></img></span>Interview Practice</Link>
+                      </li>
+                      <li>
+                        <Link id="id-resumeop1" to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd2.png" alt="img"></img></span>Resume Optimization</Link>
+                      </li>
+                    </ul>
+                  </span>
+                </a>
               </li>
+              </MediaQuery>
               {/*<li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
