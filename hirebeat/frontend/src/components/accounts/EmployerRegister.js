@@ -203,7 +203,7 @@ export class EmployerRegister extends Component {
                             style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
-                          Start Free
+                          Sign Up Now
                         </button>
                       </div>
                       <p className="d-flex flex-wrap justify-content-end"
@@ -366,7 +366,7 @@ export class EmployerRegister extends Component {
                             style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
-                          Start Free
+                          Sign Up Now
                         </button>
                       </div>
                       <p className="d-flex flex-wrap justify-content-end"

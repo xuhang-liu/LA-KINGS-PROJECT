@@ -712,7 +712,7 @@ const JobCard = (props) => {
                         </div>
                     </div>
                     <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem"}}>
-                        <label><i className="bx bx-search"></i></label>
+                        <label><i className="bx bx-search bx-sm"></i></label>
                         <input placeholder="Search candidate" className="search-candidate-input" value={keyWords} onChange={onChange}></input>
                     </div>
                     <div className="card container" style={{marginTop:"2%"}}>

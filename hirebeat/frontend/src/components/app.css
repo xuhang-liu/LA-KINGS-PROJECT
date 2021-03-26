@@ -2592,21 +2592,21 @@ h5 {
 
 .search-candidate-input {
   font-family: Avenir Next, Segoe UI;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
+  background: #ffffff;
   color: #67a3f3;
-  width: fit-content;
-  height: 4vh;
+  width: 16rem;
+  height: 3.6vh;
   padding-left: 0.5rem;
   border: 2px solid #E8EDFC;
   box-sizing: border-box;
-  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);;
   border-radius: 30px;
 }
 
 .search-candidate-input::placeholder {
   font-family: Avenir Next, Segoe UI;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   padding-left: 0.5rem;
   color: #67a3f3;
