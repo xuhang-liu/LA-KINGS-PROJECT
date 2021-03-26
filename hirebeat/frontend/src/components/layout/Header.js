@@ -81,18 +81,28 @@ export class Header extends Component {
               className="navbar-nav
                  text-left order-xl-0" style={{marginLeft:"10px"}}>
               <MediaQuery minDeviceWidth={1224}>
+              <li className="nav-item ">
+                <Link id="id-interviewpr1" to="/practice" className="nav-link text-white navbar-font">
+                  <span className="header-text">Interview</span>
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link id="id-resumeop1" to="/resume" className="nav-link text-white navbar-font">
+                  <span className="header-text">Resume</span>
+                </Link>
+              </li>
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    Features <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu" style={{height:"6rem",width:"18rem"}}>
+                    Resources <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu" style={{height:"6rem",width:"10rem"}}>
                       <li>
-                        <Link id="id-interviewpr1" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd1.png" alt="img"></img></span>Interview Practice</Link>
+                        <Link id="id-findajob" to="/career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Find Jobs</Link>
                       </li>
                       <li>
-                        <Link id="id-resumeop1" to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd2.png" alt="img"></img></span>Resume Optimization</Link>
+                        <Link id="id-topcompany" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Company Tips</Link>
                       </li>
                     </ul>
                   </span>
@@ -142,16 +152,6 @@ export class Header extends Component {
                   </span>
                 </a>
               </li>*/}
-              <li className="nav-item ">
-                <Link id="id-findajob" to="/career" className="nav-link text-white navbar-font">
-                  <span className="header-text">Find Jobs</span>
-                </Link>
-              </li>
-              <li className="nav-item ">
-                <Link id="id-topcompany" to="/companydata" className="nav-link text-white navbar-font">
-                  <span className="header-text">Company Tips</span>
-                </Link>
-              </li>
             </ul>
           </div>
         </React.Fragment>
