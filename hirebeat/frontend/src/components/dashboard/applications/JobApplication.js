@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 //import PropTypes from "prop-types";
 //import {Link} from "react-router-dom";
@@ -21,6 +21,7 @@ export class JobApplication extends Component{
                 {this.props.loaded &&
                     <div>
                         {Object.keys(this.props.postedJobs).reverse().map((key) => {
+                            console.log(this.props.postedJobs);
                             let p = this.props.postedJobs[key];
                             // filter positions according to is_closed attribute
                             if (this.props.filter) {
@@ -98,9 +99,22 @@ export default connect(mapStateToProps, { closePosition, deletePosition, getResu
 
 const JobViewDetail = (props) => {
     const [view, setView] = useState(false);
+    const [unView, setUnView] = useState(0);
+
     let position = {
         position_id: props.positionId,
     };
+
+    useEffect(() => {
+        let temp = 0;
+        props.applicants.map((applicant) => {
+            if(applicant.comment_status == 0 && !applicant.is_viewed && applicant.is_recorded){
+                temp += 1;
+                console.log("current temp", temp);
+            }
+        })
+        setUnView(temp);   
+    }, [props.applicants]);
 
     function closeJob() {
         confirmAlert({
@@ -257,9 +271,18 @@ const JobViewDetail = (props) => {
                         <div className="mt-4">
                             <div className="row">
                                 <div className="col-7" style={{color:"#090D3A"}}>
-                                    <button className="title-button" onClick={() => {setView(true), props.addSelected(props.positionId)}}>
-                                        {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
-                                    </button>
+                                    <div className="row">
+                                        <button className="title-button ml-2" style={{float: "left"}} onClick={() => {setView(true), props.addSelected(props.positionId)}}>
+                                            {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
+                                        </button>
+                                        {unView > 0 && <div className="col mt-2">
+                                            <span className="dot"></span>
+                                            <span className="ml-2" style={{color:"#67A3F3", fontSize:"1rem", fontWeight:"600"}}>
+                                            {unView} Applicants Unreviewed
+                                        </span>
+                                        </div>
+                                        }    
+                                    </div>
                                     <div className="row mb-2 mt-1">
                                         <div className="col-4">
                                             <p style={{color:"#4A6F8A"}}>Invited Applicants: {props.applicants.length}</p>
