@@ -26,7 +26,7 @@ export class Header extends Component {
     this.props.loadProfile();
       let elementId = document.getElementById("navbar");
       document.addEventListener("scroll", () => {
-          if (window.scrollY > 170) {
+          if (window.scrollY > 80) {
               elementId.classList.add("is-sticky");
           } else {
               elementId.classList.remove("is-sticky");
@@ -47,6 +47,15 @@ export class Header extends Component {
     const {user} = this.props.auth;
     return (
         <React.Fragment>
+          <MediaQuery minDeviceWidth={1224}>
+          <div className="nav-item order-xl-1 align-self-center mr-3">
+            <div className="nav-link text-white navbar-font">
+              <Link to="/dashboard" id="id-dash-out" className="nav-link text-white navbar-font">
+                  <span className="header-text">Dashboard</span>
+                </Link>
+            </div>
+          </div>
+          </MediaQuery>
           <div className="nav-item order-xl-1 align-self-center mr-5">
             <div className="nav-link text-white navbar-font">
               <div className="row">
@@ -71,11 +80,35 @@ export class Header extends Component {
             <ul
               className="navbar-nav
                  text-left order-xl-0" style={{marginLeft:"10px"}}>
+              <MediaQuery minDeviceWidth={1224}>
               <li className="nav-item ">
-                <Link to="/dashboard" id="id-dash-out" className="nav-link text-white navbar-font">
-                  <span className="header-text">Dashboard</span>
+                <Link id="id-interviewpr1" to="/practice" className="nav-link text-white navbar-font">
+                  <span className="header-text">Interview</span>
                 </Link>
               </li>
+              <li className="nav-item ">
+                <Link id="id-resumeop1" to="/resume" className="nav-link text-white navbar-font">
+                  <span className="header-text">Resume</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Resources <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu" style={{height:"6rem",width:"10rem"}}>
+                      <li>
+                        <Link id="id-findajob" to="/career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Find Jobs</Link>
+                      </li>
+                      <li>
+                        <Link id="id-topcompany" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Company Tips</Link>
+                      </li>
+                    </ul>
+                  </span>
+                </a>
+              </li>
+              </MediaQuery>
               {/*<li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
@@ -119,16 +152,6 @@ export class Header extends Component {
                   </span>
                 </a>
               </li>*/}
-              <li className="nav-item ">
-                <Link id="id-findajob" to="/career" className="nav-link text-white navbar-font">
-                  <span className="header-text">Find Jobs</span>
-                </Link>
-              </li>
-              <li className="nav-item ">
-                <Link id="id-topcompany" to="/companydata" className="nav-link text-white navbar-font">
-                  <span className="header-text">Company Tips</span>
-                </Link>
-              </li>
             </ul>
           </div>
         </React.Fragment>
@@ -355,7 +378,7 @@ export class Header extends Component {
       <div id="navbar" className="navbar-area bg-white">
         <nav
             className="navbar navbar-expand-xl
-            navbar-dark pb-2 pt-2"
+            navbar-dark pb-1 pt-1"
             style={{
               background: "#080a3c",
             }}

@@ -14,7 +14,7 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class BlogDetail1_Employer extends Component {
+class BlogDetail1_Employer3 extends Component {
     render() {
         const meta = {
             title: 'HireBeat Blog – Writing a Good Job Posting that Will Attract Employees',
@@ -49,4 +49,4 @@ class BlogDetail1_Employer extends Component {
     }
 }
 
-export default BlogDetail1_Employer;
+export default BlogDetail1_Employer3;

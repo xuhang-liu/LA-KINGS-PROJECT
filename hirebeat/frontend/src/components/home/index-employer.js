@@ -26,7 +26,7 @@ class IndexEmployer extends Component {
       }
     render() {
       const meta = {
-        title: 'HireBeat – Your first step on a better recruiting journey',
+        title: 'HireBeat – Your first step to a better recruiting journey',
         description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
         canonical: 'https://hirebeat.co/employer',
         meta: {

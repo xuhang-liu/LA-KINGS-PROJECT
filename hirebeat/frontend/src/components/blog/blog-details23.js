@@ -14,7 +14,7 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class BlogDetail10 extends Component {
+class BlogDetail23 extends Component {
     render() {
         const meta = {
             title: 'HireBeat Blog – Good Questions to Ask the Employer at the End of The Interview',
@@ -49,4 +49,4 @@ class BlogDetail10 extends Component {
     }
 }
 
-export default BlogDetail10;
+export default BlogDetail23;

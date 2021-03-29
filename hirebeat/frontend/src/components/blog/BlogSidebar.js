@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog24.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Mar 24, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates">
+                                    <a>How to Answer the Question “What Makes You Stand Out from Other Candidates?”</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog23.jpg" alt="image"/>
@@ -358,25 +377,6 @@ class BlogSidebar extends Component {
                             <h4 className="title usmall">
                                 <Link to="/blog-4-common-interview-questions-and-how-to-answer-them">
                                     <a>4 Common Interview Questions</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/blog-things-to-do-before-an-interview">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog5.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Sep 28, 2020</time>
-                            <h4 className="title usmall">
-                                <Link to="/blog-things-to-do-before-an-interview">
-                                    <a>Things to Do Before an Interview</a>
                                 </Link>
                             </h4>
                         </div>

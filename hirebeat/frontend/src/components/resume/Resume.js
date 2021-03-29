@@ -21,7 +21,7 @@ export class Resume extends Component {
     render() {
         return (
             <React.Fragment>
-                <section className="pricing-area pb-70 bg-ffffff">
+                <section className="pricing-area pb-100 bg-ffffff">
                 <ScrollToTopOnMount />
                 <div style={{marginBottom:"5%"}}>
                     <MediaQuery minDeviceWidth={1224}>
