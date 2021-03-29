@@ -35,7 +35,7 @@ export class BlogGridHomeEmployer extends React.Component {
                   next={this.fetchMoreData}
                   hasMore={this.state.hasMore}
                   loader={<h4 style={{textAlign: "center", color: "#2196F3"}}></h4>}
-                  height={"40rem"}
+                  height={"65rem"}
                   endMessage={
                       <p style={{textAlign: "center", color: "#2196F3"}}>
                           <b>This is the end of blogs!</b>
@@ -87,24 +87,28 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-interview-questions-every-recruiter-should-ask",
     "/employer_blog-writing-a-good-job-posting-that-will-attract-employees",
     "/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring",
     "/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company",
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer4.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer3.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer1.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer2.jpg",
 ];
 
 const blogDates = [
+    "Mar 29, 2021",
     "Mar 22, 2021",
     "Mar 15, 2021",
     "Mar 17, 2021",
 ];
 
 const blogTitles = [
+    "IQ EVERY RECRUITER SHOULD ASK",
     "WRITING A GOOD JOB POSTING",
     "HOW ONE-WAY INTERVIEW HELP A COMPANY",
     "BENEFITS OF HIRING DIVERSE CANDIDATES",

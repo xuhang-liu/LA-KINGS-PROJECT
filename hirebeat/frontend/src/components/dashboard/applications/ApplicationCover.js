@@ -65,6 +65,7 @@ export const ApplicationCover = (props) => {
         user={props.user}
         profile={props.profile}
         updateViewStatus={props.updateViewStatus}
+        subreviewerUpdateComment={props.subreviewerUpdateComment}
       />
     </div>
   );

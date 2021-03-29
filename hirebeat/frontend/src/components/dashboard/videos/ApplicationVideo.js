@@ -33,6 +33,9 @@ render() {
                                             videopk={this.props.pk[this.state.currentVideo]}
                                             page={this.state.currentVideo}
                                             refresh={this.props.refresh}
+                                            positionId={this.props.positionId}
+                                            profile={this.props.profile}
+                                            subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     />
                                 </div>
                                 <div className="row container-fliud">

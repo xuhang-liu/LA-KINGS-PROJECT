@@ -21,7 +21,6 @@ export class JobApplication extends Component{
                 {this.props.loaded &&
                     <div>
                         {Object.keys(this.props.postedJobs).reverse().map((key) => {
-                            console.log(this.props.postedJobs);
                             let p = this.props.postedJobs[key];
                             // filter positions according to is_closed attribute
                             if (this.props.filter) {
@@ -76,6 +75,7 @@ export class JobApplication extends Component{
                                     user={this.props.user}
                                     profile={this.props.profile}
                                     updateViewStatus={this.props.updateViewStatus}
+                                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                 />
                             )
                         })}
@@ -108,9 +108,8 @@ const JobViewDetail = (props) => {
     useEffect(() => {
         let temp = 0;
         props.applicants.map((applicant) => {
-            if(applicant.comment_status == 0 && !applicant.is_viewed && applicant.is_recorded){
+            if((applicant.comment_status == 0) && (!applicant.is_viewed) && (applicant.is_recorded) && (applicant.video_count>0)){
                 temp += 1;
-                console.log("current temp", temp);
             }
         })
         setUnView(temp);   
@@ -384,6 +383,7 @@ const JobViewDetail = (props) => {
                     user={props.user}
                     profile={props.profile}
                     updateViewStatus={props.updateViewStatus}
+                    subreviewerUpdateComment={props.subreviewerUpdateComment}
                 />
             }
         </React.Fragment>
@@ -746,7 +746,7 @@ const JobCard = (props) => {
                             <div>
                             {!props.isClosed &&
                                 <button
-                                    className="default-btn interview-txt6"
+                                    className="default-btn1 interview-txt6"
                                     style={{paddingLeft: "25px", marginBottom:"1rem"}}
                                     onClick={inviteCandidates}
                                 >
@@ -807,6 +807,7 @@ const JobCard = (props) => {
                                 updateCommentStatus={props.updateCommentStatus}
                                 offset={offset}
                                 updateViewStatus={props.updateViewStatus}
+                                subreviewerUpdateComment={props.subreviewerUpdateComment}
                             />
                              {/*<ReactPaginate
                                  previousLabel={'<'}
@@ -1299,6 +1300,7 @@ const ApplicantList = (props) => {
                         jobTitle={props.jobTitle}
                         updateCommentStatus={props.updateCommentStatus}
                         updateViewStatus={props.updateViewStatus}
+                        subreviewerUpdateComment={props.subreviewerUpdateComment}
                     />
                 )
             })}
@@ -1488,6 +1490,7 @@ const Applicant = (props) => {
                 positionId={props.positionId}
                 updateCommentStatus={props.updateCommentStatus}
                 profile={props.profile}
+                subreviewerUpdateComment={props.subreviewerUpdateComment}
             />
             <MyModal80
                 show={showResume}
@@ -1530,6 +1533,7 @@ function MyVerticallyCenteredModal(props) {
         positionId={props.positionId}
         updateCommentStatus={props.updateCommentStatus}
         profile={props.profile}
+        subreviewerUpdateComment={props.subreviewerUpdateComment}
       />
     </MyModal80>
   );
