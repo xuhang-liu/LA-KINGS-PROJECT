@@ -368,6 +368,7 @@ const JobViewDetail = (props) => {
 }
 
 const JobCard = (props) => {
+    var curlimit = 0;
     const [invite, setInvite] = useState(false);
     //const [hide, setHide] = useState(true);
     //const hideSwitch = () => {setHide(hide => !hide)};
@@ -386,6 +387,7 @@ const JobCard = (props) => {
     }
 
     function sendInvitation(e) {
+        let candidateCount = 0;
         let companyName = props.companyName;
         let jobTitle = props.jobTitle;
         let positionId = props.positionId;
@@ -400,6 +402,9 @@ const JobCard = (props) => {
             // email
             let value = emailElements[i].value;
             emails.push(value.toLowerCase());
+            if(value!=""){
+                candidateCount+=1;
+            }
         }
         // generate interview urls and send emails
         let urls = [];
@@ -424,12 +429,18 @@ const JobCard = (props) => {
             expire: expire.value,
             urls: urls,
         }
-        // save data to db
-        props.addInterviews(meta);
-        // disable webpage refresh
-        sendSuccessAlert();
-        clearInvitationForm();
-        e.preventDefault();
+        let addLimitLeft = curlimit;
+        curlimit += candidateCount;
+        if((props.applicants.length+curlimit)>(props.profile.candidate_limit)){
+            alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit-props.applicants.length-addLimitLeft)+ ' more candidates for this position!');
+        }else{
+            // save data to db
+            props.addInterviews(meta);
+            // disable webpage refresh
+            sendSuccessAlert();
+            clearInvitationForm();
+            e.preventDefault();
+        }
     }
 
     // pagination
@@ -476,9 +487,21 @@ const JobCard = (props) => {
         { value: 7, label: '7 days' },
     ];
 
+    const options2 = [
+        { value: 'Shortlist', label: 'Shortlist' },
+        { value: 'Hold', label: 'Hold' },
+        { value: 'Reject', label: 'Reject' },
+        { value: 'All', label: 'All' },
+    ];
+
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
     function onFilter(category) {
         setCategory(category);
+    }
+
+    const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
+    function onFilter2(category2) {
+        setCategory2(category2);
     }
 
     const customStyles = {
@@ -669,14 +692,14 @@ const JobCard = (props) => {
             {/* Job Applications */}
             {!invite &&
                 <div className="card container mt-3 pt-2 pb-3">
-                    <div className="interview-center" style={{marginLeft:"-0.5rem", marginBottom:"1.4rem"}}>
+                    <div className="interview-center" style={{marginLeft:"-0.5rem", marginBottom:"1.4rem", marginTop:"1rem"}}>
                         <button
                             type="button"
-                            className="read-more"
-                            style={{border:"none", backgroundColor:"#ffffff", fontSize:"1.2rem", fontWeight:"500"}}
+                            className="default-btn"
+                            style={{paddingTop:"5px", paddingBottom:"5px"}}
                             onClick={() => {props.hideView(); props.getPJobs()}}
                         >
-                            <i className="bx bx-chevrons-left pr-1"></i> Back
+                            <i className="bx bx-arrow-back"></i>Back To All
                         </button>
                     </div>
                     <div className="row">
@@ -722,10 +745,15 @@ const JobCard = (props) => {
                             <div className="col-3">
                                 <div className="row">
                                     <div className="center-items" style={{marginRight: "1rem"}}>Status: </div>
-                                    <Select value={category} onChange={onFilter} options={options} className="select-category" />
+                                    <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles}/>
                                 </div>
                             </div>
-                            <div className="col-3">Reviews</div>
+                            <div className="col-3">
+                                <div className="row">
+                                    <div className="center-items" style={{marginRight: "1rem"}}>Review: </div>
+                                    <Select value={category2} onChange={onFilter2} options={options2} className="select-category" styles={customStyles}/>
+                                </div>
+                            </div>
                         </div>
                         <div style={{marginBottom:"2rem"}}>
                             <ApplicantList
@@ -738,6 +766,7 @@ const JobCard = (props) => {
                                 isClosed={props.isClosed}
                                 keyWords={keyWords}
                                 category={category}
+                                category2={category2}
                                 applicants={props.applicants}
                                 getApplicantsVideos={props.getApplicantsVideos}
                                 getApplicantsInfo={props.getApplicantsInfo}
@@ -1072,6 +1101,34 @@ const ApplicantList = (props) => {
                 if (props.category.value != "All") {
                     switch (props.category.value) {
                         case "Pending":
+                            if (props.category2.value != "All") {
+                                switch (props.category2.value) {
+                                    case "Shortlist":
+                                        if (a.comment_status != 1) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Hold":
+                                        if (a.comment_status != 2) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Reject":
+                                        if (a.comment_status != 3) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                }
+                            }
                             if (a.is_recorded) return null;
                             if (props.keyWords != "") {
                                 var canEmail = a.email.split("@")[0];
@@ -1080,6 +1137,34 @@ const ApplicantList = (props) => {
                             };
                             break;
                         case "Withdrawn":
+                            if (props.category2.value != "All") {
+                                switch (props.category2.value) {
+                                    case "Shortlist":
+                                        if (a.comment_status != 1) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Hold":
+                                        if (a.comment_status != 2) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Reject":
+                                        if (a.comment_status != 3) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                }
+                            }
                             if (!a.is_recorded || (a.is_recorded && a.video_count > 0)) return null;
                             if (props.keyWords != "") {
                                 var canEmail = a.email.split("@")[0];
@@ -1088,6 +1173,34 @@ const ApplicantList = (props) => {
                             };
                             break;
                         case "Completed":
+                            if (props.category2.value != "All") {
+                                switch (props.category2.value) {
+                                    case "Shortlist":
+                                        if (a.comment_status != 1) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Hold":
+                                        if (a.comment_status != 2) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Reject":
+                                        if (a.comment_status != 3) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                }
+                            }
                             if (!a.is_recorded || (a.is_recorded && a.video_count <= 0)) return null;
                             if (props.keyWords != "") {
                                 var canEmail = a.email.split("@")[0];
@@ -1101,6 +1214,34 @@ const ApplicantList = (props) => {
                     var canEmail = a.email.split("@")[0];
                     var canName = a.name;
                     if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                }
+                else if (props.category2.value != "All") {
+                    switch (props.category2.value) {
+                        case "Shortlist":
+                            if (a.comment_status != 1) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email.split("@")[0];
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                            };
+                            break;
+                        case "Hold":
+                            if (a.comment_status != 2) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email.split("@")[0];
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                            };
+                            break;
+                        case "Reject":
+                            if (a.comment_status != 3) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email.split("@")[0];
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                            };
+                            break;
+                    }
                 }
                 return (
                     <Applicant
@@ -1190,7 +1331,7 @@ const Applicant = (props) => {
         };
 
         props.resendInvitation(meta);
-        alert();
+        alert1();
     }
 
 
@@ -1371,7 +1512,7 @@ function MyVerticallyCenteredModal(props) {
   );
 };
 
-function alert() {
+function alert1() {
     confirmAlert({
       title: "Invitation Sent",
       message: "You resend the interview invitation successfully",
