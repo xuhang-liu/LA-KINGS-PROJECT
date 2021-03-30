@@ -87,6 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing",
     "/employer_blog-interview-questions-every-recruiter-should-ask",
     "/employer_blog-writing-a-good-job-posting-that-will-attract-employees",
     "/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring",
@@ -94,6 +95,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer5.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer4.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer3.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer1.jpg",
@@ -101,6 +103,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Mar 30, 2021",
     "Mar 29, 2021",
     "Mar 22, 2021",
     "Mar 15, 2021",
@@ -108,6 +111,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "A NEW WAY OF INTERVIEWING",
     "IQ EVERY RECRUITER SHOULD ASK",
     "WRITING A GOOD JOB POSTING",
     "HOW ONE-WAY INTERVIEW HELP A COMPANY",

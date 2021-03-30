@@ -1686,7 +1686,7 @@ function previewEmail(jobTitle, companyName, expire) {
                         <button className="default-btn1" style={{paddingLeft:"25px"}}>Interview Practice</button>
                     </div>
                     <p style={{marginTop:"2rem"}}>If you encounter any technical issues or disruptions during your interview, please email <a href = "#">tech@hirebeat.co</a>.</p>
-                    <p style={{marginTop:"2rem"}}>Best luck!</p>
+                    <p style={{marginTop:"2rem"}}>Good luck!</p>
                     <p style={{marginBottom:"2rem"}}>{companyName}</p>
                 </div>
                 <button onClick={() => {onClose();}} className="default-btn1" style={{paddingLeft:"25px", float:"right", marginTop:"2rem", marginBottom:'2rem'}}>Confirm</button>
