@@ -30,7 +30,17 @@ export class Profile extends Component {
 
     // when state changes, call getProfileDetail to get the most updated info
     componentDidUpdate() {
-        if (!this.state.isEditInfo) {
+        if (!this.state.isEditInfo ||
+            !this.state.isEditMedia ||
+            !this.state.isEditWorkInfo ||
+            !this.state.isEditSummary ||
+            !this.state.isEditEducation ||
+            !this.state.isEditWorkExp ||
+            !this.state.showResume ||
+            !this.state.show ||
+            !this.state.isRecordVideo ||
+            !this.state.isUploadResume
+        ) {
             this.props.getProfileDetail(this.props.userId);
             this.updateRate();
         }
