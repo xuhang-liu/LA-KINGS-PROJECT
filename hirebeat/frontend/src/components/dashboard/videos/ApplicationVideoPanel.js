@@ -49,6 +49,14 @@ class ApplicationVideoPanel extends Component {
         this.props.updateComments(data);
         this.setState({comments: ""});
         this.props.refresh();
+        if(this.props.profile.is_subreviwer){
+            let subreviewr_update = {
+                "video_pk": this.props.videopk,
+                "positionId": this.props.positionId,
+                "profile_id": this.props.profile.id,
+            };
+            this.props.subreviewerUpdateComment(subreviewr_update);
+        }
         alert("Comment Updated!");
     }
 

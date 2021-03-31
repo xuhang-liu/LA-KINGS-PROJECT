@@ -141,7 +141,7 @@ export class AudioRecorder extends Component {
         </div>
         <div className="col-3">
           {
-            !this.props.isTesting && this.props.isSimulate ? (
+            !this.props.isTesting ? (
               <div style={{display: this.state.display}}>
                 <RecordDoneButton
                   fontFamily={"Avenir Next, Segoe UI"}

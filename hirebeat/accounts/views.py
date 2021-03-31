@@ -15,6 +15,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from .models import Profile, CandidatesInterview, ProfileDetail
 from questions.models import Positions, InterviewQuestions, InvitedCandidates
+from videos.models import WPVideo
 from rest_framework.response import Response
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
@@ -221,6 +222,7 @@ def employer_notification(request):
     context = {
         'name': can_name,
         'email': email,
+        'title': position.job_title,
     }
     from_email = 'HireBeat Team'
     to_list = [user.email]
@@ -554,3 +556,36 @@ def upload_profile_video(request):
         headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
+
+@api_view(['POST'])
+def subreviewer_update_comment(request):
+    video_pk = request.data["video_pk"]
+    positionId = request.data["positionId"]
+    profile_id = request.data["profile_id"]
+    position = Positions.objects.get(id=positionId)
+    wpvideo = WPVideo.objects.get(pk=video_pk)
+    puser = User.objects.get(pk=position.user_id)
+    rprofile = Profile.objects.get(pk=profile_id)
+    ruser = User.objects.get(pk=rprofile.user_id)
+    print("===Reviewer Update Comment Notify Email Called===")
+    subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
+    message = get_template("accounts/reviewer_comment_notification_email.html")
+    context = {
+        'ruser': ruser.username,
+        'ruser_email': ruser.email,
+        'cuser': wpvideo.email,
+        'title': position.job_title,
+    }
+    from_email = 'HireBeat Team'
+    to_list = [puser.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+
+    return Response("Send employer notification successfully", status=status.HTTP_200_OK)

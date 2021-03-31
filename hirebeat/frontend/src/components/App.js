@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import DocumentMeta from 'react-document-meta';
-import {Helmet} from "react-helmet";
 import Header from "./layout/Header";
 import Dashboard from "./dashboard/Dashboard";
 import EmployerDashboard from "./dashboard/EmployerDashboard";
@@ -27,6 +26,9 @@ import bloggrid from "./blog/bloggrid";
 import bloggridEmployer from "./blog/bloggridEmployer";
 import BlogDetail1_Employer from "./blog/blog-details1-employer";
 import BlogDetail2_Employer from "./blog/blog-details2-employer";
+import BlogDetail3_Employer from "./blog/blog-details3-employer";
+import BlogDetail4_Employer from "./blog/blog-details4-employer";
+import BlogDetail5_Employer from "./blog/blog-details5-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -50,6 +52,7 @@ import BlogDetail20 from "./blog/blog-details20";
 import BlogDetail21 from "./blog/blog-details21";
 import BlogDetail22 from "./blog/blog-details22";
 import BlogDetail23 from "./blog/blog-details23";
+import BlogDetail24 from "./blog/blog-details24";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -218,12 +221,6 @@ class App extends Component {
     };
     return (
       <DocumentMeta {...meta}>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>HireBeat – The Best Video Interview Prep Tool For Jobseekers</title>
-        <meta name="description" CONTENT="Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!"></meta>
-        <link rel="canonical" href="https://hirebeat.co"/>
-      </Helmet>
       <React.Fragment>
       <Provider store={store}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
@@ -285,6 +282,9 @@ class App extends Component {
                 <Route exact path="/bloghome_employer" component={bloggridEmployer} />
                 <Route exact path="/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring" component={BlogDetail1_Employer} />
                 <Route exact path="/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company" component={BlogDetail2_Employer} />
+                <Route exact path="/employer_blog-writing-a-good-job-posting-that-will-attract-employees" component={BlogDetail3_Employer} />
+                <Route exact path="/employer_blog-interview-questions-every-recruiter-should-ask" component={BlogDetail4_Employer} />
+                <Route exact path="/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing" component={BlogDetail5_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
@@ -308,6 +308,7 @@ class App extends Component {
                 <Route exact path="/blog-4-amazing-tips-to-effectively-networking-during-covid-19" component={BlogDetail21} />
                 <Route exact path="/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years" component={BlogDetail22} />
                 <Route exact path="/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview" component={BlogDetail23} />
+                <Route exact path="/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates" component={BlogDetail24} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer_register" component={EmployerRegister} />

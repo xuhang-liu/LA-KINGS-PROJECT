@@ -101,7 +101,7 @@ export class QuestionTypeChoices extends Component {
   render() {
     return (
       <React.Fragment>
-      <section className="pricing-area pb-70 bg-f4f5fe">
+      <section className="pricing-area pb-100 bg-f4f5fe">
       <ScrollToTopOnMount />
       <div style={{marginBottom:"6%"}}>
       <MediaQuery minDeviceWidth={1224}>

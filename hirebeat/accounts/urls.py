@@ -8,7 +8,7 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     update_record, get_record_status, get_received_interview, update_record_refresh, employer_notification, \
     get_profile_detail, create_or_update_personal_info, create_or_update_social_media, create_or_update_basic_info, \
     create_or_update_video, create_or_update_summary, create_or_update_resume, create_or_update_education, create_or_update_work_exp, \
-    upload_profile_resume, upload_profile_video, create_or_update_profile_rate
+    upload_profile_resume, upload_profile_video, create_or_update_profile_rate, subreviewer_update_comment
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -95,5 +95,7 @@ urlpatterns = [
     path('upload-profile-resume', upload_profile_resume, name="upload profile resume"),
     path('upload-profile-video', upload_profile_video, name="upload profile video"),
     path('update-profile-rate', create_or_update_profile_rate, name="upload profile rate"),
+    ### send subreviewer update comment notification
+    path('subreviewer_update_comment', subreviewer_update_comment, name="subreviewer update comment"),
 ]
 

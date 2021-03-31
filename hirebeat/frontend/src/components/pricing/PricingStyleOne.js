@@ -1273,7 +1273,7 @@ class PricingStyleOne extends Component {
                             </div>
                         </div>
                     </div>
-                    {
+                    {/*
                     this.props.profile.membership == "Regular" &&
                     <div style={{textAlign:"center"}}>
                     <h2 style={{display:"inline-block", marginRight:'0.5rem'}}>Coupon:</h2>
@@ -1302,7 +1302,7 @@ class PricingStyleOne extends Component {
                         Apply
                         <span></span>
                     </button>
-                    </div>}
+                    </div>*/}
                 </div>
             </section>
         );

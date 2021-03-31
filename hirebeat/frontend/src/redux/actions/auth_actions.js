@@ -34,6 +34,7 @@ import {
   UPDATE_EDUCATION,
   UPDATE_WORK_EXP,
   UPDATE_PROFILE_RATE,
+  SUBREVIEWER_UPDATE_COMMENT,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -563,6 +564,20 @@ export const updateProfileRate = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_PROFILE_RATE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const subreviewerUpdateComment = (subreviewr_update) => (dispatch, getState) => {
+  axios
+    .post("subreviewer_update_comment", subreviewr_update, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: SUBREVIEWER_UPDATE_COMMENT,
         payload: res.data,
       });
     })

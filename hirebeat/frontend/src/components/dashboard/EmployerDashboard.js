@@ -8,7 +8,7 @@ import { ApplicationCover } from "./applications/ApplicationCover";
 import ShortList from "./ShortList";
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
+import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus, subreviewerUpdateComment } from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
@@ -21,7 +21,7 @@ import SubpageSetting from './SubpageSetting';
 import Analytics from './Analytics';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import safariAlert from "../basic/SafariAlert";
+import DocumentMeta from 'react-document-meta';
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -90,7 +90,6 @@ export class EmployerDashboard extends Component {
 
 
   componentDidMount() {
-    safariAlert();
     this.props.loadProfile();
     this.activateEmail();
     this.verifyEmail();
@@ -198,6 +197,7 @@ export class EmployerDashboard extends Component {
             user={this.props.user}
             profile={this.props.profile}
             updateViewStatus={this.props.updateViewStatus}
+            subreviewerUpdateComment={this.props.subreviewerUpdateComment}
         />;
       case "position":
         return <CreatePosition
@@ -244,8 +244,10 @@ export class EmployerDashboard extends Component {
             phone_candidate={this.props.phone_candidate}
             location_candidate={this.props.location_candidate}
             star_list={this.props.star_list}
+            resume_list={this.props.resume_list}
             updateCommentStatus={this.props.updateCommentStatus}
             profile={this.props.profile}
+            subreviewerUpdateComment={this.props.subreviewerUpdateComment}
             />
         }else{
             return null
@@ -256,7 +258,19 @@ export class EmployerDashboard extends Component {
   };
 
   render() {
+    const meta = {
+      title: 'HireBeat – Your first step to a better recruiting journey',
+      description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+      canonical: 'https://hirebeat.co/employer_dashboard',
+      meta: {
+        charset: 'utf-8',
+        name: {
+          keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+        }
+      }
+    };
     return (
+      <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount/>
           {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
@@ -308,6 +322,7 @@ export class EmployerDashboard extends Component {
             </div>
           </MediaQuery>
         </React.Fragment>
+        </DocumentMeta>
     );
   }
 }
@@ -338,6 +353,7 @@ const mapStateToProps = (state) => {
   phone_candidate: state.video_reducer.phone_candidate,
   location_candidate: state.video_reducer.location_candidate,
   star_list: state.question_reducer.star_list,
+  resume_list: state.question_reducer.resume_list,
   bqList: state.question_reducer.bqList,
   analyticsInfo: state.question_reducer.analyticsInfo,
   position_list: state.question_reducer.position_list,
@@ -347,6 +363,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
-    getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo})(
+    getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment})(
     EmployerDashboard
 );

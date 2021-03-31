@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogDetailsContentEmployer1 from './BlogDetailsContentEmployer1';
+import BlogDetailsContentEmployer3 from './BlogDetailsContentEmployer3';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import DocumentMeta from 'react-document-meta';
@@ -13,16 +13,16 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class BlogDetail1_Employer extends Component {
+class BlogDetail1_Employer3 extends Component {
     render() {
         const meta = {
-            title: 'HireBeat Blog – How does a one-way interview help a company in its hiring?',
-            description: 'One-way interviews are convenient for employers in various ways. A recruiter can invite a large number of applicants to participate. Completed interviews are in-boxed to the recruiter for review and evaluation by the hiring team',
-            canonical: 'https://hirebeat.co/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring',
+            title: 'HireBeat Blog – Writing a Good Job Posting that Will Attract Employees',
+            description: 'Creating a thorough job description enables employers to showcase the accurate details about the job and the positions available, reducing the chances of hiring the wrong candidate.',
+            canonical: 'https://hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees',
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+                keywords: 'hiring, recruitment, job, interview, human resources'
               }
             }
           };
@@ -34,7 +34,7 @@ class BlogDetail1_Employer extends Component {
                     pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogDetailsContentEmployer1 />
+                <BlogDetailsContentEmployer3 />
                 <FreeTrialArea />
             </React.Fragment>
             </DocumentMeta>
@@ -42,4 +42,4 @@ class BlogDetail1_Employer extends Component {
     }
 }
 
-export default BlogDetail1_Employer;
+export default BlogDetail1_Employer3;

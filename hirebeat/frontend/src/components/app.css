@@ -299,6 +299,15 @@ video {
   border-radius: 10px;
 }
 
+.icon-user-text1 {
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+  width: 6rem;
+  height: 3.6rem;
+  padding-top: 0.6rem;
+  border-radius: 10px;
+}
+
 .card-container {
   padding-top: 60px;
 }
@@ -840,11 +849,11 @@ h5 {
   position: absolute;
   text-align: left;
   border: none;
+  border-radius: 5px;
   width: 14rem;
   z-index: 99;
   display: block;
   visibility: hidden;
-  border-radius: 0;
   font-size: x-large;
   font-weight: 600;
   font-family: "Avenir Next", "Segoe UI";
@@ -2587,21 +2596,21 @@ h5 {
 
 .search-candidate-input {
   font-family: Avenir Next, Segoe UI;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
+  background: #ffffff;
   color: #67a3f3;
-  width: fit-content;
-  height: 4vh;
+  width: 16rem;
+  height: 3.6vh;
   padding-left: 0.5rem;
   border: 2px solid #E8EDFC;
   box-sizing: border-box;
-  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);;
   border-radius: 30px;
 }
 
 .search-candidate-input::placeholder {
   font-family: Avenir Next, Segoe UI;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   padding-left: 0.5rem;
   color: #67a3f3;
@@ -2851,6 +2860,35 @@ h5 {
   transition-delay: 0s;
 }
 .sub_number2:hover .sub_submenu {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.sub_close {
+  cursor: pointer;
+  margin-top: 2.2rem;
+  background-color: #ffffff;
+  border: none;
+  float: right;
+}
+
+.sub_closeText {
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16);
+  border-radius: 5px;
+  background: #ffffff;
+  text-align: center;
+  color: #ff0000;
+  width: auto;
+  visibility: hidden;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Avenir Next", "Segoe UI";
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  padding: 4px;
+}
+.sub_close:hover .sub_closeText {
   visibility: visible;
   transition-delay: 0s;
 }

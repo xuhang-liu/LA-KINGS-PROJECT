@@ -109,8 +109,10 @@ export class SubpageSetting extends Component {
         e.preventDefault();
         if(this.state.useremail == this.props.user.email){
           this.sendEmail(e);
-          var profile = this.makeCancelConfirm();
-          this.props.updateProfile(profile);
+          if(!this.props.profile.is_employer){
+            var profile = this.makeCancelConfirm();
+            this.props.updateProfile(profile);
+          }
           confirmAlert({
             title: 'Cancel Success',
             message: 'Your subscriptions will stop at the end of this cycle.',
@@ -304,7 +306,8 @@ export class SubpageSetting extends Component {
                             </button>
                     </form>
                 </div>
-                {((this.props.profile.plan_interval == "Premium")&&(!this.props.profile.is_subreviwer)) &&  <div>
+                {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro"))&&(!this.props.profile.is_subreviwer)) &&  
+                <div>
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>
                             <IconText
@@ -341,7 +344,8 @@ export class SubpageSetting extends Component {
                     </form>
                 </div>
                 </div>}
-                {this.props.profile.membership == "Regular" && <div>
+                {this.props.profile.membership == "Regular" && 
+                <div>
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>
                             <IconText

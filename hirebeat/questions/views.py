@@ -162,6 +162,7 @@ def add_interviews(request):
     emails = request.data["emails"]
     names = request.data["names"]
     urls = request.data["urls"]
+    expire = request.data["expire"]
 
     for i in range(len(emails)):
         if emails[i] != "" and names[i] != "":
@@ -174,11 +175,11 @@ def add_interviews(request):
                 CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
                 InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0)
                 # send email
-                send_interviews(names[i], emails[i], urls[i], job_title, company_name)
+                send_interviews(names[i], emails[i], urls[i], job_title, company_name, expire)
 
     return Response("Add interviews data successfully", status=status.HTTP_200_OK)
 
-def send_interviews(name, email, url, job_title, company_name):
+def send_interviews(name, email, url, job_title, company_name, expire):
     subject = 'Follow up on your application of ' + job_title + " at " + company_name
     message = get_template("questions/interview_email.html")
     context = {
@@ -186,6 +187,7 @@ def send_interviews(name, email, url, job_title, company_name):
         'url': url,
         'job_title': job_title,
         'company_name': company_name,
+        'expire': expire,
     }
     from_email = 'HireBeat Team'
     to_list = [email]
@@ -206,7 +208,8 @@ def resend_invitation(request):
     email = request.data["email"]
     name = request.data["name"]
     url = request.data["url"]
-    send_interviews(name, email, url, job_title, company_name)
+    expire = request.data["expire"]
+    send_interviews(name, email, url, job_title, company_name, expire)
 
     return Response("Submit feedback data successfully", status=status.HTTP_200_OK)
 
@@ -270,7 +273,10 @@ def update_secondround_status(request):
 def close_job(request):
     position_id = request.data["position_id"]
     position_obj = Positions.objects.get(id=position_id)
-    position_obj.is_closed = True
+    if position_obj.is_closed:
+        position_obj.is_closed = False
+    else:
+        position_obj.is_closed = True
     position_obj.save()
     return Response("Close current position successfully", status=status.HTTP_200_OK)
 
@@ -397,8 +403,10 @@ def get_stars_list(request):
     int_ques = InterviewQuestions.objects.filter(positions = pos_id)
     candidates = InvitedCandidates.objects.filter(positions = pos_id)
     data = {}
+    data1 = {}
     for candidate in candidates:
         can_email = candidate.email
+        unit_star_list = WPVideo.objects.filter(email = can_email, question_id__in = int_ques)
         unit_star_list = WPVideo.objects.filter(email = can_email, question_id__in = int_ques)
         star_sum = 0
         video_amount = 0
@@ -409,7 +417,14 @@ def get_stars_list(request):
             data[can_email] = round(star_sum / video_amount)
         else:
             data[can_email] = 5
-    return Response({ "data" : data } )
+        user = User.objects.filter(email=can_email)
+        if (len(user)>0):
+            unit_resume_list = InterviewResumes.objects.filter(positionId_id=pos_id, candidateId=user[0])
+            if (len(unit_resume_list)):
+                data1[can_email] = unit_resume_list[0].result_rate
+            else:
+                data1[can_email] = 0
+    return Response({ "data" : data, "data1" : data1 } )
 
 @api_view(['POST'])
 def add_sub_reviewer(request):

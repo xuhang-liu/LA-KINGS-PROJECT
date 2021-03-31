@@ -4,6 +4,7 @@ import BlogGridHomeEmployer from './BlogGridHomeEmployer';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -15,7 +16,19 @@ function ScrollToTopOnMount() {
 
 class bloggridEmployer extends Component {
     render() {
+        const meta = {
+            title: 'HireBeat – Your first step to a better recruiting journey',
+            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+            canonical: 'https://hirebeat.co/bloghome_employer',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+              }
+            }
+          };
         return (
+            <DocumentMeta {...meta}>
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
@@ -26,6 +39,7 @@ class bloggridEmployer extends Component {
                 <FreeTrialArea />
                 <Footer />
             </React.Fragment>
+            </DocumentMeta>
         );
     }
 }

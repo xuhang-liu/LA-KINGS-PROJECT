@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 //import PropTypes from "prop-types";
 //import {Link} from "react-router-dom";
@@ -75,6 +75,7 @@ export class JobApplication extends Component{
                                     user={this.props.user}
                                     profile={this.props.profile}
                                     updateViewStatus={this.props.updateViewStatus}
+                                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                 />
                             )
                         })}
@@ -98,14 +99,41 @@ export default connect(mapStateToProps, { closePosition, deletePosition, getResu
 
 const JobViewDetail = (props) => {
     const [view, setView] = useState(false);
+    const [unView, setUnView] = useState(0);
+
     let position = {
         position_id: props.positionId,
     };
+
+    useEffect(() => {
+        let temp = 0;
+        props.applicants.map((applicant) => {
+            if((applicant.comment_status == 0) && (!applicant.is_viewed) && (applicant.is_recorded) && (applicant.video_count>0)){
+                temp += 1;
+            }
+        })
+        setUnView(temp);   
+    }, [props.applicants]);
 
     function closeJob() {
         confirmAlert({
             title: "Confirm to Close",
             message: "Are you sure to close this position?",
+            buttons: [
+                {
+                  label: 'Yes',
+                  onClick: () => confirmClose()
+                },
+                {
+                  label: 'No'
+                }
+            ]
+        });
+    }
+    function reactiveJob() {
+        confirmAlert({
+            title: "Confirm to Reactive",
+            message: "Are you sure to reactive this position?",
             buttons: [
                 {
                   label: 'Yes',
@@ -147,7 +175,7 @@ const JobViewDetail = (props) => {
     }
 
     function inviteReviever() {
-    if(props.profile.membership == "Premium"){
+    if((props.profile.membership == "Premium") && (props.profile.plan_interval == "Premium")){
         let sub_reviewer_name = "";
         let sub_reviewer_email = "";
         function submitSubReviewer(e) {
@@ -207,7 +235,7 @@ const JobViewDetail = (props) => {
         }else{
         confirmAlert({
             title: 'Upgrade Now!',
-            message: 'Upgrade to unlock Team Collaboration.',
+            message: 'You need Premium Plan to unlock Team Collaboration.',
             buttons: [
                 {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
                 {label: 'OK'},
@@ -242,9 +270,18 @@ const JobViewDetail = (props) => {
                         <div className="mt-4">
                             <div className="row">
                                 <div className="col-7" style={{color:"#090D3A"}}>
-                                    <button className="title-button" onClick={() => {setView(true), props.addSelected(props.positionId)}}>
-                                        {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
-                                    </button>
+                                    <div className="row">
+                                        <button className="title-button ml-2" style={{float: "left"}} onClick={() => {setView(true), props.addSelected(props.positionId)}}>
+                                            {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
+                                        </button>
+                                        {unView > 0 && <div className="col mt-2">
+                                            <span className="dot"></span>
+                                            <span className="ml-2" style={{color:"#67A3F3", fontSize:"1rem", fontWeight:"600"}}>
+                                            {unView} Applicants Unreviewed
+                                        </span>
+                                        </div>
+                                        }    
+                                    </div>
                                     <div className="row mb-2 mt-1">
                                         <div className="col-4">
                                             <p style={{color:"#4A6F8A"}}>Invited Applicants: {props.applicants.length}</p>
@@ -258,7 +295,7 @@ const JobViewDetail = (props) => {
                                 {props.subreviewers.map((sub, i) => {
                                     return (
                                         <span onClick={() => {deleteReviever(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
-                                        <p className="sub_submenu" style={{minWidth:"6rem"}}>{sub.r_name}</p>
+                                        <p className="sub_submenu" style={{minWidth:"6rem"}}>{sub.r_name.split(" ")[0]}</p>
                                         </span>
                                     )
                                 })}
@@ -281,17 +318,28 @@ const JobViewDetail = (props) => {
                                         <button
                                             type="submit"
                                             onClick={closeJob}
-                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"2rem"}}
+                                            className="sub_close"
                                         >
-                                            <i className="bx bx-box bx-md" style={{color: "#67A3F3"}}></i>
+                                            <i className="bx bx-box bx-sm" style={{color: "#67A3F3"}}></i>
+                                            <p className="sub_closeText">Close</p>
+                                        </button>}
+                                        {props.isClosed &&
+                                        <button
+                                            className="default-btn1 interview-txt6 mt-4"
+                                            style={{paddingLeft: "25px", marginLeft:"4rem"}}
+                                            onClick={reactiveJob}
+                                        >
+                                            Reactive
+                                            <span></span>
                                         </button>}
                                         </div> :
                                         <button
                                             type="submit"
                                             onClick={deleteAlert}
-                                            style={{border: "none", backgroundColor: "white", float:"right", marginTop:"2rem"}}
+                                            className="sub_close"
                                         >
-                                            <i className="bx bx-trash bx-md" style={{color: "#67A3F3"}}></i>
+                                            <i className="bx bx-trash bx-sm" style={{color: "#67A3F3"}}></i>
+                                            <p className="sub_closeText">Delete</p>
                                         </button>}
                                     </div>}
                                 </div>
@@ -335,6 +383,7 @@ const JobViewDetail = (props) => {
                     user={props.user}
                     profile={props.profile}
                     updateViewStatus={props.updateViewStatus}
+                    subreviewerUpdateComment={props.subreviewerUpdateComment}
                 />
             }
         </React.Fragment>
@@ -342,9 +391,14 @@ const JobViewDetail = (props) => {
 }
 
 const JobCard = (props) => {
+    var curlimit = 0;
     const [invite, setInvite] = useState(false);
     //const [hide, setHide] = useState(true);
     //const hideSwitch = () => {setHide(hide => !hide)};
+    const [expire, setExpire] = useState({ value: 7, label: '7 days' });
+    function onFilter1(expire) {
+        setExpire(expire);
+    }
 
     function clearInvitationForm() {
         let nameElements = document.getElementsByClassName("candidate-name");
@@ -356,6 +410,7 @@ const JobCard = (props) => {
     }
 
     function sendInvitation(e) {
+        let candidateCount = 0;
         let companyName = props.companyName;
         let jobTitle = props.jobTitle;
         let positionId = props.positionId;
@@ -370,6 +425,9 @@ const JobCard = (props) => {
             // email
             let value = emailElements[i].value;
             emails.push(value.toLowerCase());
+            if(value!=""){
+                candidateCount+=1;
+            }
         }
         // generate interview urls and send emails
         let urls = [];
@@ -391,14 +449,21 @@ const JobCard = (props) => {
             position_id: positionId,
             emails: emails,
             names: names,
+            expire: expire.value,
             urls: urls,
         }
-        // save data to db
-        props.addInterviews(meta);
-        // disable webpage refresh
-        sendSuccessAlert();
-        clearInvitationForm();
-        e.preventDefault();
+        let addLimitLeft = curlimit;
+        curlimit += candidateCount;
+        if((props.applicants.length+curlimit)>(props.profile.candidate_limit)){
+            alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit-props.applicants.length-addLimitLeft)+ ' more candidates for this position!');
+        }else{
+            // save data to db
+            props.addInterviews(meta);
+            // disable webpage refresh
+            sendSuccessAlert();
+            clearInvitationForm();
+            e.preventDefault();
+        }
     }
 
     // pagination
@@ -438,9 +503,37 @@ const JobCard = (props) => {
         { value: 'All', label: 'All' },
     ];
 
+    const options1 = [
+        { value: 28, label: '28 days' },
+        { value: 21, label: '21 days' },
+        { value: 14, label: '14 days' },
+        { value: 7, label: '7 days' },
+    ];
+
+    const options2 = [
+        { value: 'Shortlist', label: 'Shortlist' },
+        { value: 'Hold', label: 'Hold' },
+        { value: 'Reject', label: 'Reject' },
+        { value: 'All', label: 'All' },
+    ];
+
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
     function onFilter(category) {
         setCategory(category);
+    }
+
+    const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
+    function onFilter2(category2) {
+        setCategory2(category2);
+    }
+
+    const customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
+        singleValue: styles => ({    ...styles,
+                                     color: '#090D3A',
+                                     fontSize: '0.9375rem',
+                                     fontFamily: 'Avenir Next',
+                                     fontWeight: '500'}),
     }
 
     const [keyWords, setkeyWords] = useState("");
@@ -622,14 +715,14 @@ const JobCard = (props) => {
             {/* Job Applications */}
             {!invite &&
                 <div className="card container mt-3 pt-2 pb-3">
-                    <div className="interview-center" style={{marginLeft:"-0.5rem", marginBottom:"1.4rem"}}>
+                    <div className="interview-center" style={{marginLeft:"-0.5rem", marginBottom:"1.4rem", marginTop:"1rem"}}>
                         <button
                             type="button"
-                            className="read-more"
-                            style={{border:"none", backgroundColor:"#ffffff", fontSize:"1.2rem", fontWeight:"500"}}
+                            className="default-btn"
+                            style={{paddingTop:"5px", paddingBottom:"5px"}}
                             onClick={() => {props.hideView(); props.getPJobs()}}
                         >
-                            <i className="bx bx-chevrons-left pr-1"></i> Back
+                            <i className="bx bx-arrow-back"></i>Back To All
                         </button>
                     </div>
                     <div className="row">
@@ -647,11 +740,13 @@ const JobCard = (props) => {
                             </button>
                         </div>
                         <div className="col-3 interview-center">
+                        </div>
+                        <div className="col-3 interview-center">
                             {!props.profile.is_subreviwer &&
                             <div>
                             {!props.isClosed &&
                                 <button
-                                    className="default-btn interview-txt6"
+                                    className="default-btn1 interview-txt6"
                                     style={{paddingLeft: "25px", marginBottom:"1rem"}}
                                     onClick={inviteCandidates}
                                 >
@@ -661,11 +756,9 @@ const JobCard = (props) => {
                             }
                             </div>}
                         </div>
-                        <div className="col-3 interview-center">
-                        </div>
                     </div>
                     <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem"}}>
-                        <label><i className="bx bx-search"></i></label>
+                        <label><i className="bx bx-search bx-sm"></i></label>
                         <input placeholder="Search candidate" className="search-candidate-input" value={keyWords} onChange={onChange}></input>
                     </div>
                     <div className="card container" style={{marginTop:"2%"}}>
@@ -675,10 +768,15 @@ const JobCard = (props) => {
                             <div className="col-3">
                                 <div className="row">
                                     <div className="center-items" style={{marginRight: "1rem"}}>Status: </div>
-                                    <Select value={category} onChange={onFilter} options={options} className="select-category" />
+                                    <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles}/>
                                 </div>
                             </div>
-                            <div className="col-3">Reviews</div>
+                            <div className="col-3">
+                                <div className="row">
+                                    <div className="center-items" style={{marginRight: "1rem"}}>Review: </div>
+                                    <Select value={category2} onChange={onFilter2} options={options2} className="select-category" styles={customStyles}/>
+                                </div>
+                            </div>
                         </div>
                         <div style={{marginBottom:"2rem"}}>
                             <ApplicantList
@@ -691,6 +789,7 @@ const JobCard = (props) => {
                                 isClosed={props.isClosed}
                                 keyWords={keyWords}
                                 category={category}
+                                category2={category2}
                                 applicants={props.applicants}
                                 getApplicantsVideos={props.getApplicantsVideos}
                                 getApplicantsInfo={props.getApplicantsInfo}
@@ -708,6 +807,7 @@ const JobCard = (props) => {
                                 updateCommentStatus={props.updateCommentStatus}
                                 offset={offset}
                                 updateViewStatus={props.updateViewStatus}
+                                subreviewerUpdateComment={props.subreviewerUpdateComment}
                             />
                              {/*<ReactPaginate
                                  previousLabel={'<'}
@@ -733,16 +833,26 @@ const JobCard = (props) => {
                     <div className="row interview-center" style={{marginTop: "2rem", marginLeft: "1%"}}>
                         <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                     </div>
-                    <div className="row m-3">
+                    <div className="row">
+                        <div className="col-3 mt-3 mb-3">
                         <button type="button" className="default-btn resume-upload" onClick={uploadResume}>
                             <i className="bx bx-cloud-upload bx-sm"></i>
                               Upload Resume
                         </button>
+                        </div>
+                        <div className="col-5" style={{marginLeft:"-2rem", marginTop:"2rem"}}>
                         <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
-                        <div style={{marginLeft: "1rem", marginTop: "1rem"}}>
+                        <div>
                             <span className="upload-txt">
                             Bulk Upload (.pdf only; max:10)
                             </span>
+                        </div>
+                        </div>
+                        <div className="col-4 d-flex float-fluid-right">
+                            <p style={{marginTop:"2rem", display:"inline-block"}}>Expire after</p>
+                            <div style={{marginTop:"1.6rem", display:"inline-block", marginLeft:"0.5vw"}}>
+                                <Select value={expire} onChange={onFilter1} options={options1} className="select-category" styles={customStyles}/>
+                            </div>
                         </div>
                         {/*parsed &&
                             <div style={{display: "flex", alignItems: "center", marginLeft: "1rem"}}>
@@ -913,7 +1023,7 @@ const JobCard = (props) => {
                             </div>
                             <div className="col-3 d-flex justify-items">
                                 <button
-                                    onClick={() => {previewEmail(props.jobTitle, props.companyName)}}
+                                    onClick={() => {previewEmail(props.jobTitle, props.companyName, expire.value)}}
                                     type="button"
                                     className="default-btn1"
                                     style={{marginBottom:"1.5%", paddingLeft:"25px", backgroundColor:"#e8edfc", color:"#090d3a"}}
@@ -1015,6 +1125,34 @@ const ApplicantList = (props) => {
                 if (props.category.value != "All") {
                     switch (props.category.value) {
                         case "Pending":
+                            if (props.category2.value != "All") {
+                                switch (props.category2.value) {
+                                    case "Shortlist":
+                                        if (a.comment_status != 1) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Hold":
+                                        if (a.comment_status != 2) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Reject":
+                                        if (a.comment_status != 3) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                }
+                            }
                             if (a.is_recorded) return null;
                             if (props.keyWords != "") {
                                 var canEmail = a.email.split("@")[0];
@@ -1023,6 +1161,34 @@ const ApplicantList = (props) => {
                             };
                             break;
                         case "Withdrawn":
+                            if (props.category2.value != "All") {
+                                switch (props.category2.value) {
+                                    case "Shortlist":
+                                        if (a.comment_status != 1) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Hold":
+                                        if (a.comment_status != 2) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Reject":
+                                        if (a.comment_status != 3) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                }
+                            }
                             if (!a.is_recorded || (a.is_recorded && a.video_count > 0)) return null;
                             if (props.keyWords != "") {
                                 var canEmail = a.email.split("@")[0];
@@ -1031,6 +1197,34 @@ const ApplicantList = (props) => {
                             };
                             break;
                         case "Completed":
+                            if (props.category2.value != "All") {
+                                switch (props.category2.value) {
+                                    case "Shortlist":
+                                        if (a.comment_status != 1) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Hold":
+                                        if (a.comment_status != 2) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Reject":
+                                        if (a.comment_status != 3) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                }
+                            }
                             if (!a.is_recorded || (a.is_recorded && a.video_count <= 0)) return null;
                             if (props.keyWords != "") {
                                 var canEmail = a.email.split("@")[0];
@@ -1044,6 +1238,34 @@ const ApplicantList = (props) => {
                     var canEmail = a.email.split("@")[0];
                     var canName = a.name;
                     if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                }
+                else if (props.category2.value != "All") {
+                    switch (props.category2.value) {
+                        case "Shortlist":
+                            if (a.comment_status != 1) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email.split("@")[0];
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                            };
+                            break;
+                        case "Hold":
+                            if (a.comment_status != 2) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email.split("@")[0];
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                            };
+                            break;
+                        case "Reject":
+                            if (a.comment_status != 3) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email.split("@")[0];
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                            };
+                            break;
+                    }
                 }
                 return (
                     <Applicant
@@ -1078,6 +1300,7 @@ const ApplicantList = (props) => {
                         jobTitle={props.jobTitle}
                         updateCommentStatus={props.updateCommentStatus}
                         updateViewStatus={props.updateViewStatus}
+                        subreviewerUpdateComment={props.subreviewerUpdateComment}
                     />
                 )
             })}
@@ -1129,10 +1352,11 @@ const Applicant = (props) => {
             email: email,
             name: name,
             url: url,
+            expire: 7,
         };
 
         props.resendInvitation(meta);
-        alert();
+        alert1();
     }
 
 
@@ -1266,6 +1490,7 @@ const Applicant = (props) => {
                 positionId={props.positionId}
                 updateCommentStatus={props.updateCommentStatus}
                 profile={props.profile}
+                subreviewerUpdateComment={props.subreviewerUpdateComment}
             />
             <MyModal80
                 show={showResume}
@@ -1308,12 +1533,13 @@ function MyVerticallyCenteredModal(props) {
         positionId={props.positionId}
         updateCommentStatus={props.updateCommentStatus}
         profile={props.profile}
+        subreviewerUpdateComment={props.subreviewerUpdateComment}
       />
     </MyModal80>
   );
 };
 
-function alert() {
+function alert1() {
     confirmAlert({
       title: "Invitation Sent",
       message: "You resend the interview invitation successfully",
@@ -1433,7 +1659,7 @@ function candidateLimitAlert() {
       });
 };
 
-function previewEmail(jobTitle, companyName) {
+function previewEmail(jobTitle, companyName, expire) {
     confirmAlert({
         closeOnEscape: true,
         closeOnClickOutside: true,
@@ -1449,21 +1675,17 @@ function previewEmail(jobTitle, companyName) {
                     <h2 style={{marginTop:"2rem", color:"#090d3a", fontWeight:"600"}}>Video Interview with <span style={{color:"#56a3fa"}}>{companyName}</span> for <span style={{color:"#56a3fa"}}>{jobTitle}</span></h2>
                     <hr style={{height:"2px", borderWidth:0, color:"lightskyblue", backgroundColor:"lightskyblue"}}/>
                     <p>Dear Candidate,</p>
-                    <p style={{marginTop:"2rem"}}>Thank you for submitting your application for the {jobTitle}. We are pleased to inform you that you have passed our initial resume scanning. <strong>To move forward with your application, we would like to invite you to finish our online video interview process powered by HireBeat.</strong></p>
-                    <p style={{marginTop:"2rem"}}>This is your opportunity to bring your resume to life and help our recruitment team to get to know you better. <strong>HireBeat will provide you with a series of questions for which you will need a computer with a camera function to record your responses.</strong> You can complete the interview on your own time and at a location of your choice.</p>
-                    <p style={{marginTop:"2rem"}}>If you are unfamiliar with online interview video, <strong>we encourage you to use the interview practice function on HireBeat before you officially start the interview.</strong></p>
-                    <p style={{marginTop:"2rem"}}>If you encounter any technical issues or disruption during your interview, please email <a href = "#">tech@hirebeat.co</a>.</p>
-                    <p style={{marginTop:"2rem"}}>To be considered, please submit your video as soon as possible. <strong>Please use the same email when registering HireBeat account.</strong></p>
-                    <div className="row">
-                        <div className="col-3">
-                            <button className="default-btn" style={{paddingLeft:"25px"}}>Interview Practice</button>
-                        </div>
-                        <div className="col-3">
-                            <button className="default-btn1" style={{paddingLeft:"25px"}}>Start Your Interview</button>
-                        </div>
+                    <p style={{marginTop:"2rem"}}>Thank you for submitting your application for the <strong style={{color:"#090d3a"}}>{jobTitle}</strong>. We are pleased to inform you that you have passed our initial resume scanning. To move forward with your application, we would like to invite you to finish our online video interview process powered by HireBeat.</p>
+                    <p style={{marginTop:"2rem"}}>To be considered, please submit your video as soon as possible. Your interview session will expire after <strong style={{color:"#090d3a"}}>{expire} days</strong>.</p>
+                    <p style={{color:"#090d3a"}}><strong>Please use the same email when you start the interview procedure.</strong></p>
+                    <div className="row ml-3 mt-2">
+                        <button className="default-btn" style={{paddingLeft:"25px"}}>Start Your Interview</button>
                     </div>
-                    <p style={{marginTop:"2rem"}}>Shortly after your finish, you will find a complete sign next to your job application in your HireBeat dashboard. This means that you have successfully submitted your answer, and the hiring manager may contact you regarding the next step.</p>
-                    <p style={{marginTop:"2rem"}}>Again, thank you for your interest in {companyName} for the role of {jobTitle}. We are looking forward to hearing from you soon.</p>
+                    <p style={{marginTop:"2rem"}}>If you are unfamiliar with online interview video, we encourage you to use the interview practice function on HireBeat before you officially start the interview.</p>
+                    <div className="row ml-3 mt-2">
+                        <button className="default-btn1" style={{paddingLeft:"25px"}}>Interview Practice</button>
+                    </div>
+                    <p style={{marginTop:"2rem"}}>If you encounter any technical issues or disruptions during your interview, please email <a href = "#">tech@hirebeat.co</a>.</p>
                     <p style={{marginTop:"2rem"}}>Good luck!</p>
                     <p style={{marginBottom:"2rem"}}>{companyName}</p>
                 </div>

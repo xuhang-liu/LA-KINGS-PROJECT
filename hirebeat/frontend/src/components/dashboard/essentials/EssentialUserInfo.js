@@ -7,7 +7,8 @@ import {
   IconText,
   MyModal,
   IconEmployerText,
-  IconUserText
+  IconUserText,
+  IconUserText1
 } from "../DashboardComponents";
 import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
@@ -152,6 +153,7 @@ export class EssentialUserInfo extends Component {
     var nonselectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-dashboard-non.png";
     var selectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-cog-select.png";
     var nonselectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-cog-non.png";
+    var nonselectHelp = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-help-circle.png";
     var selectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-list-ul-select.png";
     var nonSelectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-list-ul-non.png";
     var selectVideos = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-slideshow-select.png";
@@ -181,17 +183,29 @@ export class EssentialUserInfo extends Component {
                 </div>
                 {this.props.profile.membership == "Premium" ?
                 <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
+                  {this.props.profile.plan_interval == "Pro" ?
                   <div className="row">
                     <div className="col d-flex align-items-center mt-2">
                         <IconText
                           iconName={"bx bx-diamond bx-sm"}
-                          textDisplayed={"Premium"}
+                          textDisplayed={"Pro Plan"}
                           textSize={"12px"}
                           textColor={"#fac046"}
                           iconMargin={"2px"}
                         />
                     </div>
-                  </div> 
+                  </div>:
+                   <div className="row">
+                   <div className="col d-flex align-items-center mt-2">
+                       <IconText
+                         iconName={"bx bx-diamond bx-sm"}
+                         textDisplayed={"Premium"}
+                         textSize={"12px"}
+                         textColor={"#fac046"}
+                         iconMargin={"2px"}
+                       />
+                   </div>
+                 </div>}
                 </div>:
                 <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
                   {this.props.profile.is_subreviwer ?
@@ -399,7 +413,7 @@ export class EssentialUserInfo extends Component {
                 </button>
               </div>
               </div>
-              <div className="row" style={{marginTop:"20%", marginBottom:"2rem"}}>
+              <div className="row" style={{marginTop:"4rem", marginBottom:"1rem"}}>
               <div className="col d-flex align-items-center">
                 <button
                   type="button"
@@ -407,14 +421,32 @@ export class EssentialUserInfo extends Component {
                   onClick={this.props.renderSetting}
                   style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
                 >
-                  <IconUserText
+                  <IconUserText1
                     textSize={"12px"}
-                    textDisplayed={"Settings"}
+                    textDisplayed={""}
                     backColor={this.props.subpage == "settings" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "settings" ? selectSetting : nonselectSetting}
                     textColor={this.props.subpage == "settings" ? selectEColor : defaultEColor}
                   />
                 </button>
+              </div>
+              </div>
+              <div className="row" style={{marginTop:"1rem", marginBottom:"1rem"}}>
+              <div className="col d-flex align-items-center">
+                <a
+                  type="button"
+                  className="panel-button"
+                  href="/contact"
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconUserText1
+                    textSize={"12px"}
+                    textDisplayed={""}
+                    backColor={defaultBack}
+                    iconSrc={nonselectHelp}
+                    textColor={defaultEColor}
+                  />
+                </a>
               </div>
               </div>
               {/*<div className="row" style={{marginTop:"20%"}}>

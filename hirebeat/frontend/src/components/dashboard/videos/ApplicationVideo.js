@@ -33,6 +33,9 @@ render() {
                                             videopk={this.props.pk[this.state.currentVideo]}
                                             page={this.state.currentVideo}
                                             refresh={this.props.refresh}
+                                            positionId={this.props.positionId}
+                                            profile={this.props.profile}
+                                            subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     />
                                 </div>
                                 <div className="row container-fliud">
@@ -61,10 +64,10 @@ render() {
                                                         </button>
                                                         }
                                                         {this.props.comment_status == 3 ? <button className="default-btn btn-danger ml-2" style={{marginBottom:"10%", width:"7.5rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(3);this.props.refresh();}}>
-                                                        <i class='bx bx-x'></i>Reject
+                                                        <i class='bx bx-calendar-x'></i>Reject
                                                         </button>
                                                         : <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"7.5rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(3);this.props.refresh();}}>
-                                                        <i class='bx bx-x' style={{color:"#090D3A"}}></i>Reject
+                                                        <i class='bx bx-calendar-x' style={{color:"#090D3A"}}></i>Reject
                                                         </button>
                                                         }
                                                         </div>
