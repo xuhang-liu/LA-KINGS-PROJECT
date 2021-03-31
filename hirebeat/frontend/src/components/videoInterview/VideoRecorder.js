@@ -25,6 +25,7 @@ export class VideoRecorder extends Component {
     videoHandled: false,
     video: null,
     display: "block",
+    testStarted: false,
   };
 
   componentDidMount() {
@@ -41,7 +42,7 @@ export class VideoRecorder extends Component {
 
     this.player.on("deviceReady", () => {
       console.log("device is ready!");
-      this.player.record().start();
+      //this.player.record().start();
     });
 
     this.player.on("startRecord", () => {
@@ -130,6 +131,19 @@ export class VideoRecorder extends Component {
               className="video-js vjs-default-skin"
               playsInline
             ></video>
+            {!this.state.testStarted ? (
+            <div className="pt-2" style={{position: "absolute", zIndex:"100", margin:"7rem"}}>
+              <CardButton 
+              onTap={()=>{
+                this.setState({testStarted: true});
+                this.player.record().start();
+              }}
+              textDisplayed={"Start Recording"}
+              buttonWidth={"20%"}
+              isAudio={this.props.isAudio ? true : false}
+              fontFamily={"Avenir Next, Segoe UI"}
+            />
+            </div>) : null}
           </div>
         </div>
         <div className="col-3">

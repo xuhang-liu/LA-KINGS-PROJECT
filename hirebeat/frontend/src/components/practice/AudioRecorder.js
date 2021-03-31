@@ -16,7 +16,7 @@ import NotePad from "./NotePad";
 import MyVideoUploader from "../videos/MyVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_QUESTION } from "../../redux/actions/action_types";
-import { RecordDoneButton } from "./CardComponents";
+import { RecordDoneButton, CardButton } from "./CardComponents";
 
 export class AudioRecorder extends Component {
   constructor() {
@@ -29,6 +29,7 @@ export class AudioRecorder extends Component {
   }
 
   state = {
+    testStarted: false,
     audioRecorded: false,
     audioHandled: false,
     audio: null,
@@ -51,8 +52,9 @@ export class AudioRecorder extends Component {
 
     this.player.on("deviceReady", () => {
       console.log("device is ready!");
-      this.player.record().start();
+     // this.player.record().start();
     });
+
 
     this.player.on('startRecord', () => {
         console.log('started recording!');
@@ -135,7 +137,22 @@ export class AudioRecorder extends Component {
               id="myAudio"
               ref={(node) => (this.audioNode = node)}
               className="video-js vjs-default-skin"
-            ></audio>
+            >
+            </audio>
+            {!this.state.testStarted ? (
+              <div className="ml-5 pt-2" style={{position: "absolute", zIndex:"100"}}>
+                <CardButton 
+                className="ml-5"
+                onTap={()=>{
+                  this.setState({testStarted: true});
+                  this.player.record().start();
+                }}
+                textDisplayed={"Start Recording"}
+                buttonWidth={"20%"}
+                isAudio={this.props.isAudio ? true : false}
+                fontFamily={"Avenir Next, Segoe UI"}
+              />
+              </div>) : null}
           </div>
           {/* !this.props.isTesting ? <NotePad isAudio={true} /> : null*/}
         </div>
