@@ -5,7 +5,7 @@ from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     resend_activation_email, update_user_email, update_user_password, \
     check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, \
-    update_record, get_record_status, get_received_interview, update_record_refresh, employer_notification
+    update_record, get_record_status, get_received_interview, update_record_refresh, employer_notification, subreviewer_update_comment
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -78,5 +78,8 @@ urlpatterns = [
 
     ### get received interview info
     path('get-received-interview', get_received_interview, name="get received interview"),
+
+    ### send subreviewer update comment notification
+    path('subreviewer_update_comment', subreviewer_update_comment, name="subreviewer update comment"),
 ]
 
