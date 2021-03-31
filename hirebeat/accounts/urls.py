@@ -5,7 +5,10 @@ from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     resend_activation_email, update_user_email, update_user_password, \
     check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, \
-    update_record, get_record_status, get_received_interview, update_record_refresh, employer_notification
+    update_record, get_record_status, get_received_interview, update_record_refresh, employer_notification, \
+    get_profile_detail, create_or_update_personal_info, create_or_update_social_media, create_or_update_basic_info, \
+    create_or_update_video, create_or_update_summary, create_or_update_resume, create_or_update_education, create_or_update_work_exp, \
+    upload_profile_resume, upload_profile_video, create_or_update_profile_rate
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -78,5 +81,19 @@ urlpatterns = [
 
     ### get received interview info
     path('get-received-interview', get_received_interview, name="get received interview"),
+
+    # profile detail
+    path('get-profile-detail', get_profile_detail, name="get profile detail"),
+    path('update-personal-info', create_or_update_personal_info, name="create or update personal info"),
+    path('update-social-media', create_or_update_social_media, name="create or update socail media"),
+    path('update-basic-info', create_or_update_basic_info, name="create or update basic info"),
+    path('update-video', create_or_update_video, name="create or update video"),
+    path('update-summary', create_or_update_summary, name="create or update summary"),
+    path('update-resume', create_or_update_resume, name="create or update resume"),
+    path('update-education', create_or_update_education, name="create or update education"),
+    path('update-work-exp', create_or_update_work_exp, name="create or update work exp"),
+    path('upload-profile-resume', upload_profile_resume, name="upload profile resume"),
+    path('upload-profile-video', upload_profile_video, name="upload profile video"),
+    path('update-profile-rate', create_or_update_profile_rate, name="upload profile rate"),
 ]
 

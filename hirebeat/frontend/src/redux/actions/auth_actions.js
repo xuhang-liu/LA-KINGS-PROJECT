@@ -24,6 +24,16 @@ import {
   GET_RECEIVED_INTERVIEW,
   UPDATE_RECORD_REFRESH,
   EMPLOYER_NOTIFICATION,
+  GET_PROFILE_DETAIL,
+  UPDATE_PERSONAL_INFO,
+  UPDATE_SOCIAL_MEDIA,
+  UPDATE_BASIC_INFO,
+  UPDATE_VIDEO,
+  UPDATE_SUMMARY,
+  UPDATE_RESUME,
+  UPDATE_EDUCATION,
+  UPDATE_WORK_EXP,
+  UPDATE_PROFILE_RATE,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -413,6 +423,146 @@ export const getReceivedInterview = (email) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_RECEIVED_INTERVIEW,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getProfileDetail = (user_id) => (dispatch, getState) => {
+  axios
+    .get(`get-profile-detail?user_id=${user_id}`)
+    .then((res) => {
+      dispatch({
+        type: GET_PROFILE_DETAIL,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updatePersonalInfo = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-personal-info", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_PERSONAL_INFO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateSocialMedia = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-social-media", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_SOCIAL_MEDIA,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateBasicInfo = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-basic-info", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_BASIC_INFO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateVideo = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-video", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_VIDEO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateSummary = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-summary", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_SUMMARY,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateResume = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-resume", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_RESUME,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateEducation = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-education", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_EDUCATION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateWorkExp = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-work-exp", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_WORK_EXP,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateProfileRate = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-profile-rate", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_PROFILE_RATE,
         payload: res.data,
       });
     })

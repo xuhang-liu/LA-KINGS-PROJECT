@@ -309,7 +309,8 @@ export class EssentialUserInfo extends Component {
               <div>
               <div className="row" style={{marginTop:"2rem", textAlign:"center"}}>
                 <div className="col align-items-center">
-                  <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle.png" 
+                  <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle.png"
+                       type="button" onClick={this.props.renderProfile}
                       style={{width:"36px"}} alt="icon"></img>
                 </div>
               </div>

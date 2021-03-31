@@ -237,6 +237,20 @@ export const MyModal80 = (props) => {
     );
 };
 
+export const MyVideoModal = (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName= {!props.isResume ? "my-video-modal" : "resume-modal"}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton style={{border: "none", height: "6px"}}/>
+            {props.children}
+        </Modal>
+    );
+};
+
 export const OverallScore = (props) => {
   var options = customBarData(props.percent, props.bgColor, props.barColor);
   return (

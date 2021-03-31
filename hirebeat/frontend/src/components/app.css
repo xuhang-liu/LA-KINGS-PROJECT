@@ -436,6 +436,10 @@ card-row-third-high {
   min-width: 90%;
 }
 
+.my-video-modal {
+  min-width: 60%;
+}
+
 .line {
   width: 40%;
   height: 2px;
@@ -3009,4 +3013,113 @@ h5 {
 .analytics_text:hover .analytics_preview {
   visibility: visible;
   transition-delay: 0s;
+}
+
+.profile-bg {
+  background: #FFFFFF;
+  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
+  border-radius: 10px;
+}
+
+.profile-container {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.profile-h3 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #090D3A;
+}
+
+.profile-p {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.profile-edit {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #67A3F3;
+}
+
+.profile-input {
+  background: #FFFFFF;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.profile-p2 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.profile-p3 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.profile-p4 {
+font-family: Avenir Next;
+font-style: normal;
+font-weight: 500;
+font-size: 0.9375rem;
+color: #4A6F8A;
+}
+
+.profile-p5 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: #7D7D7D;
+}
+
+.profile-bg2 {
+  background: #E8EDFC;
+  border-radius: 5px;
+}
+
+.profile-bg3 {
+  background: #FFFFFF;
+  border: 2px solid #E5E5E5;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.profile-bg4 {
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.profile-btn {
+  border: none;
+  background: white;
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.profile-btn2 {
+  background: #67A3F3;
+  box-shadow: 2px 2px 4px rgba(103, 163, 243, 0.16);
+  border-radius: 7.40558px;
 }
