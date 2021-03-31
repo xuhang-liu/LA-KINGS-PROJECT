@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { MyVideoModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
-import VideoPlayer from "../../videos/VideoPlayer";
+import ReactPlayer from 'react-player';
 import RecordWindow from "./RecordWindow";
 
 export class VideoPanel extends Component {
@@ -74,7 +74,7 @@ export class VideoPanel extends Component {
                         <span className="profile-edit" onClick={this.deleteAlert} style={{color: "#FF0000", marginLeft: "1rem"}} type="button">Delete</span>
                     </div>
                 </p>
-                <VideoPlayer url={this.props.videoURL} />
+                <ReactPlayer id="rw-video" url={this.props.videoURL}  controls={true}/>
                 <MyVideoModal
                     show={this.state.show}
                     onHide={()=>{this.disableShow()}}

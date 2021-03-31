@@ -390,14 +390,16 @@ def create_or_update_resume(request):
 def create_or_update_profile_rate(request):
     user_id = request.data["user_id"]
     profile_rate = request.data["profile_rate"]
+    info_rate = request.data["info_rate"]
     try:
         # update personal information
         user_profile = ProfileDetail.objects.get(user_id=user_id)
         user_profile.profile_rate = profile_rate
+        user_profile.info_rate = info_rate
         user_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        ProfileDetail.objects.create(user_id=user_id, profile_rate=profile_rate)
+        ProfileDetail.objects.create(user_id=user_id, profile_rate=profile_rate, info_rate=info_rate)
     return Response("Create or Update profile rate successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])

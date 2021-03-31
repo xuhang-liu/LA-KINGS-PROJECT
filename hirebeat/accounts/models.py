@@ -92,6 +92,7 @@ class ProfileDetail(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     self_description = models.TextField(null=True, blank=True)
     profile_rate = models.IntegerField(default=25)
+    info_rate = models.IntegerField(default=0)
 
     linkedin = models.CharField(max_length=100, null=True, blank=True)
     website = models.CharField(max_length=100, null=True, blank=True)

@@ -45,6 +45,10 @@ export class Resume extends Component {
         this.setState({ ...this.state, selected: true });
     }
 
+    disableSelected = () => {
+        this.setState({ ...this.state, selected: false });
+    }
+
     setLabel = (name) => {
         let label = document.getElementById('fileName');
         label.textContent = name;
@@ -76,7 +80,7 @@ export class Resume extends Component {
                 //set cvName &　resume states
                 let timestamp = Date.parse(new Date());
                 let suffix = docType == "pdf" ? ".pdf" : ".docx";
-                let fakeName = name.split(".")[0] + "_" + timestamp + suffix;
+                let fakeName = timestamp + suffix;
                 const newResume = new File([resume], fakeName, {type: resume.type});
                 this.setState({fakeName: fakeName});
                 this.setState({cvName: name});
@@ -128,6 +132,7 @@ export class Resume extends Component {
         else {
             this.uploader.uploadFile(this.state.resume);
             this.props.setResume();
+            this.disableSelected();
         }
    }
 
@@ -164,7 +169,7 @@ export class Resume extends Component {
                         <ReactS3Uploader
                           style={{display: "none"}}
                           id="uploadFile"
-                          accept=".pdf, .docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document"  // only accept pdf & docx files
+                          accept=".pdf"  // only accept pdf & docx files
                           signingUrl="/upload-profile-resume"
                           signingUrlMethod="GET"
                           onError={this.onUploadError}

@@ -72,6 +72,7 @@ export class RecordWindow extends Component {
   render() {
     var countTime = 45;
     videoRecorderOptions.plugins.record.maxLength = 45;
+    videoRecorderOptions.controlBar.recordToggle = false;
     return (
       <div>
         <audio className="audio-start">
