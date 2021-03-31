@@ -171,6 +171,7 @@ export class Profile extends Component {
     updateRate = () => {
         let userId = this.props.userId;
         let rate = 25;
+        let infoRate = 0;
 
         if (this.props.profileDetail.video_url != "" && this.props.profileDetail.video_url != null) {
             rate += 25;
@@ -180,64 +181,74 @@ export class Profile extends Component {
         }
         if (this.props.profileDetail.name != "" && this.props.profileDetail.name != null) {
             rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.self_description != "" && this.props.profileDetail.self_description != null) {
             rate += 1;
+            infoRate += 1;
         }
         if (this.props.profileDetail.summary != "" && this.props.profileDetail.summary != null) {
             rate += 2;
+            infoRate += 2;
         }
-        if (this.props.profileDetail.linkedin != "" && this.props.profileDetail.linkedin != null) {
-            rate += 2;
+        if ((this.props.profileDetail.linkedin != "" && this.props.profileDetail.linkedin != null) ||
+            (this.props.profileDetail.website != "" && this.props.profileDetail.website != null) ||
+            (this.props.profileDetail.github != "" && this.props.profileDetail.github != null)
+        ) {
+            rate += 5;
+            infoRate += 5;
         }
-        if (this.props.profileDetail.website != "" && this.props.profileDetail.website != null) {
-            rate += 1;
-        }
-        if (this.props.profileDetail.github != "" && this.props.profileDetail.github != null) {
-            rate += 2;
-        }
-        if (this.props.profileDetail.year_of_exp != "" && this.props.profileDetail.year_of_exp != null) {
-            rate += 2;
-        }
-        if (this.props.profileDetail.current_company != "" && this.props.profileDetail.current_company != null) {
-            rate += 2;
-        }
-        if (this.props.profileDetail.location != "" && this.props.profileDetail.location != null) {
-            rate += 1;
+        if ((this.props.profileDetail.year_of_exp != "" && this.props.profileDetail.year_of_exp != null) ||
+            (this.props.profileDetail.current_company != "" && this.props.profileDetail.current_company != null) ||
+            (this.props.profileDetail.location != "" && this.props.profileDetail.location != null)
+        ) {
+            rate += 5;
+            infoRate += 5;
         }
         if (this.props.profileDetail.school1 != "" && this.props.profileDetail.school1 != null) {
             rate += 1;
+            infoRate += 1;
         }
         if (this.props.profileDetail.graduation_date1 != "" && this.props.profileDetail.graduation_date1 != null) {
             rate += 1;
+            infoRate += 1;
         }
         if (this.props.profileDetail.major1 != "" && this.props.profileDetail.major1 != null) {
             rate += 1;
+            infoRate += 1;
         }
         if (this.props.profileDetail.degree1 != "" && this.props.profileDetail.degree1 != null) {
             rate += 1;
+            infoRate += 1;
         }
         if (this.props.profileDetail.gpa1 != "" && this.props.profileDetail.gpa1 != null) {
             rate += 1;
+            infoRate += 1;
         }
         if (this.props.profileDetail.company1 != "" && this.props.profileDetail.company1 != null) {
             rate += 1;
+            infoRate += 1;
         }
         if (this.props.profileDetail.title1 != "" && this.props.profileDetail.title1 != null) {
             rate += 1;
+            infoRate += 1;
         }
         if (this.props.profileDetail.start_date1 != "" && this.props.profileDetail.start_date1 != null) {
             rate += 1;
+            infoRate += 1;
         }
         if (this.props.profileDetail.end_date1 != "" && this.props.profileDetail.end_date1 != null) {
             rate += 1;
+            infoRate += 1;
         }
         if (this.props.profileDetail.work_description1 != "" && this.props.profileDetail.work_description1 != null) {
             rate += 1;
+            infoRate += 1;
         }
         let data = {
             "user_id": userId,
             "profile_rate": rate,
+            "info_rate": infoRate,
         }
         this.props.updateProfileRate(data);
     }
@@ -352,7 +363,7 @@ export class Profile extends Component {
                                         <span style={{marginLeft: "1rem"}}>Upload resume</span>
                                     </p>
                                     <p className="profile-p" style={{display: "flex", alignItems: "center"}}>
-                                        {this.props.profileDetail.profile_rate == 100 ?
+                                        {this.props.profileDetail.info_rate == 25 ?
                                             <i className="bx bx-check-circle" style={{color: "#13C4A1"}}></i> :
                                             <i className="bx bx-circle"></i>
                                         }

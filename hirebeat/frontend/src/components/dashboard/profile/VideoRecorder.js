@@ -47,12 +47,14 @@ export class VideoRecorder extends Component {
     this.player.on("startRecord", () => {
       console.log("started recording!");
       this.props.startRecording(); // start count down bar
+      this.setState({"isStarted": true});
     });
 
     this.player.on("finishRecord", () => {
       console.log("finished recording: ", this.player.recordedData);
       if (!this.props.isTesting) {
         this.recordFinished();
+        this.setState({"isFinished": true});
       }
       //this.player.bigPlayButton.show();
     });
@@ -65,7 +67,25 @@ export class VideoRecorder extends Component {
       console.error("device error:", this.player.deviceErrorCode);
     });
 
-//    this.player.record().getDevice();
+    const constraints = {
+    audio: true,
+    video: { width: 640, height: 480 }
+    };
+
+    function openCamera() {
+        navigator.mediaDevices
+          .getUserMedia(constraints)
+          .then(success)
+          .catch(error);
+    };
+
+    function success() {
+        console.log("Device Ready");
+    };
+
+    function error() {
+        alert("No camera detected! Please turn on your camera!");
+    };
   }
 
   componentWillUnmount() {

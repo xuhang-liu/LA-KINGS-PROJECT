@@ -66,7 +66,6 @@ export class WorkExpForm extends Component {
             "user_id": this.props.userId,
             "data": array,
         }
-        console.log(data);
         this.props.updateWorkExp(data);
         this.props.cancelEditWorkExp();
     }
