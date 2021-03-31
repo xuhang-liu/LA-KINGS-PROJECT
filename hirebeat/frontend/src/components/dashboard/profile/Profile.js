@@ -34,6 +34,66 @@ export class Profile extends Component {
         this.updateRate();
     }
 
+    exceedError1 = () => {
+        confirmAlert({
+          title: "Maximum Education Reached",
+          message: "You can add three universities at most.",
+          buttons: [
+            {
+              label: 'Ok'
+            }
+          ]
+        });
+    };
+
+    exceedError2 = () => {
+        confirmAlert({
+          title: "Maximum Work Experience Reached",
+          message: "You can add five work experience at most.",
+          buttons: [
+            {
+              label: 'Ok'
+            }
+          ]
+        });
+    };
+
+    addEducation = () => {
+        // max 3 education
+        let size = this.state.eduCount.length;
+        if (size < 3) {
+            this.setState(prevState => ({
+                eduCount: [...prevState.eduCount, 1]
+            }));
+        } else {
+            return this.exceedError1();
+        }
+    }
+
+    removeEducation = (index) => {
+        let array = [...this.state.eduCount];
+        array.splice(index, 1);
+        this.setState({eduCount: array});
+    }
+
+    addWorkExp = () => {
+        // max 5 work experience
+        let size = this.state.worCount.length;
+        if (size < 5) {
+            this.setState(prevState => ({
+                worCount: [...prevState.worCount, 1]
+            }));
+        } else {
+            return this.exceedError2();
+        }
+    }
+
+    removeWorkExp = (index) => {
+        let array = [...this.state.worCount];
+        array.splice(index, 1);
+        this.setState({worCount: array});
+    }
+
     setCount = () => {
         const schools = ["school1", "school2", "school3"];
         const companies = ["company1", "company2", "company3", "company4", "company5"];
@@ -584,6 +644,8 @@ export class Profile extends Component {
                                                 updateEducation={this.props.updateEducation}
                                                 profileDetail={this.props.profileDetail}
                                                 count={this.state.eduCount}
+                                                addEducation={this.addEducation}
+                                                removeEducation={this.removeEducation}
                                             />
                                         </div>
                                     }
@@ -618,6 +680,8 @@ export class Profile extends Component {
                                                 updateWorkExp={this.props.updateWorkExp}
                                                 profileDetail={this.props.profileDetail}
                                                 count={this.state.worCount}
+                                                addWorkExp={this.addWorkExp}
+                                                removeWorkExp={this.removeWorkExp}
                                             />
                                         </div>
                                     }

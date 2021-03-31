@@ -25,6 +25,7 @@ export class WorkExpForm extends Component {
             this.setState(prevState => ({
                 count: [...prevState.count, 1]
             }));
+            this.props.addWorkExp(); // Manipulate the profile.js layer
         } else {
             return this.exceedError();
         }
@@ -32,12 +33,15 @@ export class WorkExpForm extends Component {
     }
 
     removeWorkExp = (index) => {
+        this.saveWorkExp(index + 1, index); // delete data from db
+        // delete from states
         let array = [...this.state.count];
         array.splice(index, 1);
         this.setState({count: array});
+        this.props.removeWorkExp(index); // manipulate the profile.js layer
     }
 
-    saveWorkExp = (index) => {
+    saveWorkExp = (size, delIndex) => {
         const companies = ["company1", "company2", "company3", "company4", "company5"];
         const titles = ["title1", "title2", "title3", "title4", "title5"];
         const startDates = ["start_date1", "start_date2", "start_date3", "start_date4", "start_date5"];
@@ -51,23 +55,25 @@ export class WorkExpForm extends Component {
             {"company4": "", "title4": "", "start_date4": "", "end_date4": "", "work_description4": ""},
             {"company5": "", "title5": "", "start_date5": "", "end_date5": "", "work_description5": ""},
         ];
-        for (let i = 0; i < index; i++) {
-            array[i][companies[i]] = document.getElementById(companies[i]).value;
-            array[i][titles[i]] = document.getElementById(titles[i]).value;
-            array[i][startDates[i]] = document.getElementById(startDates[i]).value;
+        for (let i = 0; i < size; i++) {
+            array[i][companies[i]] = i == delIndex ? "" : document.getElementById(companies[i]).value;
+            array[i][titles[i]] = i == delIndex ? "" : document.getElementById(titles[i]).value;
+            array[i][startDates[i]] = i == delIndex ? "" : document.getElementById(startDates[i]).value;
             if (document.getElementById(endDates[i]) != null) {
-                array[i][endDates[i]] = document.getElementById(endDates[i]).value;
+                array[i][endDates[i]] = i == delIndex ? "" : document.getElementById(endDates[i]).value;
             }else {
-                array[i][endDates[i]] = "Present";
+                array[i][endDates[i]] = i == delIndex ? "" : "Present";
             }
-            array[i][workDescriptions[i]] = document.getElementById(workDescriptions[i]).value;
+            array[i][workDescriptions[i]] = i == delIndex ? "" : document.getElementById(workDescriptions[i]).value;
         }
         let data = {
             "user_id": this.props.userId,
             "data": array,
         }
         this.props.updateWorkExp(data);
-        this.props.cancelEditWorkExp();
+        if (delIndex == -1) {  // -1 means not deletion, but for update or create
+            this.props.cancelEditWorkExp();
+        }
     }
 
     render () {
@@ -85,7 +91,7 @@ export class WorkExpForm extends Component {
                     <div className="col-5 profile-edit">
                         <div style={{float: "right"}}>
                             <span type="button" onClick={this.props.cancelEditWorkExp}>Cancel</span>
-                            <span type="button" onClick={() => {this.saveWorkExp(this.state.count.length)}} style={{marginLeft: "1rem"}}>Save</span>
+                            <span type="button" onClick={() => {this.saveWorkExp(this.state.count.length, -1)}} style={{marginLeft: "1rem"}}>Save</span>
                         </div>
                     </div>
                 </div>

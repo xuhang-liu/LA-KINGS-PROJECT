@@ -26,6 +26,7 @@ export class EducationForm extends Component {
             this.setState(prevState => ({
                 count: [...prevState.count, 1]
             }));
+            this.props.addEducation(); // Manipulate the profile.js layer
         } else {
             return this.exceedError();
         }
@@ -33,16 +34,19 @@ export class EducationForm extends Component {
     }
 
     removeEducation = (index) => {
+        this.saveEducation(index + 1, index) // delete data from db
+        // delete from states
         let array = [...this.state.count];
         array.splice(index, 1);
         this.setState({count: array});
+        this.props.removeEducation(index); // Manipulate the profile.js layer
     }
 
     addMajor = () => {
         this.setState({isAddMajor: true});
     }
 
-    saveEducation = (index) => {
+    saveEducation = (size, delIndex) => {
         const schools = ["school1", "school2", "school3"];
         const graduationDates = ["graduation_date1", "graduation_date2", "graduation_date3"];
         const majors = ["major1", "major2", "major3"];
@@ -55,24 +59,26 @@ export class EducationForm extends Component {
             {"school2": "", "graduation_date2": "", "major2": "", "extra_major2": "", "degree2": "", "gpa2": ""},
             {"school3": "", "graduation_date3": "", "major3": "", "extra_major3": "", "degree3": "", "gpa3": ""},
         ];
-        for (let i = 0; i < index; i++) {
-            array[i][schools[i]] = document.getElementById(schools[i]).value;
-            array[i][graduationDates[i]] = document.getElementById(graduationDates[i]).value;
-            array[i][majors[i]] = document.getElementById(majors[i]).value;
+        for (let i = 0; i < size; i++) {
+            array[i][schools[i]] = i == delIndex ? "" : document.getElementById(schools[i]).value;
+            array[i][graduationDates[i]] = i == delIndex ? "" : document.getElementById(graduationDates[i]).value;
+            array[i][majors[i]] = i == delIndex ? "" : document.getElementById(majors[i]).value;
             if (document.getElementById(extraMajors[i]) != null) {
-                array[i][extraMajors[i]] = document.getElementById(extraMajors[i]).value;
+                array[i][extraMajors[i]] = i == delIndex ? "" : document.getElementById(extraMajors[i]).value;
             }else {
                 array[i][extraMajors[i]] = "";
             }
-            array[i][degrees[i]] = document.getElementById(degrees[i]).value;
-            array[i][gpas[i]] = document.getElementById(gpas[i]).value;
+            array[i][degrees[i]] = i == delIndex ? "" : document.getElementById(degrees[i]).value;
+            array[i][gpas[i]] = i == delIndex ? "" : document.getElementById(gpas[i]).value;
         }
         let data = {
             "user_id": this.props.userId,
             "data": array,
         }
         this.props.updateEducation(data);
-        this.props.cancelEditEducation();
+        if (delIndex == -1) {  // -1 means not deletion, but for update or create
+            this.props.cancelEditEducation();
+        }
     }
 
     render () {
@@ -91,7 +97,7 @@ export class EducationForm extends Component {
                     <div className="col-5 profile-edit">
                         <div style={{float: "right"}}>
                             <span type="button" onClick={this.props.cancelEditEducation}>Cancel</span>
-                            <span type="button" onClick={() => {this.saveEducation(this.state.count.length)}} style={{marginLeft: "1rem"}}>Save</span>
+                            <span type="button" onClick={() => {this.saveEducation(this.state.count.length, -1)}} style={{marginLeft: "1rem"}}>Save</span>
                         </div>
                     </div>
                 </div>
