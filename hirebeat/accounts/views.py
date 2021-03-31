@@ -13,7 +13,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from .models import Profile, CandidatesInterview
+from .models import Profile, CandidatesInterview, ProfileDetail
 from questions.models import Positions, InterviewQuestions, InvitedCandidates
 from videos.models import WPVideo
 from rest_framework.response import Response
@@ -23,6 +23,7 @@ from django.utils.encoding import force_bytes
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from rest_framework import status
+from django.core.exceptions import ObjectDoesNotExist
 load_dotenv()
 import requests
 
@@ -282,6 +283,279 @@ def get_received_interview(request):
         received_interview.append(int_info)
 
     return Response({"received_interview": received_interview})
+
+@api_view(['GET'])
+def get_profile_detail(request):
+    user_id = request.query_params.get("user_id")
+    data = ProfileDetail.objects.filter(user_id=user_id).values()[0]
+    return Response({"data": data})
+
+@api_view(['POST'])
+def create_or_update_personal_info(request):
+    user_id = request.data["user_id"]
+    name = request.data["name"]
+    self_description = request.data["self_description"]
+    try:
+        # update personal information
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.name = name
+        user_profile.self_description = self_description
+        user_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        ProfileDetail.objects.create(user_id=user_id, name=name, self_description=self_description)
+    return Response("Create or Update personal info successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_social_media(request):
+    user_id = request.data["user_id"]
+    linkedin = request.data["linkedin"]
+    website = request.data["website"]
+    github = request.data["github"]
+    try:
+        # update personal information
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.linkedin = linkedin
+        user_profile.website = website
+        user_profile.github = github
+        user_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        ProfileDetail.objects.create(user_id=user_id, linkedin=linkedin, website=website, github=github)
+    return Response("Create or Update social media successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_basic_info(request):
+    user_id = request.data["user_id"]
+    year_of_exp = request.data["year_of_exp"]
+    current_company = request.data["current_company"]
+    location = request.data["location"]
+    try:
+        # update personal information
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.year_of_exp = year_of_exp
+        user_profile.current_company = current_company
+        user_profile.location = location
+        user_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        ProfileDetail.objects.create(user_id=user_id, year_of_exp=year_of_exp, current_company=current_company, location=location)
+    return Response("Create or Update basic info successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_video(request):
+    user_id = request.data["user_id"]
+    video_url = request.data["video_url"]
+    try:
+        # update personal information
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.video_url = video_url
+        user_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        ProfileDetail.objects.create(user_id=user_id, video_url=video_url)
+    return Response("Create or Update video successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_summary(request):
+    user_id = request.data["user_id"]
+    summary = request.data["summary"]
+    try:
+        # update personal information
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.summary = summary
+        user_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        ProfileDetail.objects.create(user_id=user_id, summary=summary)
+    return Response("Create or Update summary successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_resume(request):
+    user_id = request.data["user_id"]
+    resume_name = request.data["resume_name"]
+    resume_url = request.data["resume_url"]
+    try:
+        # update personal information
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.resume_name = resume_name
+        user_profile.resume_url = resume_url
+        user_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        ProfileDetail.objects.create(user_id=user_id, resume_name=resume_name, resume_url=resume_url)
+    return Response("Create or Update resume successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_profile_rate(request):
+    user_id = request.data["user_id"]
+    profile_rate = request.data["profile_rate"]
+    try:
+        # update personal information
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.profile_rate = profile_rate
+        user_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        ProfileDetail.objects.create(user_id=user_id, profile_rate=profile_rate)
+    return Response("Create or Update profile rate successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_education(request):
+    user_id = request.data["user_id"]
+    data = request.data["data"]
+    try:
+        # first education
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.school1 = data[0]["school1"]
+        user_profile.graduation_date1 = data[0]["graduation_date1"]
+        user_profile.degree1 = data[0]["degree1"]
+        user_profile.major1 = data[0]["major1"]
+        user_profile.extra_major1 = data[0]["extra_major1"]
+        user_profile.gpa1 = data[0]["gpa1"]
+        # second education
+        user_profile.school2 = data[1]["school2"]
+        user_profile.graduation_date2 = data[1]["graduation_date2"]
+        user_profile.degree2 = data[1]["degree2"]
+        user_profile.major2 = data[1]["major2"]
+        user_profile.extra_major2 = data[1]["extra_major2"]
+        user_profile.gpa2 = data[1]["gpa2"]
+        # third education
+        user_profile.school3 = data[2]["school3"]
+        user_profile.graduation_date3 = data[2]["graduation_date3"]
+        user_profile.degree3 = data[2]["degree3"]
+        user_profile.major3 = data[2]["major3"]
+        user_profile.extra_major3 = data[2]["extra_major3"]
+        user_profile.gpa3 = data[2]["gpa3"]
+        user_profile.save()
+
+    except ObjectDoesNotExist:
+        # first education
+        user_profile = ProfileDetail.objects.create(user_id=user_id)
+        user_profile.school1 = data[0]["school1"]
+        user_profile.graduation_date1 = data[0]["graduation_date1"]
+        user_profile.degree1 = data[0]["degree1"]
+        user_profile.major1 = data[0]["major1"]
+        user_profile.extra_major1 = data[0]["extra_major1"]
+        user_profile.gpa1 = data[0]["gpa1"]
+        # second education
+        user_profile.school2 = data[1]["school2"]
+        user_profile.graduation_date2 = data[1]["graduation_date2"]
+        user_profile.degree2 = data[1]["degree2"]
+        user_profile.major2 = data[1]["major2"]
+        user_profile.extra_major2 = data[1]["extra_major2"]
+        user_profile.gpa2 = data[1]["gpa2"]
+        # third education
+        user_profile.school3 = data[2]["school3"]
+        user_profile.graduation_date3 = data[2]["graduation_date3"]
+        user_profile.degree3 = data[2]["degree3"]
+        user_profile.major3 = data[2]["major3"]
+        user_profile.extra_major3 = data[2]["extra_major3"]
+        user_profile.gpa3 = data[2]["gpa3"]
+        user_profile.save()
+    return Response("Create or Update education successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_work_exp(request):
+    user_id = request.data["user_id"]
+    data = request.data["data"]
+    try:
+        # first education
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.company1 = data[0]["company1"]
+        user_profile.title1 = data[0]["title1"]
+        user_profile.start_date1 = data[0]["start_date1"]
+        user_profile.end_date1 = data[0]["end_date1"]
+        user_profile.work_description1 = data[0]["work_description1"]
+
+        user_profile.company2 = data[1]["company2"]
+        user_profile.title2 = data[1]["title2"]
+        user_profile.start_date2 = data[1]["start_date2"]
+        user_profile.end_date2 = data[1]["end_date2"]
+        user_profile.work_description2 = data[1]["work_description2"]
+
+        user_profile.company3 = data[2]["company3"]
+        user_profile.title3 = data[2]["title3"]
+        user_profile.start_date3 = data[2]["start_date3"]
+        user_profile.end_date3 = data[2]["end_date3"]
+        user_profile.work_description3 = data[2]["work_description3"]
+
+        user_profile.company4 = data[3]["company4"]
+        user_profile.title4 = data[3]["title4"]
+        user_profile.start_date4 = data[3]["start_date4"]
+        user_profile.end_date4 = data[3]["end_date4"]
+        user_profile.work_description4 = data[3]["work_description4"]
+
+        user_profile.company5 = data[4]["company5"]
+        user_profile.title5 = data[4]["title5"]
+        user_profile.start_date5 = data[4]["start_date5"]
+        user_profile.end_date5 = data[4]["end_date5"]
+        user_profile.work_description5 = data[4]["work_description5"]
+        user_profile.save()
+    except ObjectDoesNotExist:
+        user_profile = ProfileDetail.objects.create(user_id=user_id)
+        user_profile.company1 = data[0]["company1"]
+        user_profile.title1 = data[0]["title1"]
+        user_profile.start_date1 = data[0]["start_date1"]
+        user_profile.end_date1 = data[0]["end_date1"]
+        user_profile.work_description1 = data[0]["work_description1"]
+
+        user_profile.company2 = data[1]["company2"]
+        user_profile.title2 = data[1]["title2"]
+        user_profile.start_date2 = data[1]["start_date2"]
+        user_profile.end_date2 = data[1]["end_date2"]
+        user_profile.work_description2 = data[1]["work_description2"]
+
+        user_profile.company3 = data[2]["company3"]
+        user_profile.title3 = data[2]["title3"]
+        user_profile.start_date3 = data[2]["start_date3"]
+        user_profile.end_date3 = data[2]["end_date3"]
+        user_profile.work_description3 = data[2]["work_description3"]
+
+        user_profile.company4 = data[3]["company4"]
+        user_profile.title4 = data[3]["title4"]
+        user_profile.start_date4 = data[3]["start_date4"]
+        user_profile.end_date4 = data[3]["end_date4"]
+        user_profile.work_description4 = data[3]["work_description4"]
+
+        user_profile.company5 = data[4]["company5"]
+        user_profile.title5 = data[4]["title5"]
+        user_profile.start_date5 = data[4]["start_date5"]
+        user_profile.end_date5 = data[4]["end_date5"]
+        user_profile.work_description5 = data[4]["work_description5"]
+        user_profile.save()
+    return Response("Create or Update work experience successfully", status=status.HTTP_201_CREATED)
+
+
+def upload_profile_resume(request):
+    object_name = request.GET['objectName']
+    content_type = request.GET['contentType']
+    # content_type = mimetypes.guess_type(object_name)[0]
+    # content_type = content_type + ";codecs=vp8,opus" ### ATTENTION: this added part is required if upload dirctly from the browser. If used for uploading local files, comment this line out.###
+
+    signed_url = conn.generate_url(
+        300,
+        "PUT",
+        os.getenv("Profile_Resume"),
+        object_name,
+        headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
+
+    return HttpResponse(json.dumps({'signedUrl': signed_url}))
+
+def upload_profile_video(request):
+    object_name = request.GET['objectName']
+    content_type = request.GET['contentType']
+    # content_type = mimetypes.guess_type(object_name)[0]
+    # content_type = content_type + ";codecs=vp8,opus" ### ATTENTION: this added part is required if upload dirctly from the browser. If used for uploading local files, comment this line out.###
+
+    signed_url = conn.generate_url(
+        300,
+        "PUT",
+        os.getenv("Profile_Video"),
+        object_name,
+        headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
+
+    return HttpResponse(json.dumps({'signedUrl': signed_url}))
 
 @api_view(['POST'])
 def subreviewer_update_comment(request):

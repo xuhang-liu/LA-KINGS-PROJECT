@@ -7,8 +7,11 @@ import EssentialUserInfo from "./essentials/EssentialUserInfo";
 import { Interview } from "./videos/Interview";
 import { Resume } from "./videos/Resume";
 import { ReceivedInterviewList } from "./position/ReceivedInterviewList";
+import { Profile } from "./profile/Profile";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview } from "../../redux/actions/auth_actions";
+import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getProfileDetail,
+        updatePersonalInfo, updateSocialMedia, updateBasicInfo, updateVideo, updateSummary,
+        updateResume, updateEducation, updateWorkExp, updateProfileRate} from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -36,6 +39,7 @@ export class Dashboard extends Component {
     this.renderResume = this.renderResume.bind(this);
     this.renderSetting = this.renderSetting.bind(this);
     this.renderVideos = this.renderVideos.bind(this);
+    this.renderProfile = this.renderProfile.bind(this);
   }
 
   static propTypes = {
@@ -65,7 +69,7 @@ export class Dashboard extends Component {
     this.props.getReceivedInterview(this.props.user.email);
     var user = {"id": this.props.user.id};
     this.props.loadUserFullname(user);
-
+    this.props.getProfileDetail(this.props.user.id);
   }
 
   // params passed from resume page
@@ -120,6 +124,13 @@ export class Dashboard extends Component {
     )
   }
 
+  renderProfile = () => {
+    this.setState({
+          subpage: "profile",
+        }
+    )
+  }
+
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "videos":
@@ -143,6 +154,21 @@ export class Dashboard extends Component {
             subpage={this.state.subpage}
             renderVideos={this.renderVideos}
         />;
+      case "profile":
+        return <Profile
+                    userId={this.props.user.id}
+                    getProfileDetail={this.props.getProfileDetail}
+                    updatePersonalInfo={this.props.updatePersonalInfo}
+                    updateSocialMedia={this.props.updateSocialMedia}
+                    updateBasicInfo={this.props.updateBasicInfo}
+                    updateVideo={this.props.updateVideo}
+                    updateSummary={this.props.updateSummary}
+                    updateResume={this.props.updateResume}
+                    updateEducation={this.props.updateEducation}
+                    updateWorkExp={this.props.updateWorkExp}
+                    profileDetail={this.props.profileDetail}
+                    updateProfileRate={this.props.updateProfileRate}
+                />;
       default:
         //Do nothing
     }
@@ -181,13 +207,14 @@ export class Dashboard extends Component {
                       renderVideos={this.renderVideos}
                       renderResume={this.renderResume}
                       renderInterview={this.renderInterview}
+                      renderProfile={this.renderProfile}
                       subpage={this.state.subpage}
                   />
                 </div>
               </div>
               <div className='col-11' style={{backgroundColor:"#e8edfc"}}>
                 <div className="dashboard-main">
-                {this.state.subpage === "settings" ? null :
+                {this.state.subpage === "settings" || this.state.subpage === "profile" ? null :
                 <div className="container-fluid" style={{height: "12rem"}} data-tut="reactour-rowbox">
                       <RowBoxes
                           renderVideos={this.renderVideos}
@@ -233,8 +260,11 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth_reducer.isAuthenticated,
   received_interview: state.auth_reducer.received_interview,
   loaded: state.auth_reducer.loaded,
+  profileDetail: state.auth_reducer.profileDetail,
 });
 
-export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, getReceivedInterview })(
+export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, getReceivedInterview,
+    getProfileDetail,updatePersonalInfo, updateSocialMedia, updateBasicInfo, updateVideo, updateSummary,
+    updateResume, updateEducation, updateWorkExp, updateProfileRate})(
   Dashboard
 );
