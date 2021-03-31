@@ -24,7 +24,7 @@ export class VideoPanel extends Component {
     }
 
     deleteVideo = () => {
-        if (this.props.videoURL == "") {
+        if (this.props.videoURL == "" || this.props.videoURL == null) {
             this.alert();
         }
         else {

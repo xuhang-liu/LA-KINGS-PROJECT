@@ -3,7 +3,7 @@ import { ProgressBar2 } from "./../../resume/Components";
 import EducationForm from "./EducationForm";
 import WorkExpForm from "./WorkExpForm";
 import Resume from "./Resume";
-import { confirmAlert } from 'react-confirm-alert';
+//import { confirmAlert } from 'react-confirm-alert';
 import Education from "./Education";
 import WorkExperience from "./WorkExperience";
 import VideoPanel from "./VideoPanel";
@@ -30,8 +30,10 @@ export class Profile extends Component {
 
     // when state changes, call getProfileDetail to get the most updated info
     componentDidUpdate() {
-        this.props.getProfileDetail(this.props.userId);
-        this.updateRate();
+        if (!this.state.isEditInfo) {
+            this.props.getProfileDetail(this.props.userId);
+            this.updateRate();
+        }
     }
 
     exceedError1 = () => {
@@ -194,14 +196,18 @@ export class Profile extends Component {
         let linkedin = document.getElementById("linkedin").value;
         let website = document.getElementById("website").value;
         let github = document.getElementById("github").value;
-        let data = {
-            "user_id": this.props.userId,
-            "linkedin": linkedin,
-            "website": website,
-            "github": github,
+        if(((!linkedin.toLowerCase().includes("linkedin")) && (linkedin != "")) || ((!github.toLowerCase().includes("github")) && (github != ""))) {
+            alert("Please Enter Correct URL");
+        }else{
+            let data = {
+                "user_id": this.props.userId,
+                "linkedin": linkedin,
+                "website": website,
+                "github": github,
+            }
+            this.props.updateSocialMedia(data);
+            this.cancelEditMedia();
         }
-        this.props.updateSocialMedia(data);
-        this.cancelEditMedia();
     }
 
     saveWorkInfo = () => {
