@@ -314,7 +314,7 @@ export class Profile extends Component {
                                 <div style={{padding: "2rem"}}>
                                     <h3 className="profile-h3">Completeness Rate</h3>
                                     <p className="profile-p">Your Profile is {this.props.profileDetail.profile_rate}% Complete</p>
-                                    <ProgressBar2 percent={this.props.profileDetail.profile_rate} max={100} height={15} />
+                                    <ProgressBar2 percent={this.props.profileDetail.profile_rate == null ? 25 : this.props.profileDetail.profile_rate} max={100} height={15} />
                                     <div className="row" style={{marginTop: "1rem"}}>
                                         <div className="col-5">
                                             {this.props.profileDetail.profile_rate == 100 ?
