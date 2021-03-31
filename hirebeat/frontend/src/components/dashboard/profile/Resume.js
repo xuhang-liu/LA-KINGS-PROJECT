@@ -132,13 +132,18 @@ export class Resume extends Component {
    }
 
   deleteResume = () => {
-        const resumeMetaData = {
-          user_id: this.props.userId,
-          resume_url: "",
-          resume_name: "",
-        };
-        this.props.updateResume(resumeMetaData);
-        this.alert("Delete Success", "You have deleted your resume");
+        if (this.props.resumeURL == "" || this.props.resumeURL == null) {
+            this.alert("No Resume", "You have not uploaded any resume");
+        }
+        else {
+            const resumeMetaData = {
+              user_id: this.props.userId,
+              resume_url: "",
+              resume_name: "",
+            };
+            this.props.updateResume(resumeMetaData);
+            this.alert("Delete Success", "You have deleted your resume");
+        }
   }
 
     render() {
