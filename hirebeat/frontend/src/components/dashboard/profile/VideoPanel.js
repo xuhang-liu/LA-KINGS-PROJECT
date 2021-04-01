@@ -33,6 +33,7 @@ export class VideoPanel extends Component {
                 "video_url": "",
             }
             this.props.updateVideo(data);
+            setTimeout(() => this.props.getUpdatedData(), 300);
         }
     }
 
@@ -74,7 +75,7 @@ export class VideoPanel extends Component {
                         <span className="profile-edit" onClick={this.deleteAlert} style={{color: "#FF0000", marginLeft: "1rem"}} type="button">Delete</span>
                     </div>
                 </p>
-                <ReactPlayer id="rw-video" url={this.props.videoURL}  controls={true}/>
+                <ReactPlayer id="rw-video" url={this.props.videoURL}  controls={true} width={"100%"} height={"100%"}/>
                 <MyVideoModal
                     show={this.state.show}
                     onHide={()=>{this.disableShow()}}
@@ -113,6 +114,7 @@ export class VideoPanel extends Component {
                                     userId={this.props.userId}
                                     updateVideo={this.props.updateVideo}
                                     disableShow={this.disableShow}
+                                    getUpdatedData={this.props.getUpdatedData}
                                 />
                             </div>
 

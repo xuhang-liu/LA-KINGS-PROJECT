@@ -152,6 +152,7 @@ export class VideoRecorder extends Component {
         "user_id": this.props.userId,
     };
     this.props.updateVideo(metaData);
+    setTimeout(() => this.props.getUpdatedData(), 300);
   };
 
   onUploadError = (err) => {

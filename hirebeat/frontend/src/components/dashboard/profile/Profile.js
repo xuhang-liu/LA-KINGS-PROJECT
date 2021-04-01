@@ -28,24 +28,6 @@ export class Profile extends Component {
         this.setCount();
     }
 
-    // when state changes, call getProfileDetail to get the most updated info
-    componentDidUpdate() {
-        if (!this.state.isEditInfo ||
-            !this.state.isEditMedia ||
-            !this.state.isEditWorkInfo ||
-            !this.state.isEditSummary ||
-            !this.state.isEditEducation ||
-            !this.state.isEditWorkExp ||
-            !this.state.showResume ||
-            !this.state.show ||
-            !this.state.isRecordVideo ||
-            !this.state.isUploadResume
-        ) {
-            this.props.getProfileDetail(this.props.userId);
-            this.updateRate();
-        }
-    }
-
     exceedError1 = () => {
         confirmAlert({
           title: "Maximum Education Reached",
@@ -138,52 +120,73 @@ export class Profile extends Component {
         this.setState({isUploadResume: true});
     }
 
+    getUpdatedData = () => {
+        this.props.getProfileDetail(this.props.userId);
+        setTimeout(() => {this.updateRate();}, 300);
+        setTimeout(() => {this.props.getProfileDetail(this.props.userId);}, 300);
+    }
+
     editInfo = () => {
-        this.setState({isEditInfo: true});
+//        this.getUpdatedData();
+        setTimeout(() => {this.setState({isEditInfo: true});}, 300);
     }
 
     cancelEditInfo = () => {
-        this.setState({isEditInfo: false});
+        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditInfo: false}), 300);
     }
 
     editMedia = () => {
-        this.setState({isEditMedia: true});
+//        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditMedia: true}), 300);
+
     }
 
     cancelEditMedia = () => {
-        this.setState({isEditMedia: false});
+        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditMedia: false}), 300);
     }
 
     editWorkInfo = () => {
-        this.setState({isEditWorkInfo: true});
+//        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditWorkInfo: true}), 300);
+
     }
 
     cancelEditWorkInfo = () => {
-        this.setState({isEditWorkInfo: false});
+        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditWorkInfo: false}), 300);
     }
 
     editSummary = () => {
-        this.setState({isEditSummary: true});
+//        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditSummary: true}), 300);
     }
 
     cancelEditSummary = () => {
-        this.setState({isEditSummary: false});
+        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditSummary: false}), 300);
     }
 
     editEducation = () => {
-        this.setState({isEditEducation: true});
+//        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditEducation: true}), 300);
     }
 
     cancelEditEducation = () => {
-        this.setState({isEditEducation: false});
+        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditEducation: false}), 300);
     }
 
     editWorkExp = () => {
-        this.setState({isEditWorkExp: true});
+//        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditWorkExp: true}), 300);
     }
 
     cancelEditWorkExp = () => {
-        this.setState({isEditWorkExp: false});
+        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditWorkExp: false}), 300);
+
     }
 
     refresh = () => {
@@ -199,6 +202,7 @@ export class Profile extends Component {
             "self_description": selfDescription,
         }
         this.props.updatePersonalInfo(data);
+        this.getUpdatedData();
         this.cancelEditInfo();
     }
 
@@ -216,6 +220,7 @@ export class Profile extends Component {
                 "github": github,
             }
             this.props.updateSocialMedia(data);
+            this.getUpdatedData();
             this.cancelEditMedia();
         }
     }
@@ -231,6 +236,7 @@ export class Profile extends Component {
             "location": location,
         }
         this.props.updateBasicInfo(data);
+        this.getUpdatedData();
         this.cancelEditWorkInfo();
     }
 
@@ -241,6 +247,7 @@ export class Profile extends Component {
             "summary": summary
         };
         this.props.updateSummary(data);
+        this.getUpdatedData();
         this.cancelEditSummary()
     }
 
@@ -593,6 +600,7 @@ export class Profile extends Component {
                                         userId={this.props.userId}
                                         updateVideo={this.props.updateVideo}
                                         setVideo={this.setVideo}
+                                        getUpdatedData={this.getUpdatedData}
                                     />
                                 </div>
                             </div>
@@ -662,6 +670,7 @@ export class Profile extends Component {
                                                 count={this.state.eduCount}
                                                 addEducation={this.addEducation}
                                                 removeEducation={this.removeEducation}
+                                                getUpdatedData={this.getUpdatedData}
                                             />
                                         </div>
                                     }
@@ -698,6 +707,7 @@ export class Profile extends Component {
                                                 count={this.state.worCount}
                                                 addWorkExp={this.addWorkExp}
                                                 removeWorkExp={this.removeWorkExp}
+                                                getUpdatedData={this.getUpdatedData}
                                             />
                                         </div>
                                     }
@@ -712,6 +722,7 @@ export class Profile extends Component {
                                     resumeName={this.props.profileDetail.resume_name}
                                     resumeURL={this.props.profileDetail.resume_url}
                                     setResume={this.setResume}
+                                    getUpdatedData={this.getUpdatedData}
                                 />
                             </div>
                         </div>
