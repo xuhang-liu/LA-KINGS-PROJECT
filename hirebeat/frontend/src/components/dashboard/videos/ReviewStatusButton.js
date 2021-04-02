@@ -57,7 +57,7 @@ function ReviewStatusButton(props) {
         }
         else{
           sendVideoForReview("ai", video.id);
-          window.location.reload();
+          //window.location.reload();
 //          alert();
         }
     }
@@ -71,7 +71,7 @@ function ReviewStatusButton(props) {
         }
         else {
           sendVideoForReview("expert", video.id);
-          window.location.reload();
+          //window.location.reload();
 //          alert();
         }
     }

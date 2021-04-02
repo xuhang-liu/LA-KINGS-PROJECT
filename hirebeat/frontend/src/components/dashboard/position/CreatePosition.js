@@ -30,7 +30,7 @@ export class CreatePosition extends Component{
 //        console.log(this.state.lengthOfResponse);
     }
 
-    savePosition = () => {
+    savePosition = (e) => {
         var jobtitle = this.state.jobtitle;
         var jobid = this.state.jobid;
         var jobdescription = this.state.jobdescription;
@@ -38,6 +38,9 @@ export class CreatePosition extends Component{
         var questionTime = this.state.lengthOfResponse.value * 60
         let questions = this.getQuestions();
         this.props.addPosition(jobtitle, jobid, jobdescription, userid, questions, questionTime);
+        this.props.getPJobs();
+        e.preventDefault();
+        this.props.renderApplications();
     }
 
     hideJob = (e) => {
