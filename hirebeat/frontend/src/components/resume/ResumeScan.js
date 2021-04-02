@@ -156,7 +156,9 @@ export class ResumeScan extends Component {
   onUploadFinish = () => {
 
     var name = this.state.cvName;
+    // change bucket to "hirebeat-test-video-bucket" when run in local
     var resume_url = "https://hirebeat-resume.s3.amazonaws.com/" + name;
+    //var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
     var job_title = this.state.jobTitle;
     var jd_text = this.state.jdText;
 

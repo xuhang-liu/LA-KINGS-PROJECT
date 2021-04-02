@@ -9,7 +9,7 @@ import "videojs-record/dist/css/videojs.record.css";
 import MyVideoUploader from "../videos/MyVideoUploader";
 import { connect } from "react-redux";
 import { NEXT_QUESTION } from "../../redux/actions/action_types";
-import { RecordDoneButton } from "./CardComponents";
+import { CardButton, RecordDoneButton } from "./CardComponents";
 
 export class VideoRecorder extends Component {
   constructor() {
@@ -26,6 +26,7 @@ export class VideoRecorder extends Component {
     videoHandled: false,
     video: null,
     display: "block",
+    testStarted: false,
   };
 
   componentDidMount() {
@@ -42,7 +43,8 @@ export class VideoRecorder extends Component {
 
     this.player.on("deviceReady", () => {
       console.log("device is ready!");
-      this.player.record().start();
+      if(!this.props.isTesting)
+        this.player.record().start();
     });
 
     this.player.on("startRecord", () => {
@@ -126,6 +128,19 @@ export class VideoRecorder extends Component {
               className="video-js vjs-default-skin"
               playsInline
             ></video>
+            {!this.state.testStarted && this.props.isTesting ? (
+              <div className="pt-2" style={{position: "absolute", zIndex:"100", margin:"7rem"}}>
+                <CardButton 
+                onTap={()=>{
+                  this.setState({testStarted: true});
+                  this.player.record().start();
+                }}
+                textDisplayed={"Start Recording"}
+                buttonWidth={"20%"}
+                isAudio={this.props.isAudio ? true : false}
+                fontFamily={"Avenir Next, Segoe UI"}
+              />
+              </div>) : null}
           </div>
         </div>
         <div className="col-3">
