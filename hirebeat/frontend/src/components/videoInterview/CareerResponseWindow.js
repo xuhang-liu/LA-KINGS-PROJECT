@@ -160,9 +160,7 @@ export class CareerResponseWindow extends Component {
                         </div>
                         {this.state.status == "Preparation" ? (
                             <PrepCountdown finishCountdown={this.finishCountdown}/>
-                        ) : (
-                             (
-                                <VideoRecorder
+                        ) : (   <VideoRecorder
                                     {...videoRecorderOptions}
                                     startRecording={this.startRecording}
                                     recordingDone={this.recordingDone}
@@ -176,7 +174,7 @@ export class CareerResponseWindow extends Component {
                                     question_ids={this.props.question_ids}
                                     q_index={this.props.q_index}
                                 />
-                            )
+
                         )}
                     </div>
                     <NotePad status={this.state.status}/>
