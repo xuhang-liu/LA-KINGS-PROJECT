@@ -43,7 +43,8 @@ export class VideoRecorder extends Component {
 
     this.player.on("deviceReady", () => {
       console.log("device is ready!");
-      //this.player.record().start();
+      if(!this.props.isTesting)
+        this.player.record().start();
     });
 
     this.player.on("startRecord", () => {
@@ -127,7 +128,7 @@ export class VideoRecorder extends Component {
               className="video-js vjs-default-skin"
               playsInline
             ></video>
-            {!this.state.testStarted ? (
+            {!this.state.testStarted && this.props.isTesting ? (
               <div className="pt-2" style={{position: "absolute", zIndex:"100", margin:"7rem"}}>
                 <CardButton 
                 onTap={()=>{
