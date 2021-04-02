@@ -8,7 +8,7 @@ import { ApplicationCover } from "./applications/ApplicationCover";
 import ShortList from "./ShortList";
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus } from "../../redux/actions/auth_actions";
+import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus, subreviewerUpdateComment } from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
@@ -197,6 +197,7 @@ export class EmployerDashboard extends Component {
             user={this.props.user}
             profile={this.props.profile}
             updateViewStatus={this.props.updateViewStatus}
+            subreviewerUpdateComment={this.props.subreviewerUpdateComment}
         />;
       case "position":
         return <CreatePosition
@@ -246,6 +247,7 @@ export class EmployerDashboard extends Component {
             resume_list={this.props.resume_list}
             updateCommentStatus={this.props.updateCommentStatus}
             profile={this.props.profile}
+            subreviewerUpdateComment={this.props.subreviewerUpdateComment}
             />
         }else{
             return null
@@ -361,6 +363,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
-    getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo})(
+    getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment})(
     EmployerDashboard
 );

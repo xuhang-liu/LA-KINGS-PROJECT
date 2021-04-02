@@ -24,6 +24,7 @@ import {
   GET_RECEIVED_INTERVIEW,
   UPDATE_RECORD_REFRESH,
   EMPLOYER_NOTIFICATION,
+  SUBREVIEWER_UPDATE_COMMENT,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -413,6 +414,20 @@ export const getReceivedInterview = (email) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_RECEIVED_INTERVIEW,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const subreviewerUpdateComment = (subreviewr_update) => (dispatch, getState) => {
+  axios
+    .post("subreviewer_update_comment", subreviewr_update, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: SUBREVIEWER_UPDATE_COMMENT,
         payload: res.data,
       });
     })

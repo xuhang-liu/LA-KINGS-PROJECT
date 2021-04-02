@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogDetailsContentEmployer1 from './BlogDetailsContentEmployer1';
+import BlogDetailsContentEmployer4 from './BlogDetailsContentEmployer4';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import DocumentMeta from 'react-document-meta';
@@ -13,16 +13,16 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class BlogDetail1_Employer extends Component {
+class BlogDetail1_Employer4 extends Component {
     render() {
         const meta = {
-            title: 'HireBeat Blog – How does a one-way interview help a company in its hiring?',
-            description: 'One-way interviews are convenient for employers in various ways. A recruiter can invite a large number of applicants to participate. Completed interviews are in-boxed to the recruiter for review and evaluation by the hiring team',
-            canonical: 'https://hirebeat.co/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring',
+            title: 'HireBeat Blog – Interview Questions Every Recruiter Should Ask',
+            description: 'Preparing interview question is an important part to ensure a company to find the right candidates. With proper preparation, hiring team and the company can compare one potential hire to the other and make accurate judgments.',
+            canonical: 'https://hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask',
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+                keywords: 'hiring, internship, recruitment, interview question, human resources, entry level job'
               }
             }
           };
@@ -34,7 +34,7 @@ class BlogDetail1_Employer extends Component {
                     pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogDetailsContentEmployer1 />
+                <BlogDetailsContentEmployer4 />
                 <FreeTrialArea />
             </React.Fragment>
             </DocumentMeta>
@@ -42,4 +42,4 @@ class BlogDetail1_Employer extends Component {
     }
 }
 
-export default BlogDetail1_Employer;
+export default BlogDetail1_Employer4;

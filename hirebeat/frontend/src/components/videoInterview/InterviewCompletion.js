@@ -99,7 +99,7 @@ const CustomerFeedback = (props) => {
                 emptyColor='gray'
             />
           </div>
-          <h3>Any additional comment?</h3>
+          <h3>Any additional comments?</h3>
           <div className="row">
               <textarea className="col-11 ml-3" className="contact-form" placeholder="Your feedback (Optional)"
               style={{marginLeft:"1rem", width:"36rem", height:"5rem"}}
