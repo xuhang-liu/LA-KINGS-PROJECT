@@ -114,7 +114,7 @@ export class Resume extends Component {
           resume_name: this.state.cvName,
         };
         this.props.updateResume(resumeMetaData);
-        setTimeout(() => this.props.getUpdatedData(), 300);
+        setTimeout(() => {this.props.getUpdatedData(); this.props.getUpdatedData();}, 300);
         setTimeout(() => this.alert("Upload Success", "You have uploaded your resume"), 300);
     };
 
@@ -148,7 +148,7 @@ export class Resume extends Component {
               resume_name: "",
             };
             this.props.updateResume(resumeMetaData);
-            setTimeout(() => this.props.getUpdatedData(), 300);
+            setTimeout(() => {this.props.getUpdatedData(); this.props.getUpdatedData();}, 300);
             setTimeout(() => this.alert("Delete Success", "You have deleted your resume"), 300);
         }
   }

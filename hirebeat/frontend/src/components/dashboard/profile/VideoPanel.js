@@ -33,7 +33,7 @@ export class VideoPanel extends Component {
                 "video_url": "",
             }
             this.props.updateVideo(data);
-            setTimeout(() => this.props.getUpdatedData(), 300);
+            setTimeout(() => {this.props.getUpdatedData(); this.props.getUpdatedData();}, 300);
         }
     }
 
