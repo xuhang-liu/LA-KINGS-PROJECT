@@ -77,6 +77,7 @@ export class EducationForm extends Component {
         }
         this.props.updateEducation(data);
         if (delIndex == -1) {  // -1 means not deletion, but for update or create
+            this.props.getUpdatedData();
             this.props.cancelEditEducation();
         }
     }

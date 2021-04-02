@@ -123,6 +123,7 @@ export class RecordWindow extends Component {
                   userId={this.props.userId}
                   updateVideo={this.props.updateVideo}
                   disableShow={this.props.disableShow}
+                  getUpdatedData={this.props.getUpdatedData}
                 />
             </div>
           </div>
