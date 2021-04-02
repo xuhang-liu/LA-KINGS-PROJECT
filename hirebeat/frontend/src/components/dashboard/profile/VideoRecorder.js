@@ -78,6 +78,7 @@ export class VideoRecorder extends Component {
           .then(success)
           .catch(error);
     };
+    openCamera();
 
     function success() {
         console.log("Device Ready");
