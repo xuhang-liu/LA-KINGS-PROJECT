@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { CardButton, CardRow, StyledLink } from "./CardComponents";
+import { CardButton, CardRow } from "./CardComponents";
 //import NotePad from "./NotePad";
 
 export class PrepCountdown extends Component {

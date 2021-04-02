@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import PropTypes from "prop-types";
-import ReviewWindow from "./ReviewWindow";
+//import ReviewWindow from "./ReviewWindow";
 import ReactPaginate from 'react-paginate';
 import MediaList from "./MediaList";
 import { getUnreviewedVideoList } from "../../redux/actions/video_actions";

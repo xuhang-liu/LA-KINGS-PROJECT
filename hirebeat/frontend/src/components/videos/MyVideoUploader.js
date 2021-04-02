@@ -5,10 +5,8 @@ import { createMessage } from "../../redux/actions/message_actions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  VideoNumberLinkRow,
   RecordDoneButton,
   BglessCardButton,
-  BglessCardButton1,
 } from "../practice/CardComponents";
 import { withRouter } from "react-router-dom";
 //import {
