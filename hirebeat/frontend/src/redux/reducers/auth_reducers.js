@@ -18,6 +18,7 @@ import {
   GET_COMPANY_NAME,
   GET_RECORD_STATUS,
   GET_RECEIVED_INTERVIEW,
+  GET_PROFILE_DETAIL,
 } from "../actions/action_types";
 
 const initialState = {
@@ -36,6 +37,7 @@ const initialState = {
   urlClicked: false,
   received_interview: [],
   loaded: false,
+  profileDetail: {},
 };
 
 export default function (state = initialState, action) {
@@ -131,6 +133,11 @@ export default function (state = initialState, action) {
         ...state,
         received_interview: action.payload.received_interview,
         loaded: true,
+      }
+    case GET_PROFILE_DETAIL:
+      return {
+        ...state,
+        profileDetail: action.payload.data,
       }
     default:
       return state;

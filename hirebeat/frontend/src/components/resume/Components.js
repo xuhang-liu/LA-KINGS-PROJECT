@@ -65,6 +65,27 @@ export const ProgressBar = (props) => {
   );
 };
 
+export const ProgressBar2 = (props) => {
+  // color, percent, height
+  var barClassName = "progress-bar gradient-progress-blue"
+  return (
+        <div
+          className="progress"
+          style={{ height: props.height, borderRadius: "20px" }}
+        >
+          <div
+            className={barClassName}
+            role="progressbar"
+            style={{
+              width: ((props.percent / props.max) * 100).toString() + "%",
+            }}
+            aria-valuemin="0"
+            aria-valuemax={props.max}
+          ></div>
+        </div>
+  );
+};
+
 export const IconText = (props) => {
     //textSize, textDisplayed, iconName, textColor?
     return (
