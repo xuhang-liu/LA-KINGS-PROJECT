@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { LabelRow } from "./Components";
 import { connect } from "react-redux";
 import ContentRow from "./ContentRow";
-import { getSubcategories } from "../../redux/actions/question_subcategory_actions";
+//import { getSubcategories } from "../../redux/actions/question_subcategory_actions";
 import { addVideoLabels } from "../../redux/actions/video_actions";
 import { confirmAlert } from 'react-confirm-alert';
 

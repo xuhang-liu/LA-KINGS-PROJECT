@@ -5,7 +5,6 @@ import { createMessage } from "../../redux/actions/message_actions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  AudioNumberLinkRow,
   RecordDoneButton,
   BglessCardButton,
 } from "../practice/CardComponents";
@@ -16,7 +15,6 @@ export class MyAudioUploader extends Component {
     super(props);
     this.uploader = null;
     this.handleUpload = this.handleUpload.bind(this);
-    this.state={loading: false}
   }
 
   static propTypes = {
@@ -55,7 +53,6 @@ export class MyAudioUploader extends Component {
 
   handleUploadAndFinish = () => {
     this.uploader.uploadFile(this.props.audio);
-
     this.redirectToDashboard();
   };
 

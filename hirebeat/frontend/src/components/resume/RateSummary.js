@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import React from 'react';
+//import { Link } from "react-router-dom";
 import {FacebookShareButton,  LinkedinShareButton} from "react-share";
 import { OverallScore, ProgressBar } from "./Components";
 import {goodResult, badResult} from "./../../constants/constants";

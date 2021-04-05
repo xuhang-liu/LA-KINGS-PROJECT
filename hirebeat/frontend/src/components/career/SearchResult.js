@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getZipRecruiterJobs } from "../../redux/actions/auth_actions";
 import { MyModal } from "./../dashboard/DashboardComponents";
 import JobFilter from "./JobFilter";
-import ReactPaginate from 'react-paginate';
+//import ReactPaginate from 'react-paginate';
 import {Link} from "react-router-dom";
 
 export class SearchResult extends Component {

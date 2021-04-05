@@ -201,6 +201,7 @@ export class EmployerDashboard extends Component {
         />;
       case "position":
         return <CreatePosition
+            getPJobs={this.getPJobs}
             user={this.props.user}
             profile={this.props.profile}
             renderApplications={this.renderApplications}

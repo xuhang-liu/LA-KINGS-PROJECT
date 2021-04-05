@@ -6,10 +6,7 @@ import { updateRecord, employerNotification } from "../../redux/actions/auth_act
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  VideoNumberLinkRow,
-  RecordDoneButton,
-  BglessCardButton,
-  BglessCardButton1,
+  RecordDoneButton
 } from "../practice/CardComponents";
 import { withRouter } from "react-router-dom";
 

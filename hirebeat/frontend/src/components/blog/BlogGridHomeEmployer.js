@@ -87,6 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-how-gender-pronouns-change-the-way-we-work",
     "/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing",
     "/employer_blog-interview-questions-every-recruiter-should-ask",
     "/employer_blog-writing-a-good-job-posting-that-will-attract-employees",
@@ -95,6 +96,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer6.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer5.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer4.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer3.jpg",
@@ -103,6 +105,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Apr 02, 2021",
     "Mar 30, 2021",
     "Mar 29, 2021",
     "Mar 22, 2021",
@@ -111,6 +114,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "HOW GENDER CHANGE THE WAY WE WORK",
     "A NEW WAY OF INTERVIEWING",
     "IQ EVERY RECRUITER SHOULD ASK",
     "WRITING A GOOD JOB POSTING",
