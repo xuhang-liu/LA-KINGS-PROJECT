@@ -30,7 +30,7 @@ class IndexSaas extends Component {
         };
       componentDidMount() {
         this.props.loadProfile();
-        setTimeout(() => this.setState({ loading: false }), 666); 
+        this.timerHandle = setTimeout(() => this.setState({ loading: false }), 666);
       }
     render() {
       if(this.props.profile.is_employer){

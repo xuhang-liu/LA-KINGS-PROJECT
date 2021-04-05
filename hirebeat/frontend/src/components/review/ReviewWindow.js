@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { useEffect } from "react";
-import { getReviewCount } from "../../redux/actions/video_actions";
-import PropTypes from "prop-types";
+//import { getReviewCount } from "../../redux/actions/video_actions";
+//import PropTypes from "prop-types";
 import AudioPlayer from "../audios/AudioPlayer";
 import ReactPlayer from 'react-player';
 import Reviews from "./Reviews";

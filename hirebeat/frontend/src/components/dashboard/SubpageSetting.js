@@ -33,9 +33,11 @@ export class SubpageSetting extends Component {
         console.log(e.target.value);
       };
     
-    saveChanges = () => {
+    saveChanges = (e) => {
         var profile = this.makeProfile();
         this.props.updateProfile(profile);
+        e.preventDefault();
+        this.props.renderVideos();
     };
 
     makeProfile = () => {

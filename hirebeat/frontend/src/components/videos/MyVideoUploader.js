@@ -5,10 +5,8 @@ import { createMessage } from "../../redux/actions/message_actions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  VideoNumberLinkRow,
   RecordDoneButton,
   BglessCardButton,
-  BglessCardButton1,
 } from "../practice/CardComponents";
 import { withRouter } from "react-router-dom";
 //import {
@@ -101,8 +99,8 @@ export class MyVideoUploader extends Component {
 
     // change bucket to "hirebeat-test-video-bucket" when run in local
 
-   var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
-    // var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
+    var url = "https://test-hb-videos.s3.amazonaws.com/" + name;
+    //var url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
 
 
     if (this.props.retry) {

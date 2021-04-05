@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AudioRecorder from "./AudioRecorder";
 import CountdownBar from "./CountdownBar";
 import { audioRecorderOptions } from "../../constants/constants";
-import { PracticeCard, CardRow } from "./CardComponents";
+import { PracticeCard } from "./CardComponents";
 import NotePad from "./NotePad";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

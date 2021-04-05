@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import VideoRecorder from "./VideoRecorder";
 import CountdownBar from "./CountdownBar";
 import { videoRecorderOptions } from "./../../../constants/constants";
-import { CardRow } from "./../../practice/CardComponents";
+//import { CardRow } from "./../../practice/CardComponents";
 
 export class RecordWindow extends Component {
 
