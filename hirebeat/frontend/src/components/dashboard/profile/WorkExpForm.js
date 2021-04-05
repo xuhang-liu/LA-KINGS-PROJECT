@@ -161,9 +161,11 @@ const WorkFormCard = (props) => {
                         <p className="profile-p" style={{margin: "0rem"}}>Description</p>
                         <textarea id={props.workDescription} defaultValue={profileDetail[props.workDescription]} className="profile-input profile-p" style={{width: "100%", height: "6rem"}}></textarea>
                     </div>
-                </div>
-                <div style={{float: "right", marginTop: "1rem"}}>
-                    <span type="button" onClick={() => {props.removeWorkExp(index)}} className="profile-edit" style={{color: "#FF0000", float: "right"}}>Delete</span>
+                    <div className="row" style={{marginTop: "1rem"}}>
+                        <div style={{paddingLeft: "90%"}}>
+                            <span type="button" onClick={() => {props.removeWorkExp(index)}} className="profile-edit" style={{color: "#FF0000", float: "right"}}>Delete</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

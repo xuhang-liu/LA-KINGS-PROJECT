@@ -366,7 +366,9 @@ export class Profile extends Component {
                                             <div className="col-9">
                                                 <div className="row">
                                                     <div className="col-8">
-                                                        <h3 className="profile-h3">{this.props.profileDetail.name}</h3>
+                                                        <h3 className="profile-h3">
+                                                            {(this.props.profileDetail.name !== null && this.props.profileDetail.name !== "") ? this.props.profileDetail.name : "Full Name Here"}
+                                                        </h3>
                                                     </div>
                                                     <div className="col-4 profile-edit">
                                                         <div style={{float: "right"}}>
@@ -375,7 +377,9 @@ export class Profile extends Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p className="profile-p">{this.props.profileDetail.self_description}</p>
+                                                <p className="profile-p">
+                                                    {(this.props.profileDetail.self_description !== null && this.props.profileDetail.self_description !== "") ? this.props.profileDetail.self_description : "Heading here"}
+                                                </p>
                                             </div>
                                         </div> :
                                         <div>
@@ -397,6 +401,152 @@ export class Profile extends Component {
                                             <div style={{marginTop: "1rem"}}>
                                                 <p className="profile-p" style={{margin: "0rem"}}>Job Title</p>
                                                 <textarea id="selfDescription" className="profile-input profile-p" style={{width: "100%"}} placeholder="eg: Software Engineer at HireBeat" defaultValue={this.props.profileDetail.self_description}></textarea>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            {/* Social Media */}
+                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
+                                <div style={{padding: "2rem"}}>
+                                    {!this.state.isEditMedia ?
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-8">
+                                                    <h3 className="profile-h3">Social Media</h3>
+                                                </div>
+                                                <div className="col-4 profile-edit">
+                                                    <div style={{float: "right"}}>
+                                                        <i className="bx bx-edit-alt"></i>
+                                                        <span type="button" onClick={this.editMedia} style={{marginLeft: "0.5rem"}}>Edit</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-4">
+                                                    <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
+                                                        LinkedIn <i class='bx bxl-linkedin-square' style={{color: "#67A3F3"}}></i>
+                                                    </p>
+                                                </div>
+                                                <div className="col-8">
+                                                    <p className="profile-p4" style={{wordBreak: "break-word"}}>
+                                                        {(this.props.profileDetail.linkedin !== null && this.props.profileDetail.linkedin !== "") ? this.props.profileDetail.linkedin : "Link to your LinkedIn"}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-4">
+                                                    <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
+                                                        Website <i class='bx bxs-network-chart' style={{color: "#67A3F3"}}></i>
+                                                    </p>
+                                                </div>
+                                                <div className="col-8">
+                                                    <p className="profile-p4" style={{wordBreak: "break-word"}}>
+                                                        {(this.props.profileDetail.website !== null && this.props.profileDetail.website !== "") ? this.props.profileDetail.website : "Add your personal website"}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-4">
+                                                    <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
+                                                        Github <i class='bx bxl-github' style={{color: "#67A3F3"}}></i>
+                                                    </p>
+                                                </div>
+                                                <div className="col-8">
+                                                    <p className="profile-p4" style={{wordBreak: "break-word"}}>
+                                                        {(this.props.profileDetail.github !== null && this.props.profileDetail.github !== "") ? this.props.profileDetail.github : "Link to your Github"}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>:
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-7">
+                                                    <h3 className="profile-h3">Social Media</h3>
+                                                </div>
+                                                <div className="col-5 profile-edit">
+                                                    <div style={{float: "right"}}>
+                                                        <span type="button" onClick={this.cancelEditMedia}>Cancel</span>
+                                                        <span type="button" onClick={this.saveSocialMedia} style={{marginLeft: "1rem"}}>Save</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>LinkedIn <i class='bx bxl-linkedin-square' style={{color: "#090D3A"}}></i></p>
+                                                <input id="linkedin" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.linkedin}></input>
+                                            </div>
+                                            <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Website <i class='bx bxs-network-chart' style={{color: "#090D3A"}}></i></p>
+                                                <input id="website" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.website}></input>
+                                            </div>
+                                             <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Github <i class='bx bxl-github' style={{color: "#090D3A"}}></i></p>
+                                                <input id="github" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.github}></input>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            {/* Basic info */}
+                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
+                                <div style={{padding: "2rem"}}>
+                                    {!this.state.isEditWorkInfo ?
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-8">
+                                                    <h3 className="profile-h3">Basic Info</h3>
+                                                </div>
+                                                <div className="col-4 profile-edit">
+                                                    <div style={{float: "right"}}>
+                                                        <i className="bx bx-edit-alt"></i>
+                                                        <span type="button" onClick={this.editWorkInfo} style={{marginLeft: "0.5rem"}}>Edit</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Years of Experience</p>
+                                                <p className="profile-p4">
+                                                    {(this.props.profileDetail.year_of_exp !== null && this.props.profileDetail.year_of_exp !== "") ? this.props.profileDetail.year_of_exp : "Enter years"}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Current Company</p>
+                                                <p className="profile-p4">
+                                                    {(this.props.profileDetail.current_company !== null && this.props.profileDetail.current_company !=="") ? this.props.profileDetail.current_company : "Enter company"}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Location</p>
+                                                <p className="profile-p4">
+                                                    {(this.props.profileDetail.location !== null && this.props.profileDetail.location !== "") ? this.props.profileDetail.location : "Enter location"}
+                                                </p>
+                                            </div>
+                                        </div>:
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-7">
+                                                    <h3 className="profile-h3">Basic Info</h3>
+                                                </div>
+                                                <div className="col-5 profile-edit">
+                                                    <div style={{float: "right"}}>
+                                                        <span type="button" onClick={this.cancelEditWorkInfo}>Cancel</span>
+                                                        <span type="button" onClick={this.saveWorkInfo} style={{marginLeft: "1rem"}}>Save</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Years of Experience</p>
+                                                <input id="yoe" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.year_of_exp}></input>
+                                            </div>
+                                            <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Current Company</p>
+                                                <input id="curCompany" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.current_company}></input>
+                                            </div>
+                                             <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Location Based</p>
+                                                <input id="location" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.location}></input>
                                             </div>
                                         </div>
                                     }
@@ -454,144 +604,10 @@ export class Profile extends Component {
                                     </p>
                                 </div>
                             </div>
-
-                            {/* Social Media */}
-                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
-                                <div style={{padding: "2rem"}}>
-                                    {!this.state.isEditMedia ?
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-8">
-                                                    <h3 className="profile-h3">Social Media</h3>
-                                                </div>
-                                                <div className="col-4 profile-edit">
-                                                    <div style={{float: "right"}}>
-                                                        <i className="bx bx-edit-alt"></i>
-                                                        <span type="button" onClick={this.editMedia} style={{marginLeft: "0.5rem"}}>Edit</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-4">
-                                                    <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
-                                                        LinkedIn <i class='bx bxl-linkedin-square' style={{color: "#67A3F3"}}></i>
-                                                    </p>
-                                                </div>
-                                                <div className="col-8">
-                                                    <p className="profile-p4" style={{wordBreak: "break-word"}}>{this.props.profileDetail.linkedin}</p>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-4">
-                                                    <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
-                                                        Website <i class='bx bxs-network-chart' style={{color: "#67A3F3"}}></i>
-                                                    </p>
-                                                </div>
-                                                <div className="col-8">
-                                                    <p className="profile-p4" style={{wordBreak: "break-word"}}>{this.props.profileDetail.website}</p>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-4">
-                                                    <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
-                                                        Github <i class='bx bxl-github' style={{color: "#67A3F3"}}></i>
-                                                    </p>
-                                                </div>
-                                                <div className="col-8">
-                                                    <p className="profile-p4" style={{wordBreak: "break-word"}}>{this.props.profileDetail.github}</p>
-                                                </div>
-                                            </div>
-                                        </div>:
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-7">
-                                                    <h3 className="profile-h3">Social Media</h3>
-                                                </div>
-                                                <div className="col-5 profile-edit">
-                                                    <div style={{float: "right"}}>
-                                                        <span type="button" onClick={this.cancelEditMedia}>Cancel</span>
-                                                        <span type="button" onClick={this.saveSocialMedia} style={{marginLeft: "1rem"}}>Save</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>LinkedIn <i class='bx bxl-linkedin-square' style={{color: "#090D3A"}}></i></p>
-                                                <input id="linkedin" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.linkedin}></input>
-                                            </div>
-                                            <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Website <i class='bx bxs-network-chart' style={{color: "#090D3A"}}></i></p>
-                                                <input id="website" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.website}></input>
-                                            </div>
-                                             <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Github <i class='bx bxl-github' style={{color: "#090D3A"}}></i></p>
-                                                <input id="github" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.github}></input>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-
-                            {/* Basic info */}
-                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
-                                <div style={{padding: "2rem"}}>
-                                    {!this.state.isEditWorkInfo ?
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-8">
-                                                    <h3 className="profile-h3">Basic Info</h3>
-                                                </div>
-                                                <div className="col-4 profile-edit">
-                                                    <div style={{float: "right"}}>
-                                                        <i className="bx bx-edit-alt"></i>
-                                                        <span type="button" onClick={this.editWorkInfo} style={{marginLeft: "0.5rem"}}>Edit</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Years of Experience</p>
-                                                <p className="profile-p4">{this.props.profileDetail.year_of_exp}</p>
-                                            </div>
-                                            <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Current Company</p>
-                                                <p className="profile-p4">{this.props.profileDetail.current_company}</p>
-                                            </div>
-                                            <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Location</p>
-                                                <p className="profile-p4">{this.props.profileDetail.location}</p>
-                                            </div>
-                                        </div>:
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-7">
-                                                    <h3 className="profile-h3">Basic Info</h3>
-                                                </div>
-                                                <div className="col-5 profile-edit">
-                                                    <div style={{float: "right"}}>
-                                                        <span type="button" onClick={this.cancelEditWorkInfo}>Cancel</span>
-                                                        <span type="button" onClick={this.saveWorkInfo} style={{marginLeft: "1rem"}}>Save</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Years of Experience</p>
-                                                <input id="yoe" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.year_of_exp}></input>
-                                            </div>
-                                            <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Current Company</p>
-                                                <input id="curCompany" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.current_company}></input>
-                                            </div>
-                                             <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Location Based</p>
-                                                <input id="location" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.location}></input>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
                         </div>
 
                         {/* Right Part */}
-                        <div className="col-7">
+                        <div className="col-6" style={{marginLeft: "2rem"}}>
                             {/* Video Profile */}
                             <div className="profile-bg" style={{textAlign: "left"}}>
                                 <div style={{padding: "2rem"}}>
@@ -621,7 +637,9 @@ export class Profile extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p className="profile-p4">{this.props.profileDetail.summary}</p>
+                                            <p className="profile-p4">
+                                                {(this.props.profileDetail.summary !== null && this.props.profileDetail.summary !== "") ? this.props.profileDetail.summary : "Add your bio in a few sentences"}
+                                            </p>
                                         </div> :
                                         <div>
                                             <div className="row">

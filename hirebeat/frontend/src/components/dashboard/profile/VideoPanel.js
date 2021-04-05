@@ -68,14 +68,25 @@ export class VideoPanel extends Component {
         return(
             <div>
                 <h3 className="profile-h3">Video Profile</h3>
-                <p className="profile-p">
-                    Self-Introduction
-                    <div style={{float: "right"}}>
-                        <span className="profile-edit" type="button" onClick={this.enableShow}>Re-record</span>
-                        <span className="profile-edit" onClick={this.deleteAlert} style={{color: "#FF0000", marginLeft: "1rem"}} type="button">Delete</span>
+                {(this.props.videoURL !== null && this.props.videoURL !== "") ?
+                    <div>
+                        <p className="profile-p">
+                            Self-Introduction
+                            <div style={{float: "right"}}>
+                                <span className="profile-edit" type="button" onClick={this.enableShow}>Re-record</span>
+                                <span className="profile-edit" onClick={this.deleteAlert} style={{color: "#FF0000", marginLeft: "1rem"}} type="button">Delete</span>
+                            </div>
+                        </p>
+                        <ReactPlayer id="rw-video" url={this.props.videoURL}  controls={true} width={"100%"} height={"100%"}/>
+                    </div> :
+                    <div>
+                        <p className="profile-p" style={{margin: "0rem"}}>Self-Introduction</p>
+                        <p className="profile-p4" style={{marginBottom: "1rem"}}>Pitch yourself and present to your dream companies.</p>
+                        <div className="profile-bg4" style={{justifyContent: "center", height: "5rem", display: "flex", width: "100%"}}>
+                            <button onClick={this.enableShow} className="profile-btn"><i className="bx bx-video-recording"></i> &nbsp;Record Video</button>
+                        </div>
                     </div>
-                </p>
-                <ReactPlayer id="rw-video" url={this.props.videoURL}  controls={true} width={"100%"} height={"100%"}/>
+                }
                 <MyVideoModal
                     show={this.state.show}
                     onHide={()=>{this.disableShow()}}

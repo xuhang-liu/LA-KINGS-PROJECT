@@ -175,10 +175,12 @@ const FormCard = (props) => {
                             <input id={props.gpa} defaultValue={profileDetail[props.gpa]} className="profile-input profile-p4" style={{width: "100%"}}></input>
                         </div>
                     </div>
+                    <div className="row" style={{marginTop: "1rem"}}>
+                        <div style={{paddingLeft: "90%"}}>
+                            <span type="button" onClick={() => {props.removeEducation(index)}} className="profile-edit" style={{color: "#FF0000", float: "right"}}>Delete</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div style={{float: "right", marginTop: "1rem"}}>
-                <span type="button" onClick={() => {props.removeEducation(index)}} className="profile-edit" style={{color: "#FF0000", float: "right"}}>Delete</span>
             </div>
         </div>
     )
