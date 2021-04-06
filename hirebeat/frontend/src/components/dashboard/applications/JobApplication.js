@@ -1267,6 +1267,9 @@ const ApplicantList = (props) => {
                             break;
                     }
                 }
+                else if(props.profile.is_subreviwer && !a.is_recorded){
+                    return null;
+                }
                 return (
                     <Applicant
                         getPJobs={props.getPJobs}

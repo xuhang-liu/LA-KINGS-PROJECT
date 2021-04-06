@@ -63,7 +63,7 @@ export class Header extends Component {
                     <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username.split("@")[0]}  ` : ""}
                     <ul className="nav_submenu" style={{width:"10rem"}}> 
                       <li>
-                      <Link id="id-logout" to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
+                      <Link id="id-logout" to="/for_candidate" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
                         Log out
                       </Link>
                       </li>
@@ -234,7 +234,7 @@ export class Header extends Component {
             </Link>
             </li>
             <MediaQuery minDeviceWidth={1224}>
-            <li className="nav-item " style={{paddingTop:"10px"}}>
+            <li className="nav-item " style={{paddingTop:"6px"}}>
                 <a href="/employer" className="nav-link text-white navbar-font">
                   <span className="header-text">For Employers</span>
                 </a>
@@ -261,7 +261,7 @@ export class Header extends Component {
                       </Link>
                       </li>
                       <li>
-                      <Link id="id-logout" to="/employer" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
+                      <Link id="id-logout" to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
                         Log out
                       </Link>
                       </li>
@@ -304,31 +304,20 @@ export class Header extends Component {
 
   renderEmployerGuestLinks = () => {
     return (
-        <React.Fragment>
-          <ul className="navbar-nav d-flex flex-row order-xl-1">
-          <li className="nav-item">
-            <Link to="/login">
-              <a className="default-btn mr-3" id="id-login-employer" style={{color:"white"}}>
-                <i className="bx bx-log-in"></i>Log In<span></span>
-              </a>
-            </Link>
-            </li>
-            <li className="nav-item">
-            <Link to="/employer_register">
-            <a className="default-btn mr-3" id="id-signup-employer" style={{color:"white", backgroundColor:"#ff612f"}}>
-              <i className="bx bxs-hot"></i>Employer Sign Up<span></span>
-            </a>
-            </Link>
-            </li>
-          </ul>
 
-
+      <React.Fragment>
           <div className="collapse navbar-collapse"
                id="navbarSupportedContent">
 
-            <ul
-              className="navbar-nav ml-auto mr-5
-                 text-left order-xl-0">
+            <ul className="navbar-nav order-xl-0
+               text-left" style={{marginLeft:"10px"}}>
+              <MediaQuery maxDeviceWidth={1223}>
+              <li className="nav-item ">
+                <a href="/for_candidate" className="nav-link text-white navbar-font">
+                  <span className="header-text">For Candidates</span>
+                </a>
+              </li>
+              </MediaQuery>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
@@ -348,6 +337,29 @@ export class Header extends Component {
               </li>
             </ul>
           </div>
+          <ul className="navbar-nav d-flex flex-row order-xl-1">
+            <li className="nav-item" style={{paddingTop:"10px"}}>
+            <Link to="/login">
+              <a className="default-btn1 mr-3" id="id-login-employer" style={{color:"white", paddingLeft:"25px", border:'2px solid #FFFFFF', paddingBottom:"12px", paddingTop:"12px"}}>
+                Log In
+              </a>
+            </Link>
+            </li>
+            <li className="nav-item" style={{paddingTop:"10px"}}>
+            <Link to="/employer_register">
+            <a className="default-btn mr-3" id="id-signup-employer" style={{color:"white", paddingLeft:"25px"}}>
+              Sign Up for Free
+            </a>
+            </Link>
+            </li>
+            <MediaQuery minDeviceWidth={1224}>
+            <li className="nav-item" style={{paddingTop:"6px"}}>
+                <a href="/for_candidate" className="nav-link text-white navbar-font">
+                  <span className="header-text">For Candidates</span>
+                </a>
+            </li>
+            </MediaQuery>
+          </ul>
         </React.Fragment>
     );
   };
@@ -395,8 +407,8 @@ export class Header extends Component {
                   aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"/>
               </button>
-              {this.props.profile.is_employer ? 
-              <a href="/employer" className="navbar-brand mr-auto">
+              {isAuthenticated && (!this.props.profile.is_employer) ? 
+              <a href="/for_candidate" className="navbar-brand mr-auto">
               <img
                 src={hirebeatlogo}
                 className="img-fluid mr-3"
@@ -443,9 +455,9 @@ export class Header extends Component {
                     : this.props.profile.is_employer
                     ? this.renderEmployerLinks()
                     : this.renderUserLinks()
-                : (uri.includes("employer")) ?
-                  this.renderEmployerGuestLinks()
-                : this.renderGuestLinks()
+                : (uri.includes("for_candidate")) ?
+                this.renderGuestLinks()
+                : this.renderEmployerGuestLinks()
             }
 
           </div>
@@ -473,8 +485,8 @@ export class Header extends Component {
                   aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"/>
               </button>
-              {this.props.profile.is_employer ? 
-              <a href="/employer" className="navbar-brand mr-auto">
+              {isAuthenticated && (!this.props.profile.is_employer) ?
+              <a href="/for_candidate" className="navbar-brand mr-auto">
               <img
                 src={hirebeatlogo}
                 className="img-fluid mr-3"
@@ -521,9 +533,9 @@ export class Header extends Component {
                     : this.props.profile.is_employer
                     ? this.renderEmployerLinks()
                     : this.renderUserLinks()
-                : uri.includes("employer") ?
-                  this.renderEmployerGuestLinks()
-                : this.renderGuestLinks()
+                : (uri.includes("for_candidate")) ?
+                this.renderGuestLinks()
+                : this.renderEmployerGuestLinks()
             }
 
           </div>

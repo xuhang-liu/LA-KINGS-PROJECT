@@ -106,6 +106,7 @@ class MainBanner extends Component {
                     </div>
                 </div>
                 </MediaQuery>
+                <div className="container-fluid max-width-1440">
                 <ReactWOW animation='fadeInUp' delay='0.2s'>
                     <div className="overview-item">
                     <div className="container mt-4 max-width-1440">
@@ -147,6 +148,7 @@ class MainBanner extends Component {
                         </div>
                     </div>
                 </ReactWOW>
+                </div>
                 <MediaQuery minDeviceWidth={1224}>
                 <div className="before-after pb-100 pt-100">
                     <div className="container-fluid max-width-1440">
