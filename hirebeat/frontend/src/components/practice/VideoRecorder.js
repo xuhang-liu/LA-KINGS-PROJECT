@@ -170,6 +170,7 @@ export class VideoRecorder extends Component {
               question={this.props.question}
               questionId={this.props.questionId}
               email={this.props.email}
+              goLoading={this.props.goLoading}
             />
           ) : null}
         </div>

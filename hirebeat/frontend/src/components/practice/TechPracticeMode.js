@@ -27,6 +27,7 @@ export class TechPracticeMode extends Component {
     lengthOfResponse: { value: 1, label: "60s" },
     categoryOfQuestion: { value: 1, label: this.props.location.params.category},   // initialize this state with the params passed by TechFields.js
     difficultyOfQuestion: { value: 1, label: "Common Question"},
+    onLoading: false,
   };
 
   componentDidMount() {
@@ -132,6 +133,8 @@ export class TechPracticeMode extends Component {
   render() {
     const { paramsAreSet, audioParamIsSet } = this.state
     // video test
+    if(this.state.onLoading)
+      return null;
     if (paramsAreSet === true) {
         return (
           <div className="container">
@@ -143,6 +146,7 @@ export class TechPracticeMode extends Component {
                 questionCategory={this.state.categoryOfQuestion.label}
                 questionDifficulty={this.state.difficultyOfQuestion.value}
                 isSimulate={false}
+                goLoading={()=>{this.setState({onLoading: true})}}
               />
               ) : (
                 <TestDevice testDeviceDone={this.testDeviceDone} />
@@ -163,6 +167,7 @@ export class TechPracticeMode extends Component {
                 questionCategory={this.state.categoryOfQuestion.label}
                 questionDifficulty={this.state.difficultyOfQuestion.value}
                 isSimulate={false}
+                goLoading={()=>{this.setState({onLoading: true})}}
               />
               ) : (
                 <TestAudioDevice testDeviceDone={this.testDeviceDone} />

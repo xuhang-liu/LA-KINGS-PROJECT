@@ -53,13 +53,14 @@ export class MyAudioUploader extends Component {
 
   handleUploadAndFinish = () => {
     this.uploader.uploadFile(this.props.audio);
-    this.redirectToDashboard();
+    this.props.goLoading();
+    setTimeout(()=>{this.redirectToDashboard();}, 15000)
   };
 
   redirectToDashboard = () => {
-    // redirect to profile
+    // redirect to profile aaa
     const { history } = this.props;
-    if (history) history.push("/dashboard");
+    if (history) his 
   };
 
   render() {
