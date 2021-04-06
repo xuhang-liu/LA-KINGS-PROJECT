@@ -160,14 +160,15 @@ export class Resume extends Component {
                     <h3 className="profile-h3">Resume</h3>
                     <p className="profile-p">
                         {this.props.resumeName}
+                        {(this.props.resumeName !== null && this.props.resumeName !== "") &&
                         <div style={{float: "right"}}>
                             <i className="bx bxs-binoculars profile-edit"></i>&nbsp;<span className="profile-edit" type="button" onClick={this.enableShowResume}>View</span>
                             <i className="bx bx-trash profile-edit" style={{marginLeft: "1rem"}}></i>
                             <span className="profile-edit" type="button" onClick={this.deleteResume}>Remove</span>
-                        </div>
+                        </div>}
                     </p>
-                    <div className="profile-bg4" style={{justifyContent: "center", height: "3rem", display: "flex", marginTop: "2rem", width: "100%"}}>
-                        <button onClick={this.selectFile} className="profile-btn"><i className="bx bx-cloud-upload"></i>Select New Resume</button>
+                    <div className="profile-bg4" style={{justifyContent: "center", height: "5rem", display: "flex", marginTop: "2rem", width: "100%"}}>
+                        <button onClick={this.selectFile} className="profile-btn"><i className="bx bx-cloud-upload"></i>&nbsp;Select New Resume</button>
                         <ReactS3Uploader
                           style={{display: "none"}}
                           id="uploadFile"
@@ -187,21 +188,23 @@ export class Resume extends Component {
                     </div>
                     {
                       this.state.selected ? (
-                        <div style={{textAlign: "center", marginTop: "1rem"}}>
-                          <i className="bx bxs-file-pdf resume-name"></i>
-                          <label className="resume-name" id="fileName"></label>
-                          <label className="resume-success" style={{marginLeft: "0.5rem"}}>selected</label>
-                          <i className="bx bxs-check-circle resume-success" style={{marginLeft: "1rem"}}></i>
+                        <div>
+                            <div style={{textAlign: "center", marginTop: "1rem"}}>
+                              <i className="bx bxs-file-pdf resume-name"></i>
+                              <label className="resume-name" id="fileName"></label>
+                              <label className="resume-success" style={{marginLeft: "0.5rem"}}>selected</label>
+                              <i className="bx bxs-check-circle resume-success" style={{marginLeft: "1rem"}}></i>
+                            </div>
+                            <div style={{textAlign: "center", marginTop:"1rem"}}>
+                              <button onClick={this.handleUpload} className="default-btn resume-scan" style={{backgroundColor: "#090D3A"}}>
+                                <i className="bx bxs-hot"></i>
+                                  Upload
+                                <span></span>
+                              </button>
+                            </div>
                         </div>
                       ) : null
                     }
-                    <div style={{textAlign: "center", marginTop:"1rem"}}>
-                      <button onClick={this.handleUpload} className="default-btn resume-scan" style={{backgroundColor: "#090D3A"}}>
-                        <i className="bx bxs-hot"></i>
-                          Upload
-                        <span></span>
-                      </button>
-                    </div>
                 </div>
                 <MyModal80
                     show={this.state.showResume}

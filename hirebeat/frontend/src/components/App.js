@@ -210,8 +210,8 @@ class App extends Component {
 
   render() {
     const meta = {
-      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
-      description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+      title: 'HireBeat – Your First Step to A Better Recruiting Journey',
+      description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
       canonical: 'https://hirebeat.co/',
       meta: {
         charset: 'utf-8',
@@ -231,7 +231,7 @@ class App extends Component {
               <Alerts />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                <PrivateRoute exact path="/employer_dashboard" component={EmployerDashboard} />
+                <PrivateRoute exact path="/employer_dashboard" component={EmployerDashboard}/>
                 <Route exact path="/resume" component={Resume} />
                 <PrivateRoute exact path="/review" component={ReviewListPreload} />
                 <PrivateRoute
@@ -315,7 +315,8 @@ class App extends Component {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer_register" component={EmployerRegister} />
                 <Route exact path="/upload" component={MyVideoUploader} />
-                <Route exact path="/" component={indexsaas} />
+                <Route exact path="/" component={IndexEmployer} />
+                <Route exact path="/for_candidate" component={indexsaas} />
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/privacy" component={Privacy} />
                 <Route exact path="/term" component={Term} />
