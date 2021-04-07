@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import { confirmAlert } from 'react-confirm-alert';
 import { addInterviewResume } from "../../redux/actions/resume_actions";
-//import safariAlert from "./../basic/SafariAlert";
+import safariAlert from "./../basic/SafariAlert";
 import Modal from "react-bootstrap/Modal";
 var ReactS3Uploader = require("react-s3-uploader");
 
@@ -40,6 +40,7 @@ class InterviewInfo extends Component {
         this.props.getInterviewQuestions(this.state.positionId);
         // intercept reloading
         window.addEventListener('beforeunload', this.beforeunload);
+        safariAlert();
     }
 
     componentWillUnmount () {
