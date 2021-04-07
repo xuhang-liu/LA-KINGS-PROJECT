@@ -58,6 +58,7 @@ export class VideoRecorder extends Component {
       console.log("finished recording: ", this.player.recordedData);
       if (!this.props.isTesting) {
         this.recordFinished();
+        this.handleClick();
       }
       //this.player.bigPlayButton.show();
     });
