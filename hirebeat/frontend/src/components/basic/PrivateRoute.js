@@ -6,7 +6,7 @@ import Loader from '../shared/Loader';
 const PrivateRoute = ({ component: Component, auth, ...rest }) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    setTimeout(() => setLoading(false), 333);
+    setTimeout(() => setLoading(false), 222);
   }, []);
   var uri = window.location.pathname;
   uri = uri.substring(1, uri.length);

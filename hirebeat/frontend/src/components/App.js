@@ -7,8 +7,9 @@ import { Provider } from "react-redux";
 import AlertTemplate from "react-alert-template-basic";
 import { Provider as AlertProvider } from "react-alert";
 import Alerts from "./layout/Alerts";
-import store from "../store";
+import store, {persistor} from "../store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {PersistGate} from 'redux-persist/lib/integration/react';
 
 import indexsaas from "./home/index-saas";
 import IndexEmployer from "./home/index-employer";
@@ -226,6 +227,7 @@ class App extends Component {
       <DocumentMeta {...meta}>
       <React.Fragment>
       <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
           <Router>
             <Fragment>
@@ -435,6 +437,7 @@ class App extends Component {
             </Fragment>
           </Router>
         </AlertProvider>
+        </PersistGate>
       </Provider>
       {/* Go Top Button */}
       <GoTop scrollStepInPx="100" delayInMs="10.50" />
