@@ -57,6 +57,7 @@ import BlogDetail21 from "./blog/blog-details21";
 import BlogDetail22 from "./blog/blog-details22";
 import BlogDetail23 from "./blog/blog-details23";
 import BlogDetail24 from "./blog/blog-details24";
+import BlogDetail25 from "./blog/blog-details25";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -317,6 +318,7 @@ class App extends Component {
                 <Route exact path="/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years" component={BlogDetail22} />
                 <Route exact path="/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview" component={BlogDetail23} />
                 <Route exact path="/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates" component={BlogDetail24} />
+                <Route exact path="/blog-4-most-commonly-asked-questions-in-an-interview" component={BlogDetail25} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer_register" component={EmployerRegister} />
