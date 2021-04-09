@@ -13,7 +13,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from .models import Profile, CandidatesInterview, ProfileDetail
+from .models import Profile, CandidatesInterview, ProfileDetail, EmployerPost, EmployerProfileDetail
 from questions.models import Positions, InterviewQuestions, InvitedCandidates
 from videos.models import WPVideo
 from rest_framework.response import Response
@@ -591,3 +591,142 @@ def subreviewer_update_comment(request):
     email.send()
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_employer_profile_detail(request):
+    user_id = request.query_params.get("user_id")
+    data = EmployerProfileDetail.objects.filter(user_id=user_id).values()[0]
+    # post = EmployerPost.objects.filer(user_id=user_id).values()  # todo append post here
+    return Response({"data": data})
+
+@api_view(['POST'])
+def create_or_update_employer_info(request):
+    user_id = request.data["user_id"]
+    name = request.data["name"]
+    self_description = request.data["self_description"]
+    try:
+        # update personal information
+        employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
+        employer_profile.name = name
+        employer_profile.self_description = self_description
+        employer_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        EmployerProfileDetail.objects.create(user_id=user_id, name=name, self_description=self_description)
+    return Response("Create or Update employer info successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_employer_social_media(request):
+    user_id = request.data["user_id"]
+    linkedin = request.data["linkedin"]
+    website = request.data["website"]
+    twitter = request.data["twitter"]
+    try:
+        # update personal information
+        employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
+        employer_profile.linkedin = linkedin
+        employer_profile.website = website
+        employer_profile.github = twitter
+        employer_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        EmployerProfileDetail.objects.create(user_id=user_id, linkedin=linkedin, website=website, twitter=twitter)
+    return Response("Create or Update employer social media successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_employer_basic_info(request):
+    user_id = request.data["user_id"]
+    company_type = request.data["company_type"]
+    email = request.data["email"]
+    location = request.data["location"]
+    try:
+        # update personal information
+        employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
+        employer_profile.company_type = company_type
+        employer_profile.email = email
+        employer_profile.location = location
+        employer_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        EmployerProfileDetail.objects.create(user_id=user_id, company_type=company_type, email=email, location=location)
+    return Response("Create or Update employer basic info successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_employer_video(request):
+    user_id = request.data["user_id"]
+    video_url = request.data["video_url"]
+    try:
+        # update personal information
+        employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
+        employer_profile.video_url = video_url
+        employer_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        EmployerProfileDetail.objects.create(user_id=user_id, video_url=video_url)
+    return Response("Create or Update video successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_employer_summary(request):
+    user_id = request.data["user_id"]
+    summary = request.data["summary"]
+    try:
+        # update personal information
+        employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
+        employer_profile.summary = summary
+        employer_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        EmployerProfileDetail.objects.create(user_id=user_id, summary=summary)
+    return Response("Create or Update employer summary successfully", status=status.HTTP_201_CREATED)
+
+
+def upload_employer_profile_video(request):
+    object_name = request.GET['objectName']
+    content_type = request.GET['contentType']
+    # content_type = mimetypes.guess_type(object_name)[0]
+    # content_type = content_type + ";codecs=vp8,opus" ### ATTENTION: this added part is required if upload dirctly from the browser. If used for uploading local files, comment this line out.###
+
+    signed_url = conn.generate_url(
+        300,
+        "PUT",
+        os.getenv("Employer_Profile_Video"),
+        object_name,
+        headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
+
+    return HttpResponse(json.dumps({'signedUrl': signed_url}))
+
+@api_view(['GET'])
+def get_employer_post(request):
+    user_id = request.query_params.get("user_id")
+    index = int(request.query_params.get("index"))
+    count = EmployerPost.objects.filter(user_id=user_id).count()
+    if count <= 2:
+        data = list(EmployerPost.objects.filter(user_id=user_id).order_by('-created_at').values())
+
+    else:
+        # slice data, only fetch 2 records
+        data = list(EmployerPost.objects.filter(user_id=user_id).order_by('-created_at').values())[index:index+2]
+    return Response({"data": data,
+                     "total": count})
+
+@api_view(['POST'])
+def update_employer_post(request):
+    post_id = request.data["post_id"]
+    content = request.data["content"]
+    post = EmployerPost.objects.get(id=post_id)
+    post.content = content
+    post.save();
+    return Response("Update employer post successfully", status=status.HTTP_205_RESET_CONTENT)
+
+@api_view(['POST'])
+def add_employer_post(request):
+    user_id = request.data["user_id"]
+    content = request.data["content"]
+    EmployerPost.objects.create(user_id=user_id, content=content)
+    return Response("Create employer post successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def delete_employer_post(request):
+    post_id = request.data["post_id"]
+    EmployerPost.objects.filter(id=post_id).delete()
+    return Response("Delete employer post successfully", status=status.HTTP_202_ACCEPTED)

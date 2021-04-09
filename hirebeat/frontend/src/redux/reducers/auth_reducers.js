@@ -19,6 +19,8 @@ import {
   GET_RECORD_STATUS,
   GET_RECEIVED_INTERVIEW,
   GET_PROFILE_DETAIL,
+  GET_EMPLOYER_PROFILE_DETAIL,
+  GET_EMPLOYER_POST,
 } from "../actions/action_types";
 
 const initialState = {
@@ -38,6 +40,8 @@ const initialState = {
   received_interview: [],
   loaded: false,
   profileDetail: {},
+  employerProfileDetail: {},
+  employerPost: {},
 };
 
 export default function (state = initialState, action) {
@@ -138,6 +142,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
         profileDetail: action.payload.data,
+      }
+    case GET_EMPLOYER_PROFILE_DETAIL:
+      return {
+        ...state,
+        employerProfileDetail: action.payload.data,
+      }
+    case GET_EMPLOYER_POST:
+      return {
+        ...state,
+        employerPost: action.payload,
       }
     default:
       return state;
