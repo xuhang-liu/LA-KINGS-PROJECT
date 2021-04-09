@@ -12,7 +12,7 @@ export class Video extends Component {
       }
 
     state = {
-        resume: null,
+        video: null,
         fakeName: "",
         selected: false,
         isUploadAgain: false,
@@ -57,8 +57,8 @@ export class Video extends Component {
             let size = video.size;
 
             // check file size
-            if (size > 20000000) {
-                return this.alert("Wrong File Type", "Please upload resume that less than 20MB!");
+            if (size > 50000000) {
+                return this.alert("Wrong File Type", "Please upload video that less than 50MB!");
             }
 
             // check file type
@@ -69,12 +69,13 @@ export class Video extends Component {
                 let timestamp = Date.parse(new Date());
                 let fakeName = timestamp + "." + docType;
                 const newVideo = new File([video], fakeName, {type: video.type});
-                console.log(fakeName);
                 this.setState({fakeName: fakeName});
                 this.setState({video: newVideo});
             } else {
                 return this.alert("Wrong File Type", "Please upload MP4 Video");
             }
+            // reset input value
+            input.value = null;
         }
     }
 
@@ -118,7 +119,7 @@ export class Video extends Component {
         }
         else {
             this.uploader.uploadFile(this.state.video);
-//            this.props.setVideo();
+            this.setState({video: null, fakeName: ""});
             this.disableSelected();
         }
    }
@@ -158,14 +159,17 @@ export class Video extends Component {
         return(
             <div>
                 <div style={{padding: "2rem"}}>
-                    <h3 className="profile-h3">Video Profile</h3>
-                    <p className="profile-p">
-                        <div style={{float: "right"}}>
-                            {/*<i className="bx bxs-binoculars profile-edit"></i>&nbsp;<span className="profile-edit" type="button" onClick={this.setUploadAgain}>Re-Upload</span>*/}
-                            <i className="bx bx-trash profile-edit" style={{marginLeft: "1rem", color: "#FF0000"}}></i>
-                            <span className="profile-edit" type="button" style={{color: "#FF0000"}} onClick={this.deleteAlert}>Remove</span>
-                        </div>
-                    </p>
+                    <div className="row" style={{marginBottom: "1rem"}}>
+                        <h3 className="profile-h3">Video Profile</h3>
+                        {this.props.videoURL != "" && this.props.videoURL != null &&
+                            <p className="profile-p" style={{marginLeft: "60%"}}>
+                                <div style={{float: "right"}}>
+                                    <i className="bx bx-trash profile-edit" style={{marginLeft: "1rem", color: "#FF0000"}}></i>
+                                    <span className="profile-edit" type="button" style={{color: "#FF0000"}} onClick={this.deleteAlert}>Remove</span>
+                                </div>
+                            </p>
+                        }
+                    </div>
                     <ReactPlayer id="rw-video" url={this.props.videoURL}  controls={true} width={"100%"} height={"100%"}/>
                     <div className="profile-bg4" style={{justifyContent: "center", height: "5rem", display: "flex", marginTop: "2rem", width: "100%"}}>
                         <button onClick={this.selectFile} className="profile-btn"><i className="bx bx-cloud-upload"></i>&nbsp;Select New Video</button>

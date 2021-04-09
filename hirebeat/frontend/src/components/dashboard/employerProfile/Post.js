@@ -5,10 +5,24 @@ import ReactPaginate from 'react-paginate';
 
 export class Post extends Component {
     state = {
-        count: this.props.count,
+        count: [],
         offset: 0,
         pageCount: Math.ceil(this.props.employerPost.total / 2),
         newPost: [],
+    }
+
+    componentDidMount() {
+        this.setCount();
+    }
+
+    setCount = () => {
+        // initialize count array for Post.js layer
+        let len = this.props.employerPost.data.length;
+        let tempCount = []
+        for (let i = 0; i < len; i++) {
+            tempCount.push(1);
+        }
+        this.setState({count: tempCount});
     }
 
     handlePageClick = (data) => {
@@ -63,6 +77,7 @@ export class Post extends Component {
         this.props.deleteEmployerPost(data);
         setTimeout(() => {this.props.getEmployerPost(this.props.userId, 0);}, 300);
         setTimeout(() => {this.setState({pageCount: Math.ceil(this.props.employerPost.total / 2)});}, 500);
+        setTimeout(() => {this.setCount();}, 500);
         this.props.cancelEditPost();
     }
 
@@ -81,6 +96,7 @@ export class Post extends Component {
         }
         setTimeout(() => {this.props.getEmployerPost(this.props.userId, 0);}, 300);
         setTimeout(() => {this.setState({pageCount: Math.ceil(this.props.employerPost.total / 2)});}, 500);
+        setTimeout(() => {this.setCount();}, 500);
         // reset newPost
         this.setState({newPost:[]});
     }

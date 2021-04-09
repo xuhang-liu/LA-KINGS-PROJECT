@@ -93,6 +93,8 @@ export class Resume extends Component {
             } else {
                 return this.alert("Wrong File Type", "Please upload PDF or DOCX version of your resume");
             }
+            // reset input value
+            input.value = null;
         }
     }
 
