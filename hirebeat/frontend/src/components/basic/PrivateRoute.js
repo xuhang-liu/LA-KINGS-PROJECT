@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import Loader from '../shared/Loader';
 
 const PrivateRoute = ({ component: Component, auth, ...rest }) => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 222);
+  }, []);
   var uri = window.location.pathname;
   uri = uri.substring(1, uri.length);
   return (
+    <React.Fragment>
+    <Loader loading={loading} />
     <Route
       {...rest}
       render={(props) => {
@@ -22,6 +29,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => {
         }
       }}
     />
+    </React.Fragment>
   );
 };
 

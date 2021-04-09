@@ -70,7 +70,7 @@ class BlogDetailsContent18 extends Component {
                                     </p>
                                     <h3 className="mb-0">Conclusion</h3>
                                     <p>
-                                    Teamwork question is one of the most frequently asked questions by most employers. It is important to get familiar with this type of question and have your answer ready. At <a href="/">HireBeat</a>, you can choose the teamwork category in your interview practice section and ask our AI or professional HR to review your responses. It never hurt to prepare ahead and impress the recruiter at your next interview.
+                                    Teamwork question is one of the most frequently asked questions by most employers. It is important to get familiar with this type of question and have your answer ready. At <a href="/for_candidate">HireBeat</a>, you can choose the teamwork category in your interview practice section and ask our AI or professional HR to review your responses. It never hurt to prepare ahead and impress the recruiter at your next interview.
                                     </p>
                                 </div>
                             </div>

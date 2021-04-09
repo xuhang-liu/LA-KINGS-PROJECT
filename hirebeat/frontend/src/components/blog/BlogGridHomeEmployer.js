@@ -34,8 +34,8 @@ export class BlogGridHomeEmployer extends React.Component {
                   dataLength={this.state.items.length}
                   next={this.fetchMoreData}
                   hasMore={this.state.hasMore}
-                  loader={<h4 style={{textAlign: "center", color: "#2196F3"}}></h4>}
-                  height={"65rem"}
+                  loader={<h4 style={{textAlign: "center", color: "#2196F3"}}>Loading...</h4>}
+                  height={"89rem"}
                   endMessage={
                       <p style={{textAlign: "center", color: "#2196F3"}}>
                           <b>This is the end of blogs!</b>
@@ -87,6 +87,8 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-how-to-get-your-job-postings-noticed",
+    "/employer_blog-millennials-we-want-you",
     "/employer_blog-how-gender-pronouns-change-the-way-we-work",
     "/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing",
     "/employer_blog-interview-questions-every-recruiter-should-ask",
@@ -96,6 +98,8 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer8.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer7.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer6.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer5.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer4.jpg",
@@ -105,6 +109,8 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Apr 07, 2021",
+    "Apr 07, 2021",
     "Apr 02, 2021",
     "Mar 30, 2021",
     "Mar 29, 2021",
@@ -114,6 +120,8 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "HOW TO GET YOUR JOB POSTINGS NOTICED",
+    "MILLENNIALS? WE WANT YOU!",
     "HOW GENDER CHANGE THE WAY WE WORK",
     "A NEW WAY OF INTERVIEWING",
     "IQ EVERY RECRUITER SHOULD ASK",

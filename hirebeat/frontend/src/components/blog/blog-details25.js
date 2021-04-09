@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogGridHomeEmployer from './BlogGridHomeEmployer';
+import BlogDetailsContent25 from './BlogDetailsContent25';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
-import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
@@ -14,16 +13,16 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class bloggridEmployer extends Component {
+class BlogDetail25 extends Component {
     render() {
         const meta = {
-            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
-            canonical: 'https://hirebeat.co/bloghome_employer',
+            title: 'HireBeat Blog – 4 Most Commonly Asked Questions in an Interview',
+            description: 'This article shares the four most commonly asked questions in an interview and how they can benefit the interviewer.',
+            canonical: 'https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview',
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+                keywords: 'Interview, question, job, intern, recruit, company, human resources'
               }
             }
           };
@@ -32,16 +31,15 @@ class bloggridEmployer extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
-                    pageTitle="Blog" 
+                    pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogGridHomeEmployer />
+                <BlogDetailsContent25 />
                 <FreeTrialArea />
-                <Footer />
             </React.Fragment>
             </DocumentMeta>
         );
     }
 }
 
-export default bloggridEmployer;
+export default BlogDetail25;

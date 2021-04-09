@@ -6314,8 +6314,8 @@ Go Top CSS
 .go-top {
   position: fixed;
   cursor: pointer;
-  bottom: 15px;
-  right: 15px;
+  bottom: 4px;
+  right: 12px;
   color: #080a3c;
   background-color: #ffffff;
   z-index: 4;
