@@ -152,3 +152,25 @@ class ProfileDetail(models.Model):
 
     resume_name = models.CharField(max_length=100, null=True, blank=True)
     resume_url = models.CharField(max_length=100, null=True, blank=True)
+
+class EmployerPost(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class EmployerProfileDetail(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    self_description = models.TextField(null=True, blank=True)
+
+    linkedin = models.CharField(max_length=100, null=True, blank=True)
+    website = models.CharField(max_length=100, null=True, blank=True)
+    twitter = models.CharField(max_length=100, null=True, blank=True)
+
+    company_type = models.CharField(max_length=100, null=True, blank=True)
+    email = models.CharField(max_length=100, null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
+
+    video_url = models.CharField(max_length=100, null=True, blank=True)
+    summary = models.TextField(null=True, blank=True)
+

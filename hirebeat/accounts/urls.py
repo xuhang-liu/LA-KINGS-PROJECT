@@ -8,7 +8,9 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     update_record, get_record_status, get_received_interview, update_record_refresh, employer_notification, \
     get_profile_detail, create_or_update_personal_info, create_or_update_social_media, create_or_update_basic_info, \
     create_or_update_video, create_or_update_summary, create_or_update_resume, create_or_update_education, create_or_update_work_exp, \
-    upload_profile_resume, upload_profile_video, create_or_update_profile_rate, subreviewer_update_comment
+    upload_profile_resume, upload_profile_video, create_or_update_profile_rate, subreviewer_update_comment, get_employer_profile_detail, \
+    create_or_update_employer_info, create_or_update_employer_social_media, create_or_update_employer_basic_info, create_or_update_employer_video, \
+    create_or_update_employer_summary, upload_employer_profile_video, get_employer_post, update_employer_post, add_employer_post, delete_employer_post
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -97,5 +99,18 @@ urlpatterns = [
     path('update-profile-rate', create_or_update_profile_rate, name="upload profile rate"),
     ### send subreviewer update comment notification
     path('subreviewer_update_comment', subreviewer_update_comment, name="subreviewer update comment"),
+    # employer profile
+    path('get-employer-profile-detail', get_employer_profile_detail, name="get employer profile detail"),
+    path('update-employer-info', create_or_update_employer_info, name="create or update employer info"),
+    path('update-employer-social-media', create_or_update_employer_social_media, name="create or update employer social media"),
+    path('update-employer-basic-info', create_or_update_employer_basic_info, name="create or update employer basic info"),
+    path('update-employer-video', create_or_update_employer_video, name="create or update employer video"),
+    path('update-employer-summary', create_or_update_employer_summary, name="create or update employer summary"),
+    path('update-employer-profile-video', upload_employer_profile_video, name="upload employer profile video"),
+    # employer post
+    path('get-employer-post', get_employer_post, name="get employer post"),
+    path('update-employer-post', update_employer_post, name="update employer post"),
+    path('add-employer-post', add_employer_post, name="add employer post"),
+    path('delete-employer-post', delete_employer_post, name="delete employer post"),
 ]
 
