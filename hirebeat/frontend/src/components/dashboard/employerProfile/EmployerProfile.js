@@ -125,12 +125,6 @@ export class EmployerProfile extends Component {
     }
 
     render () {
-        // initialize count array for Post.js layer
-        let len = this.props.employerPost.data.length;
-        let count = []
-        for (let i = 0; i < len; i++) {
-            count.push(1);
-        }
         return (
             <React.Fragment>
                 <div className="profile-container">
@@ -398,7 +392,6 @@ export class EmployerProfile extends Component {
                                     updateEmployerPost={this.props.updateEmployerPost}
                                     deleteEmployerPost={this.props.deleteEmployerPost}
                                     employerPost={this.props.employerPost}
-                                    count={count}
                                 />
                             </div>
                         </div>
