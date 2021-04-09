@@ -67,11 +67,11 @@ export class EmployerProfile extends Component {
     }
 
     saveEmployerInfo = () => {
-        let name = document.getElementById("name").value;
+//        let name = document.getElementById("name").value;
         let selfDescription = document.getElementById("selfDescription").value;
         let data = {
             "user_id": this.props.userId,
-            "name": name,
+            "name": this.props.companyName,
             "self_description": selfDescription,
         }
         this.props.updateEmployerInfo(data);
@@ -100,12 +100,12 @@ export class EmployerProfile extends Component {
 
     saveCompanyInfo = () => {
         let companyType = document.getElementById("companyType").value;
-        let email = document.getElementById("email").value;
+//        let email = document.getElementById("email").value;
         let location = document.getElementById("location").value;
         let data = {
             "user_id": this.props.userId,
             "company_type": companyType,
-            "email": email,
+            "email": this.props.email,
             "location": location,
         }
         this.props.updateEmployerBasicInfo(data);
@@ -142,7 +142,8 @@ export class EmployerProfile extends Component {
                                                 <div className="row">
                                                     <div className="col-8">
                                                         <h3 className="profile-h3">
-                                                            {(this.props.employerProfileDetail.name !== null && this.props.employerProfileDetail.name !== "") ? this.props.employerProfileDetail.name : "Company Name Here"}
+                                                            {this.props.companyName}
+                                                            {/* (this.props.employerProfileDetail.name !== null && this.props.employerProfileDetail.name !== "") ? this.props.employerProfileDetail.name : "Company Name Here" */}
                                                         </h3>
                                                     </div>
                                                     <div className="col-4 profile-edit">
@@ -169,10 +170,10 @@ export class EmployerProfile extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div>
+                                            {/*<div>
                                                 <p className="profile-p" style={{margin: "0rem"}}>Company Name</p>
                                                 <input id="name" className="profile-input profile-p" defaultValue={this.props.employerProfileDetail.name} style={{width: "100%"}}></input>
-                                            </div>
+                                            </div>*/}
                                             <div style={{marginTop: "1rem"}}>
                                                 <p className="profile-p" style={{margin: "0rem"}}>Company Headline</p>
                                                 <textarea id="selfDescription" className="profile-input profile-p" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.self_description}></textarea>
@@ -327,7 +328,8 @@ export class EmployerProfile extends Component {
                                             <div>
                                                 <p className="profile-p3" style={{margin: "0rem"}}>Email</p>
                                                 <p className="profile-p4">
-                                                    {(this.props.employerProfileDetail.email !== null && this.props.employerProfileDetail.email !== "") ? this.props.employerProfileDetail.email : "Company Email"}
+                                                    {this.props.email}
+                                                    {/* (this.props.employerProfileDetail.email !== null && this.props.employerProfileDetail.email !== "") ? this.props.employerProfileDetail.email : "Company Email" */}
                                                 </p>
                                             </div>
                                             <div>
@@ -353,10 +355,10 @@ export class EmployerProfile extends Component {
                                                 <p className="profile-p3" style={{margin: "0rem"}}>Field</p>
                                                 <input id="companyType" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.company_type}></input>
                                             </div>
-                                            <div style={{marginTop: "1rem"}}>
+                                            {/*<div style={{marginTop: "1rem"}}>
                                                 <p className="profile-p3" style={{margin: "0rem"}}>Email</p>
                                                 <input id="email" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.email}></input>
-                                            </div>
+                                            </div>*/}
                                              <div style={{marginTop: "1rem"}}>
                                                 <p className="profile-p3" style={{margin: "0rem"}}>Location Based</p>
                                                 <input id="location" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.location}></input>

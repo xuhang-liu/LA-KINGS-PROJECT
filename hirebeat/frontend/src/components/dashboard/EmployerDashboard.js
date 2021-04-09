@@ -282,6 +282,8 @@ export class EmployerDashboard extends Component {
                     updateEmployerPost={this.props.updateEmployerPost}
                     deleteEmployerPost={this.props.deleteEmployerPost}
                     employerPost={this.props.employerPost}
+                    email={this.props.user.email}
+                    companyName={this.props.profile.company_name}
                 />;
       default:
         //Do nothing
