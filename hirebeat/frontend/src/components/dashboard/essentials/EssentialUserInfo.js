@@ -173,8 +173,8 @@ export class EssentialUserInfo extends Component {
             <div>
               {this.props.profile.is_employer &&
               <div>
-                <div style={{marginTop:"2rem", textAlign:"center"}}>
-                  <div className="col d-flex align-items-center">
+                <div className="row" style={{marginTop:"2rem", textAlign:"center"}}>
+                  <div className="col d-flex align-items-center" style={{justifyContent: "center"}}>
                         <IconText
                           textMarginLeft={"1rem"}
                           textDisplayed={this.props.profile.company_name}
