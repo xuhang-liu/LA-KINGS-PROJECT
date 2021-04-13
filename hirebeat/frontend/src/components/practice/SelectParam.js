@@ -155,7 +155,7 @@ export class SelectParam extends Component {
     // video test
     if(this.state.loading){
       return <div className="container-fluid">
-        <LoadingForAi/>
+        <LoadingForAi interview={true}/>
       </div> 
     }
     else if (paramsAreSet === true) {

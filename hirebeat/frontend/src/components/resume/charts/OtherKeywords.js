@@ -13,7 +13,7 @@ export function OtherKeywords(props) {
 
     return (
         <div>
-            <h4 className="resume-text2">Other Keywords</h4>
+            <h4 className="resume-text2 my-4">Other Keywords</h4>
             <KeywordsRow
                 className={"resume-text3"}
                 skills={["SKILLS"]}

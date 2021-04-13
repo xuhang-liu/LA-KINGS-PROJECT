@@ -30,7 +30,7 @@ export class Resume extends Component {
     render() {
         return (
             <React.Fragment>
-                {this.state.loading ? <LordingForAi /> :
+                {this.state.loading ? <LordingForAi interview={false}/> :
                     <section className="pricing-area pb-100 bg-ffffff">
                     <ScrollToTopOnMount />
                     <div style={{marginBottom:"5%"}}>
