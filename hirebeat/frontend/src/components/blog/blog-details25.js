@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogDetailsContent24 from './BlogDetailsContent24';
+import BlogDetailsContent25 from './BlogDetailsContent25';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import DocumentMeta from 'react-document-meta';
@@ -13,16 +13,16 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class BlogDetail24 extends Component {
+class BlogDetail25 extends Component {
     render() {
         const meta = {
-            title: 'HireBeat Blog – How to Answer the Question “What Makes You Stand Out from Other Candidates?”',
-            description: 'Keep in mind that the question is an opportunity to explain to the interviewer how special you are as a potential employee.',
-            canonical: 'https://hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates',
+            title: 'HireBeat Blog – 4 Most Commonly Asked Questions in an Interview',
+            description: 'This article shares the four most commonly asked questions in an interview and how they can benefit the interviewer.',
+            canonical: 'https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview',
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+                keywords: 'Interview, question, job, intern, recruit, company, human resources'
               }
             }
           };
@@ -34,7 +34,7 @@ class BlogDetail24 extends Component {
                     pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogDetailsContent24 />
+                <BlogDetailsContent25 />
                 <FreeTrialArea />
             </React.Fragment>
             </DocumentMeta>
@@ -42,4 +42,4 @@ class BlogDetail24 extends Component {
     }
 }
 
-export default BlogDetail24;
+export default BlogDetail25;

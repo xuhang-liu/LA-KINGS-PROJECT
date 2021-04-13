@@ -87,6 +87,7 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/blog-4-most-commonly-asked-questions-in-an-interview",
     "/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates",
     "/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview",
     "/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years",
@@ -114,6 +115,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog25.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog24.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog23.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog22.jpg",
@@ -141,6 +143,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Apr 08, 2021",
     "Mar 24, 2021",
     "Mar 18, 2021",
     "Feb 23, 2021",
@@ -168,6 +171,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "4 MOST COMMONLY ASKED QUESTIONS",
     "WHAT MAKES YOU STAND OUT FROM OTHERS",
     "GOOD QUESTIONS TO ASK THE EMPLOYER",
     "WHERE DO YOU SEE YOURSELF IN 5 YEARS",

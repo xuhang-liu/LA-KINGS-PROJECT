@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogDetailsContent24 from './BlogDetailsContent24';
+import BlogDetailsContentEmployer7 from './BlogDetailsContentEmployer7';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import DocumentMeta from 'react-document-meta';
@@ -13,16 +13,16 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class BlogDetail24 extends Component {
+class BlogDetail1_Employer7 extends Component {
     render() {
         const meta = {
-            title: 'HireBeat Blog – How to Answer the Question “What Makes You Stand Out from Other Candidates?”',
-            description: 'Keep in mind that the question is an opportunity to explain to the interviewer how special you are as a potential employee.',
-            canonical: 'https://hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates',
+            title: 'HireBeat Blog – Millennials? We Want You!',
+            description: 'Employers need to work better to attract more millennials to their workplaces. This article explores the key qualities and problems to look out for in the hiring progress.',
+            canonical: 'https://hirebeat.co/employer_blog-millennials-we-want-you',
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+                keywords: 'interview, millennials, hiring, creativity, loyalty, workplace, career, job, HireBeat'
               }
             }
           };
@@ -34,7 +34,7 @@ class BlogDetail24 extends Component {
                     pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogDetailsContent24 />
+                <BlogDetailsContentEmployer7 />
                 <FreeTrialArea />
             </React.Fragment>
             </DocumentMeta>
@@ -42,4 +42,4 @@ class BlogDetail24 extends Component {
     }
 }
 
-export default BlogDetail24;
+export default BlogDetail1_Employer7;

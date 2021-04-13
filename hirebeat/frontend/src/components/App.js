@@ -7,8 +7,9 @@ import { Provider } from "react-redux";
 import AlertTemplate from "react-alert-template-basic";
 import { Provider as AlertProvider } from "react-alert";
 import Alerts from "./layout/Alerts";
-import store from "../store";
+import store, {persistor} from "../store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {PersistGate} from 'redux-persist/lib/integration/react';
 
 import indexsaas from "./home/index-saas";
 import IndexEmployer from "./home/index-employer";
@@ -30,6 +31,8 @@ import BlogDetail3_Employer from "./blog/blog-details3-employer";
 import BlogDetail4_Employer from "./blog/blog-details4-employer";
 import BlogDetail5_Employer from "./blog/blog-details5-employer";
 import BlogDetail6_Employer from "./blog/blog-details6-employer";
+import BlogDetail7_Employer from "./blog/blog-details7-employer";
+import BlogDetail8_Employer from "./blog/blog-details8-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -54,6 +57,7 @@ import BlogDetail21 from "./blog/blog-details21";
 import BlogDetail22 from "./blog/blog-details22";
 import BlogDetail23 from "./blog/blog-details23";
 import BlogDetail24 from "./blog/blog-details24";
+import BlogDetail25 from "./blog/blog-details25";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -224,6 +228,7 @@ class App extends Component {
       <DocumentMeta {...meta}>
       <React.Fragment>
       <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
           <Router>
             <Fragment>
@@ -287,6 +292,8 @@ class App extends Component {
                 <Route exact path="/employer_blog-interview-questions-every-recruiter-should-ask" component={BlogDetail4_Employer} />
                 <Route exact path="/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing" component={BlogDetail5_Employer} />
                 <Route exact path="/employer_blog-how-gender-pronouns-change-the-way-we-work" component={BlogDetail6_Employer} />
+                <Route exact path="/employer_blog-millennials-we-want-you" component={BlogDetail7_Employer} />
+                <Route exact path="/employer_blog-how-to-get-your-job-postings-noticed" component={BlogDetail8_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
@@ -311,6 +318,7 @@ class App extends Component {
                 <Route exact path="/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years" component={BlogDetail22} />
                 <Route exact path="/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview" component={BlogDetail23} />
                 <Route exact path="/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates" component={BlogDetail24} />
+                <Route exact path="/blog-4-most-commonly-asked-questions-in-an-interview" component={BlogDetail25} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer_register" component={EmployerRegister} />
@@ -431,6 +439,7 @@ class App extends Component {
             </Fragment>
           </Router>
         </AlertProvider>
+        </PersistGate>
       </Provider>
       {/* Go Top Button */}
       <GoTop scrollStepInPx="100" delayInMs="10.50" />

@@ -174,13 +174,31 @@ export class EssentialUserInfo extends Component {
               {this.props.profile.is_employer &&
               <div>
                 <div className="row" style={{marginTop:"2rem", textAlign:"center"}}>
-                  <div className="col d-flex align-items-center">
+                  <div className="col d-flex align-items-center" style={{justifyContent: "center"}}>
                         <IconText
                           textMarginLeft={"1rem"}
                           textDisplayed={this.props.profile.company_name}
                           textSize={"1rem"}
                           textColor={"#ffffff"}
                         />
+                  </div>
+                </div>
+                <div style={{marginTop:"1rem", textAlign:"center"}}>
+                  <div className="col d-flex align-items-center" data-tut="reactour-myVideo">
+                    <button
+                      type="button"
+                      className="panel-button"
+                      onClick={this.props.renderEmployerProfile}
+                      style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                    >
+                      <IconUserText
+                        textSize={"12px"}
+                        textDisplayed={"My Profile"}
+                        backColor={this.props.subpage == "employerProfile" ? selectBack : defaultBack}
+                        iconSrc={this.props.subpage == "employerProfile" ? selectProfile : nonselectProfile}
+                        textColor={this.props.subpage == "employerProfile" ? selectEColor : defaultEColor}
+                      />
+                    </button>
                   </div>
                 </div>
                 {this.props.profile.membership == "Premium" ?

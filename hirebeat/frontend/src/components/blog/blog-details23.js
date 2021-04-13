@@ -3,7 +3,6 @@ import PageTitleArea from '../Common/PageTitleArea';
 import BlogDetailsContent23 from './BlogDetailsContent23';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
-import {Helmet} from "react-helmet";
 import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
@@ -30,12 +29,6 @@ class BlogDetail23 extends Component {
         return (
             <DocumentMeta {...meta}>
             <React.Fragment>
-                <Helmet>
-                    <meta charSet="utf-8" />
-                    <title>HireBeat Blog – Good Questions to Ask the Employer at the End of The Interview</title>
-                    <meta name="description" CONTENT="If you want to ace this question of “Where do you see yourself in 5 years?”, this article is something that you can’t miss. In this article, you will find a detailed breakdown of how to structure your responses base on different situation"></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview"/>
-                </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
                     pageTitle="Blog Details" 

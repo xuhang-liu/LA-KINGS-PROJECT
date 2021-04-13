@@ -87,7 +87,7 @@ class BlogDetailsContent21 extends Component {
                                     </p>
                                     <h3 className="mb-0">Final Call</h3>
                                     <p>
-                                    Finally, if you are not confident enough about your interview skill or want to know first-hand information about your favorite company, <a href="/">Hirebeat</a> will become your secret weapon. You can freely choose the type of interview questions you want to train on the platform and get timely feedback from AI and professional HR, so that your interview skill can be effectively improved. At the same time, you can find first-hand information about your favorite company in the <a href="/companydata">hirebeat database</a> to ensure that you can show your knowledge and understanding of the company during networking.
+                                    Finally, if you are not confident enough about your interview skill or want to know first-hand information about your favorite company, <a href="/for_candidate">Hirebeat</a> will become your secret weapon. You can freely choose the type of interview questions you want to train on the platform and get timely feedback from AI and professional HR, so that your interview skill can be effectively improved. At the same time, you can find first-hand information about your favorite company in the <a href="/companydata">hirebeat database</a> to ensure that you can show your knowledge and understanding of the company during networking.
                                     </p>
                                 </div>
                             </div>
