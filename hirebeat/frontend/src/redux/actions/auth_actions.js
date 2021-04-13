@@ -35,6 +35,16 @@ import {
   UPDATE_WORK_EXP,
   UPDATE_PROFILE_RATE,
   SUBREVIEWER_UPDATE_COMMENT,
+  GET_EMPLOYER_PROFILE_DETAIL,
+  UPDATE_EMPLOYER_INFO,
+  UPDATE_EMPLOYER_SOCIAL_MEDIA,
+  UPDATE_EMPLOYER_BASIC_INFO,
+  UPDATE_EMPLOYER_VIDEO,
+  UPDATE_EMPLOYER_SUMMARY,
+  ADD_EMPLOYER_POST,
+  UPDATE_EMPLOYER_POST,
+  GET_EMPLOYER_POST,
+  DELETE_EMPLOYER_POST
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -578,6 +588,146 @@ export const subreviewerUpdateComment = (subreviewr_update) => (dispatch, getSta
     .then((res) => {
       dispatch({
         type: SUBREVIEWER_UPDATE_COMMENT,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getEmployerProfileDetail = (user_id) => (dispatch, getState) => {
+  axios
+    .get(`get-employer-profile-detail?user_id=${user_id}`)
+    .then((res) => {
+      dispatch({
+        type: GET_EMPLOYER_PROFILE_DETAIL,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateEmployerInfo = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-employer-info", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_EMPLOYER_INFO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateEmployerSocialMedia = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-employer-social-media", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_EMPLOYER_SOCIAL_MEDIA,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateEmployerBasicInfo = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-employer-basic-info", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_EMPLOYER_BASIC_INFO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateEmployerVideo = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-employer-video", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_EMPLOYER_VIDEO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateEmployerSummary = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-employer-summary", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_EMPLOYER_SUMMARY,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getEmployerPost = (user_id, index) => (dispatch, getState) => {
+  axios
+    .get(`get-employer-post?user_id=${user_id}&index=${index}`)
+    .then((res) => {
+      dispatch({
+        type: GET_EMPLOYER_POST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const addEmployerPost = (data) => (dispatch, getState) => {
+  axios
+    .post("/add-employer-post", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_EMPLOYER_POST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateEmployerPost = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-employer-post", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_EMPLOYER_POST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const deleteEmployerPost = (data) => (dispatch, getState) => {
+  axios
+    .post("/delete-employer-post", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: DELETE_EMPLOYER_POST,
         payload: res.data,
       });
     })

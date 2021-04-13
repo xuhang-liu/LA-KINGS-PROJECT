@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { MyModal80 } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
+import ReactPlayer from 'react-player';
 var ReactS3Uploader = require("react-s3-uploader");
 
-export class Resume extends Component {
+export class Video extends Component {
 
     constructor(props) {
         super(props);
@@ -12,33 +12,10 @@ export class Resume extends Component {
       }
 
     state = {
-        showResume: false,
-        show: false,
-        selected: false,
-        cvName: "",
-        resume: null,
+        video: null,
         fakeName: "",
-    }
-
-    enableShowResume = () => {
-        if (this.props.resumeURL == null || this.props.resumeURL == "") {
-            return this.alert("No Resume", "Please upload your resume first");
-        }
-        else {
-            this.setState({showResume: true});
-        }
-    }
-
-    disableShowResume = () => {
-        this.setState({showResume: false});
-    }
-
-    enableShow = () => {
-        this.setState({show: true});
-    }
-
-    disableShow = () => {
-        this.setState({show: false});
+        selected: false,
+        isUploadAgain: false,
     }
 
     setSelected = () => {
@@ -47,6 +24,14 @@ export class Resume extends Component {
 
     disableSelected = () => {
         this.setState({ ...this.state, selected: false });
+    }
+
+    setUploadAgain = () => {
+        this.setState({ ...this.state, isUploadAgain: true });
+    }
+
+    disableUploadAgain = () => {
+        this.setState({ ...this.state, isUploadAgain: false });
     }
 
     setLabel = (name) => {
@@ -64,34 +49,30 @@ export class Resume extends Component {
             let num = input.files.length;
             // limit 10 pdfs at one time
             if (num > 1) {
-                return this.alert("Capacity Error", "Please only upload one resume");
+                return this.alert("Capacity Error", "Please only upload one video");
             }
             // get selected file
-            let resume = input.files[0];
-            let name = resume.name;
-            let size = resume.size;
+            let video = input.files[0];
+            let name = video.name;
+            let size = video.size;
 
             // check file size
-            if (size > 5000000) {
-                return this.alert("Wrong File Type", "Please upload resume that less than 5MB!");
+            if (size > 50000000) {
+                return this.alert("Wrong File Type", "Please upload video that less than 50MB!");
             }
 
             // check file type
             let docType = name.slice(-3);
-            if (docType === "pdf" || docType === "ocx") {
+            if (docType === "mp4") {
                 this.setSelected();
                 this.setLabel(name);
-
-                //set cvName &　resume states
                 let timestamp = Date.parse(new Date());
-                let suffix = docType == "pdf" ? ".pdf" : ".docx";
-                let fakeName = timestamp + suffix;
-                const newResume = new File([resume], fakeName, {type: resume.type});
+                let fakeName = timestamp + "." + docType;
+                const newVideo = new File([video], fakeName, {type: video.type});
                 this.setState({fakeName: fakeName});
-                this.setState({cvName: name});
-                this.setState({resume: newResume});
+                this.setState({video: newVideo});
             } else {
-                return this.alert("Wrong File Type", "Please upload PDF or DOCX version of your resume");
+                return this.alert("Wrong File Type", "Please upload MP4 Video");
             }
             // reset input value
             input.value = null;
@@ -112,17 +93,16 @@ export class Resume extends Component {
 
     onUploadFinish = () => {
         var fakeName = this.state.fakeName;
-        var resume_url = "https://hirebeat-user-resume.s3.amazonaws.com/" + fakeName;
+        var video_url = "https://hirebeat-employer-profile-video.s3.amazonaws.com/" + fakeName;
 
-        // insert MetaData to resume table
-        const resumeMetaData = {
+        // insert MetaData to profile table
+        const metaData = {
           user_id: this.props.userId,
-          resume_url: resume_url,
-          resume_name: this.state.cvName,
+          video_url: video_url,
         };
-        this.props.updateResume(resumeMetaData);
+        this.props.updateEmployerVideo(metaData);
         setTimeout(() => {this.props.getUpdatedData(); this.props.getUpdatedData();}, 300);
-        setTimeout(() => this.alert("Upload Success", "You have uploaded your resume"), 300);
+        setTimeout(() => this.alert("Upload Success", "You have uploaded your video"), 300);
     };
 
     onUploadError = (err) => {
@@ -135,52 +115,69 @@ export class Resume extends Component {
 
    handleUpload = () => {
         if (!this.state.selected) {
-            this.alert("Empty file", "Please select your resume first");
+            this.alert("Empty file", "Please select your video first");
         }
         else {
-            this.uploader.uploadFile(this.state.resume);
-            this.props.setResume();
+            this.uploader.uploadFile(this.state.video);
+            this.setState({video: null, fakeName: ""});
             this.disableSelected();
         }
    }
 
-  deleteResume = () => {
-        if (this.props.resumeURL == "" || this.props.resumeURL == null) {
-            this.alert("No Resume", "You have not uploaded any resume");
+  deleteVideo = () => {
+        if (this.props.videoURL == "" || this.props.videoURL == null) {
+            this.alert("No Video", "You have not uploaded any video");
         }
         else {
-            const resumeMetaData = {
+            const metaData = {
               user_id: this.props.userId,
-              resume_url: "",
-              resume_name: "",
+              video_url: "",
             };
-            this.props.updateResume(resumeMetaData);
+            this.props.updateEmployerVideo(metaData);
             setTimeout(() => {this.props.getUpdatedData(); this.props.getUpdatedData();}, 300);
-            setTimeout(() => this.alert("Delete Success", "You have deleted your resume"), 300);
+            setTimeout(() => this.alert("Delete Success", "You have deleted your video"), 300);
         }
   }
+
+  deleteAlert = () => {
+        confirmAlert({
+          title: "Video Deletion",
+          message: "Are you sure to delete the video",
+          buttons: [
+            {
+              label: 'No',
+            },
+            {
+              label: 'Yes',
+              onClick: () => this.deleteVideo()
+            }
+          ]
+          });
+    }
 
     render() {
         return(
             <div>
                 <div style={{padding: "2rem"}}>
-                    <h3 className="profile-h3">Resume</h3>
-                    <p className="profile-p">
-                        {this.props.resumeName}
-                        {(this.props.resumeName !== null && this.props.resumeName !== "") &&
-                        <div style={{float: "right"}}>
-                            <i className="bx bxs-binoculars profile-edit"></i>&nbsp;<span className="profile-edit" type="button" onClick={this.enableShowResume}>View</span>
-                            <i className="bx bx-trash profile-edit" style={{marginLeft: "1rem"}}></i>
-                            <span className="profile-edit" type="button" onClick={this.deleteResume}>Remove</span>
-                        </div>}
-                    </p>
+                    <div className="row" style={{marginBottom: "1rem"}}>
+                        <h3 className="profile-h3">Video Profile</h3>
+                        {this.props.videoURL != "" && this.props.videoURL != null &&
+                            <p className="profile-p" style={{marginLeft: "60%"}}>
+                                <div style={{float: "right"}}>
+                                    <i className="bx bx-trash profile-edit" style={{marginLeft: "1rem", color: "#FF0000"}}></i>
+                                    <span className="profile-edit" type="button" style={{color: "#FF0000"}} onClick={this.deleteAlert}>Remove</span>
+                                </div>
+                            </p>
+                        }
+                    </div>
+                    <ReactPlayer id="rw-video" url={this.props.videoURL}  controls={true} width={"100%"} height={"100%"}/>
                     <div className="profile-bg4" style={{justifyContent: "center", height: "5rem", display: "flex", marginTop: "2rem", width: "100%"}}>
-                        <button onClick={this.selectFile} className="profile-btn"><i className="bx bx-cloud-upload"></i>&nbsp;Select New Resume</button>
+                        <button onClick={this.selectFile} className="profile-btn"><i className="bx bx-cloud-upload"></i>&nbsp;Select New Video</button>
                         <ReactS3Uploader
                           style={{display: "none"}}
                           id="uploadFile"
-                          accept=".pdf"  // only accept pdf & docx files
-                          signingUrl="/upload-profile-resume"
+                          accept=".mp4"  // only accept pdf & docx files
+                          signingUrl="/update-employer-profile-video"
                           signingUrlMethod="GET"
                           onError={this.onUploadError}
                           onFinish={this.onUploadFinish}
@@ -213,17 +210,9 @@ export class Resume extends Component {
                       ) : null
                     }
                 </div>
-                <MyModal80
-                    show={this.state.showResume}
-                    onHide={()=>{this.disableShowResume()}}
-                >
-                    <div class="iframe-container">
-                        <iframe className="responsive-iframe" src={this.props.resumeURL}/>
-                    </div>
-                </MyModal80>
             </div>
         )
     }
 }
 
-export default Resume
+export default Video

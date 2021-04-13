@@ -68,6 +68,7 @@ export class AudioRecorder extends Component {
         console.log('finished recording: ', this.player.recordedData);
         if (!this.props.isTesting) {
           this.recordFinished();
+          this.handleClick();
         }
     });
 

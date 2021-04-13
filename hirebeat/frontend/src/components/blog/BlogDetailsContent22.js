@@ -79,7 +79,7 @@ class BlogDetailsContent22 extends Component {
                                     <p className="ml-4">3. Be very confident, positive, and keen when answering this question. Don’t reply with an indifferent or uncertain attitude.</p>
                                     <h3 className="mb-0">The Bottom Line</h3>
                                     <p>
-                                    The question of “Where do you see yourself in 5 years?” can easily become your bonus point in your interview, if you are well prepared. In fact, you can practice a series of similar questions on <a href="/">HireBeat</a> from the commitment option in the behavioral interview training. After you finish practice, simply submit your answer to our AI system or HR professionals to review your answer and give feedback, so that you will have a better idea of how to answer this question.
+                                    The question of “Where do you see yourself in 5 years?” can easily become your bonus point in your interview, if you are well prepared. In fact, you can practice a series of similar questions on <a href="/for_candidate">HireBeat</a> from the commitment option in the behavioral interview training. After you finish practice, simply submit your answer to our AI system or HR professionals to review your answer and give feedback, so that you will have a better idea of how to answer this question.
                                     </p>
                                 </div>
                             </div>

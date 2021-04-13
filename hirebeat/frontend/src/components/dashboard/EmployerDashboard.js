@@ -8,7 +8,11 @@ import { ApplicationCover } from "./applications/ApplicationCover";
 import ShortList from "./ShortList";
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus, subreviewerUpdateComment } from "../../redux/actions/auth_actions";
+import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus, subreviewerUpdateComment,
+    getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
+    updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost
+ }
+from "../../redux/actions/auth_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
@@ -22,6 +26,7 @@ import Analytics from './Analytics';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import DocumentMeta from 'react-document-meta';
+import { EmployerProfile } from "./employerProfile/EmployerProfile";
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -97,6 +102,8 @@ export class EmployerDashboard extends Component {
     this.props.loadUserFullname(user);
     this.props.getPostedJobs(user.id);
     this.props.getAnalyticsInfo(this.props.user.id);
+    this.props.getEmployerProfileDetail(this.props.user.id);
+    this.props.getEmployerPost(this.props.user.id, 0);
   }
 
   state = {
@@ -167,6 +174,13 @@ export class EmployerDashboard extends Component {
       subpage: "analytics",
     });}, 200)
   };
+
+  renderEmployerProfile = () => {
+    this.setState({
+          subpage: "employerProfile",
+        }
+    )
+  }
 
   renderSubpage = () => {
     switch (this.state.subpage) {
@@ -253,6 +267,24 @@ export class EmployerDashboard extends Component {
         }else{
             return null
         }
+      case "employerProfile":
+        return <EmployerProfile
+                    userId={this.props.user.id}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                    getEmployerProfileDetail={this.props.getEmployerProfileDetail}
+                    updateEmployerInfo={this.props.updateEmployerInfo}
+                    updateEmployerSocialMedia={this.props.updateEmployerSocialMedia}
+                    updateEmployerBasicInfo={this.props.updateEmployerBasicInfo}
+                    updateEmployerVideo={this.props.updateEmployerVideo}
+                    updateEmployerSummary={this.props.updateEmployerSummary}
+                    getEmployerPost={this.props.getEmployerPost}
+                    addEmployerPost={this.props.addEmployerPost}
+                    updateEmployerPost={this.props.updateEmployerPost}
+                    deleteEmployerPost={this.props.deleteEmployerPost}
+                    employerPost={this.props.employerPost}
+                    email={this.props.user.email}
+                    companyName={this.props.profile.company_name}
+                />;
       default:
         //Do nothing
     }
@@ -260,7 +292,7 @@ export class EmployerDashboard extends Component {
 
   render() {
     const meta = {
-      title: 'HireBeat – Your first step to a better recruiting journey',
+      title: 'HireBeat – Your First Step to A Better Recruiting Journey',
       description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
       canonical: 'https://hirebeat.co/employer_dashboard',
       meta: {
@@ -289,13 +321,16 @@ export class EmployerDashboard extends Component {
                       renderPosition={this.renderPosition}
                       renderShortlist={this.renderShortlist}
                       renderAnalytics={this.renderAnalytics}
+                      renderEmployerProfile={this.renderEmployerProfile}
                       subpage={this.state.subpage}
                   />
                 </div>
               </div>
               <div className='col-11' style={{backgroundColor:"#e8edfc"}}>
                 <div className="dashboard-main">
-                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") || (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics")) ? null : 
+                {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
+                (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
+                (this.state.subpage === "employerProfile")) ? null :
                 <div className="container-fluid" style={{height: "22rem"}} data-tut="reactour-rowbox">
                   <RowBoxes userId={this.props.user.id} isEmployer={true}/>
                 </div>}
@@ -359,11 +394,16 @@ const mapStateToProps = (state) => {
   analyticsInfo: state.question_reducer.analyticsInfo,
   position_list: state.question_reducer.position_list,
   interview_session: state.question_reducer.interview_session,
+  employerProfileDetail: state.auth_reducer.employerProfileDetail,
+  employerPost: state.auth_reducer.employerPost,
 }
 };
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname,
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
-    getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment})(
+    getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
+    getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
+    updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost
+    })(
     EmployerDashboard
 );

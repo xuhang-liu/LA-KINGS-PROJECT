@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogGridHomeEmployer from './BlogGridHomeEmployer';
+import BlogDetailsContentEmployer8 from './BlogDetailsContentEmployer8';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
-import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
@@ -14,16 +13,16 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class bloggridEmployer extends Component {
+class BlogDetail1_Employer8 extends Component {
     render() {
         const meta = {
-            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
-            canonical: 'https://hirebeat.co/bloghome_employer',
+            title: 'HireBeat Blog – How to Get Your Job Postings Noticed',
+            description: 'It is important for employers to find ways to optimize job postings. This article offers various tactics to help companies stand out and get noticed.',
+            canonical: 'https://hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed',
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+                keywords: 'job, interview, recruit, google, schema, internship, internet, optimization'
               }
             }
           };
@@ -32,16 +31,15 @@ class bloggridEmployer extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
-                    pageTitle="Blog" 
+                    pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogGridHomeEmployer />
+                <BlogDetailsContentEmployer8 />
                 <FreeTrialArea />
-                <Footer />
             </React.Fragment>
             </DocumentMeta>
         );
     }
 }
 
-export default bloggridEmployer;
+export default BlogDetail1_Employer8;

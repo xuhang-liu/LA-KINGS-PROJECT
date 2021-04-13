@@ -17,7 +17,11 @@ export class WorkExperience extends Component {
                         </div>
                     </div>}
                 </div>
-                <p className="profile-p3" style={{marginBottom: "0.5rem"}}>{this.props.title}</p>
+                {(this.props.title !== null && this.props.title !== "") ?
+                    <p className="profile-p3" style={{marginBottom: "0.5rem"}}>{this.props.title}</p> :
+                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>Add your wok experience</p>
+                }
+
                 <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{this.props.company}</p>
                 {(this.props.startDate != "" && this.props.startDate != null) &&
                     <p className="profile-p4" style={{marginBottom: "0.5rem", color: "#7D7D7D"}}>

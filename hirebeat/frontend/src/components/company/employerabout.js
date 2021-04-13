@@ -17,7 +17,7 @@ function ScrollToTopOnMount() {
 class Employerabout extends Component {
     render() {
         const meta = {
-            title: 'HireBeat – Your first step to a better recruiting journey',
+            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
             description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
             canonical: 'https://hirebeat.co/employer_company',
             meta: {
