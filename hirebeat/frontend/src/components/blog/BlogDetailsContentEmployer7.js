@@ -85,7 +85,7 @@ class BlogDetailsContentEmployer7 extends Component {
                                     <h3 className="mb-0">Conclusion</h3>
                                     <br/>
                                     <p>
-                                    Millennials are reshaping the world and it is crucial for you, as a recruiter, to create a more welcoming workplace for them. The above article should bring you some insights and help you enter the millennial generation. HireBeat helps employers find the best candidates and facilitates hiring progress. To learn more about us, visit <a href="/employer">www.hirebeat.co/employer</a>
+                                    Millennials are reshaping the world and it is crucial for you, as a recruiter, to create a more welcoming workplace for them. The above article should bring you some insights and help you enter the millennial generation. HireBeat helps employers find the best candidates and facilitates hiring progress. To learn more about us, visit <a href="/">www.hirebeat.co</a>
                                     </p>
                                 </div>
                             </div>
