@@ -3170,3 +3170,7 @@ color: #4A6F8A;
 }
 
 .resumeRes .close {display: none;}
+
+.editor-height {
+  min-height: 10rem;
+}
