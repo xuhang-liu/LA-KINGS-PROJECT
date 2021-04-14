@@ -28,6 +28,7 @@ def add_new_job(request):
 
 @api_view(['GET'])
 def get_all_jobs(request):
+    user_id = request.query_params.get("userId")
     data = {}
     return Response({
         "data": data,
