@@ -166,6 +166,7 @@ export class EssentialUserInfo extends Component {
     var nonselectAnalytics = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-bar-chart-non.png";
     var selectProfile = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle-select.png";
     var nonselectProfile = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle-non.png";
+    var selectJobs = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-briefcase.png";
     return (
       <React.Fragment>
       <div className="container">
@@ -266,6 +267,24 @@ export class EssentialUserInfo extends Component {
               </div>}
               {this.props.profile.is_employer ? 
               <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
+              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
+              <div className="col d-flex align-items-center">
+                <button
+                  type="button"
+                  className="panel-button"
+                  onClick={this.props.renderJobs}
+                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                >
+                  <IconEmployerText
+                    textSize={"12px"}
+                    textDisplayed={"Jobs"}
+                    backColor={this.props.subpage == "jobs" ? selectBack : defaultBack}
+                    iconSrc={selectJobs}
+                    textColor={this.props.subpage == "jobs" ? selectEColor : defaultEColor}
+                  />
+                </button>
+              </div>
+              </div>
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
               <div className="col d-flex align-items-center">
                 <button
