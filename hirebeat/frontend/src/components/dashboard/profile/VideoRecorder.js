@@ -6,6 +6,26 @@ import RecordRTC from "recordrtc";
 import "videojs-record/dist/css/videojs.record.css";
 var ReactS3Uploader = require("react-s3-uploader");
 
+//const constraints = {
+//    audio: true,
+//    video: { width: 640, height: 480 }
+//};
+//
+//function openCamera() {
+//    navigator.mediaDevices
+//      .getUserMedia(constraints)
+//      .then(success)
+//      .catch(error);
+//};
+//
+//function success() {
+//    console.log("Device Ready");
+//};
+//
+//function error() {
+//    alert("No camera detected! Please turn on your camera!");
+//};
+
 export class VideoRecorder extends Component {
   constructor() {
     super();
@@ -46,6 +66,7 @@ export class VideoRecorder extends Component {
 
     this.player.on("startRecord", () => {
       console.log("started recording!");
+//      openCamera(); // detect camera
       this.props.startRecording(); // start count down bar
       this.setState({"isStarted": true});
     });
@@ -66,27 +87,6 @@ export class VideoRecorder extends Component {
     this.player.on("deviceError", () => {
       console.error("device error:", this.player.deviceErrorCode);
     });
-
-    const constraints = {
-    audio: true,
-    video: { width: 640, height: 480 }
-    };
-
-    function openCamera() {
-        navigator.mediaDevices
-          .getUserMedia(constraints)
-          .then(success)
-          .catch(error);
-    };
-    openCamera();
-
-    function success() {
-        console.log("Device Ready");
-    };
-
-    function error() {
-        alert("No camera detected! Please turn on your camera!");
-    };
   }
 
   componentWillUnmount() {
@@ -125,12 +125,13 @@ export class VideoRecorder extends Component {
   }
 
   startCamera = () => {
+//    openCamera(); // detect camera
     this.player.record().getDevice();
     this.setState({"isStarted": true});
   };
 
   stopCamera = () => {
-    this.player.record().stop();
+    this.player.record().stopDevice();
     this.handleClick();
     this.setState({"isFinished": true});
   }
