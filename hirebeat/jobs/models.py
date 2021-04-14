@@ -17,3 +17,16 @@ class Jobs(models.Model):
 
     def __str__(self):
         return self.job_title
+
+
+class ApplyCandidates(models.Model):
+    jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)
+    candidate = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100, null=True, blank=True)
+    phone_num = models.CharField(max_length=100, null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
+    resume_url = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.job_title
