@@ -79,7 +79,7 @@ class BlogDetailsContentEmployer7 extends Component {
                                     <h3 className="mb-0">Conclusion</h3>
                                     <br/>
                                     <p>
-                                    Google is a powerful tool, and this article should help you utilize this tool in a more efficient way. HireBeat is an HR software company that aims to simplify your recruiting process and match you with the perfect candidates. To know more about us, please visit <a href="/employer">https://hirebeat.co/employer</a>.
+                                    Google is a powerful tool, and this article should help you utilize this tool in a more efficient way. HireBeat is an HR software company that aims to simplify your recruiting process and match you with the perfect candidates. To know more about us, please visit <a href="/">https://hirebeat.co</a>.
                                     </p>
                                 </div>
                             </div>

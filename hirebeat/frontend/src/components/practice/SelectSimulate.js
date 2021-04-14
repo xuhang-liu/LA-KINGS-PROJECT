@@ -10,6 +10,7 @@ import TestAudioDevice from "./TestAudioDevice";
 import { CardRow, selectParam } from "./CardComponents";
 import PageTitleArea from '../Common/PageTitleArea';
 import Switch from "react-switch";
+import LoadingForAi from "../shared/LoadingForAi";
 
 export class SelectParam extends Component {
   constructor() {
@@ -30,6 +31,7 @@ export class SelectParam extends Component {
     numberOfQuestions: { value: 2, label: "2" },
     lengthOfResponse: { value: 1, label: "60s" },
     categoryOfQuestion: { value: 1, label: "Random"},
+    loading: false,
   };
 
   componentDidMount() {
@@ -131,6 +133,11 @@ selectMedia = () => {
   render() {
     const { paramsAreSet, audioParamIsSet } = this.state
     // video test
+    if(this.state.loading){
+      return <div>
+        <LoadingForAi interview={true}/>
+      </div> 
+    }
     if (paramsAreSet === true) {
         return (
           <div className="container">
@@ -141,6 +148,7 @@ selectMedia = () => {
                 responseLength={this.state.lengthOfResponse.value}
                 questionCategory={this.state.categoryOfQuestion.label}
                 isSimulate={true}
+                goLoading={()=>{this.setState({loading: true})}}
               />
               ) : (
                 <TestDevice testDeviceDone={this.testDeviceDone} />
@@ -160,6 +168,7 @@ selectMedia = () => {
                 responseLength={this.state.lengthOfResponse.value}
                 questionCategory={this.state.categoryOfQuestion.label}
                 isSimulate={true}
+                goLoading={()=>{this.setState({loading: true})}}
               />
               ) : (
                 <TestAudioDevice testDeviceDone={this.testDeviceDone} />

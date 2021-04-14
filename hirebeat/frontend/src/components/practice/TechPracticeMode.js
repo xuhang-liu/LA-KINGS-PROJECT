@@ -10,6 +10,7 @@ import TestAudioDevice from "./TestAudioDevice";
 import { CardRow, selectParam } from "./CardComponents";
 import PageTitleArea from '../Common/PageTitleArea';
 import Switch from "react-switch";
+import LoadingForAi from "../shared/LoadingForAi";
 
 export class TechPracticeMode extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export class TechPracticeMode extends Component {
     lengthOfResponse: { value: 1, label: "60s" },
     categoryOfQuestion: { value: 1, label: this.props.location.params.category},   // initialize this state with the params passed by TechFields.js
     difficultyOfQuestion: { value: 1, label: "Common Question"},
-    onLoading: false,
+    loading: false,
   };
 
   componentDidMount() {
@@ -133,8 +134,11 @@ export class TechPracticeMode extends Component {
   render() {
     const { paramsAreSet, audioParamIsSet } = this.state
     // video test
-    if(this.state.onLoading)
-      return null;
+    if(this.state.loading){
+      return <div>
+        <LoadingForAi interview={true}/>
+      </div> 
+    }
     if (paramsAreSet === true) {
         return (
           <div className="container">
@@ -146,7 +150,7 @@ export class TechPracticeMode extends Component {
                 questionCategory={this.state.categoryOfQuestion.label}
                 questionDifficulty={this.state.difficultyOfQuestion.value}
                 isSimulate={false}
-                goLoading={()=>{this.setState({onLoading: true})}}
+                goLoading={()=>{this.setState({loading: true})}}
               />
               ) : (
                 <TestDevice testDeviceDone={this.testDeviceDone} />
@@ -167,7 +171,7 @@ export class TechPracticeMode extends Component {
                 questionCategory={this.state.categoryOfQuestion.label}
                 questionDifficulty={this.state.difficultyOfQuestion.value}
                 isSimulate={false}
-                goLoading={()=>{this.setState({onLoading: true})}}
+                goLoading={()=>{this.setState({loading: true})}}
               />
               ) : (
                 <TestAudioDevice testDeviceDone={this.testDeviceDone} />

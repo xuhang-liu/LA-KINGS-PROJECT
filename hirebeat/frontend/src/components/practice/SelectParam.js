@@ -154,7 +154,7 @@ export class SelectParam extends Component {
     const { paramsAreSet, audioParamIsSet } = this.state
     // video test
     if(this.state.loading){
-      return <div className="container-fluid">
+      return <div>
         <LoadingForAi interview={true}/>
       </div> 
     }

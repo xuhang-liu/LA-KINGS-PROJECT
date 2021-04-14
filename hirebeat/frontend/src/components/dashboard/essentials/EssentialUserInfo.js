@@ -184,7 +184,7 @@ export class EssentialUserInfo extends Component {
                   </div>
                 </div>
                 <div style={{marginTop:"1rem", textAlign:"center"}}>
-                  <div className="col d-flex align-items-center" data-tut="reactour-myVideo">
+                  <div className="col d-flex align-items-center">
                     <button
                       type="button"
                       className="panel-button"
@@ -342,7 +342,7 @@ export class EssentialUserInfo extends Component {
               </div> : 
               <div style={{minHeight:"58rem"}}>
               <div className="row" style={{marginTop:"30%", marginBottom:"1rem"}}>
-              <div className="col d-flex align-items-center" data-tut="reactour-myVideo">
+              <div className="col d-flex align-items-center">
                 <button
                   type="button"
                   className="panel-button"

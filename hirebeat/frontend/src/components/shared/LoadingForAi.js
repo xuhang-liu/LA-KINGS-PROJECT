@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class LoadingForAi extends Component {
     render() {
         return (
-            <div style={{width:"100vw", height:"100vh", background:"#BED2FE", textAlign:"center"}}>
+            <div style={{width:"100%", height:"100vh", background:"#BED2FE", textAlign:"center"}}>
                 <div style={{height:"100%", paddingTop:"10rem"}}>
                 {
                     this.props.interview &&

@@ -71,7 +71,7 @@ class BlogDetailsContentEmployer6 extends Component {
                                     <h3 className="mb-0">Conclusion</h3>
                                     <br/>
                                     <p>
-                                    This article should allow you create a more comfortable workplace and bring more confidence to your employees. HireBeat is an AI interview platform that not only helps you find the correct candidate but also creates a more inclusive environment for your employees. To know more details about us, visit <a href="/employer">www.hirebeat.co/employer</a>.
+                                    This article should allow you create a more comfortable workplace and bring more confidence to your employees. HireBeat is an AI interview platform that not only helps you find the correct candidate but also creates a more inclusive environment for your employees. To know more details about us, visit <a href="/">www.hirebeat.co</a>.
                                     </p>
                                 </div>
                             </div>

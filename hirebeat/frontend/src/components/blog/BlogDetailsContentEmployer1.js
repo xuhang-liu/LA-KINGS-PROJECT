@@ -62,7 +62,7 @@ class BlogDetailsContentEmployer1 extends Component {
                                     </p>
                                     <br/>
                                     <p>
-                                    One-way video interviews facilitate collaboration among many interviewers for better results in the hiring process. To learn more, visit <a href="/employer">www.hirebeat.co/employer</a>
+                                    One-way video interviews facilitate collaboration among many interviewers for better results in the hiring process. To learn more, visit <a href="/">www.hirebeat.co</a>
                                     </p>
                                 </div>
                             </div>
