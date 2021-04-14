@@ -31,8 +31,8 @@ export const ProgressScore = (props) => {
   }
   return (
     <div className="d-flex align-items-end">
-      <p className={scoreClassName}>{props.percent}</p>
-      <p style={{ fontSize: props.height / 1.5, fontWeight: "bold" }}>/{props.max}</p>
+      <p className={scoreClassName} style={{ fontSize: props.height / 0.7}}>{props.percent}</p>
+      <p style={{ fontSize: props.height / 0.7, fontWeight: "bold" }}>/{props.max}</p>
     </div>
   );
 };
@@ -85,6 +85,46 @@ export const ProgressBar2 = (props) => {
         </div>
   );
 };
+
+
+
+
+export const ProgressBarResume = (props) => {
+    // color, percent, height
+    var barClassName = "progress-bar gradient-progress-green"
+
+    const renderStatue = (x) => {
+        var status = 0;
+        if(x <= 0.3)
+            status = 1;
+        else if(x > 0.85)
+            status = 2;
+
+        if(status == 0)
+            return <div className="px-4" style={{borderRadius:"5px", paddingTop:"0.5rem", paddingBottom:"0.61rem",background:"#FF6B00", color:"white", fontWeight:"500", float:"left"}}>
+                Average
+            </div>
+        else if(status == 2){
+            return <div className="px-4" style={{borderRadius:"5px", paddingTop:"0.5rem", paddingBottom:"0.61rem",background:"#13C4A1", color:"white", fontWeight:"500", float:"left"}}>
+                Good Score
+            </div>
+        }
+        return <div className="px-4" style={{borderRadius:"5px", paddingTop:"0.5rem", paddingBottom:"0.61rem",background:"#FF0000", color:"white", fontWeight:"500", float:"left"}}>
+            Needs Work
+        </div>
+    }
+
+    return (
+      <div className="row d-flex align-items-center" style={{width: "95%", margin: "auto"}}>
+        <div className="col-10">
+            {renderStatue(props.percent / props.max)}
+        </div>
+        <div className="col-2 pl-0" style={{height:"2rem"}}>
+          <ProgressScore percent={props.percent} height={props.height * 2} max={props.max} />
+        </div>
+      </div>
+    );
+  };
 
 export const IconText = (props) => {
     //textSize, textDisplayed, iconName, textColor?

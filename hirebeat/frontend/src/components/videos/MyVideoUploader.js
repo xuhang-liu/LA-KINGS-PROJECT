@@ -178,7 +178,8 @@ export class MyVideoUploader extends Component {
 
     // if (this.props.saved_video_count < this.props.save_limit) {
     this.uploader.uploadFile(this.props.video);
-    this.redirectToDashboard();
+    this.props.goLoading();
+    setTimeout(()=>{this.redirectToDashboard()}, 15000);
     // } else {
     //   this.props.createMessage({
     //     errorMessage: "Free saves limit reached. Please upgrade to premium plan.",

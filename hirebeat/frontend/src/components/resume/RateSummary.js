@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 //import { Link } from "react-router-dom";
 import {FacebookShareButton,  LinkedinShareButton} from "react-share";
-import { OverallScore, ProgressBar } from "./Components";
+import { OverallScore, ProgressBarResume } from "./Components";
 import {goodResult, badResult} from "./../../constants/constants";
 
 export function RateSummary(props) {
@@ -23,68 +23,64 @@ export function RateSummary(props) {
     if (r.skills_match_count_total != null) { skills_match_count_total = r.skills_match_count_total; }
 
     return (
-        <section className="funfacts-inner" style={{width: "80%", marginTop: "2rem"}}>
-            <div className="row single-funfacts funfact-style-two">
-                <div className="col-2">
-                    <OverallScore percent={result_rate} bgColor={"#FAC046"} barColor={"#FF6B00"}/>
+        <section className="funfacts-inner container" style={{width: "90%", marginTop: "2rem"}}>
+            <div className="row">
+                <div className="col-4 pl-0" style={{}}>
+                    <div className="single-funfacts funfact-style-two resume-box pb-2">
+                        <h2 style={{color:"#090D3A"}}>Match Rate</h2>
+                        <OverallScore percent={result_rate} bgColor={"#FAC046"} barColor={"#FF6B00"}/>
+                    </div>
                 </div>
-                <div className="col-10">
-                    <p className="resume-res" style={{textAlign: "left"}}>YOUR RESULTS</p>
-                    <h1 className="resume-h1" style={{textAlign: "left"}}>{result_rate}% out of 100%</h1>
-                    <p className="resume-text1" style={{color: '#4A6F8A', textAlign: "left"}}>
-                        {result_rate >= 75 ? goodResult : badResult}
-                    </p>
+                <div className="col-8 pr-0" style={{}}>
+                    <div className="px-4 single-funfacts funfact-style-two resume-box">
+                        <div className="row pl-3 ">
+                            <h2  className="resume-res" style={{textAlign: "left", fontWeight:"600", fontSize:"1.5rem", display:"block"}}>Your resume match rate reached {result_rate}% out of 100%</h2>
+                        </div>
+                        <ProgressBar result_rate={result_rate} />
+                        <p className="resume-text1" style={{color: '#4A6F8A', textAlign: "left"}}>
+                            {result_rate >= 75 ? goodResult : badResult}
+                        </p>
+                    </div>
                 </div>
             </div>
             <div className="row">
-                <div className="col-lg-4 col-4 col-sm-12" style={{paddingLeft: "0px"}}>
-                    <div className="single-funfacts funfact-style-two">
-                        <p className="resume-res" style={{fontWeight: '600', marginBottom: "1rem"}}>ATS Findings</p>
-                        <ProgressBar percent={ats_findings_count} max={ats_findings_count_total} height={7.5} />
+                <div className="col-lg-4 col-4 col-sm-12 pl-0">
+                    <div className="single-funfacts funfact-style-two resume-box">
+                        <p className="resume-res ml-4" style={{fontWeight: '600', marginBottom: "1rem"}}>ATS Findings</p>
+                        <ProgressBarResume percent={ats_findings_count} max={ats_findings_count_total} height={7.5} />
                     </div>
                 </div>
                 <div className="col-lg-4 col-4 col-sm-12">
-                    <div className="single-funfacts funfact-style-two">
-                        <p className="resume-res" style={{fontWeight: '600', marginBottom: "1rem"}}>Recruiter Findings</p>
-                        <ProgressBar percent={rec_findings_count} max={rec_findings_count_total} height={7.5} />
+                    <div className="single-funfacts funfact-style-two resume-box">
+                        <p className="resume-res ml-4" style={{fontWeight: '600', marginBottom: "1rem"}}>Recruiter Findings</p>
+                        <ProgressBarResume percent={rec_findings_count} max={rec_findings_count_total} height={7.5} />
                     </div>
                 </div>
                 <div className="col-lg-4 col-4 col-sm-12" style={{paddingRight: "0px"}}>
-                    <div className="single-funfacts funfact-style-two">
-                        <p className="resume-res" style={{fontWeight: '600', marginBottom: "1rem"}}>Skills Match</p>
-                        <ProgressBar percent={skills_match_count} max={skills_match_count_total} height={7.5} />
+                    <div className="single-funfacts funfact-style-two resume-box">
+                        <p className="resume-res ml-4" style={{fontWeight: '600', marginBottom: "1rem"}}>Skills Match</p>
+                        <ProgressBarResume percent={skills_match_count} max={skills_match_count_total} height={7.5} />
                     </div>
-                </div>
-            </div>
-            <div className="row single-footer-widget1">
-               <p className="resume-res" style={{color: '#67A3F3'}}>SHARE WITH YOUR FRIENDS TO MATCH RESUME TOO!</p>
-                <div className="social" style={{width: "2.5rem", marginTop: "0px"}}>
-                    <li className="col-lg-1">
-                        <FacebookShareButton
-                            url={"https://hirebeat.co/resume"}
-                            quote={"Match Resume"}
-                            hashtag="#hirebeat"
-                        >
-                            <a target="_blank">
-                                <i className="bx bxl-facebook"></i>
-                            </a>
-                        </FacebookShareButton>
-                    </li>
-                </div>
-                <div className="social" style={{width: "2.5rem", marginTop: "0px"}}>
-                    <li className="col-lg-1">
-                        <LinkedinShareButton
-                            url={"https://hirebeat.co/resume"}
-                            title={"Match Resume"}
-                            source={"HireBeat"}
-                        >
-                            <a target="_blank">
-                                <i className="bx bxl-linkedin"></i>
-                            </a>
-                        </LinkedinShareButton>
-                    </li>
                 </div>
             </div>
         </section>
     );
 };
+
+export const ProgressBar = (props) =>{
+    const percentage = useRef();
+
+    useEffect(() => {
+        var temp = props.result_rate * 90 / 100;
+        percentage.current = temp + "%";
+    }, []);
+
+    return <div className="mt-3 mb-2" style={{position:"relative"}}>
+        <div style={{zIndex:"2", height:"1.2rem", width:"100%", background:"green", backgroundImage:"linear-gradient(to left, green, yellow, red)", borderRadius:"0.75rem"}} />
+        <i class='bx bxs-up-arrow' style={{zIndex:"5", background:"none", position:"absolute", top:"-0.7rem", left:`${percentage.current}`}}></i>
+        <div className="row mt-3">
+            <p className="ml-3">0</p>
+            <p style={{position:"absolute", right:"3.5%"}}>100</p>
+        </div>
+    </div>
+}

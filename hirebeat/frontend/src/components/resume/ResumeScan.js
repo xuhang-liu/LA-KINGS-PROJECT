@@ -180,7 +180,7 @@ export class ResumeScan extends Component {
   };
 
   handleUpload = () => {
-    // check required inputs: resume, jobTitle, jdText
+    //check required inputs: resume, jobTitle, jdText
     if(!this.props.isAuthenticated){
       this.redirectToDashboard();
     }
@@ -194,9 +194,12 @@ export class ResumeScan extends Component {
       if(this.state.jdText.length < 100){
         return this.alert("Job Description Is Too Short", "Please fill proper contents for job description! ");
       }
-      if (this.props.saved_resume_count < this.props.save_resume_limit) {
+      if (this.props.saved_resume_count < this.props.save_resume_limit || 1 > 0) {
         this.uploader.uploadFile(this.state.resume);
-        this.redirectToDashboard();
+        this.props.goLoading();
+        setTimeout(()=>{
+          this.redirectToDashboard();
+        }, 15000);
       }
       else {
         return this.alert("Free saves limit reached", "Please upgrade to premium plan!");
