@@ -27,7 +27,7 @@ export function AtsFindings(props) {
 
     return (
         <div>
-            <h4 className="resume-text2">ATS Findings</h4>
+            <h4 className="resume-text2 mb-4">ATS Findings</h4>
             <AtsRow name={"SKILLS AND KEYWORDS"} status={skills_keywords_bool} desc={skills_keywords} />
             <AtsRow name={"EDUCATION MATCH"} status={education_match_bool} desc={education_match} />
             <AtsRow name={"SECTION HEADINGS"} status={section_headings_bool} desc={section_headings} />

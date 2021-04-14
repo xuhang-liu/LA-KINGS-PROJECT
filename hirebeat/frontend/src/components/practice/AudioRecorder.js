@@ -184,6 +184,7 @@ export class AudioRecorder extends Component {
               last_q={this.props.last_q}
               isAudio={true}
               isSimulate={this.props.isSimulate}
+              goLoading={this.props.goLoading}
             />
           ) : null}
         </div>

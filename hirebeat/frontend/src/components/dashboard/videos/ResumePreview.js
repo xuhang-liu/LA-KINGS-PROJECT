@@ -72,6 +72,7 @@ export const ResumePreview = (props) => {
           </div>
           </div>
           <MyVerticallyCenteredModal
+            className="resumeRes"
             show={show}
             onHide={() => setShow(false)}
             resume={props.resume}
@@ -85,7 +86,7 @@ function MyVerticallyCenteredModal(props) {
   const { resume, ...rest } = props;
   return (
     <MyModal {...rest} isResume={true}>
-      <ResumeResult resume={resume} />
+      <ResumeResult resume={resume} onHide={props.onHide}/>
     </MyModal>
   );
 };

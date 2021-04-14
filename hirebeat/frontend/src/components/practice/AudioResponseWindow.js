@@ -165,6 +165,7 @@ export class AudioResponseWindow extends Component {
                   isTesting={false}
                   last_q={this.props.last_q}
                   isSimulate={this.props.isSimulate}
+                  goLoading={this.props.goLoading}
                 />
               )}
             </div>

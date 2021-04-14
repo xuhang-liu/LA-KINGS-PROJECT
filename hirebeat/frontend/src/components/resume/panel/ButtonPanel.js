@@ -8,7 +8,7 @@ export function ButtonPanel(props) {
   //var selectWeight = "600";
   //var defaultWeight = "normal";
   return (
-    <div className="pt-4">
+    <div>
       <button
         type="button"
         className={props.subpage == "atsFindings" ? "resume-panel-btn1" : "resume-panel-btn"}

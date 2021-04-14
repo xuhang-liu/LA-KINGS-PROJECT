@@ -23,7 +23,7 @@ export function RecruiterFindings(props) {
 
     return (
         <div>
-            <h4 className="resume-text2">Recruiter Findings</h4>
+            <h4 className="resume-text2 my-4">Recruiter Findings</h4>
             <AtsRow name={"WORD COUNT"} status={word_count_bool} desc={word_count_text} />
             <RecMultipleRows name={"MEASURABLE RESULTS"} status={measureable_results_bool} desc={measureable_results_list} />
             <AtsRow name={"JOB LEVEL MATCH"} status={job_level_text_bool} desc={job_level_text} />
