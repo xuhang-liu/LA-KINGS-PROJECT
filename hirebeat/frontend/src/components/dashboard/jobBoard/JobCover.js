@@ -34,7 +34,10 @@ export const JobCover = (props) => {
         </button>
         <button onClick={refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right", paddingTop:"1rem"}}><p style={{color:"#56a3fa"}}><box-icon name="refresh" color="#56a3fa" size="1.2rem"></box-icon>Refresh</p></button>
       </div>
-      <JobList />
+      <JobList
+        jobs={props.jobs}
+        filter={filter}
+      />
     </div>
   );
 };

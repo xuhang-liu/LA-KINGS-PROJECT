@@ -23,13 +23,30 @@ export class JobList extends Component{
                     <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                         <div className="col-3">Job Title</div>
                         <div className="col-1">ID</div>
-                        <div className="col-1">Status</div>
                         <div className="col-2">Received</div>
                         <div className="col-2">Create Date</div>
                         <div className="col-2">Job Page</div>
-                        <div className="col-1">Action</div>
+                        <div className="col-2">Action</div>
                     </div>
-                    <JobCard />
+                    {Object.keys(this.props.jobs).reverse().map((key) => {
+                            let job = this.props.jobs[key];
+                            if (this.props.filter) {
+                                switch (this.props.filter) {
+                                    case "active":
+                                        if (job["job_details"].is_closed) return null;
+                                        break;
+                                    case "closed":
+                                        if (!job["job_details"].is_closed) return null;
+                                        break;
+                                    default:
+                                        return null;
+                                }
+                            }
+                            return(
+                                <JobCard job={job}/>
+                            );
+                        })
+                    }
                 </div>
             </div>
         )

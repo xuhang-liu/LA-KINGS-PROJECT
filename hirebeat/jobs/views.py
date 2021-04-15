@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
-from .models import Jobs
+from .models import Jobs, ApplyCandidates
 from questions.models import Positions
 from accounts.models import Profile
 from rest_framework.response import Response
@@ -28,8 +28,19 @@ def add_new_job(request):
 
 @api_view(['GET'])
 def get_all_jobs(request):
-    user_id = request.query_params.get("userId")
     data = {}
+    user_id = request.query_params.get("userId")
+    jobs = list(Jobs.objects.filter(user_id=user_id).values())
+    for i in range(len(jobs)):
+        job_id = jobs[i]["id"]
+        # get each position applicants
+        applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).values())
+        job_details = {
+            "job_details": jobs[i],
+            "applicants": applicants,
+        }
+        data[job_id] = job_details
+
     return Response({
         "data": data,
     })
