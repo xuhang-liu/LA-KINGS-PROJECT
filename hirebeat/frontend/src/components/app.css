@@ -3171,6 +3171,7 @@ color: #4A6F8A;
 
 .resumeRes .close {display: none;}
 
+
 .light-blue-border { 
   border: 2px solid #E8EDFC;
   border-radius: 5px;
@@ -3191,4 +3192,8 @@ color: #4A6F8A;
   color:#4A6F8A;
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+.editor-height {
+  min-height: 10rem;
 }
