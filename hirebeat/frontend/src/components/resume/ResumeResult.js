@@ -64,10 +64,14 @@ export function ResumeResult(props) {
         </div>
     
         <div ref={printingRef}>
-            <RateSummary resume={resume}/>
+            <RateSummary resume={resume} 
+                        renderATS={renderATS}
+                        renderRCF={renderRCF}
+                        renderHSM={renderHSM}
+                        />
             <div className="container" style={{width: "90%"}}>
                 <div className="row">
-                    <div className="col-2 px-0" style={{marginBottom:"auto"}}>
+                    <div className="col-2 px-0" style={{marginBottom:"auto", position:"sticky", top:"2rem"}}>
                         <ButtonPanel
                             renderATS={renderATS}
                             renderRCF={renderRCF}
