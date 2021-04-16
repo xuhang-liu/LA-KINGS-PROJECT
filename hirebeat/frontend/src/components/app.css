@@ -3174,3 +3174,17 @@ color: #4A6F8A;
 .editor-height {
   min-height: 10rem;
 }
+
+.title-button2 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
+  border: none;
+  background-color: #ffffff;
+}
+
+.title-button2:hover {
+  color: #ff6b00;
+}

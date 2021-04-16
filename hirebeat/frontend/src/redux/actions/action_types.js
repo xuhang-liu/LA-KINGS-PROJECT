@@ -138,3 +138,5 @@ export const SUBREVIEWER_UPDATE_COMMENT = "SUBREVIEWER_UPDATE_COMMENT";
 
 export const ADD_NEW_JOB = "ADD_NEW_JOB";
 export const GET_ALL_JOBS = "GET_ALL_JOBS";
+export const UPDATE_JOB = "UPDATE_JOB";
+export const ARCHIVE_JOB = "ARCHIVE_JOB";

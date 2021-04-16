@@ -44,3 +44,36 @@ def get_all_jobs(request):
     return Response({
         "data": data,
     })
+
+@api_view(['POST'])
+def update_job(request):
+    id = request.data['id']
+    job_title = request.data['jobTitle']
+    job_id = request.data['jobId']
+    job_location = request.data['jobLocation']
+    job_level = request.data['jobLevel']
+    job_description = request.data['jobDescription']
+
+    job = Jobs.objects.get(id=id)
+    job.job_title = job_title
+    job.job_id = job_id
+    job.job_location = job_location
+    job.job_level = job_level
+    job.job_description = job_description
+    # save update to db
+    job.save()
+
+    return Response("Update new job successfully", status=status.HTTP_205_RESET_CONTENT)
+
+
+@api_view(['POST'])
+def archive_job(request):
+    id = request.data['id']
+    is_closed = request.data['isClosed']
+
+    job = Jobs.objects.get(id=id)
+    job.is_closed = is_closed
+    # save update to db
+    job.save()
+
+    return Response("Archive new job successfully", status=status.HTTP_202_ACCEPTED)

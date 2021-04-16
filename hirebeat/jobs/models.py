@@ -29,6 +29,7 @@ class ApplyCandidates(models.Model):
     location = models.CharField(max_length=100, null=True, blank=True)
     resume_url = models.CharField(max_length=100, null=True, blank=True)
     apply_date = models.DateTimeField(auto_now_add=True)
+    is_invited = models.BooleanField(default=False)
 
     def __str__(self):
         return self.job_title

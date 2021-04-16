@@ -111,7 +111,7 @@ export class EmployerDashboard extends Component {
   }
 
   state = {
-    subpage: "applications",
+    subpage: "jobs",
   };
 
   renderJobs = () => {
