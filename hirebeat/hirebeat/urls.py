@@ -9,6 +9,7 @@ urlpatterns = [
     path("", include("accounts.urls")), 
     path("", include("questions.urls")),
     path("", include("resume.urls")),
+    path("", include("jobs.urls")),
     # This is visible to all on Github. Consider make the repo private later.
     # The trailing slash is required in browser.
     path("dontdobadthings/", admin.site.urls),
