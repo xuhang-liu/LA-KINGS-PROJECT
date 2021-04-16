@@ -13,7 +13,7 @@ import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, get
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost
  }
 from "../../redux/actions/auth_actions";
-import { addNewJob } from "../../redux/actions/job_actions";
+import { addNewJob, getAllJobs} from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
@@ -107,10 +107,11 @@ export class EmployerDashboard extends Component {
     this.props.getAnalyticsInfo(this.props.user.id);
     this.props.getEmployerProfileDetail(this.props.user.id);
     this.props.getEmployerPost(this.props.user.id, 0);
+    this.props.getAllJobs(this.props.user.id);
   }
 
   state = {
-    subpage: "applications",
+    subpage: "jobs",
   };
 
   renderJobs = () => {
@@ -230,6 +231,7 @@ export class EmployerDashboard extends Component {
             user={this.props.user}
             renderJobs={this.renderJobs}
             renderJobCreation={this.renderJobCreation}
+            jobs={this.props.jobs}
         />;
       case "jobCreation":
         return <JobCreation
@@ -451,6 +453,7 @@ const mapStateToProps = (state) => {
   interview_session: state.question_reducer.interview_session,
   employerProfileDetail: state.auth_reducer.employerProfileDetail,
   employerPost: state.auth_reducer.employerPost,
+  jobs: state.job_reducer.jobs,
 }
 };
 
@@ -458,7 +461,7 @@ export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFu
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
     getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
-    updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob
+    updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs
     })(
     EmployerDashboard
 );

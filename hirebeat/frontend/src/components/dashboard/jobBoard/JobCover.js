@@ -6,7 +6,8 @@ const decideClassName = (filter, text) => {
 
 export const JobCover = (props) => {
   const [filter, setFilter] = useState("active");
-  const [selectedId, setselectedId] = useState(0);
+  const [curJob, setCurJob] = useState([]);
+  const [status, setStatus] = useState(0);
   function refreshPage() {
     window.location.reload(false);
   }
@@ -15,16 +16,16 @@ export const JobCover = (props) => {
       <div style={{marginBottom: "20px"}} className="container min-width-980">
         <button
           className={decideClassName(filter, "active")}
-          onClick={() => (setFilter("active"), setselectedId(0))}
+          onClick={() => (setFilter("active"))}
         >
           Active
         </button>
         <button
           className={decideClassName(filter, "closed")}
           style={{marginLeft: "2rem"}}
-          onClick={() => (setFilter("closed"), setselectedId(0))}
+          onClick={() => (setFilter("closed"))}
         >
-          Closed
+          Archived
         </button>
         <button className="default-btn" onClick={props.renderJobCreation}
           style={{color:"white", marginLeft:"5%"}}>
@@ -34,7 +35,15 @@ export const JobCover = (props) => {
         </button>
         <button onClick={refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right", paddingTop:"1rem"}}><p style={{color:"#56a3fa"}}><box-icon name="refresh" color="#56a3fa" size="1.2rem"></box-icon>Refresh</p></button>
       </div>
-      <JobList />
+      <JobList
+        jobs={props.jobs}
+        user={props.user}
+        filter={filter}
+        setStatus={setStatus}
+        curJob={curJob}
+        setCurJob={setCurJob}
+      />
+      {console.log(props.jobs)}
     </div>
   );
 };
