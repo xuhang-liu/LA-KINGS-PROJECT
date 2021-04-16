@@ -3170,3 +3170,25 @@ color: #4A6F8A;
 }
 
 .resumeRes .close {display: none;}
+
+.light-blue-border { 
+  border: 2px solid #E8EDFC;
+  border-radius: 5px;
+}
+
+.dark-blue-border {
+  border: 2px solid #67A3F3;
+  border-radius: 5px;
+}
+
+.job-apply-char1{
+  color:#090D3A;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.job-apply-char2{
+  color:#4A6F8A;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
