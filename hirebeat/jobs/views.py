@@ -77,3 +77,34 @@ def archive_job(request):
     job.save()
 
     return Response("Archive new job successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def add_new_apply_candidate(request):
+    job_id = request.data['job_id']
+    firstname = request.data['firstname']
+    lastname = request.data['lastname']
+    phone = request.data['phone']
+    email = request.data['email']
+    location = request.data['location']
+    resume_url = request.data['resume_url']
+    jobs = Jobs.objects.get(pk=job_id)
+    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email, location=location, resume_url=resume_url)
+
+    return Response("Add new apply candidate successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['GET'])
+def get_current_jobs(request):
+    job_id = request.query_params.get("jobid")
+    print(job_id)
+    jobs = Jobs.objects.get(pk=job_id)
+    data = {
+        "job_title": jobs.job_title,
+        "job_level": jobs.job_level,
+        "job_id": jobs.job_id,
+        "job_location": jobs.job_location,
+        "create_date": jobs.create_date,
+    }
+
+    return Response({
+        "data": data,
+    })

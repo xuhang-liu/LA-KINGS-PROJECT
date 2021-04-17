@@ -195,7 +195,7 @@ import "./public/css/responsive.css";
 import "./public/css/animate.min.css";
 import "./public/css/bootstrap.min.css";
 import "./public/css/boxicons.min.css";
-import ApplyJob from "./dashboard/ApplyJob"
+import ApplyJob from "./dashboard/jobBoard/ApplyJob"
 
 const alertOptions = {
   timeout: 3000,
