@@ -7,7 +7,6 @@ const decideClassName = (filter, text) => {
 export const JobCover = (props) => {
   const [filter, setFilter] = useState("active");
   const [curJob, setCurJob] = useState([]);
-  const [status, setStatus] = useState(0);
   function refreshPage() {
     window.location.reload(false);
   }
@@ -39,9 +38,11 @@ export const JobCover = (props) => {
         jobs={props.jobs}
         user={props.user}
         filter={filter}
-        setStatus={setStatus}
         curJob={curJob}
         setCurJob={setCurJob}
+        renderJobEdition={props.renderJobEdition}
+        setJobInfo={props.setJobInfo}
+        isLoaded={props.isLoaded}
       />
       {console.log(props.jobs)}
     </div>

@@ -3,9 +3,10 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates
 from questions.models import Positions
-from accounts.models import Profile
+from accounts.models import Profile, EmployerProfileDetail
 from rest_framework.response import Response
 from rest_framework import status
+from django.core.exceptions import ObjectDoesNotExist
 
 @api_view(['POST'])
 def add_new_job(request):
@@ -14,16 +15,32 @@ def add_new_job(request):
     job_description = request.data['jobDescription']
     job_location = request.data['jobLocation']
     job_level = request.data['jobLevel']
+    job_type = request.data['jobType']
     user = User.objects.get(pk=request.data["userId"])
+    company_name = ""
+    company_overview = ""
     # update user profile
     profile = Profile.objects.get(user_id=user.id)
     profile.position_count += 1
     profile.save()
     # create position
     position = Positions.objects.create(user=user, job_title=job_title, job_id=job_id, job_description=job_description)
+    # get company name and overview
+    try:
+        # update personal information
+        employer_profile = EmployerProfileDetail.objects.get(user=user)
+        company_name = employer_profile.name
+        company_overview = employer_profile.summary
+    except ObjectDoesNotExist:
+        company_overview = ""
+        company_name = ""
     # create job
-    Jobs.objects.create(user=user, positions=position, job_title=job_title, job_id=job_id, job_description=job_description,
-                        job_location=job_location, job_level=job_level)
+    job = Jobs.objects.create(user=user, positions=position, job_title=job_title, job_id=job_id, job_description=job_description,
+            job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name)
+    # save job link
+    job_url = "https://hirebeat.co/apply-job?id=" + str(job.id)
+    job.job_url = job_url
+    job.save()
     return Response("Create new job successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['GET'])
@@ -53,6 +70,7 @@ def update_job(request):
     job_location = request.data['jobLocation']
     job_level = request.data['jobLevel']
     job_description = request.data['jobDescription']
+    job_type = request.data['jobType']
 
     job = Jobs.objects.get(id=id)
     job.job_title = job_title
@@ -60,6 +78,7 @@ def update_job(request):
     job.job_location = job_location
     job.job_level = job_level
     job.job_description = job_description
+    job.job_type = job_type
     # save update to db
     job.save()
 

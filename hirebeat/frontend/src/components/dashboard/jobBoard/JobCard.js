@@ -1,13 +1,9 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { updateJob, archiveJob, getAllJobs} from "../../../redux/actions/job_actions";
 
 export class JobCard extends Component{
-
-    state = {
-        isEdit: false,
-    }
 
     editJob = () => {
         let id = this.props.job.job_details.id;
@@ -22,8 +18,7 @@ export class JobCard extends Component{
             "isClosed": true,
         }
         this.props.archiveJob(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getAllJobs(this.props.user.id);}, 300);
-        setTimeout(() => {this.props.setStatus(0); this.props.setStatus(0)}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
     };
 
     activateJob = () => {
@@ -34,7 +29,6 @@ export class JobCard extends Component{
         }
         this.props.archiveJob(data);
         setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
-        setTimeout(() => {this.props.setStatus(0); this.props.setStatus(0)}, 300);
     };
 
     render() {
@@ -62,9 +56,19 @@ export class JobCard extends Component{
                     <div className="col-1 interview-txt9 mt-2">{this.props.job.job_details.job_id}</div>
                     <div className="col-2 interview-txt9 mt-2">{this.props.job.applicants.length}</div>
                     <div className="col-2 interview-txt9 mt-2">{this.props.job.job_details.create_date.substring(0, 10)}</div>
-                    <div className="col-2 interview-txt9 mt-2">{this.props.job.job_details.job_url}</div>
+                    <div className="col-2 center-items interview-txt9 mt-2">
+                        <i className="bx bx-show" style={{color: "#67A3F3", marginRight: "0.3rem"}}></i>
+                        <a href={this.props.job.job_details.job_url}>preview</a>
+                    </div>
                     <div className="col-2 interview-txt9 mt-2">
-                        <ActionButton filter={this.props.filter} archiveJob={this.archiveJob} activateJob={this.activateJob}/>
+                        <ActionButton
+                            filter={this.props.filter}
+                            archiveJob={this.archiveJob}
+                            activateJob={this.activateJob}
+                            renderJobEdition={this.props.renderJobEdition}
+                            setJobInfo={this.props.setJobInfo}
+                            jobInfo={this.props.job.job_details}
+                        />
                     </div>
                 </div>
             </div>
@@ -80,7 +84,9 @@ const ActionButton = (props) => {
             <div className="row">
                 <div className="profile-edit">
                     <i className="bx bx-edit-alt"></i>
-                    <span type="button">Edit</span>
+                    <span type="button" onClick={() => {props.setJobInfo(props.jobInfo); props.renderJobEdition()}}>
+                        Edit
+                    </span>
                 </div>
                 <div className="profile-edit" style={{color: "#F36F67", marginLeft: "5%"}}>
                     <i className="bx bx-box"></i>

@@ -1,7 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { updateJob, archiveJob, getAllJobs} from "../../../redux/actions/job_actions";
+import React, { Component } from "react";
 
 export class ApplicantList extends Component{
     state = {
@@ -19,7 +16,7 @@ export class ApplicantList extends Component{
                     <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem", display: "flex"}}>
                         <div style={{paddingTop: "0.5rem"}}><i className="bx bx-search bx-sm"></i></div>
                         <div>
-                            <input placeholder="Search jobs" className="search-candidate-input" style={{height: "auto"}} value={this.state.keyWords} onChange={this.onChange}></input>
+                            <input placeholder="Search candidate" className="search-candidate-input" style={{height: "auto"}} value={this.state.keyWords} onChange={this.onChange}></input>
                         </div>
                     </div>
                     <div className="card container" style={{marginTop:"1.5rem"}}>
@@ -32,6 +29,10 @@ export class ApplicantList extends Component{
                             <div className="col-2">Interview</div>
                         </div>
                         {this.props.curJob.applicants.map((a) => {
+                            if (this.state.keyWords != "") {
+                                let name = a.first_name + " " + a.last_name;
+                                if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
+                            }
                             return (
                                 <ApplicantRow
                                     applicant={a}
@@ -56,7 +57,15 @@ const ApplicantRow = (props) => {
             <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
             <div className="col-2 interview-txt9 mt-2">preview prompt</div>
             <div className="col-1 interview-txt9 mt-2">{props.applicant.resume_url}</div>
-            <div className="col-2 interview-txt9 mt-2">{/*props.applicant.is_invited*/} invite status</div>
+            <div className="col-2 center-items interview-txt9 mt-2">
+                {props.applicant.is_invited &&
+                    <button className="default-btn"
+                        style={{backgroundColor: "#13C4A1", padding: "5px"}}
+                    >
+                        Invited
+                    </button>
+                }
+            </div>
         </div>
     )
 }
