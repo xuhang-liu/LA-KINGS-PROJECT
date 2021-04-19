@@ -122,6 +122,12 @@ def get_current_jobs(request):
         "job_id": jobs.job_id,
         "job_location": jobs.job_location,
         "create_date": jobs.create_date,
+        "job_description": jobs.job_description,
+        "job_type": jobs.job_type,
+        "company_name": jobs.company_name,
+        "company_overview": jobs.company_overview,
+        "job_url": jobs.job_url,
+        "id": jobs.id,
     }
 
     return Response({
