@@ -87,6 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy",
     "/employer_blog-boost-up-your-roi-using-video-interviews",
     "/employer_blog-how-to-get-your-job-postings-noticed",
     "/employer_blog-millennials-we-want-you",
@@ -99,6 +100,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer10.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer9.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer8.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer7.jpg",
@@ -111,6 +113,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Apr 19, 2021",
     "Apr 14, 2021",
     "Apr 07, 2021",
     "Apr 07, 2021",
@@ -123,6 +126,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "BUILD A CAMPUS RECRUITING STRATEGY",
     "BOOST UP ROI USING VIDEO INTERVIEWS",
     "HOW TO GET YOUR JOB POSTINGS NOTICED",
     "MILLENNIALS? WE WANT YOU!",

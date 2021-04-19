@@ -21,7 +21,6 @@ class Jobs(models.Model):
 
 class ApplyCandidates(models.Model):
     jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)
-    candidate = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100, null=True, blank=True)
     last_name = models.CharField(max_length=100, null=True, blank=True)
     phone = models.CharField(max_length=100, null=True, blank=True)

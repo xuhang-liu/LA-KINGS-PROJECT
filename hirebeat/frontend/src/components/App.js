@@ -34,6 +34,7 @@ import BlogDetail6_Employer from "./blog/blog-details6-employer";
 import BlogDetail7_Employer from "./blog/blog-details7-employer";
 import BlogDetail8_Employer from "./blog/blog-details8-employer";
 import BlogDetail9_Employer from "./blog/blog-details9-employer";
+import BlogDetail10_Employer from "./blog/blog-details10-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -195,6 +196,7 @@ import "./public/css/responsive.css";
 import "./public/css/animate.min.css";
 import "./public/css/bootstrap.min.css";
 import "./public/css/boxicons.min.css";
+import ApplyJob from "./dashboard/jobBoard/ApplyJob"
 
 const alertOptions = {
   timeout: 3000,
@@ -278,6 +280,7 @@ class App extends Component {
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
                 <PrivateRoute exact path="/video-interview" component={CareerResponseWindow}/>
+                <Route exact path="/apply-job" component={ApplyJob} />
                 <Route exact path="/employer" component={IndexEmployer} />
                 <Route exact path="/interview_Completion" component={InterviewCompletion} />
                 <Route exact path="/pricing" component={pricings} />
@@ -296,6 +299,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-millennials-we-want-you" component={BlogDetail7_Employer} />
                 <Route exact path="/employer_blog-how-to-get-your-job-postings-noticed" component={BlogDetail8_Employer} />
                 <Route exact path="/employer_blog-boost-up-your-roi-using-video-interviews" component={BlogDetail9_Employer} />
+                <Route exact path="/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy" component={BlogDetail10_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
