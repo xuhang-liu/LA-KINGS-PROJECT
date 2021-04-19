@@ -14,6 +14,9 @@ class Jobs(models.Model):
     job_status = models.CharField(max_length=100, default="Published")
     job_url = models.CharField(max_length=100, null=True, blank=True)
     create_date = models.DateTimeField(auto_now_add=True)
+    job_type = models.CharField(max_length=100, null=True, blank=True)
+    company_overview = models.TextField(null=True, blank=True)
+    company_name = models.CharField(max_length=100, null=True, blank=True)
 
 
 class ApplyCandidates(models.Model):
@@ -26,6 +29,3 @@ class ApplyCandidates(models.Model):
     resume_url = models.CharField(max_length=100, null=True, blank=True)
     apply_date = models.DateTimeField(auto_now_add=True)
     is_invited = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.job_title

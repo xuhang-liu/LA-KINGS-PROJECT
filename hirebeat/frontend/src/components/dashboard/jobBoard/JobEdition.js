@@ -1,8 +1,8 @@
 import React,  { Component } from "react";
 import 'boxicons';
+import { confirmAlert } from 'react-confirm-alert';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
-import Select from 'react-select'
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -24,18 +24,18 @@ const toolbarConfig = {
     ]
   };
 
-export class JobCreation extends Component{
+export class JobEdition extends Component{
     static propTypes = {
         onChange: PropTypes.func,
     };
 
     state = {
-        jobTitle: "",
-        jobId: "",
-        jobLocation: "",
-        jobLevel: "",
-        jobDescription: RichTextEditor.createEmptyValue(),
-        jobType: "",
+        jobTitle: this.props.jobInfo.job_title,
+        jobId: this.props.jobInfo.job_id,
+        jobLocation: this.props.jobInfo.job_location,
+        jobLevel: this.props.jobInfo.job_level,
+        jobDescription: RichTextEditor.createValueFromString(this.props.jobInfo.job_description, 'html'),
+        jobType: this.props.jobInfo.job_type,
     }
 
     onChange = (jobDescription) => {
@@ -47,42 +47,60 @@ export class JobCreation extends Component{
           [e.target.name]: e.target.value,
         });
       };
-    
-//    handleChangeJobType = (jobType) => {
-//        this.setState({ jobType });
-//    }
-    
+
     savePosition = (e) => {
         let data = {
+            id: this.props.jobInfo.id,
             jobTitle: this.state.jobTitle,
             jobId: this.state.jobId,
             jobDescription: this.state.jobDescription.toString('html'),
             jobLevel: this.state.jobLevel,
             jobLocation: this.state.jobLocation,
-            userId: this.props.user.id,
-            jobType: this.state.jobType
+            jobType: this.state.jobType,
         };
-        this.props.addNewJob(data);
+        this.props.updateJob(data);
         setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
         e.preventDefault();
         this.props.renderJobs();
     }
 
-    render() {
-//        const options = [
-//            { value: "Full Time", label: "Full Time"},
-//            { value: "Part Time", label: "Part Time"},
-//            { value: "Contractor", label: "Contractor"},
-//        ];
-//        const customStyles = {
-//            control: styles => ({ ...styles, backgroundColor: '#E8EDFC', marginBottom: "0.5rem" }),
-//            singleValue: styles => ({    ...styles,
-//                                         color: '#090D3A',
-//                                         fontSize: '0.9375rem',
-//                                         fontFamily: 'Avenir Next',
-//                                         fontWeight: '500'}),
-//        }
+    hideJob = (e) => {
+        let isFilled = this.checkRequiredInputs();
+        if (isFilled) {
+            this.props.getQuestionList();
+            this.setState({position_added: false});
+        }
+        else {
+            this.incompleteAlert();
+        }
+    }
 
+    checkRequiredInputs = () => {
+        if (this.state.jobTitle == "" || this.state.jobDescription == "") {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    showJob = (e) => {
+        this.setState({position_added: true})
+    }
+
+    incompleteAlert = () => {
+        confirmAlert({
+            title: "Required fields not completed",
+            message: "Please fill Job Title and Job Description",
+            buttons: [
+                {
+                  label: 'ok',
+                },
+            ]
+        });
+    }
+
+    render() {
         return(
             <div className="container" style={{width:'95%'}}>
                 <div className="row">
@@ -95,7 +113,7 @@ export class JobCreation extends Component{
                         >
                             <div className="center-items">
                                 <i style={{color: "#67A3F3"}} className="bx bx-arrow-back bx-sm"></i>
-                                <p style={{color: "#67A3F3", fontSize: "1.25rem"}}>Back</p>
+                                <p style={{color: "#67A3F3", fontSize: "1.25rem"}}>Back to Jobs</p>
                             </div>
                         </button>
                     </div>
@@ -104,7 +122,7 @@ export class JobCreation extends Component{
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{marginTop:"0%"}}>
                         <p className="db-txt1">
-                            Create New Position
+                            Edit Position
                         </p>
                     </div>
                 </div>
@@ -138,7 +156,7 @@ export class JobCreation extends Component{
                                 <label className="db-txt2" style={{ marginTop:"2%" }}>
                                     Job Level
                                 </label>
-                                <input type="text" name="jobLevel" value={this.state.jobLevel} placeHolder="Entry Level"
+                                <input type="text" name="jobLevel" value={this.state.jobLevel}
                                 onChange={this.handleInputChange} className="form-control" required="required"/>
                             </div>
                         </div>
@@ -151,10 +169,6 @@ export class JobCreation extends Component{
                                 onChange={this.handleInputChange} className="form-control" required="required"/>
                             </div>
                         </div>
-                        {/*<div className="form-row">
-                            <div className="center-items db-txt2" style={{marginRight: "1rem", marginLeft: "1rem"}}>Job Type</div>
-                            <Select value={this.state.jobType} onChange={this.handleChangeJobType} options={options} className="select-category3" styles={customStyles} />
-                        </div>*/}
                         <div className="form-row">
                             <div className="col-6">
                                 <label className="db-txt2" style={{ margin:"2%"}}>
@@ -175,7 +189,7 @@ export class JobCreation extends Component{
                                 type="submit"
                                 className="default-btn1" style={{marginBottom:"1.5%", paddingLeft:"25px"}}
                             >
-                                Create
+                                Save
                             </button>
                         </div>
 
@@ -186,4 +200,4 @@ export class JobCreation extends Component{
     };
 };
 
-export default JobCreation;
+export default JobEdition;

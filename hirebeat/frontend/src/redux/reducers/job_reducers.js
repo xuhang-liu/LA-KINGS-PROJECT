@@ -4,7 +4,8 @@ import {
 } from "../actions/action_types";
 
 const initialState = {
-  jobs: {},
+  jobs: [],
+  isLoaded: false,
   job: {},
 };
 
@@ -13,6 +14,7 @@ export default function (state = initialState, action) {
     case GET_ALL_JOBS:
       return {
         ...state,
+        isLoaded: true,
         jobs: action.payload.data,
       };
     case GET_CURRENT_JOBS:
