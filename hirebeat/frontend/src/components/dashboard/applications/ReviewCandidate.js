@@ -22,12 +22,12 @@ const ReviewCandidate = (props) => {
     }   
 
     return(
-        <div className="fluid-container ml-5" style={{width:'92%'}}>
+        <div className="fluid-container ml-5 mb-5" style={{width:'92%'}}>
             <div className="col d-flex align-items-center pl-0">
                 <button
                     type="button"
                     className="panel-button"
-                    onClick={props.renderJobs}
+                    onClick={props.onHide}
                     style={{outline: "none", margin:"0%", padding:"0px", background:"#e8edfc"}}
                 >
                     <div className="center-items">

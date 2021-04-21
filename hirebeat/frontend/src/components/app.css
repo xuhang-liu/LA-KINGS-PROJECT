@@ -3211,3 +3211,9 @@ color: #4A6F8A;
 .title-button2:hover {
   color: #ff6b00;
 }
+
+.light-blue-modal .modal-content{
+  background-color: #E8EDFC;
+}
+
+.light-blue-modal .close {display: none;}

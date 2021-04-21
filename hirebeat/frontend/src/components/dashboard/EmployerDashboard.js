@@ -114,8 +114,7 @@ export class EmployerDashboard extends Component {
   }
 
   state = {
-    subpage:"",
-    //subpage: "jobs",
+    subpage: "jobs",
     jobInfo: {},
   };
 
@@ -368,12 +367,7 @@ export class EmployerDashboard extends Component {
                 companyName={this.props.profile.company_name}
                 />;
       default:
-        return <ReviewCandidate
-                user={this.props.user}
-                renderJobs={this.renderJobs}
-                addNewJob={this.props.addNewJob}
-                getAllJobs={this.props.getAllJobs}
-              />
+        return null;
         //Do nothing
     }
   };
