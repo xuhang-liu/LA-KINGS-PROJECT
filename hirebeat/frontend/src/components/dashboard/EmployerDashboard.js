@@ -31,6 +31,8 @@ import { EmployerProfile } from "./employerProfile/EmployerProfile";
 import { JobCover } from "./jobBoard/JobCover";
 import { JobCreation } from "./jobBoard/JobCreation";
 import JobEdition from "./jobBoard/JobEdition";
+import ReviewCandidate from "./applications/ReviewCandidate";
+
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -348,23 +350,24 @@ export class EmployerDashboard extends Component {
         }
       case "employerProfile":
         return <EmployerProfile
-                    userId={this.props.user.id}
-                    employerProfileDetail={this.props.employerProfileDetail}
-                    getEmployerProfileDetail={this.props.getEmployerProfileDetail}
-                    updateEmployerInfo={this.props.updateEmployerInfo}
-                    updateEmployerSocialMedia={this.props.updateEmployerSocialMedia}
-                    updateEmployerBasicInfo={this.props.updateEmployerBasicInfo}
-                    updateEmployerVideo={this.props.updateEmployerVideo}
-                    updateEmployerSummary={this.props.updateEmployerSummary}
-                    getEmployerPost={this.props.getEmployerPost}
-                    addEmployerPost={this.props.addEmployerPost}
-                    updateEmployerPost={this.props.updateEmployerPost}
-                    deleteEmployerPost={this.props.deleteEmployerPost}
-                    employerPost={this.props.employerPost}
-                    email={this.props.user.email}
-                    companyName={this.props.profile.company_name}
+                userId={this.props.user.id}
+                employerProfileDetail={this.props.employerProfileDetail}
+                getEmployerProfileDetail={this.props.getEmployerProfileDetail}
+                updateEmployerInfo={this.props.updateEmployerInfo}
+                updateEmployerSocialMedia={this.props.updateEmployerSocialMedia}
+                updateEmployerBasicInfo={this.props.updateEmployerBasicInfo}
+                updateEmployerVideo={this.props.updateEmployerVideo}
+                updateEmployerSummary={this.props.updateEmployerSummary}
+                getEmployerPost={this.props.getEmployerPost}
+                addEmployerPost={this.props.addEmployerPost}
+                updateEmployerPost={this.props.updateEmployerPost}
+                deleteEmployerPost={this.props.deleteEmployerPost}
+                employerPost={this.props.employerPost}
+                email={this.props.user.email}
+                companyName={this.props.profile.company_name}
                 />;
       default:
+        return null;
         //Do nothing
     }
   };
@@ -412,7 +415,7 @@ export class EmployerDashboard extends Component {
                 {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
                 (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
                 (this.state.subpage === "employerProfile") || (this.state.subpage === "jobs") ||
-                (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition")) ? null :
+                (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition")) || (this.state.subpage == "") ? null :
                 <div className="container-fluid" style={{height: "22rem"}} data-tut="reactour-rowbox">
                   <RowBoxes userId={this.props.user.id} isEmployer={true}/>
                 </div>}

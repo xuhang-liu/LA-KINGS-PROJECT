@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import { MyModal } from "../DashboardComponents";
+import ReviewCandidate from "../applications/ReviewCandidate";
 
 export class ApplicantList extends Component{
     state = {
@@ -48,14 +50,16 @@ export class ApplicantList extends Component{
 }
 
 const ApplicantRow = (props) => {
+    const [showPreview, setShowPreview] = useState(false);
     return(
+        <>
         <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
             <div className="col-2 interview-txt9 mt-2">
                 <input id={props.applicant.id} type="checkbox"/> &nbsp; {props.applicant.first_name + " " + props.applicant.last_name}
             </div>
             <div className="col-3 interview-txt9 mt-2">{props.applicant.email}</div>
             <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
-            <div className="col-2 interview-txt9 mt-2">preview prompt</div>
+            <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer"}} onClick={()=>{setShowPreview(true);}}>preview prompt</div>
             <div className="col-1 interview-txt9 mt-2">{props.applicant.resume_url}</div>
             <div className="col-2 center-items interview-txt9 mt-2">
                 {props.applicant.is_invited &&
@@ -67,6 +71,20 @@ const ApplicantRow = (props) => {
                 }
             </div>
         </div>
+        <div style={{background:"#E8EDFC"}}>
+            <MyModal className="light-blue-modal" show={showPreview} onHide={()=>{setShowPreview(false)}}>
+                    <ReviewCandidate  
+                        phone={props.applicant.phone}
+                        email={props.applicant.email}
+                        location={props.applicant.location}
+                        resume_url={props.applicant.resume_url}
+                        first_name={props.applicant.first_name}
+                        last_name={props.applicant.last_name}
+                        style={{backgroundColor:"black"}} onHide={()=>{setShowPreview(false)}} />
+            </MyModal>
+        </div>
+        </>
+        
     )
 }
 
