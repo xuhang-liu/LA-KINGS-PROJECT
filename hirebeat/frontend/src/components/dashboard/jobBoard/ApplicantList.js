@@ -73,7 +73,14 @@ const ApplicantRow = (props) => {
         </div>
         <div style={{background:"#E8EDFC"}}>
             <MyModal className="light-blue-modal" show={showPreview} onHide={()=>{setShowPreview(false)}}>
-                    <ReviewCandidate  style={{backgroundColor:"black"}} onHide={()=>{setShowPreview(false)}} />
+                    <ReviewCandidate  
+                        phone={props.applicant.phone}
+                        email={props.applicant.email}
+                        location={props.applicant.location}
+                        resume_url={props.applicant.resume_url}
+                        first_name={props.applicant.first_name}
+                        last_name={props.applicant.last_name}
+                        style={{backgroundColor:"black"}} onHide={()=>{setShowPreview(false)}} />
             </MyModal>
         </div>
         </>

@@ -50,7 +50,7 @@ const ReviewCandidate = (props) => {
                                         color: "#090D3A",
                                         }}
                                     >
-                                        props.username
+                                        {props.first_name+" "+props.last_name}
                                     </h2>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@ const ReviewCandidate = (props) => {
                                     <div className="col d-flex align-items-center">
                                             <IconText
                                             iconName={"bx bx-phone bx-sm"}
-                                            textDisplayed={" this.props.phone_candidate"}
+                                            textDisplayed={props.phone}
                                             textSize={"1rem"}
                                             textColor={"#4A6F8A"}
                                             iconMargin={"3px"}
@@ -69,7 +69,7 @@ const ReviewCandidate = (props) => {
                                     <div className="col d-flex align-items-center">
                                             <IconText
                                             iconName={"bx bx-envelope bx-sm"}
-                                            textDisplayed={" this.props.email_candidate"}
+                                            textDisplayed={props.email}
                                             textSize={"1rem"}
                                             textColor={"#4A6F8A"}
                                             iconMargin={"5px"}
@@ -80,7 +80,7 @@ const ReviewCandidate = (props) => {
                                     <div className="col d-flex align-items-center">
                                             <IconText
                                             iconName={"bx bx-location-plus bx-sm"}
-                                            textDisplayed={" this.props.location_candidate"}
+                                            textDisplayed={props.location}
                                             textSize={"1rem"}
                                             textColor={"#4A6F8A"}
                                             iconMargin={"3px"}
@@ -100,12 +100,8 @@ const ReviewCandidate = (props) => {
                         >
                             Evaluation Scale
                         </h2>
-                        <div className="mt-5 px-4">
-                            {renderResume(80)}
-                        </div>
-                        <div>
-                            <img src="">
-                            </img>
+                        {/*<div className="mt-5 px-4">
+                            {renderResume(10)}
                         </div>
                         <div className="row" style={{cursor:"pointer", display:"flex", justifyContent:"space-around"}}>
                             <IconText
@@ -115,7 +111,7 @@ const ReviewCandidate = (props) => {
                                 textColor={"#67A3F3"}
                                 iconMargin={"3px"}
                             />
-                        </div>
+                        </div>*/}
                         <div className="row" style={{display:"flex", justifyContent:"space-around", position:"absolute", bottom:"2rem", left:"0.9rem", width:"100%"}}>
                             <button className="default-btn1" style={{paddingLeft:"25px"}}>
                                 Invite to Interview
@@ -136,7 +132,7 @@ const ReviewCandidate = (props) => {
                         Resume
                     </h2>
                     <div className="light-blue-border" style={{width:"100%", height:"90%"}}>
-                        <object data="https://hirebeat-user-resume.s3.amazonaws.com/1617374226000.pdf" 
+                        <object data={props.resume_url} 
                                 style={{width:"100%", height:"100%"}}/>
                     </div>
                 </div>
