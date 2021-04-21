@@ -13,6 +13,7 @@ import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, get
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost
  }
 from "../../redux/actions/auth_actions";
+import { addNewJob, getAllJobs, updateJob} from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
@@ -27,6 +28,11 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import DocumentMeta from 'react-document-meta';
 import { EmployerProfile } from "./employerProfile/EmployerProfile";
+import { JobCover } from "./jobBoard/JobCover";
+import { JobCreation } from "./jobBoard/JobCreation";
+import JobEdition from "./jobBoard/JobEdition";
+import ReviewCandidate from "./applications/ReviewCandidate";
+
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -104,11 +110,62 @@ export class EmployerDashboard extends Component {
     this.props.getAnalyticsInfo(this.props.user.id);
     this.props.getEmployerProfileDetail(this.props.user.id);
     this.props.getEmployerPost(this.props.user.id, 0);
+    this.props.getAllJobs(this.props.user.id);
+    this.props.getQuestionList();
   }
 
   state = {
-    subpage: "applications",
+    subpage: "jobs",
+    jobInfo: {},
   };
+
+  renderJobs = () => {
+    this.setState({
+      subpage: "jobs",
+    });
+  };
+
+  renderJobEdition = () => {
+    this.setState({
+      subpage: "jobEdition",
+    });
+  };
+
+  setJobInfo = (jobInfo) => {
+    this.setState({jobInfo: jobInfo});
+  }
+
+  renderJobCreation = () => {
+    if(this.props.profile.company_name == "" || this.props.profile.company_name == null){
+      confirmAlert({
+        title: 'One More Step!',
+        message: 'We Need Your Company Name to Start 😢',
+        buttons: [
+          {
+            label: 'Ok',
+          }
+        ]
+        });
+      this.setState({
+        subpage: "settings",
+        }
+      )
+    }else if((this.props.profile.position_count)>=(this.props.profile.position_limit)){
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Exceed max number of positions! Upgrade now to create more positions',
+        buttons: [
+          {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
+          {label: 'OK'},
+        ]
+      });
+    }else{
+      this.setState({
+        subpage: "jobCreation",
+        }
+      )
+    }
+  }
 
   renderApplications = () => {
     this.setState({
@@ -184,6 +241,33 @@ export class EmployerDashboard extends Component {
 
   renderSubpage = () => {
     switch (this.state.subpage) {
+      case "jobs":
+        return <JobCover
+            user={this.props.user}
+            renderJobs={this.renderJobs}
+            renderJobCreation={this.renderJobCreation}
+            jobs={this.props.jobs}
+            renderJobEdition={this.renderJobEdition}
+            setJobInfo={this.setJobInfo}
+            isLoaded={this.props.isLoaded}
+            getAllJobs={this.props.getAllJobs}
+            getPJobs={this.getPJobs}
+        />;
+      case "jobCreation":
+        return <JobCreation
+            user={this.props.user}
+            renderJobs={this.renderJobs}
+            addNewJob={this.props.addNewJob}
+            getAllJobs={this.props.getAllJobs}
+        />;
+      case "jobEdition":
+        return <JobEdition
+            user={this.props.user}
+            renderJobs={this.renderJobs}
+            updateJob={this.props.updateJob}
+            getAllJobs={this.props.getAllJobs}
+            jobInfo={this.state.jobInfo}
+        />;
       case "applications":
         return <ApplicationCover
             renderPostedjobs={this.renderPostedjobs}
@@ -269,23 +353,24 @@ export class EmployerDashboard extends Component {
         }
       case "employerProfile":
         return <EmployerProfile
-                    userId={this.props.user.id}
-                    employerProfileDetail={this.props.employerProfileDetail}
-                    getEmployerProfileDetail={this.props.getEmployerProfileDetail}
-                    updateEmployerInfo={this.props.updateEmployerInfo}
-                    updateEmployerSocialMedia={this.props.updateEmployerSocialMedia}
-                    updateEmployerBasicInfo={this.props.updateEmployerBasicInfo}
-                    updateEmployerVideo={this.props.updateEmployerVideo}
-                    updateEmployerSummary={this.props.updateEmployerSummary}
-                    getEmployerPost={this.props.getEmployerPost}
-                    addEmployerPost={this.props.addEmployerPost}
-                    updateEmployerPost={this.props.updateEmployerPost}
-                    deleteEmployerPost={this.props.deleteEmployerPost}
-                    employerPost={this.props.employerPost}
-                    email={this.props.user.email}
-                    companyName={this.props.profile.company_name}
+                userId={this.props.user.id}
+                employerProfileDetail={this.props.employerProfileDetail}
+                getEmployerProfileDetail={this.props.getEmployerProfileDetail}
+                updateEmployerInfo={this.props.updateEmployerInfo}
+                updateEmployerSocialMedia={this.props.updateEmployerSocialMedia}
+                updateEmployerBasicInfo={this.props.updateEmployerBasicInfo}
+                updateEmployerVideo={this.props.updateEmployerVideo}
+                updateEmployerSummary={this.props.updateEmployerSummary}
+                getEmployerPost={this.props.getEmployerPost}
+                addEmployerPost={this.props.addEmployerPost}
+                updateEmployerPost={this.props.updateEmployerPost}
+                deleteEmployerPost={this.props.deleteEmployerPost}
+                employerPost={this.props.employerPost}
+                email={this.props.user.email}
+                companyName={this.props.profile.company_name}
                 />;
       default:
+        return null;
         //Do nothing
     }
   };
@@ -302,6 +387,7 @@ export class EmployerDashboard extends Component {
         }
       }
     };
+//    console.log(this.props.postedJobs, this.props.jobs);
     return (
       <DocumentMeta {...meta}>
         <React.Fragment>
@@ -322,6 +408,7 @@ export class EmployerDashboard extends Component {
                       renderShortlist={this.renderShortlist}
                       renderAnalytics={this.renderAnalytics}
                       renderEmployerProfile={this.renderEmployerProfile}
+                      renderJobs={this.renderJobs}
                       subpage={this.state.subpage}
                   />
                 </div>
@@ -330,7 +417,8 @@ export class EmployerDashboard extends Component {
                 <div className="dashboard-main">
                 {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
                 (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
-                (this.state.subpage === "employerProfile")) ? null :
+                (this.state.subpage === "employerProfile") || (this.state.subpage === "jobs") ||
+                (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition")) || (this.state.subpage == "") ? null :
                 <div className="container-fluid" style={{height: "22rem"}} data-tut="reactour-rowbox">
                   <RowBoxes userId={this.props.user.id} isEmployer={true}/>
                 </div>}
@@ -396,6 +484,8 @@ const mapStateToProps = (state) => {
   interview_session: state.question_reducer.interview_session,
   employerProfileDetail: state.auth_reducer.employerProfileDetail,
   employerPost: state.auth_reducer.employerPost,
+  jobs: state.job_reducer.jobs,
+  isLoaded: state.job_reducer.isLoaded,
 }
 };
 
@@ -403,7 +493,8 @@ export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFu
     addPosition, getPostedJobs, addInterviews, getApplicantsVideos, getApplicantsInfo, getReceivedInterview,
     getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
-    updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost
+    updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
+    updateJob
     })(
     EmployerDashboard
 );
