@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import Select from 'react-select'
-import { IconText } from "../DashboardComponents";
+//import { IconText } from "../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { addInterviewQuestion} from "../../../redux/actions/job_actions";
 

@@ -27,12 +27,12 @@ export const JobCover = (props) => {
           Archived
         </button>
         <button className="default-btn" onClick={props.renderJobCreation}
-          style={{color:"white", marginLeft:"5%"}}>
+          style={{color:"white", float:"right", marginBottom:"1rem"}}>
             <i className="bx bx-plus"></i>
               Create New Position
             <span></span>
         </button>
-        <button onClick={refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right", paddingTop:"1rem"}}><p style={{color:"#56a3fa"}}><box-icon name="refresh" color="#56a3fa" size="1.2rem"></box-icon>Refresh</p></button>
+        {/*<button onClick={refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right", paddingTop:"1rem"}}><p style={{color:"#56a3fa"}}><box-icon name="refresh" color="#56a3fa" size="1.2rem"></box-icon>Refresh</p></button>*/}
       </div>
       <JobList
         jobs={props.jobs}

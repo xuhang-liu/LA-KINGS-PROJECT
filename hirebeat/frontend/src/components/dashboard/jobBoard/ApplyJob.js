@@ -367,11 +367,9 @@ const ApplyJob = (props) =>{
                                             ) : <span className="ml-3 my-auto" style={{color:"#ff0000"}}>Support .pdf only</span>
                                         }
                                 </div>
-                                <div class="form-group">
-                                    <button className="default-btn mr-5" style={{position:"absolute", right:"3.7rem", bottom:"5rem", paddingLeft:"25px"}}>
-                                        Submit Application
-                                    </button>
-                                </div>       
+                                <button className="default-btn mt-3" style={{paddingLeft:"25px", float:"right"}}>
+                                    Submit Application
+                                </button>     
                             </div>
                         </form>
                         }

@@ -2,7 +2,7 @@ import React,  { Component } from "react";
 import 'boxicons';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
-import Select from 'react-select'
+//import Select from 'react-select'
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
