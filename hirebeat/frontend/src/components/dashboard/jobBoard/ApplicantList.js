@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import QuestionForm from "./QuestionForm";
 import { MyModal80 } from "./../DashboardComponents";
@@ -6,6 +6,8 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addInterviews } from "../../../redux/actions/question_actions";
 import { updateInviteStatus } from "../../../redux/actions/job_actions";
+import { MyModal } from "../DashboardComponents";
+import ReviewCandidate from "../applications/ReviewCandidate";
 
 export class ApplicantList extends Component{
     state = {
@@ -81,7 +83,7 @@ export class ApplicantList extends Component{
     }
 
     inviteCandidates = () => {
-        if (this.props.curJob.questions.length == 0 || this.state.tempQuestions.length == 0) {
+        if (this.props.curJob.questions.length == 0 && this.state.tempQuestion.length == 0) {
             this.showQForm();
         }
         else {
@@ -227,6 +229,7 @@ export class ApplicantList extends Component{
 }
 
 const ApplicantRow = (props) => {
+    const [showPreview, setShowPreview] = useState(false);
     return(
         <div>
             <hr
@@ -245,9 +248,9 @@ const ApplicantRow = (props) => {
                 </div>
                 <div className="col-3 interview-txt9 mt-2">{props.applicant.email}</div>
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
-                <div className="col-2 interview-txt9 mt-2">preview prompt</div>
+                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setShowPreview(true);}}>View</div>
                 <div className="col-2 interview-txt9 mt-2">
-                    <a href={props.applicant.resume_url} target="_blank">
+                    <a href={props.applicant.resume_url} style={{color: "#67A3F3"}} target="_blank">
                         Download
                     </a>
                 </div>
@@ -261,9 +264,21 @@ const ApplicantRow = (props) => {
                     }
                 </div>
             </div>
+            <div style={{background:"#E8EDFC"}}>
+                <MyModal className="light-blue-modal" show={showPreview} onHide={()=>{setShowPreview(false)}}>
+                        <ReviewCandidate
+                            phone={props.applicant.phone}
+                            email={props.applicant.email}
+                            location={props.applicant.location}
+                            resume_url={props.applicant.resume_url}
+                            first_name={props.applicant.first_name}
+                            last_name={props.applicant.last_name}
+                            style={{backgroundColor:"black"}} onHide={()=>{setShowPreview(false)}} />
+                </MyModal>
+            </div>
         </div>
-    )
-}
+    );
+};
 
 const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,

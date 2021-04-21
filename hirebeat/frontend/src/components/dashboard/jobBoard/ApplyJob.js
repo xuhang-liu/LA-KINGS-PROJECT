@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import {register} from "../../../redux/actions/auth_actions";
 import {createMessage} from "../../../redux/actions/message_actions";
 import {addNewApplyCandidate, getCurrentJobs} from "../../../redux/actions/job_actions";
+import parse from 'html-react-parser';
+import { confirmAlert } from 'react-confirm-alert';
 var ReactS3Uploader = require("react-s3-uploader");
 
 var uri = window.location.search;
@@ -29,6 +31,17 @@ const ApplyJob = (props) =>{
 
     function applySubmit(e) {
         e.preventDefault();
+        if (resume_url == ""){
+            return confirmAlert({
+                title: "Resume Required!",
+                message: "Please attach your resume to submit.",
+                buttons: [
+                      {
+                        label: 'Ok'
+                      }
+                ]
+          });
+        }
         if (passwordsMatch()) {
             props.register(
                 username,
@@ -37,7 +50,7 @@ const ApplyJob = (props) =>{
             );
             props.uploader.uploadFile(resume);
             let data = {
-                job_id: 1,
+                job_id: props.job.id,
                 firstname: fisrtname,
                 lastname: lastname,
                 phone: phone,
@@ -55,10 +68,20 @@ const ApplyJob = (props) =>{
     }
     function applySubmit1(e) {
         e.preventDefault();
-        console.log(resume);
+        if (resume_url == ""){
+            return confirmAlert({
+                title: "Resume Required!",
+                message: "Please attach your resume to submit.",
+                buttons: [
+                      {
+                        label: 'Ok'
+                      }
+                ]
+          });
+        }
         props.uploader.uploadFile(resume);
         let data = {
-            job_id: 1,
+            job_id: props.job.id,
             firstname: fisrtname,
             lastname: lastname,
             phone: phone,
@@ -151,13 +174,26 @@ const ApplyJob = (props) =>{
     };
 
     function onUploadFinish() {
-      };
+    };
+    function copyAlert() {
+        confirmAlert({
+              title: "URL Coppied to Clipboard!",
+              message: "",
+              buttons: [
+                    {
+                      label: 'Ok'
+                    }
+              ]
+        });
+    }
     return <>
+    {(props.job.id == "" || props.job.id == null) ?
+        <div><h3>Please enter a valid job url!</h3></div> :
         <div className="py-5" style={{background:"#E8EDFC"}}>
             <div style={{marginLeft:"auto", marginRight:"auto", width:"70%", minHeight:"800px", borderRadius:"10px", background:"white", position:"relative"}}>
                 <img style={{height:"12rem", width:"100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png"/>
                 <h1 className="ml-5 mt-5" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A"}}>{(job_id == null || job_id == "") ? "":props.job.job_title}</h1>
-                <h2 className="ml-5 mt-2" style={{fontWeight:"600", fontSize:"1.5rem", color:"#67A3F3"}}>Rho Business Banking</h2>
+                <h2 className="ml-5 mt-2" style={{fontWeight:"600", fontSize:"1.5rem", color:"#67A3F3"}}>{(job_id == null || job_id == "") ? "":props.job.company_name}</h2>
                 <div className="row pl-3">
                     <div className="col-8 pl-5 mt-5 pb-5" style={{paddingRight:"3.7rem"}}>
                         <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A"}}>
@@ -167,7 +203,7 @@ const ApplyJob = (props) =>{
                             </div>
                             <div style={{width:"25%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Type</p>
-                                <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>Full Time</p>
+                                <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_type}</p>
                             </div>                            
                             <div style={{width:"25%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Location</p>
@@ -178,30 +214,24 @@ const ApplyJob = (props) =>{
                                 <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_id}</p>
                             </div>
                         </div>
-                        <p className="mt-5" style={{fontWeight:"500", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":JSON.stringify(props.job.create_date).substring(0,11).split('"')[1]}</p>
-                        <div style={{color:"#090D3A"}}>
-                            <h2 className="mb-3">Company Overview</h2>
-                            <p className="mb-5">Rho Business Banking is on a mission to help organizations work better, together, with money. We power the nation's fastest growing companies by creating ways for teams collaborate internally with finance in order to drive better decision making, more autonomy within work forces, all the while saving time and money for our clients. We're backed by tier-1 VC's like Dragoneer, Torch Capital, Inspired Capital, M13, and others while our team is comprised of individuals from the likes of Snap, Google, Appnexus, and Apple. </p>
-                            <h2 className="mb-3">Job Summary</h2>
-                            <p className="mb-5">We are looking for a Sr. Product Designer to join our team in NYC and contribute to our Cards, Payments, and Banking products. This is an exciting opportunity for anyone interested in shaping the direction and trajectory of a new product in Fintech in one of the most exciting markets in. the world. You will be collaborating with a cross-disciplinary team (Product Managers, Engineers, Analysts, QAs, Designers) in all phases of design from discovery to execution.</p>
-                            <h2 className="mb-3">Job Responsibilities</h2>
-                            <p className="mb-5">As a Sr. Product Designer at Rho, you will:
-                                Think holistically about complex systems, empathize with customers, and understand business goals to create compelling and effective user experiences
-                                Create thoughtful and appropriate solutions to design challenges of all sizes by translating research insights and company feature goals into beautiful and engaging user interfaces which satisfy user needs, business requirements and technical constraints
-                                Collaborate with PM’s and engineers in an iterative, transparent and feedback driven process
-                            </p>
-                            <h2 className="mb-3">Basic Qualifications</h2>
-                            <p className="mb-5">
-                                CSS, HTML, Javascript, and detailed knowledge of how modern web & mobile application are built
-                                Experience designing banking/financial products
-                                UX Writing
-                                Experience leading small teams
-                            </p>
+                        <p className="mt-5" style={{fontWeight:"500", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
+                        <div>
+                            <div>
+                                <h2 className="mb-3">Company Overview</h2>
+                                <p className="mb-5">{(job_id == null || job_id == "") ? "":props.job.company_overview}</p>
+                            </div>
+                            {parse(''+((job_id == null || job_id == "") ? "":props.job.job_description)+'')}
                         </div>
                         {!Applied &&
+                        <div>
+                            {(props.profile.is_employer || props.job.id == "" || props.job.id == null) ?
+                            <button id="apply-now" className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
+                                Apply Now
+                            </button> :
                             <button id="apply-now" className="default-btn" onClick={()=>{setApplied(true)}} style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
                                 Apply Now
-                            </button>
+                            </button>}
+                        </div>
                         }
                         {(Applied && !props.auth.isAuthenticated )&&   
                             <form onSubmit={applySubmit}>
@@ -360,6 +390,7 @@ const ApplyJob = (props) =>{
                                 props.uploader = uploader;
                             }}
                             autoUpload={true}
+                            required
                         />
                     </div>
                     <div className="col-4 mt-5">
@@ -369,10 +400,11 @@ const ApplyJob = (props) =>{
                         <p className="mt-5">Link to this job</p>
                         <div className="row ml-0" style={{position:"relative",background:"#E8EDFC", borderRadius:"5px", border:"2px solid #67A3F3", width:"90%", height:"3rem"}}>
                             <div className="pt-2 pl-2" style={{color:"#090D3A", fontSize:"1.4rem", fontWeight:"500", alignItems:"center"}}>
-                                <p>https://hirebeat.co/jobs/</p>
+                                <p>{(job_id == null || job_id == "") ? "":props.job.job_url}</p>
                             </div>
                             <div className="py-1">
-                                <button className="default-btn pt-1" style={{fontSize:"1.1rem", background:"#FF6B00", borderRadius:"5px", height:"2.2rem", alignItems:"center", paddingLeft:"2rem", paddingRight:"0.6rem", position:"absolute", right:"0.3rem"}}>
+                                <button onClick={() => {copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "":props.job.job_url))}}
+                                className="default-btn pt-1" style={{fontSize:"1.1rem", background:"#FF6B00", borderRadius:"5px", height:"2.2rem", alignItems:"center", paddingLeft:"2rem", paddingRight:"0.6rem", position:"absolute", right:"0.3rem"}}>
                                     <i className='bx bx-share-alt' style={{left:"0.5rem"}}></i>Copy
                                 </button>
                             </div>
@@ -380,13 +412,14 @@ const ApplyJob = (props) =>{
                     </div>
                 </div>
             </div>
-        </div>
+        </div>}
     </>
 };
 
 const mapStateToProps = (state) => ({
     auth: state.auth_reducer,
     user: state.auth_reducer.user,
+    profile: state.auth_reducer.profile,
     job: state.job_reducer.job,
 });
 
