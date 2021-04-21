@@ -56,7 +56,7 @@ export class JobCard extends Component{
                     <div className="col-1 interview-txt9 mt-2">{this.props.job.job_details.job_id}</div>
                     <div className="col-2 interview-txt9 mt-2">{this.props.job.applicants.length}</div>
                     <div className="col-2 interview-txt9 mt-2">{this.props.job.job_details.create_date.substring(0, 10)}</div>
-                    <div className="col-2 center-items interview-txt9 mt-2">
+                    <div className="col-2 interview-txt9 mt-2" style={{display: "flex", alignItems: "center"}}>
                         <i className="bx bx-show" style={{color: "#67A3F3", marginRight: "0.3rem"}}></i>
                         <a target="_blank" href={this.props.job.job_details.job_url}>preview</a>
                     </div>

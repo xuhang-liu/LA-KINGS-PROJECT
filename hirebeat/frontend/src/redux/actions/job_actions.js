@@ -5,6 +5,8 @@ import {
     ARCHIVE_JOB,
     ADD_NEW_APPLY_CANDIDATE,
     GET_CURRENT_JOBS,
+    ADD_INTERVIEW_QUESTION,
+    UPDATE_INVITE_STATUS,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -93,3 +95,31 @@ export const getCurrentJobs = (jobid) => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
+
+export const addInterviewQuestion = (data) => (dispatch, getState) => {
+  axios
+    .post("/add-interview-question", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_INTERVIEW_QUESTION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const updateInviteStatus = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-invite-status", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: updateInviteStatus,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}

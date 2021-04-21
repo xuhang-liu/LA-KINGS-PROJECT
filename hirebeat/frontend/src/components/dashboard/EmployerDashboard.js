@@ -249,6 +249,7 @@ export class EmployerDashboard extends Component {
             renderJobEdition={this.renderJobEdition}
             setJobInfo={this.setJobInfo}
             isLoaded={this.props.isLoaded}
+            getAllJobs={this.props.getAllJobs}
         />;
       case "jobCreation":
         return <JobCreation

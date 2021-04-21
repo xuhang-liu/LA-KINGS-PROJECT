@@ -43,8 +43,8 @@ export const JobCover = (props) => {
         renderJobEdition={props.renderJobEdition}
         setJobInfo={props.setJobInfo}
         isLoaded={props.isLoaded}
+        getAllJobs={props.getAllJobs}
       />
-      {console.log(props.jobs)}
     </div>
   );
 };
