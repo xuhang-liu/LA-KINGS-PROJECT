@@ -12,6 +12,7 @@ import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubR
 //import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
+import QuestionForm from "./QuestionForm";
 
 export class JobApplication extends Component{
 
@@ -393,6 +394,7 @@ const JobViewDetail = (props) => {
 const JobCard = (props) => {
     var curlimit = 0;
     const [invite, setInvite] = useState(false);
+    const [showQForm, setShowQForm] = useState(false);
     //const [hide, setHide] = useState(true);
     //const hideSwitch = () => {setHide(hide => !hide)};
     const [expire, setExpire] = useState({ value: 7, label: '7 days' });
@@ -706,7 +708,13 @@ const JobCard = (props) => {
         if((props.applicants.length)>=(props.profile.candidate_limit)){
             candidateLimitAlert();
         }else{
-            setInvite(true);
+            // check interview questions
+            if (props.questions.length <= 0) {
+                setShowQForm(true);
+            }
+            else {
+                setInvite(true);
+            }
         }
     }
 
@@ -755,6 +763,12 @@ const JobCard = (props) => {
                                 </button>
                             }
                             </div>}
+                        <MyModal80
+                            show={showQForm}
+                            onHide={()=>{setShowQForm(false)}}
+                        >
+                            <QuestionForm jobTitle={props.jobTitle} positionId={props.positionId} hideQForm={()=>{props.getPJobs(); setShowQForm(false)}}/>
+                        </MyModal80>
                         </div>
                     </div>
                     <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem"}}>

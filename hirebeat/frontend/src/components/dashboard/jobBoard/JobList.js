@@ -103,6 +103,8 @@ export class JobList extends Component{
                     </div>
                     <ApplicantList
                         curJob={this.props.curJob}
+                        setCurJob={this.props.setCurJob}
+                        getAllJobs={this.props.getAllJobs}
                     />
                 </div>}
             </div>}

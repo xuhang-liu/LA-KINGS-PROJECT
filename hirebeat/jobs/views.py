@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates
-from questions.models import Positions
+from questions.models import Positions, InterviewQuestions
 from accounts.models import Profile, EmployerProfileDetail
 from rest_framework.response import Response
 from rest_framework import status
@@ -50,11 +50,14 @@ def get_all_jobs(request):
     jobs = list(Jobs.objects.filter(user_id=user_id).values())
     for i in range(len(jobs)):
         job_id = jobs[i]["id"]
+        positions_id = jobs[i]["positions_id"]
         # get each position applicants
         applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).values())
+        questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
         job_details = {
             "job_details": jobs[i],
             "applicants": applicants,
+            "questions": questions,
         }
         data[job_id] = job_details
 
@@ -127,3 +130,23 @@ def get_current_jobs(request):
     return Response({
         "data": data,
     })
+
+@api_view(['POST'])
+def add_interview_question(request):
+    questions = request.data['questions']
+    position_id = request.data['positionId']
+    for i in range(len(questions)):
+        InterviewQuestions.objects.create(description=questions[i], positions_id=position_id)
+    return Response("Add new questions successfully", status=status.HTTP_201_CREATED)
+
+
+@api_view(['POST'])
+def update_invite_status(request):
+    candidates = request.data['candidates']
+    is_invited = request.data['isInvited']
+    for i in range(len(candidates)):
+        candidate = ApplyCandidates.objects.get(id=candidates[i])
+        candidate.is_invited = is_invited
+        # save update to db
+        candidate.save()
+    return Response("Archive new job successfully", status=status.HTTP_202_ACCEPTED)
