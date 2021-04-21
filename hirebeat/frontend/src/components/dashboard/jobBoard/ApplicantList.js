@@ -26,6 +26,7 @@ export class ApplicantList extends Component{
 
     hideQForm = () => {
         this.props.getAllJobs(this.props.user.id);
+        this.props.getPJobs();
         setTimeout(() => {this.props.setCurJob(this.props.curJob)}, 300);
 //        console.log(this.props.jobs);
         setTimeout(() => {this.setState({showQForm: false})}, 300);
@@ -132,7 +133,6 @@ export class ApplicantList extends Component{
                     expire: 14,
                     urls: urls,
                 }
-                console.log(meta);
                 if(candidateCount > (this.props.profile.candidate_limit)){
                     alert('Upgrade Now! You can only add ' +parseInt(this.props.profile.candidate_limit)+ ' more candidates for this position!');
                 }else{
@@ -220,6 +220,7 @@ export class ApplicantList extends Component{
                         getAllJobs={this.props.getAllJobs}
                         tempQuestion={this.state.tempQuestion}
                         setTempQuestion={this.setTempQuestion}
+                        getPJobs={this.props.getPJobs}
                     />
                 </MyModal80>
             </React.Fragment>

@@ -61,7 +61,7 @@ export class QuestionForm extends Component {
             "positionId": this.props.curJob.job_details.positions_id,
         }
         this.props.addInterviewQuestion(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs;}, 300);
 //        setTimeout(() => {this.props.setCurJob(this.props.curJob)}, 600);
         setTimeout(() => {this.props.hideQForm()}, 300);
 

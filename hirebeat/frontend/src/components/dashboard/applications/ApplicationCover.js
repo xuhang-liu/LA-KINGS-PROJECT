@@ -31,7 +31,7 @@ export const ApplicationCover = (props) => {
         <button className="default-btn" onClick={props.renderPosition}
           style={{color:"white", marginLeft:"5%"}}>
             <i className="bx bx-plus"></i> 
-              Create New Position
+              Create New Interview
             <span></span>
         </button>}
         {props.loaded &&

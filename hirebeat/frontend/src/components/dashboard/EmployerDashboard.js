@@ -111,6 +111,7 @@ export class EmployerDashboard extends Component {
     this.props.getEmployerProfileDetail(this.props.user.id);
     this.props.getEmployerPost(this.props.user.id, 0);
     this.props.getAllJobs(this.props.user.id);
+    this.props.getQuestionList();
   }
 
   state = {
@@ -250,6 +251,7 @@ export class EmployerDashboard extends Component {
             setJobInfo={this.setJobInfo}
             isLoaded={this.props.isLoaded}
             getAllJobs={this.props.getAllJobs}
+            getPJobs={this.getPJobs}
         />;
       case "jobCreation":
         return <JobCreation

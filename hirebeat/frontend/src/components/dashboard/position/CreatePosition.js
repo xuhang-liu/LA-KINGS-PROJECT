@@ -189,7 +189,7 @@ export class CreatePosition extends Component{
                         <div className="row" >
                             <div className="col d-flex align-items-center" style={{marginTop:"0%"}}>
                                 <p className="db-txt1">
-                                    Create New Position
+                                    Create New Interview
                                 </p>
                             </div>
                         </div>

@@ -149,8 +149,8 @@ export class EssentialUserInfo extends Component {
     var defaultBack = "none";
     //var selectDecoration = "underline";
     //var defaultDecoration = "none";
-    var selectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-dashboard-select.png";
-    var nonselectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-dashboard-non.png";
+    var selectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-microphone-select.png";
+    var nonselectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-microphone-non.png";
     var selectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-cog-select.png";
     var nonselectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-cog-non.png";
     var nonselectHelp = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-help-circle.png";
@@ -167,6 +167,7 @@ export class EssentialUserInfo extends Component {
     var selectProfile = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle-select.png";
     var nonselectProfile = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle-non.png";
     var selectJobs = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-briefcase.png";
+    var nonselectJobs = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-briefcase-non.png";
     return (
       <React.Fragment>
       <div className="container">
@@ -279,7 +280,7 @@ export class EssentialUserInfo extends Component {
                     textSize={"12px"}
                     textDisplayed={"Jobs"}
                     backColor={this.props.subpage == "jobs" ? selectBack : defaultBack}
-                    iconSrc={selectJobs}
+                    iconSrc={this.props.subpage == "jobs" ? selectJobs : nonselectJobs}
                     textColor={this.props.subpage == "jobs" ? selectEColor : defaultEColor}
                   />
                 </button>
@@ -295,7 +296,7 @@ export class EssentialUserInfo extends Component {
                 >
                   <IconEmployerText
                     textSize={"12px"}
-                    textDisplayed={"Dashboard"}
+                    textDisplayed={"Interview"}
                     backColor={this.props.subpage == "applications" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "applications" ? selectDash : nonselectDash}
                     textColor={this.props.subpage == "applications" ? selectEColor : defaultEColor}

@@ -44,6 +44,7 @@ export const JobCover = (props) => {
         setJobInfo={props.setJobInfo}
         isLoaded={props.isLoaded}
         getAllJobs={props.getAllJobs}
+        getPJobs={props.getPJobs}
       />
     </div>
   );

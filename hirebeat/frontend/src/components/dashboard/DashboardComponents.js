@@ -447,11 +447,11 @@ export const ApplicationChart = (props) => {
             }}
             series={[
                 {
-                    name: 'total applicants',
+                    name: 'Invited Interviewees',
                     data: props.total,
                 },
                 {
-                    name: 'accepted applicants',
+                    name: 'Recorded Interviewees',
                     data: props.accepted,
                 },
             ]}
