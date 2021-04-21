@@ -45,19 +45,19 @@ export function RateSummary(props) {
             </div>
             <div className="row">
                 <div className="col-lg-4 col-4 col-sm-12 pl-0">
-                    <div className="single-funfacts funfact-style-two resume-box">
+                    <div className="single-funfacts funfact-style-two resume-box" onClick={props.renderATS}>
                         <p className="resume-res ml-4" style={{fontWeight: '600', marginBottom: "1rem"}}>ATS Findings</p>
                         <ProgressBarResume percent={ats_findings_count} max={ats_findings_count_total} height={7.5} />
                     </div>
                 </div>
                 <div className="col-lg-4 col-4 col-sm-12">
-                    <div className="single-funfacts funfact-style-two resume-box">
+                    <div className="single-funfacts funfact-style-two resume-box" onClick={props.renderRCF}>
                         <p className="resume-res ml-4" style={{fontWeight: '600', marginBottom: "1rem"}}>Recruiter Findings</p>
                         <ProgressBarResume percent={rec_findings_count} max={rec_findings_count_total} height={7.5} />
                     </div>
                 </div>
                 <div className="col-lg-4 col-4 col-sm-12" style={{paddingRight: "0px"}}>
-                    <div className="single-funfacts funfact-style-two resume-box">
+                    <div className="single-funfacts funfact-style-two resume-box" onClick={props.renderHSM}>
                         <p className="resume-res ml-4" style={{fontWeight: '600', marginBottom: "1rem"}}>Skills Match</p>
                         <ProgressBarResume percent={skills_match_count} max={skills_match_count_total} height={7.5} />
                     </div>
@@ -80,7 +80,7 @@ export const ProgressBar = (props) =>{
         <i class='bx bxs-up-arrow' style={{zIndex:"5", background:"none", position:"absolute", top:"-0.7rem", left:`${percentage.current}`}}></i>
         <div className="row mt-3">
             <p className="ml-3">0</p>
-            <p style={{position:"absolute", right:"3.5%"}}>100</p>
+            <p style={{position:"absolute", right:"0%"}}>100</p>
         </div>
     </div>
 }

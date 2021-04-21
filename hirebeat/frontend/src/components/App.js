@@ -196,6 +196,7 @@ import "./public/css/responsive.css";
 import "./public/css/animate.min.css";
 import "./public/css/bootstrap.min.css";
 import "./public/css/boxicons.min.css";
+import ApplyJob from "./dashboard/jobBoard/ApplyJob"
 
 const alertOptions = {
   timeout: 3000,
@@ -279,6 +280,7 @@ class App extends Component {
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
                 <PrivateRoute exact path="/video-interview" component={CareerResponseWindow}/>
+                <Route exact path="/apply-job" component={ApplyJob} />
                 <Route exact path="/employer" component={IndexEmployer} />
                 <Route exact path="/interview_Completion" component={InterviewCompletion} />
                 <Route exact path="/pricing" component={pricings} />
