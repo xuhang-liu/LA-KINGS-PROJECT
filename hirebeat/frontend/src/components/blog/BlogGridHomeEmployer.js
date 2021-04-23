@@ -87,6 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-workplace-camaraderie-your-powerful-tool-for-success",
     "/employer_blog-how-covid-has-changed-the-recruitment-process",
     "/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy",
     "/employer_blog-boost-up-your-roi-using-video-interviews",
@@ -101,6 +102,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer12.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer11.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer10.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer9.jpg",
@@ -116,6 +118,7 @@ const blogImgs = [
 
 const blogDates = [
     "Apr 23, 2021",
+    "Apr 23, 2021",
     "Apr 19, 2021",
     "Apr 14, 2021",
     "Apr 07, 2021",
@@ -129,6 +132,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "WORKPLACE CAMARADERIE: POWERFUL TOOL",
     "HOW COVID HAS CHANGED THE RECRUITMENT",
     "BUILD A CAMPUS RECRUITING STRATEGY",
     "BOOST UP ROI USING VIDEO INTERVIEWS",

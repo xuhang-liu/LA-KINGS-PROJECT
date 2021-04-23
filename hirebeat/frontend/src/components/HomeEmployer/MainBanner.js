@@ -42,7 +42,7 @@ class MainBanner extends Component {
                                         <div className="d-flex">
                                             <Link to="/employer_register">
                                                 <a id="id-employer_signup2" className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"1.5vmin", lineHeight:"26px"}}>
-                                                Start For Free
+                                                Start Hiring For Free
                                                     <span></span>
                                                 </a>
                                             </Link>
@@ -81,7 +81,7 @@ class MainBanner extends Component {
                                                 <div className="d-flex">
                                                     <Link to="/employer_register">
                                                         <a id="id-employer_signup2" className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"1.5vmin", lineHeight:"26px"}}>
-                                                        Start For Free
+                                                        Start Hiring For Free
                                                             <span></span>
                                                         </a>
                                                     </Link>

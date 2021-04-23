@@ -24,6 +24,25 @@ class BlogSidebarEmployer extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/employer_blog-workplace-camaraderie-your-powerful-tool-for-success">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer12.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Apr 23, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-workplace-camaraderie-your-powerful-tool-for-success">
+                                    <a>Workplace Camaraderie: Your Powerful Tool For Success</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/employer_blog-how-covid-has-changed-the-recruitment-process">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer11.jpg" alt="image"/>
