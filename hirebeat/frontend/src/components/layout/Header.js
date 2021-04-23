@@ -384,6 +384,9 @@ export class Header extends Component {
     const {isAuthenticated, user} = this.props.auth;
     var uri = window.location.pathname;
     uri = uri.substring(1, uri.length);
+    if ((uri.includes("apply-job"))){
+      return null;
+    }else {
     return (
       <React.Fragment>
       <MediaQuery minDeviceWidth={1224}>
@@ -544,6 +547,7 @@ export class Header extends Component {
         </MediaQuery>
       </React.Fragment>
     );
+    }
   }
 }
 

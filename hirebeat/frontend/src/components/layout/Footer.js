@@ -41,7 +41,7 @@ class Footer extends Component {
                                     />
                                     </a>
                                 </div>
-                                {uri.includes("employer") ?
+                                {(uri.includes("employer")  || uri=="")?
                                 <p style={{marginRight:"2%"}}>The automated video-interview platform that saves employers time and money! We help our clients to screen candidate performance anytime, anywhere.</p>
                                 : <p style={{marginRight:"2%"}}>The best career support platform that supercharges your performance to make a great impression at your next interview</p>}
                             </div>
@@ -50,36 +50,53 @@ class Footer extends Component {
                         <div className="col-lg-2 col-md-6 col-sm-6">
                             <div className="single-footer-widget">
                                 <h3>Company</h3>
-
+                                {(uri.includes("employer")  || uri=="")?
                                 <ul className="services-list">
                                     <li>
-                                        <Link to="/company">
+                                        <Link to="/employer_company">
                                             <a>About Us</a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/pricing">
+                                        <Link to="/employer-pricing">
                                             <a>Our Pricing</a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/bloghome">
+                                        <Link to="/bloghome_employer">
                                             <a>Blog</a>
                                         </Link>
                                     </li>
-                                    <li>
-                                        <Link to="/jobs">
-                                            <a>Join Us</a>
-                                        </Link>
-                                    </li>
-                                </ul>
+                                </ul> :
+                                <ul className="services-list">
+                                <li>
+                                    <Link to="/company">
+                                        <a>About Us</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/pricing">
+                                        <a>Our Pricing</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/bloghome">
+                                        <a>Blog</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/jobs">
+                                        <a>Join Us</a>
+                                    </Link>
+                                </li>
+                                </ul>}
                             </div>
                         </div>
 
                         <div className="col-lg-2 col-md-6 col-sm-6">
                             <div className="single-footer-widget">
                                 <h3>Support</h3>
-
+                                {(uri.includes("employer")  || uri=="")?
                                 <ul className="support-list">
                                     <li>
                                         <Link to="/privacy">
@@ -92,11 +109,28 @@ class Footer extends Component {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/contact">
+                                        <Link to="/employer_contact">
                                             <a>Contact Us</a>
                                         </Link>
                                     </li>
-                                </ul>
+                                </ul>:
+                                <ul className="support-list">
+                                <li>
+                                    <Link to="/privacy">
+                                        <a>Privacy Policy</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/term">
+                                        <a>Terms & Conditions</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/contact">
+                                        <a>Contact Us</a>
+                                    </Link>
+                                </li>
+                                </ul>}
                             </div>
                         </div>
 
@@ -183,28 +217,46 @@ class Footer extends Component {
                             <div className="single-footer-widget">
                                 <h3>Company</h3>
 
+                                {(uri.includes("employer") || uri=="")?
                                 <ul className="services-list">
                                     <li>
-                                        <Link to="/company">
+                                        <Link to="/employer_company">
                                             <a>About Us</a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/pricing">
+                                        <Link to="/employer-pricing">
                                             <a>Our Pricing</a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/bloghome">
+                                        <Link to="/bloghome_employer">
                                             <a>Blog</a>
                                         </Link>
                                     </li>
-                                    <li>
-                                        <Link to="/jobs">
-                                            <a>Join Us</a>
-                                        </Link>
-                                    </li>
-                                </ul>
+                                </ul> :
+                                <ul className="services-list">
+                                <li>
+                                    <Link to="/company">
+                                        <a>About Us</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/pricing">
+                                        <a>Our Pricing</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/bloghome">
+                                        <a>Blog</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/jobs">
+                                        <a>Join Us</a>
+                                    </Link>
+                                </li>
+                                </ul>}
                             </div>
                         </div>
 
@@ -212,6 +264,7 @@ class Footer extends Component {
                             <div className="single-footer-widget">
                                 <h3>Support</h3>
 
+                                {(uri.includes("employer")  || uri=="")?
                                 <ul className="support-list">
                                     <li>
                                         <Link to="/privacy">
@@ -224,11 +277,28 @@ class Footer extends Component {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/contact">
+                                        <Link to="/employer_contact">
                                             <a>Contact Us</a>
                                         </Link>
                                     </li>
-                                </ul>
+                                </ul>:
+                                <ul className="support-list">
+                                <li>
+                                    <Link to="/privacy">
+                                        <a>Privacy Policy</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/term">
+                                        <a>Terms & Conditions</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/contact">
+                                        <a>Contact Us</a>
+                                    </Link>
+                                </li>
+                                </ul>}
                             </div>
                         </div>
 

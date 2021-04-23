@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {connect} from "react-redux";
+import PageTitleArea from '../../Common/PageTitleArea';
+import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
+import { Link } from "react-router-dom";
 import {register} from "../../../redux/actions/auth_actions";
 import {createMessage} from "../../../redux/actions/message_actions";
 import {addNewApplyCandidate, getCurrentJobs} from "../../../redux/actions/job_actions";
 import parse from 'html-react-parser';
+import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 var ReactS3Uploader = require("react-s3-uploader");
 
@@ -186,7 +190,9 @@ const ApplyJob = (props) =>{
               ]
         });
     }
-    return <>
+    return (
+    <React.Fragment>
+    <MediaQuery minDeviceWidth={1224}>
     {(props.job.id == "" || props.job.id == null) ?
         <div><h3>Please enter a valid job url!</h3></div> :
         <div className="py-5" style={{background:"#E8EDFC"}}>
@@ -305,7 +311,7 @@ const ApplyJob = (props) =>{
                                             <input class="form-check-input" type="checkbox" id="gridCheck1" required/>
                                             <label style={{color:"#B0B0B0"}} class="form-check-label mb-4" for="gridCheck1">
                                                 I have read and agreed to the
-                                            </label><span style={{color:"#ff612f"}}> Terms & Conditions</span>
+                                            </label><a style={{color:"#ff612f"}} href="/term" target="_blank"> Terms & Conditions</a>
                                         </div>
                                         </div>
                                     </div>
@@ -407,11 +413,62 @@ const ApplyJob = (props) =>{
                                 </button>
                             </div>
                         </div>
+                        <div className="single-footer-widget1">
+                                    <ul className="social">
+                                    <li>
+                                    <FacebookShareButton 
+                                        url={(job_id == null || job_id == "") ? "":props.job.job_url}
+                                        quote={(job_id == null || job_id == "") ? "":props.job.job_title + " at "+ (job_id == null || job_id == "") ? "":props.job.company_name}
+                                        hashtag={(job_id == null || job_id == "") ? "":props.job.company_name}>
+                                        <a target="_blank">
+                                            <i className="bx bxl-facebook"></i>
+                                        </a>
+                                    </FacebookShareButton>
+                                    </li>
+                                    <li>
+                                        <TwitterShareButton
+                                           url={(job_id == null || job_id == "") ? "":props.job.job_url}
+                                           title={(job_id == null || job_id == "") ? "":props.job.job_title + " at "+ (job_id == null || job_id == "") ? "":props.job.company_name}
+                                           via={(job_id == null || job_id == "") ? "":props.job.company_name}
+                                           hashtag={(job_id == null || job_id == "") ? "":props.job.company_name}>
+                                           <a target="_blank">
+                                                <i className="bx bxl-twitter"></i>   
+                                           </a>
+                                        </TwitterShareButton>
+                                    </li>
+                                    <li>
+                                        <LinkedinShareButton
+                                            url={(job_id == null || job_id == "") ? "":props.job.job_url}
+                                            title={(job_id == null || job_id == "") ? "":props.job.job_title + " at "+ (job_id == null || job_id == "") ? "":props.job.company_name}
+                                            source={(job_id == null || job_id == "") ? "":props.job.company_name}>
+                                            <a target="_blank">
+                                                <i className="bx bxl-linkedin"></i>
+                                            </a>
+                                        </LinkedinShareButton>
+                                    </li>
+                                </ul>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>}
-    </>
+        </MediaQuery>
+        <MediaQuery maxDeviceWidth={1223}>
+            <PageTitleArea
+              pageTitle="Welcome to Hirebeat!"
+              pageDescription="Our mobile functionality is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
+            />
+            <div style={{textAlign: "center"}}>
+            <Link to="/">
+              <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00", marginTop:"1rem",marginBottom:"1rem"}}>
+                <i className="bx bxs-hot"></i>
+                Back to Home Page
+              </a>
+            </Link>
+            </div>
+          </MediaQuery>
+    </React.Fragment>
+    )
 };
 
 const mapStateToProps = (state) => ({

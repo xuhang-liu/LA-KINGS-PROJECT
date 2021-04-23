@@ -97,6 +97,7 @@ export class ApplicantList extends Component{
             const names = [];
             const invitedCandidates = [];
             let candidates = document.getElementsByClassName("selected-candidate");
+            let statusBtns = document.getElementsByClassName("invite-btn");
             for (let i = 0; i < candidates.length; i++) {
                 if (candidates[i].checked) {
                     let candidate = JSON.parse(candidates[i].value);
@@ -106,6 +107,10 @@ export class ApplicantList extends Component{
                     emails.push(candidate.email.toLowerCase());
                     invitedCandidates.push(candidate.id);
                     candidateCount+=1;
+                    // hide checkbox
+                    candidates[i].style.display = "none";
+                    // show invite status
+                    statusBtns[i].style.display = "block";
                 }
             }
             // check candidates selected or not
@@ -117,7 +122,7 @@ export class ApplicantList extends Component{
                     let url = "";
                     if (emails[i] != "" && names[i] != "") {
                         //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-                        let prefix = "https://hirebeat.co/candidate-login?";  // online todo change back
+                        let prefix = "https://hirebeat.co/candidate-login?";  // online
                         let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
                         let encode = window.btoa(params);
                         url = prefix + encode;
@@ -144,7 +149,7 @@ export class ApplicantList extends Component{
                     }
                     this.props.updateInviteStatus(data);
                     // update
-                    setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
+                    setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 300);
                     this.sendSuccessAlert();
                 }
             }
@@ -194,6 +199,15 @@ export class ApplicantList extends Component{
                             return (
                                 <ApplicantRow
                                     applicant={a}
+                                    curJob={this.props.curJob}
+                                    tempQuestion={this.state.tempQuestion}
+                                    profile={this.props.profile}
+                                    showQForm={this.showQForm}
+                                    addInterviews={this.props.addInterviews}
+                                    updateInviteStatus={this.props.updateInviteStatus}
+                                    getAllJobs={this.props.getAllJobs}
+                                    getPJobs={this.props.getPJobs}
+                                    user={this.props.user}
                                 />
                             )
                         })}
@@ -231,6 +245,7 @@ export class ApplicantList extends Component{
 
 const ApplicantRow = (props) => {
     const [showPreview, setShowPreview] = useState(false);
+    const [status, setStatus] = useState(false);
     return(
         <div>
             <hr
@@ -244,8 +259,9 @@ const ApplicantRow = (props) => {
             />
             <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                 <div className="col-2 interview-txt9 mt-2">
-                    <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox"/> &nbsp;
-                    {props.applicant.first_name + " " + props.applicant.last_name}
+                    {(!props.applicant.is_invited && !status) &&
+                        <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox"/>}
+                     &nbsp; {props.applicant.first_name + " " + props.applicant.last_name}
                 </div>
                 <div className="col-3 interview-txt9 mt-2">{props.applicant.email}</div>
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
@@ -256,13 +272,19 @@ const ApplicantRow = (props) => {
                     </a>
                 </div>
                 <div className="col-1 interview-txt9 mt-2" style={{padding: "0rem"}}>
-                    {props.applicant.is_invited &&
+                    {(props.applicant.is_invited || status)&&
                         <button className="default-btn"
                             style={{backgroundColor: "#13C4A1", padding: "5px"}}
                         >
                             Invited
                         </button>
                     }
+                    {/* fake state, here to solve async problem */}
+                    <button className="default-btn invite-btn"
+                        style={{backgroundColor: "#13C4A1", padding: "5px", display: "none"}}
+                    >
+                        Invited
+                    </button>
                 </div>
             </div>
             <div style={{background:"#E8EDFC"}}>
@@ -274,6 +296,18 @@ const ApplicantRow = (props) => {
                             resume_url={props.applicant.resume_url}
                             first_name={props.applicant.first_name}
                             last_name={props.applicant.last_name}
+                            curJob={props.curJob}
+                            tempQuestion={props.tempQuestion}
+                            profile={props.profile}
+                            showQForm={props.showQForm}
+                            addInterviews={props.addInterviews}
+                            candidateId={props.applicant.id}
+                            updateInviteStatus={props.updateInviteStatus}
+                            getAllJobs={props.getAllJobs}
+                            getPJobs={props.getPJobs}
+                            user={props.user}
+                            setStatus={setStatus}
+                            is_invited={props.applicant.is_invited}
                             style={{backgroundColor:"black"}} onHide={()=>{setShowPreview(false)}} />
                 </MyModal>
             </div>

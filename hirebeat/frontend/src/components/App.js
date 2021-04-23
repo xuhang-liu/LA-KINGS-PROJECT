@@ -35,6 +35,7 @@ import BlogDetail7_Employer from "./blog/blog-details7-employer";
 import BlogDetail8_Employer from "./blog/blog-details8-employer";
 import BlogDetail9_Employer from "./blog/blog-details9-employer";
 import BlogDetail10_Employer from "./blog/blog-details10-employer";
+import BlogDetail11_Employer from "./blog/blog-details11-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -300,6 +301,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-how-to-get-your-job-postings-noticed" component={BlogDetail8_Employer} />
                 <Route exact path="/employer_blog-boost-up-your-roi-using-video-interviews" component={BlogDetail9_Employer} />
                 <Route exact path="/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy" component={BlogDetail10_Employer} />
+                <Route exact path="/employer_blog-how-covid-has-changed-the-recruitment-process" component={BlogDetail11_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
