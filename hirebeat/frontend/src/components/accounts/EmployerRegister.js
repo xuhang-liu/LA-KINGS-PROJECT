@@ -214,7 +214,9 @@ export class EmployerRegister extends Component {
                          }}>
                         <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
                         I have read and agree to the
-                        <a href="/term"
+                        <a 
+                          target="_blank"
+                          href="/term"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
@@ -377,7 +379,9 @@ export class EmployerRegister extends Component {
                          }}>
                         <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
                         I have read and agree to the
-                        <a href="/term"
+                        <a 
+                          target="_blank"
+                          href="/term"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",

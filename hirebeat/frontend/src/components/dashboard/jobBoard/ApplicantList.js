@@ -199,6 +199,15 @@ export class ApplicantList extends Component{
                             return (
                                 <ApplicantRow
                                     applicant={a}
+                                    curJob={this.props.curJob}
+                                    tempQuestion={this.state.tempQuestion}
+                                    profile={this.props.profile}
+                                    showQForm={this.showQForm}
+                                    addInterviews={this.props.addInterviews}
+                                    updateInviteStatus={this.props.updateInviteStatus}
+                                    getAllJobs={this.props.getAllJobs}
+                                    getPJobs={this.props.getPJobs}
+                                    user={this.props.user}
                                 />
                             )
                         })}
@@ -236,6 +245,7 @@ export class ApplicantList extends Component{
 
 const ApplicantRow = (props) => {
     const [showPreview, setShowPreview] = useState(false);
+    const [status, setStatus] = useState(false);
     return(
         <div>
             <hr
@@ -249,7 +259,7 @@ const ApplicantRow = (props) => {
             />
             <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                 <div className="col-2 interview-txt9 mt-2">
-                    {!props.applicant.is_invited &&
+                    {(!props.applicant.is_invited && !status) &&
                         <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox"/>}
                      &nbsp; {props.applicant.first_name + " " + props.applicant.last_name}
                 </div>
@@ -262,7 +272,7 @@ const ApplicantRow = (props) => {
                     </a>
                 </div>
                 <div className="col-1 interview-txt9 mt-2" style={{padding: "0rem"}}>
-                    {props.applicant.is_invited &&
+                    {(props.applicant.is_invited || status)&&
                         <button className="default-btn"
                             style={{backgroundColor: "#13C4A1", padding: "5px"}}
                         >
@@ -286,6 +296,18 @@ const ApplicantRow = (props) => {
                             resume_url={props.applicant.resume_url}
                             first_name={props.applicant.first_name}
                             last_name={props.applicant.last_name}
+                            curJob={props.curJob}
+                            tempQuestion={props.tempQuestion}
+                            profile={props.profile}
+                            showQForm={props.showQForm}
+                            addInterviews={props.addInterviews}
+                            candidateId={props.applicant.id}
+                            updateInviteStatus={props.updateInviteStatus}
+                            getAllJobs={props.getAllJobs}
+                            getPJobs={props.getPJobs}
+                            user={props.user}
+                            setStatus={setStatus}
+                            is_invited={props.applicant.is_invited}
                             style={{backgroundColor:"black"}} onHide={()=>{setShowPreview(false)}} />
                 </MyModal>
             </div>

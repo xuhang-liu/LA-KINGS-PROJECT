@@ -31,7 +31,8 @@ import { EmployerProfile } from "./employerProfile/EmployerProfile";
 import { JobCover } from "./jobBoard/JobCover";
 import { JobCreation } from "./jobBoard/JobCreation";
 import JobEdition from "./jobBoard/JobEdition";
-import ReviewCandidate from "./applications/ReviewCandidate";
+import Footer from "../layout/Footer";
+//import ReviewCandidate from "./applications/ReviewCandidate";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -445,6 +446,7 @@ export class EmployerDashboard extends Component {
             </Link>
             </div>
           </MediaQuery>
+          <Footer />
         </React.Fragment>
         </DocumentMeta>
     );

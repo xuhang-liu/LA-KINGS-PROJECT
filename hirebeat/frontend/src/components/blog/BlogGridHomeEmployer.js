@@ -87,6 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-how-covid-has-changed-the-recruitment-process",
     "/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy",
     "/employer_blog-boost-up-your-roi-using-video-interviews",
     "/employer_blog-how-to-get-your-job-postings-noticed",
@@ -100,6 +101,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer11.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer10.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer9.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer8.jpg",
@@ -113,6 +115,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Apr 23, 2021",
     "Apr 19, 2021",
     "Apr 14, 2021",
     "Apr 07, 2021",
@@ -126,6 +129,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "HOW COVID HAS CHANGED THE RECRUITMENT",
     "BUILD A CAMPUS RECRUITING STRATEGY",
     "BOOST UP ROI USING VIDEO INTERVIEWS",
     "HOW TO GET YOUR JOB POSTINGS NOTICED",

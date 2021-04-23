@@ -1,9 +1,66 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {IconText} from "../DashboardComponents";
 
-const ReviewCandidate = (props) => {    
+const ReviewCandidate = (props) => {
+    const [noshowInvite, setNoshowInvite] = useState(false);
+    function inviteCandidates() {
+        if (props.curJob.questions.length == 0 && props.tempQuestion.length == 0) {
+            props.showQForm();
+        }
+        else {
+            let candidateCount = 0;
+            let companyName = props.curJob.job_details.company_name;
+            let jobTitle = props.curJob.job_details.job_title;
+            let positionId = props.curJob.job_details.positions_id;
+            // collect input name and email
+            const emails = [];
+            const names = [];
+            const invitedCandidates = [];
+            emails.push(props.email);
+            names.push(props.first_name+" "+props.last_name);
+            invitedCandidates.push(props.candidateId);
+            props.setStatus(true);
+            setNoshowInvite(true);
+            let urls = [];
+            for (let i = 0; i < emails.length; i++) {
+                // make sure urls have the same size of emails and names
+                let url = "";
+                if (emails[i] != "" && names[i] != "") {
+                    //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+                    let prefix = "https://hirebeat.co/candidate-login?";  // online
+                    let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
+                    let encode = window.btoa(params);
+                    url = prefix + encode;
+                }
+                urls.push(url);
+            }
+            let meta = {
+                company_name: companyName,
+                job_title: jobTitle,
+                position_id: positionId,
+                emails: emails,
+                names: names,
+                expire: 14,
+                urls: urls,
+            }
+            if(candidateCount > (props.profile.candidate_limit)){
+                alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit)+ ' more candidates for this position!');
+            }else{
+                // save data to db
+                props.addInterviews(meta);
+                let data = {
+                    "candidates": invitedCandidates,
+                    "isInvited": true,
+                }
+                props.updateInviteStatus(data);
+                // update
+                setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
+                alert("Send Invitation Success!");
+            }
+        }
+    };
 
-    const renderResume = (resumes) => {
+    {/*const renderResume = (resumes) => {
         return(
             <div>
                 <div className="row">
@@ -19,7 +76,7 @@ const ReviewCandidate = (props) => {
                 </div>
             </div>
         )
-    }   
+    }*/}
 
     return(
         <div className="fluid-container ml-5 mb-5" style={{width:'92%'}}>
@@ -112,11 +169,12 @@ const ReviewCandidate = (props) => {
                                 iconMargin={"3px"}
                             />
                         </div>*/}
+                        {(!props.is_invited && !noshowInvite) &&
                         <div className="row" style={{display:"flex", justifyContent:"space-around", position:"absolute", bottom:"2rem", left:"0.9rem", width:"100%"}}>
-                            <button className="default-btn1" style={{paddingLeft:"25px"}}>
+                            <button onClick={inviteCandidates} className="default-btn1" style={{paddingLeft:"25px"}}>
                                 Invite to Interview
                             </button>
-                        </div>
+                        </div>}
                     </div>
                 </div>
                 <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{background:"white", borderRadius:"10px", height:"44rem", width:"73%"}}>

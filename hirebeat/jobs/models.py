@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 from questions.models import Positions
 
@@ -29,3 +31,16 @@ class ApplyCandidates(models.Model):
     resume_url = models.CharField(max_length=100, null=True, blank=True)
     apply_date = models.DateTimeField(auto_now_add=True)
     is_invited = models.BooleanField(default=False)
+    result_rate = models.CharField(max_length=50, null=True, blank=True)
+    hard_skill_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    hard_skill_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    hard_skill_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    soft_skill_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    soft_skill_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    soft_skill_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    other_keyword_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    other_keyword_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    other_keyword_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    basic_cri_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    basic_cri_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    basic_cri_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
