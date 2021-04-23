@@ -156,9 +156,9 @@ export class Header extends Component {
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    Company <i className="bx bx-chevron-down"></i>
+                    About Us <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"10rem"}}>
-                      <li><Link id="id-aboutus1" to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link id="id-aboutus1" to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Company</Link></li>
                       <li><Link id="id-contact1" to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
                       <li><Link id="id-joinus1" to="/jobs" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Join Us</Link></li>
                       <li><Link id="id-blog1" to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
@@ -258,10 +258,11 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
                   Job Seekers <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu" style={{height:"21.4rem",width:"18rem"}}>
+                    <ul className="nav_submenu" style={{height:"21rem",width:"18rem"}}>
                       <li>
                         <a id="id-jobseeker2" href="/for_candidate" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        Job Seekers Home</a></li>
+                        Home Page</a></li>
+                        <li><hr style={{marginBottom:"0.4rem", marginTop:"0.4rem"}}/></li>
                         <li>
                         <Link id="id-interviewpr2" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                           Interview Practice</Link></li>
@@ -280,7 +281,7 @@ export class Header extends Component {
                         <li>
                         <Link id="id-careerquiz2" to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Career Quiz</Link></li>
-                        <li><hr/></li>
+                        <li><hr style={{marginBottom:"0.4rem", marginTop:"0.4rem"}}/></li>
                         <li>
                         <Link id="id-careerquiz2" to="/register" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Create Free Account</Link></li>
@@ -291,9 +292,9 @@ export class Header extends Component {
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    Company <i className="bx bx-chevron-down"></i>
+                    About Us <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"8rem"}}>
-                      <li><Link id="id-aboutus3" to="/employer_company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
+                      <li><Link id="id-aboutus3" to="/employer_company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Company</Link></li>
                       <li><Link id="id-contact3" to="/employer_contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
                       <li><Link id="id-blog3" to="/bloghome_employer" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Blog</Link></li>
                     </ul>
