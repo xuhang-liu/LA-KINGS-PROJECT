@@ -7,6 +7,7 @@ import {
     GET_CURRENT_JOBS,
     ADD_INTERVIEW_QUESTION,
     UPDATE_INVITE_STATUS,
+    DELETE_JOB,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -115,7 +116,21 @@ export const updateInviteStatus = (data) => (dispatch, getState) => {
     .post("/update-invite-status", data, tokenConfig(getState))
     .then((res) => {
       dispatch({
-        type: updateInviteStatus,
+        type: UPDATE_INVITE_STATUS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const deleteJob = (data) => (dispatch, getState) => {
+  axios
+    .post("/jobs/delete-job", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: DELETE_JOB,
         payload: res.data,
       });
     })

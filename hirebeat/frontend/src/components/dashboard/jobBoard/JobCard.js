@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { confirmAlert } from 'react-confirm-alert';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { updateJob, archiveJob, getAllJobs} from "../../../redux/actions/job_actions";
+import { updateJob, archiveJob, getAllJobs, deleteJob} from "../../../redux/actions/job_actions";
 
 export class JobCard extends Component{
 
@@ -19,6 +20,16 @@ export class JobCard extends Component{
         }
         this.props.archiveJob(data);
         setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
+    };
+
+    deleteJob = () => {
+        let id = this.props.job.job_details.id;
+        let data = {
+            "id": id,
+            "userId": this.props.user.id,
+        }
+        this.props.deleteJob(data);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
     };
 
     activateJob = () => {
@@ -65,9 +76,11 @@ export class JobCard extends Component{
                             filter={this.props.filter}
                             archiveJob={this.archiveJob}
                             activateJob={this.activateJob}
+                            deleteJob={this.deleteJob}
                             renderJobEdition={this.props.renderJobEdition}
                             setJobInfo={this.props.setJobInfo}
                             jobInfo={this.props.job.job_details}
+                            applicantsNum={this.props.job.applicants.length}
                         />
                     </div>
                 </div>
@@ -78,6 +91,21 @@ export class JobCard extends Component{
 
 const ActionButton = (props) => {
     let filter = props.filter;
+    function deleteAlert() {
+        confirmAlert({
+            title: "Confirm to delete",
+            message: "Are you sure to delete this job?",
+            buttons: [
+                {
+                  label: 'Yes',
+                  onClick: () => props.deleteJob()
+                },
+                {
+                  label: 'No'
+                }
+            ]
+        });
+    }
     return (
         <div>
         {filter == "active" ?
@@ -88,10 +116,15 @@ const ActionButton = (props) => {
                         Edit
                     </span>
                 </div>
-                <div className="profile-edit" style={{color: "#F36F67", marginLeft: "5%"}}>
-                    <i className="bx bx-box"></i>
-                    <span type="button" onClick={props.archiveJob}>Archive</span>
-                </div>
+                {props.applicantsNum > 0 ?
+                    <div className="profile-edit" style={{color: "#F36F67", marginLeft: "5%"}}>
+                        <i className="bx bx-box"></i>
+                        <span type="button" onClick={props.archiveJob}>Archive</span>
+                    </div> :
+                    <div className="profile-edit" style={{color: "#F36F67", marginLeft: "5%"}}>
+                        <i className="bx bx-trash"></i>
+                        <span type="button" onClick={deleteAlert}>Delete</span>
+                    </div>}
             </div> :
             <div className="row">
                 <div className="profile-edit">
@@ -105,6 +138,6 @@ const ActionButton = (props) => {
     );
 }
 
-export default withRouter(connect(null, { updateJob, archiveJob, getAllJobs})(
+export default withRouter(connect(null, { updateJob, archiveJob, getAllJobs, deleteJob})(
   JobCard
 ));

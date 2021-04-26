@@ -117,7 +117,6 @@ def add_new_apply_candidate(request):
 @api_view(['GET'])
 def get_current_jobs(request):
     job_id = request.query_params.get("jobid")
-    print(job_id)
     jobs = Jobs.objects.get(pk=job_id)
     data = {
         "job_title": jobs.job_title,
@@ -156,3 +155,18 @@ def update_invite_status(request):
         # save update to db
         candidate.save()
     return Response("Archive new job successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def delete_job(request):
+    id = request.data['id']
+    user = User.objects.get(pk=request.data["userId"])
+    # update user profile
+    profile = Profile.objects.get(user_id=user.id)
+    profile.position_count -= 1
+    profile.save()
+    # delete job and position
+    job = Jobs.objects.get(id=id)
+    position_id = job.positions_id
+    Positions.objects.filter(id=position_id).delete()
+    job.delete()
+    return Response("Delete current job successfully", status=status.HTTP_202_ACCEPTED)
