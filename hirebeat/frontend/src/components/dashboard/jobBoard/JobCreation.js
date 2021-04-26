@@ -63,7 +63,7 @@ export class JobCreation extends Component{
             jobType: this.state.jobType
         };
         this.props.addNewJob(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
         e.preventDefault();
         this.props.renderJobs();
     }

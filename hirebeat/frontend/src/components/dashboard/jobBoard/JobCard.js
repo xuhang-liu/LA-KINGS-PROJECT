@@ -25,9 +25,10 @@ export class JobCard extends Component{
         let id = this.props.job.job_details.id;
         let data = {
             "id": id,
+            "userId": this.props.user.id,
         }
         this.props.deleteJob(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
     };
 
     activateJob = () => {

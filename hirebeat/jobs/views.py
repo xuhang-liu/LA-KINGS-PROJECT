@@ -159,5 +159,14 @@ def update_invite_status(request):
 @api_view(['POST'])
 def delete_job(request):
     id = request.data['id']
-    Jobs.objects.filter(id=id).delete()
+    user = User.objects.get(pk=request.data["userId"])
+    # update user profile
+    profile = Profile.objects.get(user_id=user.id)
+    profile.position_count -= 1
+    profile.save()
+    # delete job and position
+    job = Jobs.objects.get(id=id)
+    position_id = job.positions_id
+    Positions.objects.filter(id=position_id).delete()
+    job.delete()
     return Response("Delete current job successfully", status=status.HTTP_202_ACCEPTED)

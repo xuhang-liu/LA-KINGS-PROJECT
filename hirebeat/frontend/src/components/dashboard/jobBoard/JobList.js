@@ -79,6 +79,7 @@ export class JobList extends Component{
                                     setCurJob={this.props.setCurJob}
                                     renderJobEdition={this.props.renderJobEdition}
                                     setJobInfo={this.props.setJobInfo}
+                                    getPJobs={this.props.getPJobs}
                                 />
                             );
                         })
