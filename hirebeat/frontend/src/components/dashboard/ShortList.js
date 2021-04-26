@@ -26,6 +26,7 @@ const ShortList = (props) => {
     
     return <div>
             <div className="container min-width-980">
+            <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-list-ul"></i><span className="ml-2">Shortlist</span></b></h3></div>
             <div className="row">
                 <h3 className="pt-2 ml-3 mr-5 col-9">{props.postedJobs[jobId].job_title} {props.postedJobs[jobId].job_id}</h3>
                 <DropdownButton variant="white" id="dropdown-basic" size="lg" title="Select Position" >

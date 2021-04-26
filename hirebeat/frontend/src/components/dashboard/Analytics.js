@@ -127,6 +127,7 @@ export class Analytics extends Component {
     render() {
         return(
             <div className="container-xl">
+                <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-bar-chart-square"></i><span className="ml-2">Analytics</span></b></h3></div>
                 <div className="row">
                     <div className="col">
                         <div className="chart-bg" style={{marginTop:"2rem"}}>

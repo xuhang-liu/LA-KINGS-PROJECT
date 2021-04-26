@@ -85,6 +85,7 @@ export class JobCreation extends Component{
 
         return(
             <div className="container" style={{width:'95%'}}>
+                <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-briefcase"></i><span className="ml-2">Jobs / Create New Position</span></b></h3></div>
                 <div className="row">
                     <div className="col d-flex align-items-center">
                         <button
@@ -98,14 +99,6 @@ export class JobCreation extends Component{
                                 <p style={{color: "#67A3F3", fontSize: "1.25rem"}}>Back</p>
                             </div>
                         </button>
-                    </div>
-                </div>
-
-                <div className="row" >
-                    <div className="col d-flex align-items-center" style={{marginTop:"0%"}}>
-                        <p className="db-txt1">
-                            Create New Position
-                        </p>
                     </div>
                 </div>
                 <div className="card container" style={{marginTop:"1%"}}>

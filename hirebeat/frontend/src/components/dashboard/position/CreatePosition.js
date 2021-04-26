@@ -165,6 +165,7 @@ export class CreatePosition extends Component{
 
         return(
             <div className="container" style={{width:'95%'}}>
+                <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-microphone"></i><span className="ml-2">Interview / Create New Position</span></b></h3></div>
                 {position_added &&
                     <div>
                         <div className="row">
@@ -183,14 +184,6 @@ export class CreatePosition extends Component{
                                         iconMargin={"3px"}
                                     />
                                 </button>
-                            </div>
-                        </div>
-
-                        <div className="row" >
-                            <div className="col d-flex align-items-center" style={{marginTop:"0%"}}>
-                                <p className="db-txt1">
-                                    Create New Interview
-                                </p>
                             </div>
                         </div>
                         <div className="card container" style={{marginTop:"1%"}}>

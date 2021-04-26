@@ -128,6 +128,7 @@ export class EmployerProfile extends Component {
         return (
             <React.Fragment>
                 <div className="profile-container">
+                <div style={{marginBottom: "30px"}}><h3><b><i className="bx bxs-dashboard"></i><span className="ml-2">Dashboard</span></b></h3></div>
                     <div className="row">
                         <div className="col-5">
                             {/* Personal Information */}

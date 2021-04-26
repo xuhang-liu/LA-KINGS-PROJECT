@@ -93,7 +93,7 @@ class BlogDetailsContent14 extends Component {
                                     </p>
                                     <br/>
                                     <p>
-                                    Looking to further improve your interview skills? Try a mock interview at <a href="/for_candidate">HireBeat</a> and get professional feedback on your performance.
+                                    Looking to further improve your interview skills? Try a mock interview at <a href="/job-seekers">HireBeat</a> and get professional feedback on your performance.
                                     </p>
                                 </div>
                             </div>

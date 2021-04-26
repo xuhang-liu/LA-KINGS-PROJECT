@@ -105,7 +105,7 @@ class BlogDetailsContent17 extends Component {
                                     </p>
                                     <br/>
                                     <p>
-                                    To get yourself better prepare before an interview, you can use <a href="/for_candidate">HireBeat</a> to practice in mock interview and review your performance. Being able to spot your own mistakes and correct them before the formal interview will ensure you to show your best performance during the formal interview.
+                                    To get yourself better prepare before an interview, you can use <a href="/job-seekers">HireBeat</a> to practice in mock interview and review your performance. Being able to spot your own mistakes and correct them before the formal interview will ensure you to show your best performance during the formal interview.
                                     </p>
                                 </div>
                             </div>

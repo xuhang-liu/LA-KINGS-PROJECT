@@ -103,6 +103,7 @@ export class JobEdition extends Component{
     render() {
         return(
             <div className="container" style={{width:'95%'}}>
+                <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-briefcase"></i><span className="ml-2">Jobs / Edit</span></b></h3></div>
                 <div className="row">
                     <div className="col d-flex align-items-center">
                         <button
@@ -116,14 +117,6 @@ export class JobEdition extends Component{
                                 <p style={{color: "#67A3F3", fontSize: "1.25rem"}}>Back to Jobs</p>
                             </div>
                         </button>
-                    </div>
-                </div>
-
-                <div className="row" >
-                    <div className="col d-flex align-items-center" style={{marginTop:"0%"}}>
-                        <p className="db-txt1">
-                            Edit Position
-                        </p>
                     </div>
                 </div>
                 <div className="card container" style={{marginTop:"1%"}}>
