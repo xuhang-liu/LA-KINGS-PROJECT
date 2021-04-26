@@ -334,7 +334,7 @@ class App extends Component {
                 <Route exact path="/employer_register" component={EmployerRegister} />
                 <Route exact path="/upload" component={MyVideoUploader} />
                 <Route exact path="/" component={IndexEmployer} />
-                <Route exact path="/for_candidate" component={indexsaas} />
+                <Route exact path="/job-seekers" component={indexsaas} />
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/privacy" component={Privacy} />
                 <Route exact path="/term" component={Term} />

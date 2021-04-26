@@ -63,7 +63,7 @@ export class Header extends Component {
                     <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username.split("@")[0]}  ` : ""}
                     <ul className="nav_submenu" style={{width:"10rem"}}> 
                       <li>
-                      <Link id="id-logout" to="/for_candidate" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
+                      <Link id="id-logout" to="/job-seekers" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
                         Log out
                       </Link>
                       </li>
@@ -260,7 +260,7 @@ export class Header extends Component {
                   Job Seekers <i className="bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"21rem",width:"18rem"}}>
                       <li>
-                        <a id="id-jobseeker2" href="/for_candidate" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <a id="id-jobseeker2" href="/job-seekers" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Home Page</a></li>
                         <li><hr style={{marginBottom:"0.4rem", marginTop:"0.4rem"}}/></li>
                         <li>
@@ -375,7 +375,7 @@ export class Header extends Component {
                 <span className="navbar-toggler-icon"/>
               </button>
               {isAuthenticated && (!this.props.profile.is_employer) ? 
-              <a href="/for_candidate" className="navbar-brand mr-auto">
+              <a href="/job-seekers" className="navbar-brand mr-auto">
               <img
                 src={hirebeatlogo}
                 className="img-fluid mr-3"
@@ -422,7 +422,7 @@ export class Header extends Component {
                     : this.props.profile.is_employer
                     ? this.renderEmployerLinks()
                     : this.renderUserLinks()
-                : (uri.includes("for_candidate")) ?
+                : (uri.includes("job-seekers")) ?
                 this.renderGuestLinks()
                 : this.renderEmployerGuestLinks()
             }
@@ -453,7 +453,7 @@ export class Header extends Component {
                 <span className="navbar-toggler-icon"/>
               </button>
               {isAuthenticated && (!this.props.profile.is_employer) ?
-              <a href="/for_candidate" className="navbar-brand mr-auto">
+              <a href="/job-seekers" className="navbar-brand mr-auto">
               <img
                 src={hirebeatlogo}
                 className="img-fluid mr-3"
@@ -500,7 +500,7 @@ export class Header extends Component {
                     : this.props.profile.is_employer
                     ? this.renderEmployerLinks()
                     : this.renderUserLinks()
-                : (uri.includes("for_candidate")) ?
+                : (uri.includes("job-seekers")) ?
                 this.renderGuestLinks()
                 : this.renderEmployerGuestLinks()
             }

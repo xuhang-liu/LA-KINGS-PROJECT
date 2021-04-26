@@ -12,6 +12,7 @@ export const JobCover = (props) => {
   }
   return (
     <div style={{marginBottom: "5%"}} className="container min-width-980" >
+      <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-briefcase"></i><span className="ml-2">Jobs</span></b></h3></div>
       <div style={{marginBottom: "20px"}} className="container min-width-980">
         <button
           className={decideClassName(filter, "active")}

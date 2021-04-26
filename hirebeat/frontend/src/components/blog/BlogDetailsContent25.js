@@ -69,7 +69,7 @@ class BlogDetailsContent25 extends Component {
                                     <br/>
                                     <h3 className="mb-0">Conclusion:</h3>
                                     <p>
-                                    The four fundamental questions mentioned above are of great significance and beneficial for getting prepared for your incoming job interview. HireBeat is an AI-powered platform that helps candidates get ready for the interview and to be more successful in the future. To know more about us, please visit <a href="/for_candidate">https://hirebeat.co/for_candidate</a>.
+                                    The four fundamental questions mentioned above are of great significance and beneficial for getting prepared for your incoming job interview. HireBeat is an AI-powered platform that helps candidates get ready for the interview and to be more successful in the future. To know more about us, please visit <a href="/job-seekers">https://hirebeat.co/job-seekers</a>.
                                     </p>
                                 </div>
                             </div>

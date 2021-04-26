@@ -92,7 +92,7 @@ class BlogDetailsContent24 extends Component {
                                     The employee has clearly defined his/her abilities and what he/she can offer the company if hired for the job.
                                     </p>
                                     <p>
-                                    Practice your interview answer at <a href="/for_candidate">HireBeat</a> and see if you answer has what recruiter is looking for.
+                                    Practice your interview answer at <a href="/job-seekers">HireBeat</a> and see if you answer has what recruiter is looking for.
                                     </p>
                                 </div>
                             </div>

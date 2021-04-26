@@ -112,7 +112,7 @@ class BlogDetailsContent19 extends Component {
                                         <li><p>How has leadership adjusted to working from home?</p></li>
                                     </ul>
                                     <p>
-                                    Since the pandemic, most of the companies have adopted an online interview process to screen their candidates. To get yourself use to the online video interview format and better prepare before an interview, <a href="/for_candidate">Hirebeat</a> provides an online mock interview platform, combined with AI technology and professional HR opinions, to provide job seekers with feedback on their interview performance. <a href="/for_candidate">HireBeat</a> is dedicated to helping job seekers improving their interview skills so that they can perform their best in a real interview.
+                                    Since the pandemic, most of the companies have adopted an online interview process to screen their candidates. To get yourself use to the online video interview format and better prepare before an interview, <a href="/job-seekers">Hirebeat</a> provides an online mock interview platform, combined with AI technology and professional HR opinions, to provide job seekers with feedback on their interview performance. <a href="/job-seekers">HireBeat</a> is dedicated to helping job seekers improving their interview skills so that they can perform their best in a real interview.
                                     </p>
                                 </div>
                             </div>

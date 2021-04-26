@@ -80,6 +80,7 @@ const ReviewCandidate = (props) => {
 
     return(
         <div className="fluid-container ml-5 mb-5" style={{width:'92%'}}>
+            <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-briefcase"></i><span className="ml-2">Jobs / Review Candidate</span></b></h3></div>
             <div className="col d-flex align-items-center pl-0">
                 <button
                     type="button"
