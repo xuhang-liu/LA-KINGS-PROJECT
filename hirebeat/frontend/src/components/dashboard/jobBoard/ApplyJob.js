@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {connect} from "react-redux";
 import PageTitleArea from '../../Common/PageTitleArea';
-import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton} from "react-share";
+import {FacebookShareButton, TwitterShareButton, LinkedinShareButton} from "react-share";
 import { Link } from "react-router-dom";
 import {register} from "../../../redux/actions/auth_actions";
 import {createMessage} from "../../../redux/actions/message_actions";
@@ -44,7 +44,18 @@ const ApplyJob = (props) =>{
                         label: 'Ok'
                       }
                 ]
-          });
+            });
+        }
+        if(((job_id == null || job_id == "") ? "":props.job.emails) == email){
+            return confirmAlert({
+                title: "Already Applied!",
+                message: "You have already applied this job.",
+                buttons: [
+                      {
+                        label: 'Ok'
+                      }
+                ]
+            });
         }
         if (passwordsMatch()) {
             props.register(
@@ -82,6 +93,17 @@ const ApplyJob = (props) =>{
                       }
                 ]
           });
+        }
+        if(((job_id == null || job_id == "") ? "":props.job.emails) == email){
+            return confirmAlert({
+                title: "Already Applied!",
+                message: "You have already applied this job.",
+                buttons: [
+                      {
+                        label: 'Ok'
+                      }
+                ]
+            });
         }
         props.uploader.uploadFile(resume);
         let data = {
