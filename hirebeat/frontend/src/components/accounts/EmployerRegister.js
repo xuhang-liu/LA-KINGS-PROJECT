@@ -72,7 +72,8 @@ export class EmployerRegister extends Component {
         this.state.email.toLowerCase().includes("126.com") ||
         this.state.email.toLowerCase().includes("21cn.com") ||
         this.state.email.toLowerCase().includes("aliyun.com") ||
-        this.state.email.toLowerCase().includes("foxmail.com")
+        this.state.email.toLowerCase().includes("foxmail.com") ||
+        this.state.email.toLowerCase().includes("edu")
         ){
       confirmAlert({
         title: "Email not permitted!",

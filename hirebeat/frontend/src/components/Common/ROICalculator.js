@@ -107,7 +107,9 @@ class ROICalculator extends Component {
                                                     <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>{timesaving.toFixed(0)}</h5>
                                                     <p style={{fontWeight:"500", fontSize:"1rem", color:"#090d3a"}}>hours per month</p>
                                                     <h5 style={{fontWeight:"600", fontSize:"1.5rem", color:"#090d3a", marginTop:"0.5rem"}}>ROI</h5>
-                                                    <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>{Math.round(roi)}X</h5>
+                                                    {roi.toFixed(0) <= 0 ?
+                                                    <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>---</h5> :
+                                                    <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>{roi.toFixed(0)}X</h5> }
                                                 </div>
                                             </div>
                                         </div>
