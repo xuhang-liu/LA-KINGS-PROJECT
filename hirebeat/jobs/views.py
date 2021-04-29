@@ -19,6 +19,7 @@ def add_new_job(request):
     user = User.objects.get(pk=request.data["userId"])
     company_name = ""
     company_overview = ""
+    company_logo = ""
     # update user profile
     profile = Profile.objects.get(user_id=user.id)
     profile.position_count += 1
@@ -31,12 +32,14 @@ def add_new_job(request):
         employer_profile = EmployerProfileDetail.objects.get(user=user)
         company_name = employer_profile.name
         company_overview = employer_profile.summary
+        company_logo = employer_profile.logo_url
     except ObjectDoesNotExist:
         company_overview = ""
         company_name = ""
+        company_logo = ""
     # create job
     job = Jobs.objects.create(user=user, positions=position, job_title=job_title, job_id=job_id, job_description=job_description,
-            job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name)
+            job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name, company_logo=company_logo)
     # save job link
     job_url = "https://hirebeat.co/apply-job?id=" + str(job.id)
     job.job_url = job_url

@@ -10,7 +10,7 @@ import ShortList from "./ShortList";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
-    updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost
+    updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo
  }
 from "../../redux/actions/auth_actions";
 import { addNewJob, getAllJobs, updateJob} from "../../redux/actions/job_actions";
@@ -370,6 +370,7 @@ export class EmployerDashboard extends Component {
                 employerPost={this.props.employerPost}
                 email={this.props.user.email}
                 companyName={this.props.profile.company_name}
+                updateEmployerLogo={this.props.updateEmployerLogo}
                 />;
       default:
         return null;
@@ -419,7 +420,7 @@ export class EmployerDashboard extends Component {
                 <div className="dashboard-main">
                 {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
                 (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
-                (this.state.subpage === "employerProfile") || (this.state.subpage === "jobs") ||
+                (this.state.subpage === "applications") || (this.state.subpage === "jobs") ||
                 (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition")) || (this.state.subpage == "") ? null :
                 <div className="container-fluid" style={{height: "22rem"}} data-tut="reactour-rowbox">
                   <RowBoxes userId={this.props.user.id} isEmployer={true}/>
@@ -497,7 +498,7 @@ export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFu
     getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
-    updateJob
+    updateJob, updateEmployerLogo
     })(
     EmployerDashboard
 );

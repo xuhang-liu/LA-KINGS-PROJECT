@@ -44,7 +44,8 @@ import {
   ADD_EMPLOYER_POST,
   UPDATE_EMPLOYER_POST,
   GET_EMPLOYER_POST,
-  DELETE_EMPLOYER_POST
+  DELETE_EMPLOYER_POST,
+  UPDATE_EMPLOYER_LOGO
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -728,6 +729,20 @@ export const deleteEmployerPost = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: DELETE_EMPLOYER_POST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateEmployerLogo = (data) => (dispatch, getState) => {
+  axios
+    .post("/update-employer-logo", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_EMPLOYER_LOGO,
         payload: res.data,
       });
     })

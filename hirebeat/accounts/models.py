@@ -173,4 +173,5 @@ class EmployerProfileDetail(models.Model):
 
     video_url = models.CharField(max_length=100, null=True, blank=True)
     summary = models.TextField(null=True, blank=True)
+    logo_url = models.CharField(max_length=100, null=True, blank=True)
 
