@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {employer_register, exchangeToken} from "../../redux/actions/auth_actions";
 import {createMessage} from "../../redux/actions/message_actions";
+import { confirmAlert } from 'react-confirm-alert';
 //import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
@@ -41,13 +42,57 @@ export class EmployerRegister extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if (this.passwordsMatch()) {
-      this.props.employer_register(
+    if(this.state.email.toLowerCase().includes("aol") ||
+        this.state.email.toLowerCase().includes("att.net") ||
+        this.state.email.toLowerCase().includes("comcast.net") ||
+        this.state.email.toLowerCase().includes("facebook.com") ||
+        this.state.email.toLowerCase().includes("gmail.com") ||
+        this.state.email.toLowerCase().includes("googlemail.com") ||
+        this.state.email.toLowerCase().includes("google.com") ||
+        this.state.email.toLowerCase().includes("hotmail.com") ||
+        this.state.email.toLowerCase().includes("hotmail.co.uk") ||
+        this.state.email.toLowerCase().includes("mac.com") ||
+        this.state.email.toLowerCase().includes("me.com") ||
+        this.state.email.toLowerCase().includes("mail.com") ||
+        this.state.email.toLowerCase().includes("msn.com") ||
+        this.state.email.toLowerCase().includes("live.com") ||
+        this.state.email.toLowerCase().includes("sbcglobal.net") ||
+        this.state.email.toLowerCase().includes("verizon.net") ||
+        this.state.email.toLowerCase().includes("yahoo.com") ||
+        this.state.email.toLowerCase().includes("yahoo.co.uk") ||
+        this.state.email.toLowerCase().includes("email.com") ||
+        this.state.email.toLowerCase().includes("icloud.com") ||
+        this.state.email.toLowerCase().includes("outlook.com") ||
+        this.state.email.toLowerCase().includes("zoho.com") ||
+        this.state.email.toLowerCase().includes("hush.com") ||
+        this.state.email.toLowerCase().includes("sina.com") ||
+        this.state.email.toLowerCase().includes("sina.cn") ||
+        this.state.email.toLowerCase().includes("qq.com") ||
+        this.state.email.toLowerCase().includes("163.com") ||
+        this.state.email.toLowerCase().includes("126.com") ||
+        this.state.email.toLowerCase().includes("21cn.com") ||
+        this.state.email.toLowerCase().includes("aliyun.com") ||
+        this.state.email.toLowerCase().includes("foxmail.com") ||
+        this.state.email.toLowerCase().includes("edu")
+        ){
+      confirmAlert({
+        title: "Email not permitted!",
+        message: "The email emtered is not able to register employer account.",
+        buttons: [
+              {
+                label: 'Ok'
+              }
+        ]
+      });
+    }else{
+      if (this.passwordsMatch()) {
+        this.props.employer_register(
           this.state.username,
           this.state.email,
           this.state.password
-      );
+        );
 //      this.redirectToEmailVerification();
+      }
     }
   };
 

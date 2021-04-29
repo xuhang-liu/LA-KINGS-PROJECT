@@ -119,8 +119,12 @@ def add_new_apply_candidate(request):
 
 @api_view(['GET'])
 def get_current_jobs(request):
+    emails = []
     job_id = request.query_params.get("jobid")
     jobs = Jobs.objects.get(pk=job_id)
+    applyCandidates = ApplyCandidates.objects.filter(jobs=jobs)
+    for i in range(len(applyCandidates)):
+        emails.append(applyCandidates[i].email)
     data = {
         "job_title": jobs.job_title,
         "job_level": jobs.job_level,
@@ -133,6 +137,7 @@ def get_current_jobs(request):
         "company_overview": jobs.company_overview,
         "job_url": jobs.job_url,
         "id": jobs.id,
+        "emails": emails,
     }
 
     return Response({
