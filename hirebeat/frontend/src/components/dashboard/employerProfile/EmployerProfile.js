@@ -5,6 +5,8 @@ import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
 import parse from 'html-react-parser';
 import Avatar from 'react-avatar-edit';
+import { IconText } from "../DashboardComponents";
+import { Link } from "react-router-dom";
 var ReactS3Uploader = require("react-s3-uploader");
 
 function dataURItoBlob(dataURI) {
@@ -261,7 +263,47 @@ export class EmployerProfile extends Component {
         return (
             <React.Fragment>
                 <div className="profile-container">
-                <div style={{marginBottom: "30px"}}><h3><b><i className="bx bxs-dashboard"></i><span className="ml-2">Dashboard</span></b></h3></div>
+                <div className="row" style={{marginBottom: "30px"}}>
+                    <div><h3><b><i className="bx bxs-dashboard ard"></i><span className="ml-2">Dashboard</span></b></h3></div>
+                    <div><h3><b>
+                        {this.props.profile.membership == "Premium" ?
+                            <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
+                              {this.props.profile.plan_interval == "Pro" ?
+                              <div className="row">
+                                  <div style={{borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid"}}>
+                                      <p style={{color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px", display: "flex"}}>
+                                          <i className="bx bx-diamond bx-sm"></i><span style={{marginLeft: "0.3rem"}}>Pro</span>
+                                      </p>
+                                  </div>
+                              </div>:
+                               <div className="row">
+                                    <div style={{borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid"}}>
+                                        <p style={{color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px", display: "flex"}}>
+                                            <i className="bx bx-diamond bx-sm"></i><span style={{marginLeft: "0.3rem"}}>Premium</span>
+                                        </p>
+                                    </div>
+                             </div>}
+                            </div>:
+                            <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
+                              {this.props.profile.is_subreviwer ?
+                              <div>
+                                <div className="row">
+                                    <div style={{borderColor: "#cad9fc", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid"}}>
+                                        <p style={{color: "#cad9fc", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px"}}>Sub-Reviewer</p>
+                                    </div>
+                                </div>
+                              </div> :
+                              <div>
+                                <div className="row" style={{width: "20rem"}}>
+                                    <div style={{borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid"}}>
+                                        <p style={{color: "7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px"}}>Free Member</p>
+                                    </div>
+                                    <Link to="/employer-pricing" style={{textDecoration:"none", marginLeft: "1rem"}}><p style={{color:"#fac046", fontSize:"14px"}}>Upgrade</p></Link>
+                                </div>
+                            </div>}
+                          </div>}
+                    </b></h3></div>
+                </div>
                     <div className="row">
                         <div className="col-5">
                             {/* Personal Information */}

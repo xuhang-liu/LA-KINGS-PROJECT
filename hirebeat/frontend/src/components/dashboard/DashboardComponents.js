@@ -57,6 +57,7 @@ export const IconText = (props) => {
             <p
                 style={{
                     fontSize: props.textSize,
+                    fontWeight: props.fontWeight,
                     marginBottom: "10px",
                     marginLeft: props.textMarginLeft,
                     marginRight: props.textMarginLeft,

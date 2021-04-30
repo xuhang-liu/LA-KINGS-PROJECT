@@ -371,6 +371,7 @@ export class EmployerDashboard extends Component {
                 email={this.props.user.email}
                 companyName={this.props.profile.company_name}
                 updateEmployerLogo={this.props.updateEmployerLogo}
+                profile={this.props.profile}
                 />;
       default:
         return null;
