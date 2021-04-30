@@ -168,6 +168,8 @@ export class EssentialUserInfo extends Component {
     var nonselectProfile = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle-non.png";
     var selectJobs = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-briefcase.png";
     var nonselectJobs = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-briefcase-non.png";
+    var selectEmployerDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-dashboard-select.png";
+    var nonSelectEmployerDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-dashboard-non.png";
     return (
       <React.Fragment>
       <div className="container">
@@ -195,15 +197,15 @@ export class EssentialUserInfo extends Component {
                     >
                       <IconUserText
                         textSize={"12px"}
-                        textDisplayed={"My Profile"}
+                        textDisplayed={"Dashboard"}
                         backColor={this.props.subpage == "employerProfile" ? selectBack : defaultBack}
-                        iconSrc={this.props.subpage == "employerProfile" ? selectProfile : nonselectProfile}
+                        iconSrc={this.props.subpage == "employerProfile" ? selectEmployerDash : nonSelectEmployerDash}
                         textColor={this.props.subpage == "employerProfile" ? selectEColor : defaultEColor}
                       />
                     </button>
                   </div>
                 </div>
-                {this.props.profile.membership == "Premium" ?
+                {/*this.props.profile.membership == "Premium" ?
                 <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
                   {this.props.profile.plan_interval == "Pro" ?
                   <div className="row">
@@ -262,7 +264,7 @@ export class EssentialUserInfo extends Component {
                     </div>
                   </div>
                 </div>}
-              </div>}
+              </div>*/}
               <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)"}}></hr>
 
               </div>}

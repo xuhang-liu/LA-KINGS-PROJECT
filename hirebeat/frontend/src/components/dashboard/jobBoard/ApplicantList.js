@@ -235,6 +235,8 @@ export class ApplicantList extends Component{
                         tempQuestion={this.state.tempQuestion}
                         setTempQuestion={this.setTempQuestion}
                         getPJobs={this.props.getPJobs}
+                        addInterviews={this.props.addInterviews}
+                        updateInviteStatus={this.props.updateInviteStatus}
                     />
                 </MyModal80>
             </React.Fragment>
@@ -272,19 +274,18 @@ const ApplicantRow = (props) => {
                     </a>
                 </div>
                 <div className="col-1 interview-txt9 mt-2" style={{padding: "0rem"}}>
-                    {(props.applicant.is_invited || status)&&
+                    {(props.applicant.is_invited || status) ?
                         <button className="default-btn"
                             style={{backgroundColor: "#13C4A1", padding: "5px"}}
                         >
                             Invited
+                        </button> :
+                        <button className="default-btn invite-btn"
+                            style={{backgroundColor: "#13C4A1", padding: "5px", display: "none"}}
+                        >
+                            Invited
                         </button>
                     }
-                    {/* fake state, here to solve async problem */}
-                    <button className="default-btn invite-btn"
-                        style={{backgroundColor: "#13C4A1", padding: "5px", display: "none"}}
-                    >
-                        Invited
-                    </button>
                 </div>
             </div>
             <div style={{background:"#E8EDFC"}}>

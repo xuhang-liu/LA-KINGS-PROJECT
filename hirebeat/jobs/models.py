@@ -19,6 +19,7 @@ class Jobs(models.Model):
     job_type = models.CharField(max_length=100, null=True, blank=True)
     company_overview = models.TextField(null=True, blank=True)
     company_name = models.CharField(max_length=100, null=True, blank=True)
+    company_logo = models.CharField(max_length=100, null=True, blank=True)
 
 
 class ApplyCandidates(models.Model):
