@@ -87,6 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-how-to-write-a-termination-letter-right",
     "/employer_blog-workplace-camaraderie-your-powerful-tool-for-success",
     "/employer_blog-how-covid-has-changed-the-recruitment-process",
     "/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy",
@@ -102,6 +103,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer13.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer12.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer11.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer10.jpg",
@@ -117,6 +119,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Apr 30, 2021",
     "Apr 23, 2021",
     "Apr 23, 2021",
     "Apr 19, 2021",
@@ -132,6 +135,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "HOW TO WRITE A TERMINATION LETTER RIGHT",
     "WORKPLACE CAMARADERIE: POWERFUL TOOL",
     "HOW COVID HAS CHANGED THE RECRUITMENT",
     "BUILD A CAMPUS RECRUITING STRATEGY",

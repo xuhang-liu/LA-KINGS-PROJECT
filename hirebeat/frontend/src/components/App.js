@@ -37,6 +37,7 @@ import BlogDetail9_Employer from "./blog/blog-details9-employer";
 import BlogDetail10_Employer from "./blog/blog-details10-employer";
 import BlogDetail11_Employer from "./blog/blog-details11-employer";
 import BlogDetail12_Employer from "./blog/blog-details12-employer";
+import BlogDetail13_Employer from "./blog/blog-details13-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -62,6 +63,7 @@ import BlogDetail22 from "./blog/blog-details22";
 import BlogDetail23 from "./blog/blog-details23";
 import BlogDetail24 from "./blog/blog-details24";
 import BlogDetail25 from "./blog/blog-details25";
+import BlogDetail26 from "./blog/blog-details26";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -304,6 +306,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy" component={BlogDetail10_Employer} />
                 <Route exact path="/employer_blog-how-covid-has-changed-the-recruitment-process" component={BlogDetail11_Employer} />
                 <Route exact path="/employer_blog-workplace-camaraderie-your-powerful-tool-for-success" component={BlogDetail12_Employer} />
+                <Route exact path="/employer_blog-how-to-write-a-termination-letter-right" component={BlogDetail13_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
@@ -329,6 +332,7 @@ class App extends Component {
                 <Route exact path="/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview" component={BlogDetail23} />
                 <Route exact path="/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates" component={BlogDetail24} />
                 <Route exact path="/blog-4-most-commonly-asked-questions-in-an-interview" component={BlogDetail25} />
+                <Route exact path="/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate" component={BlogDetail26} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer_register" component={EmployerRegister} />

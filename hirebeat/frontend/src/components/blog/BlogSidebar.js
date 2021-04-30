@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog26.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Apr 30, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate">
+                                    <a>How to Stay Competitive in Your Job Search as a Candidate</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="blog-4-most-commonly-asked-questions-in-an-interview">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog25.jpg" alt="image"/>
@@ -358,44 +377,6 @@ class BlogSidebar extends Component {
                             <h4 className="title usmall">
                                 <Link to="/blog-keywords-to-include-on-a-resume">
                                     <a>Keywords to Include on A Resume</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/blog-how-to-write-a-thank-you-email-after-a-job-interview">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog7.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Oct 19, 2020</time>
-                            <h4 className="title usmall">
-                                <Link to="/blog-how-to-write-a-thank-you-email-after-a-job-interview">
-                                    <a>How to Write a Thank-You Email</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/blog-4-common-interview-questions-and-how-to-answer-them">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog6.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Oct 06, 2020</time>
-                            <h4 className="title usmall">
-                                <Link to="/blog-4-common-interview-questions-and-how-to-answer-them">
-                                    <a>4 Common Interview Questions</a>
                                 </Link>
                             </h4>
                         </div>
