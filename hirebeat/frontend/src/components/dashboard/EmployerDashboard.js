@@ -116,7 +116,7 @@ export class EmployerDashboard extends Component {
   }
 
   state = {
-    subpage: "jobs",
+    subpage: "employerProfile",
     jobInfo: {},
   };
 
@@ -395,6 +395,8 @@ export class EmployerDashboard extends Component {
     return (
       <DocumentMeta {...meta}>
         <React.Fragment>
+        {this.props.employerDetailLoaded ? 
+        <div>
           <ScrollToTopOnMount/>
           {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
@@ -450,6 +452,7 @@ export class EmployerDashboard extends Component {
             </div>
           </MediaQuery>
           <Footer />
+          </div> : null }
         </React.Fragment>
         </DocumentMeta>
     );
@@ -491,6 +494,7 @@ const mapStateToProps = (state) => {
   employerPost: state.auth_reducer.employerPost,
   jobs: state.job_reducer.jobs,
   isLoaded: state.job_reducer.isLoaded,
+  employerDetailLoaded: state.auth_reducer.employerDetailLoaded,
 }
 };
 

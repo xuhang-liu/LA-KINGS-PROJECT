@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import Video from "./Video";
 import Post from "./Post";
 import RichTextEditor from 'react-rte';
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import parse from 'html-react-parser';
 import Avatar from 'react-avatar-edit';
-import { IconText } from "../DashboardComponents";
+//import { IconText } from "../DashboardComponents";
+import { confirmAlert } from 'react-confirm-alert';
 import { Link } from "react-router-dom";
 var ReactS3Uploader = require("react-s3-uploader");
 
@@ -88,8 +89,9 @@ export class EmployerProfile extends Component {
     }
 
     onBeforeFileLoad = (elem) => {
-        let docType = elem.target.files[0].name.split(".")[1];
+        let docType = elem.target.files[0].type?.split("/")[1];
         let docSize = elem.target.files[0].size;
+        console.log(docType);
         if(docSize > 2000000){
           this.alert("File is too big!", "Please upload a logo that less than 2MB");
           elem.target.value = "";

@@ -138,6 +138,7 @@ def get_current_jobs(request):
         "job_url": jobs.job_url,
         "id": jobs.id,
         "emails": emails,
+        "company_logo": jobs.company_logo,
     }
 
     return Response({
