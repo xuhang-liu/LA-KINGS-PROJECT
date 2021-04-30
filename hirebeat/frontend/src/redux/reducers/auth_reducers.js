@@ -42,6 +42,7 @@ const initialState = {
   profileDetail: {},
   employerProfileDetail: {},
   employerPost: {},
+  employerDetailLoaded: false,
 };
 
 export default function (state = initialState, action) {
@@ -151,6 +152,7 @@ export default function (state = initialState, action) {
     case GET_EMPLOYER_POST:
       return {
         ...state,
+        employerDetailLoaded: true,
         employerPost: action.payload,
       }
     default:

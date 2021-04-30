@@ -30,7 +30,6 @@ export class SubpageSetting extends Component {
         this.setState({
           [e.target.name]: e.target.value,
         });
-        console.log(e.target.value);
       };
     
     saveChanges = (e) => {
@@ -52,7 +51,6 @@ export class SubpageSetting extends Component {
     
     PasswordCheck = (event) => {
         event.preventDefault();
-        console.log(this.state);
         if(this.state.newPassword !== this.state.confirmPassword)
         {
             alert('Password do not match!');

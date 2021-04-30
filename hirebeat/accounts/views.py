@@ -616,6 +616,20 @@ def create_or_update_employer_info(request):
     return Response("Create or Update employer info successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
+def create_or_update_employer_logo(request):
+    user_id = request.data["user_id"]
+    logo_url = request.data["logo_url"]
+    try:
+        # update personal information
+        employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
+        employer_profile.logo_url = logo_url
+        employer_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        EmployerProfileDetail.objects.create(user_id=user_id, logo_url=logo_url)
+    return Response("Create or Update employer logo successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
 def create_or_update_employer_social_media(request):
     user_id = request.data["user_id"]
     linkedin = request.data["linkedin"]
@@ -730,3 +744,18 @@ def delete_employer_post(request):
     post_id = request.data["post_id"]
     EmployerPost.objects.filter(id=post_id).delete()
     return Response("Delete employer post successfully", status=status.HTTP_202_ACCEPTED)
+
+def upload_employer_logo(request):
+    object_name = request.GET['objectName']
+    content_type = request.GET['contentType']
+    # content_type = mimetypes.guess_type(object_name)[0]
+    # content_type = content_type + ";codecs=vp8,opus" ### ATTENTION: this added part is required if upload dirctly from the browser. If used for uploading local files, comment this line out.###
+
+    signed_url = conn.generate_url(
+        300,
+        "PUT",
+        os.getenv("Employer_Logo"),
+        object_name,
+        headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
+
+    return HttpResponse(json.dumps({'signedUrl': signed_url}))

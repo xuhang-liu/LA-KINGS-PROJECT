@@ -10,7 +10,8 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     create_or_update_video, create_or_update_summary, create_or_update_resume, create_or_update_education, create_or_update_work_exp, \
     upload_profile_resume, upload_profile_video, create_or_update_profile_rate, subreviewer_update_comment, get_employer_profile_detail, \
     create_or_update_employer_info, create_or_update_employer_social_media, create_or_update_employer_basic_info, create_or_update_employer_video, \
-    create_or_update_employer_summary, upload_employer_profile_video, get_employer_post, update_employer_post, add_employer_post, delete_employer_post
+    create_or_update_employer_summary, upload_employer_profile_video, get_employer_post, update_employer_post, add_employer_post, delete_employer_post, \
+    upload_employer_logo, create_or_update_employer_logo
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -112,5 +113,7 @@ urlpatterns = [
     path('update-employer-post', update_employer_post, name="update employer post"),
     path('add-employer-post', add_employer_post, name="add employer post"),
     path('delete-employer-post', delete_employer_post, name="delete employer post"),
+    path('upload-employer-logo', upload_employer_logo, name="upload employer logo"),
+    path('update-employer-logo', create_or_update_employer_logo, name="update employer logo"),
 ]
 

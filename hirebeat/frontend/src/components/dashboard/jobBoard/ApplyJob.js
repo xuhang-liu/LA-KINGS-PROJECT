@@ -220,6 +220,7 @@ const ApplyJob = (props) =>{
         <div className="py-5" style={{background:"#E8EDFC"}}>
             <div style={{marginLeft:"auto", marginRight:"auto", width:"70%", minHeight:"800px", borderRadius:"10px", background:"white", position:"relative"}}>
                 <img style={{height:"12rem", width:"100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png"/>
+                <img style={{width:"7rem", marginLeft:"2rem", marginTop:"-3.5rem"}} src={(job_id == null || job_id == "") ? "":props.job.company_logo}/>
                 <h1 className="ml-5 mt-5" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A"}}>{(job_id == null || job_id == "") ? "":props.job.job_title}</h1>
                 <h2 className="ml-5 mt-2" style={{fontWeight:"600", fontSize:"1.5rem", color:"#67A3F3"}}>{(job_id == null || job_id == "") ? "":props.job.company_name}</h2>
                 <div className="row pl-3">

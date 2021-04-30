@@ -67,7 +67,7 @@ class ROICalculator extends Component {
         var hcostpermonth = hcostperhire*this.state.numofhire;
 
         var moneysaving = costpermonth-hcostpermonth;
-        var timesaving = ((c1-d1)/60)*this.state.numofhire;
+        var timesaving = ((c1-d1)/60)*this.state.numofhire*this.state.rec_value;
         var roi = (moneysaving-599)/599;
         return (
             <React.Fragment>
@@ -91,7 +91,7 @@ class ROICalculator extends Component {
                                                     </div>
                                                     <div className="form-group">
                                                         <label style={{float:"left", fontWeight:"500", fontSize:"1rem", color:"#090d3a"}}>Recruiters per team</label>
-                                                        <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={3} value={this.state.rec_value} onChange={this.onChange} name="rec_value"/>
+                                                        <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={3} value={this.state.rec_value} onChange={this.onChange} name="rec_value" min={1} max={50}/>
                                                     </div>
                                                     <div className="form-group">
                                                         <label style={{float:"left", fontWeight:"500", fontSize:"1rem", color:"#090d3a"}}>Numbers of Resume per job</label>

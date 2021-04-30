@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main288.js",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main288.js",
+    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main289.js",
+    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main289.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
@@ -88,6 +88,7 @@
     "react-apexcharts": "^1.3.7",
     "react-audio-player": "^0.13.0",
     "react-autocomplete": "^1.8.1",
+    "react-avatar-edit": "^1.0.0",
     "react-bootstrap": "^1.3.0",
     "react-confirm-alert": "^2.6.1",
     "react-countup": "^4.3.3",

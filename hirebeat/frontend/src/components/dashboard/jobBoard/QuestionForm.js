@@ -4,6 +4,7 @@ import Select from 'react-select'
 //import { IconText } from "../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { addInterviewQuestion} from "../../../redux/actions/job_actions";
+import { confirmAlert } from 'react-confirm-alert';
 
 export class QuestionForm extends Component {
 
@@ -53,16 +54,96 @@ export class QuestionForm extends Component {
         return questions;
     }
 
+    noCandidateAlert = () => {
+        confirmAlert({
+          title: "No Candidate Selected",
+          message: "Please select candidates for interview",
+          buttons: [
+            {
+              label: 'Ok'
+            }
+          ]
+        });
+    }
+
     saveQuestions = (e) => {
         e.preventDefault();
-        let questions = this.getQuestions();
-        let data = {
-            "questions": questions,
-            "positionId": this.props.curJob.job_details.positions_id,
+        // invite candidates
+        let candidateCount = 0;
+        let companyName = this.props.curJob.job_details.company_name;
+        let jobTitle = this.props.curJob.job_details.job_title;
+        let positionId = this.props.curJob.job_details.positions_id;
+        // collect input name and email
+        const emails = [];
+        const names = [];
+        const invitedCandidates = [];
+        let candidates = document.getElementsByClassName("selected-candidate");
+        let statusBtns = document.getElementsByClassName("invite-btn");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                // name
+                names.push(candidate.first_name + " " + candidate.last_name);
+                // email
+                emails.push(candidate.email.toLowerCase());
+                invitedCandidates.push(candidate.id);
+                candidateCount+=1;
+                // hide checkbox
+                candidates[i].style.display = "none";
+                // show invite status
+                statusBtns[i].style.display = "block";
+            }
         }
-        this.props.addInterviewQuestion(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs;}, 300);
-//        setTimeout(() => {this.props.setCurJob(this.props.curJob)}, 600);
+        // check candidates selected or not
+        if (candidateCount > 0) {
+            if(candidateCount > (this.props.profile.candidate_limit)){
+                return alert('Upgrade Now! You can only add ' +parseInt(this.props.profile.candidate_limit)+ ' more candidates for this position!');
+            }
+            // add question
+            let questions = this.getQuestions();
+            if (questions.length == 0) {return alert("You need to add at least one question!")}
+            let data = {
+                "questions": questions,
+                "positionId": this.props.curJob.job_details.positions_id,
+            }
+            this.props.addInterviewQuestion(data);
+            // generate interview urls and send emails
+            let urls = [];
+            for (let i = 0; i < emails.length; i++) {
+                // make sure urls have the same size of emails and names
+                let url = "";
+                if (emails[i] != "" && names[i] != "") {
+                    //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+                    let prefix = "https://hirebeat.co/candidate-login?";  // online
+                    let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
+                    let encode = window.btoa(params);
+                    url = prefix + encode;
+                }
+                urls.push(url);
+            }
+            let meta = {
+                company_name: companyName,
+                job_title: jobTitle,
+                position_id: positionId,
+                emails: emails,
+                names: names,
+                expire: 14,
+                urls: urls,
+            }
+            // add interviews
+            this.props.addInterviews(meta);
+            let inviteData = {
+                "candidates": invitedCandidates,
+                "isInvited": true,
+            }
+            // update invite status
+            this.props.updateInviteStatus(inviteData);
+        }
+        else {
+            this.props.hideQForm();
+            this.noCandidateAlert();
+        }
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
         setTimeout(() => {this.props.hideQForm()}, 300);
 
     }
