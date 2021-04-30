@@ -152,7 +152,7 @@ export class SubpageSetting extends Component {
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>
                         {this.props.profile.is_employer ?
-                        <button type="button" style={{backgroundColor:"#e8edfc", border:"none"}} onClick={this.props.renderApplications}>
+                        <button type="button" style={{backgroundColor:"#e8edfc", border:"none"}} onClick={this.props.renderEmployerProfile}>
                             <IconText
                                 iconName={"bx bx-arrow-back bx-sm"}
                                 textDisplayed={"Back"}

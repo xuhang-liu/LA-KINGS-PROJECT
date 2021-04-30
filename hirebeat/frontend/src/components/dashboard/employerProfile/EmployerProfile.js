@@ -277,6 +277,7 @@ export class EmployerProfile extends Component {
                                           <i className="bx bx-diamond bx-sm"></i><span style={{marginLeft: "0.3rem"}}>Pro</span>
                                       </p>
                                   </div>
+                                  <Link to="/employer-pricing" style={{textDecoration:"none", marginLeft: "1rem"}}><p style={{color:"#fac046", fontSize:"14px"}}>Upgrade</p></Link>
                               </div>:
                                <div className="row">
                                     <div style={{borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid"}}>
@@ -411,7 +412,7 @@ export class EmployerProfile extends Component {
                                             </div>
                                             <p className="profile-p4">
                                                 {(this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
-                                                    parse(this.props.employerProfileDetail.summary) : "Company Overview Here"}
+                                                    parse(""+this.props.employerProfileDetail.summary+"") : "Company Overview Here"}
                                             </p>
                                         </div> :
                                         <div>

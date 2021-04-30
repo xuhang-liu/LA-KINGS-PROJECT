@@ -316,6 +316,7 @@ export class EmployerDashboard extends Component {
             location={this.props.profile.location}
             phone_number={this.props.profile.phone_number}
             renderApplications={this.renderApplications}
+            renderEmployerProfile={this.renderEmployerProfile}
         />;
       case "analytics":
         if (Object.keys(this.props.position_list).length > 0){

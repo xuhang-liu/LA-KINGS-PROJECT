@@ -595,7 +595,13 @@ def subreviewer_update_comment(request):
 @api_view(['GET'])
 def get_employer_profile_detail(request):
     user_id = request.query_params.get("user_id")
-    data = EmployerProfileDetail.objects.filter(user_id=user_id).values()[0]
+    data = {}
+    employerprofiledetail = EmployerProfileDetail.objects.filter(user_id=user_id)
+    if len(employerprofiledetail) > 0:
+        data = EmployerProfileDetail.objects.filter(user_id=user_id).values()[0]
+    else:
+        EmployerProfileDetail.objects.create(user_id=user_id)
+        data = EmployerProfileDetail.objects.filter(user_id=user_id).values()[0]
     # post = EmployerPost.objects.filer(user_id=user_id).values()  # todo append post here
     return Response({"data": data})
 

@@ -270,6 +270,7 @@ export class EssentialUserInfo extends Component {
               </div>}
               {this.props.profile.is_employer ? 
               <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
+              {!this.props.profile.is_subreviwer &&
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
               <div className="col d-flex align-items-center">
                 <button
@@ -287,7 +288,7 @@ export class EssentialUserInfo extends Component {
                   />
                 </button>
               </div>
-              </div>
+              </div>}
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
               <div className="col d-flex align-items-center">
                 <button
