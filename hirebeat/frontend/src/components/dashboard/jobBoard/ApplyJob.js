@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {connect} from "react-redux";
 import PageTitleArea from '../../Common/PageTitleArea';
-import {FacebookShareButton, TwitterShareButton, LinkedinShareButton} from "react-share";
+import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, LinkedinIcon} from "react-share";
 import { Link } from "react-router-dom";
 import {register} from "../../../redux/actions/auth_actions";
 import {createMessage} from "../../../redux/actions/message_actions";
@@ -9,6 +9,7 @@ import {addNewApplyCandidate, getCurrentJobs} from "../../../redux/actions/job_a
 import parse from 'html-react-parser';
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
+import DocumentMeta from 'react-document-meta';
 var ReactS3Uploader = require("react-s3-uploader");
 
 var uri = window.location.search;
@@ -20,6 +21,7 @@ const ApplyJob = (props) =>{
             props.getCurrentJobs(job_id);
         }
     }, []);
+    const url = String(window.location);
     const [Applied, setApplied] = useState(false);
     const [selected, setSelected] = useState(false);
     const [resume, setResume] = useState(null);
@@ -212,7 +214,19 @@ const ApplyJob = (props) =>{
               ]
         });
     }
+    const meta = {
+        title: (job_id == null || job_id == "") ? "":props.job.job_title + " at "+ (job_id == null || job_id == "") ? "":props.job.company_name,
+        description: (job_id == null || job_id == "") ? "":props.job.company_name,
+        canonical: url,
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'interview, jobs, job interview, recruiting, hiring'
+          }
+        }
+    };
     return (
+    <DocumentMeta {...meta}>
     <React.Fragment>
     <MediaQuery minDeviceWidth={1224}>
     {(props.job.id == "" || props.job.id == null) ?
@@ -440,7 +454,7 @@ const ApplyJob = (props) =>{
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={(job_id == null || job_id == "") ? "":props.job.job_url}
+                                        url={url}
                                         quote={(job_id == null || job_id == "") ? "":props.job.job_title + " at "+ (job_id == null || job_id == "") ? "":props.job.company_name}
                                         hashtag={(job_id == null || job_id == "") ? "":props.job.company_name}>
                                         <a target="_blank">
@@ -450,7 +464,7 @@ const ApplyJob = (props) =>{
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={(job_id == null || job_id == "") ? "":props.job.job_url}
+                                           url={url}
                                            title={(job_id == null || job_id == "") ? "":props.job.job_title + " at "+ (job_id == null || job_id == "") ? "":props.job.company_name}
                                            via={(job_id == null || job_id == "") ? "":props.job.company_name}
                                            hashtag={(job_id == null || job_id == "") ? "":props.job.company_name}>
@@ -461,12 +475,12 @@ const ApplyJob = (props) =>{
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={(job_id == null || job_id == "") ? "":props.job.job_url}
+                                            url={url}
                                             title={(job_id == null || job_id == "") ? "":props.job.job_title + " at "+ (job_id == null || job_id == "") ? "":props.job.company_name}
                                             source={(job_id == null || job_id == "") ? "":props.job.company_name}>
                                             <a target="_blank">
-                                                <i className="bx bxl-linkedin"></i>
-                                            </a>
+                                                <i className="bx bxl-linkedin"></i>   
+                                           </a>
                                         </LinkedinShareButton>
                                     </li>
                                 </ul>
@@ -491,6 +505,7 @@ const ApplyJob = (props) =>{
             </div>
           </MediaQuery>
     </React.Fragment>
+    </DocumentMeta>
     )
 };
 
