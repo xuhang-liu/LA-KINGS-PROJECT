@@ -275,13 +275,15 @@ const JobViewDetail = (props) => {
                                         <button className="title-button ml-2" style={{float: "left"}} onClick={() => {setView(true), props.addSelected(props.positionId)}}>
                                             {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                         </button>
+                                    </div>
+                                    <div className="row">
                                         {unView > 0 && <div className="col mt-2">
                                             <span className="dot"></span>
-                                            <span className="ml-2" style={{color:"#67A3F3", fontSize:"1rem", fontWeight:"600"}}>
-                                            {unView} Applicants Unreviewed
-                                        </span>
+                                            <span className="ml-2" style={{color:"#FF6B00", fontSize:"1rem", fontWeight:"600"}}>
+                                                {unView > 1 ? unView + "Applicants" : unView + "Applicant"}  Unreviewed
+                                            </span>
                                         </div>
-                                        }    
+                                        }
                                     </div>
                                     <div className="row mb-2 mt-1">
                                         <div className="col-4">
@@ -1432,8 +1434,8 @@ const Applicant = (props) => {
                 {/* add unread lable here */}
                 {props.videoCount > 0 ? 
                 <div className="col-2 mt-2">
-                    {(!isViewed && commentStatus == 0) && <span class="dot"></span>}
-                    <button className="title-button1" onClick={() => viewResult()}>
+                    <button className="title-button1" style={{wordBreak: "break-all"}} onClick={() => viewResult()}>
+                        {(!isViewed && commentStatus == 0) && <span class="dot"></span>}
                         {props.name.split("(")[0]}</button></div>
                 : <div className="col-2 interview-txt9 mt-2">{props.name.split("(")[0]}</div>
                 }
