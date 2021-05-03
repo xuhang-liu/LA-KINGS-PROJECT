@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import {IconText} from "../DashboardComponents";
+import { MyModal80 } from "./../DashboardComponents";
+import { ResumeEvaJobs } from "./ResumeEvaJobs";
 
 const ReviewCandidate = (props) => {
     const [noshowInvite, setNoshowInvite] = useState(false);
+    const [showEva, setShowEva] = useState(false);
     function inviteCandidates() {
         if (props.curJob.questions.length == 0 && props.tempQuestion.length == 0) {
             props.showQForm();
@@ -60,7 +63,15 @@ const ReviewCandidate = (props) => {
         }
     };
 
-    {/*const renderResume = (resumes) => {
+    function showResumeEva() {
+        if(props.profile.membership == "Premium"){
+            setShowEva(true);
+        }else{
+            alert("Upgrade to unlock Resume Evaluation.");
+        }
+    }
+
+    const renderResume = (resumes) => {
         return(
             <div>
                 <div className="row">
@@ -76,7 +87,7 @@ const ReviewCandidate = (props) => {
                 </div>
             </div>
         )
-    }*/}
+    }
 
     return(
         <div className="fluid-container ml-5 mb-5" style={{width:'92%'}}>
@@ -158,18 +169,17 @@ const ReviewCandidate = (props) => {
                         >
                             Evaluation Scale
                         </h2>
-                        {/*<div className="mt-5 px-4">
-                            {renderResume(10)}
+                        <div className="mt-5 px-4" style={{width:"75%"}}>
+                            {renderResume(props.applicant.result_rate)}
                         </div>
-                        <div className="row" style={{cursor:"pointer", display:"flex", justifyContent:"space-around"}}>
-                            <IconText
-                                iconName={"bx bx-arrow-to-right bx-sm"}
-                                textDisplayed={"Resume Evaluation"}
-                                textSize={"1.3rem"}
-                                textColor={"#67A3F3"}
-                                iconMargin={"3px"}
-                            />
-                        </div>*/}
+                        {((props.applicant.result_rate != "") && (props.applicant.result_rate != null)) &&
+                            <button
+                                onClick={() => {setTimeout(()=>{showResumeEva()}, 200)}}
+                                className="interview-txt9 mt-3 ml-3"
+                                style={{color: "#67A3F3", border: "none", background: "white"}}
+                            >
+                                <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
+                            </button>}
                         {(!props.is_invited && !noshowInvite) &&
                         <div className="row" style={{display:"flex", justifyContent:"space-around", position:"absolute", bottom:"2rem", left:"0.9rem", width:"100%"}}>
                             <button onClick={inviteCandidates} className="default-btn1" style={{paddingLeft:"25px"}}>
@@ -196,6 +206,12 @@ const ReviewCandidate = (props) => {
                     </div>
                 </div>
             </div>
+            <MyModal80
+                show={showEva}
+                onHide={()=>{setShowEva(false)}}
+            >
+                <ResumeEvaJobs interviewResume={props.applicant}/>
+            </MyModal80>
         </div>
     )
 

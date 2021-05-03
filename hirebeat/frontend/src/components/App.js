@@ -38,6 +38,7 @@ import BlogDetail10_Employer from "./blog/blog-details10-employer";
 import BlogDetail11_Employer from "./blog/blog-details11-employer";
 import BlogDetail12_Employer from "./blog/blog-details12-employer";
 import BlogDetail13_Employer from "./blog/blog-details13-employer";
+import BlogDetail14_Employer from "./blog/blog-details14-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -307,6 +308,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-how-covid-has-changed-the-recruitment-process" component={BlogDetail11_Employer} />
                 <Route exact path="/employer_blog-workplace-camaraderie-your-powerful-tool-for-success" component={BlogDetail12_Employer} />
                 <Route exact path="/employer_blog-how-to-write-a-termination-letter-right" component={BlogDetail13_Employer} />
+                <Route exact path="/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern" component={BlogDetail14_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />

@@ -291,6 +291,7 @@ const ApplicantRow = (props) => {
             <div style={{background:"#E8EDFC"}}>
                 <MyModal className="light-blue-modal" show={showPreview} onHide={()=>{setShowPreview(false)}}>
                         <ReviewCandidate
+                            applicant={props.applicant}
                             phone={props.applicant.phone}
                             email={props.applicant.email}
                             location={props.applicant.location}
