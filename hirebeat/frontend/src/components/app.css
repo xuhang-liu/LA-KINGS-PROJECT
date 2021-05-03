@@ -2658,7 +2658,10 @@ h5 {
 }
 
 .before-after{
-  background: linear-gradient(103.24deg, #E7ECF2 18.41%, #FFFFFF 107.46%);
+  background: url('https://hirebeat-assets.s3.amazonaws.com/Employer/TheHireTrend.png'), linear-gradient(103.24deg, #E7ECF2 18.41%, #FFFFFF 107.46%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   margin-top: 5rem;
   margin-bottom: 5rem;
 }

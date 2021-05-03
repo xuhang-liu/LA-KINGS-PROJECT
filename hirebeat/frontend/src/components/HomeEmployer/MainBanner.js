@@ -149,7 +149,6 @@ class MainBanner extends Component {
                     </div>
                 </ReactWOW>
                 </div>
-                <MediaQuery minDeviceWidth={1224}>
                 <div className="before-after pb-100 pt-100">
                     <div className="container-fluid max-width-1440">
                     <div className="text-center">
@@ -157,21 +156,34 @@ class MainBanner extends Component {
                         The Hiring Trend is Changing
                         </h1>
                     </div>
+                    <MediaQuery minDeviceWidth={1224}>
                     <div className="row">
                         <div className="col-md-6 col-lg-6 mt-5">
                             <div className="justify-content-center align-items-center">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/result3.png" alt="pic" style={{maxWidth:"591px"}}></img>
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/beforeTrend.png" alt="pic"></img>
                             </div>
                         </div>
-                        <div className="col-md-6 col-lg-6 mt-5 after">
+                        <div className="col-md-6 col-lg-6 mt-5">
                             <div className="justify-content-center align-items-center">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/result4.png" alt="pic" style={{maxWidth:"617px"}}></img>
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/afterTrend.png" alt="pic"></img>
                             </div>
                         </div>
                     </div>
+                    </MediaQuery>
+                    <MediaQuery minDeviceWidth={1224}>
+                        <div className="row" style={{marginLeft:"44%", marginTop:"6rem"}}>
+                            <a href="/employer-pricing" className="default-btn" style={{backgroundColor:"#ff6b00", paddingLeft:"65px", paddingTop:"20px", paddingBottom:"20px", textDecoration:"none"}}>
+                            <i className="bx bx-calculator bx-md"></i>ROI Calculator</a>
+                        </div>
+                    </MediaQuery>
+                    <MediaQuery maxDeviceWidth={1223}>
+                        <div className="row" style={{marginLeft:"30%", marginTop:"6rem"}}>
+                            <a href="/employer-pricing" className="default-btn" style={{backgroundColor:"#ff6b00", paddingLeft:"65px", paddingTop:"20px", paddingBottom:"20px", textDecoration:"none"}}>
+                            <i className="bx bx-calculator bx-md"></i>ROI Calculator</a>
+                        </div>
+                    </MediaQuery>
                     </div>
                 </div>
-                </MediaQuery>
             </React.Fragment>
         );
     }

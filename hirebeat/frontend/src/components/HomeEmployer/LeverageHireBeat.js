@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactWOW from 'react-wow';
-import {Link} from "react-router-dom";
+//import {Link} from "react-router-dom";
 import 'boxicons';
 
 class LeverageHireBeat extends Component {
