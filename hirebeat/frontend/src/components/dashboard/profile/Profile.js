@@ -7,6 +7,33 @@ import Resume from "./Resume";
 import Education from "./Education";
 import WorkExperience from "./WorkExperience";
 import VideoPanel from "./VideoPanel";
+var ReactS3Uploader = require("react-s3-uploader");
+import Avatar from 'react-avatar-edit';
+
+function dataURItoBlob(dataURI) {
+  // convert base64 to raw binary data held in a string
+  // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+  var byteString = atob(dataURI.split(',')[1]);
+
+  // separate out the mime component
+  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+  // write the bytes of the string to an ArrayBuffer
+  var ab = new ArrayBuffer(byteString.length);
+
+  // create a view into the buffer
+  var ia = new Uint8Array(ab);
+
+  // set the bytes of the buffer to the correct values
+  for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+  }
+
+  // write the ArrayBuffer to a blob, and you're done
+  var blob = new Blob([ab], {type: mimeString});
+  return blob;
+
+}
 
 export class Profile extends Component {
     state = {
@@ -22,6 +49,9 @@ export class Profile extends Component {
         isUploadResume: false,
         eduCount: [],  // todo initialization here need to think about
         worCount: [],
+        preview: null,
+        fakeName: "",
+        docType: "",
     }
 
     componentDidMount() {
@@ -202,6 +232,7 @@ export class Profile extends Component {
             "self_description": selfDescription,
         }
         this.props.updatePersonalInfo(data);
+        this.handleUpload();
         this.getUpdatedData();
         this.cancelEditInfo();
     }
@@ -336,6 +367,63 @@ export class Profile extends Component {
         this.props.updateProfileRate(data);
     }
 
+    onClose = () => {
+        this.setState({preview: null})
+    }
+
+    onCrop = (preview) => {
+        this.setState({preview})
+    }
+
+    onBeforeFileLoad = (elem) => {
+        let docType = elem.target.files[0].type?.split("/")[1];
+        let docSize = elem.target.files[0].size;
+        console.log(docType);
+        if(docSize > 2000000){
+          alert("Please upload a logo that less than 2MB");
+          elem.target.value = "";
+        }
+        else if (docType !== "png" && docType !== "jpg" && docType !== "jpeg") {
+            alert("Please upload JPG, JPEG or PNG file");
+            elem.target.value = "";
+        }
+        else {
+            this.setState({docType: docType});
+        }
+    }
+
+    onUploadFinish = () => {
+        var fakeName = this.state.fakeName;
+        var logo_url = "https://hirebeat-user-logo.s3.amazonaws.com/" + fakeName;
+
+        // insert MetaData to profile table
+        const metaData = {
+          user_id: this.props.userId,
+          logo_url: logo_url,
+        };
+        this.props.updateUserLogo(metaData);
+        setTimeout(() => {this.getUpdatedData(); this.getUpdatedData();}, 300);
+    };
+
+    onUploadError = (err) => {
+        console.log(err);
+    };
+
+    onUploadProgress = () => {
+        console.log("In progress");
+    };
+
+    handleUpload = () => {
+        if (this.state.preview != null) {
+            var blob = dataURItoBlob(this.state.preview);
+            let timestamp = Date.parse(new Date());
+            let fakeName = timestamp + "." + this.state.docType;
+            const newLogo = new File([blob], fakeName, {type: blob.type});
+            this.setState({fakeName: fakeName});
+            this.uploader.uploadFile(newLogo);
+        }
+    }
+
     render () {
         const schools = ["school1", "school2", "school3"];
         const graduationDates = ["graduation_date1", "graduation_date2", "graduation_date3"];
@@ -361,7 +449,10 @@ export class Profile extends Component {
                                     {!this.state.isEditInfo ?
                                         <div className="row">
                                             <div className="col-3">
-                                                <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle-2.png" />
+                                                {(this.props.profileDetail.logo_url !== null && this.props.profileDetail.logo_url !== "") ?
+                                                    <img src={this.props.profileDetail.logo_url} /> :
+                                                    <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle-2.png" />
+                                                }
                                             </div>
                                             <div className="col-9">
                                                 <div className="row">
@@ -402,6 +493,35 @@ export class Profile extends Component {
                                                 <p className="profile-p" style={{margin: "0rem"}}>Job Title</p>
                                                 <textarea id="selfDescription" className="profile-input profile-p" style={{width: "100%"}} placeholder="eg: Software Engineer at HireBeat" defaultValue={this.props.profileDetail.self_description}></textarea>
                                             </div>
+                                            <div>
+                                                <p className="profile-p" style={{margin: "0rem"}}>User Logo</p>
+                                                <Avatar
+                                                  width={285}
+                                                  height={200}
+                                                  onCrop={this.onCrop}
+                                                  onClose={this.onClose}
+                                                  onBeforeFileLoad={this.onBeforeFileLoad}
+                                                  mimeTypes={"image/jpeg,image/png,image/jpg"}
+                                                />
+                                                {/*<img src={this.state.preview} alt="Preview" />*/}
+                                            </div>
+                                            <ReactS3Uploader
+                                              style={{display: "none"}}
+                                              id="uploadFile"
+                                              accept="image/jpeg,image/png,image/jpg"
+                                              signingUrl="/upload-user-logo"
+                                              signingUrlMethod="GET"
+                                              onError={this.onUploadError}
+                                              onFinish={this.onUploadFinish}
+                                              contentDisposition="auto"
+                                              uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
+                                              scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/gi, "")}
+                                              inputRef={(cmp) => (this.uploadInput = cmp)}
+                                              ref={(uploader) => {
+                                                this.uploader = uploader;
+                                              }}
+                                              autoUpload={true}
+                                            />
                                         </div>
                                     }
                                 </div>

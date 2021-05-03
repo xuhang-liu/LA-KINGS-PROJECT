@@ -1436,7 +1436,7 @@ const Applicant = (props) => {
                 <div className="col-2 mt-2">
                     <button className="title-button1" style={{wordBreak: "break-all"}} onClick={() => viewResult()}>
                         {(!isViewed && commentStatus == 0) && <span class="dot"></span>}
-                        {props.name.split("(")[0]}</button></div>
+                        {props.name.split("(")[0].substring(0, 11) + "..."}</button></div>
                 : <div className="col-2 interview-txt9 mt-2">{props.name.split("(")[0]}</div>
                 }
                 {props.videoCount > 0 ? 
