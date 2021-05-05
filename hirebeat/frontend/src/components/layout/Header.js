@@ -310,7 +310,7 @@ export class Header extends Component {
           </div>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{paddingTop:"10px"}}>
-            <Link to="/login">
+            <Link to="/employer-login">
               <a className="default-btn1 mr-3" id="id-login-employer" style={{color:"white", paddingLeft:"25px", border:'2px solid #FFFFFF', paddingBottom:"12px", paddingTop:"12px"}}>
                 Log In
               </a>

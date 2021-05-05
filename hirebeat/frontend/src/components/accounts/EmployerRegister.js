@@ -228,7 +228,7 @@ export class EmployerRegister extends Component {
                            fontWeight: "400"
                          }}>
                         Have an account?
-                        <a href="/login"
+                        <a href="/employer-login"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
@@ -393,7 +393,7 @@ export class EmployerRegister extends Component {
                            fontWeight: "400"
                          }}>
                         Have an account?
-                        <a href="/login"
+                        <a href="/employer-login"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
