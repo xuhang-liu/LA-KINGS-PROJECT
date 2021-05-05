@@ -260,19 +260,19 @@ const ApplyJob = (props) =>{
                         <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A"}}>
                             <div style={{width:"25%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Level</p>
-                                <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_level}</p>
+                                <p className="mt-0" style={{fontSize:"1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_level}</p>
                             </div>
                             <div style={{width:"25%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Type</p>
-                                <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_type}</p>
+                                <p className="mt-0" style={{fontSize:"1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_type}</p>
                             </div>                            
                             <div style={{width:"25%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Location</p>
-                                <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_location}</p>
+                                <p className="mt-0" style={{fontSize:"1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_location}</p>
                             </div>                            
                             <div style={{width:"25%", height:"4.8rem"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job ID</p>
-                                <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_id}</p>
+                                <p className="mt-0" style={{fontSize:"1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_id}</p>
                             </div>
                         </div>
                         <p className="mt-5" style={{fontWeight:"500", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
@@ -343,6 +343,16 @@ const ApplyJob = (props) =>{
                                                 </div>
                                             ) : <span className="ml-3 my-auto" style={{color:"#ff0000"}}>Support .pdf only</span>
                                         }
+                                        <div class="form-group row">
+                                        <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck1" required/>
+                                            <label style={{color:"#B0B0B0"}} class="form-check-label mb-4" for="gridCheck1">
+                                                I have read and agreed to the
+                                            </label><a style={{color:"#ff612f"}} href="/term" target="_blank"> Terms & Conditions</a>
+                                        </div>
+                                        </div>
+                                        </div>
                                 </div>
                                 <div className="light-blue-border mt-4 px-5" style={{marginBottom:"6rem"}}>
                                 <h1 className="mt-4 mb-5" style={{color:"#090D3A"}}>
@@ -359,16 +369,6 @@ const ApplyJob = (props) =>{
                                     <div class="form-group">
                                         <label className="job-apply-char1" for="inputAddress">Confirm Password</label>
                                         <input type="password" class="form-control" id="inputAddress" placeholder="Enter your password again" onChange={onChange3} minLength="8"/>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-10">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="gridCheck1" required/>
-                                            <label style={{color:"#B0B0B0"}} class="form-check-label mb-4" for="gridCheck1">
-                                                I have read and agreed to the
-                                            </label><a style={{color:"#ff612f"}} href="/term" target="_blank"> Terms & Conditions</a>
-                                        </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <button className="default-btn" style={{position:"absolute", right:"3.7rem", bottom:"5rem", paddingLeft:"25px"}}>
@@ -401,12 +401,12 @@ const ApplyJob = (props) =>{
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" >Phone Number</label>
-                                                <input type="number" class="form-control" onChange={onChange6} required/>
+                                                <input type="number" class="form-control" onChange={onChange6}/>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label className="job-apply-char1" for="inputAddress">Location</label>
-                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required/>
+                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7}/>
                                         </div>
                                         <div class="form-row mt-4">
                                             <div class="form-group col-md-6">
@@ -427,6 +427,16 @@ const ApplyJob = (props) =>{
                                                 </div>
                                             ) : <span className="ml-3 my-auto" style={{color:"#ff0000"}}>Support .pdf only</span>
                                         }
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck1" required/>
+                                                <label style={{color:"#B0B0B0"}} class="form-check-label mb-4" for="gridCheck1">
+                                                    I have read and agreed to the
+                                                </label><a style={{color:"#ff612f"}} href="/term" target="_blank"> Terms & Conditions</a>
+                                            </div>
+                                            </div>
+                                        </div>
                                 </div>
                                 <button className="default-btn mt-3" style={{paddingLeft:"25px", float:"right"}}>
                                     Submit Application
@@ -523,21 +533,21 @@ const ApplyJob = (props) =>{
                         <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A"}}>
                             <div style={{width:"50%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Level</p>
-                                <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_level}</p>
+                                <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_level}</p>
                             </div>
                             <div style={{width:"50%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Type</p>
-                                <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_type}</p>
+                                <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_type}</p>
                             </div>
                         </div>
                         <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A"}}>
                             <div style={{width:"50%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Location</p>
-                                <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_location}</p>
+                                <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_location}</p>
                             </div>                            
                             <div style={{width:"50%", height:"4.8rem"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job ID</p>
-                                <p className="mt-0" style={{fontSize:"1.1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_id}</p>
+                                <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_id}</p>
                             </div>
                         </div>
                         <p className="mt-3" style={{fontWeight:"500", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
@@ -660,6 +670,16 @@ const ApplyJob = (props) =>{
                                                 </div>
                                             ) : <span className="ml-3 my-auto" style={{color:"#ff0000"}}>Support .pdf only</span>
                                         }
+                                        <div class="form-group row">
+                                        <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck1" required/>
+                                            <label style={{color:"#B0B0B0"}} class="form-check-label mb-4" for="gridCheck1">
+                                                I have read and agreed to the
+                                            </label><a style={{color:"#ff612f"}} href="/term" target="_blank"> Terms & Conditions</a>
+                                        </div>
+                                        </div>
+                                        </div>
                                 </div>
                                 <div className="light-blue-border mt-4 px-5" style={{marginBottom:"6rem"}}>
                                 <h1 className="mt-4 mb-5" style={{color:"#090D3A"}}>
@@ -676,16 +696,6 @@ const ApplyJob = (props) =>{
                                     <div class="form-group">
                                         <label className="job-apply-char1" for="inputAddress">Confirm Password</label>
                                         <input type="password" class="form-control" id="inputAddress" placeholder="Enter your password again" onChange={onChange3} minLength="8"/>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-10">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="gridCheck1" required/>
-                                            <label style={{color:"#B0B0B0"}} class="form-check-label mb-4" for="gridCheck1">
-                                                I have read and agreed to the
-                                            </label><a style={{color:"#ff612f"}} href="/term" target="_blank"> Terms & Conditions</a>
-                                        </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <button className="default-btn" style={{marginLeft:"20%", bottom:"5rem", paddingLeft:"25px"}}>
@@ -718,12 +728,12 @@ const ApplyJob = (props) =>{
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" >Phone Number</label>
-                                                <input type="number" class="form-control" onChange={onChange6} required/>
+                                                <input type="number" class="form-control" onChange={onChange6}/>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label className="job-apply-char1" for="inputAddress">Location</label>
-                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required/>
+                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7}/>
                                         </div>
                                         <div class="form-row mt-4">
                                             <div class="form-group col-md-6">
@@ -744,6 +754,16 @@ const ApplyJob = (props) =>{
                                                 </div>
                                             ) : <span className="ml-3 my-auto" style={{color:"#ff0000"}}>Support .pdf only</span>
                                         }
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck1" required/>
+                                                <label style={{color:"#B0B0B0"}} class="form-check-label mb-4" for="gridCheck1">
+                                                    I have read and agreed to the
+                                                </label><a style={{color:"#ff612f"}} href="/term" target="_blank"> Terms & Conditions</a>
+                                            </div>
+                                            </div>
+                                        </div>
                                 </div>
                                 <button className="default-btn mt-3" style={{paddingLeft:"25px", marginLeft:"20%"}}>
                                     Submit Application
