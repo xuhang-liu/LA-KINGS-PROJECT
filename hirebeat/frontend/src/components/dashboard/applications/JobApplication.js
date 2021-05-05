@@ -306,7 +306,7 @@ const JobViewDetail = (props) => {
                                 <div className="col-3">
                                     {!props.profile.is_subreviwer &&
                                     <div>
-                                        {props.applicants.length > 0 ?
+                                        {props.applicants.length > 0 &&
                                         <div>
                                         {((!props.isClosed) && (props.subreviewers.length < Number(props.profile.reviewer_count))) &&
                                         <button
@@ -317,7 +317,8 @@ const JobViewDetail = (props) => {
                                             + Invite Reviewer
                                             <span></span>
                                         </button>}
-                                        {!props.isClosed &&
+                                        </div>}
+                                        {/*!props.isClosed &&
                                         <button
                                             type="submit"
                                             onClick={closeJob}
@@ -325,8 +326,8 @@ const JobViewDetail = (props) => {
                                         >
                                             <i className="bx bx-box bx-sm" style={{color: "#67A3F3"}}></i>
                                             <p className="sub_closeText">Close</p>
-                                        </button>}
-                                        {props.isClosed &&
+                                        </button>*/}
+                                        {/*props.isClosed &&
                                         <button
                                             className="default-btn1 interview-txt6 mt-4"
                                             style={{paddingLeft: "25px", marginLeft:"4rem"}}
@@ -334,16 +335,15 @@ const JobViewDetail = (props) => {
                                         >
                                             Reactive
                                             <span></span>
-                                        </button>}
-                                        </div> :
-                                        <button
+                                        </button>*/}
+                                        {/*<button
                                             type="submit"
                                             onClick={deleteAlert}
                                             className="sub_close"
                                         >
                                             <i className="bx bx-trash bx-sm" style={{color: "#67A3F3"}}></i>
                                             <p className="sub_closeText">Delete</p>
-                                        </button>}
+                                        </button>*/}
                                     </div>}
                                 </div>
                             </div>

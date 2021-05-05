@@ -28,13 +28,13 @@ export const ApplicationCover = (props) => {
         >
           Closed
         </button>
-        {!props.profile.is_subreviwer &&
+        {/*!props.profile.is_subreviwer &&
         <button className="default-btn" onClick={props.renderPosition}
           style={{color:"white", marginLeft:"5%"}}>
             <i className="bx bx-plus"></i> 
               Create New Interview
             <span></span>
-        </button>}
+        </button>*/}
         {props.loaded &&
         <button onClick={refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right", paddingTop:"1rem"}}><p style={{color:"#56a3fa"}}><box-icon name="refresh" color="#56a3fa" size="1.2rem"></box-icon>Refresh</p></button>}
       </div>

@@ -19,7 +19,7 @@ export class JobCard extends Component{
             "isClosed": true,
         }
         this.props.archiveJob(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
     };
 
     deleteJob = () => {
@@ -39,7 +39,7 @@ export class JobCard extends Component{
             "isClosed": false,
         }
         this.props.archiveJob(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
     };
 
     render() {
