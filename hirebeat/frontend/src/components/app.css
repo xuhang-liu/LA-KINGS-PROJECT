@@ -2658,7 +2658,10 @@ h5 {
 }
 
 .before-after{
-  background: linear-gradient(103.24deg, #E7ECF2 18.41%, #FFFFFF 107.46%);
+  background: url('https://hirebeat-assets.s3.amazonaws.com/Employer/TheHireTrend.png'), linear-gradient(103.24deg, #E7ECF2 18.41%, #FFFFFF 107.46%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   margin-top: 5rem;
   margin-bottom: 5rem;
 }
@@ -3217,3 +3220,31 @@ color: #4A6F8A;
 }
 
 .light-blue-modal .close {display: none;}
+
+.enable-btn {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  height: 2.5rem;
+  width: 5rem;
+  color: #FFFFFF;
+  border: none;
+  background: #67A3F3;
+  box-shadow: 2px 2px 4px rgba(232, 237, 252, 0.16);
+  border-radius: 5px;
+}
+
+.disable-btn {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  height: 2.5rem;
+  width: 5rem;
+  color: #FFFFFF;
+  border: none;
+  background: gray;
+  box-shadow: 2px 2px 4px rgba(232, 237, 252, 0.16);
+  border-radius: 5px;
+}

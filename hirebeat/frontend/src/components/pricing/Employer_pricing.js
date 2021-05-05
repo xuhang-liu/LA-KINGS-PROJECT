@@ -39,8 +39,8 @@ class Employer_pricing extends Component {
                     pageTitle="Pricing & Plans" 
                     pageDescription="Hiring talents, and take back your time. We are here to help you save 50% of your workday on screening calls." 
                 />
-                <Employer_PricingStyleOne />
                 <ROICalculator/>
+                <Employer_PricingStyleOne />
                 <Footer />
             </React.Fragment>
             </DocumentMeta>

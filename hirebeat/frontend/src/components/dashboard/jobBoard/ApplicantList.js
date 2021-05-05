@@ -191,7 +191,7 @@ export class ApplicantList extends Component{
                             <div className="col-2">Resume</div>
                             <div className="col-1" style={{padding: "0rem"}}>Interview</div>
                         </div>
-                        {this.props.curJob.applicants.map((a) => {
+                        {this.props.curJob.applicants.map((a, index) => {
                             if (this.state.keyWords != "") {
                                 let name = a.first_name + " " + a.last_name;
                                 if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
@@ -199,6 +199,8 @@ export class ApplicantList extends Component{
                             return (
                                 <ApplicantRow
                                     applicant={a}
+                                    index={index}
+                                    applicants={this.props.curJob.applicants}
                                     curJob={this.props.curJob}
                                     tempQuestion={this.state.tempQuestion}
                                     profile={this.props.profile}
@@ -248,6 +250,8 @@ export class ApplicantList extends Component{
 const ApplicantRow = (props) => {
     const [showPreview, setShowPreview] = useState(false);
     const [status, setStatus] = useState(false);
+    const [current, setCurrent] = useState(props.index);
+    let applicants = props.applicants;
     return(
         <div>
             <hr
@@ -291,25 +295,31 @@ const ApplicantRow = (props) => {
             <div style={{background:"#E8EDFC"}}>
                 <MyModal className="light-blue-modal" show={showPreview} onHide={()=>{setShowPreview(false)}}>
                         <ReviewCandidate
-                            phone={props.applicant.phone}
-                            email={props.applicant.email}
-                            location={props.applicant.location}
-                            resume_url={props.applicant.resume_url}
-                            first_name={props.applicant.first_name}
-                            last_name={props.applicant.last_name}
+                            phone={applicants[current].phone}
+                            email={applicants[current].email}
+                            location={applicants[current].location}
+                            resume_url={applicants[current].resume_url}
+                            first_name={applicants[current].first_name}
+                            last_name={applicants[current].last_name}
+                            applicant={props.applicant}
                             curJob={props.curJob}
                             tempQuestion={props.tempQuestion}
                             profile={props.profile}
                             showQForm={props.showQForm}
                             addInterviews={props.addInterviews}
-                            candidateId={props.applicant.id}
+                            candidateId={applicants[current].id}
                             updateInviteStatus={props.updateInviteStatus}
                             getAllJobs={props.getAllJobs}
                             getPJobs={props.getPJobs}
                             user={props.user}
                             setStatus={setStatus}
-                            is_invited={props.applicant.is_invited}
-                            style={{backgroundColor:"black"}} onHide={()=>{setShowPreview(false)}} />
+                            is_invited={applicants[current].is_invited}
+                            style={{backgroundColor:"black"}}
+                            onHide={()=>{setShowPreview(false)}}
+                            current={current}
+                            setCurrent={setCurrent}
+                            applicants={applicants}
+                        />
                 </MyModal>
             </div>
         </div>
