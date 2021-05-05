@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {connect} from "react-redux";
-import PageTitleArea from '../../Common/PageTitleArea';
-import {FacebookShareButton, TwitterShareButton, LinkedinShareButton, LinkedinIcon} from "react-share";
-import { Link } from "react-router-dom";
+//import PageTitleArea from '../../Common/PageTitleArea';
+import {FacebookShareButton, TwitterShareButton, LinkedinShareButton} from "react-share";
+//import { Link } from "react-router-dom";
 import {register} from "../../../redux/actions/auth_actions";
 import {createMessage} from "../../../redux/actions/message_actions";
 import {addNewApplyCandidate, getCurrentJobs} from "../../../redux/actions/job_actions";
@@ -14,14 +14,13 @@ var ReactS3Uploader = require("react-s3-uploader");
 
 var uri = window.location.search;
 var job_id = uri.substring(1, uri.length).split("=")[1];
-
+var url = String(window.location);
 const ApplyJob = (props) =>{
     useEffect(() => {
         if(job_id != null || job_id != ""){
             props.getCurrentJobs(job_id);
         }
     }, []);
-    const url = String(window.location);
     const [Applied, setApplied] = useState(false);
     const [selected, setSelected] = useState(false);
     const [resume, setResume] = useState(null);
@@ -59,12 +58,7 @@ const ApplyJob = (props) =>{
                 ]
             });
         }
-        if (passwordsMatch()) {
-            props.register(
-                username,
-                email,
-                password
-            );
+        if (username == "" || username == null){
             props.uploader.uploadFile(resume);
             let data = {
                 job_id: props.job.id,
@@ -81,6 +75,30 @@ const ApplyJob = (props) =>{
             if (history) history.push({
                 pathname: "/dashboard"
             });
+        }else{
+            if (passwordsMatch()) {
+                props.register(
+                    username,
+                    email,
+                    password
+                );
+                props.uploader.uploadFile(resume);
+                let data = {
+                    job_id: props.job.id,
+                    firstname: fisrtname,
+                    lastname: lastname,
+                    phone: phone,
+                    email: email,
+                    location: location,
+                    resume_url: resume_url
+                };
+                props.addNewApplyCandidate(data);
+                alert("Application submitted!");
+                const { history } = props;
+                if (history) history.push({
+                    pathname: "/dashboard"
+                });
+            }
         }
     }
     function applySubmit1(e) {
@@ -215,9 +233,9 @@ const ApplyJob = (props) =>{
         });
     }
     const meta = {
-        title: (job_id == null || job_id == "") ? "":props.job.job_title + " at "+ (job_id == null || job_id == "") ? "":props.job.company_name,
-        description: (job_id == null || job_id == "") ? "":props.job.company_name,
-        canonical: url,
+        title: "Job Apply",
+        description: "Job Apply",
+        canonical: "https://hirebeat.co/apply-job",
         meta: {
           charset: 'utf-8',
           name: {
@@ -328,19 +346,19 @@ const ApplyJob = (props) =>{
                                 </div>
                                 <div className="light-blue-border mt-4 px-5" style={{marginBottom:"6rem"}}>
                                 <h1 className="mt-4 mb-5" style={{color:"#090D3A"}}>
-                                        Create Account
+                                        Create Account (Optional)
                                 </h1>
                                     <div class="form-group">
                                         <label className="job-apply-char1" for="inputAddress">Email/Username</label>
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="Create a username" onChange={onChange1} required/>
+                                        <input type="text" class="form-control" id="inputAddress" placeholder="Create a username" onChange={onChange1}/>
                                     </div>
                                     <div class="form-group">
                                         <label className="job-apply-char1" for="inputAddress">Password</label>
-                                        <input type="password" class="form-control" id="inputAddress" placeholder="At least 8 characters" onChange={onChange2} minLength="8" required/>
+                                        <input type="password" class="form-control" id="inputAddress" placeholder="At least 8 characters" onChange={onChange2} minLength="8"/>
                                     </div>
                                     <div class="form-group">
                                         <label className="job-apply-char1" for="inputAddress">Confirm Password</label>
-                                        <input type="password" class="form-control" id="inputAddress" placeholder="Enter your password again" onChange={onChange3} minLength="8" required/>
+                                        <input type="password" class="form-control" id="inputAddress" placeholder="Enter your password again" onChange={onChange3} minLength="8"/>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-10">
@@ -645,19 +663,19 @@ const ApplyJob = (props) =>{
                                 </div>
                                 <div className="light-blue-border mt-4 px-5" style={{marginBottom:"6rem"}}>
                                 <h1 className="mt-4 mb-5" style={{color:"#090D3A"}}>
-                                        Create Account
+                                        Create Account (Optional)
                                 </h1>
                                     <div class="form-group">
                                         <label className="job-apply-char1" for="inputAddress">Email/Username</label>
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="Create a username" onChange={onChange1} required/>
+                                        <input type="text" class="form-control" id="inputAddress" placeholder="Create a username" onChange={onChange1}/>
                                     </div>
                                     <div class="form-group">
                                         <label className="job-apply-char1" for="inputAddress">Password</label>
-                                        <input type="password" class="form-control" id="inputAddress" placeholder="At least 8 characters" onChange={onChange2} minLength="8" required/>
+                                        <input type="password" class="form-control" id="inputAddress" placeholder="At least 8 characters" onChange={onChange2} minLength="8"/>
                                     </div>
                                     <div class="form-group">
                                         <label className="job-apply-char1" for="inputAddress">Confirm Password</label>
-                                        <input type="password" class="form-control" id="inputAddress" placeholder="Enter your password again" onChange={onChange3} minLength="8" required/>
+                                        <input type="password" class="form-control" id="inputAddress" placeholder="Enter your password again" onChange={onChange3} minLength="8"/>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-10">
