@@ -301,7 +301,7 @@ const ApplicantRow = (props) => {
                             resume_url={applicants[current].resume_url}
                             first_name={applicants[current].first_name}
                             last_name={applicants[current].last_name}
-                            applicant={props.applicant}
+                            applicant={applicants[current]}
                             curJob={props.curJob}
                             tempQuestion={props.tempQuestion}
                             profile={props.profile}
