@@ -191,8 +191,32 @@ const ReviewCandidate = (props) => {
                         Resume
                     </h2>
                     <div className="light-blue-border" style={{width:"100%", height:"90%"}}>
-                        <object data={props.resume_url} 
-                                style={{width:"100%", height:"100%"}}/>
+                        {props.resume_url != null && props.resume_url != "" &&
+                            <object data={props.resume_url}
+                                    style={{width:"100%", height:"100%"}}/>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-3" />
+                <div className="col-9" style={{marginTop: "1.5rem"}}>
+                    <div style={{textAlign: "center"}}>
+                        <button
+                            className={props.current == 0 ? "disable-btn" : "enable-btn"}
+                            disabled={props.current == 0 ? true : false}
+                            onClick={() => {props.setCurrent(props.current-1)}}
+                        >
+                            &lt; Prev
+                        </button>
+                        <button
+                            className={props.current == props.applicants.length - 1 ? "disable-btn" : "enable-btn"}
+                            disabled={props.current == props.applicants.length - 1 ? true : false}
+                            onClick={() => {props.setCurrent(props.current+1)}}
+                            style={{marginLeft: "2rem"}}
+                        >
+                            Next &gt;
+                        </button>
                     </div>
                 </div>
             </div>

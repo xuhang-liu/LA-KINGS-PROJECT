@@ -3217,3 +3217,31 @@ color: #4A6F8A;
 }
 
 .light-blue-modal .close {display: none;}
+
+.enable-btn {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  height: 2.5rem;
+  width: 5rem;
+  color: #FFFFFF;
+  border: none;
+  background: #67A3F3;
+  box-shadow: 2px 2px 4px rgba(232, 237, 252, 0.16);
+  border-radius: 5px;
+}
+
+.disable-btn {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  height: 2.5rem;
+  width: 5rem;
+  color: #FFFFFF;
+  border: none;
+  background: gray;
+  box-shadow: 2px 2px 4px rgba(232, 237, 252, 0.16);
+  border-radius: 5px;
+}
