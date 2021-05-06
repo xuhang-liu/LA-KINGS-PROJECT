@@ -252,6 +252,7 @@ const ApplicantRow = (props) => {
     const [status, setStatus] = useState(false);
     const [current, setCurrent] = useState(props.index);
     let applicants = props.applicants;
+    let name = props.applicant.first_name + " " + props.applicant.last_name;
     return(
         <div>
             <hr
@@ -267,7 +268,7 @@ const ApplicantRow = (props) => {
                 <div className="col-2 interview-txt9 mt-2">
                     {(!props.applicant.is_invited && !status) &&
                         <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox"/>}
-                     &nbsp; {props.applicant.first_name + " " + props.applicant.last_name}
+                     &nbsp; {name.length > 16 ? name.substring(0, 14) + "..." : name}
                 </div>
                 <div className="col-3 interview-txt9 mt-2">{props.applicant.email}</div>
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
