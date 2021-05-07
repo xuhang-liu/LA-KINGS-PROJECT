@@ -98,8 +98,12 @@ def archive_job(request):
 
     job = Jobs.objects.get(id=id)
     job.is_closed = is_closed
-    # save update to db
     job.save()
+    # archive position
+    position_id = job.positions_id
+    position = Positions.objects.get(id=position_id)
+    position.is_closed = is_closed
+    position.save()
 
     return Response("Archive new job successfully", status=status.HTTP_202_ACCEPTED)
 

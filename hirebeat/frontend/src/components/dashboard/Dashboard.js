@@ -11,7 +11,7 @@ import { Profile } from "./profile/Profile";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getProfileDetail,
         updatePersonalInfo, updateSocialMedia, updateBasicInfo, updateVideo, updateSummary,
-        updateResume, updateEducation, updateWorkExp, updateProfileRate} from "../../redux/actions/auth_actions";
+        updateResume, updateEducation, updateWorkExp, updateProfileRate, updateUserLogo} from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -168,6 +168,7 @@ export class Dashboard extends Component {
                     updateWorkExp={this.props.updateWorkExp}
                     profileDetail={this.props.profileDetail}
                     updateProfileRate={this.props.updateProfileRate}
+                    updateUserLogo={this.props.updateUserLogo}
                 />;
       default:
         //Do nothing
@@ -265,6 +266,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, getReceivedInterview,
     getProfileDetail,updatePersonalInfo, updateSocialMedia, updateBasicInfo, updateVideo, updateSummary,
-    updateResume, updateEducation, updateWorkExp, updateProfileRate})(
+    updateResume, updateEducation, updateWorkExp, updateProfileRate, updateUserLogo})(
   Dashboard
 );

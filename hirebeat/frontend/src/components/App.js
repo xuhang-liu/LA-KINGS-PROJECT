@@ -15,6 +15,7 @@ import indexsaas from "./home/index-saas";
 import IndexEmployer from "./home/index-employer";
 import EmailVerification from "./accounts/EmailVerification";
 import Login from "./accounts/Login";
+import EmployerLogin from "./accounts/EmployerLogin";
 import Register from "./accounts/Register";
 import EmployerRegister from "./accounts/EmployerRegister";
 import PrivateRoute from "./basic/PrivateRoute";
@@ -39,6 +40,7 @@ import BlogDetail11_Employer from "./blog/blog-details11-employer";
 import BlogDetail12_Employer from "./blog/blog-details12-employer";
 import BlogDetail13_Employer from "./blog/blog-details13-employer";
 import BlogDetail14_Employer from "./blog/blog-details14-employer";
+import BlogDetail15_Employer from "./blog/blog-details15-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -309,6 +311,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-workplace-camaraderie-your-powerful-tool-for-success" component={BlogDetail12_Employer} />
                 <Route exact path="/employer_blog-how-to-write-a-termination-letter-right" component={BlogDetail13_Employer} />
                 <Route exact path="/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern" component={BlogDetail14_Employer} />
+                <Route exact path="/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today" component={BlogDetail15_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
@@ -337,6 +340,7 @@ class App extends Component {
                 <Route exact path="/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate" component={BlogDetail26} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/employer-login" component={EmployerLogin} />
                 <Route exact path="/employer_register" component={EmployerRegister} />
                 <Route exact path="/upload" component={MyVideoUploader} />
                 <Route exact path="/" component={IndexEmployer} />

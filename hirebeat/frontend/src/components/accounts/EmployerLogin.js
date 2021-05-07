@@ -16,7 +16,7 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-export class Login extends Component {
+export class EmployerLogin extends Component {
   state = {
     username: "",
     password: "",
@@ -161,7 +161,7 @@ export class Login extends Component {
 
                       <div className="d-flex flex-wrap justify-content-between align-items-center">
                         <a
-                            href="/register"
+                            href="/employer_register"
                             className="navbar-font"
                             style={{textDecoration: "underline", color: "#FF6B00", fontWeight: "300", fontFamily: "Avenir Next, Segoe UI", fontSize:"1rem"}}
                         >
@@ -194,24 +194,11 @@ export class Login extends Component {
                             style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
-                          Job Seeker Log in
+                          Employer Log in
                         </button>
 
                       </div>
                     </form>
-
-                    <hr className="style-four"
-                        data-content="Or use"
-                        style={{
-                          marginTop:"4rem",
-                          marginBottom:"2rem",
-                          fontFamily: "Avenir Next, Segoe UI",
-                        }}
-                    />
-
-
-                    <SocialButtons handleSocialLogin={this.handleSocialLogin}/>
-
                   </div>
                 </div>
               </div>
@@ -231,4 +218,4 @@ const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
 });
 
-export default connect(mapStateToProps, {login, exchangeToken, loadProfile})(Login);
+export default connect(mapStateToProps, {login, exchangeToken, loadProfile})(EmployerLogin);
