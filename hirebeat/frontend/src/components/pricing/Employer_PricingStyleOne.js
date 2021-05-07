@@ -200,23 +200,23 @@ class Employer_PricingStyleOne extends Component {
                                             <ul className="pricing-features pr-2">
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    <strong>1</strong> job position
+                                                    <strong>1</strong> Job Position
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    <strong>25</strong> candidate invitations 
+                                                    <strong>25</strong> Video Screening per job 
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    <strong>3</strong> Customize questions
+                                                    <strong>3</strong> Customizable Video Questions
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Shortlist candidate
+                                                    Candidate Shortlisting
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    Candidate rating & comments
+                                                    Candidate Rating & Feedback
                                                 </li>
                                                 <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
@@ -224,11 +224,23 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
-                                                    Resume evaluation
+                                                    AI-powered Resume Evaluation
                                                 </li>
                                                 <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
-                                                    Team collaboration
+                                                    AI-Powered Analytics
+                                                </li>
+                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
+                                                    Team Collaboration
+                                                </li>
+                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
+                                                    API Integrations
+                                                </li>
+                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
+                                                    Custom Branding
                                                 </li>
                                             </ul>
                                         </div>
@@ -236,12 +248,10 @@ class Employer_PricingStyleOne extends Component {
 
                                     {/* Single pricing table 2 */}
                                     <div className="col-lg-3 col-md-3">
-                                        <p style={{marginTop:"-3rem", color:"#ff6b00", fontWeight:"600", fontSize:"16px"}}>
-                                        <box-icon type='solid' name='medal' color="#ff6b00"></box-icon> Most popular</p>
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#090D3A"}}>
                                             <div className="pricing-header">
-                                                <h3 style={{color:"#ffffff", fontWeight:"600"}}>Pro</h3>
-                                                <p style={{color:"#ffffff", fontSize:"12px"}}>Perfect for small-sized companies</p>
+                                                <h3 style={{color:"#ffffff", fontWeight:"600"}}>Pro <span style={{color:"#ff6b00", fontWeight:"600", marginLeft:"1rem", fontSize:"1rem"}}><box-icon type='solid' name='medal' color="#ff6b00"></box-icon>Most popular</span></h3>
+                                                <p style={{color:"#ffffff", fontSize:"12px"}}>Best Value for SME companies</p>
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", color:"#ffffff"}}>
@@ -300,35 +310,47 @@ class Employer_PricingStyleOne extends Component {
                                             <ul className="pricing-features pr-2">
                                             <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    <strong>5</strong> job positions
+                                                    <strong>5</strong> Job Positions
                                                     </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    <strong>100</strong> candidate invitations for each job position
+                                                    <strong>100</strong> Video Screening per job 
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    <strong>3</strong> customized questions
+                                                    <strong>3</strong> Customizable Video Questions
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Shortlist candidates
+                                                    Candidate Shortlisting
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Resume evaluation & analytics
-                                                </li>
-                                                <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Candidate rating & comments
+                                                    Candidate Rating & Feedback
                                                 </li>
                                                 <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
                                                     Built-in ATS
                                                 </li>
+                                                <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                    AI-powered Resume Evaluation
+                                                </li>
+                                                <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                    AI-Powered Analytics
+                                                </li>
                                                 <li style={{color:"white", textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#e8edfc"}}></i> 
+                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
                                                     Team collaboration
+                                                </li>
+                                                <li style={{color:"white", textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
+                                                    API Integrations
+                                                </li>
+                                                <li style={{color:"white", textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
+                                                    Custom Branding
                                                 </li>
                                             </ul>
                                         </div>
@@ -396,36 +418,48 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <ul className="pricing-features pr-2">
-                                            <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
+                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    <strong>Unlimited</strong> job positions
+                                                    <strong>Unlimited</strong> Job Positions
                                                     </li>
                                                 <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    <strong>Unlimited</strong> invitations for each job position
+                                                    <strong>Unlimited</strong> Video Screening 
                                                 </li>
                                                 <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    <strong>3</strong> team collaborators
+                                                    <strong>6</strong> Customizable Video Questions
                                                 </li>
                                                 <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Up to <strong>6</strong> customized questions</li>
+                                                    Candidate Shortlisting</li>
                                                 <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Candidate rating & comments
-                                                </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Shortlist candidates
-                                                </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
-                                                    Resume evaluation & analytics
+                                                    Candidate Rating & Feedback
                                                 </li>
                                                 <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
                                                     Built-in ATS
+                                                </li>
+                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                    AI-powered Resume Evaluation
+                                                </li>
+                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                    AI-Powered Analytics
+                                                </li>
+                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                    <strong>3</strong> Team Collaborators
+                                                </li>
+                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                    API Integrations
+                                                </li>
+                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                    Custom Branding
                                                 </li>
                                             </ul>
                                         </div>
@@ -436,7 +470,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E8EDFC"}}>
                                         <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600"}}>Enterprise</h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Ideal for large organizations</p>
+                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Perfect for large enterprise</p>
                                             </div>
 
                                             <div className="price" style={{color:'#090d3a', borderTop:"none", fontSize:"2rem"}}>
@@ -454,29 +488,25 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <ul className="pricing-features pr-2">
-                                            <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
+                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    Customized number of job positions
+                                                    <strong>Unlimited</strong> Job Positions
                                                     </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    Customized candidate invitations
+                                                    <strong>Unlimited</strong> Video Screening 
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    Flexible team collaborators
+                                                    <strong>Unlimited</strong> Video Questions
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    Shortlist candidates
+                                                    Candidate Shortlisting
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    Candidate rating & comments
-                                                </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    Resume evaluation & analytics
+                                                    Candidate Rating & Feedback
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
@@ -484,7 +514,23 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    Priority Support</li>
+                                                    AI-powered Resume Evaluation
+                                                </li>
+                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                    AI-Powered Analytics</li>
+                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                    <strong>Unlimited</strong> Team Collaborators
+                                                </li>
+                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                    API Integrations
+                                                </li>
+                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                    Custom Branding
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>

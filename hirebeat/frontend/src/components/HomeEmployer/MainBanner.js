@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import ModalVideo from 'react-modal-video';
-import ReactWOW from 'react-wow';
+//import ReactWOW from 'react-wow';
 import MediaQuery from 'react-responsive';
 
 class MainBanner extends Component {
@@ -28,20 +28,21 @@ class MainBanner extends Component {
                     onClose={() => this.setState({isOpen: false})} 
                 />
                 <MediaQuery minDeviceWidth={1224}>
-                <div className="saas-banner" style={{height:"50.625vw", minHeight:"729px", backgroundImage:"url(https://hirebeat-assets.s3.amazonaws.com/Employer/bg.jpg)"}}>
+                <div className="saas-banner" style={{height:"40.625vw", minHeight:"600px", backgroundImage:"url(https://hirebeat-assets.s3.amazonaws.com/Employer/employer_bg.png)"}}>
                     <div className="container-fluid">
                         <div className="row pl-5">
                             <div className="col-6" style={{paddingTop:"10vw"}}>
                                 <div className="hero-content">
-                                    <h1 style={{fontSize:"40px", lineHeight:"46px", paddingBottom:"1.2rem"}}>Simplify the Hiring Process</h1>
+                                    <h1 style={{fontSize:"70px", lineHeight:"46px", marginBottom:"0.8rem"}}>Simplify the</h1>
+                                    <h1 style={{fontSize:"70px", lineHeight:"46px", marginBottom:"1.2rem"}}>Hiring Process</h1>
                                     <div>
                                         <p>Meet Candidate Behind the Resume</p>
-                                        <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#ff6b00"}}>One</span> Platform</p>
+                                        <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#f4c534"}}>One</span> Platform</p>
                                     </div>
                                     <div className="banner-btn">
                                         <div className="d-flex">
                                             <Link to="/employer_register">
-                                                <a id="id-employer_signup2" className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"1.5vmin", lineHeight:"26px"}}>
+                                                <a id="id-employer_signup2" className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"1.5vmin", lineHeight:"26px", backgroundColor:"#ff6b00"}}>
                                                 Start Hiring For Free
                                                     <span></span>
                                                 </a>
@@ -49,13 +50,12 @@ class MainBanner extends Component {
                                             <Link href="#play-video">
                                             <a
                                                 onClick={e => {e.preventDefault(); this.openModal()}}
-                                                className="video-btn popup-youtube"
-                                                style={{top:"5%"}}
+                                                className="default-btn"
+                                                style={{color:"#ffffff", fontWeight:"600", fontsize:"1.5vmin", lineHeight:"26px", marginLeft:"2rem"}}
                                             >
-                                                <i id="id-video3" className="bx bx-play bx-md" style={{color:"#FF6B00"}}></i>
+                                                <i id="id-video3" className="bx bx-play-circle" style={{color:"#ffffff"}}></i>Watch Demo
                                             </a>
                                             </Link>
-                                            <p className="ml-2 mt-3">Learn More</p>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@ class MainBanner extends Component {
                 </div>
                 </MediaQuery>
                 <MediaQuery maxDeviceWidth={1223}>
-                <div className="saas-banner" style={{minHeight:"100vh",backgroundImage:"url(https://hirebeat-assets.s3.amazonaws.com/Employer/bg.jpg)", marginBottom:"-10rem"}}>
+                <div className="saas-banner" style={{minHeight:"50vh",backgroundImage:"url(https://hirebeat-assets.s3.amazonaws.com/Employer/employer_bg_mobile.png)"}}>
                     <div className="d-table">
                         <div className="d-table-cell">
                             <div className="container-fluid">
@@ -75,12 +75,12 @@ class MainBanner extends Component {
                                             <h1>Simplify the Hiring Process</h1>
                                             <div>
                                             <p>Meet Candidate Behind the Resume</p>
-                                            <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#ff6b00"}}>One</span> Platform</p>
+                                            <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#f4c534"}}>One</span> Platform</p>
                                             </div>                               
                                             <div className="banner-btn">
                                                 <div className="d-flex">
                                                     <Link to="/employer_register">
-                                                        <a id="id-employer_signup2" className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"1.5vmin", lineHeight:"26px"}}>
+                                                        <a id="id-employer_signup2" className="default-btn2" style={{color:"white", fontWeight:"600", fontsize:"1.5vmin", lineHeight:"26px", backgroundColor:"#ff6b00"}}>
                                                         Start Hiring For Free
                                                             <span></span>
                                                         </a>
@@ -106,48 +106,66 @@ class MainBanner extends Component {
                     </div>
                 </div>
                 </MediaQuery>
-                <div className="container-fluid max-width-1440">
-                <ReactWOW animation='fadeInUp' delay='0.2s'>
-                    <div className="overview-item">
-                    <div className="container mt-4 max-width-1440">
-                        <div className="row align-items-center">
-                            <div className="col-lg-6 col-md-6">
-                                <div className="overview-left-img">
-                                    <img src='https://hirebeat-assets.s3.amazonaws.com/Employer/mainbanner3.png' alt="pic" style={{maxWidth:"285px"}}/>
-                                </div>
+                <div className="container-fluid max-width-1440 pb-70 pt-100">
+                    <div className="text-center">
+                        <h1 style={{fontSize:"2.4rem", fontWeight:"600", color:"#090D3A"}}>
+                        How it works
+                        </h1>
+                    </div>
+                    <div className="row mt-5">
+                        <div className="col-lg-3 col-md-6">
+                            <div className="justify-items">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/howitworks_01.png" alt="img" />
                             </div>
-
-                            <div className="col-lg-6 col-md-6">
-                                <div className="overview-content pl-3">
-                                    <h3>Is your screening method outdated?</h3>
-                                    <p>Repeated appointments with job applicants, time-consuming telephone interviews, and high labor&time costs to screen just one qualified applicant</p>
-                                </div>
+                            <div className="justify-items">
+                            <h3 style={{marginTop:"1rem", fontWeight:"600", color:"#090d3a"}}>Post a Job</h3>
+                            </div>
+                            <div className="justify-items">
+                                <p className="section-txt1" style={{lineHeight:"26px", marginTop:"0.5rem", textAlign:"center", width:"70%", color:"#090d3a"}}>
+                                Distribute job postings to different sources
+                                </p>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6">
+                            <div className="justify-items">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/howitworks_02.png" alt="img" />
+                            </div>
+                            <div className="justify-items">
+                            <h3 style={{marginTop:"1rem", fontWeight:"600", color:"#090d3a"}}>Source the Talent</h3>
+                            </div>
+                            <div className="justify-items">
+                                <p className="section-txt1" style={{lineHeight:"26px", marginTop:"0.5rem", textAlign:"center", width:"70%", color:"#090d3a"}}>
+                                Consolidate candidate data from various sources
+                                </p>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6">
+                            <div className="justify-items">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/howitworks_03.png" alt="img" />
+                            </div>
+                            <div className="justify-items">
+                            <h3 style={{marginTop:"1rem", fontWeight:"600", color:"#090d3a"}}>Evaluate Candidate</h3>
+                            </div>
+                            <div className="justify-items">
+                                <p className="section-txt1" style={{lineHeight:"26px", marginTop:"0.5rem", textAlign:"center", width:"70%", color:"#090d3a"}}>
+                                Automated resume screening & video interview
+                                </p>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6">
+                            <div className="justify-items">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/howitworks_04.png" alt="img" />
+                            </div>
+                            <div className="justify-items">
+                            <h3 style={{marginTop:"1rem", fontWeight:"600", color:"#090d3a"}}>Collaborative Screening</h3>
+                            </div>
+                            <div className="justify-items">
+                                <p className="section-txt1" style={{lineHeight:"26px", marginTop:"0.5rem", textAlign:"center", width:"70%", color:"#090d3a"}}>
+                                Invite team members to evaluate candidates
+                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
-                </ReactWOW>
-
-                <ReactWOW animation='fadeInUp' delay='0.2s'>
-                    <div className="overview-item">
-                        <div className="container max-width-1440">
-                            <div className="row align-items-center">
-                                <div className="col-lg-6 col-md-6">
-                                    <div className="overview-content pl-3">
-                                        <h3>Review your candidates anytime and anywhere!</h3>
-                                        <p>No more time-wasting! HireBeat can help you set up the interview and screen candidates all at once without the trouble of scheduling time</p>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-6 col-md-6">
-                                    <div className="overview-right-img float-right">
-                                        <img src='https://hirebeat-assets.s3.amazonaws.com/Employer/mainbanner4.png' alt="pic" style={{maxWidth:"350px"}}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ReactWOW>
                 </div>
                 <div className="before-after pb-100 pt-100">
                     <div className="container-fluid max-width-1440">
