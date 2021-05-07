@@ -765,3 +765,32 @@ def upload_employer_logo(request):
         headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
+
+def upload_user_logo(request):
+    object_name = request.GET['objectName']
+    content_type = request.GET['contentType']
+    # content_type = mimetypes.guess_type(object_name)[0]
+    # content_type = content_type + ";codecs=vp8,opus" ### ATTENTION: this added part is required if upload dirctly from the browser. If used for uploading local files, comment this line out.###
+
+    signed_url = conn.generate_url(
+        300,
+        "PUT",
+        os.getenv("User_Logo"),
+        object_name,
+        headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
+
+    return HttpResponse(json.dumps({'signedUrl': signed_url}))
+
+@api_view(['POST'])
+def create_or_update_user_logo(request):
+    user_id = request.data["user_id"]
+    logo_url = request.data["logo_url"]
+    try:
+        # update profile detail information
+        profile = ProfileDetail.objects.get(user_id=user_id)
+        profile.logo_url = logo_url
+        profile.save()
+    except ObjectDoesNotExist:
+        # create profile detail information
+        ProfileDetail.objects.create(user_id=user_id, logo_url=logo_url)
+    return Response("Create or Update user logo successfully", status=status.HTTP_201_CREATED)
