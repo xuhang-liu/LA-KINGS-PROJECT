@@ -268,9 +268,9 @@ const ApplicantRow = (props) => {
                 <div className="col-2 interview-txt9 mt-2">
                     {(!props.applicant.is_invited && !status) &&
                         <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox"/>}
-                     &nbsp; {name.length > 16 ? name.substring(0, 14) + "..." : name}
+                     &nbsp; {name.length > 13 ? name.substring(0, 11) + "..." : name}
                 </div>
-                <div className="col-3 interview-txt9 mt-2">{props.applicant.email}</div>
+                <div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
                 <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setShowPreview(true);}}>View</div>
                 <div className="col-2 interview-txt9 mt-2">

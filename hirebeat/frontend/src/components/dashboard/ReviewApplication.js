@@ -54,7 +54,7 @@ class ReviewApplication extends Component{
                                         wordBreak: "break-all",
                                         }}
                                     >
-                                        {this.props.username_candidate}
+                                        {this.props.username_candidate.length>14?this.props.username_candidate.substring(0,12)+"..." : this.props.username_candidate}
                                     </h4>
                                     </div>
                                 </div>

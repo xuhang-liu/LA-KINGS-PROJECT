@@ -154,13 +154,13 @@ class Employer_PricingStyleOne extends Component {
                                 <div className="row pb-5 pt-3">
                                     {/* Single pricing table 1 */}
                                     <div className="col-lg-3 col-md-3 px-4">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E8EDFC"}}>
+                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#F0F6FE", border:"2px solid #67A3F3"}}>
                                             <div className="pricing-header">
-                                                <h3 style={{fontWeight:"600"}}>Free</h3>
+                                                <h3 style={{fontWeight:"600",  marginBottom:"0.6rem"}}>Free</h3>
                                                 <p style={{color:"#090d3a", fontSize:"12px"}}>Try the essentials to get started</p>
                                             </div>
 
-                                            <div className="price" style={{borderTop:"none"}}>
+                                            <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #67A3F3"}}>
                                                 <sup>$</sup>0 <sub style={{color:"#090d3a"}}>/ month</sub>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
@@ -248,14 +248,14 @@ class Employer_PricingStyleOne extends Component {
 
                                     {/* Single pricing table 2 */}
                                     <div className="col-lg-3 col-md-3">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#090D3A"}}>
+                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#FFF0E6", border:"2px solid #ff6b00"}}>
                                             <div className="pricing-header">
-                                                <h3 style={{color:"#ffffff", fontWeight:"600"}}>Pro <span style={{color:"#ff6b00", fontWeight:"600", marginLeft:"1rem", fontSize:"1rem"}}><box-icon type='solid' name='medal' color="#ff6b00"></box-icon>Most popular</span></h3>
-                                                <p style={{color:"#ffffff", fontSize:"12px"}}>Best Value for SME companies</p>
+                                                <h3 style={{color:"#ff6b00", fontWeight:"600", marginBottom:"0.6rem"}}>Pro <span style={{color:"#ffffff", fontWeight:"600", marginLeft:"1rem", fontSize:"0.8rem", backgroundColor:"#ff6b00", paddingTop:"5px", paddingBottom:"5px", paddingLeft:"5px", paddingRight:"5px", borderRadius:"7px"}}><box-icon type='solid' name='medal' color="#ffffff" size="xs"></box-icon>Most popular</span></h3>
+                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Best Value for SME companies</p>
                                             </div>
 
-                                            <div className="price" style={{borderTop:"none", color:"#ffffff"}}>
-                                                <sup style={{color:"#ffffff"}}>$</sup>169<sub style={{color:"#ffffff"}}>/ month</sub>
+                                            <div className="price" style={{borderTop:"none", color:"#090d3a", borderBottom:"2px dashed #ff6b00"}}>
+                                                <sup style={{color:"#090d3a"}}>$</sup>169<sub style={{color:"#090d3a"}}>/ month</sub>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
@@ -271,7 +271,7 @@ class Employer_PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}} onClick={this.handleProUpgrade}>
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", paddingLeft:"25px"}} onClick={this.handleProUpgrade}>
                                                         Select Plan
                                                         <span></span>
                                                     </button>
@@ -308,47 +308,47 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <ul className="pricing-features pr-2">
-                                            <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                            <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     <strong>5</strong> Job Positions
                                                     </li>
-                                                <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     <strong>100</strong> Video Screening per job 
                                                 </li>
-                                                <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     <strong>3</strong> Customizable Video Questions
                                                 </li>
-                                                <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     Candidate Shortlisting
                                                 </li>
-                                                <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     Candidate Rating & Feedback
                                                 </li>
-                                                <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     Built-in ATS
                                                 </li>
-                                                <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     AI-powered Resume Evaluation
                                                 </li>
-                                                <li style={{color:"white", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     AI-Powered Analytics
                                                 </li>
-                                                <li style={{color:"white", textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
+                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
                                                     Team collaboration
                                                 </li>
-                                                <li style={{color:"white", textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
+                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
                                                     API Integrations
                                                 </li>
-                                                <li style={{color:"white", textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
+                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
                                                     Custom Branding
                                                 </li>
@@ -358,20 +358,20 @@ class Employer_PricingStyleOne extends Component {
 
                                     {/* Single pricing table 3*/}
                                     <div className="col-lg-3 col-md-3">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#67A3F3"}}>
+                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E7F9F6", border:"2px solid #13c4a1"}}>
                                         <div className="pricing-header">
-                                                <h3 style={{fontWeight:"600"}}>Premium</h3>
+                                                <h3 style={{fontWeight:"600",  marginBottom:"0.6rem", color:"#13c4a1"}}>Premium</h3>
                                                 <p style={{fontSize:"12px", color:"#090d3a"}}>Great for growing organizations</p>
                                             </div>
 
-                                            <div className="price" style={{borderTop:"none"}}>
+                                            <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #13c4a1"}}>
                                                 <sup>$</sup>599<sub style={{color:"#090d3a"}}>/ month</sub>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
                                                 <div className="btn-box">
                                                 <Link to="/employer_register">
-                                                <a id="id-employer-select2" className="default-btn" style={{color:"#090d3a", backgroundColor:"#e8edfc", paddingLeft:"25px"}}>
+                                                <a id="id-employer-select2" className="default-btn" style={{color:"white", paddingLeft:"25px"}}>
                                                     Select Plan
                                                     <span></span>
                                                 </a>
@@ -381,7 +381,7 @@ class Employer_PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button id="id-tifn5" className="default-btn" style={{color:"#090d3a", backgroundColor:"#e8edfc", paddingLeft:"25px"}} onClick={this.handlePremiumUpgrade}>
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", paddingLeft:"25px"}} onClick={this.handlePremiumUpgrade}>
                                                         Select Plan
                                                         <span></span>
                                                     </button>
@@ -408,7 +408,7 @@ class Employer_PricingStyleOne extends Component {
                                             {
                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                 <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"#090d3a", backgroundColor:"#e8edfc", paddingLeft:"25px"}} onClick={this.handlePremiumUpgrade}>
+                                                    <button className="default-btn1" style={{color:"white", paddingLeft:"25px"}} onClick={this.handlePremiumUpgrade}>
                                                         Upgrade
                                                         <span></span>
                                                     </button>
@@ -418,47 +418,47 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <ul className="pricing-features pr-2">
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     <strong>Unlimited</strong> Job Positions
                                                     </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     <strong>Unlimited</strong> Video Screening 
                                                 </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     <strong>6</strong> Customizable Video Questions
                                                 </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     Candidate Shortlisting</li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     Candidate Rating & Feedback
                                                 </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     Built-in ATS
                                                 </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     AI-powered Resume Evaluation
                                                 </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     AI-Powered Analytics
                                                 </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     <strong>3</strong> Team Collaborators
                                                 </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     API Integrations
                                                 </li>
-                                                <li style={{color:"#e8edfc", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#e8edfc"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     Custom Branding
                                                 </li>
                                             </ul>
@@ -467,13 +467,13 @@ class Employer_PricingStyleOne extends Component {
 
                                     {/* Single pricing table 4*/}
                                     <div className="col-lg-3 col-md-3 px-4">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E8EDFC"}}>
+                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E7EAFD", border:"2px solid #5269F3"}}>
                                         <div className="pricing-header">
-                                                <h3 style={{fontWeight:"600"}}>Enterprise</h3>
+                                                <h3 style={{fontWeight:"600",  marginBottom:"0.6rem", color:"#5269f3"}}>Enterprise</h3>
                                                 <p style={{color:"#090d3a", fontSize:"12px"}}>Perfect for large enterprise</p>
                                             </div>
 
-                                            <div className="price" style={{color:'#090d3a', borderTop:"none", fontSize:"2rem"}}>
+                                            <div className="price" style={{color:'#090d3a', borderTop:"none", fontSize:"2rem", borderBottom:"2px dashed #5269f3"}}>
                                                 Custom
                                             <div style={{marginLeft:"-2rem", marginBottom:"0.3rem"}}>
                                             {

@@ -119,7 +119,7 @@ const ReviewCandidate = (props) => {
                                         color: "#090D3A",
                                         }}
                                     >
-                                        {props.first_name+" "+props.last_name}
+                                        {(props.first_name+" "+props.last_name).length > 12 ? (props.first_name+" "+props.last_name).substring(0,10) + "..." : (props.first_name+" "+props.last_name)}
                                     </h2>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@ const ReviewCandidate = (props) => {
                                             <IconText
                                             iconName={"bx bx-phone bx-sm"}
                                             textDisplayed={props.phone}
-                                            textSize={"1rem"}
+                                            textSize={"0.7rem"}
                                             textColor={"#4A6F8A"}
                                             iconMargin={"3px"}
                                             />
@@ -139,7 +139,7 @@ const ReviewCandidate = (props) => {
                                             <IconText
                                             iconName={"bx bx-envelope bx-sm"}
                                             textDisplayed={props.email}
-                                            textSize={"1rem"}
+                                            textSize={"0.7rem"}
                                             textColor={"#4A6F8A"}
                                             iconMargin={"5px"}
                                             />
@@ -150,7 +150,7 @@ const ReviewCandidate = (props) => {
                                             <IconText
                                             iconName={"bx bx-location-plus bx-sm"}
                                             textDisplayed={props.location}
-                                            textSize={"1rem"}
+                                            textSize={"0.7rem"}
                                             textColor={"#4A6F8A"}
                                             iconMargin={"3px"}
                                             />

@@ -271,19 +271,19 @@ const JobViewDetail = (props) => {
                         <div className="mt-4">
                             <div className="row">
                                 <div className="col-7" style={{color:"#090D3A"}}>
+                                    <div className="row mb-2">
+                                        {unView > 0 && <div className="col mt-2">
+                                            <span className="dot"></span>
+                                            <span className="ml-2" style={{color:"#FF6B00", fontSize:"1rem", fontWeight:"600"}}>
+                                                {unView > 1 ? unView + " " : unView + " "}  Unreviewed
+                                            </span>
+                                        </div>
+                                        }
+                                    </div>
                                     <div className="row">
                                         <button className="title-button ml-2" style={{float: "left"}} onClick={() => {setView(true), props.addSelected(props.positionId)}}>
                                             {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                         </button>
-                                    </div>
-                                    <div className="row">
-                                        {unView > 0 && <div className="col mt-2">
-                                            <span className="dot"></span>
-                                            <span className="ml-2" style={{color:"#FF6B00", fontSize:"1rem", fontWeight:"600"}}>
-                                                {unView > 1 ? unView + "Applicants" : unView + "Applicant"}  Unreviewed
-                                            </span>
-                                        </div>
-                                        }
                                     </div>
                                     <div className="row mb-2 mt-1">
                                         <div className="col-4">
@@ -1435,17 +1435,20 @@ const Applicant = (props) => {
                 {props.videoCount > 0 ? 
                 <div className="col-2 mt-2">
                     <button className="title-button1" style={{wordBreak: "break-all"}} onClick={() => viewResult()}>
-                        {(!isViewed && commentStatus == 0) && <span class="dot"></span>}
-                        {props.name.split("(")[0].length > 16 ? props.name.split("(")[0].substring(0, 14) + "..." : props.name.split("(")[0]}
+                        {(!isViewed && commentStatus == 0) ? <span class="dot"></span>:<span class="dot" style={{background:"none"}}></span>}
+                        {props.name.split("(")[0].length > 14 ? props.name.split("(")[0].substring(0, 12) + "..." : props.name.split("(")[0]}
                     </button>
                 </div> :
-                <div className="col-2 interview-txt9 mt-2">{props.name.split("(")[0].length > 16 ? props.name.split("(")[0].substring(0, 14) + "..." : props.name.split("(")[0]}</div>
+                <div className="col-2 interview-txt9 mt-2">
+                    <span class="dot" style={{background:"none"}}/>
+                    {props.name.split("(")[0].length > 14 ? props.name.split("(")[0].substring(0, 12) + "..." : props.name.split("(")[0]}</div>
                 }
                 {props.videoCount > 0 ? 
                 <div className="col-4 mt-2">
                     <button className="title-button1" onClick={() => viewResult()}>
-                        {props.email}</button></div>
-                : <div className="col-4 interview-txt9 mt-2">{props.email}</div>
+                    {props.email.split("(")[0].length > 30 ? props.email.split("(")[0].substring(0, 28) + "..." : props.email.split("(")[0]}</button></div>
+                : <div className="col-4 interview-txt9 mt-2">
+                    {props.email.split("(")[0].length > 30 ? props.email.split("(")[0].substring(0, 28) + "..." : props.email.split("(")[0]}</div>
                 }
                 <div className="col-3">
                     {props.isRecorded ?
