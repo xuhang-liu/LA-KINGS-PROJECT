@@ -16,7 +16,7 @@ export class QuestionForm extends Component {
         this.setState({ categoryOfQuestion });
     }
 
-    fillQuestion = (question) => {
+    fillQuestion = (question, hideId, showId) => {
         let elements = document.getElementsByClassName("db-question");
         let size = elements.length;
 
@@ -25,13 +25,19 @@ export class QuestionForm extends Component {
                 return this.filledthreeQuestion();
             }
             if (i == size - 1 && elements[i].value != "") {
-                return this.filledSuccess();
+                return alert("All Interview Questions Were Filled");
             }
             if (elements[i].value == "") {
                 elements[i].value = question;
                 break;
             }
         }
+
+        // disable add button
+        let hideBtn = document.getElementById(hideId);
+        let showBtn = document.getElementById(showId);
+        hideBtn.style.display = "none";
+        showBtn.style.display = "inline";
     }
 
     clearQuestion = (id) => {
@@ -46,7 +52,8 @@ export class QuestionForm extends Component {
         let size = elements.length;
         for (let i = 0; i < size; i++) {
             let question = elements[i].value;
-            if (question != "") {
+            // skip empty strings and strings consists of white spaces
+            if (!question.match(/^[ ]*$/)) {
                 questions.push(question);
             }
         }
@@ -163,7 +170,7 @@ export class QuestionForm extends Component {
             singleValue: styles => ({    ...styles,
                                          color: '#090D3A',
                                          fontSize: '0.9375rem',
-                                         fontFamily: 'Avenir Next',
+                                         fontFamily: 'Avenir Next, Segoe UI',
                                          fontWeight: '500'}),
         }
         return(
@@ -184,15 +191,18 @@ export class QuestionForm extends Component {
                                         <Select value={this.state.categoryOfQuestion} onChange={this.handleChangeCategory} options={options} className="select-category3" styles={customStyles} />
                                     </div>
                                     <div className="category-border" style={{overflow: "auto", height: "27rem", padding: "0.5rem", marginBottom: "1rem"}}>
-                                        {this.props.bqList.map((q) => {
+                                        {this.props.bqList.map((q, index) => {
                                             if (q.category != this.state.categoryOfQuestion.value) {
                                                 return null;
                                             }
                                             let question = q.description;
+                                            let hideId = "hideBtn" + index;
+                                            let showId = "showBtn" + index;
                                             return (
                                                 <div>
                                                     <p className="db-txt4">
-                                                        <span type="button" onClick={() => this.fillQuestion(question)}><img src="https://hirebeat-assets.s3.amazonaws.com/add.png" /></span>
+                                                        <span id={hideId} type="button" onClick={() => this.fillQuestion(question, hideId, showId)}><img  src="https://hirebeat-assets.s3.amazonaws.com/add.png" /></span>
+                                                        <span id={showId} disabled={true} style={{display: "none"}} type="button" ><img  src="https://hirebeat-assets.s3.amazonaws.com/add-grey.png" /></span>
                                                         &nbsp; {q.description}
                                                     </p>
                                                 </div>
