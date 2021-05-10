@@ -294,9 +294,16 @@ const ApplyJob = (props) =>{
                             <button id="apply-now" className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
                                 Apply Now
                             </button> :
+                            <div>
+                            {((job_id == null || job_id == "") ? false:props.job.is_closed) ?
+                            <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
+                                Job Closed
+                            </button>:
                             <button id="apply-now" className="default-btn" onClick={()=>{setApplied(true)}} style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
                                 Apply Now
                             </button>}
+                            </div>
+                            }
                         </div>
                         }
                         {(Applied && !props.auth.isAuthenticated )&&   
@@ -468,9 +475,13 @@ const ApplyJob = (props) =>{
                         />
                     </div>
                     <div className="col-4 mt-5">
+                        {((job_id == null || job_id == "") ? false:props.job.is_closed) ?
+                        <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
+                            Job Closed
+                        </button>:
                         <a className="default-btn" href="#apply-now" style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
                             Apply Now
-                        </a>
+                        </a>}
                         <p className="mt-5">Link to this job</p>
                         <div className="row ml-0" style={{position:"relative",background:"#E8EDFC", borderRadius:"5px", border:"2px solid #67A3F3", width:"90%", height:"3rem"}}>
                             <div className="pt-2 pl-2" style={{color:"#090D3A", fontSize:"1.4rem", fontWeight:"500", alignItems:"center"}}>
@@ -557,9 +568,13 @@ const ApplyJob = (props) =>{
                         </div>
                         <p className="mt-3" style={{fontWeight:"500", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
                         <div className="mt-3">
+                        {((job_id == null || job_id == "") ? false:props.job.is_closed) ?
+                        <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
+                            Job Closed
+                        </button>:
                         <a className="default-btn" href="#apply-now" style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
                             Apply Now
-                        </a>
+                        </a>}
                         <p className="mt-3">Link to this job</p>
                         <div className="row ml-0" style={{position:"relative",background:"#E8EDFC", borderRadius:"5px", border:"2px solid #67A3F3", width:"90%", height:"3.6rem"}}>
                             <div className="pt-2 pl-2" style={{color:"#090D3A", fontWeight:"500", alignItems:"center"}}>
@@ -626,9 +641,16 @@ const ApplyJob = (props) =>{
                             <button id="apply-now" className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
                                 Apply Now
                             </button> :
+                            <div>
+                            {((job_id == null || job_id == "") ? false:props.job.is_closed) ?
+                            <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
+                                Job Closed
+                            </button>:
                             <button id="apply-now" className="default-btn" onClick={()=>{setApplied(true)}} style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
                                 Apply Now
                             </button>}
+                            </div>
+                            }
                         </div>
                         }
                         {(Applied && !props.auth.isAuthenticated )&&   

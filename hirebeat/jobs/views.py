@@ -144,6 +144,7 @@ def get_current_jobs(request):
         "id": jobs.id,
         "emails": emails,
         "company_logo": jobs.company_logo,
+        "is_closed": jobs.is_closed,
     }
 
     return Response({

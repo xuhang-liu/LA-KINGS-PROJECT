@@ -77,7 +77,7 @@ export class EmployerRegister extends Component {
         ){
       confirmAlert({
         title: "Email not permitted!",
-        message: "The email emtered is not able to register employer account.",
+        message: "Please use your work email to register.",
         buttons: [
               {
                 label: 'Ok'
