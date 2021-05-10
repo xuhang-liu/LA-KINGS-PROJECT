@@ -179,7 +179,7 @@ class FeedbackVideo extends Component {
                                     </Link>
                                 </div>
                                 <div style={{width:"50%", margin:"auto"}}>
-                                    <Link to="/howitworks" style={{textDecoration:"none"}}>
+                                    <Link to="/job-seekers-howitworks" style={{textDecoration:"none"}}>
                                         <button className="default-btn btn-block" style={{paddingLeft:"25px", fontWeight:"600", backgroundColor:"#e8edfc", color:"#090d3a"}}>
                                             Learn How Hirebeat Works
                                         </button>

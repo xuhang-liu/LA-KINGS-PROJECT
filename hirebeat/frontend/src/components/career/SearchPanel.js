@@ -120,7 +120,7 @@ export class SearchPanel extends Component {
                     <div className="col" style={{marginLeft: "5%"}}>
                         <h3 className="career-h3">Want to prepare for top companies?</h3>
                         <p className="mode-col-text1">HireBeat have hiring up-to-date information of more than 30 companies.</p>
-                        <p className="mode-col-text2"><a href="/companydata" style={{color: "#13C4A1"}}>Browse companies -> </a></p>
+                        <p className="mode-col-text2"><a href="/job-seekers-companydata" style={{color: "#13C4A1"}}>Browse companies -> </a></p>
                     </div>
                     <div className="col" style={{marginLeft: "5%"}}>
                         <h3 className="career-h3">One profile unlocks every job on HireBeat</h3>

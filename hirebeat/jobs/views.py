@@ -126,6 +126,7 @@ def get_current_jobs(request):
     emails = []
     job_id = request.query_params.get("jobid")
     jobs = Jobs.objects.get(pk=job_id)
+    employerp = EmployerProfileDetail.objects.get(user_id = jobs.user_id)
     applyCandidates = ApplyCandidates.objects.filter(jobs=jobs)
     for i in range(len(applyCandidates)):
         emails.append(applyCandidates[i].email)
@@ -138,11 +139,12 @@ def get_current_jobs(request):
         "job_description": jobs.job_description,
         "job_type": jobs.job_type,
         "company_name": jobs.company_name,
-        "company_overview": jobs.company_overview,
+        "company_overview": employerp.summary,
         "job_url": jobs.job_url,
         "id": jobs.id,
         "emails": emails,
         "company_logo": jobs.company_logo,
+        "is_closed": jobs.is_closed,
     }
 
     return Response({
@@ -183,3 +185,14 @@ def delete_job(request):
     Positions.objects.filter(id=position_id).delete()
     job.delete()
     return Response("Delete current job successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['GET'])
+def get_jobid_list(request):
+    data = []
+    user_id = request.query_params.get("userId")
+    jobs = Jobs.objects.filter(user_id=user_id)
+    for i in range(len(jobs)):
+        data.append(jobs[i].job_id)
+    return Response({
+        "data": data,
+    })

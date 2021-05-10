@@ -95,14 +95,18 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Resources <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu" style={{height:"6rem",width:"10rem"}}>
+                    <ul className="nav_submenu" style={{height:"7.6rem",width:"10rem"}}>
                       <li>
-                        <Link id="id-findajob" to="/career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <Link id="id-findajob" to="/job-seekers-career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Find Jobs</Link>
                       </li>
                       <li>
-                        <Link id="id-topcompany" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <Link id="id-topcompany" to="/job-seekers-companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Company Tips</Link>
+                      </li>
+                      <li>
+                        <Link id="id-blog" to="/bloghome" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Blog</Link>
                       </li>
                     </ul>
                   </span>
@@ -135,13 +139,13 @@ export class Header extends Component {
                         <Link id="id-resumeop" to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd2.png" alt="img"></img></span>Resume Optimization</Link></li>
                         <li>
-                        <Link id="id-topcompany" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <Link id="id-topcompany1" to="/job-seekers-companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd3.png" alt="img"></img></span>Top Companies Tips</Link></li>
                         <li>
-                        <Link id="id-howitworks1" to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <Link id="id-howitworks1" to="/job-seekers-howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         How it works</Link></li>
                         <li>
-                        <Link id="id-findajob1" to="/career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        <Link id="id-findajob1" to="/job-seekers-career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                         Find a Job</Link></li>
                         <li>
                         <Link id="id-careerquiz1" to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
@@ -270,17 +274,17 @@ export class Header extends Component {
                         <Link id="id-resumeop2" to="/resume" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
                           Resume Optimization</Link></li>
                         <li>
-                        <Link id="id-topcompany2" to="/companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                          Top Companies Tips</Link></li>
+                        <a id="id-topcompany2" href="/job-seekers-companydata" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                          Top Companies Tips</a></li>
                         <li>
-                        <Link id="id-howitworks2" to="/howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        How it works</Link></li>
+                        <a id="id-howitworks2" href="/job-seekers-howitworks" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        How it works</a></li>
                         <li>
-                        <Link id="id-findajob2" to="/career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        Find a Job</Link></li>
+                        <a id="id-findajob2" href="/job-seekers-career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Find a Job</a></li>
                         <li>
-                        <Link id="id-careerquiz2" to="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
-                        Career Quiz</Link></li>
+                        <a id="id-careerquiz2" href="/quiz" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
+                        Career Quiz</a></li>
                         <li><hr style={{marginBottom:"0.4rem", marginTop:"0.4rem"}}/></li>
                         <li>
                         <Link id="id-careerquiz2" to="/register" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>

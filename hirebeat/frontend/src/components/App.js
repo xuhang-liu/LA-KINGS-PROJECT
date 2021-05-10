@@ -41,6 +41,7 @@ import BlogDetail12_Employer from "./blog/blog-details12-employer";
 import BlogDetail13_Employer from "./blog/blog-details13-employer";
 import BlogDetail14_Employer from "./blog/blog-details14-employer";
 import BlogDetail15_Employer from "./blog/blog-details15-employer";
+import BlogDetail16_Employer from "./blog/blog-details16-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -294,7 +295,7 @@ class App extends Component {
                 <Route exact path="/employer-pricing" component={Employer_pricing} />
                 <Route exact path="/company" component={about} />
                 <Route exact path="/employer_company" component={Employerabout} />
-                <Route exact path="/howitworks" component={Howitworks} />
+                <Route exact path="/job-seekers-howitworks" component={Howitworks} />
                 <Route exact path="/bloghome" component={bloggrid} />
                 <Route exact path="/bloghome_employer" component={bloggridEmployer} />
                 <Route exact path="/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring" component={BlogDetail1_Employer} />
@@ -312,6 +313,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-how-to-write-a-termination-letter-right" component={BlogDetail13_Employer} />
                 <Route exact path="/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern" component={BlogDetail14_Employer} />
                 <Route exact path="/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today" component={BlogDetail15_Employer} />
+                <Route exact path="/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview" component={BlogDetail16_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
@@ -352,7 +354,7 @@ class App extends Component {
                 <Route exact path="/employer_contact" component={EmployerContact} />
                 <Route exact path="/quiz" component={QuizHome} />
                 <Route exact path="/quizresult" component={QuizResultPage} />
-                <Route exact path="/companydata" component={CompanyList} />
+                <Route exact path="/job-seekers-companydata" component={CompanyList} />
                 <Route exact path="/american-international-group" component={AIGInfo} />
                 <Route exact path="/american-express" component={AEInfo} />
                 <Route exact path="/bloomberg" component={BBInfo} />
@@ -450,7 +452,7 @@ class App extends Component {
                 <Route exact path="/product-manager" component={ProductManager} />
                 <Route exact path="/software-engineer" component={SoftwareEngineer} />
                 <PrivateRoute exact path="/email-verification" component={EmailVerification} />
-                <Route exact path="/career" component={SearchPanel} />
+                <Route exact path="/job-seekers-career" component={SearchPanel} />
                 <Route exact path="/career-details" component={SearchResult} />
                 <Route exact path="/candidate-login" component={CandidateLogin} />
                 <PrivateRoute exact path="/interview-info" component={InterviewInfo} />

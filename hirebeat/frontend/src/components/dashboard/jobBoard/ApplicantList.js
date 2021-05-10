@@ -186,7 +186,7 @@ export class ApplicantList extends Component{
                         <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                             <div className="col-2">Name</div>
                             <div className="col-3">Email</div>
-                            <div className="col-2">Applied Date</div>
+                            <div className="col-2">Applied On</div>
                             <div className="col-2">Application</div>
                             <div className="col-2">Resume</div>
                             <div className="col-1" style={{padding: "0rem"}}>Interview</div>
@@ -265,14 +265,25 @@ const ApplicantRow = (props) => {
                 }}
             />
             <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
-                <div className="col-2 interview-txt9 mt-2">
-                    {(!props.applicant.is_invited && !status) &&
-                        <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox"/>}
-                     &nbsp; {name.length > 13 ? name.substring(0, 11) + "..." : name}
+                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}}>
+                     {(!props.applicant.is_invited && !status) ?
+                        <div>
+                            <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox"/>
+                            <span className="applicant-name" type="button" onClick={()=>{setShowPreview(true);}}>
+                                &nbsp; {name.length > 11 ? name.substring(0, 9) + "..." : name}
+                            </span>
+                        </div> :
+                        <div>
+                            <input className="selected-candidate" type="checkbox" style={{visibility: "hidden"}}/>
+                            <span className="applicant-name" type="button" onClick={()=>{setShowPreview(true);}}>
+                                &nbsp; {name.length > 11 ? name.substring(0, 9) + "..." : name}
+                            </span>
+                        </div>
+                    }
                 </div>
                 <div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
-                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setShowPreview(true);}}>View</div>
+                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setShowPreview(true)}}>View</div>
                 <div className="col-2 interview-txt9 mt-2">
                     <a href={props.applicant.resume_url} style={{color: "#67A3F3"}} target="_blank">
                         Download

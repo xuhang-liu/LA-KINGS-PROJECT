@@ -66,7 +66,7 @@ class BlogDetailsContent19 extends Component {
                                     </p>
                                     <h3 className="mb-0">4. How did COVID-19 impact your job search?</h3>
                                     <p>
-                                    It is important, to be honest. Here's the harsh truth about COVID-19. It has changed how job seekers are looking for a job—and it has changed how employers look for their employees—both in the matter of the interview and in the skills, they're looking to harness. The hiring manager is likely just as concerned as you when it comes to their own career. By answering this question honestly, a hiring manager is gaining perspective into what the <a href="/career">job search</a> looks like for candidates.
+                                    It is important, to be honest. Here's the harsh truth about COVID-19. It has changed how job seekers are looking for a job—and it has changed how employers look for their employees—both in the matter of the interview and in the skills, they're looking to harness. The hiring manager is likely just as concerned as you when it comes to their own career. By answering this question honestly, a hiring manager is gaining perspective into what the <a href="/job-seekers-career">job search</a> looks like for candidates.
                                     </p>
                                     <h3 className="mb-0">5. Where do you foresee your career in these times?</h3>
                                     <p>
