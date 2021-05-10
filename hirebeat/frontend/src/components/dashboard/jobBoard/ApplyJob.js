@@ -279,9 +279,14 @@ const ApplyJob = (props) =>{
                         <div>
                             <div>
                                 <h2 className="mb-3">Company Overview</h2>
-                                <p className="mb-5">{(job_id == null || job_id == "") ? "":props.job.company_overview}</p>
+                                <div className="mb-3">
+                                    {parse(''+((job_id == null || job_id == "") ? "":props.job.company_overview)+'')}
+                                </div>
                             </div>
+                            <h2 className="mb-3">Job Description</h2>
+                            <div className="mb-3">
                             {parse(''+((job_id == null || job_id == "") ? "":props.job.job_description)+'')}
+                            </div>
                         </div>
                         {!Applied &&
                         <div>
@@ -303,22 +308,22 @@ const ApplyJob = (props) =>{
                                     </h1>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                            <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2"> (Requiered)</span>
+                                            <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>
                                             <input type="text" class="form-control" id="inputEmail4" onChange={onChange4} required/>
                                             </div>
                                             <div class="form-group col-md-6">
-                                            <label className="job-apply-char1" for="inputPassword4">Last Name</label><span className="job-apply-char2"> (Requiered)</span>
+                                            <label className="job-apply-char1" for="inputPassword4">Last Name</label><span className="job-apply-char2">*</span>
                                             <input type="text" class="form-control" id="inputPassword4" onChange={onChange5} required/>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2"> (Requiered)</span>
+                                                <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2">*</span>
                                                 <input type="email" class="form-control" id="inputEmail4" onChange={onChange8} required/>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" >Phone Number</label>
-                                                <input type="number" class="form-control" onChange={onChange6}/>
+                                                <input type="text" class="form-control" onChange={onChange6}/>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -327,7 +332,7 @@ const ApplyJob = (props) =>{
                                         </div>
                                         <div class="form-row mt-4">
                                             <div class="form-group col-md-6">
-                                                <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2"> (Required)</span>
+                                                <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2">*</span>
                                             </div>
                                         </div>
                                         <button onClick={selectFile} className="default-btn py-2 mb-4" type="button" style={{fontSize:"1.2rem", color:"#090D3A", background:"#E8EDFC", paddingLeft:"50px", paddingRight:"50px"}}>
@@ -386,22 +391,22 @@ const ApplyJob = (props) =>{
                                     </h1>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                            <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2"> (Requiered)</span>
+                                            <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>
                                             <input type="text" class="form-control" id="inputEmail4" onChange={onChange4} required/>
                                             </div>
                                             <div class="form-group col-md-6">
-                                            <label className="job-apply-char1" for="inputPassword4">Last Name</label><span className="job-apply-char2"> (Requiered)</span>
+                                            <label className="job-apply-char1" for="inputPassword4">Last Name</label><span className="job-apply-char2">*</span>
                                             <input type="text" class="form-control" id="inputPassword4" onChange={onChange5} required/>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2"> (Requiered)</span>
+                                                <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2">*</span>
                                                 <input type="email" class="form-control" id="inputEmail4" onChange={onChange8} required/>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" >Phone Number</label>
-                                                <input type="number" class="form-control" onChange={onChange6}/>
+                                                <input type="text" class="form-control" onChange={onChange6}/>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -410,7 +415,7 @@ const ApplyJob = (props) =>{
                                         </div>
                                         <div class="form-row mt-4">
                                             <div class="form-group col-md-6">
-                                                <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2"> (Required)</span>
+                                                <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2">*</span>
                                             </div>
                                         </div>
                                         <button onClick={selectFile} className="default-btn py-2 mb-4" type="button" style={{fontSize:"1.2rem", color:"#090D3A", background:"#E8EDFC", paddingLeft:"50px", paddingRight:"50px"}}>
@@ -606,9 +611,14 @@ const ApplyJob = (props) =>{
                         <div>
                             <div>
                                 <h2 className="mb-3">Company Overview</h2>
-                                <p className="mb-5">{(job_id == null || job_id == "") ? "":props.job.company_overview}</p>
+                                <div className="mb-3">
+                                    {parse(''+((job_id == null || job_id == "") ? "":props.job.company_overview)+'')}
+                                </div>
                             </div>
+                            <h2 className="mb-3">Job Description</h2>
+                            <div className="mb-3">
                             {parse(''+((job_id == null || job_id == "") ? "":props.job.job_description)+'')}
+                            </div>
                         </div>
                         {!Applied &&
                         <div className="mt-3">
@@ -630,22 +640,22 @@ const ApplyJob = (props) =>{
                                     </h1>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                            <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2"> (Requiered)</span>
+                                            <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>
                                             <input type="text" class="form-control" id="inputEmail4" onChange={onChange4} required/>
                                             </div>
                                             <div class="form-group col-md-6">
-                                            <label className="job-apply-char1" for="inputPassword4">Last Name</label><span className="job-apply-char2"> (Requiered)</span>
+                                            <label className="job-apply-char1" for="inputPassword4">Last Name</label><span className="job-apply-char2">*</span>
                                             <input type="text" class="form-control" id="inputPassword4" onChange={onChange5} required/>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2"> (Requiered)</span>
+                                                <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2">*</span>
                                                 <input type="email" class="form-control" id="inputEmail4" onChange={onChange8} required/>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" >Phone Number</label>
-                                                <input type="number" class="form-control" onChange={onChange6}/>
+                                                <input type="text" class="form-control" onChange={onChange6}/>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -654,7 +664,7 @@ const ApplyJob = (props) =>{
                                         </div>
                                         <div class="form-row mt-4">
                                             <div class="form-group col-md-6">
-                                                <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2"> (Required)</span>
+                                                <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2">*</span>
                                             </div>
                                         </div>
                                         <button onClick={selectFile} className="default-btn py-2 mb-4" type="button" style={{fontSize:"1.2rem", color:"#090D3A", background:"#E8EDFC", paddingLeft:"50px", paddingRight:"50px"}}>
@@ -713,22 +723,22 @@ const ApplyJob = (props) =>{
                                     </h1>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                            <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2"> (Requiered)</span>
+                                            <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>
                                             <input type="text" class="form-control" id="inputEmail4" onChange={onChange4} required/>
                                             </div>
                                             <div class="form-group col-md-6">
-                                            <label className="job-apply-char1" for="inputPassword4">Last Name</label><span className="job-apply-char2"> (Requiered)</span>
+                                            <label className="job-apply-char1" for="inputPassword4">Last Name</label><span className="job-apply-char2">*</span>
                                             <input type="text" class="form-control" id="inputPassword4" onChange={onChange5} required/>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2"> (Requiered)</span>
+                                                <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2">*</span>
                                                 <input type="email" class="form-control" id="inputEmail4" onChange={onChange8} required/>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" >Phone Number</label>
-                                                <input type="number" class="form-control" onChange={onChange6}/>
+                                                <input type="text" class="form-control" onChange={onChange6}/>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -737,7 +747,7 @@ const ApplyJob = (props) =>{
                                         </div>
                                         <div class="form-row mt-4">
                                             <div class="form-group col-md-6">
-                                                <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2"> (Required)</span>
+                                                <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2">*</span>
                                             </div>
                                         </div>
                                         <button onClick={selectFile} className="default-btn py-2 mb-4" type="button" style={{fontSize:"1.2rem", color:"#090D3A", background:"#E8EDFC", paddingLeft:"50px", paddingRight:"50px"}}>

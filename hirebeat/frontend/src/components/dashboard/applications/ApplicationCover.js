@@ -26,7 +26,7 @@ export const ApplicationCover = (props) => {
           style={{marginLeft: "2rem"}}
           onClick={() => (setFilter("closed"), setselectedId(0))}
         >
-          Closed
+          Archived
         </button>
         {/*!props.profile.is_subreviwer &&
         <button className="default-btn" onClick={props.renderPosition}

@@ -25,6 +25,12 @@ const toolbarConfig = {
   };
 
 export class JobCreation extends Component{
+
+    constructor(props) {
+        super(props);
+        this.props.getjobidlist(this.props.user.id);
+    }
+
     static propTypes = {
         onChange: PropTypes.func,
     };
@@ -53,6 +59,7 @@ export class JobCreation extends Component{
 //    }
     
     savePosition = (e) => {
+        e.preventDefault();
         let data = {
             jobTitle: this.state.jobTitle,
             jobId: this.state.jobId,
@@ -62,10 +69,13 @@ export class JobCreation extends Component{
             userId: this.props.user.id,
             jobType: this.state.jobType
         };
-        this.props.addNewJob(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
-        e.preventDefault();
-        this.props.renderJobs();
+        if(this.props.jobid_list.includes(this.state.jobId)){
+            alert("Duplicate Job ID detected.");
+        }else{
+            this.props.addNewJob(data);
+            setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
+            this.props.renderJobs();
+        }
     }
 
     render() {

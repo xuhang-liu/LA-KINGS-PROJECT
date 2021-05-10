@@ -1,12 +1,14 @@
 import {
     GET_ALL_JOBS,
     GET_CURRENT_JOBS,
+    GET_JOBID_LIST,
 } from "../actions/action_types";
 
 const initialState = {
   jobs: [],
   isLoaded: false,
   job: {},
+  jobid_list: [],
 };
 
 export default function (state = initialState, action) {
@@ -22,6 +24,11 @@ export default function (state = initialState, action) {
         ...state,
         job: action.payload.data,
       };
+    case GET_JOBID_LIST:
+      return {
+        ...state,
+        jobid_list: action.payload.data,
+      }
     default:
       return state;
   }
