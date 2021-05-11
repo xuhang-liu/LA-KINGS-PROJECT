@@ -112,6 +112,7 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         ### profile is autocreated
         profile = Profile.objects.filter(user=user.id)[0]
         profile.is_employer = True
+        profile.company_name = request.data["company_name"]
         subReviewer = SubReviewers.objects.filter(r_email=user.email)
         if (len(subReviewer)>0):
             profile.email_confirmed = True

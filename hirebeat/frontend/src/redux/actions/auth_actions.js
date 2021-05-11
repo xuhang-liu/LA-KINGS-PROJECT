@@ -182,7 +182,7 @@ export const register = (username, email, password) => (dispatch) => {
 };
 
 // ******** EMPLOYER REGISTER  ********
-export const employer_register = (username, email, password) => (dispatch) => {
+export const employer_register = (username, email, password, company_name) => (dispatch) => {
   // Headers
   const config = {
     headers: {
@@ -190,7 +190,7 @@ export const employer_register = (username, email, password) => (dispatch) => {
     },
   };
   // Request body
-  const body = JSON.stringify({ username, email, password });
+  const body = JSON.stringify({ username, email, password, company_name });
 
   axios
     .post("api/auth/employer_register", body, config)

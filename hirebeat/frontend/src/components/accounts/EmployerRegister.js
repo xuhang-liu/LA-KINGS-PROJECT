@@ -22,7 +22,7 @@ function ScrollToTopOnMount() {
 
 export class EmployerRegister extends Component {
   state = {
-    username: "",
+    companyName: "",
     email: "",
     password: "",
     password2: "",
@@ -87,9 +87,10 @@ export class EmployerRegister extends Component {
     }else{
       if (this.passwordsMatch()) {
         this.props.employer_register(
-          this.state.username,
           this.state.email,
-          this.state.password
+          this.state.email,
+          this.state.password,
+          this.state.companyName,
         );
 //      this.redirectToEmailVerification();
       }
@@ -122,7 +123,7 @@ export class EmployerRegister extends Component {
         }
       }
     };
-    const {username, email, password, password2} = this.state;
+    const {companyName, email, password, password2} = this.state;
     if (this.props.auth.isAuthenticated) {
       return <Redirect to="/employer-pricing"/>;
     }
@@ -150,10 +151,10 @@ export class EmployerRegister extends Component {
                         <input
                             type="text"
                             className="form-control"
-                            name="username"
-                            placeholder="Username/Email"
+                            name="companyName"
+                            placeholder="Company Name"
                             onChange={this.onChange}
-                            value={username}
+                            value={companyName}
                             style={{
                               fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
@@ -170,7 +171,7 @@ export class EmployerRegister extends Component {
                             type="email"
                             className="form-control"
                             name="email"
-                            placeholder="Email"
+                            placeholder="Work Email"
                             required
                             onChange={this.onChange}
                             style={{
@@ -315,10 +316,10 @@ export class EmployerRegister extends Component {
                         <input
                             type="text"
                             className="form-control"
-                            name="username"
-                            placeholder="Username/Email"
+                            name="companyName"
+                            placeholder="company Name"
                             onChange={this.onChange}
-                            value={username}
+                            value={companyName}
                             style={{
                               fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",
@@ -335,7 +336,7 @@ export class EmployerRegister extends Component {
                             type="email"
                             className="form-control"
                             name="email"
-                            placeholder="Email"
+                            placeholder="Work Email"
                             required
                             onChange={this.onChange}
                             style={{

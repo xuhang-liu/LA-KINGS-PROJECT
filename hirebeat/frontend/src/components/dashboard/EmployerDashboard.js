@@ -47,6 +47,11 @@ export class EmployerDashboard extends Component {
 
   constructor(props) {
     super(props);
+    let subpage = this.getInitialSubpage();
+    this.state = {
+        subpage: subpage,
+        jobInfo: {},
+    }
   }
 
   static propTypes = {
@@ -115,12 +120,14 @@ export class EmployerDashboard extends Component {
     this.props.getQuestionList();
   }
 
-  state = {
-    subpage: "employerProfile",
-    jobInfo: {},
-  };
+  getInitialSubpage = () => {
+    let subpage = sessionStorage.getItem( 'subpage' ) || "employerProfile";
+    return subpage;
+
+  }
 
   renderJobs = () => {
+    sessionStorage.setItem( 'subpage', "jobs" );
     this.setState({
       subpage: "jobs",
     });
@@ -169,6 +176,7 @@ export class EmployerDashboard extends Component {
   }
 
   renderApplications = () => {
+    sessionStorage.setItem( 'subpage', "applications" );
     this.setState({
       subpage: "applications",
     });
@@ -207,6 +215,7 @@ export class EmployerDashboard extends Component {
   }
 
   renderSetting = () => {
+    sessionStorage.setItem( 'subpage', "settings" );
     this.setState({
           subpage: "settings",
         }
@@ -221,6 +230,7 @@ export class EmployerDashboard extends Component {
   }
 
   renderShortlist = () => {
+    sessionStorage.setItem( 'subpage', "shortlist" );
     this.setState({
       subpage: "shortlist",
     });
@@ -228,12 +238,14 @@ export class EmployerDashboard extends Component {
 
   renderAnalytics = () => {
     this.props.getAnalyticsInfo(this.props.user.id);
+    sessionStorage.setItem( 'subpage', "analytics" );
     setTimeout(()=>{this.setState({
       subpage: "analytics",
     });}, 200)
   };
 
   renderEmployerProfile = () => {
+    sessionStorage.setItem( 'subpage', "employerProfile" );
     this.setState({
           subpage: "employerProfile",
         }

@@ -206,7 +206,7 @@ export class SubpageSetting extends Component {
                                         required="required"
                                     />
                                 </div>}
-                                {this.props.profile.is_employer &&
+                                {/*this.props.profile.is_employer &&
                                 <div className="form-group col-6">
                                     <label style={{ fontSize: "17px" }}>Company Name</label>
                                     <input
@@ -218,7 +218,7 @@ export class SubpageSetting extends Component {
                                         placeholder={"Company Name"}
                                         required="required"
                                     />
-                                </div>}
+                                </div>*/}
                                 <div className="form-group col-6">
                                     <label style={{ fontSize: "17px" }}>Location</label>
                                     <input
