@@ -212,12 +212,13 @@ export class QuestionForm extends Component {
                                 </div>
                                 <div className="form-group col-6">
                                     {this.props.profile.plan_interval != "Premium" ?
-                                    <p className="db-txt2 ml-2">
+                                    <p className="db-txt2 ml-2" style={{marginBottom: "0rem"}}>
                                         Added Questions &nbsp; <span className="db-txt3">Maximum: 3</span>
                                     </p> :
-                                    <p className="db-txt2 ml-2">
+                                    <p className="db-txt2 ml-2" style={{marginBottom: "0rem"}}>
                                         Added Questions &nbsp; <span className="db-txt3">Maximum: 6</span>
                                     </p>}
+                                    <p className="center-items db-txt3 ml-2">Please note that the interview questions will be the same for all invited applicants under this job position.</p>
                                     <div className="row">
                                         <textarea id="q1" type="text" style={{width: "85%"}} className="db-question"
                                         placeholder="You can also type in your own question." required></textarea>
