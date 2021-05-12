@@ -100,10 +100,6 @@ export class ApplicantList extends Component{
                 emails.push(candidate.email.toLowerCase());
                 invitedCandidates.push(candidate.id);
                 candidateCount+=1;
-                // hide checkbox
-                candidates[i].style.display = "none";
-                // show invite status
-                statusBtns[i].style.display = "block";
             }
         }
         // check candidates selected or not
@@ -146,6 +142,14 @@ export class ApplicantList extends Component{
                 this.props.updateInviteStatus(data);
                 // update
                 setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 300);
+                for (let i = 0; i < candidates.length; i++) {
+                    if (candidates[i].checked) {
+                        // hide checkbox
+                        candidates[i].style.display = "none";
+                        // show invite status
+                        statusBtns[i].style.display = "block";
+                    }
+                }
                 this.sendSuccessAlert();
             }
         }
