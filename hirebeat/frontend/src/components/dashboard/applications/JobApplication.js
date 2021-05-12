@@ -1436,12 +1436,12 @@ const Applicant = (props) => {
                 <div className="col-2 mt-2">
                     <button className="title-button1" style={{wordBreak: "break-all"}} onClick={() => viewResult()}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span>:<span class="dot" style={{background:"none"}}></span>}
-                        {props.name.split("(")[0].length > 14 ? props.name.split("(")[0].substring(0, 12) + "..." : props.name.split("(")[0]}
+                        {props.name.split("(")[0].length > 11 ? props.name.split("(")[0].substring(0, 9) + "..." : props.name.split("(")[0]}
                     </button>
                 </div> :
                 <div className="col-2 interview-txt9 mt-2">
                     <span class="dot" style={{background:"none"}}/>
-                    {props.name.split("(")[0].length > 14 ? props.name.split("(")[0].substring(0, 12) + "..." : props.name.split("(")[0]}</div>
+                    {props.name.split("(")[0].length > 11 ? props.name.split("(")[0].substring(0, 9) + "..." : props.name.split("(")[0]}</div>
                 }
                 {props.videoCount > 0 ? 
                 <div className="col-4 mt-2">

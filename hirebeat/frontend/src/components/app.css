@@ -2953,7 +2953,7 @@ h5 {
   font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: #4A6F8A;
 }
 
@@ -3197,7 +3197,7 @@ color: #4A6F8A;
   font-weight: 600;
 }
 
-.editor-height {
+.public-DraftEditor-content {
   min-height: 10rem;
 }
 

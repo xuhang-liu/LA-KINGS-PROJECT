@@ -430,7 +430,6 @@ export class EmployerProfile extends Component {
                                                 value={this.state.overview}
                                                 onChange={this.onChange}
                                                 toolbarConfig={toolbarConfig}
-                                                editorClassName="editor-height"
                                             />
                                         </div>
                                     }

@@ -25,11 +25,8 @@ export class ApplicantList extends Component{
     }
 
     hideQForm = () => {
-        this.props.getAllJobs(this.props.user.id);
-        this.props.getPJobs();
         setTimeout(() => {this.props.setCurJob(this.props.curJob)}, 300);
-//        console.log(this.props.jobs);
-        setTimeout(() => {this.setState({showQForm: false})}, 300);
+        this.setState({showQForm: false});
 
     }
 
@@ -84,78 +81,76 @@ export class ApplicantList extends Component{
     }
 
     inviteCandidates = () => {
-        if (this.props.curJob.questions.length == 0 && this.state.tempQuestion.length == 0) {
-            this.showQForm();
+        let candidateCount = 0;
+        let companyName = this.props.curJob.job_details.company_name;
+        let jobTitle = this.props.curJob.job_details.job_title;
+        let positionId = this.props.curJob.job_details.positions_id;
+        // collect input name and email
+        const emails = [];
+        const names = [];
+        const invitedCandidates = [];
+        let candidates = document.getElementsByClassName("selected-candidate");
+        let statusBtns = document.getElementsByClassName("invite-btn");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                // name
+                names.push(candidate.first_name + " " + candidate.last_name);
+                // email
+                emails.push(candidate.email.toLowerCase());
+                invitedCandidates.push(candidate.id);
+                candidateCount+=1;
+                // hide checkbox
+                candidates[i].style.display = "none";
+                // show invite status
+                statusBtns[i].style.display = "block";
+            }
+        }
+        // check candidates selected or not
+        if (candidateCount > 0) {
+            if (this.props.curJob.questions.length == 0 && this.state.tempQuestion.length == 0) {
+                return this.showQForm();
+            }
+            // generate interview urls and send emails
+            let urls = [];
+            for (let i = 0; i < emails.length; i++) {
+                // make sure urls have the same size of emails and names
+                let url = "";
+                if (emails[i] != "" && names[i] != "") {
+                    //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+                    let prefix = "https://hirebeat.co/candidate-login?";  // online
+                    let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
+                    let encode = window.btoa(params);
+                    url = prefix + encode;
+                }
+                urls.push(url);
+            }
+            let meta = {
+                company_name: companyName,
+                job_title: jobTitle,
+                position_id: positionId,
+                emails: emails,
+                names: names,
+                expire: 14,
+                urls: urls,
+            }
+            if(candidateCount > (this.props.profile.candidate_limit)){
+                alert('Upgrade Now! You can only add ' +parseInt(this.props.profile.candidate_limit)+ ' more candidates for this position!');
+            }else{
+                // save data to db
+                this.props.addInterviews(meta);
+                let data = {
+                    "candidates": invitedCandidates,
+                    "isInvited": true,
+                }
+                this.props.updateInviteStatus(data);
+                // update
+                setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 300);
+                this.sendSuccessAlert();
+            }
         }
         else {
-            let candidateCount = 0;
-            let companyName = this.props.curJob.job_details.company_name;
-            let jobTitle = this.props.curJob.job_details.job_title;
-            let positionId = this.props.curJob.job_details.positions_id;
-            // collect input name and email
-            const emails = [];
-            const names = [];
-            const invitedCandidates = [];
-            let candidates = document.getElementsByClassName("selected-candidate");
-            let statusBtns = document.getElementsByClassName("invite-btn");
-            for (let i = 0; i < candidates.length; i++) {
-                if (candidates[i].checked) {
-                    let candidate = JSON.parse(candidates[i].value);
-                    // name
-                    names.push(candidate.first_name + " " + candidate.last_name);
-                    // email
-                    emails.push(candidate.email.toLowerCase());
-                    invitedCandidates.push(candidate.id);
-                    candidateCount+=1;
-                    // hide checkbox
-                    candidates[i].style.display = "none";
-                    // show invite status
-                    statusBtns[i].style.display = "block";
-                }
-            }
-            // check candidates selected or not
-            if (candidateCount > 0) {
-                // generate interview urls and send emails
-                let urls = [];
-                for (let i = 0; i < emails.length; i++) {
-                    // make sure urls have the same size of emails and names
-                    let url = "";
-                    if (emails[i] != "" && names[i] != "") {
-                        //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-                        let prefix = "https://hirebeat.co/candidate-login?";  // online
-                        let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
-                        let encode = window.btoa(params);
-                        url = prefix + encode;
-                    }
-                    urls.push(url);
-                }
-                let meta = {
-                    company_name: companyName,
-                    job_title: jobTitle,
-                    position_id: positionId,
-                    emails: emails,
-                    names: names,
-                    expire: 14,
-                    urls: urls,
-                }
-                if(candidateCount > (this.props.profile.candidate_limit)){
-                    alert('Upgrade Now! You can only add ' +parseInt(this.props.profile.candidate_limit)+ ' more candidates for this position!');
-                }else{
-                    // save data to db
-                    this.props.addInterviews(meta);
-                    let data = {
-                        "candidates": invitedCandidates,
-                        "isInvited": true,
-                    }
-                    this.props.updateInviteStatus(data);
-                    // update
-                    setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 300);
-                    this.sendSuccessAlert();
-                }
-            }
-            else {
-                this.noCandidateAlert();
-            }
+            this.noCandidateAlert();
         }
     }
 
@@ -203,8 +198,8 @@ export class ApplicantList extends Component{
                                     applicants={this.props.curJob.applicants}
                                     curJob={this.props.curJob}
                                     tempQuestion={this.state.tempQuestion}
+                                    setTempQuestion={this.setTempQuestion}
                                     profile={this.props.profile}
-                                    showQForm={this.showQForm}
                                     addInterviews={this.props.addInterviews}
                                     updateInviteStatus={this.props.updateInviteStatus}
                                     getAllJobs={this.props.getAllJobs}
@@ -316,8 +311,8 @@ const ApplicantRow = (props) => {
                             applicant={applicants[current]}
                             curJob={props.curJob}
                             tempQuestion={props.tempQuestion}
+                            setTempQuestion={props.setTempQuestion}
                             profile={props.profile}
-                            showQForm={props.showQForm}
                             addInterviews={props.addInterviews}
                             candidateId={applicants[current].id}
                             updateInviteStatus={props.updateInviteStatus}

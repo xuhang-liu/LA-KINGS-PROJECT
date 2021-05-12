@@ -63,7 +63,7 @@ export class Header extends Component {
                     <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username.split("@")[0]}  ` : ""}
                     <ul className="nav_submenu" style={{width:"10rem"}}> 
                       <li>
-                      <Link id="id-logout" to="/job-seekers" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
+                      <Link id="id-logout" to="/job-seekers" onClick={() => {sessionStorage.clear(); this.props.logout();}} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
                         Log out
                       </Link>
                       </li>
@@ -208,7 +208,7 @@ export class Header extends Component {
                       </Link>
                       </li>
                       <li>
-                      <Link id="id-logout" to="/" onClick={this.props.logout} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
+                      <Link id="id-logout" to="/" onClick={() => {sessionStorage.clear(); this.props.logout();}} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
                         Log out
                       </Link>
                       </li>
@@ -338,7 +338,7 @@ export class Header extends Component {
         <ul className="navbar-nav d-flex mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
           <Link to="/">
-            <a className="default-btn" onClick={this.props.logout} style={{color:"white"}}>
+            <a className="default-btn" onClick={() => {sessionStorage.clear(); this.props.logout();}} style={{color:"white"}}>
              <i className="bx bxs-hot"></i>Logout<span></span>
             </a>
           </Link>
