@@ -2,16 +2,19 @@ import React, {useState} from 'react';
 import {IconText} from "../DashboardComponents";
 import { MyModal80 } from "./../DashboardComponents";
 import { ResumeEvaJobs } from "./ResumeEvaJobs";
+import EmbedQuestionForm from "./../jobBoard/EmbedQuestionForm"
 
 const ReviewCandidate = (props) => {
     const [noshowInvite, setNoshowInvite] = useState(false);
     const [showEva, setShowEva] = useState(false);
+    const [showEmbedQForm, setShowEmbedQForm] = useState(false);
+
     function inviteCandidates() {
         if (props.curJob.questions.length == 0 && props.tempQuestion.length == 0) {
-            props.showQForm();
+            setShowEmbedQForm(true);
         }
         else {
-            let candidateCount = 0;
+            let candidateCount = 1;
             let companyName = props.curJob.job_details.company_name;
             let jobTitle = props.curJob.job_details.job_title;
             let positionId = props.curJob.job_details.positions_id;
@@ -235,6 +238,30 @@ const ReviewCandidate = (props) => {
                 onHide={()=>{setShowEva(false)}}
             >
                 <ResumeEvaJobs interviewResume={props.applicant}/>
+            </MyModal80>
+            <MyModal80
+                show={showEmbedQForm}
+                onHide={() => setShowEmbedQForm(false)}
+            >
+                <EmbedQuestionForm
+                    email={props.email}
+                    first_name={props.first_name}
+                    last_name={props.last_name}
+                    curJob={props.curJob}
+                    tempQuestion={props.tempQuestion}
+                    setTempQuestion={props.setTempQuestion}
+                    profile={props.profile}
+                    addInterviews={props.addInterviews}
+                    candidateId={props.candidateId}
+                    updateInviteStatus={props.updateInviteStatus}
+                    getAllJobs={props.getAllJobs}
+                    getPJobs={props.getPJobs}
+                    user={props.user}
+                    setStatus={props.setStatus}
+                    setNoshowInvite={setNoshowInvite}
+                    is_invited={props.is_invited}
+                    hideEmbedQForm={() => setShowEmbedQForm(false)}
+                />
             </MyModal80>
         </div>
     )

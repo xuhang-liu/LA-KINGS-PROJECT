@@ -25,11 +25,8 @@ export class ApplicantList extends Component{
     }
 
     hideQForm = () => {
-        this.props.getAllJobs(this.props.user.id);
-        this.props.getPJobs();
         setTimeout(() => {this.props.setCurJob(this.props.curJob)}, 300);
-//        console.log(this.props.jobs);
-        setTimeout(() => {this.setState({showQForm: false})}, 300);
+        this.setState({showQForm: false});
 
     }
 
@@ -201,8 +198,8 @@ export class ApplicantList extends Component{
                                     applicants={this.props.curJob.applicants}
                                     curJob={this.props.curJob}
                                     tempQuestion={this.state.tempQuestion}
+                                    setTempQuestion={this.setTempQuestion}
                                     profile={this.props.profile}
-                                    showQForm={this.showQForm}
                                     addInterviews={this.props.addInterviews}
                                     updateInviteStatus={this.props.updateInviteStatus}
                                     getAllJobs={this.props.getAllJobs}
@@ -303,8 +300,8 @@ const ApplicantRow = (props) => {
                             applicant={applicants[current]}
                             curJob={props.curJob}
                             tempQuestion={props.tempQuestion}
+                            setTempQuestion={props.setTempQuestion}
                             profile={props.profile}
-                            showQForm={props.showQForm}
                             addInterviews={props.addInterviews}
                             candidateId={applicants[current].id}
                             updateInviteStatus={props.updateInviteStatus}
