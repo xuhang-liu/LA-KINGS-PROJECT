@@ -7,6 +7,8 @@ from accounts.models import Profile, EmployerProfileDetail
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
 
 @api_view(['POST'])
 def add_new_job(request):
@@ -116,8 +118,28 @@ def add_new_apply_candidate(request):
     email = request.data['email']
     location = request.data['location']
     resume_url = request.data['resume_url']
+    fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
+    user = User.objects.get(pk=jobs.user_id)
     applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email, location=location, resume_url=resume_url)
+    print("===New Candidate Notify Email Called===")
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
+    }
+    from_email = 'HireBeat Team'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
 
     return Response("Add new apply candidate successfully", status=status.HTTP_202_ACCEPTED)
 
