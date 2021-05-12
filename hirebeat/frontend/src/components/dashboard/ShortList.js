@@ -197,11 +197,11 @@ const CandidateCard = (props) => {
         </div>
         <div style={{fontFamily: "Avenir Next, Segoe UI", fontWeight:"600" }} className="ml-0 d-flex justify-content-start container-fluid row h-100">
                 <div className="col-1 short-list-text" onClick={()=>{viewResult();}}> 
-                    {props.applicant.name}
+                    {props.applicant.name.length>6?props.applicant.name.substring(0,4)+"...":props.applicant.name}
                 </div>
 
                 <div className="col-3 short-list-text" onClick={()=>{viewResult();}}> 
-                    {props.applicant.email}
+                    {props.applicant.email.length>24? props.applicant.email.substring(0,22)+"...":props.applicant.email}
                 </div>
 
                 <div className="col-2" style={{color:"#7D7D7D", fontSize:"1rem"}}> 

@@ -13,7 +13,7 @@ import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, get
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo
  }
 from "../../redux/actions/auth_actions";
-import { addNewJob, getAllJobs, updateJob} from "../../redux/actions/job_actions";
+import { addNewJob, getAllJobs, updateJob, getjobidlist} from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
@@ -273,6 +273,8 @@ export class EmployerDashboard extends Component {
             addNewJob={this.props.addNewJob}
             getAllJobs={this.props.getAllJobs}
             getPJobs={this.getPJobs}
+            jobid_list={this.props.jobid_list}
+            getjobidlist={this.props.getjobidlist}
         />;
       case "jobEdition":
         return <JobEdition
@@ -507,6 +509,7 @@ const mapStateToProps = (state) => {
   employerPost: state.auth_reducer.employerPost,
   jobs: state.job_reducer.jobs,
   isLoaded: state.job_reducer.isLoaded,
+  jobid_list: state.job_reducer.jobid_list,
   employerDetailLoaded: state.auth_reducer.employerDetailLoaded,
 }
 };
@@ -516,7 +519,7 @@ export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFu
     getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
-    updateJob, updateEmployerLogo
+    updateJob, updateEmployerLogo, getjobidlist
     })(
     EmployerDashboard
 );

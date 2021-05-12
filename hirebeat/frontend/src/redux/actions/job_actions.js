@@ -8,6 +8,7 @@ import {
     ADD_INTERVIEW_QUESTION,
     UPDATE_INVITE_STATUS,
     DELETE_JOB,
+    GET_JOBID_LIST,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -131,6 +132,20 @@ export const deleteJob = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: DELETE_JOB,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getjobidlist = (userId) => (dispatch, getState) => {
+  axios
+    .get(`get-jobid-list?userId=${userId}`)
+    .then((res) => {
+      dispatch({
+        type: GET_JOBID_LIST,
         payload: res.data,
       });
     })
