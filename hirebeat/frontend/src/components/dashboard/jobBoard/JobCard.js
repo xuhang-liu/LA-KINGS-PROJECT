@@ -134,7 +134,7 @@ const ActionButton = (props) => {
             </div> :
             <div className="row">
                 <div className="profile-edit">
-                    <span type="button" onClick={props.activateJob}>Reactive</span>
+                    <span type="button" onClick={props.activateJob}>Reactivate</span>
                 </div>
             </div>
         }

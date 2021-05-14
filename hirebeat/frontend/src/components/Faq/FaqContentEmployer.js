@@ -11,12 +11,12 @@ import faq1 from "../../assets/faq.png";
 class FaqContentEmployer extends Component {
     render() {
         return (
-            <section className="faq-area ptb-100">
+            <section className="faq-area ptb-100" style={{marginBottom:"2rem"}}>
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-lg-7 col-md-12">
                             <div className="faq-accordion">
-                                <h2>Get To Know About <span>HireBeat</span></h2>
+                                <h2><span>HireBeat</span> FAQs</h2>
 
                                 <Accordion>
                                     <AccordionItem>

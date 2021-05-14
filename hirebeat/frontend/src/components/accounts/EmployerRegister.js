@@ -133,17 +133,17 @@ export class EmployerRegister extends Component {
           <ScrollToTopOnMount />
           <div>
           <MediaQuery minDeviceWidth={1224}>
-            <section className="signup-area min-width-1290">
+            <section className="signup-area min-width-1290" style={{background:"linear-gradient(90deg, #67A3F3 0%, #5269F3 100%)"}}>
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0"> 
-                      <img src="https://hirebeat-assets.s3.amazonaws.com/EmployerRegisterLeft.jpg" alt="image"></img>
+                      <img src="https://hirebeat-assets.s3.amazonaws.com/EmployerRegister1.png" alt="image"></img>
                     </div>
 
                     <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"3rem"}}>
                         <div style={{marginBottom:"3rem", paddingTop:"3rem"}}>
-                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
-                          <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Get started in minutes</b></h3>
+                          <h1 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
+                          <h3 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Get started in minutes</b></h3>
                         </div>
                     <div className="signup-form">
                     <form onSubmit={this.onSubmit}>
@@ -225,16 +225,16 @@ export class EmployerRegister extends Component {
                       <p className="d-flex flex-wrap justify-content-end"
                          style={{
                            fontSize: "0.9rem",
-                           color: "grey",
-                           fontWeight: "400"
+                           color: "#ffffff",
+                           fontWeight: "500"
                          }}>
                         Have an account?
                         <a href="/employer-login"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
-                             color: "orange",
-                             fontWeight: "400"
+                             color: "#fac046",
+                             fontWeight: "500"
                            }}>
                           Log in
                         </a>
@@ -242,21 +242,11 @@ export class EmployerRegister extends Component {
 
                       <br/>
 
-                      <div className="form-group">
-                        <button
-                            type="submit"
-                            className="default-btn"
-                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
-                        >
-                          <i className="bx bxs-hot"></i>
-                          Sign Up Now
-                        </button>
-                      </div>
-                      <p className="d-flex flex-wrap justify-content-end"
+                      <p className="d-flex flex-wrap justify-content-start mb-2"
                          style={{
                            fontSize: "0.9rem",
-                           color: "grey",
-                           fontWeight: "400"
+                           color: "#ffffff",
+                           fontWeight: "500"
                          }}>
                         <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
                         I have read and agree to the
@@ -266,12 +256,23 @@ export class EmployerRegister extends Component {
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
-                             color: "orange",
-                             fontWeight: "400"
+                             color: "#fac046",
+                             fontWeight: "500"
                            }}>
                           Terms & Conditions
                         </a>
                       </p>
+
+                      <div className="form-group">
+                        <button
+                            type="submit"
+                            className="default-btn"
+                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold', backgroundColor:"#fac046"}}
+                        >
+                          <i className="bx bxs-hot"></i>
+                          Sign Up Now
+                        </button>
+                      </div>
 
                       <hr className="style-four"
                           data-content=""
@@ -286,7 +287,7 @@ export class EmployerRegister extends Component {
                     <div>
                       <div>
                         <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
-                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI"}}>
+                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI", color:'#ffffff'}}>
                         <a>No credit card information needed during signup. Enjoy your free plan.</a>
                         </div></div>
                     </div>
@@ -298,19 +299,15 @@ export class EmployerRegister extends Component {
             </section>
           </MediaQuery>
           <MediaQuery maxDeviceWidth={1223}>
-            <section className="signup-area">
+            <section className="signup-area" style={{background:"linear-gradient(90deg, #67A3F3 0%, #5269F3 100%)"}}>
                 <div className="row m-0">
-                    <div className="col-lg-6 col-md-12 p-0"> 
-                      <img src="https://hirebeat-assets.s3.amazonaws.com/EmployerRegister.jpg" alt="image"></img>
-                    </div>
-
                     <div className="col-lg-6 col-md-12 p-0">
-                        <div className="signup-content" style={{marginTop:"3rem"}}>
-                        <div style={{marginBottom:"3rem", paddingTop:"3rem"}}>
-                          <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
-                          <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Get started in minutes</b></h3>
+                        <div className="signup-content" style={{marginTop:"1rem", marginLeft:"20%"}}>
+                        <div style={{marginBottom:"3rem", paddingTop:"1rem"}}>
+                          <h1 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
+                          <h3 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Get started in minutes</b></h3>
                         </div>
-                    <div className="signup-form">
+                    <div className="signup-form" style={{minWidth:"14rem"}}>
                     <form onSubmit={this.onSubmit}>
                       <div className="form-group">
                         <input
@@ -390,16 +387,16 @@ export class EmployerRegister extends Component {
                       <p className="d-flex flex-wrap justify-content-end"
                          style={{
                            fontSize: "0.9rem",
-                           color: "grey",
-                           fontWeight: "400"
+                           color: "#ffffff",
+                           fontWeight: "500"
                          }}>
                         Have an account?
                         <a href="/employer-login"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
-                             color: "orange",
-                             fontWeight: "400"
+                             color: "#fac046",
+                             fontWeight: "500"
                            }}>
                           Log in
                         </a>
@@ -407,21 +404,11 @@ export class EmployerRegister extends Component {
 
                       <br/>
 
-                      <div className="form-group">
-                        <button
-                            type="submit"
-                            className="default-btn"
-                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
-                        >
-                          <i className="bx bxs-hot"></i>
-                          Sign Up Now
-                        </button>
-                      </div>
-                      <p className="d-flex flex-wrap justify-content-end"
+                      <p className="d-flex flex-wrap justify-content-start mb-2"
                          style={{
                            fontSize: "0.9rem",
-                           color: "grey",
-                           fontWeight: "400"
+                           color: "#ffffff",
+                           fontWeight: "500"
                          }}>
                         <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
                         I have read and agree to the
@@ -431,12 +418,23 @@ export class EmployerRegister extends Component {
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
-                             color: "orange",
-                             fontWeight: "400"
+                             color: "#fac046",
+                             fontWeight: "500"
                            }}>
                           Terms & Conditions
                         </a>
                       </p>
+
+                      <div className="form-group">
+                        <button
+                            type="submit"
+                            className="default-btn"
+                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold', backgroundColor:"#fac046"}}
+                        >
+                          <i className="bx bxs-hot"></i>
+                          Sign Up Now
+                        </button>
+                      </div>
 
                       <hr className="style-four"
                           data-content=""
@@ -451,7 +449,7 @@ export class EmployerRegister extends Component {
                     <div>
                       <div>
                         <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
-                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI"}}>
+                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI", color:"#fff"}}>
                         <a>No credit card information needed during signup. Enjoy your free plan.</a>
                         </div></div>
                     </div>
