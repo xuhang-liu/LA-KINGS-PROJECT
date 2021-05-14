@@ -2,16 +2,18 @@ import React, {useState} from 'react';
 import {IconText} from "../DashboardComponents";
 import { MyModal80 } from "./../DashboardComponents";
 import { ResumeEvaJobs } from "./ResumeEvaJobs";
+import EmbedQuestionForm from "./../jobBoard/EmbedQuestionForm"
 
 const ReviewCandidate = (props) => {
-    const [noshowInvite, setNoshowInvite] = useState(false);
     const [showEva, setShowEva] = useState(false);
+    const [showEmbedQForm, setShowEmbedQForm] = useState(false);
+
     function inviteCandidates() {
         if (props.curJob.questions.length == 0 && props.tempQuestion.length == 0) {
-            props.showQForm();
+            setShowEmbedQForm(true);
         }
         else {
-            let candidateCount = 0;
+            let candidateCount = 1;
             let companyName = props.curJob.job_details.company_name;
             let jobTitle = props.curJob.job_details.job_title;
             let positionId = props.curJob.job_details.positions_id;
@@ -23,7 +25,6 @@ const ReviewCandidate = (props) => {
             names.push(props.first_name+" "+props.last_name);
             invitedCandidates.push(props.candidateId);
             props.setStatus(true);
-            setNoshowInvite(true);
             let urls = [];
             for (let i = 0; i < emails.length; i++) {
                 // make sure urls have the same size of emails and names
@@ -62,6 +63,11 @@ const ReviewCandidate = (props) => {
             }
         }
     };
+
+    function nextOrPreUpdate() {
+        props.getAllJobs(props.user.id);
+        props.getPJobs();
+    }
 
     function showResumeEva() {
         if(props.profile.membership == "Premium"){
@@ -180,7 +186,7 @@ const ReviewCandidate = (props) => {
                             >
                                 <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
                             </button>}
-                        {(!props.is_invited && !noshowInvite) &&
+                        {(!props.is_invited) &&
                         <div className="row" style={{display:"flex", justifyContent:"space-around", position:"absolute", bottom:"2rem", left:"0.9rem", width:"100%"}}>
                             <button onClick={inviteCandidates} className="default-btn1" style={{paddingLeft:"25px"}}>
                                 Invite to Interview
@@ -215,14 +221,14 @@ const ReviewCandidate = (props) => {
                         <button
                             className={props.current == 0 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == 0 ? true : false}
-                            onClick={() => {props.setCurrent(props.current-1)}}
+                            onClick={() => {nextOrPreUpdate(); setTimeout(() => {props.setCurrent(props.current-1)}, 200)}}
                         >
                             &lt; Prev
                         </button>
                         <button
                             className={props.current == props.applicants.length - 1 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == props.applicants.length - 1 ? true : false}
-                            onClick={() => {props.setCurrent(props.current+1)}}
+                            onClick={() => {nextOrPreUpdate(); setTimeout(() => {props.setCurrent(props.current+1)}, 200)}}
                             style={{marginLeft: "2rem"}}
                         >
                             Next &gt;
@@ -235,6 +241,29 @@ const ReviewCandidate = (props) => {
                 onHide={()=>{setShowEva(false)}}
             >
                 <ResumeEvaJobs interviewResume={props.applicant}/>
+            </MyModal80>
+            <MyModal80
+                show={showEmbedQForm}
+                onHide={() => setShowEmbedQForm(false)}
+            >
+                <EmbedQuestionForm
+                    email={props.email}
+                    first_name={props.first_name}
+                    last_name={props.last_name}
+                    curJob={props.curJob}
+                    tempQuestion={props.tempQuestion}
+                    setTempQuestion={props.setTempQuestion}
+                    profile={props.profile}
+                    addInterviews={props.addInterviews}
+                    candidateId={props.candidateId}
+                    updateInviteStatus={props.updateInviteStatus}
+                    getAllJobs={props.getAllJobs}
+                    getPJobs={props.getPJobs}
+                    user={props.user}
+                    setStatus={props.setStatus}
+                    is_invited={props.is_invited}
+                    hideEmbedQForm={() => setShowEmbedQForm(false)}
+                />
             </MyModal80>
         </div>
     )

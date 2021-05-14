@@ -146,7 +146,7 @@ class Employer_PricingStyleOne extends Component {
 
     render() {
         return (
-            <section className="pricing-area pt-100">
+            <section className="pricing-area pt-100" id="go-to-pricing">
                 <div className="container-fluid">
                     <div className="tab pricing-list-tab">
                         <div className="tab_content">
