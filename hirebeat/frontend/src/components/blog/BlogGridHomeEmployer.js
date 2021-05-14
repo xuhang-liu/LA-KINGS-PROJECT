@@ -87,6 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-personality-assessment-tools-employers-must-know-about",
     "/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview",
     "/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today",
     "/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern",
@@ -106,6 +107,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer17.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer16.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer15.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer14.jpg",
@@ -125,6 +127,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "May 14, 2021",
     "May 10, 2021",
     "May 05, 2021",
     "May 03, 2021",
@@ -144,6 +147,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "PERSONALITY ASSESSMENT TOOLS",
     "RED FLAGS YOU SHOULD LOOK OUT",
     "4 SECRETS THAT IMPROVE YOUR LINKEDIN JOB",
     "FIVE QUESTIONS YOU NEED TO ASK",

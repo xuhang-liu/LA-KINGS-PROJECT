@@ -3,6 +3,7 @@ import ReactWOW from 'react-wow';
 import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import MediaQuery from 'react-responsive';
+import { connect } from "react-redux";
 
 const PrettoSlider = withStyles({
     root: {
@@ -115,10 +116,16 @@ class ROICalculator extends Component {
                                             </div>
                                         </div>
                                         <MediaQuery minDeviceWidth={1224}>
+                                        {this.props.isAuthenticated ?
+                                        <a href="#go-to-pricing" className="default-btn" style={{paddingLeft:"25px", position:"absolute", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none", left:"44%"}}>Select Your Plan</a> :
                                         <a href="/employer_register" className="default-btn" style={{paddingLeft:"25px", position:"absolute", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none", left:"44%"}}>Start for Free</a>
+                                        }
                                         </MediaQuery>
                                         <MediaQuery maxDeviceWidth={1223}>
+                                        {this.props.isAuthenticated ?
+                                        <a href="#go-to-pricing" className="default-btn" style={{paddingLeft:"25px", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none"}}>Select Your Plan</a>:
                                         <a href="/employer_register" className="default-btn" style={{paddingLeft:"25px", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none"}}>Start for Free</a>
+                                        }
                                         </MediaQuery>
                                     </div>
                                     </a>
@@ -132,4 +139,8 @@ class ROICalculator extends Component {
     }
 }
 
-export default ROICalculator;
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth_reducer.isAuthenticated,
+});
+
+export default connect(mapStateToProps, null) (ROICalculator);

@@ -268,13 +268,13 @@ const ApplicantRow = (props) => {
                      {(!props.applicant.is_invited && !status) ?
                         <div>
                             <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox"/>
-                            <span className="applicant-name" type="button" onClick={()=>{setShowPreview(true);}}>
+                            <span className="applicant-name" type="button" onClick={()=>{setCurrent(props.index); setShowPreview(true)}}>
                                 &nbsp; {name.length > 11 ? name.substring(0, 9) + "..." : name}
                             </span>
                         </div> :
                         <div>
                             <input className="selected-candidate" type="checkbox" style={{visibility: "hidden"}}/>
-                            <span className="applicant-name" type="button" onClick={()=>{setShowPreview(true);}}>
+                            <span className="applicant-name" type="button" onClick={()=>{setCurrent(props.index); setShowPreview(true)}}>
                                 &nbsp; {name.length > 11 ? name.substring(0, 9) + "..." : name}
                             </span>
                         </div>
@@ -282,7 +282,7 @@ const ApplicantRow = (props) => {
                 </div>
                 <div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
-                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setShowPreview(true)}}>View</div>
+                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); setShowPreview(true)}}>View</div>
                 <div className="col-2 interview-txt9 mt-2">
                     <a href={props.applicant.resume_url} style={{color: "#67A3F3"}} target="_blank">
                         Download
@@ -330,6 +330,7 @@ const ApplicantRow = (props) => {
                             current={current}
                             setCurrent={setCurrent}
                             applicants={applicants}
+                            status={status}
                         />
                 </MyModal>
             </div>

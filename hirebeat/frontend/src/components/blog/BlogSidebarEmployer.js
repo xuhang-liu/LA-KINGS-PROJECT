@@ -24,6 +24,25 @@ class BlogSidebarEmployer extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/employer_blog-personality-assessment-tools-employers-must-know-about">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer17.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>May 14, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-personality-assessment-tools-employers-must-know-about">
+                                    <a>Personality Assessment Tools Employers Must Know About</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer16.jpg" alt="image"/>
