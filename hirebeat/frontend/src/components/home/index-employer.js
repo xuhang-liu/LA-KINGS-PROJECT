@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Loader from '../shared/Loader';
 import { useEffect } from "react";
 import MainBanner from "../HomeEmployer/MainBanner";
-import LeverageHireBeat from "../HomeEmployer/LeverageHireBeat";
+//import LeverageHireBeat from "../HomeEmployer/LeverageHireBeat";
 import HowHirebeatWork from "../HomeEmployer/HowHirebeatWork";
 import FreeTrialArea from "../HomeEmployer/FreeTrialArea";
 import MediaQuery from 'react-responsive';
@@ -44,7 +44,6 @@ class IndexEmployer extends Component {
                 <ScrollToTopOnMount />
                 <MainBanner/>
                 <HowHirebeatWork/>
-                <LeverageHireBeat/>
                 <FreeTrialArea/>
                 <Footer />
                       {/* Preloader */}
@@ -55,7 +54,6 @@ class IndexEmployer extends Component {
                 <ScrollToTopOnMount />
                 <MainBanner/>
                 <HowHirebeatWork/>
-                <LeverageHireBeat/>
                 <FreeTrialArea/>
                 <Footer />
                       {/* Preloader */}

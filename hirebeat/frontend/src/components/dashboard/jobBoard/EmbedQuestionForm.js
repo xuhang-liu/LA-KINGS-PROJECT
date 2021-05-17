@@ -89,7 +89,6 @@ export class EmbedQuestionForm extends Component {
         names.push(this.props.first_name+" "+this.props.last_name);
         invitedCandidates.push(this.props.candidateId);
         this.props.setStatus(true);
-        this.props.setNoshowInvite(true);
 
         // add question
         let questions = this.getQuestions();

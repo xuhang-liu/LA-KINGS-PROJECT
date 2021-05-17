@@ -479,7 +479,7 @@ const ApplyJob = (props) =>{
                         <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
                             Job Closed
                         </button>:
-                        <a className="default-btn" href="#apply-now" style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
+                        <a className="default-btn" href="#apply-now" style={{paddingLeft:"5rem", paddingRight:"5rem", textDecoration:"none"}}>
                             Apply Now
                         </a>}
                         <p className="mt-5">Link to this job</p>
@@ -551,12 +551,12 @@ const ApplyJob = (props) =>{
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Level</p>
                                 <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_level}</p>
                             </div>
-                            <div style={{width:"50%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
+                            <div style={{width:"50%", height:"4.8rem"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Type</p>
                                 <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_type}</p>
                             </div>
                         </div>
-                        <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A"}}>
+                        <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A", borderTop:"none"}}>
                             <div style={{width:"50%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Location</p>
                                 <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_location}</p>
@@ -572,7 +572,7 @@ const ApplyJob = (props) =>{
                         <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
                             Job Closed
                         </button>:
-                        <a className="default-btn" href="#apply-now" style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
+                        <a className="default-btn" href="#apply-now" style={{paddingLeft:"5rem", paddingRight:"5rem", textDecoration:"none"}}>
                             Apply Now
                         </a>}
                         <p className="mt-3">Link to this job</p>
@@ -580,7 +580,7 @@ const ApplyJob = (props) =>{
                             <div className="pt-2 pl-2" style={{color:"#090D3A", fontWeight:"500", alignItems:"center"}}>
                                 <p style={{fontSize:"0.8rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_url}</p>
                             </div>
-                            <div className="py-1 mt-1">
+                            <div className="py-1 mt-3 mb-1">
                                 <button onClick={() => {copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "":props.job.job_url))}}
                                 className="default-btn pt-1" style={{fontSize:"1rem", background:"#FF6B00", borderRadius:"5px", height:"2.2rem", alignItems:"center", paddingLeft:"2rem", paddingRight:"0.6rem"}}>
                                     <i className='bx bx-share-alt' style={{left:"0.5rem"}}></i>Copy
