@@ -134,9 +134,15 @@ class ReviewApplication extends Component{
                                                 pk = {this.props.pk}
                                                 refresh={this.props.refresh}
                                                 updateStatus={this.updateStatus}
-                                                comment_status={this.props.comment_status}
+                                                commentStatus={this.props.commentStatus}
                                                 profile={this.props.profile}
                                                 subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                                current={this.props.current}
+                                                setCurrent={this.props.setCurrent}
+                                                start={this.props.start}
+                                                end={this.props.end}
+                                                viewPrevResult={this.props.viewPrevResult}
+                                                viewNextResult={this.props.viewNextResult}
                             />
                         </div>
                     </div>
