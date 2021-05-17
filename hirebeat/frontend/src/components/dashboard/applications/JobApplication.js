@@ -1136,7 +1136,7 @@ const ApplicantList = (props) => {
     //let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
     return (
         <div>
-            {props.applicants.map((a) => {
+            {props.applicants.map((a, index) => {
                 // filter applicants by status
                 if (props.category.value != "All") {
                     switch (props.category.value) {
@@ -1288,6 +1288,8 @@ const ApplicantList = (props) => {
                 }
                 return (
                     <Applicant
+                        index={index}
+                        applicants={props.applicants}
                         getPJobs={props.getPJobs}
                         profile={props.profile}
                         recordTime={props.recordTime}
@@ -1327,26 +1329,87 @@ const ApplicantList = (props) => {
     );
 }
 
+function getBoundary(applicants) {
+    let right = applicants.length - 1;
+    while (right >= 0) {
+        if (applicants[right].is_recorded && applicants[right].video_count > 0) {
+            break;
+        }
+        right--;
+    }
+
+    let left = 0;
+    while (left <= applicants.length - 1) {
+        if (applicants[left].is_recorded && applicants[left].video_count > 0) {
+            break;
+        }
+        left++;
+    }
+
+    let res = [];
+    res.push(left);
+    res.push(right);
+    return res;
+}
+
 const Applicant = (props) => {
-    let email = props.email;
+    const [current, setCurrent] = useState(props.index);
+    let applicants = props.applicants;
+    let email = applicants[current].email;
     let positionId = props.positionId;
     let companyName = props.companyName;
     let jobTitle = props.jobTitle;
     let name = props.name;
-    let candidateId = props.candidateId;
+    let candidateId = applicants[current].id;
     const [isViewed, setIsViewed] = useState(props.isViewed);
-    const commentStatus = props.comment_status;
+    const commentStatus = applicants[current].comment_status;
+    const boundary = getBoundary(applicants);
+    const start = boundary[0];
+    const end = boundary[1];
 
     function viewResult() {
         if (!isViewed) {
-            props.updateViewStatus({"candidate_id": candidateId});
+            props.updateViewStatus({"candidate_id": applicants[props.index].id});
             setIsViewed(true);
         }
         // get videos and info
-        props.getResumeURL(positionId, props.id_candidate);
-        props.getApplicantsVideos(email, positionId);
-        props.getApplicantsInfo(email);
+        props.getApplicantsVideos(applicants[props.index].email, positionId);
+        props.getApplicantsInfo(applicants[props.index].email);
+        setTimeout(()=>{props.getResumeURL(positionId, props.id_candidate);}, 600);
         setTimeout(()=>{setShow(true);}, 200)
+    };
+
+    function getReviewPageData(index) {
+        props.updateViewStatus({"candidate_id": applicants[index].id});
+        props.getApplicantsVideos(applicants[index].email, positionId);
+        props.getApplicantsInfo(applicants[index].email);
+        setTimeout(()=>{props.getResumeURL(positionId, props.id_candidate);}, 600);
+        setCurrent(index);
+    }
+
+    function viewNextResult(curIndex) {
+        let right = applicants.length;
+        let next = curIndex + 1;
+        while (next < right) {
+            if (applicants[next].is_recorded && applicants[next].video_count > 0) {
+                break;
+            }
+            next++;
+        }
+        // get the next candidate info
+        getReviewPageData(next);
+    };
+
+    function viewPrevResult(curIndex) {
+        let left = 0;
+        let prev = curIndex - 1;
+        while (prev >= left) {
+            if (applicants[prev].is_recorded && applicants[prev].video_count > 0) {
+                break;
+            }
+            prev--;
+        }
+        getReviewPageData(prev);
     };
 
     const refresh = () =>
@@ -1500,7 +1563,7 @@ const Applicant = (props) => {
                 getPJobs={props.getPJobs}
                 recordTime={props.recordTime}
                 interviewResume={props.interviewResume}
-                comment_status={props.comment_status}
+                commentStatus={commentStatus}
                 show={show}
                 setShowResume={setShowResume}
                 setShowEva={setShowEva}
@@ -1515,6 +1578,12 @@ const Applicant = (props) => {
                 updateCommentStatus={props.updateCommentStatus}
                 profile={props.profile}
                 subreviewerUpdateComment={props.subreviewerUpdateComment}
+                current={current}
+                setCurrent={setCurrent}
+                start={start}
+                end={end}
+                viewPrevResult={viewPrevResult}
+                viewNextResult={viewNextResult}
             />
             <MyModal80
                 show={showResume}
@@ -1545,7 +1614,7 @@ function MyVerticallyCenteredModal(props) {
         interviewResume={props.interviewResume}
         setShowResume={props.setShowResume}
         setShowEva={props.setShowEva}
-        comment_status={props.comment_status}
+        commentStatus={props.commentStatus}
         set_comment_status={props.set_comment_status}
         hide={props.onHide}
         int_ques={props.int_ques}
@@ -1558,6 +1627,12 @@ function MyVerticallyCenteredModal(props) {
         updateCommentStatus={props.updateCommentStatus}
         profile={props.profile}
         subreviewerUpdateComment={props.subreviewerUpdateComment}
+        current={props.current}
+        setCurrent={props.setCurrent}
+        start={props.start}
+        end={props.end}
+        viewPrevResult={props.viewPrevResult}
+        viewNextResult={props.viewNextResult}
       />
     </MyModal80>
   );

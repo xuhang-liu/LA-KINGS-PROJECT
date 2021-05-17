@@ -45,34 +45,52 @@ render() {
                                                                 <h4 style={{fontWeight:"500", color:"#090D3A"}}>Action</h4>
                                                         </div>
                                                         <div className="col-10 p-0">
-                                                        {this.props.comment_status == 1 ? <button className="default-btn btn-success ml-0" style={{marginBottom:"10%", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(1);this.props.refresh();}}>
+                                                        {this.props.commentStatus == 1 ? <button className="default-btn btn-success ml-0" style={{width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(1);this.props.refresh();}}>
                                                         <i class='bx bx-bookmark-plus'></i>Shortlist
                                                         </button>
-                                                        : <button className="default-btn ml-0" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(1);this.props.refresh();}}>
+                                                        : <button className="default-btn ml-0" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(1);this.props.refresh();}}>
 
                                                         <i class='bx bx-bookmark-plus' style={{color:"#090D3A"}}></i>Shortlist
 
                                                         </button>
                                                         }
-                                                        {this.props.comment_status == 2 ? <button className="default-btn btn-warning ml-2" style={{marginBottom:"10%", width:"7rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(2);this.props.refresh();}}>
+                                                        {this.props.commentStatus == 2 ? <button className="default-btn btn-warning ml-2" style={{width:"7rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(2);this.props.refresh();}}>
                                                         <i class='bx bx-help-circle'></i>Hold
                                                         </button>
-                                                        : <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"7rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(2);this.props.refresh();}}>
+                                                        : <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"7rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(2);this.props.refresh();}}>
 
                                                         <i class='bx bx-help-circle' style={{color:"#090D3A"}}></i>Hold
 
                                                         </button>
                                                         }
-                                                        {this.props.comment_status == 3 ? <button className="default-btn btn-danger ml-2" style={{marginBottom:"10%", width:"7.5rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(3);this.props.refresh();}}>
+                                                        {this.props.commentStatus == 3 ? <button className="default-btn btn-danger ml-2" style={{width:"7.5rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(3);this.props.refresh();}}>
                                                         <i class='bx bx-calendar-x'></i>Reject
                                                         </button>
-                                                        : <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", marginBottom:"10%", width:"7.5rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(3);this.props.refresh();}}>
+                                                        : <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"7.5rem", fontSize:"0.8rem"}} onClick={() => {this.props.updateStatus(3);this.props.refresh();}}>
                                                         <i class='bx bx-calendar-x' style={{color:"#090D3A"}}></i>Reject
                                                         </button>
                                                         }
                                                         </div>
                                                 </div>
-                                                
+                                                <div style={{marginTop: "1.5rem", marginBottom: "1rem"}}>
+                                                    <div style={{textAlign: "center"}}>
+                                                        <button
+                                                            className={this.props.current == this.props.start ? "disable-btn" : "enable-btn"}
+                                                            disabled={this.props.current == this.props.start ? true : false}
+                                                            onClick={() => this.props.viewPrevResult(this.props.current)}
+                                                        >
+                                                            &lt; Prev
+                                                        </button>
+                                                        <button
+                                                            className={this.props.current == this.props.end ? "disable-btn" : "enable-btn"}
+                                                            disabled={this.props.current == this.props.end ? true : false}
+                                                            onClick={() => this.props.viewNextResult(this.props.current)}
+                                                            style={{marginLeft: "2rem"}}
+                                                        >
+                                                            Next &gt;
+                                                        </button>
+                                                    </div>
+                                                </div>
                                         </div> 
                                         <div className="col-4">
                                                 <Pagination
