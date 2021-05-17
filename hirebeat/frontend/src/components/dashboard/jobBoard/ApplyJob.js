@@ -58,8 +58,23 @@ const ApplyJob = (props) =>{
                 ]
             });
         }
+        if (fisrtname.trim() == null || fisrtname.trim() == "" || fisrtname.includes("@")
+        || fisrtname.includes("!") || fisrtname.includes("#") || fisrtname.includes("0") ||  fisrtname.includes("1")
+        || fisrtname.includes("2") || fisrtname.includes("3") || fisrtname.includes("4") || fisrtname.includes("5")
+        || fisrtname.includes("6") || fisrtname.includes("7") || fisrtname.includes("8") || fisrtname.includes("9")
+        || fisrtname.includes("/") || fisrtname.includes("(") || fisrtname.includes("%") || fisrtname.includes("-")
+        || fisrtname.includes("+") || fisrtname.includes("=") || fisrtname.includes(";") || fisrtname.includes("^")){
+            return alert("Firstname Invalid Format!")
+        }
+        if (lastname.trim() == null || lastname.trim() == "" || lastname.includes("@")
+        || lastname.includes("!") || lastname.includes("#") || lastname.includes("0") ||  lastname.includes("1")
+        || lastname.includes("2") || lastname.includes("3") || lastname.includes("4") || lastname.includes("5")
+        || lastname.includes("6") || lastname.includes("7") || lastname.includes("8") || lastname.includes("9")
+        || lastname.includes("/") || lastname.includes("(") || lastname.includes("%") || lastname.includes("-")
+        || lastname.includes("+") || lastname.includes("=") || lastname.includes(";") || lastname.includes("^")){
+            return alert("Lastname Invalid Format!")
+        }
         if (username == "" || username == null){
-            props.uploader.uploadFile(resume);
             let data = {
                 job_id: props.job.id,
                 firstname: fisrtname,
@@ -70,11 +85,7 @@ const ApplyJob = (props) =>{
                 resume_url: resume_url
             };
             props.addNewApplyCandidate(data);
-            alert("Application submitted!");
-            const { history } = props;
-            if (history) history.push({
-                pathname: "/dashboard"
-            });
+            props.uploader.uploadFile(resume);
         }else{
             if (passwordsMatch()) {
                 props.register(
@@ -82,7 +93,6 @@ const ApplyJob = (props) =>{
                     email,
                     password
                 );
-                props.uploader.uploadFile(resume);
                 let data = {
                     job_id: props.job.id,
                     firstname: fisrtname,
@@ -93,11 +103,7 @@ const ApplyJob = (props) =>{
                     resume_url: resume_url
                 };
                 props.addNewApplyCandidate(data);
-                alert("Application submitted!");
-                const { history } = props;
-                if (history) history.push({
-                    pathname: "/dashboard"
-                });
+                props.uploader.uploadFile(resume);
             }
         }
     }
@@ -125,7 +131,22 @@ const ApplyJob = (props) =>{
                 ]
             });
         }
-        props.uploader.uploadFile(resume);
+        if (fisrtname.trim() == null || fisrtname.trim() == "" || fisrtname.includes("@")
+        || fisrtname.includes("!") || fisrtname.includes("#") || fisrtname.includes("0") ||  fisrtname.includes("1")
+        || fisrtname.includes("2") || fisrtname.includes("3") || fisrtname.includes("4") || fisrtname.includes("5")
+        || fisrtname.includes("6") || fisrtname.includes("7") || fisrtname.includes("8") || fisrtname.includes("9")
+        || fisrtname.includes("/") || fisrtname.includes("(") || fisrtname.includes("%") || fisrtname.includes("-")
+        || fisrtname.includes("+") || fisrtname.includes("=") || fisrtname.includes(";") || fisrtname.includes("^")){
+            return alert("Firstname Invalid Format!")
+        }
+        if (lastname.trim() == null || lastname.trim() == "" || lastname.includes("@")
+        || lastname.includes("!") || lastname.includes("#") || lastname.includes("0") ||  lastname.includes("1")
+        || lastname.includes("2") || lastname.includes("3") || lastname.includes("4") || lastname.includes("5")
+        || lastname.includes("6") || lastname.includes("7") || lastname.includes("8") || lastname.includes("9")
+        || lastname.includes("/") || lastname.includes("(") || lastname.includes("%") || lastname.includes("-")
+        || lastname.includes("+") || lastname.includes("=") || lastname.includes(";") || lastname.includes("^")){
+            return alert("Lastname Invalid Format!")
+        }
         let data = {
             job_id: props.job.id,
             firstname: fisrtname,
@@ -136,11 +157,7 @@ const ApplyJob = (props) =>{
             resume_url: resume_url
         };
         props.addNewApplyCandidate(data);
-        alert("Application submitted!");
-        const { history } = props;
-        if (history) history.push({
-            pathname: "/dashboard"
-        });
+        props.uploader.uploadFile(resume);
     }
     function onChange1(e) {
         setUsername(e.target.value);
@@ -220,6 +237,11 @@ const ApplyJob = (props) =>{
     };
 
     function onUploadFinish() {
+        alert("Application submitted!");
+        const { history } = props;
+        if (history) history.push({
+            pathname: "/dashboard"
+        });
     };
     function copyAlert() {
         confirmAlert({

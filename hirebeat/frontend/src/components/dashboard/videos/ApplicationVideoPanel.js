@@ -30,12 +30,6 @@ class ApplicationVideoPanel extends Component {
         this.setState({ comments: new_comment });
     }
 
-    componentDidMount () {
-        this.setState({
-            ratings: this.props.stars,
-        });
-    }
-
     componentDidUpdate () {
         if(this.state.page != this.props.page) { 
             this.setState({page: this.props.page});
@@ -153,7 +147,7 @@ class ApplicationVideoPanel extends Component {
                                 </div>
                                 <div className="col-9">
                                     <Stars 
-                                        stars={this.state.ratings[this.state.page]}
+                                        stars={this.props.stars[this.state.page]}
                                         changeStar={this.handleRating}
                                     />
                                 </div>
