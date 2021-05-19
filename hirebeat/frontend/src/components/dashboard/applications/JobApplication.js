@@ -503,7 +503,7 @@ const JobCard = (props) => {
     const options = [
         { value: 'Completed', label: 'Completed' },
         { value: 'Pending', label: 'Pending' },
-        { value: 'Withdrawn', label: 'Withdrawn' },
+        { value: 'Withdrawn', label: 'N/A' },
         { value: 'All', label: 'All' },
     ];
 
@@ -724,17 +724,21 @@ const JobCard = (props) => {
         <React.Fragment>
             {/* Job Applications */}
             {!invite &&
-                <div className="card container mt-3 pt-2 pb-3">
-                    <div className="interview-center" style={{marginLeft:"-0.5rem", marginBottom:"1.4rem", marginTop:"1rem"}}>
-                        <button
-                            type="button"
-                            className="default-btn"
-                            style={{paddingTop:"5px", paddingBottom:"5px"}}
-                            onClick={() => {props.hideView(); props.getPJobs()}}
-                        >
-                            <i className="bx bx-arrow-back"></i>Back To All
-                        </button>
+            <div>
+                <div className="d-flex align-items-center">
+                    <button
+                        type="button"
+                        className="panel-button"
+                        onClick={() => {props.hideView(); props.getPJobs()}}
+                        style={{outline: "none", margin:"0%", padding:"0px", background:"#e8edfc"}}
+                    >
+                    <div className="center-items">
+                        <i style={{color: "#67A3F3"}} className="bx bx-arrow-back bx-sm"></i>
+                        <p style={{color: "#67A3F3", fontSize: "1.25rem"}}>Back To Interviews</p>
                     </div>
+                    </button>
+                </div>
+                <div className="card container mt-4 pt-3 pb-3">
                     <div className="row">
                         <div className="col-4 interview-center mt-2">
                             <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
@@ -778,23 +782,23 @@ const JobCard = (props) => {
                         <input placeholder="Search candidate" className="search-candidate-input" value={keyWords} onChange={onChange}></input>
                     </div>
                     <div className="card container" style={{marginTop:"2%"}}>
-                        <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
+                        <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                             <div className="col-2">Name</div>
-                            <div className="col-4">Email</div>
-                            <div className="col-3">
+                            <div className="col-2">Email</div>
+                            <div className="col-2">Invited On</div>
+                            <div className="col-2">
                                 <div className="row">
-                                    <div className="center-items" style={{marginRight: "1rem"}}>Status: </div>
                                     <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles}/>
                                 </div>
                             </div>
-                            <div className="col-3">
+                            <div className="col-2">Action</div>
+                            <div className="col-2">
                                 <div className="row">
-                                    <div className="center-items" style={{marginRight: "1rem"}}>Review: </div>
                                     <Select value={category2} onChange={onFilter2} options={options2} className="select-category" styles={customStyles}/>
                                 </div>
                             </div>
                         </div>
-                        <div style={{marginBottom:"2rem"}}>
+                        <div style={{marginBottom:"0.5rem"}}>
                             <ApplicantList
                                 getPJobs={props.getPJobs}
                                 profile={props.profile}
@@ -841,6 +845,7 @@ const JobCard = (props) => {
                         </div>
                     </div>
                 </div>
+            </div>
             }
 
             {/* Invitation Form */}
@@ -1136,7 +1141,7 @@ const ApplicantList = (props) => {
     //let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
     return (
         <div>
-            {props.applicants.map((a, index) => {
+            {props.applicants.sort((a, b) => new Date(b.invite_date) - new Date(a.invite_date)).map((a, index) => {
                 // filter applicants by status
                 if (props.category.value != "All") {
                     switch (props.category.value) {
@@ -1375,7 +1380,7 @@ const Applicant = (props) => {
         // get videos and info
         props.getApplicantsVideos(applicants[props.index].email, positionId);
         props.getApplicantsInfo(applicants[props.index].email);
-        setTimeout(()=>{props.getResumeURL(positionId, props.id_candidate);}, 600);
+        props.getResumeURL(positionId, applicants[props.index].user_id);
         setTimeout(()=>{setShow(true);}, 200)
     };
 
@@ -1383,7 +1388,7 @@ const Applicant = (props) => {
         props.updateViewStatus({"candidate_id": applicants[index].id});
         props.getApplicantsVideos(applicants[index].email, positionId);
         props.getApplicantsInfo(applicants[index].email);
-        setTimeout(()=>{props.getResumeURL(positionId, props.id_candidate);}, 600);
+        props.getResumeURL(positionId, applicants[index].user_id);
         setCurrent(index);
     }
 
@@ -1414,7 +1419,7 @@ const Applicant = (props) => {
 
     const refresh = () =>
     {
-        props.getResumeURL(positionId, props.id_candidate);
+        props.getResumeURL(positionId, applicants[props.index].user_id);
         props.getApplicantsVideos(email, positionId);
         props.getApplicantsInfo(email);
     }
@@ -1496,46 +1501,57 @@ const Applicant = (props) => {
             <div className="row interview-center h-100" style={{color: "#7D7D7D", height: "3rem"}}>
                 {/* add unread lable here */}
                 {props.videoCount > 0 ? 
-                <div className="col-2 mt-2">
+                <div className="col-2 mb-1">
                     <button className="title-button1" style={{wordBreak: "break-all"}} onClick={() => viewResult()}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span>:<span class="dot" style={{background:"none"}}></span>}
                         {props.name.split("(")[0].length > 11 ? props.name.split("(")[0].substring(0, 9) + "..." : props.name.split("(")[0]}
                     </button>
                 </div> :
-                <div className="col-2 interview-txt9 mt-2">
+                <div className="col-2 interview-txt9 mb-1">
                     <span class="dot" style={{background:"none"}}/>
                     {props.name.split("(")[0].length > 11 ? props.name.split("(")[0].substring(0, 9) + "..." : props.name.split("(")[0]}</div>
                 }
                 {props.videoCount > 0 ? 
-                <div className="col-4 mt-2">
+                <div className="col-2 mb-1">
                     <button className="title-button1" onClick={() => viewResult()}>
-                    {props.email.split("(")[0].length > 30 ? props.email.split("(")[0].substring(0, 28) + "..." : props.email.split("(")[0]}</button></div>
-                : <div className="col-4 interview-txt9 mt-2">
-                    {props.email.split("(")[0].length > 30 ? props.email.split("(")[0].substring(0, 28) + "..." : props.email.split("(")[0]}</div>
+                    {props.email.split("(")[0].length > 18 ? props.email.split("(")[0].substring(0, 16) + "..." : props.email.split("(")[0]}</button></div>
+                : <div className="col-2 interview-txt9 mb-1">
+                    {props.email.split("(")[0].length > 18 ? props.email.split("(")[0].substring(0, 16) + "..." : props.email.split("(")[0]}</div>
                 }
-                <div className="col-3">
+                <div className="col-2">
+                    <div className="interview-txt9">
+                        <p style={{color: "#090d3a"}}>{props.date}</p>
+                    </div>
+                </div>
+                <div className="col-2">
+                    {props.isRecorded ?
+                        (props.videoCount > 0 ?
+                            <div className="interview-txt9">
+                                <p style={{color: "#090d3a"}}><strong>Completed</strong></p>
+                            </div>:
+                            <div className="interview-txt9">
+                                <p style={{color: "#7D7D7D"}}>N/A</p>
+                            </div>) :
+                            <div className="interview-txt9">
+                            <p style={{color: "#7D7D7D"}}>Pending</p>
+                            </div>
+                    }
+                </div>
+                <div className="col-2">
                     {props.isRecorded ?
                         (props.videoCount > 0 ?
                             <div>
-                            <div className="interview-txt9">
-                                <p style={{color: "#090d3a", display:"inline-block"}}><strong>Completed</strong></p>
-                            
-                            <button
-                                onClick={() => viewResult()}
-                                className="interview-txt9"
-                                style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block"}}
-                            >
+                                <button
+                                    onClick={() => viewResult()}
+                                    className="interview-txt9"
+                                    style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                                >
                                 <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
-                            </button>
-                            </div>
+                                </button>
                             </div> :
                             <div className="interview-txt9">
-                                <p style={{color: "#7D7D7D"}}>Withdrawn</p>
                             </div>) :
-                        <div className="row" style={{alignItems: "center"}}>
-                            <div className="interview-txt9">
-                                <p style={{color: "#7D7D7D"}}>Pending</p>
-                            </div>
+                            <div>
                             {!props.profile.is_subreviwer &&
                             <div>
                             {!props.isClosed && 
@@ -1543,17 +1559,17 @@ const Applicant = (props) => {
                                 <button
                                     onClick={ () => inviteAgain()}
                                     className="interview-txt9"
-                                    style={{color: "#67A3F3", border: "none", background: "white"}}
+                                    style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
                                 >
                                     <i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>
-                                    Invite Again
+                                    Resend
                                 </button>
                             </div>}
                             </div>}
                         </div>
                     }
                 </div>
-                <div className="col-3" >
+                <div className="col-2 mb-1" >
                     {renderStatus(props.comment_status)}
                 </div>
             </div>

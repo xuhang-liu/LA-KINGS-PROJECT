@@ -56,6 +56,7 @@ export class JobCard extends Component{
                 />
                 <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                     <div className="col-3 interview-txt9 mt-2">
+                        {/*this.props.job.un_view && <span className="dot"></span>*/}
                         <button
                             className="title-button2"
                             onClick={() => {this.props.enableView(true); this.props.setCurJob(this.props.job)}}

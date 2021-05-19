@@ -90,7 +90,7 @@ export class ApplicantList extends Component{
         const names = [];
         const invitedCandidates = [];
         let candidates = document.getElementsByClassName("selected-candidate");
-        let candidateRows = document.getElementsByClassName("candidate-row");
+        let candidateRows = document.getElementsByClassName("invite-btn");
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked) {
                 let candidate = JSON.parse(candidates[i].value);
@@ -147,7 +147,7 @@ export class ApplicantList extends Component{
                         // hide checkbox
                         candidates[i].style.display = "none";
                         // show invite status
-                        candidateRows[i].children[5].style.display = "block";
+                        candidateRows[i].style.display = "block";
                     }
                 }
                 this.sendSuccessAlert();
@@ -187,10 +187,9 @@ export class ApplicantList extends Component{
                             <div className="col-3">Email</div>
                             <div className="col-2">Applied On</div>
                             <div className="col-2">Application</div>
-                            <div className="col-2">Resume</div>
-                            <div className="col-1" style={{padding: "0rem"}}>Interview</div>
+                            <div className="col-1" style={{padding: "0rem"}}>Status</div>
                         </div>
-                        {this.props.curJob.applicants.map((a, index) => {
+                        {this.props.curJob.applicants.sort((a, b) => new Date(b.apply_date) - new Date(a.apply_date)).map((a, index) => {
                             if (this.state.keyWords != "") {
                                 let name = a.first_name + " " + a.last_name;
                                 if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
@@ -283,14 +282,9 @@ const ApplicantRow = (props) => {
                 <div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
                 <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); setShowPreview(true)}}>View</div>
-                <div className="col-2 interview-txt9 mt-2">
-                    <a href={props.applicant.resume_url} style={{color: "#67A3F3"}} target="_blank">
-                        Download
-                    </a>
-                </div>
                 <div className="col-1 interview-txt9 mt-2" style={{padding: "0rem"}}>
                     {(props.applicant.is_invited || status) ?
-                        <button className="default-btn"
+                        <button className="default-btn invite-btn"
                             style={{backgroundColor: "#13C4A1", padding: "5px"}}
                         >
                             Invited
