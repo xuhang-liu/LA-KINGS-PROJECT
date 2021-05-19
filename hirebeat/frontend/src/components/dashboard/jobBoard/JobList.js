@@ -46,7 +46,7 @@ export class JobList extends Component{
                             <div className="col-2">Job Page</div>
                             <div className="col-2">Action</div>
                         </div>
-                        {Object.keys(this.props.jobs).reverse().map((key) => {
+                        {Object.keys(this.props.jobs).sort((a, b) => new Date(this.props.jobs[b]["job_details"].create_date) - new Date(this.props.jobs[a]["job_details"].create_date)).map((key) => {
                             let job = this.props.jobs[key];
                             if (this.props.filter) {
                                 switch (this.props.filter) {
