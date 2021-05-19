@@ -85,6 +85,9 @@ export class EmployerRegister extends Component {
         ]
       });
     }else{
+      if(this.state.companyName.trim() == null || this.state.companyName.trim() == ""){
+        return alert("Company Name Invalid Format!");
+      }
       if (this.passwordsMatch()) {
         this.props.employer_register(
           this.state.email,
