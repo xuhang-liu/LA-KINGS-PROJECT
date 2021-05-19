@@ -85,7 +85,7 @@ export class QuestionForm extends Component {
         const names = [];
         const invitedCandidates = [];
         let candidates = document.getElementsByClassName("selected-candidate");
-        let candidateRows = document.getElementsByClassName("candidate-row");
+        let candidateRows = document.getElementsByClassName("invite-btn");
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked) {
                 let candidate = JSON.parse(candidates[i].value);
@@ -98,7 +98,7 @@ export class QuestionForm extends Component {
                 // hide checkbox
                 candidates[i].style.display = "none";
                 // show invite status
-                candidateRows[i].children[5].style.display = "block";
+                candidateRows[i].style.display = "block";
             }
         }
         // check candidates selected or not
