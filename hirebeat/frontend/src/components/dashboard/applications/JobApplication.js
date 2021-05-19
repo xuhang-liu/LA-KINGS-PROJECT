@@ -1375,7 +1375,7 @@ const Applicant = (props) => {
         // get videos and info
         props.getApplicantsVideos(applicants[props.index].email, positionId);
         props.getApplicantsInfo(applicants[props.index].email);
-        setTimeout(()=>{props.getResumeURL(positionId, props.id_candidate);}, 600);
+        props.getResumeURL(positionId, applicants[props.index].user_id);
         setTimeout(()=>{setShow(true);}, 200)
     };
 
@@ -1383,7 +1383,7 @@ const Applicant = (props) => {
         props.updateViewStatus({"candidate_id": applicants[index].id});
         props.getApplicantsVideos(applicants[index].email, positionId);
         props.getApplicantsInfo(applicants[index].email);
-        setTimeout(()=>{props.getResumeURL(positionId, props.id_candidate);}, 600);
+        props.getResumeURL(positionId, applicants[index].user_id);
         setCurrent(index);
     }
 
@@ -1414,7 +1414,7 @@ const Applicant = (props) => {
 
     const refresh = () =>
     {
-        props.getResumeURL(positionId, props.id_candidate);
+        props.getResumeURL(positionId, applicants[props.index].user_id);
         props.getApplicantsVideos(email, positionId);
         props.getApplicantsInfo(email);
     }

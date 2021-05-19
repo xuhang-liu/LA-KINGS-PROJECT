@@ -110,6 +110,10 @@ def get_posted_jobs(request):
         positions_id = positions[i].id
         # get each position applicants
         applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
+        for j in range(len(applicants)):
+            applicant_info = User.objects.filter(email=applicants[j]["email"]).values()
+            if len(applicant_info) == 1:
+                applicants[j]["user_id"] = applicant_info[0]["id"]
         questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
         if (len(SubReviewers.objects.filter(position_id=positions_id))>0):
             subreviewers = list(SubReviewers.objects.filter(position_id=positions_id).values())
