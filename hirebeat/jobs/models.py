@@ -45,3 +45,4 @@ class ApplyCandidates(models.Model):
     basic_cri_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
     basic_cri_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
     basic_cri_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    is_viewed = models.BooleanField(default=False)

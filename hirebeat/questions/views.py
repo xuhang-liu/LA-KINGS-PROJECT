@@ -1,3 +1,4 @@
+from django.db.models.aggregates import Count
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes, SubReviewers
 from accounts.models import CandidatesInterview, Profile
 from videos.models import WPVideo
@@ -104,13 +105,21 @@ def add_position(request):
 @api_view(['GET'])
 def get_posted_jobs(request):
     data = {}
+    int_dots = 0
     user_id = request.query_params.get("user_id")
     positions = Positions.objects.filter(user_id=user_id)
     for i in range(len(positions)):
         positions_id = positions[i].id
         # get each position applicants
         applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
+        for j in range(len(applicants)):
+            applicant_info = User.objects.filter(email=applicants[j]["email"]).values()
+            if len(applicant_info) == 1:
+                applicants[j]["user_id"] = applicant_info[0]["id"]
         questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
+        int_dot = InvitedCandidates.objects.filter(positions_id=positions_id, is_recorded=True, video_count__gt=0, is_viewed=False, comment_status=0).count()
+        int_dots += int_dot
+
         if (len(SubReviewers.objects.filter(position_id=positions_id))>0):
             subreviewers = list(SubReviewers.objects.filter(position_id=positions_id).values())
         else:
@@ -152,6 +161,7 @@ def get_posted_jobs(request):
             data[position_id] = job_details
     return Response({
         "data": data,
+        "int_dots": int_dots,
     })
 
 @api_view(['POST'])

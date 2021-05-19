@@ -58,11 +58,13 @@ def get_all_jobs(request):
         positions_id = jobs[i]["positions_id"]
         # get each position applicants
         applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).values())
+        un_view = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_viewed=False, is_invited=False).count() > 0 else False
         questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
         job_details = {
             "job_details": jobs[i],
             "applicants": applicants,
             "questions": questions,
+            "un_view": un_view,
         }
         data[job_id] = job_details
 

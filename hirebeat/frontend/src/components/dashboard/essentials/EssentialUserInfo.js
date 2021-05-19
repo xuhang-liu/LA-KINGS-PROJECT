@@ -300,6 +300,7 @@ export class EssentialUserInfo extends Component {
                   <IconEmployerText
                     textSize={"12px"}
                     textDisplayed={"Interview"}
+                    int_dots={this.props.int_dots}
                     backColor={this.props.subpage == "applications" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "applications" ? selectDash : nonselectDash}
                     textColor={this.props.subpage == "applications" ? selectEColor : defaultEColor}

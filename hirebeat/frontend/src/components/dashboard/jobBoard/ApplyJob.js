@@ -313,9 +313,15 @@ const ApplyJob = (props) =>{
                         {!Applied &&
                         <div>
                             {(props.profile.is_employer || props.job.id == "" || props.job.id == null) ?
+                            <div>
+                            {((job_id == null || job_id == "") ? false:props.job.is_closed) ?
+                            <button id="apply-now" className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
+                                Job Closed
+                            </button>:
                             <button id="apply-now" className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
                                 Apply Now
-                            </button> :
+                            </button>}
+                            </div>:
                             <div>
                             {((job_id == null || job_id == "") ? false:props.job.is_closed) ?
                             <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
@@ -660,9 +666,15 @@ const ApplyJob = (props) =>{
                         {!Applied &&
                         <div className="mt-3">
                             {(props.profile.is_employer || props.job.id == "" || props.job.id == null) ?
+                            <div>
+                            {((job_id == null || job_id == "") ? false:props.job.is_closed) ?
+                            <button id="apply-now" className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
+                                Job Closed
+                            </button>:
                             <button id="apply-now" className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
                                 Apply Now
-                            </button> :
+                            </button>}
+                            </div>:
                             <div>
                             {((job_id == null || job_id == "") ? false:props.job.is_closed) ?
                             <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>

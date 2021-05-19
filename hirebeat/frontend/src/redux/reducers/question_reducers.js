@@ -12,6 +12,7 @@ const initialState = {
   interview_question_ids: [],
   questionTime: 0,
   postedJobs: [],
+  int_dots: 0,
   applicantsData: {},
   star_list: {1: 100},
   resume_list: {1:0},
@@ -83,6 +84,7 @@ export default function (state = initialState, action) {
         ...state,
         loaded: true,
         postedJobs: action.payload.data,
+        int_dots: action.payload.int_dots,
       };
     case UPDATE_COMMENT_STATUS:
       return {
