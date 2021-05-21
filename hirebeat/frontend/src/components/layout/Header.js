@@ -293,6 +293,11 @@ export class Header extends Component {
                   </span>
                 </a>
               </li>
+              <li className="nav-item ">
+                <a href="/employer-product" className="nav-link text-white navbar-font">
+                  <span className="header-text">Product</span>
+                </a>
+              </li>
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
