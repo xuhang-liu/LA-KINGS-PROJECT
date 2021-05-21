@@ -25,7 +25,7 @@ export class ApplicantList extends Component{
     }
 
     hideQForm = () => {
-        setTimeout(() => {this.props.setCurJob(this.props.curJob)}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
         this.setState({showQForm: false});
 
     }
@@ -69,10 +69,6 @@ export class ApplicantList extends Component{
                       return (
                           <li><h5>{q.description}</h5></li>
                     )})}
-                    {this.state.tempQuestion.map((q) => {
-                      return (
-                          <li><h5>{q}</h5></li>
-                    )})}
                   </ul>
                 </div>
               );
@@ -90,7 +86,6 @@ export class ApplicantList extends Component{
         const names = [];
         const invitedCandidates = [];
         let candidates = document.getElementsByClassName("selected-candidate");
-        let candidateRows = document.getElementsByClassName("invite-btn");
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked) {
                 let candidate = JSON.parse(candidates[i].value);
@@ -137,7 +132,7 @@ export class ApplicantList extends Component{
                 this.props.addInterviews(meta);
                 let data = {
                     "candidates": invitedCandidates,
-                    "isInvited": true,
+                    "isInvited": 1,
                 }
                 let viewedData = {
                     "applyIds": invitedCandidates,
@@ -146,15 +141,7 @@ export class ApplicantList extends Component{
                 this.props.updateInviteStatus(data);
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
-                setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 300);
-                for (let i = 0; i < candidates.length; i++) {
-                    if (candidates[i].checked) {
-                        // hide checkbox
-                        candidates[i].style.display = "none";
-                        // show invite status
-                        candidateRows[i].style.display = "block";
-                    }
-                }
+                setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 600);
                 this.sendSuccessAlert();
             }
         }
@@ -205,7 +192,9 @@ export class ApplicantList extends Component{
                     </div>
                     <div className="card container" style={{marginTop:"1rem"}}>
                         <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "1.5rem"}}>
-                            <div style={{marginLeft: "1rem"}}><input id="select-all" type="checkbox" onClick={this.selectAllCandidates}/></div>
+                            <div style={{marginLeft: "1rem"}}>
+                                <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{display: (this.props.curJob.all_invited ? "none" : "inline")}} />
+                            </div>
                             <div className="col-2">Name</div>
                             <div className="col-3">Email</div>
                             <div className="col-2">Applied On</div>
@@ -276,21 +265,20 @@ const ApplicantRow = (props) => {
     let applicants = props.applicants;
     let name = props.applicant.first_name + " " + props.applicant.last_name;
     function onView() {
-    let applyIds = [];
-    applyIds.push(applicants[current].id);
-    let data = {
-        "applyIds": applyIds,
-        "isViewed": true,
-    }
-    props.updateCandidateViewedStatus(data);
-    setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
-    setShowPreview(true);
+        let applyIds = [];
+        applyIds.push(applicants[current].id);
+        let data = {
+            "applyIds": applyIds,
+            "isViewed": true,
+        }
+        props.updateCandidateViewedStatus(data);
+        setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
+        setShowPreview(true);
     }
 
     function hideModal() {
-        props.getAllJobs(props.user.id);
-        props.getPJobs();
-        setTimeout(() => {setShowPreview(false)}, 300);
+        setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
+        setShowPreview(false);
     }
     return(
         <div>
@@ -305,7 +293,7 @@ const ApplicantRow = (props) => {
             />
             <div className="row interview-txt7 interview-center candidate-row" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                 <div className="interview-txt9 mt-2" style={{marginLeft: "1rem"}}>
-                    {(!props.applicant.is_invited && !status) ?
+                    {(props.applicant.is_invited != 1) ?
                         <div>
                             <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox"/>
                         </div> :
@@ -314,8 +302,8 @@ const ApplicantRow = (props) => {
                         </div>
                     }
                 </div>
-                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}}>
-                     {(!props.applicant.is_viewed && !props.applicant.is_invited) ?
+                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3", paddingLeft: "0.3rem"}}>
+                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
                             <span className="applicant-name" type="button" onClick={()=>{setCurrent(props.index); onView()}}>
@@ -334,16 +322,25 @@ const ApplicantRow = (props) => {
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
                 <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); onView()}}>View</div>
                 <div className="col-1 interview-txt9 mt-2" style={{padding: "0rem"}}>
-                    {(props.applicant.is_invited || status) ?
+                    {(props.applicant.is_invited == 1) &&
                         <button className="default-btn invite-btn"
-                            style={{backgroundColor: "#13C4A1", padding: "5px"}}
+                            style={{backgroundColor: "#13C4A1", padding: "5px", width: "5rem", textAlign: "center"}}
                         >
                             Invited
-                        </button> :
+                        </button>
+                    }
+                    {(props.applicant.is_invited == 2) &&
                         <button className="default-btn invite-btn"
-                            style={{backgroundColor: "#13C4A1", padding: "5px", display: "none"}}
+                            style={{backgroundColor: "#FF6B00", padding: "5px", width: "5rem", textAlign: "center"}}
                         >
-                            Invited
+                            Hold
+                        </button>
+                    }
+                    {(props.applicant.is_invited == 3) &&
+                        <button className="default-btn invite-btn"
+                            style={{backgroundColor: "#FF0000", padding: "5px", width: "5rem", textAlign: "center"}}
+                        >
+                            Rejected
                         </button>
                     }
                 </div>
