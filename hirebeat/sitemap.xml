@@ -910,5 +910,10 @@
 			<changefreq>always</changefreq>
 		</url>
 
+		<url>
+			<loc>https://hirebeat.co/employer-product</loc>
+			<changefreq>always</changefreq>
+		</url>
+
 	</urlset>
 
