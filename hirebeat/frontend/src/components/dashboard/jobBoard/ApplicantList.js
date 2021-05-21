@@ -5,7 +5,7 @@ import { MyModal80 } from "./../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addInterviews } from "../../../redux/actions/question_actions";
-import { updateInviteStatus } from "../../../redux/actions/job_actions";
+import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/actions/job_actions";
 import { MyModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 
@@ -139,7 +139,12 @@ export class ApplicantList extends Component{
                     "candidates": invitedCandidates,
                     "isInvited": true,
                 }
+                let viewedData = {
+                    "applyIds": invitedCandidates,
+                    "isViewed": true,
+                }
                 this.props.updateInviteStatus(data);
+                this.props.updateCandidateViewedStatus(viewedData);
                 // update
                 setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 300);
                 for (let i = 0; i < candidates.length; i++) {
@@ -155,6 +160,23 @@ export class ApplicantList extends Component{
         }
         else {
             this.noCandidateAlert();
+        }
+    }
+
+    selectAllCandidates = () => {
+        let checkbox = document.getElementById("select-all");
+        let candidates = document.getElementsByClassName("selected-candidate");
+        if (checkbox.checked) {
+            // select all candidates
+            for (let i = 0; i < candidates.length; i++) {
+                candidates[i].checked = true;
+            }
+        }
+        else {
+            // cancel all candidates selection
+            for (let i = 0; i < candidates.length; i++) {
+                candidates[i].checked = false;
+            }
         }
     }
 
@@ -182,7 +204,8 @@ export class ApplicantList extends Component{
                         </div>
                     </div>
                     <div className="card container" style={{marginTop:"1rem"}}>
-                        <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
+                        <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "1.5rem"}}>
+                            <div style={{marginLeft: "1rem"}}><input id="select-all" type="checkbox" onClick={this.selectAllCandidates}/></div>
                             <div className="col-2">Name</div>
                             <div className="col-3">Email</div>
                             <div className="col-2">Applied On</div>
@@ -205,6 +228,7 @@ export class ApplicantList extends Component{
                                     profile={this.props.profile}
                                     addInterviews={this.props.addInterviews}
                                     updateInviteStatus={this.props.updateInviteStatus}
+                                    updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
                                     getAllJobs={this.props.getAllJobs}
                                     getPJobs={this.props.getPJobs}
                                     user={this.props.user}
@@ -251,6 +275,23 @@ const ApplicantRow = (props) => {
     const [current, setCurrent] = useState(props.index);
     let applicants = props.applicants;
     let name = props.applicant.first_name + " " + props.applicant.last_name;
+    function onView() {
+    let applyIds = [];
+    applyIds.push(applicants[current].id);
+    let data = {
+        "applyIds": applyIds,
+        "isViewed": true,
+    }
+    props.updateCandidateViewedStatus(data);
+    setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
+    setShowPreview(true);
+    }
+
+    function hideModal() {
+        props.getAllJobs(props.user.id);
+        props.getPJobs();
+        setTimeout(() => {setShowPreview(false)}, 300);
+    }
     return(
         <div>
             <hr
@@ -263,25 +304,35 @@ const ApplicantRow = (props) => {
                 }}
             />
             <div className="row interview-txt7 interview-center candidate-row" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
-                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}}>
-                     {(!props.applicant.is_invited && !status) ?
+                <div className="interview-txt9 mt-2" style={{marginLeft: "1rem"}}>
+                    {(!props.applicant.is_invited && !status) ?
                         <div>
                             <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox"/>
-                            <span className="applicant-name" type="button" onClick={()=>{setCurrent(props.index); setShowPreview(true)}}>
-                                &nbsp; {name.length > 11 ? name.substring(0, 9) + "..." : name}
+                        </div> :
+                        <div>
+                            <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" style={{visibility: "hidden"}}/>
+                        </div>
+                    }
+                </div>
+                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}}>
+                     {(!props.applicant.is_viewed && !props.applicant.is_invited) ?
+                        <div>
+                            <span className="dot"></span>
+                            <span className="applicant-name" type="button" onClick={()=>{setCurrent(props.index); onView()}}>
+                                {name.length > 11 ? name.substring(0, 9) + "..." : name}
                             </span>
                         </div> :
                         <div>
-                            <input className="selected-candidate" type="checkbox" style={{visibility: "hidden"}}/>
-                            <span className="applicant-name" type="button" onClick={()=>{setCurrent(props.index); setShowPreview(true)}}>
-                                &nbsp; {name.length > 11 ? name.substring(0, 9) + "..." : name}
+                            <span className="dot" style={{visibility: "hidden"}}></span>
+                            <span className="applicant-name" type="button" onClick={()=>{setCurrent(props.index); onView()}}>
+                                {name.length > 11 ? name.substring(0, 9) + "..." : name}
                             </span>
                         </div>
                     }
                 </div>
                 <div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
-                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); setShowPreview(true)}}>View</div>
+                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); onView()}}>View</div>
                 <div className="col-1 interview-txt9 mt-2" style={{padding: "0rem"}}>
                     {(props.applicant.is_invited || status) ?
                         <button className="default-btn invite-btn"
@@ -298,7 +349,7 @@ const ApplicantRow = (props) => {
                 </div>
             </div>
             <div style={{background:"#E8EDFC"}}>
-                <MyModal className="light-blue-modal" show={showPreview} onHide={()=>{setShowPreview(false)}}>
+                <MyModal className="light-blue-modal" show={showPreview} onHide={hideModal}>
                         <ReviewCandidate
                             phone={applicants[current].phone}
                             email={applicants[current].email}
@@ -325,6 +376,7 @@ const ApplicantRow = (props) => {
                             setCurrent={setCurrent}
                             applicants={applicants}
                             status={status}
+                            updateCandidateViewedStatus={props.updateCandidateViewedStatus}
                         />
                 </MyModal>
             </div>
@@ -338,6 +390,6 @@ const mapStateToProps = (state) => ({
   jobs: state.job_reducer.jobs,
 });
 
-export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus })(
+export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus, updateCandidateViewedStatus })(
   ApplicantList
 ));

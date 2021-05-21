@@ -69,6 +69,17 @@ const ReviewCandidate = (props) => {
         props.getPJobs();
     }
 
+    function updateIsViewed(index) {
+        let applyIds = [];
+        applyIds.push(props.applicants[index].id);
+        let data = {
+            "applyIds": applyIds,
+            "isViewed": true,
+        }
+        props.updateCandidateViewedStatus(data);
+        setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
+    }
+
     function showResumeEva() {
         if(props.profile.membership == "Premium"){
             setShowEva(true);
@@ -221,14 +232,14 @@ const ReviewCandidate = (props) => {
                         <button
                             className={props.current == 0 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == 0 ? true : false}
-                            onClick={() => {nextOrPreUpdate(); setTimeout(() => {props.setCurrent(props.current-1)}, 200)}}
+                            onClick={() => {nextOrPreUpdate(); updateIsViewed(props.current-1); setTimeout(() => {props.setCurrent(props.current-1)}, 200)}}
                         >
                             &lt; Prev
                         </button>
                         <button
                             className={props.current == props.applicants.length - 1 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == props.applicants.length - 1 ? true : false}
-                            onClick={() => {nextOrPreUpdate(); setTimeout(() => {props.setCurrent(props.current+1)}, 200)}}
+                            onClick={() => {nextOrPreUpdate(); updateIsViewed(props.current+1); setTimeout(() => {props.setCurrent(props.current+1)}, 200)}}
                             style={{marginLeft: "2rem"}}
                         >
                             Next &gt;

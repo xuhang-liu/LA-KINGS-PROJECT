@@ -195,6 +195,7 @@ export class Dashboard extends Component {
               accentColor={accentColor}
               onAfterOpen={this.disableBody}
               onBeforeClose={this.enableBody}
+              closeWithMask={false}
             />
             <div className="row no-gutters min-width-1290" data-tut="reactour-dashboard">
               <div className='col-1'>

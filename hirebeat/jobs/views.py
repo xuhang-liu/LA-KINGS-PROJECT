@@ -220,3 +220,14 @@ def get_jobid_list(request):
     return Response({
         "data": data,
     })
+
+@api_view(['POST'])
+def update_viewed_status(request):
+    apply_ids = request.data['applyIds']
+    is_viewed = request.data['isViewed']
+
+    for i in range(len(apply_ids)):
+        candidate = ApplyCandidates.objects.get(id=apply_ids[i])
+        candidate.is_viewed = is_viewed
+        candidate.save()
+    return Response("Candidate is viewed successfully", status=status.HTTP_202_ACCEPTED)
