@@ -474,9 +474,9 @@ export const tourConfig = [
       <div>
         <h3 className="tour-title">Start with a guided tour!</h3>
         <div className="justify-items">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/guide1.png" />
+          <img className="padding-center" src="https://hirebeat-assets.s3.amazonaws.com/guide1-1.png" />
         </div>
-        <p className="tour-text">To get a feel of the place, take our guided tour where we'll show you our amazing products to get your hired!</p>
+        <span className="tour-text">To get a feel of the place, take our guided tour where we&apos;ll show you our amazing products to get your hired!</span>
       </div>
     )
   },
@@ -485,8 +485,9 @@ export const tourConfig = [
     content: () => (
       <div>
         <h3 className="tour-title">Interview Practice</h3>
-        <p className="tour-text">Have your ever felt nervous during an interview? Build your confidence by practicing
-        them under recording. Remember to visit back the videos for improvements.</p>
+        <span className="tour-text">Have your ever felt nervous during an interview? Build your confidence by practicing
+            them under recording. Remember to visit back the videos for improvements.
+        </span>
       </div>
     )
   },
@@ -494,9 +495,10 @@ export const tourConfig = [
     selector: '[data-tut="reactour-myResume"]',
     content: () => (
       <div>
-        <h3 className="tour-title">Resume Screen</h3>
-        <p className="tour-text">Resume Screening is always the most competitive stage of the hiring cycle. Get your
-        resume past the ATS by tailoring it towards the job description!</p>
+        <h3 className="tour-title">Resume Screening</h3>
+        <span className="tour-text">Resume Screening is always the most competitive stage of the hiring cycle. Get your
+            resume past the ATS by tailoring it towards the job description!
+        </span>
       </div>
     )
   },
@@ -504,17 +506,18 @@ export const tourConfig = [
     selector: '[data-tut="reactour-myInterview"]',
     content: () => (
       <div>
-        <p className="tour-text">HireBeat collaborates with company affiliates to send candidate interview invitations!
-        Once you receive them, enter the tab to start the virtual interview, and always feel free to visit back to see
-        how you can improve for the betterment!</p>
+        <h3 className="tour-title">Record Interview</h3>
+        <span className="tour-text">HireBeat collaborates with company affiliates to send candidate interview invitations!
+            Once you receive them, enter the tab to start the virtual interview.
+        </span>
       </div>
     )
   },
   {
     selector: '[data-tut="reactour-rowbox"]',
     content: () => (
-      <div>
-        <p className="tour-title">Here is a summary of your activities. keep motivated!</p>
+      <div className="tour-title">
+        <span>Here is a summary of your activities. keep motivated!</span>
       </div>
     )
   },
@@ -523,8 +526,9 @@ export const tourConfig = [
     content: () => (
       <div>
         <h3 className="tour-title">Behavior Questions</h3>
-        <p className="tour-text">Questions designed to learn how you would respond to a specific situation to achieve the best outcome.
-Technical Questions are questions specific to the roles you've applied for — usually involving expertise and knowledge.</p>
+        <span className="tour-text">
+            Questions about your past experiences and how you would respond to a specific situation to achieve the best outcome.
+        </span>
       </div>
     )
   },
@@ -533,7 +537,9 @@ Technical Questions are questions specific to the roles you've applied for — u
     content: () => (
       <div>
         <h3 className="tour-title">Technical Questions</h3>
-        <p className="tour-text">Questions specific to the roles you've applied for — usually involving expertise and knowledge.</p>
+        <span className="tour-text">
+            Questions specific to the roles you&apos;ve applied for, so that the employer can confirm you have the requisite skills.
+        </span>
       </div>
     )
   },
@@ -543,9 +549,9 @@ Technical Questions are questions specific to the roles you've applied for — u
       <div>
         <h3 className="tour-title">You've completed the tour</h3>
         <div className="justify-items">
-          <img src="https://hirebeat-assets.s3.amazonaws.com/guide2.png" />
+          <img className="padding-center" src="https://hirebeat-assets.s3.amazonaws.com/guide2-1.png" />
         </div>
-        <p className="tour-text">Begin practice today to receive your dream offer tomorrow!</p>
+        <span className="tour-text">Begin practice today to receive your dream offer tomorrow!</span>
       </div>
     )
   },

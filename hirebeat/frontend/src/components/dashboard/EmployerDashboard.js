@@ -126,7 +126,14 @@ export class EmployerDashboard extends Component {
 
   }
 
+  refreshPage = () => {
+    window.location.reload(false);
+  }
+
   renderJobs = () => {
+    if(this.state.subpage == "jobs"){
+      this.refreshPage();
+    }
     sessionStorage.setItem( 'subpage', "jobs" );
     this.setState({
       subpage: "jobs",
@@ -176,6 +183,9 @@ export class EmployerDashboard extends Component {
   }
 
   renderApplications = () => {
+    if(this.state.subpage == "applications"){
+      this.refreshPage();
+    }
     sessionStorage.setItem( 'subpage', "applications" );
     this.setState({
       subpage: "applications",
@@ -215,6 +225,9 @@ export class EmployerDashboard extends Component {
   }
 
   renderSetting = () => {
+    if(this.state.subpage == "settings"){
+      this.refreshPage();
+    }
     sessionStorage.setItem( 'subpage', "settings" );
     this.setState({
           subpage: "settings",
@@ -230,6 +243,9 @@ export class EmployerDashboard extends Component {
   }
 
   renderShortlist = () => {
+    if(this.state.subpage == "shortlist"){
+      this.refreshPage();
+    }
     sessionStorage.setItem( 'subpage', "shortlist" );
     this.setState({
       subpage: "shortlist",
@@ -237,6 +253,9 @@ export class EmployerDashboard extends Component {
   };
 
   renderAnalytics = () => {
+    if(this.state.subpage == "analytics"){
+      this.refreshPage();
+    }
     this.props.getAnalyticsInfo(this.props.user.id);
     sessionStorage.setItem( 'subpage', "analytics" );
     setTimeout(()=>{this.setState({
@@ -245,6 +264,9 @@ export class EmployerDashboard extends Component {
   };
 
   renderEmployerProfile = () => {
+    if(this.state.subpage == "employerProfile"){
+      this.refreshPage();
+    }
     sessionStorage.setItem( 'subpage', "employerProfile" );
     this.setState({
           subpage: "employerProfile",

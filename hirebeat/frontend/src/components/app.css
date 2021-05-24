@@ -2910,6 +2910,10 @@ h5 {
   font-style: normal;
   font-weight: 600;
   color: #090D3A;
+  font-size: 1.25rem;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .tour-text {
@@ -2917,6 +2921,8 @@ h5 {
   font-style: normal;
   font-weight: 500;
   color: #090D3A;
+  font-size: 0.75rem;
+  text-align: center;
 }
 
 .helper {
@@ -3255,4 +3261,48 @@ color: #4A6F8A;
   background: gray;
   box-shadow: 2px 2px 4px rgba(232, 237, 252, 0.16);
   border-radius: 5px;
+}
+
+.padding-center {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+[data-tour-elem="controls"] {
+  justify-content: center;
+}
+
+[data-tour-elem="controls"] button {
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+[data-tour-elem="navigation"] button {
+  margin-left: 0.2rem;
+}
+
+.tour-prev-btn {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  background: #E8EDFC;
+  box-shadow: 2px 2px 4px rgba(232, 237, 252, 0.16);
+  border-radius: 5px;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  color: #090D3A;
+  margin-right: 0.5rem;
+}
+
+.tour-next-btn {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  background: #090D3A;
+  box-shadow: 2px 2px 4px rgba(9, 13, 58, 0.16);
+  border-radius: 5px;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  color: #FFFFFF;
+  margin-left: 0.5rem;
 }

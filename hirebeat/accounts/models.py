@@ -77,6 +77,7 @@ class Profile(models.Model):
     candidate_limit = models.IntegerField(default=25, validators=[
         MaxValueValidator(1000)
     ])
+    viewed_tutorial = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username
 
