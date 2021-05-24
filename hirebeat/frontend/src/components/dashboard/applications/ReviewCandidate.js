@@ -54,7 +54,7 @@ const ReviewCandidate = (props) => {
                 props.addInterviews(meta);
                 let data = {
                     "candidates": invitedCandidates,
-                    "isInvited": true,
+                    "isInvited": 1,
                 }
                 props.updateInviteStatus(data);
                 // update
@@ -67,6 +67,39 @@ const ReviewCandidate = (props) => {
     function nextOrPreUpdate() {
         props.getAllJobs(props.user.id);
         props.getPJobs();
+    }
+
+    function updateIsViewed(index) {
+        let applyIds = [];
+        applyIds.push(props.applicants[index].id);
+        let data = {
+            "applyIds": applyIds,
+            "isViewed": true,
+        }
+        props.updateCandidateViewedStatus(data);
+        setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
+    }
+
+    function holdCandidates(index) {
+        let invitedCandidates = [];
+        invitedCandidates.push(props.applicants[index].id);
+        let data = {
+                    "candidates": invitedCandidates,
+                    "isInvited": 2,
+                }
+        props.updateInviteStatus(data);
+        setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
+    }
+
+    function rejectCandidates(index) {
+        let invitedCandidates = [];
+        invitedCandidates.push(props.applicants[index].id);
+        let data = {
+                    "candidates": invitedCandidates,
+                    "isInvited": 3,
+                }
+        props.updateInviteStatus(data);
+        setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
     }
 
     function showResumeEva() {
@@ -175,23 +208,48 @@ const ReviewCandidate = (props) => {
                         >
                             Evaluation Scale
                         </h2>
-                        <div className="mt-5 px-4" style={{width:"75%"}}>
+                        <div className="mt-5 px-4" style={{width:"75%", marginLeft: "auto", marginRight: "auto"}}>
                             {renderResume(props.applicant.result_rate)}
                         </div>
                         {((props.applicant.result_rate != "") && (props.applicant.result_rate != null)) &&
-                            <button
-                                onClick={() => {setTimeout(()=>{showResumeEva()}, 200)}}
-                                className="interview-txt9 mt-3 ml-3"
-                                style={{color: "#67A3F3", border: "none", background: "white"}}
-                            >
-                                <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
-                            </button>}
-                        {(!props.is_invited) &&
-                        <div className="row" style={{display:"flex", justifyContent:"space-around", position:"absolute", bottom:"2rem", left:"0.9rem", width:"100%"}}>
-                            <button onClick={inviteCandidates} className="default-btn1" style={{paddingLeft:"25px"}}>
-                                Invite to Interview
-                            </button>
-                        </div>}
+                            <div className="row" style={{display:"flex", justifyContent:"center"}}>
+                                <button
+                                    onClick={() => {setTimeout(()=>{showResumeEva()}, 200)}}
+                                    className="interview-txt9 mt-3 ml-3"
+                                    style={{color: "#67A3F3", border: "none", background: "white"}}
+                                >
+                                    <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
+                                </button>
+                            </div>
+                        }
+                        <div>
+                            {(props.is_invited != 1) &&
+                            <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                <button onClick={inviteCandidates} className="default-btn1" style={{paddingLeft:"25px", width:"12rem"}}>
+                                    Invite to Interview
+                                </button>
+                            </div>}
+                            {(props.is_invited != 1) &&
+                            <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                <button
+                                    onClick={() => {holdCandidates(props.current)}}
+                                    className="default-btn1"
+                                    style={{paddingLeft:"25px", width:"12rem", background: ((props.is_invited == 2) ? "#FF6B00" : "#E8EDFC"), color: "#090D3A"}}
+                                >
+                                    <i className="bx bx-help-circle interview-txt9"></i> Hold
+                                </button>
+                            </div>}
+                            {(props.is_invited != 1) &&
+                            <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                <button
+                                    onClick={() => {rejectCandidates(props.current)}}
+                                    className="default-btn1"
+                                    style={{paddingLeft:"25px", width:"12rem", background: ((props.is_invited == 3) ? "#FF0000" : "#E8EDFC"), color: "#090D3A"}}
+                                >
+                                    <i class='bx bxs-x-circle' ></i> Rejected
+                                </button>
+                            </div>}
+                        </div>
                     </div>
                 </div>
                 <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{background:"white", borderRadius:"10px", height:"44rem", width:"73%"}}>
@@ -221,14 +279,14 @@ const ReviewCandidate = (props) => {
                         <button
                             className={props.current == 0 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == 0 ? true : false}
-                            onClick={() => {nextOrPreUpdate(); setTimeout(() => {props.setCurrent(props.current-1)}, 200)}}
+                            onClick={() => {nextOrPreUpdate(); updateIsViewed(props.current-1); setTimeout(() => {props.setCurrent(props.current-1)}, 200)}}
                         >
                             &lt; Prev
                         </button>
                         <button
                             className={props.current == props.applicants.length - 1 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == props.applicants.length - 1 ? true : false}
-                            onClick={() => {nextOrPreUpdate(); setTimeout(() => {props.setCurrent(props.current+1)}, 200)}}
+                            onClick={() => {nextOrPreUpdate(); updateIsViewed(props.current+1); setTimeout(() => {props.setCurrent(props.current+1)}, 200)}}
                             style={{marginLeft: "2rem"}}
                         >
                             Next &gt;

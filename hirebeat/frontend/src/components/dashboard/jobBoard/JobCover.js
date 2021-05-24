@@ -7,6 +7,8 @@ const decideClassName = (filter, text) => {
 export const JobCover = (props) => {
   const [filter, setFilter] = useState("active");
   const [curJob, setCurJob] = useState([]);
+  const [view, setView] = useState(false);
+  const [jobKey, setJobKey] = useState(0);
   function refreshPage() {
     window.location.reload(false);
   }
@@ -16,14 +18,14 @@ export const JobCover = (props) => {
       <div style={{marginBottom: "20px"}} className="container min-width-980">
         <button
           className={decideClassName(filter, "active")}
-          onClick={() => (setFilter("active"))}
+          onClick={() => {setView(false); setFilter("active")}}
         >
           Active
         </button>
         <button
           className={decideClassName(filter, "closed")}
           style={{marginLeft: "2rem"}}
-          onClick={() => (setFilter("closed"))}
+          onClick={() => {setView(false); setFilter("closed")}}
         >
           Archived
         </button>
@@ -46,6 +48,10 @@ export const JobCover = (props) => {
         isLoaded={props.isLoaded}
         getAllJobs={props.getAllJobs}
         getPJobs={props.getPJobs}
+        view={view}
+        setView={setView}
+        jobKey={jobKey}
+        setJobKey={setJobKey}
       />
     </div>
   );

@@ -126,7 +126,7 @@ export class EmbedQuestionForm extends Component {
         this.props.addInterviews(meta);
         let inviteData = {
             "candidates": invitedCandidates,
-            "isInvited": true,
+            "isInvited": 1,
         }
         // update invite status
         this.props.updateInviteStatus(inviteData);
