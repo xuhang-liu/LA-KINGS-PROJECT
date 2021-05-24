@@ -2,6 +2,7 @@ from django.db.models.aggregates import Count
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes, SubReviewers
 from accounts.models import CandidatesInterview, Profile
 from videos.models import WPVideo
+from jobs.models import ApplyCandidates, Jobs
 from rest_framework import generics, permissions
 from .serializers import QuestionSerializer, SubcategorySerializer
 from rest_framework.decorators import api_view
@@ -106,6 +107,7 @@ def add_position(request):
 def get_posted_jobs(request):
     data = {}
     int_dots = 0
+    job_dots = 0
     user_id = request.query_params.get("user_id")
     positions = Positions.objects.filter(user_id=user_id)
     for i in range(len(positions)):
@@ -137,6 +139,12 @@ def get_posted_jobs(request):
         # convert to json
         data[positions_id] = job_details
 
+    jobs = Jobs.objects.filter(user_id=user_id)
+    for i in range(len(jobs)):
+        jobs_id = jobs[i].id
+        job_dot = ApplyCandidates.objects.filter(jobs_id=jobs_id, is_invited=0, is_viewed=False).count()
+        job_dots += job_dot
+
     profile = Profile.objects.get(user_id=user_id)
     if profile.is_subreviwer:
         user = User.objects.get(pk=user_id)
@@ -162,6 +170,7 @@ def get_posted_jobs(request):
     return Response({
         "data": data,
         "int_dots": int_dots,
+        "job_dots": job_dots,
     })
 
 @api_view(['POST'])
