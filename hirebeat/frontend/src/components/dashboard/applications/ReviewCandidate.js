@@ -246,7 +246,7 @@ const ReviewCandidate = (props) => {
                                     className="default-btn1"
                                     style={{paddingLeft:"25px", width:"12rem", background: ((props.is_invited == 3) ? "#FF0000" : "#E8EDFC"), color: "#090D3A"}}
                                 >
-                                    <i className="bx bx-task-x"></i> Rejected
+                                    <i class='bx bxs-x-circle' ></i> Rejected
                                 </button>
                             </div>}
                         </div>

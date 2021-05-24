@@ -8,12 +8,34 @@ import { addInterviews } from "../../../redux/actions/question_actions";
 import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/actions/job_actions";
 import { MyModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
+import Select from 'react-select';
 
 export class ApplicantList extends Component{
     state = {
         keyWords: "",
         showQForm: false,
         tempQuestion: [],
+        category: { value: 'All', label: 'All' },
+    }
+
+    onFilter = (category) => {
+        this.setState({category: category})
+    }
+    // filter selections
+    options = [
+        { value: 'Invited', label: 'Invited' },
+        { value: 'Hold', label: 'Hold' },
+        { value: 'Rejected', label: 'Rejected' },
+        { value: 'All', label: 'All' },
+    ];
+
+    customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
+        singleValue: styles => ({    ...styles,
+                                     color: '#090D3A',
+                                     fontSize: '0.9375rem',
+                                     fontFamily: 'Avenir Next',
+                                     fontWeight: '500'}),
     }
 
     onChange = (e) => {
@@ -191,7 +213,7 @@ export class ApplicantList extends Component{
                         </div>
                     </div>
                     <div className="card container" style={{marginTop:"1rem"}}>
-                        <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "1.5rem"}}>
+                        <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                             <div style={{marginLeft: "1rem"}}>
                                 <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{display: (this.props.curJob.all_invited ? "none" : "inline")}} />
                             </div>
@@ -199,12 +221,27 @@ export class ApplicantList extends Component{
                             <div className="col-3">Email</div>
                             <div className="col-2">Applied On</div>
                             <div className="col-2">Application</div>
-                            <div className="col-1" style={{padding: "0rem"}}>Status</div>
+                            <div className="col-1" style={{padding: "0rem", zIndex: "9999"}}>
+                                <Select value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles}/>
+                            </div>
                         </div>
                         {this.props.curJob.applicants.sort((a, b) => new Date(b.apply_date) - new Date(a.apply_date)).map((a, index) => {
                             if (this.state.keyWords != "") {
                                 let name = a.first_name + " " + a.last_name;
                                 if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
+                            }
+                            if (this.state.category.value != "All") {
+                                switch (this.state.category.value) {
+                                    case "Invited":
+                                        if (a.is_invited != 1) return null;
+                                        break;
+                                    case "Hold":
+                                        if (a.is_invited != 2) return null;
+                                        break;
+                                    case "Rejected":
+                                        if (a.is_invited != 3) return null;
+                                        break;
+                                }
                             }
                             return (
                                 <ApplicantRow
