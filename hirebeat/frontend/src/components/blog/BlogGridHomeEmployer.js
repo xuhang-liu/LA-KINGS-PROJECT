@@ -87,6 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-how-ATS-works-in-the-recruitment-process",
     "/employer_blog-personality-assessment-tools-employers-must-know-about",
     "/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview",
     "/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today",
@@ -107,6 +108,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer18.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer17.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer16.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer15.jpg",
@@ -127,6 +129,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "May 24, 2021",
     "May 14, 2021",
     "May 10, 2021",
     "May 05, 2021",
@@ -147,6 +150,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "HOW ATS WORKS IN THE RECRUITMENT PROCESS",
     "PERSONALITY ASSESSMENT TOOLS",
     "RED FLAGS YOU SHOULD LOOK OUT",
     "4 SECRETS THAT IMPROVE YOUR LINKEDIN JOB",

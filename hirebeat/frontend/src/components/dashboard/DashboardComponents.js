@@ -78,8 +78,8 @@ export const IconEmployerText = (props) => {
     //textSize, textDisplayed, iconName, textColor?
     return (
         <div>
-        {(props.textDisplayed == "Interview" && props.int_dots>0) &&
-        <span className="dot" style={{marginLeft:"4rem", marginBottom:"-1.6rem"}}></span>}
+        {((props.textDisplayed == "Interview" && props.int_dots>0) || (props.textDisplayed == "Jobs" && props.job_dots>0)) &&
+        <span className="dot" style={{marginLeft:"1.7rem", marginBottom:"-1.7rem", position:"absolute"}}></span>}
         <div className="icon-employer-text align-items-center" style={{background: props.backColor}}>
             {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{width:"36px", height:"36px"}}></img>}
             <p

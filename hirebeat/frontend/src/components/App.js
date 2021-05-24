@@ -43,6 +43,7 @@ import BlogDetail14_Employer from "./blog/blog-details14-employer";
 import BlogDetail15_Employer from "./blog/blog-details15-employer";
 import BlogDetail16_Employer from "./blog/blog-details16-employer";
 import BlogDetail17_Employer from "./blog/blog-details17-employer";
+import BlogDetail18_Employer from "./blog/blog-details18-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -318,6 +319,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today" component={BlogDetail15_Employer} />
                 <Route exact path="/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview" component={BlogDetail16_Employer} />
                 <Route exact path="/employer_blog-personality-assessment-tools-employers-must-know-about" component={BlogDetail17_Employer} />
+                <Route exact path="/employer_blog-how-ATS-works-in-the-recruitment-process" component={BlogDetail18_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
