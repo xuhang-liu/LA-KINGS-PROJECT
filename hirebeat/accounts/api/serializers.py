@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
     groups = SerializerMethodField()
     class Meta:
         model = User
-        fields = ('id','username','email','groups')
+        fields = ('id','username','email','groups', 'last_login')
 
     def get_groups(self, obj):
         return [group.name for group in obj.groups.all()]
