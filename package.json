@@ -139,6 +139,7 @@
     "tabletop": "^1.6.3",
     "url-loader": "^4.1.0",
     "video-react": "^0.14.1",
-    "videojs-record": "^4.1.0"
+    "videojs-record": "^4.1.0",
+    "zcs": "^1.0.1"
   }
 }

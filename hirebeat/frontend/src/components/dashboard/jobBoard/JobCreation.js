@@ -2,6 +2,7 @@ import React,  { Component } from "react";
 import 'boxicons';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
+import { getByStateCity, getByCityState, getByZip, zipLookAhead, cityLookAhead, stateLookAhead} from 'zcs';
 //import Select from 'react-select'
 
 const toolbarConfig = {
@@ -42,10 +43,41 @@ export class JobCreation extends Component{
         jobLevel: "",
         jobDescription: RichTextEditor.createEmptyValue(),
         jobType: "",
+        city: "",
+        state: "",
     }
 
     onChange = (jobDescription) => {
         this.setState({jobDescription});
+    };
+    
+    handleZipcode = (e) => {
+        let citytstate = "";
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
+        if(e.target.value.length == 5){
+            citytstate = getByZip(e.target.value);
+            this.setState({
+                city: citytstate["city"],
+                state: citytstate["state"],
+            });
+        }
+    };
+
+    handleZipcodeInputKeyDown = e => {
+        var key = e.which ? e.which : e.keyCode;
+        if (
+          (e.target.value.length >= 5 &&
+            key !== 8 &&
+            key !== 37 &&
+            key !== 38 &&
+            key !== 39 &&
+            key !== 40) ||
+          (key === 18 || key === 189 || key === 229)
+        ) {
+          e.preventDefault();
+        }
     };
 
     handleInputChange = (e) => {
@@ -65,7 +97,7 @@ export class JobCreation extends Component{
             jobId: this.state.jobId,
             jobDescription: this.state.jobDescription.toString('html'),
             jobLevel: this.state.jobLevel,
-            jobLocation: this.state.jobLocation,
+            jobLocation: this.state.city+","+this.state.state+","+this.state.jobLocation,
             userId: this.props.user.id,
             jobType: this.state.jobType
         };
@@ -117,13 +149,13 @@ export class JobCreation extends Component{
                             <div className="form-group col-6">
                                 <label className="db-txt2" style={{ margin:"2%"}}>
                                     Job Title
-                                </label>
+                                </label><span className="job-apply-char2">*</span>
                                 <input type="text" name="jobTitle" value={this.state.jobTitle}
                                 onChange={this.handleInputChange} className="form-control" required="required"/>
                             </div>
                             <div className="form-group col-6">
                                 <label className="db-txt2" style={{ marginTop:"2%" }}>
-                                    Job ID (optional)
+                                    Job ID
                                 </label>
                                 <input type="text" name="jobId" value={this.state.jobId}
                                 onChange={this.handleInputChange} className="form-control"/>
@@ -132,15 +164,15 @@ export class JobCreation extends Component{
                         <div className="form-row">
                             <div className="form-group col-6">
                                 <label className="db-txt2" style={{ margin:"2%"}}>
-                                    Job Location
-                                </label>
-                                <input type="text" name="jobLocation" value={this.state.jobLocation}
+                                    Job Type
+                                </label><span className="job-apply-char2">*</span>
+                                <input type="text" name="jobType" value={this.state.jobType} placeHolder="Full Time"
                                 onChange={this.handleInputChange} className="form-control" required="required"/>
                             </div>
                             <div className="form-group col-6">
                                 <label className="db-txt2" style={{ marginTop:"2%" }}>
                                     Job Level
-                                </label>
+                                </label><span className="job-apply-char2">*</span>
                                 <input type="text" name="jobLevel" value={this.state.jobLevel} placeHolder="Entry Level"
                                 onChange={this.handleInputChange} className="form-control" required="required"/>
                             </div>
@@ -148,10 +180,22 @@ export class JobCreation extends Component{
                         <div className="form-row">
                             <div className="form-group col-6">
                                 <label className="db-txt2" style={{ margin:"2%"}}>
-                                    Job Type
+                                    Zipcode
+                                </label><span className="job-apply-char2">*</span>
+                                <input type="number" name="jobLocation" value={this.state.jobLocation} inputmode="numeric"
+                                    onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
+                                    onKeyUp={e => this.handleZipcodeInputKeyUp(e)}
+                                    onPaste={e => this.handleZipcodeInputPaste(e)}
+                                    pattern="\d*"
+                                onChange={this.handleZipcode} className="form-control" required="required"/>
+                            </div>
+                            <div className="form-group col-6">
+                                <label className="db-txt2" style={{ marginTop:"3.5rem"}}>
+                                    {this.state.city != "" &&
+                                    <div><span>{this.state.city}</span>, <span>{this.state.state}</span></div>}
+                                    {this.state.city == "" &&
+                                    <div><span>City</span>, <span>State</span></div>}
                                 </label>
-                                <input type="text" name="jobType" value={this.state.jobType} placeHolder="Full Time"
-                                onChange={this.handleInputChange} className="form-control" required="required"/>
                             </div>
                         </div>
                         {/*<div className="form-row">
