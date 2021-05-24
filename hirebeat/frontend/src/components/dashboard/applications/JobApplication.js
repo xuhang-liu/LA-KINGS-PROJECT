@@ -1583,7 +1583,7 @@ const Applicant = (props) => {
                 show={show}
                 setShowResume={setShowResume}
                 setShowEva={setShowEva}
-                onHide={()=>{setShow(false);}}
+                onHide={()=>{setCurrent(props.index); setShow(false);}}
                 int_ques={props.int_ques}
                 id_candidate={props.id_candidate}
                 username_candidate={props.username_candidate}
@@ -1600,6 +1600,7 @@ const Applicant = (props) => {
                 end={end}
                 viewPrevResult={viewPrevResult}
                 viewNextResult={viewNextResult}
+                applicants={applicants}
             />
             <MyModal80
                 show={showResume}
@@ -1649,6 +1650,7 @@ function MyVerticallyCenteredModal(props) {
         end={props.end}
         viewPrevResult={props.viewPrevResult}
         viewNextResult={props.viewNextResult}
+        applicants={props.applicants}
       />
     </MyModal80>
   );
