@@ -605,3 +605,10 @@ def get_analytics_info(request):
         "position_list": position_list,
         "interview_session": interview_session,
     })
+
+
+@api_view(['POST'])
+def delete_interview_questions(request):
+    position_id = request.data["position_id"]
+    InterviewQuestions.objects.filter(positions_id=position_id).delete()
+    return Response("Delete interview questions successfully", status=status.HTTP_200_OK)

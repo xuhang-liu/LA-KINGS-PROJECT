@@ -9,6 +9,7 @@ import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/
 import { MyModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import Select from 'react-select';
+import EditQuestion from "./EditQuestion"
 
 export class ApplicantList extends Component{
     state = {
@@ -16,6 +17,7 @@ export class ApplicantList extends Component{
         showQForm: false,
         tempQuestion: [],
         category: { value: 'All', label: 'All' },
+        editQuestion: false,
     }
 
     onFilter = (category) => {
@@ -80,22 +82,12 @@ export class ApplicantList extends Component{
         });
     }
 
-    viewQuestions = (questions) => {
-        confirmAlert({
-            customUI: ({ onClose }) => {
-              return (
-                <div className="interview-txt7" style={{backgroundColor:'#ffffff', borderRadius:"10px", border:"2px solid #E8EDFC", padding:"1rem", paddingLeft:"3rem", paddingRight:"3rem"}}>
-                  <h3>Interview Questions:</h3>
-                  <ul>
-                  {questions.map((q) => {
-                      return (
-                          <li><h5>{q.description}</h5></li>
-                    )})}
-                  </ul>
-                </div>
-              );
-            }
-        });
+    disableQuestionEdition = () => {
+        this.setState({editQuestion: false});
+    }
+
+    editQuestions = () => {
+        this.setState({editQuestion: true});
     }
 
     inviteCandidates = () => {
@@ -199,10 +191,10 @@ export class ApplicantList extends Component{
                             <button
                                 type="button"
                                 className="read-more"
-                                onClick={() => {this.viewQuestions(this.props.curJob.questions)}}
+                                onClick={this.editQuestions}
                                 style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
                             >
-                                <i className="bx bx-info-circle pr-1"></i> View Questions
+                                <i className="bx bx-info-circle pr-1"></i> Edit Questions
                             </button>
                         </div>
                         <div className="ml-auto">
@@ -273,6 +265,7 @@ export class ApplicantList extends Component{
                         <span></span>
                     </button>
                 </div>
+                {/* add new questions */}
                 <MyModal80
                     show={this.state.showQForm}
                     onHide={()=>{this.hideQForm()}}
@@ -287,6 +280,19 @@ export class ApplicantList extends Component{
                         getPJobs={this.props.getPJobs}
                         addInterviews={this.props.addInterviews}
                         updateInviteStatus={this.props.updateInviteStatus}
+                    />
+                </MyModal80>
+                {/* Edit Questions */}
+                <MyModal80
+                    show={this.state.editQuestion}
+                    onHide={()=>{this.disableQuestionEdition()}}
+                >
+                    <EditQuestion
+                        curJob={this.props.curJob}
+                        questions={this.props.curJob.questions}
+                        disableQuestionEdition={this.disableQuestionEdition}
+                        getAllJobs={this.props.getAllJobs}
+                        getPJobs={this.props.getPJobs}
                     />
                 </MyModal80>
             </React.Fragment>

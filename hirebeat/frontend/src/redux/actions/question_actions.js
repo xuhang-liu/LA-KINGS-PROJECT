@@ -23,6 +23,7 @@ import {
     GET_QUESTION_LIST,
     UPDATE_VIEW_STATUS,
     GET_ANALYTICS_INFO,
+    DELETE_INTERVIEW_QUESTIONS,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -335,6 +336,20 @@ export const updateViewStatus = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_VIEW_STATUS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const deleteInterviewQuestions = (data) => (dispatch, getState) => {
+  axios
+    .post("questions/delete-interview-questions", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: DELETE_INTERVIEW_QUESTIONS,
         payload: res.data,
       });
     })

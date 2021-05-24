@@ -13,6 +13,8 @@ import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubR
 import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
 import QuestionForm from "./QuestionForm";
+import EditQuestion from "./EditQuestion"
+import { withRouter } from "react-router-dom";
 
 export class JobApplication extends Component{
 
@@ -397,6 +399,7 @@ const JobCard = (props) => {
     var curlimit = 0;
     const [invite, setInvite] = useState(false);
     const [showQForm, setShowQForm] = useState(false);
+    const [showQEditForm, setShowQEditForm] = useState(false);
     //const [hide, setHide] = useState(true);
     //const hideSwitch = () => {setHide(hide => !hide)};
     const [expire, setExpire] = useState({ value: 7, label: '7 days' });
@@ -481,22 +484,8 @@ const JobCard = (props) => {
         setOffset(offset);
     };
 
-    function viewQuestions() {
-        confirmAlert({
-            customUI: ({ onClose }) => {
-              return (
-                <div className="interview-txt7" style={{backgroundColor:'#ffffff', borderRadius:"10px", border:"2px solid #E8EDFC", padding:"1rem", paddingLeft:"3rem", paddingRight:"3rem"}}>
-                  <h3>Interview Questions:</h3>
-                  <ul>
-                  {props.questions.map((q) => {
-                      return (
-                          <li><h5>{q.description}</h5></li>
-                    )})}
-                  </ul>
-                </div>
-              );
-            }
-        });
+    function editQuestions() {
+        setShowQEditForm(true);
     }
 
     // filter selections
@@ -748,9 +737,9 @@ const JobCard = (props) => {
                             type="button"
                             className="read-more"
                             style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
-                            onClick={viewQuestions}
+                            onClick={editQuestions}
                             >
-                            <i className="bx bx-info-circle pr-1"></i> View Questions
+                            <i className="bx bx-info-circle pr-1"></i> Edit Questions
                             </button>
                         </div>
                         <div className="col-3 interview-center">
@@ -774,6 +763,19 @@ const JobCard = (props) => {
                             onHide={()=>{setShowQForm(false)}}
                         >
                             <QuestionForm jobTitle={props.jobTitle} positionId={props.positionId} hideQForm={()=>{props.getPJobs(); setShowQForm(false)}}/>
+                        </MyModal80>
+                        {/* Edit Questions */}
+                        <MyModal80
+                            show={showQEditForm}
+                            onHide={()=>{setShowQEditForm(false)}}
+                        >
+                            <EditQuestion
+                                jobTitle={props.jobTitle}
+                                positionId={props.positionId}
+                                questions={props.questions}
+                                hideQEditForm={()=>{setShowQEditForm(false)}}
+                                getPJobs={props.getPJobs}
+                            />
                         </MyModal80>
                         </div>
                     </div>
