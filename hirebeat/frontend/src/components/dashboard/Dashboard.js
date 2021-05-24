@@ -78,7 +78,7 @@ export class Dashboard extends Component {
 
   state = {
     subpage: (this.page == "" ? "videos" : this.page),
-    isTourOpen: this.props.profile.saved_video_count == 0 ? true: false,
+    isTourOpen: this.props.profile.saved_video_count == 0 && !this.props.profile.viewed_tutorial? true: false,
   };
 
   // tour functions
@@ -87,6 +87,13 @@ export class Dashboard extends Component {
 
   closeTour = () => {
     this.setState({ isTourOpen: false });
+    // mark user has viewed tutorial
+    let profile = {
+      user: this.props.user.id,
+      id: this.props.profile.id,
+      viewed_tutorial: true,
+    }
+    this.props.updateProfile(profile);
   };
 
   openTour = () => {
@@ -196,6 +203,8 @@ export class Dashboard extends Component {
               onAfterOpen={this.disableBody}
               onBeforeClose={this.enableBody}
               closeWithMask={false}
+              prevButton={<i className="tour-prev-btn">Back</i>}
+              nextButton={<i className="tour-next-btn">Next</i>}
             />
             <div className="row no-gutters min-width-1290" data-tut="reactour-dashboard">
               <div className='col-1'>
