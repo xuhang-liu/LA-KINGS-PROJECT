@@ -33,8 +33,9 @@ class ProductPage extends Component {
                             <div className="justify-items">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/stream01.png" alt="img" />
                             </div>
-                            <div className="justify-items">
-                            <h3 style={{marginTop:"2rem", fontWeight:"600", color:"#090d3a", wordBreak:"break-word", textAlign:"center", padding:"1rem"}}>Job Posting</h3>
+                            <div>
+                            <h3 style={{marginTop:"1.8rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem"}}>Job</h3>
+                            <h3 style={{marginTop:"-2rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem"}}>Posting</h3>
                             </div>
                             </div>
                         </div>
@@ -43,8 +44,9 @@ class ProductPage extends Component {
                             <div className="justify-items">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/stream02.png" alt="img" />
                             </div>
-                            <div className="justify-items">
-                            <h3 style={{marginTop:"2rem", fontWeight:"600", color:"#090d3a", wordBreak:"break-word", textAlign:"center", padding:"1rem"}}>Talent Sourcing</h3>
+                            <div>
+                            <h3 style={{marginTop:"1.8rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem", paddingTop:"1.5rem"}}>Talent</h3>
+                            <h3 style={{marginTop:"-2rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem"}}>Sourcing</h3>
                             </div>
                             </div>
                         </div>
@@ -53,8 +55,9 @@ class ProductPage extends Component {
                             <div className="justify-items">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/stream03.png" alt="img" />
                             </div>
-                            <div className="justify-items">
-                            <h3 style={{marginTop:"2rem", fontWeight:"600", color:"#090d3a", wordBreak:"break-word", textAlign:"center", padding:"1rem"}}>Resume Screening</h3>
+                            <div>
+                            <h3 style={{marginTop:"1.8rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem"}}>Resume</h3>
+                            <h3 style={{marginTop:"-2rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem"}}>Screening</h3>
                             </div>
                             </div>
                         </div>
@@ -63,8 +66,9 @@ class ProductPage extends Component {
                             <div className="justify-items">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/stream04.png" alt="img" />
                             </div>
-                            <div className="justify-items">
-                            <h3 style={{marginTop:"2rem", fontWeight:"600", color:"#090d3a", wordBreak:"break-word", textAlign:"center", padding:"1rem"}}>Video Interview</h3>
+                            <div>
+                            <h3 style={{marginTop:"1.8rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem"}}>Video</h3>
+                            <h3 style={{marginTop:"-2rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem"}}>Interview</h3>
                             </div>
                             </div>
                         </div>
@@ -73,8 +77,8 @@ class ProductPage extends Component {
                             <div className="justify-items">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/stream05.png" alt="img" />
                             </div>
-                            <div className="justify-items">
-                                <h3 style={{marginTop:"2rem", fontWeight:"600", color:"#090d3a", wordBreak:"break-word", textAlign:"center", padding:"1rem"}}>Shortlisting</h3>
+                            <div>
+                            <h3 style={{marginTop:"1.8rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem", paddingTop:"2rem"}}>Shortlisting</h3>
                             </div>
                             </div>
                         </div>
@@ -83,8 +87,9 @@ class ProductPage extends Component {
                             <div className="justify-items">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/stream06.png" alt="img" />
                             </div>
-                            <div className="justify-items">
-                                <h3 style={{marginTop:"2rem", fontWeight:"600", color:"#090d3a", wordBreak:"break-word", textAlign:"center", padding:"1rem"}}>Analysis & Reporting</h3>
+                            <div>
+                                <h3 style={{marginTop:"1.8rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem"}}>Analysis &</h3>
+                                <h3 style={{marginTop:"-2rem", fontWeight:"600", color:"#090d3a", textAlign:"center", padding:"1rem"}}>Reporting</h3>
                             </div>
                             </div>
                         </div>
