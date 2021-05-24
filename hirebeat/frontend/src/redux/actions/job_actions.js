@@ -9,6 +9,7 @@ import {
     UPDATE_INVITE_STATUS,
     DELETE_JOB,
     GET_JOBID_LIST,
+    UPDATE_CANDIDATA_VIEWED_STATUS,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -146,6 +147,20 @@ export const getjobidlist = (userId) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_JOBID_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const updateCandidateViewedStatus = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/update-viewed-status", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_CANDIDATA_VIEWED_STATUS,
         payload: res.data,
       });
     })

@@ -282,6 +282,7 @@ export class EssentialUserInfo extends Component {
                   <IconEmployerText
                     textSize={"12px"}
                     textDisplayed={"Jobs"}
+                    job_dots={this.props.job_dots}
                     backColor={this.props.subpage == "jobs" ? selectBack : defaultBack}
                     iconSrc={this.props.subpage == "jobs" ? selectJobs : nonselectJobs}
                     textColor={this.props.subpage == "jobs" ? selectEColor : defaultEColor}

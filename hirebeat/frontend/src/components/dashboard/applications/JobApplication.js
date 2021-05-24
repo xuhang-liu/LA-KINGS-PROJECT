@@ -1514,9 +1514,9 @@ const Applicant = (props) => {
                 {props.videoCount > 0 ? 
                 <div className="col-2 mb-1">
                     <button className="title-button1" onClick={() => viewResult()}>
-                    {props.email.split("(")[0].length > 18 ? props.email.split("(")[0].substring(0, 16) + "..." : props.email.split("(")[0]}</button></div>
+                    {props.email.split("(")[0].length > 16 ? props.email.split("(")[0].substring(0, 14) + "..." : props.email.split("(")[0]}</button></div>
                 : <div className="col-2 interview-txt9 mb-1">
-                    {props.email.split("(")[0].length > 18 ? props.email.split("(")[0].substring(0, 16) + "..." : props.email.split("(")[0]}</div>
+                    {props.email.split("(")[0].length > 16 ? props.email.split("(")[0].substring(0, 14) + "..." : props.email.split("(")[0]}</div>
                 }
                 <div className="col-2">
                     <div className="interview-txt9">

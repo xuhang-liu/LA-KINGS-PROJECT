@@ -432,6 +432,7 @@ export class EmployerDashboard extends Component {
                       renderJobs={this.renderJobs}
                       subpage={this.state.subpage}
                       int_dots={this.props.int_dots}
+                      job_dots={this.props.job_dots}
                   />
                 </div>
               </div>
@@ -493,6 +494,7 @@ const mapStateToProps = (state) => {
   loaded: state.question_reducer.loaded,
   postedJobs: state.question_reducer.postedJobs,
   int_dots: state.question_reducer.int_dots,
+  job_dots: state.question_reducer.job_dots,
   dataLoaded: state.auth_reducer.dataLoaded,
   isRecorded: state.auth_reducer.isRecorded,
   int_ques: state.video_reducer.int_ques,

@@ -85,7 +85,6 @@ export class QuestionForm extends Component {
         const names = [];
         const invitedCandidates = [];
         let candidates = document.getElementsByClassName("selected-candidate");
-        let candidateRows = document.getElementsByClassName("invite-btn");
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked) {
                 let candidate = JSON.parse(candidates[i].value);
@@ -95,10 +94,6 @@ export class QuestionForm extends Component {
                 emails.push(candidate.email.toLowerCase());
                 invitedCandidates.push(candidate.id);
                 candidateCount+=1;
-                // hide checkbox
-                candidates[i].style.display = "none";
-                // show invite status
-                candidateRows[i].style.display = "block";
             }
         }
         // check candidates selected or not
@@ -141,19 +136,18 @@ export class QuestionForm extends Component {
             this.props.addInterviews(meta);
             let inviteData = {
                 "candidates": invitedCandidates,
-                "isInvited": true,
+                "isInvited": 1,
             }
             // update invite status
             this.props.updateInviteStatus(inviteData);
+            setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
+            alert("Send Invitation Success");
+            setTimeout(() => {this.props.hideQForm()}, 300);
         }
         else {
             this.props.hideQForm();
             this.noCandidateAlert();
         }
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
-        alert("Send Invitation Success");
-        setTimeout(() => {this.props.hideQForm()}, 300);
-
     }
     
     render() {
