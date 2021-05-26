@@ -149,7 +149,7 @@ def add_new_apply_candidate(request):
         'fullname': fullname,
         'title': jobs.job_title,
     }
-    from_email = 'HireBeat Team'
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
     to_list = [user.email]
     content = message.render(context)
     email = EmailMessage(

@@ -208,7 +208,7 @@ def send_interviews(name, email, url, job_title, company_name, expire):
         'company_name': company_name,
         'expire': expire,
     }
-    from_email = 'HireBeat Team'
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
     to_list = [email]
     content = message.render(context)
     email = EmailMessage(
@@ -471,7 +471,7 @@ def send_sub_invitation(name, email, company_name, master_email, position_name):
         'master_email': master_email,
         'position_name': position_name,
     }
-    from_email = 'HireBeat Team'
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
     to_list = [email]
     content = message.render(context)
     email = EmailMessage(
