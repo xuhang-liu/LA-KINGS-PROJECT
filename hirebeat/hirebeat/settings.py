@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "compressor",
     "resume",
     "jobs",
+    "django_seo_js",
 ]
 
 REST_FRAMEWORK = {
@@ -64,6 +65,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.gzip.GZipMiddleware',
+    'django_seo_js.middleware.EscapedFragmentMiddleware',  # If you're using #!
+    'django_seo_js.middleware.UserAgentMiddleware',  # If you want to detect by user agent
 ]
 
 ROOT_URLCONF = 'hirebeat.urls'
@@ -180,11 +183,11 @@ SOCIAL_AUTH_PIPELINE = (
 
 #EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST="smtp.gmail.com"
+EMAIL_HOST="smtp.sparkpostmail.com"
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
-EMAIL_HOST_USER=os.getenv("HIREBEAT_GMAIL")
-EMAIL_HOST_PASSWORD=os.getenv("HIREBEAT_GMAIL_PASSWORD")
+EMAIL_HOST_USER=os.getenv("Spark_Email_User")
+EMAIL_HOST_PASSWORD=os.getenv("Spark_Email_Password")
 
 ### djangostripe
 
@@ -194,14 +197,6 @@ EMAIL_HOST_PASSWORD=os.getenv("HIREBEAT_GMAIL_PASSWORD")
 #DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"
 ### STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY", "<your publishable key>")
 ### STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "<your secret key>")
-
-# If in doubt, just include both.  Details below.
-MIDDLEWARE_CLASSES = (
-    'django_seo_js.middleware.EscapedFragmentMiddleware',  # If you're using #!
-    'django_seo_js.middleware.UserAgentMiddleware',  # If you want to detect by user agent
-)
-
-INSTALLED_APPS += ('django_seo_js',)
 
 # If you're using prerender.io (the default backend):
 SEO_JS_PRERENDER_TOKEN = os.getenv("SEO_JS_PRERENDER_TOKEN")
