@@ -417,6 +417,7 @@ const ApplicantRow = (props) => {
                             applicants={applicants}
                             status={status}
                             updateCandidateViewedStatus={props.updateCandidateViewedStatus}
+                            linkedin={applicants[current].linkedinurl}
                         />
                 </MyModal>
             </div>
