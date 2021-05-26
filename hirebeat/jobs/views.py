@@ -18,6 +18,10 @@ def add_new_job(request):
     job_location = request.data['jobLocation']
     job_level = request.data['jobLevel']
     job_type = request.data['jobType']
+    loc_req = request.data['loc_req']
+    pho_req = request.data['pho_req']
+    lin_req = request.data['lin_req']
+    job_post = request.data['job_post']
     user = User.objects.get(pk=request.data["userId"])
     company_name = ""
     company_overview = ""
@@ -41,7 +45,8 @@ def add_new_job(request):
         company_logo = ""
     # create job
     job = Jobs.objects.create(user=user, positions=position, job_title=job_title, job_id=job_id, job_description=job_description,
-            job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name, company_logo=company_logo)
+            job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name, company_logo=company_logo,
+            loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post)
     # save job link
     job_url = "https://hirebeat.co/apply-job?id=" + str(job.id)
     job.job_url = job_url
