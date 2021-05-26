@@ -3,6 +3,8 @@ import 'boxicons';
 import { confirmAlert } from 'react-confirm-alert';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
+import {getByZip} from 'zcs';
+import Select from 'react-select';
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -30,13 +32,132 @@ export class JobEdition extends Component{
     };
 
     state = {
+        city: this.props.jobInfo.job_location.split(",")[0],
+        state: this.props.jobInfo.job_location.split(",")[1],
         jobTitle: this.props.jobInfo.job_title,
         jobId: this.props.jobInfo.job_id,
-        jobLocation: this.props.jobInfo.job_location,
-        jobLevel: this.props.jobInfo.job_level,
+        jobLocation: this.props.jobInfo.job_location.split(",")[2],
         jobDescription: RichTextEditor.createValueFromString(this.props.jobInfo.job_description, 'html'),
-        jobType: this.props.jobInfo.job_type,
+        loc_req: this.props.jobInfo.loc_req,
+        pho_req: this.props.jobInfo.pho_req,
+        lin_req: this.props.jobInfo.lin_req,
+        job_post: this.props.jobInfo.job_post,
+        jobType: { value: this.props.jobInfo.job_type, label: this.props.jobInfo.job_type },
+        jobLevel: { value: this.props.jobInfo.job_level, label: this.props.jobInfo.job_level },
     }
+
+    onFilter = (jobType) => {
+        this.setState({jobType: jobType})
+    };
+    onFilter1 = (jobLevel) => {
+        this.setState({jobLevel: jobLevel})
+    };
+    customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#ffffff'}),
+        singleValue: styles => ({    ...styles,
+                                     color: '#4a6f8a',
+                                     fontSize: '0.9375rem',
+                                     fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+                                     fontWeight: '500'}),
+    };
+    options = [
+        { value: 'Full-Time', label: 'Full-Time' },
+        { value: 'Part-Time', label: 'Part-Time' },
+        { value: 'Contract', label: 'Contract' },
+        { value: 'Intern', label: 'Intern' },
+        { value: 'Other', label: 'Other' },
+    ];
+    options1 = [
+        { value: 'Entry Level', label: 'Entry Level' },
+        { value: 'Associate', label: 'Associate' },
+        { value: 'Mid Level', label: 'Mid Level' },
+        { value: 'Senior', label: 'Senior' },
+        { value: 'Executive', label: 'Executive' },
+    ];
+    setJobPostTure = () => {
+        this.setState({
+            job_post: true
+        });
+    };
+    setJobPostFalse = () => {
+        this.setState({
+            job_post: false
+        });
+    };
+    setLocReq0 = () => {
+        this.setState({
+            loc_req: 0
+        });
+    };
+    setLocReq1 = () => {
+        this.setState({
+            loc_req: 1
+        });
+    };
+    setLocReq2 = () => {
+        this.setState({
+            loc_req: 2
+        });
+    };
+    setPhoReq0 = () => {
+        this.setState({
+            pho_req: 0
+        });
+    };
+    setPhoReq1 = () => {
+        this.setState({
+            pho_req: 1
+        });
+    };
+    setPhoReq2 = () => {
+        this.setState({
+            pho_req: 2
+        });
+    };
+    setLinReq0 = () => {
+        this.setState({
+            lin_req: 0
+        });
+    };
+    setLinReq1 = () => {
+        this.setState({
+            lin_req: 1
+        });
+    };
+    setLinReq2 = () => {
+        this.setState({
+            lin_req: 2
+        });
+    };
+
+    handleZipcode = (e) => {
+        let citytstate = "";
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
+        if(e.target.value.length == 5){
+            citytstate = getByZip(e.target.value);
+            this.setState({
+                city: citytstate["city"],
+                state: citytstate["state"],
+            });
+        }
+    };
+
+    handleZipcodeInputKeyDown = e => {
+        var key = e.which ? e.which : e.keyCode;
+        if (
+          (e.target.value.length >= 5 &&
+            key !== 8 &&
+            key !== 37 &&
+            key !== 38 &&
+            key !== 39 &&
+            key !== 40) ||
+          (key === 18 || key === 189 || key === 229)
+        ) {
+          e.preventDefault();
+        }
+    };
 
     onChange = (jobDescription) => {
         this.setState({jobDescription});
@@ -54,9 +175,13 @@ export class JobEdition extends Component{
             jobTitle: this.state.jobTitle,
             jobId: this.state.jobId,
             jobDescription: this.state.jobDescription.toString('html'),
-            jobLevel: this.state.jobLevel,
-            jobLocation: this.state.jobLocation,
-            jobType: this.state.jobType,
+            jobLevel: this.state.jobLevel["value"],
+            jobLocation: this.state.city+","+this.state.state+","+this.state.jobLocation,
+            jobType: this.state.jobType["value"],
+            loc_req: this.state.loc_req,
+            pho_req: this.state.pho_req,
+            lin_req: this.state.lin_req,
+            job_post: this.state.job_post,
         };
         this.props.updateJob(data);
         setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
@@ -123,15 +248,15 @@ export class JobEdition extends Component{
                     <form onSubmit={this.savePosition}>
                         <div className="form-row">
                             <div className="form-group col-6">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
                                     Job Title
-                                </label>
+                                </label><span className="job-apply-char2">*</span>
                                 <input type="text" name="jobTitle" value={this.state.jobTitle}
                                 onChange={this.handleInputChange} className="form-control" required="required"/>
                             </div>
                             <div className="form-group col-6">
                                 <label className="db-txt2" style={{ marginTop:"2%" }}>
-                                    Job ID (optional)
+                                    Job ID
                                 </label>
                                 <input type="text" name="jobId" value={this.state.jobId}
                                 onChange={this.handleInputChange} className="form-control"/>
@@ -139,34 +264,46 @@ export class JobEdition extends Component{
                         </div>
                         <div className="form-row">
                             <div className="form-group col-6">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
-                                    Job Location
-                                </label>
-                                <input type="text" name="jobLocation" value={this.state.jobLocation}
-                                onChange={this.handleInputChange} className="form-control" required="required"/>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
+                                    Employment Type
+                                </label><span className="job-apply-char2">*</span>
+                                <div style={{zIndex: "9999"}}>
+                                    <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles}/>
+                                </div>
                             </div>
                             <div className="form-group col-6">
                                 <label className="db-txt2" style={{ marginTop:"2%" }}>
-                                    Job Level
-                                </label>
-                                <input type="text" name="jobLevel" value={this.state.jobLevel}
-                                onChange={this.handleInputChange} className="form-control" required="required"/>
+                                    Experience Level
+                                </label><span className="job-apply-char2">*</span>
+                                <div style={{zIndex: "9999"}}>
+                                    <Select value={this.state.jobLevel} onChange={this.onFilter1} options={this.options1} styles={this.customStyles}/>
+                                </div>
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-6">
                                 <label className="db-txt2" style={{ margin:"2%"}}>
-                                    Job Type
+                                    Zipcode
+                                </label><span className="job-apply-char2">*</span>
+                                <input type="number" name="jobLocation" value={this.state.jobLocation} inputmode="numeric"
+                                    onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
+                                    pattern="\d*"
+                                onChange={this.handleZipcode} className="form-control" required="required"/>
+                            </div>
+                            <div className="form-group col-6">
+                                <label className="db-txt2" style={{ marginTop:"3.5rem"}}>
+                                    {this.state.city != "" &&
+                                    <div><span>{this.state.city}</span>, <span>{this.state.state}</span></div>}
+                                    {this.state.city == "" &&
+                                    <div><span>City</span>, <span>State</span></div>}
                                 </label>
-                                <input type="text" name="jobType" value={this.state.jobType} placeHolder="Full Time"
-                                onChange={this.handleInputChange} className="form-control" required="required"/>
                             </div>
                         </div>
-                        <div className="form-row">
+                        <div className="form-row mt-3">
                             <div className="col-6">
                                 <label className="db-txt2" style={{ margin:"2%"}}>
                                     Job Description
-                                </label>
+                                </label><span className="job-apply-char2">*</span>
                             </div>
                             <div className="form-group col-12">
                                 <RichTextEditor
@@ -175,6 +312,122 @@ export class JobEdition extends Component{
                                     toolbarConfig={toolbarConfig}
                                     editorClassName="editor-height"
                                 />
+                            </div>
+                        </div>
+                        <hr style={{border:"1.5px solid #E8EDFC"}}/>
+                        <div className="form-row mt-4 ml-2">
+                            <h5 style={{color:"#090d3a"}}><b>Application Form</b></h5>
+                        </div>
+                        <div className="form-row mt-3">
+                            <div className="form-group col-4">
+                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                Name
+                                </label>
+                            </div>
+                            <div className="form-group col-4">
+                                <label className="db-txt2" style={{ marginTop:"2%" }}>
+                                Email Address
+                                </label>
+                            </div>
+                            <div className="form-group col-4">
+                                <label className="db-txt2" style={{ marginTop:"2%" }}>
+                                Resume
+                                </label>
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-4">
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Required</button>
+                            </div>
+                            <div className="form-group col-4">
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Required</button>
+                            </div>
+                            <div className="form-group col-4">
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Required</button>
+                            </div>
+                        </div>
+                        <div className="form-row mt-3">
+                            <div className="form-group col-4">
+                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                Location
+                                </label>
+                            </div>
+                            <div className="form-group col-4">
+                                <label className="db-txt2" style={{ marginTop:"2%" }}>
+                                Phone Number
+                                </label>
+                            </div>
+                            <div className="form-group col-4">
+                                <label className="db-txt2" style={{ marginTop:"2%" }}>
+                                LinkedIn URL
+                                </label>
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-4">
+                                {this.state.loc_req == 0 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Required</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setLocReq0}>Required</button>
+                                }
+                                {this.state.loc_req == 1 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Optional</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setLocReq1}>Optional</button>
+                                }
+                                {this.state.loc_req == 2 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Disabled</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setLocReq2}>Disabled</button>
+                                }
+                            </div>
+                            <div className="form-group col-4">
+                                {this.state.pho_req == 0 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Required</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setPhoReq0}>Required</button>
+                                }
+                                {this.state.pho_req == 1 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Optional</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setPhoReq1}>Optional</button>
+                                }
+                                {this.state.pho_req == 2 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Disabled</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setPhoReq2}>Disabled</button>
+                                }
+                            </div>
+                            <div className="form-group col-4">
+                                {this.state.lin_req == 0 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Required</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setLinReq0}>Required</button>
+                                }
+                                {this.state.lin_req == 1 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Optional</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setLinReq1}>Optional</button>
+                                }
+                                {this.state.lin_req == 2 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Disabled</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setLinReq2}>Disabled</button>
+                                }
+                            </div>
+                        </div>
+                        <hr style={{border:"1.5px solid #E8EDFC"}}/>
+                        <div className="form-row mt-4 ml-2">
+                            <h5 style={{color:"#090d3a"}}><b>Broadcast Your Job Posting</b></h5>
+                        </div>
+                        <div className="form-row mt-2 ml-1">
+                            <div className="form-group col-12">
+                                <label className="db-txt2">
+                                Once enabled, your position will appear on: Indeed, Glassdoor, Google for Jobs, WayUp, JobRapido, ZipRecruiter and many more within 24 hours.
+                                </label>
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-4">
+                                {this.state.job_post ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Enable</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setJobPostTure}>Enable</button>
+                                }
+                                {!this.state.job_post ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Disabled</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setJobPostFalse}>Disabled</button>
+                                }
                             </div>
                         </div>
                         <div style={{float: "right", marginBottom: "1rem"}}>
