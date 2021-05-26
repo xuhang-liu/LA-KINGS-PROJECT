@@ -3,7 +3,7 @@ import 'boxicons';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
 import {getByZip} from 'zcs';
-//import Select from 'react-select'
+import Select from 'react-select';
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -40,16 +40,44 @@ export class JobCreation extends Component{
         jobTitle: "",
         jobId: "",
         jobLocation: "",
-        jobLevel: "",
         jobDescription: RichTextEditor.createEmptyValue(),
-        jobType: "",
         city: "",
         state: "",
         loc_req: 1,
         pho_req: 1,
         lin_req: 1,
         job_post: true,
+        jobType: { value: 'Full-Time', label: 'Full-Time' },
+        jobLevel: { value: 'Entry Level', label: 'Entry Level' },
     }
+    onFilter = (jobType) => {
+        this.setState({jobType: jobType})
+    };
+    onFilter1 = (jobLevel) => {
+        this.setState({jobLevel: jobLevel})
+    };
+    customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#ffffff'}),
+        singleValue: styles => ({    ...styles,
+                                     color: '#4a6f8a',
+                                     fontSize: '0.9375rem',
+                                     fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+                                     fontWeight: '500'}),
+    };
+    options = [
+        { value: 'Full-Time', label: 'Full-Time' },
+        { value: 'Part-Time', label: 'Part-Time' },
+        { value: 'Contract', label: 'Contract' },
+        { value: 'Intern', label: 'Intern' },
+        { value: 'Other', label: 'Other' },
+    ];
+    options1 = [
+        { value: 'Entry Level', label: 'Entry Level' },
+        { value: 'Associate', label: 'Associate' },
+        { value: 'Mid Level', label: 'Mid Level' },
+        { value: 'Senior', label: 'Senior' },
+        { value: 'Executive', label: 'Executive' },
+    ];
     setJobPostTure = () => {
         this.setState({
             job_post: true
@@ -155,10 +183,10 @@ export class JobCreation extends Component{
             jobTitle: this.state.jobTitle,
             jobId: this.state.jobId,
             jobDescription: this.state.jobDescription.toString('html'),
-            jobLevel: this.state.jobLevel,
+            jobLevel: this.state.jobLevel["value"],
             jobLocation: this.state.city+","+this.state.state+","+this.state.jobLocation,
             userId: this.props.user.id,
-            jobType: this.state.jobType,
+            jobType: this.state.jobType["value"],
             loc_req: this.state.loc_req,
             pho_req: this.state.pho_req,
             lin_req: this.state.lin_req,
@@ -213,7 +241,7 @@ export class JobCreation extends Component{
                         </div>
                         <div className="form-row">
                             <div className="form-group col-6">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
                                     Job Title
                                 </label><span className="job-apply-char2">*</span>
                                 <input type="text" name="jobTitle" value={this.state.jobTitle}
@@ -229,18 +257,20 @@ export class JobCreation extends Component{
                         </div>
                         <div className="form-row">
                             <div className="form-group col-6">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
-                                    Job Type
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
+                                    Employment Type
                                 </label><span className="job-apply-char2">*</span>
-                                <input type="text" name="jobType" value={this.state.jobType} placeHolder="Full Time"
-                                onChange={this.handleInputChange} className="form-control" required="required"/>
+                                <div style={{zIndex: "9999"}}>
+                                    <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles}/>
+                                </div>
                             </div>
                             <div className="form-group col-6">
                                 <label className="db-txt2" style={{ marginTop:"2%" }}>
-                                    Job Level
+                                    Experience Level
                                 </label><span className="job-apply-char2">*</span>
-                                <input type="text" name="jobLevel" value={this.state.jobLevel} placeHolder="Entry Level"
-                                onChange={this.handleInputChange} className="form-control" required="required"/>
+                                <div style={{zIndex: "9999"}}>
+                                    <Select value={this.state.jobLevel} onChange={this.onFilter1} options={this.options1} styles={this.customStyles}/>
+                                </div>
                             </div>
                         </div>
                         <div className="form-row">
@@ -250,8 +280,6 @@ export class JobCreation extends Component{
                                 </label><span className="job-apply-char2">*</span>
                                 <input type="number" name="jobLocation" value={this.state.jobLocation} inputmode="numeric"
                                     onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
-                                    onKeyUp={e => this.handleZipcodeInputKeyUp(e)}
-                                    onPaste={e => this.handleZipcodeInputPaste(e)}
                                     pattern="\d*"
                                 onChange={this.handleZipcode} className="form-control" required="required"/>
                             </div>
@@ -268,7 +296,7 @@ export class JobCreation extends Component{
                             <div className="center-items db-txt2" style={{marginRight: "1rem", marginLeft: "1rem"}}>Job Type</div>
                             <Select value={this.state.jobType} onChange={this.handleChangeJobType} options={options} className="select-category3" styles={customStyles} />
                         </div>*/}
-                        <div className="form-row">
+                        <div className="form-row mt-3">
                             <div className="col-6">
                                 <label className="db-txt2" style={{ margin:"2%"}}>
                                     Job Description

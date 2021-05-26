@@ -36,7 +36,7 @@ export class ApplicantList extends Component{
         singleValue: styles => ({    ...styles,
                                      color: '#090D3A',
                                      fontSize: '0.9375rem',
-                                     fontFamily: 'Avenir Next',
+                                     fontFamily: 'Avenir Next,Segoe UI, sans-serif',
                                      fontWeight: '500'}),
     }
 

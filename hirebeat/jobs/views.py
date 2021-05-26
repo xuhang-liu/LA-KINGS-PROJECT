@@ -90,6 +90,10 @@ def update_job(request):
     job_level = request.data['jobLevel']
     job_description = request.data['jobDescription']
     job_type = request.data['jobType']
+    loc_req = request.data['loc_req']
+    pho_req = request.data['pho_req']
+    lin_req = request.data['lin_req']
+    job_post = request.data['job_post']
 
     job = Jobs.objects.get(id=id)
     job.job_title = job_title
@@ -98,6 +102,10 @@ def update_job(request):
     job.job_level = job_level
     job.job_description = job_description
     job.job_type = job_type
+    job.loc_req = loc_req
+    job.pho_req = pho_req
+    job.lin_req = lin_req
+    job.job_post = job_post
     # save update to db
     job.save()
 
@@ -129,10 +137,11 @@ def add_new_apply_candidate(request):
     email = request.data['email']
     location = request.data['location']
     resume_url = request.data['resume_url']
+    linkedinurl = request.data['linkedinurl']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email, location=location, resume_url=resume_url)
+    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl)
     print("===New Candidate Notify Email Called===")
     subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
     message = get_template("jobs/new_candidate_notification_email.html")
@@ -178,6 +187,10 @@ def get_current_jobs(request):
         "emails": emails,
         "company_logo": jobs.company_logo,
         "is_closed": jobs.is_closed,
+        "pho_req": jobs.pho_req,
+        "loc_req":  jobs.loc_req,
+        "job_post": jobs.job_post,
+        "lin_req": jobs.lin_req,
     }
 
     return Response({
