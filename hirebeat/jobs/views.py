@@ -9,6 +9,8 @@ from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
+import xml.etree.ElementTree as ET
+from datetime import datetime
 
 @api_view(['POST'])
 def add_new_job(request):
@@ -238,3 +240,60 @@ def update_viewed_status(request):
         candidate.is_viewed = is_viewed
         candidate.save()
     return Response("Candidate is viewed successfully", status=status.HTTP_202_ACCEPTED)
+
+
+def gather_zr_jobs(job_detail):
+    # Required Metadata Fields
+    job = ET.Element('job')
+    reference_number = ET.SubElement(job, 'referencenumber')
+    title = ET.SubElement(job, 'title')
+    description = ET.SubElement(job, 'description')
+    country = ET.SubElement(job, 'country')
+    city = ET.SubElement(job, 'city')
+    state = ET.SubElement(job, 'state')
+    postalcode = ET.SubElement(job, 'postalcode')
+    company = ET.SubElement(job, 'company')
+    date = ET.SubElement(job, 'date')
+    # Candidate Delivery Fields
+    url = ET.SubElement(job, 'url')
+    job_type = ET.SubElement(job, 'jobtype')
+    experience = ET.SubElement(job, 'experience')
+
+    # populate content for each tag
+    reference_number.text = str(job_detail['id'])
+    title.text = job_detail['job_title']
+    description.text = job_detail['job_description']
+    location = job_detail['job_location'].split(',')
+    country.text = 'US'
+    city.text = location[0]
+    state.text = location[1]
+    postalcode.text = location[2]
+    company.text = job_detail['company_name']
+    date.text = job_detail['create_date'].strftime("%c")
+    url.text = job_detail['job_url']
+    job_type.text = job_detail['job_type']
+    experience.text = job_detail['job_level']
+    return job
+
+
+@api_view(['GET'])
+def get_zr_xml(request):
+    # initialize xml structure
+    source = ET.Element('source')
+    # Optional Metadata Fields
+    last_build_date = ET.SubElement(source, 'lastBuildDate')
+    publisher_url = ET.SubElement(source, 'publisherurl')
+    publisher = ET.SubElement(source, 'publisher')
+    # populate data to Optional Metadata Fields
+    last_build_date.text = datetime.now().strftime("%c")
+    publisher_url.text = 'http://dev.ziprecruiter.com:4014'  # todo: check here
+    publisher.text = 'ZipRecruiter'
+    # produce jobs dynamic here
+    job_details = Jobs.objects.filter(job_post=True).values()
+    for i in range(len(job_details)):
+        job = gather_zr_jobs(job_details[i])
+        source.append(job)
+    # save xml file
+    with open("zrjobs.xml", "wb") as f:
+        f.write(ET.tostring(source, encoding='utf8', method='xml'))
+    return Response("Candidate is viewed successfully", status=status.HTTP_200_OK)
