@@ -50,7 +50,7 @@ class ResgisterAPI(generics.GenericAPIView):
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user),
         }
-        from_email = 'HireBeat Team'
+        from_email = 'HireBeat Team <tech@hirebeat.co>'
         to_list = [user.email]
         content = message.render(context)
         email = EmailMessage(
@@ -95,7 +95,7 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user),
         }
-        from_email = 'HireBeat Team'
+        from_email = 'HireBeat Team <tech@hirebeat.co>'
         to_list = [user.email]
         content = message.render(context)
         email = EmailMessage(
