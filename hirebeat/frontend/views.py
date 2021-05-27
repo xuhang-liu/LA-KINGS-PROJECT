@@ -4,5 +4,7 @@ from django.shortcuts import render
 # pointer to the template
 
 def index(request):
-    return render(request,'frontend/index.html')  
+    return render(request,'frontend/index.html')
     # auto looks for a templates folder and the index.html file in it
+def job_seekers(request):
+    return render(request,'frontend/job_seekers.html')
