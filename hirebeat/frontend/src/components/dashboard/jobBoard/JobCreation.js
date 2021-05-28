@@ -2,7 +2,7 @@ import React,  { Component } from "react";
 import 'boxicons';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
-import { getByStateCity, getByCityState, getByZip, zipLookAhead, cityLookAhead, stateLookAhead} from 'zcs';
+import {getByZip} from 'zcs';
 //import Select from 'react-select'
 
 const toolbarConfig = {

@@ -22,6 +22,10 @@ class BlogDetail1 extends Component {
                     <title>HireBeat Blog – Why video interview practice platforms are essential for landing your dream job</title>
                     <meta name="description" CONTENT="Why video interview practice platforms are essential for landing your dream job"></meta>
                     <link rel="canonical" href="https://hirebeat.co/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job"/>
+                    <meta property="og:title" content="HireBeat Blog – Why video interview practice platforms are essential for landing your dream job" />
+                    <meta property="og:description" content="Why video interview practice platforms are essential for landing your dream job." />
+                    <meta property="og:image" content="https://hirebeat-assets.s3.amazonaws.com/blog/blog1.jpg" />
+                    <meta property="og:url" content="https://hirebeat.co/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" />
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
