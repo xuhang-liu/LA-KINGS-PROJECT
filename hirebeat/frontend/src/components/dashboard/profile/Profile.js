@@ -464,7 +464,7 @@ export class Profile extends Component {
                                                     <div className="col-4 profile-edit">
                                                         <div style={{float: "right"}}>
                                                             <i className="bx bx-edit-alt"></i>
-                                                            <span type="button" onClick={this.editInfo} style={{marginLeft: "0.5rem"}}>Edit</span>
+                                                            <span onClick={this.editInfo} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -480,8 +480,8 @@ export class Profile extends Component {
                                                 </div>
                                                 <div className="col-5 profile-edit">
                                                     <div style={{float: "right"}}>
-                                                        <span type="button" onClick={this.cancelEditInfo}>Cancel</span>
-                                                        <span type="button" onClick={this.savePersonalInfo} style={{marginLeft: "1rem"}}>Save</span>
+                                                        <span style={{cursor:"pointer"}} onClick={this.cancelEditInfo}>Cancel</span>
+                                                        <span onClick={this.savePersonalInfo} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -539,7 +539,7 @@ export class Profile extends Component {
                                                 <div className="col-4 profile-edit">
                                                     <div style={{float: "right"}}>
                                                         <i className="bx bx-edit-alt"></i>
-                                                        <span type="button" onClick={this.editMedia} style={{marginLeft: "0.5rem"}}>Edit</span>
+                                                        <span onClick={this.editMedia} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -587,8 +587,8 @@ export class Profile extends Component {
                                                 </div>
                                                 <div className="col-5 profile-edit">
                                                     <div style={{float: "right"}}>
-                                                        <span type="button" onClick={this.cancelEditMedia}>Cancel</span>
-                                                        <span type="button" onClick={this.saveSocialMedia} style={{marginLeft: "1rem"}}>Save</span>
+                                                        <span style={{cursor:"pointer"}} onClick={this.cancelEditMedia}>Cancel</span>
+                                                        <span onClick={this.saveSocialMedia} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -621,7 +621,7 @@ export class Profile extends Component {
                                                 <div className="col-4 profile-edit">
                                                     <div style={{float: "right"}}>
                                                         <i className="bx bx-edit-alt"></i>
-                                                        <span type="button" onClick={this.editWorkInfo} style={{marginLeft: "0.5rem"}}>Edit</span>
+                                                        <span onClick={this.editWorkInfo} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -651,8 +651,8 @@ export class Profile extends Component {
                                                 </div>
                                                 <div className="col-5 profile-edit">
                                                     <div style={{float: "right"}}>
-                                                        <span type="button" onClick={this.cancelEditWorkInfo}>Cancel</span>
-                                                        <span type="button" onClick={this.saveWorkInfo} style={{marginLeft: "1rem"}}>Save</span>
+                                                        <span style={{cursor:"pointer"}} onClick={this.cancelEditWorkInfo}>Cancel</span>
+                                                        <span onClick={this.saveWorkInfo} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -753,7 +753,7 @@ export class Profile extends Component {
                                                 <div className="col-4 profile-edit">
                                                     <div style={{float: "right"}}>
                                                         <i className="bx bx-edit-alt"></i>
-                                                        <span type="button" onClick={this.editSummary} style={{marginLeft: "0.5rem"}}>Edit</span>
+                                                        <span onClick={this.editSummary} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -768,8 +768,8 @@ export class Profile extends Component {
                                                 </div>
                                                 <div className="col-5 profile-edit">
                                                     <div style={{float: "right"}}>
-                                                        <span type="button" onClick={this.cancelEditSummary}>Cancel</span>
-                                                        <span type="button" onClick={this.saveSummary} style={{marginLeft: "1rem"}}>Save</span>
+                                                        <span style={{cursor:"pointer"}} onClick={this.cancelEditSummary}>Cancel</span>
+                                                        <span onClick={this.saveSummary} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
                                                     </div>
                                                 </div>
                                             </div>

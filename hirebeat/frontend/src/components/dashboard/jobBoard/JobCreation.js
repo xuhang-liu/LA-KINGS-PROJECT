@@ -192,7 +192,7 @@ export class JobCreation extends Component{
             lin_req: this.state.lin_req,
             job_post: this.state.job_post,
         };
-        if(this.props.jobid_list.includes(this.state.jobId)){
+        if(this.props.jobid_list.includes(this.state.jobId) && this.state.jobId != "" && this.state.jobId != null){
             alert("Duplicate Job ID detected.");
         }else{
             this.props.addNewJob(data);

@@ -113,7 +113,7 @@ export class Post extends Component {
                             <div className="col-4 profile-edit">
                                 <div style={{float: "right"}}>
                                     <i className="bx bx-edit-alt"></i>
-                                    <span type="button" onClick={this.props.editPost} style={{marginLeft: "0.5rem"}}>Edit</span>
+                                    <span onClick={this.props.editPost} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@ export class Post extends Component {
                         }
                         <div className="row" style={{marginTop: "1rem"}}>
                             <div className="col-7">
-                                <span type="button" className="profile-edit" onClick={this.addPost}>Add Post</span>
+                                <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addPost}>Add Post</span>
                             </div>
                         </div>
                         { this.state.newPost.length != 0 &&
@@ -157,7 +157,7 @@ export class Post extends Component {
                         { this.state.newPost.length != 0 &&
                             <div className="row" style={{marginTop: "1rem"}}>
                                 <div className="col-7 ml-auto" style={{paddingLeft: "50%"}}>
-                                    <span type="button" className="profile-edit" onClick={this.savePost}>Save</span>
+                                    <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.savePost}>Save</span>
                                 </div>
                             </div>
                         }
@@ -169,7 +169,7 @@ export class Post extends Component {
                             </div>
                             <div className="col-5 profile-edit">
                                 <div style={{float: "right"}}>
-                                    <span type="button" onClick={this.props.cancelEditPost}>Back</span>
+                                    <span style={{cursor:"pointer"}} onClick={this.props.cancelEditPost}>Back</span>
                                 </div>
                             </div>
                         </div>
@@ -247,7 +247,7 @@ const EditForm = (props) => {
                         </div>
                         <div className="col-5 profile-edit">
                             <div style={{float: "right"}}>
-                                <span type="button" onClick={() => props.saveUpdate(post.id, textId)}>Save</span>
+                                <span style={{cursor:"pointer"}} onClick={() => props.saveUpdate(post.id, textId)}>Save</span>
                                 <i className="bx bx-trash profile-edit" style={{marginLeft: "1rem", color: "#FF0000"}}></i>
                                 <span className="profile-edit" type="button" style={{color: "#FF0000"}} onClick={() => props.deletePost(post.id)}>Remove</span>
                             </div>

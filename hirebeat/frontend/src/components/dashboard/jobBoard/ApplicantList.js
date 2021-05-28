@@ -349,13 +349,13 @@ const ApplicantRow = (props) => {
                      {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
-                            <span className="applicant-name" type="button" onClick={()=>{setCurrent(props.index); onView()}}>
+                            <span className="applicant-name" style={{cursor:"pointer"}} onClick={()=>{setCurrent(props.index); onView()}}>
                                 {name.length > 11 ? name.substring(0, 9) + "..." : name}
                             </span>
                         </div> :
                         <div>
                             <span className="dot" style={{visibility: "hidden"}}></span>
-                            <span className="applicant-name" type="button" onClick={()=>{setCurrent(props.index); onView()}}>
+                            <span className="applicant-name" style={{cursor:"pointer"}} onClick={()=>{setCurrent(props.index); onView()}}>
                                 {name.length > 11 ? name.substring(0, 9) + "..." : name}
                             </span>
                         </div>

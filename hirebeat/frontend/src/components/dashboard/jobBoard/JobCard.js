@@ -119,23 +119,23 @@ const ActionButton = (props) => {
             <div className="row">
                 <div className="profile-edit">
                     <i className="bx bx-edit-alt"></i>
-                    <span type="button" onClick={() => {props.setJobInfo(props.jobInfo); props.renderJobEdition()}}>
+                    <span style={{cursor:"pointer"}} onClick={() => {props.setJobInfo(props.jobInfo); props.renderJobEdition()}}>
                         Edit
                     </span>
                 </div>
                 {props.applicantsNum > 0 ?
                     <div className="profile-edit" style={{color: "#F36F67", marginLeft: "5%"}}>
                         <i className="bx bx-box"></i>
-                        <span type="button" onClick={props.archiveJob}>Archive</span>
+                        <span style={{cursor:"pointer"}} onClick={props.archiveJob}>Archive</span>
                     </div> :
                     <div className="profile-edit" style={{color: "#F36F67", marginLeft: "5%"}}>
                         <i className="bx bx-trash"></i>
-                        <span type="button" onClick={deleteAlert}>Delete</span>
+                        <span style={{cursor:"pointer"}} onClick={deleteAlert}>Delete</span>
                     </div>}
             </div> :
             <div className="row">
                 <div className="profile-edit">
-                    <span type="button" onClick={props.activateJob}>Reactivate</span>
+                    <span style={{cursor:"pointer"}} onClick={props.activateJob}>Reactivate</span>
                 </div>
             </div>
         }

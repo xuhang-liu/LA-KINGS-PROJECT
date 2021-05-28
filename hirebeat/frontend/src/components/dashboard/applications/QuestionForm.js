@@ -108,7 +108,7 @@ export class QuestionForm extends Component {
                                             return (
                                                 <div>
                                                     <p className="db-txt4">
-                                                        <span type="button" onClick={() => this.fillQuestion(question)}><img src="https://hirebeat-assets.s3.amazonaws.com/add.png" /></span>
+                                                        <span style={{cursor:"pointer"}} onClick={() => this.fillQuestion(question)}><img src="https://hirebeat-assets.s3.amazonaws.com/add.png" /></span>
                                                         &nbsp; {q.description}
                                                     </p>
                                                 </div>
