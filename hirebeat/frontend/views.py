@@ -20,7 +20,7 @@ def applyjob(request):
     context = {
         "jobid": request.GET.get('id', ''),
         "job_title": jobs.job_title,
-        "company_overview": strip_tags(employerp.summary),
+        "company_overview": strip_tags(employerp.summary).replace('\n', ' '),
         "company_name": jobs.company_name,
         "company_logo": jobs.company_logo,
     }
