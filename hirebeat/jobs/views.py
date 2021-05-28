@@ -10,6 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 import xml.etree.ElementTree as ET
+from xml.dom import minidom
 from datetime import datetime
 
 @api_view(['POST'])
@@ -255,7 +256,7 @@ def update_viewed_status(request):
     return Response("Candidate is viewed successfully", status=status.HTTP_202_ACCEPTED)
 
 
-def gather_zr_jobs(job_detail):
+def create_zr_job_feed(job_detail):
     # Required Metadata Fields
     job = ET.Element('job')
     reference_number = ET.SubElement(job, 'referencenumber')
@@ -273,6 +274,7 @@ def gather_zr_jobs(job_detail):
     experience = ET.SubElement(job, 'experience')
 
     # populate content for each tag
+    job.set('id', str(job_detail['id']))
     reference_number.text = str(job_detail['id'])
     title.text = job_detail['job_title']
     description.text = job_detail['job_description']
@@ -304,9 +306,35 @@ def get_zr_xml(request):
     # produce jobs dynamic here
     job_details = Jobs.objects.filter(job_post=True).values()
     for i in range(len(job_details)):
-        job = gather_zr_jobs(job_details[i])
+        job = create_zr_job_feed(job_details[i])
         source.append(job)
     # save xml file
     with open("zrjobs.xml", "wb") as f:
         f.write(ET.tostring(source, encoding='utf8', method='xml'))
     return Response("Candidate is viewed successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def delete_zr_feed_xml(request):
+    job_id = str(request.data['jobId'])
+    tree = ET.parse('zrjobs.xml')
+    root = tree.getroot()
+    for job in root.findall('job'):
+        if job.attrib['id'] == job_id:
+            root.remove(job)
+
+    tree.write('zrjobs.xml')
+    return Response("Delete job from zrjobs.xml successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def add_zr_feed_xml(request):
+    # create a new tag
+    job_id = request.data['jobId']
+    job_detail = Jobs.objects.filter(id=job_id).values()[0]
+    job = create_zr_job_feed(job_detail)
+    # append to existing xml file
+    tree = ET.parse('zrjobs.xml')
+    root = tree.getroot()
+    root.append(job)
+    tree.write('zrjobs.xml')
+
+    return Response("Add new job to zr feed successfully", status=status.HTTP_200_OK)
