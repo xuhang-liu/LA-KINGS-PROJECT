@@ -165,7 +165,7 @@ export class Video extends Component {
                             <p className="profile-p" style={{marginLeft: "60%"}}>
                                 <div style={{float: "right"}}>
                                     <i className="bx bx-trash profile-edit" style={{marginLeft: "1rem", color: "#FF0000"}}></i>
-                                    <span className="profile-edit" type="button" style={{color: "#FF0000"}} onClick={this.deleteAlert}>Remove</span>
+                                    <span className="profile-edit" style={{color: "#FF0000", cursor:"pointer"}} onClick={this.deleteAlert}>Remove</span>
                                 </div>
                             </p>
                         }

@@ -13,7 +13,7 @@ export class Education extends Component {
                     <div className="col-4 profile-edit">
                         <div style={{float: "right"}}>
                             <i className="bx bx-edit-alt"></i>
-                            <span type="button" onClick={this.props.editEducation} style={{marginLeft: "0.5rem"}}>Edit</span>
+                            <span onClick={this.props.editEducation} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
                         </div>
                     </div>}
                 </div>

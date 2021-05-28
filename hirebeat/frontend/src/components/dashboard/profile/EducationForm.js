@@ -97,8 +97,8 @@ export class EducationForm extends Component {
                     </div>
                     <div className="col-5 profile-edit">
                         <div style={{float: "right"}}>
-                            <span type="button" onClick={this.props.cancelEditEducation}>Cancel</span>
-                            <span type="button" onClick={() => {this.saveEducation(this.state.count.length, -1)}} style={{marginLeft: "1rem"}}>Save</span>
+                            <span style={{cursor:"pointer"}} onClick={this.props.cancelEditEducation}>Cancel</span>
+                            <span onClick={() => {this.saveEducation(this.state.count.length, -1)}} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@ export class EducationForm extends Component {
 
                 <div className="row" style={{marginTop: "1rem"}}>
                     <div className="col-7">
-                        <span type="button" className="profile-edit" onClick={this.addEducation}>Add University</span>
+                        <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addEducation}>Add University</span>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@ const FormCard = (props) => {
                     <div className="row" style={{marginTop: "1rem"}}>
                         <div className="col-8">
                             {!addMajor &&
-                                <span type="button" onClick={() => {setAddMajor(true)}} className="profile-edit">Add a Major</span>}
+                                <span style={{cursor:"pointer"}} onClick={() => {setAddMajor(true)}} className="profile-edit">Add a Major</span>}
                             {addMajor &&
                                 <div>
                                     <p className="profile-p" style={{margin: "0rem"}}>Another Major</p>
@@ -177,7 +177,7 @@ const FormCard = (props) => {
                     </div>
                     <div className="row" style={{marginTop: "1rem"}}>
                         <div style={{paddingLeft: "90%"}}>
-                            <span type="button" onClick={() => {props.removeEducation(index)}} className="profile-edit" style={{color: "#FF0000", float: "right"}}>Delete</span>
+                            <span onClick={() => {props.removeEducation(index)}} className="profile-edit" style={{color: "#FF0000", float: "right", cursor:"pointer"}}>Delete</span>
                         </div>
                     </div>
                 </div>

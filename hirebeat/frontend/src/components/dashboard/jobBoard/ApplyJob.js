@@ -9,7 +9,6 @@ import {addNewApplyCandidate, getCurrentJobs} from "../../../redux/actions/job_a
 import parse from 'html-react-parser';
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
-import DocumentMeta from 'react-document-meta';
 var ReactS3Uploader = require("react-s3-uploader");
 
 var uri = window.location.search;
@@ -33,6 +32,7 @@ const ApplyJob = (props) =>{
     const [lastname, setLastname] = useState("");
     const [phone, setPhone] = useState("");
     const [location, setLocation] = useState("");
+    const [linkedinurl, setLinkedinurl] = useState("");
 
     function applySubmit(e) {
         e.preventDefault();
@@ -82,7 +82,8 @@ const ApplyJob = (props) =>{
                 phone: phone,
                 email: email,
                 location: location,
-                resume_url: resume_url
+                resume_url: resume_url,
+                linkedinurl: linkedinurl,
             };
             props.addNewApplyCandidate(data);
             props.uploader.uploadFile(resume);
@@ -100,7 +101,8 @@ const ApplyJob = (props) =>{
                     phone: phone,
                     email: email,
                     location: location,
-                    resume_url: resume_url
+                    resume_url: resume_url,
+                    linkedinurl: linkedinurl,
                 };
                 props.addNewApplyCandidate(data);
                 props.uploader.uploadFile(resume);
@@ -154,7 +156,8 @@ const ApplyJob = (props) =>{
             phone: phone,
             email: email,
             location: location,
-            resume_url: resume_url
+            resume_url: resume_url,
+            linkedinurl: linkedinurl,
         };
         props.addNewApplyCandidate(data);
         props.uploader.uploadFile(resume);
@@ -182,6 +185,9 @@ const ApplyJob = (props) =>{
     };
     function onChange8(e) {
         setEmail(e.target.value);
+    };
+    function onChange9(e) {
+        setLinkedinurl(e.target.value);
     };
     function passwordsMatch () {
         if (password !== password2) {
@@ -254,19 +260,7 @@ const ApplyJob = (props) =>{
               ]
         });
     }
-    const meta = {
-        title: "Job Apply",
-        description: "Job Apply",
-        canonical: "https://hirebeat.co/apply-job",
-        meta: {
-          charset: 'utf-8',
-          name: {
-            keywords: 'interview, jobs, job interview, recruiting, hiring'
-          }
-        }
-    };
     return (
-    <DocumentMeta {...meta}>
     <React.Fragment>
     <MediaQuery minDeviceWidth={1224}>
     {(props.job.id == "" || props.job.id == null) ?
@@ -290,7 +284,9 @@ const ApplyJob = (props) =>{
                             </div>                            
                             <div style={{width:"25%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Location</p>
-                                <p className="mt-0" style={{fontSize:"1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_location}</p>
+                                <p className="mt-0" style={{fontSize:"1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>
+                                {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[0]} {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[1]}
+                                </p>
                             </div>                            
                             <div style={{width:"25%", height:"4.8rem"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job ID</p>
@@ -356,15 +352,37 @@ const ApplyJob = (props) =>{
                                                 <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2">*</span>
                                                 <input type="email" class="form-control" id="inputEmail4" onChange={onChange8} required/>
                                             </div>
+                                            {((job_id == null || job_id == "") ? "":props.job.pho_req) == "0" &&
+                                            <div class="form-group col-md-6">
+                                                <label className="job-apply-char1" >Phone Number</label><span className="job-apply-char2">*</span>
+                                                <input type="text" class="form-control" onChange={onChange6} required/>
+                                            </div>}
+                                            {((job_id == null || job_id == "") ? "":props.job.pho_req) == "1" &&
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" >Phone Number</label>
                                                 <input type="text" class="form-control" onChange={onChange6}/>
-                                            </div>
+                                            </div>}
                                         </div>
+                                        {((job_id == null || job_id == "") ? "":props.job.loc_req) == "0" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
+                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required/>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.loc_req) == "1" &&
                                         <div class="form-group">
                                             <label className="job-apply-char1" for="inputAddress">Location</label>
                                             <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7}/>
-                                        </div>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.lin_req) == "0" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">LinkedIn URL</label><span className="job-apply-char2">*</span>
+                                            <input type="text" class="form-control" onChange={onChange9} required/>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.lin_req) == "1" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">LinkedIn URL</label>
+                                            <input type="text" class="form-control" onChange={onChange9}/>
+                                        </div>}
                                         <div class="form-row mt-4">
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2">*</span>
@@ -396,7 +414,7 @@ const ApplyJob = (props) =>{
                                 </div>
                                 <div className="light-blue-border mt-4 px-5" style={{marginBottom:"6rem"}}>
                                 <h1 className="mt-4 mb-5" style={{color:"#090D3A"}}>
-                                        Create Account (Optional)
+                                        Create Account
                                 </h1>
                                     <div class="form-group">
                                         <label className="job-apply-char1" for="inputAddress">Email/Username</label>
@@ -439,15 +457,37 @@ const ApplyJob = (props) =>{
                                                 <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2">*</span>
                                                 <input type="email" class="form-control" id="inputEmail4" onChange={onChange8} required/>
                                             </div>
+                                            {((job_id == null || job_id == "") ? "":props.job.pho_req) == "0" &&
+                                            <div class="form-group col-md-6">
+                                                <label className="job-apply-char1" >Phone Number</label><span className="job-apply-char2">*</span>
+                                                <input type="text" class="form-control" onChange={onChange6} required/>
+                                            </div>}
+                                            {((job_id == null || job_id == "") ? "":props.job.pho_req) == "1" &&
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" >Phone Number</label>
                                                 <input type="text" class="form-control" onChange={onChange6}/>
-                                            </div>
+                                            </div>}
                                         </div>
+                                        {((job_id == null || job_id == "") ? "":props.job.loc_req) == "0" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
+                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required/>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.loc_req) == "1" &&
                                         <div class="form-group">
                                             <label className="job-apply-char1" for="inputAddress">Location</label>
                                             <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7}/>
-                                        </div>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.lin_req) == "0" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">LinkedIn URL</label><span className="job-apply-char2">*</span>
+                                            <input type="text" class="form-control" onChange={onChange9} required/>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.lin_req) == "1" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">LinkedIn URL</label>
+                                            <input type="text" class="form-control" onChange={onChange9}/>
+                                        </div>}
                                         <div class="form-row mt-4">
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2">*</span>
@@ -587,7 +627,9 @@ const ApplyJob = (props) =>{
                         <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A", borderTop:"none"}}>
                             <div style={{width:"50%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Location</p>
-                                <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_location}</p>
+                                <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>
+                                    {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[0]} {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[1]}
+                                </p>
                             </div>                            
                             <div style={{width:"50%", height:"4.8rem"}}>
                                 <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job ID</p>
@@ -709,15 +751,37 @@ const ApplyJob = (props) =>{
                                                 <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2">*</span>
                                                 <input type="email" class="form-control" id="inputEmail4" onChange={onChange8} required/>
                                             </div>
+                                            {((job_id == null || job_id == "") ? "":props.job.pho_req) == "0" &&
+                                            <div class="form-group col-md-6">
+                                                <label className="job-apply-char1" >Phone Number</label><span className="job-apply-char2">*</span>
+                                                <input type="text" class="form-control" onChange={onChange6} required/>
+                                            </div>}
+                                            {((job_id == null || job_id == "") ? "":props.job.pho_req) == "1" &&
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" >Phone Number</label>
                                                 <input type="text" class="form-control" onChange={onChange6}/>
-                                            </div>
+                                            </div>}
                                         </div>
+                                        {((job_id == null || job_id == "") ? "":props.job.loc_req) == "0" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
+                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required/>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.loc_req) == "1" &&
                                         <div class="form-group">
                                             <label className="job-apply-char1" for="inputAddress">Location</label>
                                             <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7}/>
-                                        </div>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.lin_req) == "0" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">LinkedIn URL</label><span className="job-apply-char2">*</span>
+                                            <input type="text" class="form-control" onChange={onChange9} required/>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.lin_req) == "1" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">LinkedIn URL</label>
+                                            <input type="text" class="form-control" onChange={onChange9}/>
+                                        </div>}
                                         <div class="form-row mt-4">
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2">*</span>
@@ -749,7 +813,7 @@ const ApplyJob = (props) =>{
                                 </div>
                                 <div className="light-blue-border mt-4 px-5" style={{marginBottom:"6rem"}}>
                                 <h1 className="mt-4 mb-5" style={{color:"#090D3A"}}>
-                                        Create Account (Optional)
+                                        Create Account
                                 </h1>
                                     <div class="form-group">
                                         <label className="job-apply-char1" for="inputAddress">Email/Username</label>
@@ -792,15 +856,37 @@ const ApplyJob = (props) =>{
                                                 <label className="job-apply-char1" for="inputEmail4">Email</label><span className="job-apply-char2">*</span>
                                                 <input type="email" class="form-control" id="inputEmail4" onChange={onChange8} required/>
                                             </div>
+                                            {((job_id == null || job_id == "") ? "":props.job.pho_req) == "0" &&
+                                            <div class="form-group col-md-6">
+                                                <label className="job-apply-char1" >Phone Number</label><span className="job-apply-char2">*</span>
+                                                <input type="text" class="form-control" onChange={onChange6} required/>
+                                            </div>}
+                                            {((job_id == null || job_id == "") ? "":props.job.pho_req) == "1" &&
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" >Phone Number</label>
                                                 <input type="text" class="form-control" onChange={onChange6}/>
-                                            </div>
+                                            </div>}
                                         </div>
+                                        {((job_id == null || job_id == "") ? "":props.job.loc_req) == "0" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
+                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required/>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.loc_req) == "1" &&
                                         <div class="form-group">
                                             <label className="job-apply-char1" for="inputAddress">Location</label>
                                             <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7}/>
-                                        </div>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.lin_req) == "0" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">LinkedIn URL</label><span className="job-apply-char2">*</span>
+                                            <input type="text" class="form-control" onChange={onChange9} required/>
+                                        </div>}
+                                        {((job_id == null || job_id == "") ? "":props.job.lin_req) == "1" &&
+                                        <div class="form-group">
+                                            <label className="job-apply-char1" for="inputAddress">LinkedIn URL</label>
+                                            <input type="text" class="form-control" onChange={onChange9}/>
+                                        </div>}
                                         <div class="form-row mt-4">
                                             <div class="form-group col-md-6">
                                                 <label className="job-apply-char1" for="inputCity">Resume</label><span className="job-apply-char2">*</span>
@@ -860,7 +946,6 @@ const ApplyJob = (props) =>{
         </div>}
         </MediaQuery>
     </React.Fragment>
-    </DocumentMeta>
     )
 };
 

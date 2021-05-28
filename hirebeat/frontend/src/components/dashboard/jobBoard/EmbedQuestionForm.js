@@ -95,7 +95,7 @@ export class EmbedQuestionForm extends Component {
         if (questions.length == 0) {return alert("You need to add at least one question!")}
         let data = {
             "questions": questions,
-            "positionId": this.props.curJob.job_details.positions_id,
+            "positionId": positionId,
         }
         this.props.addInterviewQuestion(data);
 

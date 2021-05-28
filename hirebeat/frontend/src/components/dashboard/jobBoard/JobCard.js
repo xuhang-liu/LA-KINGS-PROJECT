@@ -56,7 +56,7 @@ export class JobCard extends Component{
                 />
                 <div className="row interview-txt7 interview-center " style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
                     <div className="col-3 interview-txt9 mt-2">
-                        {this.props.job.un_view && <span className="dot"></span>}
+                        {this.props.job.un_view ? <span className="dot"></span> : <span className="dot" style={{visibility: "hidden"}}></span>}
                         <button
                             className="title-button2"
                             onClick={() => {this.props.setJobKey(this.props.curJobKey); this.props.enableView(true); }}
@@ -119,23 +119,23 @@ const ActionButton = (props) => {
             <div className="row">
                 <div className="profile-edit">
                     <i className="bx bx-edit-alt"></i>
-                    <span type="button" onClick={() => {props.setJobInfo(props.jobInfo); props.renderJobEdition()}}>
+                    <span style={{cursor:"pointer"}} onClick={() => {props.setJobInfo(props.jobInfo); props.renderJobEdition()}}>
                         Edit
                     </span>
                 </div>
                 {props.applicantsNum > 0 ?
                     <div className="profile-edit" style={{color: "#F36F67", marginLeft: "5%"}}>
                         <i className="bx bx-box"></i>
-                        <span type="button" onClick={props.archiveJob}>Archive</span>
+                        <span style={{cursor:"pointer"}} onClick={props.archiveJob}>Archive</span>
                     </div> :
                     <div className="profile-edit" style={{color: "#F36F67", marginLeft: "5%"}}>
                         <i className="bx bx-trash"></i>
-                        <span type="button" onClick={deleteAlert}>Delete</span>
+                        <span style={{cursor:"pointer"}} onClick={deleteAlert}>Delete</span>
                     </div>}
             </div> :
             <div className="row">
                 <div className="profile-edit">
-                    <span type="button" onClick={props.activateJob}>Reactivate</span>
+                    <span style={{cursor:"pointer"}} onClick={props.activateJob}>Reactivate</span>
                 </div>
             </div>
         }

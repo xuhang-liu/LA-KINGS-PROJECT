@@ -91,8 +91,8 @@ export class WorkExpForm extends Component {
                     </div>
                     <div className="col-5 profile-edit">
                         <div style={{float: "right"}}>
-                            <span type="button" onClick={this.props.cancelEditWorkExp}>Cancel</span>
-                            <span type="button" onClick={() => {this.saveWorkExp(this.state.count.length, -1)}} style={{marginLeft: "1rem"}}>Save</span>
+                            <span style={{cursor:"pointer"}} onClick={this.props.cancelEditWorkExp}>Cancel</span>
+                            <span onClick={() => {this.saveWorkExp(this.state.count.length, -1)}} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ export class WorkExpForm extends Component {
 
                 <div className="row" style={{marginTop: "1rem"}}>
                     <div className="col-7">
-                        <span type="button" className="profile-edit" onClick={this.addWorkExp}>Add Experience</span>
+                        <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addWorkExp}>Add Experience</span>
                     </div>
                 </div>
             </div>
@@ -163,7 +163,7 @@ const WorkFormCard = (props) => {
                     </div>
                     <div className="row" style={{marginTop: "1rem"}}>
                         <div style={{paddingLeft: "90%"}}>
-                            <span type="button" onClick={() => {props.removeWorkExp(index)}} className="profile-edit" style={{color: "#FF0000", float: "right"}}>Delete</span>
+                            <span onClick={() => {props.removeWorkExp(index)}} className="profile-edit" style={{color: "#FF0000", float: "right", cursor:"pointer"}}>Delete</span>
                         </div>
                     </div>
                 </div>
