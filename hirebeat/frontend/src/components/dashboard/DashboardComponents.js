@@ -517,7 +517,7 @@ export const tourConfig = [
     selector: '[data-tut="reactour-rowbox"]',
     content: () => (
       <div className="tour-title">
-        <span>Here is a summary of your activities. keep motivated!</span>
+        <span>Here is a summary of your activities. Keep motivated!</span>
       </div>
     )
   },
@@ -551,7 +551,7 @@ export const tourConfig = [
         <div className="justify-items">
           <img className="padding-center" src="https://hirebeat-assets.s3.amazonaws.com/guide2-1.png" />
         </div>
-        <span className="tour-text">Begin practice today to receive your dream offer tomorrow!</span>
+        <span className="tour-text">Begin practicing today to receive your dream offer tomorrow!</span>
       </div>
     )
   },

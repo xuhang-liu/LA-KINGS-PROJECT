@@ -195,6 +195,16 @@ const ReviewCandidate = (props) => {
                                             />
                                     </div>
                                 </div>
+                                {props.linkedin != null && props.linkedin != "" ?
+                                    <div style={{display: "flex", alignItems: "center"}}>
+                                        <i class='bx bxl-linkedin-square bx-sm' style={{color: "#67A3F3", marginRight: "3px"}}></i>
+                                        <a style={{fontSize: "0.7rem", color: "#67A3F3"}} href={props.linkedin} target="_blank">Go To LinkedIn Page</a>
+                                    </div> :
+                                    <div style={{display: "flex", alignItems: "center"}}>
+                                        <i class='bx bxl-linkedin-square bx-sm' style={{color: "#979797", marginRight: "3px"}}></i>
+                                        <p style={{fontSize: "0.7rem", color: "#979797"}}>LinkedIn  not available</p>
+                                    </div>
+                                }
                     </div>
                     <div className="resume-box mt-4 p-4" style={{background:"white", borderRadius:"10px", width:"100%", height:"61.6%", position:"relative"}}>
                         <h2

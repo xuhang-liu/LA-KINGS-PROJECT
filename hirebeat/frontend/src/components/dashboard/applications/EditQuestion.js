@@ -1,12 +1,11 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import Select from 'react-select'
-//import { IconText } from "../DashboardComponents";
 import { withRouter } from "react-router-dom";
-import { addInterviewQuestion} from "../../../redux/actions/job_actions";
-import { confirmAlert } from 'react-confirm-alert';
+import { addInterviewQuestion, getAllJobs} from "../../../redux/actions/job_actions";
+import { deleteInterviewQuestions} from "../../../redux/actions/question_actions";
 
-export class EmbedQuestionForm extends Component {
+export class EditQuestion extends Component {
 
     state = {
         categoryOfQuestion: { value: "Positive Attitude", label: "Positive Attitude"},
@@ -52,44 +51,18 @@ export class EmbedQuestionForm extends Component {
         let size = elements.length;
         for (let i = 0; i < size; i++) {
             let question = elements[i].value;
-            // skip empty strings and strings consists of white spaces
+            // skip empty strings and strings consists of white spaces only
             if (!question.match(/^[ ]*$/)) {
                 questions.push(question);
             }
         }
-        this.props.setTempQuestion(questions);
         return questions;
-    }
-
-    noCandidateAlert = () => {
-        confirmAlert({
-          title: "No Candidate Selected",
-          message: "Please select candidates for interview",
-          buttons: [
-            {
-              label: 'Ok'
-            }
-          ]
-        });
     }
 
     saveQuestions = (e) => {
         e.preventDefault();
         // invite candidates
-        let candidateCount = 1;
-        let companyName = this.props.curJob.job_details.company_name;
-        let jobTitle = this.props.curJob.job_details.job_title;
-        let positionId = this.props.curJob.job_details.positions_id;
-
-        // collect input name and email
-        const emails = [];
-        const names = [];
-        const invitedCandidates = [];
-        emails.push(this.props.email);
-        names.push(this.props.first_name+" "+this.props.last_name);
-        invitedCandidates.push(this.props.candidateId);
-        this.props.setStatus(true);
-
+        let positionId = this.props.positionId;
         // add question
         let questions = this.getQuestions();
         if (questions.length == 0) {return alert("You need to add at least one question!")}
@@ -97,42 +70,13 @@ export class EmbedQuestionForm extends Component {
             "questions": questions,
             "positionId": positionId,
         }
-        this.props.addInterviewQuestion(data);
-
-        // generate interview urls and send emails
-        let urls = [];
-        for (let i = 0; i < emails.length; i++) {
-            // make sure urls have the same size of emails and names
-            let url = "";
-            if (emails[i] != "" && names[i] != "") {
-                //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-                let prefix = "https://hirebeat.co/candidate-login?";  // online
-                let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
-                let encode = window.btoa(params);
-                url = prefix + encode;
-            }
-            urls.push(url);
-        }
-        let meta = {
-            company_name: companyName,
-            job_title: jobTitle,
-            position_id: positionId,
-            emails: emails,
-            names: names,
-            expire: 14,
-            urls: urls,
-        }
-        // add interviews
-        this.props.addInterviews(meta);
-        let inviteData = {
-            "candidates": invitedCandidates,
-            "isInvited": 1,
-        }
-        // update invite status
-        this.props.updateInviteStatus(inviteData);
+        // delete old interview questions
+        this.props.deleteInterviewQuestions({"position_id": positionId});
+        // add new interview questions
+        setTimeout(() => {this.props.addInterviewQuestion(data)}, 300);
         setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
-        alert("Send Invitation Success");
-        this.props.hideEmbedQForm();
+        alert("Change interview questions Success!");
+        this.props.hideQEditForm();
     }
 
     render() {
@@ -159,7 +103,7 @@ export class EmbedQuestionForm extends Component {
                     <div className="card container" style={{marginTop:"1%", marginBottom: "3%"}}>
                         <form>
                             <div className="form-row" style={{justifyContent: "center", marginTop: "1rem", justifyContent: "left"}}>
-                                <p className= "db-txt5" style={{paddingLeft: "5px"}}>{this.props.curJob.job_details.job_title}</p>
+                                <p className= "db-txt5" style={{paddingLeft: "5px"}}>{this.props.jobTitle}</p>
                             </div>
                             <div className="form-row" style={{justifyContent: "center"}}>
                                 <div className="form-group col-6">
@@ -201,7 +145,11 @@ export class EmbedQuestionForm extends Component {
                                     <p className="center-items db-txt3 ml-2">Please note that the interview questions will be the same for all invited applicants under this job position.</p>
                                     <div className="row">
                                         <textarea id="q1" type="text" style={{width: "85%"}} className="db-question"
-                                        placeholder="You can also type in your own question." required></textarea>
+                                            placeholder="You can also type in your own question."
+                                            defaultValue={this.props.questions?.[0]?.description}
+                                            required
+                                        >
+                                        </textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q1")} className="delete-btn">
                                                 <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
@@ -209,7 +157,10 @@ export class EmbedQuestionForm extends Component {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <textarea id="q2" type="text" style={{width: "85%"}} className="db-question"></textarea>
+                                        <textarea id="q2" type="text" style={{width: "85%"}} className="db-question"
+                                            defaultValue={this.props.questions?.[1]?.description}
+                                        >
+                                        </textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q2")} className="delete-btn">
                                                 <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
@@ -217,7 +168,10 @@ export class EmbedQuestionForm extends Component {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <textarea id="q3" type="text" style={{width: "85%"}} className="db-question"></textarea>
+                                        <textarea id="q3" type="text" style={{width: "85%"}} className="db-question"
+                                            defaultValue={this.props.questions?.[2]?.description}
+                                        >
+                                        </textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q3")} className="delete-btn">
                                                 <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
@@ -227,7 +181,10 @@ export class EmbedQuestionForm extends Component {
                                     {this.props.profile.plan_interval == "Premium" &&
                                     <div>
                                     <div className="row">
-                                        <textarea id="q4" type="text" style={{width: "85%"}} className="db-question"></textarea>
+                                        <textarea id="q4" type="text" style={{width: "85%"}} className="db-question"
+                                            defaultValue={this.props.questions?.[3]?.description}
+                                        >
+                                        </textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q4")} className="delete-btn">
                                                 <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
@@ -235,7 +192,10 @@ export class EmbedQuestionForm extends Component {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <textarea id="q5" type="text" style={{width: "85%"}} className="db-question"></textarea>
+                                        <textarea id="q5" type="text" style={{width: "85%"}} className="db-question"
+                                            defaultValue={this.props.questions?.[4]?.description}
+                                        >
+                                        </textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q5")} className="delete-btn">
                                                 <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
@@ -243,7 +203,10 @@ export class EmbedQuestionForm extends Component {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <textarea id="q6" type="text" style={{width: "85%"}} className="db-question"></textarea>
+                                        <textarea id="q6" type="text" style={{width: "85%"}} className="db-question"
+                                            defaultValue={this.props.questions?.[5]?.description}
+                                        >
+                                        </textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q6")} className="delete-btn">
                                                 <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
@@ -277,6 +240,6 @@ const mapStateToProps = (state) => ({
   jobs: state.job_reducer.jobs,
 });
 
-export default withRouter(connect(mapStateToProps, { addInterviewQuestion })(
-  EmbedQuestionForm
+export default withRouter(connect(mapStateToProps, { addInterviewQuestion, deleteInterviewQuestions, getAllJobs})(
+  EditQuestion
 ));

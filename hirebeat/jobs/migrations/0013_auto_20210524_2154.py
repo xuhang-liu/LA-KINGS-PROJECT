@@ -18,16 +18,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='jobs',
             name='lin_req',
-            field=models.CharField(blank=True, max_length=10, null=True),
+            field=models.CharField(max_length=10, default="1"),
         ),
         migrations.AddField(
             model_name='jobs',
             name='loc_req',
-            field=models.CharField(blank=True, max_length=10, null=True),
+            field=models.CharField(max_length=10, default="1"),
         ),
         migrations.AddField(
             model_name='jobs',
             name='pho_req',
-            field=models.CharField(blank=True, max_length=10, null=True),
+            field=models.CharField(max_length=10, default="1"),
         ),
     ]
