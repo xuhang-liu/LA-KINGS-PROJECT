@@ -24,6 +24,25 @@ class BlogSidebarEmployer extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/employer_blog-employer-branding-vs-recruitment-marketing">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer19.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>May 27, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-employer-branding-vs-recruitment-marketing">
+                                    <a>Employer Branding vs Recruitment Marketing</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/employer_blog-how-ATS-works-in-the-recruitment-process">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer18.jpg" alt="image"/>
@@ -339,25 +358,6 @@ class BlogSidebarEmployer extends Component {
                             <h4 className="title usmall">
                                 <Link to="/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring">
                                     <a>How does a one-way interview help a company in its hiring?</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer2.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Mar 17, 2021</time>
-                            <h4 className="title usmall">
-                                <Link to="/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company">
-                                    <a>Benefits of hiring diverse candidates in your company</a>
                                 </Link>
                             </h4>
                         </div>
