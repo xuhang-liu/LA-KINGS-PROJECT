@@ -20,6 +20,10 @@ class Jobs(models.Model):
     company_overview = models.TextField(null=True, blank=True)
     company_name = models.CharField(max_length=100, null=True, blank=True)
     company_logo = models.CharField(max_length=100, null=True, blank=True)
+    job_post = models.BooleanField(default=True)
+    loc_req = models.CharField(max_length=10, null=True, blank=True) # 0 means no required, 1 means optional, 2 means disabled
+    pho_req = models.CharField(max_length=10, null=True, blank=True)
+    lin_req = models.CharField(max_length=10, null=True, blank=True)
 
 
 class ApplyCandidates(models.Model):
@@ -46,3 +50,4 @@ class ApplyCandidates(models.Model):
     basic_cri_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
     basic_cri_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
     is_viewed = models.BooleanField(default=False)
+    linkedinurl = models.CharField(max_length=100, null=True, blank=True)
