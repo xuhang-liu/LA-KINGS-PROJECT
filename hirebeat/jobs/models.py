@@ -51,3 +51,4 @@ class ApplyCandidates(models.Model):
     basic_cri_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
     is_viewed = models.BooleanField(default=False)
     linkedinurl = models.CharField(max_length=100, null=True, blank=True)
+    apply_source = models.CharField(max_length=100, default="HireBeat")
