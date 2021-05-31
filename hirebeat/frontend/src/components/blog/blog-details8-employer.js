@@ -3,7 +3,6 @@ import PageTitleArea from '../Common/PageTitleArea';
 import BlogDetailsContentEmployer8 from './BlogDetailsContentEmployer8';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
-import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -15,19 +14,7 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer8 extends Component {
     render() {
-        const meta = {
-            title: 'HireBeat Blog – How to Get Your Job Postings Noticed',
-            description: 'It is important for employers to find ways to optimize job postings. This article offers various tactics to help companies stand out and get noticed.',
-            canonical: 'https://hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed',
-            meta: {
-              charset: 'utf-8',
-              name: {
-                keywords: 'job, interview, recruit, google, schema, internship, internet, optimization'
-              }
-            }
-          };
         return (
-            <DocumentMeta {...meta}>
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
@@ -37,7 +24,6 @@ class BlogDetail1_Employer8 extends Component {
                 <BlogDetailsContentEmployer8 />
                 <FreeTrialArea />
             </React.Fragment>
-            </DocumentMeta>
         );
     }
 }

@@ -362,6 +362,7 @@ export class EmployerProfile extends Component {
                                             <div>
                                                 <p className="profile-p" style={{margin: "0rem"}}>Company Logo</p>
                                                 <Avatar
+                                                  imageWidth={205}
                                                   width={285}
                                                   height={200}
                                                   onCrop={this.onCrop}
