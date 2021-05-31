@@ -9,7 +9,6 @@ import {addNewApplyCandidate, getCurrentJobs} from "../../../redux/actions/job_a
 import parse from 'html-react-parser';
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
-import DocumentMeta from 'react-document-meta';
 var ReactS3Uploader = require("react-s3-uploader");
 
 var uri = window.location.search;
@@ -261,19 +260,7 @@ const ApplyJob = (props) =>{
               ]
         });
     }
-    const meta = {
-        title: "Job Apply",
-        description: "Job Apply",
-        canonical: "https://hirebeat.co/apply-job",
-        meta: {
-          charset: 'utf-8',
-          name: {
-            keywords: 'interview, jobs, job interview, recruiting, hiring'
-          }
-        }
-    };
     return (
-    <DocumentMeta {...meta}>
     <React.Fragment>
     <MediaQuery minDeviceWidth={1224}>
     {(props.job.id == "" || props.job.id == null) ?
@@ -959,7 +946,6 @@ const ApplyJob = (props) =>{
         </div>}
         </MediaQuery>
     </React.Fragment>
-    </DocumentMeta>
     )
 };
 

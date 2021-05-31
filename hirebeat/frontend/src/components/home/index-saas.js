@@ -9,10 +9,6 @@ import AmazingFeatures from "../HomeSaas/AmazingFeatures"
 import Progress from '../HomeSaas/Progress';
 import MediaQuery from 'react-responsive';
 import Footer from "../layout/Footer";
-//import {connect} from "react-redux";
-import {Helmet} from "react-helmet";
-//import WhyUs from '../HomeSaas/WhyUs';
-//import CompanyProfile from '../HomeSaas/CompanyProfile';
 
 
 function ScrollToTopOnMount() {
@@ -33,16 +29,6 @@ class IndexSaas extends Component {
     render() {
         return (
             <React.Fragment>
-              <Helmet>
-                <meta charSet="utf-8" />
-                <title>HireBeat – The Best Video Interview Prep Tool For Jobseekers</title>
-                <meta name="description" CONTENT="Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!"></meta>
-                <link rel="canonical" href="https://hirebeat.co/job-seekers"/>
-                <meta property="og:title" content="HireBeat – The Best Video Interview Prep Tool For Jobseekers" />
-                <meta property="og:description" content="Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!" />
-                <meta property="og:image" content="https://hirebeat-assets.s3.amazonaws.com/seo/c-home.png" />
-                <meta property="og:url" content="https://hirebeat.co/job-seekers" />
-              </Helmet>
               <MediaQuery minDeviceWidth={1224}>
               <div className="min-width-1290">
                 <ScrollToTopOnMount />
