@@ -47,7 +47,7 @@ const ApplyJob = (props) =>{
                 ]
             });
         }
-        if(((job_id == null || job_id == "") ? "":props.job.emails) == email){
+        if(((job_id == null || job_id == "") ? "":props.job.emails.map(v => v.toLowerCase())).includes(email.toLowerCase())){
             return confirmAlert({
                 title: "Already Applied!",
                 message: "You have already applied this job.",
@@ -86,7 +86,7 @@ const ApplyJob = (props) =>{
                 linkedinurl: linkedinurl,
             };
             props.addNewApplyCandidate(data);
-            props.uploader.uploadFile(resume);
+            //props.uploader.uploadFile(resume);
         }else{
             if (passwordsMatch()) {
                 props.register(
@@ -105,7 +105,7 @@ const ApplyJob = (props) =>{
                     linkedinurl: linkedinurl,
                 };
                 props.addNewApplyCandidate(data);
-                props.uploader.uploadFile(resume);
+                //props.uploader.uploadFile(resume);
             }
         }
     }
@@ -122,7 +122,7 @@ const ApplyJob = (props) =>{
                 ]
           });
         }
-        if(((job_id == null || job_id == "") ? "":props.job.emails) == email){
+        if(((job_id == null || job_id == "") ? "":props.job.emails.map(v => v.toLowerCase())).includes(email.toLowerCase())){
             return confirmAlert({
                 title: "Already Applied!",
                 message: "You have already applied this job.",
@@ -160,7 +160,7 @@ const ApplyJob = (props) =>{
             linkedinurl: linkedinurl,
         };
         props.addNewApplyCandidate(data);
-        props.uploader.uploadFile(resume);
+        //props.uploader.uploadFile(resume);
     }
     function onChange1(e) {
         setUsername(e.target.value);
