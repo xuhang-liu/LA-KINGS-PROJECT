@@ -3,7 +3,6 @@ import PageTitleArea from '../Common/PageTitleArea';
 import BlogDetailsContentEmployer10 from './BlogDetailsContentEmployer10';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
-import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -15,19 +14,7 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer10 extends Component {
     render() {
-        const meta = {
-            title: 'HireBeat Blog – Four Tips to Build a Successful Campus Recruiting Strategy',
-            description: 'Universities are the go-to options for the business to attract new candidates. In this article, you will know four tips about campus recruitment strategy.',
-            canonical: 'https://hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy',
-            meta: {
-              charset: 'utf-8',
-              name: {
-                keywords: 'campus recruitment, campus recruiting, job, interview, strategy, millennials. candidate, job fair, New York, NYC, California, Texas'
-              }
-            }
-          };
         return (
-            <DocumentMeta {...meta}>
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
@@ -37,7 +24,6 @@ class BlogDetail1_Employer10 extends Component {
                 <BlogDetailsContentEmployer10 />
                 <FreeTrialArea />
             </React.Fragment>
-            </DocumentMeta>
         );
     }
 }
