@@ -86,7 +86,7 @@ const ApplyJob = (props) =>{
                 linkedinurl: linkedinurl,
             };
             props.addNewApplyCandidate(data);
-            //props.uploader.uploadFile(resume);
+            props.uploader.uploadFile(resume);
         }else{
             if (passwordsMatch()) {
                 props.register(
@@ -105,7 +105,7 @@ const ApplyJob = (props) =>{
                     linkedinurl: linkedinurl,
                 };
                 props.addNewApplyCandidate(data);
-                //props.uploader.uploadFile(resume);
+                props.uploader.uploadFile(resume);
             }
         }
     }
@@ -160,7 +160,7 @@ const ApplyJob = (props) =>{
             linkedinurl: linkedinurl,
         };
         props.addNewApplyCandidate(data);
-        //props.uploader.uploadFile(resume);
+        props.uploader.uploadFile(resume);
     }
     function onChange1(e) {
         setUsername(e.target.value);
