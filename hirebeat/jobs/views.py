@@ -10,8 +10,20 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 import xml.etree.ElementTree as ET
-from xml.dom import minidom
 from datetime import datetime
+import base64
+from boto.s3.key import Key
+import time
+import boto
+import os
+
+# configure s3
+if not boto.config.get('s3', 'use-sigv4'):
+    boto.config.add_section('s3')
+    boto.config.set('s3', 'use-sigv4', 'True')
+boto.config.set('s3', 'host', 's3.amazonaws.com')
+
+conn = boto.connect_s3(os.getenv("AWSAccessKeyId"), os.getenv("AWSSecretKey"))
 
 @api_view(['POST'])
 def add_new_job(request):
@@ -338,3 +350,53 @@ def add_zr_feed_xml(request):
     tree.write('zrjobs.xml')
 
     return Response("Add new job to zr feed successfully", status=status.HTTP_200_OK)
+
+def upload_cv_to_s3(encoded_cv):
+    # decode resume and convert to string
+    resume = base64.b64decode(encoded_cv)
+    content = resume.decode("utf-8")
+    file_name = str(int(time.time())) + '.txt'
+    # upload txt file to s3
+    b = conn.get_bucket(os.getenv("CV_Interview_Bucket"))
+    k = Key(b)
+    k.key = file_name
+    k.set_contents_from_string(content)
+    resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
+    return resume_url
+
+@api_view(['POST'])
+def add_new_apply_candidate_from_zr(request):
+    job_id = request.data['job_id']
+    firstname = request.data['first_name']
+    lastname = request.data['last_name']
+    phone = request.data['phone']
+    email = request.data['email']
+    location = request.data['location']
+    resume = request.data['resume']
+    # resume_url = upload_cv_to_s3(resume) # todo: change here back
+    linkedinurl = request.data['linkedinurl']
+    fullname = firstname + " " + lastname
+    jobs = Jobs.objects.get(pk=job_id)
+    user = User.objects.get(pk=jobs.user_id)
+    ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
+                                   location=location, resume_url=resume, linkedinurl=linkedinurl, apply_source="ZipRecruiter")
+    # send email notification
+    # subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    # message = get_template("jobs/new_candidate_notification_email.html")
+    # context = {
+    #     'fullname': fullname,
+    #     'title': jobs.job_title,
+    # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [user.email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
+
+    return Response("Add new apply candidate from ZipRecruiter successfully", status=status.HTTP_202_ACCEPTED)
