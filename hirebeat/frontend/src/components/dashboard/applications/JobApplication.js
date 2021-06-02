@@ -1652,6 +1652,7 @@ function MyVerticallyCenteredModal(props) {
         viewPrevResult={props.viewPrevResult}
         viewNextResult={props.viewNextResult}
         applicants={props.applicants}
+        hasSwitch={true}
       />
     </MyModal80>
   );

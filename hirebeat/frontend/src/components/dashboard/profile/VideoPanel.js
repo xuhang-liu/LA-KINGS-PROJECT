@@ -99,8 +99,8 @@ export class VideoPanel extends Component {
                             <div>
                                 <h3 className="profile-h3">Record Profile Video Guide</h3>
                                 <span className="profile-p5" style={{color: "#090D3A"}}>
-                                    Record your profile video to unlock unlimited access to interview practice and resume &nbsp;
-                                    screening now! Recruiters are also more likely to notice you during candidates searching. &nbsp;
+                                    Record your profile video to unlock unlimited access to interview practice and resume
+                                    screening now! Recruiters are also more likely to notice you during candidates searching.
                                     Here is the suggested flow from our team:
                                 </span>
                                 <div style={{marginTop: "2rem", marginBottom: "2rem"}}>
