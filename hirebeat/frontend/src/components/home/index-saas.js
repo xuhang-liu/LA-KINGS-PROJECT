@@ -9,6 +9,7 @@ import AmazingFeatures from "../HomeSaas/AmazingFeatures"
 import Progress from '../HomeSaas/Progress';
 import MediaQuery from 'react-responsive';
 import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 
 
 function ScrollToTopOnMount() {
@@ -27,7 +28,19 @@ class IndexSaas extends Component {
         this.timerHandle = setTimeout(() => this.setState({ loading: false }), 666);
       }
     render() {
+      const meta = {
+        title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
+        description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+        canonical: 'https://hirebeat.co/job-seekers',
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+          }
+        }
+      };
         return (
+          <DocumentMeta {...meta}>
             <React.Fragment>
               <MediaQuery minDeviceWidth={1224}>
               <div className="min-width-1290">
@@ -58,6 +71,7 @@ class IndexSaas extends Component {
                 <Loader loading={this.state.loading} />
               </MediaQuery>
             </React.Fragment>
+          </DocumentMeta>
         );
     }
 }
