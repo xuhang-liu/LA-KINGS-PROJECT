@@ -127,24 +127,26 @@ class ReviewApplication extends Component{
                                 </div></div>}
                         </div>
                         <div className="col-9 mt-4">
-                            <ApplicationVideo   int_ques={this.props.int_ques} 
-                                                positionId={this.props.positionId}
-                                                quesiton_array = {this.props.quesiton_array}
-                                                video_array = {this.props.video_array}
-                                                stars = {this.props.stars}
-                                                comments = {this.props.comments}
-                                                pk = {this.props.pk}
-                                                refresh={this.props.refresh}
-                                                updateStatus={this.updateStatus}
-                                                commentStatus={this.props.commentStatus}
-                                                profile={this.props.profile}
-                                                subreviewerUpdateComment={this.props.subreviewerUpdateComment}
-                                                current={this.props.current}
-                                                setCurrent={this.props.setCurrent}
-                                                start={this.props.start}
-                                                end={this.props.end}
-                                                viewPrevResult={this.props.viewPrevResult}
-                                                viewNextResult={this.props.viewNextResult}
+                            <ApplicationVideo
+                                int_ques={this.props.int_ques}
+                                positionId={this.props.positionId}
+                                quesiton_array = {this.props.quesiton_array}
+                                video_array = {this.props.video_array}
+                                stars = {this.props.stars}
+                                comments = {this.props.comments}
+                                pk = {this.props.pk}
+                                refresh={this.props.refresh}
+                                updateStatus={this.updateStatus}
+                                commentStatus={this.props.commentStatus}
+                                profile={this.props.profile}
+                                subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                current={this.props.current}
+                                setCurrent={this.props.setCurrent}
+                                start={this.props.start}
+                                end={this.props.end}
+                                viewPrevResult={this.props.viewPrevResult}
+                                viewNextResult={this.props.viewNextResult}
+                                hasSwitch={this.props.hasSwitch}
                             />
                         </div>
                     </div>
