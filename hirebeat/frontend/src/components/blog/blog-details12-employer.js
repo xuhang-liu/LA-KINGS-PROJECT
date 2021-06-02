@@ -3,6 +3,7 @@ import PageTitleArea from '../Common/PageTitleArea';
 import BlogDetailsContentEmployer12 from './BlogDetailsContentEmployer12';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -14,7 +15,19 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer12 extends Component {
     render() {
+        const meta = {
+            title: 'HireBeat Blog – Workplace Camaraderie: Your Powerful Tool For Success',
+            description: 'Camaraderie helps build a high-level teamwork and a more harmonious workplace. This article digs deeper into Camaraderie and aids you to build a workplace camaraderie.',
+            canonical: 'https://hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'campus recruitment, recruit, job, interview, strategy, camaraderie. candidate, job fair, workplace, diversity, New York, NYC, California, Texas'
+              }
+            }
+          };
         return (
+            <DocumentMeta {...meta}>
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
@@ -24,6 +37,7 @@ class BlogDetail1_Employer12 extends Component {
                 <BlogDetailsContentEmployer12 />
                 <FreeTrialArea />
             </React.Fragment>
+            </DocumentMeta>
         );
     }
 }
