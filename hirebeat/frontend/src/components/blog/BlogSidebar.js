@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/blog-wha-is-your-expected-salary">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog28.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Jun 04, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/blog-wha-is-your-expected-salary">
+                                    <a>What Is Your Expected Salary?</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/blog-ace-your-zoom-job-interview">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog27.jpg" alt="image"/>
@@ -358,25 +377,6 @@ class BlogSidebar extends Component {
                             <h4 className="title usmall">
                                 <Link to="/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
                                     <a>"Where Do You To See Yourself In 5 Years"</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog9.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Nov 02, 2020</time>
-                            <h4 className="title usmall">
-                                <Link to="/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system">
-                                    <a>Tips for Getting Your Resume Past an Applicant Tracking System</a>
                                 </Link>
                             </h4>
                         </div>
