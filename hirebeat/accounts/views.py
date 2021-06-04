@@ -794,3 +794,14 @@ def create_or_update_user_logo(request):
         # create profile detail information
         ProfileDetail.objects.create(user_id=user_id, logo_url=logo_url)
     return Response("Create or Update user logo successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['GET'])
+def check_user_existence(request):
+    email = request.query_params.get("email")
+    data = {}
+    user = User.objects.filter(email=email)
+    if len(user) == 0:
+        data["user_exists"] = False
+    else:
+        data["user_exists"] = True
+    return Response({"data": data})

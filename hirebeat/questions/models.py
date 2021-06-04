@@ -126,3 +126,10 @@ class SubReviewers(models.Model):
     position = models.ForeignKey(Positions, null=True, blank=True, on_delete=models.CASCADE)
     def __str__(self):
         return self.r_email
+
+class ExternalReviewers(models.Model):
+    r_name = models.CharField(max_length=30, null=True, blank=True)
+    r_email = models.CharField(max_length=50, null=True, blank=True)
+    company_name = models.CharField(max_length=30,null=True, blank=True)
+    position = models.ForeignKey(Positions, null=True, blank=True, on_delete=models.CASCADE)
+

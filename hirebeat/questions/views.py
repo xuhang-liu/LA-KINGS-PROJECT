@@ -1,5 +1,6 @@
 from django.db.models.aggregates import Count
-from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, InterviewResumes, SubReviewers
+from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, \
+    InterviewResumes, SubReviewers, ExternalReviewers
 from accounts.models import CandidatesInterview, Profile
 from videos.models import WPVideo
 from jobs.models import ApplyCandidates, Jobs
@@ -18,6 +19,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from datetime import timedelta
 from django.utils import timezone
 import math
+import base64
 
 class QuestionAPIView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
@@ -450,6 +452,7 @@ def add_sub_reviewer(request):
     profile = {}
     sub_name = request.data["sub_name"]
     sub_email = request.data["sub_email"]
+    encoded_email = request.data["encoded_email"]
     company_name = request.data["company_name"]
     position_id = request.data["position_id"]
     master_email = request.data["master_email"]
@@ -459,13 +462,21 @@ def add_sub_reviewer(request):
         profile = Profile.objects.filter(user_id=u.id, is_subreviwer=False)
     if(len(profile) == 0):
         SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name, position=positions)
-        send_sub_invitation(sub_name, sub_email, company_name, master_email, positions.job_title)
+        send_sub_invitation(sub_name, sub_email, encoded_email, company_name, master_email, positions.job_title)
     return Response("Add sub reviewer successfully", status=status.HTTP_200_OK)        
 
-def send_sub_invitation(name, email, company_name, master_email, position_name):
+
+def send_sub_invitation(name, email, encoded_email, company_name, master_email, position_name):
     subject = 'Co-review Invitation to HireBeat for '+ company_name
-    message = get_template("questions/sub_reviewer_email.html")
+    user = User.objects.filter(email=email)
+    message = {}
+    if len(user) == 0:
+        message = get_template("questions/sub_reviewer_email.html")
+    else:
+        message = get_template("questions/external_reviewer_notice.html")
+    link = "https://hirebeat.co/employer_register?" + encoded_email
     context = {
+        'link': link,
         'name': name,
         'company_name': company_name,
         'master_email': master_email,
@@ -612,3 +623,59 @@ def delete_interview_questions(request):
     position_id = request.data["position_id"]
     InterviewQuestions.objects.filter(positions_id=position_id).delete()
     return Response("Delete interview questions successfully", status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def add_external_reviewer(request):
+    profile = {}
+    ex_reviewer_name = request.data["ex_reviewer_name"]
+    ex_reviewer_email = request.data["ex_reviewer_email"]
+    encoded_email = request.data["encoded_email"]
+    company_name = request.data["company_name"]
+    position_id = request.data["position_id"]
+    master_email = request.data["master_email"]
+    positions = Positions.objects.get(pk=position_id)
+    user = User.objects.filter(email=ex_reviewer_email)
+    for u in user:
+        profile = Profile.objects.filter(user_id=u.id, is_external_reviewer=False)
+    if len(profile) == 0:
+        ExternalReviewers.objects.create(r_name=ex_reviewer_name, r_email=ex_reviewer_email, company_name=company_name, position=positions)
+        send_ex_reviewer_invitation(ex_reviewer_name, ex_reviewer_email,encoded_email, company_name, master_email, positions.job_title)
+    return Response("Add external reviewer successfully", status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def delete_external_reviewer(request):
+    ex_reviewer_id = request.data["ex_reviewer_id"]
+    ExternalReviewers.objects.get(pk=ex_reviewer_id).delete()
+    return Response("Remove external reviewer successfully", status=status.HTTP_200_OK)
+
+
+def send_ex_reviewer_invitation(name, email, encoded_email, company_name, master_email, position_name):
+    subject = 'Co-review Invitation to HireBeat for ' + company_name
+    # determine message template by email
+    user = User.objects.filter(email=email)
+    message = {}
+    if len(user) == 0:
+        message = get_template("questions/sub_reviewer_email.html")
+    else:
+        message = get_template("questions/external_reviewer_notice.html")
+    link = "https://hirebeat.co/employer_register?" + encoded_email
+    context = {
+        'link': link,
+        'name': name,
+        'company_name': company_name,
+        'master_email': master_email,
+        'position_name': position_name,
+    }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()

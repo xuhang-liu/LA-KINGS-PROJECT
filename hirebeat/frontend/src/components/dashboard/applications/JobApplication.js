@@ -139,7 +139,7 @@ const JobViewDetail = (props) => {
             buttons: [
                 {
                   label: 'Yes',
-                  onClick: () => confirmClose()
+                  onClick: () => confirmClose() // todo change here, it should be confirmReopen
                 },
                 {
                   label: 'No'
@@ -180,12 +180,15 @@ const JobViewDetail = (props) => {
     if((props.profile.membership == "Premium") && (props.profile.plan_interval == "Premium")){
         let sub_reviewer_name = "";
         let sub_reviewer_email = "";
+        let encoded_email = "";
         function submitSubReviewer(e) {
             sub_reviewer_name = document.getElementById("sub_reviewer_name").value;
             sub_reviewer_email = document.getElementById("sub_reviewer_email").value;
+            encoded_email = window.btoa("email=" + sub_reviewer_email);
             let data = {
                 sub_name: sub_reviewer_name,
                 sub_email: sub_reviewer_email,
+                encoded_email: encoded_email,
                 company_name: props.companyName,
                 position_id: props.positionId,
                 master_email: props.user.email,
@@ -200,36 +203,59 @@ const JobViewDetail = (props) => {
             customUI: ({ onClose }) => {
               return (
                 <div className="interview-txt7" style={{backgroundColor:'#ffffff', borderRadius:"10px", border:"2px solid #E8EDFC", padding:"1rem", paddingLeft:"3rem", paddingRight:"3rem"}}>
-                <form onSubmit={submitSubReviewer}>
-                <div className="form-row">
-                    <div className="form-group col-5">
-                        <label style={{ fontSize: "17px", margin:"2%"}}>
-                            Enter Name
-                        </label>
-                        <input type="text" id="sub_reviewer_name" className="form-control" required="required" placeHolder="John"/>
-                    </div>
-                    <div className="form-group col-7">
-                        <label style={{ fontSize: "17px", margin:"2%"}}>
-                            Enter Email
-                        </label>
-                        <input type="email" id="sub_reviewer_email" className="form-control" required="required" placeHolder="john@example.com"/>
-                    </div>
-                </div>
-                <div className="form-row justify-items">
-                    <div className="form-group col-9">
-                        <h5>Support up to 3 reviewers</h5>
-                    </div>
-                    <div className="form-group col-3">
-                    <button
-                        type="submit"
-                        className="default-btn1"
-                        style={{paddingLeft:"25px"}}
-                    >
-                        Invite
-                    </button>
-                    </div>
-                </div>
-                </form>
+                    <form onSubmit={submitSubReviewer}>
+                        <div className="form-row">
+                            <h3 className="subreviewer-h3">Invite Sub-Reviewer</h3>
+                        </div>
+                        <div className="form-row">
+                            <p className="subreviewer-p">
+                                You can invite team members within your organization to <br/>
+                                join the screening process as a sub-reviewer. <br/>
+                                A sub-reviewer can view and shortlist candidates who <br/>
+                                have completed the video interview.
+                            </p>
+                        </div>
+                        <div className="form-row" style={{marginTop: "1rem"}}>
+                            <div className="form-group col-5">
+                                <label style={{ fontSize: "17px", margin:"0.5rem"}}>
+                                    Enter Name
+                                </label>
+                                <input type="text" id="sub_reviewer_name" className="form-control" required="required" placeHolder="John"/>
+                            </div>
+                            <div className="form-group col-7">
+                                <label style={{ fontSize: "17px", margin:"0.5rem"}}>
+                                    Enter Email
+                                </label>
+                                <input type="email" id="sub_reviewer_email" className="form-control" required="required" placeHolder="john@example.com"/>
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-9">
+                                <h5>Support up to 3 reviewers</h5>
+                            </div>
+                        </div>
+                        <div className="form-row justify-items">
+                            <div className="form-group col-3" style={{marginRight: "3rem"}}>
+                                <button
+                                    type="button"
+                                    className="default-btn1"
+                                    style={{paddingLeft:"25px", backgroundColor: "red"}}
+                                    onClick={() => onClose()}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                            <div className="form-group col-3">
+                                <button
+                                    type="submit"
+                                    className="default-btn1"
+                                    style={{paddingLeft:"25px"}}
+                                >
+                                    Invite
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
               );
             }
@@ -315,7 +341,7 @@ const JobViewDetail = (props) => {
                                             style={{paddingLeft: "25px"}}
                                             onClick={inviteReviever}
                                         >
-                                            + Invite Reviewer
+                                            + Sub-Reviewer
                                             <span></span>
                                         </button>}
                                         </div>}

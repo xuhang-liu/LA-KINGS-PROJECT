@@ -65,7 +65,11 @@ class Profile(models.Model):
     plan_interval = models.CharField(max_length=30,null=True, blank=True)
     company_name = models.CharField(max_length=30,null=True, blank=True)
     is_subreviwer = models.BooleanField(default=False)
+    is_external_reviewer = models.BooleanField(default=False)
     reviewer_count = models.IntegerField(default=3, validators=[
+        MaxValueValidator(1000)
+    ])
+    external_reviewer_count = models.IntegerField(default=3, validators=[
         MaxValueValidator(1000)
     ])
     position_count = models.IntegerField(default=0, validators=[

@@ -6,8 +6,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import ReviewApplication from './ReviewApplication';
 import { ResumeEva } from "./applications/ResumeEva";
 import { connect } from 'react-redux';
-import { loadStarList } from './../../redux/actions/question_actions';
-import { getResumeURL } from "../../redux/actions/question_actions";
+import { loadStarList, getResumeURL, addExReviewer, delExReviewer } from './../../redux/actions/question_actions';
+import { withRouter } from "react-router-dom";
+import { confirmAlert } from 'react-confirm-alert';
 
 const ShortList = (props) => {
     const [curJobId, setCurJobId] = useState(Object.keys(props.postedJobs)[0]);
@@ -31,19 +32,26 @@ const ShortList = (props) => {
                     <div>
                         {Object.keys(props.postedJobs).reverse().map((key) => {
                             let p = props.postedJobs[key];
-                            return(
-                                <ShortListCard
-                                    jobId={p.job_id}
-                                    jobTitle={p.job_title}
-                                    inviteDate={p.invite_date}
-                                    applicants={p.applicants}
-                                    subreviewers={p.subreviewers}
-                                    profile={props.profile}
-                                    refreshPage={refreshPage}
-                                    positionId={p.position_id}
-                                    setSelectedId={setSelectedId}
-                                />
-                            )
+                            if (!p.is_closed) {
+                                return(
+                                    <ShortListCard
+                                        jobId={p.job_id}
+                                        jobTitle={p.job_title}
+                                        inviteDate={p.invite_date}
+                                        applicants={p.applicants}
+                                        subreviewers={p.subreviewers}
+                                        profile={props.profile}
+                                        refreshPage={refreshPage}
+                                        positionId={p.position_id}
+                                        setSelectedId={setSelectedId}
+                                        addExReviewer={props.addExReviewer}
+                                        delExReviewer={props.delExReviewer}
+                                        getPJobs={props.getPJobs}
+                                        user={props.user}
+                                        companyName={props.companyName}
+                                    />
+                                )
+                            }
                         })}
                     </div> :
                     <div>
@@ -98,7 +106,7 @@ const mapStateToProps = (state) => ({
   });
   
 
-export default connect(mapStateToProps , { loadStarList, getResumeURL })(ShortList); 
+export default withRouter(connect(mapStateToProps , { loadStarList, getResumeURL, addExReviewer, delExReviewer })(ShortList));
 
 function getQualifiedApplicants(applicants) {
     let len = applicants.length;
@@ -110,8 +118,124 @@ function getQualifiedApplicants(applicants) {
     }
     return qualifiedApplicants;
 }
+
 const ShortListCard = (props) => {
     const qualifiedApplicants = getQualifiedApplicants(props.applicants);
+
+    function inviteExReviewer() {
+        if((props.profile.membership == "Premium") && (props.profile.plan_interval == "Premium")){
+            let ex_reviewer_name = "";
+            let ex_reviewer_email = "";
+            let encoded_email = "";
+            function submitExReviewer(e) {
+                ex_reviewer_name = document.getElementById("ex_reviewer_name").value;
+                ex_reviewer_email = document.getElementById("ex_reviewer_email").value;
+                encoded_email = window.btoa("email=" + ex_reviewer_email);
+                let data = {
+                    ex_reviewer_name: ex_reviewer_name,
+                    ex_reviewer_email: ex_reviewer_email,
+                    encoded_email: encoded_email,
+                    company_name: props.companyName,
+                    position_id: props.positionId,
+                    master_email: props.user.email,
+                };
+                props.addExReviewer(data);
+                props.getPJobs();
+                e.preventDefault();
+                sendSuccessAlert();
+            }
+
+            confirmAlert({
+                customUI: ({ onClose }) => {
+                  return (
+                    <div className="interview-txt7" style={{backgroundColor:'#ffffff', borderRadius:"10px", border:"2px solid #E8EDFC", padding:"1rem", paddingLeft:"3rem", paddingRight:"3rem"}}>
+                        <form onSubmit={submitExReviewer}>
+                            <div className="form-row">
+                                <h3 className="subreviewer-h3">Invite External Reviewer</h3>
+                            </div>
+                            <div className="form-row">
+                                <p className="subreviewer-p">
+                                    You can invite people outside your organization to join <br/>
+                                    the recruiting process as an external reviewer. <br/>
+                                    An external reviewer can only see the shortlisted <br/>
+                                    candidates for the job position you shared, including <br/>
+                                    their video interview and resume.
+                                </p>
+                            </div>
+                            <div className="form-row" style={{marginTop: "1rem"}}>
+                                <div className="form-group col-5">
+                                    <label style={{ fontSize: "17px", margin:"0.5rem"}}>
+                                        Enter Name
+                                    </label>
+                                    <input type="text" id="ex_reviewer_name" className="form-control" required="required" placeHolder="John"/>
+                                </div>
+                                <div className="form-group col-7">
+                                    <label style={{ fontSize: "17px", margin:"0.5rem"}}>
+                                        Enter Email
+                                    </label>
+                                    <input type="email" id="ex_reviewer_email" className="form-control" required="required" placeHolder="john@example.com"/>
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-9">
+                                    <h5>Support up to 3 reviewers</h5>
+                                </div>
+                            </div>
+                            <div className="form-row justify-items">
+                                <div className="form-group col-3" style={{marginRight: "3rem"}}>
+                                    <button
+                                        type="button"
+                                        className="default-btn1"
+                                        style={{paddingLeft:"25px", backgroundColor: "red"}}
+                                        onClick={() => onClose()}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                                <div className="form-group col-3">
+                                    <button
+                                        type="submit"
+                                        className="default-btn1"
+                                        style={{paddingLeft:"25px"}}
+                                    >
+                                        Invite
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                  );
+                }
+            });
+        }
+        else {
+            confirmAlert({
+                title: 'Upgrade Now!',
+                message: 'You need Premium Plan to unlock Team Collaboration.',
+                buttons: [
+                    {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
+                    {label: 'OK'},
+                ]
+            });
+        }
+    }
+
+    function deleteExReviewer(ex_reviewer_id) {
+        let data = {ex_reviewer_id: ex_reviewer_id};
+        confirmAlert({
+            title: "Confirm to remove",
+            message: "Do you want to remove this reviewer?",
+            buttons: [
+                {
+                  label: 'Yes',
+                  onClick: () => {props.delExReviewer(data); deleteSuccessAlert(); props.getPJobs();}
+                },
+                {
+                  label: 'No'
+                }
+            ]
+        });
+    }
 
     return (
         <React.Fragment>
@@ -137,13 +261,13 @@ const ShortListCard = (props) => {
                             <div className="col-2 mt-4" style={{marginRight:"-2rem"}}>
                             {props.subreviewers.map((sub, i) => {
                                 return (
-                                    <span onClick={() => {deleteReviever(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
+                                    <span onClick={() => {deleteExReviewer(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
                                     <p className="sub_submenu" style={{minWidth:"6rem"}}>{sub.r_name.split(" ")[0]}</p>
                                     </span>
                                 )
                             })}
                             </div>
-                            {/*<div className="col-3">
+                            <div className="col-3">
                                 {!props.profile.is_subreviwer &&
                                 <div>
                                     {qualifiedApplicants.length > 0 &&
@@ -151,6 +275,7 @@ const ShortListCard = (props) => {
                                     {(props.subreviewers.length < Number(props.profile.reviewer_count)) &&
                                     <button
                                         className="default-btn1 interview-txt6 mt-4"
+                                        onClick={inviteExReviewer}
                                         style={{paddingLeft: "25px"}}
                                     >
                                         + Invite External Reviewer
@@ -158,7 +283,7 @@ const ShortListCard = (props) => {
                                     </button>}
                                     </div>}
                                 </div>}
-                            </div>*/}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -389,3 +514,27 @@ function MyVerticallyCenteredModal(props) {
       </MyModal80>
     );
   };
+
+  function sendSuccessAlert() {
+    confirmAlert({
+      title: "Send Invitation Success",
+      message: "You have sent the invitation successfully.",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function deleteSuccessAlert() {
+    confirmAlert({
+      title: "Remove Success",
+      message: "You have removed reviewer successfully.",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
