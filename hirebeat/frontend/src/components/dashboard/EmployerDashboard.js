@@ -151,10 +151,10 @@ export class EmployerDashboard extends Component {
   }
 
   renderJobCreation = () => {
-    if(this.props.profile.company_name == "" || this.props.profile.company_name == null){
+    if(this.props.employerProfileDetail.summary == "" || this.props.employerProfileDetail.summary == null){
       confirmAlert({
         title: 'One More Step!',
-        message: 'We Need Your Company Name to Start 😢',
+        message: 'We Need Your Company Overview to Start 😢',
         buttons: [
           {
             label: 'Ok',
@@ -162,7 +162,7 @@ export class EmployerDashboard extends Component {
         ]
         });
       this.setState({
-        subpage: "settings",
+        subpage: "employerProfile",
         }
       )
     }else if((this.props.profile.position_count)>=(this.props.profile.position_limit)){

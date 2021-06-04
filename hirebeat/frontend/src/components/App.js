@@ -45,6 +45,7 @@ import BlogDetail16_Employer from "./blog/blog-details16-employer";
 import BlogDetail17_Employer from "./blog/blog-details17-employer";
 import BlogDetail18_Employer from "./blog/blog-details18-employer";
 import BlogDetail19_Employer from "./blog/blog-details19-employer";
+import BlogDetail20_Employer from "./blog/blog-details20-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -72,6 +73,7 @@ import BlogDetail24 from "./blog/blog-details24";
 import BlogDetail25 from "./blog/blog-details25";
 import BlogDetail26 from "./blog/blog-details26";
 import BlogDetail27 from "./blog/blog-details27";
+import BlogDetail28 from "./blog/blog-details28";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -322,6 +324,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-personality-assessment-tools-employers-must-know-about" component={BlogDetail17_Employer} />
                 <Route exact path="/employer_blog-how-ATS-works-in-the-recruitment-process" component={BlogDetail18_Employer} />
                 <Route exact path="/employer_blog-employer-branding-vs-recruitment-marketing" component={BlogDetail19_Employer} />
+                <Route exact path="/employer_blog-8-tips-to-increase-resume-screening-effectiveness" component={BlogDetail20_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
@@ -349,6 +352,7 @@ class App extends Component {
                 <Route exact path="/blog-4-most-commonly-asked-questions-in-an-interview" component={BlogDetail25} />
                 <Route exact path="/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate" component={BlogDetail26} />
                 <Route exact path="/blog-ace-your-zoom-job-interview" component={BlogDetail27} />
+                <Route exact path="/blog-wha-is-your-expected-salary" component={BlogDetail28} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer-login" component={EmployerLogin} />

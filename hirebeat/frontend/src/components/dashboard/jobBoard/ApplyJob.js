@@ -296,13 +296,12 @@ const ApplyJob = (props) =>{
                         <p className="mt-5" style={{fontWeight:"500", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
                         <div>
                             <br/>
-                            {(((job_id == null || job_id == "") ? "":props.job.company_overview).toString().length > 11) &&
                             <div>
                                 <h2 className="mb-3">Company Overview</h2>
                                 <div className="mb-3">
                                     {parse(''+((job_id == null || job_id == "") ? "":props.job.company_overview)+'')}
                                 </div>
-                            </div>}
+                            </div>
                             <h2 className="mb-3">Job Description</h2>
                             <div className="mb-3">
                             {parse(''+((job_id == null || job_id == "") ? "":props.job.job_description)+'')}
@@ -696,13 +695,12 @@ const ApplyJob = (props) =>{
                             </div>
                         </div>
                         <div>
-                            {(((job_id == null || job_id == "") ? "":props.job.company_overview).toString().length > 11) &&
                             <div>
                                 <h2 className="mb-3">Company Overview</h2>
                                 <div className="mb-3">
                                     {parse(''+((job_id == null || job_id == "") ? "":props.job.company_overview)+'')}
                                 </div>
-                            </div>}
+                            </div>
                             <h2 className="mb-3">Job Description</h2>
                             <div className="mb-3">
                             {parse(''+((job_id == null || job_id == "") ? "":props.job.job_description)+'')}

@@ -87,6 +87,7 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/blog-wha-is-your-expected-salary",
     "/blog-ace-your-zoom-job-interview",
     "/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate",
     "/blog-4-most-commonly-asked-questions-in-an-interview",
@@ -117,6 +118,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog28.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog27.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog26.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog25.jpg",
@@ -147,6 +149,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Jun 04, 2021",
     "May 17, 2021",
     "Apr 30, 2021",
     "Apr 08, 2021",
@@ -177,6 +180,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "WHAT IS YOUR EXPECTED SALARY?",
     "ACE YOUR ZOOM JOB INTERVIEW",
     "HOW TO STAY COMPETITIVE IN YOUR JOB SEARCH",
     "4 MOST COMMONLY ASKED QUESTIONS",
