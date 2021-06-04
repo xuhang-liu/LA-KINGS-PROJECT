@@ -111,44 +111,46 @@ def get_posted_jobs(request):
     int_dots = 0
     job_dots = 0
     user_id = request.query_params.get("user_id")
-    positions = Positions.objects.filter(user_id=user_id)
-    for i in range(len(positions)):
-        positions_id = positions[i].id
-        # get each position applicants
-        applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
-        for j in range(len(applicants)):
-            applicant_info = User.objects.filter(email=applicants[j]["email"]).values()
-            if len(applicant_info) == 1:
-                applicants[j]["user_id"] = applicant_info[0]["id"]
-        questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
-        int_dot = InvitedCandidates.objects.filter(positions_id=positions_id, is_recorded=True, video_count__gt=0, is_viewed=False, comment_status=0).count()
-        int_dots += int_dot
-
-        if (len(SubReviewers.objects.filter(position_id=positions_id))>0):
-            subreviewers = list(SubReviewers.objects.filter(position_id=positions_id).values())
-        else:
-            subreviewers = []
-        job_details = {
-            "position_id": positions_id,
-            "job_id": positions[i].job_id,
-            "job_title": positions[i].job_title,
-            "is_closed": positions[i].is_closed,
-            "invite_date": positions[i].invite_date,
-            "applicants": applicants,
-            "questions": questions,
-            "subreviewers": subreviewers,
-        }
-        # convert to json
-        data[positions_id] = job_details
-
-    jobs = Jobs.objects.filter(user_id=user_id)
-    for i in range(len(jobs)):
-        jobs_id = jobs[i].id
-        job_dot = ApplyCandidates.objects.filter(jobs_id=jobs_id, is_invited=0, is_viewed=False).count()
-        job_dots += job_dot
-
     profile = Profile.objects.get(user_id=user_id)
-    if profile.is_subreviwer:
+    # employer role
+    if profile.is_subreviwer is False and profile.is_external_reviewer is False:
+        positions = Positions.objects.filter(user_id=user_id)
+        for i in range(len(positions)):
+            positions_id = positions[i].id
+            # get each position applicants
+            applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
+            for j in range(len(applicants)):
+                applicant_info = User.objects.filter(email=applicants[j]["email"]).values()
+                if len(applicant_info) == 1:
+                    applicants[j]["user_id"] = applicant_info[0]["id"]
+            questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
+            int_dot = InvitedCandidates.objects.filter(positions_id=positions_id, is_recorded=True, video_count__gt=0, is_viewed=False, comment_status=0).count()
+            int_dots += int_dot
+
+            subreviewers = list(SubReviewers.objects.filter(position_id=positions_id).values())
+            ex_reviewers = list(ExternalReviewers.objects.filter(position_id=positions_id).values())
+            job_details = {
+                "position_id": positions_id,
+                "job_id": positions[i].job_id,
+                "job_title": positions[i].job_title,
+                "is_closed": positions[i].is_closed,
+                "invite_date": positions[i].invite_date,
+                "applicants": applicants,
+                "questions": questions,
+                "subreviewers": subreviewers,
+                "ex_reviewers": ex_reviewers,
+            }
+            # convert to json
+            data[positions_id] = job_details
+
+        jobs = Jobs.objects.filter(user_id=user_id)
+        for i in range(len(jobs)):
+            jobs_id = jobs[i].id
+            job_dot = ApplyCandidates.objects.filter(jobs_id=jobs_id, is_invited=0, is_viewed=False).count()
+            job_dots += job_dot
+
+    # sub reviewer
+    elif profile.is_subreviwer:
         user = User.objects.get(pk=user_id)
         subreviewers = SubReviewers.objects.filter(r_email=user.email)
         for i in range(len(subreviewers)):
@@ -166,6 +168,31 @@ def get_posted_jobs(request):
                 "applicants": applicants,
                 "questions": questions,
                 "subreviewers": subs,
+            }
+            # convert to json
+            data[position_id] = job_details
+
+    # external reviewer
+    else:
+        user = User.objects.get(pk=user_id)
+        ex_reviewers = ExternalReviewers.objects.filter(r_email=user.email)
+        for i in range(len(ex_reviewers)):
+            position_id = ex_reviewers[i].position.id
+            company_name = ex_reviewers[i].company_name
+            # get each position applicants
+            applicants = list(InvitedCandidates.objects.filter(positions_id=position_id).values())
+            questions = list(InterviewQuestions.objects.filter(positions_id=position_id).values())
+            subs = []
+            job_details = {
+                "position_id": position_id,
+                "job_id": ex_reviewers[i].position.job_id,
+                "job_title": ex_reviewers[i].position.job_title,
+                "is_closed": ex_reviewers[i].position.is_closed,
+                "invite_date": ex_reviewers[i].position.invite_date,
+                "applicants": applicants,
+                "questions": questions,
+                "subreviewers": subs,
+                "company_name": company_name,
             }
             # convert to json
             data[position_id] = job_details

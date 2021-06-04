@@ -313,8 +313,8 @@ def get_zr_xml(request):
     publisher = ET.SubElement(source, 'publisher')
     # populate data to Optional Metadata Fields
     last_build_date.text = datetime.now().strftime("%c")
-    publisher_url.text = 'http://dev.ziprecruiter.com:4014'  # todo: check here
-    publisher.text = 'ZipRecruiter'
+    publisher_url.text = 'https://hirebeat.co/'
+    publisher.text = 'HibreBeat'
     # produce jobs dynamic here
     job_details = Jobs.objects.filter(job_post=True).values()
     for i in range(len(job_details)):
@@ -374,12 +374,12 @@ def add_new_apply_candidate_from_zr(request):
     location = request.data['location']
     resume = request.data['resume']
     # resume_url = upload_cv_to_s3(resume) # todo: change here back
-    linkedinurl = request.data['linkedinurl']
+    # linkedinurl = request.data['linkedinurl']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
     ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
-                                   location=location, resume_url=resume, linkedinurl=linkedinurl, apply_source="ZipRecruiter")
+                                   location=location, resume_url=resume, linkedinurl="", apply_source="ZipRecruiter")
     # send email notification
     # subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
     # message = get_template("jobs/new_candidate_notification_email.html")

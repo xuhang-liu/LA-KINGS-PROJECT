@@ -39,7 +39,7 @@ const ShortList = (props) => {
                                         jobTitle={p.job_title}
                                         inviteDate={p.invite_date}
                                         applicants={p.applicants}
-                                        subreviewers={p.subreviewers}
+                                        exReviewers={p.ex_reviewers}
                                         profile={props.profile}
                                         refreshPage={refreshPage}
                                         positionId={p.position_id}
@@ -48,7 +48,7 @@ const ShortList = (props) => {
                                         delExReviewer={props.delExReviewer}
                                         getPJobs={props.getPJobs}
                                         user={props.user}
-                                        companyName={props.companyName}
+                                        invitedBy={p.company_name}
                                     />
                                 )
                             }
@@ -253,13 +253,17 @@ const ShortListCard = (props) => {
                                     <div className="col-4">
                                         <p style={{color:"#4A6F8A"}}>Qualified Applicants: {qualifiedApplicants.length}</p>
                                     </div>
+                                    {props.profile.is_external_reviewer ?
+                                    <div className="col-8 mb-4" style={{color:"#4A6F8A", borderLeft:"outset"}}>
+                                        <p>Invited By: {props.invitedBy.substring(0, 10)}</p>
+                                    </div> :
                                     <div className="col-8 mb-4" style={{color:"#4A6F8A", borderLeft:"outset"}}>
                                         <p>Created On: {props.inviteDate.substring(0, 10)}</p>
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
                             <div className="col-2 mt-4" style={{marginRight:"-2rem"}}>
-                            {props.subreviewers.map((sub, i) => {
+                            {props.exReviewers.map((sub, i) => {
                                 return (
                                     <span onClick={() => {deleteExReviewer(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
                                     <p className="sub_submenu" style={{minWidth:"6rem"}}>{sub.r_name.split(" ")[0]}</p>
@@ -268,11 +272,11 @@ const ShortListCard = (props) => {
                             })}
                             </div>
                             <div className="col-3">
-                                {!props.profile.is_subreviwer &&
+                                {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer) &&
                                 <div>
                                     {qualifiedApplicants.length > 0 &&
                                     <div>
-                                    {(props.subreviewers.length < Number(props.profile.reviewer_count)) &&
+                                    {(props.exReviewers.length < Number(props.profile.external_reviewer_count)) &&
                                     <button
                                         className="default-btn1 interview-txt6 mt-4"
                                         onClick={inviteExReviewer}
@@ -302,7 +306,7 @@ const AcceptedCandidate = (props) => {
                     <div className="col-2">Recorded On</div>
                     <div className="col-3">Video Average Score</div>
                     <div className="col-2">Resume Score</div>
-                    <div className="col-1">Contact</div>
+                    {(!props.profile.is_external_reviewer) && <div className="col-1">Contact</div>}
                 </div>
                 {props.theJob.applicants.map((applicant, index) => {
                     if(applicant.comment_status == 1) {
@@ -428,15 +432,17 @@ const CandidateCard = (props) => {
                 <div className="col-2"> 
                         { renderResume(props.resume_list) }
                 </div>
-                <div className="col-1">    
-                    <a
-                            href={mailTo}
-                            className="interview-txt9"
-                            style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block", fontSize:"0.8rem"}}
-                        >
-                            <i className="bx bx-mail-send"></i> Email
-                    </a>
-                </div>  
+                {!props.profile.is_external_reviewer &&
+                    <div className="col-1">
+                        <a
+                                href={mailTo}
+                                className="interview-txt9"
+                                style={{color: "#67A3F3", border: "none", background: "white", display:"inline-block", fontSize:"0.8rem"}}
+                            >
+                                <i className="bx bx-mail-send"></i> Email
+                        </a>
+                    </div>
+                }
         </div>
         <MyVerticallyCenteredModal
             refresh={refresh}
