@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 //import SecondReview from './SecondReview';
 import { MyModal80 } from './DashboardComponents';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
+//import DropdownButton from 'react-bootstrap/DropdownButton';
+//import Dropdown from 'react-bootstrap/Dropdown';
 import ReviewApplication from './ReviewApplication';
 import { ResumeEva } from "./applications/ResumeEva";
 import { connect } from 'react-redux';
@@ -49,6 +49,7 @@ const ShortList = (props) => {
                                         getPJobs={props.getPJobs}
                                         user={props.user}
                                         invitedBy={p.company_name}
+                                        companyName={props.companyName}
                                     />
                                 )
                             }
@@ -132,12 +133,12 @@ const ShortListCard = (props) => {
                 ex_reviewer_email = document.getElementById("ex_reviewer_email").value;
                 encoded_email = window.btoa("email=" + ex_reviewer_email);
                 let data = {
-                    ex_reviewer_name: ex_reviewer_name,
-                    ex_reviewer_email: ex_reviewer_email,
-                    encoded_email: encoded_email,
-                    company_name: props.companyName,
-                    position_id: props.positionId,
-                    master_email: props.user.email,
+                    "ex_reviewer_name": ex_reviewer_name,
+                    "ex_reviewer_email": ex_reviewer_email,
+                    "encoded_email": encoded_email,
+                    "company_name": props.companyName,
+                    "position_id": props.positionId,
+                    "master_email": props.user.email,
                 };
                 props.addExReviewer(data);
                 props.getPJobs();
@@ -263,7 +264,7 @@ const ShortListCard = (props) => {
                                 </div>
                             </div>
                             <div className="col-2 mt-4" style={{marginRight:"-2rem"}}>
-                            {props.exReviewers.map((sub, i) => {
+                            {props.exReviewers?.map((sub, i) => {
                                 return (
                                     <span onClick={() => {deleteExReviewer(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
                                     <p className="sub_submenu" style={{minWidth:"6rem"}}>{sub.r_name.split(" ")[0]}</p>
@@ -276,7 +277,7 @@ const ShortListCard = (props) => {
                                 <div>
                                     {qualifiedApplicants.length > 0 &&
                                     <div>
-                                    {(props.exReviewers.length < Number(props.profile.external_reviewer_count)) &&
+                                    {(props.exReviewers?.length < Number(props.profile.external_reviewer_count)) &&
                                     <button
                                         className="default-btn1 interview-txt6 mt-4"
                                         onClick={inviteExReviewer}

@@ -679,12 +679,12 @@ def delete_external_reviewer(request):
 
 
 def send_ex_reviewer_invitation(name, email, encoded_email, company_name, master_email, position_name):
-    subject = 'Co-review Invitation to HireBeat for ' + company_name
+    subject = "You've been added to the " + company_name + " recruiting team." 
     # determine message template by email
     user = User.objects.filter(email=email)
     message = {}
     if len(user) == 0:
-        message = get_template("questions/sub_reviewer_email.html")
+        message = get_template("questions/ex_reviewer_email.html")
     else:
         message = get_template("questions/external_reviewer_notice.html")
     link = "https://hirebeat.co/employer_register?" + encoded_email

@@ -122,6 +122,9 @@ export class EmployerDashboard extends Component {
 
   getInitialSubpage = () => {
     let subpage = sessionStorage.getItem( 'subpage' ) || "employerProfile";
+    if(this.props.profile.is_external_reviewer){
+      subpage = "shortlist";
+    }
     return subpage;
 
   }

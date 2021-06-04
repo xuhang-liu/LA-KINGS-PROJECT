@@ -378,8 +378,12 @@ def add_new_apply_candidate_from_zr(request):
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
-                                   location=location, resume_url=resume, linkedinurl="", apply_source="ZipRecruiter")
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs)
+    if len(applied) == 0:
+        ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
+                                    location=location, resume_url=resume, linkedinurl="", apply_source="ZipRecruiter")
+    else:
+        return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
     # subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
     # message = get_template("jobs/new_candidate_notification_email.html")
