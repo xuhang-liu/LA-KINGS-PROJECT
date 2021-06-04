@@ -47,6 +47,7 @@ import {
   DELETE_EMPLOYER_POST,
   UPDATE_EMPLOYER_LOGO,
   UPDATE_USER_LOGO,
+  CHECK_USER_EXISTENCE,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -765,3 +766,17 @@ export const updateUserLogo = (data) => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
+
+export const checkUserExistence = (email) => (dispatch, getState) => {
+  axios
+    .get(`accounts/check-user-existence?email=${email}`)
+    .then((res) => {
+      dispatch({
+        type: CHECK_USER_EXISTENCE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}

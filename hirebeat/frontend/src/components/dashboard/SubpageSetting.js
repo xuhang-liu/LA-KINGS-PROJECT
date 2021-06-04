@@ -172,76 +172,79 @@ export class SubpageSetting extends Component {
                     </button>}
                     </div>
                 </div>
-                <div className="row" >
-                    <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>
-                            <IconText
-                                iconName={"bx bx-user bx-md"}
-                                textDisplayed={"Profile Change"}
-                                textSize={"24px"}
-                                textColor={"#090D3A"}
-                                iconMargin={"3px"}
-                            />
-                    </div>
-                </div>
-
-                <div className="card container">
-                    <div className="form-row" style={{marginTop:"1%"}}>
-                        <div className="form-group col">
-                            <label style={{ fontSize: "17px", display:'inline-block' }}>Email:</label>
-                            <p style={{display:'inline-block', fontSize:"15px", marginLeft:"1rem"}}>{this.props.user.email}</p>
+                {!this.props.profile.is_external_reviewer &&
+                <div>
+                    <div className="row" >
+                        <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>
+                                <IconText
+                                    iconName={"bx bx-user bx-md"}
+                                    textDisplayed={"Profile Change"}
+                                    textSize={"24px"}
+                                    textColor={"#090D3A"}
+                                    iconMargin={"3px"}
+                                />
                         </div>
                     </div>
-                    <form style={{ marginBottom: "3%" }} onSubmit={this.saveChanges}>
-                            <div className="form-row" style={{marginTop:"1%"}}>
-                                {!this.props.profile.is_employer &&
-                                <div className="form-group col-6">
-                                    <label style={{ fontSize: "17px" }}>Phone Number</label>
-                                    <input
-                                        type="number"
-                                        className="form-control"
-                                        name={"phone_number"}
-                                        value={this.state.phone_number}
-                                        onChange={this.handleInputChange}
-                                        placeholder={"Phone Number"}
-                                        required="required"
-                                    />
-                                </div>}
-                                {/*this.props.profile.is_employer &&
-                                <div className="form-group col-6">
-                                    <label style={{ fontSize: "17px" }}>Company Name</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name={"company_name"}
-                                        value={this.state.company_name}
-                                        onChange={this.handleInputChange}
-                                        placeholder={"Company Name"}
-                                        required="required"
-                                    />
-                                </div>*/}
-                                <div className="form-group col-6">
-                                    <label style={{ fontSize: "17px" }}>Location</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name={"location"}
-                                        value={this.state.location}
-                                        onChange={this.handleInputChange}
-                                        placeholder={"Location"}
-                                        required="required"
-                                        pattern="[0-9 a-z A-Z ]+"
-                                        title="Alphabet letters only!"
-                                    />
-                                </div>
+
+                    <div className="card container">
+                        <div className="form-row" style={{marginTop:"1%"}}>
+                            <div className="form-group col">
+                                <label style={{ fontSize: "17px", display:'inline-block' }}>Email:</label>
+                                <p style={{display:'inline-block', fontSize:"15px", marginLeft:"1rem"}}>{this.props.user.email}</p>
                             </div>
-                            <button
-                                type="submit"
-                                className="btn btn-primary"
-                            >
-                                Submit Profile
-                            </button>
-                    </form>
-                </div>
+                        </div>
+                        <form style={{ marginBottom: "3%" }} onSubmit={this.saveChanges}>
+                                <div className="form-row" style={{marginTop:"1%"}}>
+                                    {!this.props.profile.is_employer &&
+                                    <div className="form-group col-6">
+                                        <label style={{ fontSize: "17px" }}>Phone Number</label>
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            name={"phone_number"}
+                                            value={this.state.phone_number}
+                                            onChange={this.handleInputChange}
+                                            placeholder={"Phone Number"}
+                                            required="required"
+                                        />
+                                    </div>}
+                                    {/*this.props.profile.is_employer &&
+                                    <div className="form-group col-6">
+                                        <label style={{ fontSize: "17px" }}>Company Name</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name={"company_name"}
+                                            value={this.state.company_name}
+                                            onChange={this.handleInputChange}
+                                            placeholder={"Company Name"}
+                                            required="required"
+                                        />
+                                    </div>*/}
+                                    <div className="form-group col-6">
+                                        <label style={{ fontSize: "17px" }}>Location</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name={"location"}
+                                            value={this.state.location}
+                                            onChange={this.handleInputChange}
+                                            placeholder={"Location"}
+                                            required="required"
+                                            pattern="[0-9 a-z A-Z ]+"
+                                            title="Alphabet letters only!"
+                                        />
+                                    </div>
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                >
+                                    Submit Profile
+                                </button>
+                        </form>
+                    </div>
+                </div>}
 
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>
@@ -307,7 +310,7 @@ export class SubpageSetting extends Component {
                             </button>
                     </form>
                 </div>
-                {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro"))&&(!this.props.profile.is_subreviwer)) &&  
+                {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro"))&&(!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) &&
                 <div>
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>
@@ -345,7 +348,7 @@ export class SubpageSetting extends Component {
                     </form>
                 </div>
                 </div>}
-                {this.props.profile.membership == "Regular" && 
+                {this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) &&
                 <div>
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{marginTop:"1%"}}>

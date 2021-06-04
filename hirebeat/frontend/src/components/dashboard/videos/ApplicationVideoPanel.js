@@ -108,51 +108,53 @@ class ApplicationVideoPanel extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className='col'>
-                        <div className="row mt-3 px-4">
-                            <div style={{width:"100%"}}>
-                                <h5 style={{fontWeight:"500", color:"#090D3A"}}>Review</h5>
-                                <div className="col px-0">
-                                    <div className="p-1" style={{overflow:"auto", maxHeight:"15rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem"}}>
-                                        {this.props.comments[this.state.page].map((comment)=>{
-                                                return <div style={{marginTop:"5px"}}><span style={{fontWeight:"600", color:"#4a6f8a", fontFamily:"Avenir Next, Segoe UI", paddingLeft:"6px"}}>{comment.split(":")[0]}</span>
-                                                <span style={{fontWeight: "normal", color:"#7d7d7d", fontFamily:"Avenir Next, Segoe UI", paddingLeft:"10px"}}>{comment.split(":")[1]}</span></div> 
-                                        })}
-                                    </div>
-                                </div>
-                                <div className="mt-3 p-0 col" style={{height:"3.07rem", border:"2px solid #E8EDFC", width:"100%", backgroundColor:"transparent"}}>
-                                    <div className="row">
-                                        <div className="col-7 pl-3 pr-0">
-                                            <textarea  
-                                                        style={{display:"inline-block", outline:"none", overflow: "auto", border:"none", resize:"none", width:"105%", height:"2.94rem"}}
-                                                        value={this.state.comments}
-                                                        placeholder="Write your comments and leave your score"
-                                                        onChange={(e)=>{this.setState({comments :e.target.value})}}
-                                                >
-                                            </textarea>
+                    {!this.props.profile.is_external_reviewer &&
+                        <div className='col'>
+                            <div className="row mt-3 px-4">
+                                <div style={{width:"100%"}}>
+                                    <h5 style={{fontWeight:"500", color:"#090D3A"}}>Review</h5>
+                                    <div className="col px-0">
+                                        <div className="p-1" style={{overflow:"auto", maxHeight:"15rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem"}}>
+                                            {this.props.comments[this.state.page].map((comment)=>{
+                                                    return <div style={{marginTop:"5px"}}><span style={{fontWeight:"600", color:"#4a6f8a", fontFamily:"Avenir Next, Segoe UI", paddingLeft:"6px"}}>{comment.split(":")[0]}</span>
+                                                    <span style={{fontWeight: "normal", color:"#7d7d7d", fontFamily:"Avenir Next, Segoe UI", paddingLeft:"10px"}}>{comment.split(":")[1]}</span></div>
+                                            })}
                                         </div>
-                                        <div className="mt-0 col" style={{display:"inline-block"}}>
-                                            <button className="default-btn d-flex py-2 mr-3 mt-1 ml-1" 
-                                                    style={{position: "absolute", right: "0.1rem"}}
-                                                    onClick={this.updateCommentsFunc}
-                                            ><i className="bx bxs-send"></i>Post</button>
+                                    </div>
+                                    <div className="mt-3 p-0 col" style={{height:"3.07rem", border:"2px solid #E8EDFC", width:"100%", backgroundColor:"transparent"}}>
+                                        <div className="row">
+                                            <div className="col-7 pl-3 pr-0">
+                                                <textarea
+                                                            style={{display:"inline-block", outline:"none", overflow: "auto", border:"none", resize:"none", width:"105%", height:"2.94rem"}}
+                                                            value={this.state.comments}
+                                                            placeholder="Write your comments and leave your score"
+                                                            onChange={(e)=>{this.setState({comments :e.target.value})}}
+                                                    >
+                                                </textarea>
+                                            </div>
+                                            <div className="mt-0 col" style={{display:"inline-block"}}>
+                                                <button className="default-btn d-flex py-2 mr-3 mt-1 ml-1"
+                                                        style={{position: "absolute", right: "0.1rem"}}
+                                                        onClick={this.updateCommentsFunc}
+                                                ><i className="bx bxs-send"></i>Post</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div className="row pl-2 mt-3">
+                                    <div className="col-3">
+                                        <h5 style={{fontWeight:"500", color:"#090D3A"}}>Rating</h5>
+                                    </div>
+                                    <div className="col-9">
+                                        <Stars
+                                            stars={this.props.stars[this.state.page]}
+                                            changeStar={this.handleRating}
+                                        />
+                                    </div>
+                            </div>
                         </div>
-                        <div className="row pl-2 mt-3">
-                                <div className="col-3">
-                                    <h5 style={{fontWeight:"500", color:"#090D3A"}}>Rating</h5>
-                                </div>
-                                <div className="col-9">
-                                    <Stars 
-                                        stars={this.props.stars[this.state.page]}
-                                        changeStar={this.handleRating}
-                                    />
-                                </div>
-                        </div>
-                    </div> 
+                    }
                 </div>    
             </div>
         );

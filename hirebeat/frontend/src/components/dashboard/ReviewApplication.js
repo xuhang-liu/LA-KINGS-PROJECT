@@ -20,7 +20,7 @@ class ReviewApplication extends Component{
     }
 
     showResumeEva = () => {
-        if(this.props.profile.membership == "Premium"){
+        if(this.props.profile.membership == "Premium" || this.props.profile.is_external_reviewer){
             this.props.setShowEva(true);
         }else{
             this.props.getPJobs();

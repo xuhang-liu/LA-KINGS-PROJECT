@@ -39,6 +39,7 @@ render() {
                                     />
                                 </div>
                                 <div className="row container-fliud">
+                                    {!this.props.profile.is_external_reviewer &&
                                         <div className="col-8 mt-3 ml-0">
                                                 <div className="row">
                                                         <div className="col-2 p-0 pt-2">
@@ -93,7 +94,8 @@ render() {
                                                         </div>
                                                     </div>
                                                 }
-                                        </div> 
+                                        </div>
+                                    }
                                         <div className="col-4">
                                                 <Pagination
                                                         totalVideos = {this.props.int_ques.length}
