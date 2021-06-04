@@ -24,6 +24,8 @@ import {
     UPDATE_VIEW_STATUS,
     GET_ANALYTICS_INFO,
     DELETE_INTERVIEW_QUESTIONS,
+    ADD_EXTERNAL_REVIEWER,
+    DELETE_EXTERNAL_REVIEWER,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -350,6 +352,34 @@ export const deleteInterviewQuestions = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: DELETE_INTERVIEW_QUESTIONS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const addExReviewer = (data) => (dispatch, getState) => {
+  axios
+    .post("questions/add-external-reviewer", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_EXTERNAL_REVIEWER,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const delExReviewer = (data) => (dispatch, getState) => {
+  axios
+    .post("questions/delete-external-reviewer", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: DELETE_EXTERNAL_REVIEWER,
         payload: res.data,
       });
     })

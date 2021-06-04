@@ -21,18 +21,34 @@ function ScrollToTopOnMount() {
 }
 
 export class EmployerRegister extends Component {
-  state = {
-    companyName: "",
-    email: "",
-    password: "",
-    password2: "",
-  };
+  constructor(props) {
+      super(props);
+      // parse params from url
+      let params = this.getParams();
+      this.state = {
+        isReviewer: (params[0] == "" || params[0] == null) ? false : true,
+        email: params[0],
+        companyName: (params[0] == "" || params[0] == null) ? "" : "External or Sub Reviewer",
+        password: "",
+        password2: "",
+      };
+  }
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
     employer_register: PropTypes.func.isRequired,
     createMessage: PropTypes.func.isRequired,
     user: PropTypes.object,
+  };
+
+  getParams =() => {
+    let params = [];
+    let email = window.location.search;
+    email = email.substring(1, email.length); // remove "?" from uri
+    email = window.atob(email); // decode
+    let param = email.split("=")[1]; // get value
+    params.push(param);
+    return params;
   };
 
 //  redirectToEmailVerification = () => {
@@ -42,7 +58,7 @@ export class EmployerRegister extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if(this.state.email.toLowerCase().includes("aol") ||
+    if((this.state.email.toLowerCase().includes("aol") ||
         this.state.email.toLowerCase().includes("att.net") ||
         this.state.email.toLowerCase().includes("comcast.net") ||
         this.state.email.toLowerCase().includes("facebook.com") ||
@@ -73,7 +89,7 @@ export class EmployerRegister extends Component {
         this.state.email.toLowerCase().includes("21cn.com") ||
         this.state.email.toLowerCase().includes("aliyun.com") ||
         this.state.email.toLowerCase().includes("foxmail.com") ||
-        this.state.email.toLowerCase().includes("edu")
+        this.state.email.toLowerCase().includes("edu")) && !this.state.isReviewer
         ){
       confirmAlert({
         title: "Email not permitted!",
@@ -126,7 +142,7 @@ export class EmployerRegister extends Component {
         }
       }
     };
-    const {companyName, email, password, password2} = this.state;
+    const {companyName, email, password, password2, isReviewer} = this.state;
     if (this.props.auth.isAuthenticated) {
       return <Redirect to="/employer-pricing"/>;
     }
@@ -151,40 +167,58 @@ export class EmployerRegister extends Component {
                     <div className="signup-form">
                     <form onSubmit={this.onSubmit}>
                       <div className="form-group">
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="companyName"
-                            placeholder="Company Name"
-                            onChange={this.onChange}
-                            value={companyName}
-                            style={{
-                              fontFamily: "Avenir Next, Segoe UI",
-                              background: "#FFFFFF",
-                              borderRadius: "5px",
-                              paddingLeft: "1rem",
-                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                            }}
-                            required
-                        />
+                        {(!isReviewer) &&
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="companyName"
+                                placeholder="Company Name"
+                                onChange={this.onChange}
+                                value={companyName}
+                                style={{
+                                  fontFamily: "Avenir Next, Segoe UI",
+                                  background: "#FFFFFF",
+                                  borderRadius: "5px",
+                                  paddingLeft: "1rem",
+                                  boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                }}
+                                required
+                            />
+                        }
                       </div>
 
                       <div className="form-group">
-                        <input
-                            type="email"
-                            className="form-control"
-                            name="email"
-                            placeholder="Work Email"
-                            required
-                            onChange={this.onChange}
-                            style={{
-                              fontFamily: "Avenir Next, Segoe UI",
-                              background: "#FFFFFF",
-                              borderRadius: "5px",
-                              paddingLeft: "1rem",
-                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                            }}
-                            value={email}/>
+                        {(!isReviewer) ?
+                            <input
+                                type="email"
+                                className="form-control"
+                                name="email"
+                                placeholder="Work Email"
+                                required
+                                onChange={this.onChange}
+                                style={{
+                                  fontFamily: "Avenir Next, Segoe UI",
+                                  background: "#FFFFFF",
+                                  borderRadius: "5px",
+                                  paddingLeft: "1rem",
+                                  boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                }}
+                                value={email}
+                            /> :
+                            <input
+                                type="email"
+                                className="form-control"
+                                name="email"
+                                style={{
+                                  fontFamily: "Avenir Next, Segoe UI",
+                                  background: "#FFFFFF",
+                                  borderRadius: "5px",
+                                  paddingLeft: "1rem",
+                                  boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                }}
+                                value={email}
+                            />
+                        }
                       </div>
 
                       <div className="form-group">

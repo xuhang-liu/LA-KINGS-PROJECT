@@ -2,7 +2,8 @@ from django.urls import path
 from .views import QuestionAPIView, get_subcategories, get_random_question, get_interview_questions, add_position, \
     get_posted_jobs, add_interviews, update_secondround_status, submit_feedback, resend_invitation, update_comment_status, \
     close_job, delete_job, add_interview_resume, get_resume_url, get_applicants_data, get_stars_list, add_sub_reviewer, \
-    remove_sub_reviewer, get_question_list, update_view_status, get_analytics_info, delete_interview_questions
+    remove_sub_reviewer, get_question_list, update_view_status, get_analytics_info, delete_interview_questions, \
+    add_external_reviewer, delete_external_reviewer
 from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
@@ -29,5 +30,7 @@ urlpatterns = [
     path('update-view-status', update_view_status),
     path('get-analytics-info', get_analytics_info),
     path('questions/delete-interview-questions', delete_interview_questions),
+    path('questions/add-external-reviewer', add_external_reviewer),
+    path('questions/delete-external-reviewer', delete_external_reviewer),
 ]
 # The API URLs are now determined automatically by the router.

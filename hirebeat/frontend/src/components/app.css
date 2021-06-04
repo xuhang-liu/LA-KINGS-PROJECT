@@ -3306,3 +3306,19 @@ color: #4A6F8A;
   color: #FFFFFF;
   margin-left: 0.5rem;
 }
+
+.subreviewer-p {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.75rem;
+  color: #4A6F8A;
+}
+
+.subreviewer-h3 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #090D3A;
+}
