@@ -13,7 +13,7 @@ import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, get
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo
  }
 from "../../redux/actions/auth_actions";
-import { addNewJob, getAllJobs, updateJob, getjobidlist} from "../../redux/actions/job_actions";
+import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML} from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
@@ -300,6 +300,7 @@ export class EmployerDashboard extends Component {
             getPJobs={this.getPJobs}
             jobid_list={this.props.jobid_list}
             getjobidlist={this.props.getjobidlist}
+            getZRFeedXML={this.props.getZRFeedXML}
         />;
       case "jobEdition":
         return <JobEdition
@@ -550,7 +551,7 @@ export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFu
     getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
-    updateJob, updateEmployerLogo, getjobidlist
+    updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML
     })(
     EmployerDashboard
 );

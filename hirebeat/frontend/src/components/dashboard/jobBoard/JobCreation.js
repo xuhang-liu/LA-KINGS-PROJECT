@@ -196,7 +196,7 @@ export class JobCreation extends Component{
             alert("Duplicate Job ID detected.");
         }else{
             this.props.addNewJob(data);
-            setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
+            setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML();}, 300);
             this.props.renderJobs();
         }
     }
