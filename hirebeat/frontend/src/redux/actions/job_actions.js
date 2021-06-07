@@ -10,6 +10,7 @@ import {
     DELETE_JOB,
     GET_JOBID_LIST,
     UPDATE_CANDIDATA_VIEWED_STATUS,
+    GET_ZR_FEED_XML,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -161,6 +162,20 @@ export const updateCandidateViewedStatus = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_CANDIDATA_VIEWED_STATUS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getZRFeedXML = () => (dispatch, getState) => {
+  axios
+    .get(`jobs/get-zr-xml`)
+    .then((res) => {
+      dispatch({
+        type: GET_ZR_FEED_XML,
         payload: res.data,
       });
     })

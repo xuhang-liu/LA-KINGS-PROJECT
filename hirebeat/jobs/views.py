@@ -67,8 +67,8 @@ def add_new_job(request):
     job.job_url = job_url
     job.save()
     # add to zrjobs.xml
-    if job_post:
-        add_zr_feed_xml(job.id)
+    # if job_post:
+    #     add_zr_feed_xml(job.id)
     return Response("Create new job successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['GET'])
@@ -126,10 +126,10 @@ def update_job(request):
     job.save()
 
     # delete or add to zrjobs.xml
-    if job_post:
-        add_zr_feed_xml(id)
-    else:
-        delete_zr_feed_xml(id)
+    # if job_post:
+    #     add_zr_feed_xml(id)
+    # else:
+    #     delete_zr_feed_xml(id)
 
     return Response("Update new job successfully", status=status.HTTP_205_RESET_CONTENT)
 
