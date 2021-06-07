@@ -5,6 +5,9 @@ import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
 import {getByZip} from 'zcs';
 import Select from 'react-select';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { getZRFeedXML } from "../../../redux/actions/job_actions";
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -184,7 +187,7 @@ export class JobEdition extends Component{
             job_post: this.state.job_post,
         };
         this.props.updateJob(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id);}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getZRFeedXML()}, 300);
         e.preventDefault();
         this.props.renderJobs();
     }
@@ -446,4 +449,6 @@ export class JobEdition extends Component{
     };
 };
 
-export default JobEdition;
+export default withRouter(connect(null, { getZRFeedXML })(
+  JobEdition
+));
