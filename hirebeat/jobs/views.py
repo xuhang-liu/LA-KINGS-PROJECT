@@ -66,6 +66,9 @@ def add_new_job(request):
     job_url = "https://hirebeat.co/apply-job?id=" + str(job.id)
     job.job_url = job_url
     job.save()
+    # add to zrjobs.xml
+    if job_post:
+        add_zr_feed_xml(job.id)
     return Response("Create new job successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['GET'])
@@ -121,6 +124,12 @@ def update_job(request):
     job.job_post = job_post
     # save update to db
     job.save()
+
+    # delete or add to zrjobs.xml
+    if job_post:
+        add_zr_feed_xml(id)
+    else:
+        delete_zr_feed_xml(id)
 
     return Response("Update new job successfully", status=status.HTTP_205_RESET_CONTENT)
 
@@ -286,7 +295,7 @@ def create_zr_job_feed(job_detail):
     experience = ET.SubElement(job, 'experience')
 
     # populate content for each tag
-    job.set('id', str(job_detail['id']))
+    # job.set('id', str(job_detail['id']))
     reference_number.text = str(job_detail['id'])
     title.text = job_detail['job_title']
     description.text = job_detail['job_description']
@@ -318,50 +327,61 @@ def get_zr_xml(request):
     # produce jobs dynamic here
     job_details = Jobs.objects.filter(job_post=True).values()
     for i in range(len(job_details)):
-        job = create_zr_job_feed(job_details[i])
-        source.append(job)
+        # job description has min length of 25
+        if len(job_details[i]['job_description']) > 25:
+            job = create_zr_job_feed(job_details[i])
+            source.append(job)
     # save xml file
     with open("zrjobs.xml", "wb") as f:
         f.write(ET.tostring(source, encoding='utf8', method='xml'))
-    return Response("Candidate is viewed successfully", status=status.HTTP_200_OK)
+    return Response("zrjobs.xml is regenerated successfully", status=status.HTTP_200_OK)
 
-@api_view(['POST'])
-def delete_zr_feed_xml(request):
-    job_id = str(request.data['jobId'])
+
+def delete_zr_feed_xml(job_id):
+    job_id = str(job_id)
     tree = ET.parse('zrjobs.xml')
     root = tree.getroot()
     for job in root.findall('job'):
-        if job.attrib['id'] == job_id:
+        # job[0] is reference number tag
+        if job[0].text == job_id:
             root.remove(job)
-
     tree.write('zrjobs.xml')
-    return Response("Delete job from zrjobs.xml successfully", status=status.HTTP_202_ACCEPTED)
 
-@api_view(['POST'])
-def add_zr_feed_xml(request):
+
+def add_zr_feed_xml(job_id):
+    tree = ET.parse('zrjobs.xml')
+    root = tree.getroot()
+    # avoid duplicate job feed
+    for job in root.findall('job'):
+        # job[0] is reference number tag
+        if job[0].text == str(job_id):
+            # do nothing
+            return
+
     # create a new tag
-    job_id = request.data['jobId']
     job_detail = Jobs.objects.filter(id=job_id).values()[0]
     job = create_zr_job_feed(job_detail)
     # append to existing xml file
-    tree = ET.parse('zrjobs.xml')
-    root = tree.getroot()
     root.append(job)
     tree.write('zrjobs.xml')
 
-    return Response("Add new job to zr feed successfully", status=status.HTTP_200_OK)
-
 def upload_cv_to_s3(encoded_cv):
-    # decode resume and convert to string
+    # decode resume and convert to pdf file
     resume = base64.b64decode(encoded_cv)
-    content = resume.decode("utf-8")
-    file_name = str(int(time.time())) + '.txt'
+    #content = resume.decode("utf-8")
+    content = open("cv.pdf", "wb")
+    content.write(resume)
+    content.close()
+    file_name = str(int(time.time())) + '.pdf'
     # upload txt file to s3
     b = conn.get_bucket(os.getenv("CV_Interview_Bucket"))
     k = Key(b)
     k.key = file_name
-    k.set_contents_from_string(content)
+    k.set_contents_from_filename("cv.pdf")
     resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
+    # delete cv.pdf cache
+    if os.path.exists("cv.pdf"):
+        os.remove("cv.pdf")
     return resume_url
 
 @api_view(['POST'])
@@ -373,7 +393,7 @@ def add_new_apply_candidate_from_zr(request):
     email = request.data['email']
     # location = request.data['location']
     resume = request.data['resume']
-    # resume_url = upload_cv_to_s3(resume) # todo: change here back
+    resume_url = upload_cv_to_s3(resume)
     # linkedinurl = request.data['linkedinurl']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
@@ -381,26 +401,26 @@ def add_new_apply_candidate_from_zr(request):
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs)
     if len(applied) == 0:
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
-                                    location="", resume_url=resume, linkedinurl="", apply_source="ZipRecruiter")
+                                    location="", resume_url=resume_url, linkedinurl="", apply_source="ZipRecruiter")
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
-    # subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
-    # message = get_template("jobs/new_candidate_notification_email.html")
-    # context = {
-    #     'fullname': fullname,
-    #     'title': jobs.job_title,
-    # }
-    # from_email = 'HireBeat Team <tech@hirebeat.co>'
-    # to_list = [user.email]
-    # content = message.render(context)
-    # email = EmailMessage(
-    #     subject,
-    #     content,
-    #     from_email,
-    #     to_list,
-    # )
-    # email.content_subtype = "html"
-    # email.send()
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
+    }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
 
     return Response("Add new apply candidate from ZipRecruiter successfully", status=status.HTTP_202_ACCEPTED)
