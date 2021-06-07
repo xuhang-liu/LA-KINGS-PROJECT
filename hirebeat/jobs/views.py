@@ -424,3 +424,9 @@ def add_new_apply_candidate_from_zr(request):
     email.send()
 
     return Response("Add new apply candidate from ZipRecruiter successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['GET'])
+def getCompanyBrandingInfo(request, companyName):
+    print(companyName)
+    
+    return Response({"companyName": companyName})

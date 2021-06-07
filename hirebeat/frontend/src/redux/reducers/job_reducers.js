@@ -2,6 +2,7 @@ import {
     GET_ALL_JOBS,
     GET_CURRENT_JOBS,
     GET_JOBID_LIST,
+    GET_COMAPNY_BRANDING_INFO,
 } from "../actions/action_types";
 
 const initialState = {
@@ -9,6 +10,7 @@ const initialState = {
   isLoaded: false,
   job: {},
   jobid_list: [],
+  companyName: "",
 };
 
 export default function (state = initialState, action) {
@@ -28,6 +30,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         jobid_list: action.payload.data,
+      }
+    case GET_COMAPNY_BRANDING_INFO:
+      return {
+        ...state,
+        companyName: action.payload.companyName,
       }
     default:
       return state;

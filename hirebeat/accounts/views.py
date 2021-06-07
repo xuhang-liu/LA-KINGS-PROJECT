@@ -798,10 +798,8 @@ def create_or_update_user_logo(request):
 @api_view(['GET'])
 def check_user_existence(request):
     email = request.query_params.get("email")
-    data = {}
+    data = False
     user = User.objects.filter(email=email)
-    if len(user) == 0:
-        data["user_exists"] = False
-    else:
-        data["user_exists"] = True
+    if len(user) != 0:
+        data = True
     return Response({"data": data})
