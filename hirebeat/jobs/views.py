@@ -352,16 +352,22 @@ def add_zr_feed_xml(request):
     return Response("Add new job to zr feed successfully", status=status.HTTP_200_OK)
 
 def upload_cv_to_s3(encoded_cv):
-    # decode resume and convert to string
+    # decode resume and convert to pdf file
     resume = base64.b64decode(encoded_cv)
-    content = resume.decode("utf-8")
-    file_name = str(int(time.time())) + '.txt'
+    #content = resume.decode("utf-8")
+    content = open("cv.pdf", "wb")
+    content.write(resume)
+    content.close()
+    file_name = str(int(time.time())) + '.pdf'
     # upload txt file to s3
     b = conn.get_bucket(os.getenv("CV_Interview_Bucket"))
     k = Key(b)
     k.key = file_name
-    k.set_contents_from_string(content)
+    k.set_contents_from_filename("cv.pdf")
     resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
+    # delete cv.pdf cache
+    if os.path.exists("cv.pdf"):
+        os.remove("cv.pdf")
     return resume_url
 
 @api_view(['POST'])
@@ -373,7 +379,7 @@ def add_new_apply_candidate_from_zr(request):
     email = request.data['email']
     # location = request.data['location']
     resume = request.data['resume']
-    # resume_url = upload_cv_to_s3(resume) # todo: change here back
+    resume_url = upload_cv_to_s3(resume)
     # linkedinurl = request.data['linkedinurl']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
@@ -381,26 +387,26 @@ def add_new_apply_candidate_from_zr(request):
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs)
     if len(applied) == 0:
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
-                                    location="", resume_url=resume, linkedinurl="", apply_source="ZipRecruiter")
+                                    location="", resume_url=resume_url, linkedinurl="", apply_source="ZipRecruiter")
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
-    # subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
-    # message = get_template("jobs/new_candidate_notification_email.html")
-    # context = {
-    #     'fullname': fullname,
-    #     'title': jobs.job_title,
-    # }
-    # from_email = 'HireBeat Team <tech@hirebeat.co>'
-    # to_list = [user.email]
-    # content = message.render(context)
-    # email = EmailMessage(
-    #     subject,
-    #     content,
-    #     from_email,
-    #     to_list,
-    # )
-    # email.content_subtype = "html"
-    # email.send()
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
+    }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
 
     return Response("Add new apply candidate from ZipRecruiter successfully", status=status.HTTP_202_ACCEPTED)
