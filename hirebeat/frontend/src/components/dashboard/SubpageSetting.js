@@ -193,6 +193,19 @@ export class SubpageSetting extends Component {
                                 <p style={{display:'inline-block', fontSize:"15px", marginLeft:"1rem"}}>{this.props.user.email}</p>
                             </div>
                         </div>
+                        {this.props.profile.is_employer &&
+                        <div>
+                        <div className="form-row" style={{marginTop:"1%"}}>
+                            <div className="form-group col">
+                                <label style={{ fontSize: "17px"}}>Company Job Portal</label>
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col">
+                                <a href={"https://hirebeat.co/company-branding/"+this.props.profile.company_name?.replace(" ", "-")}>https://hirebeat.co/company-branding/{this.props.profile.company_name?.replace(" ", "-")}</a>
+                            </div>
+                        </div>
+                        </div>}
                         <form style={{ marginBottom: "3%" }} onSubmit={this.saveChanges}>
                                 <div className="form-row" style={{marginTop:"1%"}}>
                                     {!this.props.profile.is_employer &&
@@ -240,7 +253,7 @@ export class SubpageSetting extends Component {
                                     type="submit"
                                     className="btn btn-primary"
                                 >
-                                    Submit Profile
+                                    Update Profile
                                 </button>
                         </form>
                     </div>
@@ -306,7 +319,7 @@ export class SubpageSetting extends Component {
                                 type="submit"
                                 className="btn btn-primary"
                             >
-                                Change Password
+                                Update Password
                             </button>
                     </form>
                 </div>
