@@ -371,7 +371,7 @@ def add_new_apply_candidate_from_zr(request):
     lastname = request.data['last_name']
     phone = request.data['phone']
     email = request.data['email']
-    location = request.data['location']
+    # location = request.data['location']
     resume = request.data['resume']
     # resume_url = upload_cv_to_s3(resume) # todo: change here back
     # linkedinurl = request.data['linkedinurl']
@@ -381,7 +381,7 @@ def add_new_apply_candidate_from_zr(request):
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs)
     if len(applied) == 0:
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
-                                    location=location, resume_url=resume, linkedinurl="", apply_source="ZipRecruiter")
+                                    location="", resume_url=resume, linkedinurl="", apply_source="ZipRecruiter")
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
