@@ -307,8 +307,9 @@ def create_zr_job_feed(job_detail):
     company.text = job_detail['company_name']
     date.text = job_detail['create_date'].strftime("%c")
     url.text = job_detail['job_url']
-    job_type.text = job_detail['job_type']
-    experience.text = job_detail['job_level']
+    job_type.text = job_detail['job_type'].lower().replace("-", "_")
+    job_level = job_detail['job_level'].split(" ")
+    experience.text = job_level[0].lower()
     return job
 
 

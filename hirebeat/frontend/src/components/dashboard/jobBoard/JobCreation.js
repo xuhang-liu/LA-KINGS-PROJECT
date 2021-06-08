@@ -68,14 +68,14 @@ export class JobCreation extends Component{
         { value: 'Full-Time', label: 'Full-Time' },
         { value: 'Part-Time', label: 'Part-Time' },
         { value: 'Contract', label: 'Contract' },
-        { value: 'Intern', label: 'Intern' },
+        { value: 'Temporary', label: 'Temporary' },
         { value: 'Other', label: 'Other' },
     ];
     options1 = [
         { value: 'Entry Level', label: 'Entry Level' },
-        { value: 'Associate', label: 'Associate' },
         { value: 'Mid Level', label: 'Mid Level' },
         { value: 'Senior', label: 'Senior' },
+        { value: 'Director', label: 'Director' },
         { value: 'Executive', label: 'Executive' },
     ];
     setJobPostTure = () => {
