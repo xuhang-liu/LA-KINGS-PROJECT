@@ -15,8 +15,7 @@ class ReviewApplication extends Component{
     updateStatus = (status) => {
         let data = {"email": this.props.email_candidate, "positionId": this.props.positionId, "status": status, "userId": this.props.user.id};
         this.props.updateCommentStatus(data);
-        this.props.getPJobs();
-        this.props.hide();
+        setTimeout(()=>{this.props.getPJobs()}, 200);
     }
 
     showResumeEva = () => {
