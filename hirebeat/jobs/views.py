@@ -307,8 +307,9 @@ def create_zr_job_feed(job_detail):
     company.text = job_detail['company_name']
     date.text = job_detail['create_date'].strftime("%c")
     url.text = job_detail['job_url']
-    job_type.text = job_detail['job_type']
-    experience.text = job_detail['job_level']
+    job_type.text = job_detail['job_type'].lower().replace("-", "_")
+    job_level = job_detail['job_level'].split(" ")
+    experience.text = job_level[0].lower()
     return job
 
 
@@ -327,8 +328,8 @@ def get_zr_xml(request):
     # produce jobs dynamic here
     job_details = Jobs.objects.filter(job_post=True).values()
     for i in range(len(job_details)):
-        # job description has min length of 25
-        if len(job_details[i]['job_description']) > 25:
+        # job description has min length of 25 and job is not closed
+        if len(job_details[i]['job_description']) > 25 and job_details[i]['is_closed'] is False:
             job = create_zr_job_feed(job_details[i])
             source.append(job)
     # save xml file
