@@ -22,6 +22,7 @@ import {
   GET_EMPLOYER_PROFILE_DETAIL,
   GET_EMPLOYER_POST,
   CHECK_USER_EXISTENCE,
+  CHECK_COMPANY_NAME_EXISTENCE,
 } from "../actions/action_types";
 
 const initialState = {
@@ -45,6 +46,7 @@ const initialState = {
   employerPost: {},
   employerDetailLoaded: false,
   user_existence: false,
+  company_name_existence: false,
 };
 
 export default function (state = initialState, action) {
@@ -161,6 +163,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         user_existence: action.payload.data,
+      }
+    case CHECK_COMPANY_NAME_EXISTENCE:
+      return {
+        ...state,
+        company_name_existence: action.payload.data
       }
     default:
       return state;

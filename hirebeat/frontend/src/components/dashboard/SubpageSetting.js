@@ -202,7 +202,7 @@ export class SubpageSetting extends Component {
                         </div>
                         <div className="form-row">
                             <div className="form-group col">
-                                <a href={"https://hirebeat.co/company-branding/"+this.props.profile.company_name?.replace(" ", "-")}>https://hirebeat.co/company-branding/{this.props.profile.company_name?.replace(" ", "-")}</a>
+                                <a target="_blank" href={"https://hirebeat.co/company-branding/"+this.props.profile.company_name}>https://hirebeat.co/company-branding/{this.props.profile.company_name}</a>
                             </div>
                         </div>
                         </div>}

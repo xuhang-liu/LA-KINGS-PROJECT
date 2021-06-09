@@ -10,7 +10,7 @@ const initialState = {
   isLoaded: false,
   job: {},
   jobid_list: [],
-  companyName: "",
+  jobs_branding: [],
 };
 
 export default function (state = initialState, action) {
@@ -34,7 +34,7 @@ export default function (state = initialState, action) {
     case GET_COMAPNY_BRANDING_INFO:
       return {
         ...state,
-        companyName: action.payload.companyName,
+        jobs_branding: action.payload.data,
       }
     default:
       return state;

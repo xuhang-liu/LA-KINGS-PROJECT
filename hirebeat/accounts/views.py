@@ -803,3 +803,12 @@ def check_user_existence(request):
     if len(user) != 0:
         data = True
     return Response({"data": data})
+
+@api_view(['GET'])
+def check_company_name_existence(request):
+    companyName = request.query_params.get("companyName")
+    data = False
+    profile = Profile.objects.filter(company_name=companyName)
+    if len(profile) != 0:
+        data = True
+    return Response({"data": data})
