@@ -104,7 +104,7 @@ const ApplyJob = (props) =>{
                     resume_url: resume_url,
                     linkedinurl: linkedinurl,
                 };
-                props.addNewApplyCandidate(data);
+                setTimeout(() => {props.addNewApplyCandidate(data);}, 300);
                 props.uploader.uploadFile(resume);
             }
         }
@@ -222,9 +222,9 @@ const ApplyJob = (props) =>{
                 let timestamp = Date.parse(new Date());
                 let suffix = ".pdf";
                 let cvName = timestamp + suffix;
-                console.log("cvName is", cvName);
+//                console.log("cvName is", cvName);
                 const newResume = new File([resume], cvName, {type: resume.type});
-                console.log("resume is", resume);
+//                console.log("resume is", resume);
                 setResume(newResume);
                 let url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + cvName;
                 //let url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + cvName;

@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates
 from questions.models import Positions, InterviewQuestions
-from accounts.models import Profile, EmployerProfileDetail
+from accounts.models import Profile, EmployerProfileDetail, ProfileDetail
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
@@ -164,7 +164,21 @@ def add_new_apply_candidate(request):
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
     applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl)
-    print("===New Candidate Notify Email Called===")
+    # add candidate resume url to prifile detail table
+    applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
+    if applicant_registered:
+        applicant = User.objects.get(email=email)
+        has_profile = True if len(ProfileDetail.objects.filter(user_id=applicant.id)) == 1 else False
+        # only insert resume url when user doesn't have a profile detail record
+        if has_profile is False:
+            resume_name = firstname + "_" + lastname + ".pdf"
+            ProfileDetail.objects.create(
+                user_id=applicant.id,
+                resume_name=resume_name,
+                resume_url=resume_url,
+                profile_rate=50,
+            )
+    # print("===New Candidate Notify Email Called===")
     subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
     message = get_template("jobs/new_candidate_notification_email.html")
     context = {
