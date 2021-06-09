@@ -160,11 +160,11 @@ export class EmployerProfile extends Component {
 
     saveEmployerInfo = () => {
 //        let name = document.getElementById("name").value;
-        let selfDescription = document.getElementById("selfDescription").value;
+        let website = document.getElementById("website").value;
         let data = {
             "user_id": this.props.userId,
             "name": this.props.companyName,
-            "website": selfDescription,
+            "website": website,
         }
         this.props.updateEmployerInfo(data);
         this.handleUpload();
@@ -357,7 +357,7 @@ export class EmployerProfile extends Component {
                                             </div>*/}
                                             <div style={{marginTop: "1rem"}}>
                                                 <p className="profile-p" style={{margin: "0rem"}}>Company Website</p>
-                                                <textarea id="selfDescription" className="profile-input profile-p" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.website}></textarea>
+                                                <textarea id="website" className="profile-input profile-p" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.website}></textarea>
                                             </div>
                                             <div>
                                                 <p className="profile-p" style={{margin: "0rem"}}>Company Logo</p>
