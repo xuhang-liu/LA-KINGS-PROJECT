@@ -48,6 +48,7 @@ import {
   UPDATE_EMPLOYER_LOGO,
   UPDATE_USER_LOGO,
   CHECK_USER_EXISTENCE,
+  CHECK_COMPANY_NAME_EXISTENCE,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -773,6 +774,20 @@ export const checkUserExistence = (email) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: CHECK_USER_EXISTENCE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const checkCompanyNameExistence = (companyName) => (dispatch, getState) => {
+  axios
+    .get(`accounts/check-company-name-existence?companyName=${companyName}`)
+    .then((res) => {
+      dispatch({
+        type: CHECK_COMPANY_NAME_EXISTENCE,
         payload: res.data,
       });
     })

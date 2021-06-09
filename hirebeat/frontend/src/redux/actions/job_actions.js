@@ -11,6 +11,7 @@ import {
     GET_JOBID_LIST,
     UPDATE_CANDIDATA_VIEWED_STATUS,
     GET_ZR_FEED_XML,
+    GET_COMAPNY_BRANDING_INFO,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -176,6 +177,20 @@ export const getZRFeedXML = () => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_ZR_FEED_XML,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getCompanyBrandingInfo = (companyName) => (dispatch, getState) => {
+  axios
+    .get(`${companyName}/get-company-branding-info`)
+    .then((res) => {
+      dispatch({
+        type: GET_COMAPNY_BRANDING_INFO,
         payload: res.data,
       });
     })
