@@ -3322,3 +3322,11 @@ color: #4A6F8A;
   font-size: 1.25rem;
   color: #090D3A;
 }
+
+.website {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #67A3F3;
+}

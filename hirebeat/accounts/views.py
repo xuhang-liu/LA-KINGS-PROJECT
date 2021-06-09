@@ -609,16 +609,18 @@ def get_employer_profile_detail(request):
 def create_or_update_employer_info(request):
     user_id = request.data["user_id"]
     name = request.data["name"]
-    self_description = request.data["self_description"]
+    website = request.data["website"]
+    # self_description = request.data["self_description"]
     try:
         # update personal information
         employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
         employer_profile.name = name
-        employer_profile.self_description = self_description
+        # employer_profile.self_description = self_description
+        employer_profile.website = website
         employer_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        EmployerProfileDetail.objects.create(user_id=user_id, name=name, self_description=self_description)
+        EmployerProfileDetail.objects.create(user_id=user_id, name=name, website=website)
     return Response("Create or Update employer info successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
@@ -639,18 +641,18 @@ def create_or_update_employer_logo(request):
 def create_or_update_employer_social_media(request):
     user_id = request.data["user_id"]
     linkedin = request.data["linkedin"]
-    website = request.data["website"]
+    facebook = request.data["facebook"]
     twitter = request.data["twitter"]
     try:
         # update personal information
         employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
         employer_profile.linkedin = linkedin
-        employer_profile.website = website
+        employer_profile.facebook = facebook
         employer_profile.github = twitter
         employer_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        EmployerProfileDetail.objects.create(user_id=user_id, linkedin=linkedin, website=website, twitter=twitter)
+        EmployerProfileDetail.objects.create(user_id=user_id, linkedin=linkedin, facebook=facebook, twitter=twitter)
     return Response("Create or Update employer social media successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])

@@ -597,7 +597,13 @@ const ApplyJob = (props) =>{
                                         </LinkedinShareButton>
                                     </li>
                                 </ul>
+                        </div>
+                        {props.job.company_website &&
+                            <div className="single-footer-widget1 mt-2">
+                                <p style={{marginBottom: "0rem"}}>Website</p>
+                                <a className="website" target="_blank" href={props.job.company_website}>{props.job.company_website}</a>
                             </div>
+                        }
                     </div>
                 </div>
             </div>

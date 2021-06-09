@@ -283,7 +283,7 @@ const ShortListCard = (props) => {
                                         onClick={inviteExReviewer}
                                         style={{paddingLeft: "25px"}}
                                     >
-                                        + Invite External Reviewer
+                                        + External Reviewer
                                         <span></span>
                                     </button>}
                                     </div>}

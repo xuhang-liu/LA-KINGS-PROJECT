@@ -227,6 +227,7 @@ def get_current_jobs(request):
         "loc_req":  jobs.loc_req,
         "job_post": jobs.job_post,
         "lin_req": jobs.lin_req,
+        "company_website": employerp.website,
     }
 
     return Response({
