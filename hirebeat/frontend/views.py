@@ -42,7 +42,7 @@ def companybranding(request, companyName):
             context = {
                 "company_overview": strip_tags(employerp.summary).replace('\n', ' '),
                 "company_name": jobs.company_name,
-                "company_logo": jobs.company_logo,
+                "company_logo": employerp.logo_url,
             }
     return render(request,'frontend/companybranding.html', context)
 

@@ -21,8 +21,8 @@ const CompanyBranding = (props) =>{
             <div className="py-5" style={{background:"#E8EDFC", minWidth:"1290px", fontFamily:"Avenir Next, Segoe UI"}}>
                 <div style={{marginLeft:"auto", marginRight:"auto", width:"70%", minHeight:"900px", borderRadius:"10px", background:"white", position:"relative"}}>
                     <img style={{height:"12rem", width:"100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon"/>
-                    {props.jobs_branding.length>0 &&
-                    <img style={{width:"7rem", marginLeft:"2rem", marginTop:"-3.5rem"}} src={(props.jobs_branding.length==0) ? "":props.jobs_branding[0].company_logo} alt="icon"/>}
+                    {(props.company_logo != "" && props.company_logo != null) &&
+                    <img style={{width:"7rem", marginLeft:"2rem", marginTop:"-3.5rem"}} src={props.company_logo} alt="icon"/>}
                     <h1 className="ml-5 mt-5" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A"}}>{companyName}</h1>
                     <div className="card container-xl mt-5 pt-3 pb-3">
                     <h3 style={{color:"#090d3a", fontWeight:"600", fontSize:"1.6rem"}}>Jobs</h3>
@@ -70,8 +70,8 @@ const CompanyBranding = (props) =>{
             <div className="py-5" style={{background:"#E8EDFC", fontFamily:"Avenir Next, Segoe UI"}}>
                 <div style={{marginLeft:"auto", marginRight:"auto", width:"90%", minHeight:"700px", borderRadius:"10px", background:"white", position:"relative"}}>
                     <img style={{height:"12rem", width:"100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="img"/>
-                    {props.jobs_branding.length>0 &&
-                    <img style={{width:"7rem", marginLeft:"34%", marginTop:"-3.5rem"}} src={(props.jobs_branding.length==0) ? "":props.jobs_branding[0].company_logo} alt="icon"/>}
+                    {(props.company_logo != "" && props.company_logo != null) &&
+                    <img style={{width:"7rem", marginLeft:"34%", marginTop:"-3.5rem"}} src={props.company_logo} alt="icon"/>}
                     <h1 className="ml-5 mt-5" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A"}}>{companyName}</h1>
                     <div className="card container mt-5 pt-3 pb-3">
                     <h3 style={{color:"#090d3a", fontWeight:"600", fontSize:"1.6rem"}}>Jobs</h3>
@@ -125,6 +125,7 @@ const CompanyBranding = (props) =>{
 
 const mapStateToProps = (state) => ({
     jobs_branding: state.job_reducer.jobs_branding,
+    company_logo: state.job_reducer.company_logo,
 });
 
 export default connect(mapStateToProps, {getCompanyBrandingInfo})(CompanyBranding);

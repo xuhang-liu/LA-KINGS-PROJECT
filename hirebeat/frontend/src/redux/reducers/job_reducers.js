@@ -11,6 +11,7 @@ const initialState = {
   job: {},
   jobid_list: [],
   jobs_branding: [],
+  company_logo: "",
 };
 
 export default function (state = initialState, action) {
@@ -35,6 +36,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         jobs_branding: action.payload.data,
+        company_logo: action.payload.company_logo,
       }
     default:
       return state;
