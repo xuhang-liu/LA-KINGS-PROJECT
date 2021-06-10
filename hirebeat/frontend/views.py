@@ -27,22 +27,18 @@ def applyjob(request):
     return render(request,'frontend/applyjob.html', context)
 
 def companybranding(request, companyName):
-    jobs = {}
     context = {
         "company_overview": "HireBeat is an HR software company providing enterprise SaaS solutions that simplify talent recruiting and assessment with a digital video screening and interviewing. Our platform combines the power of one-way videos, ATS tools, and HR workflows, along with AI-powered analytics and collaboration, to optimize the hiring process while improving the candidate experience.",
         "company_name": "HireBeat Inc.",
         "company_logo": "https://hirebeat-employer-logo.s3.amazonaws.com/1619807927000.png",
     }
-    print(companyName)
-    job = Jobs.objects.filter(company_name=companyName)
-    for i in range(len(job)):
-        if len(job) > 0:
-            jobs = job[i]
-            employerp = EmployerProfileDetail.objects.get(user_id = jobs.user_id)
+    employerProfileDetail = EmployerProfileDetail.objects.filter(name=companyName)
+    for i in range(len(employerProfileDetail)):
+        if len(employerProfileDetail) > 0:
             context = {
-                "company_overview": strip_tags(employerp.summary).replace('\n', ' '),
-                "company_name": jobs.company_name,
-                "company_logo": employerp.logo_url,
+                "company_overview": strip_tags(employerProfileDetail[i].summary).replace('\n', ' '),
+                "company_name": employerProfileDetail[i].name,
+                "company_logo": employerProfileDetail[i].logo_url,
             }
     return render(request,'frontend/companybranding.html', context)
 
