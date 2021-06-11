@@ -16,7 +16,7 @@ var job_id = uri.substring(1, uri.length).split("=")[1];
 var url = String(window.location);
 const ApplyJob = (props) =>{
     useEffect(() => {
-        if(job_id != null || job_id != ""){
+        if(job_id != null && job_id != ""){
             props.getCurrentJobs(job_id);
         }
     }, []);
