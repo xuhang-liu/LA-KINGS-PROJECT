@@ -13,7 +13,7 @@ class ProductPage extends Component {
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'recruitment, one-way interview, recruiting, hiring, talent sourcing, resume parsing'
+                keywords: 'automated resume matching api, online video interviewing, short list, ats, talent acquisition personality assessment'
               }
             }
         };

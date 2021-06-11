@@ -28,7 +28,7 @@ class Employer_pricing extends Component {
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+                keywords: 'hiring tool return on investment, hiring tool roi, hr applicant tracking, roi recruitment process'
               }
             }
           };

@@ -5,6 +5,7 @@ import FaqContent from '../Faq/FaqContent';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -18,7 +19,19 @@ class Pricing extends Component {
     componentDidUpdate
     
     render() {
+        const meta = {
+            title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
+            description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+            canonical: 'https://hirebeat.co/pricing',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+              }
+            }
+          };
         return (
+            <DocumentMeta {...meta}>
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
@@ -30,6 +43,7 @@ class Pricing extends Component {
                 <FreeTrialArea />
                 <Footer />
             </React.Fragment>
+            </DocumentMeta>
         );
     }
 }

@@ -142,7 +142,7 @@ export class EmployerRegister extends Component {
       meta: {
         charset: 'utf-8',
         name: {
-          keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+          keywords: 'hr application tracking system, hr ats software, hr ats systems, hr tracking systems'
         }
       }
     };

@@ -23,7 +23,7 @@ class bloggridEmployer extends Component {
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+                keywords: 'hr, ats, applicant tracking system blog'
               }
             }
           };

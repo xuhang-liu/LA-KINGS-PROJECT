@@ -23,7 +23,7 @@ class Employerabout extends Component {
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+                keywords: 'benefits of ats, benefits of applicant tracking systems, hr applicant tracking software'
               }
             }
           };
