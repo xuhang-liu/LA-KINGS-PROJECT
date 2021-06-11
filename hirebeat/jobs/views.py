@@ -84,12 +84,14 @@ def get_all_jobs(request):
         un_view = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
         all_invited = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_invited=1).count() == len(applicants) else False
         questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
+        position = Positions.objects.filter(id=positions_id).values()[0]
         job_details = {
             "job_details": jobs[i],
             "applicants": applicants,
             "questions": questions,
             "un_view": un_view,
             "all_invited": all_invited,
+            "position": position,
         }
         data[job_id] = job_details
 
@@ -236,10 +238,19 @@ def get_current_jobs(request):
 
 @api_view(['POST'])
 def add_interview_question(request):
+    response_time = request.data['resTime']
+    prepare_time = request.data['preTime']
+    camera_on = request.data['cameraOn']
     questions = request.data['questions']
     position_id = request.data['positionId']
     for i in range(len(questions)):
         InterviewQuestions.objects.create(description=questions[i], positions_id=position_id)
+    # add time and camera configuration
+    position = Positions.objects.get(id=position_id)
+    position.questionTime = response_time
+    position.prepare_time = prepare_time
+    position.camera_on = camera_on
+    position.save()
     return Response("Add new questions successfully", status=status.HTTP_201_CREATED)
 
 

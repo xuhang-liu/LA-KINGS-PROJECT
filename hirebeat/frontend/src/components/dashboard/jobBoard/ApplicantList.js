@@ -290,6 +290,7 @@ export class ApplicantList extends Component{
                     <EditQuestion
                         curJob={this.props.curJob}
                         questions={this.props.curJob.questions}
+                        position={this.props.curJob.position}
                         disableQuestionEdition={this.disableQuestionEdition}
                         getAllJobs={this.props.getAllJobs}
                         getPJobs={this.props.getPJobs}

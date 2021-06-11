@@ -106,7 +106,7 @@ export class CareerResponseWindow extends Component {
     }
 
     render() {
-        let countTime = this.state.status == "Preparation" ? 30 : this.props.questionTime;
+        let countTime = this.state.status == "Preparation" ? this.props.interview_position.prepare_time : this.props.questionTime;
             videoRecorderOptions.plugins.record.maxLength = this.props.questionTime;
             videoRecorderOptions.controlBar.recordToggle = false;
         return (
@@ -194,6 +194,7 @@ const mapStateToProps = (state) => ({
   q_count: state.question_reducer.q_count,
   q_index: state.question_reducer.q_index,
   questionTime: state.question_reducer.questionTime,
+  interview_position: state.question_reducer.interview_position,
 });
 
 export default connect(mapStateToProps, { getInterviewQuestions, updateRecordRefresh })(CareerResponseWindow);
