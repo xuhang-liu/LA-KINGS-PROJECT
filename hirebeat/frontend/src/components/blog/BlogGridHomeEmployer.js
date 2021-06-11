@@ -87,6 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-what-is-resume-screening-and-why-does-it-matter",
     "/employer_blog-8-tips-to-increase-resume-screening-effectiveness",
     "/employer_blog-employer-branding-vs-recruitment-marketing",
     "/employer_blog-how-ATS-works-in-the-recruitment-process",
@@ -110,6 +111,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer21.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer20.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer19.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer18.jpg",
@@ -133,6 +135,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Jun 11, 2021",
     "Jun 04, 2021",
     "May 27, 2021",
     "May 24, 2021",
@@ -156,6 +159,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "WHAT IS RESUME SCREENING AND WHY IT MATTERS",
     "8 TIPS TO INCREASE RESUME SCREENING",
     "EMPLOYER BRANDING VS RECRUITMENT MARKETING",
     "HOW ATS WORKS IN THE RECRUITMENT PROCESS",

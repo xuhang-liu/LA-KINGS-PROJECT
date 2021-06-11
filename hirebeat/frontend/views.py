@@ -128,3 +128,6 @@ def blog28(request):
 
 def blogemployer20(request):
     return render(request, 'frontend/blogemployer20.html')
+
+def blogemployer21(request):
+    return render(request, 'frontend/blogemployer21.html')

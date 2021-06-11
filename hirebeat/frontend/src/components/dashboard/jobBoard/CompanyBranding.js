@@ -26,7 +26,7 @@ const CompanyBranding = (props) =>{
                     <h1 className="ml-5 mt-5" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A"}}>{companyName}</h1>
                     <div className="card container-xl mt-5 pt-3 pb-3">
                     <h3 style={{color:"#090d3a", fontWeight:"600", fontSize:"1.6rem"}}>Jobs</h3>
-                    {props.jobs_branding.sort((a, b) => b.id - a.id).map((j, index) => {
+                    {props.jobs_branding?.sort((a, b) => b.id - a.id)?.map((j, index) => {
                         return(
                             <div className="container-xl">
                             <div className="mt-4">
@@ -75,7 +75,7 @@ const CompanyBranding = (props) =>{
                     <h1 className="ml-5 mt-5" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A"}}>{companyName}</h1>
                     <div className="card container mt-5 pt-3 pb-3">
                     <h3 style={{color:"#090d3a", fontWeight:"600", fontSize:"1.6rem"}}>Jobs</h3>
-                    {props.jobs_branding.sort((a, b) => b.id - a.id).map((j, index) => {
+                    {props.jobs_branding?.sort((a, b) => b.id - a.id)?.map((j, index) => {
                         return(
                             <div className="container-xl">
                             <div className="mt-4">
