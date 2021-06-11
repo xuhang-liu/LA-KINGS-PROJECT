@@ -21,6 +21,7 @@ const initialState = {
   analyticsInfo: {},
   position_list: [],
   interview_session: {},
+  interview_position: {},
 };
 
 export default function (state = initialState, action) {
@@ -65,6 +66,7 @@ export default function (state = initialState, action) {
         interview_questions: action.payload.questions,
         interview_question_ids: action.payload.question_ids,
         questionTime: action.payload.questionTime,
+        interview_position: action.payload.position,
       };
     case NEXT_INTERVIEW_QUESTION:
       if (state.q_index == state.q_count - 2) {

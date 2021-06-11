@@ -160,11 +160,11 @@ export class EmployerProfile extends Component {
 
     saveEmployerInfo = () => {
 //        let name = document.getElementById("name").value;
-        let selfDescription = document.getElementById("selfDescription").value;
+        let website = document.getElementById("website").value;
         let data = {
             "user_id": this.props.userId,
             "name": this.props.companyName,
-            "self_description": selfDescription,
+            "website": website,
         }
         this.props.updateEmployerInfo(data);
         this.handleUpload();
@@ -174,7 +174,7 @@ export class EmployerProfile extends Component {
 
     saveSocialMedia = () => {
         let linkedin = document.getElementById("linkedin").value;
-        let website = document.getElementById("website").value;
+        let facebook = document.getElementById("facebook").value;
         let twitter = document.getElementById("twitter").value;
         if(((!linkedin.toLowerCase().includes("linkedin")) && (linkedin != "")) || ((!twitter.toLowerCase().includes("twitter")) && (twitter != ""))) {
             alert("Please Enter Correct URL");
@@ -182,7 +182,7 @@ export class EmployerProfile extends Component {
             let data = {
                 "user_id": this.props.userId,
                 "linkedin": linkedin,
-                "website": website,
+                "facebook": facebook,
                 "twitter": twitter,
             }
             this.props.updateEmployerSocialMedia(data);
@@ -335,7 +335,7 @@ export class EmployerProfile extends Component {
                                                     </div>
                                                 </div>
                                                 <p className="profile-p">
-                                                    {(this.props.employerProfileDetail.self_description !== null && this.props.employerProfileDetail.self_description !== "") ? this.props.employerProfileDetail.self_description : "Company Introduction"}
+                                                    {(this.props.employerProfileDetail.website !== null && this.props.employerProfileDetail.website !== "") ? this.props.employerProfileDetail.website : "Company Website"}
                                                 </p>
                                             </div>
                                         </div> :
@@ -356,8 +356,8 @@ export class EmployerProfile extends Component {
                                                 <input id="name" className="profile-input profile-p" defaultValue={this.props.employerProfileDetail.name} style={{width: "100%"}}></input>
                                             </div>*/}
                                             <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p" style={{margin: "0rem"}}>Company Headline</p>
-                                                <textarea id="selfDescription" className="profile-input profile-p" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.self_description}></textarea>
+                                                <p className="profile-p" style={{margin: "0rem"}}>Company Website</p>
+                                                <textarea id="website" className="profile-input profile-p" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.website}></textarea>
                                             </div>
                                             <div>
                                                 <p className="profile-p" style={{margin: "0rem"}}>Company Logo</p>
@@ -468,12 +468,12 @@ export class EmployerProfile extends Component {
                                             <div className="row">
                                                 <div className="col-4">
                                                     <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
-                                                        Website <i class='bx bxs-network-chart' style={{color: "#67A3F3"}}></i>
+                                                        facebook <i class='bx bxl-facebook-square' style={{color: "#67A3F3"}}></i>
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
                                                     <p className="profile-p4" style={{wordBreak: "break-word"}}>
-                                                        {(this.props.employerProfileDetail.website !== null && this.props.employerProfileDetail.website !== "") ? this.props.employerProfileDetail.website : "Link to your Website"}
+                                                        {(this.props.employerProfileDetail.facebook !== null && this.props.employerProfileDetail.facebook !== "") ? this.props.employerProfileDetail.facebook : "Link to your facebook"}
                                                     </p>
                                                 </div>
                                             </div>
@@ -507,8 +507,8 @@ export class EmployerProfile extends Component {
                                                 <input id="linkedin" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.linkedin}></input>
                                             </div>
                                             <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Website <i class='bx bxs-network-chart' style={{color: "#090D3A"}}></i></p>
-                                                <input id="website" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.website}></input>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>facebook <i class='bx bxl-facebook-square' style={{color: "#090D3A"}}></i></p>
+                                                <input id="facebook" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.facebook}></input>
                                             </div>
                                              <div style={{marginTop: "1rem"}}>
                                                 <p className="profile-p3" style={{margin: "0rem"}}>Twitter <i class='bx bxl-twitter' style={{color: "#090D3A"}}></i></p>

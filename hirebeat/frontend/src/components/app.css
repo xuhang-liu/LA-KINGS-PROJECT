@@ -3322,3 +3322,33 @@ color: #4A6F8A;
   font-size: 1.25rem;
   color: #090D3A;
 }
+
+.website {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #67A3F3;
+}
+
+.product-bg {
+  background-image: url("https://hirebeat-assets.s3.amazonaws.com/Employer/video_bg.png");
+}
+
+.product-h3 {
+  font-family: Avenir Next, Segoe UI;
+  font-size: 4.3rem;
+  font-weight: 600;
+  color: #090d3a;
+  text-align: center;
+  padding: 1rem;
+}
+
+.product-h3-2 {
+  font-family: Avenir Next, Segoe UI;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #090d3a;
+  text-align: center;
+  padding: 1rem;
+}

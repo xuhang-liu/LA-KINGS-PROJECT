@@ -132,6 +132,8 @@ export class Dashboard extends Component {
   }
 
   renderProfile = () => {
+    // solve async problem
+    this.props.getProfileDetail(this.props.user.id);
     this.setState({
           subpage: "profile",
         }

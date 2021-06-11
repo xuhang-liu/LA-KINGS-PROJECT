@@ -9,6 +9,17 @@ export class QuestionForm extends Component {
 
     state = {
         categoryOfQuestion: { value: "Positive Attitude", label: "Positive Attitude"},
+        preTime: 30,
+        resTime: 90,
+        cameraOn: true,
+    }
+
+    setPreTime = (time) => {
+        this.setState({preTime: time});
+    }
+
+    setResTime = (time) => {
+        this.setState({resTime: time});
     }
 
     handleChangeCategory = (categoryOfQuestion) => {
@@ -55,6 +66,9 @@ export class QuestionForm extends Component {
     saveQuestions = (e) => {
         let questions = this.getQuestions();
         let data = {
+            "preTime": this.state.preTime,
+            "resTime": this.state.resTime,
+            "cameraOn": this.state.cameraOn,
             "questions": questions,
             "positionId": this.props.positionId,
         }
@@ -176,16 +190,52 @@ export class QuestionForm extends Component {
                                         </div>
                                     </div>
                                     </div>}
-                                    <div className="row" style={{float: "right", marginRight: "2.5rem"}}>
-                                        <button
-                                            type="submit"
-                                            onClick={this.saveQuestions}
-                                            className="default-btn1" style={{marginBottom:"5vh", paddingLeft:"25px"}}
-                                        >
-                                            Save
-                                        </button>
+                                </div>
+                            </div>
+                            <div className="form-row justify-items">
+                                <div className="form-group col-4">
+                                    <label className="db-txt2" style={{ margin:"2%"}}>
+                                        Preparation Time
+                                    </label>
+                                    <div className="form-row">
+                                        {this.state.preTime == 30 ?
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>30s</button>:
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setPreTime(30)}>30s</button>
+                                        }
+                                        {this.state.preTime == 60 ?
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>60s</button>:
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setPreTime(60)}>60s</button>
+                                        }
                                     </div>
                                 </div>
+                                <div className="form-group col-5">
+                                    <label className="db-txt2" style={{ marginTop:"2%" }}>
+                                        Response Time
+                                    </label>
+                                    <div className="form-row">
+                                        {this.state.resTime == 60 ?
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>60s</button>:
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setResTime(60)}>60s</button>
+                                            }
+                                            {this.state.resTime == 90 ?
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>90s</button>:
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setResTime(90)}>90s</button>
+                                            }
+                                            {this.state.resTime == 120 ?
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>120s</button>:
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setResTime(120)}>120s</button>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row" style={{float: "right", marginRight: "2.5rem"}}>
+                                <button
+                                    type="submit"
+                                    onClick={this.saveQuestions}
+                                    className="default-btn1" style={{marginBottom:"5vh", paddingLeft:"25px"}}
+                                >
+                                    Save
+                                </button>
                             </div>
                         </form>
                     </div>

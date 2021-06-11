@@ -57,7 +57,10 @@ class Positions(models.Model):
     job_description = models.TextField(blank=True, null=True)
     is_closed = models.BooleanField(default=False)
     invite_date = models.DateTimeField(auto_now_add=True)
-    questionTime = models.IntegerField(default=60)
+    questionTime = models.IntegerField(default=120)
+    prepare_time = models.IntegerField(default=30)
+    camera_on = models.BooleanField(default=True)
+
     def __str__(self):
         return self.job_title
 
