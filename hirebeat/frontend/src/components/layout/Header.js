@@ -294,8 +294,14 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item ">
-                <a href="/employer-product" className="nav-link text-white navbar-font">
-                  <span className="header-text">Product</span>
+                <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Product <i className="bx bx-chevron-down"></i>
+                    <ul className="nav_submenu" style={{height:"5.6rem"}}>
+                      <li><Link id="id-product-interview" to="/employer-product" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Product Overview</Link></li>
+                      <li><Link id="id-one-way-interview" to="/employer-feature-video" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>One Way Interview</Link></li>
+                    </ul>
+                  </span>
                 </a>
               </li>
               <li className="nav-item">

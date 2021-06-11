@@ -728,6 +728,18 @@ export class Profile extends Component {
 
                         {/* Right Part */}
                         <div className="col-6" style={{marginLeft: "2rem"}}>
+                            {/* Resume */}
+                            <div className="profile-bg" style={{textAlign: "left", marginBottom: "2rem"}}>
+                                <Resume
+                                    updateResume={this.props.updateResume}
+                                    userId={this.props.userId}
+                                    resumeName={this.props.profileDetail.resume_name}
+                                    resumeURL={this.props.profileDetail.resume_url}
+                                    setResume={this.setResume}
+                                    getUpdatedData={this.getUpdatedData}
+                                />
+                            </div>
+
                             {/* Video Profile */}
                             <div className="profile-bg" style={{textAlign: "left"}}>
                                 <div style={{padding: "2rem"}}>
@@ -850,18 +862,6 @@ export class Profile extends Component {
                                         </div>
                                     }
                                 </div>
-                            </div>
-
-                            {/* Resume */}
-                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
-                                <Resume
-                                    updateResume={this.props.updateResume}
-                                    userId={this.props.userId}
-                                    resumeName={this.props.profileDetail.resume_name}
-                                    resumeURL={this.props.profileDetail.resume_url}
-                                    setResume={this.setResume}
-                                    getUpdatedData={this.getUpdatedData}
-                                />
                             </div>
                         </div>
                     </div>

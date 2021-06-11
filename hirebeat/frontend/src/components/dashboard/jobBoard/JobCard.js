@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { updateJob, archiveJob, getAllJobs, deleteJob} from "../../../redux/actions/job_actions";
+import { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML} from "../../../redux/actions/job_actions";
 
 export class JobCard extends Component{
 
@@ -19,7 +19,7 @@ export class JobCard extends Component{
             "isClosed": true,
         }
         this.props.archiveJob(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML()}, 300);
     };
 
     deleteJob = () => {
@@ -29,7 +29,7 @@ export class JobCard extends Component{
             "userId": this.props.user.id,
         }
         this.props.deleteJob(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML()}, 300);
     };
 
     activateJob = () => {
@@ -39,7 +39,7 @@ export class JobCard extends Component{
             "isClosed": false,
         }
         this.props.archiveJob(data);
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs();}, 300);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML()}, 300);
     };
 
     render() {
@@ -145,6 +145,6 @@ const ActionButton = (props) => {
     );
 }
 
-export default withRouter(connect(null, { updateJob, archiveJob, getAllJobs, deleteJob})(
+export default withRouter(connect(null, { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML})(
   JobCard
 ));

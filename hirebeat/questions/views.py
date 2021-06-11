@@ -71,8 +71,7 @@ def get_interview_questions(request):
     questions = []
     question_ids = []
     position_id = request.query_params.get("position_id")
-    question_Obj = Positions.objects.get(pk=position_id)
-    questionTime = question_Obj.questionTime
+    position = Positions.objects.filter(pk=position_id).values()[0]
 
     interview_questions = InterviewQuestions.objects.filter(positions_id=position_id)
     for i in range(len(interview_questions)):
@@ -83,7 +82,8 @@ def get_interview_questions(request):
     return Response({
         "questions": questions,
         "question_ids": question_ids,
-        "questionTime": questionTime,
+        "questionTime": position["prepare_time"],
+        "position": position,
     })
 
 @api_view(['POST'])
@@ -129,6 +129,7 @@ def get_posted_jobs(request):
 
             subreviewers = list(SubReviewers.objects.filter(position_id=positions_id).values())
             ex_reviewers = list(ExternalReviewers.objects.filter(position_id=positions_id).values())
+            position = Positions.objects.filter(id=positions_id).values()[0]
             job_details = {
                 "position_id": positions_id,
                 "job_id": positions[i].job_id,
@@ -139,6 +140,7 @@ def get_posted_jobs(request):
                 "questions": questions,
                 "subreviewers": subreviewers,
                 "ex_reviewers": ex_reviewers,
+                "position": position,
             }
             # convert to json
             data[positions_id] = job_details

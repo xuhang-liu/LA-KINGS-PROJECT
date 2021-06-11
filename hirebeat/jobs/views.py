@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates
 from questions.models import Positions, InterviewQuestions
-from accounts.models import Profile, EmployerProfileDetail
+from accounts.models import Profile, EmployerProfileDetail, ProfileDetail
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
@@ -84,12 +84,14 @@ def get_all_jobs(request):
         un_view = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
         all_invited = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_invited=1).count() == len(applicants) else False
         questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
+        position = Positions.objects.filter(id=positions_id).values()[0]
         job_details = {
             "job_details": jobs[i],
             "applicants": applicants,
             "questions": questions,
             "un_view": un_view,
             "all_invited": all_invited,
+            "position": position,
         }
         data[job_id] = job_details
 
@@ -164,7 +166,21 @@ def add_new_apply_candidate(request):
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
     applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl)
-    print("===New Candidate Notify Email Called===")
+    # add candidate resume url to prifile detail table
+    applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
+    if applicant_registered:
+        applicant = User.objects.get(email=email)
+        has_profile = True if len(ProfileDetail.objects.filter(user_id=applicant.id)) == 1 else False
+        # only insert resume url when user doesn't have a profile detail record
+        if has_profile is False:
+            resume_name = firstname + "_" + lastname + ".pdf"
+            ProfileDetail.objects.create(
+                user_id=applicant.id,
+                resume_name=resume_name,
+                resume_url=resume_url,
+                profile_rate=50,
+            )
+    # print("===New Candidate Notify Email Called===")
     subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
     message = get_template("jobs/new_candidate_notification_email.html")
     context = {
@@ -213,6 +229,7 @@ def get_current_jobs(request):
         "loc_req":  jobs.loc_req,
         "job_post": jobs.job_post,
         "lin_req": jobs.lin_req,
+        "company_website": employerp.website,
     }
 
     return Response({
@@ -221,10 +238,19 @@ def get_current_jobs(request):
 
 @api_view(['POST'])
 def add_interview_question(request):
+    response_time = request.data['resTime']
+    prepare_time = request.data['preTime']
+    camera_on = request.data['cameraOn']
     questions = request.data['questions']
     position_id = request.data['positionId']
     for i in range(len(questions)):
         InterviewQuestions.objects.create(description=questions[i], positions_id=position_id)
+    # add time and camera configuration
+    position = Positions.objects.get(id=position_id)
+    position.questionTime = response_time
+    position.prepare_time = prepare_time
+    position.camera_on = camera_on
+    position.save()
     return Response("Add new questions successfully", status=status.HTTP_201_CREATED)
 
 

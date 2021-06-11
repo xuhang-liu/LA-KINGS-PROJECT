@@ -58,7 +58,7 @@ class InterviewInfo extends Component {
     }
 
     redirectToRecord = () => {
-        console.log(this.state.resume);
+//        console.log(this.state.resume);
         this.uploader.uploadFile(this.state.resume);
         this.setState({
             showFirst: true,
@@ -112,9 +112,9 @@ class InterviewInfo extends Component {
                 let timestamp = Date.parse(new Date());
                 let suffix = ".pdf";
                 let cvName = timestamp + suffix;
-                console.log("cvName is", cvName);
+//                console.log("cvName is", cvName);
                 const newResume = new File([resume], cvName, {type: resume.type});
-                console.log("resume is", resume);
+//                console.log("resume is", resume);
                 this.setState({cvName: cvName});
                 this.setState({resume: newResume});
             } else {
@@ -153,7 +153,6 @@ class InterviewInfo extends Component {
           email: this.state.email,
         };
 
-        console.log("this is resumeMetaData", resumeMetaData);
         this.props.addInterviewResume(resumeMetaData);
       };
 
@@ -238,7 +237,7 @@ class InterviewInfo extends Component {
                                         </h4>
                                         <ul className="interview-txt2" style={{color: "#4A6F8A", paddingLeft: "1rem"}}>
                                             <li style={{marginTop:"1rem"}}><a href="/practice" style={{color:"#ff6b00"}}>Practice with our sample question</a> before the interview starts.</li>
-                                            <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>30 seconds of preparation time</span> for each interview question.</li>
+                                            <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>{this.props.interview_position.prepare_time} seconds of preparation time</span> for each interview question.</li>
                                         </ul>
                                         {this.state.selected ? <button
                                             onClick={this.redirectToRecord}
@@ -337,6 +336,7 @@ const mapStateToProps = (state) => ({
   user: state.auth_reducer.user,
   dataLoaded: state.auth_reducer.dataLoaded,
   interview_questions: state.question_reducer.interview_questions,
+  interview_position: state.question_reducer.interview_position,
   isRecorded: state.auth_reducer.isRecorded,
   urlClicked: state.auth_reducer.urlClicked,
   profile: state.auth_reducer.profile,

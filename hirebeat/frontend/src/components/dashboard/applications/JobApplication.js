@@ -78,6 +78,7 @@ export class JobApplication extends Component{
                                     profile={this.props.profile}
                                     updateViewStatus={this.props.updateViewStatus}
                                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                    position={p.position}
                                 />
                             )
                         })}
@@ -414,6 +415,7 @@ const JobViewDetail = (props) => {
                     profile={props.profile}
                     updateViewStatus={props.updateViewStatus}
                     subreviewerUpdateComment={props.subreviewerUpdateComment}
+                    position={props.position}
                 />
             }
         </React.Fragment>
@@ -800,6 +802,7 @@ const JobCard = (props) => {
                                 questions={props.questions}
                                 hideQEditForm={()=>{setShowQEditForm(false)}}
                                 getPJobs={props.getPJobs}
+                                position={props.position}
                             />
                         </MyModal80>
                         </div>

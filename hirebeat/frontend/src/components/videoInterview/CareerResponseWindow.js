@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 //import RetryVideoRecorder from "../practice/RetryVideoRecorder";
 //import {Redirect} from "react-router-dom";
-import CountdownBar from "../practice/CountdownBar";
-import { videoRecorderOptions } from "../../constants/constants";
+import CountdownBar from "./CountdownBar";
 import { PracticeCard} from "../practice/CardComponents";
 import NotePad from "../practice/NotePad";
 import { connect } from "react-redux";
@@ -20,13 +19,42 @@ export class CareerResponseWindow extends Component {
 
     constructor(props) {
         super(props);
+        let videoRecorderOptions = this.getVideoRecorderOptions(this.props.interview_position.questionTime);
         this.state = {
             status: "Preparation",
             type: "behavior",
             deviceTested: false,
             email: this.email == null ? "" : this.email,
             positionId: this.positionId == null ? 0 : this.positionId,
+            videoRecorderOptions: videoRecorderOptions,
         };
+    }
+
+    getVideoRecorderOptions = (time) => {
+        let videoRecorderOptions = {
+              controls: true,
+              controlBar: {
+                recordToggle: false,
+                volumePanel: false,
+                pictureInPictureToggle: false,
+                fullscreenToggle: false
+              },
+              width: 520,
+              height: 350,
+              bigPlayButton: false,
+              fluid: false,
+              responsive: true,
+              plugins: {
+                record: {
+                  audio: true,
+                  video: true,
+                  maxLength: time,
+                  debug: true,
+                  videoMimeType: "video/webm;codecs=vp8,opus",
+                },
+              },
+        };
+        return videoRecorderOptions;
     }
 
     componentDidMount() {
@@ -106,9 +134,7 @@ export class CareerResponseWindow extends Component {
     }
 
     render() {
-        let countTime = this.state.status == "Preparation" ? 30 : this.props.questionTime;
-            videoRecorderOptions.plugins.record.maxLength = this.props.questionTime;
-            videoRecorderOptions.controlBar.recordToggle = false;
+        let countTime = this.state.status == "Preparation" ? this.props.interview_position.prepare_time : this.props.interview_position.questionTime;
         return (
             (!this.state.deviceTested) ? (
                 <TestDevice testDeviceDone={this.testDeviceDone} />
@@ -161,7 +187,7 @@ export class CareerResponseWindow extends Component {
                         {this.state.status == "Preparation" ? (
                             <PrepCountdown finishCountdown={this.finishCountdown}/>
                         ) : (   <VideoRecorder
-                                    {...videoRecorderOptions}
+                                    {...this.state.videoRecorderOptions}
                                     startRecording={this.startRecording}
                                     recordingDone={this.recordingDone}
                                     resetCountdownBar={this.resetCountdownBar}
@@ -193,7 +219,7 @@ const mapStateToProps = (state) => ({
   last_q: state.question_reducer.last_q,
   q_count: state.question_reducer.q_count,
   q_index: state.question_reducer.q_index,
-  questionTime: state.question_reducer.questionTime,
+  interview_position: state.question_reducer.interview_position,
 });
 
 export default connect(mapStateToProps, { getInterviewQuestions, updateRecordRefresh })(CareerResponseWindow);
