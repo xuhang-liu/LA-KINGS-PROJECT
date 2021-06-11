@@ -58,7 +58,7 @@ class InterviewInfo extends Component {
     }
 
     redirectToRecord = () => {
-        console.log(this.state.resume);
+//        console.log(this.state.resume);
         this.uploader.uploadFile(this.state.resume);
         this.setState({
             showFirst: true,
@@ -112,9 +112,9 @@ class InterviewInfo extends Component {
                 let timestamp = Date.parse(new Date());
                 let suffix = ".pdf";
                 let cvName = timestamp + suffix;
-                console.log("cvName is", cvName);
+//                console.log("cvName is", cvName);
                 const newResume = new File([resume], cvName, {type: resume.type});
-                console.log("resume is", resume);
+//                console.log("resume is", resume);
                 this.setState({cvName: cvName});
                 this.setState({resume: newResume});
             } else {
