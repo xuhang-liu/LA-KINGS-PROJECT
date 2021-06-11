@@ -26,6 +26,22 @@ def applyjob(request):
     }
     return render(request,'frontend/applyjob.html', context)
 
+def companybranding(request, companyName):
+    context = {
+        "company_overview": "HireBeat is an HR software company providing enterprise SaaS solutions that simplify talent recruiting and assessment with a digital video screening and interviewing. Our platform combines the power of one-way videos, ATS tools, and HR workflows, along with AI-powered analytics and collaboration, to optimize the hiring process while improving the candidate experience.",
+        "company_name": "HireBeat Inc.",
+        "company_logo": "https://hirebeat-employer-logo.s3.amazonaws.com/1619807927000.png",
+    }
+    employerProfileDetail = EmployerProfileDetail.objects.filter(name=companyName)
+    for i in range(len(employerProfileDetail)):
+        if len(employerProfileDetail) > 0:
+            context = {
+                "company_overview": strip_tags(employerProfileDetail[i].summary).replace('\n', ' '),
+                "company_name": employerProfileDetail[i].name,
+                "company_logo": employerProfileDetail[i].logo_url,
+            }
+    return render(request,'frontend/companybranding.html', context)
+
 def blogemployer19(request):
     return render(request, 'frontend/blogemployer19.html')
 
@@ -112,3 +128,6 @@ def blog28(request):
 
 def blogemployer20(request):
     return render(request, 'frontend/blogemployer20.html')
+
+def blogemployer21(request):
+    return render(request, 'frontend/blogemployer21.html')

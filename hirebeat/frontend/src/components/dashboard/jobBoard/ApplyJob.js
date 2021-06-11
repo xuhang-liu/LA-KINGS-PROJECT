@@ -267,10 +267,12 @@ const ApplyJob = (props) =>{
         <div><h3>Please enter a valid job url!</h3></div> :
         <div className="py-5" style={{background:"#E8EDFC", minWidth:"1290px"}}>
             <div style={{marginLeft:"auto", marginRight:"auto", width:"70%", minHeight:"800px", borderRadius:"10px", background:"white", position:"relative"}}>
-                <img style={{height:"12rem", width:"100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png"/>
-                <img style={{width:"7rem", marginLeft:"2rem", marginTop:"-3.5rem"}} src={(job_id == null || job_id == "") ? "":props.job.company_logo}/>
+                <img style={{height:"12rem", width:"100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon"/>
+                <img style={{width:"7rem", marginLeft:"2rem", marginTop:"-3.5rem"}} src={(job_id == null || job_id == "") ? "":props.job.company_logo} alt="icon"/>
                 <h1 className="ml-5 mt-5" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A"}}>{(job_id == null || job_id == "") ? "":props.job.job_title}</h1>
-                <h2 className="ml-5 mt-2" style={{fontWeight:"600", fontSize:"1.5rem", color:"#67A3F3"}}>{(job_id == null || job_id == "") ? "":props.job.company_name}</h2>
+                <h2 className="ml-5 mt-2" style={{fontWeight:"600", fontSize:"1.5rem", color:"#67A3F3"}}>{(job_id == null || job_id == "") ? "":props.job.company_name}
+                <a style={{textDecoration:"none", color:"#7C94B5", fontSize:"0.9rem", marginLeft:"0.8rem"}} target="_blank" href={"https://hirebeat.co/company-branding/"+((job_id == null || job_id == "") ? "":props.job.company_name)}>View all jobs posted</a>
+                </h2>
                 <div className="row pl-3">
                     <div className="col-8 pl-5 mt-5 pb-5" style={{paddingRight:"3.7rem"}}>
                         <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A"}}>
@@ -615,10 +617,11 @@ const ApplyJob = (props) =>{
         <div><h3>Please enter a valid job url!</h3></div> :
         <div className="py-5" style={{background:"#E8EDFC"}}>
             <div style={{marginLeft:"auto", marginRight:"auto", width:"90%", minHeight:"600px", borderRadius:"10px", background:"white", position:"relative"}}>
-                <img style={{height:"12rem", width:"100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png"/>
-                <img style={{width:"7rem", marginLeft:"34%", marginTop:"-3.5rem"}} src={(job_id == null || job_id == "") ? "":props.job.company_logo}/>
+                <img style={{height:"12rem", width:"100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon"/>
+                <img style={{width:"7rem", marginLeft:"34%", marginTop:"-3.5rem"}} src={(job_id == null || job_id == "") ? "":props.job.company_logo} alt="icon"/>
                 <h1 className="mt-3" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A", textAlign:"center"}}>{(job_id == null || job_id == "") ? "":props.job.job_title}</h1>
                 <h2 className="mt-2" style={{fontWeight:"600", fontSize:"1.5rem", color:"#67A3F3", textAlign:"center"}}>{(job_id == null || job_id == "") ? "":props.job.company_name}</h2>
+                <a style={{textDecoration:"none", color:"#7C94B5", fontSize:"0.9rem", marginLeft:"30%"}} target="_blank" href={"https://hirebeat.co/company-branding/"+((job_id == null || job_id == "") ? "":props.job.company_name)}>View all jobs posted</a>
                 <div className="row pl-3">
                     <div className="pl-5 mt-3 pb-5" style={{paddingRight:"3.7rem"}}>
                         <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A"}}>

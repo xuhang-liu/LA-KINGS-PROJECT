@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PageTitleArea from '../Common/PageTitleArea';
-import BlogGridHomeEmployer from './BlogGridHomeEmployer';
+import BlogDetailsContentEmployer21 from './BlogDetailsContentEmployer21';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
-import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
@@ -14,16 +13,16 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class bloggridEmployer extends Component {
+class BlogDetail1_Employer21 extends Component {
     render() {
         const meta = {
-            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
-            canonical: 'https://hirebeat.co/bloghome_employer',
+            title: 'HireBeat Blog – What Is Resume Screening and Why Does it Matter',
+            description: "Even though the term ‘resume screening’ isn't new to many employers, its benefits could be. So if you think that the process is outdated and inefficient, we have some points that will provoke you to reconsider—here is why resume screening is important.",
+            canonical: 'https://hirebeat.co/employer_blog-what-is-resume-screening-and-why-does-it-matter',
             meta: {
               charset: 'utf-8',
               name: {
-                keywords: 'hr, ats, applicant tracking system blog'
+                keywords: 'why resume screening is important for hiring'
               }
             }
           };
@@ -32,16 +31,15 @@ class bloggridEmployer extends Component {
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
-                    pageTitle="Blog" 
+                    pageTitle="Blog Details" 
                     pageDescription="News and Insights" 
                 />
-                <BlogGridHomeEmployer />
+                <BlogDetailsContentEmployer21 />
                 <FreeTrialArea />
-                <Footer />
             </React.Fragment>
             </DocumentMeta>
         );
     }
 }
 
-export default bloggridEmployer;
+export default BlogDetail1_Employer21;

@@ -46,6 +46,7 @@ import BlogDetail17_Employer from "./blog/blog-details17-employer";
 import BlogDetail18_Employer from "./blog/blog-details18-employer";
 import BlogDetail19_Employer from "./blog/blog-details19-employer";
 import BlogDetail20_Employer from "./blog/blog-details20-employer";
+import BlogDetail21_Employer from "./blog/blog-details21-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -213,6 +214,7 @@ import "./public/css/boxicons.min.css";
 import ApplyJob from "./dashboard/jobBoard/ApplyJob";
 import ProductPage from "./HomeEmployer/ProductPage";
 import FeatureVideo from "./HomeEmployer/FeatureVideo";
+import CompanyBranding from "./dashboard/jobBoard/CompanyBranding";
 
 const alertOptions = {
   timeout: 3000,
@@ -297,6 +299,7 @@ class App extends Component {
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
                 <PrivateRoute exact path="/video-interview" component={CareerResponseWindow}/>
                 <Route exact path="/apply-job" component={ApplyJob} />
+                <Route exact path="/company-branding/:companyName" component={CompanyBranding} />
                 <Route exact path="/employer" component={IndexEmployer} />
                 <Route exact path="/interview_Completion" component={InterviewCompletion} />
                 <Route exact path="/pricing" component={pricings} />
@@ -326,6 +329,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-how-ATS-works-in-the-recruitment-process" component={BlogDetail18_Employer} />
                 <Route exact path="/employer_blog-employer-branding-vs-recruitment-marketing" component={BlogDetail19_Employer} />
                 <Route exact path="/employer_blog-8-tips-to-increase-resume-screening-effectiveness" component={BlogDetail20_Employer} />
+                <Route exact path="/employer_blog-what-is-resume-screening-and-why-does-it-matter" component={BlogDetail21_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />

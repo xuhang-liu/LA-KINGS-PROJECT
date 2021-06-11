@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {employer_register, exchangeToken} from "../../redux/actions/auth_actions";
+import {employer_register, exchangeToken, checkCompanyNameExistence} from "../../redux/actions/auth_actions";
 import {createMessage} from "../../redux/actions/message_actions";
 import { confirmAlert } from 'react-confirm-alert';
 //import SocialButtons from "./SocialButtons";
@@ -104,6 +104,10 @@ export class EmployerRegister extends Component {
       if(this.state.companyName.trim() == null || this.state.companyName.trim() == ""){
         return alert("Company Name Invalid Format!");
       }
+      this.props.checkCompanyNameExistence(this.state.companyName);
+      if(this.props.company_name_existence){
+        return alert("Company Name Already Exist!");
+      }
       if (this.passwordsMatch()) {
         this.props.employer_register(
           this.state.email,
@@ -138,7 +142,7 @@ export class EmployerRegister extends Component {
       meta: {
         charset: 'utf-8',
         name: {
-          keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+          keywords: 'hr application tracking system, hr ats software, hr ats systems, hr tracking systems'
         }
       }
     };
@@ -508,6 +512,7 @@ export class EmployerRegister extends Component {
 const mapStateToProps = (state) => ({
   auth: state.auth_reducer,
   user: state.auth_reducer.user,
+  company_name_existence: state.auth_reducer.company_name_existence,
 });
 
-export default connect(mapStateToProps, {employer_register, createMessage, exchangeToken})(EmployerRegister);
+export default connect(mapStateToProps, {employer_register, createMessage, exchangeToken, checkCompanyNameExistence})(EmployerRegister);

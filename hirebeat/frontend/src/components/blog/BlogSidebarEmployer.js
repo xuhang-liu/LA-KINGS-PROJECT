@@ -24,6 +24,25 @@ class BlogSidebarEmployer extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/employer_blog-what-is-resume-screening-and-why-does-it-matter">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer21.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Jun 11, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-what-is-resume-screening-and-why-does-it-matter">
+                                    <a>What Is Resume Screening and Why Does it Matter</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/employer_blog-8-tips-to-increase-resume-screening-effectiveness">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer20.jpg" alt="image"/>
@@ -339,25 +358,6 @@ class BlogSidebarEmployer extends Component {
                             <h4 className="title usmall">
                                 <Link to="/employer_blog-interview-questions-every-recruiter-should-ask">
                                     <a>Interview Questions Every Recruiter Should Ask</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/employer_blog-writing-a-good-job-posting-that-will-attract-employees">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer3.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Mar 22, 2021</time>
-                            <h4 className="title usmall">
-                                <Link to="/employer_blog-writing-a-good-job-posting-that-will-attract-employees">
-                                    <a>Writing a Good Job Posting that Will Attract Employees</a>
                                 </Link>
                             </h4>
                         </div>

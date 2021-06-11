@@ -363,7 +363,7 @@ export class Header extends Component {
     const {isAuthenticated, user} = this.props.auth;
     var uri = window.location.pathname;
     uri = uri.substring(1, uri.length);
-    if ((uri.includes("apply-job"))){
+    if ((uri.includes("apply-job")) || (uri.includes("company-branding"))){
       return null;
     }else {
     return (

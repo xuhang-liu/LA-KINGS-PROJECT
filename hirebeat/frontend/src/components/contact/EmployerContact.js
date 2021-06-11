@@ -76,7 +76,7 @@ class EmployerContact extends Component {
         meta: {
           charset: 'utf-8',
           name: {
-            keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+            keywords: 'ats for hr, ats hr software, ats system hr'
           }
         }
       };

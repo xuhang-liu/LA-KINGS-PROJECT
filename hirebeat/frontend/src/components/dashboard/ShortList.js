@@ -7,6 +7,7 @@ import ReviewApplication from './ReviewApplication';
 import { ResumeEva } from "./applications/ResumeEva";
 import { connect } from 'react-redux';
 import { loadStarList, getResumeURL, addExReviewer, delExReviewer } from './../../redux/actions/question_actions';
+import { checkUserExistence } from './../../redux/actions/auth_actions';
 import { withRouter } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 
@@ -50,6 +51,8 @@ const ShortList = (props) => {
                                         user={props.user}
                                         invitedBy={p.company_name}
                                         companyName={props.companyName}
+                                        checkUserExistence={props.checkUserExistence}
+                                        user_existence={props.user_existence}
                                     />
                                 )
                             }
@@ -104,10 +107,11 @@ const mapStateToProps = (state) => ({
     resumeURL: state.video_reducer.resumeURL,
     recordTime: state.video_reducer.recordTime,
     interviewResume: state.video_reducer.interviewResume,
+    user_existence: state.auth_reducer.user_existence,
   });
   
 
-export default withRouter(connect(mapStateToProps , { loadStarList, getResumeURL, addExReviewer, delExReviewer })(ShortList));
+export default withRouter(connect(mapStateToProps , { loadStarList, getResumeURL, addExReviewer, delExReviewer, checkUserExistence })(ShortList));
 
 function getQualifiedApplicants(applicants) {
     let len = applicants.length;
@@ -131,6 +135,10 @@ const ShortListCard = (props) => {
             function submitExReviewer(e) {
                 ex_reviewer_name = document.getElementById("ex_reviewer_name").value;
                 ex_reviewer_email = document.getElementById("ex_reviewer_email").value;
+                props.checkUserExistence(ex_reviewer_email.toLowerCase());
+                if(props.user_existence){
+                    sendFailAlert();
+                }else{
                 encoded_email = window.btoa("email=" + ex_reviewer_email);
                 let data = {
                     "ex_reviewer_name": ex_reviewer_name,
@@ -144,6 +152,7 @@ const ShortListCard = (props) => {
                 props.getPJobs();
                 e.preventDefault();
                 sendSuccessAlert();
+                }
             }
 
             confirmAlert({
@@ -522,10 +531,22 @@ function MyVerticallyCenteredModal(props) {
     );
   };
 
-  function sendSuccessAlert() {
+function sendSuccessAlert() {
     confirmAlert({
       title: "Send Invitation Success",
       message: "You have sent the invitation successfully.",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function sendFailAlert() {
+    confirmAlert({
+      title: "Send Invitation Fail",
+      message: "Looks like this email is already registered at HireBeat and therefore cannot be invited as an external reviewer. Please enter a different email. Personal email also works.",
       buttons: [
         {
           label: 'Ok'
