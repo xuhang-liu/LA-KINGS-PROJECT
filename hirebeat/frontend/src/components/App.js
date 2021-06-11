@@ -212,6 +212,7 @@ import "./public/css/bootstrap.min.css";
 import "./public/css/boxicons.min.css";
 import ApplyJob from "./dashboard/jobBoard/ApplyJob";
 import ProductPage from "./HomeEmployer/ProductPage";
+import FeatureVideo from "./HomeEmployer/FeatureVideo";
 
 const alertOptions = {
   timeout: 3000,
@@ -470,6 +471,7 @@ class App extends Component {
                 <Route exact path="/candidate-login" component={CandidateLogin} />
                 <PrivateRoute exact path="/interview-info" component={InterviewInfo} />
                 <Route exact path="/employer-product" component={ProductPage} />
+                <Route exact path="/employer-feature-video" component={FeatureVideo} />
                 <Route component={NotFoundPage} />
               </Switch>
             </Fragment>
