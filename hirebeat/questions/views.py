@@ -239,9 +239,15 @@ def send_video_interviews(request):
     names = request.data["names"]
     urls = request.data["urls"]
     expire = request.data["expire"]
+    candidate_ids = request.data["candidate_ids"]
 
     for i in range(len(emails)):
         if emails[i] != "" and names[i] != "":
+            # update candidate invite status and date
+            candidate = InvitedCandidates.objects.get(id=candidate_ids[i])
+            candidate.is_invited = True
+            candidate.invite_date = timezone.now()
+            candidate.save()
             # send email
             send_interviews(names[i], emails[i], urls[i], job_title, company_name, expire)
 
@@ -296,6 +302,12 @@ def resend_invitation(request):
     name = request.data["name"]
     url = request.data["url"]
     expire = request.data["expire"]
+    # update invite status and date
+    candidate_id = request.data["candidate_id"]
+    candidate = InvitedCandidates.objects.get(id=candidate_id)
+    candidate.is_invited = True
+    candidate.invite_date = timezone.now()
+    candidate.save()
     send_interviews(name, email, url, job_title, company_name, expire)
 
     return Response("Submit feedback data successfully", status=status.HTTP_200_OK)

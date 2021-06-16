@@ -15,6 +15,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import QuestionForm from "./QuestionForm";
 import EditQuestion from "./EditQuestion"
 import { withRouter } from "react-router-dom";
+import "boxicons";
 
 export class JobApplication extends Component{
 
@@ -564,6 +565,7 @@ const JobCard = (props) => {
 
     // filter selections
     const options = [
+        { value: 'Uninvited', label: 'Not Invited' },
         { value: 'Completed', label: 'Completed' },
         { value: 'Pending', label: 'Pending' },
         { value: 'Withdrawn', label: 'N/A' },
@@ -578,6 +580,7 @@ const JobCard = (props) => {
     ];
 
     const options2 = [
+        { value: 'Unreviewed', label: 'Unreviewed' },
         { value: 'Shortlist', label: 'Shortlist' },
         { value: 'Hold', label: 'Hold' },
         { value: 'Reject', label: 'Reject' },
@@ -832,12 +835,14 @@ const JobCard = (props) => {
         // collect input name and email
         const emails = [];
         const names = [];
+        const invitedCandidates = [];
         let candidates = document.getElementsByClassName("selected-candidate");
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked) {
                 let candidate = JSON.parse(candidates[i].value);
                 names.push(candidate.name);
                 emails.push(candidate.email.toLowerCase());
+                invitedCandidates.push(candidate.id);
                 candidateCount+=1;
             }
         }
@@ -870,8 +875,10 @@ const JobCard = (props) => {
                     names: names,
                     expire: 14,
                     urls: urls,
+                    candidate_ids: invitedCandidates,
                 }
                 props.sendInterviews(meta);
+                setTimeout(() => {props.getPJobs()}, 600);
                 inviteSuccessAlert();
             }
         }
@@ -913,14 +920,15 @@ const JobCard = (props) => {
                             <i className="bx bx-info-circle pr-1"></i> Edit Questions
                             </button>
                         </div>
-                        <div className="col-3 interview-center">
+                        <div className="col-3 interview-txt7 interview-center mt-2">
                             <button
                                 onClick={() => {previewEmail(props.jobTitle, props.companyName, expire.value)}}
                                 type="button"
-                                className="default-btn1"
-                                style={{marginBottom:"1.5%", paddingLeft:"25px", backgroundColor:"#e8edfc", color:"#090d3a"}}
+                                className="read-more"
+                                style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
                             >
-                                Preview Email
+                                <box-icon type="solid" name='bullseye' size="1rem" color="#67A3F3"></box-icon>
+                                <span style={{marginLeft: "0.2rem"}}>Preview Email</span>
                             </button>
                         </div>
                         <div className="col-3 interview-center">
@@ -1334,9 +1342,17 @@ const ApplicantList = (props) => {
                 // filter applicants by status
                 if (props.category.value != "All") {
                     switch (props.category.value) {
-                        case "Pending":
+                        case "Uninvited":
                             if (props.category2.value != "All") {
                                 switch (props.category2.value) {
+                                    case "Unreviewed":
+                                        if (a.comment_status != 0 || a.is_viewed || a.video_count == 0) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
                                     case "Shortlist":
                                         if (a.comment_status != 1) return null;
                                         if (props.keyWords != "") {
@@ -1363,7 +1379,51 @@ const ApplicantList = (props) => {
                                         break;
                                 }
                             }
-                            if (a.is_recorded) return null;
+                            if (a.is_invited || a.is_recorded) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email.split("@")[0];
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                            };
+                            break;
+                        case "Pending":
+                            if (props.category2.value != "All") {
+                                switch (props.category2.value) {
+                                    case "Unreviewed":
+                                        if (a.comment_status != 0 || a.is_viewed || a.video_count == 0) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Shortlist":
+                                        if (a.comment_status != 1) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Hold":
+                                        if (a.comment_status != 2) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Reject":
+                                        if (a.comment_status != 3) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                }
+                            }
+                            if (a.is_recorded || !a.is_invited) return null;
                             if (props.keyWords != "") {
                                 var canEmail = a.email.split("@")[0];
                                 var canName = a.name;
@@ -1373,6 +1433,14 @@ const ApplicantList = (props) => {
                         case "Withdrawn":
                             if (props.category2.value != "All") {
                                 switch (props.category2.value) {
+                                    case "Unreviewed":
+                                        if (a.comment_status != 0 || a.is_viewed || a.video_count == 0) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
                                     case "Shortlist":
                                         if (a.comment_status != 1) return null;
                                         if (props.keyWords != "") {
@@ -1409,6 +1477,14 @@ const ApplicantList = (props) => {
                         case "Completed":
                             if (props.category2.value != "All") {
                                 switch (props.category2.value) {
+                                    case "Unreviewed":
+                                        if (a.comment_status != 0 || a.is_viewed || a.video_count == 0) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
                                     case "Shortlist":
                                         if (a.comment_status != 1) return null;
                                         if (props.keyWords != "") {
@@ -1451,6 +1527,14 @@ const ApplicantList = (props) => {
                 }
                 else if (props.category2.value != "All") {
                     switch (props.category2.value) {
+                        case "Unreviewed":
+                            if (a.comment_status != 0 || a.is_viewed || a.video_count == 0) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email.split("@")[0];
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                            };
+                            break;
                         case "Shortlist":
                             if (a.comment_status != 1) return null;
                             if (props.keyWords != "") {
@@ -1555,6 +1639,7 @@ const Applicant = (props) => {
     let jobTitle = props.jobTitle;
     let name = props.name;
     let candidateId = applicants[current].id;
+    let isInvited = applicants[current].is_invited;
     const [isViewed, setIsViewed] = useState(props.isViewed);
     const commentStatus = applicants[current].comment_status;
     const boundary = getBoundary(applicants);
@@ -1629,6 +1714,7 @@ const Applicant = (props) => {
             name: name,
             url: url,
             expire: 7,
+            candidate_id: candidateId,
         };
 
         props.resendInvitation(meta);
@@ -1717,22 +1803,29 @@ const Applicant = (props) => {
                     {props.email.split("(")[0].length > 16 ? props.email.split("(")[0].substring(0, 14) + "..." : props.email.split("(")[0]}</div>
                 */}
                 <div className="col-2">
-                    <div className="interview-txt9">
-                        <p style={{color: "#090d3a"}}>{props.date}</p>
-                    </div>
+                    {(isInvited || props.isRecorded) &&
+                        <div className="interview-txt9">
+                            <p style={{color: "#090d3a"}}>{props.date}</p>
+                        </div>
+                    }
                 </div>
                 <div className="col-2">
-                    {props.isRecorded ?
-                        (props.videoCount > 0 ?
-                            <div className="interview-txt9">
-                                <p style={{color: "#090d3a"}}><strong>Completed</strong></p>
-                            </div>:
-                            <div className="interview-txt9">
-                                <p style={{color: "#7D7D7D"}}>N/A</p>
-                            </div>) :
-                            <div className="interview-txt9">
-                            <p style={{color: "#7D7D7D"}}>Pending</p>
-                            </div>
+                    {(isInvited || props.isRecorded) ?
+                        (props.isRecorded ?
+                            (props.videoCount > 0 ?
+                                <div className="interview-txt9">
+                                    <p style={{color: "#090d3a"}}><strong>Completed</strong></p>
+                                </div>:
+                                <div className="interview-txt9">
+                                    <p style={{color: "#7D7D7D"}}>N/A</p>
+                                </div>) :
+                                <div className="interview-txt9">
+                                <p style={{color: "#7D7D7D"}}>Pending</p>
+                                </div>
+                        ) :
+                        <div className="interview-txt9">
+                            <p style={{color: "#7D7D7D"}}>Not Invited</p>
+                        </div>
                     }
                 </div>
                 <div className="col-2">
