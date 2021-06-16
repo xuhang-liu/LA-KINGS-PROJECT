@@ -4,7 +4,7 @@ import QuestionForm from "./QuestionForm";
 import { MyModal80 } from "./../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addInterviews } from "../../../redux/actions/question_actions";
+import { addInterviews, moveCandidateToInterview } from "../../../redux/actions/question_actions";
 import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/actions/job_actions";
 import { MyModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
@@ -93,11 +93,16 @@ export class ApplicantList extends Component{
 
     inviteCandidates = () => {
         let candidateCount = 0;
+        let positionId = this.props.curJob.job_details.positions_id;
+        const emails = [];
+        const names = [];
         const invitedCandidates = [];
         let candidates = document.getElementsByClassName("selected-candidate");
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked) {
                 let candidate = JSON.parse(candidates[i].value);
+                names.push(candidate.first_name + " " + candidate.last_name);
+                emails.push(candidate.email.toLowerCase());
                 invitedCandidates.push(candidate.id);
                 candidateCount+=1;
             }
@@ -115,6 +120,12 @@ export class ApplicantList extends Component{
                     "applyIds": invitedCandidates,
                     "isViewed": true,
                 }
+                let meta = {
+                    position_id: positionId,
+                    emails: emails,
+                    names: names,
+                }
+                this.props.moveCandidateToInterview(meta);
                 this.props.updateInviteStatus(data);
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
@@ -249,7 +260,7 @@ export class ApplicantList extends Component{
                             <div className="col-2">Name</div>
                             <div className="col-3">Email</div>
                             <div className="col-2">Applied On</div>
-                            <div className="col-2">Application</div>
+                            {/*<div className="col-2">Application</div>*/}
                             <div className="col-1" style={{padding: "0rem", zIndex: "9999"}}>
                                 <Select value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles}/>
                             </div>
@@ -290,6 +301,7 @@ export class ApplicantList extends Component{
                                     getAllJobs={this.props.getAllJobs}
                                     getPJobs={this.props.getPJobs}
                                     user={this.props.user}
+                                    moveCandidateToInterview={this.props.moveCandidateToInterview}
                                 />
                             )
                         })}
@@ -404,7 +416,7 @@ const ApplicantRow = (props) => {
                 </div>
                 <div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
-                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); onView()}}>View</div>
+                {/*<div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); onView()}}>View</div>*/}
                 <div className="col-1 interview-txt9 mt-2" style={{padding: "0rem"}}>
                     {(props.applicant.is_invited == 1) &&
                         <button className="default-btn invite-btn"
@@ -459,6 +471,7 @@ const ApplicantRow = (props) => {
                             status={status}
                             updateCandidateViewedStatus={props.updateCandidateViewedStatus}
                             linkedin={applicants[current].linkedinurl}
+                            moveCandidateToInterview={props.moveCandidateToInterview}
                         />
                 </MyModal>
             </div>
@@ -472,6 +485,6 @@ const mapStateToProps = (state) => ({
   jobs: state.job_reducer.jobs,
 });
 
-export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus, updateCandidateViewedStatus })(
+export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview })(
   ApplicantList
 ));

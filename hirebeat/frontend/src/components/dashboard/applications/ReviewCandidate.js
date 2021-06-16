@@ -10,7 +10,12 @@ const ReviewCandidate = (props) => {
 
     function inviteCandidates() {
         let candidateCount = 1;
+        let positionId = props.curJob.job_details.positions_id;
+        const emails = [];
+        const names = [];
         const invitedCandidates = [];
+        emails.push(props.email);
+        names.push(props.first_name+" "+props.last_name);
         invitedCandidates.push(props.candidateId);
         if(candidateCount > (props.profile.candidate_limit)){
             alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit)+ ' more candidates for this position!');
@@ -19,6 +24,12 @@ const ReviewCandidate = (props) => {
                 "candidates": invitedCandidates,
                 "isInvited": 1,
             }
+            let meta = {
+                position_id: positionId,
+                emails: emails,
+                names: names,
+            }
+            props.moveCandidateToInterview(meta);
             props.updateInviteStatus(data);
             // update
             setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);

@@ -8,12 +8,13 @@ import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
 //import { IconText } from "../DashboardComponents";
-import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer } from "./../../../redux/actions/question_actions";
+import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
 import QuestionForm from "./QuestionForm";
 import EditQuestion from "./EditQuestion"
+import { withRouter } from "react-router-dom";
 
 export class JobApplication extends Component{
 
@@ -79,6 +80,9 @@ export class JobApplication extends Component{
                                     updateViewStatus={this.props.updateViewStatus}
                                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     position={p.position}
+                                    allInvited={p.all_invited}
+                                    moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                    sendInterviews={this.props.sendInterviews}
                                 />
                             )
                         })}
@@ -96,9 +100,9 @@ const mapStateToProps = (state) => ({
     interviewResume: state.video_reducer.interviewResume,
 });
 
-export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer })(
+export default withRouter(connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews })(
     JobApplication
-);
+));
 
 const JobViewDetail = (props) => {
     const [view, setView] = useState(false);
@@ -416,6 +420,9 @@ const JobViewDetail = (props) => {
                     updateViewStatus={props.updateViewStatus}
                     subreviewerUpdateComment={props.subreviewerUpdateComment}
                     position={props.position}
+                    allInvited={props.allInvited}
+                    moveCandidateToInterview={props.moveCandidateToInterview}
+                    sendInterviews={props.sendInterviews}
                 />
             }
         </React.Fragment>
@@ -463,42 +470,82 @@ const JobCard = (props) => {
                 candidateCount+=1;
             }
         }
-        // generate interview urls and send emails
-        let urls = [];
-        for (let i = 0; i < emails.length; i++) {
-            // make sure urls have the same size of emails and names
-            let url = "";
-            if (emails[i] != "" && names[i] != "") {
-                //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-                let prefix = "https://hirebeat.co/candidate-login?";  // online
-                let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
-                let encode = window.btoa(params);
-                url = prefix + encode;
-            }
-            urls.push(url);
-        }
         let meta = {
-            company_name: companyName,
-            job_title: jobTitle,
             position_id: positionId,
             emails: emails,
             names: names,
-            expire: expire.value,
-            urls: urls,
         }
         let addLimitLeft = curlimit;
         curlimit += candidateCount;
         if((props.applicants.length+curlimit)>(props.profile.candidate_limit)){
-            alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit-props.applicants.length-addLimitLeft)+ ' more candidates for this position!');
+            alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit - props.applicants.length - addLimitLeft)+ ' more candidates for this position!');
         }else{
             // save data to db
-            props.addInterviews(meta);
+            props.moveCandidateToInterview(meta);
             // disable webpage refresh
             sendSuccessAlert();
             clearInvitationForm();
             e.preventDefault();
         }
     }
+
+    // sendInvitation function with email notification
+//    function sendInvitation(e) {
+//        let candidateCount = 0;
+//        let companyName = props.companyName;
+//        let jobTitle = props.jobTitle;
+//        let positionId = props.positionId;
+//        // collect input name and email
+//        const emails = [];
+//        const names = [];
+//        let nameElements = document.getElementsByClassName("candidate-name");
+//        let emailElements = document.getElementsByClassName("candidate-email");
+//        for (let i = 0; i < nameElements.length; i++) {
+//            // name
+//            names.push(nameElements[i].value);
+//            // email
+//            let value = emailElements[i].value;
+//            emails.push(value.toLowerCase());
+//            if(value!=""){
+//                candidateCount+=1;
+//            }
+//        }
+//        // generate interview urls and send emails
+//        let urls = [];
+//        for (let i = 0; i < emails.length; i++) {
+//            // make sure urls have the same size of emails and names
+//            let url = "";
+//            if (emails[i] != "" && names[i] != "") {
+//                //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+//                let prefix = "https://hirebeat.co/candidate-login?";  // online
+//                let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
+//                let encode = window.btoa(params);
+//                url = prefix + encode;
+//            }
+//            urls.push(url);
+//        }
+//        let meta = {
+//            company_name: companyName,
+//            job_title: jobTitle,
+//            position_id: positionId,
+//            emails: emails,
+//            names: names,
+//            expire: expire.value,
+//            urls: urls,
+//        }
+//        let addLimitLeft = curlimit;
+//        curlimit += candidateCount;
+//        if((props.applicants.length+curlimit)>(props.profile.candidate_limit)){
+//            alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit-props.applicants.length-addLimitLeft)+ ' more candidates for this position!');
+//        }else{
+//            // save data to db
+//            props.addInterviews(meta);
+//            // disable webpage refresh
+//            sendSuccessAlert();
+//            clearInvitationForm();
+//            e.preventDefault();
+//        }
+//    }
 
     // pagination
     const [offset, setOffset] = useState(0);
@@ -736,6 +783,103 @@ const JobCard = (props) => {
         }
     }
 
+    function selectAllCandidates() {
+        let checkbox = document.getElementById("select-all");
+        let candidates = document.getElementsByClassName("selected-candidate");
+        if (checkbox.checked) {
+            // select all candidates
+            for (let i = 0; i < candidates.length; i++) {
+                candidates[i].checked = true;
+            }
+        }
+        else {
+            // cancel all candidates selection
+            for (let i = 0; i < candidates.length; i++) {
+                candidates[i].checked = false;
+            }
+        }
+    }
+
+    function noCandidateAlert() {
+        confirmAlert({
+          title: "No Candidate Selected",
+          message: "Please select candidates for interview",
+          buttons: [
+            {
+              label: 'Ok'
+            }
+          ]
+        });
+    }
+
+    function inviteSuccessAlert() {
+        confirmAlert({
+          title: "Send Video Interviews Success",
+          message: "You have invited selected candidates for a video interview",
+          buttons: [
+            {
+              label: 'Ok'
+            }
+          ]
+        });
+    }
+
+    function sendVideoInterview() {
+        let candidateCount = 0;
+        let companyName = props.companyName;
+        let jobTitle = props.jobTitle;
+        let positionId = props.positionId;
+        // collect input name and email
+        const emails = [];
+        const names = [];
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                names.push(candidate.name);
+                emails.push(candidate.email.toLowerCase());
+                candidateCount+=1;
+            }
+        }
+        // check candidates selected or not
+        if (candidateCount > 0) {
+            if (props.questions.length <= 0) {
+                return setShowQForm(true);
+            }
+            if(candidateCount > (props.profile.candidate_limit)){
+                alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit)+ ' more candidates for this position!');
+            } else{
+                // generate interview urls and send emails
+                let urls = [];
+                for (let i = 0; i < emails.length; i++) {
+                    // make sure urls have the same size of emails and names
+                    let url = "";
+                    if (emails[i] != "" && names[i] != "") {
+                        //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+                        let prefix = "https://hirebeat.co/candidate-login?";  // online
+                        let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
+                        let encode = window.btoa(params);
+                        url = prefix + encode;
+                    }
+                    urls.push(url);
+                }
+                let meta = {
+                    company_name: companyName,
+                    job_title: jobTitle,
+                    emails: emails,
+                    names: names,
+                    expire: 14,
+                    urls: urls,
+                }
+                props.sendInterviews(meta);
+                inviteSuccessAlert();
+            }
+        }
+        else {
+            noCandidateAlert();
+        }
+    }
+
     return (
         <React.Fragment>
             {/* Job Applications */}
@@ -770,6 +914,14 @@ const JobCard = (props) => {
                             </button>
                         </div>
                         <div className="col-3 interview-center">
+                            <button
+                                onClick={() => {previewEmail(props.jobTitle, props.companyName, expire.value)}}
+                                type="button"
+                                className="default-btn1"
+                                style={{marginBottom:"1.5%", paddingLeft:"25px", backgroundColor:"#e8edfc", color:"#090d3a"}}
+                            >
+                                Preview Email
+                            </button>
                         </div>
                         <div className="col-3 interview-center">
                             {!props.profile.is_subreviwer &&
@@ -780,7 +932,7 @@ const JobCard = (props) => {
                                     style={{paddingLeft: "25px", marginBottom:"1rem"}}
                                     onClick={inviteCandidates}
                                 >
-                                    + Invite Candidates
+                                    + Candidates
                                     <span></span>
                                 </button>
                             }
@@ -813,11 +965,18 @@ const JobCard = (props) => {
                     </div>
                     <div className="card container" style={{marginTop:"2%"}}>
                         <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
-                            <div className="col-2">Name</div>
-                            <div className="col-2">Email</div>
+                            <div style={{marginLeft: "1rem"}}>
+                                <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{display: (props.allInvited ? "none" : "inline")}}/>
+                            </div>
+                            <div className="col-2">
+                                <span className="dot" style={{background:"none", visibility: "hidden"}}></span>
+                                Name
+                            </div>
+                            {/*<div className="col-2">Email</div>*/}
                             <div className="col-2">Invited On</div>
                             <div className="col-2">
                                 <div className="row">
+                                    <div style={{display: "flex", alignItems: "center", marginRight: "0.2rem"}}>Video</div>
                                     <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles}/>
                                 </div>
                             </div>
@@ -875,6 +1034,16 @@ const JobCard = (props) => {
                         </div>
                     </div>
                 </div>
+                <div style={{marginTop: "2rem"}}>
+                    <button
+                        className="default-btn1 interview-txt6"
+                        style={{paddingLeft: "25px", marginBottom:"1rem"}}
+                        onClick={sendVideoInterview}
+                    >
+                        Invite to Video Interview
+                        <span></span>
+                    </button>
+                </div>
             </div>
             }
 
@@ -899,12 +1068,12 @@ const JobCard = (props) => {
                             </span>
                         </div>
                         </div>
-                        <div className="col-4 d-flex float-fluid-right">
+                        {/*<div className="col-4 d-flex float-fluid-right">
                             <p style={{marginTop:"2rem", display:"inline-block"}}>Expire after</p>
                             <div style={{marginTop:"1.6rem", display:"inline-block", marginLeft:"0.5vw"}}>
                                 <Select value={expire} onChange={onFilter1} options={options1} className="select-category" styles={customStyles}/>
                             </div>
-                        </div>
+                        </div>*/}
                         {/*parsed &&
                             <div style={{display: "flex", alignItems: "center", marginLeft: "1rem"}}>
                                 <span className="upload-txt">
@@ -1065,7 +1234,7 @@ const JobCard = (props) => {
                                     style={{paddingLeft: "25px", background: "#67A3F3"}}
                                     onClick={() => {setInvite(false); props.getPJobs()}}
                                 >
-                                    Back
+                                    Close
                                     <span></span>
                                 </button>
                             </div>
@@ -1074,21 +1243,11 @@ const JobCard = (props) => {
                             </div>
                             <div className="col-3 d-flex justify-items">
                                 <button
-                                    onClick={() => {previewEmail(props.jobTitle, props.companyName, expire.value)}}
-                                    type="button"
-                                    className="default-btn1"
-                                    style={{marginBottom:"1.5%", paddingLeft:"25px", backgroundColor:"#e8edfc", color:"#090d3a"}}
-                                >
-                                    Preview Email
-                                </button>
-                            </div>
-                            <div className="col-3 d-flex justify-items">
-                                <button
                                     type="submit"
                                     className="default-btn1"
                                     style={{marginBottom:"1.5%", paddingLeft:"25px"}}
                                 >
-                                    Send Invitation
+                                    Add
                                 </button>
                             </div>
                         </div>
@@ -1529,7 +1688,16 @@ const Applicant = (props) => {
                 }}
             />
             <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
-                {/* add unread lable here */}
+                <div className="interview-txt9 mt-2" style={{marginLeft: "1rem"}}>
+                    {(!applicants[current].is_invited && !applicants[current].is_recorded) ?
+                        <div>
+                            <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox"/>
+                        </div> :
+                        <div>
+                            <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" style={{visibility: "hidden"}}/>
+                        </div>
+                    }
+                </div>
                 {props.videoCount > 0 ? 
                 <div className="col-2 mb-1">
                     <button className="title-button1" style={{wordBreak: "break-all"}} onClick={() => viewResult()}>
@@ -1541,13 +1709,13 @@ const Applicant = (props) => {
                     <span class="dot" style={{background:"none"}}/>
                     {props.name.split("(")[0].length > 11 ? props.name.split("(")[0].substring(0, 9) + "..." : props.name.split("(")[0]}</div>
                 }
-                {props.videoCount > 0 ? 
+                {/*props.videoCount > 0 ?
                 <div className="col-2 mb-1">
                     <button className="title-button1" onClick={() => viewResult()}>
                     {props.email.split("(")[0].length > 16 ? props.email.split("(")[0].substring(0, 14) + "..." : props.email.split("(")[0]}</button></div>
                 : <div className="col-2 interview-txt9 mb-1">
                     {props.email.split("(")[0].length > 16 ? props.email.split("(")[0].substring(0, 14) + "..." : props.email.split("(")[0]}</div>
-                }
+                */}
                 <div className="col-2">
                     <div className="interview-txt9">
                         <p style={{color: "#090d3a"}}>{props.date}</p>
@@ -1774,8 +1942,8 @@ function emailError() {
 
 function sendSuccessAlert() {
     confirmAlert({
-      title: "Send Invitation Success",
-      message: "You have sent the invitation successfully.",
+          title: "Add Candidates Success",
+      message: "You have added candidates to interview process successfully.",
       buttons: [
         {
           label: 'Ok'
@@ -1824,7 +1992,7 @@ function previewEmail(jobTitle, companyName, expire) {
                     <hr style={{height:"2px", borderWidth:0, color:"lightskyblue", backgroundColor:"lightskyblue"}}/>
                     <p>Dear Candidate,</p>
                     <p style={{marginTop:"2rem"}}>Thank you for submitting your application for the <strong style={{color:"#090d3a"}}>{jobTitle}</strong>. We are pleased to inform you that you have passed our initial resume scanning. To move forward with your application, we would like to invite you to finish our online video interview process powered by HireBeat.</p>
-                    <p style={{marginTop:"2rem"}}>To be considered, please submit your video as soon as possible. Your interview session will expire after <strong style={{color:"#090d3a"}}>{expire} days</strong>.</p>
+                    <p style={{marginTop:"2rem"}}>To be considered, please submit your video as soon as possible.</p>
                     <p style={{color:"#090d3a"}}><strong>Please use the same email when you start the interview procedure.</strong></p>
                     <div className="row ml-3 mt-2">
                         <button className="default-btn" style={{paddingLeft:"25px"}}>Start Your Interview</button>

@@ -26,6 +26,8 @@ import {
     DELETE_INTERVIEW_QUESTIONS,
     ADD_EXTERNAL_REVIEWER,
     DELETE_EXTERNAL_REVIEWER,
+    MOVE_CANDIDATE_TO_INTERVIEW,
+    SEND_VIDEO_INTERVIEWS,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -133,6 +135,34 @@ export const addInterviews = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: ADD_INTERVIEWS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const moveCandidateToInterview = (data) => (dispatch, getState) => {
+  axios
+    .post("questions/move-candidate-to-interview", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: MOVE_CANDIDATE_TO_INTERVIEW,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const sendInterviews = (data) => (dispatch, getState) => {
+  axios
+    .post("questions/send-video-interviews", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: SEND_VIDEO_INTERVIEWS,
         payload: res.data,
       });
     })
