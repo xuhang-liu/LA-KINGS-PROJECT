@@ -925,5 +925,15 @@
 			<changefreq>always</changefreq>
 		</url>
 
+		<url>
+			<loc>https://hirebeat.co/employer-feature-video</loc>
+			<changefreq>always</changefreq>
+		</url>
+
+		<url>
+			<loc>https://hirebeat.co/employer-resume-screening</loc>
+			<changefreq>always</changefreq>
+		</url>
+
 	</urlset>
 
