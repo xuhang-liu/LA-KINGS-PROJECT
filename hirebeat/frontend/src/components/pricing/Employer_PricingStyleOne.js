@@ -218,8 +218,16 @@ class Employer_PricingStyleOne extends Component {
                                                     <i className="bx bxs-check-circle"></i> 
                                                     Candidate Rating & Feedback
                                                 </li>
-                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    Custom Branding
+                                                </li>
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    <strong>1</strong> Team Collaborator
+                                                </li>
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     Built- in ATS
                                                 </li>
                                                 <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
@@ -232,15 +240,7 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
-                                                    Team Collaboration
-                                                </li>
-                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
                                                     API Integrations
-                                                </li>
-                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
-                                                    Custom Branding
                                                 </li>
                                             </ul>
                                         </div>
@@ -330,6 +330,14 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
+                                                    Custom Branding
+                                                </li>
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    <strong>Unlimited</strong> Team Collaborators
+                                                </li>
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     Built-in ATS
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
@@ -340,17 +348,9 @@ class Employer_PricingStyleOne extends Component {
                                                     <i className="bx bxs-check-circle"></i> 
                                                     AI-Powered Analytics
                                                 </li>
-                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
-                                                    Team collaboration
-                                                </li>
-                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     API Integrations
-                                                </li>
-                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
-                                                    Custom Branding
                                                 </li>
                                             </ul>
                                         </div>
@@ -439,6 +439,14 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
+                                                    Custom Branding
+                                                </li>
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
+                                                    <strong>Unlimited</strong> Team Collaborators
+                                                </li>
+                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle"></i> 
                                                     Built-in ATS
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
@@ -451,15 +459,7 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle"></i> 
-                                                    <strong>3</strong> Team Collaborators
-                                                </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
                                                     API Integrations
-                                                </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Custom Branding
                                                 </li>
                                             </ul>
                                         </div>
@@ -510,6 +510,14 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                    Custom Branding
+                                                </li>
+                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                    <strong>Unlimited</strong> Team Collaborators
+                                                </li>
+                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
+                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
                                                     Built-in ATS
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
@@ -518,18 +526,11 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    AI-Powered Analytics</li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    <strong>Unlimited</strong> Team Collaborators
+                                                    AI-Powered Analytics
                                                 </li>
                                                 <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
                                                     <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
                                                     API Integrations
-                                                </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    Custom Branding
                                                 </li>
                                             </ul>
                                         </div>

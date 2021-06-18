@@ -24,6 +24,25 @@ class BlogSidebarEmployer extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/employer_blog-8-ways-to-automate-recruiting-processes">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer22.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Jun 18, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-8-ways-to-automate-recruiting-processes">
+                                    <a>8 Ways to Automate Recruiting Processes</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/employer_blog-what-is-resume-screening-and-why-does-it-matter">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer21.jpg" alt="image"/>
@@ -339,25 +358,6 @@ class BlogSidebarEmployer extends Component {
                             <h4 className="title usmall">
                                 <Link to="/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing">
                                     <a>How the Pandemic Sparked A New Way of Interviewing</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/employer_blog-interview-questions-every-recruiter-should-ask">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer4.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Mar 29, 2021</time>
-                            <h4 className="title usmall">
-                                <Link to="/employer_blog-interview-questions-every-recruiter-should-ask">
-                                    <a>Interview Questions Every Recruiter Should Ask</a>
                                 </Link>
                             </h4>
                         </div>

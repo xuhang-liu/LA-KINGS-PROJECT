@@ -80,7 +80,7 @@ const ApplyJob = (props) =>{
                 firstname: fisrtname,
                 lastname: lastname,
                 phone: phone,
-                email: email,
+                email: email.toLowerCase(),
                 location: location,
                 resume_url: resume_url,
                 linkedinurl: linkedinurl,
@@ -91,7 +91,7 @@ const ApplyJob = (props) =>{
             if (passwordsMatch()) {
                 props.register(
                     username,
-                    email,
+                    email.toLowerCase(),
                     password
                 );
                 let data = {
@@ -99,7 +99,7 @@ const ApplyJob = (props) =>{
                     firstname: fisrtname,
                     lastname: lastname,
                     phone: phone,
-                    email: email,
+                    email: email.toLowerCase(),
                     location: location,
                     resume_url: resume_url,
                     linkedinurl: linkedinurl,
@@ -154,7 +154,7 @@ const ApplyJob = (props) =>{
             firstname: fisrtname,
             lastname: lastname,
             phone: phone,
-            email: email,
+            email: email.toLowerCase(),
             location: location,
             resume_url: resume_url,
             linkedinurl: linkedinurl,
@@ -274,28 +274,11 @@ const ApplyJob = (props) =>{
                 <a style={{textDecoration:"none", color:"#7C94B5", fontSize:"0.9rem", marginLeft:"0.8rem"}} target="_blank" href={"https://hirebeat.co/company-branding/"+((job_id == null || job_id == "") ? "":props.job.company_name)}>View all jobs posted</a>
                 </h2>
                 <div className="row pl-3">
-                    <div className="col-8 pl-5 mt-5 pb-5" style={{paddingRight:"3.7rem"}}>
-                        <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A"}}>
-                            <div style={{width:"25%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
-                                <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Level</p>
-                                <p className="mt-0" style={{fontSize:"1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_level}</p>
-                            </div>
-                            <div style={{width:"25%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
-                                <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Type</p>
-                                <p className="mt-0" style={{fontSize:"1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_type}</p>
-                            </div>                            
-                            <div style={{width:"25%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
-                                <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Location</p>
-                                <p className="mt-0" style={{fontSize:"1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>
-                                {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[0]} {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[1]}
-                                </p>
-                            </div>                            
-                            <div style={{width:"25%", height:"4.8rem"}}>
-                                <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job ID</p>
-                                <p className="mt-0" style={{fontSize:"1rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_id}</p>
-                            </div>
-                        </div>
-                        <p className="mt-5" style={{fontWeight:"500", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
+                    <div className="col-8 pl-5 mt-2 pb-5" style={{paddingRight:"3.7rem"}}>
+                        <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>{(job_id == null || job_id == "") ? "":props.job.job_level} • {(job_id == null || job_id == "") ? "":props.job.job_type}</p>
+                        <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>{(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[0]} {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[1]}</p>
+                        <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>Job ID: {(job_id == null || job_id == "") ? "":props.job.job_id}</p>
+                        <p className="mt-5" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
                         <div>
                             <br/>
                             <div>
@@ -556,7 +539,7 @@ const ApplyJob = (props) =>{
                         <p className="mt-5">Link to this job</p>
                         <div className="row ml-0" style={{position:"relative",background:"#E8EDFC", borderRadius:"5px", border:"2px solid #67A3F3", width:"90%", height:"3rem"}}>
                             <div className="pt-2 pl-2" style={{color:"#090D3A", fontSize:"1.4rem", fontWeight:"500", alignItems:"center"}}>
-                                <p>{(job_id == null || job_id == "") ? "":props.job.job_url}</p>
+                                <p style={{fontSize:"0.8rem"}} onClick={() => {copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "":props.job.job_url))}}>{(job_id == null || job_id == "") ? "":props.job.job_url}</p>
                             </div>
                             <div className="py-1">
                                 <button onClick={() => {copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "":props.job.job_url))}}
@@ -621,32 +604,13 @@ const ApplyJob = (props) =>{
                 <img style={{width:"7rem", marginLeft:"34%", marginTop:"-3.5rem"}} src={(job_id == null || job_id == "") ? "":props.job.company_logo} alt="icon"/>
                 <h1 className="mt-3" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A", textAlign:"center"}}>{(job_id == null || job_id == "") ? "":props.job.job_title}</h1>
                 <h2 className="mt-2" style={{fontWeight:"600", fontSize:"1.5rem", color:"#67A3F3", textAlign:"center"}}>{(job_id == null || job_id == "") ? "":props.job.company_name}</h2>
-                <a style={{textDecoration:"none", color:"#7C94B5", fontSize:"0.9rem", marginLeft:"30%"}} target="_blank" href={"https://hirebeat.co/company-branding/"+((job_id == null || job_id == "") ? "":props.job.company_name)}>View all jobs posted</a>
+                <a style={{textDecoration:"none", color:"#7C94B5", fontWeight:"600", fontSize:"0.9rem", marginLeft:"30%"}} target="_blank" href={"https://hirebeat.co/company-branding/"+((job_id == null || job_id == "") ? "":props.job.company_name)}>View all jobs posted</a>
                 <div className="row pl-3">
                     <div className="pl-5 mt-3 pb-5" style={{paddingRight:"3.7rem"}}>
-                        <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A"}}>
-                            <div style={{width:"50%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
-                                <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Level</p>
-                                <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_level}</p>
-                            </div>
-                            <div style={{width:"50%", height:"4.8rem"}}>
-                                <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Type</p>
-                                <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_type}</p>
-                            </div>
-                        </div>
-                        <div style={{display:"flex", borderRadius:"5px", border:"2px solid #E8EDFC", textAlign:"center", fontWeight:"500", color:"#4A6F8A", borderTop:"none"}}>
-                            <div style={{width:"50%", height:"4.8rem", borderRight:"2px solid #E8EDFC"}}>
-                                <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job Location</p>
-                                <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>
-                                    {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[0]} {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[1]}
-                                </p>
-                            </div>                            
-                            <div style={{width:"50%", height:"4.8rem"}}>
-                                <p className="mb-0" style={{marginTop:"0.6rem", fontSize:"1.1rem"}}>Job ID</p>
-                                <p className="mt-0" style={{fontSize:"0.8rem", fontWeight:"600", color:"#090D3A", position:"relative", top:"-0.4rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_id}</p>
-                            </div>
-                        </div>
-                        <p className="mt-3" style={{fontWeight:"500", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
+                    <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>{(job_id == null || job_id == "") ? "":props.job.job_level} • {(job_id == null || job_id == "") ? "":props.job.job_type}</p>
+                        <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>{(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[0]} {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[1]}</p>
+                        <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>Job ID: {(job_id == null || job_id == "") ? "":props.job.job_id}</p>
+                        <p className="mt-5" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
                         <div className="mt-3">
                         {((job_id == null || job_id == "") ? false:props.job.is_closed) ?
                         <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
@@ -656,9 +620,9 @@ const ApplyJob = (props) =>{
                             Apply Now
                         </a>}
                         <p className="mt-3">Link to this job</p>
-                        <div className="row ml-0" style={{position:"relative",background:"#E8EDFC", borderRadius:"5px", border:"2px solid #67A3F3", width:"90%", height:"3.6rem"}}>
+                        <div className="row ml-0" style={{position:"relative",background:"#E8EDFC", borderRadius:"5px", border:"2px solid #67A3F3", width:"90%", height:"2.6rem"}}>
                             <div className="pt-2 pl-2" style={{color:"#090D3A", fontWeight:"500", alignItems:"center"}}>
-                                <p style={{fontSize:"0.8rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_url}</p>
+                                <p style={{fontSize:"0.8rem"}} onClick={() => {copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "":props.job.job_url))}}>{(job_id == null || job_id == "") ? "":props.job.job_url}</p>
                             </div>
                             <div className="py-1 mt-3 mb-1">
                                 <button onClick={() => {copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "":props.job.job_url))}}

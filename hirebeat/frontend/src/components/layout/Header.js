@@ -297,9 +297,11 @@ export class Header extends Component {
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
                     Product <i className="bx bx-chevron-down"></i>
-                    <ul className="nav_submenu" style={{height:"5.6rem"}}>
-                      <li><Link id="id-product-interview" to="/employer-product" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Product Overview</Link></li>
-                      <li><Link id="id-one-way-interview" to="/employer-feature-video" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>One Way Interview</Link></li>
+                    <ul className="nav_submenu" style={{height:"8.6rem"}}>
+                      <li><Link id="id-product-interview" to="/employer-product" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Overview</Link></li>
+                      <li><hr style={{marginBottom:"0.4rem", marginTop:"0.4rem"}}/></li>
+                      <li><Link id="id-one-way-interview" to="/employer-feature-video" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>One-Way Interview</Link></li>
+                      <li><Link id="id-resume-screning" to="/employer-resume-screening" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Resume Screening</Link></li>
                     </ul>
                   </span>
                 </a>

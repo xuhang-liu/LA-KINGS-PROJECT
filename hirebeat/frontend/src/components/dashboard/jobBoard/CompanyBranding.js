@@ -24,7 +24,7 @@ const CompanyBranding = (props) =>{
                     {(props.company_logo != "" && props.company_logo != null) &&
                     <img style={{width:"7rem", marginLeft:"2rem", marginTop:"-3.5rem"}} src={props.company_logo} alt="icon"/>}
                     <h1 className="ml-5 mt-5" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A"}}>{companyName}</h1>
-                    <div className="card container-xl mt-5 pt-3 pb-3">
+                    <div className="card container-xl mt-5 pt-3 pb-3" style={{width:"90%", marginLeft:"auto", marginRight:"auto"}}>
                     <h3 style={{color:"#090d3a", fontWeight:"600", fontSize:"1.6rem"}}>Jobs</h3>
                     {props.jobs_branding?.sort((a, b) => b.id - a.id)?.map((j, index) => {
                         return(
