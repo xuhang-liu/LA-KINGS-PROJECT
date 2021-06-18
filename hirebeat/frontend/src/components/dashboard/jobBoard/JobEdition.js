@@ -35,11 +35,11 @@ export class JobEdition extends Component{
     };
 
     state = {
-        city: this.props.jobInfo.job_location.split(",")[0],
-        state: this.props.jobInfo.job_location.split(",")[1],
+        city: this.props.jobInfo.job_location?.split(",")[0],
+        state: this.props.jobInfo.job_location?.split(",")[1],
         jobTitle: this.props.jobInfo.job_title,
         jobId: this.props.jobInfo.job_id,
-        jobLocation: this.props.jobInfo.job_location.split(",")[2],
+        jobLocation: this.props.jobInfo.job_location?.split(",")[2],
         jobDescription: RichTextEditor.createValueFromString(this.props.jobInfo.job_description, 'html'),
         loc_req: this.props.jobInfo.loc_req,
         pho_req: this.props.jobInfo.pho_req,
@@ -186,6 +186,21 @@ export class JobEdition extends Component{
             lin_req: this.state.lin_req,
             job_post: this.state.job_post,
         };
+        if(this.props.jobInfo.job_location == "Remote"){
+            data = {
+                id: this.props.jobInfo.id,
+                jobTitle: this.state.jobTitle,
+                jobId: this.state.jobId,
+                jobDescription: this.state.jobDescription.toString('html'),
+                jobLevel: this.state.jobLevel["value"],
+                jobLocation: "Remote",
+                jobType: this.state.jobType["value"],
+                loc_req: this.state.loc_req,
+                pho_req: this.state.pho_req,
+                lin_req: this.state.lin_req,
+                job_post: false,
+            };
+        };
         this.props.updateJob(data);
         setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getZRFeedXML()}, 300);
         e.preventDefault();
@@ -283,9 +298,10 @@ export class JobEdition extends Component{
                                 </div>
                             </div>
                         </div>
+                        {this.props.jobInfo.job_location != "Remote" ?
                         <div className="form-row">
                             <div className="form-group col-6">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
                                     Zipcode
                                 </label><span className="job-apply-char2">*</span>
                                 <input type="number" name="jobLocation" value={this.state.jobLocation} inputmode="numeric"
@@ -301,10 +317,18 @@ export class JobEdition extends Component{
                                     <div><span>City</span>, <span>State</span></div>}
                                 </label>
                             </div>
+                        </div>:
+                        <div className="form-row">
+                            <div className="form-group col-6">
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
+                                    Location: Remote
+                                </label>
+                            </div>
                         </div>
+                        }
                         <div className="form-row mt-3">
                             <div className="col-6">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
                                     Job Description
                                 </label><span className="job-apply-char2">*</span>
                             </div>
@@ -323,7 +347,7 @@ export class JobEdition extends Component{
                         </div>
                         <div className="form-row mt-3">
                             <div className="form-group col-4">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
                                 Name
                                 </label>
                             </div>
@@ -351,7 +375,7 @@ export class JobEdition extends Component{
                         </div>
                         <div className="form-row mt-3">
                             <div className="form-group col-4">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
                                 Location
                                 </label>
                             </div>
@@ -410,6 +434,8 @@ export class JobEdition extends Component{
                                 }
                             </div>
                         </div>
+                        {this.props.jobInfo.job_location != "Remote" &&
+                        <div>
                         <hr style={{border:"1.5px solid #E8EDFC"}}/>
                         <div className="form-row mt-4 ml-2">
                             <h5 style={{color:"#090d3a"}}><b>Broadcast Your Job Posting</b></h5>
@@ -433,6 +459,7 @@ export class JobEdition extends Component{
                                 }
                             </div>
                         </div>
+                        </div>}
                         <div style={{float: "right", marginBottom: "1rem"}}>
                             <button
                                 type="submit"

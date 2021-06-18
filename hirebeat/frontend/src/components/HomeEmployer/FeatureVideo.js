@@ -3,6 +3,7 @@ import DocumentMeta from 'react-document-meta';
 import ReactWOW from 'react-wow';
 import FreeTrialArea from "./FreeTrialArea";
 import Footer from "../layout/Footer";
+import MediaQuery from 'react-responsive';
 
 class FeatureVideo extends Component {
     render() {
@@ -24,50 +25,100 @@ class FeatureVideo extends Component {
             <div className="features-area pt-100 pb-100 product-bg">
                 <div className="container-fluid max-width-1440 ">
                     <div className="text-center" style={{color:"#FFFFFF"}}>
+                        <MediaQuery minDeviceWidth={1224}>
                         <h1 style={{fontSize:"4.4rem", fontWeight:"600"}}>
                             Save <span style={{color: "#FAC046"}}>50%</span> of Your Time <br/>
                             Reaching Top Candidates
                         </h1>
+                        </MediaQuery>
+                        <MediaQuery maxDeviceWidth={1223}>
+                        <h1 style={{fontSize:"3rem", fontWeight:"600"}}>
+                            Save <span style={{color: "#FAC046"}}>50%</span> of Your Time <br/>
+                            Reaching Top Candidates
+                        </h1>
+                        </MediaQuery>
+                        <MediaQuery minDeviceWidth={1224}>
                         <p style={{fontSize:"1.5rem", color:"#FFFFFF"}}>
                             Are you <span style={{color: "#FAC046"}}>wasting your time and money</span> on scheduling interviews and other basic tasks that could be easily <br/>
                             fulfilled by tools?  Have you ever <span style={{color: "#FAC046"}}>lost the perfect candidate</span> to competitors due to the tedious process?
                         </p>
+                        </MediaQuery>
+                        <MediaQuery maxDeviceWidth={1223}>
+                        <p style={{fontSize:"1rem", color:"#FFFFFF"}}>
+                            Are you <span style={{color: "#FAC046"}}>wasting your time and money</span> on scheduling interviews and other basic tasks that could be easily <br/>
+                            fulfilled by tools?  Have you ever <span style={{color: "#FAC046"}}>lost the perfect candidate</span> to competitors due to the tedious process?
+                        </p>
+                        </MediaQuery>
                     </div>
                 </div>
             </div>
             {/* Data box */}
             <div className="features-area pt-100 pb-100" style={{background: "#F4F5FD"}}>
                 <div className="container-fluid max-width-1440 ">
+                    <MediaQuery minDeviceWidth={1224}>
                     <div className="row mt-5 justify-items">
-                        <div className="col-lg-2 col-md-6 mt-1">
-                            <div className="justify-items1">
+                        <div className="col-lg-3 col-md-6 mt-1">
+                            <div className="justify-items1 h-100">
                                 <h3 className="product-h3">-75%</h3>
-                                <h3 className="product-h3-2" style={{color: "#FF6B00"}}>time to fill</h3>
+                                <h3 className="product-h3-2" style={{color: "#FF6B00"}}>Time to Fill</h3>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-6 mt-1">
-                            <div className="justify-items1">
+                        <div className="col-lg-3 col-md-6 mt-1">
+                            <div className="justify-items1 h-100">
                                 <h3 className="product-h3">+90%</h3>
-                                <h3 className="product-h3-2" style={{color: "#3697F5"}}>candidate quality</h3>
+                                <h3 className="product-h3-2" style={{color: "#3697F5"}}>Candidate Quality</h3>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-6 mt-1">
-                            <div className="justify-items1">
+                        <div className="col-lg-3 col-md-6 mt-1">
+                            <div className="justify-items1 h-100">
                                 <h3 className="product-h3">-$600</h3>
-                                <h3 className="product-h3-2" style={{color: "#FF6B00"}}>per hire cost</h3>
+                                <h3 className="product-h3-2" style={{color: "#FF6B00"}}>Per Hire Cost</h3>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-6 mt-1">
-                            <div className="justify-items1">
+                        <div className="col-lg-3 col-md-6 mt-1">
+                            <div className="justify-items1 h-100">
                                 <h3 className="product-h3">24/7</h3>
                                 <h3 className="product-h3-2"
                                     style={{color: "#3697F5", paddingTop: "0.5rem", paddingBottom: "0rem"}}
                                 >
-                                    interview anytime anywhere
+                                    Interview Anytime Anywhere
                                 </h3>
                             </div>
                         </div>
                     </div>
+                    </MediaQuery>
+                    <MediaQuery maxDeviceWidth={1223}>
+                    <div className="row mt-5 justify-items">
+                        <div className="col-lg-3 col-md-6 mt-1">
+                            <div className="justify-items1 h-100">
+                                <h3 className="product-h3" style={{fontSize:"4rem"}}>-75%</h3>
+                                <h3 className="product-h3-2" style={{color: "#FF6B00", fontSize:"1.25rem"}}>Time to Fill</h3>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 mt-1">
+                            <div className="justify-items1 h-100">
+                                <h3 className="product-h3" style={{fontSize:"4rem"}}>+90%</h3>
+                                <h3 className="product-h3-2" style={{color: "#3697F5", fontSize:"1.25rem"}}>Candidate Quality</h3>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 mt-1">
+                            <div className="justify-items1 h-100">
+                                <h3 className="product-h3" style={{fontSize:"4rem"}}>-$600</h3>
+                                <h3 className="product-h3-2" style={{color: "#FF6B00", fontSize:"1.25rem"}}>Per Hire Cost</h3>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 mt-1">
+                            <div className="justify-items1 h-100">
+                                <h3 className="product-h3" style={{fontSize:"4rem"}}>24/7</h3>
+                                <h3 className="product-h3-2"
+                                    style={{color: "#3697F5", paddingTop: "0.5rem", paddingBottom: "0rem", fontSize:"1.25rem"}}
+                                >
+                                    Interview Anytime Anywhere
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    </MediaQuery>
                     <div className="row mt-5 justify-items">
                         <a className="default-btn" href="/employer_register" target="_blank"
                             style={{backgroundColor: "#FF6B00", paddingLeft: "25px", textDecoration: "none"}}
@@ -183,7 +234,7 @@ class FeatureVideo extends Component {
                                         and organization culture by watching and hearing what they <br/>
                                         say. Video and audio interview questions help you to assess <br/>
                                         the candidate’s body language, confidence, and ability to <br/>
-                                        perform under pressure, revealing more insights beyond the <br/>
+                                        perform under pressure, revealing <span style={{color: "#FF6B00"}}>more insights</span> beyond the <br/>
                                         resume.
                                     </p>
                                 </div>

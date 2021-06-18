@@ -62,9 +62,9 @@ export class SubpageSetting extends Component {
         else
         {
             const config = {
-            headers: {
+                headers: {
                 "Content-Type": "application/json",
-            },
+                },
             };
             let user_pw = { "id": this.props.user.id , "password": this.state.oldPassword };
             

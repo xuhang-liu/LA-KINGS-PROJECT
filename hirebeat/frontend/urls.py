@@ -36,6 +36,8 @@ urlpatterns = [
     path('blog-wha-is-your-expected-salary', views.blog28),
     path('employer_blog-8-tips-to-increase-resume-screening-effectiveness', views.blogemployer20),
     path('employer_blog-what-is-resume-screening-and-why-does-it-matter', views.blogemployer21),
+    path('employer_blog-8-ways-to-automate-recruiting-processes', views.blogemployer22),
+    path("blog-the-4c's-that-you-need-for-your-resume", views.blog29),
 ]
 
 # This url needs to be included in the hirebeat/urls.py to work

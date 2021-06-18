@@ -803,7 +803,12 @@ def check_user_existence(request):
     data = False
     user = User.objects.filter(email=email)
     if len(user) != 0:
-        data = True
+        for i in range(len(user)):
+            profile = Profile.objects.get(user=user[i])
+            if profile.is_subreviwer or profile.is_external_reviewer:
+                data = False
+            else:
+                data = True
     return Response({"data": data})
 
 @api_view(['GET'])

@@ -10,7 +10,7 @@ import ShortList from "./ShortList";
 import PageTitleArea from '../Common/PageTitleArea';
 import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
-    updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo
+    updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence
  }
 from "../../redux/actions/auth_actions";
 import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML} from "../../redux/actions/job_actions";
@@ -58,6 +58,7 @@ export class EmployerDashboard extends Component {
     isAuthenticated: PropTypes.bool,
     int_ques: PropTypes.array.isRequired,
     position_list: PropTypes.array.isRequired,
+    user_existence: PropTypes.bool,
   };
 
   makeProfile = () => {
@@ -294,6 +295,7 @@ export class EmployerDashboard extends Component {
       case "jobCreation":
         return <JobCreation
             user={this.props.user}
+            profile={this.props.profile}
             renderJobs={this.renderJobs}
             addNewJob={this.props.addNewJob}
             getAllJobs={this.props.getAllJobs}
@@ -338,6 +340,8 @@ export class EmployerDashboard extends Component {
             profile={this.props.profile}
             updateViewStatus={this.props.updateViewStatus}
             subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+            checkUserExistence={this.props.checkUserExistence}
+            user_existence={this.props.user_existence}
         />;
       case "position":
         return <CreatePosition
@@ -543,6 +547,7 @@ const mapStateToProps = (state) => {
   isLoaded: state.job_reducer.isLoaded,
   jobid_list: state.job_reducer.jobid_list,
   employerDetailLoaded: state.auth_reducer.employerDetailLoaded,
+  user_existence: state.auth_reducer.user_existence,
 }
 };
 
@@ -551,7 +556,7 @@ export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFu
     getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
-    updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML
+    updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, checkUserExistence
     })(
     EmployerDashboard
 );

@@ -13,7 +13,8 @@ import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubR
 import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
 import QuestionForm from "./QuestionForm";
-import EditQuestion from "./EditQuestion"
+import EditQuestion from "./EditQuestion";
+import axios from "axios";
 
 export class JobApplication extends Component{
 
@@ -79,6 +80,8 @@ export class JobApplication extends Component{
                                     updateViewStatus={this.props.updateViewStatus}
                                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     position={p.position}
+                                    checkUserExistence={this.props.checkUserExistence}
+                                    user_existence={this.props.user_existence}
                                 />
                             )
                         })}
@@ -178,26 +181,37 @@ const JobViewDetail = (props) => {
     }
 
     function inviteReviever() {
-    if((props.profile.membership == "Premium") && (props.profile.plan_interval == "Premium")){
         let sub_reviewer_name = "";
         let sub_reviewer_email = "";
         let encoded_email = "";
         function submitSubReviewer(e) {
+            e.preventDefault();
             sub_reviewer_name = document.getElementById("sub_reviewer_name").value;
             sub_reviewer_email = document.getElementById("sub_reviewer_email").value;
-            encoded_email = window.btoa("email=" + sub_reviewer_email);
-            let data = {
-                sub_name: sub_reviewer_name,
-                sub_email: sub_reviewer_email,
-                encoded_email: encoded_email,
-                company_name: props.companyName,
-                position_id: props.positionId,
-                master_email: props.user.email,
-            };
-            props.addSubReviewer(data);
-            props.getPJobs();
-            e.preventDefault();
-            sendSuccessAlert();
+            //check user exist
+            axios.get(`accounts/check-user-existence?email=${sub_reviewer_email.toLowerCase()}`).then((res)=>{
+                let user_existence = res.data.data;
+                if(user_existence){
+                    sendFailAlert();
+                    props.getPJobs();
+                }else{
+                encoded_email = window.btoa("email=" + sub_reviewer_email);
+                let data = {
+                    sub_name: sub_reviewer_name,
+                    sub_email: sub_reviewer_email,
+                    encoded_email: encoded_email,
+                    company_name: props.companyName,
+                    position_id: props.positionId,
+                    master_email: props.user.email,
+                };
+                props.addSubReviewer(data);
+                props.getPJobs();
+                sendSuccessAlert();
+                }
+            })
+                .catch(error => {
+                console.log(error)
+            }); 
         }
         
         confirmAlert({
@@ -230,11 +244,6 @@ const JobViewDetail = (props) => {
                                 <input type="email" id="sub_reviewer_email" className="form-control" required="required" placeHolder="john@example.com"/>
                             </div>
                         </div>
-                        <div className="form-row">
-                            <div className="form-group col-9">
-                                <h5>Support up to 3 reviewers</h5>
-                            </div>
-                        </div>
                         <div className="form-row justify-items">
                             <div className="form-group col-3" style={{marginRight: "3rem"}}>
                                 <button
@@ -261,16 +270,6 @@ const JobViewDetail = (props) => {
               );
             }
         });
-        }else{
-        confirmAlert({
-            title: 'Upgrade Now!',
-            message: 'You need Premium Plan to unlock Team Collaboration.',
-            buttons: [
-                {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
-                {label: 'OK'},
-            ]
-        });
-        }
     }
 
     function deleteReviever(sub_id) {
@@ -323,20 +322,59 @@ const JobViewDetail = (props) => {
                                     </div>
                                 </div>
                                 <div className="col-2 mt-4" style={{marginRight:"-2rem"}}>
-                                {props.subreviewers.map((sub, i) => {
+                                {props.subreviewers.slice(0,3).map((sub, i) => {
                                     return (
-                                        <span onClick={() => {deleteReviever(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
-                                        <p className="sub_submenu" style={{minWidth:"6rem"}}>{sub.r_name.split(" ")[0]}</p>
+                                        <span className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
+                                            <p className="sub_submenu container" style={{minWidth:"12rem"}}>
+                                                <div className="row">
+                                                    <div className="col-2 px-3 py-2">
+                                                        <span className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}</span>
+                                                    </div>
+                                                    <div className="col-10">
+                                                        <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0"}}>{sub.r_name}</p>
+                                                        <p style={{fontSize:"0.7rem", fontWeight:"500", color:"#7d7d7d", marginTop:"3px"}}>{sub.r_email}</p>
+                                                        <a style={{fontSize:"0.8rem", fontWeight:"600", color:"#000", marginTop:"2rem", textDecoration:"underline", marginLeft:"3.5rem"}} onClick={() => {deleteReviever(sub.id)}}>Remove</a>
+                                                    </div>
+                                                </div>
+                                            </p>
                                         </span>
                                     )
                                 })}
+                                {props.subreviewers.length>3 &&
+                                <span className="sub_number3" style={{color:"white"}}>+{props.subreviewers.length-3}
+                                    <p className="sub_submenu container py-3" style={{minWidth:"14.6rem"}}>
+                                        <div className="row">
+                                            <div className="col-12">
+                                            <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0.5rem"}}>Sub-Reviewers</p>
+                                            {props.subreviewers.map((sub, i) => {
+                                            return (
+                                                <span className={`sub_number_inside${i%10} m-1`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
+                                                    <p className="sub_submenu_inside container" style={{width:"12rem"}}>
+                                                    <div className="row">
+                                                    <div className="col-2 px-2 py-2">
+                                                        <span className={`sub_number_inside${i%10}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}</span>
+                                                    </div>
+                                                    <div className="col-10">
+                                                        <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0"}}>{sub.r_name}</p>
+                                                        <p style={{fontSize:"0.7rem", fontWeight:"500", color:"#7d7d7d", marginTop:"3px"}}>{sub.r_email}</p>
+                                                        <a style={{fontSize:"0.8rem", fontWeight:"600", color:"#000", marginTop:"2rem", textDecoration:"underline", marginLeft:"3.5rem"}} onClick={() => {deleteReviever(sub.id)}}>Remove</a>
+                                                    </div>
+                                                    </div>
+                                                    </p>
+                                                </span>
+                                                )
+                                            })}
+                                            </div>
+                                        </div>
+                                    </p>
+                                </span>}
                                 </div>
-                                <div className="col-3">
+                                <div className="col-3 ml-4">
                                     {!props.profile.is_subreviwer &&
                                     <div>
                                         {props.applicants.length > 0 &&
                                         <div>
-                                        {((!props.isClosed) && (props.subreviewers.length < Number(props.profile.reviewer_count))) &&
+                                        {((!props.isClosed) && (props.subreviewers.length < Number(props.profile.reviewer_count) || (props.profile.membership == "Premium"))) &&
                                         <button
                                             className="default-btn1 interview-txt6 mt-4"
                                             style={{paddingLeft: "25px"}}
@@ -1776,6 +1814,18 @@ function sendSuccessAlert() {
     confirmAlert({
       title: "Send Invitation Success",
       message: "You have sent the invitation successfully.",
+      buttons: [
+        {
+          label: 'Ok'
+        }
+      ]
+    });
+};
+
+function sendFailAlert() {
+    confirmAlert({
+      title: "Send Invitation Fail",
+      message: "Looks like this email is already registered at HireBeat and therefore cannot be invited as an external reviewer. Please enter a different email. Personal email also works.",
       buttons: [
         {
           label: 'Ok'

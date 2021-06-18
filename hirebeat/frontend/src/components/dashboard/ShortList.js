@@ -10,6 +10,7 @@ import { loadStarList, getResumeURL, addExReviewer, delExReviewer } from './../.
 import { checkUserExistence } from './../../redux/actions/auth_actions';
 import { withRouter } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
+import axios from "axios";
 
 const ShortList = (props) => {
     const [curJobId, setCurJobId] = useState(Object.keys(props.postedJobs)[0]);
@@ -128,31 +129,37 @@ const ShortListCard = (props) => {
     const qualifiedApplicants = getQualifiedApplicants(props.applicants);
 
     function inviteExReviewer() {
-        if((props.profile.membership == "Premium") && (props.profile.plan_interval == "Premium")){
             let ex_reviewer_name = "";
             let ex_reviewer_email = "";
             let encoded_email = "";
             function submitExReviewer(e) {
+                e.preventDefault();
                 ex_reviewer_name = document.getElementById("ex_reviewer_name").value;
                 ex_reviewer_email = document.getElementById("ex_reviewer_email").value;
-                props.checkUserExistence(ex_reviewer_email.toLowerCase());
-                if(props.user_existence){
+                 //check user exist
+                axios.get(`accounts/check-user-existence?email=${ex_reviewer_email.toLowerCase()}`).then((res)=>{
+                let user_existence = res.data.data;
+                if(user_existence){
                     sendFailAlert();
+                    props.getPJobs();
                 }else{
-                encoded_email = window.btoa("email=" + ex_reviewer_email);
-                let data = {
-                    "ex_reviewer_name": ex_reviewer_name,
-                    "ex_reviewer_email": ex_reviewer_email,
-                    "encoded_email": encoded_email,
-                    "company_name": props.companyName,
-                    "position_id": props.positionId,
-                    "master_email": props.user.email,
-                };
-                props.addExReviewer(data);
-                props.getPJobs();
-                e.preventDefault();
-                sendSuccessAlert();
+                    encoded_email = window.btoa("email=" + ex_reviewer_email);
+                    let data = {
+                        "ex_reviewer_name": ex_reviewer_name,
+                        "ex_reviewer_email": ex_reviewer_email,
+                        "encoded_email": encoded_email,
+                        "company_name": props.companyName,
+                        "position_id": props.positionId,
+                        "master_email": props.user.email,
+                    };
+                    props.addExReviewer(data);
+                    props.getPJobs();
+                    sendSuccessAlert();
                 }
+            })
+                .catch(error => {
+                console.log(error)
+            }); 
             }
 
             confirmAlert({
@@ -186,11 +193,6 @@ const ShortListCard = (props) => {
                                     <input type="email" id="ex_reviewer_email" className="form-control" required="required" placeHolder="john@example.com"/>
                                 </div>
                             </div>
-                            <div className="form-row">
-                                <div className="form-group col-9">
-                                    <h5>Support up to 3 reviewers</h5>
-                                </div>
-                            </div>
                             <div className="form-row justify-items">
                                 <div className="form-group col-3" style={{marginRight: "3rem"}}>
                                     <button
@@ -217,17 +219,6 @@ const ShortListCard = (props) => {
                   );
                 }
             });
-        }
-        else {
-            confirmAlert({
-                title: 'Upgrade Now!',
-                message: 'You need Premium Plan to unlock Team Collaboration.',
-                buttons: [
-                    {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
-                    {label: 'OK'},
-                ]
-            });
-        }
     }
 
     function deleteExReviewer(ex_reviewer_id) {
@@ -273,20 +264,59 @@ const ShortListCard = (props) => {
                                 </div>
                             </div>
                             <div className="col-2 mt-4" style={{marginRight:"-2rem"}}>
-                            {props.exReviewers?.map((sub, i) => {
-                                return (
-                                    <span onClick={() => {deleteExReviewer(sub.id)}} className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
-                                    <p className="sub_submenu" style={{minWidth:"6rem"}}>{sub.r_name.split(" ")[0]}</p>
-                                    </span>
-                                )
-                            })}
+                                {props.exReviewers.slice(0,3).map((sub, i) => {
+                                    return (
+                                        <span className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
+                                            <p className="sub_submenu container" style={{minWidth:"12rem"}}>
+                                                <div className="row">
+                                                    <div className="col-2 px-3 py-2">
+                                                        <span className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}</span>
+                                                    </div>
+                                                    <div className="col-10">
+                                                        <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0"}}>{sub.r_name}</p>
+                                                        <p style={{fontSize:"0.7rem", fontWeight:"500", color:"#7d7d7d", marginTop:"3px"}}>{sub.r_email}</p>
+                                                        <a style={{fontSize:"0.8rem", fontWeight:"600", color:"#000", marginTop:"2rem", textDecoration:"underline", marginLeft:"3.5rem"}} onClick={() => {deleteExReviewer(sub.id)}}>Remove</a>
+                                                    </div>
+                                                </div>
+                                            </p>
+                                        </span>
+                                    )
+                                })}
+                                {props.exReviewers.length>3 &&
+                                <span className="sub_number3" style={{color:"white"}}>+{props.exReviewers.length-3}
+                                    <p className="sub_submenu container py-3" style={{minWidth:"14.6rem"}}>
+                                        <div className="row">
+                                            <div className="col-12">
+                                            <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0.5rem"}}>External-Reviewers</p>
+                                            {props.exReviewers.map((sub, i) => {
+                                            return (
+                                                <span className={`sub_number_inside${i%10} m-1`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
+                                                    <p className="sub_submenu_inside container" style={{width:"12rem"}}>
+                                                    <div className="row">
+                                                    <div className="col-2 px-2 py-2">
+                                                        <span className={`sub_number_inside${i%10}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}</span>
+                                                    </div>
+                                                    <div className="col-10">
+                                                        <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0"}}>{sub.r_name}</p>
+                                                        <p style={{fontSize:"0.7rem", fontWeight:"500", color:"#7d7d7d", marginTop:"3px"}}>{sub.r_email}</p>
+                                                        <a style={{fontSize:"0.8rem", fontWeight:"600", color:"#000", marginTop:"2rem", textDecoration:"underline", marginLeft:"3.5rem"}} onClick={() => {deleteExReviewer(sub.id)}}>Remove</a>
+                                                    </div>
+                                                    </div>
+                                                    </p>
+                                                </span>
+                                                )
+                                            })}
+                                            </div>
+                                        </div>
+                                    </p>
+                                </span>}
                             </div>
-                            <div className="col-3">
+                            <div className="col-3 ml-4">
                                 {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer) &&
                                 <div>
                                     {qualifiedApplicants.length > 0 &&
                                     <div>
-                                    {(props.exReviewers?.length < Number(props.profile.external_reviewer_count)) &&
+                                    {((props.exReviewers.length < Number(props.profile.external_reviewer_count) || (props.profile.membership == "Premium"))) &&
                                     <button
                                         className="default-btn1 interview-txt6 mt-4"
                                         onClick={inviteExReviewer}

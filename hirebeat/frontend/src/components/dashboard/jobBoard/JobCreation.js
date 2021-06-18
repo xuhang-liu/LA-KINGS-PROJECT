@@ -4,6 +4,9 @@ import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
 import {getByZip} from 'zcs';
 import Select from 'react-select';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import Switch from "react-switch";
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -29,27 +32,29 @@ export class JobCreation extends Component{
 
     constructor(props) {
         super(props);
+        this.state = {
+            jobTitle: "",
+            jobId: "",
+            jobLocation: "",
+            jobDescription: RichTextEditor.createEmptyValue(),
+            city: "",
+            state: "",
+            loc_req: 1,
+            pho_req: 1,
+            lin_req: 1,
+            job_post: false,
+            jobType: { value: 'Full-Time', label: 'Full-Time' },
+            jobLevel: { value: 'Entry Level', label: 'Entry Level' },
+            remote: false,
+        }
         this.props.getjobidlist(this.props.user.id);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     static propTypes = {
         onChange: PropTypes.func,
     };
 
-    state = {
-        jobTitle: "",
-        jobId: "",
-        jobLocation: "",
-        jobDescription: RichTextEditor.createEmptyValue(),
-        city: "",
-        state: "",
-        loc_req: 1,
-        pho_req: 1,
-        lin_req: 1,
-        job_post: true,
-        jobType: { value: 'Full-Time', label: 'Full-Time' },
-        jobLevel: { value: 'Entry Level', label: 'Entry Level' },
-    }
     onFilter = (jobType) => {
         this.setState({jobType: jobType})
     };
@@ -79,9 +84,20 @@ export class JobCreation extends Component{
         { value: 'Executive', label: 'Executive' },
     ];
     setJobPostTure = () => {
-        this.setState({
-            job_post: true
-        });
+        if(this.props.profile.membership == "Regular"){
+            confirmAlert({
+                title: 'Upgrade Now!',
+                message: 'Upgrade now to broadcast your job posting!',
+                buttons: [
+                    {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
+                    {label: 'OK'},
+                ]
+            });
+        }else{
+            this.setState({
+                job_post: true
+            });
+        }
     };
     setJobPostFalse = () => {
         this.setState({
@@ -169,9 +185,13 @@ export class JobCreation extends Component{
 
     handleInputChange = (e) => {
         this.setState({
-          [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value,
         });
       };
+
+      handleChange(remote) {
+        this.setState({ remote });
+      }
     
 //    handleChangeJobType = (jobType) => {
 //        this.setState({ jobType });
@@ -192,6 +212,21 @@ export class JobCreation extends Component{
             lin_req: this.state.lin_req,
             job_post: this.state.job_post,
         };
+        if(this.state.remote){
+            data = {
+                jobTitle: this.state.jobTitle,
+                jobId: this.state.jobId,
+                jobDescription: this.state.jobDescription.toString('html'),
+                jobLevel: this.state.jobLevel["value"],
+                jobLocation: "Remote",
+                userId: this.props.user.id,
+                jobType: this.state.jobType["value"],
+                loc_req: this.state.loc_req,
+                pho_req: this.state.pho_req,
+                lin_req: this.state.lin_req,
+                job_post: false,
+            };
+        }
         if(this.props.jobid_list.includes(this.state.jobId) && this.state.jobId != "" && this.state.jobId != null){
             alert("Duplicate Job ID detected.");
         }else{
@@ -274,22 +309,32 @@ export class JobCreation extends Component{
                             </div>
                         </div>
                         <div className="form-row">
+                            {!this.state.remote &&
                             <div className="form-group col-6">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
                                     Zipcode
                                 </label><span className="job-apply-char2">*</span>
                                 <input type="number" name="jobLocation" value={this.state.jobLocation} inputmode="numeric"
                                     onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
                                     pattern="\d*"
                                 onChange={this.handleZipcode} className="form-control" required="required"/>
-                            </div>
+                            </div>}
                             <div className="form-group col-6">
+                                {!this.state.remote &&
                                 <label className="db-txt2" style={{ marginTop:"3.5rem"}}>
                                     {this.state.city != "" &&
                                     <div><span>{this.state.city}</span>, <span>{this.state.state}</span></div>}
                                     {this.state.city == "" &&
                                     <div><span>City</span>, <span>State</span></div>}
+                                </label>}
+                                {!this.state.remote ?
+                                <label className="db-txt2 ml-5">
+                                    <div>Remote Work? <span style={{left:"14.5rem", top:"3.2rem", position:"absolute"}}><Switch onChange={this.handleChange} checked={this.state.remote}/></span></div>
+                                </label>:
+                                <label className="db-txt2">
+                                    <div>Remote Work? <span style={{marginLeft:"0.5rem"}}><Switch onChange={this.handleChange} checked={this.state.remote}/></span></div>
                                 </label>
+                                }
                             </div>
                         </div>
                         {/*<div className="form-row">
@@ -298,7 +343,7 @@ export class JobCreation extends Component{
                         </div>*/}
                         <div className="form-row mt-3">
                             <div className="col-6">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
                                     Job Description
                                 </label><span className="job-apply-char2">*</span>
                             </div>
@@ -317,7 +362,7 @@ export class JobCreation extends Component{
                         </div>
                         <div className="form-row mt-3">
                             <div className="form-group col-4">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
                                 Name
                                 </label>
                             </div>
@@ -345,7 +390,7 @@ export class JobCreation extends Component{
                         </div>
                         <div className="form-row mt-3">
                             <div className="form-group col-4">
-                                <label className="db-txt2" style={{ margin:"2%"}}>
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
                                 Location
                                 </label>
                             </div>
@@ -360,7 +405,7 @@ export class JobCreation extends Component{
                                 </label>
                             </div>
                         </div>
-                        <div className="form-row">
+                        <div className="form-row pb-2">
                             <div className="form-group col-4">
                                 {this.state.loc_req == 0 ?
                                 <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Required</button>:
@@ -404,6 +449,8 @@ export class JobCreation extends Component{
                                 }
                             </div>
                         </div>
+                        {!this.state.remote &&
+                        <div>
                         <hr style={{border:"1.5px solid #E8EDFC"}}/>
                         <div className="form-row mt-4 ml-2">
                             <h5 style={{color:"#090d3a"}}><b>Broadcast Your Job Posting</b></h5>
@@ -427,6 +474,7 @@ export class JobCreation extends Component{
                                 }
                             </div>
                         </div>
+                        </div>}
                         <div style={{float: "right", marginBottom: "1rem"}}>
                             <button
                                 type="submit"
@@ -435,7 +483,6 @@ export class JobCreation extends Component{
                                 Create
                             </button>
                         </div>
-
                     </form>
                 </div>
             </div>

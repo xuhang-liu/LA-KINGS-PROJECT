@@ -24,6 +24,25 @@ class BlogSidebar extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/blog-the-4c's-that-you-need-for-your-resume">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog29.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Jun 18, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/blog-the-4c's-that-you-need-for-your-resume">
+                                    <a>The 4C's That You Need for Your Resume</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/blog-wha-is-your-expected-salary">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog28.jpg" alt="image"/>
@@ -358,25 +377,6 @@ class BlogSidebar extends Component {
                             <h4 className="title usmall">
                                 <Link to="/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength">
                                     <a>"What Is Your Biggest Strength"</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog10.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Nov 10, 2020</time>
-                            <h4 className="title usmall">
-                                <Link to="/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview">
-                                    <a>"Where Do You To See Yourself In 5 Years"</a>
                                 </Link>
                             </h4>
                         </div>
