@@ -271,23 +271,22 @@ const ApplyJob = (props) =>{
                 <img style={{width:"7rem", marginLeft:"2rem", marginTop:"-3.5rem"}} src={(job_id == null || job_id == "") ? "":props.job.company_logo} alt="icon"/>
                 <h1 className="ml-5 mt-5" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A"}}>{(job_id == null || job_id == "") ? "":props.job.job_title}</h1>
                 <h2 className="ml-5 mt-2" style={{fontWeight:"600", fontSize:"1.5rem", color:"#67A3F3"}}>{(job_id == null || job_id == "") ? "":props.job.company_name}
-                <a style={{textDecoration:"none", color:"#7C94B5", fontSize:"0.9rem", marginLeft:"0.8rem"}} target="_blank" href={"https://hirebeat.co/company-branding/"+((job_id == null || job_id == "") ? "":props.job.company_name)}>View all jobs posted</a>
+                <a style={{textDecoration:"none", color:"#7C94B5", fontSize:"0.9rem", marginLeft:"0.8rem"}} target="_blank" href={"https://hirebeat.co/company-branding/"+((job_id == null || job_id == "") ? "":props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                 </h2>
                 <div className="row pl-3">
                     <div className="col-8 pl-5 mt-2 pb-5" style={{paddingRight:"3.7rem"}}>
-                        <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>{(job_id == null || job_id == "") ? "":props.job.job_level} • {(job_id == null || job_id == "") ? "":props.job.job_type}</p>
-                        <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>{(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[0]} {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[1]}</p>
-                        <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>Job ID: {(job_id == null || job_id == "") ? "":props.job.job_id}</p>
-                        <p className="mt-5" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
+                        <p style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5", lineHeight:"0.6rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_level} • {(job_id == null || job_id == "") ? "":props.job.job_type}</p>
+                        <p style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5", lineHeight:"0.6rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[0]} {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[1]}</p>
+                        <p style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5", lineHeight:"0.6rem"}}>{(props.job.job_id.length)>0?("Job ID:"+ ((job_id == null || job_id == "") ? "":props.job.job_id)):""}</p>
+                        <p className="mt-5" style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
                         <div>
-                            <br/>
                             <div>
                                 <h2 className="mb-3">Company Overview</h2>
                                 <div className="mb-3">
                                     {parse(''+((job_id == null || job_id == "") ? "":props.job.company_overview)+'')}
                                 </div>
                             </div>
-                            <h2 className="mb-3">Job Description</h2>
+                            <h2 className="mb-3 mt-5">Job Description</h2>
                             <div className="mb-3">
                             {parse(''+((job_id == null || job_id == "") ? "":props.job.job_description)+'')}
                             </div>
@@ -586,7 +585,7 @@ const ApplyJob = (props) =>{
                         {props.job.company_website != null && props.job.company_website != "" &&
                             <div className="single-footer-widget1 mt-2">
                                 <p style={{marginBottom: "0rem"}}>Website</p>
-                                <a className="website" target="_blank" href={props.job.company_website}>{props.job.company_website}</a>
+                                <a className="website" target="_blank" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                             </div>
                         }
                     </div>
@@ -604,14 +603,14 @@ const ApplyJob = (props) =>{
                 <img style={{width:"7rem", marginLeft:"34%", marginTop:"-3.5rem"}} src={(job_id == null || job_id == "") ? "":props.job.company_logo} alt="icon"/>
                 <h1 className="mt-3" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A", textAlign:"center"}}>{(job_id == null || job_id == "") ? "":props.job.job_title}</h1>
                 <h2 className="mt-2" style={{fontWeight:"600", fontSize:"1.5rem", color:"#67A3F3", textAlign:"center"}}>{(job_id == null || job_id == "") ? "":props.job.company_name}</h2>
-                <a style={{textDecoration:"none", color:"#7C94B5", fontWeight:"600", fontSize:"0.9rem", marginLeft:"30%"}} target="_blank" href={"https://hirebeat.co/company-branding/"+((job_id == null || job_id == "") ? "":props.job.company_name)}>View all jobs posted</a>
+                <a style={{textDecoration:"none", color:"#7C94B5", fontWeight:"600", fontSize:"0.9rem", marginLeft:"30%"}} target="_blank" href={"https://hirebeat.co/company-branding/"+((job_id == null || job_id == "") ? "":props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                 <div className="row pl-3">
                     <div className="pl-5 mt-3 pb-5" style={{paddingRight:"3.7rem"}}>
-                    <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>{(job_id == null || job_id == "") ? "":props.job.job_level} • {(job_id == null || job_id == "") ? "":props.job.job_type}</p>
-                        <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>{(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[0]} {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[1]}</p>
-                        <p className="mt-1" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>Job ID: {(job_id == null || job_id == "") ? "":props.job.job_id}</p>
-                        <p className="mt-5" style={{fontWeight:"600", fontSize:"1rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
-                        <div className="mt-3">
+                        <p style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5", lineHeight:"0.6rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_level} • {(job_id == null || job_id == "") ? "":props.job.job_type}</p>
+                        <p style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5", lineHeight:"0.6rem"}}>{(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[0]} {(job_id == null || job_id == "") ? "":props.job.job_location.split(",")[1]}</p>
+                        <p style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5", lineHeight:"0.6rem"}}>{(props.job.job_id.length)>0?("Job ID:"+ ((job_id == null || job_id == "") ? "":props.job.job_id)):""}</p>
+                        <p className="mt-4" style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5"}}>Posted on {(job_id == null || job_id == "") ? "":(props.job.create_date?.split('T')[0])}</p>
+                        <div className="mt-2">
                         {((job_id == null || job_id == "") ? false:props.job.is_closed) ?
                         <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", backgroundColor:"#7d7d7d"}}>
                             Job Closed
@@ -666,15 +665,21 @@ const ApplyJob = (props) =>{
                                     </li>
                                 </ul>
                             </div>
+                            {props.job.company_website != null && props.job.company_website != "" &&
+                            <div className="single-footer-widget1 mt-2">
+                                <p style={{marginBottom: "0.1rem"}}>Website</p>
+                                <a className="website" target="_blank" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                            </div>
+                            }
                         </div>
                         <div>
                             <div>
-                                <h2 className="mb-3">Company Overview</h2>
+                                <h2 className="mb-3 mt-5">Company Overview</h2>
                                 <div className="mb-3">
                                     {parse(''+((job_id == null || job_id == "") ? "":props.job.company_overview)+'')}
                                 </div>
                             </div>
-                            <h2 className="mb-3">Job Description</h2>
+                            <h2 className="mb-3 mt-3">Job Description</h2>
                             <div className="mb-3">
                             {parse(''+((job_id == null || job_id == "") ? "":props.job.job_description)+'')}
                             </div>

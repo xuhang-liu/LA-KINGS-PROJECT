@@ -28,7 +28,7 @@ const ShortList = (props) => {
         <div>
             <div className="container min-width-980">
                 <div style={{marginBottom: "30px"}}>
-                    <h3><b><i className="bx bx-list-ul"></i><span className="ml-2">Shortlist</span></b></h3>
+                    <h3><b><i className="bx-fw bx bx-list-ul"></i><span className="ml-2">Shortlist</span></b></h3>
                 </div>
                 {selectedId == -1 ?
                     <div>

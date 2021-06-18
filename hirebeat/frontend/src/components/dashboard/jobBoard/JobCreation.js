@@ -329,7 +329,7 @@ export class JobCreation extends Component{
                                 </label>}
                                 {!this.state.remote ?
                                 <label className="db-txt2 ml-5">
-                                    <div>Remote Work? <span style={{left:"14.5rem", top:"3.2rem", position:"absolute"}}><Switch onChange={this.handleChange} checked={this.state.remote}/></span></div>
+                                    <div>Remote Work? <span style={{float:"right", top:"3.2rem", position:"absolute", marginLeft:"0.5rem"}}><Switch onChange={this.handleChange} checked={this.state.remote}/></span></div>
                                 </label>:
                                 <label className="db-txt2">
                                     <div>Remote Work? <span style={{marginLeft:"0.5rem"}}><Switch onChange={this.handleChange} checked={this.state.remote}/></span></div>

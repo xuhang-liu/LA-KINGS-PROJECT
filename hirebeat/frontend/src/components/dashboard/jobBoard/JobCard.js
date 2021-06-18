@@ -61,10 +61,10 @@ export class JobCard extends Component{
                             className="title-button2"
                             onClick={() => {this.props.setJobKey(this.props.curJobKey); this.props.enableView(true); }}
                         >
-                            {this.props.job.job_details.job_title}
+                            {this.props.job.job_details.job_title.length>24?(this.props.job.job_details.job_title.substring(0,22)+"..."):(this.props.job.job_details.job_title)}
                         </button>
                     </div>
-                    <div className="col-1 interview-txt9 mt-2">{this.props.job.job_details.job_id}</div>
+                    <div className="col-1 interview-txt9 mt-2">{this.props.job.job_details.job_id.length > 6?(this.props.job.job_details.job_id?.substring(0,4)+"..."):(this.props.job.job_details.job_id)}</div>
                     <div className="col-2 interview-txt9 mt-2">
                         <button
                             className="title-button2"
