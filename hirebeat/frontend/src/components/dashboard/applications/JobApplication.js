@@ -1029,7 +1029,10 @@ const JobCard = (props) => {
                                     <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles}/>
                                 </div>
                             </div>
-                            <div className="col-2">Action</div>
+                            <div className="col-1">Action</div>
+                            {!props.profile.is_subreviwer &&
+                                <div className="col-1">Reinvite</div>
+                            }
                             <div className="col-2">
                                 <div className="row">
                                     <Select value={category2} onChange={onFilter2} options={options2} className="select-category" styles={customStyles}/>
@@ -1604,9 +1607,9 @@ const ApplicantList = (props) => {
                             break;
                     }
                 }
-                else if(props.profile.is_subreviwer && !a.is_recorded){
+                {/*else if(props.profile.is_subreviwer && !a.is_recorded){
                     return null;
-                }
+                }*/}
                 return (
                     <Applicant
                         index={index}
@@ -1817,16 +1820,18 @@ const Applicant = (props) => {
                 }}
             />
             <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
-                <div className="interview-txt9" style={{marginLeft: "1rem"}}>
-                    {(!applicants[current].is_invited && !applicants[current].is_recorded) ?
-                        <div>
-                            <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox"/>
-                        </div> :
-                        <div>
-                            <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" style={{visibility: "hidden"}}/>
-                        </div>
-                    }
-                </div>
+                {!props.profile.is_subreviwer &&
+                    <div className="interview-txt9" style={{marginLeft: "1rem"}}>
+                        {(!applicants[current].is_invited && !applicants[current].is_recorded) ?
+                            <div>
+                                <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox"/>
+                            </div> :
+                            <div>
+                                <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" style={{visibility: "hidden"}}/>
+                            </div>
+                        }
+                    </div>
+                }
                 {props.videoCount > 0 ? 
                 <div className="col-2 mb-1">
                     <button className="title-button1" style={{wordBreak: "break-all"}} onClick={() => viewResult()}>
@@ -1871,7 +1876,18 @@ const Applicant = (props) => {
                         </div>
                     }
                 </div>
-                <div className="col-2">
+                <div className="col-1">
+                    <div>
+                        <button
+                            onClick={() => viewResult()}
+                            className="interview-txt9"
+                            style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                        >
+                        <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
+                        </button>
+                    </div>
+                </div>
+                {/*<div className="col-2">
                     {props.isRecorded ?
                         (props.videoCount > 0 ?
                             <div>
@@ -1902,7 +1918,19 @@ const Applicant = (props) => {
                             </div>}
                         </div>
                     }
-                </div>
+                </div>*/}
+                {!props.profile.is_subreviwer &&
+                    <div className="col-1">
+                        <button
+                            onClick={ () => inviteAgain()}
+                            className="interview-txt9"
+                            style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                        >
+                            {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
+                            Resend
+                        </button>
+                    </div>
+                }
                 <div className="col-2 mb-1" >
                     {renderStatus(props.comment_status)}
                 </div>
