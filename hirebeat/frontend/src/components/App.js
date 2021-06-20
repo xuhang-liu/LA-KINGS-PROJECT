@@ -47,6 +47,7 @@ import BlogDetail18_Employer from "./blog/blog-details18-employer";
 import BlogDetail19_Employer from "./blog/blog-details19-employer";
 import BlogDetail20_Employer from "./blog/blog-details20-employer";
 import BlogDetail21_Employer from "./blog/blog-details21-employer";
+import BlogDetail22_Employer from "./blog/blog-details22-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -75,6 +76,7 @@ import BlogDetail25 from "./blog/blog-details25";
 import BlogDetail26 from "./blog/blog-details26";
 import BlogDetail27 from "./blog/blog-details27";
 import BlogDetail28 from "./blog/blog-details28";
+import BlogDetail29 from "./blog/blog-details29";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -215,6 +217,7 @@ import ApplyJob from "./dashboard/jobBoard/ApplyJob";
 import ProductPage from "./HomeEmployer/ProductPage";
 import FeatureVideo from "./HomeEmployer/FeatureVideo";
 import CompanyBranding from "./dashboard/jobBoard/CompanyBranding";
+import ResumeScreening from "./HomeEmployer/ResumeScreening";
 
 const alertOptions = {
   timeout: 3000,
@@ -330,6 +333,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-employer-branding-vs-recruitment-marketing" component={BlogDetail19_Employer} />
                 <Route exact path="/employer_blog-8-tips-to-increase-resume-screening-effectiveness" component={BlogDetail20_Employer} />
                 <Route exact path="/employer_blog-what-is-resume-screening-and-why-does-it-matter" component={BlogDetail21_Employer} />
+                <Route exact path="/employer_blog-8-ways-to-automate-recruiting-processes" component={BlogDetail22_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
@@ -358,6 +362,7 @@ class App extends Component {
                 <Route exact path="/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate" component={BlogDetail26} />
                 <Route exact path="/blog-ace-your-zoom-job-interview" component={BlogDetail27} />
                 <Route exact path="/blog-wha-is-your-expected-salary" component={BlogDetail28} />
+                <Route exact path="/blog-the-4c's-that-you-need-for-your-resume" component={BlogDetail29} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer-login" component={EmployerLogin} />
@@ -476,6 +481,7 @@ class App extends Component {
                 <PrivateRoute exact path="/interview-info" component={InterviewInfo} />
                 <Route exact path="/employer-product" component={ProductPage} />
                 <Route exact path="/employer-feature-video" component={FeatureVideo} />
+                <Route exact path="/employer-resume-screening" component={ResumeScreening} />
                 <Route component={NotFoundPage} />
               </Switch>
             </Fragment>

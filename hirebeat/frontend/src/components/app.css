@@ -2848,12 +2848,28 @@ h5 {
   font-weight: 600;
 }
 
+.sub_number3 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: -5px;
+  background-color: #e2e2e2;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+
 .sub_submenu {
   -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16);
   border-radius: 5px;
   background: #ffffff;
-  text-align: center;
+  text-align: left;
   width: auto;
   visibility: hidden;
   font-size: 1rem;
@@ -2862,18 +2878,234 @@ h5 {
   -webkit-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
   padding: 4px;
+  margin-top: 1rem;
+  z-index: 2;
+  position: absolute;
 }
 .sub_number0:hover .sub_submenu {
   visibility: visible;
-  transition-delay: 0s;
+  transition-delay: 0.1s;
 }
 .sub_number1:hover .sub_submenu {
   visibility: visible;
-  transition-delay: 0s;
+  transition-delay: 0.1s;
 }
 .sub_number2:hover .sub_submenu {
   visibility: visible;
-  transition-delay: 0s;
+  transition-delay: 0.1s;
+}
+.sub_number3:hover .sub_submenu {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+
+.sub_number_inside0 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: #5269f3;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+.sub_number_inside1 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: #56a3fa;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+.sub_number_inside2 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: #67e2f3;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+.sub_number_inside3 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: #61dca1;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+.sub_number_inside4 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: #acd750;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+.sub_number_inside5 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: #d0ed20;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+.sub_number_inside6 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: #ffd645;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+.sub_number_inside7 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: #ff8947;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+.sub_number_inside8 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: #f06c6c;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+.sub_number_inside9 {
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: #f24e9d;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 100%;
+  display: inline-block;
+  font-weight: 600;
+  padding-top: -1rem;
+}
+.sub_number_inside0:hover .sub_submenu_inside {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+.sub_number_inside1:hover .sub_submenu_inside {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+.sub_number_inside2:hover .sub_submenu_inside {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+.sub_number_inside3:hover .sub_submenu_inside {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+.sub_number_inside4:hover .sub_submenu_inside {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+.sub_number_inside5:hover .sub_submenu_inside {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+.sub_number_inside6:hover .sub_submenu_inside {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+.sub_number_inside7:hover .sub_submenu_inside {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+.sub_number_inside8:hover .sub_submenu_inside {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+.sub_number_inside9:hover .sub_submenu_inside {
+  visibility: visible;
+  transition-delay: 0.1s;
+}
+.sub_submenu_inside {
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16);
+  border-radius: 5px;
+  background: #ffffff;
+  text-align: left;
+  width: auto;
+  visibility: hidden;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Avenir Next", "Segoe UI";
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  padding: 4px;
+  margin-top: 0.4rem;
+  z-index: 3;
+  position: absolute;
 }
 
 .sub_close {
@@ -3337,7 +3569,7 @@ color: #4A6F8A;
 
 .product-h3 {
   font-family: Avenir Next, Segoe UI;
-  font-size: 4.3rem;
+  font-size: 3.4vw;
   font-weight: 600;
   color: #090d3a;
   text-align: center;
@@ -3346,7 +3578,7 @@ color: #4A6F8A;
 
 .product-h3-2 {
   font-family: Avenir Next, Segoe UI;
-  font-size: 1.25rem;
+  font-size: 1vw;
   font-weight: 600;
   color: #090d3a;
   text-align: center;

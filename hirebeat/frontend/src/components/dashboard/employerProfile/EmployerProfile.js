@@ -265,7 +265,7 @@ export class EmployerProfile extends Component {
             <React.Fragment>
                 <div className="profile-container">
                 <div className="row" style={{marginBottom: "30px"}}>
-                    <div><h3><b><i className="bx bxs-dashboard ard"></i><span className="ml-2">Dashboard</span></b></h3></div>
+                    <div className="ml-2"><h3><b><i className="bx-fw bx bxs-dashboard ard"></i><span className="ml-2">Dashboard</span></b></h3></div>
                     <div><h3><b>
                         {this.props.profile.membership == "Premium" ?
                             <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>

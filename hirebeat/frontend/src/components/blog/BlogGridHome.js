@@ -87,6 +87,7 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/blog-the-4c's-that-you-need-for-your-resume",
     "/blog-wha-is-your-expected-salary",
     "/blog-ace-your-zoom-job-interview",
     "/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate",
@@ -118,6 +119,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog29.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog28.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog27.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog26.jpg",
@@ -149,6 +151,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Jun 18, 2021",
     "Jun 04, 2021",
     "May 17, 2021",
     "Apr 30, 2021",
@@ -180,6 +183,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "THE 4C's THAT YOU NEED FOR YOUR RESUME",
     "WHAT IS YOUR EXPECTED SALARY?",
     "ACE YOUR ZOOM JOB INTERVIEW",
     "HOW TO STAY COMPETITIVE IN YOUR JOB SEARCH",

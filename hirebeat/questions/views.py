@@ -536,10 +536,13 @@ def add_sub_reviewer(request):
     master_email = request.data["master_email"]
     positions = Positions.objects.get(pk=position_id)
     user = User.objects.filter(email=sub_email)
+    subreviewers = SubReviewers.objects.filter(company_name=company_name, r_email=sub_email, position=positions)
     for u in user:
         profile = Profile.objects.filter(user_id=u.id, is_subreviwer=False)
-    if(len(profile) == 0):
+    if((len(profile) == 0) and (len(subreviewers) == 0)):
         SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name, position=positions)
+        send_sub_invitation(sub_name, sub_email, encoded_email, company_name, master_email, positions.job_title)
+    else:
         send_sub_invitation(sub_name, sub_email, encoded_email, company_name, master_email, positions.job_title)
     return Response("Add sub reviewer successfully", status=status.HTTP_200_OK)        
 
@@ -714,10 +717,13 @@ def add_external_reviewer(request):
     master_email = request.data["master_email"]
     positions = Positions.objects.get(pk=position_id)
     user = User.objects.filter(email=ex_reviewer_email)
+    externalReviewers = ExternalReviewers.objects.filter(company_name=company_name, r_email=ex_reviewer_email, position=positions)
     for u in user:
         profile = Profile.objects.filter(user_id=u.id, is_external_reviewer=False)
-    if len(profile) == 0:
+    if (len(profile) == 0) and (len(externalReviewers) == 0):
         ExternalReviewers.objects.create(r_name=ex_reviewer_name, r_email=ex_reviewer_email, company_name=company_name, position=positions)
+        send_ex_reviewer_invitation(ex_reviewer_name, ex_reviewer_email,encoded_email, company_name, master_email, positions.job_title)
+    else:
         send_ex_reviewer_invitation(ex_reviewer_name, ex_reviewer_email,encoded_email, company_name, master_email, positions.job_title)
     return Response("Add external reviewer successfully", status=status.HTTP_200_OK)
 
