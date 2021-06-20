@@ -177,63 +177,63 @@ const ReviewCandidate = (props) => {
                 <div className="col-3 pl-3 mt-3 pr-2">
                     <div className="resume-box p-4" style={{background:"white", borderRadius:"10px", width:"100%", height:"35%"}}>
                         <div className="row mb-3" style={{marginBottom:"2%"}}>
-                                    <div className="col d-flex align-items-center">
-                                    <h2
-                                        style={{
-                                        fontWeight: "600",
-                                        marginRight: "0.8rem",
-                                        wordWrap: "break-word",
-                                        wordBreak: "break-all",
-                                        color: "#090D3A",
-                                        }}
-                                    >
-                                        {(props.first_name+" "+props.last_name).length > 12 ? (props.first_name+" "+props.last_name).substring(0,10) + "..." : (props.first_name+" "+props.last_name)}
-                                    </h2>
-                                    </div>
-                                </div>
-                                <div className="row mb-2" style={{marginTop:"1%"}}>
-                                    <div className="col d-flex align-items-center">
-                                            <IconText
-                                            iconName={"bx bx-phone bx-sm"}
-                                            textDisplayed={props.phone}
-                                            textSize={"0.7rem"}
-                                            textColor={"#4A6F8A"}
-                                            iconMargin={"3px"}
-                                            />
-                                    </div>
-                                </div>
-                                <div className="row mb-2" style={{marginTop:"1%"}}>
-                                    <div className="col d-flex align-items-center">
-                                            <IconText
-                                            iconName={"bx bx-envelope bx-sm"}
-                                            textDisplayed={props.email}
-                                            textSize={"0.7rem"}
-                                            textColor={"#4A6F8A"}
-                                            iconMargin={"5px"}
-                                            />
-                                </div>
-                                </div>
-                                <div className="row" style={{marginTop:"1%"}}>
-                                    <div className="col d-flex align-items-center">
-                                            <IconText
-                                            iconName={"bx bx-location-plus bx-sm"}
-                                            textDisplayed={props.location}
-                                            textSize={"0.7rem"}
-                                            textColor={"#4A6F8A"}
-                                            iconMargin={"3px"}
-                                            />
-                                    </div>
-                                </div>
-                                {props.linkedin != null && props.linkedin != "" ?
-                                    <div style={{display: "flex", alignItems: "center"}}>
-                                        <i class='bx bxl-linkedin-square bx-sm' style={{color: "#67A3F3", marginRight: "3px"}}></i>
-                                        <a style={{fontSize: "0.7rem", color: "#67A3F3"}} href={props.linkedin} target="_blank">Go To LinkedIn Page</a>
-                                    </div> :
-                                    <div style={{display: "flex", alignItems: "center"}}>
-                                        <i class='bx bxl-linkedin-square bx-sm' style={{color: "#979797", marginRight: "3px"}}></i>
-                                        <p style={{fontSize: "0.7rem", color: "#979797"}}>LinkedIn  not available</p>
-                                    </div>
-                                }
+                            <div className="col d-flex align-items-center">
+                                <h2
+                                    style={{
+                                    fontWeight: "600",
+                                    marginRight: "0.8rem",
+                                    wordWrap: "break-word",
+                                    wordBreak: "break-all",
+                                    color: "#090D3A",
+                                    }}
+                                >
+                                    {(props.first_name+" "+props.last_name).length > 12 ? (props.first_name+" "+props.last_name).substring(0,10) + "..." : (props.first_name+" "+props.last_name)}
+                                </h2>
+                            </div>
+                        </div>
+                        <div className="row mb-2" style={{marginTop:"1%"}}>
+                            <div className="col d-flex align-items-center">
+                                <IconText
+                                iconName={"bx bx-phone bx-sm"}
+                                textDisplayed={props.phone}
+                                textSize={"0.7rem"}
+                                textColor={"#4A6F8A"}
+                                iconMargin={"3px"}
+                                />
+                            </div>
+                        </div>
+                        <div className="row mb-2" style={{marginTop:"1%"}}>
+                            <div className="col d-flex align-items-center">
+                                <IconText
+                                iconName={"bx bx-envelope bx-sm"}
+                                textDisplayed={props.email}
+                                textSize={"0.7rem"}
+                                textColor={"#4A6F8A"}
+                                iconMargin={"5px"}
+                                />
+                            </div>
+                        </div>
+                        <div className="row" style={{marginTop:"1%"}}>
+                            <div className="col d-flex align-items-center">
+                                <IconText
+                                iconName={"bx bx-location-plus bx-sm"}
+                                textDisplayed={props.location}
+                                textSize={"0.7rem"}
+                                textColor={"#4A6F8A"}
+                                iconMargin={"3px"}
+                                />
+                            </div>
+                        </div>
+                        {props.linkedin != null && props.linkedin != "" ?
+                            <div style={{display: "flex", alignItems: "center"}}>
+                                <i class='bx bxl-linkedin-square bx-sm' style={{color: "#67A3F3", marginRight: "3px"}}></i>
+                                <a style={{fontSize: "0.7rem", color: "#67A3F3"}} href={props.linkedin} target="_blank">Go To LinkedIn Page</a>
+                            </div> :
+                            <div style={{display: "flex", alignItems: "center"}}>
+                                <i class='bx bxl-linkedin-square bx-sm' style={{color: "#979797", marginRight: "3px"}}></i>
+                                <p style={{fontSize: "0.7rem", color: "#979797"}}>LinkedIn  not available</p>
+                            </div>
+                        }
                     </div>
                     <div className="resume-box mt-4 p-4" style={{background:"white", borderRadius:"10px", width:"100%", height:"61.6%", position:"relative"}}>
                         <h2

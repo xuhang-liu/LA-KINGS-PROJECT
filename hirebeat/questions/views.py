@@ -1,6 +1,6 @@
 from django.db.models.aggregates import Count
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, \
-    InterviewResumes, SubReviewers, ExternalReviewers
+    InterviewResumes, SubReviewers, ExternalReviewers, InterviewNote
 from accounts.models import CandidatesInterview, Profile
 from videos.models import WPVideo
 from jobs.models import ApplyCandidates, Jobs
@@ -757,3 +757,20 @@ def send_ex_reviewer_invitation(name, email, encoded_email, company_name, master
     )
     email.content_subtype = "html"
     email.send()
+
+@api_view(['POST'])
+def add_review_note(request):
+    reviewer = request.data["reviewer"]
+    comment = request.data["comment"]
+    applicant_email = request.data["applicant_email"]
+    position_id = request.data["position_id"]
+    InterviewNote.objects.create(reviewer=reviewer, comment=comment, applicant_email=applicant_email, position_id=position_id)
+
+    return Response("Added review successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_review_note(request):
+    position_id = request.query_params.get('position_id')
+    applicant_email = request.query_params.get('applicant_email')
+    reviews = list(InterviewNote.objects.filter(position_id=position_id, applicant_email=applicant_email).values())
+    return Response({"data": reviews})

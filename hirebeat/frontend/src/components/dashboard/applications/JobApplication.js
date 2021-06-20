@@ -973,7 +973,7 @@ const JobCard = (props) => {
                     </div>
                     <div className="card container" style={{marginTop:"2%"}}>
                         <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
-                            <div style={{marginLeft: "1rem"}}>
+                            <div style={{marginLeft: "1rem",display: "flex"}}>
                                 <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{display: (props.allInvited ? "none" : "inline")}}/>
                             </div>
                             <div className="col-2">
@@ -1774,7 +1774,7 @@ const Applicant = (props) => {
                 }}
             />
             <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
-                <div className="interview-txt9 mt-2" style={{marginLeft: "1rem"}}>
+                <div className="interview-txt9" style={{marginLeft: "1rem"}}>
                     {(!applicants[current].is_invited && !applicants[current].is_recorded) ?
                         <div>
                             <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox"/>
@@ -1914,37 +1914,39 @@ const Applicant = (props) => {
 function MyVerticallyCenteredModal(props) {
   const { ...rest } = props;
   return (
-    <MyModal80 {...rest}>
-      <ReviewApplication
-        refresh={props.refresh}
-        getPJobs={props.getPJobs}
-        recordTime={props.recordTime}
-        interviewResume={props.interviewResume}
-        setShowResume={props.setShowResume}
-        setShowEva={props.setShowEva}
-        commentStatus={props.commentStatus}
-        set_comment_status={props.set_comment_status}
-        hide={props.onHide}
-        int_ques={props.int_ques}
-        id_candidate={props.id_candidate}
-        username_candidate={props.username_candidate}
-        email_candidate={props.email_candidate}
-        phone_candidate={props.phone_candidate}
-        location_candidate={props.location_candidate}
-        positionId={props.positionId}
-        updateCommentStatus={props.updateCommentStatus}
-        profile={props.profile}
-        subreviewerUpdateComment={props.subreviewerUpdateComment}
-        current={props.current}
-        setCurrent={props.setCurrent}
-        start={props.start}
-        end={props.end}
-        viewPrevResult={props.viewPrevResult}
-        viewNextResult={props.viewNextResult}
-        applicants={props.applicants}
-        hasSwitch={true}
-      />
-    </MyModal80>
+    <div style={{background:"#E8EDFC"}}>
+        <MyModal80 className="light-blue-modal" {...rest}>
+          <ReviewApplication
+            refresh={props.refresh}
+            getPJobs={props.getPJobs}
+            recordTime={props.recordTime}
+            interviewResume={props.interviewResume}
+            setShowResume={props.setShowResume}
+            setShowEva={props.setShowEva}
+            commentStatus={props.commentStatus}
+            set_comment_status={props.set_comment_status}
+            hide={props.onHide}
+            int_ques={props.int_ques}
+            id_candidate={props.id_candidate}
+            username_candidate={props.username_candidate}
+            email_candidate={props.email_candidate}
+            phone_candidate={props.phone_candidate}
+            location_candidate={props.location_candidate}
+            positionId={props.positionId}
+            updateCommentStatus={props.updateCommentStatus}
+            profile={props.profile}
+            subreviewerUpdateComment={props.subreviewerUpdateComment}
+            current={props.current}
+            setCurrent={props.setCurrent}
+            start={props.start}
+            end={props.end}
+            viewPrevResult={props.viewPrevResult}
+            viewNextResult={props.viewNextResult}
+            applicants={props.applicants}
+            hasSwitch={true}
+          />
+        </MyModal80>
+    </div>
   );
 };
 

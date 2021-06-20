@@ -3,7 +3,8 @@ from .views import QuestionAPIView, get_subcategories, get_random_question, get_
     get_posted_jobs, add_interviews, update_secondround_status, submit_feedback, resend_invitation, update_comment_status, \
     close_job, delete_job, add_interview_resume, get_resume_url, get_applicants_data, get_stars_list, add_sub_reviewer, \
     remove_sub_reviewer, get_question_list, update_view_status, get_analytics_info, delete_interview_questions, \
-    add_external_reviewer, delete_external_reviewer, move_candidate_to_interview, send_video_interviews
+    add_external_reviewer, delete_external_reviewer, move_candidate_to_interview, send_video_interviews, add_review_note, \
+    get_review_note
 # from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
@@ -34,5 +35,7 @@ urlpatterns = [
     path('questions/delete-external-reviewer', delete_external_reviewer),
     path('questions/move-candidate-to-interview', move_candidate_to_interview),
     path('questions/send-video-interviews', send_video_interviews),
+    path('questions/add-review-note', add_review_note),
+    path('questions/get-review-note', get_review_note),
 ]
 # The API URLs are now determined automatically by the router.
