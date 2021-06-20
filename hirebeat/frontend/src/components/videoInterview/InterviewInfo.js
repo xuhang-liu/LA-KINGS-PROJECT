@@ -260,11 +260,12 @@ class InterviewInfo extends Component {
 
                                         <h3 className="interview-txt1 mt-2">Interview Information</h3>
                                         <h4 className="interview-txt2 my-3">
-                                            Total: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length} Questions</span> | Estimate Time: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length * 1.5} Minutes</span>
+                                            Total: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length} Questions</span> | Estimate Time: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length * ((this.props.interview_position.prepare_time + this.props.interview_position.questionTime) / 60.0)} Minutes</span>
                                         </h4>
                                         <ul className="interview-txt2" style={{color: "#4A6F8A", paddingLeft: "1rem"}}>
                                             <li style={{marginTop:"1rem"}}><a href="/practice" style={{color:"#ff6b00"}}>Practice with our sample question</a> before the interview starts.</li>
                                             <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>{this.props.interview_position.prepare_time} seconds of preparation time</span> for each interview question.</li>
+                                            <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>{this.props.interview_position.questionTime} seconds of  response time</span> for each interview question.</li>
                                         </ul>
                                         {this.state.selected ? <button
                                             onClick={this.redirectToRecord}

@@ -182,44 +182,46 @@ class ReviewApplication extends Component{
                                     <i className="bx bx-file"></i>View Resume
                                 </button>}
                             </div>*/}</div>}
-                            <div>
-                                {this.props.commentStatus == 1 ?
-                                    <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                        <button className="default-btn btn-success ml-0" style={{width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(1);this.props.refresh();}}>
-                                            <i class='bx bx-bookmark-plus'></i>Shortlist
-                                        </button>
-                                    </div>:
-                                    <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                        <button className="default-btn ml-0" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(1);this.props.refresh();}}>
-                                            <i class='bx bx-bookmark-plus' style={{color:"#090D3A"}}></i>Shortlist
-                                        </button>
-                                    </div>
-                                }
-                                {this.props.commentStatus == 2 ?
-                                    <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                        <button className="default-btn btn-warning ml-2" style={{width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(2);this.props.refresh();}}>
-                                            <i class='bx bx-help-circle'></i>Hold
-                                        </button>
-                                    </div>:
-                                    <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                        <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(2);this.props.refresh();}}>
-                                            <i class='bx bx-help-circle' style={{color:"#090D3A"}}></i>Hold
-                                        </button>
-                                    </div>
-                                }
-                                {this.props.commentStatus == 3 ?
-                                    <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                        <button className="default-btn btn-danger ml-2" style={{width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(3);this.props.refresh();}}>
-                                            <i class='bx bx-calendar-x'></i>Reject
-                                        </button>
-                                    </div> :
-                                    <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                        <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(3);this.props.refresh();}}>
-                                            <i class='bx bx-calendar-x' style={{color:"#090D3A"}}></i>Reject
-                                        </button>
-                                    </div>
-                                }
-                            </div>
+                            {!this.props.profile.is_subreviwer &&
+                                <div>
+                                    {this.props.commentStatus == 1 ?
+                                        <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                            <button className="default-btn btn-success ml-0" style={{width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(1);this.props.refresh();}}>
+                                                <i class='bx bx-bookmark-plus'></i>Shortlist
+                                            </button>
+                                        </div>:
+                                        <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                            <button className="default-btn ml-0" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(1);this.props.refresh();}}>
+                                                <i class='bx bx-bookmark-plus' style={{color:"#090D3A"}}></i>Shortlist
+                                            </button>
+                                        </div>
+                                    }
+                                    {this.props.commentStatus == 2 ?
+                                        <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                            <button className="default-btn btn-warning ml-2" style={{width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(2);this.props.refresh();}}>
+                                                <i class='bx bx-help-circle'></i>Hold
+                                            </button>
+                                        </div>:
+                                        <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                            <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(2);this.props.refresh();}}>
+                                                <i class='bx bx-help-circle' style={{color:"#090D3A"}}></i>Hold
+                                            </button>
+                                        </div>
+                                    }
+                                    {this.props.commentStatus == 3 ?
+                                        <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                            <button className="default-btn btn-danger ml-2" style={{width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(3);this.props.refresh();}}>
+                                                <i class='bx bx-calendar-x'></i>Reject
+                                            </button>
+                                        </div> :
+                                        <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                            <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(3);this.props.refresh();}}>
+                                                <i class='bx bx-calendar-x' style={{color:"#090D3A"}}></i>Reject
+                                            </button>
+                                        </div>
+                                    }
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className="col-9 mt-3 pl-3 pr-2" >
@@ -250,7 +252,7 @@ class ReviewApplication extends Component{
                                     <iframe className="responsive-iframe" src={this.props.resumeURL}/>
                                 </div> :
                                 <div>
-                                    <h3 style={{marginTop:"10%", textAlign:"center"}}>Candidate does not upload resume.</h3>
+                                    <h3 style={{marginTop:"10%", textAlign:"center", height: "38rem"}}>Candidate does not upload resume.</h3>
                                 </div>)
                             }
                             {this.state.viewVideo &&

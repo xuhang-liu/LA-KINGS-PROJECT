@@ -910,16 +910,18 @@ const JobCard = (props) => {
                         <div className="col-4 interview-center mt-2">
                             <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                         </div>
-                        <div className="col-2 interview-txt7 interview-center mt-2">
-                            <button
-                            type="button"
-                            className="read-more"
-                            style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
-                            onClick={editQuestions}
-                            >
-                            <i className="bx bx-info-circle pr-1"></i> Edit Questions
-                            </button>
-                        </div>
+                        {!props.profile.is_subreviwer &&
+                            <div className="col-2 interview-txt7 interview-center mt-2">
+                                <button
+                                type="button"
+                                className="read-more"
+                                style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
+                                onClick={editQuestions}
+                                >
+                                <i className="bx bx-info-circle pr-1"></i> Edit Questions
+                                </button>
+                            </div>
+                        }
                         <div className="col-3 interview-txt7 interview-center mt-2">
                             <button
                                 onClick={() => {previewEmail(props.jobTitle, props.companyName, expire.value)}}
@@ -973,9 +975,11 @@ const JobCard = (props) => {
                     </div>
                     <div className="card container" style={{marginTop:"2%"}}>
                         <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
-                            <div style={{marginLeft: "1rem",display: "flex"}}>
-                                <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{display: (props.allInvited ? "none" : "inline")}}/>
-                            </div>
+                            {!props.profile.is_subreviwer &&
+                                <div style={{marginLeft: "1rem",display: "flex"}}>
+                                    <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{display: (props.allInvited ? "none" : "inline")}}/>
+                                </div>
+                            }
                             <div className="col-2">
                                 <span className="dot" style={{background:"none", visibility: "hidden"}}></span>
                                 Name
@@ -1042,16 +1046,18 @@ const JobCard = (props) => {
                         </div>
                     </div>
                 </div>
-                <div style={{marginTop: "2rem"}}>
-                    <button
-                        className="default-btn1 interview-txt6"
-                        style={{paddingLeft: "25px", marginBottom:"1rem"}}
-                        onClick={sendVideoInterview}
-                    >
-                        Invite to Video Interview
-                        <span></span>
-                    </button>
-                </div>
+                {!props.profile.is_subreviwer &&
+                    <div style={{marginTop: "2rem"}}>
+                        <button
+                            className="default-btn1 interview-txt6"
+                            style={{paddingLeft: "25px", marginBottom:"1rem"}}
+                            onClick={sendVideoInterview}
+                        >
+                            Invite to Video Interview
+                            <span></span>
+                        </button>
+                    </div>
+                }
             </div>
             }
 
