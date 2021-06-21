@@ -1,6 +1,6 @@
 from django.db.models.aggregates import Count
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, \
-    InterviewResumes, SubReviewers, ExternalReviewers
+    InterviewResumes, SubReviewers, ExternalReviewers, InterviewNote
 from accounts.models import CandidatesInterview, Profile
 from videos.models import WPVideo
 from jobs.models import ApplyCandidates, Jobs
@@ -130,6 +130,7 @@ def get_posted_jobs(request):
             subreviewers = list(SubReviewers.objects.filter(position_id=positions_id).values())
             ex_reviewers = list(ExternalReviewers.objects.filter(position_id=positions_id).values())
             position = Positions.objects.filter(id=positions_id).values()[0]
+            all_invited = True if InvitedCandidates.objects.filter(positions_id=positions_id, is_invited=True).count() == len(applicants) else False
             job_details = {
                 "position_id": positions_id,
                 "job_id": positions[i].job_id,
@@ -141,6 +142,7 @@ def get_posted_jobs(request):
                 "subreviewers": subreviewers,
                 "ex_reviewers": ex_reviewers,
                 "position": position,
+                "all_invited": all_invited,
             }
             # convert to json
             data[positions_id] = job_details
@@ -229,6 +231,47 @@ def add_interviews(request):
 
     return Response("Add interviews data successfully", status=status.HTTP_200_OK)
 
+@api_view(['POST'])
+def send_video_interviews(request):
+    company_name = request.data["company_name"]
+    job_title= request.data["job_title"]
+    emails = request.data["emails"]
+    names = request.data["names"]
+    urls = request.data["urls"]
+    expire = request.data["expire"]
+    candidate_ids = request.data["candidate_ids"]
+
+    for i in range(len(emails)):
+        if emails[i] != "" and names[i] != "":
+            # update candidate invite status and date
+            candidate = InvitedCandidates.objects.get(id=candidate_ids[i])
+            candidate.is_invited = True
+            candidate.invite_date = timezone.now()
+            candidate.save()
+            # send email
+            send_interviews(names[i], emails[i], urls[i], job_title, company_name, expire)
+
+    return Response("Send interviews successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def move_candidate_to_interview(request):
+    position_id = request.data["position_id"]
+    emails = request.data["emails"]
+    names = request.data["names"]
+
+    for i in range(len(emails)):
+        if emails[i] != "" and names[i] != "":
+            # avoid duplicate data
+            try:
+                candidate = CandidatesInterview.objects.get(email=emails[i], positions_id=position_id)
+                invited = InvitedCandidates.objects.get(email=emails[i], positions_id=position_id)
+            except ObjectDoesNotExist:
+                # save data
+                CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
+                InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0)
+
+    return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)
+
 def send_interviews(name, email, url, job_title, company_name, expire):
     subject = 'Follow up on your application of ' + job_title + " at " + company_name
     message = get_template("questions/interview_email.html")
@@ -259,6 +302,12 @@ def resend_invitation(request):
     name = request.data["name"]
     url = request.data["url"]
     expire = request.data["expire"]
+    # update invite status and date
+    candidate_id = request.data["candidate_id"]
+    candidate = InvitedCandidates.objects.get(id=candidate_id)
+    candidate.is_invited = True
+    candidate.invite_date = timezone.now()
+    candidate.save()
     send_interviews(name, email, url, job_title, company_name, expire)
 
     return Response("Submit feedback data successfully", status=status.HTTP_200_OK)
@@ -714,3 +763,20 @@ def send_ex_reviewer_invitation(name, email, encoded_email, company_name, master
     )
     email.content_subtype = "html"
     email.send()
+
+@api_view(['POST'])
+def add_review_note(request):
+    reviewer = request.data["reviewer"]
+    comment = request.data["comment"]
+    applicant_email = request.data["applicant_email"]
+    position_id = request.data["position_id"]
+    InterviewNote.objects.create(reviewer=reviewer, comment=comment, applicant_email=applicant_email, position_id=position_id)
+
+    return Response("Added review successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_review_note(request):
+    position_id = request.query_params.get('position_id')
+    applicant_email = request.query_params.get('applicant_email')
+    reviews = list(InterviewNote.objects.filter(position_id=position_id, applicant_email=applicant_email).values())
+    return Response({"data": reviews})

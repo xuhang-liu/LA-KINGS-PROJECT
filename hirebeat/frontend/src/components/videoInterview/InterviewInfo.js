@@ -12,21 +12,44 @@ var ReactS3Uploader = require("react-s3-uploader");
 
 class InterviewInfo extends Component {
     // data passed from login page
-    email = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["email"];
-    positionId = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["positionId"];
-    companyName = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["companyName"];
+    email = typeof(this.props.location.params) == "undefined" ? "" : this.props.location.params["email"];
+    positionId = typeof(this.props.location.params) == "undefined" ? 0 : this.props.location.params["positionId"];
+    companyName = typeof(this.props.location.params) == "undefined" ? "" : this.props.location.params["companyName"];
 
-    state = {
-        email: this.email == null ? "" : this.email,
-        positionId: this.positionId == null ? 0 : this.positionId,
-        companyName: this.companyName == null ? "" : this.companyName,
-        showFirst: false,
-        selected: false,
-        cvName: "",
-        resume: null,
-        jobTitle: "",
-        jdText: "",
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: this.email,
+            positionId: this.positionId,
+            companyName: this.companyName,
+            showFirst: false,
+            selected: false,
+            cvName: "",
+            resume: null,
+            jobTitle: "",
+            jdText: "",
+            hasResume: false,
+        };
+        // check candidate resume
+        const url = new URL("https://hirebeat.co/jobs/get-resume-from-job-application"); // todo change here when online
+        const params = {positionId: this.positionId, email: this.email};
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.data.resume_url != "" && data.data.resume_url != null) {
+                    this.setState({selected:true, hasResume: true});
+                    // insert resume to resume table
+                    const resumeMetaData = {
+                      candidateId: this.props.user.id,
+                      resume_url: data.data.resume_url,
+                      positionId: this.positionId,
+                      email: this.email,
+                    };
+                    this.props.addInterviewResume(resumeMetaData);
+                }
+            });
+    }
 
     static propTypes = {
         getInterviewQuestions: PropTypes.func.isRequired,
@@ -203,7 +226,7 @@ class InterviewInfo extends Component {
                                 pageTitle={this.state.companyName}
                                 pageDescription="Get to know more details and test everything before you start."
                             />
-                            <div className="Container" style={{margin: "2% 3% 10rem 3%"}}>
+                            <div className="Container" style={{margin: "2% 3% 10rem 0"}}>
                                 <div className="row">
                                     <div className="col-lg-5 col-md-5" style={{marginLeft: "5%", marginTop: "5%"}} >
                                         <h3 className="interview-txt1" style={{textAlign:"center"}}>What will the process look like?</h3>
@@ -213,31 +236,36 @@ class InterviewInfo extends Component {
                                         </div>
                                     </div>
                                     <div className="col-lg-5 col-md-5" style={{marginLeft: "5%", marginTop: "5%"}} >
-                                        <h3 className="interview-txt1">Upload Resume</h3>
-                                        <p>The company requires your resume along with the interview. </p>
-                                        <div className="row pl-3 mb-5">
-                                            <button style={{width: "12rem"}} className="default-btn my-3 mr-3" onClick={this.selectFile}>
-                                                <i className="bx bx-cloud-upload"></i>Upload Resume
-                                            </button>
-                                            {
-                                            this.state.selected ? (
-                                                <div style={{textAlign: "center", marginTop: "1.7rem"}}>
-                                                    <i className="bx bxs-file-pdf resume-name"></i>
-                                                    <label className="resume-name" id="fileName"></label>
-                                                    <label className="resume-success" style={{marginLeft: "0.5rem"}}>selected</label>
-                                                    <i className="bx bxs-check-circle resume-success" style={{marginLeft: "1rem"}}></i>
+                                        {!this.state.hasResume &&
+                                            <div>
+                                                <h3 className="interview-txt1">Upload Resume</h3>
+                                                <p>The company requires your resume along with the interview. </p>
+                                                <div className="row pl-3 mb-5">
+                                                    <button style={{width: "12rem"}} className="default-btn my-3 mr-3" onClick={this.selectFile}>
+                                                        <i className="bx bx-cloud-upload"></i>Upload Resume
+                                                    </button>
+                                                    {
+                                                    this.state.selected ? (
+                                                        <div style={{textAlign: "center", marginTop: "1.7rem"}}>
+                                                            <i className="bx bxs-file-pdf resume-name"></i>
+                                                            <label className="resume-name" id="fileName"></label>
+                                                            <label className="resume-success" style={{marginLeft: "0.5rem"}}>selected</label>
+                                                            <i className="bx bxs-check-circle resume-success" style={{marginLeft: "1rem"}}></i>
+                                                        </div>
+                                                    ) : <span className="ml-3 my-auto" style={{color:"#ff0000"}}>Support .pdf only</span>
+                                                    }
                                                 </div>
-                                            ) : <span className="ml-3 my-auto" style={{color:"#ff0000"}}>Support .pdf only</span>
-                                            }
-                                        </div>
-                                        
+                                            </div>
+                                        }
+
                                         <h3 className="interview-txt1 mt-2">Interview Information</h3>
                                         <h4 className="interview-txt2 my-3">
-                                            Total: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length} Questions</span> | Estimate Time: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length * 1.5} Minutes</span>
+                                            Total: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length} Questions</span> | Estimate Time: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length * ((this.props.interview_position.prepare_time + this.props.interview_position.questionTime) / 60.0)} Minutes</span>
                                         </h4>
                                         <ul className="interview-txt2" style={{color: "#4A6F8A", paddingLeft: "1rem"}}>
                                             <li style={{marginTop:"1rem"}}><a href="/practice" style={{color:"#ff6b00"}}>Practice with our sample question</a> before the interview starts.</li>
                                             <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>{this.props.interview_position.prepare_time} seconds of preparation time</span> for each interview question.</li>
+                                            <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>{this.props.interview_position.questionTime} seconds of  response time</span> for each interview question.</li>
                                         </ul>
                                         {this.state.selected ? <button
                                             onClick={this.redirectToRecord}

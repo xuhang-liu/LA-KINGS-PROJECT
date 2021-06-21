@@ -3,6 +3,7 @@ import {
     GET_CURRENT_JOBS,
     GET_JOBID_LIST,
     GET_COMAPNY_BRANDING_INFO,
+    GET_RESUME_FROM_JOB_APPLICATION
 } from "../actions/action_types";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   jobid_list: [],
   jobs_branding: [],
   company_logo: "",
+  jobApplicationResume: "",
 };
 
 export default function (state = initialState, action) {
@@ -37,6 +39,11 @@ export default function (state = initialState, action) {
         ...state,
         jobs_branding: action.payload.data,
         company_logo: action.payload.company_logo,
+      }
+    case GET_RESUME_FROM_JOB_APPLICATION:
+      return {
+        ...state,
+        jobApplicationResume: action.payload.data.resume_url,
       }
     default:
       return state;
