@@ -112,16 +112,13 @@ class ApplicationVideoPanel extends Component {
                         <div className='col'>
                             <div className="row mt-3 px-4">
                                 <div style={{width:"100%"}}>
-                                    <h5 style={{fontWeight:"500", color:"#090D3A"}}>Review</h5>
+                                    <h5 style={{fontWeight:"500", color:"#090D3A"}}>Transcript</h5>
                                     <div className="col px-0">
-                                        <div className="p-1" style={{overflow:"auto", maxHeight:"15rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem"}}>
-                                            {this.props.comments[this.state.page].map((comment)=>{
-                                                    return <div style={{marginTop:"5px"}}><span style={{fontWeight:"600", color:"#4a6f8a", fontFamily:"Avenir Next, Segoe UI", paddingLeft:"6px"}}>{comment.split(":")[0]}</span>
-                                                    <span style={{fontWeight: "normal", color:"#7d7d7d", fontFamily:"Avenir Next, Segoe UI", paddingLeft:"10px"}}>{comment.split(":")[1]}</span></div>
-                                            })}
+                                        <div className="p-1" style={{overflow:"auto", maxHeight:"26rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem", minHeight:"20rem"}}>
+                                            <p className="py-3 px-3">{this.props.transcripts}</p>
                                         </div>
                                     </div>
-                                    <div className="mt-3 p-0 col" style={{height:"3.07rem", border:"2px solid #E8EDFC", width:"100%", backgroundColor:"transparent"}}>
+                                    {/*<div className="mt-3 p-0 col" style={{height:"3.07rem", border:"2px solid #E8EDFC", width:"100%", backgroundColor:"transparent"}}>
                                         <div className="row">
                                             <div className="col-7 pl-3 pr-0">
                                                 <textarea
@@ -139,7 +136,7 @@ class ApplicationVideoPanel extends Component {
                                                 ><i className="bx bxs-send"></i>Post</button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>*/}
                                 </div>
                             </div>
                             <div className="row pl-2 mt-3">

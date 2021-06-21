@@ -276,6 +276,7 @@ class ReviewApplication extends Component{
                                     viewPrevResult={this.props.viewPrevResult}
                                     viewNextResult={this.props.viewNextResult}
                                     hasSwitch={this.props.hasSwitch}
+                                    transcripts={this.props.transcripts}
                                 />
                             }
                             {this.state.viewNotes &&
@@ -321,6 +322,7 @@ const mapStateToProps = (state) => {
     var video_array = [];
     var stars = [];
     var comments = [];
+    var transcripts = [];
     var pk = [];
 
     state.video_reducer.int_ques.map((i) => {
@@ -328,6 +330,7 @@ const mapStateToProps = (state) => {
         comments.push(i.video_comment)
         quesiton_array.push(i.question_desc);
         video_array.push(i.url);
+        transcripts.push(i.transcripts);
         pk.push(i.id)
     });
 
@@ -341,8 +344,9 @@ const mapStateToProps = (state) => {
         resumeURL: state.video_reducer.resumeURL,
         recordTime: state.video_reducer.recordTime,
         interviewResume: state.video_reducer.interviewResume,
-        reviews: state.question_reducer.reviews}
-
+        reviews: state.question_reducer.reviews,
+        transcripts: transcripts,
+    }
 };
 
 export default connect(mapStateToProps, { getPostedJobs, getResumeURL, getReviewNote })(ReviewApplication);

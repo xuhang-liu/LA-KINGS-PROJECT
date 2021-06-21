@@ -307,6 +307,7 @@ export class EmployerDashboard extends Component {
       case "jobEdition":
         return <JobEdition
             user={this.props.user}
+            profile={this.props.profile}
             renderJobs={this.renderJobs}
             updateJob={this.props.updateJob}
             getAllJobs={this.props.getAllJobs}

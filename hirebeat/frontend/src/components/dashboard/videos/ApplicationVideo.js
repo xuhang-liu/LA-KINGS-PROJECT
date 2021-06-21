@@ -36,6 +36,7 @@ render() {
                                             positionId={this.props.positionId}
                                             profile={this.props.profile}
                                             subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                            transcripts={this.props.transcripts[this.state.currentVideo]}
                                     />
                                 </div>
                                 <div className='row ml-1'>
