@@ -945,7 +945,7 @@ const JobCard = (props) => {
                 <div className="card container mt-4 pt-3 pb-3">
                     <div className="row">
                         <div className="col-4 interview-center mt-2">
-                            <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
+                            <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle}</h3>
                         </div>
                         {!props.profile.is_subreviwer &&
                             <div className="col-2 interview-txt7 interview-center mt-2">
