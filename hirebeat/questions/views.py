@@ -766,10 +766,20 @@ def send_ex_reviewer_invitation(name, email, encoded_email, company_name, master
 
 @api_view(['POST'])
 def add_review_note(request):
-    reviewer = request.data["reviewer"]
     comment = request.data["comment"]
     applicant_email = request.data["applicant_email"]
     position_id = request.data["position_id"]
+    reviewer_email = request.data["reviewer_email"]
+    reviewer_type = request.data["reviewer_type"]
+    reviewer = ""
+    if reviewer_type == "sub_reviewer":
+        sub_reviewer = SubReviewers.objects.filter(r_email=reviewer_email, position_id=position_id)[0]
+        reviewer = sub_reviewer.r_name
+    elif reviewer_type == "external_reviewer":
+        external_reviewer = ExternalReviewers.objects.filter(r_email=reviewer_email, position_id=position_id)[0]
+        reviewer = external_reviewer.r_name
+    else:
+        reviewer = request.data["reviewer"]
     InterviewNote.objects.create(reviewer=reviewer, comment=comment, applicant_email=applicant_email, position_id=position_id)
 
     return Response("Added review successfully", status=status.HTTP_200_OK)

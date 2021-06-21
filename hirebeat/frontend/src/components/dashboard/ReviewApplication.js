@@ -285,6 +285,8 @@ class ReviewApplication extends Component{
                                     positionId={this.props.positionId}
                                     applicantEmail={this.props.email_candidate}
                                     reviewer={this.props.user.username}
+                                    profile={this.props.profile}
+                                    reviewerEmail={this.props.user.email}
                                 />
                             }
                         </div>
