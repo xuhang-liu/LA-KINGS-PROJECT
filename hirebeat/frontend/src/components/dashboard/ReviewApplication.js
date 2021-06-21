@@ -289,6 +289,28 @@ class ReviewApplication extends Component{
                         </div>
                     </div>
                 </div>
+                {this.props.hasSwitch &&
+                    <div className="row" style={{marginTop: "1.5rem", marginBottom: "1rem"}}>
+                        <div className="col-3"/>
+                        <div className="col-9" style={{textAlign: "center"}}>
+                            <button
+                                className={this.props.current == this.props.start ? "disable-btn" : "enable-btn"}
+                                disabled={this.props.current == this.props.start ? true : false}
+                                onClick={() => this.props.viewPrevResult(this.props.current)}
+                            >
+                                &lt; Prev
+                            </button>
+                            <button
+                                className={this.props.current == this.props.end ? "disable-btn" : "enable-btn"}
+                                disabled={this.props.current == this.props.end ? true : false}
+                                onClick={() => this.props.viewNextResult(this.props.current)}
+                                style={{marginLeft: "2rem"}}
+                            >
+                                Next &gt;
+                            </button>
+                        </div>
+                    </div>
+                }
             </div>
         )
     };
