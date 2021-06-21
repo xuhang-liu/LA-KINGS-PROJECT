@@ -264,52 +264,57 @@ const ShortListCard = (props) => {
                                 </div>
                             </div>
                             <div className="col-2 mt-4" style={{marginRight:"-2rem"}}>
-                                {props.exReviewers.slice(0,3).map((sub, i) => {
-                                    return (
-                                        <span className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
-                                            <p className="sub_submenu container" style={{minWidth:"12rem"}}>
-                                                <div className="row">
-                                                    <div className="col-2 px-3 py-2">
-                                                        <span className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}</span>
+                                {!props.profile.is_external_reviewer &&
+                                    (props.exReviewers.slice(0,3).map((sub, i) => {
+                                        return (
+                                            <span className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
+                                                <p className="sub_submenu container" style={{minWidth:"12rem"}}>
+                                                    <div className="row">
+                                                        <div className="col-2 px-3 py-2">
+                                                            <span className={`sub_number${i}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}</span>
+                                                        </div>
+                                                        <div className="col-10">
+                                                            <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0"}}>{sub.r_name}</p>
+                                                            <p style={{fontSize:"0.7rem", fontWeight:"500", color:"#7d7d7d", marginTop:"3px"}}>{sub.r_email}</p>
+                                                            <a style={{fontSize:"0.8rem", fontWeight:"600", color:"#000", marginTop:"2rem", textDecoration:"underline", marginLeft:"3.5rem"}} onClick={() => {deleteExReviewer(sub.id)}}>Remove</a>
+                                                        </div>
                                                     </div>
-                                                    <div className="col-10">
-                                                        <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0"}}>{sub.r_name}</p>
-                                                        <p style={{fontSize:"0.7rem", fontWeight:"500", color:"#7d7d7d", marginTop:"3px"}}>{sub.r_email}</p>
-                                                        <a style={{fontSize:"0.8rem", fontWeight:"600", color:"#000", marginTop:"2rem", textDecoration:"underline", marginLeft:"3.5rem"}} onClick={() => {deleteExReviewer(sub.id)}}>Remove</a>
+                                                </p>
+                                            </span>
+                                        )
+                                    }))
+                                }
+                                {!props.profile.is_external_reviewer &&
+                                    (props.exReviewers.length>3 &&
+                                        <span className="sub_number3" style={{color:"white"}}>+{props.exReviewers.length-3}
+                                            <p className="sub_submenu container py-3" style={{minWidth:"14.6rem"}}>
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                    <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0.5rem"}}>External-Reviewers</p>
+                                                    {props.exReviewers.map((sub, i) => {
+                                                    return (
+                                                        <span className={`sub_number_inside${i%10} m-1`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
+                                                            <p className="sub_submenu_inside container" style={{width:"12rem"}}>
+                                                            <div className="row">
+                                                            <div className="col-2 px-2 py-2">
+                                                                <span className={`sub_number_inside${i%10}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}</span>
+                                                            </div>
+                                                            <div className="col-10">
+                                                                <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0"}}>{sub.r_name}</p>
+                                                                <p style={{fontSize:"0.7rem", fontWeight:"500", color:"#7d7d7d", marginTop:"3px"}}>{sub.r_email}</p>
+                                                                <a style={{fontSize:"0.8rem", fontWeight:"600", color:"#000", marginTop:"2rem", textDecoration:"underline", marginLeft:"3.5rem"}} onClick={() => {deleteExReviewer(sub.id)}}>Remove</a>
+                                                            </div>
+                                                            </div>
+                                                            </p>
+                                                        </span>
+                                                        )
+                                                    })}
                                                     </div>
                                                 </div>
                                             </p>
                                         </span>
                                     )
-                                })}
-                                {props.exReviewers.length>3 &&
-                                <span className="sub_number3" style={{color:"white"}}>+{props.exReviewers.length-3}
-                                    <p className="sub_submenu container py-3" style={{minWidth:"14.6rem"}}>
-                                        <div className="row">
-                                            <div className="col-12">
-                                            <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0.5rem"}}>External-Reviewers</p>
-                                            {props.exReviewers.map((sub, i) => {
-                                            return (
-                                                <span className={`sub_number_inside${i%10} m-1`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}
-                                                    <p className="sub_submenu_inside container" style={{width:"12rem"}}>
-                                                    <div className="row">
-                                                    <div className="col-2 px-2 py-2">
-                                                        <span className={`sub_number_inside${i%10}`} style={{color:"white"}}>{sub.r_name.substring(0,2).toUpperCase()}</span>
-                                                    </div>
-                                                    <div className="col-10">
-                                                        <p style={{fontSize:"1rem", fontWeight:"600", color:"#000", marginBottom:"0"}}>{sub.r_name}</p>
-                                                        <p style={{fontSize:"0.7rem", fontWeight:"500", color:"#7d7d7d", marginTop:"3px"}}>{sub.r_email}</p>
-                                                        <a style={{fontSize:"0.8rem", fontWeight:"600", color:"#000", marginTop:"2rem", textDecoration:"underline", marginLeft:"3.5rem"}} onClick={() => {deleteExReviewer(sub.id)}}>Remove</a>
-                                                    </div>
-                                                    </div>
-                                                    </p>
-                                                </span>
-                                                )
-                                            })}
-                                            </div>
-                                        </div>
-                                    </p>
-                                </span>}
+                                }
                             </div>
                             <div className="col-3 ml-4">
                                 {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer) &&
@@ -531,33 +536,35 @@ const CandidateCard = (props) => {
 function MyVerticallyCenteredModal(props) {
     const { ...rest } = props;
     return (
-      <MyModal80 {...rest}>
-        <ReviewApplication
-          {...rest}
-          refresh={props.refresh}
-          getPJobs={props.getPJobs}
-          setShowResume={props.setShowResume}
-          setShowEva={props.setShowEva}
-          hide={props.onHide}
-          int_ques={props.int_ques}
-          id_candidate={props.id_candidate}
-          username_candidate={props.username_candidate}
-          email_candidate={props.email_candidate}
-          phone_candidate={props.phone_candidate}
-          location_candidate={props.location_candidate}
-          positionId={props.positionId}
-          updateCommentStatus={props.updateCommentStatus}
-          comment_status={props.applicant.comment_status}
-          resumeURL={props.resumeURL}
-          recordTime={props.recordTime}
-          interviewResume={props.interviewResume}
-          profile={props.profile}
-          subreviewerUpdateComment={props.subreviewerUpdateComment}
-          applicants={props.applicants}
-          current={props.current}
-          hasSwitch={false}
-        />
-      </MyModal80>
+        <div style={{background:"#E8EDFC"}}>
+          <MyModal80 className="light-blue-modal" {...rest}>
+            <ReviewApplication
+              {...rest}
+              refresh={props.refresh}
+              getPJobs={props.getPJobs}
+              setShowResume={props.setShowResume}
+              setShowEva={props.setShowEva}
+              hide={props.onHide}
+              int_ques={props.int_ques}
+              id_candidate={props.id_candidate}
+              username_candidate={props.username_candidate}
+              email_candidate={props.email_candidate}
+              phone_candidate={props.phone_candidate}
+              location_candidate={props.location_candidate}
+              positionId={props.positionId}
+              updateCommentStatus={props.updateCommentStatus}
+              comment_status={props.applicant.comment_status}
+              resumeURL={props.resumeURL}
+              recordTime={props.recordTime}
+              interviewResume={props.interviewResume}
+              profile={props.profile}
+              subreviewerUpdateComment={props.subreviewerUpdateComment}
+              applicants={props.applicants}
+              current={props.current}
+              hasSwitch={false}
+            />
+          </MyModal80>
+        </div>
     );
   };
 
