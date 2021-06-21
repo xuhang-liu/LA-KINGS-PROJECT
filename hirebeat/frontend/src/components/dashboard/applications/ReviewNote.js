@@ -10,11 +10,21 @@ export class ReviewNote extends Component {
     };
 
     updateReview = () => {
+        // identify employer or reviewer
+        let reviewer_type = "";
+        if (this.props.profile.is_subreviwer) {
+            reviewer_type = "sub_reviewer";
+        }
+        else if (this.props.profile.is_external_reviewer) {
+            reviewer_type = "external_reviewer";
+        }
         let data = {
             reviewer: this.props.reviewer,
             comment: this.state.comment,
             applicant_email: this.props.applicantEmail,
             position_id: this.props.positionId,
+            reviewer_type: reviewer_type,
+            reviewer_email: this.props.reviewerEmail,
         }
         this.props.addReviewNote(data);
         setTimeout(() => {this.props.getReviewNote(this.props.positionId, this.props.applicantEmail)}, 300);
@@ -28,10 +38,11 @@ export class ReviewNote extends Component {
                     {/* map here */}
                     <div className="note-border2">
                         {this.props.reviews.map((r) => {
+                            let name = r.reviewer.split("@")[0];
                             return(
                                 <div style={{marginBottom: "0.5rem"}}>
                                     <p className="note-p">
-                                    <span className="note-span">{r.reviewer + ":"}</span> {r.comment}
+                                    <span className="note-span">{name + ":"}</span> {r.comment}
                                     </p>
                                 </div>
                             )
