@@ -87,7 +87,7 @@ class ReviewApplication extends Component{
                 </div>
                 <div className="row" style={{display:"flex"}}>
                     <div className="col-3 pl-3 mt-3 pr-2">
-                        <div className="resume-box p-4" style={{background:"white", borderRadius:"10px", width:"100%", height:"25%"}}>
+                        <div className="resume-box p-4" style={{background:"white", borderRadius:"10px", width:"100%", height:"25%", minHeight:"14rem"}}>
                             <div className="row mb-3" style={{marginBottom:"2%"}}>
                                 <div className="col d-flex align-items-center">
                                     <h4
@@ -138,7 +138,7 @@ class ReviewApplication extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div className="resume-box mt-4 p-4" style={{background:"white", borderRadius:"10px", width:"100%", height:"50%", position:"relative"}}>
+                        <div className="resume-box mt-4 p-4" style={{background:"white", borderRadius:"10px", width:"100%", height:"50%", position:"relative", minHeight:"28rem"}}>
                             <h2
                                 style={{
                                 fontWeight: "600",
@@ -186,12 +186,12 @@ class ReviewApplication extends Component{
                                 <div>
                                     {this.props.commentStatus == 1 ?
                                         <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                            <button className="default-btn btn-success ml-0" style={{width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(1);this.props.refresh();}}>
+                                            <button className="default-btn btn-success ml-2" style={{width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(1);this.props.refresh();}}>
                                                 <i class='bx bx-bookmark-plus'></i>Shortlist
                                             </button>
                                         </div>:
                                         <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                            <button className="default-btn ml-0" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(1);this.props.refresh();}}>
+                                            <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"8rem", fontSize:"0.8rem"}} onClick={() => {this.updateStatus(1);this.props.refresh();}}>
                                                 <i class='bx bx-bookmark-plus' style={{color:"#090D3A"}}></i>Shortlist
                                             </button>
                                         </div>

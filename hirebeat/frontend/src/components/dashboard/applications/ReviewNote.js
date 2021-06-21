@@ -39,7 +39,7 @@ export class ReviewNote extends Component {
                     </div>
                     <textarea
                         className="note-border3"
-                        style={{height: "38rem", width: "92%"}}
+                        style={{height: "26rem", width: "92%"}}
                         type="text"
                         value={this.state.comment}
                         placeholder="Write your comment here"

@@ -31,7 +31,7 @@ class InterviewInfo extends Component {
             hasResume: false,
         };
         // check candidate resume
-        const url = new URL("http://127.0.0.1:8000/jobs/get-resume-from-job-application"); // todo change here when online
+        const url = new URL("https://hirebeat.co/jobs/get-resume-from-job-application"); // todo change here when online
         const params = {positionId: this.positionId, email: this.email};
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
         fetch(url)
@@ -226,7 +226,7 @@ class InterviewInfo extends Component {
                                 pageTitle={this.state.companyName}
                                 pageDescription="Get to know more details and test everything before you start."
                             />
-                            <div className="Container" style={{margin: "2% 3% 10rem 3%"}}>
+                            <div className="Container" style={{margin: "2% 3% 10rem 0"}}>
                                 <div className="row">
                                     <div className="col-lg-5 col-md-5" style={{marginLeft: "5%", marginTop: "5%"}} >
                                         <h3 className="interview-txt1" style={{textAlign:"center"}}>What will the process look like?</h3>
