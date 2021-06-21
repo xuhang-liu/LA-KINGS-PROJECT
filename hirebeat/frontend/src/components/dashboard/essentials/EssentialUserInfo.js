@@ -310,24 +310,26 @@ export class EssentialUserInfo extends Component {
                 </button>
               </div>
               </div>}
-              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.props.renderShortlist}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconEmployerText
-                    textSize={"12px"}
-                    textDisplayed={"Shortlist"}
-                    backColor={this.props.subpage == "shortlist" ? selectBack : defaultBack}
-                    iconSrc={this.props.subpage == "shortlist" ? selectShortlist : nonSelectShortlist}
-                    textColor={this.props.subpage == "shortlist" ? selectEColor : defaultEColor}
-                  />
-                </button>
-              </div>
-              </div>
+              {!this.props.profile.is_subreviwer &&
+                  <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
+                      <div className="col d-flex align-items-center">
+                        <button
+                          type="button"
+                          className="panel-button"
+                          onClick={this.props.renderShortlist}
+                          style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                        >
+                          <IconEmployerText
+                            textSize={"12px"}
+                            textDisplayed={"Shortlist"}
+                            backColor={this.props.subpage == "shortlist" ? selectBack : defaultBack}
+                            iconSrc={this.props.subpage == "shortlist" ? selectShortlist : nonSelectShortlist}
+                            textColor={this.props.subpage == "shortlist" ? selectEColor : defaultEColor}
+                          />
+                        </button>
+                      </div>
+                  </div>
+              }
               {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
               <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
               <div className="col d-flex align-items-center">

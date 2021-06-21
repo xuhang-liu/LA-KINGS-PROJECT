@@ -26,6 +26,10 @@ import {
     DELETE_INTERVIEW_QUESTIONS,
     ADD_EXTERNAL_REVIEWER,
     DELETE_EXTERNAL_REVIEWER,
+    MOVE_CANDIDATE_TO_INTERVIEW,
+    SEND_VIDEO_INTERVIEWS,
+    ADD_REVIEW_NOTE,
+    GET_REVIEW_NOTE,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -133,6 +137,34 @@ export const addInterviews = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: ADD_INTERVIEWS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const moveCandidateToInterview = (data) => (dispatch, getState) => {
+  axios
+    .post("questions/move-candidate-to-interview", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: MOVE_CANDIDATE_TO_INTERVIEW,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const sendInterviews = (data) => (dispatch, getState) => {
+  axios
+    .post("questions/send-video-interviews", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: SEND_VIDEO_INTERVIEWS,
         payload: res.data,
       });
     })
@@ -380,6 +412,34 @@ export const delExReviewer = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: DELETE_EXTERNAL_REVIEWER,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const addReviewNote = (data) => (dispatch, getState) => {
+  axios
+    .post("questions/add-review-note", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_REVIEW_NOTE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getReviewNote = (position_id, applicant_email) => (dispatch, getState) => {
+  axios
+    .get(`/questions/get-review-note?position_id=${position_id}&applicant_email=${applicant_email}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_REVIEW_NOTE,
         payload: res.data,
       });
     })

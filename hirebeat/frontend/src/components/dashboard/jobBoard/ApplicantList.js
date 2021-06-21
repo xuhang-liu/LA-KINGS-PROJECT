@@ -4,7 +4,7 @@ import QuestionForm from "./QuestionForm";
 import { MyModal80 } from "./../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addInterviews } from "../../../redux/actions/question_actions";
+import { addInterviews, moveCandidateToInterview } from "../../../redux/actions/question_actions";
 import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/actions/job_actions";
 import { MyModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
@@ -28,6 +28,7 @@ export class ApplicantList extends Component{
         { value: 'Invited', label: 'Invited' },
         { value: 'Hold', label: 'Hold' },
         { value: 'Rejected', label: 'Rejected' },
+        { value: 'Unreviewed', label: 'Unreviewed' },
         { value: 'All', label: 'All' },
     ];
 
@@ -60,8 +61,8 @@ export class ApplicantList extends Component{
 
     sendSuccessAlert = () => {
         confirmAlert({
-          title: "Send Invitation Success",
-          message: "You have sent the invitation successfully.",
+          title: "Move to Interview Process Success",
+          message: "You have moved the candidates to interview process successfully.",
           buttons: [
             {
               label: 'Ok'
@@ -92,10 +93,7 @@ export class ApplicantList extends Component{
 
     inviteCandidates = () => {
         let candidateCount = 0;
-        let companyName = this.props.curJob.job_details.company_name;
-        let jobTitle = this.props.curJob.job_details.job_title;
         let positionId = this.props.curJob.job_details.positions_id;
-        // collect input name and email
         const emails = [];
         const names = [];
         const invitedCandidates = [];
@@ -103,9 +101,7 @@ export class ApplicantList extends Component{
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked) {
                 let candidate = JSON.parse(candidates[i].value);
-                // name
                 names.push(candidate.first_name + " " + candidate.last_name);
-                // email
                 emails.push(candidate.email.toLowerCase());
                 invitedCandidates.push(candidate.id);
                 candidateCount+=1;
@@ -113,37 +109,9 @@ export class ApplicantList extends Component{
         }
         // check candidates selected or not
         if (candidateCount > 0) {
-            if (this.props.curJob.questions.length == 0 && this.state.tempQuestion.length == 0) {
-                return this.showQForm();
-            }
             if(candidateCount > (this.props.profile.candidate_limit)){
                 alert('Upgrade Now! You can only add ' +parseInt(this.props.profile.candidate_limit)+ ' more candidates for this position!');
             } else{
-                // generate interview urls and send emails
-                let urls = [];
-                for (let i = 0; i < emails.length; i++) {
-                    // make sure urls have the same size of emails and names
-                    let url = "";
-                    if (emails[i] != "" && names[i] != "") {
-                        //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-                        let prefix = "https://hirebeat.co/candidate-login?";  // online
-                        let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
-                        let encode = window.btoa(params);
-                        url = prefix + encode;
-                    }
-                    urls.push(url);
-                }
-                let meta = {
-                    company_name: companyName,
-                    job_title: jobTitle,
-                    position_id: positionId,
-                    emails: emails,
-                    names: names,
-                    expire: 14,
-                    urls: urls,
-                }
-                // save data to db
-                this.props.addInterviews(meta);
                 let data = {
                     "candidates": invitedCandidates,
                     "isInvited": 1,
@@ -152,6 +120,12 @@ export class ApplicantList extends Component{
                     "applyIds": invitedCandidates,
                     "isViewed": true,
                 }
+                let meta = {
+                    position_id: positionId,
+                    emails: emails,
+                    names: names,
+                }
+                this.props.moveCandidateToInterview(meta);
                 this.props.updateInviteStatus(data);
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
@@ -163,6 +137,80 @@ export class ApplicantList extends Component{
             this.noCandidateAlert();
         }
     }
+    // invite candidates with video interviews
+//    inviteCandidates = () => {
+//        let candidateCount = 0;
+//        let companyName = this.props.curJob.job_details.company_name;
+//        let jobTitle = this.props.curJob.job_details.job_title;
+//        let positionId = this.props.curJob.job_details.positions_id;
+//        // collect input name and email
+//        const emails = [];
+//        const names = [];
+//        const invitedCandidates = [];
+//        let candidates = document.getElementsByClassName("selected-candidate");
+//        for (let i = 0; i < candidates.length; i++) {
+//            if (candidates[i].checked) {
+//                let candidate = JSON.parse(candidates[i].value);
+//                // name
+//                names.push(candidate.first_name + " " + candidate.last_name);
+//                // email
+//                emails.push(candidate.email.toLowerCase());
+//                invitedCandidates.push(candidate.id);
+//                candidateCount+=1;
+//            }
+//        }
+//        // check candidates selected or not
+//        if (candidateCount > 0) {
+//            if (this.props.curJob.questions.length == 0 && this.state.tempQuestion.length == 0) {
+//                return this.showQForm();
+//            }
+//            if(candidateCount > (this.props.profile.candidate_limit)){
+//                alert('Upgrade Now! You can only add ' +parseInt(this.props.profile.candidate_limit)+ ' more candidates for this position!');
+//            } else{
+//                // generate interview urls and send emails
+//                let urls = [];
+//                for (let i = 0; i < emails.length; i++) {
+//                    // make sure urls have the same size of emails and names
+//                    let url = "";
+//                    if (emails[i] != "" && names[i] != "") {
+//                        //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+//                        let prefix = "https://hirebeat.co/candidate-login?";  // online
+//                        let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
+//                        let encode = window.btoa(params);
+//                        url = prefix + encode;
+//                    }
+//                    urls.push(url);
+//                }
+//                let meta = {
+//                    company_name: companyName,
+//                    job_title: jobTitle,
+//                    position_id: positionId,
+//                    emails: emails,
+//                    names: names,
+//                    expire: 14,
+//                    urls: urls,
+//                }
+//                // save data to db
+//                this.props.addInterviews(meta);
+//                let data = {
+//                    "candidates": invitedCandidates,
+//                    "isInvited": 1,
+//                }
+//                let viewedData = {
+//                    "applyIds": invitedCandidates,
+//                    "isViewed": true,
+//                }
+//                this.props.updateInviteStatus(data);
+//                this.props.updateCandidateViewedStatus(viewedData);
+//                // update
+//                setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 600);
+//                this.sendSuccessAlert();
+//            }
+//        }
+//        else {
+//            this.noCandidateAlert();
+//        }
+//    }
 
     selectAllCandidates = () => {
         let checkbox = document.getElementById("select-all");
@@ -187,7 +235,7 @@ export class ApplicantList extends Component{
                 <div className="card container mt-3 pt-2 pb-3">
                     <div className="row interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem"}}>
                         <div className="interview-txt5">{this.props.curJob.job_details.job_title}</div>
-                        <div className="interview-txt7 interview-center" style={{marginLeft: "2rem"}}>
+                        {/*<div className="interview-txt7 interview-center" style={{marginLeft: "2rem"}}>
                             <button
                                 type="button"
                                 className="read-more"
@@ -196,7 +244,7 @@ export class ApplicantList extends Component{
                             >
                                 <i className="bx bx-info-circle pr-1"></i> Edit Questions
                             </button>
-                        </div>
+                        </div>*/}
                         <div className="ml-auto">
                             <span style={{display: "flex", alignItems: "center"}}>
                                 <i className="bx bx-search bx-sm"></i>
@@ -212,7 +260,7 @@ export class ApplicantList extends Component{
                             <div className="col-2">Name</div>
                             <div className="col-3">Email</div>
                             <div className="col-2">Applied On</div>
-                            <div className="col-2">Application</div>
+                            {/*<div className="col-2">Application</div>*/}
                             <div className="col-1" style={{padding: "0rem", zIndex: "9999"}}>
                                 <Select value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles}/>
                             </div>
@@ -233,6 +281,9 @@ export class ApplicantList extends Component{
                                     case "Rejected":
                                         if (a.is_invited != 3) return null;
                                         break;
+                                    case "Unreviewed":
+                                        if (a.is_invited != 0) return null;
+                                        break;
                                 }
                             }
                             return (
@@ -250,6 +301,7 @@ export class ApplicantList extends Component{
                                     getAllJobs={this.props.getAllJobs}
                                     getPJobs={this.props.getPJobs}
                                     user={this.props.user}
+                                    moveCandidateToInterview={this.props.moveCandidateToInterview}
                                 />
                             )
                         })}
@@ -261,7 +313,7 @@ export class ApplicantList extends Component{
                         style={{paddingLeft: "25px", marginBottom:"1rem"}}
                         onClick={this.inviteCandidates}
                     >
-                        Invite to Interview
+                        Proceed to Interview
                         <span></span>
                     </button>
                 </div>
@@ -364,13 +416,13 @@ const ApplicantRow = (props) => {
                 </div>
                 <div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>
                 <div className="col-2 interview-txt9 mt-2">{props.applicant.apply_date.substring(0, 10)}</div>
-                <div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); onView()}}>View</div>
+                {/*<div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); onView()}}>View</div>*/}
                 <div className="col-1 interview-txt9 mt-2" style={{padding: "0rem"}}>
                     {(props.applicant.is_invited == 1) &&
                         <button className="default-btn invite-btn"
                             style={{backgroundColor: "#13C4A1", padding: "5px", width: "5rem", textAlign: "center"}}
                         >
-                            Invited
+                            Interview
                         </button>
                     }
                     {(props.applicant.is_invited == 2) &&
@@ -419,6 +471,7 @@ const ApplicantRow = (props) => {
                             status={status}
                             updateCandidateViewedStatus={props.updateCandidateViewedStatus}
                             linkedin={applicants[current].linkedinurl}
+                            moveCandidateToInterview={props.moveCandidateToInterview}
                         />
                 </MyModal>
             </div>
@@ -432,6 +485,6 @@ const mapStateToProps = (state) => ({
   jobs: state.job_reducer.jobs,
 });
 
-export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus, updateCandidateViewedStatus })(
+export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview })(
   ApplicantList
 ));

@@ -8,12 +8,13 @@ import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
 //import { IconText } from "../DashboardComponents";
-import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer } from "./../../../redux/actions/question_actions";
+import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
 import QuestionForm from "./QuestionForm";
-import EditQuestion from "./EditQuestion";
+import EditQuestion from "./EditQuestion"
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 
 export class JobApplication extends Component{
@@ -80,6 +81,9 @@ export class JobApplication extends Component{
                                     updateViewStatus={this.props.updateViewStatus}
                                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     position={p.position}
+                                    allInvited={p.all_invited}
+                                    moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                    sendInterviews={this.props.sendInterviews}
                                     checkUserExistence={this.props.checkUserExistence}
                                     user_existence={this.props.user_existence}
                                 />
@@ -99,9 +103,9 @@ const mapStateToProps = (state) => ({
     interviewResume: state.video_reducer.interviewResume,
 });
 
-export default connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer })(
+export default withRouter(connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews })(
     JobApplication
-);
+));
 
 const JobViewDetail = (props) => {
     const [view, setView] = useState(false);
@@ -454,6 +458,9 @@ const JobViewDetail = (props) => {
                     updateViewStatus={props.updateViewStatus}
                     subreviewerUpdateComment={props.subreviewerUpdateComment}
                     position={props.position}
+                    allInvited={props.allInvited}
+                    moveCandidateToInterview={props.moveCandidateToInterview}
+                    sendInterviews={props.sendInterviews}
                 />
             }
         </React.Fragment>
@@ -501,42 +508,82 @@ const JobCard = (props) => {
                 candidateCount+=1;
             }
         }
-        // generate interview urls and send emails
-        let urls = [];
-        for (let i = 0; i < emails.length; i++) {
-            // make sure urls have the same size of emails and names
-            let url = "";
-            if (emails[i] != "" && names[i] != "") {
-                //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-                let prefix = "https://hirebeat.co/candidate-login?";  // online
-                let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
-                let encode = window.btoa(params);
-                url = prefix + encode;
-            }
-            urls.push(url);
-        }
         let meta = {
-            company_name: companyName,
-            job_title: jobTitle,
             position_id: positionId,
             emails: emails,
             names: names,
-            expire: expire.value,
-            urls: urls,
         }
         let addLimitLeft = curlimit;
         curlimit += candidateCount;
         if((props.applicants.length+curlimit)>(props.profile.candidate_limit)){
-            alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit-props.applicants.length-addLimitLeft)+ ' more candidates for this position!');
+            alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit - props.applicants.length - addLimitLeft)+ ' more candidates for this position!');
         }else{
             // save data to db
-            props.addInterviews(meta);
+            props.moveCandidateToInterview(meta);
             // disable webpage refresh
             sendSuccessAlert();
             clearInvitationForm();
             e.preventDefault();
         }
     }
+
+    // sendInvitation function with email notification
+//    function sendInvitation(e) {
+//        let candidateCount = 0;
+//        let companyName = props.companyName;
+//        let jobTitle = props.jobTitle;
+//        let positionId = props.positionId;
+//        // collect input name and email
+//        const emails = [];
+//        const names = [];
+//        let nameElements = document.getElementsByClassName("candidate-name");
+//        let emailElements = document.getElementsByClassName("candidate-email");
+//        for (let i = 0; i < nameElements.length; i++) {
+//            // name
+//            names.push(nameElements[i].value);
+//            // email
+//            let value = emailElements[i].value;
+//            emails.push(value.toLowerCase());
+//            if(value!=""){
+//                candidateCount+=1;
+//            }
+//        }
+//        // generate interview urls and send emails
+//        let urls = [];
+//        for (let i = 0; i < emails.length; i++) {
+//            // make sure urls have the same size of emails and names
+//            let url = "";
+//            if (emails[i] != "" && names[i] != "") {
+//                //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+//                let prefix = "https://hirebeat.co/candidate-login?";  // online
+//                let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
+//                let encode = window.btoa(params);
+//                url = prefix + encode;
+//            }
+//            urls.push(url);
+//        }
+//        let meta = {
+//            company_name: companyName,
+//            job_title: jobTitle,
+//            position_id: positionId,
+//            emails: emails,
+//            names: names,
+//            expire: expire.value,
+//            urls: urls,
+//        }
+//        let addLimitLeft = curlimit;
+//        curlimit += candidateCount;
+//        if((props.applicants.length+curlimit)>(props.profile.candidate_limit)){
+//            alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit-props.applicants.length-addLimitLeft)+ ' more candidates for this position!');
+//        }else{
+//            // save data to db
+//            props.addInterviews(meta);
+//            // disable webpage refresh
+//            sendSuccessAlert();
+//            clearInvitationForm();
+//            e.preventDefault();
+//        }
+//    }
 
     // pagination
     const [offset, setOffset] = useState(0);
@@ -555,6 +602,7 @@ const JobCard = (props) => {
 
     // filter selections
     const options = [
+        { value: 'Uninvited', label: 'Not Invited' },
         { value: 'Completed', label: 'Completed' },
         { value: 'Pending', label: 'Pending' },
         { value: 'Withdrawn', label: 'N/A' },
@@ -569,6 +617,7 @@ const JobCard = (props) => {
     ];
 
     const options2 = [
+        { value: 'Unreviewed', label: 'Unreviewed' },
         { value: 'Shortlist', label: 'Shortlist' },
         { value: 'Hold', label: 'Hold' },
         { value: 'Reject', label: 'Reject' },
@@ -774,6 +823,107 @@ const JobCard = (props) => {
         }
     }
 
+    function selectAllCandidates() {
+        let checkbox = document.getElementById("select-all");
+        let candidates = document.getElementsByClassName("selected-candidate");
+        if (checkbox.checked) {
+            // select all candidates
+            for (let i = 0; i < candidates.length; i++) {
+                candidates[i].checked = true;
+            }
+        }
+        else {
+            // cancel all candidates selection
+            for (let i = 0; i < candidates.length; i++) {
+                candidates[i].checked = false;
+            }
+        }
+    }
+
+    function noCandidateAlert() {
+        confirmAlert({
+          title: "No Candidate Selected",
+          message: "Please select candidates for interview",
+          buttons: [
+            {
+              label: 'Ok'
+            }
+          ]
+        });
+    }
+
+    function inviteSuccessAlert() {
+        confirmAlert({
+          title: "Send Video Interviews Success",
+          message: "You have invited selected candidates for a video interview",
+          buttons: [
+            {
+              label: 'Ok'
+            }
+          ]
+        });
+    }
+
+    function sendVideoInterview() {
+        let candidateCount = 0;
+        let companyName = props.companyName;
+        let jobTitle = props.jobTitle;
+        let positionId = props.positionId;
+        // collect input name and email
+        const emails = [];
+        const names = [];
+        const invitedCandidates = [];
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                names.push(candidate.name);
+                emails.push(candidate.email.toLowerCase());
+                invitedCandidates.push(candidate.id);
+                candidateCount+=1;
+            }
+        }
+        // check candidates selected or not
+        if (candidateCount > 0) {
+            if (props.questions.length <= 0) {
+                return setShowQForm(true);
+            }
+            if(candidateCount > (props.profile.candidate_limit)){
+                alert('Upgrade Now! You can only add ' +parseInt(props.profile.candidate_limit)+ ' more candidates for this position!');
+            } else{
+                // generate interview urls and send emails
+                let urls = [];
+                for (let i = 0; i < emails.length; i++) {
+                    // make sure urls have the same size of emails and names
+                    let url = "";
+                    if (emails[i] != "" && names[i] != "") {
+                        //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+                        let prefix = "https://hirebeat.co/candidate-login?";  // online
+                        let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
+                        let encode = window.btoa(params);
+                        url = prefix + encode;
+                    }
+                    urls.push(url);
+                }
+                let meta = {
+                    company_name: companyName,
+                    job_title: jobTitle,
+                    emails: emails,
+                    names: names,
+                    expire: 14,
+                    urls: urls,
+                    candidate_ids: invitedCandidates,
+                }
+                props.sendInterviews(meta);
+                setTimeout(() => {props.getPJobs()}, 600);
+                inviteSuccessAlert();
+            }
+        }
+        else {
+            noCandidateAlert();
+        }
+    }
+
     return (
         <React.Fragment>
             {/* Job Applications */}
@@ -797,17 +947,28 @@ const JobCard = (props) => {
                         <div className="col-4 interview-center mt-2">
                             <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
                         </div>
-                        <div className="col-2 interview-txt7 interview-center mt-2">
+                        {!props.profile.is_subreviwer &&
+                            <div className="col-2 interview-txt7 interview-center mt-2">
+                                <button
+                                type="button"
+                                className="read-more"
+                                style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
+                                onClick={editQuestions}
+                                >
+                                <i className="bx bx-info-circle pr-1"></i> Edit Questions
+                                </button>
+                            </div>
+                        }
+                        <div className="col-3 interview-txt7 interview-center mt-2">
                             <button
-                            type="button"
-                            className="read-more"
-                            style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
-                            onClick={editQuestions}
+                                onClick={() => {previewEmail(props.jobTitle, props.companyName, expire.value)}}
+                                type="button"
+                                className="read-more"
+                                style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
                             >
-                            <i className="bx bx-info-circle pr-1"></i> Edit Questions
+                                <box-icon type="solid" name='bullseye' size="1rem" color="#67A3F3"></box-icon>
+                                <span style={{marginLeft: "0.2rem"}}>Preview Email</span>
                             </button>
-                        </div>
-                        <div className="col-3 interview-center">
                         </div>
                         <div className="col-3 interview-center">
                             {!props.profile.is_subreviwer &&
@@ -818,7 +979,7 @@ const JobCard = (props) => {
                                     style={{paddingLeft: "25px", marginBottom:"1rem"}}
                                     onClick={inviteCandidates}
                                 >
-                                    + Invite Candidates
+                                    + Candidates
                                     <span></span>
                                 </button>
                             }
@@ -851,15 +1012,27 @@ const JobCard = (props) => {
                     </div>
                     <div className="card container" style={{marginTop:"2%"}}>
                         <div className="row interview-txt7 interview-center" style={{color: "#7D7D7D", height: "2rem", marginTop:"0.5rem", paddingBottom: "3rem"}}>
-                            <div className="col-2">Name</div>
-                            <div className="col-2">Email</div>
+                            {!props.profile.is_subreviwer &&
+                                <div style={{marginLeft: "1rem",display: "flex"}}>
+                                    <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{display: (props.allInvited ? "none" : "inline")}}/>
+                                </div>
+                            }
+                            <div className="col-2">
+                                <span className="dot" style={{background:"none", visibility: "hidden"}}></span>
+                                Name
+                            </div>
+                            {/*<div className="col-2">Email</div>*/}
                             <div className="col-2">Invited On</div>
                             <div className="col-2">
                                 <div className="row">
+                                    <div style={{display: "flex", alignItems: "center", marginRight: "0.2rem"}}>Video</div>
                                     <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles}/>
                                 </div>
                             </div>
-                            <div className="col-2">Action</div>
+                            <div className="col-1">Action</div>
+                            {!props.profile.is_subreviwer &&
+                                <div className="col-1">Reinvite</div>
+                            }
                             <div className="col-2">
                                 <div className="row">
                                     <Select value={category2} onChange={onFilter2} options={options2} className="select-category" styles={customStyles}/>
@@ -913,6 +1086,18 @@ const JobCard = (props) => {
                         </div>
                     </div>
                 </div>
+                {!props.profile.is_subreviwer &&
+                    <div style={{marginTop: "2rem"}}>
+                        <button
+                            className="default-btn1 interview-txt6"
+                            style={{paddingLeft: "25px", marginBottom:"1rem"}}
+                            onClick={sendVideoInterview}
+                        >
+                            Invite to Video Interview
+                            <span></span>
+                        </button>
+                    </div>
+                }
             </div>
             }
 
@@ -937,12 +1122,12 @@ const JobCard = (props) => {
                             </span>
                         </div>
                         </div>
-                        <div className="col-4 d-flex float-fluid-right">
+                        {/*<div className="col-4 d-flex float-fluid-right">
                             <p style={{marginTop:"2rem", display:"inline-block"}}>Expire after</p>
                             <div style={{marginTop:"1.6rem", display:"inline-block", marginLeft:"0.5vw"}}>
                                 <Select value={expire} onChange={onFilter1} options={options1} className="select-category" styles={customStyles}/>
                             </div>
-                        </div>
+                        </div>*/}
                         {/*parsed &&
                             <div style={{display: "flex", alignItems: "center", marginLeft: "1rem"}}>
                                 <span className="upload-txt">
@@ -1103,7 +1288,7 @@ const JobCard = (props) => {
                                     style={{paddingLeft: "25px", background: "#67A3F3"}}
                                     onClick={() => {setInvite(false); props.getPJobs()}}
                                 >
-                                    Back
+                                    Close
                                     <span></span>
                                 </button>
                             </div>
@@ -1112,21 +1297,11 @@ const JobCard = (props) => {
                             </div>
                             <div className="col-3 d-flex justify-items">
                                 <button
-                                    onClick={() => {previewEmail(props.jobTitle, props.companyName, expire.value)}}
-                                    type="button"
-                                    className="default-btn1"
-                                    style={{marginBottom:"1.5%", paddingLeft:"25px", backgroundColor:"#e8edfc", color:"#090d3a"}}
-                                >
-                                    Preview Email
-                                </button>
-                            </div>
-                            <div className="col-3 d-flex justify-items">
-                                <button
                                     type="submit"
                                     className="default-btn1"
                                     style={{marginBottom:"1.5%", paddingLeft:"25px"}}
                                 >
-                                    Send Invitation
+                                    Add
                                 </button>
                             </div>
                         </div>
@@ -1213,9 +1388,17 @@ const ApplicantList = (props) => {
                 // filter applicants by status
                 if (props.category.value != "All") {
                     switch (props.category.value) {
-                        case "Pending":
+                        case "Uninvited":
                             if (props.category2.value != "All") {
                                 switch (props.category2.value) {
+                                    case "Unreviewed":
+                                        if (a.comment_status != 0 || a.is_viewed || a.video_count == 0) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
                                     case "Shortlist":
                                         if (a.comment_status != 1) return null;
                                         if (props.keyWords != "") {
@@ -1242,7 +1425,51 @@ const ApplicantList = (props) => {
                                         break;
                                 }
                             }
-                            if (a.is_recorded) return null;
+                            if (a.is_invited || a.is_recorded) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email.split("@")[0];
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                            };
+                            break;
+                        case "Pending":
+                            if (props.category2.value != "All") {
+                                switch (props.category2.value) {
+                                    case "Unreviewed":
+                                        if (a.comment_status != 0 || a.is_viewed || a.video_count == 0) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Shortlist":
+                                        if (a.comment_status != 1) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Hold":
+                                        if (a.comment_status != 2) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                    case "Reject":
+                                        if (a.comment_status != 3) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
+                                }
+                            }
+                            if (a.is_recorded || !a.is_invited) return null;
                             if (props.keyWords != "") {
                                 var canEmail = a.email.split("@")[0];
                                 var canName = a.name;
@@ -1252,6 +1479,14 @@ const ApplicantList = (props) => {
                         case "Withdrawn":
                             if (props.category2.value != "All") {
                                 switch (props.category2.value) {
+                                    case "Unreviewed":
+                                        if (a.comment_status != 0 || a.is_viewed || a.video_count == 0) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
                                     case "Shortlist":
                                         if (a.comment_status != 1) return null;
                                         if (props.keyWords != "") {
@@ -1288,6 +1523,14 @@ const ApplicantList = (props) => {
                         case "Completed":
                             if (props.category2.value != "All") {
                                 switch (props.category2.value) {
+                                    case "Unreviewed":
+                                        if (a.comment_status != 0 || a.is_viewed || a.video_count == 0) return null;
+                                        if (props.keyWords != "") {
+                                            var canEmail = a.email.split("@")[0];
+                                            var canName = a.name;
+                                            if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                                        };
+                                        break;
                                     case "Shortlist":
                                         if (a.comment_status != 1) return null;
                                         if (props.keyWords != "") {
@@ -1330,6 +1573,14 @@ const ApplicantList = (props) => {
                 }
                 else if (props.category2.value != "All") {
                     switch (props.category2.value) {
+                        case "Unreviewed":
+                            if (a.comment_status != 0 || a.is_viewed || a.video_count == 0) return null;
+                            if (props.keyWords != "") {
+                                var canEmail = a.email.split("@")[0];
+                                var canName = a.name;
+                                if((!canEmail.toLowerCase().includes(props.keyWords.toLowerCase())) && (!canName.toLowerCase().includes(props.keyWords.toLowerCase()))) return null;
+                            };
+                            break;
                         case "Shortlist":
                             if (a.comment_status != 1) return null;
                             if (props.keyWords != "") {
@@ -1356,9 +1607,9 @@ const ApplicantList = (props) => {
                             break;
                     }
                 }
-                else if(props.profile.is_subreviwer && !a.is_recorded){
+                {/*else if(props.profile.is_subreviwer && !a.is_recorded){
                     return null;
-                }
+                }*/}
                 return (
                     <Applicant
                         index={index}
@@ -1434,6 +1685,7 @@ const Applicant = (props) => {
     let jobTitle = props.jobTitle;
     let name = props.name;
     let candidateId = applicants[current].id;
+    let isInvited = applicants[current].is_invited;
     const [isViewed, setIsViewed] = useState(props.isViewed);
     const commentStatus = applicants[current].comment_status;
     const boundary = getBoundary(applicants);
@@ -1508,6 +1760,7 @@ const Applicant = (props) => {
             name: name,
             url: url,
             expire: 7,
+            candidate_id: candidateId,
         };
 
         props.resendInvitation(meta);
@@ -1567,7 +1820,18 @@ const Applicant = (props) => {
                 }}
             />
             <div className="row interview-center" style={{color: "#7D7D7D", height: "3rem"}}>
-                {/* add unread lable here */}
+                {!props.profile.is_subreviwer &&
+                    <div className="interview-txt9" style={{marginLeft: "1rem"}}>
+                        {(!applicants[current].is_invited && !applicants[current].is_recorded) ?
+                            <div>
+                                <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox"/>
+                            </div> :
+                            <div>
+                                <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" style={{visibility: "hidden"}}/>
+                            </div>
+                        }
+                    </div>
+                }
                 {props.videoCount > 0 ? 
                 <div className="col-2 mb-1">
                     <button className="title-button1" style={{wordBreak: "break-all"}} onClick={() => viewResult()}>
@@ -1579,33 +1843,51 @@ const Applicant = (props) => {
                     <span class="dot" style={{background:"none"}}/>
                     {props.name.split("(")[0].length > 11 ? props.name.split("(")[0].substring(0, 9) + "..." : props.name.split("(")[0]}</div>
                 }
-                {props.videoCount > 0 ? 
+                {/*props.videoCount > 0 ?
                 <div className="col-2 mb-1">
                     <button className="title-button1" onClick={() => viewResult()}>
                     {props.email.split("(")[0].length > 16 ? props.email.split("(")[0].substring(0, 14) + "..." : props.email.split("(")[0]}</button></div>
                 : <div className="col-2 interview-txt9 mb-1">
                     {props.email.split("(")[0].length > 16 ? props.email.split("(")[0].substring(0, 14) + "..." : props.email.split("(")[0]}</div>
-                }
+                */}
                 <div className="col-2">
-                    <div className="interview-txt9">
-                        <p style={{color: "#090d3a"}}>{props.date}</p>
-                    </div>
-                </div>
-                <div className="col-2">
-                    {props.isRecorded ?
-                        (props.videoCount > 0 ?
-                            <div className="interview-txt9">
-                                <p style={{color: "#090d3a"}}><strong>Completed</strong></p>
-                            </div>:
-                            <div className="interview-txt9">
-                                <p style={{color: "#7D7D7D"}}>N/A</p>
-                            </div>) :
-                            <div className="interview-txt9">
-                            <p style={{color: "#7D7D7D"}}>Pending</p>
-                            </div>
+                    {(isInvited || props.isRecorded) &&
+                        <div className="interview-txt9">
+                            <p style={{color: "#090d3a"}}>{props.date}</p>
+                        </div>
                     }
                 </div>
                 <div className="col-2">
+                    {(isInvited || props.isRecorded) ?
+                        (props.isRecorded ?
+                            (props.videoCount > 0 ?
+                                <div className="interview-txt9">
+                                    <p style={{color: "#090d3a"}}><strong>Completed</strong></p>
+                                </div>:
+                                <div className="interview-txt9">
+                                    <p style={{color: "#7D7D7D"}}>N/A</p>
+                                </div>) :
+                                <div className="interview-txt9">
+                                <p style={{color: "#7D7D7D"}}>Pending</p>
+                                </div>
+                        ) :
+                        <div className="interview-txt9">
+                            <p style={{color: "#7D7D7D"}}>Not Invited</p>
+                        </div>
+                    }
+                </div>
+                <div className="col-1">
+                    <div>
+                        <button
+                            onClick={() => viewResult()}
+                            className="interview-txt9"
+                            style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                        >
+                        <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
+                        </button>
+                    </div>
+                </div>
+                {/*<div className="col-2">
                     {props.isRecorded ?
                         (props.videoCount > 0 ?
                             <div>
@@ -1636,7 +1918,19 @@ const Applicant = (props) => {
                             </div>}
                         </div>
                     }
-                </div>
+                </div>*/}
+                {!props.profile.is_subreviwer &&
+                    <div className="col-1">
+                        <button
+                            onClick={ () => inviteAgain()}
+                            className="interview-txt9"
+                            style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                        >
+                            {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
+                            Resend
+                        </button>
+                    </div>
+                }
                 <div className="col-2 mb-1" >
                     {renderStatus(props.comment_status)}
                 </div>
@@ -1691,37 +1985,39 @@ const Applicant = (props) => {
 function MyVerticallyCenteredModal(props) {
   const { ...rest } = props;
   return (
-    <MyModal80 {...rest}>
-      <ReviewApplication
-        refresh={props.refresh}
-        getPJobs={props.getPJobs}
-        recordTime={props.recordTime}
-        interviewResume={props.interviewResume}
-        setShowResume={props.setShowResume}
-        setShowEva={props.setShowEva}
-        commentStatus={props.commentStatus}
-        set_comment_status={props.set_comment_status}
-        hide={props.onHide}
-        int_ques={props.int_ques}
-        id_candidate={props.id_candidate}
-        username_candidate={props.username_candidate}
-        email_candidate={props.email_candidate}
-        phone_candidate={props.phone_candidate}
-        location_candidate={props.location_candidate}
-        positionId={props.positionId}
-        updateCommentStatus={props.updateCommentStatus}
-        profile={props.profile}
-        subreviewerUpdateComment={props.subreviewerUpdateComment}
-        current={props.current}
-        setCurrent={props.setCurrent}
-        start={props.start}
-        end={props.end}
-        viewPrevResult={props.viewPrevResult}
-        viewNextResult={props.viewNextResult}
-        applicants={props.applicants}
-        hasSwitch={true}
-      />
-    </MyModal80>
+    <div style={{background:"#E8EDFC"}}>
+        <MyModal80 className="light-blue-modal" {...rest}>
+          <ReviewApplication
+            refresh={props.refresh}
+            getPJobs={props.getPJobs}
+            recordTime={props.recordTime}
+            interviewResume={props.interviewResume}
+            setShowResume={props.setShowResume}
+            setShowEva={props.setShowEva}
+            commentStatus={props.commentStatus}
+            set_comment_status={props.set_comment_status}
+            hide={props.onHide}
+            int_ques={props.int_ques}
+            id_candidate={props.id_candidate}
+            username_candidate={props.username_candidate}
+            email_candidate={props.email_candidate}
+            phone_candidate={props.phone_candidate}
+            location_candidate={props.location_candidate}
+            positionId={props.positionId}
+            updateCommentStatus={props.updateCommentStatus}
+            profile={props.profile}
+            subreviewerUpdateComment={props.subreviewerUpdateComment}
+            current={props.current}
+            setCurrent={props.setCurrent}
+            start={props.start}
+            end={props.end}
+            viewPrevResult={props.viewPrevResult}
+            viewNextResult={props.viewNextResult}
+            applicants={props.applicants}
+            hasSwitch={true}
+          />
+        </MyModal80>
+    </div>
   );
 };
 
@@ -1812,8 +2108,8 @@ function emailError() {
 
 function sendSuccessAlert() {
     confirmAlert({
-      title: "Send Invitation Success",
-      message: "You have sent the invitation successfully.",
+          title: "Add Candidates Success",
+      message: "You have added candidates to interview process successfully.",
       buttons: [
         {
           label: 'Ok'
@@ -1874,7 +2170,7 @@ function previewEmail(jobTitle, companyName, expire) {
                     <hr style={{height:"2px", borderWidth:0, color:"lightskyblue", backgroundColor:"lightskyblue"}}/>
                     <p>Dear Candidate,</p>
                     <p style={{marginTop:"2rem"}}>Thank you for submitting your application for the <strong style={{color:"#090d3a"}}>{jobTitle}</strong>. We are pleased to inform you that you have passed our initial resume scanning. To move forward with your application, we would like to invite you to finish our online video interview process powered by HireBeat.</p>
-                    <p style={{marginTop:"2rem"}}>To be considered, please submit your video as soon as possible. Your interview session will expire after <strong style={{color:"#090d3a"}}>{expire} days</strong>.</p>
+                    <p style={{marginTop:"2rem"}}>To be considered, please submit your video as soon as possible.</p>
                     <p style={{color:"#090d3a"}}><strong>Please use the same email when you start the interview procedure.</strong></p>
                     <div className="row ml-3 mt-2">
                         <button className="default-btn" style={{paddingLeft:"25px"}}>Start Your Interview</button>

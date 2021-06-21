@@ -23,7 +23,7 @@ render() {
                 <React.Fragment>
                 {this.props.int_ques.length == 0 && <div><h3 style={{marginTop:"10%", textAlign:"center"}}>Candidate does not record any videos.</h3></div>}
                 {this.props.int_ques.length != 0 &&
-                <div>
+                <div style={{paddingLeft: "2rem"}}>
                                 <div>
                                     <ApplicationVideoPanel
                                             question={this.props.quesiton_array[this.state.currentVideo]}
@@ -38,10 +38,17 @@ render() {
                                             subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     />
                                 </div>
+                                <div className='row ml-1'>
+                                    <Pagination
+                                        totalVideos = {this.props.int_ques.length}
+                                        setPage={this.setPage}
+                                        page={this.state.currentVideo}
+                                    />
+                                </div>
                                 <div className="row container-fliud">
                                     {!this.props.profile.is_external_reviewer &&
                                         <div className="col-8 mt-3 ml-0">
-                                                <div className="row">
+                                                {/*<div className="row">
                                                         <div className="col-2 p-0 pt-2">
                                                                 <h4 style={{fontWeight:"500", color:"#090D3A"}}>Action</h4>
                                                         </div>
@@ -72,7 +79,7 @@ render() {
                                                         </button>
                                                         }
                                                         </div>
-                                                </div>
+                                                </div>*/}
                                                 {this.props.hasSwitch &&
                                                     <div style={{marginTop: "1.5rem", marginBottom: "1rem"}}>
                                                         <div style={{textAlign: "center"}}>
@@ -96,13 +103,6 @@ render() {
                                                 }
                                         </div>
                                     }
-                                        <div className="col-4">
-                                                <Pagination
-                                                        totalVideos = {this.props.int_ques.length}
-                                                        setPage={this.setPage}
-                                                        page={this.state.currentVideo}
-                                                />
-                                        </div>
                                 </div>
                           
                                 </div>}
@@ -112,31 +112,35 @@ render() {
 }
 
 const Pagination = (props) => {
-        const pageNumbers = ([]);
-        for(var i = 1; i <= props.totalVideos; i++)
-                pageNumbers.push(i);
+    const pageNumbers = ([]);
+    for(var i = 1; i <= props.totalVideos; i++)
+            pageNumbers.push(i);
 
-        return(
-                <nav className="mt-3">
-                        <ul className="pagination">
-                                {pageNumbers.map((number) => {
-                                        if(number == props.page + 1)
-                                        {
-                                                return  <li className="page-item">
-                                                                <a href="#"  style={{color:"white", backgroundColor:"#56a3fa"}} onClick={ () => { props.setPage(number-1) } } className='page-link'>
-                                                                        {number}
-                                                                </a>
-                                                        </li>
-                                        }
-                                        return   <li className="page-item">
-                                                        <a href="#" onClick={ () => { props.setPage(number-1) } } className='page-link'>
-                                                                {number}
-                                                        </a>
-                                                </li>
-                                })}
-                        </ul>
-                </nav>
-        )
+    return(
+        <nav>
+            <ul className="pagination">
+                <h4
+                    style={{fontWeight:"500", color:"#090D3A", marginLeft: "-15px", display: "flex", alignItems: "center",paddingTop: "0.5rem", marginRight: "3rem"}}>
+                        Question
+                </h4>
+                {pageNumbers.map((number) => {
+                    if(number == props.page + 1)
+                    {
+                        return  <li className="page-item">
+                                        <a href="#"  style={{color:"white", backgroundColor:"#56a3fa"}} onClick={ () => { props.setPage(number-1) } } className='page-link'>
+                                                {number}
+                                        </a>
+                                </li>
+                    }
+                    return   <li className="page-item">
+                                <a href="#" onClick={ () => { props.setPage(number-1) } } className='page-link'>
+                                        {number}
+                                </a>
+                            </li>
+                })}
+            </ul>
+        </nav>
+    )
 }
 
 

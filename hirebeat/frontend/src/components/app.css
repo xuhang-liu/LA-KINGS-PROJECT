@@ -3584,3 +3584,83 @@ color: #4A6F8A;
   text-align: center;
   padding: 1rem;
 }
+
+.head-btn-selected {
+  font-weight: 600;
+  margin-right: 1.6rem;
+  word-wrap: break-word;
+  word-break: break-all;
+  color: #090D3A;
+  border-bottom: 4px solid #4689FA;
+  padding-bottom: 0.2rem;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.head-btn-unselected {
+  font-weight: 600;
+  margin-right: 1.6rem;
+  word-wrap: break-word;
+  word-break: break-all;
+  color: #C9C9C9;
+  padding-bottom: 0.2rem;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.note-border {
+  background: #FFFFFF;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.note-border2 {
+  background: #FFFFFF;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 4%;
+  margin-right:4%;
+  margin-bottom: 1rem;
+}
+
+.note-border3 {
+  background: #FFFFFF;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 4%;
+  margin-right:4%;
+  margin-bottom: 1rem;
+}
+
+.note-h3 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #090D3A;
+  padding-left: 4%;
+  padding-right:4%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.note-span {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #4A6F8A;
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+
+.note-p {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #7D7D7D;
+}

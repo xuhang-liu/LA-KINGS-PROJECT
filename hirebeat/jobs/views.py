@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates
-from questions.models import Positions, InterviewQuestions
+from questions.models import Positions, InterviewQuestions, InterviewResumes
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail
 from rest_framework.response import Response
 from rest_framework import status
@@ -463,4 +463,17 @@ def getCompanyBrandingInfo(request, companyName):
     return Response({
         "data": data,
         "company_logo": company_logo,
+    })
+
+@api_view(['GET'])
+def get_resume_from_job_application(request):
+    position_id = request.query_params.get("positionId")
+    email = request.query_params.get("email")
+    data = {}
+    job_obj = Jobs.objects.get(positions_id=position_id)
+    candidate_application = ApplyCandidates.objects.get(jobs_id=job_obj.id, email=email)
+    data["resume_url"] = candidate_application.resume_url;
+
+    return Response({
+        "data": data,
     })

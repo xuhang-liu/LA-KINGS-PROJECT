@@ -82,6 +82,7 @@ class InvitedCandidates(models.Model):
     is_recorded = models.BooleanField(default=False)
     video_count = models.IntegerField(default=0)
     is_viewed = models.BooleanField(default=False)
+    is_invited = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name + '|' + self.email
@@ -136,3 +137,10 @@ class ExternalReviewers(models.Model):
     company_name = models.CharField(max_length=30,null=True, blank=True)
     position = models.ForeignKey(Positions, null=True, blank=True, on_delete=models.CASCADE)
 
+
+class InterviewNote(models.Model):
+    reviewer = models.CharField(max_length=200, null=True, blank=True)
+    comment = models.TextField(null=True, blank=True)
+    position = models.ForeignKey(Positions, null=True, blank=True, on_delete=models.CASCADE)
+    applicant_email = models.CharField(max_length=100, null=True, blank=True)
+    review_date = models.DateTimeField(auto_now_add=True)
