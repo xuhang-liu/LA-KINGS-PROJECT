@@ -80,7 +80,7 @@ render() {
                                                         }
                                                         </div>
                                                 </div>*/}
-                                                {this.props.hasSwitch &&
+                                                {/*this.props.hasSwitch &&
                                                     <div style={{marginTop: "1.5rem", marginBottom: "1rem"}}>
                                                         <div style={{textAlign: "center"}}>
                                                             <button
@@ -100,7 +100,7 @@ render() {
                                                             </button>
                                                         </div>
                                                     </div>
-                                                }
+                                                */}
                                         </div>
                                     }
                                 </div>

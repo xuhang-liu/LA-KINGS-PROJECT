@@ -945,7 +945,7 @@ const JobCard = (props) => {
                 <div className="card container mt-4 pt-3 pb-3">
                     <div className="row">
                         <div className="col-4 interview-center mt-2">
-                            <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
+                            <h3 className="interview-txt5" style={{wordWrap: "break-word", wordBreak: "break-all",}}>{props.jobTitle}</h3>
                         </div>
                         {!props.profile.is_subreviwer &&
                             <div className="col-2 interview-txt7 interview-center mt-2">
@@ -1688,9 +1688,11 @@ const Applicant = (props) => {
     let isInvited = applicants[current].is_invited;
     const [isViewed, setIsViewed] = useState(props.isViewed);
     const commentStatus = applicants[current].comment_status;
-    const boundary = getBoundary(applicants);
-    const start = boundary[0];
-    const end = boundary[1];
+//    const boundary = getBoundary(applicants);
+//    const start = boundary[0];
+//    const end = boundary[1];
+    const start = 0;
+    const end = applicants.length - 1;
 
     function viewResult() {
         if (!isViewed) {
@@ -1713,6 +1715,17 @@ const Applicant = (props) => {
     }
 
     function viewNextResult(curIndex) {
+        let next = curIndex + 1;
+        getReviewPageData(next);
+    };
+
+    function viewPrevResult(curIndex) {
+        let prev = curIndex - 1;
+        getReviewPageData(prev);
+    };
+
+    {/* Below functions are designed for switching video recorded candidate */}
+    {/*function viewNextResult(curIndex) {
         let right = applicants.length;
         let next = curIndex + 1;
         while (next < right) {
@@ -1735,7 +1748,7 @@ const Applicant = (props) => {
             prev--;
         }
         getReviewPageData(prev);
-    };
+    };*/}
 
     const refresh = () =>
     {
