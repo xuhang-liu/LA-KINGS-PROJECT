@@ -1688,9 +1688,11 @@ const Applicant = (props) => {
     let isInvited = applicants[current].is_invited;
     const [isViewed, setIsViewed] = useState(props.isViewed);
     const commentStatus = applicants[current].comment_status;
-    const boundary = getBoundary(applicants);
-    const start = boundary[0];
-    const end = boundary[1];
+//    const boundary = getBoundary(applicants);
+//    const start = boundary[0];
+//    const end = boundary[1];
+    const start = 0;
+    const end = applicants.length - 1;
 
     function viewResult() {
         if (!isViewed) {
@@ -1713,6 +1715,17 @@ const Applicant = (props) => {
     }
 
     function viewNextResult(curIndex) {
+        let next = curIndex + 1;
+        getReviewPageData(next);
+    };
+
+    function viewPrevResult(curIndex) {
+        let prev = curIndex - 1;
+        getReviewPageData(prev);
+    };
+
+    {/* Below functions are designed for switching video recorded candidate */}
+    {/*function viewNextResult(curIndex) {
         let right = applicants.length;
         let next = curIndex + 1;
         while (next < right) {
@@ -1735,7 +1748,7 @@ const Applicant = (props) => {
             prev--;
         }
         getReviewPageData(prev);
-    };
+    };*/}
 
     const refresh = () =>
     {
