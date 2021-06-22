@@ -8,6 +8,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
 //import { IconText } from "../DashboardComponents";
+import { getReviewNote } from "./../../../redux/actions/question_actions";
 import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
@@ -86,6 +87,7 @@ export class JobApplication extends Component{
                                     sendInterviews={this.props.sendInterviews}
                                     checkUserExistence={this.props.checkUserExistence}
                                     user_existence={this.props.user_existence}
+                                    getReviewNote={this.props.getReviewNote}
                                 />
                             )
                         })}
@@ -103,7 +105,7 @@ const mapStateToProps = (state) => ({
     interviewResume: state.video_reducer.interviewResume,
 });
 
-export default withRouter(connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews })(
+export default withRouter(connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews, getReviewNote })(
     JobApplication
 ));
 
@@ -461,6 +463,7 @@ const JobViewDetail = (props) => {
                     allInvited={props.allInvited}
                     moveCandidateToInterview={props.moveCandidateToInterview}
                     sendInterviews={props.sendInterviews}
+                    getReviewNote={props.getReviewNote}
                 />
             }
         </React.Fragment>
@@ -1069,6 +1072,7 @@ const JobCard = (props) => {
                                 offset={offset}
                                 updateViewStatus={props.updateViewStatus}
                                 subreviewerUpdateComment={props.subreviewerUpdateComment}
+                                getReviewNote={props.getReviewNote}
                             />
                              {/*<ReactPaginate
                                  previousLabel={'<'}
@@ -1646,6 +1650,7 @@ const ApplicantList = (props) => {
                         updateCommentStatus={props.updateCommentStatus}
                         updateViewStatus={props.updateViewStatus}
                         subreviewerUpdateComment={props.subreviewerUpdateComment}
+                        getReviewNote={props.getReviewNote}
                     />
                 )
             })}
@@ -1703,6 +1708,7 @@ const Applicant = (props) => {
         props.getApplicantsVideos(applicants[props.index].email, positionId);
         props.getApplicantsInfo(applicants[props.index].email);
         props.getResumeURL(positionId, applicants[props.index].user_id);
+        props.getReviewNote(positionId, applicants[props.index].email);
         setTimeout(()=>{setShow(true);}, 200)
     };
 

@@ -36,18 +36,20 @@ export class ReviewNote extends Component {
                 <div className="note-border">
                     <h3 className="note-h3">Reviews</h3>
                     {/* map here */}
-                    <div className="note-border2">
-                        {this.props.reviews.map((r) => {
-                            let name = r.reviewer.split("@")[0];
-                            return(
-                                <div style={{marginBottom: "0.5rem"}}>
-                                    <p className="note-p">
-                                    <span className="note-span">{name + ":"}</span> {r.comment}
-                                    </p>
-                                </div>
-                            )
-                        })}
-                    </div>
+                    {this.props.reviews.length > 0 &&
+                        <div className="note-border2">
+                            {this.props.reviews.map((r) => {
+                                let name = r.reviewer.split("@")[0];
+                                return(
+                                    <div style={{marginBottom: "0.5rem"}}>
+                                        <p className="note-p">
+                                        <span className="note-span">{name + ":"}</span> {r.comment}
+                                        </p>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    }
                     <textarea
                         className="note-border3"
                         style={{height: "26rem", width: "92%"}}
