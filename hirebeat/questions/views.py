@@ -258,6 +258,7 @@ def move_candidate_to_interview(request):
     position_id = request.data["position_id"]
     emails = request.data["emails"]
     names = request.data["names"]
+    job_id = request.data["job_id"]
 
     for i in range(len(emails)):
         if emails[i] != "" and names[i] != "":
@@ -266,9 +267,15 @@ def move_candidate_to_interview(request):
                 candidate = CandidatesInterview.objects.get(email=emails[i], positions_id=position_id)
                 invited = InvitedCandidates.objects.get(email=emails[i], positions_id=position_id)
             except ObjectDoesNotExist:
+                # get resume url
+                candidate_info = ApplyCandidates.objects.filter(email=emails[i], jobs_id=job_id)[0]
+                resume_url = candidate_info.resume_url
+                location = candidate_info.location
+                phone = candidate_info.phone
                 # save data
                 CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
-                InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0)
+                InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,
+                                                 resume_url=resume_url, location=location, phone=phone)
 
     return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)
 
