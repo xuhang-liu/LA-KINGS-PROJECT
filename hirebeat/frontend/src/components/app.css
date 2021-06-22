@@ -436,6 +436,18 @@ card-row-third-high {
   min-height: 600px;
 }
 
+.my-full-modal {
+  overflow-x: auto;
+  min-width: 190vh;
+  min-height: 500px;
+}
+
+.my-full-modal1 {
+  overflow-x: auto;
+  min-width: 180vh;
+  min-height: 500px;
+}
+
 .my-modal-80 {
   min-width: 80%;
   min-height: 600px;

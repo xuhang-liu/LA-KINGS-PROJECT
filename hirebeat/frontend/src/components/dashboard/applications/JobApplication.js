@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 //import PropTypes from "prop-types";
 //import {Link} from "react-router-dom";
 import ReviewApplication from "./../ReviewApplication";
-import { MyModal80 } from "./../DashboardComponents";
+import { MyModal80, MyFullModal1 } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
@@ -1994,7 +1994,7 @@ function MyVerticallyCenteredModal(props) {
   const { ...rest } = props;
   return (
     <div style={{background:"#E8EDFC"}}>
-        <MyModal80 className="light-blue-modal" {...rest}>
+        <MyFullModal1 className="light-blue-modal" {...rest}>
           <ReviewApplication
             refresh={props.refresh}
             getPJobs={props.getPJobs}
@@ -2024,7 +2024,7 @@ function MyVerticallyCenteredModal(props) {
             applicants={props.applicants}
             hasSwitch={true}
           />
-        </MyModal80>
+        </MyFullModal1>
     </div>
   );
 };

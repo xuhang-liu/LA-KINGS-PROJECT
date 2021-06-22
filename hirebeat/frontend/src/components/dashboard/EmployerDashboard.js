@@ -18,7 +18,7 @@ import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/vide
 import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
-import RowBoxes from "./Rowboxes"
+import RowBoxes from "./Rowboxes";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
