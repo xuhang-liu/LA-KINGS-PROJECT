@@ -83,6 +83,9 @@ class InvitedCandidates(models.Model):
     video_count = models.IntegerField(default=0)
     is_viewed = models.BooleanField(default=False)
     is_invited = models.BooleanField(default=False)
+    resume_url = models.CharField(max_length=300, null=True, blank=True)
+    location = models.CharField(max_length=300, null=True, blank=True)
+    phone = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name + '|' + self.email
