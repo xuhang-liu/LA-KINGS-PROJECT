@@ -44,6 +44,7 @@ export class JobEdition extends Component{
         loc_req: this.props.jobInfo.loc_req,
         pho_req: this.props.jobInfo.pho_req,
         lin_req: this.props.jobInfo.lin_req,
+        eeo_req: this.props.jobInfo.eeo_req,
         job_post: this.props.jobInfo.job_post,
         jobType: { value: this.props.jobInfo.job_type, label: this.props.jobInfo.job_type },
         jobLevel: { value: this.props.jobInfo.job_level, label: this.props.jobInfo.job_level },
@@ -132,6 +133,16 @@ export class JobEdition extends Component{
             lin_req: 2
         });
     };
+    setEeoReq0 = () => {
+        this.setState({
+            eeo_req: 0
+        });
+    };
+    setEeoReq1 = () => {
+        this.setState({
+            eeo_req: 1
+        });
+    };
 
     handleZipcode = (e) => {
         let citytstate = "";
@@ -184,6 +195,7 @@ export class JobEdition extends Component{
             loc_req: this.state.loc_req,
             pho_req: this.state.pho_req,
             lin_req: this.state.lin_req,
+            eeo_req: this.state.eeo_req,
             job_post: this.state.job_post,
         };
         if(this.props.jobInfo.job_location == "Remote"){
@@ -198,6 +210,7 @@ export class JobEdition extends Component{
                 loc_req: this.state.loc_req,
                 pho_req: this.state.pho_req,
                 lin_req: this.state.lin_req,
+                eeo_req: this.state.eeo_req,
                 job_post: false,
             };
         };
@@ -340,6 +353,28 @@ export class JobEdition extends Component{
                                     editorClassName="editor-height"
                                 />
                             </div>
+                        </div>
+                        <div className="form-row mt-3">
+                            <div className="col-12">
+                                <label className="db-txt2" style={{ marginTop:"2%"}}>
+                                    EEO Statement
+                                </label>
+                            </div>
+                            <div className="form-group col-12">
+                                {this.state.eeo_req == 1 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Enabled</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setEeoReq1}>Enabled</button>
+                                }
+                                {this.state.eeo_req == 0 ?
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Disabled</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setEeoReq0}>Disabled</button>
+                                }
+                            </div>
+                            {this.state.eeo_req == 1 &&
+                            <div className="form-group col-12">
+                                <p style={{color:"#000", fontWeight:"600", fontSize:"1rem"}}>The following statement will be displayed at the bottom of your job description</p>
+                                <p className="ml-5">{this.props.profile.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                            </div>}
                         </div>
                         <hr style={{border:"1.5px solid #E8EDFC"}}/>
                         <div className="form-row mt-4 ml-2">
