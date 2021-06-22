@@ -290,6 +290,11 @@ const ApplyJob = (props) =>{
                             <div className="mb-3">
                             {parse(''+((job_id == null || job_id == "") ? "":props.job.job_description)+'')}
                             </div>
+                            {props.job.eeo_req == "1" &&
+                            <div>
+                                <h2 className="mb-2 mt-3">EEO Statement</h2>
+                                <p className="mb-4 mt-1" style={{color:"#090d3a"}}>{(job_id == null || job_id == "") ? "":props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                            </div>}
                         </div>
                         {!Applied &&
                         <div>
@@ -681,8 +686,13 @@ const ApplyJob = (props) =>{
                             </div>
                             <h2 className="mb-3 mt-3">Job Description</h2>
                             <div className="mb-3">
-                            {parse(''+((job_id == null || job_id == "") ? "":props.job.job_description)+'')}
+                                {parse(''+((job_id == null || job_id == "") ? "":props.job.job_description)+'')}
                             </div>
+                            {props.job.eeo_req == "1" &&
+                            <div>
+                                <h2 className="mb-2 mt-3">EEO Statement</h2>
+                                <p className="mb-4 mt-1" style={{color:"#090d3a"}}>{(job_id == null || job_id == "") ? "":props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                            </div>}
                         </div>
                         {!Applied &&
                         <div className="mt-3">
