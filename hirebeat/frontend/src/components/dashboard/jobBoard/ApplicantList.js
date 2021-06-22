@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import QuestionForm from "./QuestionForm";
 import { MyModal80 } from "./../DashboardComponents";
@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addInterviews, moveCandidateToInterview } from "../../../redux/actions/question_actions";
 import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/actions/job_actions";
-import { MyModal } from "../DashboardComponents";
+import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import Select from 'react-select';
 import EditQuestion from "./EditQuestion"
@@ -362,6 +362,11 @@ const ApplicantRow = (props) => {
     const [current, setCurrent] = useState(props.index);
     let applicants = props.applicants;
     let name = props.applicant.first_name + " " + props.applicant.last_name;
+    useEffect(() => {
+        if(sessionStorage.getItem("showPreview"+props.index)==="true"){
+            setShowPreview(true);
+        }
+    }, []);
     function onView() {
         let applyIds = [];
         applyIds.push(applicants[current].id);
@@ -371,11 +376,15 @@ const ApplicantRow = (props) => {
         }
         props.updateCandidateViewedStatus(data);
         setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
+        sessionStorage.setItem(("showPreview"+props.index), "true"); 
+        sessionStorage.setItem("current", props.index);
         setShowPreview(true);
     }
 
     function hideModal() {
         setTimeout(() => {props.getAllJobs(props.user.id); props.getPJobs()}, 300);
+        sessionStorage.removeItem("showPreview"+props.index);
+        sessionStorage.removeItem("current");
         setShowPreview(false);
     }
     return(
@@ -444,38 +453,38 @@ const ApplicantRow = (props) => {
                 </div>
             </div>
             <div style={{background:"#E8EDFC"}}>
-                <MyModal className="light-blue-modal" show={showPreview} onHide={hideModal}>
+                <MyFullModal className="light-blue-modal" show={showPreview} onHide={hideModal}>
                         <ReviewCandidate
-                            phone={applicants[current].phone}
-                            email={applicants[current].email}
-                            location={applicants[current].location}
-                            resume_url={applicants[current].resume_url}
-                            first_name={applicants[current].first_name}
-                            last_name={applicants[current].last_name}
-                            applicant={applicants[current]}
+                            phone={applicants[sessionStorage.getItem("current") || current].phone}
+                            email={applicants[sessionStorage.getItem("current") || current].email}
+                            location={applicants[sessionStorage.getItem("current") || current].location}
+                            resume_url={applicants[sessionStorage.getItem("current") || current].resume_url}
+                            first_name={applicants[sessionStorage.getItem("current") || current].first_name}
+                            last_name={applicants[sessionStorage.getItem("current") || current].last_name}
+                            applicant={applicants[sessionStorage.getItem("current") || current]}
                             curJob={props.curJob}
                             tempQuestion={props.tempQuestion}
                             setTempQuestion={props.setTempQuestion}
                             profile={props.profile}
                             addInterviews={props.addInterviews}
-                            candidateId={applicants[current].id}
+                            candidateId={applicants[sessionStorage.getItem("current") || current].id}
                             updateInviteStatus={props.updateInviteStatus}
                             getAllJobs={props.getAllJobs}
                             getPJobs={props.getPJobs}
                             user={props.user}
                             setStatus={setStatus}
-                            is_invited={applicants[current].is_invited}
+                            is_invited={applicants[sessionStorage.getItem("current") || current].is_invited}
                             style={{backgroundColor:"black"}}
-                            onHide={()=>{setShowPreview(false)}}
-                            current={current}
+                            onHide={hideModal}
+                            current={sessionStorage.getItem("current") || current}
                             setCurrent={setCurrent}
                             applicants={applicants}
                             status={status}
                             updateCandidateViewedStatus={props.updateCandidateViewedStatus}
-                            linkedin={applicants[current].linkedinurl}
+                            linkedin={applicants[sessionStorage.getItem("current") || current].linkedinurl}
                             moveCandidateToInterview={props.moveCandidateToInterview}
                         />
-                </MyModal>
+                </MyFullModal>
             </div>
         </div>
     );

@@ -247,6 +247,34 @@ export const MyModal = (props) => {
     );
 };
 
+export const MyFullModal = (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName= "my-full-modal"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton style={{border: "none", height: "6px"}}/>
+            {props.children}
+        </Modal>
+    );
+};
+
+export const MyFullModal1 = (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName= "my-full-modal1"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton style={{border: "none", height: "6px"}}/>
+            {props.children}
+        </Modal>
+    );
+};
+
 export const MyModal80 = (props) => {
     return (
         <Modal

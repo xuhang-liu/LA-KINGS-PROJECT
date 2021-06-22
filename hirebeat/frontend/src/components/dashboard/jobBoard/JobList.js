@@ -8,6 +8,7 @@ export class JobList extends Component{
       super(props);
       this.state = {
         keyWords: "",
+        view: false,
       };
     }
 
@@ -15,12 +16,25 @@ export class JobList extends Component{
         this.setState({keyWords: e.target.value});
     };
 
+    setViewTrue = () => {
+        this.setState({
+            view: true
+        });
+    };
+
+    setViewFalse = () => {
+        this.setState({
+            view: false
+        });
+    };
+
     render() {
+        var view = (sessionStorage.getItem("view") == "true")?true:this.state.view;
         return(
         <React.Fragment>
         {this.props.isLoaded &&
             <div>
-                {!this.props.view ?
+                {(!view) ?
                 <div className="card container mt-3 pt-2 pb-3">
                     <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem", display: "flex"}}>
                         <div style={{paddingTop: "0.5rem"}}><i className="bx bx-search bx-sm"></i></div>
@@ -66,8 +80,8 @@ export class JobList extends Component{
                                     job={job}
                                     user={this.props.user}
                                     setStatus={this.props.setStatus}
-                                    enableView={() => this.props.setView(true)}
-                                    disableView={() => this.props.setView(false)}
+                                    enableView={this.setViewTrue}
+                                    disableView={this.setViewFalse}
                                     setCurJob={this.props.setCurJob}
                                     renderJobEdition={this.props.renderJobEdition}
                                     setJobInfo={this.props.setJobInfo}
@@ -86,7 +100,7 @@ export class JobList extends Component{
                             <button
                                 type="button"
                                 className="panel-button"
-                                onClick={() => this.props.setView(false)}
+                                onClick={() => {sessionStorage.removeItem("view"); sessionStorage.removeItem( "jobKey" ); this.setViewFalse()}}
                                 style={{outline: "none", margin:"0%", padding:"0px", background:"#e8edfc"}}
                             >
                                 <div className="center-items">
