@@ -11,6 +11,7 @@ const ReviewCandidate = (props) => {
     function inviteCandidates() {
         let candidateCount = 1;
         let positionId = props.curJob.job_details.positions_id;
+        let jobId = props.curJob.job_details.id;
         const emails = [];
         const names = [];
         const invitedCandidates = [];
@@ -26,6 +27,7 @@ const ReviewCandidate = (props) => {
             }
             let meta = {
                 position_id: positionId,
+                job_id: jobId,
                 emails: emails,
                 names: names,
             }

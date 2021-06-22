@@ -10,8 +10,6 @@ import ReviewNote from "./applications/ReviewNote";
 class ReviewApplication extends Component{
     constructor(props) {
         super(props);
-        this.props.getResumeURL(this.props.positionId, this.props.id_candidate);
-        this.props.getReviewNote(this.props.positionId, this.props.email_candidate);
         this.state = {
             viewResume: true,
             viewVideo: false,
@@ -44,7 +42,7 @@ class ReviewApplication extends Component{
     }
 
     updateStatus = (status) => {
-        let data = {"email": this.props.email_candidate, "positionId": this.props.positionId, "status": status, "userId": this.props.user.id};
+        let data = {"email": this.props.applicants[this.props.current].email, "positionId": this.props.positionId, "status": status, "userId": this.props.user.id};
         this.props.updateCommentStatus(data);
         setTimeout(()=>{this.props.getPJobs()}, 200);
     }
@@ -108,7 +106,7 @@ class ReviewApplication extends Component{
                                 <div className="col d-flex align-items-center">
                                     <IconText
                                     iconName={"bx bx-phone bx-sm"}
-                                    textDisplayed={this.props.phone_candidate}
+                                    textDisplayed={this.props.applicants[this.props.current].phone}
                                     textSize={"12px"}
                                     textColor={"#0B3861"}
                                     iconMargin={"3px"}
@@ -119,7 +117,7 @@ class ReviewApplication extends Component{
                                 <div className="col d-flex align-items-center">
                                     <IconText
                                     iconName={"bx bx-envelope bx-sm"}
-                                    textDisplayed={this.props.email_candidate}
+                                    textDisplayed={this.props.applicants[this.props.current].email}
                                     textSize={"12px"}
                                     textColor={"#0B3861"}
                                     iconMargin={"5px"}
@@ -130,7 +128,7 @@ class ReviewApplication extends Component{
                                 <div className="col d-flex align-items-center">
                                     <IconText
                                     iconName={"bx bx-location-plus bx-sm"}
-                                    textDisplayed={this.props.location_candidate}
+                                    textDisplayed={this.props.applicants[this.props.current].location}
                                     textSize={"12px"}
                                     textColor={"#0B3861"}
                                     iconMargin={"3px"}
@@ -251,10 +249,14 @@ class ReviewApplication extends Component{
                                 <div class="iframe-container">
                                     <iframe className="responsive-iframe" src={this.props.resumeURL}/>
                                 </div> :
-                                <div>
-                                    <h3 style={{marginTop:"10%", textAlign:"center", height: "38rem"}}>Candidate does not upload resume.</h3>
-                                </div>)
-                            }
+                                (this.props.applicants[this.props.current].resume_url != "" && this.props.applicants[this.props.current].resume_url != null) ?
+                                    <div class="iframe-container">
+                                        <iframe className="responsive-iframe" src={this.props.applicants[this.props.current].resume_url}/>
+                                    </div> :
+                                    <div>
+                                        <h3 style={{marginTop:"10%", textAlign:"center", height: "38rem"}}>Candidate does not upload resume.</h3>
+                                    </div>
+                            )}
                             {this.state.viewVideo &&
                                 <ApplicationVideo
                                     int_ques={this.props.int_ques}
@@ -276,13 +278,14 @@ class ReviewApplication extends Component{
                                     viewPrevResult={this.props.viewPrevResult}
                                     viewNextResult={this.props.viewNextResult}
                                     hasSwitch={this.props.hasSwitch}
+                                    recordedVideoCount={this.props.applicants[this.props.current].video_count}
                                 />
                             }
                             {this.state.viewNotes &&
                                 <ReviewNote
                                     reviews={this.props.reviews}
                                     positionId={this.props.positionId}
-                                    applicantEmail={this.props.email_candidate}
+                                    applicantEmail={this.props.applicants[this.props.current].email}
                                     reviewer={this.props.user.username}
                                     profile={this.props.profile}
                                     reviewerEmail={this.props.user.email}
@@ -291,7 +294,7 @@ class ReviewApplication extends Component{
                         </div>
                     </div>
                 </div>
-                {this.props.hasSwitch &&
+                {/*this.props.hasSwitch &&
                     <div className="row" style={{marginTop: "1.5rem", marginBottom: "1rem"}}>
                         <div className="col-3"/>
                         <div className="col-9" style={{textAlign: "center"}}>
@@ -312,7 +315,7 @@ class ReviewApplication extends Component{
                             </button>
                         </div>
                     </div>
-                }
+                */}
             </div>
         )
     };

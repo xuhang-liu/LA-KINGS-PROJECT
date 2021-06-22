@@ -94,6 +94,7 @@ export class ApplicantList extends Component{
     inviteCandidates = () => {
         let candidateCount = 0;
         let positionId = this.props.curJob.job_details.positions_id;
+        let jobId = this.props.curJob.job_details.id;
         const emails = [];
         const names = [];
         const invitedCandidates = [];
@@ -122,6 +123,7 @@ export class ApplicantList extends Component{
                 }
                 let meta = {
                     position_id: positionId,
+                    job_id: jobId,
                     emails: emails,
                     names: names,
                 }
