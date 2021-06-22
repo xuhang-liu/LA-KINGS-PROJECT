@@ -75,7 +75,7 @@ class ApplicationVideoPanel extends Component {
         }
         return (
             <div className="mb-4 pl-0" style={{marginLeft:"-2rem"}}>
-                <div>
+                <div className="mt-3">
                     <h4>
                         <span style={{color:"#67A3F3", fontWeight:"600"}}>Question: </span><span style={{color:"#090d3a", fontWeight:"600"}}>{this.props.question}</span>
                     </h4>
@@ -83,13 +83,13 @@ class ApplicationVideoPanel extends Component {
                 <div className="row">
                     <div className="col-7">
                         <div className="row">
-                            <div className="col-12 d-flex m-3">
+                            <div className="col-12 d-flex m-3 mt-4">
                             <ReactPlayer id="rw-video" url={this.props.url} controls={true} playbackRate={this.state.playbackRate}
                             // Disable download button
                             config={{ file: { attributes: { controlsList: 'nodownload' } } }}
                             // Disable right click
                             onContextMenu={e => e.preventDefault()}
-                            width="32vw" height="auto"/>
+                            width="36vw" height="auto"/>
                             </div>
                         </div>
                         <div className="row mt-3 ml-1">
@@ -114,7 +114,7 @@ class ApplicationVideoPanel extends Component {
                                 <div style={{width:"100%"}}>
                                     <h5 style={{fontWeight:"500", color:"#090D3A"}}>Transcript</h5>
                                     <div className="col px-0">
-                                        <div className="p-1" style={{overflow:"auto", maxHeight:"26rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem", minHeight:"20rem"}}>
+                                        <div className="p-1" style={{overflow:"auto", maxHeight:"24rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem", minHeight:"20rem"}}>
                                             <p className="py-3 px-3">{this.props.transcripts}</p>
                                         </div>
                                     </div>
