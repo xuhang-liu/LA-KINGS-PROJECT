@@ -96,6 +96,7 @@ const ReviewCandidate = (props) => {
     function nextOrPreUpdate() {
         props.getAllJobs(props.user.id);
         props.getPJobs();
+        sessionStorage.removeItem("current");
     }
 
     function updateIsViewed(index) {
@@ -158,7 +159,7 @@ const ReviewCandidate = (props) => {
     }
 
     return(
-        <div className="fluid-container ml-5 mb-5" style={{width:'92%'}}>
+        <div className="container-fluid ml-5 pb-5" style={{width:'92%'}}>
             <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-briefcase"></i><span className="ml-2">Jobs / Review Candidate</span></b></h3></div>
             <div className="col d-flex align-items-center pl-0">
                 <button
@@ -321,14 +322,14 @@ const ReviewCandidate = (props) => {
                         <button
                             className={props.current == 0 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == 0 ? true : false}
-                            onClick={() => {nextOrPreUpdate(); updateIsViewed(props.current-1); setTimeout(() => {props.setCurrent(props.current-1)}, 200)}}
+                            onClick={() => {nextOrPreUpdate(); updateIsViewed(props.current-1); setTimeout(() => {props.setCurrent(props.current-1); sessionStorage.setItem("current", props.current-1)}, 200)}}
                         >
                             &lt; Prev
                         </button>
                         <button
                             className={props.current == props.applicants.length - 1 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == props.applicants.length - 1 ? true : false}
-                            onClick={() => {nextOrPreUpdate(); updateIsViewed(props.current+1); setTimeout(() => {props.setCurrent(props.current+1)}, 200)}}
+                            onClick={() => {nextOrPreUpdate(); updateIsViewed(props.current+1); setTimeout(() => {props.setCurrent(props.current+1); sessionStorage.setItem("current", props.current+1)}, 200)}}
                             style={{marginLeft: "2rem"}}
                         >
                             Next &gt;
