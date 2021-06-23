@@ -13,6 +13,15 @@ const initialState = {
   jobid_list: [],
   jobs_branding: [],
   company_logo: "",
+  summary: "",
+  video_url: "",
+  website: "",
+  location: "",
+  company_size: "",
+  company_type: "",
+  linkedin: "",
+  twitter: "",
+  facebook: "",
   jobApplicationResume: "",
 };
 
@@ -39,6 +48,15 @@ export default function (state = initialState, action) {
         ...state,
         jobs_branding: action.payload.data,
         company_logo: action.payload.company_logo,
+        summary: action.payload.summary,
+        video_url: action.payload.video_url,
+        website: action.payload.website,
+        location: action.payload.location,
+        company_size: action.payload.company_size,
+        company_type: action.payload.company_type,
+        linkedin: action.payload.linkedin,
+        twitter: action.payload.twitter,
+        facebook: action.payload.facebook,
       }
     case GET_RESUME_FROM_JOB_APPLICATION:
       return {

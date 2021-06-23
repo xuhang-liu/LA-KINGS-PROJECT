@@ -459,14 +459,31 @@ def add_new_apply_candidate_from_zr(request):
 @api_view(['GET'])
 def getCompanyBrandingInfo(request, companyName):
     data = []
-    company_logo = ""
     data = list(Jobs.objects.filter(is_closed=False, company_name=companyName).values())
     employerProfileDetail = EmployerProfileDetail.objects.filter(name=companyName)
     for i in range(len(employerProfileDetail)):
         company_logo = employerProfileDetail[i].logo_url
+        summary = employerProfileDetail[i].summary
+        video_url = employerProfileDetail[i].video_url
+        website = employerProfileDetail[i].website
+        location = employerProfileDetail[i].location
+        company_size = employerProfileDetail[i].company_size
+        company_type = employerProfileDetail[i].company_type
+        linkedin = employerProfileDetail[i].linkedin
+        twitter = employerProfileDetail[i].twitter
+        facebook = employerProfileDetail[i].facebook
     return Response({
         "data": data,
         "company_logo": company_logo,
+        "summary": summary,
+        "video_url": video_url,
+        "website": website,
+        "location": location,
+        "company_size": company_size,
+        "company_type": company_type,
+        "linkedin": linkedin,
+        "twitter": twitter,
+        "facebook": facebook,
     })
 
 @api_view(['GET'])

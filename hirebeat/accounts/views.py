@@ -659,18 +659,21 @@ def create_or_update_employer_social_media(request):
 def create_or_update_employer_basic_info(request):
     user_id = request.data["user_id"]
     company_type = request.data["company_type"]
-    email = request.data["email"]
+    email = request.data["contactEmail"]
     location = request.data["location"]
+    company_size = request.data["company_size"]
+        
     try:
         # update personal information
         employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
         employer_profile.company_type = company_type
         employer_profile.email = email
         employer_profile.location = location
+        employer_profile.company_size = company_size
         employer_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        EmployerProfileDetail.objects.create(user_id=user_id, company_type=company_type, email=email, location=location)
+        EmployerProfileDetail.objects.create(user_id=user_id, company_type=company_type, email=email, location=location, company_size=company_size)
     return Response("Create or Update employer basic info successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
