@@ -8,7 +8,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
 //import { IconText } from "../DashboardComponents";
-import { getReviewNote } from "./../../../redux/actions/question_actions";
+import { getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation } from "./../../../redux/actions/question_actions";
 import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
@@ -88,6 +88,8 @@ export class JobApplication extends Component{
                                     checkUserExistence={this.props.checkUserExistence}
                                     user_existence={this.props.user_existence}
                                     getReviewNote={this.props.getReviewNote}
+                                    getReviewerEvaluation={this.props.getReviewerEvaluation}
+                                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
                                 />
                             )
                         })}
@@ -105,7 +107,8 @@ const mapStateToProps = (state) => ({
     interviewResume: state.video_reducer.interviewResume,
 });
 
-export default withRouter(connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews, getReviewNote })(
+export default withRouter(connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer,
+    removeSubReviewer, moveCandidateToInterview, sendInterviews, getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation })(
     JobApplication
 ));
 
@@ -464,6 +467,8 @@ const JobViewDetail = (props) => {
                     moveCandidateToInterview={props.moveCandidateToInterview}
                     sendInterviews={props.sendInterviews}
                     getReviewNote={props.getReviewNote}
+                    getReviewerEvaluation={props.getReviewerEvaluation}
+                    getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
                 />
             }
         </React.Fragment>
@@ -1073,6 +1078,9 @@ const JobCard = (props) => {
                                 updateViewStatus={props.updateViewStatus}
                                 subreviewerUpdateComment={props.subreviewerUpdateComment}
                                 getReviewNote={props.getReviewNote}
+                                getReviewerEvaluation={props.getReviewerEvaluation}
+                                getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                                user={props.user}
                             />
                              {/*<ReactPaginate
                                  previousLabel={'<'}
@@ -1651,6 +1659,9 @@ const ApplicantList = (props) => {
                         updateViewStatus={props.updateViewStatus}
                         subreviewerUpdateComment={props.subreviewerUpdateComment}
                         getReviewNote={props.getReviewNote}
+                        getReviewerEvaluation={props.getReviewerEvaluation}
+                        getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                        user={props.user}
                     />
                 )
             })}
@@ -1709,7 +1720,9 @@ const Applicant = (props) => {
         props.getApplicantsInfo(applicants[props.index].email);
         props.getResumeURL(positionId, applicants[props.index].user_id);
         props.getReviewNote(positionId, applicants[props.index].email);
-        setTimeout(()=>{setShow(true);}, 200)
+        props.getReviewerEvaluation(positionId, applicants[props.index].email);
+        props.getCurrentReviewerEvaluation(positionId, applicants[props.index].email, props.user.email);
+        setTimeout(()=>{setShow(true);}, 200);
     };
 
     function getReviewPageData(index) {

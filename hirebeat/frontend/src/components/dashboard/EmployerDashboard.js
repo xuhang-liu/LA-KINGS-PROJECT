@@ -15,7 +15,7 @@ import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, get
 from "../../redux/actions/auth_actions";
 import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML} from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
-import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo } from "../../redux/actions/question_actions";
+import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, getReviewNote, getReviewerEvaluation } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes";
@@ -396,6 +396,8 @@ export class EmployerDashboard extends Component {
             subreviewerUpdateComment={this.props.subreviewerUpdateComment}
             user={this.props.user}
             companyName={this.props.profile.company_name}
+            getReviewNote={this.props.getReviewNote}
+            getReviewerEvaluation={this.props.getReviewerEvaluation}
             />
         }else{
             return null
@@ -556,7 +558,7 @@ export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFu
     getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
-    updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, checkUserExistence
+    updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation
     })(
     EmployerDashboard
 );

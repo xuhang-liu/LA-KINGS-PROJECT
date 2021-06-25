@@ -3676,3 +3676,8 @@ color: #4A6F8A;
   font-size: 0.9375rem;
   color: #7D7D7D;
 }
+
+/* Add this to align vertically */
+button > img {
+  vertical-align: middle;
+}

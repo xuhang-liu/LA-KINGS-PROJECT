@@ -1,6 +1,6 @@
 from django.db.models.aggregates import Count
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, \
-    InterviewResumes, SubReviewers, ExternalReviewers, InterviewNote
+    InterviewResumes, SubReviewers, ExternalReviewers, InterviewNote, ReviewerEvaluation
 from accounts.models import CandidatesInterview, Profile
 from videos.models import WPVideo
 from jobs.models import ApplyCandidates, Jobs
@@ -797,3 +797,47 @@ def get_review_note(request):
     applicant_email = request.query_params.get('applicant_email')
     reviews = list(InterviewNote.objects.filter(position_id=position_id, applicant_email=applicant_email).values())
     return Response({"data": reviews})
+
+@api_view(['POST'])
+def add_or_update_reviewer_evaluation(request):
+    evaluation = request.data["evaluation"]
+    applicant_email = request.data["applicant_email"]
+    position_id = request.data["position_id"]
+    reviewer_email = request.data["reviewer_email"]
+    reviewer_type = request.data["reviewer_type"]
+    # get reviewer name
+    reviewer_name = ""
+    if reviewer_type == "sub_reviewer":
+        sub_reviewer = SubReviewers.objects.filter(r_email=reviewer_email, position_id=position_id)[0]
+        reviewer_name = sub_reviewer.r_name
+    elif reviewer_type == "external_reviewer":
+        external_reviewer = ExternalReviewers.objects.filter(r_email=reviewer_email, position_id=position_id)[0]
+        reviewer_name = external_reviewer.r_name
+    else:
+        reviewer_name = request.data["reviewer"]
+
+    try:
+        evaluation_obj = ReviewerEvaluation.objects.get(reviewer_email=reviewer_email, applicant_email=applicant_email,
+                                                        position_id=position_id)
+        evaluation_obj.evaluation = evaluation
+        evaluation_obj.save()
+    except ObjectDoesNotExist:
+        ReviewerEvaluation.objects.create(reviewer_name=reviewer_name, reviewer_email=reviewer_email, evaluation=evaluation,
+                                          position_id=position_id, applicant_email=applicant_email)
+
+    return Response("Add or update reviewer evaluation successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_reviewer_evaluation(request):
+    position_id = request.query_params.get('position_id')
+    applicant_email = request.query_params.get('applicant_email')
+    evaluations = list(ReviewerEvaluation.objects.filter(position_id=position_id, applicant_email=applicant_email).values())
+    return Response({"data": evaluations})
+
+@api_view(['GET'])
+def get_current_reviewer_evaluation(request):
+    position_id = request.query_params.get('position_id')
+    applicant_email = request.query_params.get('applicant_email')
+    reviewer_email = request.query_params.get('reviewer_email')
+    evaluation = ReviewerEvaluation.objects.filter(position_id=position_id, applicant_email=applicant_email, reviewer_email=reviewer_email).values()[0]
+    return Response({"data": evaluation})

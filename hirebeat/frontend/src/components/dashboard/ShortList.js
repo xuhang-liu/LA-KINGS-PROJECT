@@ -54,6 +54,8 @@ const ShortList = (props) => {
                                         companyName={props.companyName}
                                         checkUserExistence={props.checkUserExistence}
                                         user_existence={props.user_existence}
+                                        getReviewNote={props.getReviewNote}
+                                        getReviewerEvaluation={props.getReviewerEvaluation}
                                     />
                                 )
                             }
@@ -94,6 +96,8 @@ const ShortList = (props) => {
                             updateCommentStatus={props.updateCommentStatus}
                             profile={props.profile}
                             subreviewerUpdateComment={props.subreviewerUpdateComment}
+                            getReviewNote={props.getReviewNote}
+                            getReviewerEvaluation={props.getReviewerEvaluation}
                         />
                     </div>
                 }
@@ -380,6 +384,8 @@ const AcceptedCandidate = (props) => {
                                     subreviewerUpdateComment={props.subreviewerUpdateComment}
                                     applicants={props.theJob.applicants}
                                     current={index}
+                                    getReviewNote={props.getReviewNote}
+                                    getReviewerEvaluation={props.getReviewerEvaluation}
                                 />
                             </div>
                         )
@@ -400,6 +406,8 @@ const CandidateCard = (props) => {
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
         props.getApplicantsInfo(props.applicant.email);
         props.getResumeURL(props.applicant.positions_id, props.id_candidate);
+        props.getReviewNote(props.applicant.positions_id, props.applicant.email);
+        props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
         setTimeout(()=>{setShow(true);}, 300)
     };
 
