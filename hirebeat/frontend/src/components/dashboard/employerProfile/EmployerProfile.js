@@ -495,7 +495,7 @@ export class EmployerProfile extends Component {
                                             <div className="row">
                                                 <div className="col-4">
                                                     <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
-                                                        facebook <i class='bx bxl-facebook-square' style={{color: "#67A3F3"}}></i>
+                                                        Facebook <i class='bx bxl-facebook-square' style={{color: "#67A3F3"}}></i>
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
@@ -534,7 +534,7 @@ export class EmployerProfile extends Component {
                                                 <input id="linkedin" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.linkedin}></input>
                                             </div>
                                             <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>facebook <i class='bx bxl-facebook-square' style={{color: "#090D3A"}}></i></p>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Facebook <i class='bx bxl-facebook-square' style={{color: "#090D3A"}}></i></p>
                                                 <input id="facebook" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.facebook}></input>
                                             </div>
                                              <div style={{marginTop: "1rem"}}>
