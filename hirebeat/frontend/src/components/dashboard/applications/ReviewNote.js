@@ -34,30 +34,58 @@ export class ReviewNote extends Component {
         return (
             <React.Fragment>
                 <div className="note-border">
-                    <h3 className="note-h3">Reviews</h3>
-                    {/* map here */}
-                    {this.props.reviews.length > 0 &&
-                        <div className="note-border2">
-                            {this.props.reviews.map((r) => {
-                                let name = r.reviewer.split("@")[0];
-                                return(
-                                    <div style={{marginBottom: "0.5rem"}}>
-                                        <p className="note-p">
-                                        <span className="note-span">{name + ":"}</span> {r.comment}
-                                        </p>
-                                    </div>
-                                )
-                            })}
+                    <div  className="row">
+                        <div className="col-9">
+                            <h3 className="note-h3">Reviews</h3>
+                            {/* map here */}
+                            {this.props.reviews.length > 0 &&
+                                <div className="note-border2">
+                                    {this.props.reviews.map((r) => {
+                                        let name = r.reviewer.split("@")[0];
+                                        return(
+                                            <div style={{marginBottom: "0.5rem"}}>
+                                                <p className="note-p">
+                                                    <span className="note-span">{name + ":"}</span> {r.comment}
+                                                </p>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            }
                         </div>
-                    }
-                    <textarea
-                        className="note-border3"
-                        style={{height: "26rem", width: "92%"}}
-                        type="text"
-                        value={this.state.comment}
-                        placeholder="Write your comment here"
-                        onChange={(e)=>{this.setState({comment :e.target.value})}}
-                    />
+                        <div className="col-3" style={{marginLeft: "-1rem"}}>
+                            <h3 className="note-h3">Evaluation</h3>
+                            {/* map here */}
+                            {this.props.reviews.length > 0 &&
+                                <div className="note-border2">
+                                    {this.props.evaluations.map((eva) => {
+                                        let name = eva.reviewer_name.split("@")[0];
+                                        return(
+                                            <div style={{marginBottom: "0.5rem"}}>
+                                                <p className="note-p">
+                                                    <span className="note-span" style={{marginLeft: "0.5rem", marginRight: "0rem"}}>{name + ":"}</span>
+                                                    {
+                                                        eva.evaluation == 1 ? <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-circle.png" style={{width: "1.25rem", marginLeft: "2rem"}}/> :
+                                                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-circle.png" style={{width: "1.25rem", marginLeft: "2rem"}}/>
+                                                    }
+                                                </p>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div className="row">
+                        <textarea
+                            className="note-border3"
+                            style={{height: "26rem", width: "92%"}}
+                            type="text"
+                            value={this.state.comment}
+                            placeholder="Write your comment here"
+                            onChange={(e)=>{this.setState({comment :e.target.value})}}
+                        />
+                    </div>
                     <div className="row" style={{justifyContent: "flex-end"}}>
                         <button
                             style={{marginRight: "5%", marginBottom: "2rem"}}

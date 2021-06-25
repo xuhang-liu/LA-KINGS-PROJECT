@@ -30,6 +30,9 @@ import {
     SEND_VIDEO_INTERVIEWS,
     ADD_REVIEW_NOTE,
     GET_REVIEW_NOTE,
+    ADD_OR_UPDATE_REVIEWER_EVALUATION,
+    GET_REVIEWER_EVALUATION,
+    GET_CURRENT_EVALUATION,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -440,6 +443,48 @@ export const getReviewNote = (position_id, applicant_email) => (dispatch, getSta
     .then((res) => {
       dispatch({
         type: GET_REVIEW_NOTE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const addOrUpdateReviewerEvaluation = (data) => (dispatch, getState) => {
+  axios
+    .post("questions/add-or-update-reviewer-evaluation", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_OR_UPDATE_REVIEWER_EVALUATION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getReviewerEvaluation = (position_id, applicant_email) => (dispatch, getState) => {
+  axios
+    .get(`/questions/get-reviewer-evaluation?position_id=${position_id}&applicant_email=${applicant_email}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_REVIEWER_EVALUATION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getCurrentReviewerEvaluation = (position_id, applicant_email, reviewer_email) => (dispatch, getState) => {
+  axios
+    .get(`/questions/get-current-reviewer-evaluation?position_id=${position_id}&applicant_email=${applicant_email}&reviewer_email=${reviewer_email}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_CURRENT_EVALUATION,
         payload: res.data,
       });
     })
