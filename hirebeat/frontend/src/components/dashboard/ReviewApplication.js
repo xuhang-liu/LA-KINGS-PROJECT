@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { IconText } from "./DashboardComponents";
 import ApplicationVideo from "./videos/ApplicationVideo";
 import { connect } from "react-redux";
-import { getPostedJobs, getResumeURL, getReviewNote } from "../../redux/actions/question_actions";
+import { getPostedJobs, getResumeURL, getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation } from "../../redux/actions/question_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReviewNote from "./applications/ReviewNote";
@@ -47,6 +47,28 @@ class ReviewApplication extends Component{
         setTimeout(()=>{this.props.getPJobs()}, 200);
     }
 
+    updateEvaluation = (evaluation) => {
+        // identify employer or reviewer
+        let reviewer_type = "";
+        if (this.props.profile.is_subreviwer) {
+            reviewer_type = "sub_reviewer";
+        }
+        else if (this.props.profile.is_external_reviewer) {
+            reviewer_type = "external_reviewer";
+        }
+        let data = {
+            evaluation: evaluation,
+            applicant_email: this.props.applicants[this.props.current].email,
+            position_id: this.props.positionId,
+            reviewer_type: reviewer_type,
+            reviewer_email: this.props.user.email,
+        }
+        this.props.addOrUpdateReviewerEvaluation(data);
+        setTimeout(() => {this.props.getReviewerEvaluation(this.props.positionId, this.props.applicants[this.props.current].email);
+            this.props.getCurrentReviewerEvaluation(this.props.positionId, this.props.applicants[this.props.current].email, this.props.user.email);
+        }, 300);
+    }
+
     showResumeEva = () => {
         if(this.props.profile.membership == "Premium" || this.props.profile.is_external_reviewer){
             this.props.setShowEva(true);
@@ -68,7 +90,7 @@ class ReviewApplication extends Component{
         const recordTime = this.props.recordTime;
         const interviewResume = this.props.interviewResume;
         return(
-            <div className="fluid-container ml-5 mb-5" style={{width:'95%'}}>
+            <div className="fluid-container ml-5 mb-5 pr-5" style={{width:'95%'}}>
                 <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-microphone"></i><span className="ml-2">Interview / Review Candidate</span></b></h3></div>
                 <div className="col d-flex align-items-center pl-0">
                     <button
@@ -136,7 +158,7 @@ class ReviewApplication extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div className="resume-box mt-4 p-4" style={{background:"white", borderRadius:"10px", width:"100%", height:"50%", position:"relative", minHeight:"28rem"}}>
+                        <div className="resume-box mt-4 p-4" style={{background:"white", borderRadius:"10px", width:"100%", position:"relative", minHeight:"28rem"}}>
                             <h2
                                 style={{
                                 fontWeight: "600",
@@ -144,6 +166,7 @@ class ReviewApplication extends Component{
                                 wordWrap: "break-word",
                                 wordBreak: "break-all",
                                 color: "#090D3A",
+                                fontSize: "1.5rem",
                                 }}
                             >
                                 Evaluation Scale
@@ -220,6 +243,38 @@ class ReviewApplication extends Component{
                                     }
                                 </div>
                             }
+                            {(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer) &&
+                                <div>
+                                    {this.props.curEvaluation.evaluation == 1 ?
+                                        <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                            <button className="default-btn btn-success ml-2" style={{width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px"}} onClick={() => {this.updateEvaluation(1);}}>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-white.png" style={{width: "1.25rem", marginRight: "0.5rem"}}/>
+                                                <p style={{fontSize:"0.8rem"}}>Qualified</p>
+                                            </button>
+                                        </div>:
+                                        <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                            <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px"}} onClick={() => {this.updateEvaluation(1);}}>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good.png" style={{width: "1.25rem", marginRight: "0.5rem"}}/>
+                                                <p style={{fontSize:"0.8rem"}}>Qualified</p>
+                                            </button>
+                                        </div>
+                                    }
+                                    {this.props.curEvaluation.evaluation == 2 ?
+                                        <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                            <button className="default-btn btn-danger ml-2" style={{width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px"}} onClick={() => {this.updateEvaluation(2);}}>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-white.png" style={{width: "1.25rem", marginRight: "0.5rem", paddingTop: "2%"}}/>
+                                                <p style={{fontSize:"0.8rem"}}>Unqualified</p>
+                                            </button>
+                                        </div> :
+                                        <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
+                                            <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px"}} onClick={() => {this.updateEvaluation(2);}}>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad.png" style={{width: "1.25rem", marginRight: "0.5rem", paddingTop: "2%"}}/>
+                                                <p style={{fontSize:"0.8rem"}}>Unqualified</p>
+                                            </button>
+                                        </div>
+                                    }
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className="col-9 mt-3 pl-3 pr-2" >
@@ -241,7 +296,7 @@ class ReviewApplication extends Component{
                                     className={this.state.viewNotes ? "head-btn-selected" : "head-btn-unselected"}
                                     onClick={this.setViewNotes}
                                 >
-                                    Interview Notes
+                                    Evaluation Notes
                                 </h2>
                             </div>
                             {this.state.viewResume && (
@@ -290,6 +345,7 @@ class ReviewApplication extends Component{
                                     reviewer={this.props.user.username}
                                     profile={this.props.profile}
                                     reviewerEmail={this.props.user.email}
+                                    evaluations={this.props.evaluations}
                                 />
                             }
                         </div>
@@ -351,7 +407,9 @@ const mapStateToProps = (state) => {
         interviewResume: state.video_reducer.interviewResume,
         reviews: state.question_reducer.reviews,
         transcripts: transcripts,
-    }
+        evaluations: state.question_reducer.evaluations,
+        curEvaluation: state.question_reducer.curEvaluation}
 };
 
-export default connect(mapStateToProps, { getPostedJobs, getResumeURL, getReviewNote })(ReviewApplication);
+export default connect(mapStateToProps, { getPostedJobs, getResumeURL, getReviewNote, addOrUpdateReviewerEvaluation,
+    getReviewerEvaluation, getCurrentReviewerEvaluation })(ReviewApplication);

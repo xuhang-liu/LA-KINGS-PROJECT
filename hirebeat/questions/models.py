@@ -147,3 +147,12 @@ class InterviewNote(models.Model):
     position = models.ForeignKey(Positions, null=True, blank=True, on_delete=models.CASCADE)
     applicant_email = models.CharField(max_length=100, null=True, blank=True)
     review_date = models.DateTimeField(auto_now_add=True)
+
+
+class ReviewerEvaluation(models.Model):
+    reviewer_name = models.CharField(max_length=200, null=True, blank=True)
+    reviewer_email = models.CharField(max_length=100, null=True, blank=True)
+    evaluation = models.IntegerField(default=0)  # 0 means nothing, 1 means good, 2 means bad
+    position = models.ForeignKey(Positions, null=True, blank=True, on_delete=models.CASCADE)
+    applicant_email = models.CharField(max_length=100, null=True, blank=True)
+    review_date = models.DateTimeField(auto_now_add=True)
