@@ -25,7 +25,7 @@ export class EssentialUserInfo extends Component {
     super(props);
   }
 
-  state = { 
+  state = {
     // changemaking: I am adding the state to control the show/hide of the password chaning Modal
     passwordChanging: false,
     // changefinishes
@@ -64,23 +64,23 @@ export class EssentialUserInfo extends Component {
   };
 
   finishedPasswordChanging = () => {
-    this.setState({...this.state, passwordChanging: false});
+    this.setState({ ...this.state, passwordChanging: false });
   }
 
-  sendEmail (e) {
+  sendEmail(e) {
     e.preventDefault();
     emailjs.sendForm('service_s8700fg', 'template_992v1vd', e.target, 'user_5R8aVH2nC9mnh7SdUOC1S')
       .then((result) => {
-          console.log(result.text);
+        console.log(result.text);
       }, (error) => {
-          console.log(error.text);
+        console.log(error.text);
       });
     e.target.reset()
   };
 
   cancelSub = (e) => {
     e.preventDefault();
-    if(this.state.email_match == this.props.user.email){
+    if (this.state.email_match == this.props.user.email) {
       this.sendEmail(e);
       var profile = this.makeCancelConfirm();
       this.props.updateProfile(profile);
@@ -92,8 +92,8 @@ export class EssentialUserInfo extends Component {
             label: 'Ok',
           }
         ]
-        });
-    }else{
+      });
+    } else {
       confirmAlert({
         title: 'Sure to cancel?',
         message: 'Your email does not match what you type',
@@ -102,7 +102,7 @@ export class EssentialUserInfo extends Component {
             label: 'OK'
           }
         ]
-        });
+      });
     }
     e.target.reset()
   };
@@ -116,17 +116,17 @@ export class EssentialUserInfo extends Component {
   };
 
   renderApplications = () => {
-    if(this.props.profile.membership == "Premium"){
+    if (this.props.profile.membership == "Premium") {
       this.props.renderAnalytics();
-    }else{
+    } else {
       confirmAlert({
         title: 'Upgrade Now!',
         message: <div><h5>Upgrade now to access analytics page!</h5><img src="https://hirebeat-assets.s3.amazonaws.com/analytics-mohu.webp" alt="img"></img></div>,
         buttons: [
-          {label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing"},
-          {label: 'OK'},
+          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+          { label: 'OK' },
         ],
-        afterClose: () => {this.props.renderApplications()}
+        afterClose: () => { this.props.renderApplications() }
       });
       this.props.renderAnalytics();
     }
@@ -172,40 +172,40 @@ export class EssentialUserInfo extends Component {
     var nonSelectEmployerDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-dashboard-non.png";
     return (
       <React.Fragment>
-      <div className="container">
+        <div className="container">
           <DbCenterRow>
             <div>
               {(this.props.profile.is_employer && !this.props.profile.is_external_reviewer) &&
-              <div>
-                <div className="row" style={{marginTop:"2rem", textAlign:"center"}}>
-                  <div className="col d-flex align-items-center" style={{justifyContent: "center"}}>
-                        <IconText
-                          textMarginLeft={"1rem"}
-                          textDisplayed={this.props.profile.company_name}
-                          textSize={"1rem"}
-                          textColor={"#ffffff"}
-                        />
-                  </div>
-                </div>
-                <div style={{marginTop:"1rem", textAlign:"center"}}>
-                  <div className="col d-flex align-items-center">
-                    <button
-                      type="button"
-                      className="panel-button"
-                      onClick={this.props.renderEmployerProfile}
-                      style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                    >
-                      <IconUserText
-                        textSize={"12px"}
-                        textDisplayed={"Dashboard"}
-                        backColor={this.props.subpage == "employerProfile" ? selectBack : defaultBack}
-                        iconSrc={this.props.subpage == "employerProfile" ? selectEmployerDash : nonSelectEmployerDash}
-                        textColor={this.props.subpage == "employerProfile" ? selectEColor : defaultEColor}
+                <div>
+                  <div className="row" style={{ marginTop: "2rem", textAlign: "center" }}>
+                    <div className="col d-flex align-items-center" style={{ justifyContent: "center" }}>
+                      <IconText
+                        textMarginLeft={"1rem"}
+                        textDisplayed={this.props.profile.company_name}
+                        textSize={"1rem"}
+                        textColor={"#ffffff"}
                       />
-                    </button>
+                    </div>
                   </div>
-                </div>
-                {/*this.props.profile.membership == "Premium" ?
+                  <div style={{ marginTop: "1rem", textAlign: "center" }}>
+                    <div className="col d-flex align-items-center">
+                      <button
+                        type="button"
+                        className="panel-button"
+                        onClick={this.props.renderEmployerProfile}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                      >
+                        <IconUserText
+                          textSize={"12px"}
+                          textDisplayed={"Dashboard"}
+                          backColor={this.props.subpage == "employerProfile" ? selectBack : defaultBack}
+                          iconSrc={this.props.subpage == "employerProfile" ? selectEmployerDash : nonSelectEmployerDash}
+                          textColor={this.props.subpage == "employerProfile" ? selectEColor : defaultEColor}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  {/*this.props.profile.membership == "Premium" ?
                 <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
                   {this.props.profile.plan_interval == "Pro" ?
                   <div className="row">
@@ -265,59 +265,63 @@ export class EssentialUserInfo extends Component {
                   </div>
                 </div>}
               </div>*/}
-              <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)"}}></hr>
-
-              </div>}
-              {this.props.profile.is_employer ? 
-              <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
-              {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
-              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.props.renderJobs}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconEmployerText
-                    textSize={"12px"}
-                    textDisplayed={"Jobs"}
-                    job_dots={this.props.job_dots}
-                    backColor={this.props.subpage == "jobs" ? selectBack : defaultBack}
-                    iconSrc={this.props.subpage == "jobs" ? selectJobs : nonselectJobs}
-                    textColor={this.props.subpage == "jobs" ? selectEColor : defaultEColor}
-                  />
-                </button>
-              </div>
-              </div>}
-              {!this.props.profile.is_external_reviewer &&
-              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.props.renderApplications}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconEmployerText
-                    textSize={"12px"}
-                    textDisplayed={"Interview"}
-                    int_dots={this.props.int_dots}
-                    backColor={this.props.subpage == "applications" ? selectBack : defaultBack}
-                    iconSrc={this.props.subpage == "applications" ? selectDash : nonselectDash}
-                    textColor={this.props.subpage == "applications" ? selectEColor : defaultEColor}
-                  />
-                </button>
-              </div>
-              </div>}
-              {!this.props.profile.is_subreviwer &&
-                  <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
+                  <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr>
+                  {/*<div style={{ marginTop: "1rem", textAlign: "center" }}>
+                    <div className="col d-flex align-items-center">
+                      <a target="_blank" href="/employer_talent_sourcing" style={{ color: "#fff", textAlign: "center" }}>Sourcing</a>
+                    </div>
+                  </div>*/}
+                </div>}
+              {this.props.profile.is_employer ?
+                <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
+                  {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
+                    <div className="row" style={{ marginTop: "30%", marginBottom: "2rem" }}>
+                      <div className="col d-flex align-items-center">
+                        <button
+                          type="button"
+                          className="panel-button"
+                          onClick={this.props.renderJobs}
+                          style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                        >
+                          <IconEmployerText
+                            textSize={"12px"}
+                            textDisplayed={"Jobs"}
+                            job_dots={this.props.job_dots}
+                            backColor={this.props.subpage == "jobs" ? selectBack : defaultBack}
+                            iconSrc={this.props.subpage == "jobs" ? selectJobs : nonselectJobs}
+                            textColor={this.props.subpage == "jobs" ? selectEColor : defaultEColor}
+                          />
+                        </button>
+                      </div>
+                    </div>}
+                  {!this.props.profile.is_external_reviewer &&
+                    <div className="row" style={{ marginTop: "30%", marginBottom: "2rem" }}>
+                      <div className="col d-flex align-items-center">
+                        <button
+                          type="button"
+                          className="panel-button"
+                          onClick={this.props.renderApplications}
+                          style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                        >
+                          <IconEmployerText
+                            textSize={"12px"}
+                            textDisplayed={"Interview"}
+                            int_dots={this.props.int_dots}
+                            backColor={this.props.subpage == "applications" ? selectBack : defaultBack}
+                            iconSrc={this.props.subpage == "applications" ? selectDash : nonselectDash}
+                            textColor={this.props.subpage == "applications" ? selectEColor : defaultEColor}
+                          />
+                        </button>
+                      </div>
+                    </div>}
+                  {!this.props.profile.is_subreviwer &&
+                    <div className="row" style={{ marginTop: "30%", marginBottom: "2rem" }}>
                       <div className="col d-flex align-items-center">
                         <button
                           type="button"
                           className="panel-button"
                           onClick={this.props.renderShortlist}
-                          style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
+                          style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
                         >
                           <IconEmployerText
                             textSize={"12px"}
@@ -328,123 +332,123 @@ export class EssentialUserInfo extends Component {
                           />
                         </button>
                       </div>
+                    </div>
+                  }
+                  {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
+                    <div className="row" style={{ marginTop: "30%", marginBottom: "2rem" }}>
+                      <div className="col d-flex align-items-center">
+                        <button
+                          type="button"
+                          className="panel-button"
+                          onClick={this.renderApplications}
+                          style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                        >
+                          <IconEmployerText
+                            textSize={"12px"}
+                            textDisplayed={"Analytics"}
+                            backColor={this.props.subpage == "analytics" ? selectBack : defaultBack}
+                            iconSrc={this.props.subpage == "analytics" ? selectAnalytics : nonselectAnalytics}
+                            textColor={this.props.subpage == "analytics" ? selectEColor : defaultEColor}
+                          />
+                        </button>
+                      </div>
+                    </div>}
+                  <div className="row" style={{ marginTop: "20%", marginBottom: "2rem" }}>
+                    <div className="col d-flex align-items-center">
+                      <button
+                        type="button"
+                        className="panel-button"
+                        onClick={this.props.renderSetting}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                      >
+                        <IconEmployerText
+                          textSize={"12px"}
+                          textDisplayed={"Settings"}
+                          backColor={this.props.subpage == "settings" ? selectBack : defaultBack}
+                          iconSrc={this.props.subpage == "settings" ? selectSetting : nonselectSetting}
+                          textColor={this.props.subpage == "settings" ? selectEColor : defaultEColor}
+                        />
+                      </button>
+                    </div>
                   </div>
-              }
-              {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
-              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.renderApplications}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconEmployerText
-                    textSize={"12px"}
-                    textDisplayed={"Analytics"}
-                    backColor={this.props.subpage == "analytics" ? selectBack : defaultBack}
-                    iconSrc={this.props.subpage == "analytics" ? selectAnalytics : nonselectAnalytics}
-                    textColor={this.props.subpage == "analytics" ? selectEColor : defaultEColor}
-                  />
-                </button>
-              </div>
-              </div>}
-              <div className="row" style={{marginTop:"20%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.props.renderSetting}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconEmployerText
-                    textSize={"12px"}
-                    textDisplayed={"Settings"}
-                    backColor={this.props.subpage == "settings" ? selectBack : defaultBack}
-                    iconSrc={this.props.subpage == "settings" ? selectSetting : nonselectSetting}
-                    textColor={this.props.subpage == "settings" ? selectEColor : defaultEColor}
-                  />
-                </button>
-              </div>
-              </div>
-              </div> : 
-              <div style={{minHeight:"58rem"}}>
-              <div className="row" style={{marginTop:"30%", marginBottom:"1rem"}}>
-              <div className="col d-flex align-items-center">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.props.renderProfile}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconUserText
-                    textSize={"12px"}
-                    textDisplayed={"My Profile"}
-                    backColor={this.props.subpage == "profile" ? selectBack : defaultBack}
-                    iconSrc={this.props.subpage == "profile" ? selectProfile : nonselectProfile}
-                    textColor={this.props.subpage == "profile" ? selectEColor : defaultEColor}
-                  />
-                </button>
-              </div>
-            </div>
-            <div className="row" style={{marginTop:"1rem", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center" data-tut="reactour-myInterview">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.props.renderInterview}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconUserText
-                    textSize={"12px"}
-                    textDisplayed={"My Interview"}
-                    backColor={this.props.subpage == "interview" ? selectBack : defaultBack}
-                    iconSrc={this.props.subpage == "interview" ? selectInterview : nonselectInterview}
-                    textColor={this.props.subpage == "interview" ? selectEColor : defaultEColor}
-                  />
-                </button>
-              </div>
-            </div>
-            <hr style={{border:"1px solid rgba(232, 237, 252, 0.25)", width:"100%"}}></hr>
-            <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center" data-tut="reactour-myVideo">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.props.renderVideos}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconUserText
-                    textSize={"12px"}
-                    textDisplayed={"My Video"}
-                    backColor={this.props.subpage == "videos" ? selectBack : defaultBack}
-                    iconSrc={this.props.subpage == "videos" ? selectVideos : nonSelectVideos}
-                    textColor={this.props.subpage == "videos" ? selectEColor : defaultEColor}
-                  />
-                </button>
-                </div>
-              </div>
-              <div className="row" style={{marginTop:"30%", marginBottom:"2rem"}}>
-              <div className="col d-flex align-items-center" data-tut="reactour-myResume">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.props.renderResume}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconUserText
-                    textSize={"12px"}
-                    textDisplayed={"My Resume"}
-                    backColor={this.props.subpage == "resume" ? selectBack : defaultBack}
-                    iconSrc={this.props.subpage == "resume" ? selectResume : nonselectResume}
-                    textColor={this.props.subpage == "resume" ? selectEColor : defaultEColor}
-                  />
-                </button>
-              </div>
-              </div>
-              {this.props.profile.membership == "Premium" ?
-              <div className="row">
-                <div className="col d-flex align-items-center mt-2">
+                </div> :
+                <div style={{ minHeight: "58rem" }}>
+                  <div className="row" style={{ marginTop: "30%", marginBottom: "1rem" }}>
+                    <div className="col d-flex align-items-center">
+                      <button
+                        type="button"
+                        className="panel-button"
+                        onClick={this.props.renderProfile}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                      >
+                        <IconUserText
+                          textSize={"12px"}
+                          textDisplayed={"My Profile"}
+                          backColor={this.props.subpage == "profile" ? selectBack : defaultBack}
+                          iconSrc={this.props.subpage == "profile" ? selectProfile : nonselectProfile}
+                          textColor={this.props.subpage == "profile" ? selectEColor : defaultEColor}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="row" style={{ marginTop: "1rem", marginBottom: "2rem" }}>
+                    <div className="col d-flex align-items-center" data-tut="reactour-myInterview">
+                      <button
+                        type="button"
+                        className="panel-button"
+                        onClick={this.props.renderInterview}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                      >
+                        <IconUserText
+                          textSize={"12px"}
+                          textDisplayed={"My Interview"}
+                          backColor={this.props.subpage == "interview" ? selectBack : defaultBack}
+                          iconSrc={this.props.subpage == "interview" ? selectInterview : nonselectInterview}
+                          textColor={this.props.subpage == "interview" ? selectEColor : defaultEColor}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)", width: "100%" }}></hr>
+                  <div className="row" style={{ marginTop: "30%", marginBottom: "2rem" }}>
+                    <div className="col d-flex align-items-center" data-tut="reactour-myVideo">
+                      <button
+                        type="button"
+                        className="panel-button"
+                        onClick={this.props.renderVideos}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                      >
+                        <IconUserText
+                          textSize={"12px"}
+                          textDisplayed={"My Video"}
+                          backColor={this.props.subpage == "videos" ? selectBack : defaultBack}
+                          iconSrc={this.props.subpage == "videos" ? selectVideos : nonSelectVideos}
+                          textColor={this.props.subpage == "videos" ? selectEColor : defaultEColor}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="row" style={{ marginTop: "30%", marginBottom: "2rem" }}>
+                    <div className="col d-flex align-items-center" data-tut="reactour-myResume">
+                      <button
+                        type="button"
+                        className="panel-button"
+                        onClick={this.props.renderResume}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                      >
+                        <IconUserText
+                          textSize={"12px"}
+                          textDisplayed={"My Resume"}
+                          backColor={this.props.subpage == "resume" ? selectBack : defaultBack}
+                          iconSrc={this.props.subpage == "resume" ? selectResume : nonselectResume}
+                          textColor={this.props.subpage == "resume" ? selectEColor : defaultEColor}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  {this.props.profile.membership == "Premium" ?
+                    <div className="row">
+                      <div className="col d-flex align-items-center mt-2">
                         <IconText
                           iconName={"bx bx-diamond bx-sm"}
                           textDisplayed={"Premium"}
@@ -452,63 +456,63 @@ export class EssentialUserInfo extends Component {
                           textColor={"#fac046"}
                           iconMargin={"2px"}
                         />
-                </div>
-              </div> :
-              <div>
-                <div className="row" style={{marginTop:"4rem", marginBottom:"1rem"}}>
-                  <div className="col d-flex align-items-center mt-2">
-                      <IconText
-                        iconName={""}
-                        textDisplayed={"Free Member"}
-                        textSize={"14px"}
-                        textColor={"#cad9fc"}
-                        iconMargin={"2px"}
-                      />
+                      </div>
+                    </div> :
+                    <div>
+                      <div className="row" style={{ marginTop: "4rem", marginBottom: "1rem" }}>
+                        <div className="col d-flex align-items-center mt-2">
+                          <IconText
+                            iconName={""}
+                            textDisplayed={"Free Member"}
+                            textSize={"14px"}
+                            textColor={"#cad9fc"}
+                            iconMargin={"2px"}
+                          />
+                        </div>
+                      </div>
+                      <div className="row" style={{ textAlign: "center" }}>
+                        <div className="col align-items-center mt-1">
+                          <Link to="/pricing" style={{ textDecoration: "none" }}><p style={{ color: "#fac046", fontSize: "14px" }}>Upgrade</p></Link>
+                        </div>
+                      </div>
+                    </div>}
+                  <div className="row" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+                    <div className="col d-flex align-items-center">
+                      <button
+                        type="button"
+                        className="panel-button"
+                        onClick={this.props.renderSetting}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                      >
+                        <IconUserText1
+                          textSize={"12px"}
+                          textDisplayed={""}
+                          backColor={this.props.subpage == "settings" ? selectBack : defaultBack}
+                          iconSrc={this.props.subpage == "settings" ? selectSetting : nonselectSetting}
+                          textColor={this.props.subpage == "settings" ? selectEColor : defaultEColor}
+                        />
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="row" style={{textAlign:"center"}}>
-                  <div className="col align-items-center mt-1">
-                    <Link to="/pricing" style={{textDecoration:"none"}}><p style={{color:"#fac046", fontSize:"14px"}}>Upgrade</p></Link>
+                  <div className="row" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+                    <div className="col d-flex align-items-center">
+                      <a
+                        type="button"
+                        className="panel-button"
+                        href="/contact"
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                      >
+                        <IconUserText1
+                          textSize={"12px"}
+                          textDisplayed={""}
+                          backColor={defaultBack}
+                          iconSrc={nonselectHelp}
+                          textColor={defaultEColor}
+                        />
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </div>}
-              <div className="row" style={{marginTop:"1rem", marginBottom:"1rem"}}>
-              <div className="col d-flex align-items-center">
-                <button
-                  type="button"
-                  className="panel-button"
-                  onClick={this.props.renderSetting}
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconUserText1
-                    textSize={"12px"}
-                    textDisplayed={""}
-                    backColor={this.props.subpage == "settings" ? selectBack : defaultBack}
-                    iconSrc={this.props.subpage == "settings" ? selectSetting : nonselectSetting}
-                    textColor={this.props.subpage == "settings" ? selectEColor : defaultEColor}
-                  />
-                </button>
-              </div>
-              </div>
-              <div className="row" style={{marginTop:"1rem", marginBottom:"1rem"}}>
-              <div className="col d-flex align-items-center">
-                <a
-                  type="button"
-                  className="panel-button"
-                  href="/contact"
-                  style={{outline: "none", margin:"1%", padding:"0px", background:"none"}}
-                >
-                  <IconUserText1
-                    textSize={"12px"}
-                    textDisplayed={""}
-                    backColor={defaultBack}
-                    iconSrc={nonselectHelp}
-                    textColor={defaultEColor}
-                  />
-                </a>
-              </div>
-              </div>
-              {/*<div className="row" style={{marginTop:"20%"}}>
+                  {/*<div className="row" style={{marginTop:"20%"}}>
                 <div className="col d-flex align-items-center">
                   <button
                     type="button"
@@ -606,10 +610,10 @@ export class EssentialUserInfo extends Component {
                     </div>
                 </div>     
               </div>}*/}
-              </div>}
+                </div>}
             </div>
           </DbCenterRow>
-      </div>
+        </div>
       </React.Fragment>
     );
   }
@@ -654,13 +658,13 @@ const EditModal = (props) => {
             </button>
           </fieldset>
         </form>
-        </div>
+      </div>
     </MyModal>
   );
 };
 
 const PasswordChangingInterface = (props) => {
-  
+
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -668,29 +672,25 @@ const PasswordChangingInterface = (props) => {
 
   const PasswordCheck = (event) => {
     event.preventDefault();
-    if(newPassword !== confirmPassword)
-    {
+    if (newPassword !== confirmPassword) {
       alert('Password do not match!');
     }
-    else if(newPassword.length < 8)
-    {
+    else if (newPassword.length < 8) {
       alert('Password needs to be longer than 8 characters.');
     }
-    else
-    {
+    else {
       const config = {
         headers: {
           "Content-Type": "application/json",
         },
       };
-      let user_pw = { "id": props.user.id , "password": oldPassword };
-      
-      axios.post("api/check_password", user_pw, config).then((res)=>{
+      let user_pw = { "id": props.user.id, "password": oldPassword };
+
+      axios.post("api/check_password", user_pw, config).then((res) => {
         //console.log(res);
         const is_matching = res.data[0];
-        if(is_matching)
-        {
-          let user = {"id": props.user.id , "newPassword": newPassword};
+        if (is_matching) {
+          let user = { "id": props.user.id, "newPassword": newPassword };
           props.updateUserPassword(user);
           setOldPassword('');
           setNewPassword('');
@@ -702,59 +702,59 @@ const PasswordChangingInterface = (props) => {
           alert("Incorrect Password");
         }
       })
-      .catch(error => {
-        console.log(error)
-      }); 
+        .catch(error => {
+          console.log(error)
+        });
 
       // user login judgement, third partiy login.
       // user email /go to database user social auth. Matching function. filter(same user id.) question view.(objects.filter)
     }
-  
+
   }
-  
+
   return (
-          <MyModal show={props.show} onHide={props.hide}>
-              <div className="container">
-                <form style={{ marginBottom: "3%" }} onSubmit={PasswordCheck}>
-                <fieldset>
-                <div className="form-group">
-                  <label style={{ fontSize: "20px" }}>Current Password</label>
-                  <input placeholder="Current password" 
-                         className="form-control"
-                         type="password" 
-                         value={oldPassword} 
-                         required
-                         onChange={(event) => {setOldPassword(event.target.value)}}
-                  />
-                  <br />
-                  <label style={{ fontSize: "20px" }}>New Password</label>
-                  <input placeholder="New password" 
-                         className="form-control"
-                         type="password"
-                         value={newPassword}
-                         required
-                         onChange={(event) => {setNewPassword(event.target.value)}}
-                  />
-                  <br />
-                  <label style={{ fontSize: "20px" }}>Confirm New Password</label>
-                  <input placeholder="New password" 
-                         className="form-control"
-                         type="password"
-                         value={confirmPassword}
-                         required
-                         onChange={(event) => {setConfirmPassword(event.target.value)}}
-                  />
-                </div>
-                <button
-                    type="submit"
-                    className="btn btn-primary"
-                  >
-                    Update Password
-                  </button>
-                </fieldset>
-                </form>
-              </div>
-          </MyModal>
+    <MyModal show={props.show} onHide={props.hide}>
+      <div className="container">
+        <form style={{ marginBottom: "3%" }} onSubmit={PasswordCheck}>
+          <fieldset>
+            <div className="form-group">
+              <label style={{ fontSize: "20px" }}>Current Password</label>
+              <input placeholder="Current password"
+                className="form-control"
+                type="password"
+                value={oldPassword}
+                required
+                onChange={(event) => { setOldPassword(event.target.value) }}
+              />
+              <br />
+              <label style={{ fontSize: "20px" }}>New Password</label>
+              <input placeholder="New password"
+                className="form-control"
+                type="password"
+                value={newPassword}
+                required
+                onChange={(event) => { setNewPassword(event.target.value) }}
+              />
+              <br />
+              <label style={{ fontSize: "20px" }}>Confirm New Password</label>
+              <input placeholder="New password"
+                className="form-control"
+                type="password"
+                value={confirmPassword}
+                required
+                onChange={(event) => { setConfirmPassword(event.target.value) }}
+              />
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary"
+            >
+              Update Password
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </MyModal>
   );
 }
 
