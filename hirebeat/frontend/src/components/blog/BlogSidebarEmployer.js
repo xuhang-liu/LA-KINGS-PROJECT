@@ -24,6 +24,44 @@ class BlogSidebarEmployer extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer24.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Jun 25, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process">
+                                    <a>Three Steps to Fix Your Broken Talent Acquisition Process</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
+                        <Link to="/employer_blog-what-is-broken-in-the-talent-acquisition-process">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer23.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Jun 25, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-what-is-broken-in-the-talent-acquisition-process">
+                                    <a>What's Broken in the Talent Acquisition Process: Employers and Candidates Viewpoints</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/employer_blog-8-ways-to-automate-recruiting-processes">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer22.jpg" alt="image"/>
@@ -320,44 +358,6 @@ class BlogSidebarEmployer extends Component {
                             <h4 className="title usmall">
                                 <Link to="/employer_blog-millennials-we-want-you">
                                     <a>Millennials? We Want You!</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/employer_blog-how-gender-pronouns-change-the-way-we-work">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer6.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Apr 02, 2021</time>
-                            <h4 className="title usmall">
-                                <Link to="/employer_blog-how-gender-pronouns-change-the-way-we-work">
-                                    <a>How Gender Pronouns Change the Way We Work</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer5.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Mar 30, 2021</time>
-                            <h4 className="title usmall">
-                                <Link to="/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing">
-                                    <a>How the Pandemic Sparked A New Way of Interviewing</a>
                                 </Link>
                             </h4>
                         </div>

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getZipRecruiterJobs } from "../../redux/actions/auth_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 
 export class SearchPanel extends Component {
 
@@ -12,17 +13,17 @@ export class SearchPanel extends Component {
         location: "",
     }
 
-    componentDidUpdate(prevProps){
+    componentDidUpdate(prevProps) {
         // validate search bar inputs
         if (this.state.jobTitle == "" && this.state.location == "") {
             this.alert();
         }
         // sync transmitting fetched data to search results page
-        else if(prevProps.zpJobs !== this.props.zpJobs){
+        else if (prevProps.zpJobs !== this.props.zpJobs) {
             // redirect to result page
             this.redirectToResults();
         }
-     }
+    }
 
     alert = () => {
         confirmAlert({
@@ -30,7 +31,7 @@ export class SearchPanel extends Component {
             message: "Please enter correct job title and location",
             buttons: [
                 {
-                  label: 'Ok'
+                    label: 'Ok'
                 }
             ]
         });
@@ -62,75 +63,88 @@ export class SearchPanel extends Component {
     }
 
     render() {
+        const meta = {
+            title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
+            description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+            canonical: 'https://hirebeat.co/job-seekers-career',
+            meta: {
+                charset: 'utf-8',
+                name: {
+                    keywords: 'job board, internship, job position, open position, job seekers'
+                }
+            }
+        };
         return (
-            <React.Fragment>
-                <PageTitleArea
-                    pageTitle="Find Your Dream Job"
-                    pageDescription="HireBeat helps you find exciting job opportunities and pivot your profile to stand out."
-                />
-                <div className="row career-search">
-                    <div className="col-4 career-bg" style={{marginLeft: "5%"}} >
-                        <label className="career-txt1" style={{margin: "0rem"}}>What?</label>
-                        <input
-                            className="form-control"
-                            style={{
-                                fontSize: "1rem",
-                                fontFamily: "Avenir Next, Segoe UI",
-                                background: "#FFFFFF",
-                                borderRadius: "0.5rem",
-                                paddingLeft: "1rem",
-                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                              }}
-                            id="what"
-                            type="text"
-                            placeholder="Job title, Skills, or Remote">
-                        </input>
+            <DocumentMeta {...meta}>
+                <React.Fragment>
+                    <PageTitleArea
+                        pageTitle="Find Your Dream Job"
+                        pageDescription="HireBeat helps you find exciting job opportunities and pivot your profile to stand out."
+                    />
+                    <div className="row career-search">
+                        <div className="col-4 career-bg" style={{ marginLeft: "5%" }} >
+                            <label className="career-txt1" style={{ margin: "0rem" }}>What?</label>
+                            <input
+                                className="form-control"
+                                style={{
+                                    fontSize: "1rem",
+                                    fontFamily: "Avenir Next, Segoe UI",
+                                    background: "#FFFFFF",
+                                    borderRadius: "0.5rem",
+                                    paddingLeft: "1rem",
+                                    boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                }}
+                                id="what"
+                                type="text"
+                                placeholder="Job title, Skills, or Remote">
+                            </input>
+                        </div>
+                        <div className="col-4 career-bg" style={{ marginLeft: "2rem" }}>
+                            <label className="career-txt1" style={{ margin: "0rem" }}>Where?</label>
+                            <input
+                                className="form-control"
+                                style={{
+                                    fontSize: "1rem",
+                                    fontFamily: "Avenir Next, Segoe UI",
+                                    background: "#FFFFFF",
+                                    borderRadius: "0.5rem",
+                                    paddingLeft: "1rem",
+                                    boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                }}
+                                id="where"
+                                type="text"
+                                placeholder="City, State, Zip">
+                            </input>
+                        </div>
+                        <div className="col-1">
+                            <button
+                                onClick={this.handleSearch}
+                                className="default-btn"
+                                style={{ color: "white", backgroundColor: "#090D3A" }}
+                            >
+                                <i className="bx bx-search"></i>
+                                Search
+                                <span></span>
+                            </button>
+                        </div>
                     </div>
-                    <div className="col-4 career-bg" style={{marginLeft: "2rem"}}>
-                        <label className="career-txt1" style={{margin: "0rem"}}>Where?</label>
-                        <input
-                            className="form-control"
-                            style={{
-                                fontSize: "1rem",
-                                fontFamily: "Avenir Next, Segoe UI",
-                                background: "#FFFFFF",
-                                borderRadius: "0.5rem",
-                                paddingLeft: "1rem",
-                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                              }}
-                            id="where"
-                            type="text"
-                            placeholder="City, State, Zip">
-                        </input>
+                    <div className="container">
+                        <div className="row" style={{ margin: "auto", width: "100.8%", paddingTop: "8%", paddingBottom: "10%" }}>
+                            <div className="col" style={{ marginLeft: "5%" }}>
+                                <h3 className="career-h3">Want to prepare for top companies?</h3>
+                                <p className="mode-col-text1">HireBeat have hiring up-to-date information of more than 30 companies.</p>
+                                <p className="mode-col-text2"><a href="/job-seekers-companydata" style={{ color: "#13C4A1" }}>Browse companies -> </a></p>
+                            </div>
+                            <div className="col" style={{ marginLeft: "5%" }}>
+                                <h3 className="career-h3">One profile unlocks every job on HireBeat</h3>
+                                <p className="mode-col-text1">Your HireBeat profile tells companies your competence and lets you apply to any job you’re interested in.</p>
+                                <p className="mode-col-text2"><a href="/register" style={{ color: "#13C4A1" }}>Build profile-> </a></p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-1">
-                        <button
-                            onClick={this.handleSearch}
-                            className="default-btn"
-                            style={{color:"white", backgroundColor:"#090D3A"}}
-                        >
-                            <i className="bx bx-search"></i>
-                             Search
-                            <span></span>
-                        </button>
-                    </div>
-                </div>
-                <div className="container">
-                <div className="row" style={{margin: "auto", width: "100.8%", paddingTop: "8%", paddingBottom: "10%"}}>
-                    <div className="col" style={{marginLeft: "5%"}}>
-                        <h3 className="career-h3">Want to prepare for top companies?</h3>
-                        <p className="mode-col-text1">HireBeat have hiring up-to-date information of more than 30 companies.</p>
-                        <p className="mode-col-text2"><a href="/job-seekers-companydata" style={{color: "#13C4A1"}}>Browse companies -> </a></p>
-                    </div>
-                    <div className="col" style={{marginLeft: "5%"}}>
-                        <h3 className="career-h3">One profile unlocks every job on HireBeat</h3>
-                        <p className="mode-col-text1">Your HireBeat profile tells companies your competence and lets you apply to any job you’re interested in.</p>
-                        <p className="mode-col-text2"><a href="/register" style={{color: "#13C4A1"}}>Build profile-> </a></p>
-                    </div>
-                </div>
-                </div>
-                <Footer />
-            </React.Fragment>
+                    <Footer />
+                </React.Fragment>
+            </DocumentMeta>
         );
     }
 

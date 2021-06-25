@@ -87,6 +87,8 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process",
+    "/employer_blog-what-is-broken-in-the-talent-acquisition-process",
     "/employer_blog-8-ways-to-automate-recruiting-processes",
     "/employer_blog-what-is-resume-screening-and-why-does-it-matter",
     "/employer_blog-8-tips-to-increase-resume-screening-effectiveness",
@@ -112,6 +114,8 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer24.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer23.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer22.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer21.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer20.jpg",
@@ -137,6 +141,8 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Jun 25, 2021",
+    "Jun 25, 2021",
     "Jun 18, 2021",
     "Jun 11, 2021",
     "Jun 04, 2021",
@@ -162,6 +168,8 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "FIX YOUR BROKEN TALENT ACQUISITION PROCESS",
+    "BROKEN IN THE TALENT ACQUISITION PROCESS",
     "8 WAYS TO AUTOMATE RECRUITING PROCESSES",
     "WHAT IS RESUME SCREENING AND WHY IT MATTERS",
     "8 TIPS TO INCREASE RESUME SCREENING",

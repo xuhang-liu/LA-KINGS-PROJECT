@@ -20,60 +20,60 @@ function ScrollToTopOnMount() {
 }
 
 class IndexSaas extends Component {
-        // Preloader
-        state = {
-            loading: true
-        };
-      componentDidMount() {
-        this.timerHandle = setTimeout(() => this.setState({ loading: false }), 666);
-      }
-    render() {
-      const meta = {
-        title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
-        description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
-        canonical: 'https://hirebeat.co/job-seekers',
-        meta: {
-          charset: 'utf-8',
-          name: {
-            keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
-          }
+  // Preloader
+  state = {
+    loading: true
+  };
+  componentDidMount() {
+    this.timerHandle = setTimeout(() => this.setState({ loading: false }), 666);
+  }
+  render() {
+    const meta = {
+      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
+      description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+      canonical: 'https://hirebeat.co/job-seekers',
+      meta: {
+        charset: 'utf-8',
+        name: {
+          keywords: 'Interview, resume screening, behabioral question, internship, career quiz'
         }
-      };
-        return (
-          <DocumentMeta {...meta}>
-            <React.Fragment>
-              <MediaQuery minDeviceWidth={1224}>
-              <div className="min-width-1290">
-                <ScrollToTopOnMount />
-                <MainBanner />
-                <HighlitedFeatures />
-                <AmazingFeatures />
-                <Progress />
-                {/*<MoreToDiscover />*/}
-                <ClientsFeedbackSlider/>
-                <FreeTrialArea />
-                <Footer />
-                      {/* Preloader */}
-                <Loader loading={this.state.loading} />
-              </div>
-              </MediaQuery>
-              <MediaQuery maxDeviceWidth={1223}>
-                <ScrollToTopOnMount />
-                <MainBanner />
-                <HighlitedFeatures />
-                <AmazingFeatures />
-                <Progress />
-                {/*<MoreToDiscover />*/}
-                <ClientsFeedbackSlider/>
-                <FreeTrialArea />
-                <Footer />
-                      {/* Preloader */}
-                <Loader loading={this.state.loading} />
-              </MediaQuery>
-            </React.Fragment>
-          </DocumentMeta>
-        );
-    }
+      }
+    };
+    return (
+      <DocumentMeta {...meta}>
+        <React.Fragment>
+          <MediaQuery minDeviceWidth={1224}>
+            <div className="min-width-1290">
+              <ScrollToTopOnMount />
+              <MainBanner />
+              <HighlitedFeatures />
+              <AmazingFeatures />
+              <Progress />
+              {/*<MoreToDiscover />*/}
+              <ClientsFeedbackSlider />
+              <FreeTrialArea />
+              <Footer />
+              {/* Preloader */}
+              <Loader loading={this.state.loading} />
+            </div>
+          </MediaQuery>
+          <MediaQuery maxDeviceWidth={1223}>
+            <ScrollToTopOnMount />
+            <MainBanner />
+            <HighlitedFeatures />
+            <AmazingFeatures />
+            <Progress />
+            {/*<MoreToDiscover />*/}
+            <ClientsFeedbackSlider />
+            <FreeTrialArea />
+            <Footer />
+            {/* Preloader */}
+            <Loader loading={this.state.loading} />
+          </MediaQuery>
+        </React.Fragment>
+      </DocumentMeta>
+    );
+  }
 }
 
 export default IndexSaas;

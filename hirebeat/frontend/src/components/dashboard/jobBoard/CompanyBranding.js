@@ -120,8 +120,15 @@ const CompanyBranding = (props) => {
                             {(props.company_logo != "" && props.company_logo != null) &&
                                 <img style={{ width: "7rem", marginLeft: "34%", marginTop: "-3.5rem" }} src={props.company_logo} alt="icon" />}
                             <h1 className="ml-5 mt-5" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A" }}>{companyName}</h1>
-                            <div className="card container mt-3 pt-3 pb-3">
-                                <h3 style={{ color: "#95A8C3", fontWeight: "700", fontSize: "1.1rem" }}>ABOUT THE COMPANY</h3>
+                            <div className="container mt-3 pt-3 pb-3 ml-3 mr-5">
+                                <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Company Overview</h3>
+                                {(props.summary != null && props.summary != "") &&
+                                    <div className="mb-3 mt-2 mr-5">
+                                        {parse('' + props.summary + '')}
+                                    </div>}
+                            </div>
+                            <div className="container mt-3 pt-3 pb-3 ml-3 mr-5">
+                                <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>About The Company</h3>
                                 <br />
                                 <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Website</p>
                                 <a className="website" target="_blank" href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
@@ -142,25 +149,18 @@ const CompanyBranding = (props) => {
                                     {(props.twitter != null && props.twitter != "") && <a target="_blank" className="ml-2" href={props.twitter}><TwitterIcon size={30} round={true} /></a>}
                                 </div>
                             </div>
-                            <div className="card container mt-3 pt-3 pb-3">
-                                <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Company Overview</h3>
-                                {(props.summary != null && props.summary != "") &&
-                                    <div className="mb-3 mt-2 ml-5 mr-5">
-                                        {parse('' + props.summary + '')}
-                                    </div>}
-                            </div>
                             {(props.video_url != null && props.video_url != "") &&
-                                <div className="card container mt-3 pt-3 pb-3">
+                                <div className="container mt-3 pt-3 pb-3 ml-3 mr-5">
                                     <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Company Info</h3>
-                                    <div className="mb-3 mt-2 ml-5 mr-5">
+                                    <div className="mb-3 mt-2 mr-5">
                                         <ReactPlayer id="company-branding-player" controls={true} width={"100%"} height={"100%"} url={props.video_url} />
                                     </div>
                                 </div>}
-                            <div className="card container mt-3 pt-3 pb-3">
+                            <div className="container mt-3 pt-3 pb-3 ml-3 pr-5">
                                 <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Jobs</h3>
                                 {props.jobs_branding?.sort((a, b) => b.id - a.id)?.map((j, index) => {
                                     return (
-                                        <div className="container-xl">
+                                        <div className="container-fluid">
                                             <div className="mt-4">
                                                 <div className="row">
                                                     <div className="col-12" style={{ color: "#67a3fa" }}>
