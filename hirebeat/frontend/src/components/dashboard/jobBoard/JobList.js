@@ -30,6 +30,9 @@ export class JobList extends Component{
 
     render() {
         var view = (sessionStorage.getItem("view") == "true")?true:this.state.view;
+        if(this.props.filter == "closed"){
+            view = false
+        };
         return(
         <React.Fragment>
         {this.props.isLoaded &&

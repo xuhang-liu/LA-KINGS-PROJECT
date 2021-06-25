@@ -13,13 +13,15 @@ class SecondReview extends Component{
         var stars = [];
         var comments = [];
         var pk = [];
+        var transcripts = [];
 
         this.props.int_ques.map((i) => {
                 stars.push(i.video_stars);
-                comments.push(i.video_comment)
+                comments.push(i.video_comment);
                 quesiton_array.push(i.question_desc);
                 video_array.push(i.url);
-                pk.push(i.id)
+                pk.push(i.id);
+                transcripts.push(i.transcripts);
         });
 
         this.state = {
@@ -28,6 +30,7 @@ class SecondReview extends Component{
                 stars: stars,
                 comments: comments,
                 pk: pk,
+                transcripts: transcripts,
         };
         this.props.getResumeURL(this.props.positionId, this.props.id_candidate);
       }
@@ -111,6 +114,7 @@ class SecondReview extends Component{
                                                 stars = {this.state.stars}
                                                 comments = {this.state.comments}
                                                 pk = {this.state.pk}
+                                                transcripts = {this.state.transcripts}
                             />
                         </div>
                         <div className="col-2 container" style={{marginTop:"2.5%"}}>

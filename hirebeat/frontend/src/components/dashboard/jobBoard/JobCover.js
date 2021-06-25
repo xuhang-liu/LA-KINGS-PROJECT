@@ -14,14 +14,14 @@ export const JobCover = (props) => {
       <div style={{marginBottom: "20px"}} className="container min-width-980">
         <button
           className={decideClassName(filter, "active")}
-          onClick={() => {setView(false); setFilter("active")}}
+          onClick={() => {setFilter("active")}}
         >
           Active
         </button>
         <button
           className={decideClassName(filter, "closed")}
           style={{marginLeft: "2rem"}}
-          onClick={() => {setView(false); setFilter("closed")}}
+          onClick={() => {setFilter("closed")}}
         >
           Archived
         </button>

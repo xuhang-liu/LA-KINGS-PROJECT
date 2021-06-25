@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 //import SecondReview from './SecondReview';
-import { MyModal80 } from './DashboardComponents';
+import { MyModal80, MyFullModal1 } from './DashboardComponents';
 //import DropdownButton from 'react-bootstrap/DropdownButton';
 //import Dropdown from 'react-bootstrap/Dropdown';
 import ReviewApplication from './ReviewApplication';
@@ -545,7 +545,7 @@ function MyVerticallyCenteredModal(props) {
     const { ...rest } = props;
     return (
         <div style={{background:"#E8EDFC"}}>
-          <MyModal80 className="light-blue-modal" {...rest}>
+          <MyFullModal1 className="light-blue-modal" {...rest}>
             <ReviewApplication
               {...rest}
               refresh={props.refresh}
@@ -571,7 +571,7 @@ function MyVerticallyCenteredModal(props) {
               current={props.current}
               hasSwitch={false}
             />
-          </MyModal80>
+          </MyFullModal1>
         </div>
     );
   };
