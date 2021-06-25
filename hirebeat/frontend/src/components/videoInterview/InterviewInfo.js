@@ -143,6 +143,8 @@ class InterviewInfo extends Component {
             } else {
                 return this.alert("Wrong File Type", "Please upload PDF version of your resume");
             }
+            // reset input value
+            input.value = null;
           }
         }
       }

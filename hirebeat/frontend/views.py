@@ -143,3 +143,6 @@ def blogemployer23(request):
 
 def blogemployer24(request):
     return render(request, 'frontend/blogemployer24.html')
+
+def hubspot_form(request):
+    return render(request, 'frontend/hubspot_form.html')
