@@ -250,6 +250,7 @@ export const MyModal = (props) => {
 export const MyFullModal = (props) => {
     return (
         <Modal
+            animation={false}
             {...props}
             dialogClassName= "my-full-modal"
             aria-labelledby="contained-modal-title-vcenter"
@@ -264,6 +265,7 @@ export const MyFullModal = (props) => {
 export const MyFullModal1 = (props) => {
     return (
         <Modal
+            animation={false}
             {...props}
             dialogClassName= "my-full-modal1"
             aria-labelledby="contained-modal-title-vcenter"

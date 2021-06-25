@@ -8,6 +8,7 @@ import Avatar from 'react-avatar-edit';
 //import { IconText } from "../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import { Link } from "react-router-dom";
+import Select from 'react-select';
 var ReactS3Uploader = require("react-s3-uploader");
 
 function dataURItoBlob(dataURI) {
@@ -74,7 +75,31 @@ export class EmployerProfile extends Component {
         docType: "",
         overview: (this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
             RichTextEditor.createValueFromString(this.props.employerProfileDetail.summary, 'html') : RichTextEditor.createEmptyValue(),
+        companySize: "",
     }
+
+    customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#ffffff'}),
+        singleValue: styles => ({    ...styles,
+                                     color: '#4a6f8a',
+                                     fontSize: '0.9375rem',
+                                     fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+                                     fontWeight: '500'}),
+    };
+
+    options = [
+        { value: '1-50 employees', label: '1-50 employees' },
+        { value: '51-200 employees', label: '51-200 employees' },
+        { value: '201-500 employees', label: '201-500 employees' },
+        { value: '501-1,000 employees', label: '501-1,000 employees' },
+        { value: '1,001-5,000 employees', label: '1,001-5,000 employees' },
+        { value: '5,001-10,000 employees', label: '5,001-10,000 employees' },
+        { value: '10,000+ employees', label: '10,000+ employees' },
+    ];
+
+    onFilter = (companySize) => {
+        this.setState({companySize: companySize})
+    };
 
     onChange = (overview) => {
         this.setState({overview});
@@ -195,11 +220,13 @@ export class EmployerProfile extends Component {
         let companyType = document.getElementById("companyType").value;
 //        let email = document.getElementById("email").value;
         let location = document.getElementById("location").value;
+        let email = document.getElementById("contactEmail").value;
         let data = {
             "user_id": this.props.userId,
             "company_type": companyType,
-            "email": this.props.email,
+            "contactEmail": email,
             "location": location,
+            "company_size": (this.state.companySize.value==null || this.state.companySize.value=="")?this.props.employerProfileDetail.company_size:this.state.companySize.value,
         }
         this.props.updateEmployerBasicInfo(data);
         this.getUpdatedData();
@@ -536,22 +563,27 @@ export class EmployerProfile extends Component {
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Field</p>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Location</p>
+                                                <p className="profile-p4">
+                                                    {(this.props.employerProfileDetail.location !== null && this.props.employerProfileDetail.location !== "") ? this.props.employerProfileDetail.location : "Company Location"}
+                                                </p>
+                                            </div>
+                                            <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Company Size</p>
+                                                <p className="profile-p4">
+                                                    {(this.props.employerProfileDetail.company_size !== null && this.props.employerProfileDetail.company_size !== "") ? this.props.employerProfileDetail.company_size : "Employees"}
+                                                </p>
+                                            </div>
+                                            <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Industry</p>
                                                 <p className="profile-p4">
                                                     {(this.props.employerProfileDetail.company_type !== null && this.props.employerProfileDetail.company_type !== "") ? this.props.employerProfileDetail.company_type : "Company Field"}
                                                 </p>
                                             </div>
-                                            <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Email</p>
+                                            <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Contact Email</p>
                                                 <p className="profile-p4">
-                                                    {this.props.email}
-                                                    {/* (this.props.employerProfileDetail.email !== null && this.props.employerProfileDetail.email !== "") ? this.props.employerProfileDetail.email : "Company Email" */}
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Location</p>
-                                                <p className="profile-p4">
-                                                    {(this.props.employerProfileDetail.location !== null && this.props.employerProfileDetail.location !== "") ? this.props.employerProfileDetail.location : "Company Location"}
+                                                    {(this.props.employerProfileDetail.email !== null && this.props.employerProfileDetail.email !== "") ? this.props.employerProfileDetail.email : "Company Email"}
                                                 </p>
                                             </div>
                                         </div>:
@@ -568,16 +600,20 @@ export class EmployerProfile extends Component {
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Field</p>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Location</p>
+                                                <input id="location" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.location}></input>
+                                            </div>
+                                            <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Company Size</p>
+                                                <Select value={this.state.companySize} defaultValue={this.props.employerProfileDetail.company_size} onChange={this.onFilter} options={this.options} styles={this.customStyles}/>
+                                            </div>
+                                            <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Industry</p>
                                                 <input id="companyType" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.company_type}></input>
                                             </div>
-                                            {/*<div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Email</p>
-                                                <input id="email" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.email}></input>
-                                            </div>*/}
-                                             <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Location Based</p>
-                                                <input id="location" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.location}></input>
+                                            <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Contact Email</p>
+                                                <input id="contactEmail" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.employerProfileDetail.email}></input>
                                             </div>
                                         </div>
                                     }

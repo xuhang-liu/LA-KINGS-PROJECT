@@ -11,9 +11,9 @@ class ReviewApplication extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            viewResume: true,
-            viewVideo: false,
-            viewNotes: false,
+            viewResume: (sessionStorage.getItem("subpageStatus")=="video"||sessionStorage.getItem("subpageStatus")=="note")?false:true,
+            viewVideo: (sessionStorage.getItem("subpageStatus")=="video"?true:false)||false,
+            viewNotes: (sessionStorage.getItem("subpageStatus")=="note"?true:false)||false,
         }
     }
 
@@ -90,7 +90,7 @@ class ReviewApplication extends Component{
         const recordTime = this.props.recordTime;
         const interviewResume = this.props.interviewResume;
         return(
-            <div className="fluid-container ml-5 mb-5 pr-5" style={{width:'95%'}}>
+            <div className="container-fluid ml-5 mb-5" style={{width:'95%'}}>
                 <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-microphone"></i><span className="ml-2">Interview / Review Candidate</span></b></h3></div>
                 <div className="col d-flex align-items-center pl-0">
                     <button
@@ -282,19 +282,19 @@ class ReviewApplication extends Component{
                             <div>
                                 <h2
                                     className={this.state.viewResume ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={this.setViewResume}
+                                    onClick={()=>{this.setViewResume(); sessionStorage.setItem("subpageStatus", "resume")}}
                                 >
                                     Resume
                                 </h2>
                                 <h2
                                     className={this.state.viewVideo ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={this.setViewVideo}
+                                    onClick={()=>{this.setViewVideo(); sessionStorage.setItem("subpageStatus", "video")}}
                                 >
                                     Video Interview
                                 </h2>
                                 <h2
                                     className={this.state.viewNotes ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={this.setViewNotes}
+                                    onClick={()=>{this.setViewNotes(); sessionStorage.setItem("subpageStatus", "note")}}
                                 >
                                     Evaluation Notes
                                 </h2>

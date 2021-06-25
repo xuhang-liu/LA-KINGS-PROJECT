@@ -177,6 +177,7 @@ class EmployerProfileDetail(models.Model):
     company_type = models.CharField(max_length=100, null=True, blank=True)
     email = models.CharField(max_length=100, null=True, blank=True)
     location = models.CharField(max_length=100, null=True, blank=True)
+    company_size = models.CharField(max_length=100, null=True, blank=True)
 
     video_url = models.CharField(max_length=100, null=True, blank=True)
     summary = models.TextField(null=True, blank=True)
