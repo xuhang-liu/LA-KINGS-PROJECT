@@ -648,7 +648,7 @@ def create_or_update_employer_social_media(request):
         employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
         employer_profile.linkedin = linkedin
         employer_profile.facebook = facebook
-        employer_profile.github = twitter
+        employer_profile.twitter = twitter
         employer_profile.save()
     except ObjectDoesNotExist:
         # create personal information
