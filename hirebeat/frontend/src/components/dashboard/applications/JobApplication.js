@@ -521,6 +521,7 @@ const JobCard = (props) => {
         }
         let meta = {
             position_id: positionId,
+            job_id: -1, // -1 means current candidate is manually added
             emails: emails,
             names: names,
         }
@@ -824,13 +825,14 @@ const JobCard = (props) => {
         if((props.applicants.length)>=(props.profile.candidate_limit)){
             candidateLimitAlert();
         }else{
-            // check interview questions
-            if (props.questions.length <= 0) {
-                setShowQForm(true);
-            }
-            else {
-                setInvite(true);
-            }
+            setInvite(true);
+//            // check interview questions
+//            if (props.questions.length <= 0) {
+//                setShowQForm(true);
+//            }
+//            else {
+//                setInvite(true);
+//            }
         }
     }
 
@@ -1118,209 +1120,224 @@ const JobCard = (props) => {
 
             {/* Invitation Form */}
             {invite &&
-                <div className="card container" style={{marginTop:"1%", marginBottom:"2%"}}>
-                    <div className="row interview-center" style={{marginTop: "2rem", marginLeft: "1%"}}>
-                        <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
-                    </div>
-                    <div className="row">
-                        <div className="col-3 mt-3 mb-3">
-                        <button type="button" className="default-btn resume-upload" onClick={uploadResume}>
-                            <i className="bx bx-cloud-upload bx-sm"></i>
-                              Upload Resume
+                <div>
+                    <div className="d-flex align-items-center">
+                        <button
+                            type="button"
+                            className="panel-button"
+                            onClick={() => {setInvite(false); props.getPJobs()}}
+                            style={{outline: "none", margin:"0%", padding:"0px", background:"#e8edfc"}}
+                        >
+                            <div className="center-items">
+                                <i style={{color: "#67A3F3"}} className="bx bx-arrow-back bx-sm"></i>
+                                <p style={{color: "#67A3F3", fontSize: "1.25rem"}}>Back To Applicants</p>
+                            </div>
                         </button>
-                        </div>
-                        <div className="col-5" style={{marginLeft:"-2rem", marginTop:"2rem"}}>
-                        <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
-                        <div>
-                            <span className="upload-txt">
-                            Bulk Upload (.pdf only; max:10)
-                            </span>
-                        </div>
-                        </div>
-                        {/*<div className="col-4 d-flex float-fluid-right">
-                            <p style={{marginTop:"2rem", display:"inline-block"}}>Expire after</p>
-                            <div style={{marginTop:"1.6rem", display:"inline-block", marginLeft:"0.5vw"}}>
-                                <Select value={expire} onChange={onFilter1} options={options1} className="select-category" styles={customStyles}/>
-                            </div>
-                        </div>*/}
-                        {/*parsed &&
-                            <div style={{display: "flex", alignItems: "center", marginLeft: "1rem"}}>
-                                <span className="upload-txt">
-                                    <i className="bx bx-file"></i>
-                                    {cvUploaded}
-                                    <i className="bx bxs-check-circle" style={{color: "#13C4A1", marginLeft: "0.5rem"}}></i>
-                                </span>
-                            </div>*/}
-                        {/*<button type="button" className="default-btn" style={{backgroundColor: "#090D3A", paddingLeft: "25px", marginLeft: "2rem"}} onClick={autofill}>Autofill</button>*/}
                     </div>
-                    <form onSubmit={sendInvitation}>
-                        <div className="form-row">
-                            <div className="form-group col-6">
-                                <label style={{ fontSize: "17px", margin:"2%"}}>
-                                    Candidate Name
-                                </label>
-                                <input type="text" name="name1" className="form-control candidate-name" required="required" placeHolder="John"/>
+                    <div className="card container" style={{marginTop:"1%", marginBottom:"2%"}}>
+                        <div className="row interview-center" style={{marginTop: "2rem", marginLeft: "1%"}}>
+                            <h3 className="interview-txt5">{props.jobTitle}{props.jobId == "" ? null : "(ID: " + props.jobId + ")"}</h3>
+                        </div>
+                        <div className="row">
+                            <div className="col-3 mt-3 mb-3">
+                            <button type="button" className="default-btn resume-upload" onClick={uploadResume}>
+                                <i className="bx bx-cloud-upload bx-sm"></i>
+                                  Upload Resume
+                            </button>
                             </div>
-                            <div className="form-group col-6">
-                                <label style={{ fontSize: "17px", margin:"2%"}}>
-                                    Candidate Email
-                                </label>
-                                <input type="email" name="email1" className="form-control candidate-email" required="required" placeHolder="john@example.com"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="text" name="name2" className="form-control candidate-name"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="email" name="email2" className="form-control candidate-email"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="text" name="name3" className="form-control candidate-name"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="email" name="email3" className="form-control candidate-email"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="text" name="name4" className="form-control candidate-name"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="email" name="email4" className="form-control candidate-email"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="text" name="name5" className="form-control candidate-name"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="email" name="email5" className="form-control candidate-email"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="text" name="name6" className="form-control candidate-name"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="email" name="email6" className="form-control candidate-email"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="text" name="name7" className="form-control candidate-name"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="email" name="email7" className="form-control candidate-email"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="text" name="name8" className="form-control candidate-name"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="email" name="email8" className="form-control candidate-email"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="text" name="name9" className="form-control candidate-name"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="email" name="email9" className="form-control candidate-email"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="text" name="name10" className="form-control candidate-name"/>
-                            </div>
-                            <div className="form-group col-6">
-                            <input type="email" name="email10" className="form-control candidate-email"/>
+                            <div className="col-5" style={{marginLeft:"-2rem", marginTop:"2rem"}}>
+                            <input id="resume" type="file" multiple style={{display: "none"}} accept=".pdf" />
+                            <div>
+                                <span className="upload-txt">
+                                Bulk Upload (.pdf only; max:10)
+                                </span>
                             </div>
                             </div>
-                            <div className="col d-flex justify-items">
-                                {/*!addForm1 &&
+                            {/*<div className="col-4 d-flex float-fluid-right">
+                                <p style={{marginTop:"2rem", display:"inline-block"}}>Expire after</p>
+                                <div style={{marginTop:"1.6rem", display:"inline-block", marginLeft:"0.5vw"}}>
+                                    <Select value={expire} onChange={onFilter1} options={options1} className="select-category" styles={customStyles}/>
+                                </div>
+                            </div>*/}
+                            {/*parsed &&
+                                <div style={{display: "flex", alignItems: "center", marginLeft: "1rem"}}>
+                                    <span className="upload-txt">
+                                        <i className="bx bx-file"></i>
+                                        {cvUploaded}
+                                        <i className="bx bxs-check-circle" style={{color: "#13C4A1", marginLeft: "0.5rem"}}></i>
+                                    </span>
+                                </div>*/}
+                            {/*<button type="button" className="default-btn" style={{backgroundColor: "#090D3A", paddingLeft: "25px", marginLeft: "2rem"}} onClick={autofill}>Autofill</button>*/}
+                        </div>
+                        <form onSubmit={sendInvitation}>
+                            <div className="form-row">
+                                <div className="form-group col-6">
+                                    <label style={{ fontSize: "17px", margin:"2%"}}>
+                                        Candidate Name
+                                    </label>
+                                    <input type="text" name="name1" className="form-control candidate-name" required="required" placeHolder="John"/>
+                                </div>
+                                <div className="form-group col-6">
+                                    <label style={{ fontSize: "17px", margin:"2%"}}>
+                                        Candidate Email
+                                    </label>
+                                    <input type="email" name="email1" className="form-control candidate-email" required="required" placeHolder="john@example.com"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="text" name="name2" className="form-control candidate-name"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="email" name="email2" className="form-control candidate-email"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="text" name="name3" className="form-control candidate-name"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="email" name="email3" className="form-control candidate-email"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="text" name="name4" className="form-control candidate-name"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="email" name="email4" className="form-control candidate-email"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="text" name="name5" className="form-control candidate-name"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="email" name="email5" className="form-control candidate-email"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="text" name="name6" className="form-control candidate-name"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="email" name="email6" className="form-control candidate-email"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="text" name="name7" className="form-control candidate-name"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="email" name="email7" className="form-control candidate-email"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="text" name="name8" className="form-control candidate-name"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="email" name="email8" className="form-control candidate-email"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="text" name="name9" className="form-control candidate-name"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="email" name="email9" className="form-control candidate-email"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="text" name="name10" className="form-control candidate-name"/>
+                                </div>
+                                <div className="form-group col-6">
+                                <input type="email" name="email10" className="form-control candidate-email"/>
+                                </div>
+                                </div>
+                                <div className="col d-flex justify-items">
+                                    {/*!addForm1 &&
+                                        <button
+                                            type="button"
+                                            className="default-btn"
+                                            style={{paddingLeft: "25px"}}
+                                            onClick={() => setAddForm1(true)}
+                                        >
+                                            Add 5 More
+                                        </button>*/}
+                                </div>
+                            {/* add additional form */}
+                            {addForm1 &&
+                                <InvitationForm uploadResume={uploadResume} autofill={autofill} />
+                            }
+                            {addForm2 &&
+                                <InvitationForm uploadResume={uploadResume} autofill={autofill} />
+                            }
+                            {addForm3 &&
+                                <InvitationForm uploadResume={uploadResume} autofill={autofill} />
+                            }
+                            {addForm4 &&
+                                <InvitationForm uploadResume={uploadResume} autofill={autofill} />
+                            }
+                            {addForm5 &&
+                                <InvitationForm uploadResume={uploadResume} autofill={autofill} />
+                            }
+                            <div>
+                                <div className="col d-flex justify-items">
+                                    {(addForm1 && !addForm2) &&
+                                        <button
+                                            className="default-btn interview-txt6"
+                                            style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                            onClick={() => setAddForm2(true)}
+                                        >
+                                            Add 5 More
+                                        </button>
+                                    }
+                                </div>
+                                <div className="col d-flex justify-items">
+                                    {(addForm2 && !addForm3) &&
+                                        <button
+                                            className="default-btn interview-txt6"
+                                            style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                            onClick={() => setAddForm3(true)}
+                                        >
+                                            Add 5 More
+                                        </button>
+                                    }
+                                </div>
+                                <div className="col d-flex justify-items">
+                                    {(addForm3 && !addForm4) &&
+                                        <button
+                                            className="default-btn interview-txt6"
+                                            style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                            onClick={() => setAddForm4(true)}
+                                        >
+                                            Add 5 More
+                                        </button>}
+                                </div>
+                                <div className="col d-flex justify-items">
+                                    {(addForm4 && !addForm5) &&
+                                        <button
+                                            className="default-btn interview-txt6"
+                                            style={{paddingLeft: "25px", background: "#67A3F3"}}
+                                            onClick={() => setAddForm5(true)}
+                                        >
+                                            Add 5 More
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+
+                            <div className="form-row justify-items" style={{marginBottom: "1rem"}}>
+                                <div className="col-2 d-flex justify-items">
                                     <button
                                         type="button"
-                                        className="default-btn"
-                                        style={{paddingLeft: "25px"}}
-                                        onClick={() => setAddForm1(true)}
-                                    >
-                                        Add 5 More
-                                    </button>*/}
-                            </div>
-                        {/* add additional form */}
-                        {addForm1 &&
-                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
-                        }
-                        {addForm2 &&
-                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
-                        }
-                        {addForm3 &&
-                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
-                        }
-                        {addForm4 &&
-                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
-                        }
-                        {addForm5 &&
-                            <InvitationForm uploadResume={uploadResume} autofill={autofill} />
-                        }
-                        <div>
-                            <div className="col d-flex justify-items">
-                                {(addForm1 && !addForm2) &&
-                                    <button
                                         className="default-btn interview-txt6"
                                         style={{paddingLeft: "25px", background: "#67A3F3"}}
-                                        onClick={() => setAddForm2(true)}
+                                        onClick={() => {setInvite(false); props.getPJobs()}}
                                     >
-                                        Add 5 More
+                                        Close
+                                        <span></span>
                                     </button>
-                                }
-                            </div>
-                            <div className="col d-flex justify-items">
-                                {(addForm2 && !addForm3) &&
+                                </div>
+                                <div className="col-4 interview-center">
+                                    {/*<p className="interview-txt8">Currently we only support adding up to 5 candidates at a time.</p>*/}
+                                </div>
+                                <div className="col-3 d-flex justify-items">
                                     <button
-                                        className="default-btn interview-txt6"
-                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
-                                        onClick={() => setAddForm3(true)}
+                                        type="submit"
+                                        className="default-btn1"
+                                        style={{marginBottom:"1.5%", paddingLeft:"25px"}}
                                     >
-                                        Add 5 More
+                                        Add
                                     </button>
-                                }
+                                </div>
                             </div>
-                            <div className="col d-flex justify-items">
-                                {(addForm3 && !addForm4) &&
-                                    <button
-                                        className="default-btn interview-txt6"
-                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
-                                        onClick={() => setAddForm4(true)}
-                                    >
-                                        Add 5 More
-                                    </button>}
-                            </div>
-                            <div className="col d-flex justify-items">
-                                {(addForm4 && !addForm5) &&
-                                    <button
-                                        className="default-btn interview-txt6"
-                                        style={{paddingLeft: "25px", background: "#67A3F3"}}
-                                        onClick={() => setAddForm5(true)}
-                                    >
-                                        Add 5 More
-                                    </button>
-                                }
-                            </div>
-                        </div>
-
-                        <div className="form-row justify-items" style={{marginBottom: "1rem"}}>
-                            <div className="col-2 d-flex justify-items">
-                                <button
-                                    type="button"
-                                    className="default-btn interview-txt6"
-                                    style={{paddingLeft: "25px", background: "#67A3F3"}}
-                                    onClick={() => {setInvite(false); props.getPJobs()}}
-                                >
-                                    Close
-                                    <span></span>
-                                </button>
-                            </div>
-                            <div className="col-4 interview-center">
-                                {/*<p className="interview-txt8">Currently we only support adding up to 5 candidates at a time.</p>*/}
-                            </div>
-                            <div className="col-3 d-flex justify-items">
-                                <button
-                                    type="submit"
-                                    className="default-btn1"
-                                    style={{marginBottom:"1.5%", paddingLeft:"25px"}}
-                                >
-                                    Add
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             }
         </React.Fragment>
