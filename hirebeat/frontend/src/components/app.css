@@ -62,6 +62,12 @@ video {
   -moz-transform: rotateY(180deg); /* Firefox */
 }
 
+#company-branding-player video {
+  transform:none;
+  -webkit-transform:none;
+  -moz-transform:none;
+}
+
 :root {
   --theme-color: #4356f0;
 }
@@ -438,13 +444,15 @@ card-row-third-high {
 
 .my-full-modal {
   overflow-x: auto;
+  overflow-y: auto;
   min-width: 190vh;
   min-height: 500px;
 }
 
 .my-full-modal1 {
   overflow-x: auto;
-  min-width: 180vh;
+  overflow-y: auto;
+  min-width: 190vh;
   min-height: 500px;
 }
 
@@ -3474,6 +3482,8 @@ color: #4A6F8A;
 }
 
 .light-blue-modal .modal-content{
+  overflow-x: auto;
+  overflow-y: auto;
   background-color: #E8EDFC;
 }
 
@@ -3675,4 +3685,9 @@ color: #4A6F8A;
   font-weight: 600;
   font-size: 0.9375rem;
   color: #7D7D7D;
+}
+
+/* Add this to align vertically */
+button > img {
+  vertical-align: middle;
 }

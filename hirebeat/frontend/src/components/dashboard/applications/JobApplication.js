@@ -8,7 +8,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./ResumeEva";
 import 'boxicons';
 //import { IconText } from "../DashboardComponents";
-import { getReviewNote } from "./../../../redux/actions/question_actions";
+import { getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation } from "./../../../redux/actions/question_actions";
 import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews } from "./../../../redux/actions/question_actions";
 //import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
@@ -32,11 +32,11 @@ export class JobApplication extends Component{
                                 switch (this.props.filter) {
                                     case "active":
                                         if (p.is_closed) return null;
-                                        if ((this.props.selectedId != 0) && (this.props.selectedId != p.position_id)) return null;
+                                        if (((sessionStorage.getItem("selectedId")||this.props.selectedId) != 0) && ((sessionStorage.getItem("selectedId")||this.props.selectedId) != p.position_id) && (sessionStorage.getItem("view"+p.job_title)!="true")) return null;
                                         break;
                                     case "closed":
                                         if (!p.is_closed) return null;
-                                        if ((this.props.selectedId != 0) && (this.props.selectedId != p.position_id)) return null;
+                                        if (((sessionStorage.getItem("selectedId")||this.props.selectedId) != 0) && ((sessionStorage.getItem("selectedId")||this.props.selectedId) != p.position_id) && (sessionStorage.getItem("view"+p.job_title)!="true")) return null;
                                         break;
                                     default:
                                         return null;
@@ -88,6 +88,8 @@ export class JobApplication extends Component{
                                     checkUserExistence={this.props.checkUserExistence}
                                     user_existence={this.props.user_existence}
                                     getReviewNote={this.props.getReviewNote}
+                                    getReviewerEvaluation={this.props.getReviewerEvaluation}
+                                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
                                 />
                             )
                         })}
@@ -105,7 +107,8 @@ const mapStateToProps = (state) => ({
     interviewResume: state.video_reducer.interviewResume,
 });
 
-export default withRouter(connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews, getReviewNote })(
+export default withRouter(connect(mapStateToProps, { closePosition, deletePosition, getResumeURL, addSubReviewer,
+    removeSubReviewer, moveCandidateToInterview, sendInterviews, getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation })(
     JobApplication
 ));
 
@@ -125,6 +128,9 @@ const JobViewDetail = (props) => {
             }
         })
         setUnView(temp);   
+        if(sessionStorage.getItem("view"+props.jobTitle)=="true"){
+            setView(true);
+        };
     }, [props.applicants]);
 
     function closeJob() {
@@ -314,7 +320,7 @@ const JobViewDetail = (props) => {
                                         }
                                     </div>
                                     <div className="row">
-                                        <button className="title-button ml-2" style={{float: "left"}} onClick={() => {setView(true), props.addSelected(props.positionId)}}>
+                                        <button className="title-button ml-2" style={{float: "left"}} onClick={() => {setView(true); props.addSelected(props.positionId); sessionStorage.setItem(("view"+props.jobTitle), "true"); sessionStorage.setItem("selectedId", props.positionId)}}>
                                             {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                         </button>
                                     </div>
@@ -454,7 +460,7 @@ const JobViewDetail = (props) => {
                     location_candidate={props.location_candidate}
                     resendInvitation={props.resendInvitation}
                     updateCommentStatus={props.updateCommentStatus}
-                    hideView={() => (setView(false), props.addSelected(0))}
+                    hideView={() => (setView(false), props.addSelected(0), sessionStorage.removeItem("view"+props.jobTitle), sessionStorage.removeItem("selectedId"))}
                     user={props.user}
                     profile={props.profile}
                     updateViewStatus={props.updateViewStatus}
@@ -464,6 +470,8 @@ const JobViewDetail = (props) => {
                     moveCandidateToInterview={props.moveCandidateToInterview}
                     sendInterviews={props.sendInterviews}
                     getReviewNote={props.getReviewNote}
+                    getReviewerEvaluation={props.getReviewerEvaluation}
+                    getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
                 />
             }
         </React.Fragment>
@@ -1073,6 +1081,9 @@ const JobCard = (props) => {
                                 updateViewStatus={props.updateViewStatus}
                                 subreviewerUpdateComment={props.subreviewerUpdateComment}
                                 getReviewNote={props.getReviewNote}
+                                getReviewerEvaluation={props.getReviewerEvaluation}
+                                getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                                user={props.user}
                             />
                              {/*<ReactPaginate
                                  previousLabel={'<'}
@@ -1651,6 +1662,9 @@ const ApplicantList = (props) => {
                         updateViewStatus={props.updateViewStatus}
                         subreviewerUpdateComment={props.subreviewerUpdateComment}
                         getReviewNote={props.getReviewNote}
+                        getReviewerEvaluation={props.getReviewerEvaluation}
+                        getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                        user={props.user}
                     />
                 )
             })}
@@ -1709,7 +1723,10 @@ const Applicant = (props) => {
         props.getApplicantsInfo(applicants[props.index].email);
         props.getResumeURL(positionId, applicants[props.index].user_id);
         props.getReviewNote(positionId, applicants[props.index].email);
-        setTimeout(()=>{setShow(true);}, 200)
+        props.getReviewerEvaluation(positionId, applicants[props.index].email);
+        props.getCurrentReviewerEvaluation(positionId, applicants[props.index].email, props.user.email);
+        setTimeout(()=>{setShow(true);}, 200);
+        sessionStorage.setItem(("show"+current), "true");
     };
 
     function getReviewPageData(index) {
@@ -1823,7 +1840,7 @@ const Applicant = (props) => {
         }
     }
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(sessionStorage.getItem("show"+current)=="true"?true:false);
     const [showResume, setShowResume] = useState(false);
     const [showEva, setShowEva] = useState(false);
 
@@ -1959,7 +1976,7 @@ const Applicant = (props) => {
                 show={show}
                 setShowResume={setShowResume}
                 setShowEva={setShowEva}
-                onHide={()=>{setCurrent(props.index); setShow(false);}}
+                onHide={()=>{setCurrent(props.index); sessionStorage.removeItem("show"+current); sessionStorage.removeItem("subpageStatus"); setShow(false)}}
                 int_ques={props.int_ques}
                 id_candidate={props.id_candidate}
                 username_candidate={props.username_candidate}

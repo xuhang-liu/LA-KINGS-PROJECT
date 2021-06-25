@@ -25,7 +25,7 @@ export class ApplicantList extends Component{
     }
     // filter selections
     options = [
-        { value: 'Invited', label: 'Invited' },
+        { value: 'Invited', label: 'Interview' },
         { value: 'Hold', label: 'Hold' },
         { value: 'Rejected', label: 'Rejected' },
         { value: 'Unreviewed', label: 'Unreviewed' },

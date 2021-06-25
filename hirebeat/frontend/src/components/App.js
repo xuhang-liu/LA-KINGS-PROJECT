@@ -48,6 +48,8 @@ import BlogDetail19_Employer from "./blog/blog-details19-employer";
 import BlogDetail20_Employer from "./blog/blog-details20-employer";
 import BlogDetail21_Employer from "./blog/blog-details21-employer";
 import BlogDetail22_Employer from "./blog/blog-details22-employer";
+import BlogDetail23_Employer from "./blog/blog-details23-employer";
+import BlogDetail24_Employer from "./blog/blog-details24-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -334,6 +336,8 @@ class App extends Component {
                 <Route exact path="/employer_blog-8-tips-to-increase-resume-screening-effectiveness" component={BlogDetail20_Employer} />
                 <Route exact path="/employer_blog-what-is-resume-screening-and-why-does-it-matter" component={BlogDetail21_Employer} />
                 <Route exact path="/employer_blog-8-ways-to-automate-recruiting-processes" component={BlogDetail22_Employer} />
+                <Route exact path="/employer_blog-what-is-broken-in-the-talent-acquisition-process" component={BlogDetail23_Employer} />
+                <Route exact path="/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process" component={BlogDetail24_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />

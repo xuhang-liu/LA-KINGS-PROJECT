@@ -485,8 +485,8 @@ export class JobEdition extends Component{
                         <div className="form-row">
                             <div className="form-group col-4">
                                 {this.state.job_post ?
-                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Enable</button>:
-                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setJobPostTure}>Enable</button>
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Enabled</button>:
+                                <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={this.setJobPostTure}>Enabled</button>
                                 }
                                 {!this.state.job_post ?
                                 <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>Disabled</button>:

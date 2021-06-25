@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import PageTitleArea from '../Common/PageTitleArea';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import MediaQuery from 'react-responsive';
 import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
-  return null;
+    return null;
 }
 
 class CompanyList extends Component {
@@ -20,46 +21,58 @@ class CompanyList extends Component {
     }
 
     onSearch = (e) => {
-        this.setState({keyWords: e.target.value});
+        this.setState({ keyWords: e.target.value });
     }
     render() {
+        const meta = {
+            title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
+            description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+            canonical: 'https://hirebeat.co/job-seekers-companydata',
+            meta: {
+                charset: 'utf-8',
+                name: {
+                    keywords: 'American Expres, JP Morgan, Nasdaq, Goldman Sachs, Morgan Stanley, Interview Question'
+                }
+            }
+        };
         return (
-            <React.Fragment>
-                <ScrollToTopOnMount />
-                <PageTitleArea 
-                    pageTitle="Company Data" 
-                    pageDescription="Ace the interview process at popular companies like JP Morgan, American Express, BlackRock, Nasdaq, Goldman Sachs."
-                />
-                <section className="blog-details-area ptb-100" style={{backgroundColor:"#f4f5fe"}}>
-                    <div className="container" style={{marginBottom:"3%"}}>
-                        <div className="row" style={{marginBottom:"3%"}}>
-                            <div className="col-lg-8 col-md-12" style={{paddingLeft:"44%", paddingTop:"2%", marginBottom:"2rem"}}>
-                                <MediaQuery minDeviceWidth={1224}>
-                                <h1 className="company-data-title">Popular</h1>
-                                </MediaQuery>
-                            </div>
-                            <div className="interview-txt7 interview-center" style={{color:"#56a3fa", fontSize:"1rem", paddingTop: "2.5%", marginBottom:'2rem'}}>
-                                <label><i className="bx bx-search bx-sm"></i></label>
-                                <input placeholder="Search company" className="search-candidate-input" onChange={this.onSearch}></input>
-                            </div>
-                            <div className="clients-logo-list align-items-center" style={{width: "100%"}}>
-                                {companyURLs.map((c, index) => {
-                                    if (this.state.keyWords != "") {
-                                        if (!companyNames[index].toLowerCase().includes(this.state.keyWords.toLowerCase())) {
-                                            return null;
+            <DocumentMeta {...meta}>
+                <React.Fragment>
+                    <ScrollToTopOnMount />
+                    <PageTitleArea
+                        pageTitle="Company Data"
+                        pageDescription="Ace the interview process at popular companies like JP Morgan, American Express, BlackRock, Nasdaq, Goldman Sachs."
+                    />
+                    <section className="blog-details-area ptb-100" style={{ backgroundColor: "#f4f5fe" }}>
+                        <div className="container" style={{ marginBottom: "3%" }}>
+                            <div className="row" style={{ marginBottom: "3%" }}>
+                                <div className="col-lg-8 col-md-12" style={{ paddingLeft: "44%", paddingTop: "2%", marginBottom: "2rem" }}>
+                                    <MediaQuery minDeviceWidth={1224}>
+                                        <h1 className="company-data-title">Popular</h1>
+                                    </MediaQuery>
+                                </div>
+                                <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", paddingTop: "2.5%", marginBottom: '2rem' }}>
+                                    <label><i className="bx bx-search bx-sm"></i></label>
+                                    <input placeholder="Search company" className="search-candidate-input" onChange={this.onSearch}></input>
+                                </div>
+                                <div className="clients-logo-list align-items-center" style={{ width: "100%" }}>
+                                    {companyURLs.map((c, index) => {
+                                        if (this.state.keyWords != "") {
+                                            if (!companyNames[index].toLowerCase().includes(this.state.keyWords.toLowerCase())) {
+                                                return null;
+                                            }
                                         }
-                                    }
-                                    return (
-                                        <div className="single-clients-logo" style={{marginLeft: "0rem"}}>
-                                            <Link to={c}>
-                                                <img src={companyLogos[index]} alt="logo"/>
-                                                <label style={{display: "none"}}>{companyNames[index]}</label>
-                                            </Link>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                            {/*<div class="col-lg-4 col-md-12">
+                                        return (
+                                            <div className="single-clients-logo" style={{ marginLeft: "0rem" }}>
+                                                <Link to={c}>
+                                                    <img src={companyLogos[index]} alt="logo" />
+                                                    <label style={{ display: "none" }}>{companyNames[index]}</label>
+                                                </Link>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                {/*<div class="col-lg-4 col-md-12">
                                 <div className="widget-area" id="secondary">
                                     <div className="widget widget_search">
                                         <form className="search-form">
@@ -74,64 +87,65 @@ class CompanyList extends Component {
                                     </div>
                                 </div>
                             </div>*/}
+                            </div>
                         </div>
-                    </div>
-                    <MediaQuery minDeviceWidth={1224}>
-                    <div className="row company-list-help-box">
-                        <h3 className="col-md-3 company-list-help-text" style={{paddingLeft:"4%"}}>
-                            We also help you on </h3>
-                            
-                        <div className="col-md-3" style={{maxWidth:"18.7%"}}>
-                            <Link to="/practice">
-                                <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}>
-                                    <i className="bx bxs-arrow-to-right"></i> 
-                                    Interview Practicing
-                                    <span></span>
-                                </a>
-                            </Link>
-                        </div>
+                        <MediaQuery minDeviceWidth={1224}>
+                            <div className="row company-list-help-box">
+                                <h3 className="col-md-3 company-list-help-text" style={{ paddingLeft: "4%" }}>
+                                    We also help you on </h3>
 
-                        <div className="col-md-3" style={{maxWidth:"18%"}}>
-                            <Link to="/resume">
-                                <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A"}}>
-                                    <i className="bx bxs-arrow-to-right"></i> 
-                                    Resume Matching
-                                    <span></span>
-                                </a>
-                            </Link>
-                        </div>
-                    </div>
-                    </MediaQuery>
-                    <MediaQuery maxDeviceWidth={1223}>
-                    <div style={{backgroundColor:'white'}}>
-                        <h3 style={{textAlign:'center', paddingTop:'1rem'}}>
-                            We also help you on </h3>
-                            
-                        <div>
-                            <Link to="/practice">
-                                <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A", marginTop:'1rem', marginBottom:'1rem', marginLeft:'10%'}}>
-                                    <i className="bx bxs-arrow-to-right"></i> 
-                                    Interview Praciting
-                                    <span></span>
-                                </a>
-                            </Link>
-                        </div>
+                                <div className="col-md-3" style={{ maxWidth: "18.7%" }}>
+                                    <Link to="/practice">
+                                        <a className="default-btn" style={{ color: "white", backgroundColor: "#090D3A" }}>
+                                            <i className="bx bxs-arrow-to-right"></i>
+                                            Interview Practicing
+                                            <span></span>
+                                        </a>
+                                    </Link>
+                                </div>
 
-                        <div>
-                            <Link to="/resume">
-                                <a className="default-btn" style={{color:"white", backgroundColor:"#090D3A", marginLeft:'10%', marginBottom:'1rem'}}>
-                                    <i className="bx bxs-arrow-to-right"></i> 
-                                    Resume Matching
-                                    <span></span>
-                                </a>
-                            </Link>
-                        </div>
-                    </div>
-                    </MediaQuery>
-                </section>
-                <FreeTrialArea />
-                <Footer />
-            </React.Fragment>
+                                <div className="col-md-3" style={{ maxWidth: "18%" }}>
+                                    <Link to="/resume">
+                                        <a className="default-btn" style={{ color: "white", backgroundColor: "#090D3A" }}>
+                                            <i className="bx bxs-arrow-to-right"></i>
+                                            Resume Matching
+                                            <span></span>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </div>
+                        </MediaQuery>
+                        <MediaQuery maxDeviceWidth={1223}>
+                            <div style={{ backgroundColor: 'white' }}>
+                                <h3 style={{ textAlign: 'center', paddingTop: '1rem' }}>
+                                    We also help you on </h3>
+
+                                <div>
+                                    <Link to="/practice">
+                                        <a className="default-btn" style={{ color: "white", backgroundColor: "#090D3A", marginTop: '1rem', marginBottom: '1rem', marginLeft: '10%' }}>
+                                            <i className="bx bxs-arrow-to-right"></i>
+                                            Interview Praciting
+                                            <span></span>
+                                        </a>
+                                    </Link>
+                                </div>
+
+                                <div>
+                                    <Link to="/resume">
+                                        <a className="default-btn" style={{ color: "white", backgroundColor: "#090D3A", marginLeft: '10%', marginBottom: '1rem' }}>
+                                            <i className="bx bxs-arrow-to-right"></i>
+                                            Resume Matching
+                                            <span></span>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </div>
+                        </MediaQuery>
+                    </section>
+                    <FreeTrialArea />
+                    <Footer />
+                </React.Fragment>
+            </DocumentMeta>
         );
     }
 }

@@ -159,6 +159,8 @@ class ProductPage extends Component {
                                 <p><span style={{color:"#4689fa"}}>Accurate resume parsing</span> helps to obtain candidate information and highlight the matching skill sets accurately.</p>
                                 <br/>
                                 <p><span style={{color:"#4689fa"}}>AI-Powered evaluation</span> provides a suggested job fit score to facilitate your decision-making.</p>
+                                <br/>
+                                <a href="/employer-resume-screening" className="default-btn2" style={{color:"#ffffff", backgroundColor:"#ff6b00", fontSize:"1rem", textDecoration:"none"}}>Learn more</a>
                             </div>
                         </div>
                     </div>
@@ -177,6 +179,8 @@ class ProductPage extends Component {
                                 <p><span style={{color:"#4689fa"}}>Question bank</span> allows you to quickly configure interview questions and evaluate candidates based on various aspects.</p>
                                 <br/>
                                 <p><span style={{color:"#4689fa"}}>Involve stakeholders</span> easily by sharing the recorded video. Review candidates, share evaluations and make decisions at any time.</p>
+                                <br/>
+                                <a href="/employer-feature-video" className="default-btn2" style={{color:"#ffffff", backgroundColor:"#ff6b00", fontSize:"1rem", textDecoration:"none"}}>Learn more</a>
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6">

@@ -137,3 +137,9 @@ def blogemployer22(request):
 
 def blog29(request):
     return render(request, 'frontend/blog29.html')
+
+def blogemployer23(request):
+    return render(request, 'frontend/blogemployer23.html')
+
+def blogemployer24(request):
+    return render(request, 'frontend/blogemployer24.html')

@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import PropTypes from "prop-types";
+import DocumentMeta from 'react-document-meta';
 //import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function ScrollToTopOnMount() {
@@ -99,7 +100,19 @@ export class QuestionTypeChoices extends Component {
   }
 
   render() {
+    const meta = {
+      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
+      description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+      canonical: 'https://hirebeat.co/practice',
+      meta: {
+        charset: 'utf-8',
+        name: {
+          keywords: 'Interview Practice, Behavioral Question, Technical Question, Mock Interview'
+        }
+      }
+    };
     return (
+      <DocumentMeta {...meta}>
       <React.Fragment>
       <section className="pricing-area pb-100 bg-f4f5fe">
       <ScrollToTopOnMount />
@@ -160,6 +173,7 @@ export class QuestionTypeChoices extends Component {
       </div>
       </section>
       </React.Fragment>
+      </DocumentMeta>
     );
   }
 }
