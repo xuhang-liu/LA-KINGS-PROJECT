@@ -1042,7 +1042,7 @@ const JobCard = (props) => {
                                     <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles}/>
                                 </div>
                             </div>
-                            <div className="col-1">Action</div>
+                            {/*<div className="col-1">Action</div>*/}
                             {!props.profile.is_subreviwer &&
                                 <div className="col-1">Reinvite</div>
                             }
@@ -1886,7 +1886,7 @@ const Applicant = (props) => {
                     </div>
                 }
                 <div className="col-2 mb-1">
-                    <button className="title-button1" style={{wordBreak: "break-all"}} onClick={() => viewResult()}>
+                    <button className="title-button1" style={{wordBreak: "break-all", color: "#67a3f3"}} onClick={() => viewResult()}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span>:<span class="dot" style={{background:"none"}}></span>}
                         {props.name.split("(")[0].length > 11 ? props.name.split("(")[0].substring(0, 9) + "..." : props.name.split("(")[0]}
                     </button>
@@ -1924,7 +1924,7 @@ const Applicant = (props) => {
                         </div>
                     }
                 </div>
-                <div className="col-1">
+                {/*<div className="col-1">
                     <div>
                         <button
                             onClick={() => viewResult()}
@@ -1934,7 +1934,7 @@ const Applicant = (props) => {
                         <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
                         </button>
                     </div>
-                </div>
+                </div>*/}
                 {/*<div className="col-2">
                     {props.isRecorded ?
                         (props.videoCount > 0 ?
@@ -1969,14 +1969,16 @@ const Applicant = (props) => {
                 </div>*/}
                 {!props.profile.is_subreviwer &&
                     <div className="col-1">
-                        <button
-                            onClick={ () => inviteAgain()}
-                            className="interview-txt9"
-                            style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
-                        >
-                            {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
-                            Resend
-                        </button>
+                        {isInvited &&
+                            <button
+                                onClick={ () => inviteAgain()}
+                                className="interview-txt9"
+                                style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                            >
+                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
+                                Resend
+                            </button>
+                        }
                     </div>
                 }
                 <div className="col-2 mb-1" >
@@ -2024,7 +2026,8 @@ const Applicant = (props) => {
                 show={showEva}
                 onHide={()=>{setShowEva(false); setShow(true);}}
             >
-                <ResumeEva interviewResume={props.interviewResume}/>
+                <ResumeEva
+                    interviewResume={(props.interviewResume.result_rate != "" && props.interviewResume.result_rate != null) ? props.interviewResume : applicants[current]}/>
             </MyModal80>
         </div>
     )

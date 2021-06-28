@@ -246,6 +246,7 @@ const ReviewCandidate = (props) => {
                             wordWrap: "break-word",
                             wordBreak: "break-all",
                             color: "#090D3A",
+                            fontSize: "1.5rem",
                             }}
                         >
                             Evaluation Scale

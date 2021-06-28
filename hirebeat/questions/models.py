@@ -86,6 +86,19 @@ class InvitedCandidates(models.Model):
     resume_url = models.CharField(max_length=300, null=True, blank=True)
     location = models.CharField(max_length=300, null=True, blank=True)
     phone = models.CharField(max_length=100, null=True, blank=True)
+    result_rate = models.CharField(max_length=50, null=True, blank=True)
+    hard_skill_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    hard_skill_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    hard_skill_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    soft_skill_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    soft_skill_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    soft_skill_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    other_keyword_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    other_keyword_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    other_keyword_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    basic_cri_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    basic_cri_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    basic_cri_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
 
     def __str__(self):
         return self.name + '|' + self.email

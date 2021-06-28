@@ -19,6 +19,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from datetime import timedelta
 from django.utils import timezone
 import math
+from django.forms.models import model_to_dict
 import base64
 
 class QuestionAPIView(generics.ListCreateAPIView):
@@ -273,15 +274,34 @@ def move_candidate_to_interview(request):
                     InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,)
                 #  apply from career page case
                 else:
-                    # get resume url, phone and location
+                    # get resume url, phone, location, resume analysis
                     candidate_info = ApplyCandidates.objects.filter(email=emails[i], jobs_id=job_id)[0]
                     resume_url = candidate_info.resume_url
                     location = candidate_info.location
                     phone = candidate_info.phone
+                    result_rate = candidate_info.result_rate
+                    hard_skill_jd_list = candidate_info.hard_skill_jd_list
+                    hard_skill_resume_list = candidate_info.hard_skill_resume_list
+                    hard_skill_info_list = candidate_info.hard_skill_info_list
+                    soft_skill_resume_list = candidate_info.soft_skill_resume_list
+                    soft_skill_jd_list = candidate_info.soft_skill_jd_list
+                    soft_skill_info_list = candidate_info.soft_skill_info_list
+                    other_keyword_resume_list = candidate_info.other_keyword_resume_list
+                    other_keyword_jd_list = candidate_info.other_keyword_jd_list
+                    other_keyword_info_list = candidate_info.other_keyword_info_list
+                    basic_cri_resume_list = candidate_info.basic_cri_resume_list
+                    basic_cri_jd_list = candidate_info.basic_cri_jd_list
+                    basic_cri_info_list = candidate_info.basic_cri_info_list
                     # save data
                     CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
                     InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,
-                                                     resume_url=resume_url, location=location, phone=phone)
+                                                     resume_url=resume_url, location=location, phone=phone, result_rate=result_rate,
+                                                     hard_skill_jd_list=hard_skill_jd_list, hard_skill_resume_list=hard_skill_resume_list,
+                                                     hard_skill_info_list=hard_skill_info_list, soft_skill_resume_list=soft_skill_resume_list,
+                                                     soft_skill_jd_list=soft_skill_jd_list, soft_skill_info_list=soft_skill_info_list,
+                                                     other_keyword_resume_list=other_keyword_resume_list, other_keyword_jd_list=other_keyword_jd_list,
+                                                     other_keyword_info_list=other_keyword_info_list, basic_cri_resume_list=basic_cri_resume_list,
+                                                     basic_cri_jd_list=basic_cri_jd_list, basic_cri_info_list=basic_cri_info_list)
 
     return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)
 
@@ -845,7 +865,12 @@ def get_current_reviewer_evaluation(request):
     position_id = request.query_params.get('position_id')
     applicant_email = request.query_params.get('applicant_email')
     reviewer_email = request.query_params.get('reviewer_email')
-    evaluation = ReviewerEvaluation.objects.filter(position_id=position_id, applicant_email=applicant_email, reviewer_email=reviewer_email).values()[0]
+    evaluation = ReviewerEvaluation(evaluation=0)
+    try:
+        evaluation = ReviewerEvaluation.objects.get(position_id=position_id, applicant_email=applicant_email, reviewer_email=reviewer_email)
+        evaluation = model_to_dict(evaluation)
+    except ObjectDoesNotExist:
+        evaluation = model_to_dict(evaluation)
     return Response({"data": evaluation})
 
 @api_view(['GET'])
