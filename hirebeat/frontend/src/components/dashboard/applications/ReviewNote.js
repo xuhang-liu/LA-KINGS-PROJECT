@@ -56,7 +56,7 @@ export class ReviewNote extends Component {
                         <div className="col-3" style={{marginLeft: "-1rem"}}>
                             <h3 className="note-h3">Evaluation</h3>
                             {/* map here */}
-                            {this.props.reviews.length > 0 &&
+                            {this.props.evaluations.length > 0 &&
                                 <div className="note-border2">
                                     {this.props.evaluations.map((eva) => {
                                         let name = eva.reviewer_name.split("@")[0];
