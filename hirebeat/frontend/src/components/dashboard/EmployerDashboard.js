@@ -15,7 +15,9 @@ import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, get
 from "../../redux/actions/auth_actions";
 import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML} from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
-import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, getReviewNote, getReviewerEvaluation } from "../../redux/actions/question_actions";
+import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, 
+  getQuestionList, updateViewStatus, getAnalyticsInfo, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList 
+} from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes";
@@ -119,6 +121,7 @@ export class EmployerDashboard extends Component {
     this.props.getEmployerPost(this.props.user.id, 0);
     this.props.getAllJobs(this.props.user.id);
     this.props.getQuestionList();
+    this.props.getReviewersList(user.id)
   }
 
   getInitialSubpage = () => {
@@ -362,6 +365,11 @@ export class EmployerDashboard extends Component {
             phone_number={this.props.profile.phone_number}
             renderApplications={this.renderApplications}
             renderEmployerProfile={this.renderEmployerProfile}
+            sub_r_list={this.props.sub_r_list}
+            ext_r_list={this.props.ext_r_list}
+            removeReviewerFromList={this.props.removeReviewerFromList}
+            getReviewersList={this.props.getReviewersList}
+            getPJobs={this.getPJobs}
         />;
       case "analytics":
         if (Object.keys(this.props.position_list).length > 0){
@@ -551,6 +559,8 @@ const mapStateToProps = (state) => {
   jobid_list: state.job_reducer.jobid_list,
   employerDetailLoaded: state.auth_reducer.employerDetailLoaded,
   user_existence: state.auth_reducer.user_existence,
+  sub_r_list: state.question_reducer.sub_r_list,
+  ext_r_list: state.question_reducer.ext_r_list,
 }
 };
 
@@ -559,7 +569,7 @@ export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFu
     getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
-    updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation
+    updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList
     })(
     EmployerDashboard
 );

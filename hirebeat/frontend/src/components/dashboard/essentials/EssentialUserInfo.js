@@ -266,11 +266,27 @@ export class EssentialUserInfo extends Component {
                 </div>}
               </div>*/}
                   <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr>
-                  {/*<div style={{ marginTop: "1rem", textAlign: "center" }}>
+                  <div style={{ marginTop: "1rem", textAlign: "center" }}>
                     <div className="col d-flex align-items-center">
-                      <a target="_blank" href="/employer_talent_sourcing" style={{ color: "#fff", textAlign: "center" }}>Sourcing</a>
+                      <a
+                        target="_blank"
+                        className="panel-button"
+                        href="/employer_talent_sourcing"
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none", textDecoration:"none" }}
+                      >
+                        <IconUserText
+                          textSize={"12px"}
+                          textDisplayed={"Sourcing"}
+                          width={"56px"}
+                          height={"42px"}
+                          marginL={"1rem"}
+                          backColor={defaultBack}
+                          iconSrc={"https://hirebeat-assets.s3.amazonaws.com/Employer/bx-sourcing-non.png"}
+                          textColor={defaultEColor}
+                        />
+                      </a>
                     </div>
-                  </div>*/}
+                  </div>
                 </div>}
               {this.props.profile.is_employer ?
                 <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>

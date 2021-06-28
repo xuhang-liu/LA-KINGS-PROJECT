@@ -872,3 +872,34 @@ def get_current_reviewer_evaluation(request):
     except ObjectDoesNotExist:
         evaluation = model_to_dict(evaluation)
     return Response({"data": evaluation})
+
+@api_view(['GET'])
+def get_reviewers_list(request):
+    sub_r_list = []
+    ext_r_list = []
+    user_id = request.query_params.get('user_id')
+    user = User.objects.get(pk=user_id)
+    position = Positions.objects.filter(user=user)
+    for p in position:
+        subreviewers = SubReviewers.objects.filter(position_id=p.id)
+        ex_reviewers = ExternalReviewers.objects.filter(position_id=p.id)
+        for s in subreviewers:
+            data1 = s.r_name + "&" + s.r_email
+            sub_r_list.append(data1)
+        for e in ex_reviewers:
+            data2 = e.r_name + "&" + e.r_email
+            ext_r_list.append(data2)
+    sub_r_list = list(set(list(sub_r_list)))
+    ext_r_list = list(set(list(ext_r_list)))
+    return Response({"sub_r_list": sub_r_list, "ext_r_list": ext_r_list})
+
+@api_view(['POST'])
+def remove_reviewer_from_list(request):
+    r_email = request.data["r_email"]
+    type = request.data["type"]
+    if (type=="sub"):
+        SubReviewers.objects.filter(r_email=r_email).delete()
+    elif (type=="ext"):
+        ExternalReviewers.objects.filter(r_email=r_email).delete()
+    return Response("Remove Reviewer successfully", status=status.HTTP_200_OK)
+

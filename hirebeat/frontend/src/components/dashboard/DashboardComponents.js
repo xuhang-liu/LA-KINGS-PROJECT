@@ -100,7 +100,7 @@ export const IconUserText = (props) => {
     //textSize, textDisplayed, iconName, textColor?
     return (
         <div className="icon-user-text align-items-center" style={{background: props.backColor}}>
-            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{width:"36px", height:"36px"}}></img>}
+            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{width: props.width ?? "36px", height: props.height ?? "36px", marginLeft:props.marginL??""}}></img>}
             <p
                 className="pt-2"
                 style={{
