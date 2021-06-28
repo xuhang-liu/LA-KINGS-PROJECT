@@ -33,6 +33,8 @@ import {
     ADD_OR_UPDATE_REVIEWER_EVALUATION,
     GET_REVIEWER_EVALUATION,
     GET_CURRENT_EVALUATION,
+    GET_REVIEWERS_LIST,
+    REMOVE_REVIEWER_FROM_LIST,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -485,6 +487,34 @@ export const getCurrentReviewerEvaluation = (position_id, applicant_email, revie
     .then((res) => {
       dispatch({
         type: GET_CURRENT_EVALUATION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getReviewersList = (user_id) => (dispatch, getState) => {
+  axios
+    .get(`/questions/get-reviewers-list?user_id=${user_id}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_REVIEWERS_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const removeReviewerFromList = (data) => (dispatch, getState) => {
+  axios
+    .post("questions/remove-reviewer-from-list", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: REMOVE_REVIEWER_FROM_LIST,
         payload: res.data,
       });
     })

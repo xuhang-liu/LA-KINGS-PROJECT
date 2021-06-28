@@ -131,7 +131,7 @@ export class ApplicantList extends Component{
                 this.props.updateInviteStatus(data);
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
-                setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 600);
+                setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 300);
                 this.sendSuccessAlert();
             }
         }
