@@ -273,15 +273,34 @@ def move_candidate_to_interview(request):
                     InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,)
                 #  apply from career page case
                 else:
-                    # get resume url, phone and location
+                    # get resume url, phone, location, resume analysis
                     candidate_info = ApplyCandidates.objects.filter(email=emails[i], jobs_id=job_id)[0]
                     resume_url = candidate_info.resume_url
                     location = candidate_info.location
                     phone = candidate_info.phone
+                    result_rate = candidate_info.result_rate
+                    hard_skill_jd_list = candidate_info.hard_skill_jd_list
+                    hard_skill_resume_list = candidate_info.hard_skill_resume_list
+                    hard_skill_info_list = candidate_info.hard_skill_info_list
+                    soft_skill_resume_list = candidate_info.soft_skill_resume_list
+                    soft_skill_jd_list = candidate_info.soft_skill_jd_list
+                    soft_skill_info_list = candidate_info.soft_skill_info_list
+                    other_keyword_resume_list = candidate_info.other_keyword_resume_list
+                    other_keyword_jd_list = candidate_info.other_keyword_jd_list
+                    other_keyword_info_list = candidate_info.other_keyword_info_list
+                    basic_cri_resume_list = candidate_info.basic_cri_resume_list
+                    basic_cri_jd_list = candidate_info.basic_cri_jd_list
+                    basic_cri_info_list = candidate_info.basic_cri_info_list
                     # save data
                     CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
                     InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,
-                                                     resume_url=resume_url, location=location, phone=phone)
+                                                     resume_url=resume_url, location=location, phone=phone, result_rate=result_rate,
+                                                     hard_skill_jd_list=hard_skill_jd_list, hard_skill_resume_list=hard_skill_resume_list,
+                                                     hard_skill_info_list=hard_skill_info_list, soft_skill_resume_list=soft_skill_resume_list,
+                                                     soft_skill_jd_list=soft_skill_jd_list, soft_skill_info_list=soft_skill_info_list,
+                                                     other_keyword_resume_list=other_keyword_resume_list, other_keyword_jd_list=other_keyword_jd_list,
+                                                     other_keyword_info_list=other_keyword_info_list, basic_cri_resume_list=basic_cri_resume_list,
+                                                     basic_cri_jd_list=basic_cri_jd_list, basic_cri_info_list=basic_cri_info_list)
 
     return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)
 

@@ -89,6 +89,7 @@ class ReviewApplication extends Component{
     render() {
         const recordTime = this.props.recordTime;
         const interviewResume = this.props.interviewResume;
+        const candidateInfo = this.props.applicants[this.props.current];
         return(
             <div className="container-fluid ml-5 mb-5" style={{width:'95%'}}>
                 <div style={{marginBottom: "30px"}}><h3><b><i className="bx bx-microphone"></i><span className="ml-2">Interview / Review Candidate</span></b></h3></div>
@@ -171,38 +172,40 @@ class ReviewApplication extends Component{
                             >
                                 Evaluation Scale
                             </h2>
-                            {((this.props.recordTime != "")&&(this.props.recordTime != null)) &&
                             <div>
-                            {/*<div className="row mt-5 pl-3">
-                                    Recorded on: {this.props.recordTime.substring(0, 10)}
-                            </div>*/}
-                            {((this.props.interviewResume.result_rate != "") && (this.props.interviewResume.result_rate != null)) &&
-                            <div className="mt-5 px-4" style={{width:"75%", marginLeft: "auto", marginRight: "auto"}}>
-                                {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 0) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 24)) &&
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/4.png" alt="pic"></img>}
-                                {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 25) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 50)) &&
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/3.png" alt="pic"></img>}
-                                {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 51) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 75)) &&
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/2.png" alt="pic"></img>}
-                                {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 76) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 100)) &&
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/1.png" alt="pic"></img>}
-                            </div>}
-                            <div className="row" style={{justifyContent: "center"}}>
-                                {((this.props.interviewResume.result_rate != "") && (this.props.interviewResume.result_rate != null)) &&
-                                <button
-                                    onClick={() => {setTimeout(()=>{this.showResumeEva()}, 200)}}
-                                    className="interview-txt9 mt-3 ml-3"
-                                    style={{color: "#67A3F3", border: "none", background: "white"}}
-                                >
-                                    <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
-                                </button>}
+                                {/*(this.props.recordTime != "" && this.props.recordTime != null) &&
+                                    <div className="row mt-5 pl-3">
+                                        Recorded on: {this.props.recordTime.substring(0, 10)}
+                                    </div>
+                                */}
+                                {((this.props.interviewResume.result_rate != "" && this.props.interviewResume.result_rate != null) || (candidateInfo.result_rate != "" && candidateInfo.result_rate != null)) &&
+                                <div className="mt-5 px-4" style={{width:"75%", marginLeft: "auto", marginRight: "auto"}}>
+                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 0 || (parseInt(candidateInfo.result_rate, 10)) >= 0) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 24 || (parseInt(candidateInfo.result_rate, 10)) <= 24)) &&
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/4.png" alt="pic"></img>}
+                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 25 || (parseInt(candidateInfo.result_rate, 10)) >= 25) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 50 || (parseInt(candidateInfo.result_rate, 10)) <= 50)) &&
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/3.png" alt="pic"></img>}
+                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 51 || (parseInt(candidateInfo.result_rate, 10)) >= 51) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 75 || (parseInt(candidateInfo.result_rate, 10)) <= 75)) &&
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/2.png" alt="pic"></img>}
+                                    {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 76 || (parseInt(candidateInfo.result_rate, 10)) >= 76) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 100 || (parseInt(candidateInfo.result_rate, 10)) <= 100)) &&
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/1.png" alt="pic"></img>}
+                                </div>}
+                                <div className="row" style={{justifyContent: "center"}}>
+                                    {((this.props.interviewResume.result_rate != "" && this.props.interviewResume.result_rate != null) || (candidateInfo.result_rate != "" && candidateInfo.result_rate != null)) &&
+                                    <button
+                                        onClick={() => {setTimeout(()=>{this.showResumeEva()}, 200)}}
+                                        className="interview-txt9 mt-3 ml-3"
+                                        style={{color: "#67A3F3", border: "none", background: "white"}}
+                                    >
+                                        <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> Resume Evaluation
+                                    </button>}
+                                </div>
+                                {/*<div className="row">
+                                    {((this.props.resumeURL != "")&&(this.props.resumeURL != null)) &&
+                                    <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 200)}} >
+                                        <i className="bx bx-file"></i>View Resume
+                                    </button>}
+                                </div>*/}
                             </div>
-                            {/*<div className="row">
-                                {((this.props.resumeURL != "")&&(this.props.resumeURL != null)) &&
-                                <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 200)}} >
-                                    <i className="bx bx-file"></i>View Resume
-                                </button>}
-                            </div>*/}</div>}
                             {!this.props.profile.is_subreviwer &&
                                 <div>
                                     {this.props.commentStatus == 1 ?

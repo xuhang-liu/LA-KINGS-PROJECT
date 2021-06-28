@@ -2026,7 +2026,8 @@ const Applicant = (props) => {
                 show={showEva}
                 onHide={()=>{setShowEva(false); setShow(true);}}
             >
-                <ResumeEva interviewResume={props.interviewResume}/>
+                <ResumeEva
+                    interviewResume={(props.interviewResume != "" && props.interviewResume != null) ? props.interviewResume : applicants[current]}/>
             </MyModal80>
         </div>
     )
