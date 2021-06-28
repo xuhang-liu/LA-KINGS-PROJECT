@@ -250,29 +250,29 @@ class ReviewApplication extends Component{
                                 <div>
                                     {this.props.curEvaluation.evaluation == 1 ?
                                         <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                            <button className="default-btn btn-success ml-2" style={{width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px"}} onClick={() => {this.updateEvaluation(1);}}>
+                                            <button className="default-btn btn-success ml-2" style={{width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px", background: "#13C4A1"}} onClick={() => {this.updateEvaluation(1);}}>
                                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-white.png" style={{width: "1.25rem", marginRight: "0.5rem"}}/>
-                                                <p style={{fontSize:"0.8rem"}}>Qualified</p>
+                                                <p style={{fontSize:"0.8rem", color: "#ffffff"}}>Qualified</p>
                                             </button>
                                         </div>:
                                         <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                            <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px"}} onClick={() => {this.updateEvaluation(1);}}>
+                                            <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#ffffff", width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)"}} onClick={() => {this.updateEvaluation(1);}}>
                                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good.png" style={{width: "1.25rem", marginRight: "0.5rem"}}/>
-                                                <p style={{fontSize:"0.8rem"}}>Qualified</p>
+                                                <p style={{fontSize:"0.8rem", color: "#13C4A1"}}>Qualified</p>
                                             </button>
                                         </div>
                                     }
                                     {this.props.curEvaluation.evaluation == 2 ?
                                         <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                            <button className="default-btn btn-danger ml-2" style={{width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px"}} onClick={() => {this.updateEvaluation(2);}}>
+                                            <button className="default-btn btn-danger ml-2" style={{width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px", background: "#E42424"}} onClick={() => {this.updateEvaluation(2);}}>
                                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-white.png" style={{width: "1.25rem", marginRight: "0.5rem", paddingTop: "2%"}}/>
-                                                <p style={{fontSize:"0.8rem"}}>Unqualified</p>
+                                                <p style={{fontSize:"0.8rem", color: "#ffffff"}}>Unqualified</p>
                                             </button>
                                         </div> :
                                         <div className="row" style={{marginTop: "1rem", display:"flex", justifyContent:"center"}}>
-                                            <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#E8EDFC", width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px"}} onClick={() => {this.updateEvaluation(2);}}>
+                                            <button className="default-btn ml-2" style={{color:"#090D3A", backgroundColor:"#ffffff", width:"9rem", fontSize:"0.8rem", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)"}} onClick={() => {this.updateEvaluation(2);}}>
                                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad.png" style={{width: "1.25rem", marginRight: "0.5rem", paddingTop: "2%"}}/>
-                                                <p style={{fontSize:"0.8rem"}}>Unqualified</p>
+                                                <p style={{fontSize:"0.8rem", color: "#E42424"}}>Unqualified</p>
                                             </button>
                                         </div>
                                     }
