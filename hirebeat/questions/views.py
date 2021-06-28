@@ -19,6 +19,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from datetime import timedelta
 from django.utils import timezone
 import math
+from django.forms.models import model_to_dict
 import base64
 
 class QuestionAPIView(generics.ListCreateAPIView):
@@ -864,5 +865,10 @@ def get_current_reviewer_evaluation(request):
     position_id = request.query_params.get('position_id')
     applicant_email = request.query_params.get('applicant_email')
     reviewer_email = request.query_params.get('reviewer_email')
-    evaluation = ReviewerEvaluation.objects.filter(position_id=position_id, applicant_email=applicant_email, reviewer_email=reviewer_email).values()[0]
+    evaluation = ReviewerEvaluation(evaluation=0)
+    try:
+        evaluation = ReviewerEvaluation.objects.get(position_id=position_id, applicant_email=applicant_email, reviewer_email=reviewer_email)
+        evaluation = model_to_dict(evaluation)
+    except ObjectDoesNotExist:
+        evaluation = model_to_dict(evaluation)
     return Response({"data": evaluation})
