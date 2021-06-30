@@ -354,7 +354,7 @@ class ReviewApplication extends Component{
                         </div>
                     </div>
                 </div>
-                {/*this.props.hasSwitch &&
+                {this.props.hasSwitch &&
                     <div className="row" style={{marginTop: "1.5rem", marginBottom: "1rem"}}>
                         <div className="col-3"/>
                         <div className="col-9" style={{textAlign: "center"}}>
@@ -375,7 +375,7 @@ class ReviewApplication extends Component{
                             </button>
                         </div>
                     </div>
-                */}
+                }
             </div>
         )
     };

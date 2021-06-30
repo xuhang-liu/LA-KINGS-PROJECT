@@ -16,7 +16,8 @@ from "../../redux/actions/auth_actions";
 import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML} from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import { addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus, 
-  getQuestionList, updateViewStatus, getAnalyticsInfo, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList 
+  getQuestionList, updateViewStatus, getAnalyticsInfo, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
+  getCurrentReviewerEvaluation,
 } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
@@ -407,6 +408,7 @@ export class EmployerDashboard extends Component {
             companyName={this.props.profile.company_name}
             getReviewNote={this.props.getReviewNote}
             getReviewerEvaluation={this.props.getReviewerEvaluation}
+            getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
             />
         }else{
             return null
@@ -569,7 +571,8 @@ export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFu
     getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
     getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
     updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
-    updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList
+    updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
+    getCurrentReviewerEvaluation,
     })(
     EmployerDashboard
 );
