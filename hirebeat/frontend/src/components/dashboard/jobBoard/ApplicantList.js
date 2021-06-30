@@ -455,33 +455,33 @@ const ApplicantRow = (props) => {
             <div style={{background:"#E8EDFC"}}>
                 <MyFullModal className="light-blue-modal" show={showPreview} onHide={hideModal}>
                         <ReviewCandidate
-                            phone={applicants[sessionStorage.getItem("current") || current].phone}
-                            email={applicants[sessionStorage.getItem("current") || current].email}
-                            location={applicants[sessionStorage.getItem("current") || current].location}
-                            resume_url={applicants[sessionStorage.getItem("current") || current].resume_url}
-                            first_name={applicants[sessionStorage.getItem("current") || current].first_name}
-                            last_name={applicants[sessionStorage.getItem("current") || current].last_name}
-                            applicant={applicants[sessionStorage.getItem("current") || current]}
+                            phone={applicants[parseInt(sessionStorage.getItem("current")) || current].phone}
+                            email={applicants[parseInt(sessionStorage.getItem("current")) || current].email}
+                            location={applicants[parseInt(sessionStorage.getItem("current")) || current].location}
+                            resume_url={applicants[parseInt(sessionStorage.getItem("current")) || current].resume_url}
+                            first_name={applicants[parseInt(sessionStorage.getItem("current")) || current].first_name}
+                            last_name={applicants[parseInt(sessionStorage.getItem("current")) || current].last_name}
+                            applicant={applicants[parseInt(sessionStorage.getItem("current")) || current]}
                             curJob={props.curJob}
                             tempQuestion={props.tempQuestion}
                             setTempQuestion={props.setTempQuestion}
                             profile={props.profile}
                             addInterviews={props.addInterviews}
-                            candidateId={applicants[sessionStorage.getItem("current") || current].id}
+                            candidateId={applicants[parseInt(sessionStorage.getItem("current")) || current].id}
                             updateInviteStatus={props.updateInviteStatus}
                             getAllJobs={props.getAllJobs}
                             getPJobs={props.getPJobs}
                             user={props.user}
                             setStatus={setStatus}
-                            is_invited={applicants[sessionStorage.getItem("current") || current].is_invited}
+                            is_invited={applicants[parseInt(sessionStorage.getItem("current")) || current].is_invited}
                             style={{backgroundColor:"black"}}
                             onHide={hideModal}
-                            current={sessionStorage.getItem("current") || current}
+                            current={parseInt(sessionStorage.getItem("current")) || current}
                             setCurrent={setCurrent}
                             applicants={applicants}
                             status={status}
                             updateCandidateViewedStatus={props.updateCandidateViewedStatus}
-                            linkedin={applicants[sessionStorage.getItem("current") || current].linkedinurl}
+                            linkedin={applicants[parseInt(sessionStorage.getItem("current")) || current].linkedinurl}
                             moveCandidateToInterview={props.moveCandidateToInterview}
                         />
                 </MyFullModal>

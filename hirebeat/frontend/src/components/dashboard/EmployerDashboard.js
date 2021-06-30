@@ -306,6 +306,7 @@ export class EmployerDashboard extends Component {
             jobid_list={this.props.jobid_list}
             getjobidlist={this.props.getjobidlist}
             getZRFeedXML={this.props.getZRFeedXML}
+            employerProfileDetail={this.props.employerProfileDetail}
         />;
       case "jobEdition":
         return <JobEdition

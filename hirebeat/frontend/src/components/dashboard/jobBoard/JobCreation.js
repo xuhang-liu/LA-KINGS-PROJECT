@@ -7,6 +7,7 @@ import Select from 'react-select';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Switch from "react-switch";
+import parse from 'html-react-parser';
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -248,6 +249,79 @@ export class JobCreation extends Component{
             this.props.renderJobs();
         }
     }
+
+    previewJob = () =>  {
+        confirmAlert({
+            closeOnEscape: true,
+            closeOnClickOutside: true,
+            customUI: ({ onClose }) => {
+              return (
+                <div className="container-fluid" style={{fontFamily:"Arial, Helvetica, sans-serif", margin:"auto", width:"80%", overflow:"auto", height:"40rem", backgroundColor:"#ffffff"}}>
+                <div onClick={() => {onClose();}} style={{float:"right", cursor:"pointer"}}><i className="bx bx-x bx-md"></i></div>
+                <img style={{height:"12rem", width:"100%"}} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon"/>
+                <img style={{width:"7rem", marginLeft:"2rem", marginTop:"-3.5rem"}} src={this.props.employerProfileDetail.logo_url} alt="icon"/>
+                <h1 className="ml-5 mt-5" style={{fontWeight:"600", fontSize:"2.5rem", color:"#090D3A"}}>{this.state.jobTitle}</h1>
+                <h2 className="ml-5 mt-2" style={{fontWeight:"600", fontSize:"1.5rem", color:"#67A3F3"}}>{this.props.employerProfileDetail.name}
+                </h2>
+                <div className="row pl-3">
+                    <div className="col-8 pl-5 mt-2 pb-5" style={{paddingRight:"3.7rem"}}>
+                        <p style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5", lineHeight:"0.6rem"}}>{this.state.jobLevel["value"]} • {this.state.jobType["value"]}</p>
+                        <p style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5", lineHeight:"0.6rem"}}>{(this.state.city=="")?"Remote":(this.state.city+","+this.state.state)}</p>
+                        <p style={{fontWeight:"600", fontSize:"0.9rem", color:"#7C94B5", lineHeight:"0.6rem"}}>{this.state.jobId}</p>
+                        <div>
+                            <div>
+                                <h2 className="mb-3">Company Overview</h2>
+                                <div className="mb-3">
+                                    {parse(''+this.props.employerProfileDetail.summary+'')}
+                                </div>
+                            </div>
+                            <h2 className="mb-3 mt-5">Job Description</h2>
+                            <div className="mb-3">
+                            {parse(''+(this.state.jobDescription.toString('html'))+'')}
+                            </div>
+                            {this.state.eeo_req == "1" &&
+                            <div>
+                                <h2 className="mb-2 mt-3">EEO Statement</h2>
+                                <p className="mb-4 mt-1" style={{color:"#090d3a"}}>{this.props.employerProfileDetail.name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                            </div>}
+                        </div>
+                        <div>
+                            <div>
+                                <button className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem"}}>
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-4 mt-5">
+                        <a className="default-btn" style={{paddingLeft:"5rem", paddingRight:"5rem", textDecoration:"none", color:"#fff", cursor:"pointer"}}>
+                            Apply Now
+                        </a>
+                        <p className="mt-5">Link to this job</p>
+                        <div className="row ml-0" style={{position:"relative",background:"#E8EDFC", borderRadius:"5px", border:"2px solid #67A3F3", width:"90%", height:"3rem"}}>
+                            <div className="pt-2 pl-2" style={{color:"#090D3A", fontSize:"1.4rem", fontWeight:"500", alignItems:"center"}}>
+                                <p style={{fontSize:"0.8rem"}}>https://link-to-this-job</p>
+                            </div>
+                            <div className="py-1">
+                                <button className="default-btn pt-1" style={{fontSize:"1.1rem", background:"#FF6B00", borderRadius:"5px", height:"2.2rem", alignItems:"center", paddingLeft:"2rem", paddingRight:"0.6rem", position:"absolute", right:"0.3rem"}}>
+                                    <i className='bx bx-share-alt' style={{left:"0.5rem"}}></i>Copy
+                                </button>
+                            </div>
+                        </div>
+                        {this.props.employerProfileDetail.website != null && this.props.employerProfileDetail.website != "" &&
+                            <div className="single-footer-widget1 mt-2">
+                                <p style={{marginBottom: "0rem"}}>Website</p>
+                                <a className="website" target="_blank" href={this.props.employerProfileDetail.website}>{this.props.employerProfileDetail.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <button onClick={() => {onClose();}} className="default-btn1" style={{paddingLeft:"25px", float:"right", marginTop:"2rem", marginBottom:'2rem', marginRight:"2rem"}}>Confirm</button>
+            </div>
+              );
+            }
+          });
+    };
 
     render() {
 //        const options = [
@@ -512,10 +586,17 @@ export class JobCreation extends Component{
                         </div>}
                         <div style={{float: "right", marginBottom: "1rem"}}>
                             <button
+                                type="button"
+                                className="default-btn" style={{marginBottom:"1.5%", marginRight:"1rem"}}
+                                onClick={() => {this.previewJob()}}
+                            >
+                                <i className="bx bx-show"></i>Preview
+                            </button>
+                            <button
                                 type="submit"
                                 className="default-btn1" style={{marginBottom:"1.5%", paddingLeft:"25px"}}
                             >
-                                Create
+                                Save
                             </button>
                         </div>
                     </form>

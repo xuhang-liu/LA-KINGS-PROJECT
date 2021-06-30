@@ -979,7 +979,7 @@ const JobCard = (props) => {
                                 className="read-more"
                                 style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
                             >
-                                <box-icon type="solid" name='bullseye' size="1rem" color="#67A3F3"></box-icon>
+                                <box-icon type="solid" name='bullseye' size="0.9rem" color="#67A3F3"></box-icon>
                                 <span style={{marginLeft: "0.2rem"}}>Preview Email</span>
                             </button>
                         </div>
@@ -1030,7 +1030,7 @@ const JobCard = (props) => {
                                     <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{display: (props.allInvited ? "none" : "inline")}}/>
                                 </div>
                             }
-                            <div className="col-2">
+                            <div className="col-3">
                                 <span className="dot" style={{background:"none", visibility: "hidden"}}></span>
                                 Name
                             </div>
@@ -1038,13 +1038,13 @@ const JobCard = (props) => {
                             <div className="col-2">Invited On</div>
                             <div className="col-2">
                                 <div className="row">
-                                    <div style={{display: "flex", alignItems: "center", marginRight: "0.2rem"}}>Video</div>
+                                    <div style={{display: "flex", alignItems: "center", marginRight: "0.5rem"}}>Video</div>
                                     <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles}/>
                                 </div>
                             </div>
                             {/*<div className="col-1">Action</div>*/}
                             {!props.profile.is_subreviwer &&
-                                <div className="col-1">Reinvite</div>
+                                <div className="col-2">Reinvite</div>
                             }
                             <div className="col-2">
                                 <div className="row">
@@ -1885,10 +1885,10 @@ const Applicant = (props) => {
                         }
                     </div>
                 }
-                <div className="col-2 mb-1">
+                <div className="col-3 mb-1">
                     <button className="title-button1" style={{wordBreak: "break-all", color: "#67a3f3"}} onClick={() => viewResult()}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span>:<span class="dot" style={{background:"none"}}></span>}
-                        {props.name.split("(")[0].length > 11 ? props.name.split("(")[0].substring(0, 9) + "..." : props.name.split("(")[0]}
+                        {props.name.split("(")[0].length > 20 ? props.name.split("(")[0].substring(0, 18) + "..." : props.name.split("(")[0]}
                     </button>
                 </div>
                 {/*props.videoCount > 0 ?
@@ -1968,7 +1968,7 @@ const Applicant = (props) => {
                     }
                 </div>*/}
                 {!props.profile.is_subreviwer &&
-                    <div className="col-1">
+                    <div className="col-2">
                         {isInvited &&
                             <button
                                 onClick={ () => inviteAgain()}
