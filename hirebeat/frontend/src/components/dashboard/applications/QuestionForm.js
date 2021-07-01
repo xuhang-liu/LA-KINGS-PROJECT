@@ -22,6 +22,10 @@ export class QuestionForm extends Component {
         this.setState({resTime: time});
     }
 
+    setCameraOn = (choice) => {
+        this.setState({cameraOn: choice});
+    }
+
     handleChangeCategory = (categoryOfQuestion) => {
         this.setState({ categoryOfQuestion });
     }
@@ -193,11 +197,11 @@ export class QuestionForm extends Component {
                                 </div>
                             </div>
                             <div className="form-row justify-items">
-                                <div className="form-group col-4">
+                                <div className="form-group col-4" style={{textAlign: "center"}}>
                                     <label className="db-txt2" style={{ margin:"2%"}}>
                                         Preparation Time
                                     </label>
-                                    <div className="form-row">
+                                    <div className="form-row" style={{justifyContent: "center"}}>
                                         {this.state.preTime == 30 ?
                                             <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>30s</button>:
                                             <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setPreTime(30)}>30s</button>
@@ -208,11 +212,11 @@ export class QuestionForm extends Component {
                                         }
                                     </div>
                                 </div>
-                                <div className="form-group col-5">
+                                <div className="form-group col-5" style={{textAlign: "center"}}>
                                     <label className="db-txt2" style={{ marginTop:"2%" }}>
                                         Response Time
                                     </label>
-                                    <div className="form-row">
+                                    <div className="form-row" style={{justifyContent: "center"}}>
                                         {this.state.resTime == 60 ?
                                             <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>60s</button>:
                                             <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setResTime(60)}>60s</button>
@@ -224,6 +228,21 @@ export class QuestionForm extends Component {
                                             {this.state.resTime == 120 ?
                                             <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>120s</button>:
                                             <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setResTime(120)}>120s</button>
+                                        }
+                                    </div>
+                                </div>
+                                <div className="form-group col-3" style={{textAlign: "center"}}>
+                                    <label className="db-txt2" style={{ margin:"2%"}}>
+                                        Camera
+                                    </label>
+                                    <div className="form-row" style={{justifyContent: "center"}}>
+                                        {this.state.cameraOn ?
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>ON</button>:
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setCameraOn(true)}>ON</button>
+                                        }
+                                        {!this.state.cameraOn ?
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>OFF</button>:
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setCameraOn(false)}>OFF</button>
                                         }
                                     </div>
                                 </div>

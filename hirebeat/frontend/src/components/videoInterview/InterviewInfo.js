@@ -91,7 +91,7 @@ class InterviewInfo extends Component {
     callSecond = () => {
         const { history } = this.props;
         if (history) history.push({
-            pathname: "/video-interview",
+            pathname: this.props.interview_position.camera_on ? "/video-interview" : "/audio-interview",
             params: {
                 email: this.state.email,
                 positionId: this.state.positionId,
@@ -268,6 +268,7 @@ class InterviewInfo extends Component {
                                             <li style={{marginTop:"1rem"}}><a href="/practice" style={{color:"#ff6b00"}}>Practice with our sample question</a> before the interview starts.</li>
                                             <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>{this.props.interview_position.prepare_time} seconds of preparation time</span> for each interview question.</li>
                                             <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>{this.props.interview_position.questionTime} seconds of  response time</span> for each interview question.</li>
+                                            <li style={{marginTop:"1rem"}}><span style={{color:"#ff6b00"}}>Camera</span> is <span style={{color:"#ff6b00"}}>{this.props.interview_position.camera_on ? "" : "not"}</span> needed for each interview question.</li>
                                         </ul>
                                         {this.state.selected ? <button
                                             onClick={this.redirectToRecord}
