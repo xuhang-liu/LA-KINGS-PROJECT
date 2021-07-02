@@ -154,8 +154,8 @@ export class EssentialUserInfo extends Component {
     var selectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-cog-select.png";
     var nonselectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-cog-non.png";
     var nonselectHelp = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-help-circle.png";
-    var selectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-list-ul-select.png";
-    var nonSelectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-list-ul-non.png";
+    var selectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-bookmark-plus-select.png";
+    var nonSelectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-bookmark-plus-non.png";
     var selectVideos = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-slideshow-select.png";
     var nonSelectVideos = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-slideshow-non.png";
     var selectResume = "https://hirebeat-assets.s3.amazonaws.com/User-dash/bx-file-select.png";

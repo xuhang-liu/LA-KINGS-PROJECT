@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ReactPlayer from 'react-player';
+import AudioPlayer from "../../audios/AudioPlayer";
 import { updateComments, getApplicantsVideos } from "./../../../redux/actions/video_actions";
 
 
@@ -84,12 +85,17 @@ class ApplicationVideoPanel extends Component {
                     <div className="col-7">
                         <div className="row">
                             <div className="col-12 d-flex m-3 mt-4">
-                            <ReactPlayer id="rw-video" url={this.props.url} controls={true} playbackRate={this.state.playbackRate}
-                            // Disable download button
-                            config={{ file: { attributes: { controlsList: 'nodownload' } } }}
-                            // Disable right click
-                            onContextMenu={e => e.preventDefault()}
-                            width="36vw" height="auto"/>
+                                {/* determine video or audio*/}
+                                {this.props.url?.slice(-3) == "wav" ?
+                                    <AudioPlayer url={this.props.url} /> :
+                                    <ReactPlayer id="rw-video" url={this.props.url} controls={true} playbackRate={this.state.playbackRate}
+                                        // Disable download button
+                                        config={{ file: { attributes: { controlsList: 'nodownload' } } }}
+                                        // Disable right click
+                                        onContextMenu={e => e.preventDefault()}
+                                        width="36vw" height="auto"
+                                    />
+                                }
                             </div>
                         </div>
                         <div className="row mt-3 ml-1">

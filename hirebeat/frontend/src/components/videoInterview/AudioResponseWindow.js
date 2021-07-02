@@ -1,60 +1,80 @@
 import React, { Component } from "react";
-//import RetryVideoRecorder from "../practice/RetryVideoRecorder";
-//import {Redirect} from "react-router-dom";
 import CountdownBar from "./CountdownBar";
 import { PracticeCard} from "../practice/CardComponents";
 import NotePad from "../practice/NotePad";
 import { connect } from "react-redux";
 import PrepCountdown from "../practice/PrepCountdown";
-import TestDevice from "./TestDevice";
-import VideoRecorder from "./VideoRecorder";
+import TestAudioDevice from "./TestAudioDevice";
+import AudioRecorder from "./AudioRecorder";
 import {getInterviewQuestions} from "../../redux/actions/question_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import { updateRecordRefresh } from "../../redux/actions/auth_actions";
 
-export class CareerResponseWindow extends Component {
+import WaveSurfer from 'wavesurfer.js';
+import MicrophonePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.microphone.js';
+WaveSurfer.microphone = MicrophonePlugin;
+import RecordRTC from "recordrtc";
+
+export class AudioResponseWindow extends Component {
     // data passed from login page
     email = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["email"];
     positionId = typeof(this.props.location.params) == "undefined" ? null : this.props.location.params["positionId"];
 
     constructor(props) {
         super(props);
-        let videoRecorderOptions = this.getVideoRecorderOptions(this.props.interview_position.questionTime);
+        let audioRecorderOptions = this.getAudioRecorderOptions(this.props.interview_position.questionTime);
         this.state = {
             status: "Preparation",
             type: "behavior",
             deviceTested: false,
             email: this.email == null ? "" : this.email,
             positionId: this.positionId == null ? 0 : this.positionId,
-            videoRecorderOptions: videoRecorderOptions,
+            audioRecorderOptions: audioRecorderOptions,
         };
     }
 
-    getVideoRecorderOptions = (time) => {
-        let videoRecorderOptions = {
-              controls: true,
-              controlBar: {
+    getAudioRecorderOptions = (time) => {
+        let audioRecorderOptions = {
+            controls: true,
+            controlBar: {
                 recordToggle: false,
-                volumePanel: false,
-                pictureInPictureToggle: false,
-                fullscreenToggle: false
-              },
-              width: 520,
-              height: 350,
-              bigPlayButton: false,
-              fluid: false,
-              responsive: true,
-              plugins: {
-                record: {
-                  audio: true,
-                  video: true,
-                  maxLength: time,
-                  debug: true,
-                  videoMimeType: "video/webm;codecs=vp8,opus",
+                  volumePanel: false,
+                  fullscreenToggle: false
+            },
+            bigPlayButton: false,
+            width: 400,
+            height: 100,
+            fluid: false,
+            responsive: true,
+            plugins: {
+                wavesurfer: {
+                    backend: 'WebAudio',
+                    waveColor: '#56a3fa',
+                    progressColor: 'black',
+                    debug: true,
+                    cursorWidth: 1,
+                    hideScrollbar: true,
+                    plugins: [
+                        // enable microphone plugin
+                        WaveSurfer.microphone.create({
+                            bufferSize: 4096,
+                            numberOfInputChannels: 1,
+                            numberOfOutputChannels: 1
+                        })
+                    ]
                 },
-              },
+                record: {
+                    audio: true,
+                    video: false,
+                    audioMimeType: 'audio/wav',  //TODO convert to mp3
+                    audioRecorderType: RecordRTC.StereoAudioRecorder,
+                    maxLength: time,
+                    displayMilliseconds: true,
+                    debug: true
+                }
+            }
         };
-        return videoRecorderOptions;
+        return audioRecorderOptions;
     }
 
     componentDidMount() {
@@ -137,7 +157,7 @@ export class CareerResponseWindow extends Component {
         let countTime = this.state.status == "Preparation" ? this.props.interview_position.prepare_time : this.props.interview_position.questionTime;
         return (
             (!this.state.deviceTested) ? (
-                <TestDevice testDeviceDone={this.testDeviceDone} prepareTime={this.props.interview_position.prepare_time}/>
+                <TestAudioDevice testDeviceDone={this.testDeviceDone} prepareTime={this.props.interview_position.prepare_time}/>
             ) : (
             <div>
                 <audio className="audio-start">
@@ -186,8 +206,8 @@ export class CareerResponseWindow extends Component {
                         </div>
                         {this.state.status == "Preparation" ? (
                             <PrepCountdown finishCountdown={this.finishCountdown}/>
-                        ) : (   <VideoRecorder
-                                    {...this.state.videoRecorderOptions}
+                        ) : (   <AudioRecorder
+                                    {...this.state.audioRecorderOptions}
                                     startRecording={this.startRecording}
                                     recordingDone={this.recordingDone}
                                     resetCountdownBar={this.resetCountdownBar}
@@ -222,4 +242,4 @@ const mapStateToProps = (state) => ({
   interview_position: state.question_reducer.interview_position,
 });
 
-export default connect(mapStateToProps, { getInterviewQuestions, updateRecordRefresh })(CareerResponseWindow);
+export default connect(mapStateToProps, { getInterviewQuestions, updateRecordRefresh })(AudioResponseWindow);

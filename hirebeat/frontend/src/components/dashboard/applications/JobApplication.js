@@ -1754,16 +1754,23 @@ const Applicant = (props) => {
         props.getApplicantsVideos(applicants[index].email, positionId);
         props.getApplicantsInfo(applicants[index].email);
         props.getResumeURL(positionId, applicants[index].user_id);
+        props.getReviewNote(positionId, applicants[index].email);
+        props.getReviewerEvaluation(positionId, applicants[index].email);
+        props.getCurrentReviewerEvaluation(positionId, applicants[index].email, props.user.email);
         setCurrent(index);
     }
 
     function viewNextResult(curIndex) {
+        sessionStorage.removeItem("show" + curIndex)
         let next = curIndex + 1;
+        sessionStorage.setItem(("show" + next), "true");
         getReviewPageData(next);
     };
 
     function viewPrevResult(curIndex) {
+        sessionStorage.removeItem("show" + curIndex)
         let prev = curIndex - 1;
+        sessionStorage.setItem(("show" + prev), "true");
         getReviewPageData(prev);
     };
 

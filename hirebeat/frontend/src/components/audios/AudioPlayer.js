@@ -8,6 +8,7 @@ export class AudioPlayer extends Component {
             <ReactAudioPlayer
               src={this.props.url}
               controls
+              controlsList={"nodownload"}
             />
         </div>
     );

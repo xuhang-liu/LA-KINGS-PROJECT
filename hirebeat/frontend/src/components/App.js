@@ -192,6 +192,7 @@ import Marketing from "./career/jobs/Marketing";
 import ProductManager from "./career/jobs/ProductManager";
 import SoftwareEngineer from "./career/jobs/SoftwareEngineer";
 import CareerResponseWindow from "./videoInterview/CareerResponseWindow";
+import AudioResponseWindow from "./videoInterview/AudioResponseWindow";
 import Contact from "./contact/contact";
 import EmployerContact from "./contact/EmployerContact";
 import Howitworks from "./home/Howitworks";
@@ -303,6 +304,7 @@ class App extends Component {
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
                 <PrivateRoute exact path="/video-interview" component={CareerResponseWindow}/>
+                <PrivateRoute exact path="/audio-interview" component={AudioResponseWindow}/>
                 <Route exact path="/apply-job" component={ApplyJob} />
                 <Route exact path="/company-branding/:companyName" component={CompanyBranding} />
                 <Route exact path="/employer" component={IndexEmployer} />
