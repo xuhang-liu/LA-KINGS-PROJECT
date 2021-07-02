@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import AudioRecorder from "./AudioRecorder";
 import { CardButton, TestDeviceCard } from "./../practice/CardComponents";
 import { audioRecorderOptions } from "./../../constants/constants";
-import NotePad from "./../practice/NotePad";
+//import NotePad from "./../practice/NotePad";
 import Modal from "react-bootstrap/Modal";
 
 function TestAudioDevice(props) {

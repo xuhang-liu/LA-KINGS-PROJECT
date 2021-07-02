@@ -1761,12 +1761,16 @@ const Applicant = (props) => {
     }
 
     function viewNextResult(curIndex) {
+        sessionStorage.removeItem("show" + curIndex)
         let next = curIndex + 1;
+        sessionStorage.setItem(("show" + next), "true");
         getReviewPageData(next);
     };
 
     function viewPrevResult(curIndex) {
+        sessionStorage.removeItem("show" + curIndex)
         let prev = curIndex - 1;
+        sessionStorage.setItem(("show" + prev), "true");
         getReviewPageData(prev);
     };
 

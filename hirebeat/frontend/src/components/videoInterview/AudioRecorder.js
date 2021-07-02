@@ -9,8 +9,8 @@ import "webrtc-adapter";
 import WaveSurfer from 'wavesurfer.js';
 import MicrophonePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.microphone.js';
 WaveSurfer.microphone = MicrophonePlugin;
-import Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer.js';
-import Record from "videojs-record/dist/videojs.record.js";
+//import Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer.js';
+//import Record from "videojs-record/dist/videojs.record.js";
 
 import CareerVideoUploader from "./CareerVideoUploader";
 import { connect } from "react-redux";

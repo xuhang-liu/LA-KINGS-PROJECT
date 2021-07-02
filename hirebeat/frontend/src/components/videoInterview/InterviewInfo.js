@@ -32,6 +32,7 @@ class InterviewInfo extends Component {
         };
         // check candidate resume
         const url = new URL("https://hirebeat.co/jobs/get-resume-from-job-application"); // todo change here when online
+        //const url = new URL("http://127.0.0.1:8000/jobs/get-resume-from-job-application");
         const params = {positionId: this.positionId, email: this.email};
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
         fetch(url)
@@ -167,8 +168,8 @@ class InterviewInfo extends Component {
 
     onUploadFinish = () => {
         var name = this.state.cvName;
-        var resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + name;
-        //var resume_url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
+        //var resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + name;
+        var resume_url = "https://hirebeat-test-video-bucket.s3.amazonaws.com/" + name;
     
         // insert MetaData to resume table
         const resumeMetaData = {

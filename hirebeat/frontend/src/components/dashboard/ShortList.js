@@ -28,7 +28,7 @@ const ShortList = (props) => {
         <div>
             <div className="container min-width-980">
                 <div style={{ marginBottom: "30px" }}>
-                    <h3><b><i className="bx-fw bx bx-list-ul"></i><span className="ml-2">Shortlist</span></b></h3>
+                    <h3><b><i className="bx-fw bx bx-bookmark-plus"></i><span className="ml-2">Shortlist</span></b></h3>
                 </div>
                 {selectedId == -1 ?
                     <div>
@@ -412,12 +412,8 @@ const CandidateCard = (props) => {
         props.getResumeURL(props.applicant.positions_id, props.id_candidate);
         props.getReviewNote(props.applicant.positions_id, props.applicant.email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
-<<<<<<< HEAD
         props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email);
-        setTimeout(()=>{setShow(true);}, 300)
-=======
-        setTimeout(() => { setShow(true); }, 300)
->>>>>>> upstream/master
+        setTimeout(()=>{setShow(true);}, 300);
     };
 
     const refresh = () => {

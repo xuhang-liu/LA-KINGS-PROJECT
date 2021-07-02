@@ -86,7 +86,7 @@ class ApplicationVideoPanel extends Component {
                         <div className="row">
                             <div className="col-12 d-flex m-3 mt-4">
                                 {/* determine video or audio*/}
-                                {this.props.url.slice(-3) == "wav" ?
+                                {this.props.url?.slice(-3) == "wav" ?
                                     <AudioPlayer url={this.props.url} /> :
                                     <ReactPlayer id="rw-video" url={this.props.url} controls={true} playbackRate={this.state.playbackRate}
                                         // Disable download button
