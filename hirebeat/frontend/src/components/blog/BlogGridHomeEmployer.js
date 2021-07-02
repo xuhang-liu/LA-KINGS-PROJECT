@@ -87,6 +87,7 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-4-challenges-campus-recruiters-could-meet",
     "/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process",
     "/employer_blog-what-is-broken-in-the-talent-acquisition-process",
     "/employer_blog-8-ways-to-automate-recruiting-processes",
@@ -114,6 +115,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer25.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer24.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer23.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer22.jpg",
@@ -141,6 +143,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Jul 02, 2021",
     "Jun 25, 2021",
     "Jun 25, 2021",
     "Jun 18, 2021",
@@ -168,6 +171,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "4 CHALLENGES CAMPUS RECRUITERS COULD MEET",
     "FIX YOUR BROKEN TALENT ACQUISITION PROCESS",
     "BROKEN IN THE TALENT ACQUISITION PROCESS",
     "8 WAYS TO AUTOMATE RECRUITING PROCESSES",

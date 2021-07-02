@@ -24,6 +24,25 @@ class BlogSidebarEmployer extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/employer_blog-4-challenges-campus-recruiters-could-meet">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer25.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Jul 02, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-4-challenges-campus-recruiters-could-meet">
+                                    <a>4 Challenges Campus Recruiters Could Meet</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer24.jpg" alt="image"/>
@@ -339,25 +358,6 @@ class BlogSidebarEmployer extends Component {
                             <h4 className="title usmall">
                                 <Link to="/employer_blog-how-to-get-your-job-postings-noticed">
                                     <a>How to Get Your Job Postings Noticed</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/employer_blog-millennials-we-want-you">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer7.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Apr 07, 2021</time>
-                            <h4 className="title usmall">
-                                <Link to="/employer_blog-millennials-we-want-you">
-                                    <a>Millennials? We Want You!</a>
                                 </Link>
                             </h4>
                         </div>
