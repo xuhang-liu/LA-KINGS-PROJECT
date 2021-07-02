@@ -59,7 +59,7 @@ export class Header extends Component {
           <div className="nav-item order-xl-1 align-self-center mr-5">
             <div className="nav-link text-white navbar-font">
               <div className="row">
-                    <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px'}}></i>        
+                    <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px', marginTop:"0.1rem"}}></i>        
                     <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username.split("@")[0]}  ` : ""}
                     <ul className="nav_submenu" style={{width:"10rem"}}> 
                       <li>
@@ -94,7 +94,7 @@ export class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    Resources <i className="bx bx-chevron-down"></i>
+                    Resources <i className="bx-fw bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"7.6rem",width:"10rem"}}>
                       <li>
                         <Link id="id-findajob" to="/job-seekers-career" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
@@ -130,7 +130,7 @@ export class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
-                  Job Seekers <i className="bx bx-chevron-down"></i>
+                  Job Seekers <i className="bx-fw bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"16.8rem",width:"18rem"}}>
                     <li>
                         <Link id="id-interviewpr" to="/practice" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
@@ -160,7 +160,7 @@ export class Header extends Component {
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    About Us <i className="bx bx-chevron-down"></i>
+                    About Us <i className="bx-fw bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"10rem"}}>
                       <li><Link id="id-aboutus1" to="/company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Company</Link></li>
                       <li><Link id="id-contact1" to="/contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
@@ -172,6 +172,7 @@ export class Header extends Component {
               </li>
             </ul>
           </div>
+          <MediaQuery minDeviceWidth={1224}>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{paddingTop:"10px"}}>
             <Link to="/login">
@@ -188,6 +189,25 @@ export class Header extends Component {
             </Link>
             </li>
           </ul>
+          </MediaQuery>
+          <MediaQuery maxDeviceWidth={1223}>
+          <ul className="navbar-nav d-flex flex-row order-xl-1">
+            <li className="nav-item" style={{paddingTop:"10px"}}>
+            <Link to="/login">
+              <a className="default-btn mr-3" id="id-login" style={{color:"white", paddingLeft:"25px", backgroundColor:"#ff6b00"}}>
+                Log In
+              </a>
+            </Link>
+            </li>
+            <li className="nav-item" style={{paddingTop:"10px"}}>
+            <Link to="/register">
+            <a className="default-btn mr-3" id="id-signup" style={{color:"white", paddingLeft:"25px"}}>
+              Start for Free
+            </a>
+            </Link>
+            </li>
+          </ul>
+          </MediaQuery>
         </React.Fragment>
     );
   };
@@ -199,8 +219,8 @@ export class Header extends Component {
           <div className="nav-item order-xl-1 align-self-center mr-5">
             <div className="nav-link text-white navbar-font">
               <div className="row">
-                    <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px'}}></i>        
-                    <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username.split("@")[0]}  ` : ""}
+                    <i className="bx bx-user-circle bx-sm" style={{color:"#FFFFFF", paddingRight:'2px', marginTop:"0.1rem"}}></i>        
+                    <span className="header-text" style={{cursor:'pointer', marginRight:"1rem"}}>{user ? `  ${user.username.split("@")[0]}  ` : ""}
                     <ul className="nav_submenu" style={{width:"10rem"}}> 
                       <li>
                       <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
@@ -228,7 +248,7 @@ export class Header extends Component {
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    Company <i className="bx bx-chevron-down"></i>
+                    Company <i className="bx-fw bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"8rem"}}>
                       <li><Link id="id-aboutus2" to="/employer_company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>About Us</Link></li>
                       <li><Link id="id-contact2" to="/employer_contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
@@ -261,7 +281,7 @@ export class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{cursor:'pointer'}}>
-                  Job Seekers <i className="bx bx-chevron-down"></i>
+                  Job Seekers <i className="bx-fw bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"21rem",width:"18rem"}}>
                       <li>
                         <a id="id-jobseeker2" href="/job-seekers" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>
@@ -296,7 +316,7 @@ export class Header extends Component {
               <li className="nav-item ">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    Product <i className="bx bx-chevron-down"></i>
+                    Product <i className="bx-fw bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"8.6rem"}}>
                       <li><Link id="id-product-interview" to="/employer-product" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Overview</Link></li>
                       <li><hr style={{marginBottom:"0.4rem", marginTop:"0.4rem"}}/></li>
@@ -309,7 +329,7 @@ export class Header extends Component {
               <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
-                    About Us <i className="bx bx-chevron-down"></i>
+                    About Us <i className="bx-fw bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"8rem"}}>
                       <li><Link id="id-aboutus3" to="/employer_company" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Company</Link></li>
                       <li><Link id="id-contact3" to="/employer_contact" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Contact</Link></li>
@@ -325,6 +345,7 @@ export class Header extends Component {
               </li>
             </ul>
           </div>
+          <MediaQuery minDeviceWidth={1224}>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{paddingTop:"10px"}}>
             <Link to="/employer-login">
@@ -341,6 +362,25 @@ export class Header extends Component {
             </Link>
             </li>
           </ul>
+          </MediaQuery>
+          <MediaQuery maxDeviceWidth={1223}>
+          <ul className="navbar-nav d-flex flex-row order-xl-1">
+            <li className="nav-item" style={{paddingTop:"10px"}}>
+            <Link to="/employer-login">
+              <a className="default-btn mr-3" id="id-login-employer" style={{color:"white", paddingLeft:"25px", backgroundColor:"#ff6b00"}}>
+                Log In
+              </a>
+            </Link>
+            </li>
+            <li className="nav-item" style={{paddingTop:"10px"}}>
+            <Link to="/employer_register">
+            <a className="default-btn mr-3" id="id-signup-employer" style={{color:"white", paddingLeft:"25px"}}>
+              Start Hiring For Free
+            </a>
+            </Link>
+            </li>
+          </ul>
+          </MediaQuery>
         </React.Fragment>
     );
   };
@@ -352,7 +392,7 @@ export class Header extends Component {
           <li className="nav-item">
           <Link to="/">
             <a className="default-btn" onClick={() => {sessionStorage.clear(); this.props.logout();}} style={{color:"white"}}>
-             <i className="bx bxs-hot"></i>Logout<span></span>
+             <i className="bx-fw bx bxs-hot"></i>Logout<span></span>
             </a>
           </Link>
           </li>

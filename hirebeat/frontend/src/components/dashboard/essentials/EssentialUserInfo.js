@@ -272,7 +272,7 @@ export class EssentialUserInfo extends Component {
                         target="_blank"
                         className="panel-button"
                         href="/employer_talent_sourcing"
-                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none", textDecoration:"none" }}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none", textDecoration: "none" }}
                       >
                         <IconUserText
                           textSize={"12px"}
@@ -281,7 +281,7 @@ export class EssentialUserInfo extends Component {
                           height={"42px"}
                           marginL={"1rem"}
                           backColor={defaultBack}
-                          iconSrc={"https://hirebeat-assets.s3.amazonaws.com/Employer/bx-sourcing-non.png"}
+                          iconSrc={"https://hirebeat-assets.s3.amazonaws.com/Employer/bx-sourcing-non.svg"}
                           textColor={defaultEColor}
                         />
                       </a>
@@ -513,10 +513,9 @@ export class EssentialUserInfo extends Component {
                   <div className="row" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
                     <div className="col d-flex align-items-center">
                       <a
-                        type="button"
                         className="panel-button"
                         href="/contact"
-                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none", textDecoration:"none" }}
                       >
                         <IconUserText1
                           textSize={"12px"}

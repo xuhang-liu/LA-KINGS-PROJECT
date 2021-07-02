@@ -36,7 +36,7 @@ export class SubpageSetting extends Component {
         var profile = this.makeProfile();
         this.props.updateProfile(profile);
         e.preventDefault();
-        this.props.renderVideos();
+        alert('Update Success!');
     };
 
     makeProfile = () => {
@@ -145,16 +145,16 @@ export class SubpageSetting extends Component {
             title: 'Confirm To Remove',
             message: 'Do you want to remove this reviewer from all job positions?',
             buttons: [
-              {label: 'Yes', onClick: () => {this.props.removeReviewerFromList({"r_email":r_email, "type":type}); setTimeout(()=>{this.props.getReviewersList(this.props.user.id)}, 300); setTimeout(()=>{this.props.getPJobs()}, 300)}},
-              {label: 'No'},
+                { label: 'Yes', onClick: () => { this.props.removeReviewerFromList({ "r_email": r_email, "type": type }); setTimeout(() => { this.props.getReviewersList(this.props.user.id) }, 300); setTimeout(() => { this.props.getPJobs() }, 300) } },
+                { label: 'No' },
             ]
-          });
+        });
     }
 
 
     render() {
         return (
-            <div className="container" style={{ width: '60%' }}>
+            <div className="container">
                 <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-cog"></i><span className="ml-2">Setting</span></b></h3></div>
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
@@ -184,7 +184,6 @@ export class SubpageSetting extends Component {
                         <div className="row" >
                             <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                                 <IconText
-                                    iconName={"bx bx-user bx-md"}
                                     textDisplayed={"Account Information"}
                                     textSize={"24px"}
                                     textColor={"#090D3A"}
@@ -193,23 +192,27 @@ export class SubpageSetting extends Component {
                             </div>
                         </div>
 
-                        <div className="card container">
-                            <div className="form-row" style={{ marginTop: "1%" }}>
+                        <div className="chart-bg1 container">
+                            <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
                                 <div className="form-group col">
-                                    <label style={{ fontSize: "17px", display: 'inline-block' }}>Email:</label>
-                                    <p style={{ display: 'inline-block', fontSize: "15px", marginLeft: "1rem" }}>{this.props.user.email}</p>
+                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Email:</p>
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col">
+                                    <p style={{ display: 'inline-block', fontSize: "15px" }}>{this.props.user.email}</p>
                                 </div>
                             </div>
                             {this.props.profile.is_employer &&
                                 <div>
-                                    <div className="form-row" style={{ marginTop: "1%" }}>
+                                    <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
                                         <div className="form-group col">
-                                            <label style={{ fontSize: "17px" }}>Company Job Portal</label>
+                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Company Job Portal</p>
                                         </div>
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col">
-                                            <a target="_blank" href={"https://hirebeat.co/company-branding/" + this.props.profile.company_name}>https://hirebeat.co/company-branding/{this.props.profile.company_name}</a>
+                                            <a target="_blank" href={"https://hirebeat.co/company-branding/" + this.props.profile.company_name}>https://hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                         </div>
                                     </div>
                                 </div>}
@@ -217,7 +220,7 @@ export class SubpageSetting extends Component {
                                 <div className="form-row" style={{ marginTop: "1%" }}>
                                     {!this.props.profile.is_employer &&
                                         <div className="form-group col-6">
-                                            <label style={{ fontSize: "17px" }}>Phone Number</label>
+                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Phone Number</p>
                                             <input
                                                 type="number"
                                                 className="form-control"
@@ -242,7 +245,7 @@ export class SubpageSetting extends Component {
                                         />
                                     </div>*/}
                                     <div className="form-group col-6">
-                                        <label style={{ fontSize: "17px" }}>Location</label>
+                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Location</p>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -258,7 +261,8 @@ export class SubpageSetting extends Component {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="btn btn-primary"
+                                    className="default-btn"
+                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
                                 >
                                     Update Profile
                                 </button>
@@ -270,7 +274,6 @@ export class SubpageSetting extends Component {
                         <div className="row" >
                             <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                                 <IconText
-                                    iconName={"bx bx-user bx-md"}
                                     textDisplayed={"Reviewer List"}
                                     textSize={"24px"}
                                     textColor={"#090D3A"}
@@ -278,17 +281,17 @@ export class SubpageSetting extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="card container">
+                        <div className="chart-bg1 container">
                             <div className="row pb-4 pt-2" style={{ marginTop: "1%" }}>
                                 <div className="col-6 h-100">
-                                    <label style={{ fontSize: "17px" }}>Sub-Reviewers</label>
+                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Sub-Reviewers</p>
                                     {this.props.sub_r_list.map((s, i) => {
                                         return (
                                             <div className="row ml-1">
-                                                <div className="col-2 pt-2">
+                                                <div className="col-1 pt-2">
                                                     <span className={`sub_number${i % 3}`} style={{ color: "white" }}>{s?.split("&")[0]?.substring(0, 2)?.toUpperCase()}</span>
                                                 </div>
-                                                <div className="col-7">
+                                                <div className="col-8">
                                                     <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{s?.split("&")[0]}</p>
                                                     <p style={{ fontSize: "0.95rem", fontWeight: "500", color: "#4a6f8a", marginTop: "0" }}>{s?.split("&")[1]?.toLowerCase()}</p>
                                                 </div>
@@ -300,14 +303,14 @@ export class SubpageSetting extends Component {
                                     })}
                                 </div>
                                 <div className="col-6 h-100">
-                                    <label style={{ fontSize: "17px" }}>External Reviewers</label>
+                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>External Reviewers</p>
                                     {this.props.ext_r_list.map((s, i) => {
                                         return (
                                             <div className="row ml-1">
-                                                <div className="col-2 pt-2">
+                                                <div className="col-1 pt-2">
                                                     <span className={`sub_number${i % 3}`} style={{ color: "white" }}>{s?.split("&")[0]?.substring(0, 2)?.toUpperCase()}</span>
                                                 </div>
-                                                <div className="col-7">
+                                                <div className="col-8">
                                                     <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{s?.split("&")[0]}</p>
                                                     <p style={{ fontSize: "0.95rem", fontWeight: "500", color: "#4a6f8a", marginTop: "0" }}>{s?.split("&")[1]?.toLowerCase()}</p>
                                                 </div>
@@ -319,9 +322,9 @@ export class SubpageSetting extends Component {
                                     })}
                                 </div>
                                 {(this.props.ext_r_list.length <= 0 && this.props.sub_r_list.length <= 0) &&
-                                <div className="col-12">
-                                    <p style={{marginLeft:"25%", fontSize:"1.1rem", fontWeight:"500", color:"#7a7a7a"}}>You haven't invited any reviewers yet.</p>
-                                </div>}
+                                    <div className="col-12 mt-4">
+                                        <p style={{ marginLeft: "25%", fontSize: "1.1rem", fontWeight: "500", color: "#7a7a7a" }}>You haven't invited any reviewers yet.</p>
+                                    </div>}
                             </div>
                         </div>
                     </div>
@@ -329,7 +332,6 @@ export class SubpageSetting extends Component {
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                         <IconText
-                            iconName={"bx bx-key bx-md"}
                             textDisplayed={"Change Password"}
                             textSize={"24px"}
                             textColor={"#090D3A"}
@@ -338,11 +340,11 @@ export class SubpageSetting extends Component {
                     </div>
                 </div>
 
-                <div className="card container">
+                <div className="chart-bg1 container">
                     <form style={{ marginBottom: "3%" }} onSubmit={this.PasswordCheck}>
                         <div className="form-row" style={{ marginTop: "1%" }}>
                             <div className="form-group col">
-                                <label style={{ fontSize: "17px" }}>Old Password</label>
+                                <p style={{ fontSize: "17px", color: "#090d3a" }}>Old Password</p>
                                 <input
                                     type="password"
                                     className="form-control"
@@ -356,7 +358,7 @@ export class SubpageSetting extends Component {
                         </div>
                         <div className="form-row" style={{ marginTop: "1%" }}>
                             <div className="form-group col-6">
-                                <label style={{ fontSize: "17px" }}>New Password</label>
+                                <p style={{ fontSize: "17px", color: "#090d3a" }}>New Password</p>
                                 <input
                                     type="password"
                                     className="form-control"
@@ -368,7 +370,7 @@ export class SubpageSetting extends Component {
                                 />
                             </div>
                             <div className="form-group col-6">
-                                <label style={{ fontSize: "17px" }}>Confirm Password</label>
+                                <p style={{ fontSize: "17px", color: "#090d3a" }}>Confirm Password</p>
                                 <input
                                     type="password"
                                     className="form-control"
@@ -384,7 +386,8 @@ export class SubpageSetting extends Component {
                         </div>
                         <button
                             type="submit"
-                            className="btn btn-primary"
+                            className="default-btn"
+                            style={{ paddingLeft: "25px", textDecoration: "none" }}
                         >
                             Update Password
                         </button>
@@ -395,7 +398,6 @@ export class SubpageSetting extends Component {
                         <div className="row" >
                             <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                                 <IconText
-                                    iconName={"bx bx-key bx-md"}
                                     textDisplayed={"Membership"}
                                     textSize={"24px"}
                                     textColor={"#090D3A"}
@@ -403,11 +405,40 @@ export class SubpageSetting extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="card container">
+                        <div className="chart-bg1 container">
+                            <div className="form-row" style={{ marginTop: "1%", marginBottom:"-1.6%" }}>
+                                <div className="form-group col">
+                                <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
+                                {this.props.profile.plan_interval == "Premium" &&
+                                <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                    <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                        <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
+                                    </p>
+                                </div>}
+                                {this.props.profile.plan_interval == "Pro" &&
+                                <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                    <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                        <i className="bx-fw bx bx-diamond bx-xs"></i><span>Pro</span>
+                                    </p>
+                                </div>}
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col">
+                                <a
+                                    href="/employer-pricing"
+                                    type="submit"
+                                    className="default-btn"
+                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                >
+                                    Change Plan
+                                </a>
+                                </div>
+                            </div>
                             <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
                                 <div className="form-row" style={{ marginTop: "1%" }}>
                                     <div className="form-group col">
-                                        <label style={{ fontSize: "17px" }}>Type your email to cancel the membership</label>
+                                        <p style={{ fontSize: "17px", color: "#090d3a"}}>Type your email to cancel the membership</p>
                                         <input
                                             type="email"
                                             className="form-control"
@@ -421,7 +452,8 @@ export class SubpageSetting extends Component {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="btn btn-primary"
+                                    className="default-btn"
+                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
                                 >
                                     Cancel Membership
                                 </button>
@@ -433,7 +465,6 @@ export class SubpageSetting extends Component {
                         <div className="row" >
                             <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                                 <IconText
-                                    iconName={"bx bx-key bx-md"}
                                     textDisplayed={"Membership"}
                                     textSize={"24px"}
                                     textColor={"#090D3A"}
@@ -441,13 +472,16 @@ export class SubpageSetting extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="card container">
+                        <div className="chart-bg1 container">
                             <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
-                                <div className="form-row" style={{ marginTop: "1%" }}>
+                                <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
                                     <div className="form-group col">
-                                        <label style={{ fontSize: "17px" }}>Current User Group:</label>
-                                        <br />
-                                        <label style={{ fontSize: "15px" }}>Free account</label>
+                                        <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
+                                        <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                            <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                <i className="bx-fw bx bx-diamond bx-xs"></i><span>Free Member</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                                 {this.props.profile.is_employer ?
@@ -456,16 +490,18 @@ export class SubpageSetting extends Component {
                                             <a
                                                 href="/employer-pricing"
                                                 type="submit"
-                                                className="btn btn-primary"
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", textDecoration: "none" }}
                                             >
-                                                Subscribe To Premium Member
+                                                Upgrade Plan
                                             </a>}</div> :
                                     <a
                                         href="/pricing"
                                         type="submit"
-                                        className="btn btn-primary"
+                                        className="default-btn"
+                                        style={{ paddingLeft: "25px", textDecoration: "none" }}
                                     >
-                                        Subscribe To Premium Member
+                                        Upgrade Plan
                                     </a>}
                             </form>
                         </div>

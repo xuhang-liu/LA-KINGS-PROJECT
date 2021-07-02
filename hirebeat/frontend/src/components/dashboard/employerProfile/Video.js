@@ -160,9 +160,18 @@ export class Video extends Component {
             <div>
                 <div style={{padding: "2rem"}}>
                     <div className="row" style={{marginBottom: "1rem"}}>
-                        <h3 className="profile-h3">Video Profile</h3>
+                        <h3 className="profile-h3 pl-3">Video Profile 
+                          <span className="tool_tip ml-2">
+                            <i class='bx-fw bx bxs-info-circle' style={{color:"#dfdfdf"}}></i>
+                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                              <div>
+                                You can upload a short intro or welcome message of your company. This will appear on the company branding page.
+                              </div>
+                            </p>
+                          </span>
+                        </h3>
                         {this.props.videoURL != "" && this.props.videoURL != null &&
-                            <p className="profile-p" style={{marginLeft: "60%"}}>
+                            <p className="profile-p" style={{marginLeft: "80%"}}>
                                 <div style={{float: "right"}}>
                                     <i className="bx bx-trash profile-edit" style={{marginLeft: "1rem", color: "#FF0000"}}></i>
                                     <span className="profile-edit" style={{color: "#FF0000", cursor:"pointer"}} onClick={this.deleteAlert}>Remove</span>
