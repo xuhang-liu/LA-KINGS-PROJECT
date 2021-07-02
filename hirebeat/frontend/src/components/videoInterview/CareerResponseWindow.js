@@ -137,7 +137,7 @@ export class CareerResponseWindow extends Component {
         let countTime = this.state.status == "Preparation" ? this.props.interview_position.prepare_time : this.props.interview_position.questionTime;
         return (
             (!this.state.deviceTested) ? (
-                <TestDevice testDeviceDone={this.testDeviceDone} />
+                <TestDevice testDeviceDone={this.testDeviceDone} prepareTime={this.props.interview_position.prepare_time}/>
             ) : (
             <div>
                 <audio className="audio-start">

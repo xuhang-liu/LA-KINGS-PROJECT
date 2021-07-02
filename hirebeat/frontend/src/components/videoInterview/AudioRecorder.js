@@ -141,7 +141,7 @@ export class AudioRecorder extends Component {
             >
             </audio>
             {!this.state.testStarted && this.props.isTesting ? (
-              <div className="ml-5 pt-2" style={{position: "absolute", zIndex:"100"}}>
+              <div className="pt-2" style={{position: "absolute", zIndex:"100", marginLeft: "7rem"}}>
                 <CardButton 
                 className="ml-5"
                 onTap={()=>{

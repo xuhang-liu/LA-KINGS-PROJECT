@@ -4,7 +4,7 @@ import { PracticeCard} from "../practice/CardComponents";
 import NotePad from "../practice/NotePad";
 import { connect } from "react-redux";
 import PrepCountdown from "../practice/PrepCountdown";
-import TestDevice from "./TestDevice";
+import TestAudioDevice from "./TestAudioDevice";
 import AudioRecorder from "./AudioRecorder";
 import {getInterviewQuestions} from "../../redux/actions/question_actions";
 import { confirmAlert } from 'react-confirm-alert';
@@ -157,7 +157,7 @@ export class AudioResponseWindow extends Component {
         let countTime = this.state.status == "Preparation" ? this.props.interview_position.prepare_time : this.props.interview_position.questionTime;
         return (
             (!this.state.deviceTested) ? (
-                <TestDevice testDeviceDone={this.testDeviceDone} />
+                <TestAudioDevice testDeviceDone={this.testDeviceDone} prepareTime={this.props.interview_position.prepare_time}/>
             ) : (
             <div>
                 <audio className="audio-start">
