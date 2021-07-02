@@ -491,10 +491,12 @@ def get_resume_from_job_application(request):
     position_id = request.query_params.get("positionId")
     email = request.query_params.get("email")
     data = {}
-    job_obj = Jobs.objects.get(positions_id=position_id)
-    candidate_application = ApplyCandidates.objects.get(jobs_id=job_obj.id, email=email)
-    data["resume_url"] = candidate_application.resume_url;
-
+    try:
+        job_obj = Jobs.objects.get(positions_id=position_id)
+        candidate_application = ApplyCandidates.objects.filter(jobs_id=job_obj.id, email=email)[0]
+        data["resume_url"] = candidate_application.resume_url
+    except ObjectDoesNotExist:
+        data["resume_url"] = ""
     return Response({
         "data": data,
     })

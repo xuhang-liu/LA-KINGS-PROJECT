@@ -124,6 +124,8 @@ def get_posted_jobs(request):
                 applicant_info = User.objects.filter(email=applicants[j]["email"]).values()
                 if len(applicant_info) == 1:
                     applicants[j]["user_id"] = applicant_info[0]["id"]
+                else:
+                    applicants[j]["user_id"] = -1
             questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
             int_dot = InvitedCandidates.objects.filter(positions_id=positions_id, is_recorded=True, video_count__gt=0, is_viewed=False, comment_status=0).count()
             int_dots += int_dot
@@ -162,6 +164,12 @@ def get_posted_jobs(request):
             position_id = subreviewers[i].position.id
             # get each position applicants
             applicants = list(InvitedCandidates.objects.filter(positions_id=position_id).values())
+            for j in range(len(applicants)):
+                applicant_info = User.objects.filter(email=applicants[j]["email"]).values()
+                if len(applicant_info) == 1:
+                    applicants[j]["user_id"] = applicant_info[0]["id"]
+                else:
+                    applicants[j]["user_id"] = -1
             questions = list(InterviewQuestions.objects.filter(positions_id=position_id).values())
             subs = []
             job_details = {
@@ -186,6 +194,12 @@ def get_posted_jobs(request):
             company_name = ex_reviewers[i].company_name
             # get each position applicants
             applicants = list(InvitedCandidates.objects.filter(positions_id=position_id).values())
+            for j in range(len(applicants)):
+                applicant_info = User.objects.filter(email=applicants[j]["email"]).values()
+                if len(applicant_info) == 1:
+                    applicants[j]["user_id"] = applicant_info[0]["id"]
+                else:
+                    applicants[j]["user_id"] = -1
             questions = list(InterviewQuestions.objects.filter(positions_id=position_id).values())
             subs = []
             job_details = {
@@ -438,32 +452,53 @@ def add_interview_resume(request):
 
 @api_view(['POST'])
 def get_resume_url(request):
-    print('Get Resume Called')
-    data = {}
+    # print('Get Resume Called')
+    data = {
+        "result_rate": "",
+        "hard_skill_jd_list": [],
+        "hard_skill_resume_list": [],
+        "hard_skill_info_list": [],
+        "soft_skill_resume_list": [],
+        "soft_skill_jd_list": [],
+        "soft_skill_info_list": [],
+        "other_keyword_resume_list": [],
+        "other_keyword_jd_list": [],
+        "other_keyword_info_list": [],
+        "basic_cri_resume_list": [],
+        "basic_cri_jd_list": [],
+        "basic_cri_info_list": []
+    }
     uploadTime = ""
     resumeURL = ""
     position_id = request.data["positionId"]
-    candidate_id = request.data["userId"]
     positions = Positions.objects.get(pk=position_id)
-    candidates = User.objects.get(pk=candidate_id)
-    uploadedResume = InterviewResumes.objects.get(positionId=positions, candidateId=candidates)
-    uploadTime = uploadedResume.invite_date
-    resumeURL = uploadedResume.resumeURL
-    data = {
-            "result_rate": uploadedResume.result_rate,
-            "hard_skill_jd_list": uploadedResume.hard_skill_jd_list,
-            "hard_skill_resume_list": uploadedResume.hard_skill_resume_list,
-            "hard_skill_info_list": uploadedResume.hard_skill_info_list,
-            "soft_skill_resume_list": uploadedResume.soft_skill_resume_list,
-            "soft_skill_jd_list": uploadedResume.soft_skill_jd_list,
-            "soft_skill_info_list": uploadedResume.soft_skill_info_list,
-            "other_keyword_resume_list": uploadedResume.other_keyword_resume_list,
-            "other_keyword_jd_list": uploadedResume.other_keyword_jd_list,
-            "other_keyword_info_list": uploadedResume.other_keyword_info_list,
-            "basic_cri_resume_list": uploadedResume.basic_cri_resume_list,
-            "basic_cri_jd_list": uploadedResume.basic_cri_jd_list,
-            "basic_cri_info_list": uploadedResume.basic_cri_info_list
-    }
+    try:
+        candidate_id = request.data["userId"]
+        candidate = User.objects.get(pk=candidate_id)
+        uploadedResume = InterviewResumes.objects.get(positionId=positions, candidateId=candidate)
+        uploadTime = uploadedResume.invite_date
+        resumeURL = uploadedResume.resumeURL
+        data = {
+                "result_rate": uploadedResume.result_rate,
+                "hard_skill_jd_list": uploadedResume.hard_skill_jd_list,
+                "hard_skill_resume_list": uploadedResume.hard_skill_resume_list,
+                "hard_skill_info_list": uploadedResume.hard_skill_info_list,
+                "soft_skill_resume_list": uploadedResume.soft_skill_resume_list,
+                "soft_skill_jd_list": uploadedResume.soft_skill_jd_list,
+                "soft_skill_info_list": uploadedResume.soft_skill_info_list,
+                "other_keyword_resume_list": uploadedResume.other_keyword_resume_list,
+                "other_keyword_jd_list": uploadedResume.other_keyword_jd_list,
+                "other_keyword_info_list": uploadedResume.other_keyword_info_list,
+                "basic_cri_resume_list": uploadedResume.basic_cri_resume_list,
+                "basic_cri_jd_list": uploadedResume.basic_cri_jd_list,
+                "basic_cri_info_list": uploadedResume.basic_cri_info_list
+        }
+    except ObjectDoesNotExist:
+        return Response({
+            "interviewResume": data,
+            "resumeURL": resumeURL,
+            "recordTime": uploadTime,
+        })
 
     return Response({
         "interviewResume": data,

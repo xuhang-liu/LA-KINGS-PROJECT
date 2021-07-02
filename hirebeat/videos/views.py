@@ -21,6 +21,7 @@ from django.http import HttpResponse
 import os
 from dotenv import load_dotenv
 load_dotenv()
+from django.core.exceptions import ObjectDoesNotExist
 
 # boto and s3 configuration
 if not boto.config.get('s3', 'use-sigv4'):
@@ -221,13 +222,16 @@ def get_video_user(request):
 
 @api_view(['GET'])
 def get_applicants_videos(request):
-    print("===Get Candidate Videos Called===")
+    # print("===Get Candidate Videos Called===")
     int_ques = []
     email = request.query_params.get("email")
-    user = User.objects.filter(email=email)
     positionId = request.query_params.get("positionId")
     position = Positions.objects.get(pk=positionId)
     questions = InterviewQuestions.objects.filter(positions=position)
+    user = User.objects.filter(email=email)
+    # check user existence
+    if len(user) == 0:
+        return Response({"int_ques": int_ques})
     for i in range(len(questions)):
         obj = questions[i]
         ques_id = obj.id
@@ -237,17 +241,27 @@ def get_applicants_videos(request):
             video = wpvideo[0]
             serializer = WPVideoSerializer(video)
             int_ques.append(serializer.data)
-    
+        else:
+            return Response({"int_ques": int_ques})
     return Response({
         "int_ques": int_ques,
     })
 
 @api_view(['GET'])
 def get_applicants_info(request):
-    print("===Get Candidate Info Called===")
+    # print("===Get Candidate Info Called===")
     email = request.query_params.get("email")
-    user = User.objects.filter(email=email)[0]
-    profile = Profile.objects.get(user_id=user.id)
+    try:
+        user = User.objects.get(email=email)
+        profile = Profile.objects.get(user_id=user.id)
+    except ObjectDoesNotExist:
+        return Response({
+            "id_candidate": -1,
+            "username_candidate": "",
+            "email_candidate": email,
+            "phone_candidate": "",
+            "location_candidate": "",
+        })
 
     return Response({
         "id_candidate": user.id,

@@ -37,7 +37,8 @@ function TestDevice(props) {
     <React.Fragment>
       <ReadBeforeStart
         show={showFirst}
-        hide={hideFirst}  
+        hide={hideFirst}
+        prepareTime={props.prepareTime}
       />
     <TestDeviceCard>
       <div
@@ -93,7 +94,7 @@ const ReadBeforeStart = (props) => {
                       </div>
                       <div className="col-11">
                           <p style={{fontSize:"18px"}}>
-                              You have <span style={{color:"#FF6B00"}}>30 seconds</span> to prepare and take notes for each question.
+                              You have <span style={{color:"#FF6B00"}}>{props.prepareTime} seconds</span> to prepare and take notes for each question.
                           </p>
                       </div>
                   </div>

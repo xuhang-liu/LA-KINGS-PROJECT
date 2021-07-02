@@ -98,6 +98,8 @@ const ShortList = (props) => {
                             subreviewerUpdateComment={props.subreviewerUpdateComment}
                             getReviewNote={props.getReviewNote}
                             getReviewerEvaluation={props.getReviewerEvaluation}
+                            getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                            user={props.user}
                         />
                     </div>
                 }
@@ -386,6 +388,8 @@ const AcceptedCandidate = (props) => {
                                     current={index}
                                     getReviewNote={props.getReviewNote}
                                     getReviewerEvaluation={props.getReviewerEvaluation}
+                                    getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                                    user={props.user}
                                 />
                             </div>
                         )
@@ -408,13 +412,21 @@ const CandidateCard = (props) => {
         props.getResumeURL(props.applicant.positions_id, props.id_candidate);
         props.getReviewNote(props.applicant.positions_id, props.applicant.email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
+<<<<<<< HEAD
+        props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email);
+        setTimeout(()=>{setShow(true);}, 300)
+=======
         setTimeout(() => { setShow(true); }, 300)
+>>>>>>> upstream/master
     };
 
     const refresh = () => {
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
         props.getApplicantsInfo(props.applicant.email);
         props.getResumeURL(props.applicant.positions_id, props.id_candidate);
+        props.getReviewNote(props.applicant.positions_id, props.applicant.email);
+        props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
+        props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email);
     }
 
     const renderStars = (stars) => {
