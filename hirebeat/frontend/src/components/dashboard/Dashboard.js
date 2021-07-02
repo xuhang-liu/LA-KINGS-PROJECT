@@ -9,9 +9,11 @@ import { Resume } from "./videos/Resume";
 import { ReceivedInterviewList } from "./position/ReceivedInterviewList";
 import { Profile } from "./profile/Profile";
 import PageTitleArea from '../Common/PageTitleArea';
-import { updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getProfileDetail,
-        updatePersonalInfo, updateSocialMedia, updateBasicInfo, updateVideo, updateSummary,
-        updateResume, updateEducation, updateWorkExp, updateProfileRate, updateUserLogo} from "../../redux/actions/auth_actions";
+import {
+  updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getProfileDetail,
+  updatePersonalInfo, updateSocialMedia, updateBasicInfo, updateVideo, updateSummary,
+  updateResume, updateEducation, updateWorkExp, updateProfileRate, updateUserLogo
+} from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
 import RowBoxes from "./Rowboxes"
@@ -67,7 +69,7 @@ export class Dashboard extends Component {
     this.props.loadProfile();
     this.activateEmail();
     this.props.getReceivedInterview(this.props.user.email);
-    var user = {"id": this.props.user.id};
+    var user = { "id": this.props.user.id };
     this.props.loadUserFullname(user);
     this.props.getProfileDetail(this.props.user.id);
   }
@@ -78,7 +80,7 @@ export class Dashboard extends Component {
 
   state = {
     subpage: (this.page == "" ? "videos" : this.page),
-    isTourOpen: this.props.profile.saved_video_count == 0 && !this.props.profile.viewed_tutorial? true: false,
+    isTourOpen: this.props.profile.saved_video_count == 0 && !this.props.profile.viewed_tutorial ? true : false,
   };
 
   // tour functions
@@ -126,8 +128,8 @@ export class Dashboard extends Component {
 
   renderSetting = () => {
     this.setState({
-          subpage: "settings",
-        }
+      subpage: "settings",
+    }
     )
   }
 
@@ -135,52 +137,52 @@ export class Dashboard extends Component {
     // solve async problem
     this.props.getProfileDetail(this.props.user.id);
     this.setState({
-          subpage: "profile",
-        }
+      subpage: "profile",
+    }
     )
   }
 
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "videos":
-        return <Interview/>;
-        //case "analytics":
-        //return <Analytics />;
+        return <Interview />;
+      //case "analytics":
+      //return <Analytics />;
       case "resume":
-        return <Resume/>;
+        return <Resume />;
       case "interview":
         return <ReceivedInterviewList
-              received_interview={this.props.received_interview}
-              user={this.props.user}
-              loaded={this.props.loaded}
-            />;
+          received_interview={this.props.received_interview}
+          user={this.props.user}
+          loaded={this.props.loaded}
+        />;
       case "settings":
         return <SubpageSetting
-            user={this.props.user}
-            profile={this.props.profile}
-            location={this.props.profile.location}
-            phone_number={this.props.profile.phone_number}
-            subpage={this.state.subpage}
-            renderVideos={this.renderVideos}
+          user={this.props.user}
+          profile={this.props.profile}
+          location={this.props.profile.location}
+          phone_number={this.props.profile.phone_number}
+          subpage={this.state.subpage}
+          renderVideos={this.renderVideos}
         />;
       case "profile":
         return <Profile
-                    userId={this.props.user.id}
-                    getProfileDetail={this.props.getProfileDetail}
-                    updatePersonalInfo={this.props.updatePersonalInfo}
-                    updateSocialMedia={this.props.updateSocialMedia}
-                    updateBasicInfo={this.props.updateBasicInfo}
-                    updateVideo={this.props.updateVideo}
-                    updateSummary={this.props.updateSummary}
-                    updateResume={this.props.updateResume}
-                    updateEducation={this.props.updateEducation}
-                    updateWorkExp={this.props.updateWorkExp}
-                    profileDetail={this.props.profileDetail}
-                    updateProfileRate={this.props.updateProfileRate}
-                    updateUserLogo={this.props.updateUserLogo}
-                />;
+          userId={this.props.user.id}
+          getProfileDetail={this.props.getProfileDetail}
+          updatePersonalInfo={this.props.updatePersonalInfo}
+          updateSocialMedia={this.props.updateSocialMedia}
+          updateBasicInfo={this.props.updateBasicInfo}
+          updateVideo={this.props.updateVideo}
+          updateSummary={this.props.updateSummary}
+          updateResume={this.props.updateResume}
+          updateEducation={this.props.updateEducation}
+          updateWorkExp={this.props.updateWorkExp}
+          profileDetail={this.props.profileDetail}
+          updateProfileRate={this.props.updateProfileRate}
+          updateUserLogo={this.props.updateUserLogo}
+        />;
       default:
-        //Do nothing
+      //Do nothing
     }
   };
 
@@ -188,11 +190,11 @@ export class Dashboard extends Component {
     const { isTourOpen } = this.state;
     const accentColor = "#5cb7b7";
     if (this.props.profile.is_employer) {
-        return <Redirect to="/employer_dashboard"/>;
-    }else{
-    return (
+      return <Redirect to="/employer_dashboard" />;
+    } else {
+      return (
         <React.Fragment>
-          <ScrollToTopOnMount/>
+          <ScrollToTopOnMount />
           {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
           <MediaQuery minDeviceWidth={1224}>
             <Tour
@@ -212,33 +214,33 @@ export class Dashboard extends Component {
               <div className='col-1'>
                 <div className='dashboard-sidebar'>
                   <EssentialUserInfo
-                      userfullname={this.props.userfullname}
-                      user={this.props.user}
-                      profile={this.props.profile}
-                      updateProfile={this.props.updateProfile}
-                      renderSetting={this.renderSetting}
-                      renderVideos={this.renderVideos}
-                      renderResume={this.renderResume}
-                      renderInterview={this.renderInterview}
-                      renderProfile={this.renderProfile}
-                      subpage={this.state.subpage}
+                    userfullname={this.props.userfullname}
+                    user={this.props.user}
+                    profile={this.props.profile}
+                    updateProfile={this.props.updateProfile}
+                    renderSetting={this.renderSetting}
+                    renderVideos={this.renderVideos}
+                    renderResume={this.renderResume}
+                    renderInterview={this.renderInterview}
+                    renderProfile={this.renderProfile}
+                    subpage={this.state.subpage}
                   />
                 </div>
               </div>
-              <div className='col-11' style={{backgroundColor:"#e8edfc"}}>
+              <div className='col-11' style={{ backgroundColor: "#e8edfc" }}>
                 <div className="dashboard-main">
-                {this.state.subpage === "settings" || this.state.subpage === "profile" ? null :
-                <div className="container-fluid" style={{height: "12rem"}} data-tut="reactour-rowbox">
+                  {this.state.subpage === "settings" || this.state.subpage === "profile" ? null :
+                    <div className="container-fluid" style={{ height: "12rem" }} data-tut="reactour-rowbox">
                       <RowBoxes
-                          renderVideos={this.renderVideos}
-                          renderResume={this.renderResume}
-                          renderInterview={this.renderInterview}
-                          userId={this.props.user.id}
-                          isEmployer={false}
+                        renderVideos={this.renderVideos}
+                        renderResume={this.renderResume}
+                        renderInterview={this.renderInterview}
+                        userId={this.props.user.id}
+                        isEmployer={false}
                       />
-                </div>}
-                  <div className="container-fluid" style={{marginBottom: "10%"}}>
-                    <div style={{marginBottom: "auto", height: "auto", paddingTop: '5%'}}>
+                    </div>}
+                  <div className="container-fluid" style={{ marginBottom: "10%" }}>
+                    <div style={{ marginBottom: "auto", height: "auto", paddingTop: '5%' }}>
                       {this.renderSubpage()}
                     </div>
                   </div>
@@ -251,17 +253,17 @@ export class Dashboard extends Component {
               pageTitle="Welcome to Hirebeat!"
               pageDescription="Our mobile functionality is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
             />
-            <div style={{textAlign: "center"}}>
-            <Link to="/">
-              <a className="default-btn" style={{color:"white", backgroundColor:"#FF6B00", marginTop:"1rem",marginBottom:"1rem"}}>
-                <i className="bx bxs-hot"></i>
-                Back to Home Page
-              </a>
-            </Link>
+            <div style={{ textAlign: "center" }}>
+              <Link to="/">
+                <a className="default-btn" style={{ color: "white", backgroundColor: "#FF6B00", marginTop: "1rem", marginBottom: "1rem" }}>
+                  <i className="bx bxs-hot"></i>
+                  Back to Home Page
+                </a>
+              </Link>
             </div>
           </MediaQuery>
         </React.Fragment>
-    );
+      );
     }
   }
 }
@@ -276,8 +278,10 @@ const mapStateToProps = (state) => ({
   profileDetail: state.auth_reducer.profileDetail,
 });
 
-export default connect(mapStateToProps, { loadProfile, updateProfile, loadUserFullname, getReceivedInterview,
-    getProfileDetail,updatePersonalInfo, updateSocialMedia, updateBasicInfo, updateVideo, updateSummary,
-    updateResume, updateEducation, updateWorkExp, updateProfileRate, updateUserLogo})(
+export default connect(mapStateToProps, {
+  loadProfile, updateProfile, loadUserFullname, getReceivedInterview,
+  getProfileDetail, updatePersonalInfo, updateSocialMedia, updateBasicInfo, updateVideo, updateSummary,
+  updateResume, updateEducation, updateWorkExp, updateProfileRate, updateUserLogo
+})(
   Dashboard
 );

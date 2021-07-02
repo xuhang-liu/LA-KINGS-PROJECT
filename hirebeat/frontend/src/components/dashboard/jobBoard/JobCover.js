@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import JobList from "./JobList";
 const decideClassName = (filter, text) => {
-    return filter == text ? "btn-selected2" : "btn-unselected2";
+  return filter == text ? "btn-selected2" : "btn-unselected2";
 };
 
 export const JobCover = (props) => {
@@ -9,27 +9,27 @@ export const JobCover = (props) => {
   const [curJob, setCurJob] = useState([]);
   const [jobKey, setJobKey] = useState(0);
   return (
-    <div style={{marginBottom: "5%"}} className="container min-width-980" >
-      <div style={{marginBottom: "30px"}}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b></h3></div>
-      <div style={{marginBottom: "20px"}} className="container min-width-980">
+    <div style={{ marginBottom: "5%" }} className="container min-width-1290" >
+      <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b></h3></div>
+      <div style={{ marginBottom: "20px" }}>
         <button
           className={decideClassName(filter, "active")}
-          onClick={() => {setFilter("active")}}
+          onClick={() => { setFilter("active") }}
         >
           Active
         </button>
         <button
           className={decideClassName(filter, "closed")}
-          style={{marginLeft: "2rem"}}
-          onClick={() => {setFilter("closed")}}
+          style={{ marginLeft: "2rem" }}
+          onClick={() => { setFilter("closed") }}
         >
           Archived
         </button>
         <button className="default-btn" onClick={props.renderJobCreation}
-          style={{color:"white", float:"right", marginBottom:"1rem"}}>
-            <i className="bx bx-plus"></i>
-              Create New Position
-            <span></span>
+          style={{ color: "white", float: "right", marginBottom: "1rem" }}>
+          <i className="bx bx-plus"></i>
+          Create New Position
+          <span></span>
         </button>
       </div>
       <JobList

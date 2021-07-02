@@ -16,7 +16,7 @@ export const DbCenterRow = (props) => {
 const Icon = (props) => {
     return (
         <i
-            className= {props.iconName}
+            className={props.iconName}
             style={{
                 fontSize: props.iconSize,
                 marginRight: props.iconMargin,
@@ -33,7 +33,7 @@ export const IconButton = (props) => {
     return (
         <button
             className="btn-sm"
-            style={{border: "none", outline: "none", background: "white"}}
+            style={{ border: "none", outline: "none", background: "white" }}
             onClick={props.onTap}
         >
             <Icon
@@ -78,20 +78,20 @@ export const IconEmployerText = (props) => {
     //textSize, textDisplayed, iconName, textColor?
     return (
         <div>
-        {((props.textDisplayed == "Interview" && props.int_dots>0) || (props.textDisplayed == "Jobs" && props.job_dots>0)) &&
-        <span className="dot" style={{marginLeft:"1.7rem", marginBottom:"-1.7rem", position:"absolute"}}></span>}
-        <div className="icon-employer-text align-items-center" style={{background: props.backColor}}>
-            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{width:"36px", height:"36px"}}></img>}
-            <p
-                style={{
-                    fontWeight: props.textWeight,
-                    fontSize: props.textSize,
-                    color: props.textColor ?? "#7d7d7d",
-                }}
-            >
-                {props.textDisplayed}
-            </p>
-        </div>
+            {((props.textDisplayed == "Interview" && props.int_dots > 0) || (props.textDisplayed == "Jobs" && props.job_dots > 0)) &&
+                <span className="dot" style={{ marginLeft: "1.7rem", marginBottom: "-1.7rem", position: "absolute" }}></span>}
+            <div className="icon-employer-text align-items-center" style={{ background: props.backColor }}>
+                {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: "36px", height: "36px" }}></img>}
+                <p
+                    style={{
+                        fontWeight: props.textWeight,
+                        fontSize: props.textSize,
+                        color: props.textColor ?? "#7d7d7d",
+                    }}
+                >
+                    {props.textDisplayed}
+                </p>
+            </div>
         </div>
     );
 };
@@ -99,8 +99,8 @@ export const IconEmployerText = (props) => {
 export const IconUserText = (props) => {
     //textSize, textDisplayed, iconName, textColor?
     return (
-        <div className="icon-user-text align-items-center" style={{background: props.backColor}}>
-            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{width: props.width ?? "36px", height: props.height ?? "36px", marginLeft:props.marginL??""}}></img>}
+        <div className="icon-user-text align-items-center" style={{ background: props.backColor }}>
+            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: props.width ?? "36px", height: props.height ?? "36px", marginLeft: props.marginL ?? "" }}></img>}
             <p
                 className="pt-2"
                 style={{
@@ -118,8 +118,8 @@ export const IconUserText = (props) => {
 export const IconUserText1 = (props) => {
     //textSize, textDisplayed, iconName, textColor?
     return (
-        <div className="icon-user-text1 align-items-center" style={{background: props.backColor}}>
-            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{width:"36px", height:"36px"}}></img>}
+        <div className="icon-user-text1 align-items-center" style={{ background: props.backColor }}>
+            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: "36px", height: "36px" }}></img>}
             <p
                 className="pt-2"
                 style={{
@@ -140,9 +140,9 @@ export const renderQDes = (des) => {
     if (des.length > length) {
         var ans = des.substring(0, length);
         //while (des[length + i] !== " " || des[length + i] !== null) {
-            // Make sure the des ends with a complete word
-            //ans = ans + des[length + i];
-            //i++;
+        // Make sure the des ends with a complete word
+        //ans = ans + des[length + i];
+        //i++;
         //}
         return ans + "...";
     }
@@ -151,11 +151,11 @@ export const renderQDes = (des) => {
 
 export const renderSuccessTag = (text) => {
     return (
-        <div className="height-30 d-flex justify-content-start align-items-end" style={{marginBottom: "0.8rem"}}>
+        <div className="height-30 d-flex justify-content-start align-items-end" style={{ marginBottom: "0.8rem" }}>
             <div className="d-flex justify-content-start">
                 <span
                     className="text-success"
-                    style={{color: "#14CC75", fontSize: "15px", marginRight: "10px"}}
+                    style={{ color: "#14CC75", fontSize: "15px", marginRight: "10px" }}
                 >
                     {text}
                 </span>
@@ -166,10 +166,10 @@ export const renderSuccessTag = (text) => {
 
 export const renderWaitTag = (text) => {
     return (
-        <div className="height-30 d-flex justify-content-start align-items-end" style={{marginBottom: "0.8rem"}}>
+        <div className="height-30 d-flex justify-content-start align-items-end" style={{ marginBottom: "0.8rem" }}>
             <div className="d-flex justify-content-start">
                 <span
-                    style={{color: "#7D7D7D", fontSize: "15px", marginRight: "10px"}}
+                    style={{ color: "#7D7D7D", fontSize: "15px", marginRight: "10px" }}
                 >
                     {text}
                 </span>
@@ -181,32 +181,32 @@ export const renderWaitTag = (text) => {
 export const ReviewHeader = (props) => {
     return (
         <DbRow>
-            <div className="col-2"/>
+            <div className="col-2" />
             <MediaQuery minDeviceWidth={1224}>
-            <div className="col-8 d-flex justify-content-center align-items-center">
-                <strong className="text-20" style={{color: "#7D7D7D"}}>Review Your Performance</strong>
-            </div>
+                <div className="col-8 d-flex justify-content-center align-items-center">
+                    <strong className="text-20" style={{ color: "#7D7D7D" }}>Review Your Performance</strong>
+                </div>
             </MediaQuery>
             <MediaQuery maxDeviceWidth={1223}>
-            <div className="col-8 d-flex justify-content-center align-items-center">
-                <strong className="text-12" style={{color: "#7D7D7D"}}>Review Your Performance</strong>
-            </div>
+                <div className="col-8 d-flex justify-content-center align-items-center">
+                    <strong className="text-12" style={{ color: "#7D7D7D" }}>Review Your Performance</strong>
+                </div>
             </MediaQuery>
-            <div className="col-2"/>
+            <div className="col-2" />
         </DbRow>
     );
 };
 
 export const QuestionTitle = (props) => {
     return (
-        <div className="row" style={{marginLeft: "10px", marginBottom: "10px"}}>
+        <div className="row" style={{ marginLeft: "10px", marginBottom: "10px" }}>
             <MediaQuery minDeviceWidth={1224}>
-            <h2 className="review-text" style={{color: "#98b8f6"}}>Q:</h2>
-            <h2 className="review-text" style={{color: "#000000"}}>{props.title}</h2>
+                <h2 className="review-text" style={{ color: "#98b8f6" }}>Q:</h2>
+                <h2 className="review-text" style={{ color: "#000000" }}>{props.title}</h2>
             </MediaQuery>
             <MediaQuery maxDeviceWidth={1223}>
-            <h4 className="review-text" style={{color: "#98b8f6"}}>Q:</h4>
-            <h4 className="review-text" style={{color: "#000000"}}>{props.title}</h4>
+                <h4 className="review-text" style={{ color: "#98b8f6" }}>Q:</h4>
+                <h4 className="review-text" style={{ color: "#000000" }}>{props.title}</h4>
             </MediaQuery>
         </div>
     );
@@ -237,11 +237,11 @@ export const MyModal = (props) => {
     return (
         <Modal
             {...props}
-            dialogClassName= {!props.isResume ? "my-modal" : "resume-modal"}
+            dialogClassName={!props.isResume ? "my-modal" : "resume-modal"}
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton style={{border: "none", height: "6px"}}/>
+            <Modal.Header closeButton style={{ border: "none", height: "6px" }} />
             {props.children}
         </Modal>
     );
@@ -252,11 +252,11 @@ export const MyFullModal = (props) => {
         <Modal
             animation={false}
             {...props}
-            dialogClassName= "my-full-modal"
+            dialogClassName="my-full-modal"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton style={{border: "none", height: "6px"}}/>
+            <Modal.Header closeButton style={{ border: "none", height: "6px" }} />
             {props.children}
         </Modal>
     );
@@ -267,11 +267,11 @@ export const MyFullModal1 = (props) => {
         <Modal
             animation={false}
             {...props}
-            dialogClassName= "my-full-modal1"
+            dialogClassName="my-full-modal1"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton style={{border: "none", height: "6px"}}/>
+            <Modal.Header closeButton style={{ border: "none", height: "6px" }} />
             {props.children}
         </Modal>
     );
@@ -281,11 +281,11 @@ export const MyModal80 = (props) => {
     return (
         <Modal
             {...props}
-            dialogClassName= {!props.isResume ? "my-modal-80" : "resume-modal"}
+            dialogClassName={!props.isResume ? "my-modal-80" : "resume-modal"}
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton style={{border: "none", height: "6px"}}/>
+            <Modal.Header closeButton style={{ border: "none", height: "6px" }} />
             {props.children}
         </Modal>
     );
@@ -295,51 +295,51 @@ export const MyVideoModal = (props) => {
     return (
         <Modal
             {...props}
-            dialogClassName= {!props.isResume ? "my-video-modal" : "resume-modal"}
+            dialogClassName={!props.isResume ? "my-video-modal" : "resume-modal"}
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton style={{border: "none", height: "6px"}}/>
+            <Modal.Header closeButton style={{ border: "none", height: "6px" }} />
             {props.children}
         </Modal>
     );
 };
 
 export const OverallScore = (props) => {
-  var options = customBarData(props.percent, props.bgColor, props.barColor);
-  return (
-    <Chart
-      options={options.options}
-      series={options.series}
-      type="radialBar"
-      height={150}
-      key={"overall"}
-    />
-  );
+    var options = customBarData(props.percent, props.bgColor, props.barColor);
+    return (
+        <Chart
+            options={options.options}
+            series={options.series}
+            type="radialBar"
+            height={150}
+            key={"overall"}
+        />
+    );
 };
 
 export const RateScore = (props) => {
-  var options = customBarData2(props.percent, props.bgColor, props.barColor, props.label, props.ftSize, props.ftColor);
-  return (
-    <Chart
-      options={options.options}
-      series={options.series}
-      type="radialBar"
-      height={props.height}
-      width={props.width}
-      key={"rate"}
-    />
-  );
+    var options = customBarData2(props.percent, props.bgColor, props.barColor, props.label, props.ftSize, props.ftColor);
+    return (
+        <Chart
+            options={options.options}
+            series={options.series}
+            type="radialBar"
+            height={props.height}
+            width={props.width}
+            key={"rate"}
+        />
+    );
 };
 
 export const VideoChart = (props) => {
-    var labelFormatter = function(value) {
+    var labelFormatter = function (value) {
         // remove decimal
         return value.toFixed(0);
     };
     return (
         <Chart
-            options= {{
+            options={{
                 chart: {
                     type: 'line',
                     height: 350,
@@ -355,14 +355,14 @@ export const VideoChart = (props) => {
                     enabledOnSeries: [0]
                 },
                 labels: props.dates,
-                xaxis:{
+                xaxis: {
                     labels: {
                         show: true,
                     },
                 },
-                yaxis:{
+                yaxis: {
                     labels: {
-                        show:true,
+                        show: true,
                         formatter: labelFormatter,
                     },
                 },
@@ -373,7 +373,7 @@ export const VideoChart = (props) => {
             series={[{
                 name: 'videos',
                 data: props.videos,
-                },
+            },
             ]}
             type="line"
             height={props.height}
@@ -383,13 +383,13 @@ export const VideoChart = (props) => {
 }
 
 export const InterviewChart = (props) => {
-    var labelFormatter = function(value) {
+    var labelFormatter = function (value) {
         // remove decimal
         return value.toFixed(0);
     };
     return (
         <Chart
-            options= {{
+            options={{
                 chart: {
                     type: 'line',
                     height: 350,
@@ -400,7 +400,7 @@ export const InterviewChart = (props) => {
                         left: 7,
                         blur: 10,
                         opacity: 0.2
-                      },
+                    },
                 },
                 markers: {
                     size: 5,
@@ -416,14 +416,14 @@ export const InterviewChart = (props) => {
                     enabledOnSeries: [0]
                 },
                 labels: props.dates,
-                xaxis:{
+                xaxis: {
                     labels: {
                         show: true,
                     },
                 },
-                yaxis:{
+                yaxis: {
                     labels: {
-                        show:true,
+                        show: true,
                         formatter: labelFormatter,
                     },
                 },
@@ -434,7 +434,7 @@ export const InterviewChart = (props) => {
             series={[{
                 name: 'The number of interviews',
                 data: props.videos,
-                },
+            },
             ]}
             type="line"
             height={props.height}
@@ -444,13 +444,13 @@ export const InterviewChart = (props) => {
 }
 
 export const ApplicationChart = (props) => {
-    var labelFormatter = function(value) {
+    var labelFormatter = function (value) {
         // remove decimal
         return value.toFixed(0);
     };
     return (
         <Chart
-            options= {{
+            options={{
                 chart: {
                     type: 'line',
                 },
@@ -465,14 +465,14 @@ export const ApplicationChart = (props) => {
                     enabledOnSeries: [0]
                 },
                 labels: props.dates,
-                xaxis:{
+                xaxis: {
                     labels: {
                         show: true,
                     },
                 },
-                yaxis:{
+                yaxis: {
                     labels: {
-                        show:true,
+                        show: true,
                         formatter: labelFormatter,
                     },
                 },
@@ -498,91 +498,91 @@ export const ApplicationChart = (props) => {
 }
 
 export const tourConfig = [
-  {
-    selector: '[data-tut="reactour-dashoboard"]',
-    content: () => (
-      <div>
-        <h3 className="tour-title">Start with a guided tour!</h3>
-        <div className="justify-items">
-          <img className="padding-center" src="https://hirebeat-assets.s3.amazonaws.com/guide1-1.png" />
-        </div>
-        <span className="tour-text">To get a feel of the place, take our guided tour where we&apos;ll show you our amazing products to get your hired!</span>
-      </div>
-    )
-  },
-  {
-    selector: '[data-tut="reactour-myVideo"]',
-    content: () => (
-      <div>
-        <h3 className="tour-title">Interview Practice</h3>
-        <span className="tour-text">Have your ever felt nervous during an interview? Build your confidence by practicing
-            them under recording. Remember to visit back the videos for improvements.
-        </span>
-      </div>
-    )
-  },
-  {
-    selector: '[data-tut="reactour-myResume"]',
-    content: () => (
-      <div>
-        <h3 className="tour-title">Resume Screening</h3>
-        <span className="tour-text">Resume Screening is always the most competitive stage of the hiring cycle. Get your
-            resume past the ATS by tailoring it towards the job description!
-        </span>
-      </div>
-    )
-  },
-  {
-    selector: '[data-tut="reactour-myInterview"]',
-    content: () => (
-      <div>
-        <h3 className="tour-title">Record Interview</h3>
-        <span className="tour-text">HireBeat collaborates with company affiliates to send candidate interview invitations!
-            Once you receive them, enter the tab to start the virtual interview.
-        </span>
-      </div>
-    )
-  },
-  {
-    selector: '[data-tut="reactour-rowbox"]',
-    content: () => (
-      <div className="tour-title">
-        <span>Here is a summary of your activities. Keep motivated!</span>
-      </div>
-    )
-  },
-  {
-    selector: '[data-tut="reactour-bq"]',
-    content: () => (
-      <div>
-        <h3 className="tour-title">Behavior Questions</h3>
-        <span className="tour-text">
-            Questions about your past experiences and how you would respond to a specific situation to achieve the best outcome.
-        </span>
-      </div>
-    )
-  },
-  {
-    selector: '[data-tut="reactour-tq"]',
-    content: () => (
-      <div>
-        <h3 className="tour-title">Technical Questions</h3>
-        <span className="tour-text">
-            Questions specific to the roles you&apos;ve applied for, so that the employer can confirm you have the requisite skills.
-        </span>
-      </div>
-    )
-  },
-  {
-    selector: '[data-tut="reactour-practice"]',
-     content: () => (
-      <div>
-        <h3 className="tour-title">You've completed the tour</h3>
-        <div className="justify-items">
-          <img className="padding-center" src="https://hirebeat-assets.s3.amazonaws.com/guide2-1.png" />
-        </div>
-        <span className="tour-text">Begin practicing today to receive your dream offer tomorrow!</span>
-      </div>
-    )
-  },
+    {
+        selector: '[data-tut="reactour-dashoboard"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Start with a guided tour!</h3>
+                <div className="justify-items">
+                    <img className="padding-center" src="https://hirebeat-assets.s3.amazonaws.com/guide1-1.png" />
+                </div>
+                <span className="tour-text">To get a feel of the place, take our guided tour where we&apos;ll show you our amazing products to get your hired!</span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-myVideo"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Interview Practice</h3>
+                <span className="tour-text">Have your ever felt nervous during an interview? Build your confidence by practicing
+                    them under recording. Remember to visit back the videos for improvements.
+                </span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-myResume"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Resume Screening</h3>
+                <span className="tour-text">Resume Screening is always the most competitive stage of the hiring cycle. Get your
+                    resume past the ATS by tailoring it towards the job description!
+                </span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-myInterview"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Record Interview</h3>
+                <span className="tour-text">HireBeat collaborates with company affiliates to send candidate interview invitations!
+                    Once you receive them, enter the tab to start the virtual interview.
+                </span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-rowbox"]',
+        content: () => (
+            <div className="tour-title">
+                <span>Here is a summary of your activities. Keep motivated!</span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-bq"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Behavior Questions</h3>
+                <span className="tour-text">
+                    Questions about your past experiences and how you would respond to a specific situation to achieve the best outcome.
+                </span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-tq"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Technical Questions</h3>
+                <span className="tour-text">
+                    Questions specific to the roles you&apos;ve applied for, so that the employer can confirm you have the requisite skills.
+                </span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-practice"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">You've completed the tour</h3>
+                <div className="justify-items">
+                    <img className="padding-center" src="https://hirebeat-assets.s3.amazonaws.com/guide2-1.png" />
+                </div>
+                <span className="tour-text">Begin practicing today to receive your dream offer tomorrow!</span>
+            </div>
+        )
+    },
 ];

@@ -35,8 +35,6 @@ export const ApplicationCover = (props) => {
               Create New Interview
             <span></span>
         </button>*/}
-        {props.loaded &&
-        <button onClick={refreshPage} style={{border:"none", backgroundColor:"#e8edfc", float:"right", paddingTop:"1rem"}}><p style={{color:"#56a3fa"}}><box-icon name="refresh" color="#56a3fa" size="1.2rem"></box-icon>Refresh</p></button>}
       </div>
       <JobApplication
         getPJobs={props.getPJobs}
