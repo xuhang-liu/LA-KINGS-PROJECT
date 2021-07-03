@@ -202,21 +202,21 @@ const ShortListCard = (props) => {
                             <div className="form-row justify-items">
                                 <div className="form-group col-3" style={{ marginRight: "3rem" }}>
                                     <button
-                                        type="button"
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", backgroundColor: "red" }}
-                                        onClick={() => onClose()}
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                                <div className="form-group col-3">
-                                    <button
                                         type="submit"
                                         className="default-btn1"
                                         style={{ paddingLeft: "25px" }}
                                     >
                                         Invite
+                                    </button>
+                                </div>
+                                <div className="form-group col-3">
+                                    <button
+                                        type="button"
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px"}}
+                                        onClick={() => onClose()}
+                                    >
+                                        Cancel
                                     </button>
                                 </div>
                             </div>

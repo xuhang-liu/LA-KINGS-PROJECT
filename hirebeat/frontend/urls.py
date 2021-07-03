@@ -40,7 +40,7 @@ urlpatterns = [
     path("blog-the-4c's-that-you-need-for-your-resume", views.blog29),
     path('employer_blog-what-is-broken-in-the-talent-acquisition-process', views.blogemployer23),
     path('employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process', views.blogemployer24),
-    path('/employer_blog-4-challenges-campus-recruiters-could-meet', views.blogemployer25),
+    path('employer_blog-4-challenges-campus-recruiters-could-meet', views.blogemployer25),
     path('employer_talent_sourcing', views.hubspot_form)
 ]
 

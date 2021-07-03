@@ -3,7 +3,8 @@ import {
     GET_CURRENT_JOBS,
     GET_JOBID_LIST,
     GET_COMAPNY_BRANDING_INFO,
-    GET_RESUME_FROM_JOB_APPLICATION
+    GET_RESUME_FROM_JOB_APPLICATION,
+    CREATE_MERGE_LINK_TOKEN,
 } from "../actions/action_types";
 
 const initialState = {
@@ -23,6 +24,8 @@ const initialState = {
   twitter: "",
   facebook: "",
   jobApplicationResume: "",
+  contact_email: "",
+  link_token: "",
 };
 
 export default function (state = initialState, action) {
@@ -57,11 +60,17 @@ export default function (state = initialState, action) {
         linkedin: action.payload.linkedin,
         twitter: action.payload.twitter,
         facebook: action.payload.facebook,
+        contact_email: action.payload.contact_email,
       }
     case GET_RESUME_FROM_JOB_APPLICATION:
       return {
         ...state,
         jobApplicationResume: action.payload.data.resume_url,
+      }
+    case CREATE_MERGE_LINK_TOKEN:
+      return {
+        ...state,
+        link_token: action.payload.link_token
       }
     default:
       return state;

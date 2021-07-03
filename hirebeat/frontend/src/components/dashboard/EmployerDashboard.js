@@ -2,6 +2,7 @@ import React, { Component } from "react";
 //import ButtonPanel from "./panel/ButtonPanel";
 import { Link } from "react-router-dom";
 import EssentialUserInfo from "./essentials/EssentialUserInfo";
+import MergeIntergration from "./essentials/MergeIntergration";
 //import { JobApplication } from "./applications/JobApplication";
 import { CreatePosition } from "./position/CreatePosition";
 import { ApplicationCover } from "./applications/ApplicationCover";
@@ -14,7 +15,7 @@ import {
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence
 }
   from "../../redux/actions/auth_actions";
-import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML } from "../../redux/actions/job_actions";
+import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, createMergeLinkToken, retrieveMergeAccountToken } from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import {
   addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus,
@@ -286,6 +287,17 @@ export class EmployerDashboard extends Component {
     )
   }
 
+  renderMergeIntergration = () => {
+    if (this.state.subpage == "mergeintergration") {
+      this.refreshPage();
+    }
+    this.props.createMergeLinkToken(this.props.user.id);
+    sessionStorage.setItem('subpage', "mergeintergration");
+    this.setState({
+      subpage: "mergeintergration",
+    });
+  }
+
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "jobs":
@@ -439,6 +451,12 @@ export class EmployerDashboard extends Component {
           updateEmployerLogo={this.props.updateEmployerLogo}
           profile={this.props.profile}
         />;
+      case "mergeintergration":
+        return <MergeIntergration
+          user={this.props.user}
+          link_token={this.props.link_token}
+          retrieveMergeAccountToken={this.props.retrieveMergeAccountToken}
+        />;
       default:
         return null;
       //Do nothing
@@ -484,6 +502,8 @@ export class EmployerDashboard extends Component {
                         subpage={this.state.subpage}
                         int_dots={this.props.int_dots}
                         job_dots={this.props.job_dots}
+                        createMergeLinkToken={this.props.createMergeLinkToken}
+                        renderMergeIntergration={this.renderMergeIntergration}
                       />
                     </div>
                   </div>
@@ -569,6 +589,7 @@ const mapStateToProps = (state) => {
     user_existence: state.auth_reducer.user_existence,
     sub_r_list: state.question_reducer.sub_r_list,
     ext_r_list: state.question_reducer.ext_r_list,
+    link_token: state.job_reducer.link_token,
   }
 };
 
@@ -579,7 +600,7 @@ export default connect(mapStateToProps, {
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
   updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
-  getCurrentReviewerEvaluation,
+  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken
 })(
   EmployerDashboard
 );
