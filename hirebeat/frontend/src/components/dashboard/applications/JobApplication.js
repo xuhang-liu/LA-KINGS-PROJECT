@@ -1833,38 +1833,17 @@ const Applicant = (props) => {
     const renderStatus = (status) => {
         switch (status) {
             case 1:
-                if (props.videoCount > 0) {
-                    return <button className="btn btn-success" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem" }} onClick={() => viewResult()}>
-                        Shortlist
-                    </button>
-                }
-                else {
-                    return <button className="btn btn-success" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem" }}>
-                        Shortlist
-                    </button>
-                }
+                    return <button className="btn btn-success" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem", background: "#13C4A1", cursor: "auto" }}>
+                                Shortlist
+                           </button>
             case 2:
-                if (props.videoCount > 0) {
-                    return <button className="btn btn-warning" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem" }} onClick={() => viewResult()}>
-                        Hold
-                    </button>
-                }
-                else {
-                    return <button className="btn btn-warning" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem" }}>
-                        Hold
-                    </button>
-                }
+                    return <button className="btn btn-warning" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem", background: "#FF6B00", cursor: "auto" }}>
+                                Hold
+                           </button>
             case 3:
-                if (props.videoCount > 0) {
-                    return <button className="btn btn-danger" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem" }} onClick={() => viewResult()}>
-                        Reject
-                    </button>
-                }
-                else {
-                    return <button className="btn btn-danger" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem" }}>
-                        Reject
-                    </button>
-                }
+                    return <button className="btn btn-danger" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem", background: "#FF0000", cursor: "auto" }}>
+                                Reject
+                           </button>
             default:
         }
     }

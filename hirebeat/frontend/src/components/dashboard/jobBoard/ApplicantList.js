@@ -434,21 +434,21 @@ const ApplicantRow = (props) => {
                     <span style={{marginLeft:"1rem"}}>
                     {(props.applicant.is_invited == 1) &&
                         <button className="default-btn invite-btn"
-                            style={{ backgroundColor: "#13C4A1", padding: "5px", width: "5rem", textAlign: "center" }}
+                            style={{ backgroundColor: "#13C4A1", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
                         >
                             Interview
                         </button>
                     }
                     {(props.applicant.is_invited == 2) &&
                         <button className="default-btn invite-btn"
-                            style={{ backgroundColor: "#FF6B00", padding: "5px", width: "5rem", textAlign: "center" }}
+                            style={{ backgroundColor: "#FF6B00", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
                         >
                             Hold
                         </button>
                     }
                     {(props.applicant.is_invited == 3) &&
                         <button className="default-btn invite-btn"
-                            style={{ backgroundColor: "#FF0000", padding: "5px", width: "5rem", textAlign: "center" }}
+                            style={{ backgroundColor: "#FF0000", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
                         >
                             Rejected
                         </button>
