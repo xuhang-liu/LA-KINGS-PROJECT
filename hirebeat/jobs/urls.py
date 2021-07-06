@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import add_new_job, get_all_jobs, update_job, archive_job, add_new_apply_candidate, get_current_jobs, \
     add_interview_question, update_invite_status, delete_job, get_jobid_list, update_viewed_status, get_zr_xml, \
-    add_new_apply_candidate_from_zr, getCompanyBrandingInfo, get_resume_from_job_application
+    add_new_apply_candidate_from_zr, getCompanyBrandingInfo, get_resume_from_job_application, get_zr_premium_xml
 
 urlpatterns = [
     path('add-new-job', add_new_job),
@@ -19,4 +19,5 @@ urlpatterns = [
     path('jobs/add-new-apply-candidate-from-zr', add_new_apply_candidate_from_zr),
     path('company-branding/<str:companyName>/get-company-branding-info', getCompanyBrandingInfo),
     path('jobs/get-resume-from-job-application', get_resume_from_job_application),
+    path('jobs/get-zr-premium-xml', get_zr_premium_xml),
 ]

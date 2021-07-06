@@ -11,6 +11,7 @@ import {
     GET_JOBID_LIST,
     UPDATE_CANDIDATA_VIEWED_STATUS,
     GET_ZR_FEED_XML,
+    GET_ZR_PREMIUM_FEED_XML,
     GET_COMAPNY_BRANDING_INFO,
     GET_RESUME_FROM_JOB_APPLICATION,
     } from "./action_types";
@@ -178,6 +179,20 @@ export const getZRFeedXML = () => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_ZR_FEED_XML,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getZRPremiumFeedXML = () => (dispatch, getState) => {
+  axios
+    .get(`jobs/get-zr-premium-xml`)
+    .then((res) => {
+      dispatch({
+        type: GET-GET_ZR_PREMIUM_FEED_XML,
         payload: res.data,
       });
     })
