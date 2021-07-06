@@ -82,6 +82,7 @@ class Profile(models.Model):
         MaxValueValidator(1000)
     ])
     viewed_tutorial = models.BooleanField(default=False)
+    merge_public_token = models.TextField(null=True, blank=True)
     def __str__(self):
         return self.user.username
 

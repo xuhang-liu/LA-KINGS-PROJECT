@@ -100,6 +100,9 @@ const CompanyBranding = (props) => {
                                             <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Industry</p>
                                             <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.company_type}</p>
                                             <br />
+                                            <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Contact Email</p>
+                                            <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.contact_email}</p>
+                                            <br />
                                             <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Social Media</p>
                                             <div className="row pl-3">
                                                 {(props.facebook != null && props.facebook != "") && <a target="_blank" href={props.facebook}><FacebookIcon size={30} round={true} /></a>}
@@ -141,6 +144,9 @@ const CompanyBranding = (props) => {
                                 <br />
                                 <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Industry</p>
                                 <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.company_type}</p>
+                                <br />
+                                <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Contact Email</p>
+                                <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.contact_email}</p>
                                 <br />
                                 <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Social Media</p>
                                 <div className="row pl-3">
@@ -218,6 +224,7 @@ const mapStateToProps = (state) => ({
     linkedin: state.job_reducer.linkedin,
     twitter: state.job_reducer.twitter,
     facebook: state.job_reducer.facebook,
+    contact_email: state.job_reducer.contact_email,
 });
 
 export default connect(mapStateToProps, { getCompanyBrandingInfo })(CompanyBranding);

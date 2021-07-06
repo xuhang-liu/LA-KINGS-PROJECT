@@ -153,6 +153,8 @@ export class EssentialUserInfo extends Component {
     var nonselectDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-microphone-non.png";
     var selectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-cog-select.png";
     var nonselectSetting = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-cog-non.png";
+    var selectIntergration = "https://hirebeat-assets.s3.amazonaws.com/Employer/eos-icons_api-outlined-select.png";
+    var nonselectIntergration = "https://hirebeat-assets.s3.amazonaws.com/Employer/eos-icons_api-outlined.png";
     var nonselectHelp = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-help-circle.png";
     var selectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-bookmark-plus-select.png";
     var nonSelectShortlist = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-bookmark-plus-non.png";
@@ -266,7 +268,7 @@ export class EssentialUserInfo extends Component {
                 </div>}
               </div>*/}
                   <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr>
-                  <div style={{ marginTop: "1rem", textAlign: "center" }}>
+                  <div style={{ marginTop: "0rem", textAlign: "center", marginBottom: "0.5rem" }}>
                     <div className="col d-flex align-items-center">
                       <a
                         target="_blank"
@@ -291,7 +293,7 @@ export class EssentialUserInfo extends Component {
               {this.props.profile.is_employer ?
                 <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
                   {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
-                    <div className="row" style={{ marginTop: "30%", marginBottom: "2rem" }}>
+                    <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                       <div className="col d-flex align-items-center">
                         <button
                           type="button"
@@ -311,7 +313,7 @@ export class EssentialUserInfo extends Component {
                       </div>
                     </div>}
                   {!this.props.profile.is_external_reviewer &&
-                    <div className="row" style={{ marginTop: "30%", marginBottom: "2rem" }}>
+                    <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                       <div className="col d-flex align-items-center">
                         <button
                           type="button"
@@ -331,7 +333,7 @@ export class EssentialUserInfo extends Component {
                       </div>
                     </div>}
                   {!this.props.profile.is_subreviwer &&
-                    <div className="row" style={{ marginTop: "30%", marginBottom: "2rem" }}>
+                    <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                       <div className="col d-flex align-items-center">
                         <button
                           type="button"
@@ -350,8 +352,9 @@ export class EssentialUserInfo extends Component {
                       </div>
                     </div>
                   }
+                  <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr>
                   {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
-                    <div className="row" style={{ marginTop: "30%", marginBottom: "2rem" }}>
+                    <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                       <div className="col d-flex align-items-center">
                         <button
                           type="button"
@@ -369,7 +372,7 @@ export class EssentialUserInfo extends Component {
                         </button>
                       </div>
                     </div>}
-                  <div className="row" style={{ marginTop: "20%", marginBottom: "2rem" }}>
+                  <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                     <div className="col d-flex align-items-center">
                       <button
                         type="button"
@@ -387,6 +390,24 @@ export class EssentialUserInfo extends Component {
                       </button>
                     </div>
                   </div>
+                  {/*<div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
+                    <div className="col d-flex align-items-center">
+                      <button
+                        type="button"
+                        className="panel-button"
+                        onClick={this.props.renderMergeIntergration}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                      >
+                        <IconEmployerText
+                          textSize={"12px"}
+                          textDisplayed={"Integration"}
+                          backColor={this.props.subpage == "mergeintergration" ? selectBack : defaultBack}
+                          iconSrc={this.props.subpage == "mergeintergration" ? selectIntergration : nonselectIntergration}
+                          textColor={this.props.subpage == "mergeintergration" ? selectEColor : defaultEColor}
+                        />
+                      </button>
+                    </div>
+                  </div>*/}
                 </div> :
                 <div style={{ minHeight: "58rem" }}>
                   <div className="row" style={{ marginTop: "30%", marginBottom: "1rem" }}>

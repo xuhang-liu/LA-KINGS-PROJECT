@@ -16,6 +16,11 @@ from boto.s3.key import Key
 import time
 import boto
 import os
+import requests
+import MergeATSClient
+from MergeATSClient.api import candidates_api
+from MergeATSClient.model.paginated_candidate_list import PaginatedCandidateList
+from pprint import pprint
 
 # configure s3
 if not boto.config.get('s3', 'use-sigv4'):
@@ -496,6 +501,7 @@ def getCompanyBrandingInfo(request, companyName):
         linkedin = employerProfileDetail[i].linkedin
         twitter = employerProfileDetail[i].twitter
         facebook = employerProfileDetail[i].facebook
+        contact_email = employerProfileDetail[i].email
     return Response({
         "data": data,
         "company_logo": company_logo,
@@ -508,6 +514,7 @@ def getCompanyBrandingInfo(request, companyName):
         "linkedin": linkedin,
         "twitter": twitter,
         "facebook": facebook,
+        "contact_email": contact_email,
     })
 
 @api_view(['GET'])
@@ -523,4 +530,68 @@ def get_resume_from_job_application(request):
         data["resume_url"] = ""
     return Response({
         "data": data,
+    })
+
+@api_view(['GET'])
+def create_merge_link_token(request):
+    user_id = request.query_params.get("userId")
+    user = User.objects.get(pk=user_id)
+    employer_profile = EmployerProfileDetail.objects.get(user=user)
+    api_key = os.getenv("MERGE_API_KEY")
+    body = {
+        "end_user_origin_id": user_id, # unique entity ID
+        "end_user_organization_name": employer_profile.name,  # your user's organization name
+        "end_user_email_address": user.email, # your user's email address
+        "categories": ["hris", "ats"], # choose your category
+    }
+
+    headers = {"Authorization": f"Bearer {api_key}"}
+
+    link_token_url = "https://api.merge.dev/api/integrations/create-link-token"
+    link_token_result = requests.post(link_token_url, data=body, headers=headers)
+    link_token = link_token_result.json().get("link_token")
+
+    return Response({
+        "link_token": link_token,
+    })
+
+@api_view(['POST'])
+def retrive_merge_account_token(request):
+    public_token = request.data['public_token']
+    user_id = request.data['user_id']
+    print(public_token)
+    print(user_id)
+    user = User.objects.get(pk=user_id)
+    profile = Profile.objects.get(user=user)
+    profile.merge_public_token = public_token
+    profile.save()
+
+    return Response("Retrive merge token success", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def send_merge_api_request(request):
+    configuration = MergeATSClient.Configuration()
+
+    # Swap YOUR_API_KEY below with your production key from:
+    # https://app.merge.dev/configuration/keys 
+    configuration.api_key['tokenAuth'] = os.getenv("MERGE_API_KEY")
+    configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+
+    api_client = MergeATSClient.ApiClient(configuration)
+
+    candidates_api_instance = candidates_api.CandidatesApi(api_client)
+
+    # The string 'TEST_ACCOUNT_TOKEN' below works to test your connection
+    # to Merge and will return dummy data in the response.
+    # In production, replace this with account_token from user.
+    x_account_token = 'TEST_ACCOUNT_TOKEN'
+
+    try:
+        api_response = candidates_api_instance.candidates_list(x_account_token)
+        pprint(api_response['results'])
+    except MergeATSClient.ApiException as e:
+        print('Exception when calling CandidatesApi->candidates_list: %s' % e)
+
+    return Response({
+        "api_response": api_response['results']
     })

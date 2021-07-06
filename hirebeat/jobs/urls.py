@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import add_new_job, get_all_jobs, update_job, archive_job, add_new_apply_candidate, get_current_jobs, \
     add_interview_question, update_invite_status, delete_job, get_jobid_list, update_viewed_status, get_zr_xml, \
-    add_new_apply_candidate_from_zr, getCompanyBrandingInfo, get_resume_from_job_application, get_zr_premium_xml
+    add_new_apply_candidate_from_zr, getCompanyBrandingInfo, get_resume_from_job_application, get_zr_premium_xml, \
+    create_merge_link_token, retrive_merge_account_token, send_merge_api_request
 
 urlpatterns = [
     path('add-new-job', add_new_job),
@@ -20,4 +21,7 @@ urlpatterns = [
     path('company-branding/<str:companyName>/get-company-branding-info', getCompanyBrandingInfo),
     path('jobs/get-resume-from-job-application', get_resume_from_job_application),
     path('jobs/get-zr-premium-xml', get_zr_premium_xml),
+    path('jobs/create-merge-link-token', create_merge_link_token),
+    path('jobs/retrieve-merge-account-token', retrive_merge_account_token),
+    path('jobs/send-merge-api-request', send_merge_api_request),
 ]

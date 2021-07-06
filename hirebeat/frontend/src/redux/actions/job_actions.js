@@ -14,6 +14,8 @@ import {
     GET_ZR_PREMIUM_FEED_XML,
     GET_COMAPNY_BRANDING_INFO,
     GET_RESUME_FROM_JOB_APPLICATION,
+    CREATE_MERGE_LINK_TOKEN,
+    RETRIEVE_MERGE_ACCOUNT_TOKEN,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -221,6 +223,34 @@ export const getResumeFromJobApplication = (positionId, email) => (dispatch, get
     .then((res) => {
       dispatch({
         type: GET_RESUME_FROM_JOB_APPLICATION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const createMergeLinkToken = (userid) => (dispatch, getState) => {
+  axios
+    .get(`jobs/create-merge-link-token?userId=${userid}`)
+    .then((res) => {
+      dispatch({
+        type: CREATE_MERGE_LINK_TOKEN,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const retrieveMergeAccountToken = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/retrieve-merge-account-token", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: RETRIEVE_MERGE_ACCOUNT_TOKEN,
         payload: res.data,
       });
     })
