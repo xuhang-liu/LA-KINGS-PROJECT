@@ -17,6 +17,7 @@ export class JobCard extends Component {
         let data = {
             "id": id,
             "isClosed": true,
+            "userId": this.props.user.id,
         }
         this.props.archiveJob(data);
         setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML() }, 300);
@@ -33,13 +34,25 @@ export class JobCard extends Component {
     };
 
     activateJob = () => {
-        let id = this.props.job.job_details.id;
-        let data = {
-            "id": id,
-            "isClosed": false,
+        if ((this.props.profile.position_count) >= (this.props.profile.position_limit)) {
+            confirmAlert({
+                title: 'Upgrade Now!',
+                message: 'Exceed max number of positions! Upgrade now to get more active positions',
+                buttons: [
+                    { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+                    { label: 'OK' },
+                ]
+            });
+        } else {
+            let id = this.props.job.job_details.id;
+            let data = {
+                "id": id,
+                "isClosed": false,
+                "userId": this.props.user.id,
+            }
+            this.props.archiveJob(data);
+            setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML() }, 300);
         }
-        this.props.archiveJob(data);
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML() }, 300);
     };
 
     render() {
@@ -59,7 +72,7 @@ export class JobCard extends Component {
                         {this.props.job.un_view ? <span className="dot"></span> : <span className="dot" style={{ visibility: "hidden" }}></span>}
                         <button
                             className="title-button2"
-                            onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.enableView(); sessionStorage.setItem("view", "true"); sessionStorage.setItem("jobKey", this.props.curJobKey) }}
+                            onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.enableView(); sessionStorage.setItem("view", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)) }}
                         >
                             {this.props.job.job_details.job_title.length > 24 ? (this.props.job.job_details.job_title.substring(0, 22) + "...") : (this.props.job.job_details.job_title)}
                         </button>
@@ -68,7 +81,7 @@ export class JobCard extends Component {
                     <div className="col-2 interview-txt9 d-flex justify-content-center mt-2">
                         <button
                             className="title-button2"
-                            onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.enableView(); sessionStorage.setItem("view", "true"); sessionStorage.setItem("jobKey", this.props.curJobKey) }}
+                            onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.enableView(); sessionStorage.setItem("view", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)) }}
                         >
                             {this.props.job.applicants.length}
                         </button>
@@ -121,7 +134,7 @@ const ActionButton = (props) => {
                         <i className="bx bx-edit-alt"></i>
                         <span className="tool_tip" style={{ cursor: "pointer" }} onClick={() => { props.setJobInfo(props.jobInfo); props.renderJobEdition() }}>
                             Edit
-                            <p className="tool_submenu container" style={{ width: "9rem", left:"1rem" }}>
+                            <p className="tool_submenu container" style={{ width: "9rem", left: "1rem" }}>
                                 <div>
                                     Edit job posting.
                                 </div>
@@ -132,7 +145,7 @@ const ActionButton = (props) => {
                         <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%" }}>
                             <i className="bx bx-box"></i>
                             <span style={{ cursor: "pointer" }} onClick={props.archiveJob} className="tool_tip">Archive
-                                <p className="tool_submenu container" style={{ width: "14rem", left:"2rem" }}>
+                                <p className="tool_submenu container" style={{ width: "14rem", left: "2rem" }}>
                                     <div>
                                         This will close the position on job boards. You can reactivate the job at any time.
                                     </div>

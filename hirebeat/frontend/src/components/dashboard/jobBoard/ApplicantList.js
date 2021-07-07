@@ -292,6 +292,7 @@ export class ApplicantList extends Component {
                             }
                             return (
                                 <ApplicantRow
+                                    filter={this.props.filter}
                                     applicant={a}
                                     index={index}
                                     applicants={this.props.curJob.applicants}
@@ -311,16 +312,18 @@ export class ApplicantList extends Component {
                         })}
                     </div>
                 </div>
-                <div style={{ marginTop: "2rem" }}>
-                    <button
-                        className="default-btn1 interview-txt6"
-                        style={{ paddingLeft: "25px", marginBottom: "1rem" }}
-                        onClick={this.inviteCandidates}
-                    >
-                        Proceed to Interview
-                        <span></span>
-                    </button>
-                </div>
+                {this.props.filter == "active" &&
+                    <div style={{ marginTop: "2rem" }}>
+                        <button
+                            className="default-btn1 interview-txt6"
+                            style={{ paddingLeft: "25px", marginBottom: "1rem" }}
+                            onClick={this.inviteCandidates}
+                        >
+                            Proceed to Interview
+                            <span></span>
+                        </button>
+                    </div>
+                }
                 {/* add new questions */}
                 <MyModal80
                     show={this.state.showQForm}
@@ -415,13 +418,13 @@ const ApplicantRow = (props) => {
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
+                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={props.filter == "active" ? (() => { setCurrent(props.index); onView() }) : null}>
                                 {name.length > 11 ? name.substring(0, 9) + "..." : name}
                             </span>
                         </div> :
                         <div>
                             <span className="dot" style={{ visibility: "hidden" }}></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
+                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={props.filter == "active" ? (() => { setCurrent(props.index); onView() }) : null}>
                                 {name.length > 11 ? name.substring(0, 9) + "..." : name}
                             </span>
                         </div>

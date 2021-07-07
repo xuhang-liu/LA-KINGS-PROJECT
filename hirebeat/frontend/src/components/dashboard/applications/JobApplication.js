@@ -44,6 +44,7 @@ export class JobApplication extends Component {
                             }
                             return (
                                 <JobViewDetail
+                                    filter={this.props.filter}
                                     removeSubReviewer={this.props.removeSubReviewer}
                                     addSubReviewer={this.props.addSubReviewer}
                                     getPJobs={this.props.getPJobs}
@@ -435,6 +436,7 @@ const JobViewDetail = (props) => {
             {/* Application detail*/}
             {view &&
                 <JobCard
+                    filter={props.filter}
                     getPJobs={props.getPJobs}
                     recordTime={props.recordTime}
                     interviewResume={props.interviewResume}
@@ -964,7 +966,7 @@ const JobCard = (props) => {
                             <div className="col-6 interview-center mt-2">
                                 <h3 className="interview-txt5" style={{ wordWrap: "break-word", wordBreak: "break-all", }}>{props.jobTitle}</h3>
                             </div>
-                            {!props.profile.is_subreviwer &&
+                            {(!props.profile.is_subreviwer && props.filter=="active") &&
                                 <div className="col-2 interview-txt7 mt-2" style={{textAlign:"right"}}>
                                     <button
                                         type="button"
@@ -1057,6 +1059,7 @@ const JobCard = (props) => {
                             </div>
                             <div style={{ marginBottom: "0.5rem" }}>
                                 <ApplicantList
+                                    filter={props.filter}
                                     getPJobs={props.getPJobs}
                                     profile={props.profile}
                                     recordTime={props.recordTime}
@@ -1106,7 +1109,7 @@ const JobCard = (props) => {
                             </div>
                         </div>
                     </div>
-                    {!props.profile.is_subreviwer &&
+                    {(!props.profile.is_subreviwer && props.filter == "active") &&
                         <div style={{ marginTop: "2rem" }}>
                             <button
                                 className="default-btn1 interview-txt6"
@@ -1647,6 +1650,7 @@ const ApplicantList = (props) => {
                 }*/}
                 return (
                     <Applicant
+                        filter={props.filter}
                         index={index}
                         applicants={props.applicants}
                         getPJobs={props.getPJobs}
@@ -1898,7 +1902,7 @@ const Applicant = (props) => {
                     </div>
                 }
                 <div className="col-3 mb-1">
-                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#67a3f3" }} onClick={() => viewResult()}>
+                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#67a3f3" }} onClick={props.filter == "active" ? (() => viewResult()) : null}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                         {props.name.split("(")[0].length > 20 ? props.name.split("(")[0].substring(0, 18) + "..." : props.name.split("(")[0]}
                     </button>
@@ -1981,7 +1985,7 @@ const Applicant = (props) => {
                 </div>*/}
                 {!props.profile.is_subreviwer &&
                     <div className="col-1">
-                        {isInvited &&
+                        {(isInvited && props.filter == "active") &&
                             <button
                                 onClick={() => inviteAgain()}
                                 className="interview-txt9"

@@ -15,7 +15,7 @@ import {
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence
 }
   from "../../redux/actions/auth_actions";
-import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, createMergeLinkToken, retrieveMergeAccountToken } from "../../redux/actions/job_actions";
+import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs } from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import {
   addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus,
@@ -126,6 +126,9 @@ export class EmployerDashboard extends Component {
     this.props.getAllJobs(this.props.user.id);
     this.props.getQuestionList();
     this.props.getReviewersList(user.id)
+    if(((this.props.profile.position_count) >= (this.props.profile.position_limit)) && (this.props.profile.membership == "Regular")){
+      this.props.checkFreeAccountActiveJobs(user);
+    }
   }
 
   getInitialSubpage = () => {
@@ -303,6 +306,7 @@ export class EmployerDashboard extends Component {
       case "jobs":
         return <JobCover
           user={this.props.user}
+          profile={this.props.profile}
           renderJobs={this.renderJobs}
           renderJobCreation={this.renderJobCreation}
           jobs={this.props.jobs}
@@ -600,7 +604,7 @@ export default connect(mapStateToProps, {
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
   updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
-  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken
+  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs
 })(
   EmployerDashboard
 );

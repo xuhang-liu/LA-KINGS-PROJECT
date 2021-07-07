@@ -148,6 +148,12 @@ def update_job(request):
 def archive_job(request):
     id = request.data['id']
     is_closed = request.data['isClosed']
+    if is_closed:
+        user = User.objects.get(pk=request.data["userId"])
+        # update user profile
+        profile = Profile.objects.get(user_id=user.id)
+        profile.position_count -= 1
+        profile.save()
 
     job = Jobs.objects.get(id=id)
     job.is_closed = is_closed
@@ -571,3 +577,18 @@ def send_merge_api_request(request):
     return Response({
         "api_response": api_response['results']
     })
+
+@api_view(['POST'])
+def check_free_account_active_jobs(request):
+    id = request.data['id']
+    jobs = Jobs.objects.filter(user_id=id).order_by('create_date')
+    for i in range(len(jobs)-1):
+        jobs[i].is_closed = True
+        jobs[i].save()
+
+    positions = Positions.objects.filter(user_id=id).order_by('invite_date')
+    for i in range(len(positions)-1):
+        positions[i].is_closed = True
+        positions[i].save()
+
+    return Response("Achive free account success", status=status.HTTP_201_CREATED)

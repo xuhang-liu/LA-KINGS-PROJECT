@@ -103,6 +103,38 @@ class Employer_PricingStyleOne extends Component {
         error.message;
     };
 
+    handleYearProUpgrade = () => {
+        if(this.props.profile.membership == 'Premium'){
+          confirmAlert({
+            title: 'Premium Member Already',
+            message: '',
+            buttons: [
+              {
+                label: 'Sure'
+              }
+            ]
+            });
+        }else{
+          this.handleYearProClickUpgrade();
+        }
+    };
+    handleYearProClickUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1JAcQeKxU1MN2zWMU4DYwhVA', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/employer-pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
     handlePremiumUpgrade = () => {
         if(this.props.profile.membership == 'Premium'){
             this.handlePremiumClickUpgrade2();
@@ -133,6 +165,47 @@ class Employer_PricingStyleOne extends Component {
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{
             price: 'price_1IXz0yKxU1MN2zWMEco7GNHO', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/employer-pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
+    handleYearPremiumUpgrade = () => {
+        if(this.props.profile.membership == 'Premium'){
+            this.handleYearPremiumClickUpgrade2();
+        }else{
+          this.handleYearPremiumClickUpgrade();
+        }
+    };
+    handleYearPremiumClickUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1JAcMmKxU1MN2zWMzUmtM0Iv', // Replace with the ID of your price
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          successUrl: 'https://hirebeat.co/payment',
+          cancelUrl: 'https://hirebeat.co/employer-pricing',
+          billingAddressCollection: 'auto',
+          customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
+    handleYearPremiumClickUpgrade2 = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{
+            price: 'price_1JAcdAKxU1MN2zWMWGA4eG9r', // Replace with the ID of your price
             quantity: 1,
           }],
           mode: 'subscription',
@@ -197,7 +270,7 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #67A3F3"}}>
-                                                <sup>$</sup>0 <sub style={{color:"#090d3a"}}>/ month</sub>
+                                                <sup>$</sup>0 <sub style={{color:"#090d3a"}}>/ mo</sub>
                                                 <p style={{fontSize:"13px", color:"#F0F6FE", fontWeight:"600"}}>Billed at $0</p>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
@@ -292,8 +365,8 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", color:"#090d3a", borderBottom:"2px dashed #ff6b00"}}>
-                                                <sup style={{color:"#090d3a"}}>$</sup>126<sub style={{color:"#090d3a"}}>/ month</sub>
-                                                <p style={{fontSize:"13px", color:"#818181", fontWeight:"600"}}>Billed at $2,028 <span style={{fontWeight:"700", color:"#090d3a"}}>$1,512 /yr</span></p>
+                                                <sup style={{color:"#090d3a"}}>$</sup>126<sub style={{color:"#090d3a"}}>/ mo</sub>
+                                                <p style={{fontSize:"13px", color:"#818181", fontWeight:"600"}}>Billed at <span style={{textDecoration:"line-through"}}>$2,028</span> <span style={{fontWeight:"700", color:"#090d3a"}}>$1,512 /yr</span></p>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
@@ -309,7 +382,7 @@ class Employer_PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", paddingLeft:"25px"}} onClick={this.handleProUpgrade}>
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", paddingLeft:"25px"}} onClick={this.handleYearProUpgrade}>
                                                         Select Plan
                                                         <span></span>
                                                     </button>
@@ -403,8 +476,8 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #13c4a1"}}>
-                                                <sup>$</sup>457<sub style={{color:"#090d3a"}}>/ month</sub>
-                                                <p style={{fontSize:"13px", color:"#818181", fontWeight:"600"}}>Billed at $7,188 <span style={{fontWeight:"700", color:"#090d3a"}}>$5,391 /yr</span></p>
+                                                <sup>$</sup>457<sub style={{color:"#090d3a"}}>/ mo</sub>
+                                                <p style={{fontSize:"13px", color:"#818181", fontWeight:"600"}}>Billed at <span style={{textDecoration:"line-through"}}>$7,188</span> <span style={{fontWeight:"700", color:"#090d3a"}}>$5,391 /yr</span></p>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
@@ -420,7 +493,7 @@ class Employer_PricingStyleOne extends Component {
                                             {
                                                 this.props.profile.membership == "Regular" &&
                                                 <div className="btn-box">
-                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", paddingLeft:"25px"}} onClick={this.handlePremiumUpgrade}>
+                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", paddingLeft:"25px"}} onClick={this.handleYearPremiumUpgrade}>
                                                         Select Plan
                                                         <span></span>
                                                     </button>
@@ -447,7 +520,7 @@ class Employer_PricingStyleOne extends Component {
                                             {
                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                 <div className="btn-box">
-                                                    <button className="default-btn1" style={{color:"white", paddingLeft:"25px"}} onClick={this.handlePremiumUpgrade}>
+                                                    <button className="default-btn1" style={{color:"white", paddingLeft:"25px"}} onClick={this.handleYearPremiumUpgrade}>
                                                         Upgrade
                                                         <span></span>
                                                     </button>
@@ -589,7 +662,7 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #67A3F3"}}>
-                                                <sup>$</sup>0 <sub style={{color:"#090d3a"}}>/ month</sub>
+                                                <sup>$</sup>0 <sub style={{color:"#090d3a"}}>/ mo</sub>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
@@ -683,7 +756,7 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", color:"#090d3a", borderBottom:"2px dashed #ff6b00"}}>
-                                                <sup style={{color:"#090d3a"}}>$</sup>169<sub style={{color:"#090d3a"}}>/ month</sub>
+                                                <sup style={{color:"#090d3a"}}>$</sup>169<sub style={{color:"#090d3a"}}>/ mo</sub>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
@@ -793,7 +866,7 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #13c4a1"}}>
-                                                <sup>$</sup>599<sub style={{color:"#090d3a"}}>/ month</sub>
+                                                <sup>$</sup>599<sub style={{color:"#090d3a"}}>/ mo</sub>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
