@@ -258,8 +258,8 @@ export class JobCreation extends Component {
             closeOnClickOutside: true,
             customUI: ({ onClose }) => {
                 return (
-                    <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", width: "80%", overflow: "auto", height: "50rem", backgroundColor: "#ffffff" }}>
-                        <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer" }}><i className="bx bx-x bx-md"></i></div>
+                    <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", width: "80%", overflow: "auto", height: "80vh", backgroundColor: "#ffffff" }}>
+                        <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer", marginTop:"3rem" }}><i className="bx bx-x bx-md"></i></div>
                         <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
                         <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={this.props.employerProfileDetail.logo_url} alt="icon" />
                         <h1 className="ml-5 mt-5" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A" }}>{this.state.jobTitle}</h1>
