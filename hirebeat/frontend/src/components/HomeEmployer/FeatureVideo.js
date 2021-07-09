@@ -22,7 +22,41 @@ class FeatureVideo extends Component {
             <DocumentMeta {...meta}>
             <React.Fragment>
             {/* Title */}
-            <div className="features-area pt-100 pb-100 product-bg">
+            <div>
+                <MediaQuery minDeviceWidth={1224}>
+                    <div className="page-title-area2 min-width-1290">
+                        <div className="container">
+                            <div className="page-title-content">
+                                <h2>
+                                    Save <span style={{color: "#FAC046"}}>50%</span> of Your Time <br/>
+                                    Reaching Top Candidates
+                                </h2>
+                                <p>
+                                    Are you <span style={{color: "#FAC046"}}>wasting your time and money</span> on scheduling interviews and other basic tasks that could be easily <br/>
+                                    fulfilled by tools?  Have you ever <span style={{color: "#FAC046"}}>lost the perfect candidate</span> to competitors due to the tedious process?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </MediaQuery>
+                <MediaQuery maxDeviceWidth={1223}>
+                    <div className="page-title-area2">
+                        <div className="container">
+                            <div className="page-title-content">
+                                <h2>
+                                    Save <span style={{color: "#FAC046"}}>50%</span> of Your Time <br/>
+                                    Reaching Top Candidates
+                                </h2>
+                                <p>
+                                    Are you <span style={{color: "#FAC046"}}>wasting your time and money</span> on scheduling interviews and other basic tasks that could be easily <br/>
+                                    fulfilled by tools?  Have you ever <span style={{color: "#FAC046"}}>lost the perfect candidate</span> to competitors due to the tedious process?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </MediaQuery>
+            </div>
+            {/*<div className="features-area pt-100 pb-100 product-bg">
                 <div className="container-fluid max-width-1440 ">
                     <div className="text-center" style={{color:"#FFFFFF"}}>
                         <MediaQuery minDeviceWidth={1224}>
@@ -51,7 +85,7 @@ class FeatureVideo extends Component {
                         </MediaQuery>
                     </div>
                 </div>
-            </div>
+            </div>*/}
             {/* Data box */}
             <div className="features-area pt-100 pb-100" style={{background: "#F4F5FD"}}>
                 <div className="container-fluid max-width-1440 ">

@@ -15,7 +15,7 @@ import {
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence
 }
   from "../../redux/actions/auth_actions";
-import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs } from "../../redux/actions/job_actions";
+import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs } from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import {
   addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus,
@@ -327,6 +327,7 @@ export class EmployerDashboard extends Component {
           jobid_list={this.props.jobid_list}
           getjobidlist={this.props.getjobidlist}
           getZRFeedXML={this.props.getZRFeedXML}
+          getZRPremiumFeedXML={this.props.getZRPremiumFeedXML}
           employerProfileDetail={this.props.employerProfileDetail}
         />;
       case "jobEdition":
@@ -337,6 +338,7 @@ export class EmployerDashboard extends Component {
           updateJob={this.props.updateJob}
           getAllJobs={this.props.getAllJobs}
           jobInfo={this.state.jobInfo}
+          getPJobs={this.getPJobs}
         />;
       case "applications":
         return <ApplicationCover
@@ -603,7 +605,7 @@ export default connect(mapStateToProps, {
   getRecordStatus, resendInvitation, updateCommentStatus, getQuestionList, updateViewStatus, getAnalyticsInfo, subreviewerUpdateComment,
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
-  updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
+  updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
   getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs
 })(
   EmployerDashboard

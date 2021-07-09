@@ -7,7 +7,7 @@ import { getByZip } from 'zcs';
 import Select from 'react-select';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { getZRFeedXML } from "../../../redux/actions/job_actions";
+import { getZRFeedXML, getZRPremiumFeedXML } from "../../../redux/actions/job_actions";
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -80,16 +80,21 @@ export class JobEdition extends Component {
         { value: 'Director', label: 'Director' },
         { value: 'Executive', label: 'Executive' },
     ];
-    setJobPostTure = () => {
-        this.setState({
-            job_post: true
-        });
-    };
-    setJobPostFalse = () => {
-        this.setState({
-            job_post: false
-        });
-    };
+
+    setJobPost(type) {
+        this.setState({job_post: type});
+    }
+
+//    setJobPostTure = () => {
+//        this.setState({
+//            job_post: true
+//        });
+//    };
+//    setJobPostFalse = () => {
+//        this.setState({
+//            job_post: false
+//        });
+//    };
     setLocReq0 = () => {
         this.setState({
             loc_req: 0
@@ -186,6 +191,19 @@ export class JobEdition extends Component {
     };
 
     savePosition = (e) => {
+        e.preventDefault();
+        if (this.props.profile.membership == "Regular" && this.state.job_post == 2) {
+            return (
+                    confirmAlert({
+                        title: 'Upgrade Now!',
+                        message: 'Upgrade to broadcast your job posting with premium option, or change to standard mode without promotion!',
+                        buttons: [
+                            { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+                            { label: 'OK' },
+                        ]
+                    })
+                )
+        }
         let data = {
             id: this.props.jobInfo.id,
             jobTitle: this.state.jobTitle,
@@ -213,12 +231,11 @@ export class JobEdition extends Component {
                 pho_req: this.state.pho_req,
                 lin_req: this.state.lin_req,
                 eeo_req: this.state.eeo_req,
-                job_post: false,
+                job_post: 0,
             };
         };
         this.props.updateJob(data);
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getZRFeedXML() }, 300);
-        e.preventDefault();
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
         this.props.renderJobs();
     }
 
@@ -383,116 +400,118 @@ export class JobEdition extends Component {
                             <h5 style={{ color: "#090d3a" }}><b>Application Form</b></h5>
                         </div>
                         <div className="form-row mt-3">
-                            <div className="form-group col-4">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
-                                    Name
-                                </label>
-                            </div>
-                            <div className="form-group col-4">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
-                                    Email Address
-                                </label>
-                            </div>
-                            <div className="form-group col-4">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
-                                    Resume
-                                </label>
-                            </div>
-                        </div>
-                        <div className="form-row">
-                            <div className="form-group col-4">
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button>
-                            </div>
-                            <div className="form-group col-4">
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button>
-                            </div>
-                            <div className="form-group col-4">
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button>
-                            </div>
+                            <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                Name
+                            </label>
                         </div>
                         <div className="form-row mt-3">
-                            <div className="form-group col-4">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
-                                    Location
-                                </label>
-                            </div>
-                            <div className="form-group col-4">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
-                                    Phone Number
-                                </label>
-                            </div>
-                            <div className="form-group col-4">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
-                                    LinkedIn URL
-                                </label>
-                            </div>
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button>
                         </div>
-                        <div className="form-row">
-                            <div className="form-group col-4">
-                                {this.state.loc_req == 0 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq0}>Required</button>
-                                }
-                                {this.state.loc_req == 1 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Optional</button> :
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq1}>Optional</button>
-                                }
-                                {this.state.loc_req == 2 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq2}>Disabled</button>
-                                }
-                            </div>
-                            <div className="form-group col-4">
-                                {this.state.pho_req == 0 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq0}>Required</button>
-                                }
-                                {this.state.pho_req == 1 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Optional</button> :
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq1}>Optional</button>
-                                }
-                                {this.state.pho_req == 2 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq2}>Disabled</button>
-                                }
-                            </div>
-                            <div className="form-group col-4">
-                                {this.state.lin_req == 0 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq0}>Required</button>
-                                }
-                                {this.state.lin_req == 1 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Optional</button> :
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq1}>Optional</button>
-                                }
-                                {this.state.lin_req == 2 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq2}>Disabled</button>
-                                }
-                            </div>
+                        <div className="form-row mt-3">
+                            <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                Email Address
+                            </label>
                         </div>
-                        {this.props.jobInfo.job_location != "Remote" &&
+                        <div className="form-row mt-3">
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button>
+                        </div>
+                        <div className="form-row mt-3">
+                            <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                Resume
+                            </label>
+                        </div>
+                        <div className="form-row mt-3">
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button>
+                        </div>
+                        <hr style={{ border: "1.5px solid #E8EDFC" }} />
+                        <div className="form-row mt-3">
+                            <label className="db-txt2">
+                                Location
+                            </label>
+                        </div>
+                        <div className="form-row mt-3">
+                            {this.state.loc_req == 0 ?
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq0}>Required</button>
+                            }
+                            {this.state.loc_req == 1 ?
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Optional</button> :
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq1}>Optional</button>
+                            }
+                            {this.state.loc_req == 2 ?
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq2}>Disabled</button>
+                            }
+                        </div>
+                        <div className="form-row mt-3">
+                            <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                Phone Number
+                            </label>
+                        </div>
+                        <div className="form-row mt-3">
+                            {this.state.pho_req == 0 ?
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq0}>Required</button>
+                            }
+                            {this.state.pho_req == 1 ?
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Optional</button> :
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq1}>Optional</button>
+                            }
+                            {this.state.pho_req == 2 ?
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq2}>Disabled</button>
+                            }
+                        </div>
+                        <div className="form-row mt-3">
+                            <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                LinkedIn URL
+                            </label>
+                        </div>
+                        <div className="form-row mt-3">
+                            {this.state.lin_req == 0 ?
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq0}>Required</button>
+                            }
+                            {this.state.lin_req == 1 ?
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Optional</button> :
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq1}>Optional</button>
+                            }
+                            {this.state.lin_req == 2 ?
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
+                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq2}>Disabled</button>
+                            }
+                        </div>
+                        {!this.state.remote &&
                             <div>
                                 <hr style={{ border: "1.5px solid #E8EDFC" }} />
-                                <div className="form-row mt-4 ml-2">
+                                <div className="form-row mt-4">
                                     <h5 style={{ color: "#090d3a" }}><b>Broadcast Your Job Posting</b></h5>
-                                </div>
-                                <div className="form-row mt-2 ml-1">
-                                    <div className="form-group col-12">
-                                        <label className="db-txt2">
-                                            Once enabled, your position will appear on: Indeed, Glassdoor, Google for Jobs, WayUp, JobRapido, ZipRecruiter and many more within 24 hours.
-                                        </label>
-                                    </div>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-4">
-                                        {this.state.job_post ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Enabled</button> :
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setJobPostTure}>Enabled</button>
-                                        }
-                                        {!this.state.job_post ?
+                                        {this.state.job_post == 0 ?
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setJobPostFalse}>Disabled</button>
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(0)}>Disabled</button>
+                                        }
+                                        {this.state.job_post == 1 ?
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Standard</button> :
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(1)}>Standard</button>
+                                        }
+                                        {this.state.job_post == 2 ?
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Premium</button> :
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(2)}>Premium</button>
+                                        }
+                                    </div>
+                                    <div className="form-group col-12">
+                                        {this.state.job_post == 1 &&
+                                            <label className="db-txt2" style={{fontWeight: "500"}}>
+                                                Standard advertising: your position will appear on ZipRecruiter within 24 hours.
+                                            </label>
+                                        }
+                                        {this.state.job_post == 2 &&
+                                            <label className="db-txt2" style={{fontWeight: "500"}}>
+                                                Premium advertising: your position will appear on: Indeed, Glassdoor, Google for Jobs, WayUp, JobRapido, ZipRecruiter and many more within 24 hours.
+                                            </label>
                                         }
                                     </div>
                                 </div>
@@ -513,6 +532,6 @@ export class JobEdition extends Component {
     };
 };
 
-export default withRouter(connect(null, { getZRFeedXML })(
+export default withRouter(connect(null, { getZRFeedXML, getZRPremiumFeedXML })(
     JobEdition
 ));

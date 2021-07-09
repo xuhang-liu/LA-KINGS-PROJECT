@@ -259,8 +259,14 @@ export class Header extends Component {
               </li>
               {!this.props.profile.is_subreviwer &&
               <li className="nav-item ">
-                <a href="/employer-pricing" className="nav-link text-white navbar-font">
-                  <span className="header-text">Pricing</span>
+                <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Pricing <i className="bx-fw bx bx-chevron-down"></i>
+                    <ul className="nav_submenu" style={{height:"6rem"}}>
+                      <li><Link id="id-pricing2" to="/employer-pricing" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Pricing & Plans</Link></li>
+                      <li><Link id="id-roi2" to="/employer-roi-calculator" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>ROI Calculator</Link></li>
+                    </ul>
+                  </span>
                 </a>
               </li>}
             </ul>
@@ -327,7 +333,7 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item">
-              <a className="nav-link text-white navbar-font">
+                <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>
                     About Us <i className="bx-fw bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{height:"8rem"}}>
@@ -339,8 +345,14 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item ">
-                <a href="/employer-pricing" className="nav-link text-white navbar-font">
-                  <span className="header-text">Pricing</span>
+                <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Pricing <i className="bx-fw bx bx-chevron-down"></i>
+                    <ul className="nav_submenu" style={{height:"6rem"}}>
+                      <li><Link id="id-pricing2" to="/employer-pricing" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Pricing & Plans</Link></li>
+                      <li><Link id="id-roi2" to="/employer-roi-calculator" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>ROI Calculator</Link></li>
+                    </ul>
+                  </span>
                 </a>
               </li>
             </ul>

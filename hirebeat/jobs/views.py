@@ -176,10 +176,14 @@ def add_new_apply_candidate(request):
     location = request.data['location']
     resume_url = request.data['resume_url']
     linkedinurl = request.data['linkedinurl']
+    gender = request.data['gender']
+    race = request.data['race']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl)
+    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
+                                                     email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
+                                                     gender=gender, race=race)
     # add candidate resume url to prifile detail table
     applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
     if applicant_registered:
@@ -367,7 +371,7 @@ def get_zr_xml(request):
     publisher_url.text = 'https://hirebeat.co/'
     publisher.text = 'HibreBeat'
     # produce jobs dynamic here
-    job_details = Jobs.objects.filter(job_post=True).values()
+    job_details = Jobs.objects.filter(job_post=1).values()
     for i in range(len(job_details)):
         # job description has min length of 25 and job is not closed
         if len(job_details[i]['job_description']) > 25 and job_details[i]['is_closed'] is False:
@@ -377,6 +381,30 @@ def get_zr_xml(request):
     with open("zrjobs.xml", "wb") as f:
         f.write(ET.tostring(source, encoding='utf8', method='xml'))
     return Response("zrjobs.xml is regenerated successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_zr_premium_xml(request):
+    # initialize xml structure
+    source = ET.Element('source')
+    # Optional Metadata Fields
+    last_build_date = ET.SubElement(source, 'lastBuildDate')
+    publisher_url = ET.SubElement(source, 'publisherurl')
+    publisher = ET.SubElement(source, 'publisher')
+    # populate data to Optional Metadata Fields
+    last_build_date.text = datetime.now().strftime("%c")
+    publisher_url.text = 'https://hirebeat.co/'
+    publisher.text = 'HibreBeat'
+    # produce jobs dynamic here
+    job_details = Jobs.objects.filter(job_post=2).values()
+    for i in range(len(job_details)):
+        # job description has min length of 25 and job is not closed
+        if len(job_details[i]['job_description']) > 25 and job_details[i]['is_closed'] is False:
+            job = create_zr_job_feed(job_details[i])
+            source.append(job)
+    # save xml file
+    with open("zrpremiumjobs.xml", "wb") as f:
+        f.write(ET.tostring(source, encoding='utf8', method='xml'))
+    return Response("zrpremiumjobs.xml is regenerated successfully", status=status.HTTP_200_OK)
 
 
 def delete_zr_feed_xml(job_id):
