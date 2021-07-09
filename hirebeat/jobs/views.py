@@ -18,7 +18,7 @@ import boto
 import os
 import requests
 import MergeATSClient
-from MergeATSClient.api import candidates_api
+from MergeATSClient.api import candidates_api, applications_api
 from MergeATSClient.model.paginated_candidate_list import PaginatedCandidateList
 from pprint import pprint
 
@@ -541,11 +541,15 @@ def create_merge_link_token(request):
 def retrive_merge_account_token(request):
     public_token = request.data['public_token']
     user_id = request.data['user_id']
-    print(public_token)
-    print(user_id)
+    api_key = os.getenv("MERGE_API_KEY")
+    headers = {"Authorization": f"Bearer {api_key}"}
+    account_token_url = "https://api.merge.dev/api/integrations/account-token/{}".\
+        format(public_token)
+    account_token_result = requests.get(account_token_url, headers=headers)
+    account_token = account_token_result.json().get("account_token")
     user = User.objects.get(pk=user_id)
     profile = Profile.objects.get(user=user)
-    profile.merge_public_token = public_token
+    profile.merge_public_token = account_token
     profile.save()
 
     return Response("Retrive merge token success", status=status.HTTP_201_CREATED)
@@ -563,6 +567,8 @@ def send_merge_api_request(request):
 
     candidates_api_instance = candidates_api.CandidatesApi(api_client)
 
+    app_api_instance = applications_api.ApplicationsApi(api_client)
+
     # The string 'TEST_ACCOUNT_TOKEN' below works to test your connection
     # to Merge and will return dummy data in the response.
     # In production, replace this with account_token from user.
@@ -570,12 +576,13 @@ def send_merge_api_request(request):
 
     try:
         api_response = candidates_api_instance.candidates_list(x_account_token)
-        pprint(api_response['results'])
+        app_api_response = app_api_instance.applications_list(x_account_token)
+        pprint(app_api_response['results'])
     except MergeATSClient.ApiException as e:
         print('Exception when calling CandidatesApi->candidates_list: %s' % e)
 
     return Response({
-        "api_response": api_response['results']
+        "api_response": app_api_response['results']
     })
 
 @api_view(['POST'])

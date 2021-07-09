@@ -131,7 +131,7 @@ const JobViewDetail = (props) => {
             }
         })
         setUnView(temp);
-        if (sessionStorage.getItem("view" + props.jobTitle) == "true") {
+        if (sessionStorage.getItem("view" + props.positionId) == "true") {
             setView(true);
         };
     }, [props.applicants]);
@@ -323,7 +323,7 @@ const JobViewDetail = (props) => {
                                         }
                                     </div>
                                     <div className="row">
-                                        <button className="title-button ml-2" style={{ float: "left" }} onClick={() => { setView(true); props.addSelected(props.positionId); sessionStorage.setItem(("view" + props.jobTitle), "true"); sessionStorage.setItem("selectedId", props.positionId) }}>
+                                        <button className="title-button ml-2" style={{ float: "left" }} onClick={() => { setView(true); props.addSelected(props.positionId); sessionStorage.setItem(("view" + props.positionId), "true"); sessionStorage.setItem("selectedId", props.positionId) }}>
                                             {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                         </button>
                                     </div>
@@ -464,7 +464,7 @@ const JobViewDetail = (props) => {
                     location_candidate={props.location_candidate}
                     resendInvitation={props.resendInvitation}
                     updateCommentStatus={props.updateCommentStatus}
-                    hideView={() => (setView(false), props.addSelected(0), sessionStorage.removeItem("view" + props.jobTitle), sessionStorage.removeItem("selectedId"))}
+                    hideView={() => (setView(false), props.addSelected(0), sessionStorage.removeItem("view" + props.positionId), sessionStorage.removeItem("selectedId"))}
                     user={props.user}
                     profile={props.profile}
                     updateViewStatus={props.updateViewStatus}
