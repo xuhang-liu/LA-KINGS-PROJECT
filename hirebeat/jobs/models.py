@@ -20,11 +20,12 @@ class Jobs(models.Model):
     company_overview = models.TextField(null=True, blank=True)
     company_name = models.CharField(max_length=100, null=True, blank=True)
     company_logo = models.CharField(max_length=100, null=True, blank=True)
-    job_post = models.BooleanField(default=True)
+    job_post = models.IntegerField(default=1)  # 0 means disabled, 1 means free zr post, 2 means paid zr post
     loc_req = models.CharField(max_length=10, default="1") # 0 means no required, 1 means optional, 2 means disabled
     pho_req = models.CharField(max_length=10, default="1")
     lin_req = models.CharField(max_length=10, default="1")
     eeo_req = models.CharField(max_length=10, default="1") # 0 means disabled, 1 means enabled
+    eeo_ques_req = models.CharField(max_length=10, default="1") # 0 means disabled, 1 means enabled
 
 
 class ApplyCandidates(models.Model):
@@ -53,3 +54,5 @@ class ApplyCandidates(models.Model):
     is_viewed = models.BooleanField(default=False)
     linkedinurl = models.CharField(max_length=100, null=True, blank=True)
     apply_source = models.CharField(max_length=100, default="HireBeat")
+    gender = models.CharField(max_length=100, null=True)
+    race = models.CharField(max_length=200, null=True)

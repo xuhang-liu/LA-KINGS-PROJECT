@@ -42,6 +42,7 @@ def add_new_job(request):
     pho_req = request.data['pho_req']
     lin_req = request.data['lin_req']
     eeo_req = request.data['eeo_req']
+    eeo_ques_req = request.data['eeo_ques_req']
     job_post = request.data['job_post']
     user = User.objects.get(pk=request.data["userId"])
     company_name = ""
@@ -67,7 +68,7 @@ def add_new_job(request):
     # create job
     job = Jobs.objects.create(user=user, positions=position, job_title=job_title, job_id=job_id, job_description=job_description,
             job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name, company_logo=company_logo,
-            loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req)
+            loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req)
     # save job link
     job_url = "https://hirebeat.co/apply-job?id=" + str(job.id)
     job.job_url = job_url
@@ -119,6 +120,7 @@ def update_job(request):
     lin_req = request.data['lin_req']
     eeo_req = request.data['eeo_req']
     job_post = request.data['job_post']
+    eeo_ques_req = request.data['eeo_ques_req']
 
     job = Jobs.objects.get(id=id)
     job.job_title = job_title
@@ -131,6 +133,7 @@ def update_job(request):
     job.pho_req = pho_req
     job.lin_req = lin_req
     job.eeo_req = eeo_req
+    job.eeo_ques_req = eeo_ques_req
     job.job_post = job_post
     # save update to db
     job.save()
@@ -176,10 +179,14 @@ def add_new_apply_candidate(request):
     location = request.data['location']
     resume_url = request.data['resume_url']
     linkedinurl = request.data['linkedinurl']
+    gender = request.data['gender']
+    race = request.data['race']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl)
+    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
+                                                     email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
+                                                     gender=gender, race=race)
     # add candidate resume url to prifile detail table
     applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
     if applicant_registered:
@@ -244,6 +251,7 @@ def get_current_jobs(request):
         "job_post": jobs.job_post,
         "lin_req": jobs.lin_req,
         "eeo_req": jobs.eeo_req,
+        "eeo_ques_req": jobs.eeo_ques_req,
         "company_website": employerp.website,
     }
 
@@ -367,7 +375,7 @@ def get_zr_xml(request):
     publisher_url.text = 'https://hirebeat.co/'
     publisher.text = 'HibreBeat'
     # produce jobs dynamic here
-    job_details = Jobs.objects.filter(job_post=True).values()
+    job_details = Jobs.objects.filter(job_post=1).values()
     for i in range(len(job_details)):
         # job description has min length of 25 and job is not closed
         if len(job_details[i]['job_description']) > 25 and job_details[i]['is_closed'] is False:
@@ -377,6 +385,30 @@ def get_zr_xml(request):
     with open("zrjobs.xml", "wb") as f:
         f.write(ET.tostring(source, encoding='utf8', method='xml'))
     return Response("zrjobs.xml is regenerated successfully", status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_zr_premium_xml(request):
+    # initialize xml structure
+    source = ET.Element('source')
+    # Optional Metadata Fields
+    last_build_date = ET.SubElement(source, 'lastBuildDate')
+    publisher_url = ET.SubElement(source, 'publisherurl')
+    publisher = ET.SubElement(source, 'publisher')
+    # populate data to Optional Metadata Fields
+    last_build_date.text = datetime.now().strftime("%c")
+    publisher_url.text = 'https://hirebeat.co/'
+    publisher.text = 'HibreBeat'
+    # produce jobs dynamic here
+    job_details = Jobs.objects.filter(job_post=2).values()
+    for i in range(len(job_details)):
+        # job description has min length of 25 and job is not closed
+        if len(job_details[i]['job_description']) > 25 and job_details[i]['is_closed'] is False:
+            job = create_zr_job_feed(job_details[i])
+            source.append(job)
+    # save xml file
+    with open("zrpremiumjobs.xml", "wb") as f:
+        f.write(ET.tostring(source, encoding='utf8', method='xml'))
+    return Response("zrpremiumjobs.xml is regenerated successfully", status=status.HTTP_200_OK)
 
 
 def delete_zr_feed_xml(job_id):

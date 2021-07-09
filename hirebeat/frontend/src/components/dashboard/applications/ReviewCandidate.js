@@ -143,6 +143,9 @@ const ReviewCandidate = (props) => {
     }
 
     const renderResume = (resumes) => {
+        if (resumes == "" || resumes == null){
+            return;
+        }
         return (
             <div>
                 <div className="row">

@@ -14,7 +14,7 @@ export const ApplicationCover = (props) => {
   return (
     <div style={{marginBottom: "5%"}} className="container min-width-980" >
       <div style={{marginBottom: "30px"}}><h3><b><i className="bx-fw bx bx-microphone"></i><span className="ml-2">Interview</span></b></h3></div>
-      <div style={{marginBottom: "20px"}} className="container min-width-980">
+      <div style={{marginBottom: "20px"}}>
         <button
           className={decideClassName(filter, "active")}
           onClick={() => (setFilter("active"), setselectedId(0),sessionStorage.clear(), sessionStorage.setItem("intFilter", "active"), sessionStorage.setItem('subpage', "applications"))}

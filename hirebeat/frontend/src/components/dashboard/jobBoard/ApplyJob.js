@@ -36,6 +36,28 @@ const ApplyJob = (props) => {
 
     function applySubmit(e) {
         e.preventDefault();
+        let gender = null;
+        let race = null;
+        // get gender and race
+        gender = document.querySelector('input[name="gender"]:checked')?.value;
+        race = document.querySelector('input[name="race"]:checked')?.value;
+        // check eeo form filling
+        if (props.job.eeo_ques_req == "1" && (gender == null || race == null)) {
+            return confirmAlert({
+                title: "EEO Survey Required!",
+                message: "Please fill out the EEO Survey.",
+                buttons: [
+                    {
+                        label: 'Ok'
+                    }
+                ]
+            });
+        }
+        // no eeo survey, set gender and race to empty string
+        if (props.job.eeo_ques_req == "0") {
+            gender = "";
+            race = "";
+        }
         if (resume_url == "") {
             return confirmAlert({
                 title: "Resume Required!",
@@ -84,6 +106,8 @@ const ApplyJob = (props) => {
                 location: location,
                 resume_url: resume_url,
                 linkedinurl: linkedinurl,
+                gender: gender,
+                race: race,
             };
             props.addNewApplyCandidate(data);
             props.uploader.uploadFile(resume);
@@ -103,6 +127,8 @@ const ApplyJob = (props) => {
                     location: location,
                     resume_url: resume_url,
                     linkedinurl: linkedinurl,
+                    gender: gender,
+                    race: race,
                 };
                 setTimeout(() => { props.addNewApplyCandidate(data); }, 300);
                 props.uploader.uploadFile(resume);
@@ -111,6 +137,28 @@ const ApplyJob = (props) => {
     }
     function applySubmit1(e) {
         e.preventDefault();
+        let gender = null;
+        let race = null;
+        // get gender and race
+        gender = document.querySelector('input[name="gender"]:checked')?.value;
+        race = document.querySelector('input[name="race"]:checked')?.value;
+        // check eeo form filling
+        if (props.job.eeo_ques_req == "1" && (gender == null || race == null)) {
+            return confirmAlert({
+                title: "EEO Survey Required!",
+                message: "Please fill out the EEO Survey.",
+                buttons: [
+                    {
+                        label: 'Ok'
+                    }
+                ]
+            });
+        }
+        // no EEO survey, set gender and race to empty string
+        if (props.job.eeo_ques_req == "0") {
+            gender = "";
+            race = "";
+        }
         if (resume_url == "") {
             return confirmAlert({
                 title: "Resume Required!",
@@ -158,6 +206,8 @@ const ApplyJob = (props) => {
             location: location,
             resume_url: resume_url,
             linkedinurl: linkedinurl,
+            gender: gender,
+            race: race,
         };
         props.addNewApplyCandidate(data);
         props.uploader.uploadFile(resume);
@@ -401,6 +451,150 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {/*  EEO Survey */}
+                                                    {props.job.eeo_ques_req == "1" &&
+                                                        <div class="form-group">
+                                                            <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
+                                                            <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
+                                                                You are requested to fill in the personal data below.
+                                                                This information will only be used for government reporting purposes and
+                                                                not as selection criteria for the hiring process.
+                                                            </p>
+                                                            <div class="form-group">
+                                                                <label className="job-apply-char1">Gender</label><span className="job-apply-char2">*</span>
+                                                                <div>
+                                                                    <input type="radio" name="gender" value="Male"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>Male</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="gender" value="Female"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>Female</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="gender" value="N/A"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>I do not wish to disclose</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label className="job-apply-char1">Race or ethnicity</label><span className="job-apply-char2">*</span>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="Hispanic or Latino"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Hispanic or Latino
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person of Cuban, Mexican, Puerto Rican,
+                                                                                    South or Central American, or other Spanish
+                                                                                    culture or origin regardless of race.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="White"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        White (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the original
+                                                                                    peoples of Europe, the Middle East or North Africa.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div><div>
+                                                                    <input type="radio" name="race" value="Black or African American"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Black or African American (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the black racial groups of Africa.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="Native Hawaiian or Pacific Islander"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the peoples
+                                                                                    of Hawaii, Guam, Samoa or other Pacific Islands.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="Asian"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Asian  (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the original
+                                                                                    peoples of the Far East, Southeast Asia
+                                                                                    or the Indian Subcontinent, including,
+                                                                                    for example, Cambodia, China, India, Japan,
+                                                                                    Korea, Malaysia, Pakistan, the Philippine
+                                                                                    Islands, Thailand and Vietnam.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="Native American or Alaska Native"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Native American or Alaska Native (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                     A person having origins in any of the
+                                                                                     original peoples of North and South America
+                                                                                     (including Central America) and who maintains
+                                                                                     tribal affiliation or community attachment.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="Two or more races"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Two or more races (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    Person who identify with more than one of the above five races.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="N/A"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        I do not wish to disclose
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
                                                 </div>
                                                 <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
                                                     <h1 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
@@ -507,6 +701,150 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {/*  EEO Survey */}
+                                                    {props.job.eeo_ques_req == "1" &&
+                                                        <div class="form-group">
+                                                            <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
+                                                            <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
+                                                                You are requested to fill in the personal data below.
+                                                                This information will only be used for government reporting purposes and
+                                                                not as selection criteria for the hiring process.
+                                                            </p>
+                                                            <div class="form-group">
+                                                                <label className="job-apply-char1">Gender</label><span className="job-apply-char2">*</span>
+                                                                <div>
+                                                                    <input type="radio" name="gender" value="Male"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>Male</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="gender" value="Female"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>Female</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="gender" value="N/A"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>I do not wish to disclose</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label className="job-apply-char1">Race or ethnicity</label><span className="job-apply-char2">*</span>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="Hispanic or Latino"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Hispanic or Latino
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person of Cuban, Mexican, Puerto Rican,
+                                                                                    South or Central American, or other Spanish
+                                                                                    culture or origin regardless of race.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="White"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        White (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the original
+                                                                                    peoples of Europe, the Middle East or North Africa.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div><div>
+                                                                    <input type="radio" name="race" value="Black or African American"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Black or African American (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the black racial groups of Africa.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="Native Hawaiian or Pacific Islander"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the peoples
+                                                                                    of Hawaii, Guam, Samoa or other Pacific Islands.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="Asian"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Asian  (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the original
+                                                                                    peoples of the Far East, Southeast Asia
+                                                                                    or the Indian Subcontinent, including,
+                                                                                    for example, Cambodia, China, India, Japan,
+                                                                                    Korea, Malaysia, Pakistan, the Philippine
+                                                                                    Islands, Thailand and Vietnam.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="Native American or Alaska Native"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Native American or Alaska Native (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                     A person having origins in any of the
+                                                                                     original peoples of North and South America
+                                                                                     (including Central America) and who maintains
+                                                                                     tribal affiliation or community attachment.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="Two or more races"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        Two or more races (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    Person who identify with more than one of the above five races.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="radio" name="race" value="N/A"></input>
+                                                                    <label className="job-apply-char1" style={{marginLeft: "1rem"}}>
+                                                                        I do not wish to disclose
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
                                                 </div>
                                                 <button className="default-btn mt-3" style={{ paddingLeft: "25px", float: "right" }}>
                                                     Submit Application
@@ -799,6 +1137,156 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {/*  EEO Survey */}
+                                                    {props.job.eeo_ques_req == "1" &&
+                                                        <div class="form-group">
+                                                            <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
+                                                            <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
+                                                                You are requested to fill in the personal data below.
+                                                                This information will only be used for government reporting purposes and
+                                                                not as selection criteria for the hiring process.
+                                                            </p>
+                                                            <div class="form-group">
+                                                                <label className="job-apply-char1">Gender</label><span className="job-apply-char2">*</span>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="gender" value="Male" style={{marginRight: "1rem"}} />
+                                                                        Male
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="gender" value="Female" style={{marginRight: "1rem"}} />
+                                                                        Female
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                     <label className="job-apply-char1">
+                                                                        <input type="radio" name="gender" value="N/A" style={{marginRight: "1rem"}} />
+                                                                        I do not wish to disclose
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label className="job-apply-char1">Race or ethnicity</label><span className="job-apply-char2">*</span>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Hispanic or Latino" style={{marginRight: "1rem"}} />
+                                                                        Hispanic or Latino
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person of Cuban, Mexican, Puerto Rican,
+                                                                                    South or Central American, or other Spanish
+                                                                                    culture or origin regardless of race.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="White" style={{marginRight: "1rem"}} />
+                                                                        White (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the original
+                                                                                    peoples of Europe, the Middle East or North Africa.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div><div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Black or African American" style={{marginRight: "1rem"}} />
+                                                                        Black or African American (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the black racial groups of Africa.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{marginRight: "1rem"}} />
+                                                                        Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the peoples
+                                                                                    of Hawaii, Guam, Samoa or other Pacific Islands.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Asian" style={{marginRight: "1rem"}} />
+                                                                        Asian  (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the original
+                                                                                    peoples of the Far East, Southeast Asia
+                                                                                    or the Indian Subcontinent, including,
+                                                                                    for example, Cambodia, China, India, Japan,
+                                                                                    Korea, Malaysia, Pakistan, the Philippine
+                                                                                    Islands, Thailand and Vietnam.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Native American or Alaska Native" style={{marginRight: "1rem"}} />
+                                                                        Native American or Alaska Native (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                     A person having origins in any of the
+                                                                                     original peoples of North and South America
+                                                                                     (including Central America) and who maintains
+                                                                                     tribal affiliation or community attachment.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Two or more races" style={{marginRight: "1rem"}} />
+                                                                        Two or more races (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    Person who identify with more than one of the above five races.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="N/A" style={{marginRight: "1rem"}} />
+                                                                        I do not wish to disclose
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
                                                 </div>
                                                 <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
                                                     <h1 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
@@ -905,6 +1393,156 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {/*  EEO Survey */}
+                                                    {props.job.eeo_ques_req == "1" &&
+                                                        <div class="form-group">
+                                                            <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
+                                                            <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
+                                                                You are requested to fill in the personal data below.
+                                                                This information will only be used for government reporting purposes and
+                                                                not as selection criteria for the hiring process.
+                                                            </p>
+                                                            <div class="form-group">
+                                                                <label className="job-apply-char1">Gender</label><span className="job-apply-char2">*</span>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="gender" value="Male" style={{marginRight: "1rem"}} />
+                                                                        Male
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="gender" value="Female" style={{marginRight: "1rem"}} />
+                                                                        Female
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                     <label className="job-apply-char1">
+                                                                        <input type="radio" name="gender" value="N/A" style={{marginRight: "1rem"}} />
+                                                                        I do not wish to disclose
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label className="job-apply-char1">Race or ethnicity</label><span className="job-apply-char2">*</span>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Hispanic or Latino" style={{marginRight: "1rem"}} />
+                                                                        Hispanic or Latino
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person of Cuban, Mexican, Puerto Rican,
+                                                                                    South or Central American, or other Spanish
+                                                                                    culture or origin regardless of race.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="White" style={{marginRight: "1rem"}} />
+                                                                        White (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the original
+                                                                                    peoples of Europe, the Middle East or North Africa.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div><div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Black or African American" style={{marginRight: "1rem"}} />
+                                                                        Black or African American (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the black racial groups of Africa.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{marginRight: "1rem"}} />
+                                                                        Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the peoples
+                                                                                    of Hawaii, Guam, Samoa or other Pacific Islands.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Asian" style={{marginRight: "1rem"}} />
+                                                                        Asian  (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    A person having origins in any of the original
+                                                                                    peoples of the Far East, Southeast Asia
+                                                                                    or the Indian Subcontinent, including,
+                                                                                    for example, Cambodia, China, India, Japan,
+                                                                                    Korea, Malaysia, Pakistan, the Philippine
+                                                                                    Islands, Thailand and Vietnam.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Native American or Alaska Native" style={{marginRight: "1rem"}} />
+                                                                        Native American or Alaska Native (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                     A person having origins in any of the
+                                                                                     original peoples of North and South America
+                                                                                     (including Central America) and who maintains
+                                                                                     tribal affiliation or community attachment.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="Two or more races" style={{marginRight: "1rem"}} />
+                                                                        Two or more races (Not Hispanic or Latino)
+                                                                        <span className="tool_tip ml-2">
+                                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                                <div>
+                                                                                    Person who identify with more than one of the above five races.
+                                                                                </div>
+                                                                            </p>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="race" value="N/A" style={{marginRight: "1rem"}} />
+                                                                        I do not wish to disclose
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
                                                 </div>
                                                 <button className="default-btn mt-3" style={{ paddingLeft: "25px", marginLeft: "20%" }}>
                                                     Submit Application

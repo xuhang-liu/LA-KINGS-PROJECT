@@ -22,7 +22,41 @@ class ResumeScreening extends Component {
             <DocumentMeta {...meta}>
             <React.Fragment>
             {/* Title */}
-            <div className="features-area pt-100 pb-100 product-bg">
+            <div>
+                <MediaQuery minDeviceWidth={1224}>
+                    <div className="page-title-area2 min-width-1290">
+                        <div className="container">
+                            <div className="page-title-content">
+                                <h2>
+                                    Getting <span style={{color: "#FAC046"}}>250</span> resumes and <span style={{color: "#FAC046"}}>88%</span> <br/>
+                                    of them are unqualified?
+                                </h2>
+                                <p>
+                                    You need an <span style={{color: "#FAC046"}}>AI resume screening software</span> to find the right <br/>
+                                    candidate from the talent pool!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </MediaQuery>
+                <MediaQuery maxDeviceWidth={1223}>
+                    <div className="page-title-area2">
+                        <div className="container">
+                            <div className="page-title-content">
+                                <h2>
+                                    Getting <span style={{color: "#FAC046"}}>250</span> resumes and <span style={{color: "#FAC046"}}>88%</span> <br/>
+                                    of them are unqualified?
+                                </h2>
+                                <p>
+                                    You need an <span style={{color: "#FAC046"}}>AI resume screening software</span> to find the right <br/>
+                                    candidate from the talent pool!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </MediaQuery>
+            </div>
+            {/*<div className="features-area pt-100 pb-100 product-bg">
                 <div className="container-fluid max-width-1440 ">
                     <div className="text-center" style={{color:"#FFFFFF"}}>
                         <MediaQuery minDeviceWidth={1224}>
@@ -51,7 +85,7 @@ class ResumeScreening extends Component {
                         </MediaQuery>
                     </div>
                 </div>
-            </div>
+            </div>*/}
             {/* Data box */}
             <div className="container-fluid pb-70 pt-100" style={{backgroundColor:"#f4f5fd"}}>
                 <div className="container-fluid max-width-1440">

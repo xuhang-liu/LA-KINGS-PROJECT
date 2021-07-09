@@ -4,6 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import MediaQuery from 'react-responsive';
 import { connect } from "react-redux";
+import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
+import PageTitleArea2 from '../Common/PageTitleArea2';
+import FreeTrialArea from "../HomeEmployer/FreeTrialArea";
 
 const PrettoSlider = withStyles({
     root: {
@@ -48,6 +52,18 @@ class ROICalculator extends Component {
         });
     };
 
+    onChangeNumOfHires = (event, newValue) => {
+        this.setState({
+            numofhire: newValue,
+        });
+    };
+
+    onChangeNumOfResumes = (event, newValue) => {
+        this.setState({
+            numofresume: newValue,
+        });
+    };
+
     onChange1 = (e) => {
         this.setState({
           [e.target.name]: e.target.value,
@@ -71,70 +87,123 @@ class ROICalculator extends Component {
         var moneysaving = costpermonth-hcostpermonth;
         var timesaving = ((c1-d1)/60)*this.state.numofhire*this.state.rec_value;
         var roi = (moneysaving-599)/599;
+
+        const meta = {
+            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
+            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+            canonical: 'https://hirebeat.co/employer-roi-calculator',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'hiring tool return on investment, hiring tool roi, hr applicant tracking, roi recruitment process'
+              }
+            }
+          };
+
         return (
-            <React.Fragment>
-                <section className="video-presentation-area ptb-100" style={{backgroundColor:"#f4f7ff"}}>
-                    <div className="container">
-                        <div className="section-title">
-                            <h2>HireBeat Savings Calculator</h2>
-                            <p style={{color:"#090d3a"}}>Find out how much HireBeat can save your organization</p>
-                       </div>
-                       <div className="row">
-                           <div className="col-lg-12 col-md-12">
-                                <ReactWOW animation='fadeInLeft' delay='0.1s'>
-                                    <a style={{textDecoration:'none'}} id="id-interview-practice-feedback">
-                                    <div className="features-box-one">
-                                        <div className="row mt-3 mb-3">
-                                            <div className="d-flex col-lg-6 col-md-6" style={{borderRight:"3px solid #E8EDFC"}}>
-                                                <form style={{marginLeft:"1rem"}}>
-                                                    <div className="form-group">
-                                                        <label style={{float:"left", fontWeight:"500", fontSize:"1rem", color:"#090d3a"}}>Numbers of hires per month</label>
-                                                        <input style={{fontWeight:"500", fontSize:"1rem"}} type="number" className="form-control" name="numofhire" value={this.state.numofhire} onChange={this.onChange1}></input>
+            <DocumentMeta {...meta}>
+                <React.Fragment>
+                    <PageTitleArea2
+                        pageTitle="HireBeat Savings Calculator"
+                        pageDescription="Find out how much HireBeat can save your organization"
+                    />
+                    <section className="video-presentation-area ptb-100" style={{backgroundColor:"#f4f7ff"}}>
+                        <div className="container">
+                           <div className="row">
+                               <div className="col-lg-12 col-md-12">
+                                    <ReactWOW animation='fadeInLeft' delay='0.1s'>
+                                        <a style={{textDecoration:'none'}} id="id-interview-practice-feedback">
+                                        <div className="features-box-one">
+                                            <div className="row mt-3 mb-3">
+                                                <div className="col-lg-6 col-md-6" style={{borderRight:"3px solid #E8EDFC"}}>
+                                                    <form style={{marginLeft:"1rem"}}>
+                                                        <div className="row">
+                                                            <label style={{float:"left", fontWeight:"600", fontSize:"1rem", color:"#090d3a"}}>Number of Hires per month</label>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col-lg-10 col-md-10 form-group">
+                                                                <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={1} value={this.state.numofhire} onChange={this.onChangeNumOfHires} name="numofhire" min={1} max={2000}/>
+                                                            </div>
+                                                            <MediaQuery minDeviceWidth={1224}>
+                                                                <div className="col-lg-1 col-md-1 form-group" style={{display: "flex", alignItems: "center"}}>
+                                                                    <label style={{float:"left", fontWeight:"600", fontSize:"1rem", color:"#090d3a"}}>{this.state.numofhire}</label>
+                                                                </div>
+                                                            </MediaQuery>
+                                                        </div>
+                                                        <div className="row">
+                                                            <label style={{float:"left", fontWeight:"600", fontSize:"1rem", color:"#090d3a"}}>Total Recruiters</label>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col-lg-10 col-md-10 form-group">
+                                                                <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={3} value={this.state.rec_value} onChange={this.onChange} name="rec_value" min={1} max={50}/>
+                                                            </div>
+                                                            <MediaQuery minDeviceWidth={1224}>
+                                                                <div className="col-lg-1 col-md-1 form-group" style={{display: "flex", alignItems: "center"}}>
+                                                                    <label style={{float:"left", fontWeight:"600", fontSize:"1rem", color:"#090d3a"}}>{this.state.rec_value}</label>
+                                                                </div>
+                                                            </MediaQuery>
+                                                        </div>
+                                                        <div className="row">
+                                                            <label style={{float:"left", fontWeight:"600", fontSize:"1rem", color:"#090d3a"}}>Number of Resumes per job</label>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col-lg-10 col-md-10 form-group">
+                                                                <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={1} value={this.state.numofresume} onChange={this.onChangeNumOfResumes} name="numofresume" min={1} max={1000}/>
+                                                            </div>
+                                                            <MediaQuery minDeviceWidth={1224}>
+                                                                <div className="col-lg-1 col-md-1 form-group" style={{display: "flex", alignItems: "center"}}>
+                                                                    <label style={{float:"left", fontWeight:"600", fontSize:"1rem", color:"#090d3a"}}>{this.state.numofresume}</label>
+                                                                </div>
+                                                            </MediaQuery>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-lg-7 col-md-7 col-sm-12">
+                                                            <h5 style={{fontWeight:"600", fontSize:"1.5rem", color:"#090d3a"}}>Your savings</h5>
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>${moneysaving.toFixed(0)}</h5>
+                                                            <p style={{fontWeight:"600", fontSize:"1rem", color:"#090d3a"}}>per month</p>
+                                                        </div>
+                                                        <div className="col-lg-5 col-md-5 col-sm-12">
+                                                            <h5 style={{fontWeight:"600", fontSize:"1.5rem", color:"#090d3a", marginTop:"0.5rem"}}>ROI</h5>
+                                                        {roi.toFixed(0) <= 0 ?
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>---</h5> :
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>{roi.toFixed(0)}X</h5>
+                                                        }
+                                                        </div>
                                                     </div>
-                                                    <div className="form-group">
-                                                        <label style={{float:"left", fontWeight:"500", fontSize:"1rem", color:"#090d3a"}}>Recruiters per team</label>
-                                                        <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={3} value={this.state.rec_value} onChange={this.onChange} name="rec_value" min={1} max={50}/>
+                                                    <div className="row">
+                                                        <div className="col-lg-7 col-md-7 col-sm-12">
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>{timesaving.toFixed(0)}</h5>
+                                                            <p style={{fontWeight:"600", fontSize:"1rem", color:"#090d3a"}}>hours per month</p>
+                                                        </div>
                                                     </div>
-                                                    <div className="form-group">
-                                                        <label style={{float:"left", fontWeight:"500", fontSize:"1rem", color:"#090d3a"}}>Numbers of Resume per job</label>
-                                                        <input style={{fontWeight:"500", fontSize:"1rem"}} type="number" className="form-control" name="numofresume" value={this.state.numofresume} onChange={this.onChange1}></input>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div className="col-lg-6 col-md-6">
-                                                <div>
-                                                    <h5 style={{fontWeight:"600", fontSize:"1.5rem", color:"#090d3a"}}>You’ll be saving...</h5>
-                                                    <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>${moneysaving.toFixed(0)}</h5>
-                                                    <p style={{fontWeight:"500", fontSize:"1rem", color:"#090d3a"}}>per month</p>
-                                                    <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>{timesaving.toFixed(0)}</h5>
-                                                    <p style={{fontWeight:"500", fontSize:"1rem", color:"#090d3a"}}>hours per month</p>
-                                                    <h5 style={{fontWeight:"600", fontSize:"1.5rem", color:"#090d3a", marginTop:"0.5rem"}}>ROI</h5>
-                                                    {roi.toFixed(0) <= 0 ?
-                                                    <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>---</h5> :
-                                                    <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>{roi.toFixed(0)}X</h5> }
                                                 </div>
                                             </div>
+                                            <MediaQuery minDeviceWidth={1224}>
+                                            {this.props.isAuthenticated ?
+                                            <a href="/employer-pricing" className="default-btn" style={{paddingLeft:"25px", position:"absolute", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none", left:"44%"}}>Select Your Plan</a> :
+                                            <a href="/employer_register" className="default-btn" style={{paddingLeft:"25px", position:"absolute", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none", left:"44%"}}>Start for Free</a>
+                                            }
+                                            </MediaQuery>
+                                            <MediaQuery maxDeviceWidth={1223}>
+                                            {this.props.isAuthenticated ?
+                                            <a href="/employer-pricing" className="default-btn" style={{paddingLeft:"25px", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none"}}>Select Your Plan</a>:
+                                            <a href="/employer_register" className="default-btn" style={{paddingLeft:"25px", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none"}}>Start for Free</a>
+                                            }
+                                            </MediaQuery>
                                         </div>
-                                        <MediaQuery minDeviceWidth={1224}>
-                                        {this.props.isAuthenticated ?
-                                        <a href="#go-to-pricing" className="default-btn" style={{paddingLeft:"25px", position:"absolute", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none", left:"44%"}}>Select Your Plan</a> :
-                                        <a href="/employer_register" className="default-btn" style={{paddingLeft:"25px", position:"absolute", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none", left:"44%"}}>Start for Free</a>
-                                        }
-                                        </MediaQuery>
-                                        <MediaQuery maxDeviceWidth={1223}>
-                                        {this.props.isAuthenticated ?
-                                        <a href="#go-to-pricing" className="default-btn" style={{paddingLeft:"25px", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none"}}>Select Your Plan</a>:
-                                        <a href="/employer_register" className="default-btn" style={{paddingLeft:"25px", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none"}}>Start for Free</a>
-                                        }
-                                        </MediaQuery>
-                                    </div>
-                                    </a>
-                                </ReactWOW>
+                                        </a>
+                                    </ReactWOW>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </React.Fragment>
+                    </section>
+                    <FreeTrialArea />
+                    <Footer />
+                </React.Fragment>
+            </DocumentMeta>
         )
     }
 }
