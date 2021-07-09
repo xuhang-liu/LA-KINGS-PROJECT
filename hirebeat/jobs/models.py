@@ -53,3 +53,5 @@ class ApplyCandidates(models.Model):
     is_viewed = models.BooleanField(default=False)
     linkedinurl = models.CharField(max_length=100, null=True, blank=True)
     apply_source = models.CharField(max_length=100, default="HireBeat")
+    gender = models.CharField(max_length=100, null=True)
+    race = models.CharField(max_length=200, null=True)

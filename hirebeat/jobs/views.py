@@ -170,10 +170,14 @@ def add_new_apply_candidate(request):
     location = request.data['location']
     resume_url = request.data['resume_url']
     linkedinurl = request.data['linkedinurl']
+    gender = request.data['gender']
+    race = request.data['race']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl)
+    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
+                                                     email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
+                                                     gender=gender, race=race)
     # add candidate resume url to prifile detail table
     applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
     if applicant_registered:
