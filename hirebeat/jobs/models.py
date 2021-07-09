@@ -25,6 +25,7 @@ class Jobs(models.Model):
     pho_req = models.CharField(max_length=10, default="1")
     lin_req = models.CharField(max_length=10, default="1")
     eeo_req = models.CharField(max_length=10, default="1") # 0 means disabled, 1 means enabled
+    eeo_ques_req = models.CharField(max_length=10, default="1") # 0 means disabled, 1 means enabled
 
 
 class ApplyCandidates(models.Model):

@@ -42,7 +42,7 @@ const ApplyJob = (props) => {
         gender = document.querySelector('input[name="gender"]:checked')?.value;
         race = document.querySelector('input[name="race"]:checked')?.value;
         // check eeo form filling
-        if (props.job.eeo_req == "1" && (gender == null || race == null)) {
+        if (props.job.eeo_ques_req == "1" && (gender == null || race == null)) {
             return confirmAlert({
                 title: "EEO Survey Required!",
                 message: "Please fill out the EEO Survey.",
@@ -54,7 +54,7 @@ const ApplyJob = (props) => {
             });
         }
         // no eeo survey, set gender and race to empty string
-        if (props.job.eeo_req == "0") {
+        if (props.job.eeo_ques_req == "0") {
             gender = "";
             race = "";
         }
@@ -143,7 +143,7 @@ const ApplyJob = (props) => {
         gender = document.querySelector('input[name="gender"]:checked')?.value;
         race = document.querySelector('input[name="race"]:checked')?.value;
         // check eeo form filling
-        if (props.job.eeo_req == "1" && (gender == null || race == null)) {
+        if (props.job.eeo_ques_req == "1" && (gender == null || race == null)) {
             return confirmAlert({
                 title: "EEO Survey Required!",
                 message: "Please fill out the EEO Survey.",
@@ -155,7 +155,7 @@ const ApplyJob = (props) => {
             });
         }
         // no EEO survey, set gender and race to empty string
-        if (props.job.eeo_req == "0") {
+        if (props.job.eeo_ques_req == "0") {
             gender = "";
             race = "";
         }
@@ -452,7 +452,7 @@ const ApplyJob = (props) => {
                                                         </div>
                                                     </div>
                                                     {/*  EEO Survey */}
-                                                    {props.job.eeo_req == "1" &&
+                                                    {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
                                                             <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
                                                             <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
@@ -702,7 +702,7 @@ const ApplyJob = (props) => {
                                                         </div>
                                                     </div>
                                                     {/*  EEO Survey */}
-                                                    {props.job.eeo_req == "1" &&
+                                                    {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
                                                             <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
                                                             <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
@@ -1137,8 +1137,8 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                                                                        {/*  EEO Survey */}
-                                                    {props.job.eeo_req == "1" &&
+                                                    {/*  EEO Survey */}
+                                                    {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
                                                             <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
                                                             <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
@@ -1394,7 +1394,7 @@ const ApplyJob = (props) => {
                                                         </div>
                                                     </div>
                                                     {/*  EEO Survey */}
-                                                    {props.job.eeo_req == "1" &&
+                                                    {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
                                                             <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
                                                             <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>

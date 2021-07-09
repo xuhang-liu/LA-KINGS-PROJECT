@@ -42,6 +42,7 @@ def add_new_job(request):
     pho_req = request.data['pho_req']
     lin_req = request.data['lin_req']
     eeo_req = request.data['eeo_req']
+    eeo_ques_req = request.data['eeo_ques_req']
     job_post = request.data['job_post']
     user = User.objects.get(pk=request.data["userId"])
     company_name = ""
@@ -67,7 +68,7 @@ def add_new_job(request):
     # create job
     job = Jobs.objects.create(user=user, positions=position, job_title=job_title, job_id=job_id, job_description=job_description,
             job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name, company_logo=company_logo,
-            loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req)
+            loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req)
     # save job link
     job_url = "https://hirebeat.co/apply-job?id=" + str(job.id)
     job.job_url = job_url
@@ -119,6 +120,7 @@ def update_job(request):
     lin_req = request.data['lin_req']
     eeo_req = request.data['eeo_req']
     job_post = request.data['job_post']
+    eeo_ques_req = request.data['eeo_ques_req']
 
     job = Jobs.objects.get(id=id)
     job.job_title = job_title
@@ -131,6 +133,7 @@ def update_job(request):
     job.pho_req = pho_req
     job.lin_req = lin_req
     job.eeo_req = eeo_req
+    job.eeo_ques_req = eeo_ques_req
     job.job_post = job_post
     # save update to db
     job.save()
@@ -248,6 +251,7 @@ def get_current_jobs(request):
         "job_post": jobs.job_post,
         "lin_req": jobs.lin_req,
         "eeo_req": jobs.eeo_req,
+        "eeo_ques_req": jobs.eeo_ques_req,
         "company_website": employerp.website,
     }
 

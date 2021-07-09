@@ -44,6 +44,7 @@ export class JobCreation extends Component {
             pho_req: 1,
             lin_req: 1,
             eeo_req: 1,
+            eeo_ques_req: 1,
             job_post: 1,
             jobType: { value: 'Full-Time', label: 'Full-Time' },
             jobLevel: { value: 'Entry Level', label: 'Entry Level' },
@@ -168,6 +169,16 @@ export class JobCreation extends Component {
             eeo_req: 1
         });
     };
+    setEeoQuesReq0 = () => {
+        this.setState({
+            eeo_ques_req: 0
+        });
+    };
+    setEeoQuesReq1 = () => {
+        this.setState({
+            eeo_ques_req: 1
+        });
+    };
 
     onChange = (jobDescription) => {
         this.setState({ jobDescription });
@@ -242,6 +253,7 @@ export class JobCreation extends Component {
             pho_req: this.state.pho_req,
             lin_req: this.state.lin_req,
             eeo_req: this.state.eeo_req,
+            eeo_ques_req: this.state.eeo_ques_req,
             job_post: this.state.job_post,
         };
         if (this.state.remote) {
@@ -257,6 +269,7 @@ export class JobCreation extends Component {
                 pho_req: this.state.pho_req,
                 lin_req: this.state.lin_req,
                 eeo_req: this.state.eeo_req,
+                eeo_ques_req: this.state.eeo_ques_req,
                 job_post: 0,
             };
         }
@@ -468,6 +481,27 @@ export class JobCreation extends Component {
                                 <div className="form-group col-12">
                                     <p style={{ color: "#000", fontWeight: "600", fontSize: "1rem" }}>The following statement will be displayed at the bottom of your job description</p>
                                     <p className="ml-5">{this.props.profile.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                                </div>}
+                        </div>
+                        <div className="form-row mt-3">
+                            <div className="col-12">
+                                <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                    EEO Question
+                                </label>
+                            </div>
+                            <div className="form-group col-12">
+                                {this.state.eeo_ques_req == 1 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Enabled</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setEeoQuesReq1}>Enabled</button>
+                                }
+                                {this.state.eeo_ques_req == 0 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setEeoQuesReq0}>Disabled</button>
+                                }
+                            </div>
+                            {this.state.eeo_ques_req == 1 &&
+                                <div className="form-group col-12">
+                                    <p style={{ color: "#000", fontWeight: "600", fontSize: "1rem" }}>Enabling EEO questions will allow you to collect EEO data from your candidates for use in compliance and diversity and inclusion efforts</p>
                                 </div>}
                         </div>
                         <hr style={{ border: "1.5px solid #E8EDFC" }} />
