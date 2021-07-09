@@ -18,7 +18,7 @@ class HowHirebeatWork extends Component {
                 </div>
 
                 <OwlCarousel
-                    className="feedback-slides owl-carousel owl-theme"
+                    className="container feedback-slides owl-carousel owl-theme max-width-1290"
                     {...options}
                 >
 
