@@ -301,16 +301,16 @@ export class EmployerProfile extends Component {
                                     {this.props.profile.plan_interval == "Pro" ?
                                         <div className="row">
                                             <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
-                                                <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px", display: "flex" }}>
-                                                    <i className="bxs bx-diamond bx-sm"></i><span style={{ marginLeft: "0.3rem" }}>Pro</span>
+                                                <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                    <i className="bx-fw bx bx-diamond bx-xs"></i><span>Pro</span>
                                                 </p>
                                             </div>
                                             <Link to="/employer-pricing" style={{ textDecoration: "none", marginLeft: "1rem" }}><p style={{ color: "#fac046", fontSize: "14px" }}>Upgrade</p></Link>
                                         </div> :
                                         <div className="row">
                                             <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
-                                                <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px", display: "flex" }}>
-                                                    <i className="bx bx-diamond bx-sm"></i><span style={{ marginLeft: "0.3rem" }}>Premium</span>
+                                                <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px"}}>
+                                                    <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
                                                 </p>
                                             </div>
                                         </div>}

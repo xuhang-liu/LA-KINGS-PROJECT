@@ -16,6 +16,7 @@ import {
     GET_RESUME_FROM_JOB_APPLICATION,
     CREATE_MERGE_LINK_TOKEN,
     RETRIEVE_MERGE_ACCOUNT_TOKEN,
+    CHECK_FREE_ACCOUNT_ACTIVE_JOBS,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -251,6 +252,20 @@ export const retrieveMergeAccountToken = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: RETRIEVE_MERGE_ACCOUNT_TOKEN,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const checkFreeAccountActiveJobs = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/check-free-account-active-jobs", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: CHECK_FREE_ACCOUNT_ACTIVE_JOBS,
         payload: res.data,
       });
     })

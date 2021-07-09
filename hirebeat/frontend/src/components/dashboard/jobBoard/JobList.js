@@ -8,36 +8,27 @@ export class JobList extends Component {
         super(props);
         this.state = {
             keyWords: "",
-            view: false,
         };
     }
 
     onChange = (e) => {
-        this.setState({ keyWords: e.target.value });
+        this.props.setState({ keyWords: e.target.value });
     };
 
     setViewTrue = () => {
-        this.setState({
-            view: true
-        });
+        this.props.setView(true);
     };
 
     setViewFalse = () => {
-        this.setState({
-            view: false
-        });
+        this.props.setView(false);
     };
 
     render() {
-        var view = (sessionStorage.getItem("view") == "true") ? true : this.state.view;
-        if (this.props.filter == "closed") {
-            view = false
-        };
         return (
             <React.Fragment>
                 {this.props.isLoaded &&
                     <div>
-                        {(!view) ?
+                        {(!this.props.view) ?
                             <div className="chart-bg1 container-fluid mt-5 pt-2 pb-3">
                                 <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex" }}>
                                     <div style={{position:"absolute", left:"2.2rem", marginTop:"0.4rem"}}><i className="bx bx-search bx-sm"></i></div>
@@ -82,6 +73,7 @@ export class JobList extends Component {
                                                 filter={this.props.filter}
                                                 job={job}
                                                 user={this.props.user}
+                                                profile={this.props.profile}
                                                 setStatus={this.props.setStatus}
                                                 enableView={this.setViewTrue}
                                                 disableView={this.setViewFalse}
@@ -114,6 +106,7 @@ export class JobList extends Component {
                                     </div>
                                 </div>
                                 <ApplicantList
+                                    filter={this.props.filter}
                                     curJob={this.props.jobs[this.props.jobKey]}
                                     setCurJob={this.props.setCurJob}
                                     getAllJobs={this.props.getAllJobs}

@@ -6,7 +6,7 @@ const decideClassName = (filter, text) => {
 };
 
 export const ApplicationCover = (props) => {
-  const [filter, setFilter] = useState("active");
+  const [filter, setFilter] = useState((sessionStorage.getItem("intFilter")=="closed")?"closed":"active");
   const [selectedId, setselectedId] = useState(0);
   function refreshPage() {
     window.location.reload(false);
@@ -17,14 +17,14 @@ export const ApplicationCover = (props) => {
       <div style={{marginBottom: "20px"}} className="container min-width-980">
         <button
           className={decideClassName(filter, "active")}
-          onClick={() => (setFilter("active"), setselectedId(0))}
+          onClick={() => (setFilter("active"), setselectedId(0),sessionStorage.clear(), sessionStorage.setItem("intFilter", "active"), sessionStorage.setItem('subpage', "applications"))}
         >
           Active
         </button>
         <button
           className={decideClassName(filter, "closed")}
           style={{marginLeft: "2rem"}}
-          onClick={() => (setFilter("closed"), setselectedId(0))}
+          onClick={() => (setFilter("closed"), setselectedId(0),sessionStorage.clear(), sessionStorage.setItem("intFilter", "closed"), sessionStorage.setItem('subpage', "applications"))}
         >
           Archived
         </button>
