@@ -190,13 +190,13 @@ class MainBanner extends Component {
                     </MediaQuery>
                     <MediaQuery minDeviceWidth={1224}>
                         <div className="row" style={{marginLeft:"44%", marginTop:"6rem"}}>
-                            <a href="/employer-pricing" className="default-btn" style={{backgroundColor:"#ff6b00", paddingLeft:"65px", paddingTop:"20px", paddingBottom:"20px", textDecoration:"none"}}>
+                            <a href="/employer-roi-calculator" className="default-btn" style={{backgroundColor:"#ff6b00", paddingLeft:"65px", paddingTop:"20px", paddingBottom:"20px", textDecoration:"none"}}>
                             <i className="bx bx-calculator bx-md"></i>ROI Calculator</a>
                         </div>
                     </MediaQuery>
                     <MediaQuery maxDeviceWidth={1223}>
                         <div className="row" style={{marginLeft:"30%", marginTop:"6rem"}}>
-                            <a href="/employer-pricing" className="default-btn" style={{backgroundColor:"#ff6b00", paddingLeft:"65px", paddingTop:"20px", paddingBottom:"20px", textDecoration:"none"}}>
+                            <a href="/employer-roi-calculator" className="default-btn" style={{backgroundColor:"#ff6b00", paddingLeft:"65px", paddingTop:"20px", paddingBottom:"20px", textDecoration:"none"}}>
                             <i className="bx bx-calculator bx-md"></i>ROI Calculator</a>
                         </div>
                     </MediaQuery>

@@ -43,7 +43,7 @@ export function ButtonPanel(props) {
       >
         <IconText1
           textSize={"15px"}
-          textDisplayed={"Hard Skills Match"}
+          textDisplayed={"Industry Knowledge"}
           textColor={props.subpage == "hardSkills" ? selectColor : defaultColor}
           textWeight={props.subpage == "hardSkills" ? selectColor : defaultColor}
         />
@@ -56,7 +56,7 @@ export function ButtonPanel(props) {
       >
         <IconText1
           textSize={"15px"}
-          textDisplayed={"Soft Skills Match"}
+          textDisplayed={"Tools and Techs"}
           textColor={props.subpage == "softSkills" ? selectColor : defaultColor}
           textWeight={props.subpage == "softSkills" ? selectColor : defaultColor}
         />
@@ -69,7 +69,7 @@ export function ButtonPanel(props) {
       >
         <IconText1
           textSize={"15px"}
-          textDisplayed={"Other Keywords"}
+          textDisplayed={"Other Skills"}
           textColor={props.subpage == "keywords" ? selectColor : defaultColor}
           textWeight={props.subpage == "keywords" ? selectColor : defaultColor}
         />
