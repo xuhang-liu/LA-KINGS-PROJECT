@@ -203,7 +203,7 @@ export class QuestionForm extends Component {
                                     <label className="db-txt2" style={{ margin: "2%" }}>
                                         Preparation Time
                                     </label>
-                                    <div className="form-row" style={{justifyContent: "center"}}>
+                                    <div className="form-row" style={{margin: "2%"}}>
                                         {this.state.preTime == 30 ?
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>30s</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setPreTime(30)}>30s</button>
@@ -215,10 +215,10 @@ export class QuestionForm extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group col-5">
-                                    <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                    <label className="db-txt2" style={{ margin: "2%" }}>
                                         Response Time
                                     </label>
-                                    <div className="form-row" style={{justifyContent: "center"}}>
+                                    <div className="form-row" style={{margin: "2%"}}>
                                         {this.state.resTime == 60 ?
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>60s</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setResTime(60)}>60s</button>
@@ -233,11 +233,11 @@ export class QuestionForm extends Component {
                                         }
                                     </div>
                                 </div>
-                                <div className="form-group col-3" style={{textAlign: "center"}}>
+                                <div className="form-group col-3">
                                     <label className="db-txt2" style={{ margin:"2%"}}>
                                         Camera
                                     </label>
-                                    <div className="form-row" style={{justifyContent: "center"}}>
+                                    <div className="form-row" style={{margin: "2%"}}>
                                         {this.state.cameraOn ?
                                             <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>ON</button>:
                                             <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setCameraOn(true)}>ON</button>

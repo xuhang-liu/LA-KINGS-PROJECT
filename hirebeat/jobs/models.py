@@ -26,6 +26,7 @@ class Jobs(models.Model):
     lin_req = models.CharField(max_length=10, default="1")
     eeo_req = models.CharField(max_length=10, default="1") # 0 means disabled, 1 means enabled
     eeo_ques_req = models.CharField(max_length=10, default="1") # 0 means disabled, 1 means enabled
+    skills = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
 
 
 class ApplyCandidates(models.Model):

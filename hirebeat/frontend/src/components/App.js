@@ -223,6 +223,7 @@ import ProductPage from "./HomeEmployer/ProductPage";
 import FeatureVideo from "./HomeEmployer/FeatureVideo";
 import CompanyBranding from "./dashboard/jobBoard/CompanyBranding";
 import ResumeScreening from "./HomeEmployer/ResumeScreening";
+import SolutionPage from "./HomeEmployer/SolutionPage";
 
 const alertOptions = {
   timeout: 3000,
@@ -492,6 +493,7 @@ class App extends Component {
                 <Route exact path="/employer-product" component={ProductPage} />
                 <Route exact path="/employer-feature-video" component={FeatureVideo} />
                 <Route exact path="/employer-resume-screening" component={ResumeScreening} />
+                <Route exact path="/employer-solution-page" component={SolutionPage} />
                 <Route component={NotFoundPage} />
               </Switch>
             </Fragment>
