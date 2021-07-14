@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PageTitleArea from './../Common/PageTitleArea';
 import {getInterviewQuestions} from "../../redux/actions/question_actions";
-import {getRecordStatus} from "../../redux/actions/auth_actions";
+import {getRecordStatus, getCompanyName} from "../../redux/actions/auth_actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import { confirmAlert } from 'react-confirm-alert';
@@ -16,19 +16,16 @@ class InterviewInfo extends Component {
     // data passed from login page
     email = sessionStorage.getItem('interviewEmail') || this.props.location.params["email"];
     positionId = parseInt(sessionStorage.getItem('interviewPositionId')) || this.props.location.params["positionId"];
-    companyName = sessionStorage.getItem('interviewCompanyName') || this.props.location.params["companyName"];
 
     constructor(props) {
         super(props);
         this.state = {
             email: this.email,
             positionId: this.positionId,
-            companyName: this.companyName,
             showFirst: false,
             selected: false,
             cvName: "",
             resume: null,
-            jobTitle: "",
             jdText: "",
             hasResume: false,
             showTest: false,
@@ -68,6 +65,8 @@ class InterviewInfo extends Component {
         // intercept reloading
 //        window.addEventListener('beforeunload', this.beforeunload);
         safariAlert();
+        // get company name and job title
+        this.props.getCompanyName(this.state.positionId);
     }
 
 //    componentWillUnmount () {
@@ -221,7 +220,7 @@ class InterviewInfo extends Component {
                         (!this.state.showTest && !sessionShowTest ?
                             <div>
                                 <PageTitleArea
-                                    pageTitle={this.state.companyName}
+                                    pageTitle={this.props.jobTitle + " at " + this.props.companyName}
                                     pageDescription="Get to know more details and test everything before you start."
                                 />
                                 <div className="Container" style={{margin: "2% 3% 10rem 0"}}>
@@ -377,7 +376,9 @@ const mapStateToProps = (state) => ({
   isRecorded: state.auth_reducer.isRecorded,
   urlClicked: state.auth_reducer.urlClicked,
   profile: state.auth_reducer.profile,
-  isAuthenticated: state.auth_reducer.isAuthenticated,  
+  isAuthenticated: state.auth_reducer.isAuthenticated,
+  companyName: state.auth_reducer.companyName,
+  jobTitle: state.auth_reducer.jobTitle,
 });
 
-export default connect(mapStateToProps, {getInterviewQuestions, getRecordStatus, addInterviewResume})(InterviewInfo);
+export default connect(mapStateToProps, {getInterviewQuestions, getRecordStatus, addInterviewResume, getCompanyName})(InterviewInfo);

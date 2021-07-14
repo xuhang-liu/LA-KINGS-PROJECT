@@ -52,10 +52,7 @@ function TestDevice(props) {
             className="d-flex flex-column justify-content-center align-items-center"
             style={{ paddingTop: 20}}
           >
-            <h4 className="interview-txt3">
-              <span style={{color: "#67A3F3"}}>Sample Question:</span> Tell me about yourself.
-            </h4>
-            <p className="interview-txt4">Your answer will not be evaluated. Replay the video to ensure that your microphone and camera are working</p>
+            <h3>Test Your Device</h3>
           </div>
           <div style={{ marginTop: "2rem" }}>
               <VideoRecorder {...videoRecorderOptions} isTesting={true} retry={true} testDeviceDone={enableAlert} />

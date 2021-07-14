@@ -47,11 +47,7 @@ function TestAudioDevice(props) {
             className="d-flex flex-column justify-content-center align-items-center"
             style={{ paddingTop: 20 }}
           >
-            <h3>To Test Your Device</h3>
-            <h4>
-              A 15-second audio clip will be recorded. Please replay the clip to
-              ensure your microphone is working.
-            </h4>
+            <h3>Test Your Device</h3>
           </div>
           <div style={{ marginTop: "2.5rem" }}>
               <AudioRecorder {...audioRecorderOptions} isTesting={true} retry={true} testDeviceDone={enableAlert}/>

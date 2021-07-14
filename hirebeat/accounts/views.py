@@ -187,11 +187,11 @@ def check_user_registration(request):
 def get_company_name(request):
     position_id = request.query_params.get("position_id")
     position = Positions.objects.get(id=position_id)
+    job_title = position.job_title
     user_id = position.user_id
     profile = Profile.objects.get(user_id=user_id)
     company_name = profile.company_name
-
-    return Response({"company_name": company_name})
+    return Response({"company_name": company_name, "job_title": job_title,})
 
 @api_view(['POST'])
 def update_record(request):
