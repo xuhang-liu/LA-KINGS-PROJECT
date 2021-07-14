@@ -120,6 +120,11 @@ export class AudioRecorder extends Component {
     this.player.record().reset();
   };
 
+  recordAgain = () => {
+    this.player.record().reset();
+    this.player.record().getDevice();
+  }
+
   startMic = () => {
     this.player.record().getDevice();
   };
@@ -132,7 +137,7 @@ export class AudioRecorder extends Component {
   render() {
     return (
       <div className="video-recorder-row">
-        <div className="col-8">
+        <div className="col-7">
           <div data-vjs-player style={{width: "520px"}}>
             <audio
               id="myAudio"
@@ -156,7 +161,28 @@ export class AudioRecorder extends Component {
               </div>) : null}
           </div>
         </div>
-        <div className="col-3">
+        <div className="col-5">
+          {
+            this.props.isTesting && this.props.retry &&
+              <div>
+                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>Your answer <span style={{color:"#ff6b00"}}>will not</span> be evaluated. Replay the video to ensure that your <span style={{color:"#ff6b00"}}>microphone</span> is working.</p>
+                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>Take your time</span> to make sure everything is good before you start the interview</p>
+                <button
+                      onClick={this.recordAgain}
+                      className="default-btn mt-3"
+                      style={{color:"white", backgroundColor:"#56a3fa", marginRight: "2rem"}}
+                  >
+                     <i className="bx bx-revision"></i>Test Again
+                </button>
+                <button
+                      onClick={this.props.testDeviceDone}
+                      className="default-btn mt-3"
+                      style={{color:"white", backgroundColor:"#ff6b00"}}
+                  >
+                     <i className="bx bx-rocket"></i>Start Interview
+                </button>
+              </div>
+          }
           {
             !this.props.isTesting ? (
               <div style={{display: this.state.display}}>

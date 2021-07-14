@@ -2,14 +2,19 @@ import React, {useState} from "react";
 import AudioRecorder from "./AudioRecorder";
 import { CardButton, TestDeviceCard } from "./../practice/CardComponents";
 import { audioRecorderOptions } from "./../../constants/constants";
-//import NotePad from "./../practice/NotePad";
 import Modal from "react-bootstrap/Modal";
 
 function TestAudioDevice(props) {
-  const [showFirst, setFirst] = useState(true);
-  const hideFirst = () => {
-    setFirst(false);
-  };
+  const [showAlert, setShowAlert] = useState(false);
+
+  function enableAlert() {
+    setShowAlert(true);
+  }
+
+  function disableAlert() {
+    setShowAlert(false);
+  }
+
   audioRecorderOptions.plugins.record.maxLength = 15;
   audioRecorderOptions.controlBar.recordToggle = true;
   const constraints = {
@@ -32,9 +37,10 @@ function TestAudioDevice(props) {
   return (
     <React.Fragment>
       <ReadBeforeStart
-        show={showFirst}
-        hide={hideFirst}
-        prepareTime={props.prepareTime}
+          showAlert={showAlert}
+          hideAlert={disableAlert}
+          prepareTime={props.prepareTime}
+          beginRecord={props.beginRecord}
       />
       <TestDeviceCard>
           <div
@@ -48,29 +54,7 @@ function TestAudioDevice(props) {
             </h4>
           </div>
           <div style={{ marginTop: "2.5rem" }}>
-            <div
-              className="video-recorder-row"
-              style={{ marginLeft: 0, paddingLeft: 0 }}
-            >
-              <AudioRecorder {...audioRecorderOptions} isTesting={true} />
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginLeft: 15,
-                  width: "40%",
-                }}
-              >
-                <p className="text-muted">Everything goes well?</p>
-                <CardButton
-                  onTap={props.testDeviceDone}
-                  textDisplayed={"Start Practice"}
-                  buttonWidth={"75%"}
-                />
-              </div>
-            </div>
+              <AudioRecorder {...audioRecorderOptions} isTesting={true} retry={true} testDeviceDone={enableAlert}/>
           </div>
       </TestDeviceCard>
     </React.Fragment>
@@ -79,7 +63,7 @@ function TestAudioDevice(props) {
 
 const ReadBeforeStart = (props) => {
   return(
-      <Modal show={props.show} onHide={props.hide} centered={true} size="lg">
+      <Modal show={props.showAlert} onHide={props.hideAlert} centered={true} size="lg">
           <div className="container mt-5" style={{textAlign:"center"}}>
               <h3 style={{color:"#090D3A"}}>
                   <b>Read carefully before start</b>
@@ -88,7 +72,7 @@ const ReadBeforeStart = (props) => {
           <div className='container mt-3 mb-3' style={{width:"69%"}}>
               <div className="row">
                   <div className="col-1 mt-2">
-                      <i className='bx bx-chevron-right'></i>
+                      <i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>
                   </div>
                   <div className="col-11">
                       <p style={{fontSize:"18px"}}>
@@ -98,7 +82,7 @@ const ReadBeforeStart = (props) => {
               </div>
               <div className="row mt-2">
                   <div className="col-1 mt-2">
-                      <i className='bx bx-chevron-right' style={{margin:"auto"}}></i>
+                      <i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>
                   </div>
                   <div className="col-11">
                       <p style={{fontSize:"18px"}}>
@@ -108,7 +92,7 @@ const ReadBeforeStart = (props) => {
               </div>
               <div className="row mt-2">
                   <div className="col-1 mt-2">
-                      <i className='bx bx-chevron-right' style={{margin:"auto"}}></i>
+                      <i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>
                   </div>
                   <div className="col-11">
                       <p style={{fontSize:"18px"}}>
@@ -119,13 +103,18 @@ const ReadBeforeStart = (props) => {
           </div>
           <div className="row mt-1 mb-4">
               <div class="col text-center">
-                  <button className="default-btn text-center" style={{paddingRight:"50px"}} onClick={props.hide}>
-                      I Understand. Start Now
-                  </button>
+                  <button
+                      onClick={props.beginRecord}
+                      className="default-btn mt-3"
+                      style={{color:"white", backgroundColor:"#56a3fa", width: "13rem"}}
+                  >
+                     <i className="bx bx-rocket"></i>Confirm and Start
+                    <span></span>
+                </button>
               </div>
           </div>
       </Modal>
-      )
+  )
 }
 
 export default TestAudioDevice;

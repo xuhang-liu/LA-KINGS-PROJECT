@@ -110,6 +110,16 @@ export class CandidateLogin extends Component {
   };
 
   redirectToInterview = () => {
+    // clear previous sessionStorage
+    sessionStorage.removeItem("interviewEmail");
+    sessionStorage.removeItem("interviewPositionId");
+    sessionStorage.removeItem("interviewCompanyName");
+    sessionStorage.removeItem("interviewShowTest");
+    // save parsed parameters to sessionStorage
+    sessionStorage.setItem('interviewEmail', this.state.email);
+    sessionStorage.setItem('interviewPositionId', this.state.positionId);
+    sessionStorage.setItem('interviewCompanyName', this.props.companyName);
+
     const { history } = this.props;
     if (history) history.push({
         pathname: "/interview-info",
