@@ -24,8 +24,8 @@ const MergeIntergration = (props) => {
         option: (provided, state) => ({
             ...provided,
             color: state.isSelected ? '#ffffff' : '#56a3fa',
-          }),
-        control: styles => ({ ...styles, backgroundColor: '#ffffff'}),
+        }),
+        control: styles => ({ ...styles, backgroundColor: '#ffffff' }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
@@ -39,7 +39,7 @@ const MergeIntergration = (props) => {
         setOptions2([]);
         setJob(job);
         props.interview_stages_api_response?.map((i) => {
-            if(job['value'] == i?.job){
+            if (job['value'] == i?.job) {
                 setOptions2(options2 => [...options2, { value: i?.id, label: i?.name }]);
             }
         });
@@ -90,7 +90,7 @@ const MergeIntergration = (props) => {
     }
 
     const createCanFromMerge = () => {
-        if(job == null || stage == null){
+        if (job == null || stage == null) {
             confirmAlert({
                 title: "Not Valid",
                 message: "Please select your job and stage to continue.",
@@ -100,8 +100,8 @@ const MergeIntergration = (props) => {
                     }
                 ]
             });
-        }else{
-            let data ={
+        } else {
+            let data = {
                 "user_id": props.user.id,
                 "merge_job_id": job['value'],
                 "merge_stage_id": stage['value'],
@@ -115,7 +115,7 @@ const MergeIntergration = (props) => {
                 buttons: [
                     {
                         label: 'Confirm',
-                        onClick: () => {props.renderApplications(); window.location.reload(false)}
+                        onClick: () => { props.renderApplications(); window.location.reload(false) }
                     }
                 ]
             });
@@ -123,7 +123,7 @@ const MergeIntergration = (props) => {
     }
 
     return (
-        <div className="container" style={{paddingBottom:"9rem"}}>
+        <div className="container" style={{ paddingBottom: "9rem" }}>
             <div style={{ marginBottom: "30px" }}><h3><b><span className="ml-2">Integration</span></b></h3></div>
             <div className="chart-bg1 container">
                 <div className="form-row" style={{ marginTop: "1%" }}>

@@ -558,7 +558,7 @@ def create_merge_link_token(request):
         "end_user_origin_id": user_id, # unique entity ID
         "end_user_organization_name": employer_profile.name,  # your user's organization name
         "end_user_email_address": user.email, # your user's email address
-        "categories": ["hris", "ats"], # choose your category
+        "categories": ["ats"], # choose your category
     }
 
     headers = {"Authorization": f"Bearer {api_key}"}
