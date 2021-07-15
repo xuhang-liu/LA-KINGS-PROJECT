@@ -5,6 +5,7 @@ import Select from 'react-select';
 import { useMergeLink } from "@mergeapi/react-merge-link";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import axios from "axios";
 
 const MergeIntergration = (props) => {
 
@@ -17,6 +18,10 @@ const MergeIntergration = (props) => {
     useEffect(() => {
         if (props.profile.merge_public_token != "" && props.profile.merge_public_token != null) {
             setInted(true);
+            let data = {
+                "user_id": props.user.id
+            };
+            props.sendMergeApiRequest(data);
         }
     }, []);
 
@@ -82,11 +87,32 @@ const MergeIntergration = (props) => {
             "user_id": props.user.id
         };
         props.sendMergeApiRequest(data);
-        setTimeout(() => {
-            props.jobs_api_response?.map((j) => {
-                setOptions1(options1 => [...options1, { value: j?.id, label: j?.name }]);
-            })
-        }, 1000)
+        //Get data from merge
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        axios.post("jobs/send-merge-api-request", data, config).then((res) => {
+            if(res.data?.jobs_api_response.length > 0){
+                confirmAlert({
+                    title: "Data Synchronized",
+                    message: "Select a job to continue.",
+                    buttons: [
+                        {
+                            label: 'OK'
+                        }
+                    ]
+                });
+                res.data?.jobs_api_response?.map((j) => {
+                    setOptions1(options1 => [...options1, { value: j?.id, label: j?.name }]);
+                })
+            }else{
+                alert("Data not ready yet");
+            }
+        }).catch(error => {
+                console.log(error)
+        });
     }
 
     const createCanFromMerge = () => {
