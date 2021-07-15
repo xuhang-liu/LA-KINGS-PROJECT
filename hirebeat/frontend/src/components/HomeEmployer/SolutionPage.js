@@ -44,11 +44,11 @@ class SolutionPage extends Component {
                   <h2>Your Pain Points</h2>
 
                   <div className="row">
-                    <div className="col-12 col-md-6 col-lg-4  mb-30">
+                    <div className="col-12 col-md-6 col-lg-4  solution-mb-30">
                       <div className="flip-card">
                         <div className="flip-card-inner">
                           <div className="flip-card-front">
-                            <div className="d-block w-100 text-center mb-30">
+                            <div className="d-block w-100 text-center solution-mb-30">
                               <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/workflow.png" alt="workflow" />
                             </div>
                             <p>Not all applicants are qualified</p>
@@ -72,11 +72,11 @@ class SolutionPage extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-4  mb-30">
+                    <div className="col-12 col-md-6 col-lg-4  solution-mb-30">
                       <div className="flip-card">
                         <div className="flip-card-inner">
                           <div className="flip-card-front">
-                            <div className="d-block w-100 text-center mb-30">
+                            <div className="d-block w-100 text-center solution-mb-30">
                               <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/diagnostic.png" alt="diagnostic" />
                             </div>
                             <p>
@@ -102,11 +102,11 @@ class SolutionPage extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-4  mb-30">
+                    <div className="col-12 col-md-6 col-lg-4  solution-mb-30">
                       <div className="flip-card">
                         <div className="flip-card-inner">
                           <div className="flip-card-front">
-                            <div className="d-block w-100 text-center mb-30">
+                            <div className="d-block w-100 text-center solution-mb-30">
                               <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/behavior.png" alt="behavior" />
                             </div>
                             <p>Lack of Diversity hire tracking</p>
@@ -125,11 +125,11 @@ class SolutionPage extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-4  mb-30">
+                    <div className="col-12 col-md-6 col-lg-4  solution-mb-30">
                       <div className="flip-card">
                         <div className="flip-card-inner">
                           <div className="flip-card-front">
-                            <div className="d-block w-100 text-center mb-30">
+                            <div className="d-block w-100 text-center solution-mb-30">
                               <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/applicant.png" alt="applicant" />
                             </div>
                             <p>Time-consuming to find candidates with Cultural fit</p>
@@ -147,11 +147,11 @@ class SolutionPage extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-4  mb-30">
+                    <div className="col-12 col-md-6 col-lg-4  solution-mb-30">
                       <div className="flip-card">
                         <div className="flip-card-inner">
                           <div className="flip-card-front">
-                            <div className="d-block w-100 text-center mb-30">
+                            <div className="d-block w-100 text-center solution-mb-30">
                               <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/dataintegration.png" alt="dataIntegration" />
                             </div>
                             <p>Hard to manage a Talent Pool</p>
@@ -171,11 +171,11 @@ class SolutionPage extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-4  mb-30">
+                    <div className="col-12 col-md-6 col-lg-4  solution-mb-30">
                       <div className="flip-card">
                         <div className="flip-card-inner">
                           <div className="flip-card-front">
-                            <div className="d-block w-100 text-center mb-30">
+                            <div className="d-block w-100 text-center solution-mb-30">
                               <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/advertising.png" alt="advertising" />
                             </div>
                             <p>Employer branding is constrained</p>
@@ -212,7 +212,7 @@ class SolutionPage extends Component {
                 <div className="container-fluid">
                   <h2 className="py-80"> Here is how we can help!</h2>
                   <div className="row ">
-                    <div className="col-12 col-md-6 mb-9 d-flex flex-column justify-content-center">
+                    <div className="col-12 col-md-6 solution-mb-9 d-flex flex-column justify-content-center">
                       <h3>Resume Evaluation</h3>
                       <p>
                         Our resume screening system can be the gatekeeper that helps
@@ -230,12 +230,12 @@ class SolutionPage extends Component {
                       </p>
                       <a href="/employer-resume-screening" className="default-btn mt-3" style={{paddingLeft:"25px", textDecoration:"none", backgroundColor:"#ff6b00", width:"12rem"}}>Learn More</a>
                     </div>
-                    <div className="col-12 col-md-6 mb-9 text-center">
+                    <div className="col-12 col-md-6 solution-mb-9 text-center">
                       <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/section-3-1.png" className="img-fluid" alt="Resume Evaluation" />
                     </div>
                   </div>
                   <div className="row flex-row-reverse">
-                    <div className="col-12 col-md-6 mb-4-4 d-flex flex-column justify-content-center">
+                    <div className="col-12 col-md-6 solution-mb-4-4 d-flex flex-column justify-content-center">
                       <h3>All-in-one ATS</h3>
                       <p>
                         Streamline the entire recruitment process in{" "}
@@ -249,12 +249,12 @@ class SolutionPage extends Component {
                         the KPIs with analytics reporting.
                       </p>
                     </div>
-                    <div className="col-12 col-md-6 mb-4-4 text-center">
+                    <div className="col-12 col-md-6 solution-mb-4-4 text-center">
                       <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/section-3-2.png" className="img-fluid" alt="All-in-one ATS" />
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-12 col-md-6 mb-4-4 d-flex flex-column justify-content-center">
+                    <div className="col-12 col-md-6 solution-mb-4-4 d-flex flex-column justify-content-center">
                       <h3>Diversity Hire and Reporting</h3>
                       <p>
                         Collect and track your diversity data throughout the hiring
@@ -271,12 +271,12 @@ class SolutionPage extends Component {
                         not only in the hiring process but also in the workspace.
                       </p>
                     </div>
-                    <div className="col-12 col-md-6 mb-4-4 text-center">
+                    <div className="col-12 col-md-6 solution-mb-4-4 text-center">
                       <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/section-3-2.png" className="img-fluid" alt="Diversity Hire and reporting" />
                     </div>
                   </div>
                   <div className="row flex-row-reverse">
-                    <div className="col-12 col-md-6 mb-4-4 d-flex flex-column justify-content-center">
+                    <div className="col-12 col-md-6 solution-mb-4-4 d-flex flex-column justify-content-center">
                       <h3>One-way Interview Screening</h3>
                       <p>
                         One-way Video Interview allows you to meet the candidates
@@ -290,12 +290,12 @@ class SolutionPage extends Component {
                       </p>
                       <a href="/employer-feature-video" className="default-btn mt-3" style={{paddingLeft:"25px", textDecoration:"none", backgroundColor:"#ff6b00", width:"12rem"}}>Learn More</a>
                     </div>
-                    <div className="col-12 col-md-6 mb-4-4 text-center">
+                    <div className="col-12 col-md-6 solution-mb-4-4 text-center">
                       <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/section-3-4.png" className="img-fluid" alt="One-way interview Screening" />
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-12 col-md-6 mb-4-4 d-flex flex-column justify-content-center">
+                    <div className="col-12 col-md-6 solution-mb-4-4 d-flex flex-column justify-content-center">
                       <h3>Talent Management</h3>
                       <p>
                         A centralized talent management platform will include
@@ -317,12 +317,12 @@ class SolutionPage extends Component {
                         so that sourcing and candidate management is never a headache.
                       </p>
                     </div>
-                    <div className="col-12 col-md-6 mb-4-4 text-center">
+                    <div className="col-12 col-md-6 solution-mb-4-4 text-center">
                       <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/section-3-5.png" className="img-fluid" alt="Talent management" />
                     </div>
                   </div>
                   <div className="row flex-row-reverse">
-                    <div className="col-12 col-md-6 mb-4-4 d-flex flex-column justify-content-center">
+                    <div className="col-12 col-md-6 solution-mb-4-4 d-flex flex-column justify-content-center">
                       <h3>Company Branding</h3>
                       <p>
                         Fill in a few basic information and voila -{" "}
@@ -335,7 +335,7 @@ class SolutionPage extends Component {
                         candidates.
                       </p>
                     </div>
-                    <div className="col-12 col-md-6 mb-4-4 text-center">
+                    <div className="col-12 col-md-6 solution-mb-4-4 text-center">
                       <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/section-3-6.png" className="img-fluid" alt="Company branding" />
                     </div>
                   </div>

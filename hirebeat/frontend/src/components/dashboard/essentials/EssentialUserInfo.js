@@ -390,7 +390,7 @@ export class EssentialUserInfo extends Component {
                       </button>
                     </div>
                   </div>
-                  {/*<div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
+                  {<div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                     <div className="col d-flex align-items-center">
                       <button
                         type="button"
@@ -407,7 +407,7 @@ export class EssentialUserInfo extends Component {
                         />
                       </button>
                     </div>
-                  </div>*/}
+                  </div>}
                 </div> :
                 <div style={{ minHeight: "58rem" }}>
                   <div className="row" style={{ marginTop: "30%", marginBottom: "1rem" }}>

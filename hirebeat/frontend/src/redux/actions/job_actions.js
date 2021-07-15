@@ -17,6 +17,8 @@ import {
     CREATE_MERGE_LINK_TOKEN,
     RETRIEVE_MERGE_ACCOUNT_TOKEN,
     CHECK_FREE_ACCOUNT_ACTIVE_JOBS,
+    SEND_MERGE_API_REQUEST,
+    ADD_CAND_FROM_MERGE,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -266,6 +268,34 @@ export const checkFreeAccountActiveJobs = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: CHECK_FREE_ACCOUNT_ACTIVE_JOBS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const sendMergeApiRequest = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/send-merge-api-request", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: SEND_MERGE_API_REQUEST,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const addCandFromMerge = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/add-cand-from-merge", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_CAND_FROM_MERGE,
         payload: res.data,
       });
     })

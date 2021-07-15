@@ -15,7 +15,9 @@ import {
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence
 }
   from "../../redux/actions/auth_actions";
-import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs } from "../../redux/actions/job_actions";
+import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, createMergeLinkToken, retrieveMergeAccountToken, 
+  checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge
+} from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import {
   addPosition, getPostedJobs, addInterviews, resendInvitation, updateCommentStatus,
@@ -460,8 +462,14 @@ export class EmployerDashboard extends Component {
       case "mergeintergration":
         return <MergeIntergration
           user={this.props.user}
+          profile={this.props.profile}
           link_token={this.props.link_token}
           retrieveMergeAccountToken={this.props.retrieveMergeAccountToken}
+          sendMergeApiRequest={this.props.sendMergeApiRequest}
+          interview_stages_api_response={this.props.interview_stages_api_response}
+          jobs_api_response={this.props.jobs_api_response}
+          addCandFromMerge={this.props.addCandFromMerge}
+          renderApplications={this.renderApplications}
         />;
       default:
         return null;
@@ -518,7 +526,7 @@ export class EmployerDashboard extends Component {
                       {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
                         (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
                         (this.state.subpage === "applications") || (this.state.subpage === "jobs") ||
-                        (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition")) || (this.state.subpage == "") ? null :
+                        (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition") || (this.state.subpage === "mergeintergration")) || (this.state.subpage == "") ? null :
                         <div className="container-fluid" style={{ height: "22rem" }} data-tut="reactour-rowbox">
                           <RowBoxes userId={this.props.user.id} isEmployer={true} />
                         </div>}
@@ -596,6 +604,8 @@ const mapStateToProps = (state) => {
     sub_r_list: state.question_reducer.sub_r_list,
     ext_r_list: state.question_reducer.ext_r_list,
     link_token: state.job_reducer.link_token,
+    interview_stages_api_response: state.job_reducer.interview_stages_api_response,
+    jobs_api_response: state.job_reducer.jobs_api_response,
   }
 };
 
@@ -606,7 +616,7 @@ export default connect(mapStateToProps, {
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
   updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
-  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs
+  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge
 })(
   EmployerDashboard
 );
