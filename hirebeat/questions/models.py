@@ -99,6 +99,16 @@ class InvitedCandidates(models.Model):
     basic_cri_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
     basic_cri_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
     basic_cri_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
+    # new resume analysis fields
+    required_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
+    required_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
+    required_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
+    extra_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
+    extra_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
+    extra_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
+    transferable_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
+    transferable_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
+    transferable_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
 
     def __str__(self):
         return self.name + '|' + self.email
@@ -136,6 +146,16 @@ class InterviewResumes(models.Model):
     basic_cri_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
     basic_cri_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)
     invite_date = models.DateTimeField(auto_now_add=True)
+    # new resume analysis fields
+    required_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
+    required_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
+    required_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
+    extra_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
+    extra_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
+    extra_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
+    transferable_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
+    transferable_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
+    transferable_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
     def __str__(self):
         return self.resumeURL
 

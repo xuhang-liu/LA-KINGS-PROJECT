@@ -175,7 +175,7 @@ class ROICalculator extends Component {
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-lg-7 col-md-7 col-sm-12">
-                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem"}}>{timesaving.toFixed(0)}</h5>
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem", marginTop: "1rem"}}>{timesaving.toFixed(0)}</h5>
                                                             <p style={{fontWeight:"600", fontSize:"1rem", color:"#090d3a", marginTop: "-1rem"}}>hours per month</p>
                                                         </div>
                                                     </div>
