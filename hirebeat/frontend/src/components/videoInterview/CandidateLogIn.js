@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {login, exchangeToken, loadProfile,
-        register, checkUserRegistration, getCompanyName} from "../../redux/actions/auth_actions";
+        register, checkUserRegistration} from "../../redux/actions/auth_actions";
 //import SocialButton from "../accounts/SocialButton";
 import {createMessage} from "../../redux/actions/message_actions";
 import PageTitleArea from '../Common/PageTitleArea';
@@ -29,8 +29,6 @@ export class CandidateLogin extends Component {
     let userEmail = this.state.email;
     let emailData = {email: userEmail}; // json stringfy
     this.props.checkUserRegistration(emailData);
-    // get company name
-    this.props.getCompanyName(this.state.positionId);
   }
 
   getParams =() => {
@@ -100,7 +98,7 @@ export class CandidateLogin extends Component {
   };
 
   handleSocialLogin = (user) => {
-    console.log(user);
+//    console.log(user);
     var provider = this.decideProvider(user.provider);
     this.props.exchangeToken(user.token.accessToken, provider);
   };
@@ -110,13 +108,20 @@ export class CandidateLogin extends Component {
   };
 
   redirectToInterview = () => {
+    // clear previous sessionStorage
+    sessionStorage.removeItem("interviewEmail");
+    sessionStorage.removeItem("interviewPositionId");
+    sessionStorage.removeItem("interviewShowTest");
+    // save parsed parameters to sessionStorage
+    sessionStorage.setItem('interviewEmail', this.state.email);
+    sessionStorage.setItem('interviewPositionId', this.state.positionId);
+
     const { history } = this.props;
     if (history) history.push({
         pathname: "/interview-info",
         params: {
             email: this.state.email,
             positionId: this.state.positionId,
-            companyName: this.props.companyName,
         }
     });
   }
@@ -335,10 +340,9 @@ const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
   auth: state.auth_reducer,
   isRegistered: state.auth_reducer.isRegistered,
-  companyName: state.auth_reducer.companyName,
 });
 
 export default connect(mapStateToProps, {
     login, exchangeToken, loadProfile,
-    register, createMessage, checkUserRegistration, getCompanyName
+    register, createMessage, checkUserRegistration
     })(CandidateLogin);

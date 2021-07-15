@@ -35,7 +35,7 @@ const initialState = {
   userfullname: "",
   zpJobs: [],
   isRegistered: false,
-  company_name: "",
+  companyName: "",
   dataLoaded: false,
   isRecorded: false,
   urlClicked: false,
@@ -47,6 +47,7 @@ const initialState = {
   employerDetailLoaded: false,
   user_existence: false,
   company_name_existence: false,
+  jobTitle: "",
 };
 
 export default function (state = initialState, action) {
@@ -129,6 +130,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         companyName: action.payload.company_name,
+        jobTitle: action.payload.job_title,
       };
     case GET_RECORD_STATUS:
       return {

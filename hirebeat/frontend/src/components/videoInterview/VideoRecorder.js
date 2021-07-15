@@ -124,7 +124,7 @@ export class VideoRecorder extends Component {
   render() {
     return (
       <div className="video-recorder-row">
-        <div className="col-8">
+        <div className="col-7">
           <div data-vjs-player>
             <video
               id="myVideo"
@@ -147,24 +147,26 @@ export class VideoRecorder extends Component {
             </div>) : null}
           </div>
         </div>
-        <div className="col-3">
+        <div className="col-5">
           {
             this.props.isTesting && this.props.retry &&
               <div style={{marginTop: "4rem"}}>
-                <p className="text-muted" style={{marginTop: "2rem", display:"inline-block", marginBottom:"2rem"}}>Test device again?</p>
-                <button onClick={this.recordAgain}
-                style={{
-                  marginLeft:"1rem", marginBottom:"2rem",
-                  backgroundColor:"#ff612f",
-                  width:"2.5rem", height:"2.5rem", 
-                  textAlign:"center", borderRadius:"100%", color:"#ffffff", border:"none",
-                  display:"inline-block", fontWeight:"600"}}><i className="bx bx-revision" style={{fontSize:"1.5rem"}}></i></button>
-                <CardButton
-                  onTap={this.props.testDeviceDone}
-                  textDisplayed={"Start Interview"}
-                  buttonWidth={"14rem"}
-                  fontFamily={"Avenir Next, Segoe UI"}
-                />
+                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>Your answer <span style={{color:"#ff6b00"}}>will not</span> be evaluated. Replay the video to ensure that your <span style={{color:"#ff6b00"}}>microphone and camera</span> are working.</p>
+                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>Take your time</span> to make sure everything is good before you start the interview</p>
+                <button
+                      onClick={this.recordAgain}
+                      className="default-btn mt-3"
+                      style={{color:"white", backgroundColor:"#56a3fa", marginRight: "2rem"}}
+                  >
+                     <i className="bx bx-revision"></i>Test Again
+                </button>
+                <button
+                      onClick={this.props.testDeviceDone}
+                      className="default-btn mt-3"
+                      style={{color:"white", backgroundColor:"#ff6b00"}}
+                  >
+                     <i className="bx bx-rocket"></i>Start Interview
+                </button>
               </div>
           }
           {

@@ -332,6 +332,16 @@ export class Header extends Component {
                   </span>
                 </a>
               </li>
+              <li className="nav-item ">
+                <a className="nav-link text-white navbar-font">
+                  <span className="header-text" style={{cursor:'pointer'}}>
+                    Solutions <i className="bx-fw bx bx-chevron-down"></i>
+                    <ul className="nav_submenu" style={{height:"3.2rem"}}>
+                      <li><Link id="id-solution-page" to="/employer-solution-page" className="header-dropdown-custom" style={{textDecoration:'none', marginLeft:'1rem'}}>Campus Recruiting</Link></li>
+                    </ul>
+                  </span>
+                </a>
+              </li>
               <li className="nav-item">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{cursor:'pointer'}}>

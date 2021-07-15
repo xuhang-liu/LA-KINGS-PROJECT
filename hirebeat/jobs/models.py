@@ -26,6 +26,7 @@ class Jobs(models.Model):
     lin_req = models.CharField(max_length=10, default="1")
     eeo_req = models.CharField(max_length=10, default="1") # 0 means disabled, 1 means enabled
     eeo_ques_req = models.CharField(max_length=10, default="1") # 0 means disabled, 1 means enabled
+    skills = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
 
 
 class ApplyCandidates(models.Model):
@@ -56,3 +57,13 @@ class ApplyCandidates(models.Model):
     apply_source = models.CharField(max_length=100, default="HireBeat")
     gender = models.CharField(max_length=100, null=True)
     race = models.CharField(max_length=200, null=True)
+    # new resume analysis fields
+    required_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
+    required_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
+    required_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
+    extra_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
+    extra_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
+    extra_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
+    transferable_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
+    transferable_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
+    transferable_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
