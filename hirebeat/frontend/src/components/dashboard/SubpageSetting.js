@@ -80,10 +80,9 @@ export class SubpageSetting extends Component {
                 } else {
                     alert("Incorrect Password");
                 }
-            })
-                .catch(error => {
+            }).catch(error => {
                     console.log(error)
-                });
+            });
             // user login judgement, third partiy login.
             // user email /go to database user social auth. Matching function. filter(same user id.) question view.(objects.filter)
         }
@@ -406,39 +405,39 @@ export class SubpageSetting extends Component {
                             </div>
                         </div>
                         <div className="chart-bg1 container">
-                            <div className="form-row" style={{ marginTop: "1%", marginBottom:"-1.6%" }}>
+                            <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
                                 <div className="form-group col">
-                                <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
-                                {this.props.profile.plan_interval == "Premium" &&
-                                <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                    <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                        <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
-                                    </p>
-                                </div>}
-                                {this.props.profile.plan_interval == "Pro" &&
-                                <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                    <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                        <i className="bx-fw bx bx-diamond bx-xs"></i><span>Pro</span>
-                                    </p>
-                                </div>}
+                                    <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
+                                    {this.props.profile.plan_interval == "Premium" &&
+                                        <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                            <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
+                                            </p>
+                                        </div>}
+                                    {this.props.profile.plan_interval == "Pro" &&
+                                        <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                            <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                <i className="bx-fw bx bx-diamond bx-xs"></i><span>Pro</span>
+                                            </p>
+                                        </div>}
                                 </div>
                             </div>
                             <div className="form-row">
                                 <div className="form-group col">
-                                <a
-                                    href="/employer-pricing"
-                                    type="submit"
-                                    className="default-btn"
-                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                >
-                                    Change Plan
-                                </a>
+                                    <a
+                                        href="/employer-pricing"
+                                        type="submit"
+                                        className="default-btn"
+                                        style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                    >
+                                        Change Plan
+                                    </a>
                                 </div>
                             </div>
                             <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
                                 <div className="form-row" style={{ marginTop: "1%" }}>
                                     <div className="form-group col">
-                                        <p style={{ fontSize: "17px", color: "#090d3a"}}>Type your email to cancel the membership</p>
+                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Type your email to cancel the membership</p>
                                         <input
                                             type="email"
                                             className="form-control"

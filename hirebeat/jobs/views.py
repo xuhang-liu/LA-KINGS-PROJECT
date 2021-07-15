@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates
-from questions.models import Positions, InterviewQuestions, InterviewResumes
-from accounts.models import Profile, EmployerProfileDetail, ProfileDetail
+from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates
+from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
@@ -18,8 +18,7 @@ import boto
 import os
 import requests
 import MergeATSClient
-from MergeATSClient.api import candidates_api, applications_api
-from MergeATSClient.model.paginated_candidate_list import PaginatedCandidateList
+from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_interview_stages_api, applications_api, attachments_api
 from pprint import pprint
 
 # configure s3
@@ -44,6 +43,7 @@ def add_new_job(request):
     eeo_req = request.data['eeo_req']
     eeo_ques_req = request.data['eeo_ques_req']
     job_post = request.data['job_post']
+    skills = request.data['skills']
     user = User.objects.get(pk=request.data["userId"])
     company_name = ""
     company_overview = ""
@@ -68,7 +68,7 @@ def add_new_job(request):
     # create job
     job = Jobs.objects.create(user=user, positions=position, job_title=job_title, job_id=job_id, job_description=job_description,
             job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name, company_logo=company_logo,
-            loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req)
+            loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req, skills=skills)
     # save job link
     job_url = "https://hirebeat.co/apply-job?id=" + str(job.id)
     job.job_url = job_url
@@ -121,6 +121,7 @@ def update_job(request):
     eeo_req = request.data['eeo_req']
     job_post = request.data['job_post']
     eeo_ques_req = request.data['eeo_ques_req']
+    skills = request.data['skills']
 
     job = Jobs.objects.get(id=id)
     job.job_title = job_title
@@ -135,6 +136,7 @@ def update_job(request):
     job.eeo_req = eeo_req
     job.eeo_ques_req = eeo_ques_req
     job.job_post = job_post
+    job.skills = skills
     # save update to db
     job.save()
 
@@ -556,7 +558,7 @@ def create_merge_link_token(request):
         "end_user_origin_id": user_id, # unique entity ID
         "end_user_organization_name": employer_profile.name,  # your user's organization name
         "end_user_email_address": user.email, # your user's email address
-        "categories": ["hris", "ats"], # choose your category
+        "categories": ["ats"], # choose your category
     }
 
     headers = {"Authorization": f"Bearer {api_key}"}
@@ -588,6 +590,9 @@ def retrive_merge_account_token(request):
 
 @api_view(['POST'])
 def send_merge_api_request(request):
+    user_id = request.data['user_id']
+    user = User.objects.get(pk=user_id)
+    profile = Profile.objects.get(user=user)
     configuration = MergeATSClient.Configuration()
 
     # Swap YOUR_API_KEY below with your production key from:
@@ -597,24 +602,25 @@ def send_merge_api_request(request):
 
     api_client = MergeATSClient.ApiClient(configuration)
 
-    candidates_api_instance = candidates_api.CandidatesApi(api_client)
+    jobs_api_instance = jobs_api.JobsApi(api_client)
 
-    app_api_instance = applications_api.ApplicationsApi(api_client)
+    interview_stages_api_instance = job_interview_stages_api.JobInterviewStagesApi(api_client)
 
     # The string 'TEST_ACCOUNT_TOKEN' below works to test your connection
     # to Merge and will return dummy data in the response.
     # In production, replace this with account_token from user.
-    x_account_token = 'TEST_ACCOUNT_TOKEN'
+    x_account_token = profile.merge_public_token
+    #x_account_token = 'iBYMfisbrp6WgO-9Y1fLGLcAisJARYAbZK8rGxVFOEPJCv0AzUYkzw'
 
     try:
-        api_response = candidates_api_instance.candidates_list(x_account_token)
-        app_api_response = app_api_instance.applications_list(x_account_token)
-        pprint(app_api_response['results'])
+        jobs_api_response = jobs_api_instance.jobs_list(x_account_token)
+        interview_stages_api_response = interview_stages_api_instance.job_interview_stages_list(x_account_token)
     except MergeATSClient.ApiException as e:
-        print('Exception when calling CandidatesApi->candidates_list: %s' % e)
+        print('Exception: %s' % e)
 
     return Response({
-        "api_response": app_api_response['results']
+        "jobs_api_response": jobs_api_response['results'],
+        "interview_stages_api_response": interview_stages_api_response['results'],
     })
 
 @api_view(['POST'])
@@ -631,3 +637,66 @@ def check_free_account_active_jobs(request):
         positions[i].save()
 
     return Response("Achive free account success", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def add_cand_from_merge(request):
+    candidates_api_response = {}
+    jobs_api_response = {}
+    attachments_api_response = {}
+    emailAddress = ""
+    location = ""
+    phone = ""
+    resume_url = ""
+    attachments_id = []
+    merge_job_id = request.data['merge_job_id']
+    merge_stage_id = request.data['merge_stage_id']
+    merge_job_title = request.data['merge_job_title']
+    merge_stage_title = request.data['merge_stage_title']
+
+    configuration = MergeATSClient.Configuration()
+
+    # Swap YOUR_API_KEY below with your production key from:
+    # https://app.merge.dev/configuration/keys 
+    configuration.api_key['tokenAuth'] = os.getenv("MERGE_API_KEY")
+    configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+    api_client = MergeATSClient.ApiClient(configuration)
+    user = User.objects.get(pk=request.data["user_id"])
+    profile = Profile.objects.get(user=user)
+    jobs_api_instance = jobs_api.JobsApi(api_client)
+    applications_api_instance = applications_api.ApplicationsApi(api_client)
+    candidates_api_instance = candidates_api.CandidatesApi(api_client)
+    attachments_api_instance = attachments_api.AttachmentsApi(api_client)
+    x_account_token = profile.merge_public_token
+    try:
+        jobs_api_response = jobs_api_instance.jobs_retrieve(x_account_token, merge_job_id)
+        applications_api_response = applications_api_instance.applications_list(x_account_token, current_stage_id=merge_stage_id, job_id=merge_job_id)
+    except MergeATSClient.ApiException as e:
+        print('Exception: %s' % e)
+    
+    #create postion
+    position = Positions.objects.create(user=user, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_description=jobs_api_response['description'], job_id="")
+    
+    #create applicants
+    for a in range(len(applications_api_response['results'])):
+        candidate_id = applications_api_response['results'][a]['candidate']
+        try:
+            candidates_api_response = candidates_api_instance.candidates_retrieve(x_account_token, candidate_id)
+        except MergeATSClient.ApiException as e:
+            print('Exception: %s' % e)
+        if len(candidates_api_response['email_addresses'])>0:
+            emailAddress = candidates_api_response['email_addresses'][0]['value']
+        if len(candidates_api_response['locations'])>0:
+            location = candidates_api_response['locations'][0].split('\n')[1]
+        if len(candidates_api_response['phone_numbers'])>0:
+            phone = candidates_api_response['phone_numbers'][0]['value']
+        #create resume for candidate
+        attachments_id = candidates_api_response['attachments']
+        if len(attachments_id) >0:
+            for a in range(len(attachments_id)):
+                attachments_api_response = attachments_api_instance.attachments_retrieve(x_account_token, attachments_id[a])
+                if attachments_api_response['attachment_type'] == 'RESUME':
+                    resume_url = attachments_api_response['file_url']
+        CandidatesInterview.objects.create(email=emailAddress, positions=position)
+        InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response['first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url)
+
+    return Response("Create candidates from merge success", status=status.HTTP_201_CREATED)

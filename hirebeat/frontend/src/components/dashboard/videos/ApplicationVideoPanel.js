@@ -120,9 +120,14 @@ class ApplicationVideoPanel extends Component {
                                 <div style={{width:"100%"}}>
                                     <h5 style={{fontWeight:"500", color:"#090D3A"}}>Transcript</h5>
                                     <div className="col px-0">
-                                        <div className="p-1" style={{overflow:"auto", maxHeight:"24rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem", minHeight:"20rem"}}>
-                                            <p className="py-3 px-3">{this.props.transcripts}</p>
-                                        </div>
+                                        {this.props.url?.slice(-3) == "wav" ?
+                                            <div className="p-1" style={{overflow:"auto", maxHeight:"24rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem"}}>
+                                                <p className="py-3 px-3">{this.props.transcripts}</p>
+                                            </div> :
+                                            <div className="p-1" style={{overflow:"auto", maxHeight:"24rem", border:"2px solid #E8EDFC", borderRadius:"0.2rem", minHeight:"20rem"}}>
+                                                <p className="py-3 px-3">{this.props.transcripts}</p>
+                                            </div>
+                                        }
                                     </div>
                                     {/*<div className="mt-3 p-0 col" style={{height:"3.07rem", border:"2px solid #E8EDFC", width:"100%", backgroundColor:"transparent"}}>
                                         <div className="row">

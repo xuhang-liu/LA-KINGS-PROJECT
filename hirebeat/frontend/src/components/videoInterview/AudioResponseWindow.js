@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import CountdownBar from "./CountdownBar";
 import { PracticeCard} from "../practice/CardComponents";
-import NotePad from "../practice/NotePad";
+import NotePad from "./NotePad";
 import { connect } from "react-redux";
-import PrepCountdown from "../practice/PrepCountdown";
-import TestAudioDevice from "./TestAudioDevice";
+import PrepCountdown from "./PrepCountdown";
 import AudioRecorder from "./AudioRecorder";
 import {getInterviewQuestions} from "../../redux/actions/question_actions";
 import { confirmAlert } from 'react-confirm-alert';
@@ -156,9 +155,6 @@ export class AudioResponseWindow extends Component {
     render() {
         let countTime = this.state.status == "Preparation" ? this.props.interview_position.prepare_time : this.props.interview_position.questionTime;
         return (
-            (!this.state.deviceTested) ? (
-                <TestAudioDevice testDeviceDone={this.testDeviceDone} prepareTime={this.props.interview_position.prepare_time}/>
-            ) : (
             <div>
                 <audio className="audio-start">
                     <source src="https://hirebeat-assets.s3.amazonaws.com/single_beep.mp3"></source>
@@ -175,7 +171,7 @@ export class AudioResponseWindow extends Component {
                             className="video-recorder-row"
                             style={{ marginBottom: "-7px" }}
                         >
-                            <div className="col-8">
+                            <div className="col-7">
                                 <div
                                     style={{
                                         backgroundColor: "black",
@@ -202,7 +198,7 @@ export class AudioResponseWindow extends Component {
                                     />
                                 </div>
                             </div>
-                            <div className="col-3" />
+                            <div className="col-5" />
                         </div>
                         {this.state.status == "Preparation" ? (
                             <PrepCountdown finishCountdown={this.finishCountdown}/>
@@ -226,7 +222,7 @@ export class AudioResponseWindow extends Component {
                     <NotePad status={this.state.status}/>
                 </PracticeCard>) : null
                 }
-            </div>)
+            </div>
         );
     }
 }

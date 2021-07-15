@@ -15,7 +15,7 @@ export function SoftSkillsMatch(props) {
 
     return (
         <div>
-            <h4 className="resume-text2 my-4">Soft Skills Match</h4>
+            <h4 className="resume-text2 my-4">Tools and Technologies</h4>
             <SkillsRow
                 className={"resume-text3"}
                 skills={["SKILLS"]}

@@ -3,10 +3,9 @@ import React, { Component } from "react";
 //import {Redirect} from "react-router-dom";
 import CountdownBar from "./CountdownBar";
 import { PracticeCard} from "../practice/CardComponents";
-import NotePad from "../practice/NotePad";
+import NotePad from "./NotePad";
 import { connect } from "react-redux";
-import PrepCountdown from "../practice/PrepCountdown";
-import TestDevice from "./TestDevice";
+import PrepCountdown from "./PrepCountdown";
 import VideoRecorder from "./VideoRecorder";
 import {getInterviewQuestions} from "../../redux/actions/question_actions";
 import { confirmAlert } from 'react-confirm-alert';
@@ -136,9 +135,6 @@ export class CareerResponseWindow extends Component {
     render() {
         let countTime = this.state.status == "Preparation" ? this.props.interview_position.prepare_time : this.props.interview_position.questionTime;
         return (
-            (!this.state.deviceTested) ? (
-                <TestDevice testDeviceDone={this.testDeviceDone} prepareTime={this.props.interview_position.prepare_time}/>
-            ) : (
             <div>
                 <audio className="audio-start">
                     <source src="https://hirebeat-assets.s3.amazonaws.com/single_beep.mp3"></source>
@@ -155,7 +151,7 @@ export class CareerResponseWindow extends Component {
                             className="video-recorder-row"
                             style={{ marginBottom: "-7px" }}
                         >
-                            <div className="col-8">
+                            <div className="col-7">
                                 <div
                                     style={{
                                         backgroundColor: "black",
@@ -182,7 +178,7 @@ export class CareerResponseWindow extends Component {
                                     />
                                 </div>
                             </div>
-                            <div className="col-3" />
+                            <div className="col-5" />
                         </div>
                         {this.state.status == "Preparation" ? (
                             <PrepCountdown finishCountdown={this.finishCountdown}/>
@@ -206,7 +202,7 @@ export class CareerResponseWindow extends Component {
                     <NotePad status={this.state.status}/>
                 </PracticeCard>) : null
                 }
-            </div>)
+            </div>
         );
     }
 }

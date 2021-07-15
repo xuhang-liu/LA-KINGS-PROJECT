@@ -5,6 +5,7 @@ import {
     GET_COMAPNY_BRANDING_INFO,
     GET_RESUME_FROM_JOB_APPLICATION,
     CREATE_MERGE_LINK_TOKEN,
+    SEND_MERGE_API_REQUEST,
 } from "../actions/action_types";
 
 const initialState = {
@@ -26,6 +27,8 @@ const initialState = {
   jobApplicationResume: "",
   contact_email: "",
   link_token: "",
+  jobs_api_response: [],
+  interview_stages_api_response: [],
 };
 
 export default function (state = initialState, action) {
@@ -71,6 +74,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         link_token: action.payload.link_token
+      }
+    case SEND_MERGE_API_REQUEST:
+      return {
+        ...state,
+        interview_stages_api_response: action.payload.interview_stages_api_response,
+        jobs_api_response: action.payload.jobs_api_response,
       }
     default:
       return state;

@@ -232,6 +232,7 @@ def get_applicants_videos(request):
     # check user existence
     if len(user) == 0:
         return Response({"int_ques": int_ques})
+    # get applicant videos by question_id first
     for i in range(len(questions)):
         obj = questions[i]
         ques_id = obj.id
@@ -241,8 +242,14 @@ def get_applicants_videos(request):
             video = wpvideo[0]
             serializer = WPVideoSerializer(video)
             int_ques.append(serializer.data)
-        else:
-            return Response({"int_ques": int_ques})
+    # if no videos, then get applicant videos by position_id
+    if len(int_ques) == 0:
+        wpvideos = WPVideo.objects.filter(position_id=positionId, owner_id=user_id)
+        for i in range(len(wpvideos)):
+            video = wpvideos[i]
+            serializer = WPVideoSerializer(video)
+            int_ques.append(serializer.data)
+
     return Response({
         "int_ques": int_ques,
     })
