@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML } from "../../../redux/actions/job_actions";
+import axios from "axios";
 
 export class JobCard extends Component {
 
@@ -101,6 +102,7 @@ export class JobCard extends Component {
                             setJobInfo={this.props.setJobInfo}
                             jobInfo={this.props.job.job_details}
                             applicantsNum={this.props.job.applicants.length}
+                            curJobKey={this.props.curJobKey}
                         />
                     </div>
                 </div>
@@ -110,6 +112,21 @@ export class JobCard extends Component {
 }
 
 const ActionButton = (props) => {
+    const [intCanNumBo, setIntCanNumBo] = useState(false); //false means not greater than 0
+    useEffect(() => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let data = { "curJobKey": props.curJobKey };
+
+        axios.post("job/check-interview-candidates-num", data, config).then((res) => {
+            setIntCanNumBo(res.data['intCanNumBo']);
+        }).catch(error => {
+                console.log(error)
+        });
+    }, []);
     let filter = props.filter;
     function deleteAlert() {
         confirmAlert({
@@ -141,7 +158,7 @@ const ActionButton = (props) => {
                             </p>
                         </span>
                     </div>
-                    {props.applicantsNum > 0 ?
+                    {(props.applicantsNum > 0 || intCanNumBo)?
                         <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%" }}>
                             <i className="bx bx-box"></i>
                             <span style={{ cursor: "pointer" }} onClick={props.archiveJob} className="tool_tip">Archive

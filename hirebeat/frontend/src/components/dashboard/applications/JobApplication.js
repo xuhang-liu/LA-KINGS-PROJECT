@@ -947,7 +947,7 @@ const JobCard = (props) => {
         <React.Fragment>
             {/* Job Applications */}
             {!invite &&
-                <div className="container-fluid">
+                <div className="container-fluid" style={{paddingLeft:"0px", paddingRight:"0px"}}>
                     <div className="d-flex align-items-center">
                         <button
                             type="button"

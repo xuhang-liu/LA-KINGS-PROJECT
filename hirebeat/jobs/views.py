@@ -700,3 +700,15 @@ def add_cand_from_merge(request):
         InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response['first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url)
 
     return Response("Create candidates from merge success", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def check_interview_candidates_num(request):
+    curJobKey = request.data['curJobKey']
+    jobs = Jobs.objects.get(pk=curJobKey)
+    positions = Positions.objects.get(pk=jobs.positions_id)
+    invitedCandidates = InvitedCandidates.objects.filter(positions=positions)
+    if len(invitedCandidates)>0:
+        intCanNumBo=True
+    return Response({
+        "intCanNumBo": intCanNumBo
+    })
