@@ -253,7 +253,7 @@ const ShortListCard = (props) => {
                             <div className="col-7" style={{ color: "#090D3A" }}>
                                 <div className="row">
                                     <button className="title-button ml-2" style={{ float: "left" }} onClick={() => { props.setSelectedId(props.positionId) }}>
-                                        {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
+                                        {props.jobTitle.length>50?props.jobTitle.substring(0,48)+"...":props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                     </button>
                                 </div>
                                 <div className="row mb-2 mt-1">

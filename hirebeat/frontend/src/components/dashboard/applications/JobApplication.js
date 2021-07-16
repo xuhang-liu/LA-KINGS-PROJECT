@@ -324,7 +324,7 @@ const JobViewDetail = (props) => {
                                     </div>
                                     <div className="row">
                                         <button className="title-button ml-2" style={{ float: "left" }} onClick={() => { setView(true); props.addSelected(props.positionId); sessionStorage.setItem(("view" + props.positionId), "true"); sessionStorage.setItem("selectedId", props.positionId) }}>
-                                            {props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
+                                            {props.jobTitle.length>50?props.jobTitle.substring(0,48)+"...":props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                         </button>
                                     </div>
                                     <div className="row mb-2 mt-1">
@@ -947,7 +947,7 @@ const JobCard = (props) => {
         <React.Fragment>
             {/* Job Applications */}
             {!invite &&
-                <div className="container-fluid">
+                <div className="container-fluid" style={{paddingLeft:"0px", paddingRight:"0px"}}>
                     <div className="d-flex align-items-center">
                         <button
                             type="button"
