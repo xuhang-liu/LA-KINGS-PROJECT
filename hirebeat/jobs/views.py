@@ -683,12 +683,15 @@ def add_cand_from_merge(request):
             candidates_api_response = candidates_api_instance.candidates_retrieve(x_account_token, candidate_id)
         except MergeATSClient.ApiException as e:
             print('Exception: %s' % e)
-        if len(candidates_api_response['email_addresses'])>0:
-            emailAddress = candidates_api_response['email_addresses'][0]['value']
-        if len(candidates_api_response['locations'])>0:
-            location = candidates_api_response['locations'][0].split('\n')[1]
-        if len(candidates_api_response['phone_numbers'])>0:
-            phone = candidates_api_response['phone_numbers'][0]['value']
+        if candidates_api_response['email_addresses'] != None:
+            if len(candidates_api_response['email_addresses'])>0:
+                emailAddress = candidates_api_response['email_addresses'][0]['value']
+        if candidates_api_response['locations'] != None:
+            if len(candidates_api_response['locations'])>0:
+                location = candidates_api_response['locations'][0].split('\n')[1]
+        if candidates_api_response['phone_numbers'] != None:
+            if len(candidates_api_response['phone_numbers'])>0:
+                phone = candidates_api_response['phone_numbers'][0]['value']
         #create resume for candidate
         attachments_id = candidates_api_response['attachments']
         if len(attachments_id) >0:

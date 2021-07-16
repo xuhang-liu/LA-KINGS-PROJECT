@@ -43,10 +43,27 @@ const MergeIntergration = (props) => {
     const onFilter1 = (job) => {
         setOptions2([]);
         setJob(job);
-        props.interview_stages_api_response?.map((i) => {
-            if (job['value'] == i?.job) {
-                setOptions2(options2 => [...options2, { value: i?.id, label: i?.name }]);
-            }
+        let data = {
+            "user_id": props.user.id
+        };
+        //Get data from merge
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        axios.post("jobs/send-merge-api-request", data, config).then((res) => {
+            res.data?.interview_stages_api_response?.map((i) => {
+                if(i?.job == null){
+                    setOptions2(options2 => [...options2, { value: i?.id, label: i?.name }]);
+                }else{
+                    if (job['value'] == i?.job) {
+                        setOptions2(options2 => [...options2, { value: i?.id, label: i?.name }]);
+                    }
+                }
+            });
+        }).catch(error => {
+                console.log(error)
         });
     };
 
@@ -83,6 +100,7 @@ const MergeIntergration = (props) => {
     }
 
     const getMergeData = () => {
+        setOptions1([]);
         let data = {
             "user_id": props.user.id
         };
