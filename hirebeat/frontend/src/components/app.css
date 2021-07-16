@@ -1963,8 +1963,7 @@ h5 {
   font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
-  font-size: 1.5625rem;
-  text-transform: uppercase;
+  font-size: 1.25rem;
   color: #090d3a;
 }
 
@@ -3953,4 +3952,9 @@ max-width: 110px;
   .solution-mb-9{
     margin-bottom: 8rem;
   }
+}
+
+.resume-border {
+  border: 3px solid #E8EDFC;
+  border-radius: 10px;
 }
