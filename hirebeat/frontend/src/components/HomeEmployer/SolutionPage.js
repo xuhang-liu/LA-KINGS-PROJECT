@@ -176,7 +176,7 @@ class SolutionPage extends Component {
                         <div className="flip-card-inner">
                           <div className="flip-card-front">
                             <div className="d-block w-100 text-center solution-mb-30">
-                              <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/advertising.png" alt="advertising" />
+                              <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/advertising1.png" alt="advertising" />
                             </div>
                             <p>Employer branding is constrained</p>
                           </div>
