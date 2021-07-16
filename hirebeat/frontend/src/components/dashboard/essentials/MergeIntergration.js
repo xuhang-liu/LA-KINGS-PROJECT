@@ -150,7 +150,7 @@ const MergeIntergration = (props) => {
 
     return (
         <div className="container" style={{ paddingBottom: "9rem" }}>
-            <div style={{ marginBottom: "30px" }}><h3><b><span className="ml-2">Integration</span></b></h3></div>
+            <div style={{ marginBottom: "30px" }}><h3><b><span style={{marginRight:"0.6rem"}}><img src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-eos-icons_api-outlined.png" alt="icon"></img></span><span className="ml-2">Integration</span></b></h3></div>
             <div className="chart-bg1 container">
                 <div className="form-row" style={{ marginTop: "1%" }}>
                     <div className="form-group col">
