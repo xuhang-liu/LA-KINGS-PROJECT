@@ -224,6 +224,7 @@ import FeatureVideo from "./HomeEmployer/FeatureVideo";
 import CompanyBranding from "./dashboard/jobBoard/CompanyBranding";
 import ResumeScreening from "./HomeEmployer/ResumeScreening";
 import SolutionPage from "./HomeEmployer/SolutionPage";
+import IntergrationPage from "./HomeEmployer/IntergrationPage";
 
 const alertOptions = {
   timeout: 3000,
@@ -308,7 +309,7 @@ class App extends Component {
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />
                 <PrivateRoute exact path="/video-interview" component={CareerResponseWindow}/>
                 <PrivateRoute exact path="/audio-interview" component={AudioResponseWindow}/>
-                <Route exact path="/apply-job" component={ApplyJob} />
+                <Route exact path="/apply-job/:companyName" component={ApplyJob} />
                 <Route exact path="/company-branding/:companyName" component={CompanyBranding} />
                 <Route exact path="/employer" component={IndexEmployer} />
                 <Route exact path="/interview_Completion" component={InterviewCompletion} />
@@ -494,6 +495,7 @@ class App extends Component {
                 <Route exact path="/employer-feature-video" component={FeatureVideo} />
                 <Route exact path="/employer-resume-screening" component={ResumeScreening} />
                 <Route exact path="/employer-solution-page" component={SolutionPage} />
+                <Route exact path="/employer-intergration-page" component={IntergrationPage} />
                 <Route component={NotFoundPage} />
               </Switch>
             </Fragment>

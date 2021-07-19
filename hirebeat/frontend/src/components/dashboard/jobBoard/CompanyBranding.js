@@ -51,7 +51,7 @@ const CompanyBranding = (props) => {
                                                     <div className="container-xl">
                                                         <div className="mt-4">
                                                             <div className="row">
-                                                                <div className="col-10" style={{ color: "#67a3fa" }}>
+                                                                <div className="col-9" style={{ color: "#67a3fa" }}>
                                                                     <div className="row">
                                                                         <a target="_blank" href={j.job_url} className="title-button ml-4" style={{ float: "left", textDecoration: "none", color: "#67a3fa" }}>
                                                                             {j.job_title}
@@ -63,7 +63,7 @@ const CompanyBranding = (props) => {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="col-2">
+                                                                <div className="col-3">
                                                                     <div className="row">
                                                                         <a target="_blank" href={j.job_url} className="default-btn" style={{ paddingLeft: "25px", marginTop: "1rem", textDecoration: "none" }}>Apply</a>
                                                                     </div>
