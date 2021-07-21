@@ -268,27 +268,6 @@ export class EssentialUserInfo extends Component {
                 </div>}
               </div>*/}
                   <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr>
-                  <div style={{ marginTop: "0rem", textAlign: "center", marginBottom: "0.5rem" }}>
-                    <div className="col d-flex align-items-center">
-                      <a
-                        target="_blank"
-                        className="panel-button"
-                        href="/employer_talent_sourcing"
-                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none", textDecoration: "none" }}
-                      >
-                        <IconUserText
-                          textSize={"12px"}
-                          textDisplayed={"Sourcing"}
-                          width={"56px"}
-                          height={"42px"}
-                          marginL={"1rem"}
-                          backColor={defaultBack}
-                          iconSrc={"https://hirebeat-assets.s3.amazonaws.com/Employer/bx-sourcing-non.svg"}
-                          textColor={defaultEColor}
-                        />
-                      </a>
-                    </div>
-                  </div>
                 </div>}
               {this.props.profile.is_employer ?
                 <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
@@ -353,6 +332,30 @@ export class EssentialUserInfo extends Component {
                     </div>
                   }
                   <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr>
+                  {(this.props.profile.is_employer && !this.props.profile.is_external_reviewer) &&
+                    <div className="row" style={{ marginTop: "0rem", textAlign: "center", marginBottom: "0.5rem" }}>
+                        <div className="col d-flex align-items-center">
+                          <a
+                            target="_blank"
+                            className="panel-button"
+                            href="/employer_talent_sourcing"
+                            style={{ outline: "none", margin: "1%", padding: "0px", background: "none", textDecoration: "none" }}
+                          >
+                            <IconUserText
+                              textSize={"12px"}
+                              textDisplayed={"Sourcing"}
+                              width={"56px"}
+                              height={"42px"}
+                              marginL={"1rem"}
+                              backColor={defaultBack}
+                              iconSrc={"https://hirebeat-assets.s3.amazonaws.com/Employer/bx-sourcing-non.png"}
+                              textColor={defaultEColor}
+                              paddingRight={"1rem"}
+                            />
+                          </a>
+                        </div>
+                    </div>
+                  }
                   {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
                     <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                       <div className="col d-flex align-items-center">

@@ -1881,7 +1881,7 @@ const Applicant = (props) => {
                     </div>
                 }
                 <div className="col-3 mb-1">
-                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#67a3f3" }} onClick={props.filter == "active" ? (() => viewResult()) : null}>
+                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#67a3f3" }} onClick={(() => viewResult())}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                         {props.name.split("(")[0].length > 20 ? props.name.split("(")[0].substring(0, 18) + "..." : props.name.split("(")[0]}
                     </button>
@@ -2008,6 +2008,7 @@ const Applicant = (props) => {
                 viewPrevResult={viewPrevResult}
                 viewNextResult={viewNextResult}
                 applicants={applicants}
+                filter={props.filter}
             />
             <MyModal80
                 show={showResume}
@@ -2061,6 +2062,7 @@ function MyVerticallyCenteredModal(props) {
                     viewNextResult={props.viewNextResult}
                     applicants={props.applicants}
                     hasSwitch={true}
+                    filter={props.filter}
                 />
             </MyFullModal1>
         </div>

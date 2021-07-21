@@ -163,6 +163,10 @@ const ReviewCandidate = (props) => {
         )
     }
 
+    function jobClosedAlert() {
+        alert("Current job is closed, you can't make any change");
+    }
+
     return (
         <div className="container-fluid ml-5 pb-5" style={{ width: '92%' }}>
             <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs / Review Candidate</span></b></h3></div>
@@ -269,7 +273,7 @@ const ReviewCandidate = (props) => {
                             </div>
                         }
                         <div>
-                            {(props.is_invited != 1) &&
+                            {(props.is_invited != 1 && props.filter == "active") &&
                                 <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                                     <button onClick={inviteCandidates} className="default-btn1" style={{ paddingLeft: "25px", width: "13rem" }}>
                                         Proceed to Interview
@@ -278,7 +282,7 @@ const ReviewCandidate = (props) => {
                             {(props.is_invited != 1) &&
                                 <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                                     <button
-                                        onClick={() => { holdCandidates(props.current) }}
+                                        onClick={props.filter == "active" ? (() => { holdCandidates(props.current) }) : jobClosedAlert }
                                         className="default-btn1"
                                         style={{ paddingLeft: "25px", width: "13rem", background: ((props.is_invited == 2) ? "#FF6B00" : "#E8EDFC"), color: ((props.is_invited == 2) ? "#ffffff" : "#090D3A") }}
                                     >
@@ -288,7 +292,7 @@ const ReviewCandidate = (props) => {
                             {(props.is_invited != 1) &&
                                 <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                                     <button
-                                        onClick={() => { rejectCandidates(props.current) }}
+                                        onClick={props.filter == "active" ? (() => { rejectCandidates(props.current)}) : jobClosedAlert }
                                         className="default-btn1"
                                         style={{ paddingLeft: "25px", width: "13rem", background: ((props.is_invited == 3) ? "#FF0000" : "#E8EDFC"), color: ((props.is_invited == 3) ? "#ffffff" : "#090D3A") }}
                                     >

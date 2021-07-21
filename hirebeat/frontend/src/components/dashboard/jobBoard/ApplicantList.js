@@ -418,13 +418,13 @@ const ApplicantRow = (props) => {
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={props.filter == "active" ? (() => { setCurrent(props.index); onView() }) : null}>
+                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView()}}>
                                 {name.length > 11 ? name.substring(0, 9) + "..." : name}
                             </span>
                         </div> :
                         <div>
                             <span className="dot" style={{ visibility: "hidden" }}></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={props.filter == "active" ? (() => { setCurrent(props.index); onView() }) : null}>
+                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView()}}>
                                 {name.length > 11 ? name.substring(0, 9) + "..." : name}
                             </span>
                         </div>
@@ -490,6 +490,7 @@ const ApplicantRow = (props) => {
                         updateCandidateViewedStatus={props.updateCandidateViewedStatus}
                         linkedin={applicants[parseInt(sessionStorage.getItem("current")) || current].linkedinurl}
                         moveCandidateToInterview={props.moveCandidateToInterview}
+                        filter={props.filter}
                     />
                 </MyFullModal>
             </div>
