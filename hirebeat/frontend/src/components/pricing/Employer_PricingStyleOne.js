@@ -244,7 +244,7 @@ class Employer_PricingStyleOne extends Component {
                                 onClick={(e) => this.openTabSection(e, 'tab1')}
                             >
                                 <span style={{border:"1px solid #090D3A"}}>
-                                    <i className="bx bxs-calendar-check"></i> Monthly
+                                    <i className="bx bxs-calendar-check"></i> &nbsp;&nbsp;Monthly &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </span>
                             </li>
 
@@ -253,7 +253,7 @@ class Employer_PricingStyleOne extends Component {
                                 onClick={(e) => this.openTabSection(e, 'tab2')}
                             >
                                 <span style={{border:"1px solid #090D3A"}}>
-                                    <i className="bx bxs-calendar-check"></i> Annualy - Save 25%
+                                    <i className="bx bxs-calendar-check"></i> Annual (-25%)
                                 </span>
                             </li>
                         </ul>

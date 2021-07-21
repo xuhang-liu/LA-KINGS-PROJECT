@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
+import { useParams } from 'react-router-dom';
 //import PageTitleArea from '../../Common/PageTitleArea';
 import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from "react-share";
 //import { Link } from "react-router-dom";
@@ -11,13 +12,14 @@ import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 var ReactS3Uploader = require("react-s3-uploader");
 
-var uri = window.location.search;
-var job_id = uri.substring(1, uri.length).split("=")[1];
-var url = String(window.location);
 const ApplyJob = (props) => {
+    var uri = window.location.search;
+    var job_id = uri.substring(1, uri.length).split("=")[1];
+    var url = String(window.location);
+    const { companyName } = useParams()
     useEffect(() => {
-        if (job_id != null && job_id != "") {
-            props.getCurrentJobs(job_id);
+        if (job_id != null && job_id != "" && companyName != null && companyName != "") {
+            props.getCurrentJobs(job_id, companyName);
         }
     }, []);
     const [Applied, setApplied] = useState(false);
@@ -98,7 +100,7 @@ const ApplyJob = (props) => {
         }
         if (username == "" || username == null) {
             let data = {
-                job_id: props.job.id,
+                job_id: props?.job?.id,
                 firstname: fisrtname,
                 lastname: lastname,
                 phone: phone,
@@ -119,7 +121,7 @@ const ApplyJob = (props) => {
                     password
                 );
                 let data = {
-                    job_id: props.job.id,
+                    job_id: props?.job?.id,
                     firstname: fisrtname,
                     lastname: lastname,
                     phone: phone,
@@ -198,7 +200,7 @@ const ApplyJob = (props) => {
             return alert("Lastname Invalid Format!")
         }
         let data = {
-            job_id: props.job.id,
+            job_id: props?.job?.id,
             firstname: fisrtname,
             lastname: lastname,
             phone: phone,
@@ -313,7 +315,7 @@ const ApplyJob = (props) => {
     return (
         <React.Fragment>
             <MediaQuery minDeviceWidth={1224}>
-                {(props.job.id == "" || props.job.id == null) ?
+                {(props?.job?.id == "" || props?.job?.id == null) ?
                     <div><h3>Please enter a valid job url!</h3></div> :
                     <div className="py-5" style={{ background: "#E8EDFC", minWidth: "1290px" }}>
                         <div style={{ marginLeft: "auto", marginRight: "auto", width: "70%", minHeight: "800px", borderRadius: "10px", background: "white", position: "relative" }}>
@@ -348,7 +350,7 @@ const ApplyJob = (props) => {
                                     </div>
                                     {!Applied &&
                                         <div>
-                                            {(props.profile.is_employer || props.job.id == "" || props.job.id == null) ?
+                                            {(props.profile.is_employer || props?.job?.id == "" || props?.job?.id == null) ?
                                                 <div>
                                                     {((job_id == null || job_id == "") ? false : props.job.is_closed) ?
                                                         <button id="apply-now" className="default-btn" style={{ paddingLeft: "5rem", paddingRight: "5rem", backgroundColor: "#7d7d7d" }}>
@@ -916,7 +918,7 @@ const ApplyJob = (props) => {
             </MediaQuery>
             {/*Mobile View*/}
             <MediaQuery maxDeviceWidth={1223}>
-                {(props.job.id == "" || props.job.id == null) ?
+                {(props?.job?.id == "" || props?.job?.id == null) ?
                     <div><h3>Please enter a valid job url!</h3></div> :
                     <div className="py-5" style={{ background: "#E8EDFC" }}>
                         <div style={{ marginLeft: "auto", marginRight: "auto", width: "90%", minHeight: "600px", borderRadius: "10px", background: "white", position: "relative" }}>
@@ -1012,7 +1014,7 @@ const ApplyJob = (props) => {
                                     </div>
                                     {!Applied &&
                                         <div className="mt-3">
-                                            {(props.profile.is_employer || props.job.id == "" || props.job.id == null) ?
+                                            {(props.profile.is_employer || props?.job?.id == "" || props?.job?.id == null) ?
                                                 <div>
                                                     {((job_id == null || job_id == "") ? false : props.job.is_closed) ?
                                                         <button id="apply-now" className="default-btn" style={{ paddingLeft: "5rem", paddingRight: "5rem", backgroundColor: "#7d7d7d" }}>

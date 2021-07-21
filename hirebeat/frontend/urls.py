@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('',views.index),  # when in root path, run that index method to render the html
     path('job-seekers',views.jobseeker),
-    path('apply-job',views.applyjob),
+    path('apply-job/<str:companyName>',views.applyjob),
     path('company-branding/<str:companyName>', views.companybranding),
     path('employer_blog-employer-branding-vs-recruitment-marketing', views.blogemployer19),
     path('employer_blog-how-ATS-works-in-the-recruitment-process', views.blogemployer18),

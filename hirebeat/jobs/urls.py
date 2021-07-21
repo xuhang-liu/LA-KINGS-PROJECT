@@ -11,7 +11,7 @@ urlpatterns = [
     path('update-job', update_job),
     path('archive-job', archive_job),
     path('add-new-apply-candidate', add_new_apply_candidate),
-    path('get-current-jobs', get_current_jobs),
+    path('apply-job/<str:companyName>/get-current-jobs', get_current_jobs),
     path('add-interview-question', add_interview_question),
     path('update-invite-status', update_invite_status),
     path('jobs/delete-job', delete_job),
