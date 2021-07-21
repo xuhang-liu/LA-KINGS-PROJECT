@@ -52,6 +52,8 @@ import BlogDetail22_Employer from "./blog/blog-details22-employer";
 import BlogDetail23_Employer from "./blog/blog-details23-employer";
 import BlogDetail24_Employer from "./blog/blog-details24-employer";
 import BlogDetail25_Employer from "./blog/blog-details25-employer";
+import BlogDetail26_Employer from "./blog/blog-details26-employer";
+import BlogDetail27_Employer from "./blog/blog-details27-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -81,6 +83,7 @@ import BlogDetail26 from "./blog/blog-details26";
 import BlogDetail27 from "./blog/blog-details27";
 import BlogDetail28 from "./blog/blog-details28";
 import BlogDetail29 from "./blog/blog-details29";
+import BlogDetail30 from "./blog/blog-details30";
 import SelectParam from "./practice/SelectParam";
 import SelectSimulate from "./practice/SelectSimulate";
 import TechFields from "./practice/TechFields";
@@ -346,6 +349,8 @@ class App extends Component {
                 <Route exact path="/employer_blog-what-is-broken-in-the-talent-acquisition-process" component={BlogDetail23_Employer} />
                 <Route exact path="/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process" component={BlogDetail24_Employer} />
                 <Route exact path="/employer_blog-4-challenges-campus-recruiters-could-meet" component={BlogDetail25_Employer} />
+                <Route exact path="/employer_blog-5-things-you-need-to-know-about-applicant-tracking-system" component={BlogDetail26_Employer} />
+                <Route exact path="/employer_blog-five-ways-applicant-tracking-systems-up" component={BlogDetail27_Employer} />
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
@@ -375,6 +380,7 @@ class App extends Component {
                 <Route exact path="/blog-ace-your-zoom-job-interview" component={BlogDetail27} />
                 <Route exact path="/blog-wha-is-your-expected-salary" component={BlogDetail28} />
                 <Route exact path="/blog-the-4c's-that-you-need-for-your-resume" component={BlogDetail29} />
+                <Route exact path="/blog-10-impactful-ways-to-update-your-resume-for-2021" component={BlogDetail30} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/employer-login" component={EmployerLogin} />

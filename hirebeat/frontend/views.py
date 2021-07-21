@@ -149,3 +149,12 @@ def hubspot_form(request):
 
 def blogemployer25(request):
     return render(request, 'frontend/blogemployer25.html')
+
+def blog30(request):
+    return render(request, 'frontend/blog30.html')
+
+def blogemployer26(request):
+    return render(request, 'frontend/blogemployer26.html')
+
+def blogemployer27(request):
+    return render(request, 'frontend/blogemployer27.html')

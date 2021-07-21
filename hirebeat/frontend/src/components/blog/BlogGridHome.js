@@ -87,6 +87,7 @@ export class BlogGridHome extends React.Component {
 };
 
 const blogURLs = [
+    "/blog-10-impactful-ways-to-update-your-resume-for-2021",
     "/blog-the-4c's-that-you-need-for-your-resume",
     "/blog-wha-is-your-expected-salary",
     "/blog-ace-your-zoom-job-interview",
@@ -119,6 +120,7 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog30.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog29.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog28.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog27.jpg",
@@ -151,6 +153,7 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Jul 21, 2021",
     "Jun 18, 2021",
     "Jun 04, 2021",
     "May 17, 2021",
@@ -183,6 +186,7 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "10 IMPACTFUL WAYS TO UPDATE YOUR RESUME",
     "THE 4C's THAT YOU NEED FOR YOUR RESUME",
     "WHAT IS YOUR EXPECTED SALARY?",
     "ACE YOUR ZOOM JOB INTERVIEW",
