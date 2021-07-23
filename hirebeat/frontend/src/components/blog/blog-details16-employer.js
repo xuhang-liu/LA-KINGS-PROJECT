@@ -18,7 +18,6 @@ class BlogDetail1_Employer16 extends Component {
         const meta = {
             title: 'HireBeat Blog – Red Flags You Should Look Out In Candidates During The Interview',
             description: 'The price of hiring the wrong candidate is huge for businesses. Therefore, it would be helpful for the company to identify the red flags of the candidate during the interview to save time and money. This article provides some critical red flags and tips to avoid them.',
-            canonical: 'https://hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview',
             meta: {
               charset: 'utf-8',
               name: {

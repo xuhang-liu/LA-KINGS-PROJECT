@@ -18,7 +18,6 @@ class BlogDetail22 extends Component {
         const meta = {
             title: 'HireBeat Blog – How to Answer the Question: Where do you see yourself in 5 years?',
             description: 'If you want to ace this question of “Where do you see yourself in 5 years?”, this article is something that you can’t miss. In this article, you will find a detailed breakdown of how to structure your responses base on different situation',
-            canonical: 'https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years',
             meta: {
               charset: 'utf-8',
               name: {

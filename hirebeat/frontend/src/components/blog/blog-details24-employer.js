@@ -18,7 +18,6 @@ class BlogDetail1_Employer24 extends Component {
         const meta = {
             title: 'HireBeat Blog – Three Steps to Fix Your Broken Talent Acquisition Process',
             description: "When a company has a broken talent acquisition process, it is losing money. This blog post shares three steps you can take to fix your broken and complex talent acquisition process!",
-            canonical: 'https://hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process',
             meta: {
               charset: 'utf-8',
               name: {

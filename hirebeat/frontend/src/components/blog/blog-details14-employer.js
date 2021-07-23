@@ -18,7 +18,6 @@ class BlogDetail1_Employer14 extends Component {
         const meta = {
             title: 'HireBeat Blog – Five Questions You Need to Ask to Hire the Best Intern',
             description: 'Interview questions for internships are different from full-time candidates. This article provides five key questions to assess intern candidates during job interviews.',
-            canonical: 'https://hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern',
             meta: {
               charset: 'utf-8',
               name: {

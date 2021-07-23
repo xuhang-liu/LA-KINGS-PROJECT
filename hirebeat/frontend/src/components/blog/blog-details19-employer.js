@@ -18,7 +18,6 @@ class BlogDetail1_Employer19 extends Component {
         const meta = {
             title: 'HireBeat Blog – Employer Branding vs Recruitment Marketing',
             description: 'Employer branding and recruitment marketing are two terms that are used relatively interchangeably by a lot of people although there is a clear distinction between the two.',
-            canonical: 'https://hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing',
             meta: {
               charset: 'utf-8',
               name: {

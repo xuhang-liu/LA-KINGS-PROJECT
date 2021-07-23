@@ -27,7 +27,6 @@ class ADIBInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Abu Dhabi Islamic Bank</title>
                     <meta name="Description" CONTENT="ADIB is committed to being a responsible corporate citizen and to managing its business in a way that creates value for customers, shareholders, employees and the communities in which it operates." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/abu-dhabi-islamic-bank"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

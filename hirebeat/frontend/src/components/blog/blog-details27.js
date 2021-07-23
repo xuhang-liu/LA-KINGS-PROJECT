@@ -18,7 +18,6 @@ class BlogDetail27 extends Component {
         const meta = {
             title: 'HireBeat Blog – Ace Your Zoom Job Interview',
             description: 'In this write-up, we will share some of the most essential points that an interviewee should focus on to ace the ZOOM job interview. Read till the end if you are thinking of ace your ZOOM virtual interview.',
-            canonical: 'https://hirebeat.co/blog-ace-your-zoom-job-interview',
             meta: {
               charset: 'utf-8',
               name: {

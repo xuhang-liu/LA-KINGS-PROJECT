@@ -18,7 +18,6 @@ class BlogDetail20 extends Component {
         const meta = {
             title: 'HireBeat Blog – How to Handle the Question You don’t Know How to Answer in an Interview',
             description: 'Preparing for an interview is time-consuming and hard, and we can still miss preparing some questions that are going to be asked on the day of the interview. Here we have provided you with some magical tips that are going to help you answer such questions for sure.',
-            canonical: 'https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know',
             meta: {
               charset: 'utf-8',
               name: {

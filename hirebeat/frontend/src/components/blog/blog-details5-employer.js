@@ -18,7 +18,6 @@ class BlogDetail1_Employer5 extends Component {
         const meta = {
             title: 'HireBeat Blog – How the Pandemic Sparked A New Way of Interviewing',
             description: 'Preparing interview question is an important part to ensure a company to find the right candidates. With proper preparation, hiring team and the company can compare one potential hire to the other and make accurate judgments.',
-            canonical: 'https://hirebeat.co/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing',
             meta: {
               charset: 'utf-8',
               name: {

@@ -18,7 +18,6 @@ class BlogDetail1_Employer10 extends Component {
         const meta = {
             title: 'HireBeat Blog – Four Tips to Build a Successful Campus Recruiting Strategy',
             description: 'Universities are the go-to options for the business to attract new candidates. In this article, you will know four tips about campus recruitment strategy.',
-            canonical: 'https://hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy',
             meta: {
               charset: 'utf-8',
               name: {

@@ -640,9 +640,12 @@ def check_free_account_active_jobs(request):
 
 @api_view(['POST'])
 def add_cand_from_merge(request):
+    position = {}
+    candidatesInterview = {}
     candidates_api_response = {}
     jobs_api_response = {}
     attachments_api_response = {}
+    job_name = ""
     emailAddress = ""
     location = ""
     phone = ""
@@ -673,8 +676,14 @@ def add_cand_from_merge(request):
     except MergeATSClient.ApiException as e:
         print('Exception: %s' % e)
     
-    #create postion
-    position = Positions.objects.create(user=user, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_description=jobs_api_response['description'], job_id="")
+    job_name = "External: "+jobs_api_response['name']+" ("+merge_stage_title+")"
+    positions = Positions.objects.filter(user=user, job_title=job_name)
+    if len(positions) > 0 :
+        position = positions[0]
+    else:
+        if len(applications_api_response['results']) > 0:
+            #create postion
+            position = Positions.objects.create(user=user, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_description=jobs_api_response['description'], job_id="")
     
     #create applicants
     for a in range(len(applications_api_response['results'])):
@@ -699,8 +708,11 @@ def add_cand_from_merge(request):
                 attachments_api_response = attachments_api_instance.attachments_retrieve(x_account_token, attachments_id[a])
                 if attachments_api_response['attachment_type'] == 'RESUME':
                     resume_url = attachments_api_response['file_url']
-        CandidatesInterview.objects.create(email=emailAddress, positions=position)
-        InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response['first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url)
+        
+        candidatesInterview = CandidatesInterview.objects.filter(email=emailAddress, positions=position)
+        if len(candidatesInterview) <= 0:
+            CandidatesInterview.objects.create(email=emailAddress, positions=position)
+            InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response['first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url)
 
     return Response("Create candidates from merge success", status=status.HTTP_201_CREATED)
 

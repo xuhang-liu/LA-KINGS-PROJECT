@@ -18,7 +18,6 @@ class BlogDetail1_Employer20 extends Component {
         const meta = {
             title: 'HireBeat Blog – 8 Tips to Increase Resume Screening Effectiveness',
             description: 'Resume screening is one of the traditional methods of candidate screening. The process can be tedious when you have hundreds of applications to review. But not if you know how to make it effective—here are the 8 tips to consider.',
-            canonical: 'https://hirebeat.co/employer_blog-8-tips-to-increase-resume-screening-effectiveness',
             meta: {
               charset: 'utf-8',
               name: {

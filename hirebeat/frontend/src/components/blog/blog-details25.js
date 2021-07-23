@@ -18,7 +18,6 @@ class BlogDetail25 extends Component {
         const meta = {
             title: 'HireBeat Blog – 4 Most Commonly Asked Questions in an Interview',
             description: 'This article shares the four most commonly asked questions in an interview and how they can benefit the interviewer.',
-            canonical: 'https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview',
             meta: {
               charset: 'utf-8',
               name: {

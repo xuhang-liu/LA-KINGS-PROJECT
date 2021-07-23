@@ -18,7 +18,6 @@ class BlogDetail1_Employer11 extends Component {
         const meta = {
             title: 'HireBeat Blog – How Covid Has Changed the Recruitment Process',
             description: 'Virtual interview and virtual onboarding have become the main trend during the pandemic. This article explained how covid has changed the hiring process in 3 ways.',
-            canonical: 'https://hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process',
             meta: {
               charset: 'utf-8',
               name: {

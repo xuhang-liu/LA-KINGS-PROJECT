@@ -18,7 +18,6 @@ class BlogDetail1_Employer23 extends Component {
         const meta = {
             title: 'HireBeat Blog – What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints',
             description: "Indeed, an employer faces many challenges when hiring, but the candidates' journey isn't smooth either. It's no secret that the process of talent acquisition is broken. Consider, What's Broken in the Talent Acquisition Process: Employers and Candidates Viewpoints.",
-            canonical: 'https://hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process',
             meta: {
               charset: 'utf-8',
               name: {
