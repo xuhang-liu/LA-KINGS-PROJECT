@@ -18,7 +18,6 @@ class BlogDetail24 extends Component {
         const meta = {
             title: 'HireBeat Blog – How to Answer the Question “What Makes You Stand Out from Other Candidates?”',
             description: 'Keep in mind that the question is an opportunity to explain to the interviewer how special you are as a potential employee.',
-            canonical: 'https://hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates',
             meta: {
               charset: 'utf-8',
               name: {

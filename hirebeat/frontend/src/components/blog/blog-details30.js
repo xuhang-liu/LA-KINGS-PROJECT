@@ -18,7 +18,6 @@ class BlogDetail30 extends Component {
         const meta = {
             title: "HireBeat Blog – 10 Impactful Ways To Update Your Resume For 2021",
             description: "The very first step of landing an interview is having a good resume. If you want your resume stand out from others, this article is something you can’t miss. Check and follow the 10 effective tips in this article to make your resume look good and land an interview.",
-            canonical: "https://hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021",
             meta: {
               charset: 'utf-8',
               name: {

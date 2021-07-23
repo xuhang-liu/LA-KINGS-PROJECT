@@ -18,7 +18,6 @@ class BlogDetail21 extends Component {
         const meta = {
             title: 'HireBeat Blog – 4 Amazing Tips to Effectively Networking During Covid-19',
             description: 'Wondering how you can network effectively and expand your professional network? Here are the four most amazing tips through which you can ace any interview or land your most desirable job without much effort.',
-            canonical: 'https://hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19',
             meta: {
               charset: 'utf-8',
               name: {

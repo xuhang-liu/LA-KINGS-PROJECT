@@ -18,7 +18,6 @@ class BlogDetail1_Employer27 extends Component {
         const meta = {
             title: 'HireBeat Blog – Five ways Applicant tracking systems up',
             description: "Applicant Tracking System (the HR software that processes job applications) is increasingly being used by campus recruiters to sift through a sea of resumes, boost their company's image, and hire the top prospects ahead of their competition. Learn how ATS impacts your business and campus recruitment.",
-            canonical: 'https://hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up',
             meta: {
               charset: 'utf-8',
               name: {

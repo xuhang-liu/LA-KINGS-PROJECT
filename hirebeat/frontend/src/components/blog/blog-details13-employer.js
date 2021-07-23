@@ -18,7 +18,6 @@ class BlogDetail1_Employer13 extends Component {
         const meta = {
             title: 'HireBeat Blog – How to Write A Termination Letter Right?',
             description: 'Writing a termination letter could be annoying. This article provides a few tips that helps the employers write the right termination letter.',
-            canonical: 'https://hirebeat.co/employer_blog-how-to-write-a-termination-letter-right',
             meta: {
               charset: 'utf-8',
               name: {

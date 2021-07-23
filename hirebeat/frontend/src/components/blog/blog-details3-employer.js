@@ -18,7 +18,6 @@ class BlogDetail1_Employer3 extends Component {
         const meta = {
             title: 'HireBeat Blog – Writing a Good Job Posting that Will Attract Employees',
             description: 'Creating a thorough job description enables employers to showcase the accurate details about the job and the positions available, reducing the chances of hiring the wrong candidate.',
-            canonical: 'https://hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees',
             meta: {
               charset: 'utf-8',
               name: {

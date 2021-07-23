@@ -18,7 +18,6 @@ class BlogDetail28 extends Component {
         const meta = {
             title: 'HireBeat Blog – What Is Your Expected Salary?',
             description: "What is your expected salary? This article provides a few do’s and dont's of answering this tactical question with confidence and integrity.",
-            canonical: 'https://hirebeat.co/blog-wha-is-your-expected-salary',
             meta: {
               charset: 'utf-8',
               name: {

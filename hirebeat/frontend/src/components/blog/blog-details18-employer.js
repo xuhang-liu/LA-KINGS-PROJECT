@@ -18,7 +18,6 @@ class BlogDetail1_Employer18 extends Component {
         const meta = {
             title: 'HireBeat Blog – How ATS works in the recruitment process',
             description: 'If you are a business owner yourself, you will want to obtain a good understanding of what exactly an ATS is and how you can use them. Read this article and learn about how ATS could help your business.',
-            canonical: 'https://hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process',
             meta: {
               charset: 'utf-8',
               name: {

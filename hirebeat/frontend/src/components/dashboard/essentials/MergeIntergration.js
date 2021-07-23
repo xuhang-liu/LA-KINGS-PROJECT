@@ -81,7 +81,7 @@ const MergeIntergration = (props) => {
         setInted(true);
         confirmAlert({
             title: "Sync in progress",
-            message: "Congratulations, you've successfully integrated your HireBeat account with your ATS. We are synchronizing the data. Depending on the volume, this initial synchronization may take 2-5 minutes to complete. Thank you for your patience.",
+            message: "Congratulations, you've successfully integrated your HireBeat account with your ATS. We are synchronizing the data. Depending on the volume, this initial synchronization may take 5-10 minutes to complete. Thank you for your patience.",
             buttons: [
                 {
                     label: 'Confirm'
@@ -97,6 +97,10 @@ const MergeIntergration = (props) => {
 
     const data = {
         "user_id": props.user.id
+    }
+
+    const removeMergeAccount = () => {
+        alert("Account been removed.")
     }
 
     const getMergeData = () => {
@@ -220,6 +224,19 @@ const MergeIntergration = (props) => {
                     </div>
                 </div>
             }
+            {/*inted &&
+                <div className="chart-bg1 container mt-4">
+                    <div className="form-row" style={{ marginTop: "1%" }}>
+                        <div className="form-group col">
+                            <div className="row ml-1" style={{ marginTop: "1rem" }}>
+                                <button className="default-btn" style={{ paddingLeft: "25px", borderRadius: "10px" }} onClick={removeMergeAccount}>
+                                    Remove Account
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            */}
         </div>
     );
 };

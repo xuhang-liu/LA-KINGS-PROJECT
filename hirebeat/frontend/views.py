@@ -158,3 +158,18 @@ def blogemployer26(request):
 
 def blogemployer27(request):
     return render(request, 'frontend/blogemployer27.html')
+
+def jobseekerscompanydata(request):
+    return render(request, 'frontend/jobseekerscompanydata.html')
+
+def absagroup(request):
+    return render(request, 'frontend/absa-group.html')
+
+def accenture(request):
+    return render(request, 'frontend/accenture.html')
+
+def abudhabiislamicbank(request):
+    return render(request, 'frontend/abu-dhabi-islamic-bank.html')
+
+def adp(request):
+    return render(request, 'frontend/adp.html')

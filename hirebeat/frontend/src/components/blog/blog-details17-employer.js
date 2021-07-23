@@ -18,7 +18,6 @@ class BlogDetail1_Employer17 extends Component {
         const meta = {
             title: 'HireBeat Blog – Personality Assessment Tools Employers Must Know About',
             description: 'Personality assessment is a great tool that allows you to unravel various personality-related traits of the candidates that you are about to hire. This article helps you understand various personality assessment tests that you can come around and reduces your chances of failure recruiting.',
-            canonical: 'https://hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about',
             meta: {
               charset: 'utf-8',
               name: {

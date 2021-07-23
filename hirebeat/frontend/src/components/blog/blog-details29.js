@@ -18,7 +18,6 @@ class BlogDetail29 extends Component {
         const meta = {
             title: "HireBeat Blog – The 4C's That You Need for Your Resume",
             description: "According to the experts, you need 4C's to stand out of the competition and become a primary choice for the hiring committee: Creativity, Communication, Collaboration, and Critical Thinking.",
-            canonical: "https://hirebeat.co/blog-the-4c's-that-you-need-for-your-resume",
             meta: {
               charset: 'utf-8',
               name: {

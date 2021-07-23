@@ -18,7 +18,6 @@ class BlogDetail1_Employer6 extends Component {
         const meta = {
             title: 'HireBeat Blog – Topic: How Gender Pronouns Change the Way We Work',
             description: 'Using the right gender pronounce is crucial at the workplace, and it helps to build people’s confidence. This article helps you correct gender pronounce problems and build a more comfortable workplace.',
-            canonical: 'https://hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work',
             meta: {
               charset: 'utf-8',
               name: {
