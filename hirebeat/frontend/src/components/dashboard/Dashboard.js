@@ -44,7 +44,7 @@ export class Dashboard extends Component {
     this.renderProfile = this.renderProfile.bind(this);
     // store user info to sessionStorage
     sessionStorage.setItem('user', JSON.stringify(this.props.user));
-    sessionStorage.setItem("isAuthenticated", this.props.isAuthenticated);
+    sessionStorage.setItem("isAuthenticated", JSON.stringify(this.props.isAuthenticated));
   }
 
   static propTypes = {
