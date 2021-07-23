@@ -4637,7 +4637,33 @@ Page Title Area CSS
   margin-top: -1rem;
 }
 
+.page-title-area-small {
+  background-color: #56a3fa;
+  position: relative;
+  z-index: 1;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 .page-title-area::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: .6;
+  height: 100%;
+  z-index: -1;
+  -webkit-animation: animatedBackground 15s linear infinite;
+          animation: animatedBackground 15s linear infinite;
+  background-image: url("../images/bg_lines.svg");
+  background-repeat: repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.page-title-area-small::before {
   content: '';
   position: absolute;
   top: 0;

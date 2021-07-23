@@ -42,6 +42,9 @@ export class Dashboard extends Component {
     this.renderSetting = this.renderSetting.bind(this);
     this.renderVideos = this.renderVideos.bind(this);
     this.renderProfile = this.renderProfile.bind(this);
+    // store user info to sessionStorage
+    sessionStorage.setItem('user', JSON.stringify(this.props.user));
+    sessionStorage.setItem("isAuthenticated", this.props.isAuthenticated);
   }
 
   static propTypes = {
@@ -187,6 +190,7 @@ export class Dashboard extends Component {
   };
 
   render() {
+    let user = JSON.parse(sessionStorage.getItem("user")) || this.props.user;
     const { isTourOpen } = this.state;
     const accentColor = "#5cb7b7";
     if (this.props.profile.is_employer) {
@@ -235,7 +239,7 @@ export class Dashboard extends Component {
                         renderVideos={this.renderVideos}
                         renderResume={this.renderResume}
                         renderInterview={this.renderInterview}
-                        userId={this.props.user.id}
+                        userId={user.id}
                         isEmployer={false}
                       />
                     </div>}

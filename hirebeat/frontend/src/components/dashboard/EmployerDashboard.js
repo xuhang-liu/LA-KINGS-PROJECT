@@ -60,6 +60,9 @@ export class EmployerDashboard extends Component {
       subpage: subpage,
       jobInfo: {},
     }
+    // store user info to sessionStorage
+    sessionStorage.setItem('user', JSON.stringify(this.props.user));
+    sessionStorage.setItem("isAuthenticated", this.props.isAuthenticated);
   }
 
   static propTypes = {

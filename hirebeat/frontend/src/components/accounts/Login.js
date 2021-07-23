@@ -59,6 +59,9 @@ export class Login extends Component {
 
   render() {
     if (this.props.isAuthenticated) {
+      // store user info to sessionStorage
+      sessionStorage.setItem('user', JSON.stringify(this.props.user));
+      sessionStorage.setItem("isAuthenticated", this.props.isAuthenticated);
       if (this.props.user.groups[0] == "reviewers") {
         return <Redirect to="/review"/>;
       } else {

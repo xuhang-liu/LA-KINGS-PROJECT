@@ -5,7 +5,11 @@ import Loader from '../shared/Loader';
 
 const PrivateRoute = ({ component: Component, auth, ...rest }) => {
   const [loading, setLoading] = useState(true);
+  let isAuthenticated = JSON.parse(sessionStorage.getItem("isAuthenticated")) || auth.isAuthenticated;
   useEffect(() => {
+    if (isAuthenticated) {
+      setLoading(false);
+    }
     setTimeout(() => setLoading(false), 222);
   }, []);
   var uri = window.location.pathname;
@@ -18,7 +22,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => {
       render={(props) => {
         if (auth.isLoading) {
           return <h2>Loading...</h2>;
-        } else if (!auth.isAuthenticated) {
+        } else if (!isAuthenticated) {
           if(uri == "employer_dashboard"){
             return <Redirect to="/login" />;
           }else{

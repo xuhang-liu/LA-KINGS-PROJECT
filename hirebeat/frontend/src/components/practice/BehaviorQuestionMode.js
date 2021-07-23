@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import MediaQuery from 'react-responsive';
 //import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
 import { useEffect } from "react";
-import PageTitleArea from '../Common/PageTitleArea';
+import SmallPageTitleArea from '../Common/SmallPageTitleArea';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -32,19 +32,18 @@ export class BehaviorQuestionMode extends Component {
       <ScrollToTopOnMount />
       <div style={{marginBottom:"10%"}}>
       <MediaQuery minDeviceWidth={1224}>
-        <PageTitleArea
-          pageTitle="Choose Exercise Mode"
-          pageDescription="Create A New Mock Interview"
+        <SmallPageTitleArea
+          pageTitle="Step 2: Choose Practice Mode"
           style={{marginBottom: "2rem"}}
         />
-        <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
+        <div className="row" style={{margin: "auto", width: "70%", marginTop: "3%"}}>
           <div className="col features-box" style={{marginLeft: "5%", backgroundColor:"#ffffff"}}>
               <button onClick={this.redirectToBQPracticeMode} style={{border: "none", background: "white", width: "21.6rem"}}>
                 <div style={{padding: "10%", textAlign: "left"}}>
-                <div className="icon">
-                  <i className='bx bx-bullseye'></i>
+                <div className="icon" style={{borderRadius: "15px"}}>
+                  <img src="https://hirebeat-assets.s3.amazonaws.com/single-type.png" />
                 </div>
-                  <h3 className="practice-h3">Practice Mode</h3>
+                  <h3 className="practice-h3">Single Category</h3>
                   <p className="mode-col-text1">Select one specific category and <br/> practice to perfect.</p>
                   <p className="mode-col-text2">Next Step -> </p>
                 </div>
@@ -53,10 +52,10 @@ export class BehaviorQuestionMode extends Component {
           <div className="col features-box" style={{marginLeft: "6rem", backgroundColor:"#ffffff"}}>
               <button onClick={this.redirectToBQSimulateMode} style={{border: "none", background: "white", width: "21.6rem"}} >
                 <div style={{padding: "10%", textAlign: "left"}}>
-                <div className="icon">
-                  <i className='bx bx-bolt-circle'></i>
+                <div className="icon" style={{borderRadius: "15px"}}>
+                  <img src="https://hirebeat-assets.s3.amazonaws.com/mix-type.png" />
                 </div>
-                  <h3 className="practice-h3">Simulate Mode</h3>
+                  <h3 className="practice-h3">Mixed Categories</h3>
                   <p className="mode-col-text1">Include all categories and practice<br/> questions randomly.</p>
                   <p className="mode-col-text2">Next Step -> </p>
                 </div>

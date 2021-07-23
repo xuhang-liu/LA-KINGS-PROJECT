@@ -10,6 +10,9 @@ export class ReviewNote extends Component {
     };
 
     updateReview = () => {
+        if (this.props.filter == "closed") {
+            return alert("Current job is closed, you can't make any change");
+        }
         // identify employer or reviewer
         let reviewer_type = "";
         if (this.props.profile.is_subreviwer) {

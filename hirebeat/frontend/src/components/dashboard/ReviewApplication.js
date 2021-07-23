@@ -42,7 +42,12 @@ class ReviewApplication extends Component {
     }
 
     updateStatus = (status) => {
-        let data = { "email": this.props.applicants[this.props.current].email, "positionId": this.props.positionId, "status": status, "userId": this.props.user.id };
+        let data = {
+            "email": this.props.applicants[this.props.current].email,
+            "positionId": this.props.positionId,
+            "status": status,
+            "userId": this.props.user.id
+        };
         this.props.updateCommentStatus(data);
         setTimeout(() => { this.props.getPJobs() }, 200);
     }
@@ -85,6 +90,10 @@ class ReviewApplication extends Component {
                 ]
             });
         }
+    }
+
+    jobClosedAlert = () => {
+        alert("Current job is closed, you can't make any change");
     }
 
     render() {
@@ -211,36 +220,45 @@ class ReviewApplication extends Component {
                                 <div>
                                     {this.props.commentStatus == 1 ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn btn-success ml-2" style={{ width: "8rem", fontSize: "0.8rem" }} onClick={() => { this.updateStatus(1); this.props.refresh(); }}>
+                                            <button className="default-btn btn-success ml-2" style={{ width: "8rem", fontSize: "0.8rem" }}>
                                                 <i class='bx bx-bookmark-plus'></i>Shortlist
                                             </button>
                                         </div> :
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn ml-2" style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "8rem", fontSize: "0.8rem" }} onClick={() => { this.updateStatus(1); this.props.refresh(); }}>
+                                            <button
+                                                className="default-btn ml-2"
+                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "8rem", fontSize: "0.8rem" }}
+                                                onClick={this.props.filter == "active" ? (() => { this.updateStatus(1); this.props.refresh()}) : this.jobClosedAlert}>
                                                 <i class='bx bx-bookmark-plus' style={{ color: "#090D3A" }}></i>Shortlist
                                             </button>
                                         </div>
                                     }
                                     {this.props.commentStatus == 2 ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn btn-warning ml-2" style={{ width: "8rem", fontSize: "0.8rem" }} onClick={() => { this.updateStatus(2); this.props.refresh(); }}>
+                                            <button className="default-btn btn-warning ml-2" style={{ width: "8rem", fontSize: "0.8rem" }}>
                                                 <i class='bx bx-help-circle'></i>Hold
                                             </button>
                                         </div> :
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn ml-2" style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "8rem", fontSize: "0.8rem" }} onClick={() => { this.updateStatus(2); this.props.refresh(); }}>
+                                            <button
+                                                className="default-btn ml-2"
+                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "8rem", fontSize: "0.8rem" }}
+                                                onClick={this.props.filter == "active" ? (() => { this.updateStatus(2); this.props.refresh()}) : this.jobClosedAlert}>
                                                 <i class='bx bx-help-circle' style={{ color: "#090D3A" }}></i>Hold
                                             </button>
                                         </div>
                                     }
                                     {this.props.commentStatus == 3 ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn btn-danger ml-2" style={{ width: "8rem", fontSize: "0.8rem" }} onClick={() => { this.updateStatus(3); this.props.refresh(); }}>
+                                            <button className="default-btn btn-danger ml-2" style={{ width: "8rem", fontSize: "0.8rem" }}>
                                                 <i class='bx bx-calendar-x'></i>Reject
                                             </button>
                                         </div> :
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn ml-2" style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "8rem", fontSize: "0.8rem" }} onClick={() => { this.updateStatus(3); this.props.refresh(); }}>
+                                            <button
+                                                className="default-btn ml-2"
+                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "8rem", fontSize: "0.8rem" }}
+                                                onClick={this.props.filter == "active" ? (() => { this.updateStatus(3); this.props.refresh()}) : this.jobClosedAlert}>
                                                 <i class='bx bx-calendar-x' style={{ color: "#090D3A" }}></i>Reject
                                             </button>
                                         </div>
@@ -251,13 +269,18 @@ class ReviewApplication extends Component {
                                 <div>
                                     {this.props.curEvaluation.evaluation == 1 ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn btn-success ml-2" style={{ width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", background: "#13C4A1" }} onClick={() => { this.updateEvaluation(1); }}>
+                                            <button
+                                                className="default-btn btn-success ml-2"
+                                                style={{ width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", background: "#13C4A1" }}>
                                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-white.png" style={{ width: "1.25rem", marginRight: "0.5rem" }} />
                                                 <p style={{ fontSize: "0.8rem", color: "#ffffff" }}>Qualified</p>
                                             </button>
                                         </div> :
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn ml-2" style={{ color: "#090D3A", backgroundColor: "#ffffff", width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }} onClick={() => { this.updateEvaluation(1); }}>
+                                            <button
+                                                className="default-btn ml-2"
+                                                style={{ color: "#090D3A", backgroundColor: "#ffffff", width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }}
+                                                onClick={this.props.filter == "active" ? () => {this.updateEvaluation(1)} : this.jobClosedAlert}>
                                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good.png" style={{ width: "1.25rem", marginRight: "0.5rem" }} />
                                                 <p style={{ fontSize: "0.8rem", color: "#13C4A1" }}>Qualified</p>
                                             </button>
@@ -265,13 +288,18 @@ class ReviewApplication extends Component {
                                     }
                                     {this.props.curEvaluation.evaluation == 2 ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn btn-danger ml-2" style={{ width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", background: "#E42424" }} onClick={() => { this.updateEvaluation(2); }}>
+                                            <button
+                                                className="default-btn btn-danger ml-2"
+                                                style={{ width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", background: "#E42424" }}>
                                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-white.png" style={{ width: "1.25rem", marginRight: "0.5rem", paddingTop: "2%" }} />
                                                 <p style={{ fontSize: "0.8rem", color: "#ffffff" }}>Unqualified</p>
                                             </button>
                                         </div> :
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn ml-2" style={{ color: "#090D3A", backgroundColor: "#ffffff", width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }} onClick={() => { this.updateEvaluation(2); }}>
+                                            <button
+                                                className="default-btn ml-2"
+                                                style={{ color: "#090D3A", backgroundColor: "#ffffff", width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }}
+                                                onClick={this.props.filter == "active" ? () => {this.updateEvaluation(2)} : this.jobClosedAlert}>
                                                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad.png" style={{ width: "1.25rem", marginRight: "0.5rem", paddingTop: "2%" }} />
                                                 <p style={{ fontSize: "0.8rem", color: "#E42424" }}>Unqualified</p>
                                             </button>
@@ -339,6 +367,7 @@ class ReviewApplication extends Component {
                                     hasSwitch={this.props.hasSwitch}
                                     recordedVideoCount={this.props.applicants[this.props.current].video_count}
                                     transcripts={this.props.transcripts}
+                                    filter={this.props.filter}
                                 />
                             }
                             {this.state.viewNotes &&
@@ -350,6 +379,7 @@ class ReviewApplication extends Component {
                                     profile={this.props.profile}
                                     reviewerEmail={this.props.user.email}
                                     evaluations={this.props.evaluations}
+                                    filter={this.props.filter}
                                 />
                             }
                         </div>

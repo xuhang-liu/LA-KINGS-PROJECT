@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 //import { SetupCard, CardRow, CardButton } from "./CardComponents";
 import { updateProfile } from "../../redux/actions/auth_actions";
 import { createMessage } from "../../redux/actions/message_actions";
-import PageTitleArea from '../Common/PageTitleArea';
+import SmallPageTitleArea from '../Common/SmallPageTitleArea';
 import emailjs from 'emailjs-com';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -77,9 +77,8 @@ export class TechFields extends Component {
     return (
       <React.Fragment>
         <ScrollToTopOnMount />
-        <PageTitleArea 
-          pageTitle="Choose Your Field" 
-          pageDescription="Create A New Mock Interview" 
+        <SmallPageTitleArea 
+          pageTitle="Step 2: Choose Your Field"
         />
       <div style={{marginBottom:"10%", marginTop:"3%", marginLeft: "21%"}}>
       <div>

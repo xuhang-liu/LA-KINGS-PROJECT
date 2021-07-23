@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { loadProfile } from "../../redux/actions/auth_actions";
 import MediaQuery from 'react-responsive';
-import PageTitleArea from '../Common/PageTitleArea';
+import SmallPageTitleArea from '../Common/SmallPageTitleArea';
 import ResumeScan from './ResumeScan';
 import SaveLeft from './SaveLeft';
 import LordingForAi from '../shared/LoadingForAi';
@@ -47,7 +47,7 @@ export class Resume extends Component {
                             <ScrollToTopOnMount />
                             <div style={{ marginBottom: "5%" }}>
                                 <MediaQuery minDeviceWidth={1224}>
-                                    <PageTitleArea
+                                    <SmallPageTitleArea
                                         pageTitle="Scan Your Resume"
                                         pageDescription="Please provide your resume and the job description for your targeted position"
                                         style={{ marginBottom: "2rem" }}
@@ -58,7 +58,7 @@ export class Resume extends Component {
                                     />
                                 </MediaQuery>
                                 <MediaQuery maxDeviceWidth={1223}>
-                                    <PageTitleArea
+                                    <SmallPageTitleArea
                                         pageTitle="Welcome to Hirebeat!"
                                         pageDescription="Our mobile functionality for interview practice is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
                                     />
