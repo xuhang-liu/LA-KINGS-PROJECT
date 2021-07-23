@@ -10,6 +10,7 @@ import parse from 'html-react-parser';
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 var ReactS3Uploader = require("react-s3-uploader");
+import RichTextEditor from 'react-rte';
 
 var uri = window.location.search;
 var job_id = uri.substring(1, uri.length).split("=")[1];
@@ -338,7 +339,14 @@ const ApplyJob = (props) => {
                                         </div>
                                         <h2 className="mb-3 mt-5">Job Description</h2>
                                         <div className="mb-3">
-                                            {parse('' + ((job_id == null || job_id == "") ? "" : props.job.job_description) + '')}
+                                            {(job_id == null || job_id == "") ? null :
+                                                <RichTextEditor
+                                                    value={RichTextEditor.createValueFromString(props.job.job_description, 'html')}
+                                                    onChange={() => {}}
+                                                    readOnly={true}
+                                                    className="text-editor"
+                                                />
+                                            }
                                         </div>
                                         {props.job.eeo_req == "1" &&
                                             <div>
@@ -1002,7 +1010,14 @@ const ApplyJob = (props) => {
                                         </div>
                                         <h2 className="mb-3 mt-3">Job Description</h2>
                                         <div className="mb-3">
-                                            {parse('' + ((job_id == null || job_id == "") ? "" : props.job.job_description) + '')}
+                                            {(job_id == null || job_id == "") ? null :
+                                                <RichTextEditor
+                                                    value={RichTextEditor.createValueFromString(props.job.job_description, 'html')}
+                                                    onChange={() =>{}}
+                                                    readOnly={true}
+                                                    className="text-editor"
+                                                />
+                                            }
                                         </div>
                                         {props.job.eeo_req == "1" &&
                                             <div>

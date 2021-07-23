@@ -3964,3 +3964,7 @@ max-width: 110px;
   display: flex;
   margin-right: 0.5rem;
 }
+
+.text-editor {
+  border: none;
+}

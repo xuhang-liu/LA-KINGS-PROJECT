@@ -27,9 +27,9 @@ export class Header extends Component {
       let elementId = document.getElementById("navbar");
       document.addEventListener("scroll", () => {
           if (window.scrollY > 80) {
-              elementId.classList.add("is-sticky");
+              elementId?.classList.add("is-sticky");
           } else {
-              elementId.classList.remove("is-sticky");
+              elementId?.classList.remove("is-sticky");
           }
       });
       window.scrollTo(0, 0);
