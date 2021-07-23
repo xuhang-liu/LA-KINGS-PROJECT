@@ -50,7 +50,7 @@ export class ResumeEvaJobs extends Component {
                                     background={"#e8edfc"}
                                     className={"resume-text3"}
                                     style={{ color: "#4A6F8A", fontWeight: "600", fontSize: "0.9375rem", paddingTop: "0.5rem", paddingBottom: "0.5rem"}}
-                                    jd={["Job Description"]}
+                                    jd={["Skills"]}
                                     resume={["Resume"]}
                                     info={["Occurrence"]}
                                 />
@@ -89,7 +89,7 @@ export class ResumeEvaJobs extends Component {
                                     background={"#e8edfc"}
                                     className={"resume-text3"}
                                     style={{ color: "#4A6F8A", fontWeight: "600", fontSize: "0.9375rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}
-                                    jd={["Job Description"]}
+                                    jd={["Skills"]}
                                     resume={["Resume"]}
                                     info={["Occurrence"]}
                                 />

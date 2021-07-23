@@ -578,6 +578,7 @@ function MyVerticallyCenteredModal(props) {
                     applicants={props.applicants}
                     current={props.current}
                     hasSwitch={false}
+                    filter={"active"}
                 />
             </MyFullModal1>
         </div>

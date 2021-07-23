@@ -8,7 +8,7 @@ import AudioResponseWindow from "./AudioResponseWindow";
 import TestDevice from "./TestDevice";
 import TestAudioDevice from "./TestAudioDevice";
 import { CardRow, selectParam } from "./CardComponents";
-import PageTitleArea from '../Common/PageTitleArea';
+import SmallPageTitleArea from '../Common/SmallPageTitleArea';
 import Switch from "react-switch";
 import LoadingForAi from "../shared/LoadingForAi";
 
@@ -96,9 +96,8 @@ selectMedia = () => {
     };
     return (
       <div>
-        <PageTitleArea
-          pageTitle="Set Up Your Exercise"
-          pageDescription="Create A New Mock Interview"
+        <SmallPageTitleArea
+          pageTitle="Step 3: Set up Your Practice"
           style={{marginBottom: "2rem"}}
         />
         {selectParam(

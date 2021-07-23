@@ -39,6 +39,7 @@ render() {
                                     profile={this.props.profile}
                                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     transcripts={this.props.transcripts[this.state.currentVideo]}
+                                    filter={this.props.filter}
                             />
                         </div>
                         <div className='row ml-1'>

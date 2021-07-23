@@ -18,6 +18,7 @@ export class ApplicantList extends Component {
         tempQuestion: [],
         category: { value: 'All', label: 'All' },
         editQuestion: false,
+        isSortByScore: true,
     }
 
     onFilter = (category) => {
@@ -233,6 +234,10 @@ export class ApplicantList extends Component {
         }
     }
 
+    sortByScore = () => {
+        this.setState({isSortByScore: !this.state.isSortByScore});
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -261,15 +266,62 @@ export class ApplicantList extends Component {
                             <div style={{ marginLeft: "2rem" }}>
                                 <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: (this.props.curJob.all_invited ? "none" : "inline") }} />
                             </div>
-                            <div className="col-3"><span style={{marginLeft:"1.4rem"}}>Name</span></div>
-                            <div className="col-3"><span style={{marginLeft:"0.5rem"}}>Email</span></div>
-                            <div className="col-3">Applied On</div>
+                            <div className="col-4"><span>Name</span></div>
+                            {/*<div className="col-3"><span style={{marginLeft:"0.5rem"}}>Email</span></div>*/}
+                            <div className="col-2">Applied On</div>
                             {/*<div className="col-2">Application</div>*/}
-                            <div className="col-2" style={{ padding: "0rem", zIndex: "9999" }}>
-                                <Select value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles} />
+                            <div className="col-3" style={{ padding: "0rem", zIndex: "9999" }}>
+                                <div className="row" style={{padding: "0rem"}}>
+                                    <span className="job-status">Status</span>
+                                    <Select value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles} />
+                                </div>
                             </div>
+                            <div className="col-2">Resume Score <span onClick={this.sortByScore} style={{color: "#67A3F3", cursor: "pointer"}}><i class='bx bx-sort'></i></span></div>
                         </div>
-                        {this.props.curJob.applicants.sort((a, b) => new Date(b.apply_date) - new Date(a.apply_date)).map((a, index) => {
+                        {/* sort by resume score descending */}
+                        {this.state.isSortByScore && this.props.curJob.applicants.sort((a, b) => parseInt(b.result_rate) - parseInt(a.result_rate)).map((a, index) => {
+                            if (this.state.keyWords != "") {
+                                let name = a.first_name + " " + a.last_name;
+                                if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
+                            }
+                            if (this.state.category.value != "All") {
+                                switch (this.state.category.value) {
+                                    case "Invited":
+                                        if (a.is_invited != 1) return null;
+                                        break;
+                                    case "Hold":
+                                        if (a.is_invited != 2) return null;
+                                        break;
+                                    case "Rejected":
+                                        if (a.is_invited != 3) return null;
+                                        break;
+                                    case "Unreviewed":
+                                        if (a.is_invited != 0) return null;
+                                        break;
+                                }
+                            }
+                            return (
+                                <ApplicantRow
+                                    filter={this.props.filter}
+                                    applicant={a}
+                                    index={index}
+                                    applicants={this.props.curJob.applicants}
+                                    curJob={this.props.curJob}
+                                    tempQuestion={this.state.tempQuestion}
+                                    setTempQuestion={this.setTempQuestion}
+                                    profile={this.props.profile}
+                                    addInterviews={this.props.addInterviews}
+                                    updateInviteStatus={this.props.updateInviteStatus}
+                                    updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
+                                    getAllJobs={this.props.getAllJobs}
+                                    getPJobs={this.props.getPJobs}
+                                    user={this.props.user}
+                                    moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                />
+                            )
+                        })}
+                        {/* sort by resume score ascending*/}
+                        {!this.state.isSortByScore && this.props.curJob.applicants.sort((a, b) => parseInt(a.result_rate) - parseInt(b.result_rate)).map((a, index) => {
                             if (this.state.keyWords != "") {
                                 let name = a.first_name + " " + a.last_name;
                                 if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
@@ -367,6 +419,7 @@ const ApplicantRow = (props) => {
     const [current, setCurrent] = useState(props.index);
     let applicants = props.applicants;
     let name = props.applicant.first_name + " " + props.applicant.last_name;
+    let resumeScore = props.applicant.result_rate;
     useEffect(() => {
         if (sessionStorage.getItem("showPreview" + props.index) === "true") {
             setShowPreview(true);
@@ -414,49 +467,59 @@ const ApplicantRow = (props) => {
                         </div>
                     }
                 </div>
-                <div className="col-3 interview-txt9 mt-2" style={{ cursor: "pointer", color: "#67A3F3", paddingLeft: "0.3rem" }}>
+                <div className="col-4 interview-txt9 mt-2" style={{ cursor: "pointer", color: "#67A3F3", paddingLeft: "0.3rem" }}>
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={props.filter == "active" ? (() => { setCurrent(props.index); onView() }) : null}>
-                                {name.length > 11 ? name.substring(0, 9) + "..." : name}
+                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView()}}>
+                                {name.length > 29 ? name.substring(0, 27) + "..." : name}
                             </span>
                         </div> :
                         <div>
                             <span className="dot" style={{ visibility: "hidden" }}></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={props.filter == "active" ? (() => { setCurrent(props.index); onView() }) : null}>
-                                {name.length > 11 ? name.substring(0, 9) + "..." : name}
+                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView()}}>
+                                {name.length > 29 ? name.substring(0, 27) + "..." : name}
                             </span>
                         </div>
                     }
                 </div>
-                <div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>
-                <div className="col-3 interview-txt9 mt-2"><span style={{marginLeft:"0.6rem"}}>{props.applicant.apply_date.substring(0, 10)}</span></div>
+                {/*<div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>*/}
+                <div className="col-2 interview-txt9 mt-2"><span style={{marginLeft:"0.6rem"}}>{props.applicant.apply_date.substring(0, 10)}</span></div>
                 {/*<div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); onView()}}>View</div>*/}
-                <div className="col-2 interview-txt9 mt-2" style={{ padding: "0rem" }}>
-                    <span style={{marginLeft:"1rem"}}>
-                    {(props.applicant.is_invited == 1) &&
-                        <button className="default-btn invite-btn"
-                            style={{ backgroundColor: "#13C4A1", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
-                        >
-                            Interview
-                        </button>
-                    }
-                    {(props.applicant.is_invited == 2) &&
-                        <button className="default-btn invite-btn"
-                            style={{ backgroundColor: "#FF6B00", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
-                        >
-                            Hold
-                        </button>
-                    }
-                    {(props.applicant.is_invited == 3) &&
-                        <button className="default-btn invite-btn"
-                            style={{ backgroundColor: "#FF0000", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
-                        >
-                            Rejected
-                        </button>
-                    }
-                    </span>
+                <div className="col-3 interview-txt9 mt-2" style={{ padding: "0rem" }}>
+                    <div className="row" style={{padding: "0rem"}}>
+                        {/* place holder */}
+                        <span className="job-status" style={{marginLeft: "15px", visibility: "hidden"}}>Status</span>
+                        <span>
+                        {(props.applicant.is_invited == 1) &&
+                            <button className="default-btn invite-btn"
+                                style={{ backgroundColor: "#13C4A1", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
+                            >
+                                Interview
+                            </button>
+                        }
+                        {(props.applicant.is_invited == 2) &&
+                            <button className="default-btn invite-btn"
+                                style={{ backgroundColor: "#FF6B00", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
+                            >
+                                Hold
+                            </button>
+                        }
+                        {(props.applicant.is_invited == 3) &&
+                            <button className="default-btn invite-btn"
+                                style={{ backgroundColor: "#FF0000", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
+                            >
+                                Rejected
+                            </button>
+                        }
+                        </span>
+                    </div>
+                </div>
+                <div className="col-2 interview-txt9 mt-2" style={{marginLeft: "30px"}}>
+                    {resumeScore >= 76 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-great.png" />}
+                    {resumeScore >= 51 && resumeScore < 76 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-good.png" />}
+                    {resumeScore >= 26 && resumeScore < 51 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-avg.png" />}
+                    {resumeScore >= 0 && resumeScore < 26 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-bad.png" />}
                 </div>
             </div>
             <div style={{ background: "#E8EDFC" }}>
@@ -490,6 +553,7 @@ const ApplicantRow = (props) => {
                         updateCandidateViewedStatus={props.updateCandidateViewedStatus}
                         linkedin={applicants[parseInt(sessionStorage.getItem("current")) || current].linkedinurl}
                         moveCandidateToInterview={props.moveCandidateToInterview}
+                        filter={props.filter}
                     />
                 </MyFullModal>
             </div>

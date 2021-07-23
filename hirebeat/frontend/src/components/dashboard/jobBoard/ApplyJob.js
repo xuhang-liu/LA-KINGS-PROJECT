@@ -11,6 +11,7 @@ import parse from 'html-react-parser';
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 var ReactS3Uploader = require("react-s3-uploader");
+import RichTextEditor from 'react-rte';
 
 const ApplyJob = (props) => {
     var uri = window.location.search;
@@ -335,12 +336,26 @@ const ApplyJob = (props) => {
                                         <div>
                                             <h2 className="mb-3">Company Overview</h2>
                                             <div className="mb-3">
-                                                {parse('' + ((job_id == null || job_id == "") ? "" : props.job.company_overview) + '')}
+                                                {(job_id == null || job_id == "") ? null :
+                                                    <RichTextEditor
+                                                        value={RichTextEditor.createValueFromString(props.job.company_overview, 'html')}
+                                                        onChange={() => { }}
+                                                        readOnly={true}
+                                                        className="text-editor"
+                                                    />
+                                                }
                                             </div>
                                         </div>
                                         <h2 className="mb-3 mt-5">Job Description</h2>
                                         <div className="mb-3">
-                                            {parse('' + ((job_id == null || job_id == "") ? "" : props.job.job_description) + '')}
+                                            {(job_id == null || job_id == "") ? null :
+                                                <RichTextEditor
+                                                    value={RichTextEditor.createValueFromString(props.job.job_description, 'html')}
+                                                    onChange={() => { }}
+                                                    readOnly={true}
+                                                    className="text-editor"
+                                                />
+                                            }
                                         </div>
                                         {props.job.eeo_req == "1" &&
                                             <div>
@@ -457,7 +472,7 @@ const ApplyJob = (props) => {
                                                     {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
                                                             <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
-                                                            <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
+                                                            <p className="job-apply-char1" style={{ lineHeight: "20px", fontSize: "0.9375rem" }}>
                                                                 You are requested to fill in the personal data below.
                                                                 This information will only be used for government reporting purposes and
                                                                 not as selection criteria for the hiring process.
@@ -465,20 +480,20 @@ const ApplyJob = (props) => {
                                                             <div class="form-group">
                                                                 <label className="job-apply-char1">Gender</label><span className="job-apply-char2">*</span>
                                                                 <div>
-                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="Male" style={{marginRight: "1rem"}}></input>Male</label>
+                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="Male" style={{ marginRight: "1rem" }}></input>Male</label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="Female" style={{marginRight: "1rem"}}></input>Female</label>
+                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="Female" style={{ marginRight: "1rem" }}></input>Female</label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="N/A" style={{marginRight: "1rem"}}></input>I do not wish to disclose</label>
+                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="N/A" style={{ marginRight: "1rem" }}></input>I do not wish to disclose</label>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label className="job-apply-char1">Race or ethnicity</label><span className="job-apply-char2">*</span>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Hispanic or Latino" style={{marginRight: "1rem"}}></input>Hispanic or Latino
+                                                                        <input type="radio" name="race" value="Hispanic or Latino" style={{ marginRight: "1rem" }}></input>Hispanic or Latino
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -493,7 +508,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="White" style={{marginRight: "1rem"}}></input>White (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="White" style={{ marginRight: "1rem" }}></input>White (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -506,7 +521,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div><div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Black or African American" style={{marginRight: "1rem"}}></input>Black or African American (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="Black or African American" style={{ marginRight: "1rem" }}></input>Black or African American (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -519,7 +534,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{marginRight: "1rem"}}></input>Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{ marginRight: "1rem" }}></input>Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -533,7 +548,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Asian" style={{marginRight: "1rem"}}></input>Asian  (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="Asian" style={{ marginRight: "1rem" }}></input>Asian  (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -551,15 +566,15 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Native American or Alaska Native" style={{marginRight: "1rem"}}></input>Native American or Alaska Native (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="Native American or Alaska Native" style={{ marginRight: "1rem" }}></input>Native American or Alaska Native (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
                                                                                 <div>
-                                                                                     A person having origins in any of the
-                                                                                     original peoples of North and South America
-                                                                                     (including Central America) and who maintains
-                                                                                     tribal affiliation or community attachment.
+                                                                                    A person having origins in any of the
+                                                                                    original peoples of North and South America
+                                                                                    (including Central America) and who maintains
+                                                                                    tribal affiliation or community attachment.
                                                                                 </div>
                                                                             </p>
                                                                         </span>
@@ -567,7 +582,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Two or more races" style={{marginRight: "1rem"}}></input>Two or more races (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="Two or more races" style={{ marginRight: "1rem" }}></input>Two or more races (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -580,7 +595,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="N/A" style={{marginRight: "1rem"}}></input>I do not wish to disclose
+                                                                        <input type="radio" name="race" value="N/A" style={{ marginRight: "1rem" }}></input>I do not wish to disclose
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -696,7 +711,7 @@ const ApplyJob = (props) => {
                                                     {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
                                                             <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
-                                                            <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
+                                                            <p className="job-apply-char1" style={{ lineHeight: "20px", fontSize: "0.9375rem" }}>
                                                                 You are requested to fill in the personal data below.
                                                                 This information will only be used for government reporting purposes and
                                                                 not as selection criteria for the hiring process.
@@ -704,20 +719,20 @@ const ApplyJob = (props) => {
                                                             <div class="form-group">
                                                                 <label className="job-apply-char1">Gender</label><span className="job-apply-char2">*</span>
                                                                 <div>
-                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="Male" style={{marginRight: "1rem"}}></input>Male</label>
+                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="Male" style={{ marginRight: "1rem" }}></input>Male</label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="Female" style={{marginRight: "1rem"}}></input>Female</label>
+                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="Female" style={{ marginRight: "1rem" }}></input>Female</label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="N/A" style={{marginRight: "1rem"}}></input>I do not wish to disclose</label>
+                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="N/A" style={{ marginRight: "1rem" }}></input>I do not wish to disclose</label>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label className="job-apply-char1">Race or ethnicity</label><span className="job-apply-char2">*</span>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Hispanic or Latino" style={{marginRight: "1rem"}}></input>Hispanic or Latino
+                                                                        <input type="radio" name="race" value="Hispanic or Latino" style={{ marginRight: "1rem" }}></input>Hispanic or Latino
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -732,7 +747,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="White" style={{marginRight: "1rem"}}></input>White (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="White" style={{ marginRight: "1rem" }}></input>White (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -745,7 +760,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div><div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Black or African American" style={{marginRight: "1rem"}}></input>Black or African American (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="Black or African American" style={{ marginRight: "1rem" }}></input>Black or African American (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -758,7 +773,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{marginRight: "1rem"}}></input>Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{ marginRight: "1rem" }}></input>Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -772,7 +787,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Asian" style={{marginRight: "1rem"}}></input>Asian  (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="Asian" style={{ marginRight: "1rem" }}></input>Asian  (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -790,15 +805,15 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Native American or Alaska Native" style={{marginRight: "1rem"}}></input>Native American or Alaska Native (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="Native American or Alaska Native" style={{ marginRight: "1rem" }}></input>Native American or Alaska Native (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
                                                                                 <div>
-                                                                                     A person having origins in any of the
-                                                                                     original peoples of North and South America
-                                                                                     (including Central America) and who maintains
-                                                                                     tribal affiliation or community attachment.
+                                                                                    A person having origins in any of the
+                                                                                    original peoples of North and South America
+                                                                                    (including Central America) and who maintains
+                                                                                    tribal affiliation or community attachment.
                                                                                 </div>
                                                                             </p>
                                                                         </span>
@@ -806,7 +821,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Two or more races" style={{marginRight: "1rem"}}></input>Two or more races (Not Hispanic or Latino)
+                                                                        <input type="radio" name="race" value="Two or more races" style={{ marginRight: "1rem" }}></input>Two or more races (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -819,7 +834,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="N/A" style={{marginRight: "1rem"}}></input>I do not wish to disclose
+                                                                        <input type="radio" name="race" value="N/A" style={{ marginRight: "1rem" }}></input>I do not wish to disclose
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -999,12 +1014,26 @@ const ApplyJob = (props) => {
                                         <div>
                                             <h2 className="mb-3 mt-5">Company Overview</h2>
                                             <div className="mb-3">
-                                                {parse('' + ((job_id == null || job_id == "") ? "" : props.job.company_overview) + '')}
+                                                {(job_id == null || job_id == "") ? null :
+                                                    <RichTextEditor
+                                                        value={RichTextEditor.createValueFromString(props.job.company_overview, 'html')}
+                                                        onChange={() => { }}
+                                                        readOnly={true}
+                                                        className="text-editor"
+                                                    />
+                                                }
                                             </div>
                                         </div>
                                         <h2 className="mb-3 mt-3">Job Description</h2>
                                         <div className="mb-3">
-                                            {parse('' + ((job_id == null || job_id == "") ? "" : props.job.job_description) + '')}
+                                            {(job_id == null || job_id == "") ? null :
+                                                <RichTextEditor
+                                                    value={RichTextEditor.createValueFromString(props.job.job_description, 'html')}
+                                                    onChange={() => { }}
+                                                    readOnly={true}
+                                                    className="text-editor"
+                                                />
+                                            }
                                         </div>
                                         {props.job.eeo_req == "1" &&
                                             <div>
@@ -1121,7 +1150,7 @@ const ApplyJob = (props) => {
                                                     {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
                                                             <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
-                                                            <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
+                                                            <p className="job-apply-char1" style={{ lineHeight: "20px", fontSize: "0.9375rem" }}>
                                                                 You are requested to fill in the personal data below.
                                                                 This information will only be used for government reporting purposes and
                                                                 not as selection criteria for the hiring process.
@@ -1130,19 +1159,19 @@ const ApplyJob = (props) => {
                                                                 <label className="job-apply-char1">Gender</label><span className="job-apply-char2">*</span>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="gender" value="Male" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="gender" value="Male" style={{ marginRight: "1rem" }} />
                                                                         Male
                                                                     </label>
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="gender" value="Female" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="gender" value="Female" style={{ marginRight: "1rem" }} />
                                                                         Female
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="gender" value="N/A" style={{marginRight: "1rem"}} />
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="gender" value="N/A" style={{ marginRight: "1rem" }} />
                                                                         I do not wish to disclose
                                                                     </label>
                                                                 </div>
@@ -1151,7 +1180,7 @@ const ApplyJob = (props) => {
                                                                 <label className="job-apply-char1">Race or ethnicity</label><span className="job-apply-char2">*</span>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Hispanic or Latino" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Hispanic or Latino" style={{ marginRight: "1rem" }} />
                                                                         Hispanic or Latino
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1167,7 +1196,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="White" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="White" style={{ marginRight: "1rem" }} />
                                                                         White (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1181,7 +1210,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div><div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Black or African American" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Black or African American" style={{ marginRight: "1rem" }} />
                                                                         Black or African American (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1195,7 +1224,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{ marginRight: "1rem" }} />
                                                                         Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1210,7 +1239,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Asian" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Asian" style={{ marginRight: "1rem" }} />
                                                                         Asian  (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1229,16 +1258,16 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Native American or Alaska Native" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Native American or Alaska Native" style={{ marginRight: "1rem" }} />
                                                                         Native American or Alaska Native (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
                                                                                 <div>
-                                                                                     A person having origins in any of the
-                                                                                     original peoples of North and South America
-                                                                                     (including Central America) and who maintains
-                                                                                     tribal affiliation or community attachment.
+                                                                                    A person having origins in any of the
+                                                                                    original peoples of North and South America
+                                                                                    (including Central America) and who maintains
+                                                                                    tribal affiliation or community attachment.
                                                                                 </div>
                                                                             </p>
                                                                         </span>
@@ -1246,7 +1275,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Two or more races" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Two or more races" style={{ marginRight: "1rem" }} />
                                                                         Two or more races (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1260,7 +1289,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="N/A" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="N/A" style={{ marginRight: "1rem" }} />
                                                                         I do not wish to disclose
                                                                     </label>
                                                                 </div>
@@ -1377,7 +1406,7 @@ const ApplyJob = (props) => {
                                                     {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
                                                             <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
-                                                            <p className="job-apply-char1" style={{lineHeight: "20px", fontSize: "0.9375rem"}}>
+                                                            <p className="job-apply-char1" style={{ lineHeight: "20px", fontSize: "0.9375rem" }}>
                                                                 You are requested to fill in the personal data below.
                                                                 This information will only be used for government reporting purposes and
                                                                 not as selection criteria for the hiring process.
@@ -1386,19 +1415,19 @@ const ApplyJob = (props) => {
                                                                 <label className="job-apply-char1">Gender</label><span className="job-apply-char2">*</span>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="gender" value="Male" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="gender" value="Male" style={{ marginRight: "1rem" }} />
                                                                         Male
                                                                     </label>
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="gender" value="Female" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="gender" value="Female" style={{ marginRight: "1rem" }} />
                                                                         Female
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="gender" value="N/A" style={{marginRight: "1rem"}} />
+                                                                    <label className="job-apply-char1">
+                                                                        <input type="radio" name="gender" value="N/A" style={{ marginRight: "1rem" }} />
                                                                         I do not wish to disclose
                                                                     </label>
                                                                 </div>
@@ -1407,7 +1436,7 @@ const ApplyJob = (props) => {
                                                                 <label className="job-apply-char1">Race or ethnicity</label><span className="job-apply-char2">*</span>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Hispanic or Latino" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Hispanic or Latino" style={{ marginRight: "1rem" }} />
                                                                         Hispanic or Latino
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1423,7 +1452,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="White" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="White" style={{ marginRight: "1rem" }} />
                                                                         White (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1437,7 +1466,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div><div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Black or African American" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Black or African American" style={{ marginRight: "1rem" }} />
                                                                         Black or African American (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1451,7 +1480,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{ marginRight: "1rem" }} />
                                                                         Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1466,7 +1495,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Asian" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Asian" style={{ marginRight: "1rem" }} />
                                                                         Asian  (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1485,16 +1514,16 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Native American or Alaska Native" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Native American or Alaska Native" style={{ marginRight: "1rem" }} />
                                                                         Native American or Alaska Native (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                                                             <p className="tool_submenu container" style={{ width: "14rem" }}>
                                                                                 <div>
-                                                                                     A person having origins in any of the
-                                                                                     original peoples of North and South America
-                                                                                     (including Central America) and who maintains
-                                                                                     tribal affiliation or community attachment.
+                                                                                    A person having origins in any of the
+                                                                                    original peoples of North and South America
+                                                                                    (including Central America) and who maintains
+                                                                                    tribal affiliation or community attachment.
                                                                                 </div>
                                                                             </p>
                                                                         </span>
@@ -1502,7 +1531,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="Two or more races" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="Two or more races" style={{ marginRight: "1rem" }} />
                                                                         Two or more races (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -1516,7 +1545,7 @@ const ApplyJob = (props) => {
                                                                 </div>
                                                                 <div>
                                                                     <label className="job-apply-char1">
-                                                                        <input type="radio" name="race" value="N/A" style={{marginRight: "1rem"}} />
+                                                                        <input type="radio" name="race" value="N/A" style={{ marginRight: "1rem" }} />
                                                                         I do not wish to disclose
                                                                     </label>
                                                                 </div>

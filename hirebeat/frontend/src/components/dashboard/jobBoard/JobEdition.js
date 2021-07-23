@@ -11,7 +11,7 @@ import { getZRFeedXML, getZRPremiumFeedXML } from "../../../redux/actions/job_ac
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
-    display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
+    display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
     INLINE_STYLE_BUTTONS: [
         { label: 'Bold', style: 'BOLD', className: 'custom-css-class' },
         { label: 'Italic', style: 'ITALIC' },
@@ -4034,23 +4034,24 @@ export class JobEdition extends Component {
                     <form onSubmit={this.savePosition}>
                         <div className="form-row">
                             <div className="form-group col-6">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                <label className="db-txt2">
                                     Job Title
                                 </label><span className="job-apply-char2">*</span>
                                 <input type="text" name="jobTitle" value={this.state.jobTitle}
                                     onChange={this.handleInputChange} className="form-control" required="required" />
                             </div>
                             <div className="form-group col-6">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                <label className="db-txt2">
                                     Job ID
                                 </label>
+                                <span className="job-apply-char2" style={{visibility: "hidden"}}>*</span>
                                 <input type="text" name="jobId" value={this.state.jobId}
                                     onChange={this.handleInputChange} className="form-control" />
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-6">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                <label className="db-txt2">
                                     Employment Type
                                 </label><span className="job-apply-char2">*</span>
                                 <div style={{ zIndex: "9999" }}>
@@ -4058,7 +4059,7 @@ export class JobEdition extends Component {
                                 </div>
                             </div>
                             <div className="form-group col-6">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                <label className="db-txt2">
                                     Experience Level
                                 </label><span className="job-apply-char2">*</span>
                                 <div style={{ zIndex: "9999" }}>
@@ -4069,7 +4070,7 @@ export class JobEdition extends Component {
                         {this.props.jobInfo.job_location != "Remote" ?
                             <div className="form-row">
                                 <div className="form-group col-6">
-                                    <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                    <label className="db-txt2">
                                         Zipcode
                                     </label><span className="job-apply-char2">*</span>
                                     <input type="number" name="jobLocation" value={this.state.jobLocation} inputmode="numeric"
@@ -4094,9 +4095,9 @@ export class JobEdition extends Component {
                                 </div>
                             </div>
                         }
-                        <div className="form-row mt-3">
+                        <div className="form-row">
                             <div className="col-6">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                <label className="db-txt2">
                                     Job Description
                                 </label><span className="job-apply-char2">*</span>
                             </div>
@@ -4105,13 +4106,12 @@ export class JobEdition extends Component {
                                     value={this.state.jobDescription}
                                     onChange={this.onChange}
                                     toolbarConfig={toolbarConfig}
-                                    editorClassName="editor-height"
                                 />
                             </div>
                         </div>
-                        <div className="form-row mt-3">
+                        <div className="form-row">
                             <div className="col-12">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                <label className="db-txt2">
                                     Preferred Skills
                                     <span className="tool_tip ml-2">
                                         <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -4127,9 +4127,9 @@ export class JobEdition extends Component {
                                 <Select isMulti value={this.state.skills} onChange={this.onFilter2} options={this.options2} styles={this.customStyles} defaultValue={this.state.skills} />
                             </div>
                         </div>
-                        <div className="form-row mt-3">
+                        <div className="form-row">
                             <div className="col-12">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                <label className="db-txt2">
                                     EEO Statement
                                 </label>
                             </div>
@@ -4145,13 +4145,13 @@ export class JobEdition extends Component {
                             </div>
                             {this.state.eeo_req == 1 &&
                                 <div className="form-group col-12">
-                                    <p style={{ color: "#000", fontWeight: "600", fontSize: "1rem" }}>The following statement will be displayed at the bottom of your job description</p>
+                                    <p style={{ color: "#000", fontWeight: "600", fontSize: "1rem", marginBottom: "0rem" }}>The following statement will be displayed at the bottom of your job description</p>
                                     <p className="ml-5">{this.props.profile.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
                                 </div>}
                         </div>
-                        <div className="form-row mt-3">
+                        <div className="form-row">
                             <div className="col-12">
-                                <label className="db-txt2" style={{ marginTop: "2%" }}>
+                                <label className="db-txt2">
                                     EEO Question
                                 </label>
                             </div>
@@ -4166,15 +4166,21 @@ export class JobEdition extends Component {
                                 }
                             </div>
                             {this.state.eeo_ques_req == 1 &&
-                                <div className="form-group col-12">
+                                <div className="col-12">
                                     <p style={{ color: "#000", fontWeight: "600", fontSize: "1rem" }}>Enabling EEO questions will allow you to collect EEO data from your candidates for use in compliance and diversity and inclusion efforts</p>
                                 </div>}
                         </div>
                         <hr style={{ border: "1.5px solid #E8EDFC" }} />
-                        <div className="form-row mt-4 ml-2">
+                        <div className="form-row">
                             <h5 style={{ color: "#090d3a" }}><b>Application Form</b></h5>
+                            <span className="tool_tip ml-2">
+                                <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                <p className="tool_submenu container" style={{ width: "14rem", zIndex:"99999" }}>
+                                    This will be filled out by applicants. Name, Email, and Resume are mandatory by default.
+                                </p>
+                            </span>
                         </div>
-                        <div className="form-row mt-3">
+                        {/*<div className="form-row mt-3">
                             <label className="db-txt2" style={{ marginTop: "2%" }}>
                                 Name
                             </label>
@@ -4198,13 +4204,13 @@ export class JobEdition extends Component {
                         <div className="form-row mt-3">
                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button>
                         </div>
-                        <hr style={{ border: "1.5px solid #E8EDFC" }} />
-                        <div className="form-row mt-3">
+                        <hr style={{ border: "1.5px solid #E8EDFC" }} />*/}
+                        <div className="form-row">
                             <label className="db-txt2">
                                 Location
                             </label>
                         </div>
-                        <div className="form-row mt-3">
+                        <div className="form-row" style={{marginBottom: "1rem"}}>
                             {this.state.loc_req == 0 ?
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq0}>Required</button>
@@ -4218,12 +4224,12 @@ export class JobEdition extends Component {
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq2}>Disabled</button>
                             }
                         </div>
-                        <div className="form-row mt-3">
-                            <label className="db-txt2" style={{ marginTop: "2%" }}>
+                        <div className="form-row">
+                            <label className="db-txt2">
                                 Phone Number
                             </label>
                         </div>
-                        <div className="form-row mt-3">
+                        <div className="form-row" style={{marginBottom: "1rem"}}>
                             {this.state.pho_req == 0 ?
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq0}>Required</button>
@@ -4237,12 +4243,12 @@ export class JobEdition extends Component {
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq2}>Disabled</button>
                             }
                         </div>
-                        <div className="form-row mt-3">
-                            <label className="db-txt2" style={{ marginTop: "2%" }}>
+                        <div className="form-row">
+                            <label className="db-txt2">
                                 LinkedIn URL
                             </label>
                         </div>
-                        <div className="form-row mt-3">
+                        <div className="form-row" style={{marginBottom: "1rem"}}>
                             {this.state.lin_req == 0 ?
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq0}>Required</button>
@@ -4259,7 +4265,7 @@ export class JobEdition extends Component {
                         {!this.state.remote &&
                             <div>
                                 <hr style={{ border: "1.5px solid #E8EDFC" }} />
-                                <div className="form-row mt-4">
+                                <div className="form-row">
                                     <h5 style={{ color: "#090d3a" }}><b>Broadcast Your Job Posting</b></h5>
                                 </div>
                                 <div className="form-row">

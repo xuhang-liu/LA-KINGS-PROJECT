@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import MediaQuery from 'react-responsive';
 //import { SetupCard, CardRow, ButtonContainer } from "./CardComponents";
 import { useEffect } from "react";
-import PageTitleArea from '../Common/PageTitleArea';
+import SmallPageTitleArea from '../Common/SmallPageTitleArea';
 import { connect } from "react-redux";
 import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import PropTypes from "prop-types";
 import DocumentMeta from 'react-document-meta';
 //import 'react-confirm-alert/src/react-confirm-alert.css';
+// todo: refresh here may result in self log out when change to other routers
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -118,16 +119,15 @@ export class QuestionTypeChoices extends Component {
       <ScrollToTopOnMount />
       <div style={{marginBottom:"6%"}}>
       <MediaQuery minDeviceWidth={1224}>
-        <PageTitleArea
-          pageTitle="Choose Interview Category"
-          pageDescription="Create A New Mock Interview"
+        <SmallPageTitleArea
+          pageTitle="Step 1: Choose Question Type"
           style={{marginBottom: "2rem"}}
         />
-        <div className="row" style={{margin: "auto", width: "70%", marginTop: "8%"}}>
+        <div className="row" style={{margin: "auto", width: "70%", marginTop: "3%"}}>
           <button className="col features-box" style={{marginLeft: "5%", backgroundColor:"#ffffff"}} onClick={this.redirectToBehaviorQuestions}>
             <div style={{padding: "10%", textAlign: "left"}}>
-            <div className="icon">
-              <i className='bx bx-user-voice'></i>
+            <div className="icon" style={{borderRadius: "15px"}}>
+              <img src="https://hirebeat-assets.s3.amazonaws.com/bq-logo.png" />
             </div>
               <h3 className="practice-h3">Behavioral Question</h3>
               <p className="mode-col-text1">
@@ -141,8 +141,8 @@ export class QuestionTypeChoices extends Component {
           </button>
           <button className="col features-box" style={{marginLeft: "6rem", backgroundColor:"#ffffff"}} onClick={this.redirectToTechQuestions}>
             <div style={{padding: "10%", textAlign: "left"}}>
-            <div className="icon">
-              <i className='bx bx-extension'></i>
+            <div className="icon" style={{borderRadius: "15px"}}>
+              <img src="https://hirebeat-assets.s3.amazonaws.com/tq-logo.png" />
             </div>
               <h3 className="practice-h3">Technical Question</h3>
               <p className="mode-col-text1">
@@ -157,7 +157,7 @@ export class QuestionTypeChoices extends Component {
         </div>
       </MediaQuery>
       <MediaQuery maxDeviceWidth={1223}>
-        <PageTitleArea
+        <SmallPageTitleArea
           pageTitle="Welcome to Hirebeat!"
           pageDescription="Our mobile functionality for interview practice is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
         />

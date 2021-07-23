@@ -16,6 +16,9 @@ class ApplicationVideoPanel extends Component {
     };
 
     handleRating = (x) => {
+        if (this.props.filter == "closed") {
+            return alert("Current job is closed, you can't make any change");
+        }
         var new_star = [...this.state.ratings];
         new_star[this.state.page] = x;
         this.setState({ ratings: new_star }, ()=>{

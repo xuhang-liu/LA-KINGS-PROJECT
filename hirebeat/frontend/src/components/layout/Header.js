@@ -27,9 +27,9 @@ export class Header extends Component {
       let elementId = document.getElementById("navbar");
       document.addEventListener("scroll", () => {
           if (window.scrollY > 80) {
-              elementId.classList.add("is-sticky");
+              elementId?.classList.add("is-sticky");
           } else {
-              elementId.classList.remove("is-sticky");
+              elementId?.classList.remove("is-sticky");
           }
       });
       window.scrollTo(0, 0);
@@ -44,7 +44,11 @@ export class Header extends Component {
   };
 
   renderUserLinks = () => {
-    const {user} = this.props.auth;
+    let user = JSON.parse(sessionStorage.getItem("user")) || this.props.auth.user;
+    // for the purpose of routing to different links
+    if (user == null) {
+        user = {"groups": ["non-reviewer"]};
+    }
     return (
         <React.Fragment>
           <MediaQuery minDeviceWidth={1224}>
@@ -60,7 +64,7 @@ export class Header extends Component {
             <div className="nav-link text-white navbar-font">
               <div className="row">
                     <i className="bx bx-user-circle 1 bx-sm" style={{color:"#FFFFFF", paddingRight:'2px', marginTop:"0.1rem"}}></i>        
-                    <span className="header-text" style={{cursor:'pointer'}}>{user ? `  ${user.username.split("@")[0]}  ` : ""}
+                    <span className="header-text" style={{cursor:'pointer'}}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
                     <ul className="nav_submenu" style={{width:"10rem"}}> 
                       <li>
                       <Link id="id-logout" to="/job-seekers" onClick={() => {sessionStorage.clear(); this.props.logout();}} className="header-dropdown-custom" style={{color:"#FF0000", textDecoration:"none", marginLeft:'1rem'}}>
@@ -213,14 +217,18 @@ export class Header extends Component {
   };
   
   renderEmployerLinks = () => {
-    const {user} = this.props.auth;
+    let user = JSON.parse(sessionStorage.getItem("user")) || this.props.auth.user;
+    // for the purpose of routing to different links
+    if (user == null) {
+        user = {"groups": ["non-reviewer"]};
+    }
     return (
         <React.Fragment>
           <div className="nav-item order-xl-1 align-self-center mr-5">
             <div className="nav-link text-white navbar-font">
               <div className="row">
                     <i className="bx bx-user-circle bx-sm" style={{color:"#FFFFFF", paddingRight:'2px', marginTop:"0.1rem"}}></i>        
-                    <span className="header-text" style={{cursor:'pointer', marginRight:"1rem"}}>{user ? `  ${user.username.split("@")[0]}  ` : ""}
+                    <span className="header-text" style={{cursor:'pointer', marginRight:"1rem"}}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
                     <ul className="nav_submenu" style={{width:"10rem"}}> 
                       <li>
                       <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{textDecoration:"none", marginLeft:'1rem'}}>
@@ -426,7 +434,12 @@ export class Header extends Component {
   };
 
   render() {
-    const {isAuthenticated, user} = this.props.auth;
+    let isAuthenticated = JSON.parse(sessionStorage.getItem("isAuthenticated")) || this.props.auth.isAuthenticated;
+    let user = JSON.parse(sessionStorage.getItem("user")) || this.props.auth.user;
+    // for the purpose of routing to different links
+    if (user == null) {
+        user = {"groups": ["non-reviewer"]};
+    }
     var uri = window.location.pathname;
     uri = uri.substring(1, uri.length);
     if ((uri.includes("apply-job")) || (uri.includes("company-branding"))){
@@ -498,7 +511,7 @@ export class Header extends Component {
               </a>}
             {/*</div>*/}
             {isAuthenticated
-                ? user.groups[0] == "reviewers"
+                ? typeof user.groups !== "undefined" && user.groups.length > 0 && user.groups[0] == "reviewers"
                     ? this.renderReviewerLinks()
                     : this.props.profile.is_employer
                     ? this.renderEmployerLinks()
@@ -576,7 +589,7 @@ export class Header extends Component {
               </a>}
             {/*</div>*/}
             {isAuthenticated
-                ? user.groups[0] == "reviewers"
+                ? typeof user.groups !== "undefined" && user.groups.length > 0 && user.groups[0] == "reviewers"
                     ? this.renderReviewerLinks()
                     : this.props.profile.is_employer
                     ? this.renderEmployerLinks()
