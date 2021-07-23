@@ -18,7 +18,6 @@ class BlogDetail1_Employer25 extends Component {
         const meta = {
             title: 'HireBeat Blog – 4 Challenges Campus Recruiters Could Meet',
             description: "Every company wants to attract top talent, and this led to fierce competition among them. But attracting the top talent while dealing with competitors isn't the only challenge recruiters face during campus recruitment — 4 Challenges Campus Recruiters Could Meet.",
-            canonical: 'https://hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet',
             meta: {
               charset: 'utf-8',
               name: {

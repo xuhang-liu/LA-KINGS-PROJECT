@@ -44,7 +44,12 @@ urlpatterns = [
     path('employer_talent_sourcing', views.hubspot_form),
     path("blog-10-impactful-ways-to-update-your-resume-for-2021", views.blog30),
     path('employer_blog-5-things-you-need-to-know-about-applicant-tracking-system', views.blogemployer26),
-    path('employer_blog-five-ways-applicant-tracking-systems-up', views.blogemployer27)
+    path('employer_blog-five-ways-applicant-tracking-systems-up', views.blogemployer27),
+    path('job-seekers-companydata', views.jobseekerscompanydata),
+    path('absa-group', views.absagroup),
+    path('accenture', views.accenture),
+    path('abu-dhabi-islamic-bank', views.abudhabiislamicbank),
+    path('adp', views.adp)
 ]
 
 # This url needs to be included in the hirebeat/urls.py to work

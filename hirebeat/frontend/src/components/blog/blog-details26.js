@@ -18,7 +18,6 @@ class BlogDetail26 extends Component {
         const meta = {
             title: 'HireBeat Blog – How to Stay Competitive in Your Job Search as a Candidate',
             description: 'This article provides a few tips for you to beat the competition and emerge as a strong candidate in the job search.',
-            canonical: 'https://hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate',
             meta: {
               charset: 'utf-8',
               name: {

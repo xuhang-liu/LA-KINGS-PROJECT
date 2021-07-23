@@ -27,7 +27,6 @@ class ADPInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Automatic Data Processing (ADP)</title>
                     <meta name="Description" CONTENT="Automatic Data Processing (ADP) is a global provider of cloud-based human capital management (HCM) and HR outsourcing (HRO) solutions. It provides complete management solutions for HR administration, payroll administration, talent management, employee benefits, benefits administration, employer liability management, and other HCM and employee benefits functions. The company serves the restaurant and hospitality, manufacturing, professional and technical services, construction, financial services, healthcare, retail, government, education, non-profit, and social assistance industries." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/adp"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

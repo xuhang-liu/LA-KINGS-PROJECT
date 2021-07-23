@@ -18,7 +18,6 @@ class BlogDetail1_Employer12 extends Component {
         const meta = {
             title: 'HireBeat Blog – Workplace Camaraderie: Your Powerful Tool For Success',
             description: 'Camaraderie helps build a high-level teamwork and a more harmonious workplace. This article digs deeper into Camaraderie and aids you to build a workplace camaraderie.',
-            canonical: 'https://hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success',
             meta: {
               charset: 'utf-8',
               name: {

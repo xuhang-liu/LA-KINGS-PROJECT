@@ -18,7 +18,6 @@ class BlogDetail1_Employer15 extends Component {
         const meta = {
             title: 'HireBeat Blog – 4 Secrets That Improve Your LinkedIn Job Posting Today',
             description: 'Social platforms are the key to recruitment right now. LinkedIn is one of the most popular and commonly used recruiting tools these days. This article provides a few tactics to help you and your business stand out on LinkedIn and attract compelling candidates.',
-            canonical: 'https://hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today',
             meta: {
               charset: 'utf-8',
               name: {
