@@ -162,8 +162,8 @@ class ROICalculator extends Component {
                                                     <div className="row">
                                                         <div className="col-lg-7 col-md-7 col-sm-12">
                                                             <h5 style={{fontWeight:"600", fontSize:"1.5rem", color:"#090d3a"}}>Your savings</h5>
-                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem"}}>${moneysaving.toFixed(0)}</h5>
-                                                            <p style={{fontWeight:"600", fontSize:"1rem", color:"#090d3a", marginTop: "-1rem"}}>per month</p>
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem"}}>${(moneysaving.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')).split('.')[0]}</h5>
+                                                            <p style={{fontWeight:"600", fontSize:"1rem", color:"#090d3a", marginTop: "-0.8rem"}}>per month</p>
                                                         </div>
                                                         <div className="col-lg-5 col-md-5 col-sm-12">
                                                             <h5 style={{fontWeight:"600", fontSize:"1.5rem", color:"#090d3a"}}>ROI</h5>
@@ -175,7 +175,7 @@ class ROICalculator extends Component {
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-lg-7 col-md-7 col-sm-12">
-                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem", marginTop: "1rem"}}>{timesaving.toFixed(0)}</h5>
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem", marginTop: "1rem"}}>{(timesaving.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')).split('.')[0]}</h5>
                                                             <p style={{fontWeight:"600", fontSize:"1rem", color:"#090d3a", marginTop: "-1rem"}}>hours per month</p>
                                                         </div>
                                                     </div>

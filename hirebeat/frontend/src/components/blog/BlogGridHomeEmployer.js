@@ -87,6 +87,8 @@ export class BlogGridHomeEmployer extends React.Component {
 };
 
 const blogURLs = [
+    "/employer_blog-five-ways-applicant-tracking-systems-up",
+    "/employer_blog-5-things-you-need-to-know-about-applicant-tracking-system",
     "/employer_blog-4-challenges-campus-recruiters-could-meet",
     "/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process",
     "/employer_blog-what-is-broken-in-the-talent-acquisition-process",
@@ -115,6 +117,8 @@ const blogURLs = [
 ];
 
 const blogImgs = [
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer27.jpg",
+    "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer26.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer25.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer24.jpg",
     "https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer23.jpg",
@@ -143,6 +147,8 @@ const blogImgs = [
 ];
 
 const blogDates = [
+    "Jul 21, 2021",
+    "Jul 21, 2021",
     "Jul 02, 2021",
     "Jun 25, 2021",
     "Jun 25, 2021",
@@ -171,6 +177,8 @@ const blogDates = [
 ];
 
 const blogTitles = [
+    "FIVE WAYS APPLICANT TRACKING SYSTEMS UP",
+    "5 THINGS ABOUT APPLICANT TRACKING SYSTEM",
     "4 CHALLENGES CAMPUS RECRUITERS COULD MEET",
     "FIX YOUR BROKEN TALENT ACQUISITION PROCESS",
     "BROKEN IN THE TALENT ACQUISITION PROCESS",

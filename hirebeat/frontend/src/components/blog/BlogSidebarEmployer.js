@@ -24,6 +24,44 @@ class BlogSidebarEmployer extends Component {
                     <h3 className="widget-title">Popular Posts</h3>
 
                     <article className="item">
+                        <Link to="/employer_blog-five-ways-applicant-tracking-systems-up">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer27.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Jul 21, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-five-ways-applicant-tracking-systems-up">
+                                    <a>Five ways Applicant tracking systems up</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
+                        <Link to="/employer_blog-5-things-you-need-to-know-about-applicant-tracking-system">
+                            <a className="thumb">
+                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer26.jpg" alt="image"/>
+                            </a>
+                        </Link>
+
+                        <div className="info">
+                            <time>Jul 21, 2021</time>
+                            <h4 className="title usmall">
+                                <Link to="/employer_blog-5-things-you-need-to-know-about-applicant-tracking-system">
+                                    <a>5 Things You Need To Know About Applicant Tracking System</a>
+                                </Link>
+                            </h4>
+                        </div>
+
+                        <div className="clear"></div>
+                    </article>
+
+                    <article className="item">
                         <Link to="/employer_blog-4-challenges-campus-recruiters-could-meet">
                             <a className="thumb">
                                 <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer25.jpg" alt="image"/>
@@ -339,25 +377,6 @@ class BlogSidebarEmployer extends Component {
                             <h4 className="title usmall">
                                 <Link to="/employer_blog-boost-up-your-roi-using-video-interviews">
                                     <a>Boost Up Your ROI Using Video Interviews</a>
-                                </Link>
-                            </h4>
-                        </div>
-
-                        <div className="clear"></div>
-                    </article>
-
-                    <article className="item">
-                        <Link to="/employer_blog-how-to-get-your-job-postings-noticed">
-                            <a className="thumb">
-                                <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog-employer8.jpg" alt="image"/>
-                            </a>
-                        </Link>
-
-                        <div className="info">
-                            <time>Apr 07, 2021</time>
-                            <h4 className="title usmall">
-                                <Link to="/employer_blog-how-to-get-your-job-postings-noticed">
-                                    <a>How to Get Your Job Postings Noticed</a>
                                 </Link>
                             </h4>
                         </div>

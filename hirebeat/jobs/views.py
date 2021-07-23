@@ -70,7 +70,7 @@ def add_new_job(request):
             job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name, company_logo=company_logo,
             loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req, skills=skills)
     # save job link
-    job_url = "https://hirebeat.co/apply-job?id=" + str(job.id)
+    job_url = "https://hirebeat.co/apply-job/"+company_name+"?id=" + str(job.id)
     job.job_url = job_url
     job.save()
     # add to zrjobs.xml
@@ -225,7 +225,7 @@ def add_new_apply_candidate(request):
     return Response("Add new apply candidate successfully", status=status.HTTP_202_ACCEPTED)
 
 @api_view(['GET'])
-def get_current_jobs(request):
+def get_current_jobs(request, companyName):
     emails = []
     job_id = request.query_params.get("jobid")
     jobs = Jobs.objects.get(pk=job_id)
@@ -241,7 +241,7 @@ def get_current_jobs(request):
         "create_date": jobs.create_date,
         "job_description": jobs.job_description,
         "job_type": jobs.job_type,
-        "company_name": jobs.company_name,
+        "company_name": companyName,
         "company_overview": employerp.summary,
         "job_url": jobs.job_url,
         "id": jobs.id,
@@ -706,6 +706,7 @@ def add_cand_from_merge(request):
 
 @api_view(['POST'])
 def check_interview_candidates_num(request):
+    intCanNumBo = False
     curJobKey = request.data['curJobKey']
     jobs = Jobs.objects.get(pk=curJobKey)
     positions = Positions.objects.get(pk=jobs.positions_id)

@@ -272,7 +272,7 @@ class SolutionPage extends Component {
                       </p>
                     </div>
                     <div className="col-12 col-md-6 solution-mb-4-4 text-center">
-                      <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/section-3-2.png" className="img-fluid" alt="Diversity Hire and reporting" />
+                      <img src="https://hirebeat-assets.s3.amazonaws.com/solution_page/section-3-3.png" className="img-fluid" alt="Diversity Hire and reporting" />
                     </div>
                   </div>
                   <div className="row flex-row-reverse">

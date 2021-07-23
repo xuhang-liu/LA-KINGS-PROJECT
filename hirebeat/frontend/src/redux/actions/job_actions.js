@@ -94,9 +94,9 @@ export const addNewApplyCandidate = (data) => (dispatch, getState) => {
     );
 }
 
-export const getCurrentJobs = (jobid) => (dispatch, getState) => {
+export const getCurrentJobs = (jobid, companyName) => (dispatch, getState) => {
   axios
-    .get(`get-current-jobs?jobid=${jobid}`)
+    .get(`${companyName}/get-current-jobs?jobid=${jobid}`)
     .then((res) => {
       dispatch({
         type: GET_CURRENT_JOBS,
