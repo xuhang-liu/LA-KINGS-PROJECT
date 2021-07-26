@@ -173,3 +173,6 @@ def abudhabiislamicbank(request):
 
 def adp(request):
     return render(request, 'frontend/adp.html')
+
+def employerfeaturevideo(request):
+    return render(request, 'frontend/employer-feature-video.html')

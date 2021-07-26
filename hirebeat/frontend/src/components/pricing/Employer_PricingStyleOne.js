@@ -663,6 +663,7 @@ class Employer_PricingStyleOne extends Component {
 
                                             <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #67A3F3"}}>
                                                 <sup>$</sup>0 <sub style={{color:"#090d3a"}}>/ mo</sub>
+                                                <p style={{fontSize:"13px", color:"#F0F6FE", fontWeight:"600"}}>0</p>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
@@ -757,6 +758,7 @@ class Employer_PricingStyleOne extends Component {
 
                                             <div className="price" style={{borderTop:"none", color:"#090d3a", borderBottom:"2px dashed #ff6b00"}}>
                                                 <sup style={{color:"#090d3a"}}>$</sup>169<sub style={{color:"#090d3a"}}>/ mo</sub>
+                                                <p style={{fontSize:"13px", color:"#FFF0E6", fontWeight:"600"}}>0</p>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
@@ -867,6 +869,7 @@ class Employer_PricingStyleOne extends Component {
 
                                             <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #13c4a1"}}>
                                                 <sup>$</sup>599<sub style={{color:"#090d3a"}}>/ mo</sub>
+                                                <p style={{fontSize:"13px", color:"#E7F9F6", fontWeight:"600"}}>0</p>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
                                             {
                                                 this.props.profile.membership == null && 
@@ -976,6 +979,7 @@ class Employer_PricingStyleOne extends Component {
 
                                             <div className="price" style={{color:'#090d3a', borderTop:"none", fontSize:"2rem", borderBottom:"2px dashed #5269f3"}}>
                                                 Custom
+                                                <p style={{fontSize:"13px", color:"#E7EAFD", fontWeight:"600"}}>0</p>
                                             <div style={{marginLeft:"-2rem", marginBottom:"0.3rem"}}>
                                             {
                                                 <div className="btn-box">
