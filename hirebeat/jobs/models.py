@@ -39,7 +39,7 @@ class ApplyCandidates(models.Model):
     resume_url = models.TextField(null=True, blank=True)
     apply_date = models.DateTimeField(auto_now_add=True)
     is_invited = models.IntegerField(default=0) # 0 means no action, 1 means invited, 2 means hold, 3 means reject
-    result_rate = models.CharField(max_length=50, default="0")
+    result_rate = models.CharField(max_length=50, default="-1")
     hard_skill_jd_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
     hard_skill_resume_list = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
     hard_skill_info_list = ArrayField(models.TextField(blank=True), blank=True, null=True)

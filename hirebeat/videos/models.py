@@ -84,7 +84,7 @@ class WPVideo(models.Model):
     question_desc = models.CharField(max_length=500, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     owner_id = models.BigIntegerField(null=True, blank=True)
-    video_stars = models.IntegerField(default=5)
+    video_stars = models.IntegerField(default=0)
     video_comment = ArrayField(models.CharField(null=True, max_length=500), default=list)
     transcripts = models.TextField(default="")
     position_id = models.BigIntegerField(default=-1)

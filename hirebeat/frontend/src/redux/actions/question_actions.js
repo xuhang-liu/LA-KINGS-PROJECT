@@ -96,7 +96,6 @@ export const getRandomQuestion = () => (dispatch) => {
     .get("/random-question")
     .then((res) => {
       console.log("get random question");
-      console.log(res.data);
       dispatch({
         type: GET_RANDOM_QUESTION,
         payload: res.data,
@@ -302,7 +301,6 @@ export const loadStarList = JobId => dispatch => {
   axios
     .get(`/get-the-star-list?job_id=${JobId}`)
     .then((res) => {
-      console.log("returned res are", res)
       dispatch({
         type: UPDATE_STARS_LIST,
         payload: res.data,

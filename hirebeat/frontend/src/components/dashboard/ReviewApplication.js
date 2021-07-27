@@ -96,10 +96,32 @@ class ReviewApplication extends Component {
         alert("Current job is closed, you can't make any change");
     }
 
+    renderResume = (resumeScore) => {
+        if (resumeScore == "-1"){
+            return;
+        }
+        return (
+            <div>
+                <div className="row">
+                    <div className="ml-3" />
+                    {(resumeScore >= 76 && resumeScore <= 100) &&
+                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/1.png" alt="img" />}
+                    {(resumeScore >= 51 && resumeScore <= 75) &&
+                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/2.png" alt="img" />}
+                    {(resumeScore >= 26 && resumeScore <= 50) &&
+                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/3.png" alt="img" />}
+                    {(resumeScore >= 0 && resumeScore <= 25) &&
+                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/4.png" alt="img" />}
+                </div>
+            </div>
+        )
+    }
+
     render() {
         const recordTime = this.props.recordTime;
         const interviewResume = this.props.interviewResume;
         const candidateInfo = this.props.applicants[this.props.current];
+        const resumeScore = Math.max(interviewResume.result_rate, candidateInfo.result_rate);
         return (
             <div className="container-fluid ml-5 mb-5" style={{ width: '95%' }}>
                 <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-microphone"></i><span className="ml-2">Interview / Review Candidate</span></b></h3></div>
@@ -188,19 +210,11 @@ class ReviewApplication extends Component {
                                         Recorded on: {this.props.recordTime.substring(0, 10)}
                                     </div>
                                 */}
-                                {((this.props.interviewResume.result_rate != "" && this.props.interviewResume.result_rate != null) || (candidateInfo.result_rate != "" && candidateInfo.result_rate != null)) &&
-                                    <div className="mt-5 px-4" style={{ width: "75%", marginLeft: "auto", marginRight: "auto" }}>
-                                        {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 0 || (parseInt(candidateInfo.result_rate, 10)) >= 0) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 24 || (parseInt(candidateInfo.result_rate, 10)) <= 24)) &&
-                                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/4.png" alt="pic"></img>}
-                                        {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 25 || (parseInt(candidateInfo.result_rate, 10)) >= 25) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 50 || (parseInt(candidateInfo.result_rate, 10)) <= 50)) &&
-                                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/3.png" alt="pic"></img>}
-                                        {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 51 || (parseInt(candidateInfo.result_rate, 10)) >= 51) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 75 || (parseInt(candidateInfo.result_rate, 10)) <= 75)) &&
-                                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/2.png" alt="pic"></img>}
-                                        {(((parseInt(this.props.interviewResume.result_rate, 10)) >= 76 || (parseInt(candidateInfo.result_rate, 10)) >= 76) && ((parseInt(this.props.interviewResume.result_rate, 10)) <= 100 || (parseInt(candidateInfo.result_rate, 10)) <= 100)) &&
-                                            <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/1.png" alt="pic"></img>}
-                                    </div>}
+                                <div className="mt-5 px-4" style={{ width: "75%", marginLeft: "auto", marginRight: "auto" }}>
+                                    {this.renderResume(resumeScore)}
+                                </div>
                                 <div className="row" style={{ justifyContent: "center" }}>
-                                    {((this.props.interviewResume.result_rate != "" && this.props.interviewResume.result_rate != null) || (candidateInfo.result_rate != "" && candidateInfo.result_rate != null)) &&
+                                    {((this.props.interviewResume.result_rate != "-1") || (candidateInfo.result_rate != "-1" )) &&
                                         <button
                                             onClick={() => { setTimeout(() => { this.showResumeEva() }, 200) }}
                                             className="interview-txt9 mt-3 ml-3"

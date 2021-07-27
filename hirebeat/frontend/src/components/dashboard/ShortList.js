@@ -16,10 +16,6 @@ const ShortList = (props) => {
     const [curJobId, setCurJobId] = useState(Object.keys(props.postedJobs)[0]);
     const [selectedId, setSelectedId] = useState(-1);
 
-    useEffect(() => {
-        props.loadStarList(curJobId);
-    }, [curJobId]);
-
     function refreshPage() {
         props.loadStarList(curJobId);
     }
@@ -56,6 +52,7 @@ const ShortList = (props) => {
                                         user_existence={props.user_existence}
                                         getReviewNote={props.getReviewNote}
                                         getReviewerEvaluation={props.getReviewerEvaluation}
+                                        loadStarList={props.loadStarList}
                                     />
                                 )
                             }
@@ -252,7 +249,7 @@ const ShortListCard = (props) => {
                         <div className="row">
                             <div className="col-7" style={{ color: "#090D3A" }}>
                                 <div className="row">
-                                    <button className="title-button ml-2" style={{ float: "left" }} onClick={() => { props.setSelectedId(props.positionId) }}>
+                                    <button className="title-button ml-2" style={{ float: "left" }} onClick={() => { props.loadStarList(props.positionId); props.setSelectedId(props.positionId) }}>
                                         {props.jobTitle.length>50?props.jobTitle.substring(0,48)+"...":props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                     </button>
                                 </div>
@@ -367,7 +364,7 @@ const AcceptedCandidate = (props) => {
                                     getPJobs={props.getPJobs}
                                     refreshPage={props.refreshPage}
                                     stars={props.stars[applicant.email]}
-                                    resume_list={props.resume_list[applicant.email]}
+                                    resume_list={Math.max(props.resume_list[applicant.email], applicant.result_rate)} // get max resume score
                                     applicant={applicant}
                                     getApplicantsVideos={props.getApplicantsVideos}
                                     getApplicantsInfo={props.getApplicantsInfo}
@@ -430,7 +427,8 @@ const CandidateCard = (props) => {
             <div>
                 <div className="row">
                     <div className="ml-3" />
-                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-star-blue.png" alt="Blue" />
+                    {stars >= 1 &&
+                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-star-blue.png" alt="Blue" />}
                     <div className="ml-2" />
                     {stars >= 2 &&
                         <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-star-blue.png" alt="Blue" />}
@@ -450,15 +448,18 @@ const CandidateCard = (props) => {
     }
 
     const renderResume = (resumes) => {
+        if (resumes == "-1") {
+            return;
+        }
         return (
             <div>
                 <div className="row">
                     <div className="ml-3" />
-                    {(resumes >= 75 && resumes <= 100) &&
+                    {(resumes >= 76 && resumes <= 100) &&
                         <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/resume_result_1.png" alt="img" />}
                     {(resumes >= 51 && resumes <= 75) &&
                         <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/resume_result_2.png" alt="img" />}
-                    {(resumes >= 25 && resumes <= 50) &&
+                    {(resumes >= 26 && resumes <= 50) &&
                         <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/resume_result_3.png" alt="img" />}
                     {(resumes >= 0 && resumes <= 25) &&
                         <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/resume_result_4.png" alt="img" />}
@@ -518,7 +519,7 @@ const CandidateCard = (props) => {
                 show={show}
                 setShowResume={setShowResume}
                 setShowEva={setShowEva}
-                onHide={() => { setShow(false); props.refreshPage(); }}
+                onHide={() => {setShow(false)}}
                 int_ques={props.int_ques}
                 positionId={props.applicant.positions_id}
                 resumeURL={props.resumeURL}
@@ -542,7 +543,7 @@ const CandidateCard = (props) => {
                 show={showEva}
                 onHide={() => { setShowEva(false); setShow(true); }}
             >
-                <ResumeEva interviewResume={props.interviewResume} />
+                <ResumeEva interviewResume={(props.interviewResume.result_rate != "-1") ? props.interviewResume : props.applicants[props.current]} />
             </MyModal80>
         </React.Fragment>
     )
