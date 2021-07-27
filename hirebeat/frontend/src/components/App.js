@@ -275,18 +275,18 @@ class App extends Component {
                 <PrivateRoute exact path="/review" component={ReviewListPreload} />
                 <PrivateRoute
                   exact
-                  path="/practice/modes"
+                  path="/practice-modes"
                   component={BehaviorQuestionMode}
                 />
 
                 <PrivateRoute
                   exact
-                  path="/practice/modes/practice"
+                  path="/practice-modes-practice"
                   component={SelectParam}
                 />
                 <PrivateRoute
                   exact
-                  path="/practice/modes/simulate"
+                  path="/practice-modes-simulate"
                   component={SelectSimulate}
                 />
                 <PrivateRoute
@@ -296,17 +296,17 @@ class App extends Component {
                 />
                 <PrivateRoute
                   exact
-                  path="/techfields/"
+                  path="/techfields"
                   component={TechFields}
                 />
                 <PrivateRoute
                   exact
-                  path="/techfields/practice"
+                  path="/techfields-practice"
                   component={TechPracticeMode}
                 />
                 <Route
                   exact
-                  path="/practice/"
+                  path="/practice"
                   component={QuestionTypeChoices}
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />

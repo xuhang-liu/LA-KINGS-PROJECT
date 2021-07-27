@@ -11,7 +11,6 @@ import { confirmAlert } from 'react-confirm-alert';
 import PropTypes from "prop-types";
 import DocumentMeta from 'react-document-meta';
 //import 'react-confirm-alert/src/react-confirm-alert.css';
-// todo: refresh here may result in self log out when change to other routers
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -51,7 +50,7 @@ export class QuestionTypeChoices extends Component {
       }
       else if (this.props.profile.email_confirmed) {
           const { history } = this.props;
-          if (history) history.push(`/practice/modes`);
+          if (history) history.push(`/practice-modes`);
       }
       else {
           this.redirectToEmailVerification();
@@ -69,7 +68,7 @@ export class QuestionTypeChoices extends Component {
       }
       else if (this.props.profile.email_confirmed) {
           const { history } = this.props;
-          if (history) history.push(`/techfields/`);
+          if (history) history.push(`/techfields`);
       }
       else {
           this.redirectToEmailVerification();

@@ -62,7 +62,7 @@ export class TechFields extends Component {
   redirectToTechPractice = () => {
     const { history } = this.props;
     if (history) history.push({
-        pathname: "/techfields/practice",
+        pathname: "/techfields-practice",
         params: {category: this.state.category}
     });
   }

@@ -17,12 +17,12 @@ function ScrollToTopOnMount() {
 export class BehaviorQuestionMode extends Component {
   redirectToBQPracticeMode = () => {
     const { history } = this.props;
-    if (history) history.push(`/practice/modes/practice`);
+    if (history) history.push(`/practice-modes-practice`);
   };
 
    redirectToBQSimulateMode = () => {
     const { history } = this.props;
-    if (history) history.push(`/practice/modes/simulate`);
+    if (history) history.push(`/practice-modes-simulate`);
   };
 
   render() {
