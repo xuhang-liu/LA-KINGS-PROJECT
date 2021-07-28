@@ -15,7 +15,8 @@ import {
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence
 }
   from "../../redux/actions/auth_actions";
-import { addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, createMergeLinkToken, retrieveMergeAccountToken, 
+import {
+  addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, createMergeLinkToken, retrieveMergeAccountToken,
   checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge
 } from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
@@ -131,7 +132,7 @@ export class EmployerDashboard extends Component {
     this.props.getAllJobs(this.props.user.id);
     this.props.getQuestionList();
     this.props.getReviewersList(user.id)
-    if(((this.props.profile.position_count) >= (this.props.profile.position_limit)) && (this.props.profile.membership == "Regular")){
+    if (((this.props.profile.position_count) >= (this.props.profile.position_limit)) && (this.props.profile.membership == "Regular")) {
       this.props.checkFreeAccountActiveJobs(user);
     }
   }
@@ -299,11 +300,22 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "mergeintergration") {
       this.refreshPage();
     }
-    this.props.createMergeLinkToken(this.props.user.id);
-    sessionStorage.setItem('subpage', "mergeintergration");
-    this.setState({
-      subpage: "mergeintergration",
-    });
+    if (this.props.profile.membership == "Premium") {
+      this.props.createMergeLinkToken(this.props.user.id);
+      sessionStorage.setItem('subpage', "mergeintergration");
+      this.setState({
+        subpage: "mergeintergration",
+      });
+    } else {
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'You need upgrade to use intergration',
+        buttons: [
+          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+          { label: 'OK' },
+        ]
+      });
+    }
   }
 
   renderSubpage = () => {

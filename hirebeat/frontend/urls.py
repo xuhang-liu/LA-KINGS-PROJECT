@@ -49,7 +49,8 @@ urlpatterns = [
     path('absa-group', views.absagroup),
     path('accenture', views.accenture),
     path('abu-dhabi-islamic-bank', views.abudhabiislamicbank),
-    path('adp', views.adp)
+    path('adp', views.adp),
+    path('employer-feature-video', views.employerfeaturevideo)
 ]
 
 # This url needs to be included in the hirebeat/urls.py to work
