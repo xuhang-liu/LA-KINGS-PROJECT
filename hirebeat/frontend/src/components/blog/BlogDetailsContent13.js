@@ -83,7 +83,7 @@ class BlogDetailsContent13 extends Component {
                                         url={"https://hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about"}
                                         quote={"3 Fastest-growing Jobs You Might Not Know About"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -94,7 +94,7 @@ class BlogDetailsContent13 extends Component {
                                            title={"3 Fastest-growing Jobs You Might Not Know About"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -104,7 +104,7 @@ class BlogDetailsContent13 extends Component {
                                             url={"https://hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about"}
                                             title={"3 Fastest-growing Jobs You Might Not Know About"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -113,7 +113,7 @@ class BlogDetailsContent13 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about"}
                                             title={"3 Fastest-growing Jobs You Might Not Know About"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

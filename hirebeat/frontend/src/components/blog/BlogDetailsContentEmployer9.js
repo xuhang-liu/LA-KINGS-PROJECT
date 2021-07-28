@@ -81,7 +81,7 @@ class BlogDetailsContentEmployer9 extends Component {
                                         url={"https://hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
                                         quote={"Boost Up Your ROI Using Video Interviews"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -92,7 +92,7 @@ class BlogDetailsContentEmployer9 extends Component {
                                            title={"Boost Up Your ROI Using Video Interviews"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -102,7 +102,7 @@ class BlogDetailsContentEmployer9 extends Component {
                                             url={"https://hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
                                             title={"Boost Up Your ROI Using Video Interviews"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -111,7 +111,7 @@ class BlogDetailsContentEmployer9 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
                                             title={"Boost Up Your ROI Using Video Interviews"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

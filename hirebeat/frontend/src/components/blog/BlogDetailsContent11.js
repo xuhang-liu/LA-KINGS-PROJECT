@@ -91,7 +91,7 @@ class BlogDetailsContent11 extends Component {
                                         url={"https://hirebeat.co/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength"}
                                         quote={"Guidelines on How to Answer 'What Is Your Biggest Strength' In An Interview with a List of Strength"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -102,7 +102,7 @@ class BlogDetailsContent11 extends Component {
                                            title={"Guidelines on How to Answer 'What Is Your Biggest Strength' In An Interview with a List of Strength"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -112,7 +112,7 @@ class BlogDetailsContent11 extends Component {
                                             url={"https://hirebeat.co/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength"}
                                             title={"Guidelines on How to Answer 'What Is Your Biggest Strength' In An Interview with a List of Strength"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -121,7 +121,7 @@ class BlogDetailsContent11 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength"}
                                             title={"Guidelines on How to Answer 'What Is Your Biggest Strength' In An Interview with a List of Strength"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

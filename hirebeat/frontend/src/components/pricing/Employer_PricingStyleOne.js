@@ -1075,7 +1075,7 @@ class Employer_PricingStyleOne extends Component {
                     </button>
                     </div>}
                     <div className="mb-5">
-                        <a target="_blank" href="https://meetings.hubspot.com/hirebeat" className="default-btn1" style={{paddingLeft:"25px", position:"absolute", color:"#ffffff", textDecoration:"none", left:"46%", cursor:"pointer"}}>Talk to us ></a>
+                        <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn1" style={{paddingLeft:"25px", position:"absolute", color:"#ffffff", textDecoration:"none", left:"46%", cursor:"pointer"}}>Talk to us ></a>
                     </div>
                 </div>
             </section>

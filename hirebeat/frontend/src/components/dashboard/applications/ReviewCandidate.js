@@ -237,7 +237,7 @@ const ReviewCandidate = (props) => {
                         {props.linkedin != null && props.linkedin != "" ?
                             <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
                                 <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#67A3F3", marginRight: "3px" }}></i>
-                                <a style={{ fontSize: "0.7rem", color: "#67A3F3" }} href={props.linkedin} target="_blank">Go To LinkedIn Page</a>
+                                <a style={{ fontSize: "0.7rem", color: "#67A3F3" }} href={props.linkedin} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
                             </div> :
                             <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
                                 <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#979797", marginRight: "3px" }}></i>

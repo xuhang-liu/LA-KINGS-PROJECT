@@ -73,7 +73,7 @@ class BlogDetailsContent7 extends Component {
                                         url={"https://hirebeat.co/blog-how-to-write-a-thank-you-email-after-a-job-interview"}
                                         quote={"How to Write a Thank-You Email After a Job Interview (Example Included)"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -84,7 +84,7 @@ class BlogDetailsContent7 extends Component {
                                            title={"How to Write a Thank-You Email After a Job Interview (Example Included)"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -94,7 +94,7 @@ class BlogDetailsContent7 extends Component {
                                             url={"https://hirebeat.co/blog-how-to-write-a-thank-you-email-after-a-job-interview"}
                                             title={"How to Write a Thank-You Email After a Job Interview (Example Included)"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -103,7 +103,7 @@ class BlogDetailsContent7 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-how-to-write-a-thank-you-email-after-a-job-interview"}
                                             title={"How to Write a Thank-You Email After a Job Interview (Example Included)"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

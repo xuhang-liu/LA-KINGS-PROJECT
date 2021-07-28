@@ -84,7 +84,7 @@ class BlogDetailsContentEmployer26 extends Component {
                                         url={"https://hirebeat.co/employer_blog-5-things-you-need-to-know-about-applicant-tracking-system"}
                                         quote={"5 Things You Need To Know About Applicant Tracking System"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -95,7 +95,7 @@ class BlogDetailsContentEmployer26 extends Component {
                                            title={"5 Things You Need To Know About Applicant Tracking System"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -105,7 +105,7 @@ class BlogDetailsContentEmployer26 extends Component {
                                             url={"https://hirebeat.co/employer_blog-5-things-you-need-to-know-about-applicant-tracking-system"}
                                             title={"5 Things You Need To Know About Applicant Tracking System"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -114,7 +114,7 @@ class BlogDetailsContentEmployer26 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-5-things-you-need-to-know-about-applicant-tracking-system"}
                                             title={"5 Things You Need To Know About Applicant Tracking System"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

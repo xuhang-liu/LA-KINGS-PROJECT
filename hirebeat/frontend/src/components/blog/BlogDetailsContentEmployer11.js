@@ -73,7 +73,7 @@ class BlogDetailsContentEmployer11 extends Component {
                                         url={"https://hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
                                         quote={"How Covid Has Changed the Recruitment Process"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -84,7 +84,7 @@ class BlogDetailsContentEmployer11 extends Component {
                                            title={"How Covid Has Changed the Recruitment Process"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -94,7 +94,7 @@ class BlogDetailsContentEmployer11 extends Component {
                                             url={"https://hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
                                             title={"How Covid Has Changed the Recruitment Process"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -103,7 +103,7 @@ class BlogDetailsContentEmployer11 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
                                             title={"How Covid Has Changed the Recruitment Process"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

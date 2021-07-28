@@ -83,7 +83,7 @@ class BlogDetailsContent26 extends Component {
                                         url={"https://hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
                                         quote={"How to Stay Competitive in Your Job Search as a Candidate"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -94,7 +94,7 @@ class BlogDetailsContent26 extends Component {
                                            title={"How to Stay Competitive in Your Job Search as a Candidate"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -104,7 +104,7 @@ class BlogDetailsContent26 extends Component {
                                             url={"https://hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
                                             title={"How to Stay Competitive in Your Job Search as a Candidate"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -113,7 +113,7 @@ class BlogDetailsContent26 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
                                             title={"How to Stay Competitive in Your Job Search as a Candidate"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

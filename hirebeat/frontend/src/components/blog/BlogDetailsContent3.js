@@ -67,7 +67,7 @@ class BlogDetailsContent3 extends Component {
                                         url={"https://hirebeat.co/blog-how-to-prepare-for-an-AI-interview"}
                                         quote={"How to Prepare for an AI Interview"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -78,7 +78,7 @@ class BlogDetailsContent3 extends Component {
                                            title={"How to Prepare for an AI Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -88,7 +88,7 @@ class BlogDetailsContent3 extends Component {
                                             url={"https://hirebeat.co/blog-how-to-prepare-for-an-AI-interview"}
                                             title={"How to Prepare for an AI Interview"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -97,7 +97,7 @@ class BlogDetailsContent3 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-how-to-prepare-for-an-AI-interview"}
                                             title={"How to Prepare for an AI Interview"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

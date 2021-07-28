@@ -83,7 +83,7 @@ class BlogDetailsContentEmployer14 extends Component {
                                         url={"https://hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
                                         quote={"Five Questions You Need to Ask to Hire the Best Intern"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -94,7 +94,7 @@ class BlogDetailsContentEmployer14 extends Component {
                                            title={"Five Questions You Need to Ask to Hire the Best Intern"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -104,7 +104,7 @@ class BlogDetailsContentEmployer14 extends Component {
                                             url={"https://hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
                                             title={"Five Questions You Need to Ask to Hire the Best Intern"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -113,7 +113,7 @@ class BlogDetailsContentEmployer14 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
                                             title={"Five Questions You Need to Ask to Hire the Best Intern"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

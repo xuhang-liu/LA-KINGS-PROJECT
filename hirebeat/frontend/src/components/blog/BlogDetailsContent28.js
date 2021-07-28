@@ -75,7 +75,7 @@ class BlogDetailsContent28 extends Component {
                                         url={"https://hirebeat.co/blog-wha-is-your-expected-salary"}
                                         quote={"HireBeat Blog – What Is Your Expected Salary?"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -86,7 +86,7 @@ class BlogDetailsContent28 extends Component {
                                            title={"HireBeat Blog – What Is Your Expected Salary?"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -96,7 +96,7 @@ class BlogDetailsContent28 extends Component {
                                             url={"https://hirebeat.co/blog-wha-is-your-expected-salary"}
                                             title={"HireBeat Blog – What Is Your Expected Salary?"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -105,7 +105,7 @@ class BlogDetailsContent28 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-wha-is-your-expected-salary"}
                                             title={"HireBeat Blog – What Is Your Expected Salary?"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

@@ -95,7 +95,7 @@ class BlogDetailsContentEmployer2 extends Component {
                                         url={"https://hirebeat.co/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company"}
                                         quote={"Benefits of hiring diverse candidates in your company"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -106,7 +106,7 @@ class BlogDetailsContentEmployer2 extends Component {
                                            title={"Benefits of hiring diverse candidates in your company"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -116,7 +116,7 @@ class BlogDetailsContentEmployer2 extends Component {
                                             url={"https://hirebeat.co/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company"}
                                             title={"Benefits of hiring diverse candidates in your company"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -125,7 +125,7 @@ class BlogDetailsContentEmployer2 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company"}
                                             title={"Benefits of hiring diverse candidates in your company"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

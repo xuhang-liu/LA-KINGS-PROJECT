@@ -105,7 +105,8 @@ class Quizdetail1 extends Component {
                             <div className="col-lg-4 col-md-12">
                             <input type="checkbox" required name="terms" style={{marginRight:'2%',display:'inline', marginTop:"8%", fontFamily:"Poppin", fontWeight:"400"}}></input>
                                 I have read and agree to the 
-                                <a  target="_blank"
+                                <a  target="_blank" rel="noreferrer"
+                                rel="noreferrer"
                                 href="https://hirebeat.co/term"
                                 className="active d-flex"
                                 style={{

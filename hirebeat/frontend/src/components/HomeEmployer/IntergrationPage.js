@@ -111,10 +111,10 @@ class IntergrationPage extends Component {
                                 </div>
                             </div>
                             <MediaQuery minDeviceWidth={1224}>
-                            <a target="_blank" href="https://meetings.hubspot.com/hirebeat" className="default-btn" style={{paddingLeft:"25px", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none", top:"6rem", left:"42%"}}>Become an Integrations Partner</a>
+                            <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn" style={{paddingLeft:"25px", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none", top:"6rem", left:"42%"}}>Become an Integrations Partner</a>
                             </MediaQuery>
                             <MediaQuery maxDeviceWidth={1223}>
-                            <a target="_blank" href="https://meetings.hubspot.com/hirebeat" className="default-btn" style={{paddingLeft:"25px", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none", top:"3rem", left:"20%"}}>Become an Integrations Partner</a>
+                            <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn" style={{paddingLeft:"25px", backgroundColor:"#ff6b00", color:"#ffffff", textDecoration:"none", top:"3rem", left:"20%"}}>Become an Integrations Partner</a>
                             </MediaQuery>
                         </div>
                     </ReactWOW>

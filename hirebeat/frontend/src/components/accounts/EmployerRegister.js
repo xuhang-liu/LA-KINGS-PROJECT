@@ -293,6 +293,7 @@ export class EmployerRegister extends Component {
                         I have read and agree to the
                         <a 
                           target="_blank"
+                          rel="noreferrer"
                           href="/term"
                            className="active d-flex ml-2"
                            style={{
@@ -455,6 +456,7 @@ export class EmployerRegister extends Component {
                         I have read and agree to the
                         <a 
                           target="_blank"
+                          rel="noreferrer"
                           href="/term"
                            className="active d-flex ml-2"
                            style={{

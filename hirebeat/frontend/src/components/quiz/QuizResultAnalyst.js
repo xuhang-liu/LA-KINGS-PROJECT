@@ -25,7 +25,7 @@ class QuizResultAnalyst extends Component {
                                                             url={"https://hirebeat.co/quiz"}
                                                             quote={"My best fit job is [ Analyst ] - Take the quiz to find out what job best suits you"}
                                                             hashtag="#hirebeat">
-                                                            <a target="_blank">
+                                                            <a target="_blank" rel="noreferrer">
                                                                 <i className="bx bxl-facebook"></i>
                                                             </a>
                                                         </FacebookShareButton>
@@ -36,7 +36,7 @@ class QuizResultAnalyst extends Component {
                                                             url={"https://hirebeat.co/quiz"}
                                                             title={"My best fit job is [ Analyst ] - Take the quiz to find out what job best suits you"}
                                                             source={"HireBeat"}>
-                                                            <a target="_blank">
+                                                            <a target="_blank" rel="noreferrer">
                                                                 <i className="bx bxl-linkedin"></i>
                                                             </a>
                                                         </LinkedinShareButton>
@@ -113,7 +113,7 @@ class QuizResultAnalyst extends Component {
                                                             url={"https://hirebeat.co/quiz"}
                                                             quote={"My best fit job is [ Analyst ] - Take the quiz to find out what job best suits you"}
                                                             hashtag="#hirebeat">
-                                                            <a target="_blank">
+                                                            <a target="_blank" rel="noreferrer">
                                                                 <i className="bx bxl-facebook"></i>
                                                             </a>
                                                         </FacebookShareButton>
@@ -124,7 +124,7 @@ class QuizResultAnalyst extends Component {
                                                             url={"https://hirebeat.co/quiz"}
                                                             title={"My best fit job is [ Analyst ] - Take the quiz to find out what job best suits you"}
                                                             source={"HireBeat"}>
-                                                            <a target="_blank">
+                                                            <a target="_blank" rel="noreferrer">
                                                                 <i className="bx bxl-linkedin"></i>
                                                             </a>
                                                         </LinkedinShareButton>

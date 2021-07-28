@@ -90,7 +90,7 @@ class BlogDetailsContent22 extends Component {
                                         url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
                                         quote={"How to Answer the Question: 'Where do you see yourself in 5 years?'"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -101,7 +101,7 @@ class BlogDetailsContent22 extends Component {
                                            title={"How to Answer the Question: 'Where do you see yourself in 5 years?'"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -111,7 +111,7 @@ class BlogDetailsContent22 extends Component {
                                             url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
                                             title={"How to Answer the Question: 'Where do you see yourself in 5 years?'"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -120,7 +120,7 @@ class BlogDetailsContent22 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
                                             title={"How to Answer the Question: 'Where do you see yourself in 5 years?'"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

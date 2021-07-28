@@ -55,7 +55,7 @@ export class Overview extends Component{
                             <p className="companydata-text3">Website</p>
                         </div>
                         <div className="col-lg-7 col-md-7">
-                            <a href={this.props.website}  target="_blank">
+                            <a href={this.props.website}  target="_blank" rel="noreferrer">
                                 {this.props.website}
                             </a>
                         </div>
@@ -85,7 +85,7 @@ export class Overview extends Component{
 
                         <div className="col-lg-5 col-md-5" style={{marginTop: '3%'}}>
                             <a className="default-btn"
-                                target="_blank"
+                                target="_blank" rel="noreferrer" rel="noreferrer" rel="noreferrer"
                                 style={{color:"white", backgroundColor:"#090D3A", marginLeft:"4%", textDecoration: "none"}}
                                 href={this.props.jobPage}
                             >

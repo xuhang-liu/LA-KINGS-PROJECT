@@ -96,7 +96,7 @@ class BlogDetailsContentEmployer7 extends Component {
                                         url={"https://hirebeat.co/employer_blog-millennials-we-want-you"}
                                         quote={"Millennials? We Want You!"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -107,7 +107,7 @@ class BlogDetailsContentEmployer7 extends Component {
                                            title={"Millennials? We Want You!"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -117,7 +117,7 @@ class BlogDetailsContentEmployer7 extends Component {
                                             url={"https://hirebeat.co/employer_blog-millennials-we-want-you"}
                                             title={"Millennials? We Want You!"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -126,7 +126,7 @@ class BlogDetailsContentEmployer7 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-millennials-we-want-you"}
                                             title={"Millennials? We Want You!"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

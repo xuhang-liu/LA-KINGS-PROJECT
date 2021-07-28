@@ -80,7 +80,7 @@ class BlogDetailsContent25 extends Component {
                                         url={"https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
                                         quote={"4 Most Commonly Asked Questions in an Interview"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -91,7 +91,7 @@ class BlogDetailsContent25 extends Component {
                                            title={"4 Most Commonly Asked Questions in an Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -101,7 +101,7 @@ class BlogDetailsContent25 extends Component {
                                             url={"https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
                                             title={"4 Most Commonly Asked Questions in an Interview"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -110,7 +110,7 @@ class BlogDetailsContent25 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
                                             title={"4 Most Commonly Asked Questions in an Interview"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

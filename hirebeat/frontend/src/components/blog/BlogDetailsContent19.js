@@ -123,7 +123,7 @@ class BlogDetailsContent19 extends Component {
                                         url={"https://hirebeat.co/blog-acing-pandemic-job-interview-questions"}
                                         quote={"Acing Pandemic Job Interview Questions"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -134,7 +134,7 @@ class BlogDetailsContent19 extends Component {
                                            title={"Acing Pandemic Job Interview Questions"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -144,7 +144,7 @@ class BlogDetailsContent19 extends Component {
                                             url={"https://hirebeat.co/blog-acing-pandemic-job-interview-questions"}
                                             title={"Acing Pandemic Job Interview Questions"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -153,7 +153,7 @@ class BlogDetailsContent19 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-acing-pandemic-job-interview-questions"}
                                             title={"Acing Pandemic Job Interview Questions"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

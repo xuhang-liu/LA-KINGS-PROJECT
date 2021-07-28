@@ -84,7 +84,7 @@ class BlogDetailsContentEmployer15 extends Component {
                                         url={"https://hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
                                         quote={"4 Secrets That Improve Your LinkedIn Job Posting Today"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -95,7 +95,7 @@ class BlogDetailsContentEmployer15 extends Component {
                                            title={"4 Secrets That Improve Your LinkedIn Job Posting Today"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -105,7 +105,7 @@ class BlogDetailsContentEmployer15 extends Component {
                                             url={"https://hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
                                             title={"4 Secrets That Improve Your LinkedIn Job Posting Today"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -114,7 +114,7 @@ class BlogDetailsContentEmployer15 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
                                             title={"4 Secrets That Improve Your LinkedIn Job Posting Today"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

@@ -79,7 +79,7 @@ class BlogDetailsContentEmployer17 extends Component {
                                         url={"https://hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
                                         quote={"Personality Assessment Tools Employers Must Know About"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -90,7 +90,7 @@ class BlogDetailsContentEmployer17 extends Component {
                                            title={"Personality Assessment Tools Employers Must Know About"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -100,7 +100,7 @@ class BlogDetailsContentEmployer17 extends Component {
                                             url={"https://hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
                                             title={"Personality Assessment Tools Employers Must Know About"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -109,7 +109,7 @@ class BlogDetailsContentEmployer17 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
                                             title={"Personality Assessment Tools Employers Must Know About"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

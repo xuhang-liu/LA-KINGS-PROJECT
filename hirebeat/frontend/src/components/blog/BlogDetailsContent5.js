@@ -66,7 +66,7 @@ class BlogDetailsContent5 extends Component {
                                         url={"https://hirebeat.co/blog-things-to-do-before-an-interview"}
                                         quote={"Things to Do Before an Interview"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -77,7 +77,7 @@ class BlogDetailsContent5 extends Component {
                                            title={"Things to Do Before an Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -87,7 +87,7 @@ class BlogDetailsContent5 extends Component {
                                             url={"https://hirebeat.co/blog-things-to-do-before-an-interview"}
                                             title={"Things to Do Before an Interview"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -96,7 +96,7 @@ class BlogDetailsContent5 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-things-to-do-before-an-interview"}
                                             title={"Things to Do Before an Interview"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>
