@@ -236,7 +236,9 @@ const alertOptions = {
 
 class App extends Component {
   componentDidMount() {
-    this.loadData();
+    if (localStorage.getItem("token")){
+      this.loadData();
+    }
   }
 
   async loadData() {

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 //import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {login, exchangeToken, loadProfile,
+import {login, exchangeToken,
         register, checkUserRegistration} from "../../redux/actions/auth_actions";
 //import SocialButton from "../accounts/SocialButton";
 import {createMessage} from "../../redux/actions/message_actions";
@@ -343,6 +343,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-    login, exchangeToken, loadProfile,
+    login, exchangeToken,
     register, createMessage, checkUserRegistration
     })(CandidateLogin);
