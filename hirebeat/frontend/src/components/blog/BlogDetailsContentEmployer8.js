@@ -90,7 +90,7 @@ class BlogDetailsContentEmployer8 extends Component {
                                         url={"https://hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
                                         quote={"How to Get Your Job Postings Noticed"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -101,7 +101,7 @@ class BlogDetailsContentEmployer8 extends Component {
                                            title={"How to Get Your Job Postings Noticed"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -111,7 +111,7 @@ class BlogDetailsContentEmployer8 extends Component {
                                             url={"https://hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
                                             title={"How to Get Your Job Postings Noticed"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -120,7 +120,7 @@ class BlogDetailsContentEmployer8 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
                                             title={"How to Get Your Job Postings Noticed"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

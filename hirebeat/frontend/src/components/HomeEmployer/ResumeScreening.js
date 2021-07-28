@@ -124,7 +124,7 @@ class ResumeScreening extends Component {
                         </div>
                     </div>
                     <div className="row mt-5 justify-items">
-                        <a className="default-btn" href="/employer_register" target="_blank"
+                        <a className="default-btn" href="/employer_register" target="_blank" rel="noreferrer"
                             style={{backgroundColor: "#FF6B00", paddingLeft: "25px", textDecoration: "none"}}
                         >
                             Start For Free

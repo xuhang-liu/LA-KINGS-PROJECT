@@ -80,7 +80,7 @@ class BlogDetailsContent29 extends Component {
                                         url={"https://hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
                                         quote={"HireBeat Blog – The 4C's That You Need for Your Resume"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -91,7 +91,7 @@ class BlogDetailsContent29 extends Component {
                                            title={"HireBeat Blog – The 4C's That You Need for Your Resume"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -101,7 +101,7 @@ class BlogDetailsContent29 extends Component {
                                             url={"https://hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
                                             title={"HireBeat Blog – The 4C's That You Need for Your Resume"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -110,7 +110,7 @@ class BlogDetailsContent29 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
                                             title={"HireBeat Blog – The 4C's That You Need for Your Resume"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

@@ -87,7 +87,7 @@ class BlogDetailsContent15 extends Component {
                                         url={"https://hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
                                         quote={"Top 3 Jobs You Should Apply For Finance Major"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -98,7 +98,7 @@ class BlogDetailsContent15 extends Component {
                                            title={"Top 3 Jobs You Should Apply For Finance Major"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -108,7 +108,7 @@ class BlogDetailsContent15 extends Component {
                                             url={"https://hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
                                             title={"Top 3 Jobs You Should Apply For Finance Major"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -117,7 +117,7 @@ class BlogDetailsContent15 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
                                             title={"Top 3 Jobs You Should Apply For Finance Major"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

@@ -53,7 +53,7 @@ const CompanyBranding = (props) => {
                                                             <div className="row">
                                                                 <div className="col-9" style={{ color: "#67a3fa" }}>
                                                                     <div className="row">
-                                                                        <a target="_blank" href={j.job_url} className="title-button ml-4" style={{ float: "left", textDecoration: "none", color: "#67a3fa" }}>
+                                                                        <a target="_blank" rel="noreferrer" href={j.job_url} className="title-button ml-4" style={{ float: "left", textDecoration: "none", color: "#67a3fa" }}>
                                                                             {j.job_title}
                                                                         </a>
                                                                     </div>
@@ -65,7 +65,7 @@ const CompanyBranding = (props) => {
                                                                 </div>
                                                                 <div className="col-3">
                                                                     <div className="row">
-                                                                        <a target="_blank" href={j.job_url} className="default-btn" style={{ paddingLeft: "25px", marginTop: "1rem", textDecoration: "none" }}>Apply</a>
+                                                                        <a target="_blank" rel="noreferrer" href={j.job_url} className="default-btn" style={{ paddingLeft: "25px", marginTop: "1rem", textDecoration: "none" }}>Apply</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -89,7 +89,7 @@ const CompanyBranding = (props) => {
                                             <h3 style={{ color: "#95A8C3", fontWeight: "700", fontSize: "1.1rem" }}>ABOUT THE COMPANY</h3>
                                             <br />
                                             <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Website</p>
-                                            <a className="website" target="_blank" href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                            <a className="website" target="_blank" rel="noreferrer" href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                             <br />
                                             <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Location</p>
                                             <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.location}</p>
@@ -105,9 +105,9 @@ const CompanyBranding = (props) => {
                                             <br />
                                             <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Social Media</p>
                                             <div className="row pl-3">
-                                                {(props.facebook != null && props.facebook != "") && <a target="_blank" href={props.facebook}><FacebookIcon size={30} round={true} /></a>}
-                                                {(props.linkedin != null && props.linkedin != "") && <a target="_blank" className="ml-2" href={props.linkedin}><LinkedinIcon size={30} round={true} /></a>}
-                                                {(props.twitter != null && props.twitter != "") && <a target="_blank" className="ml-2" href={props.twitter}><TwitterIcon size={30} round={true} /></a>}
+                                                {(props.facebook != null && props.facebook != "") && <a target="_blank" rel="noreferrer" href={props.facebook}><FacebookIcon size={30} round={true} /></a>}
+                                                {(props.linkedin != null && props.linkedin != "") && <a target="_blank" rel="noreferrer" className="ml-2" href={props.linkedin}><LinkedinIcon size={30} round={true} /></a>}
+                                                {(props.twitter != null && props.twitter != "") && <a target="_blank" rel="noreferrer" className="ml-2" href={props.twitter}><TwitterIcon size={30} round={true} /></a>}
                                             </div>
                                         </div>
                                     </div>
@@ -134,7 +134,7 @@ const CompanyBranding = (props) => {
                                 <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>About The Company</h3>
                                 <br />
                                 <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Website</p>
-                                <a className="website" target="_blank" href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                <a className="website" target="_blank" rel="noreferrer" href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                 <br />
                                 <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Location</p>
                                 <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.location}</p>
@@ -150,9 +150,9 @@ const CompanyBranding = (props) => {
                                 <br />
                                 <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Social Media</p>
                                 <div className="row pl-3">
-                                    {(props.facebook != null && props.facebook != "") && <a target="_blank" href={props.facebook}><FacebookIcon size={30} round={true} /></a>}
-                                    {(props.linkedin != null && props.linkedin != "") && <a target="_blank" className="ml-2" href={props.linkedin}><LinkedinIcon size={30} round={true} /></a>}
-                                    {(props.twitter != null && props.twitter != "") && <a target="_blank" className="ml-2" href={props.twitter}><TwitterIcon size={30} round={true} /></a>}
+                                    {(props.facebook != null && props.facebook != "") && <a target="_blank" rel="noreferrer" href={props.facebook}><FacebookIcon size={30} round={true} /></a>}
+                                    {(props.linkedin != null && props.linkedin != "") && <a target="_blank" rel="noreferrer" className="ml-2" href={props.linkedin}><LinkedinIcon size={30} round={true} /></a>}
+                                    {(props.twitter != null && props.twitter != "") && <a target="_blank" rel="noreferrer" className="ml-2" href={props.twitter}><TwitterIcon size={30} round={true} /></a>}
                                 </div>
                             </div>
                             {(props.video_url != null && props.video_url != "") &&
@@ -171,7 +171,7 @@ const CompanyBranding = (props) => {
                                                 <div className="row">
                                                     <div className="col-12" style={{ color: "#67a3fa" }}>
                                                         <div className="row">
-                                                            <a target="_blank" href={j.job_url} className="title-button ml-4" style={{ float: "left", textDecoration: "none", color: "#67a3fa" }}>
+                                                            <a target="_blank" rel="noreferrer" href={j.job_url} className="title-button ml-4" style={{ float: "left", textDecoration: "none", color: "#67a3fa" }}>
                                                                 {j.job_title}
                                                             </a>
                                                         </div>
@@ -185,7 +185,7 @@ const CompanyBranding = (props) => {
                                                 <div className="row">
                                                     <div className="col-12">
                                                         <div className="row">
-                                                            <a target="_blank" href={j.job_url} className="default-btn mb-2 ml-4" style={{ paddingLeft: "25px", textDecoration: "none" }}>Apply</a>
+                                                            <a target="_blank" rel="noreferrer" href={j.job_url} className="default-btn mb-2 ml-4" style={{ paddingLeft: "25px", textDecoration: "none" }}>Apply</a>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -96,7 +96,7 @@ class BlogDetailsContentEmployer16 extends Component {
                                         url={"https://hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
                                         quote={"Red Flags You Should Look Out In Candidates During The Interview"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -107,7 +107,7 @@ class BlogDetailsContentEmployer16 extends Component {
                                            title={"Red Flags You Should Look Out In Candidates During The Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -117,7 +117,7 @@ class BlogDetailsContentEmployer16 extends Component {
                                             url={"https://hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
                                             title={"Red Flags You Should Look Out In Candidates During The Interview"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -126,7 +126,7 @@ class BlogDetailsContentEmployer16 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
                                             title={"Red Flags You Should Look Out In Candidates During The Interview"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

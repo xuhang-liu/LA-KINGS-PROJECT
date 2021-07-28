@@ -65,7 +65,7 @@ class BlogDetailsContent6 extends Component {
                                         url={"https://hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
                                         quote={"4 Common Interview Questions"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -76,7 +76,7 @@ class BlogDetailsContent6 extends Component {
                                            title={"4 Common Interview Questions"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -86,7 +86,7 @@ class BlogDetailsContent6 extends Component {
                                             url={"https://hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
                                             title={"4 Common Interview Questions"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -95,7 +95,7 @@ class BlogDetailsContent6 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
                                             title={"4 Common Interview Questions"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

@@ -84,7 +84,7 @@ class BlogDetailsContentEmployer10 extends Component {
                                         url={"https://hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
                                         quote={"Four Tips to Build a Successful Campus Recruiting Strategy"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -95,7 +95,7 @@ class BlogDetailsContentEmployer10 extends Component {
                                            title={"Four Tips to Build a Successful Campus Recruiting Strategy"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -105,7 +105,7 @@ class BlogDetailsContentEmployer10 extends Component {
                                             url={"https://hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
                                             title={"Four Tips to Build a Successful Campus Recruiting Strategy"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -114,7 +114,7 @@ class BlogDetailsContentEmployer10 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
                                             title={"Four Tips to Build a Successful Campus Recruiting Strategy"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

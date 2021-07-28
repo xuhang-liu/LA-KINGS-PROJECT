@@ -82,7 +82,7 @@ class BlogDetailsContent20 extends Component {
                                         url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
                                         quote={"How to Handle an Interview Question You Don't Know"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -93,7 +93,7 @@ class BlogDetailsContent20 extends Component {
                                            title={"How to Handle an Interview Question You Don't Know"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -103,7 +103,7 @@ class BlogDetailsContent20 extends Component {
                                             url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
                                             title={"How to Handle an Interview Question You Don't Know"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -112,7 +112,7 @@ class BlogDetailsContent20 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
                                             title={"How to Handle an Interview Question You Don't Know"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

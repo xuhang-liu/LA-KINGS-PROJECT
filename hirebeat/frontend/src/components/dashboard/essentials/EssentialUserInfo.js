@@ -358,7 +358,8 @@ export class EssentialUserInfo extends Component {
                     <div className="row" style={{ marginTop: "0rem", textAlign: "center", marginBottom: "0.5rem" }}>
                         <div className="col d-flex align-items-center">
                           <a
-                            target="_blank"
+                            target="_blank" 
+                            rel="noreferrer"
                             className="panel-button"
                             href="/employer_talent_sourcing"
                             style={{ outline: "none", margin: "1%", padding: "0px", background: "none", textDecoration: "none" }}

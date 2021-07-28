@@ -174,6 +174,7 @@ export class Login extends Component {
                         <a
                             href="/password_reset"
                             target="_blank"
+                            rel="noreferrer"
                             className="navbar-font"
                             style={{
                               fontSize:"1rem",

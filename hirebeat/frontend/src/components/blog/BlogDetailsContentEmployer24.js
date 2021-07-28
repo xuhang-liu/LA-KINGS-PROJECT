@@ -83,7 +83,7 @@ class BlogDetailsContentEmployer24 extends Component {
                                         url={"https://hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
                                         quote={"Three Steps to Fix Your Broken Talent Acquisition Process"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -94,7 +94,7 @@ class BlogDetailsContentEmployer24 extends Component {
                                            title={"Three Steps to Fix Your Broken Talent Acquisition Process"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -104,7 +104,7 @@ class BlogDetailsContentEmployer24 extends Component {
                                             url={"https://hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
                                             title={"Three Steps to Fix Your Broken Talent Acquisition Process"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -113,7 +113,7 @@ class BlogDetailsContentEmployer24 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
                                             title={"Three Steps to Fix Your Broken Talent Acquisition Process"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

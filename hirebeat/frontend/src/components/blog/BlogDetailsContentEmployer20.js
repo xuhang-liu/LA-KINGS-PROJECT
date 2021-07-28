@@ -167,7 +167,7 @@ class BlogDetailsContentEmployer20 extends Component {
                                         url={"https://hirebeat.co/employer_blog-8-tips-to-increase-resume-screening-effectiveness"}
                                         quote={"8 Tips to Increase Resume Screening Effectiveness"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -178,7 +178,7 @@ class BlogDetailsContentEmployer20 extends Component {
                                            title={"8 Tips to Increase Resume Screening Effectiveness"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -188,7 +188,7 @@ class BlogDetailsContentEmployer20 extends Component {
                                             url={"https://hirebeat.co/employer_blog-8-tips-to-increase-resume-screening-effectiveness"}
                                             title={"8 Tips to Increase Resume Screening Effectiveness"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -197,7 +197,7 @@ class BlogDetailsContentEmployer20 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-8-tips-to-increase-resume-screening-effectiveness"}
                                             title={"8 Tips to Increase Resume Screening Effectiveness"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

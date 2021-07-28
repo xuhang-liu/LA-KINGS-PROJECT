@@ -98,7 +98,7 @@ class BlogDetailsContent21 extends Component {
                                         url={"https://hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
                                         quote={"4 Amazing Tips to Effectively Networking During Covid-19"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -109,7 +109,7 @@ class BlogDetailsContent21 extends Component {
                                            title={"4 Amazing Tips to Effectively Networking During Covid-19"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -119,7 +119,7 @@ class BlogDetailsContent21 extends Component {
                                             url={"https://hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
                                             title={"4 Amazing Tips to Effectively Networking During Covid-19"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -128,7 +128,7 @@ class BlogDetailsContent21 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
                                             title={"4 Amazing Tips to Effectively Networking During Covid-19"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

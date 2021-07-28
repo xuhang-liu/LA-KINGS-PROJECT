@@ -127,7 +127,7 @@ class BlogDetailsContentEmployer5 extends Component {
                                         url={"https://hirebeat.co/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing"}
                                         quote={"How the Pandemic Sparked A New Way of Interviewing"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -138,7 +138,7 @@ class BlogDetailsContentEmployer5 extends Component {
                                            title={"How the Pandemic Sparked A New Way of Interviewing"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -148,7 +148,7 @@ class BlogDetailsContentEmployer5 extends Component {
                                             url={"https://hirebeat.co/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing"}
                                             title={"How the Pandemic Sparked A New Way of Interviewing"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -157,7 +157,7 @@ class BlogDetailsContentEmployer5 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing"}
                                             title={"How the Pandemic Sparked A New Way of Interviewing"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

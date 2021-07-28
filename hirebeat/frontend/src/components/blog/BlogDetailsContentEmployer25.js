@@ -178,7 +178,7 @@ class BlogDetailsContentEmployer25 extends Component {
                                         url={"https://hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
                                         quote={"4 Challenges Campus Recruiters Could Meet"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -189,7 +189,7 @@ class BlogDetailsContentEmployer25 extends Component {
                                            title={"4 Challenges Campus Recruiters Could Meet"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -199,7 +199,7 @@ class BlogDetailsContentEmployer25 extends Component {
                                             url={"https://hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
                                             title={"4 Challenges Campus Recruiters Could Meet"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -208,7 +208,7 @@ class BlogDetailsContentEmployer25 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
                                             title={"4 Challenges Campus Recruiters Could Meet"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

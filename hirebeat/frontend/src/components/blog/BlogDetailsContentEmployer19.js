@@ -64,7 +64,7 @@ class BlogDetailsContentEmployer19 extends Component {
                                         url={"https://hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
                                         quote={"Employer Branding vs Recruitment Marketing"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -75,7 +75,7 @@ class BlogDetailsContentEmployer19 extends Component {
                                            title={"Employer Branding vs Recruitment Marketing"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -85,7 +85,7 @@ class BlogDetailsContentEmployer19 extends Component {
                                             url={"https://hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
                                             title={"Employer Branding vs Recruitment Marketing"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -94,7 +94,7 @@ class BlogDetailsContentEmployer19 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
                                             title={"Employer Branding vs Recruitment Marketing"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

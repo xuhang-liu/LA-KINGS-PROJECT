@@ -79,7 +79,7 @@ class BlogDetailsContent27 extends Component {
                                         url={"https://hirebeat.co/blog-ace-your-zoom-job-interview"}
                                         quote={"Ace Your Zoom Job Interview"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -90,7 +90,7 @@ class BlogDetailsContent27 extends Component {
                                            title={"Ace Your Zoom Job Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -100,7 +100,7 @@ class BlogDetailsContent27 extends Component {
                                             url={"https://hirebeat.co/blog-ace-your-zoom-job-interview"}
                                             title={"Ace Your Zoom Job Interview"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -109,7 +109,7 @@ class BlogDetailsContent27 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-ace-your-zoom-job-interview"}
                                             title={"Ace Your Zoom Job Interview"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

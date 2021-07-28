@@ -82,7 +82,7 @@ class BlogDetailsContent12 extends Component {
                                         url={"https://hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview"}
                                         quote={"How To Answer 'What Is Your Weakness' Question In An Interview"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -93,7 +93,7 @@ class BlogDetailsContent12 extends Component {
                                            title={"How To Answer 'What Is Your Weakness' Question In An Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -103,7 +103,7 @@ class BlogDetailsContent12 extends Component {
                                             url={"https://hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview"}
                                             title={"How To Answer 'What Is Your Weakness' Question In An Interview"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -112,7 +112,7 @@ class BlogDetailsContent12 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview"}
                                             title={"How To Answer 'What Is Your Weakness' Question In An Interview"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

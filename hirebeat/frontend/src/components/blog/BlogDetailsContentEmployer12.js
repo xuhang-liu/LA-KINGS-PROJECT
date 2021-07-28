@@ -70,7 +70,7 @@ class BlogDetailsContentEmployer12 extends Component {
                                         url={"https://hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
                                         quote={"Workplace Camaraderie: Your Powerful Tool For Success"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -81,7 +81,7 @@ class BlogDetailsContentEmployer12 extends Component {
                                            title={"Workplace Camaraderie: Your Powerful Tool For Success"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -91,7 +91,7 @@ class BlogDetailsContentEmployer12 extends Component {
                                             url={"https://hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
                                             title={"Workplace Camaraderie: Your Powerful Tool For Success"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -100,7 +100,7 @@ class BlogDetailsContentEmployer12 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
                                             title={"Workplace Camaraderie: Your Powerful Tool For Success"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>
