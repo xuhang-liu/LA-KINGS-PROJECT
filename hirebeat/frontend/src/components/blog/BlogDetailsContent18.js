@@ -81,7 +81,7 @@ class BlogDetailsContent18 extends Component {
                                         url={"https://hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
                                         quote={"How to answer the teamwork type question in an interview"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -92,7 +92,7 @@ class BlogDetailsContent18 extends Component {
                                            title={"How to answer the teamwork type question in an interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -102,7 +102,7 @@ class BlogDetailsContent18 extends Component {
                                             url={"https://hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
                                             title={"How to answer the teamwork type question in an interview"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -111,7 +111,7 @@ class BlogDetailsContent18 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
                                             title={"How to answer the teamwork type question in an interview"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

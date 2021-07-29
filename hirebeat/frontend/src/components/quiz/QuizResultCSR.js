@@ -25,7 +25,7 @@ class QuizResultCSR extends Component {
                                                             url={"https://hirebeat.co/quiz"}
                                                             quote={"My best fit job is [ Customer Service Representatives ] - Take the quiz to find out what job best suits you"}
                                                             hashtag="#hirebeat">
-                                                            <a target="_blank">
+                                                            <a target="_blank" rel="noreferrer">
                                                                 <i className="bx bxl-facebook"></i>
                                                             </a>
                                                         </FacebookShareButton>
@@ -36,7 +36,7 @@ class QuizResultCSR extends Component {
                                                             url={"https://hirebeat.co/quiz"}
                                                             title={"My best fit job is [ Customer Service Representatives ] - Take the quiz to find out what job best suits you"}
                                                             source={"HireBeat"}>
-                                                            <a target="_blank">
+                                                            <a target="_blank" rel="noreferrer">
                                                                 <i className="bx bxl-linkedin"></i>
                                                             </a>
                                                         </LinkedinShareButton>
@@ -110,7 +110,7 @@ class QuizResultCSR extends Component {
                                                             url={"https://hirebeat.co/quiz"}
                                                             quote={"My best fit job is [ Customer Service Representatives ] - Take the quiz to find out what job best suits you"}
                                                             hashtag="#hirebeat">
-                                                            <a target="_blank">
+                                                            <a target="_blank" rel="noreferrer">
                                                                 <i className="bx bxl-facebook"></i>
                                                             </a>
                                                         </FacebookShareButton>
@@ -121,7 +121,7 @@ class QuizResultCSR extends Component {
                                                             url={"https://hirebeat.co/quiz"}
                                                             title={"My best fit job is [ Customer Service Representatives ] - Take the quiz to find out what job best suits you"}
                                                             source={"HireBeat"}>
-                                                            <a target="_blank">
+                                                            <a target="_blank" rel="noreferrer">
                                                                 <i className="bx bxl-linkedin"></i>
                                                             </a>
                                                         </LinkedinShareButton>

@@ -104,7 +104,7 @@ class BlogDetailsContent14 extends Component {
                                         url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
                                         quote={"Interview Question 'Why do you want to work here?'"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -115,7 +115,7 @@ class BlogDetailsContent14 extends Component {
                                            title={"Interview Question 'Why do you want to work here?'"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -125,7 +125,7 @@ class BlogDetailsContent14 extends Component {
                                             url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
                                             title={"Interview Question 'Why do you want to work here?'"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -134,7 +134,7 @@ class BlogDetailsContent14 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
                                             title={"Interview Question 'Why do you want to work here?'"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

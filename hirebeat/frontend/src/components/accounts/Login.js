@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {login, exchangeToken, loadProfile} from "../../redux/actions/auth_actions";
+import {login, exchangeToken} from "../../redux/actions/auth_actions";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
@@ -186,6 +186,7 @@ export class Login extends Component {
                         <a
                             href="/password_reset"
                             target="_blank"
+                            rel="noreferrer"
                             className="navbar-font"
                             style={{
                               fontSize:"1rem",
@@ -246,4 +247,4 @@ const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
 });
 
-export default connect(mapStateToProps, {login, exchangeToken, loadProfile})(Login);
+export default connect(mapStateToProps, {login, exchangeToken})(Login);

@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import SmallPageTitleArea from '../Common/SmallPageTitleArea';
 import { connect } from "react-redux";
-import { updateProfile, loadProfile } from "../../redux/actions/auth_actions";
+import { updateProfile } from "../../redux/actions/auth_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import PropTypes from "prop-types";
 import DocumentMeta from 'react-document-meta';
@@ -93,7 +93,6 @@ export class QuestionTypeChoices extends Component {
   };
 
   componentDidMount() {
-    this.props.loadProfile();
     if(this.props.user != null){
       this.activateEmail();
     }
@@ -211,4 +210,4 @@ const mapStateToProps = (state) => ({
   saved_video_count: state.auth_reducer.profile.saved_video_count,
 });
 
-export default connect(mapStateToProps, { loadProfile, updateProfile })(QuestionTypeChoices);
+export default connect(mapStateToProps, { updateProfile })(QuestionTypeChoices);

@@ -21,7 +21,9 @@ export class VideoPreviewList extends Component {
   };
 
   componentDidMount() {
-    this.props.loadProfile();
+    if (localStorage.getItem("token")){
+      this.props.loadProfile();
+    }
     this.props.getVideos();
   }
 

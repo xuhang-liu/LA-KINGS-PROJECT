@@ -145,7 +145,7 @@ class BlogDetailsContentEmployer23 extends Component {
                                         url={"https://hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
                                         quote={"What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -156,7 +156,7 @@ class BlogDetailsContentEmployer23 extends Component {
                                            title={"What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -166,7 +166,7 @@ class BlogDetailsContentEmployer23 extends Component {
                                             url={"https://hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
                                             title={"What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -175,7 +175,7 @@ class BlogDetailsContentEmployer23 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
                                             title={"What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

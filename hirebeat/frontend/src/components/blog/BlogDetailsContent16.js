@@ -106,7 +106,7 @@ class BlogDetailsContent16 extends Component {
                                         url={"https://hirebeat.co/blog-10-tips-to-deal-with-job-hunting-stress"}
                                         quote={"10 Tips to Deal with Job Hunting Stress"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -117,7 +117,7 @@ class BlogDetailsContent16 extends Component {
                                            title={"10 Tips to Deal with Job Hunting Stress"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -127,7 +127,7 @@ class BlogDetailsContent16 extends Component {
                                             url={"https://hirebeat.co/blog-10-tips-to-deal-with-job-hunting-stress"}
                                             title={"10 Tips to Deal with Job Hunting Stress"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -136,7 +136,7 @@ class BlogDetailsContent16 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-10-tips-to-deal-with-job-hunting-stress"}
                                             title={"10 Tips to Deal with Job Hunting Stress"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

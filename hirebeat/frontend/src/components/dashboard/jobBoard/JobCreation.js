@@ -4054,7 +4054,7 @@ export class JobCreation extends Component {
                                 {this.props.employerProfileDetail.website != null && this.props.employerProfileDetail.website != "" &&
                                     <div className="single-footer-widget1 mt-2">
                                         <p style={{ marginBottom: "0rem" }}>Website</p>
-                                        <a className="website" target="_blank" href={this.props.employerProfileDetail.website}>{this.props.employerProfileDetail.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                        <a className="website" target="_blank" rel="noreferrer" href={this.props.employerProfileDetail.website}>{this.props.employerProfileDetail.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                     </div>
                                 }
                             </div>

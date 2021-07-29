@@ -73,7 +73,7 @@ class BlogDetailsContentEmployer1 extends Component {
                                         url={"https://hirebeat.co/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring"}
                                         quote={"How does a one-way interview help a company in its hiring?"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -84,7 +84,7 @@ class BlogDetailsContentEmployer1 extends Component {
                                            title={"How does a one-way interview help a company in its hiring?"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -94,7 +94,7 @@ class BlogDetailsContentEmployer1 extends Component {
                                             url={"https://hirebeat.co/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring"}
                                             title={"How does a one-way interview help a company in its hiring?"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -103,7 +103,7 @@ class BlogDetailsContentEmployer1 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring"}
                                             title={"How does a one-way interview help a company in its hiring?"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

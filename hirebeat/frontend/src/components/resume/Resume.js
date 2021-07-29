@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { loadProfile } from "../../redux/actions/auth_actions";
 import MediaQuery from 'react-responsive';
 import SmallPageTitleArea from '../Common/SmallPageTitleArea';
 import ResumeScan from './ResumeScan';
@@ -82,6 +81,6 @@ const mapStateToProps = (state) => ({
     profile: state.auth_reducer.profile
 });
 
-export default connect(mapStateToProps, { loadProfile })(
+export default connect(mapStateToProps, null)(
     Resume
 );

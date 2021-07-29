@@ -70,7 +70,9 @@ export class Dashboard extends Component {
   };
 
   componentDidMount() {
-    this.props.loadProfile();
+    if (localStorage.getItem("token")) {
+      this.props.loadProfile();
+    }
     this.activateEmail();
     this.props.getReceivedInterview(this.props.user.email);
     var user = { "id": this.props.user.id };

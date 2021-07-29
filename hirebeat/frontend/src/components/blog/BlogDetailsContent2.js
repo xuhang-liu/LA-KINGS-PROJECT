@@ -71,7 +71,7 @@ class BlogDetailsContent2 extends Component {
                                         url={"https://hirebeat.co/blog-video-interview-practice"}
                                         quote={"Video interview practice"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -82,7 +82,7 @@ class BlogDetailsContent2 extends Component {
                                            title={"Video interview practice"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -92,7 +92,7 @@ class BlogDetailsContent2 extends Component {
                                             url={"https://hirebeat.co/blog-video-interview-practice"}
                                             title={"Video interview practice"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -101,7 +101,7 @@ class BlogDetailsContent2 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/blog-video-interview-practice"}
                                             title={"Video interview practice"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

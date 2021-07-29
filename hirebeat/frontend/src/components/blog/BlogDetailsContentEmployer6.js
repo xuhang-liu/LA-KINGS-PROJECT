@@ -82,7 +82,7 @@ class BlogDetailsContentEmployer6 extends Component {
                                         url={"https://hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
                                         quote={"Topic: How Gender Pronouns Change the Way We Work"}
                                         hashtag="#hirebeat">
-                                        <a target="_blank">
+                                        <a target="_blank" rel="noreferrer">
                                             <i className="bx bxl-facebook"></i>
                                         </a>
                                     </FacebookShareButton>
@@ -93,7 +93,7 @@ class BlogDetailsContentEmployer6 extends Component {
                                            title={"Topic: How Gender Pronouns Change the Way We Work"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
-                                           <a target="_blank">
+                                           <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-twitter"></i>   
                                            </a>
                                         </TwitterShareButton>
@@ -103,7 +103,7 @@ class BlogDetailsContentEmployer6 extends Component {
                                             url={"https://hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
                                             title={"Topic: How Gender Pronouns Change the Way We Work"}
                                             source={"HireBeat"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-linkedin"></i>
                                             </a>
                                         </LinkedinShareButton>
@@ -112,7 +112,7 @@ class BlogDetailsContentEmployer6 extends Component {
                                         <WhatsappShareButton
                                             url={"https://hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
                                             title={"Topic: How Gender Pronouns Change the Way We Work"}>
-                                            <a target="_blank">
+                                            <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
                                             </a>
                                         </WhatsappShareButton>

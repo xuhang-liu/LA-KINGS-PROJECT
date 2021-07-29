@@ -324,7 +324,7 @@ const ApplyJob = (props) => {
                             <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={(job_id == null || job_id == "") ? "" : props.job.company_logo} alt="icon" />
                             <h1 className="ml-5 mt-5" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A" }}>{(job_id == null || job_id == "") ? "" : props.job.job_title}</h1>
                             <h2 className="ml-5 mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#67A3F3" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}
-                                <a style={{ textDecoration: "none", color: "#7C94B5", fontSize: "0.9rem", marginLeft: "0.8rem" }} target="_blank" href={"https://hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                <a style={{ textDecoration: "none", color: "#7C94B5", fontSize: "0.9rem", marginLeft: "0.8rem" }} target="_blank" rel="noreferrer" href={"https://hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                             </h2>
                             <div className="row pl-3">
                                 <div className="col-8 pl-5 mt-2 pb-5" style={{ paddingRight: "3.7rem" }}>
@@ -464,7 +464,7 @@ const ApplyJob = (props) => {
                                                                 <input class="form-check-input" type="checkbox" id="gridCheck1" required />
                                                                 <label style={{ color: "#B0B0B0" }} class="form-check-label mb-4" for="gridCheck1">
                                                                     I have read and agreed to the
-                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank"> Terms & Conditions</a>
+                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -703,7 +703,7 @@ const ApplyJob = (props) => {
                                                                 <input class="form-check-input" type="checkbox" id="gridCheck1" required />
                                                                 <label style={{ color: "#B0B0B0" }} class="form-check-label mb-4" for="gridCheck1">
                                                                     I have read and agreed to the
-                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank"> Terms & Conditions</a>
+                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -892,7 +892,7 @@ const ApplyJob = (props) => {
                                                     url={url}
                                                     quote={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
                                                     hashtag={(job_id == null || job_id == "") ? "" : props.job.company_name}>
-                                                    <a target="_blank">
+                                                    <a target="_blank" rel="noreferrer">
                                                         <i className="bx bxl-facebook"></i>
                                                     </a>
                                                 </FacebookShareButton>
@@ -903,7 +903,7 @@ const ApplyJob = (props) => {
                                                     title={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
                                                     via={(job_id == null || job_id == "") ? "" : props.job.company_name}
                                                     hashtag={(job_id == null || job_id == "") ? "" : props.job.company_name}>
-                                                    <a target="_blank">
+                                                    <a target="_blank" rel="noreferrer">
                                                         <i className="bx bxl-twitter"></i>
                                                     </a>
                                                 </TwitterShareButton>
@@ -913,7 +913,7 @@ const ApplyJob = (props) => {
                                                     url={url}
                                                     title={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
                                                     source={(job_id == null || job_id == "") ? "" : props.job.company_name}>
-                                                    <a target="_blank">
+                                                    <a target="_blank" rel="noreferrer">
                                                         <i className="bx bxl-linkedin"></i>
                                                     </a>
                                                 </LinkedinShareButton>
@@ -923,7 +923,7 @@ const ApplyJob = (props) => {
                                     {props.job.company_website != null && props.job.company_website != "" &&
                                         <div className="single-footer-widget1 mt-2">
                                             <p style={{ marginBottom: "0rem" }}>Website</p>
-                                            <a className="website" target="_blank" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                            <a className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                         </div>
                                     }
                                 </div>
@@ -941,7 +941,7 @@ const ApplyJob = (props) => {
                             <img style={{ width: "7rem", marginLeft: "34%", marginTop: "-3.5rem" }} src={(job_id == null || job_id == "") ? "" : props.job.company_logo} alt="icon" />
                             <h1 className="mt-3" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A", textAlign: "center" }}>{(job_id == null || job_id == "") ? "" : props.job.job_title}</h1>
                             <h2 className="mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#67A3F3", textAlign: "center" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}</h2>
-                            <a style={{ textDecoration: "none", color: "#7C94B5", fontWeight: "600", fontSize: "0.9rem", marginLeft: "30%" }} target="_blank" href={"https://hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                            <a style={{ textDecoration: "none", color: "#7C94B5", fontWeight: "600", fontSize: "0.9rem", marginLeft: "30%" }} target="_blank" rel="noreferrer" href={"https://hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                             <div className="row pl-3">
                                 <div className="pl-5 mt-3 pb-5" style={{ paddingRight: "3.7rem" }}>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
@@ -975,7 +975,7 @@ const ApplyJob = (props) => {
                                                         url={url}
                                                         quote={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
                                                         hashtag={(job_id == null || job_id == "") ? "" : props.job.company_name}>
-                                                        <a target="_blank">
+                                                        <a target="_blank" rel="noreferrer">
                                                             <i className="bx bxl-facebook"></i>
                                                         </a>
                                                     </FacebookShareButton>
@@ -986,7 +986,7 @@ const ApplyJob = (props) => {
                                                         title={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
                                                         via={(job_id == null || job_id == "") ? "" : props.job.company_name}
                                                         hashtag={(job_id == null || job_id == "") ? "" : props.job.company_name}>
-                                                        <a target="_blank">
+                                                        <a target="_blank" rel="noreferrer">
                                                             <i className="bx bxl-twitter"></i>
                                                         </a>
                                                     </TwitterShareButton>
@@ -996,7 +996,7 @@ const ApplyJob = (props) => {
                                                         url={url}
                                                         title={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
                                                         source={(job_id == null || job_id == "") ? "" : props.job.company_name}>
-                                                        <a target="_blank">
+                                                        <a target="_blank" rel="noreferrer">
                                                             <i className="bx bxl-linkedin"></i>
                                                         </a>
                                                     </LinkedinShareButton>
@@ -1006,7 +1006,7 @@ const ApplyJob = (props) => {
                                         {props.job.company_website != null && props.job.company_website != "" &&
                                             <div className="single-footer-widget1 mt-2">
                                                 <p style={{ marginBottom: "0.1rem" }}>Website</p>
-                                                <a className="website" target="_blank" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                                <a className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                             </div>
                                         }
                                     </div>
@@ -1142,7 +1142,7 @@ const ApplyJob = (props) => {
                                                                 <input class="form-check-input" type="checkbox" id="gridCheck1" required />
                                                                 <label style={{ color: "#B0B0B0" }} class="form-check-label mb-4" for="gridCheck1">
                                                                     I have read and agreed to the
-                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank"> Terms & Conditions</a>
+                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1398,7 +1398,7 @@ const ApplyJob = (props) => {
                                                                 <input class="form-check-input" type="checkbox" id="gridCheck1" required />
                                                                 <label style={{ color: "#B0B0B0" }} class="form-check-label mb-4" for="gridCheck1">
                                                                     I have read and agreed to the
-                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank"> Terms & Conditions</a>
+                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
                                                             </div>
                                                         </div>
                                                     </div>
