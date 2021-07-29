@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import badge from '../../assets/badge.png';
 import Footer from "../layout/Footer";
 //import leftbg from '../../assets/Login.png';
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -92,6 +93,16 @@ export class Register extends Component {
   };
 
   render() {
+    const meta = {
+        title: 'HireBeat – Your First Step to A Better Recruiting Journey',
+        description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'hiring tool return on investment, hiring tool roi, hr applicant tracking, roi recruitment process'
+          }
+        }
+    };
     const {username, email, password, password2} = this.state;
     if (this.props.auth.isAuthenticated) {
       if (this.props.user.groups[0] == "reviewers") {
@@ -101,6 +112,7 @@ export class Register extends Component {
       }
     }
     return (
+        <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
           <div>
@@ -448,7 +460,7 @@ export class Register extends Component {
           </div>
           <Footer />
         </React.Fragment>
-
+        </DocumentMeta>
     );
   }
 }

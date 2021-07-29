@@ -21,7 +21,6 @@ class BlogDetail15 extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – Top 3 Jobs You Should Apply For Finance Major</title>
                     <meta name="description" CONTENT="You can capitalize on the various exciting opportunities in the ever-expanding financial sector."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

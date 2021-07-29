@@ -9,6 +9,7 @@ import {
   BglessCardButton,
 } from "../practice/CardComponents";
 import { withRouter } from "react-router-dom";
+import DocumentMeta from 'react-document-meta';
 //import {
 //  random,
 //  positiveAttitude,
@@ -194,6 +195,16 @@ export class MyVideoUploader extends Component {
   };
 
   render() {
+    const meta = {
+        title: 'HireBeat – Your First Step to A Better Recruiting Journey',
+        description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'ats for hr, ats hr software, ats system hr'
+          }
+        }
+    };
     var saveOnTap = this.handleUpload;
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
     var saveText = "Save and Next";
@@ -206,6 +217,7 @@ export class MyVideoUploader extends Component {
       skipText = "Discard and Finish";
     }
     return (
+      <DocumentMeta {...meta}>
       <div>
         <div style={{ display: "none" }}>
           <ReactS3Uploader
@@ -253,6 +265,7 @@ export class MyVideoUploader extends Component {
               />
           )}
       </div>
+      </DocumentMeta>
     );
   }
 }

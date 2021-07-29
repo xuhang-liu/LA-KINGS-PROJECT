@@ -176,3 +176,186 @@ def adp(request):
 
 def employerfeaturevideo(request):
     return render(request, 'frontend/employer-feature-video.html')
+
+def AIGInfo(request):
+    return render(request, 'frontend/AIGInfo.html')
+
+def EmployerDashboard(request):
+    return render(request, 'frontend/EmployerDashboard.html')
+
+def EmployerPricing(request):
+    return render(request, 'frontend/EmployerPricing.html')
+
+def Register(request):
+    return render(request, 'frontend/Register.html')
+
+def JacobsInfo(request):
+    return render(request, 'frontend/JacobsInfo.html')
+
+def QuizHome(request):
+    return render(request, 'frontend/QuizHome.html')
+
+def blog6(request):
+    return render(request, 'frontend/blog6.html')
+
+def HowItWorks(request):
+    return render(request, 'frontend/HowItWorks.html')
+
+def EmployerLogin(request):
+    return render(request, 'frontend/EmployerLogin.html')
+
+def ROICalculator(request):
+    return render(request, 'frontend/ROICalculator.html')
+
+def employerabout(request):
+    return render(request, 'frontend/employerabout.html')
+
+def CityInfo(request):
+    return render(request, 'frontend/CityInfo.html')
+
+def blog18(request):
+    return render(request, 'frontend/blog18.html')
+
+def QuestionTypeChoices(request):
+    return render(request, 'frontend/QuestionTypeChoices.html')
+
+def blog14(request):
+    return render(request, 'frontend/blog14.html')
+
+def SelectSimulate(request):
+    return render(request, 'frontend/SelectSimulate.html')
+
+def AlvarezMarsalInfo(request):
+    return render(request, 'frontend/AlvarezMarsalInfo.html')
+
+def MetLifeInfo(request):
+    return render(request, 'frontend/MetLifeInfo.html')
+
+def EmployerContact(request):
+    return render(request, 'frontend/EmployerContact.html')
+
+def blog10(request):
+    return render(request, 'frontend/blog10.html')
+
+def PNCInfo(request):
+    return render(request, 'frontend/PNCInfo.html')
+
+def IntergrationPage(request):
+    return render(request, 'frontend/IntergrationPage.html')
+
+def EmailVerification(request):
+    return render(request, 'frontend/EmailVerification.html')
+
+def bloggridEmployer(request):
+    return render(request, 'frontend/bloggridEmployer.html')
+
+def ECInfo(request):
+    return render(request, 'frontend/ECInfo.html')
+
+def ProductPage(request):
+    return render(request, 'frontend/ProductPage.html')
+
+def BBInfo(request):
+    return render(request, 'frontend/BBInfo.html')
+
+def contact(request):
+    return render(request, 'frontend/contact.html')
+
+def TechFields(request):
+    return render(request, 'frontend/TechFields.html')
+
+def SEBInfo(request):
+    return render(request, 'frontend/SEBInfo.html')
+
+def MyVideoUploader(request):
+    return render(request, 'frontend/MyVideoUploader.html')
+
+def JSInfo(request):
+    return render(request, 'frontend/JSInfo.html')
+
+def AEInfo(request):
+    return render(request, 'frontend/AEInfo.html')
+
+def CareerResponseWindow(request):
+    return render(request, 'frontend/CareerResponseWindow.html')
+
+def MTBInfo(request):
+    return render(request, 'frontend/MTBInfo.html')
+
+def blog11(request):
+    return render(request, 'frontend/blog11.html')
+
+def BLUSAInfo(request):
+    return render(request, 'frontend/BLUSAInfo.html')
+
+def blog16(request):
+    return render(request, 'frontend/blog16.html')
+
+def BRInfo(request):
+    return render(request, 'frontend/BRInfo.html')
+
+def blog8(request):
+    return render(request, 'frontend/blog8.html')
+
+def blog2(request):
+    return render(request, 'frontend/blog2.html')
+
+def Dashboard(request):
+    return render(request, 'frontend/Dashboard.html')
+
+def blog19(request):
+    return render(request, 'frontend/blog19.html')
+
+def blog12(request):
+    return render(request, 'frontend/blog12.html')
+
+def ReviewListPreload(request):
+    return render(request, 'frontend/ReviewListPreload.html')
+
+def InterviewInfo(request):
+    return render(request, 'frontend/InterviewInfo.html')
+
+def EmployerRegister(request):
+    return render(request, 'frontend/EmployerRegister.html')
+
+def ResumeScreening(request):
+    return render(request, 'frontend/ResumeScreening.html')
+
+def Privacy(request):
+    return render(request, 'frontend/Privacy.html')
+
+def HSBCInfo(request):
+    return render(request, 'frontend/HSBCInfo.html')
+
+def Term(request):
+    return render(request, 'frontend/Term.html')
+
+def SearchPanel(request):
+    return render(request, 'frontend/SearchPanel.html')
+
+def Login(request):
+    return render(request, 'frontend/Login.html')
+
+def Resume(request):
+    return render(request, 'frontend/Resume.html')
+
+def LazardInfo(request):
+    return render(request, 'frontend/LazardInfo.html')
+
+def Payment(request):
+    return render(request, 'frontend/Payment.html')
+
+def ErnstYoungInfo(request):
+    return render(request, 'frontend/ErnstYoungInfo.html')
+
+def GSInfo(request):
+    return render(request, 'frontend/GSInfo.html')
+
+def SolutionPage(request):
+    return render(request, 'frontend/SolutionPage.html')
+
+def blog17(request):
+    return render(request, 'frontend/blog17.html')
+
+def blog15(request):
+    return render(request, 'frontend/blog15.html')

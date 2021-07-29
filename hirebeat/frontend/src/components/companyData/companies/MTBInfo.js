@@ -27,7 +27,6 @@ class MTBInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – M&T Bank</title>
                     <meta name="M&T Bank is a company that provides commercial and retail banking services. It also offers trust and wealth management services, fiduciary and custodial services, investment management services, and insurance agency services, as well as reinsures credit life. The company provides its services through banking offices, business banking centers, telephone and Internet banking, and automated teller machines (ATMs)." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/mt-bank"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

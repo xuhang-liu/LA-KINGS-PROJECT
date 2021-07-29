@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { useEffect } from "react";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -11,7 +12,18 @@ function ScrollToTopOnMount() {
 
 class Privacy extends Component{
     render(){
+      const meta = {
+          title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
+          description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+          meta: {
+            charset: 'utf-8',
+            name: {
+              keywords: 'Interview Practice, Behavioral Question, Technical Question, Mock Interview'
+            }
+          }
+      };
       return (
+        <DocumentMeta {...meta}>
         <React.Fragment>
         <ScrollToTopOnMount />
         <div style={{marginBottom:"10%", marginTop:"2%", marginLeft:"5%", marginRight:"5%"}}>
@@ -42,6 +54,7 @@ class Privacy extends Component{
           </div></div>
           </div>
         </React.Fragment>
+        </DocumentMeta>
       );
     }
   }

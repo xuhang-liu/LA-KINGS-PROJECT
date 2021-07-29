@@ -11,6 +11,7 @@ import Modal from "react-bootstrap/Modal";
 import TestDevice from "./TestDevice";
 import TestAudioDevice from "./TestAudioDevice";
 var ReactS3Uploader = require("react-s3-uploader");
+import DocumentMeta from 'react-document-meta';
 
 class InterviewInfo extends Component {
     // data passed from login page
@@ -213,7 +214,18 @@ class InterviewInfo extends Component {
               });
         };
         let sessionShowTest = sessionStorage.getItem("interviewShowTest") === "true";
+        const meta = {
+            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
+            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'ats for hr, ats hr software, ats system hr'
+              }
+            }
+        };
         return (
+            <DocumentMeta {...meta}>
             <React.Fragment>
                 {this.props.dataLoaded ?
                     !this.props.isRecorded ?
@@ -323,6 +335,7 @@ class InterviewInfo extends Component {
                         </div> : null
                 }
             </React.Fragment>
+            </DocumentMeta>
         );
     }
 }

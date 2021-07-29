@@ -21,7 +21,6 @@ class BlogDetail18 extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – How to answer the teamwork type question in an interview</title>
                     <meta name="description" CONTENT="How to answer the teamwork type question in an interview"></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

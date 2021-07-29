@@ -8,7 +8,6 @@ class SolutionPage extends Component {
     const meta = {
       title: 'HireBeat – Your First Step to A Better Recruiting Journey',
       description: "Join the world's fastest-growing hiring trend with our automated interviewing platform",
-      canonical: 'https://hirebeat.co/employer-solution-page',
       meta: {
         charset: 'utf-8',
         name: {

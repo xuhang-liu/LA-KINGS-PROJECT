@@ -9,6 +9,7 @@ import {resendActivationEmail} from "../../redux/actions/auth_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import {CountdownButton} from "./CountdownButton";
 import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 //import MediaQuery from 'react-responsive';
 
 function ScrollToTopOnMount() {
@@ -59,7 +60,18 @@ class EmailVerification extends Component {
       }
 
     render() {
+        const meta = {
+            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
+            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'hiring tool return on investment, hiring tool roi, hr applicant tracking, roi recruitment process'
+              }
+            }
+        };
         return (
+            <DocumentMeta {...meta}>
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea
@@ -88,6 +100,7 @@ class EmailVerification extends Component {
                 </div>
                 <Footer />
             </React.Fragment>
+            </DocumentMeta>
         );
     }
 }

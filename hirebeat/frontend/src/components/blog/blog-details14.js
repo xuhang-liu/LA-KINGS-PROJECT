@@ -21,7 +21,6 @@ class BlogDetail14 extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – "Why do you want to work here?" Your Ultimate Interview Tips</title>
                     <meta name="description" CONTENT="'Why do you want to work here?' seems to be a simple but challenging question. Lack of proper preparation for this question can be risky because you will lower the chances of acquiring the job."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-why-do-you-want-to-work-here"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

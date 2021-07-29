@@ -21,7 +21,6 @@ class BlogDetail16 extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – 10 Tips to Deal with Job Hunting Stress</title>
                     <meta name="description" CONTENT="The job-hunting process can be stressful. Here are the 10 tips that can help you to better navigate yourself through this process and land the job you want with a peace of mind."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-10-tips-to-deal-with-job-hunting-stress"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

@@ -9,7 +9,7 @@ import emailjs from 'emailjs-com';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { withRouter } from "react-router-dom";
-
+import DocumentMeta from 'react-document-meta';
 import nofind from '../../assets/tech/Nofind.png';
 
 
@@ -74,7 +74,18 @@ export class TechFields extends Component {
   }
 
   render() {
+    const meta = {
+        title: 'HireBeat – Your First Step to A Better Recruiting Journey',
+        description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'ats for hr, ats hr software, ats system hr'
+          }
+        }
+    };
     return (
+      <DocumentMeta {...meta}>
       <React.Fragment>
         <ScrollToTopOnMount />
         <SmallPageTitleArea 
@@ -212,6 +223,7 @@ export class TechFields extends Component {
       </div>
     </div>
     </React.Fragment>
+    </DocumentMeta>
     );
   }
 }

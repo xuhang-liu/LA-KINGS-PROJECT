@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import Footer from "../layout/Footer";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import DocumentMeta from 'react-document-meta';
 
 function sendEmail(e) {
   e.preventDefault();
@@ -39,7 +40,18 @@ function ScrollToTopOnMount() {
 
 class Contact extends Component {
     render() {
+        const meta = {
+            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
+            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'ats for hr, ats hr software, ats system hr'
+              }
+            }
+        };
         return (
+            <DocumentMeta {...meta}>
             <React.Fragment>
               <ScrollToTopOnMount />
                 <PageTitleArea 
@@ -155,6 +167,7 @@ class Contact extends Component {
         </MediaQuery>
         <Footer />
         </React.Fragment>
+        </DocumentMeta>
         );
     }
 }

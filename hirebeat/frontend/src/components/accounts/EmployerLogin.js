@@ -7,6 +7,7 @@ import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -58,6 +59,16 @@ export class EmployerLogin extends Component {
   };
 
   render() {
+    const meta = {
+        title: 'HireBeat – Your First Step to A Better Recruiting Journey',
+        description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'hiring tool return on investment, hiring tool roi, hr applicant tracking, roi recruitment process'
+          }
+        }
+    };
     if (this.props.isAuthenticated) {
       if (this.props.user.groups[0] == "reviewers") {
         return <Redirect to="/review"/>;
@@ -67,6 +78,7 @@ export class EmployerLogin extends Component {
     }
     const {username, password} = this.state;
     return (
+        <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
 
@@ -207,7 +219,7 @@ export class EmployerLogin extends Component {
           </div>
           <Footer />
         </React.Fragment>
-
+        </DocumentMeta>
     );
   }
 }

@@ -21,7 +21,6 @@ class BlogDetail12 extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – How To Answer "What Is Your Weakness" Question In An Interview</title>
                     <meta name="description" CONTENT="'What is your weakness?' is one of the most common interview questions. Get tips on how to answer the question in an interview."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

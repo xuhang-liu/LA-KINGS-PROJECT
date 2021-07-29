@@ -10,6 +10,7 @@ import VideoRecorder from "./VideoRecorder";
 import {getInterviewQuestions} from "../../redux/actions/question_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import { updateRecordRefresh } from "../../redux/actions/auth_actions";
+import DocumentMeta from 'react-document-meta';
 
 export class CareerResponseWindow extends Component {
     // data passed from login page
@@ -134,7 +135,18 @@ export class CareerResponseWindow extends Component {
 
     render() {
         let countTime = this.state.status == "Preparation" ? this.props.interview_position.prepare_time : this.props.interview_position.questionTime;
+        const meta = {
+            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
+            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'ats for hr, ats hr software, ats system hr'
+              }
+            }
+        };
         return (
+            <DocumentMeta {...meta}>
             <div>
                 <audio className="audio-start">
                     <source src="https://hirebeat-assets.s3.amazonaws.com/single_beep.mp3"></source>
@@ -203,6 +215,7 @@ export class CareerResponseWindow extends Component {
                 </PracticeCard>) : null
                 }
             </div>
+            </DocumentMeta>
         );
     }
 }

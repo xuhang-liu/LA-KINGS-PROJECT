@@ -11,6 +11,7 @@ import { CardRow, selectParam } from "./CardComponents";
 import SmallPageTitleArea from '../Common/SmallPageTitleArea';
 import Switch from "react-switch";
 import LoadingForAi from "../shared/LoadingForAi";
+import DocumentMeta from 'react-document-meta';
 
 export class SelectParam extends Component {
   constructor() {
@@ -130,15 +131,29 @@ selectMedia = () => {
   };
 
   render() {
+    const meta = {
+      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
+      description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+      meta: {
+        charset: 'utf-8',
+        name: {
+          keywords: 'Interview Practice, Behavioral Question, Technical Question, Mock Interview'
+        }
+      }
+    };
     const { paramsAreSet, audioParamIsSet } = this.state
     // video test
     if(this.state.loading){
-      return <div>
+      return
+      <DocumentMeta {...meta}>
+      <div>
         <LoadingForAi interview={true}/>
-      </div> 
+      </div>
+      </DocumentMeta>
     }
     if (paramsAreSet === true) {
         return (
+          <DocumentMeta {...meta}>
           <div className="container">
             {this.state.deviceTested ? (
               <ResponseWindow
@@ -154,11 +169,13 @@ selectMedia = () => {
               )
             }
           </div>
+          </DocumentMeta>
         );
     }
     // audio test
     else if (audioParamIsSet === true) {
         return (
+          <DocumentMeta {...meta}>
           <div className="container">
             {this.state.deviceTested ? (
               <AudioResponseWindow
@@ -174,13 +191,16 @@ selectMedia = () => {
               )
             }
           </div>
+          </DocumentMeta>
         );
     }
     else {
         return(
+          <DocumentMeta {...meta}>
           <div style={{marginBottom:"5%"}}>
             { this.getQuestionsParams() }
           </div>
+          </DocumentMeta>
         );
     }
   }

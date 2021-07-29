@@ -21,7 +21,6 @@ class BlogDetail17 extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Blog – 11 Mistakes Made by The Most Interviewees According to HR</title>
                     <meta name="description" CONTENT="What are the common interview mistakes? What should you avoid doing during an interview? We have listed 11 common mistakes in interviews for your reference."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
