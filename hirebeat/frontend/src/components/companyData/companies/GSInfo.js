@@ -26,7 +26,7 @@ class GSInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Goldman Sachs</title>
-                    <meta name="Description" CONTENT="Goldman Sachs (also known as The Goldman Sachs Group) is an investment banking, securities, and investment management company. It operates in four segments: Investment Banking, Global Markets, Asset Management, and Consumer & Wealth Management. The Investment Banking segment provides financial advisory services, including strategic advisory assignments related to mergers and acquisitions, divestitures, corporate defense activities, restructurings, and spin-offs; and middle-market lending, relationship lending, and acquisition financing, as well as transaction banking services. The Global Markets segment focuses on client execution activities for cash and derivative instruments, credit products, mortgages, currencies, commodities, and equities; and provision of equity intermediation, and equity financing services, as well as offers clearing, settlement and custody services. The Asset Management segment manages assets across various asset classes, including equity, fixed income, hedge funds, credit funds, private equity, real estate, currencies, and commodities. The Consumer & Wealth Management segment offers wealth advisory and banking services, including financial planning, investment management, and lending; private banking and lending services; unsecured loans; and saving and time deposits." ></meta>
+                    <meta name="Description" CONTENT="Goldman Sachs Info"></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

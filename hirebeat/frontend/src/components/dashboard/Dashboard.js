@@ -194,8 +194,8 @@ export class Dashboard extends Component {
 
   render() {
     const meta = {
-      title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-      description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+      title: 'HireBeat – Dashboard',
+      description: 'Dashboard Info',
       meta: {
         charset: 'utf-8',
         name: {

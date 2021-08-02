@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer7 extends Component {
     render() {
+      let title = "HireBeat Blog – Millennials? We Want You!";
+      title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+      let description = "Employers need to work better to attract more millennials to their workplaces. This article explores the key qualities and problems to look out for in the hiring progress.";
+      description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Millennials? We Want You!',
-            description: 'Employers need to work better to attract more millennials to their workplaces. This article explores the key qualities and problems to look out for in the hiring progress.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

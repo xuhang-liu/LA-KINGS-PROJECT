@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer12 extends Component {
     render() {
+        let title = "HireBeat Blog – Workplace Camaraderie: Your Powerful Tool For Success";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Camaraderie helps build a high-level teamwork and a more harmonious workplace. This article digs deeper into Camaraderie and aids you to build a workplace camaraderie.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Workplace Camaraderie: Your Powerful Tool For Success',
-            description: 'Camaraderie helps build a high-level teamwork and a more harmonious workplace. This article digs deeper into Camaraderie and aids you to build a workplace camaraderie.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

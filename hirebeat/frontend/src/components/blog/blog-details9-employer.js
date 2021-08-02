@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer9 extends Component {
     render() {
+        let title = "HireBeat Blog – Boost Up Your ROI Using Video Interviews";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Video interviews have gone viral these days because it provides an efficient and easy way for the business to achieve high performance. This article helps illustrate how video interviews could help in four ways.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Boost Up Your ROI Using Video Interviews',
-            description: 'Video interviews have gone viral these days because it provides an efficient and easy way for the business to achieve high performance. This article helps illustrate how video interviews could help in four ways.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

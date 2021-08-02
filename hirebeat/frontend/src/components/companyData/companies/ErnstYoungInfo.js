@@ -26,7 +26,7 @@ class ErnstYoungInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Ernst & Young</title>
-                    <meta name="Description" CONTENT="Ernst & Young (doing business as EY) is a multinational professional services company. It provides assurance, auditing, technology and security risk, enterprise risk management, transaction support, merger and acquisition, actuarial, and real estate advisory services. The company also offers employee benefit plan, taxation, and entrepreneurial services. EY serves telecommunications, energy, insurance, consumer products and retail, health, automotive, and power and utilities industries." ></meta>
+                    <meta name="Description" CONTENT="Ernst & Young Info"></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

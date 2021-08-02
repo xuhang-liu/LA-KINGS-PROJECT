@@ -26,7 +26,7 @@ class AlvarezMarsalInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Alvarez & Marsal</title>
-                    <meta name="Description" CONTENT="Alvarez & Marsal provides advisory services related to turnaround management and performance improvement for high-profile businesses. It offers global leadership, problem-solving, and value creation for companies across industries and around the world. The сompany also provides turnaround management, corporate restructuring, and performance improvement for companies and stakeholders." ></meta>
+                    <meta name="Description" CONTENT="Alvarez & Marsal Info" ></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

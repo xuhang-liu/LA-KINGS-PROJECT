@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer20 extends Component {
     render() {
+        let title = "HireBeat Blog – 8 Tips to Increase Resume Screening Effectiveness";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Resume screening is one of the traditional methods of candidate screening. The process can be tedious when you have hundreds of applications to review. But not if you know how to make it effective—here are the 8 tips to consider.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – 8 Tips to Increase Resume Screening Effectiveness',
-            description: 'Resume screening is one of the traditional methods of candidate screening. The process can be tedious when you have hundreds of applications to review. But not if you know how to make it effective—here are the 8 tips to consider.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

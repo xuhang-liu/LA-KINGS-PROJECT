@@ -8,8 +8,8 @@ import MediaQuery from 'react-responsive';
 class IntergrationPage extends Component {
     render() {
         const meta = {
-            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-            description: "Join the world's fastest-growing hiring trend with our automated interviewing platform",
+            title: 'HireBeat – Integration Page',
+            description: "Integration Page Info",
             meta: {
                 charset: 'utf-8',
                 name: {

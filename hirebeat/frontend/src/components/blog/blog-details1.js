@@ -15,17 +15,16 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1 extends Component {
     render() {
+        let title = "HireBeat Blog – Why video interview practice platforms are essential for landing your dream job";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Why video interview practice platforms are essential for landing your dream job";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         return (
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – Why video interview practice platforms are essential for landing your dream job</title>
-                    <meta name="description" CONTENT="Why video interview practice platforms are essential for landing your dream job"></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job"/>
-                    <meta property="og:title" content="HireBeat Blog – Why video interview practice platforms are essential for landing your dream job" />
-                    <meta property="og:description" content="Why video interview practice platforms are essential for landing your dream job." />
-                    <meta property="og:image" content="https://hirebeat-assets.s3.amazonaws.com/blog/blog1.jpg" />
-                    <meta property="og:url" content="https://hirebeat.co/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" />
+                    <title>{title}</title>
+                    <meta name="description" CONTENT={description}></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

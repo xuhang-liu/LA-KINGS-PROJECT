@@ -8,8 +8,8 @@ import MediaQuery from 'react-responsive';
 class FeatureVideo extends Component {
     render() {
         const meta = {
-            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-            description: "Join the world's fastest-growing hiring trend with our automated interviewing platform",
+            title: 'HireBeat – Employer Feature Video',
+            description: "Employer Feature Video Info",
             meta: {
               charset: 'utf-8',
               name: {

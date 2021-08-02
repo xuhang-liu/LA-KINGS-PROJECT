@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer11 extends Component {
     render() {
+        let title = "HireBeat Blog – How Covid Has Changed the Recruitment Process";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Virtual interview and virtual onboarding have become the main trend during the pandemic. This article explained how covid has changed the hiring process in 3 ways.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – How Covid Has Changed the Recruitment Process',
-            description: 'Virtual interview and virtual onboarding have become the main trend during the pandemic. This article explained how covid has changed the hiring process in 3 ways.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

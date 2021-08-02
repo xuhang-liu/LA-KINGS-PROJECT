@@ -112,6 +112,13 @@ urlpatterns = [
     path('employer-solution-page', views.SolutionPage),
     path('blog-11-mistakes-made-by-the-most-interviewees-according-to-hr', views.blog17),
     path('blog-top-3-jobs-you-should-apply-for-finance-major', views.blog15),
+    path('blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job', views.blog1),
+    path('blog-how-to-prepare-for-an-AI-interview', views.blog3),
+    path('blog-questions-to-ask-at-career-fairs', views.blog4),
+    path('blog-things-to-do-before-an-interview', views.blog5),
+    path('blog-how-to-write-a-thank-you-email-after-a-job-interview', views.blog7),
+    path('blog-tips-for-getting-your-resume-past-an-applicant-tracking-system', views.blog9),
+    path('blog-3-fastest-growing-jobs-you-might-not-know-about', views.blog13),
 ]
 
 # This url needs to be included in the hirebeat/urls.py to work

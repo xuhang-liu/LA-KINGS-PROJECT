@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer16 extends Component {
     render() {
+        let title = "HireBeat Blog – Red Flags You Should Look Out In Candidates During The Interview";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "The price of hiring the wrong candidate is huge for businesses. Therefore, it would be helpful for the company to identify the red flags of the candidate during the interview to save time and money. This article provides some critical red flags and tips to avoid them.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Red Flags You Should Look Out In Candidates During The Interview',
-            description: 'The price of hiring the wrong candidate is huge for businesses. Therefore, it would be helpful for the company to identify the red flags of the candidate during the interview to save time and money. This article provides some critical red flags and tips to avoid them.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

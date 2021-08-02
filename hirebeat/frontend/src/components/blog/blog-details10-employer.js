@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer10 extends Component {
     render() {
+        let title = "HireBeat Blog – Four Tips to Build a Successful Campus Recruiting Strategy";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Universities are the go-to options for the business to attract new candidates. In this article, you will know four tips about campus recruitment strategy.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Four Tips to Build a Successful Campus Recruiting Strategy',
-            description: 'Universities are the go-to options for the business to attract new candidates. In this article, you will know four tips about campus recruitment strategy.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

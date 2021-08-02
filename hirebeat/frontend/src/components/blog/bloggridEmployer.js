@@ -17,8 +17,8 @@ function ScrollToTopOnMount() {
 class bloggridEmployer extends Component {
     render() {
         const meta = {
-            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+            title: 'HireBeat – Employer Blog Home',
+            description: 'Employer Blog Home',
             meta: {
               charset: 'utf-8',
               name: {

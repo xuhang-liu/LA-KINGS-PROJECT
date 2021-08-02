@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer21 extends Component {
     render() {
+        let title = "HireBeat Blog – What Is Resume Screening and Why Does it Matter";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Even though the term ‘resume screening’ isn't new to many employers, its benefits could be. So if you think that the process is outdated and inefficient, we have some points that will provoke you to reconsider—here is why resume screening is important.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – What Is Resume Screening and Why Does it Matter',
-            description: "Even though the term ‘resume screening’ isn't new to many employers, its benefits could be. So if you think that the process is outdated and inefficient, we have some points that will provoke you to reconsider—here is why resume screening is important.",
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

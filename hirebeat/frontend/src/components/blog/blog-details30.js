@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail30 extends Component {
     render() {
+        let title = "HireBeat Blog – 10 Impactful Ways To Update Your Resume For 2021";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "The very first step of landing an interview is having a good resume. If you want your resume stand out from others, this article is something you can’t miss. Check and follow the 10 effective tips in this article to make your resume look good and land an interview.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: "HireBeat Blog – 10 Impactful Ways To Update Your Resume For 2021",
-            description: "The very first step of landing an interview is having a good resume. If you want your resume stand out from others, this article is something you can’t miss. Check and follow the 10 effective tips in this article to make your resume look good and land an interview.",
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

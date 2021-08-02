@@ -20,7 +20,7 @@ def applyjob(request, companyName):
     context = {
         "jobid": request.GET.get('id', ''),
         "job_title": jobs.job_title,
-        "company_overview": strip_tags(employerp.summary).replace('\n', ' '),
+        "company_overview": strip_tags(employerp.summary).replace('\n', ' ')[:152] + "...",
         "company_name": companyName,
         "company_logo": jobs.company_logo,
     }
@@ -28,7 +28,7 @@ def applyjob(request, companyName):
 
 def companybranding(request, companyName):
     context = {
-        "company_overview": "HireBeat is an HR software company providing enterprise SaaS solutions that simplify talent recruiting and assessment with a digital video screening and interviewing. Our platform combines the power of one-way videos, ATS tools, and HR workflows, along with AI-powered analytics and collaboration, to optimize the hiring process while improving the candidate experience.",
+        "company_overview": "HireBeat is an HR software company providing enterprise SaaS solutions that simplify talent recruiting and assessment with a digital video screening and interviewing. Our platform combines the power of one-way videos, ATS tools, and HR workflows, along with AI-powered analytics and collaboration, to optimize the hiring process while improving the candidate experience."[:152] + "...",
         "company_name": "HireBeat Inc.",
         "company_logo": "https://hirebeat-employer-logo.s3.amazonaws.com/1619807927000.png",
     }
@@ -36,7 +36,7 @@ def companybranding(request, companyName):
     for i in range(len(employerProfileDetail)):
         if len(employerProfileDetail) > 0:
             context = {
-                "company_overview": strip_tags(employerProfileDetail[i].summary).replace('\n', ' '),
+                "company_overview": strip_tags(employerProfileDetail[i].summary).replace('\n', ' ')[:152] + "...",
                 "company_name": employerProfileDetail[i].name,
                 "company_logo": employerProfileDetail[i].logo_url,
             }
@@ -359,3 +359,24 @@ def blog17(request):
 
 def blog15(request):
     return render(request, 'frontend/blog15.html')
+
+def blog1(request):
+    return render(request, 'frontend/blog1.html')
+
+def blog3(request):
+    return render(request, 'frontend/blog3.html')
+
+def blog4(request):
+    return render(request, 'frontend/blog4.html')
+
+def blog5(request):
+    return render(request, 'frontend/blog5.html')
+
+def blog7(request):
+    return render(request, 'frontend/blog7.html')
+
+def blog9(request):
+    return render(request, 'frontend/blog9.html')
+
+def blog13(request):
+    return render(request, 'frontend/blog13.html')

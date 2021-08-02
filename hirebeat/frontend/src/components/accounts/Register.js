@@ -94,8 +94,8 @@ export class Register extends Component {
 
   render() {
     const meta = {
-        title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-        description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+        title: 'HireBeat – Register',
+        description: 'Register Info',
         meta: {
           charset: 'utf-8',
           name: {

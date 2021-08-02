@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer3 extends Component {
     render() {
+        let title = "HireBeat Blog – Writing a Good Job Posting that Will Attract Employees";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Creating a thorough job description enables employers to showcase the accurate details about the job and the positions available, reducing the chances of hiring the wrong candidate.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Writing a Good Job Posting that Will Attract Employees',
-            description: 'Creating a thorough job description enables employers to showcase the accurate details about the job and the positions available, reducing the chances of hiring the wrong candidate.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

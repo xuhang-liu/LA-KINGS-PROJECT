@@ -25,8 +25,8 @@ class SEBInfo extends Component {
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Company Data – Skandinaviska Enskilda Banken AB</title>
-                    <meta name="Description" CONTENT="SEB is a leading Nordic financial services group. As a relationship bank, SEB in Sweden and the Baltic countries offers financial advice and a wide range of financial services. In Denmark, Finland, Norway and Germany the bank's operations have a strong focus on corporate and investment banking based on a full-service offering to corporate and institutional clients." ></meta>
+                    <title>HireBeat Company Data – Skandinaviska Enskilda Banken</title>
+                    <meta name="Description" CONTENT="Skandinaviska Enskilda Banken Info"></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

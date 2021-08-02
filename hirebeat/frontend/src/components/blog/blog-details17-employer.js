@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer17 extends Component {
     render() {
+        let title = "HireBeat Blog – Personality Assessment Tools Employers Must Know About";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Personality assessment is a great tool that allows you to unravel various personality-related traits of the candidates that you are about to hire. This article helps you understand various personality assessment tests that you can come around and reduces your chances of failure recruiting.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Personality Assessment Tools Employers Must Know About',
-            description: 'Personality assessment is a great tool that allows you to unravel various personality-related traits of the candidates that you are about to hire. This article helps you understand various personality assessment tests that you can come around and reduces your chances of failure recruiting.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

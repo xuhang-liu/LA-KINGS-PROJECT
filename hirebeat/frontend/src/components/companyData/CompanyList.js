@@ -25,8 +25,8 @@ class CompanyList extends Component {
     }
     render() {
         const meta = {
-            title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
-            description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+            title: 'HireBeat – Jobseekers Company Data',
+            description: 'Jobseekers Company Data Info',
             meta: {
                 charset: 'utf-8',
                 name: {

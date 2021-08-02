@@ -26,7 +26,7 @@ class MetLifeInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – MetLife</title>
-                    <meta name="Description" CONTENT="MetLife is a financial services company providing insurance and employee benefits. It offers various insurance and financial services products, including life, medical, dental, disability, property, casualty, credit and other accident and health insurance, guaranteed interest, stable value, annuities, endowment, and retirement savings products for individuals and groups. The company also operates as an institutional investor focused primarily on investment-grade corporate bonds, structured finance securities, mortgage loans, agency securities, and real estate and corporate equity." ></meta>
+                    <meta name="Description" CONTENT="MetLife Info"></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

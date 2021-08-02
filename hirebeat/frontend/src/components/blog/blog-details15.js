@@ -15,12 +15,16 @@ function ScrollToTopOnMount() {
 
 class BlogDetail15 extends Component {
     render() {
+        let title = "HireBeat Blog – Top 3 Jobs You Should Apply For Finance Major";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "You can capitalize on the various exciting opportunities in the ever-expanding financial sector.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         return (
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – Top 3 Jobs You Should Apply For Finance Major</title>
-                    <meta name="description" CONTENT="You can capitalize on the various exciting opportunities in the ever-expanding financial sector."></meta>
+                    <title></title>
+                    <meta name="description" CONTENT={description}></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

@@ -15,12 +15,16 @@ function ScrollToTopOnMount() {
 
 class BlogDetail18 extends Component {
     render() {
+        let title = "HireBeat Blog – How to answer the teamwork type question in an interview";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "How to answer the teamwork type question in an interview";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         return (
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – How to answer the teamwork type question in an interview</title>
-                    <meta name="description" CONTENT="How to answer the teamwork type question in an interview"></meta>
+                    <title>{title}</title>
+                    <meta name="description" CONTENT={description}></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

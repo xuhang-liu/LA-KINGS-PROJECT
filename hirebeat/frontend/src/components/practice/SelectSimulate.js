@@ -132,8 +132,8 @@ selectMedia = () => {
 
   render() {
     const meta = {
-      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
-      description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
+      title: 'HireBeat – Simulate Practice Mode',
+      description: 'Simulate Practice Mode Info',
       meta: {
         charset: 'utf-8',
         name: {

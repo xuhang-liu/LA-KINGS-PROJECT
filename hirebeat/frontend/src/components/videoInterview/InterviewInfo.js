@@ -215,8 +215,8 @@ class InterviewInfo extends Component {
         };
         let sessionShowTest = sessionStorage.getItem("interviewShowTest") === "true";
         const meta = {
-            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-            description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
+            title: 'HireBeat – Interview Info',
+            description: 'Interview Info',
             meta: {
               charset: 'utf-8',
               name: {

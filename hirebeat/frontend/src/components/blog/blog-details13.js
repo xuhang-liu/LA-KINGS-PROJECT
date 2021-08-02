@@ -15,13 +15,16 @@ function ScrollToTopOnMount() {
 
 class BlogDetail13 extends Component {
     render() {
+        let title = "HireBeat Blog – 3 Fastest-growing Jobs You Might Not Know About";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Learn about the careers experiencing high growth in the job market for insight on the paths you should pursue.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         return (
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – 3 Fastest-growing Jobs You Might Not Know About</title>
-                    <meta name="description" CONTENT="Learn about the careers experiencing high growth in the job market for insight on the paths you should pursue."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about"/>
+                    <title>{title}</title>
+                    <meta name="description" CONTENT={description}></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
