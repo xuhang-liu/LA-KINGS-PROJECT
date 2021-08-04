@@ -36,9 +36,9 @@ export class ReviewWindow extends Component {
           ) : (
           <div>
             <div style={{marginBottom:"2%"}}>
-              <h4 className="review-text" style={{fontSize:"25px", color:"#090D3A", marginLeft: "5rem"}}>
+              <h1 className="review-text" style={{fontSize:"25px", color:"#090D3A", marginLeft: "5rem"}}>
                 Under Review
-              </h4>
+              </h1>
             </div>
             <div className="row" style={{margin:"auto"}}>
               <p className="review-text" style={{fontSize:"20px", marginLeft: "5rem"}}>Q:</p>

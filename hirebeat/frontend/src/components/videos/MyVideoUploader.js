@@ -220,6 +220,8 @@ export class MyVideoUploader extends Component {
       <DocumentMeta {...meta}>
       <div>
         <div style={{ display: "none" }}>
+          {/* fake h1 tag */}
+          <h1 style={{visibility  : "hidden", textAlign: "center"}}>Video Uploader</h1>
           <ReactS3Uploader
             signingUrl= {this.props.isCareerVideo ? "/sign-wp-video" : "/sign_auth"}
             signingUrlMethod="GET"

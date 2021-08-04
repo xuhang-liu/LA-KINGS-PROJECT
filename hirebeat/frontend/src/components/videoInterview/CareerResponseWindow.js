@@ -156,8 +156,9 @@ export class CareerResponseWindow extends Component {
                 </audio>
                 {this.props.loaded ? (
                 <PracticeCard>
-                    <h4 style={{marginTop: "2rem"}}>
-                        <span style={{color:"#67A3F3"}}>Q{this.props.q_index+1}</span>: {this.props.questions[this.props.q_index]}</h4>
+                    <h1 style={{marginTop: "2rem"}}>
+                        <span style={{color:"#67A3F3"}}>Q{this.props.q_index+1}</span>: {this.props.questions[this.props.q_index]}
+                    </h1>
                     <div style={{ marginTop: 20 }}>
                         <div
                             className="video-recorder-row"

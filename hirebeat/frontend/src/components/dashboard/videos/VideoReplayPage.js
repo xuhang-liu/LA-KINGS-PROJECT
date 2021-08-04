@@ -24,7 +24,7 @@ export class VideoReplayPage extends Component {
   render() {
     return (
       <div>
-        <h2>{this.state.video.q_description}</h2>
+        <h1>{this.state.video.q_description}</h1>
         <h2>{this.state.video.created_at.substring(0, 10)}</h2>
         <VideoPlayer url={this.state.video.url} />
         {this.state.video.is_expert_reviewed ? (

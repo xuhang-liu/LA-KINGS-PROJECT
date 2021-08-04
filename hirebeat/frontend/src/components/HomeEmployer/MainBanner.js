@@ -33,8 +33,7 @@ class MainBanner extends Component {
                         <div className="row pl-5">
                             <div className="col-6" style={{paddingTop:"10vw"}}>
                                 <div className="hero-content">
-                                    <h1 style={{fontSize:"70px", lineHeight:"46px", marginBottom:"0.8rem"}}>Simplify the</h1>
-                                    <h1 style={{fontSize:"70px", lineHeight:"46px", marginBottom:"1.2rem"}}>Hiring Process</h1>
+                                    <h1 style={{fontSize:"70px", lineHeight: "normal", marginBottom:"0.8rem"}}>Simplify the <br/> Hiring Process</h1>
                                     <div>
                                         <p>Meet Candidate Behind the Resume</p>
                                         <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#f4c534"}}>One</span> Platform</p>
@@ -108,9 +107,9 @@ class MainBanner extends Component {
                 </MediaQuery>
                 <div className="container-fluid max-width-1440 pb-70 pt-100">
                     <div className="text-center">
-                        <h1 style={{fontSize:"2.4rem", fontWeight:"600", color:"#090D3A"}}>
+                        <h2 style={{fontSize:"2.4rem", fontWeight:"600", color:"#090D3A"}}>
                         How it works
-                        </h1>
+                        </h2>
                     </div>
                     <div className="row mt-5">
                         <div className="col-lg-3 col-md-6">
@@ -170,9 +169,9 @@ class MainBanner extends Component {
                 <div className="before-after pb-100 pt-100">
                     <div className="container-fluid max-width-1440">
                     <div className="text-center">
-                        <h1 style={{fontSize:"2.4rem", fontWeight:"600", color:"#090D3A"}}>
+                        <h2 style={{fontSize:"2.4rem", fontWeight:"600", color:"#090D3A"}}>
                         The Hiring Trend is Changing
-                        </h1>
+                        </h2>
                     </div>
                     <MediaQuery minDeviceWidth={1224}>
                     <div className="row">

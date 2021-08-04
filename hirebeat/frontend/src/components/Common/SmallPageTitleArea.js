@@ -12,7 +12,7 @@ class SmallPageTitleArea extends Component {
             <div className="page-title-area-small min-width-1290" style={style}>
                 <div className="container">
                     <div className="page-title-content">
-                        <h2>{pageTitle}</h2>
+                        <h1>{pageTitle}</h1>
                         <p>{pageDescription}</p>
                     </div>
                 </div>
@@ -22,7 +22,7 @@ class SmallPageTitleArea extends Component {
             <div className="page-title-area-small" style={style}>
                 <div className="container">
                     <div className="page-title-content">
-                        <h2>{pageTitle}</h2>
+                        <h1>{pageTitle}</h1>
                         <p>{pageDescription}</p>
                     </div>
                 </div>

@@ -124,7 +124,7 @@ export class QuestionTypeChoices extends Component {
           <button className="col features-box" style={{marginLeft: "5%", backgroundColor:"#ffffff"}} onClick={this.redirectToBehaviorQuestions}>
             <div style={{padding: "10%", textAlign: "left"}}>
             <div className="icon" style={{borderRadius: "15px"}}>
-              <img src="https://hirebeat-assets.s3.amazonaws.com/bq-logo.png" />
+              <img src="https://hirebeat-assets.s3.amazonaws.com/bq-logo.png" alt="bq logo"/>
             </div>
               <h3 className="practice-h3">Behavioral Question</h3>
               <p className="mode-col-text1">
@@ -139,7 +139,7 @@ export class QuestionTypeChoices extends Component {
           <button className="col features-box" style={{marginLeft: "6rem", backgroundColor:"#ffffff"}} onClick={this.redirectToTechQuestions}>
             <div style={{padding: "10%", textAlign: "left"}}>
             <div className="icon" style={{borderRadius: "15px"}}>
-              <img src="https://hirebeat-assets.s3.amazonaws.com/tq-logo.png" />
+              <img src="https://hirebeat-assets.s3.amazonaws.com/tq-logo.png" alt="tq logo"/>
             </div>
               <h3 className="practice-h3">Technical Question</h3>
               <p className="mode-col-text1">

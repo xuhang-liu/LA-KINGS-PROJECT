@@ -127,7 +127,7 @@ export class Register extends Component {
                         <div className="signup-content" style={{marginTop:"6rem"}}>
                                     <div className="signup-form">
                                       <div>
-                                        <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI"}}><b>Start your career with HireBeat</b></h3>
+                                        <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI"}}><b>Start your career with HireBeat</b></h1>
                                       </div>
 
                     <form onSubmit={this.onSubmit}>
@@ -417,7 +417,7 @@ export class Register extends Component {
                         >
                           <i className="bx bxs-hot"></i>
                           Try For Free
-                          <img src="https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10145429&ea=HOC1"/>
+                          <img src="https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10145429&ea=HOC1" alt="icon"/>
                         </button>
                       </div>
 

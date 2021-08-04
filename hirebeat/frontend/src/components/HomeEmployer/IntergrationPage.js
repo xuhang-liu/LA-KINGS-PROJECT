@@ -26,9 +26,9 @@ class IntergrationPage extends Component {
                             <div className="page-title-area2 min-width-1290">
                                 <div className="container">
                                     <div className="page-title-content">
-                                        <h2>
+                                        <h1>
                                             Partners and Integrations
-                                        </h2>
+                                        </h1>
                                         <p>
                                             We partner with the most popular tools and platforms in Recruiting and HR to make <br />
                                             your hiring experience simpler and more productive.
@@ -41,9 +41,9 @@ class IntergrationPage extends Component {
                             <div className="page-title-area2">
                                 <div className="container">
                                     <div className="page-title-content">
-                                        <h2>
+                                        <h1>
                                             Partners and Integrations
-                                        </h2>
+                                        </h1>
                                         <p>
                                             We partner with the most popular tools and platforms in Recruiting and HR to make <br />
                                             your hiring experience simpler and more productive.

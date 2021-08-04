@@ -258,6 +258,8 @@ export class Dashboard extends Component {
                       />
                     </div>}
                   <div className="container-fluid" style={{ marginBottom: "10%" }}>
+                    {/* fake h1 tag */}
+                    <h1 style={{visibility  : "hidden", textAlign: "center"}}>Dashboard</h1>
                     <div style={{ marginBottom: "auto", height: "auto", paddingTop: '5%' }}>
                       {this.renderSubpage()}
                     </div>

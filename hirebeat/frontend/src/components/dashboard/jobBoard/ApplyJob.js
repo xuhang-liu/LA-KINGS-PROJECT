@@ -391,9 +391,9 @@ const ApplyJob = (props) => {
                                         <form onSubmit={applySubmit}>
                                             <div>
                                                 <div className="px-5 pt-3 light-blue-border">
-                                                    <h1 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>
@@ -603,9 +603,9 @@ const ApplyJob = (props) => {
                                                     }
                                                 </div>
                                                 <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
-                                                    <h1 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
                                                         Create Account
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-group">
                                                         <label className="job-apply-char1" for="inputAddress">Email/Username</label>
                                                         <input type="text" class="form-control" id="inputAddress" placeholder="Create a username" onChange={onChange1} />
@@ -629,9 +629,9 @@ const ApplyJob = (props) => {
                                         <form onSubmit={applySubmit1}>
                                             <div>
                                                 <div className="px-5 pt-3 light-blue-border">
-                                                    <h1 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>
@@ -1069,9 +1069,9 @@ const ApplyJob = (props) => {
                                         <form onSubmit={applySubmit}>
                                             <div className="mt-3">
                                                 <div className="px-5 pt-3 light-blue-border">
-                                                    <h1 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>
@@ -1298,9 +1298,9 @@ const ApplyJob = (props) => {
                                                     }
                                                 </div>
                                                 <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
-                                                    <h1 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
                                                         Create Account
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-group">
                                                         <label className="job-apply-char1" for="inputAddress">Email/Username</label>
                                                         <input type="text" class="form-control" id="inputAddress" placeholder="Create a username" onChange={onChange1} />
@@ -1324,9 +1324,9 @@ const ApplyJob = (props) => {
                                         <form onSubmit={applySubmit1}>
                                             <div className="mt-3">
                                                 <div className="px-5 pt-3 light-blue-border">
-                                                    <h1 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>

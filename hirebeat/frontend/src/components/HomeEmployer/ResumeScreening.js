@@ -26,10 +26,10 @@ class ResumeScreening extends Component {
                     <div className="page-title-area2 min-width-1290">
                         <div className="container">
                             <div className="page-title-content">
-                                <h2>
+                                <h1>
                                     Getting <span style={{color: "#FAC046"}}>250</span> resumes and <span style={{color: "#FAC046"}}>88%</span> <br/>
                                     of them are unqualified?
-                                </h2>
+                                </h1>
                                 <p>
                                     You need an <span style={{color: "#FAC046"}}>AI resume screening software</span> to find the right <br/>
                                     candidate from the talent pool!
@@ -42,10 +42,10 @@ class ResumeScreening extends Component {
                     <div className="page-title-area2">
                         <div className="container">
                             <div className="page-title-content">
-                                <h2>
+                                <h1>
                                     Getting <span style={{color: "#FAC046"}}>250</span> resumes and <span style={{color: "#FAC046"}}>88%</span> <br/>
                                     of them are unqualified?
-                                </h2>
+                                </h1>
                                 <p>
                                     You need an <span style={{color: "#FAC046"}}>AI resume screening software</span> to find the right <br/>
                                     candidate from the talent pool!

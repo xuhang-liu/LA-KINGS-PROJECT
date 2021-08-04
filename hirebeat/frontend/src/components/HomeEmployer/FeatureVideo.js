@@ -26,10 +26,10 @@ class FeatureVideo extends Component {
                     <div className="page-title-area2 min-width-1290">
                         <div className="container">
                             <div className="page-title-content">
-                                <h2>
+                                <h1>
                                     Save <span style={{color: "#FAC046"}}>50%</span> of Your Time <br/>
                                     Reaching Top Candidates
-                                </h2>
+                                </h1>
                                 <p>
                                     Are you <span style={{color: "#FAC046"}}>wasting your time and money</span> on scheduling interviews and other basic tasks that could be easily <br/>
                                     fulfilled by tools?  Have you ever <span style={{color: "#FAC046"}}>lost the perfect candidate</span> to competitors due to the tedious process?
@@ -42,10 +42,10 @@ class FeatureVideo extends Component {
                     <div className="page-title-area2">
                         <div className="container">
                             <div className="page-title-content">
-                                <h2>
+                                <h1>
                                     Save <span style={{color: "#FAC046"}}>50%</span> of Your Time <br/>
                                     Reaching Top Candidates
-                                </h2>
+                                </h1>
                                 <p>
                                     Are you <span style={{color: "#FAC046"}}>wasting your time and money</span> on scheduling interviews and other basic tasks that could be easily <br/>
                                     fulfilled by tools?  Have you ever <span style={{color: "#FAC046"}}>lost the perfect candidate</span> to competitors due to the tedious process?
@@ -165,10 +165,10 @@ class FeatureVideo extends Component {
             <div className="features-area pt-100">
                 <div className="container-fluid max-width-1440 ">
                     <div className="text-center">
-                        <h1 style={{fontSize:"3rem", fontWeight:"600", color: "#000000"}}>
+                        <h2 style={{fontSize:"3rem", fontWeight:"600", color: "#000000"}}>
                             Go discover the gem, <br/>
                             and leave the housekeeping to us!
-                        </h1>
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -281,9 +281,9 @@ class FeatureVideo extends Component {
                 <div className="features-area pt-100">
                     <div className="container-fluid max-width-1440 ">
                         <div className="text-center">
-                            <h1 style={{fontSize:"3rem", fontWeight:"600", color: "#4689FA"}}>
+                            <h2 style={{fontSize:"3rem", fontWeight:"600", color: "#4689FA"}}>
                                 Here is how we can help you!
-                            </h1>
+                            </h2>
                         </div>
                     </div>
                 </div>
