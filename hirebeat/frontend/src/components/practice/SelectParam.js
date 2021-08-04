@@ -84,8 +84,7 @@ export class SelectParam extends Component {
     return (
       <a style={{ color: "#f3a340", textDecorationLine: "underline" }}>
         {(this.state.lengthOfResponse.value + 0.5) *
-          (this.state.numberOfQuestions.value) + 0.5}
-        mins
+          (this.state.numberOfQuestions.value)} minutes
       </a>
     );
   };
@@ -135,7 +134,7 @@ export class SelectParam extends Component {
           "select-time"
         )}
         <CardRow>
-          <h4 className="practice-txt2">This will cost you {this.getEstimateTime()} on average</h4>
+          <h4 className="practice-txt2">This will take you {this.getEstimateTime()} on average</h4>
         </CardRow>
         {notSafari &&
         <CardRow>
@@ -143,7 +142,7 @@ export class SelectParam extends Component {
           <Switch onChange={this.handleChange} checked={this.state.checked} />
         </CardRow>}
         <CardRow>
-          <button className="start-btn" onClick={this.selectMedia}>Start Exercise</button>
+          <button className="start-btn" onClick={this.selectMedia}>Start Practice</button>
         </CardRow>
       </div>
     );

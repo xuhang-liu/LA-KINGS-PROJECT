@@ -3968,3 +3968,60 @@ max-width: 110px;
 .text-editor {
   border: none;
 }
+
+.tech-field-txt {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.124rem;
+  color: #4A6F8A;
+}
+
+.resume-title {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2.0625rem;
+  color: #67A3F3;
+}
+
+.resume-title2 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.5625rem;
+  color: #090D3A;
+}
+
+#resume-hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#resume-hr hr{
+  text-align:center;
+  line-height:0px;
+  background:#E8EDFC;
+}
+
+#resume-hr hr:after{
+  content:"or";
+  font-family: Avenir Next Segoe UI;
+  font-weight:600;
+  font-size: 0.9375rem;
+  color: #000000;
+  background:white;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  z-index:2;
+}
+
+.resume-label {
+  font-family: Avenir Next Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
