@@ -334,7 +334,7 @@ const ApplyJob = (props) => {
                                     <p className="mt-5" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
                                     <div>
                                         <div>
-                                            <h2 className="mb-3">Company Overview</h2>
+                                            <h2 className="mb-2 jd-title">Company Overview</h2>
                                             <div className="mb-3">
                                                 {(job_id == null || job_id == "") ? null :
                                                     <RichTextEditor
@@ -346,7 +346,7 @@ const ApplyJob = (props) => {
                                                 }
                                             </div>
                                         </div>
-                                        <h2 className="mb-3 mt-5">Job Description</h2>
+                                        <h2 className="mb-2 mt-3 jd-title">Job Description</h2>
                                         <div className="mb-3">
                                             {(job_id == null || job_id == "") ? null :
                                                 <RichTextEditor
@@ -359,8 +359,8 @@ const ApplyJob = (props) => {
                                         </div>
                                         {props.job.eeo_req == "1" &&
                                             <div>
-                                                <h2 className="mb-2 mt-3">EEO Statement</h2>
-                                                <p className="mb-4 mt-1" style={{ color: "#090d3a" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                                                <h2 className="mb-2 mt-3 jd-title">EEO Statement</h2>
+                                                <p className="mb-4 mt-1 text-editor2">{(job_id == null || job_id == "") ? "" : props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
                                             </div>}
                                     </div>
                                     {!Applied &&
@@ -1012,7 +1012,7 @@ const ApplyJob = (props) => {
                                     </div>
                                     <div>
                                         <div>
-                                            <h2 className="mb-3 mt-5">Company Overview</h2>
+                                            <h2 className="mb-2 mt-3 jd-title">Company Overview</h2>
                                             <div className="mb-3">
                                                 {(job_id == null || job_id == "") ? null :
                                                     <RichTextEditor
@@ -1024,7 +1024,7 @@ const ApplyJob = (props) => {
                                                 }
                                             </div>
                                         </div>
-                                        <h2 className="mb-3 mt-3">Job Description</h2>
+                                        <h2 className="mb-2 mt-3 jd-title">Job Description</h2>
                                         <div className="mb-3">
                                             {(job_id == null || job_id == "") ? null :
                                                 <RichTextEditor
@@ -1037,8 +1037,8 @@ const ApplyJob = (props) => {
                                         </div>
                                         {props.job.eeo_req == "1" &&
                                             <div>
-                                                <h2 className="mb-2 mt-3">EEO Statement</h2>
-                                                <p className="mb-4 mt-1" style={{ color: "#090d3a" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                                                <h2 className="mb-2 mt-3 jd-title">EEO Statement</h2>
+                                                <p className="mb-4 mt-1 text-editor2">{(job_id == null || job_id == "") ? "" : props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
                                             </div>}
                                     </div>
                                     {!Applied &&

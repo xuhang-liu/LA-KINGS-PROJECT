@@ -3972,6 +3972,25 @@ max-width: 110px;
 
 .text-editor {
   border: none;
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  color: #090D3A;
+}
+
+.text-editor .public-DraftEditor-content {
+  min-height: auto;
+}
+
+.text-editor2 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  color: #090D3A;
 }
 
 .tech-field-txt {
@@ -4038,5 +4057,14 @@ max-width: 110px;
   font-size: 1.25rem;
   padding-left: 15px;
   padding-right: 15px;
+  color: #090D3A;
+}
+
+.jd-title {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.6875rem;
   color: #090D3A;
 }
