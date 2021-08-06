@@ -32,7 +32,7 @@ export class ResponseWindow extends Component {
         behavior: "smooth",
       });
     }, 200);
-    this.props.getQuestions(this.props.questionNumber, this.props.questionCategory, this.props.questionDifficulty);
+    // this.props.getQuestions(this.props.questionNumber, this.props.questionCategory, this.props.questionDifficulty);
   }
 
   finishCountdown = () => {
@@ -119,13 +119,13 @@ export class ResponseWindow extends Component {
           <PracticeCard>
             {this.questionIndex()}
             {this.questionIndicator()}
-            <h4>{this.props.questions[this.props.q_index].description}</h4>
+            <h1 style={{fontSize: "1.22rem"}}>{this.props.questions[this.props.q_index]["description"]}</h1>
             <div style={{ marginTop: 20 }}>
               <div
                 className="video-recorder-row"
                 style={{ marginBottom: "-7px" }}
               >
-                <div className="col-8">
+                <div className="col-7">
                   <div
                     style={{
                       backgroundColor: "black",
@@ -152,7 +152,7 @@ export class ResponseWindow extends Component {
                     />
                   </div>
                 </div>
-                <div className="col-3" />
+                <div className="col-5" />
               </div>
               {this.state.status == "Preparation" ? (
                 <PrepCountdown finishCountdown={this.finishCountdown} />

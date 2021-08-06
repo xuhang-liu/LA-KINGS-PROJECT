@@ -12,8 +12,10 @@ import SmallPageTitleArea from '../Common/SmallPageTitleArea';
 import Switch from "react-switch";
 import LoadingForAi from "../shared/LoadingForAi";
 import DocumentMeta from 'react-document-meta';
+import { getQuestions } from "../../redux/actions/question_actions";
+import { connect } from "react-redux";
 
-export class SelectParam extends Component {
+export class SelectSimulate extends Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
@@ -57,6 +59,8 @@ selectMedia = () => {
   else {
     this.setAudioParam();
   }
+  // get quesitons
+  this.props.getQuestions(this.state.numberOfQuestions.value, this.state.categoryOfQuestion.label, this.state.difficultyOfQuestion.value);
 }
 
   testDeviceDone = () => {
@@ -205,4 +209,4 @@ selectMedia = () => {
   }
 }
 
-export default SelectParam;
+export default connect(null, { getQuestions })(SelectSimulate);

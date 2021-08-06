@@ -87,7 +87,7 @@ export class RetryResponseWindow extends Component {
                     <PracticeCard>
                         {/*{this.questionIndex()}*/}
                         <Link to={"/dashboard"} style={{textDecoration: "none"}}>
-                            <h1 style={{marginTop: "1rem"}}>
+                            <h1 style={{marginTop: "1rem", fontSize: "1.22rem"}}>
                                 <span style={{verticalAlign: "middle"}}>
                                     <i className={"bx bx-arrow-back"}></i>
                                 </span>

@@ -13,6 +13,8 @@ import { CardRow, selectParam } from "./CardComponents";
 import SmallPageTitleArea from '../Common/SmallPageTitleArea';
 import Switch from "react-switch";
 import LoadingForAi from "../shared/LoadingForAi";
+import { getQuestions } from "../../redux/actions/question_actions";
+import { connect } from "react-redux";
 
 export class SelectParam extends Component {
   constructor() {
@@ -55,6 +57,8 @@ export class SelectParam extends Component {
     else {
       this.setAudioParam();
     }
+    // get quesitons
+    this.props.getQuestions(this.state.numberOfQuestions.value, this.state.categoryOfQuestion.label, this.state.difficultyOfQuestion.value);
   }
 
   testDeviceDone = () => {
@@ -207,4 +211,4 @@ export class SelectParam extends Component {
   }
 }
 
-export default SelectParam;
+export default connect(null, { getQuestions })(SelectParam);

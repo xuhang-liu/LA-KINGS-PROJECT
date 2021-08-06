@@ -207,14 +207,14 @@ export class MyVideoUploader extends Component {
     };
     var saveOnTap = this.handleUpload;
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
-    var saveText = "Save and Next";
-    var skipText = "Discard and Next";
+    var saveText = "Save & Next";
+    var skipText = "Discard & Next";
 
     if (this.props.last_q || this.props.questions.length == 1) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
-      saveText = this.props.isCareerVideo ? "Submit" : "Save and Finish";
-      skipText = "Discard and Finish";
+      saveText = this.props.isCareerVideo ? "Submit" : "Save & Finish";
+      skipText = "Discard & Finish";
     }
     return (
       <DocumentMeta {...meta}>
