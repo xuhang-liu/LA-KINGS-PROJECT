@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { MyModal80, MyFullModal1 } from './DashboardComponents';
 //import DropdownButton from 'react-bootstrap/DropdownButton';
 //import Dropdown from 'react-bootstrap/Dropdown';
-import ReviewApplication from './ReviewApplication';
+import CandidateApplication from './shortlist/CandidateApplication';
 import { ResumeEva } from "./applications/ResumeEva";
 import { connect } from 'react-redux';
 import { loadStarList, getResumeURL, addExReviewer, delExReviewer } from './../../redux/actions/question_actions';
@@ -345,16 +345,19 @@ const ShortListCard = (props) => {
 }
 
 const AcceptedCandidate = (props) => {
+    const jobTitle = props.theJob.job_title;
+    const jobId = props.theJob.job_id;
     return (
         <div>
             <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem" }} className="container min-width-980 mt-4 py-4 chart-bg1">
+                <h2 className="short-list-title">{jobTitle.length > 50 ? jobTitle.substring(0,47)+"..." : jobTitle} {jobId == "" ? null : "(ID: " + jobId + ")"}</h2>
                 <div style={{ color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
-                    <div className="col-1">Name</div>
-                    <div className="col-3">Email</div>
-                    <div className="col-2">Recorded On</div>
+                    <div className="col-3">Name</div>
+                    {/* <div className="col-3">Email</div> */}
+                    {/* <div className="col-2">Recorded On</div> */}
                     <div className="col-3">Video Average Score</div>
                     <div className="col-2">Resume Score</div>
-                    {(!props.profile.is_external_reviewer) && <div className="col-1">Contact</div>}
+                    {(!props.profile.is_external_reviewer) && <div className="col-2">Contact</div>}
                 </div>
                 {props.theJob.applicants.map((applicant, index) => {
                     if (applicant.comment_status == 1) {
@@ -406,7 +409,7 @@ const CandidateCard = (props) => {
         // get videos and info
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
         props.getApplicantsInfo(props.applicant.email);
-        props.getResumeURL(props.applicant.positions_id, props.id_candidate);
+        props.getResumeURL(props.applicant.positions_id, props.applicant.user_id);
         props.getReviewNote(props.applicant.positions_id, props.applicant.email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
         props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email);
@@ -416,13 +419,16 @@ const CandidateCard = (props) => {
     const refresh = () => {
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
         props.getApplicantsInfo(props.applicant.email);
-        props.getResumeURL(props.applicant.positions_id, props.id_candidate);
+        props.getResumeURL(props.applicant.positions_id, props.applicant.user_id);
         props.getReviewNote(props.applicant.positions_id, props.applicant.email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
         props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email);
     }
 
     const renderStars = (stars) => {
+        if (stars < 1) {
+            return <div className="short-list-text2">N/A</div>
+        }
         return (
             <div>
                 <div className="row">
@@ -449,7 +455,7 @@ const CandidateCard = (props) => {
 
     const renderResume = (resumes) => {
         if (resumes == "-1") {
-            return;
+            return <div className="short-list-text2">N/A</div>
         }
         return (
             <div>
@@ -475,17 +481,17 @@ const CandidateCard = (props) => {
                 <hr />
             </div>
             <div style={{ fontFamily: "Avenir Next, Segoe UI", fontWeight: "600" }} className="ml-0 d-flex justify-content-start container-fluid row h-100">
-                <div className="col-1 short-list-text" onClick={() => { viewResult(); }}>
-                    {props.applicant.name.length > 6 ? props.applicant.name.substring(0, 4) + "..." : props.applicant.name}
-                </div>
-
                 <div className="col-3 short-list-text" onClick={() => { viewResult(); }}>
-                    {props.applicant.email.length > 24 ? props.applicant.email.substring(0, 22) + "..." : props.applicant.email}
+                    {props.applicant.name.length > 18 ? props.applicant.name.substring(0, 15) + "..." : props.applicant.name}
                 </div>
 
-                <div className="col-2" style={{ color: "#7D7D7D", fontSize: "1rem" }}>
+                {/* <div className="col-3 short-list-text" onClick={() => { viewResult(); }}>
+                    {props.applicant.email.length > 24 ? props.applicant.email.substring(0, 22) + "..." : props.applicant.email}
+                </div> */}
+
+                {/* <div className="col-2" style={{ color: "#7D7D7D", fontSize: "1rem" }}>
                     {props.applicant.invite_date.substring(0, 10)}
-                </div>
+                </div> */}
 
                 <div className="col-3">
                     {renderStars(props.stars)}
@@ -494,13 +500,13 @@ const CandidateCard = (props) => {
                     {renderResume(props.resume_list)}
                 </div>
                 {!props.profile.is_external_reviewer &&
-                    <div className="col-1">
+                    <div className="col-2">
                         <a
                             href={mailTo}
                             className="interview-txt9"
                             style={{ color: "#67A3F3", border: "none", background: "white", display: "inline-block", fontSize: "0.7rem" }}
                         >
-                            <i className="bx-fw bx bx-mail-send"></i> Email
+                            <i className="bx-fw bx bx-mail-send"></i> Send Email
                         </a>
                     </div>
                 }
@@ -555,7 +561,7 @@ function MyVerticallyCenteredModal(props) {
     return (
         <div style={{ background: "#E8EDFC" }}>
             <MyFullModal1 className="light-blue-modal" {...rest}>
-                <ReviewApplication
+                <CandidateApplication
                     {...rest}
                     refresh={props.refresh}
                     getPJobs={props.getPJobs}

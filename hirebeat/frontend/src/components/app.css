@@ -3331,6 +3331,11 @@ h5 {
   cursor: pointer;
 }
 
+.short-list-text2 {
+  color: #090D3A;
+  font-size: 1rem;
+}
+
 .short-list-text:hover {
   color: #ff6b00;
 }
@@ -4024,4 +4029,14 @@ max-width: 110px;
   font-weight: 500;
   font-size: 0.9375rem;
   color: #4A6F8A;
+}
+
+.short-list-title {
+  font-family: Avenir Next Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #090D3A;
 }

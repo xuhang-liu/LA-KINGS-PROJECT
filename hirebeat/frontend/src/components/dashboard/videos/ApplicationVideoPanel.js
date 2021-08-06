@@ -16,8 +16,12 @@ class ApplicationVideoPanel extends Component {
     };
 
     handleRating = (x) => {
+        let readOnly = this.props?.readOnly || false;
         if (this.props.filter == "closed") {
             return alert("Current job is closed, you can't make any change");
+        }
+        else if (readOnly) {
+            return alert("You can't change the video score");
         }
         var new_star = [...this.state.ratings];
         new_star[this.state.page] = x;
