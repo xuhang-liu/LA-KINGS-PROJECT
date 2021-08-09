@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer15 extends Component {
     render() {
+        let title = "HireBeat Blog – 4 Secrets That Improve Your LinkedIn Job Posting Today";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Social platforms are the key to recruitment right now. LinkedIn is one of the most popular and commonly used recruiting tools these days. This article provides a few tactics to help you and your business stand out on LinkedIn and attract compelling candidates.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – 4 Secrets That Improve Your LinkedIn Job Posting Today',
-            description: 'Social platforms are the key to recruitment right now. LinkedIn is one of the most popular and commonly used recruiting tools these days. This article provides a few tactics to help you and your business stand out on LinkedIn and attract compelling candidates.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

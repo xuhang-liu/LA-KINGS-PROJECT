@@ -26,8 +26,7 @@ class AIGInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – American International Group (AIG)</title>
-                    <meta name="Description" CONTENT="American International Group (AIG) is a global insurance company. It provides a range of property casualty insurance, life insurance, retirement solutions, and other financial services to businesses and individuals. The compan delivers its portfolio of solutions through a multichannel distribution network and franchising." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/american-international-group"/>
+                    <meta name="Description" CONTENT="American International Group (AIG) Info" ></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

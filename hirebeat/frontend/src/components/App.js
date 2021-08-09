@@ -252,7 +252,6 @@ class App extends Component {
     const meta = {
       title: 'HireBeat – Your First Step to A Better Recruiting Journey',
       description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
-      canonical: 'https://hirebeat.co/',
       meta: {
         charset: 'utf-8',
         name: {
@@ -277,18 +276,18 @@ class App extends Component {
                 <PrivateRoute exact path="/review" component={ReviewListPreload} />
                 <PrivateRoute
                   exact
-                  path="/practice/modes"
+                  path="/practice-modes"
                   component={BehaviorQuestionMode}
                 />
 
                 <PrivateRoute
                   exact
-                  path="/practice/modes/practice"
+                  path="/practice-modes-practice"
                   component={SelectParam}
                 />
                 <PrivateRoute
                   exact
-                  path="/practice/modes/simulate"
+                  path="/practice-modes-simulate"
                   component={SelectSimulate}
                 />
                 <PrivateRoute
@@ -298,17 +297,17 @@ class App extends Component {
                 />
                 <PrivateRoute
                   exact
-                  path="/techfields/"
+                  path="/techfields"
                   component={TechFields}
                 />
                 <PrivateRoute
                   exact
-                  path="/techfields/practice"
+                  path="/techfields-practice"
                   component={TechPracticeMode}
                 />
                 <Route
                   exact
-                  path="/practice/"
+                  path="/practice"
                   component={QuestionTypeChoices}
                 />
                 <PrivateRoute path="/video/:id" component={VideoReplayPage} />

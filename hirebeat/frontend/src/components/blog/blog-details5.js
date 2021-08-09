@@ -15,13 +15,16 @@ function ScrollToTopOnMount() {
 
 class BlogDetail5 extends Component {
     render() {
+        let title = "HireBeat Blog – Things to Do Before an Interview";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "To have a successful interview, you need to be prepared. Learn about the things you should do before an interview to help you stay prepared.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         return (
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – Things to Do Before an Interview</title>
-                    <meta name="description" CONTENT="To have a successful interview, you need to be prepared. Learn about the things you should do before an interview to help you stay prepared."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-things-to-do-before-an-interview"/>
+                    <title>{title}</title>
+                    <meta name="description" CONTENT={description}></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

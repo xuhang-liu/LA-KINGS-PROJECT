@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail24 extends Component {
     render() {
+        let title = "HireBeat Blog – How to Answer the Question 'What Makes You Stand Out from Other Candidates?'";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Keep in mind that the question is an opportunity to explain to the interviewer how special you are as a potential employee.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – How to Answer the Question “What Makes You Stand Out from Other Candidates?”',
-            description: 'Keep in mind that the question is an opportunity to explain to the interviewer how special you are as a potential employee.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

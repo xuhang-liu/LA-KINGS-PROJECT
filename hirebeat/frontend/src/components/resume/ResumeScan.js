@@ -216,14 +216,12 @@ export class ResumeScan extends Component {
   };
 
   render() {
-    var cName = "col-6";
-    if(this.state.selected){
-      cName = "col-12";
-    }
     return (
       <React.Fragment>
       <div className="container">
-        <div style={{textAlign: "center"}}>
+        <div>
+          <h2 className="resume-title">Step 1</h2>
+          <h3 className="resume-title2">Upload your Resume</h3>
           <button className="default-btn resume-upload" onClick={this.selectFile}>
             <i className="bx bx-cloud-upload bx-sm"></i>
               Upload Resume
@@ -240,6 +238,7 @@ export class ResumeScan extends Component {
             </div>
           ) : null
         }
+        <div id="resume-hr"><hr/></div>
         <ReactS3Uploader
           style={{display: "none"}}
           id="uploadFile"
@@ -257,37 +256,40 @@ export class ResumeScan extends Component {
           }}
           autoUpload={true}
         />
-        <div className="row" style={{textAlign: "center", marginTop: "2rem"}}>
-        {!this.state.selected && <div className="col-6">
-               <h4 className="resume-subtitle">Or paste Your Resume </h4>
-               <div className="row" style={{justifyContent: "center"}}>
+        <div style={{marginTop: "2rem"}}>
+          <h2 className="resume-title">Step 2</h2>
+        {!this.state.selected && <div>
+               <h3 className="resume-title2">Paste Your Resume </h3>
+                <div>
                  <textarea
                    id="cvText"
                    className="resume-textarea"
-                   style={{width: "80%", height: "18rem", marginTop: "0.5rem", fontSize: "1.2rem"}}
+                   style={{width: "100%", height: "5rem", marginTop: "0.5rem", fontSize: "1.2rem", resize: "none"}}
                    placeholder="Paste resume here"
                    onChange={this.strToText}
                  >
                  </textarea>
               </div>
            </div>}
-           <div className={cName}>
-               <h4 className="resume-subtitle">Paste Your Job Description </h4>
-               <div className="row" style={{justifyContent: "center"}}>
+           <div style={{marginTop: "2rem"}}>
+               <h3 className="resume-title2">Paste Job Description </h3>
+               <div>
+                <label className="resume-label">Job Title<span className="job-apply-char2">*</span></label>
                  <textarea
                    id="jobTitle"
                    className="resume-textarea"
-                   style={{width: "80%", height: "2rem", fontSize: "1.2rem"}}
+                   style={{width: "100%", height: "2rem", fontSize: "1.2rem", resize: "none"}}
                    placeholder="Job Title Here"
                    onChange={this.setJobTitle}
                  >
                  </textarea>
                </div>
-               <div className="row" style={{justifyContent: "center"}}>
+               <div>
+                 <label className="resume-label">Job Description<span className="job-apply-char2">*</span></label>
                  <textarea
                    id="jdText"
                    className="resume-textarea"
-                   style={{width: "80%", height: "16rem", marginTop: "0.5rem", fontSize: "1.2rem"}}
+                   style={{width: "100%", height: "12rem", fontSize: "1.2rem", resize: "none"}}
                    placeholder="Paste job description here. Exclude the “About Company”."
                    onChange={this.setJdText}
                  >

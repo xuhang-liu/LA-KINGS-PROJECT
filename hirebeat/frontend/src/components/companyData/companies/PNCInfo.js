@@ -26,8 +26,7 @@ class PNCInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – The PNC Financial Services Group</title>
-                    <meta name="Description" CONTENT="The PNC Financial Services Group is a diversified financial services organization providing retail and business banking, residential mortgage banking, specialized services for corporations and government entities, including corporate banking, real estate finance and asset-based lending, wealth management, and asset management. The company also offers investment and risk management services to institutional and retail clients." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/pnc-financial-services-group"/>
+                    <meta name="Description" CONTENT="The PNC Financial Services Group Info" ></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

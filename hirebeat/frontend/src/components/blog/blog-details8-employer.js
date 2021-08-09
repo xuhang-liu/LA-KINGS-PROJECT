@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer8 extends Component {
     render() {
+        let title = "HireBeat Blog – How to Get Your Job Postings Noticed";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "It is important for employers to find ways to optimize job postings. This article offers various tactics to help companies stand out and get noticed.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – How to Get Your Job Postings Noticed',
-            description: 'It is important for employers to find ways to optimize job postings. This article offers various tactics to help companies stand out and get noticed.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

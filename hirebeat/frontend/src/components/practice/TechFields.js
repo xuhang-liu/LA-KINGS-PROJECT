@@ -9,7 +9,7 @@ import emailjs from 'emailjs-com';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { withRouter } from "react-router-dom";
-
+import DocumentMeta from 'react-document-meta';
 import nofind from '../../assets/tech/Nofind.png';
 
 
@@ -62,7 +62,7 @@ export class TechFields extends Component {
   redirectToTechPractice = () => {
     const { history } = this.props;
     if (history) history.push({
-        pathname: "/techfields/practice",
+        pathname: "/techfields-practice",
         params: {category: this.state.category}
     });
   }
@@ -74,7 +74,18 @@ export class TechFields extends Component {
   }
 
   render() {
+    const meta = {
+        title: 'HireBeat – Techfields',
+        description: 'Techfields Info',
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'ats for hr, ats hr software, ats system hr'
+          }
+        }
+    };
     return (
+      <DocumentMeta {...meta}>
       <React.Fragment>
         <ScrollToTopOnMount />
         <SmallPageTitleArea 
@@ -166,7 +177,7 @@ export class TechFields extends Component {
       <img src="https://hirebeat-assets.s3.amazonaws.com/retail.png" alt="image"/>
       </button>  
       </div>
-      <div>
+      <div style={{display: "flex", verticalAlign: "middle"}}>
       <button style={{
         width: "15%",
         border: "none",
@@ -187,8 +198,37 @@ export class TechFields extends Component {
         onClick={this.setCategory.bind(this, "Business Analyst")}>
       <img src="https://hirebeat-assets.s3.amazonaws.com/bussinessanalyst.png" alt="image"/>
       </button>
+      <button style={{
+        minWidth: "15%",
+        border: "none",
+        marginLeft: "36px",
+        marginRight: "15px",
+        marginBottom: "15px",
+        marginTop: "15px",
+        backgroundColor: "white",}}
+        onClick={this.DisplayText}>
+      <div className="row">
+      <img src={nofind} alt="image" style={{marginRight:"0.5rem"}}/>
+      <div style={{display: "table"}}>
+        <span className="tech-field-txt" style={{display: "table-cell", verticalAlign: "middle"}}>
+          Can’t find your position? Talk to us <br/> and we’ll try our best to support you.
+        </span>
       </div>
-      <div>
+      </div>
+      </button>
+      <div style={{display: "flex", alignItems: "center"}}>
+        <form style={{display:"flex", visibility:this.state.display, marginLeft: "15px"}} onSubmit={sendEmail}>
+        <input type="text" name="field" placeholder="What industry are you looking for?"
+        style={{border:"1px solid #E6E8F6", boxSizing: 'border-box', borderRadius:"3px", width:"20rem", fontSize:"0.75rem", height:"3rem"}}>
+        </input>
+        <button className="default-btn" style={{backgroundColor:"#56a3fa", marginLeft:"2%"}}>
+        <i className="bx bxs-hot"></i>
+          Submit
+        </button>
+        </form>
+      </div>
+      </div>
+      {/* <div>
       <button style={{
         minWidth: "15%",
         border: "none",
@@ -209,9 +249,10 @@ export class TechFields extends Component {
         Submit
       </button>
       </form>
-      </div>
+      </div> */}
     </div>
     </React.Fragment>
+    </DocumentMeta>
     );
   }
 }

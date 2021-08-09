@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail21 extends Component {
     render() {
+        let title = "HireBeat Blog – 4 Amazing Tips to Effectively Networking During Covid-19";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Wondering how you can network effectively and expand your professional network? Here are the four most amazing tips through which you can ace any interview or land your most desirable job without much effort.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – 4 Amazing Tips to Effectively Networking During Covid-19',
-            description: 'Wondering how you can network effectively and expand your professional network? Here are the four most amazing tips through which you can ace any interview or land your most desirable job without much effort.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

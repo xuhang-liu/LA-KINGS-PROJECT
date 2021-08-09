@@ -26,8 +26,7 @@ class BLUSAInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Bank Leumi USA </title>
-                    <meta name="Bank Leumi operates as a banking corporation. The Company offers a wide range of private and business services, including financial solutions, professional services, international trade and finance solutions, investments and capital markets, and digital services. It also provides global services, such as overseas banking subsidiaries, custody services, and international money transfers. Bank Leumi provides access to online banking and mobile services as well." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/bank-leumi"/>
+                    <meta name="Bank Leumi Info" ></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -26,6 +26,7 @@ from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
 load_dotenv()
 import requests
+from django.forms.models import model_to_dict
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -287,7 +288,12 @@ def get_received_interview(request):
 @api_view(['GET'])
 def get_profile_detail(request):
     user_id = request.query_params.get("user_id")
-    data = ProfileDetail.objects.filter(user_id=user_id).values()[0]
+    data = model_to_dict(ProfileDetail(user_id=user_id))
+    try:
+        profile = ProfileDetail.objects.get(user_id=user_id)
+        data = model_to_dict(profile)
+    except ObjectDoesNotExist:
+        return Response({"data": data})
     return Response({"data": data})
 
 @api_view(['POST'])

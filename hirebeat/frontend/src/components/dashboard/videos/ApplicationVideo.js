@@ -40,6 +40,7 @@ render() {
                                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     transcripts={this.props.transcripts[this.state.currentVideo]}
                                     filter={this.props.filter}
+                                    readOnly={this.props.readOnly}
                             />
                         </div>
                         <div className='row ml-1'>

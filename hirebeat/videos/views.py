@@ -98,6 +98,9 @@ def get_video_sentences_by_id(video_id):
 def get_question_subcategories(category):
     subcategories = []
     queryset = Categorys.objects.filter(category_des=category).values('subCategorys')
+    # return empty list when queryset not exist
+    if len(queryset) == 0:
+        return subcategories
     sub_list = queryset[0]["subCategorys"].split(",")
     num = len(sub_list)
 
@@ -123,6 +126,7 @@ def get_unreviewed_video_list(request):
         # videos
         serializer = VideoSerializer(videos[i])
         video_list.append(serializer.data)
+        print(333)
         # video sentences
         sentences = get_video_sentences_by_id(videos[i].id)
         video_sentences.append(sentences)

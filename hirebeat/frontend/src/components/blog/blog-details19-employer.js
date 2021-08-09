@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer19 extends Component {
     render() {
+        let title = "HireBeat Blog – Employer Branding vs Recruitment Marketing";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Employer branding and recruitment marketing are two terms that are used relatively interchangeably by a lot of people although there is a clear distinction between the two.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Employer Branding vs Recruitment Marketing',
-            description: 'Employer branding and recruitment marketing are two terms that are used relatively interchangeably by a lot of people although there is a clear distinction between the two.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

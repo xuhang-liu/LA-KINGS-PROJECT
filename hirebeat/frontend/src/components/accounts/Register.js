@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import badge from '../../assets/badge.png';
 import Footer from "../layout/Footer";
 //import leftbg from '../../assets/Login.png';
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -92,6 +93,16 @@ export class Register extends Component {
   };
 
   render() {
+    const meta = {
+        title: 'HireBeat – Register',
+        description: 'Register Info',
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'hiring tool return on investment, hiring tool roi, hr applicant tracking, roi recruitment process'
+          }
+        }
+    };
     const {username, email, password, password2} = this.state;
     if (this.props.auth.isAuthenticated) {
       if (this.props.user.groups[0] == "reviewers") {
@@ -101,6 +112,7 @@ export class Register extends Component {
       }
     }
     return (
+        <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
           <div>
@@ -115,7 +127,7 @@ export class Register extends Component {
                         <div className="signup-content" style={{marginTop:"6rem"}}>
                                     <div className="signup-form">
                                       <div>
-                                        <h3 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI"}}><b>Start your career with HireBeat</b></h3>
+                                        <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI"}}><b>Start your career with HireBeat</b></h1>
                                       </div>
 
                     <form onSubmit={this.onSubmit}>
@@ -405,7 +417,7 @@ export class Register extends Component {
                         >
                           <i className="bx bxs-hot"></i>
                           Try For Free
-                          <img src="https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10145429&ea=HOC1"/>
+                          <img src="https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10145429&ea=HOC1" alt="icon"/>
                         </button>
                       </div>
 
@@ -450,7 +462,7 @@ export class Register extends Component {
           </div>
           <Footer />
         </React.Fragment>
-
+        </DocumentMeta>
     );
   }
 }

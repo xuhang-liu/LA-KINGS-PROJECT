@@ -8,9 +8,8 @@ import MediaQuery from 'react-responsive';
 class IntergrationPage extends Component {
     render() {
         const meta = {
-            title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-            description: "Join the world's fastest-growing hiring trend with our automated interviewing platform",
-            canonical: 'https://hirebeat.co/employer-intergration-page',
+            title: 'HireBeat – Integration Page',
+            description: "Integration Page Info",
             meta: {
                 charset: 'utf-8',
                 name: {
@@ -27,9 +26,9 @@ class IntergrationPage extends Component {
                             <div className="page-title-area2 min-width-1290">
                                 <div className="container">
                                     <div className="page-title-content">
-                                        <h2>
+                                        <h1>
                                             Partners and Integrations
-                                        </h2>
+                                        </h1>
                                         <p>
                                             We partner with the most popular tools and platforms in Recruiting and HR to make <br />
                                             your hiring experience simpler and more productive.
@@ -42,9 +41,9 @@ class IntergrationPage extends Component {
                             <div className="page-title-area2">
                                 <div className="container">
                                     <div className="page-title-content">
-                                        <h2>
+                                        <h1>
                                             Partners and Integrations
-                                        </h2>
+                                        </h1>
                                         <p>
                                             We partner with the most popular tools and platforms in Recruiting and HR to make <br />
                                             your hiring experience simpler and more productive.

@@ -26,8 +26,7 @@ class JacobsInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Jacobs</title>
-                    <meta name="Description" CONTENT="Jacobs Engineering is a technical, consulting, and scientific service provider for the government and private sector. It operates in two segments: Critical Mission Solutions and People and Places Solutions. The Critical Mission Solutions segment offers cybersecurity, data analytics, software application development, enterprise and mission IT, systems integration, and other technical consulting solutions to government agencies and aerospace, automotive, and telecom customers. The People and Places Solutions segment provides facility engineering services for projects in connected mobility, water, smart cities, advanced manufacturing, and the environment." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/jacobs"/>
+                    <meta name="Description" CONTENT="Jacobs Info" ></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

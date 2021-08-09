@@ -5,6 +5,7 @@ import { MyModal } from "./../dashboard/DashboardComponents";
 import JobFilter from "./JobFilter";
 //import ReactPaginate from 'react-paginate';
 import {Link} from "react-router-dom";
+import SmallPageTitleArea from './../Common/SmallPageTitleArea';
 
 export class SearchResult extends Component {
     // data passed from job search page
@@ -73,6 +74,9 @@ export class SearchResult extends Component {
     render() {
         return (
             <React.Fragment>
+                <SmallPageTitleArea
+                    pageTitle="Find Jobs"
+                />
                 <div className="row career-search" >
                     <div className="col-4 career-bg" >
                         <label className="career-txt1" style={{margin: "0rem"}}>What?</label>

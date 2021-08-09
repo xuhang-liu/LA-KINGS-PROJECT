@@ -91,14 +91,14 @@ export class CareerVideoUploader extends Component {
   render() {
     var saveOnTap = this.handleUpload;
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
-    var saveText = "Next";
-    var skipText = "Discard and Next";
+    var saveText = "Next Question";
+    var skipText = "Discard & Next Question";
 
     if (this.props.last_q) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
-      saveText = "Finish and Submit";
-      skipText = "Discard and Finish";
+      saveText = "Finish Interview";
+      skipText = "Discard & Finish Interview";
     }
     return (
       <div>

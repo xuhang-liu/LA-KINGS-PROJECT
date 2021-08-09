@@ -70,9 +70,8 @@ const options = {
 class EmployerContact extends Component {
     render() {
       const meta = {
-        title: 'HireBeat – Your First Step to A Better Recruiting Journey',
-        description: 'Join the world’s fastest-growing hiring trend with our automated interviewing platform.',
-        canonical: 'https://hirebeat.co/employer_contact',
+        title: 'HireBeat – Employer Contact',
+        description: 'Employer Contact Info',
         meta: {
           charset: 'utf-8',
           name: {

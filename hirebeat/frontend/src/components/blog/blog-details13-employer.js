@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer13 extends Component {
     render() {
+        let title = "HireBeat Blog – How to Write A Termination Letter Right?";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Writing a termination letter could be annoying. This article provides a few tips that helps the employers write the right termination letter.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – How to Write A Termination Letter Right?',
-            description: 'Writing a termination letter could be annoying. This article provides a few tips that helps the employers write the right termination letter.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {
