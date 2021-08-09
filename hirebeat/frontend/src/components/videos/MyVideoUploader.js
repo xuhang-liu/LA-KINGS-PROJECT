@@ -9,6 +9,7 @@ import {
   BglessCardButton,
 } from "../practice/CardComponents";
 import { withRouter } from "react-router-dom";
+import DocumentMeta from 'react-document-meta';
 //import {
 //  random,
 //  positiveAttitude,
@@ -194,20 +195,33 @@ export class MyVideoUploader extends Component {
   };
 
   render() {
+    const meta = {
+        title: 'HireBeat – Uploading',
+        description: 'Uploading Info',
+        meta: {
+          charset: 'utf-8',
+          name: {
+            keywords: 'ats for hr, ats hr software, ats system hr'
+          }
+        }
+    };
     var saveOnTap = this.handleUpload;
     var skipOnTap = this.props.resetDeviceAndNextQuestion;
-    var saveText = "Save and Next";
-    var skipText = "Discard and Next";
+    var saveText = "Save & Next";
+    var skipText = "Discard & Next";
 
     if (this.props.last_q || this.props.questions.length == 1) {
       saveOnTap = this.handleUploadAndFinish;
       skipOnTap = this.redirectToDashboard;
-      saveText = this.props.isCareerVideo ? "Submit" : "Save and Finish";
-      skipText = "Discard and Finish";
+      saveText = this.props.isCareerVideo ? "Submit" : "Save & Finish";
+      skipText = "Discard & Finish";
     }
     return (
+      <DocumentMeta {...meta}>
       <div>
         <div style={{ display: "none" }}>
+          {/* fake h1 tag */}
+          <h1 style={{visibility  : "hidden", textAlign: "center"}}>Video Uploader</h1>
           <ReactS3Uploader
             signingUrl= {this.props.isCareerVideo ? "/sign-wp-video" : "/sign_auth"}
             signingUrlMethod="GET"
@@ -253,6 +267,7 @@ export class MyVideoUploader extends Component {
               />
           )}
       </div>
+      </DocumentMeta>
     );
   }
 }

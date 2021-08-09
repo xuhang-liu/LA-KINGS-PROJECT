@@ -26,8 +26,7 @@ class HSBCInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – HSBC</title>
-                    <meta name="Description" CONTENT="HSBC Holdings is a banking and financial services holding company. It operates in three segments: Wealth and Personal Banking, Commercial Banking, and Global Banking & Markets. The Wealth and Personal Banking offers personal banking services, such as current accounts, loans and savings products, as well as investment and wealth management solutions to individuals and their families. The Commercial Banking delivers provides financial services to small, medium-sized, and middle-market enterprises. The Global Banking & Markets segment provides investment banking and financing solutions for corporate and institutional clients, including corporate banking, investment banking, capital markets, trade services, payments and cash management, and leveraged acquisition finance." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/hsbc"/>
+                    <meta name="Description" CONTENT="HSBC Info"></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

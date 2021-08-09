@@ -15,13 +15,16 @@ function ScrollToTopOnMount() {
 
 class BlogDetail7 extends Component {
     render() {
+        let title = "HireBeat Blog – How to Write a Thank-You Email After a Job Interview (Example Included)";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Thank you, emails can go a long way in making you stand out from other candidates. Get tips for writing a good thank you email and a thank-you email sample.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         return (
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – How to Write a Thank-You Email After a Job Interview (Example Included)</title>
-                    <meta name="description" CONTENT="Thank you, emails can go a long way in making you stand out from other candidates. Get tips for writing a good thank you email and a thank-you email sample."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-how-to-write-a-thank-you-email-after-a-job-interview"/>
+                    <title>{title}</title>
+                    <meta name="description" CONTENT={description}></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

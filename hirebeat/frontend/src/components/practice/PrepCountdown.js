@@ -36,7 +36,7 @@ export class PrepCountdown extends Component {
   render() {
     return (
       <div className="video-recorder-row">
-        <div className="col-8">
+        <div className="col-7">
           <div
             className={this.props.isAudio ? null : "prep-countdown-container"}
             style={{
@@ -60,7 +60,7 @@ export class PrepCountdown extends Component {
           </div>
           {/*this.props.isAudio ? <NotePad isAudio={this.props.isAudio} /> : null*/}
         </div>
-        <div className="col-3" />
+        <div className="col-5" />
       </div>
     );
   }

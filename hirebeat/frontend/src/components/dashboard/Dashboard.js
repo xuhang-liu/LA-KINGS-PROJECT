@@ -24,6 +24,7 @@ import SubpageSetting from './SubpageSetting';
 import { tourConfig } from "./DashboardComponents";
 import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import DocumentMeta from 'react-document-meta';
 function ScrollToTopOnMount() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -192,6 +193,16 @@ export class Dashboard extends Component {
   };
 
   render() {
+    const meta = {
+      title: 'HireBeat – Dashboard',
+      description: 'Dashboard Info',
+      meta: {
+        charset: 'utf-8',
+        name: {
+          keywords: 'interview, jobs, job interview, recruiting, hiring, interview tips'
+        }
+      }
+    };
     let user = JSON.parse(sessionStorage.getItem("user")) || this.props.user;
     const { isTourOpen } = this.state;
     const accentColor = "#5cb7b7";
@@ -199,6 +210,7 @@ export class Dashboard extends Component {
       return <Redirect to="/employer_dashboard" />;
     } else {
       return (
+        <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
           {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
@@ -246,6 +258,8 @@ export class Dashboard extends Component {
                       />
                     </div>}
                   <div className="container-fluid" style={{ marginBottom: "10%" }}>
+                    {/* fake h1 tag */}
+                    <h1 style={{visibility  : "hidden", textAlign: "center"}}>Dashboard</h1>
                     <div style={{ marginBottom: "auto", height: "auto", paddingTop: '5%' }}>
                       {this.renderSubpage()}
                     </div>
@@ -269,6 +283,7 @@ export class Dashboard extends Component {
             </div>
           </MediaQuery>
         </React.Fragment>
+        </DocumentMeta>
       );
     }
   }

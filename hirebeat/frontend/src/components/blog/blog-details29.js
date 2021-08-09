@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail29 extends Component {
     render() {
+        let title = "HireBeat Blog – The 4C's That You Need for Your Resume";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "According to the experts, you need 4C's to stand out of the competition and become a primary choice for the hiring committee: Creativity, Communication, Collaboration, and Critical Thinking.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: "HireBeat Blog – The 4C's That You Need for Your Resume",
-            description: "According to the experts, you need 4C's to stand out of the competition and become a primary choice for the hiring committee: Creativity, Communication, Collaboration, and Critical Thinking.",
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

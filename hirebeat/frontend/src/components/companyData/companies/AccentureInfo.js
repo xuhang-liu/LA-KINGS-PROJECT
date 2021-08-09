@@ -26,7 +26,7 @@ class AccentureInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Accenture</title>
-                    <meta name="Description" CONTENT="Accenture (formerly known as Andersen Consulting) is a strategy, consulting, interactive, technology, and operations services provider with digital capabilities. The company operates in five segments: Communications, Media & Technology, Financial Services, Health & Public Service, Products, and Resources. The Communications, Media & Technology segment helps communications, media, high tech, and software and platform companies accelerate and deliver digital transformation. The Financial Services segment serves the banking, capital markets, and insurance industries. The Health & Public Service segment offers consulting services and digital solutions to healthcare payers and providers, government departments and agencies, public service organizations, educational institutions, and non-profit organizations. The Products segment delivers distribution, sales and marketing, research and development, manufacturing, finance, human resources, procurement, and supply chain digital solutions. The Resources segment helps organizations develop and execute strategies, improve operations, manage change initiatives, and integrate digital technologies." ></meta>
+                    <meta name="Description" CONTENT="Accenture Info" ></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

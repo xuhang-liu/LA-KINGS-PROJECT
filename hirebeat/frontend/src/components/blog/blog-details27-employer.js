@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer27 extends Component {
     render() {
+        let title = "HireBeat Blog – Five ways Applicant tracking systems up";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Applicant Tracking System (the HR software that processes job applications) is increasingly being used by campus recruiters to sift through a sea of resumes, boost their company's image, and hire the top prospects ahead of their competition. Learn how ATS impacts your business and campus recruitment.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Five ways Applicant tracking systems up',
-            description: "Applicant Tracking System (the HR software that processes job applications) is increasingly being used by campus recruiters to sift through a sea of resumes, boost their company's image, and hire the top prospects ahead of their competition. Learn how ATS impacts your business and campus recruitment.",
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

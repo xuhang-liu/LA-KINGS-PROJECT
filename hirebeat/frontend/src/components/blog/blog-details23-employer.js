@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer23 extends Component {
     render() {
+        let title = "HireBeat Blog – What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Indeed, an employer faces many challenges when hiring, but the candidates' journey isn't smooth either. It's no secret that the process of talent acquisition is broken. Consider, What's Broken in the Talent Acquisition Process: Employers and Candidates Viewpoints.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints',
-            description: "Indeed, an employer faces many challenges when hiring, but the candidates' journey isn't smooth either. It's no secret that the process of talent acquisition is broken. Consider, What's Broken in the Talent Acquisition Process: Employers and Candidates Viewpoints.",
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

@@ -143,18 +143,18 @@ const ReviewCandidate = (props) => {
     }
 
     const renderResume = (resumes) => {
-        if (resumes == "" || resumes == null){
+        if (resumes == "-1"){
             return;
         }
         return (
             <div>
                 <div className="row">
                     <div className="ml-3" />
-                    {(resumes >= 75 && resumes <= 100) &&
+                    {(resumes >= 76 && resumes <= 100) &&
                         <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/1.png" alt="img" />}
                     {(resumes >= 51 && resumes <= 75) &&
                         <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/2.png" alt="img" />}
-                    {(resumes >= 25 && resumes <= 50) &&
+                    {(resumes >= 26 && resumes <= 50) &&
                         <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/3.png" alt="img" />}
                     {(resumes >= 0 && resumes <= 25) &&
                         <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/4.png" alt="img" />}
@@ -261,7 +261,7 @@ const ReviewCandidate = (props) => {
                         <div className="mt-5 px-4" style={{ width: "75%", marginLeft: "auto", marginRight: "auto" }}>
                             {renderResume(props.applicant.result_rate)}
                         </div>
-                        {((props.applicant.result_rate != "") && (props.applicant.result_rate != null)) &&
+                        {(props.applicant.result_rate != "-1") &&
                             <div className="row" style={{ display: "flex", justifyContent: "center" }}>
                                 <button
                                     onClick={() => { setTimeout(() => { showResumeEva() }, 200) }}

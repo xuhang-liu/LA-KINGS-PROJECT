@@ -26,8 +26,7 @@ class LazardInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Lazard</title>
-                    <meta name="Description" CONTENT="Lazard operates as a financial advisory and asset management firm worldwide. Its Financial Advisory segment offers various financial advisory services regarding mergers and acquisitions and other strategic matters, restructurings, capital structure, capital raising, corporate preparedness, and various other financial matters. This segment serves corporate, partnership, institutional, government, sovereign, and individual clients. The company's Asset Management segment offers a range of investment solutions and investment management services in equity and fixed income strategies; and alternative investments and private equity funds to corporations, public funds, sovereign entities, endowments and foundations, labor funds, financial intermediaries, and private clients." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/lazard"/>
+                    <meta name="Description" CONTENT="Lazard Info"></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

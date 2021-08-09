@@ -19,7 +19,6 @@ class QuizHome extends Component {
         const meta = {
             title: 'HireBeat Quiz – The Best Video Interview Prep Tool For Jobseekers',
             description: 'Recommend positions according to your personality!',
-            canonical: 'https://hirebeat.co/quiz',
             meta: {
                 charset: 'utf-8',
                 name: {

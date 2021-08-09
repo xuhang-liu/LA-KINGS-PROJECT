@@ -41,24 +41,7 @@ function TestAudioDevice(props) {
           className="video-recorder-row"
           style={{ marginLeft: 0, paddingLeft: 0 }}
         >
-          <AudioRecorder {...audioRecorderOptions} isTesting={true} />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              marginLeft: 15,
-              width: "40%",
-            }}
-          >
-            <p className="text-muted">Everything goes well?</p>
-            <CardButton
-              onTap={props.testDeviceDone}
-              textDisplayed={"Start Practice"}
-              buttonWidth={"75%"}
-            />
-          </div>
+          <AudioRecorder {...audioRecorderOptions} isTesting={true} retry={true} testDeviceDone={props.testDeviceDone}/>
         </div>
       </div>
     </TestDeviceCard>

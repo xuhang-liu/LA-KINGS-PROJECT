@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail22 extends Component {
     render() {
+        let title = "HireBeat Blog – How to Answer the Question: Where do you see yourself in 5 years?";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "If you want to ace this question of “Where do you see yourself in 5 years?”, this article is something that you can’t miss. In this article, you will find a detailed breakdown of how to structure your responses base on different situation";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – How to Answer the Question: Where do you see yourself in 5 years?',
-            description: 'If you want to ace this question of “Where do you see yourself in 5 years?”, this article is something that you can’t miss. In this article, you will find a detailed breakdown of how to structure your responses base on different situation',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

@@ -15,13 +15,16 @@ function ScrollToTopOnMount() {
 
 class BlogDetail19 extends Component {
     render() {
+        let title = "HireBeat Blog – Acing Pandemic Job Interview Questions";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Since the pandemic, the interview format and content of many companies have changed. This article will give you a comprehensive introduction to how to deal with interview questions about the pandemic and how to stand out from these questions.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         return (
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – Acing Pandemic Job Interview Questions</title>
-                    <meta name="description" CONTENT="Since the pandemic, the interview format and content of many companies have changed. This article will give you a comprehensive introduction to how to deal with interview questions about the pandemic and how to stand out from these questions."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-acing-pandemic-job-interview-questions"/>
+                    <title>{title}</title>
+                    <meta name="description" CONTENT={description}></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

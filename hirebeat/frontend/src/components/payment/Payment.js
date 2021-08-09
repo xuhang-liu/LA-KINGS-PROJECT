@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useEffect } from "react";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -32,11 +33,23 @@ class Payment extends Component {
       }
 
     render() {
+        const meta = {
+          title: 'HireBeat – Payment',
+          description: 'Payment Info',
+          meta: {
+            charset: 'utf-8',
+            name: {
+              keywords: 'Interview Practice, Behavioral Question, Technical Question, Mock Interview'
+            }
+          }
+        };
         return (
+          <DocumentMeta {...meta}>
           <React.Fragment>
           <ScrollToTopOnMount />
             <div>{this.renderRedirect()}</div>
             </React.Fragment>
+          </DocumentMeta>
         );
     }
 }

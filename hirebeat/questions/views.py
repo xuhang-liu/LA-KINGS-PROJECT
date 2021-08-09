@@ -40,7 +40,7 @@ class QuestionAPIView(generics.ListCreateAPIView):
 
 @api_view(['GET'])
 def get_subcategories(request):
-    print("===Get Question Subcategories Called===")
+    # print("===Get Question Subcategories Called===")
     category = request.query_params.get('category')
     queryset = Categorys.objects.filter(category_des=category).values('subCategorys')
     sub_list = queryset[0]["subCategorys"].split(",")
@@ -89,7 +89,7 @@ def get_interview_questions(request):
 
 @api_view(['POST'])
 def add_position(request):
-    print("==add position==")
+    # print("==add position==")
     jobtitle = request.data['jobtitle']
     jobid = request.data['jobid']
     jobdescription = request.data['jobdescription']
@@ -470,7 +470,7 @@ def add_interview_resume(request):
 def get_resume_url(request):
     # print('Get Resume Called')
     data = {
-        "result_rate": "",
+        "result_rate": "-1",
         "hard_skill_jd_list": [],
         "hard_skill_resume_list": [],
         "hard_skill_info_list": [],
@@ -582,32 +582,35 @@ def get_applicants_data(request):
 
 @api_view(['GET'])
 def get_stars_list(request):  
-    pos_id = request.query_params.get("job_id") 
-    int_ques = InterviewQuestions.objects.filter(positions = pos_id)
+    pos_id = request.query_params.get("job_id")
     candidates = InvitedCandidates.objects.filter(positions = pos_id)
-    data = {}
-    data1 = {}
+    data = {} # star list
+    data1 = {} # resume score list
     for candidate in candidates:
         can_email = candidate.email
-        unit_star_list = WPVideo.objects.filter(email = can_email, question_id__in = int_ques)
-        unit_star_list = WPVideo.objects.filter(email = can_email, question_id__in = int_ques)
+        # get average video star for each candidate
+        unit_star_list = WPVideo.objects.filter(email=can_email, position_id=pos_id)
         star_sum = 0
-        video_amount = 0
+        video_amount = len(unit_star_list)
         for star in unit_star_list:
             star_sum += star.video_stars
-            video_amount += 1
-        if(video_amount):
+        if video_amount > 0:
             data[can_email] = round(star_sum / video_amount)
         else:
-            data[can_email] = 5
+            data[can_email] = 0
+        # get resume score for each candidate
         user = User.objects.filter(email=can_email)
-        if (len(user)>0):
+        if len(user) > 0 :
             unit_resume_list = InterviewResumes.objects.filter(positionId_id=pos_id, candidateId=user[0])
-            if (len(unit_resume_list)):
+            # use uploaded resume
+            if len(unit_resume_list) > 0:
                 data1[can_email] = unit_resume_list[0].result_rate
+            # use didn't upload resume
             else:
-                data1[can_email] = 0
-    return Response({ "data" : data, "data1" : data1 } )
+                data1[can_email] = "-1"
+        else:
+            data1[can_email] = "-1"
+    return Response({"data": data, "data1": data1})
 
 @api_view(['POST'])
 def add_sub_reviewer(request):

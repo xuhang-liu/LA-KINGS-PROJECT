@@ -26,8 +26,7 @@ class BBInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Bloomberg</title>
-                    <meta name="Description" CONTENT="Bloomberg is a financial software, data, and media company that provides financial software tools such as an analytics and equity trading platform, data services and news to financial companies and organizations through the Bloomberg terminal (via its Bloomberg Professional Service), its core money-generating product. It also includes a wire service (Bloomberg News), a global television network (Bloomberg Television), a radio station (WBBR), websites, subscription-only newsletters, and three magazines: Bloomberg Businessweek, Bloomberg Markets, and Bloomberg Pursuit." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/bloomberg"/>
+                    <meta name="Description" CONTENT="Bloomberg Info"></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

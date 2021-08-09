@@ -109,6 +109,12 @@ export class VideoRecorder extends Component {
     this.player.record().reset();
   };
 
+  recordAgain = () => {
+    this.player.record().reset();
+    this.player.record().getDevice();
+    this.setState({testStarted: false});
+  }
+
   startCamera = () => {
     this.player.record().getDevice();
   };
@@ -121,7 +127,7 @@ export class VideoRecorder extends Component {
   render() {
     return (
       <div className="video-recorder-row">
-        <div className="col-8">
+        <div className="col-7">
           <div data-vjs-player>
             <video
               id="myVideo"
@@ -144,17 +150,51 @@ export class VideoRecorder extends Component {
               </div>) : null}
           </div>
         </div>
-        <div className="col-3">
+        <div className="col-5">
           {
             !this.props.isTesting ? (
               <div style={{display: this.state.display}}>
                 <RecordDoneButton
                   fontFamily={"Avenir Next, Segoe UI"}
                   onTap={this.stopCamera}
-                  textDisplayed={"Finish Now"}
+                  textDisplayed={"Finish Recording"}
                   buttonWidth={"100%"}
                 />
               </div>) : null
+          }
+          {
+            this.props.isTesting && this.props.retry &&
+              <div>
+                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>Your answer <span style={{color:"#ff6b00"}}>will not</span> be evaluated. Replay the video to ensure that your <span style={{color:"#ff6b00"}}>microphone and camera</span> are working.</p>
+                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>Take your time</span> to make sure everything is good before you start the interview</p>
+                <div className="row justify-content-center">
+                  <button
+                        onClick={this.stopCamera}
+                        className="default-btn mt-3"
+                        style={{color:"white", backgroundColor:"#56a3fa", paddingLeft: "25px", width: "11.5rem"}}
+                  >
+                      Finish Recording
+                  </button>
+                </div>
+                <div className="row justify-content-center">
+                  <button
+                        onClick={this.recordAgain}
+                        className="default-btn mt-3"
+                        style={{color:"white", backgroundColor:"#56a3fa", width: "11.5rem"}}
+                    >
+                      <i className="bx bx-revision"></i>Test Again
+                  </button>
+                </div>
+                <div className="row justify-content-center">
+                  <button
+                        onClick={this.props.testDeviceDone}
+                        className="default-btn mt-3"
+                        style={{color:"white", backgroundColor:"#ff6b00", width: "11.5rem"}}
+                    >
+                      <i className="bx bx-rocket"></i>Start Interview
+                  </button>
+                </div>
+              </div>
           }
           {!this.props.isTesting &&
           this.state.videoRecorded &&

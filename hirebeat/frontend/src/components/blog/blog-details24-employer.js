@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer24 extends Component {
     render() {
+        let title = "HireBeat Blog – Three Steps to Fix Your Broken Talent Acquisition Process";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "When a company has a broken talent acquisition process, it is losing money. This blog post shares three steps you can take to fix your broken and complex talent acquisition process!";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Three Steps to Fix Your Broken Talent Acquisition Process',
-            description: "When a company has a broken talent acquisition process, it is losing money. This blog post shares three steps you can take to fix your broken and complex talent acquisition process!",
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

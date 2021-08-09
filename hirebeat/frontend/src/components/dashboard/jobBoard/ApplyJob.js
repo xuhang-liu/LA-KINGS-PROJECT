@@ -334,7 +334,7 @@ const ApplyJob = (props) => {
                                     <p className="mt-5" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
                                     <div>
                                         <div>
-                                            <h2 className="mb-3">Company Overview</h2>
+                                            <h2 className="mb-2 jd-title">Company Overview</h2>
                                             <div className="mb-3">
                                                 {(job_id == null || job_id == "") ? null :
                                                     <RichTextEditor
@@ -346,7 +346,7 @@ const ApplyJob = (props) => {
                                                 }
                                             </div>
                                         </div>
-                                        <h2 className="mb-3 mt-5">Job Description</h2>
+                                        <h2 className="mb-2 mt-3 jd-title">Job Description</h2>
                                         <div className="mb-3">
                                             {(job_id == null || job_id == "") ? null :
                                                 <RichTextEditor
@@ -359,8 +359,8 @@ const ApplyJob = (props) => {
                                         </div>
                                         {props.job.eeo_req == "1" &&
                                             <div>
-                                                <h2 className="mb-2 mt-3">EEO Statement</h2>
-                                                <p className="mb-4 mt-1" style={{ color: "#090d3a" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                                                <h2 className="mb-2 mt-3 jd-title">EEO Statement</h2>
+                                                <p className="mb-4 mt-1 text-editor2">{(job_id == null || job_id == "") ? "" : props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
                                             </div>}
                                     </div>
                                     {!Applied &&
@@ -391,9 +391,9 @@ const ApplyJob = (props) => {
                                         <form onSubmit={applySubmit}>
                                             <div>
                                                 <div className="px-5 pt-3 light-blue-border">
-                                                    <h1 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>
@@ -603,9 +603,9 @@ const ApplyJob = (props) => {
                                                     }
                                                 </div>
                                                 <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
-                                                    <h1 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
                                                         Create Account
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-group">
                                                         <label className="job-apply-char1" for="inputAddress">Email/Username</label>
                                                         <input type="text" class="form-control" id="inputAddress" placeholder="Create a username" onChange={onChange1} />
@@ -629,9 +629,9 @@ const ApplyJob = (props) => {
                                         <form onSubmit={applySubmit1}>
                                             <div>
                                                 <div className="px-5 pt-3 light-blue-border">
-                                                    <h1 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>
@@ -1012,7 +1012,7 @@ const ApplyJob = (props) => {
                                     </div>
                                     <div>
                                         <div>
-                                            <h2 className="mb-3 mt-5">Company Overview</h2>
+                                            <h2 className="mb-2 mt-3 jd-title">Company Overview</h2>
                                             <div className="mb-3">
                                                 {(job_id == null || job_id == "") ? null :
                                                     <RichTextEditor
@@ -1024,7 +1024,7 @@ const ApplyJob = (props) => {
                                                 }
                                             </div>
                                         </div>
-                                        <h2 className="mb-3 mt-3">Job Description</h2>
+                                        <h2 className="mb-2 mt-3 jd-title">Job Description</h2>
                                         <div className="mb-3">
                                             {(job_id == null || job_id == "") ? null :
                                                 <RichTextEditor
@@ -1037,8 +1037,8 @@ const ApplyJob = (props) => {
                                         </div>
                                         {props.job.eeo_req == "1" &&
                                             <div>
-                                                <h2 className="mb-2 mt-3">EEO Statement</h2>
-                                                <p className="mb-4 mt-1" style={{ color: "#090d3a" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                                                <h2 className="mb-2 mt-3 jd-title">EEO Statement</h2>
+                                                <p className="mb-4 mt-1 text-editor2">{(job_id == null || job_id == "") ? "" : props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
                                             </div>}
                                     </div>
                                     {!Applied &&
@@ -1069,9 +1069,9 @@ const ApplyJob = (props) => {
                                         <form onSubmit={applySubmit}>
                                             <div className="mt-3">
                                                 <div className="px-5 pt-3 light-blue-border">
-                                                    <h1 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>
@@ -1298,9 +1298,9 @@ const ApplyJob = (props) => {
                                                     }
                                                 </div>
                                                 <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
-                                                    <h1 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
                                                         Create Account
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-group">
                                                         <label className="job-apply-char1" for="inputAddress">Email/Username</label>
                                                         <input type="text" class="form-control" id="inputAddress" placeholder="Create a username" onChange={onChange1} />
@@ -1324,9 +1324,9 @@ const ApplyJob = (props) => {
                                         <form onSubmit={applySubmit1}>
                                             <div className="mt-3">
                                                 <div className="px-5 pt-3 light-blue-border">
-                                                    <h1 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
+                                                    <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
-                                                    </h1>
+                                                    </h2>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label className="job-apply-char1" for="inputEmail4">First Name</label><span className="job-apply-char2">*</span>

@@ -86,13 +86,13 @@ export class RetryResponseWindow extends Component {
                 </audio>
                     <PracticeCard>
                         {/*{this.questionIndex()}*/}
-                        <Link to={"/dashboard"}>
-                        <h2 style={{marginTop:"1rem", textDecoration:"none"}}>
-                            <a>
-                                <i className={"bx bx-arrow-back"}></i>
-                            </a>
-                            Practice Again
-                        </h2>
+                        <Link to={"/dashboard"} style={{textDecoration: "none"}}>
+                            <h1 style={{marginTop: "1rem", fontSize: "1.22rem"}}>
+                                <span style={{verticalAlign: "middle"}}>
+                                    <i className={"bx bx-arrow-back"}></i>
+                                </span>
+                                Practice Again
+                            </h1>
                         </Link>
                         <h4>Q: {this.props.retry_q_meta.q_description}</h4>
                         <div style={{ marginTop: 20 }}>

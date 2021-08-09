@@ -185,6 +185,23 @@ export class CandidateLogin extends Component {
                             required/>
                       </div>
 
+                      <a
+                        href="/password_reset"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="navbar-font"
+                        style={{
+                          fontSize:"1rem",
+                          fontFamily: "Avenir Next, Segoe UI",
+                          color: "#7D7D7D",
+                          fontWeight: "300",
+                          float: "right",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        Forget password?
+                      </a>
+
                       <div
                           className="form-group"
                           style={{paddingTop: 30, paddingBottom: 20}}

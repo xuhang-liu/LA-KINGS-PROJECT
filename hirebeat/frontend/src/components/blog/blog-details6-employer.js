@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer6 extends Component {
     render() {
+        let title = "HireBeat Blog – Topic: How Gender Pronouns Change the Way We Work";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Using the right gender pronounce is crucial at the workplace, and it helps to build people’s confidence. This article helps you correct gender pronounce problems and build a more comfortable workplace.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Topic: How Gender Pronouns Change the Way We Work',
-            description: 'Using the right gender pronounce is crucial at the workplace, and it helps to build people’s confidence. This article helps you correct gender pronounce problems and build a more comfortable workplace.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

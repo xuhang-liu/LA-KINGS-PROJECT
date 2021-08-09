@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail26 extends Component {
     render() {
+        let title = "HireBeat Blog – How to Stay Competitive in Your Job Search as a Candidate";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "This article provides a few tips for you to beat the competition and emerge as a strong candidate in the job search.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – How to Stay Competitive in Your Job Search as a Candidate',
-            description: 'This article provides a few tips for you to beat the competition and emerge as a strong candidate in the job search.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

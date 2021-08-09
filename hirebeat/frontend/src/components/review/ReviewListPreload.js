@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import ReactPaginate from 'react-paginate';
 import MediaList from "./MediaList";
 import { getUnreviewedVideoList } from "../../redux/actions/video_actions";
+import DocumentMeta from 'react-document-meta';
 
 export class ReviewList extends Component {
     static propTypes = {
@@ -42,7 +43,18 @@ export class ReviewList extends Component {
     };
 
     render() {
+        const meta = {
+            title: 'HireBeat – Review',
+            description: 'Review Info',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'ats for hr, ats hr software, ats system hr'
+              }
+            }
+        };
         return (
+            <DocumentMeta {...meta}>
             <div className="commentBox" style={{ marginBottom: "5%"}}>
                 {this.props.loaded ?
                     (this.props.nums > 0 ?
@@ -68,6 +80,7 @@ export class ReviewList extends Component {
                         </div> : <h2 style={{padding: "3rem", textAlign: "center"}}>No videos need to be reviewed!</h2>)
                     : null}
             </div>
+            </DocumentMeta>
         );
     };
 

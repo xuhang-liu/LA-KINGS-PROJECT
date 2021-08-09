@@ -15,13 +15,16 @@ function ScrollToTopOnMount() {
 
 class BlogDetail12 extends Component {
     render() {
+        let title = "HireBeat Blog – How To Answer 'What Is Your Weakness' Question In An Interview";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "'What is your weakness?' is one of the most common interview questions. Get tips on how to answer the question in an interview.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         return (
             <React.Fragment>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>HireBeat Blog – How To Answer "What Is Your Weakness" Question In An Interview</title>
-                    <meta name="description" CONTENT="'What is your weakness?' is one of the most common interview questions. Get tips on how to answer the question in an interview."></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview"/>
+                    <title>{titile}</title>
+                    <meta name="description" CONTENT={description}></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea 

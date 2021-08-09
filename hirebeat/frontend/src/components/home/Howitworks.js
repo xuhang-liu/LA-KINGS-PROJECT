@@ -5,6 +5,7 @@ import Features from '../HomeSaas/Features';
 import FreeTrialArea from '../HomeSaas/FreeTrialArea';
 import { useEffect } from "react";
 import Footer from "../layout/Footer";
+import DocumentMeta from 'react-document-meta';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -15,7 +16,18 @@ function ScrollToTopOnMount() {
 
 class Howitworks extends Component {
     render() {
+        const meta = {
+            title: 'HireBeat – How It Works',
+            description: 'How It Works Info',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'hiring tool return on investment, hiring tool roi, hr applicant tracking, roi recruitment process'
+              }
+            }
+        };
         return (
+            <DocumentMeta {...meta}>
             <React.Fragment>
                 <ScrollToTopOnMount />
                 <PageTitleArea 
@@ -27,6 +39,7 @@ class Howitworks extends Component {
                 <FreeTrialArea />
                 <Footer />
             </React.Fragment>
+            </DocumentMeta>
         );
     }
 }

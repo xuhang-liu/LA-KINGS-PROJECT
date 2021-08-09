@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer26 extends Component {
     render() {
+        let title = "HireBeat Blog – 5 Things You Need To Know About Applicant Tracking System";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Companies can use applicant tracking system tools to help in recruitment and hiring. Applicant tracking systems gather and save resumes in a database accessible to hiring managers. The 5 key benefits of the ATS system: Screening of Candidates more effective. Save time and decrease the probability of talent losing. Integrate job postings on multiple platforms. Increase brand appealing. Improve the Quality of Hiring.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – 5 Things You Need To Know About Applicant Tracking System',
-            description: "Companies can use applicant tracking system tools to help in recruitment and hiring. Applicant tracking systems gather and save resumes in a database accessible to hiring managers. The 5 key benefits of the ATS system: Screening of Candidates more effective. Save time and decrease the probability of talent losing. Integrate job postings on multiple platforms. Increase brand appealing. Improve the Quality of Hiring.",
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

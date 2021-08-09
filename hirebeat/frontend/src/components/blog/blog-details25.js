@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail25 extends Component {
     render() {
+        let title = "HireBeat Blog – 4 Most Commonly Asked Questions in an Interview";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "This article shares the four most commonly asked questions in an interview and how they can benefit the interviewer.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – 4 Most Commonly Asked Questions in an Interview',
-            description: 'This article shares the four most commonly asked questions in an interview and how they can benefit the interviewer.',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

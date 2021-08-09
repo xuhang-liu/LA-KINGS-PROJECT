@@ -26,7 +26,7 @@ class ABSAInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Absa Group</title>
-                    <meta name="Description" CONTENT="Absa Group is a provider of financial services. It offers credit cards, loans, deposits, savings, insurance products, and more. The company provides investment banking, wealth and asset management, treasury, financial advisory, and other services." ></meta>
+                    <meta name="Description" CONTENT="Absa Group Info" ></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

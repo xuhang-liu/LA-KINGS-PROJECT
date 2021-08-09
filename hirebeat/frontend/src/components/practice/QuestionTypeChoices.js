@@ -11,7 +11,6 @@ import { confirmAlert } from 'react-confirm-alert';
 import PropTypes from "prop-types";
 import DocumentMeta from 'react-document-meta';
 //import 'react-confirm-alert/src/react-confirm-alert.css';
-// todo: refresh here may result in self log out when change to other routers
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -51,7 +50,7 @@ export class QuestionTypeChoices extends Component {
       }
       else if (this.props.profile.email_confirmed) {
           const { history } = this.props;
-          if (history) history.push(`/practice/modes`);
+          if (history) history.push(`/practice-modes`);
       }
       else {
           this.redirectToEmailVerification();
@@ -69,7 +68,7 @@ export class QuestionTypeChoices extends Component {
       }
       else if (this.props.profile.email_confirmed) {
           const { history } = this.props;
-          if (history) history.push(`/techfields/`);
+          if (history) history.push(`/techfields`);
       }
       else {
           this.redirectToEmailVerification();
@@ -101,9 +100,8 @@ export class QuestionTypeChoices extends Component {
 
   render() {
     const meta = {
-      title: 'HireBeat – The Best Video Interview Prep Tool For Jobseekers',
-      description: 'Prepare your interview with 1000+ interview questions and AI & Expert feedback – sign up for free today!',
-      canonical: 'https://hirebeat.co/practice',
+      title: 'HireBeat – Practice',
+      description: 'Practice Info',
       meta: {
         charset: 'utf-8',
         name: {
@@ -126,7 +124,7 @@ export class QuestionTypeChoices extends Component {
           <button className="col features-box" style={{marginLeft: "5%", backgroundColor:"#ffffff"}} onClick={this.redirectToBehaviorQuestions}>
             <div style={{padding: "10%", textAlign: "left"}}>
             <div className="icon" style={{borderRadius: "15px"}}>
-              <img src="https://hirebeat-assets.s3.amazonaws.com/bq-logo.png" />
+              <img src="https://hirebeat-assets.s3.amazonaws.com/bq-logo.png" alt="bq logo"/>
             </div>
               <h3 className="practice-h3">Behavioral Question</h3>
               <p className="mode-col-text1">
@@ -141,7 +139,7 @@ export class QuestionTypeChoices extends Component {
           <button className="col features-box" style={{marginLeft: "6rem", backgroundColor:"#ffffff"}} onClick={this.redirectToTechQuestions}>
             <div style={{padding: "10%", textAlign: "left"}}>
             <div className="icon" style={{borderRadius: "15px"}}>
-              <img src="https://hirebeat-assets.s3.amazonaws.com/tq-logo.png" />
+              <img src="https://hirebeat-assets.s3.amazonaws.com/tq-logo.png" alt="tq logo"/>
             </div>
               <h3 className="practice-h3">Technical Question</h3>
               <p className="mode-col-text1">

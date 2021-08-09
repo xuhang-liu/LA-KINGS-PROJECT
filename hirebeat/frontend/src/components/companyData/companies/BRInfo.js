@@ -26,8 +26,7 @@ class BRInfo extends Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – BlackRock</title>
-                    <meta name="Description" CONTENT="BlackRock is an investment management company providing investment and technology services to institutional and retail clients. Its diverse platform of alpha-seeking active, index, and cash management investment strategies across asset classes enables the company to tailor investment outcomes and asset allocation solutions for clients. The company offers single- and multi-asset portfolios investing in equities, fixed income, alternatives, and money market instruments. BlackRock also delivers technology services, including the investment and risk management technology platform, Aladdin, Aladdin Wealth, eFront, Cachematrix, and FutureAdvisor, as well as advisory services and solutions to institutional and wealth management clients." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/blackrock"/>
+                    <meta name="Description" CONTENT="BlackRock Info"></meta>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

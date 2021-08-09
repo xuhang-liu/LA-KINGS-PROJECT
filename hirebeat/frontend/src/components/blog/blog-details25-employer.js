@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer25 extends Component {
     render() {
+        let title = "HireBeat Blog – 4 Challenges Campus Recruiters Could Meet";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "Every company wants to attract top talent, and this led to fierce competition among them. But attracting the top talent while dealing with competitors isn't the only challenge recruiters face during campus recruitment — 4 Challenges Campus Recruiters Could Meet.";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – 4 Challenges Campus Recruiters Could Meet',
-            description: "Every company wants to attract top talent, and this led to fierce competition among them. But attracting the top talent while dealing with competitors isn't the only challenge recruiters face during campus recruitment — 4 Challenges Campus Recruiters Could Meet.",
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {

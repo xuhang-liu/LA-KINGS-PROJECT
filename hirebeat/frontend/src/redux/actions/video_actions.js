@@ -25,7 +25,6 @@ export const getApplicantsVideos = (email, positionId) => (dispatch, getState) =
     .get(`get-applicants-videos?email=${email}&positionId=${positionId}`, tokenConfig(getState))
     .then((res) => {
       console.log("get applicant video");
-      console.log(res.data);
       dispatch({
         type: GET_VIDEOS_APPLICANT,
         payload: res.data,
@@ -41,7 +40,6 @@ export const getApplicantsInfo = (email) => (dispatch, getState) => {
     .get(`get-applicants-info?email=${email}`, tokenConfig(getState))
     .then((res) => {
       console.log("get applicant info");
-      console.log(res.data);
       dispatch({
         type: GET_APPLICANT_INFO,
         payload: res.data,
@@ -57,7 +55,6 @@ export const getVideos = () => (dispatch, getState) => {
     .get("/api/videos/", tokenConfig(getState))
     .then((res) => {
       console.log("get videos");
-      console.log(res.data);
       dispatch({
         type: GET_VIDEOS,
         payload: res.data,
@@ -165,7 +162,6 @@ export const addVideoReviews = (
   return axios
     .patch(`api/videos/${video_id}/`, body, tokenConfig(getState))
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: ADD_REVIEWS,
         payload: res.data,
@@ -180,7 +176,6 @@ export const addVideoLabels = (label) => (dispatch, getState) => {
   axios
     .post("/api/video-labels", label, tokenConfig(getState))
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: ADD_LABELS,
         payload: res.data,
@@ -199,7 +194,6 @@ export const sendVideoForReview = (type, id) => (dispatch, getState) => {
   return axios
     .post(`mark_video_as_needed_review`, body, tokenConfig(getState))
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: VIDEO_UNDER_REVIEW,
         payload: res.data,
@@ -251,7 +245,6 @@ export const addTQVideoLimit = (owner_id, id, type) => (dispatch, getState) => {
   return axios
     .post(`add-tq-video-limit`, body, tokenConfig(getState))
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: ADD_TQ_VIDEO_LIMIT,
         payload: res.data,

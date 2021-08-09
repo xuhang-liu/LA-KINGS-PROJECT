@@ -15,9 +15,13 @@ function ScrollToTopOnMount() {
 
 class BlogDetail1_Employer extends Component {
     render() {
+        let title = "HireBeat Blog – Benefits of hiring diverse candidates in your company";
+        title = title.length > 70 ? title.substring(0, 67) + "..." : title;
+        let description = "By hiring a diverse workforce, a company increases its chances of hiring the best talent since they have many individuals to choose from";
+        description = description.length > 155 ? description.substring(0, 152) + "..." : description;
         const meta = {
-            title: 'HireBeat Blog – Benefits of hiring diverse candidates in your company',
-            description: 'By hiring a diverse workforce, a company increases its chances of hiring the best talent since they have many individuals to choose from',
+            title: title,
+            description: description,
             meta: {
               charset: 'utf-8',
               name: {
