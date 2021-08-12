@@ -461,6 +461,11 @@ card-row-third-high {
   min-height: 600px;
 }
 
+.my-modal-contact {
+  min-width: 30%;
+  padding-bottom: 1rem;
+}
+
 .resume-modal {
   min-width: 90%;
 }
@@ -4067,4 +4072,21 @@ max-width: 110px;
   font-size: 1.25rem;
   line-height: 1.6875rem;
   color: #090D3A;
+}
+
+.circle-tags {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #000000;
+  border: 2.14815px solid #67A3F3;
+  box-sizing: border-box;
+  border-radius: 16.6481px;
 }

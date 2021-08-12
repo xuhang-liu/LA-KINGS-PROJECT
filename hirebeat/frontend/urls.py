@@ -119,6 +119,7 @@ urlpatterns = [
     path('blog-how-to-write-a-thank-you-email-after-a-job-interview', views.blog7),
     path('blog-tips-for-getting-your-resume-past-an-applicant-tracking-system', views.blog9),
     path('blog-3-fastest-growing-jobs-you-might-not-know-about', views.blog13),
+    path('talent-profile', views.talentProfile)
 ]
 
 # This url needs to be included in the hirebeat/urls.py to work
