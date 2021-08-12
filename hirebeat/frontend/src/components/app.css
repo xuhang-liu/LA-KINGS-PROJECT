@@ -4068,3 +4068,82 @@ max-width: 110px;
   line-height: 1.6875rem;
   color: #090D3A;
 }
+
+.register-title {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #FF6B00
+}
+
+.register-form {
+  font-family: Avenir Next, Segoe UI;
+  background: #FFFFFF;
+  border-radius: 5px;
+  padding-left: 1rem;
+  box-shadow: 0px 0px 50px rgba(70, 137, 250, 0.1);
+}
+
+.register-label {
+  display: flex;
+  text-align: left;
+}
+
+.register-text {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  color: #4A6F8A;
+}
+
+.register-text2 {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.75rem;
+  color: #979797;
+}
+
+.register-btn {
+  color: #7C94B5;
+  background: #FFFFFF;
+  border: 1px solid #E8EDFC;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16);
+  border-radius: 5px;
+  width: 18rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.email-verify-title {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.8125rem;
+  color: #67A3F3;
+}
+
+.email-verify-txt {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #67A3F3;
+}
+
+.register input::-webkit-outer-spin-button,
+.register input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+.register input[type="number"] {
+    -moz-appearance: textfield;
+}

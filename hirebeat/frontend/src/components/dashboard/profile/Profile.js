@@ -378,7 +378,6 @@ export class Profile extends Component {
     onBeforeFileLoad = (elem) => {
         let docType = elem.target.files[0].type?.split("/")[1];
         let docSize = elem.target.files[0].size;
-        console.log(docType);
         if(docSize > 2000000){
           alert("Please upload a logo that less than 2MB");
           elem.target.value = "";

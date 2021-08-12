@@ -49,6 +49,7 @@ import {
   UPDATE_USER_LOGO,
   CHECK_USER_EXISTENCE,
   CHECK_COMPANY_NAME_EXISTENCE,
+  CREATE_PROFILE,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -795,3 +796,17 @@ export const checkCompanyNameExistence = (companyName) => (dispatch, getState) =
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 }
+
+export const createProfile = (data) => (dispatch, getState) => {
+  axios
+    .post("/accounts/create-profile", data)
+    .then((res) => {
+      dispatch({
+        type: CREATE_PROFILE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};

@@ -828,3 +828,38 @@ def check_company_name_existence(request):
     if len(profile) != 0:
         data = True
     return Response({"data": data})
+
+@api_view(['POST'])
+def create_profile(request):
+    email = request.data["email"]
+    f_name = request.data["f_name"]
+    l_name = request.data["l_name"]
+    location = request.data["location"]
+    resume_url = request.data["resume_url"]
+    resume_name = request.data["resume_name"]
+    logo_url = request.data["logo_url"]
+    current_job_title = request.data["current_job_title"]
+    current_company = request.data["current_company"]
+    job_type = request.data["job_type"]
+    share_profile = request.data["share_profile"]
+
+    # user exists
+    try:
+        user = User.objects.get(email=email)
+        profile = ProfileDetail(user_id=user.id)
+        profile.f_name = f_name
+        profile.l_name = l_name
+        profile.location = location
+        profile.resume_url = resume_url
+        profile.resume_name = resume_name
+        profile.logo_url = logo_url
+        profile.current_job_title = current_job_title
+        profile.current_company = current_company
+        profile.job_type = job_type
+        profile.share_profile = share_profile
+        profile.save()
+    # user not exist
+    except ObjectDoesNotExist:
+        return Response("User not exist", status=status.HTTP_201_CREATED)
+
+    return Response("Create or Update user logo successfully", status=status.HTTP_201_CREATED)

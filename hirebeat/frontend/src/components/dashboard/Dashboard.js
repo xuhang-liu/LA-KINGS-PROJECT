@@ -206,6 +206,10 @@ export class Dashboard extends Component {
     let user = JSON.parse(sessionStorage.getItem("user")) || this.props.user;
     const { isTourOpen } = this.state;
     const accentColor = "#5cb7b7";
+    // email verification
+    if (!this.props.profile.email_confirmed) {
+        return <Redirect to="/email-verification-mini" />;
+    }
     if (this.props.profile.is_employer) {
       return <Redirect to="/employer_dashboard" />;
     } else {
