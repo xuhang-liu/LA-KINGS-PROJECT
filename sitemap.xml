@@ -586,17 +586,17 @@
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/practice/modes</loc>
+			<loc>https://hirebeat.co/practice-modes</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/practice/modes/practice</loc>
+			<loc>https://hirebeat.co/practice-modes-practice</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/practice/modes/simulate</loc>
+			<loc>https://hirebeat.co/practice-modes-simulate</loc>
 			<changefreq>always</changefreq>
 		</url>
 
@@ -611,7 +611,7 @@
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/techfields/practice</loc>
+			<loc>https://hirebeat.co/techfields-practice</loc>
 			<changefreq>always</changefreq>
 		</url>
 
@@ -957,6 +957,11 @@
 
 		<url>
 			<loc>https://hirebeat.co/employer-solution-page</loc>
+			<changefreq>always</changefreq>
+		</url>
+
+		<url>
+			<loc>https://hirebeat.co/talent-profile</loc>
 			<changefreq>always</changefreq>
 		</url>
 

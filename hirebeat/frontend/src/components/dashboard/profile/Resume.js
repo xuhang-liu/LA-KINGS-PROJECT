@@ -9,7 +9,7 @@ export class Resume extends Component {
         super(props);
         this.uploader = null;
         this.handleUpload = this.handleUpload.bind(this);
-      }
+    }
 
     state = {
         showResume: false,
@@ -25,20 +25,20 @@ export class Resume extends Component {
             return this.alert("No Resume", "Please upload your resume first");
         }
         else {
-            this.setState({showResume: true});
+            this.setState({ showResume: true });
         }
     }
 
     disableShowResume = () => {
-        this.setState({showResume: false});
+        this.setState({ showResume: false });
     }
 
     enableShow = () => {
-        this.setState({show: true});
+        this.setState({ show: true });
     }
 
     disableShow = () => {
-        this.setState({show: false});
+        this.setState({ show: false });
     }
 
     setSelected = () => {
@@ -86,10 +86,10 @@ export class Resume extends Component {
                 let timestamp = Date.parse(new Date());
                 let suffix = docType == "pdf" ? ".pdf" : ".docx";
                 let fakeName = timestamp + suffix;
-                const newResume = new File([resume], fakeName, {type: resume.type});
-                this.setState({fakeName: fakeName});
-                this.setState({cvName: name});
-                this.setState({resume: newResume});
+                const newResume = new File([resume], fakeName, { type: resume.type });
+                this.setState({ fakeName: fakeName });
+                this.setState({ cvName: name });
+                this.setState({ resume: newResume });
             } else {
                 return this.alert("Wrong File Type", "Please upload PDF or DOCX version of your resume");
             }
@@ -100,14 +100,14 @@ export class Resume extends Component {
 
     alert = (title, message) => {
         confirmAlert({
-          title: title,
-          message: message,
-          buttons: [
-            {
-              label: 'Ok'
-            }
-          ]
-          });
+            title: title,
+            message: message,
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
+        });
     }
 
     onUploadFinish = () => {
@@ -116,12 +116,12 @@ export class Resume extends Component {
 
         // insert MetaData to resume table
         const resumeMetaData = {
-          user_id: this.props.userId,
-          resume_url: resume_url,
-          resume_name: this.state.cvName,
+            user_id: this.props.userId,
+            resume_url: resume_url,
+            resume_name: this.state.cvName,
         };
         this.props.updateResume(resumeMetaData);
-        setTimeout(() => {this.props.getUpdatedData(); this.props.getUpdatedData();}, 300);
+        setTimeout(() => { this.props.getUpdatedData(); this.props.getUpdatedData(); }, 300);
         setTimeout(() => this.alert("Upload Success", "You have uploaded your resume"), 300);
     };
 
@@ -133,7 +133,7 @@ export class Resume extends Component {
         console.log("In progress");
     };
 
-   handleUpload = () => {
+    handleUpload = () => {
         if (!this.state.selected) {
             this.alert("Empty file", "Please select your resume first");
         }
@@ -142,83 +142,83 @@ export class Resume extends Component {
             this.props.setResume();
             this.disableSelected();
         }
-   }
+    }
 
-  deleteResume = () => {
+    deleteResume = () => {
         if (this.props.resumeURL == "" || this.props.resumeURL == null) {
             this.alert("No Resume", "You have not uploaded any resume");
         }
         else {
             const resumeMetaData = {
-              user_id: this.props.userId,
-              resume_url: "",
-              resume_name: "",
+                user_id: this.props.userId,
+                resume_url: "",
+                resume_name: "",
             };
             this.props.updateResume(resumeMetaData);
-            setTimeout(() => {this.props.getUpdatedData(); this.props.getUpdatedData();}, 300);
+            setTimeout(() => { this.props.getUpdatedData(); this.props.getUpdatedData(); }, 300);
             setTimeout(() => this.alert("Delete Success", "You have deleted your resume"), 300);
         }
-  }
+    }
 
     render() {
-        return(
+        return (
             <div>
-                <div style={{padding: "2rem"}}>
+                <div style={{ padding: "2rem" }}>
                     <h3 className="profile-h3">Resume</h3>
                     <p className="profile-p">
                         {this.props.resumeName}
                         {(this.props.resumeName !== null && this.props.resumeName !== "") &&
-                        <div style={{float: "right"}}>
-                            <i className="bx bxs-binoculars profile-edit"></i>&nbsp;<span className="profile-edit" type="button" onClick={this.enableShowResume}>View</span>
-                            <i className="bx bx-trash profile-edit" style={{marginLeft: "1rem"}}></i>
-                            <span className="profile-edit" type="button" onClick={this.deleteResume}>Remove</span>
-                        </div>}
+                            <div style={{ float: "right" }}>
+                                <i className="bx bxs-binoculars profile-edit"></i>&nbsp;<span className="profile-edit" type="button" onClick={this.enableShowResume}>View</span>
+                                <i className="bx bx-trash profile-edit" style={{ marginLeft: "1rem" }}></i>
+                                <span className="profile-edit" type="button" onClick={this.deleteResume}>Remove</span>
+                            </div>}
                     </p>
-                    <div className="profile-bg4" style={{justifyContent: "center", height: "5rem", display: "flex", marginTop: "2rem", width: "100%"}}>
+                    <div className="profile-bg4" style={{ justifyContent: "center", height: "5rem", display: "flex", marginTop: "2rem", width: "100%" }}>
                         <button onClick={this.selectFile} className="profile-btn"><i className="bx bx-cloud-upload"></i>&nbsp;Select New Resume</button>
                         <ReactS3Uploader
-                          style={{display: "none"}}
-                          id="uploadFile"
-                          accept=".pdf"  // only accept pdf & docx files
-                          signingUrl="/upload-profile-resume"
-                          signingUrlMethod="GET"
-                          onError={this.onUploadError}
-                          onFinish={this.onUploadFinish}
-                          uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
-                          scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/gi, "")}
-                          inputRef={(cmp) => (this.uploadInput = cmp)}
-                          ref={(uploader) => {
-                            this.uploader = uploader;
-                          }}
-                          autoUpload={true}
+                            style={{ display: "none" }}
+                            id="uploadFile"
+                            accept=".pdf"  // only accept pdf & docx files
+                            signingUrl="/upload-profile-resume"
+                            signingUrlMethod="GET"
+                            onError={this.onUploadError}
+                            onFinish={this.onUploadFinish}
+                            uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
+                            scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/gi, "")}
+                            inputRef={(cmp) => (this.uploadInput = cmp)}
+                            ref={(uploader) => {
+                                this.uploader = uploader;
+                            }}
+                            autoUpload={true}
                         />
                     </div>
                     {
-                      this.state.selected ? (
-                        <div>
-                            <div style={{textAlign: "center", marginTop: "1rem"}}>
-                              <i className="bx bxs-file-pdf resume-name"></i>
-                              <label className="resume-name" id="fileName"></label>
-                              <label className="resume-success" style={{marginLeft: "0.5rem"}}>selected</label>
-                              <i className="bx bxs-check-circle resume-success" style={{marginLeft: "1rem"}}></i>
+                        this.state.selected ? (
+                            <div>
+                                <div style={{ textAlign: "center", marginTop: "1rem" }}>
+                                    <i className="bx bxs-file-pdf resume-name"></i>
+                                    <label className="resume-name" id="fileName"></label>
+                                    <label className="resume-success" style={{ marginLeft: "0.5rem" }}>selected</label>
+                                    <i className="bx bxs-check-circle resume-success" style={{ marginLeft: "1rem" }}></i>
+                                </div>
+                                <div style={{ textAlign: "center", marginTop: "1rem" }}>
+                                    <button onClick={this.handleUpload} className="default-btn resume-scan" style={{ backgroundColor: "#090D3A" }}>
+                                        <i className="bx bxs-hot"></i>
+                                        Upload
+                                        <span></span>
+                                    </button>
+                                </div>
                             </div>
-                            <div style={{textAlign: "center", marginTop:"1rem"}}>
-                              <button onClick={this.handleUpload} className="default-btn resume-scan" style={{backgroundColor: "#090D3A"}}>
-                                <i className="bx bxs-hot"></i>
-                                  Upload
-                                <span></span>
-                              </button>
-                            </div>
-                        </div>
-                      ) : null
+                        ) : null
                     }
                 </div>
                 <MyModal80
                     show={this.state.showResume}
-                    onHide={()=>{this.disableShowResume()}}
+                    onHide={() => { this.disableShowResume() }}
                 >
                     <div class="iframe-container">
-                        <iframe className="responsive-iframe" src={this.props.resumeURL}/>
+                        <iframe className="responsive-iframe" src={this.props.resumeURL} />
                     </div>
                 </MyModal80>
             </div>
