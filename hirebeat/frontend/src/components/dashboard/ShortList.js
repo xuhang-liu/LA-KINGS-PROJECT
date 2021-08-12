@@ -146,7 +146,7 @@ const ShortListCard = (props) => {
                     sendFailAlert();
                     props.getPJobs();
                 } else {
-                    encoded_email = window.btoa("email=" + ex_reviewer_email);
+                    encoded_email = window.btoa("email=" + ex_reviewer_email.toLowerCase());
                     let data = {
                         "ex_reviewer_name": ex_reviewer_name,
                         "ex_reviewer_email": ex_reviewer_email,

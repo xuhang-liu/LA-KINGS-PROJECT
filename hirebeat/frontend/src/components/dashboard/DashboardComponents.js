@@ -291,6 +291,22 @@ export const MyModal80 = (props) => {
     );
 };
 
+export const MyModalContact = (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName={"my-modal-contact"}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton style={{ borderBottom: "1px solid #E5E5E5", paddingBottom:"0.5rem"}} >
+                <h3 className="profile-h3">{props.contactName}</h3>
+            </Modal.Header>
+            {props.children}
+        </Modal>
+    );
+};
+
 export const MyVideoModal = (props) => {
     return (
         <Modal

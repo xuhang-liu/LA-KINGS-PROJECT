@@ -228,6 +228,7 @@ import CompanyBranding from "./dashboard/jobBoard/CompanyBranding";
 import ResumeScreening from "./HomeEmployer/ResumeScreening";
 import SolutionPage from "./HomeEmployer/SolutionPage";
 import IntergrationPage from "./HomeEmployer/IntergrationPage";
+import PublicProfile from "./dashboard/profile/PublicProfile";
 
 const alertOptions = {
   timeout: 3000,
@@ -503,6 +504,7 @@ class App extends Component {
                 <Route exact path="/employer-resume-screening" component={ResumeScreening} />
                 <Route exact path="/employer-solution-page" component={SolutionPage} />
                 <Route exact path="/employer-intergration-page" component={IntergrationPage} />
+                <Route exact path="/talent-profile" component={PublicProfile} />
                 <Route component={NotFoundPage} />
               </Switch>
             </Fragment>
