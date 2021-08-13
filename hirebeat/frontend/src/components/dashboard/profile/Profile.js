@@ -12,31 +12,46 @@ import SkillEdition from "./SkillEdition";
 import LanguageEdition from "./LanguageEdition";
 var ReactS3Uploader = require("react-s3-uploader");
 import Avatar from 'react-avatar-edit';
+import Chart from "react-apexcharts";
+import { infillBarDataPublicProfile } from "../../../constants/constants";
 
 function dataURItoBlob(dataURI) {
-  // convert base64 to raw binary data held in a string
-  // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-  var byteString = atob(dataURI.split(',')[1]);
+    // convert base64 to raw binary data held in a string
+    // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+    var byteString = atob(dataURI.split(',')[1]);
 
-  // separate out the mime component
-  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
 
-  // write the bytes of the string to an ArrayBuffer
-  var ab = new ArrayBuffer(byteString.length);
+    // write the bytes of the string to an ArrayBuffer
+    var ab = new ArrayBuffer(byteString.length);
 
-  // create a view into the buffer
-  var ia = new Uint8Array(ab);
+    // create a view into the buffer
+    var ia = new Uint8Array(ab);
 
-  // set the bytes of the buffer to the correct values
-  for (var i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
-  }
+    // set the bytes of the buffer to the correct values
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
 
-  // write the ArrayBuffer to a blob, and you're done
-  var blob = new Blob([ab], {type: mimeString});
-  return blob;
+    // write the ArrayBuffer to a blob, and you're done
+    var blob = new Blob([ab], { type: mimeString });
+    return blob;
 
 }
+
+const ProfileOverall = (props) => {
+    var options = infillBarDataPublicProfile(props.percent);
+    return (
+        <Chart
+            options={options.options}
+            series={options.series}
+            type="radialBar"
+            height={180}
+            key={"overall"}
+        />
+    );
+};
 
 export class Profile extends Component {
     state = {
@@ -69,25 +84,25 @@ export class Profile extends Component {
 
     exceedError1 = () => {
         confirmAlert({
-          title: "Maximum Education Reached",
-          message: "You can add three universities at most.",
-          buttons: [
-            {
-              label: 'Ok'
-            }
-          ]
+            title: "Maximum Education Reached",
+            message: "You can add three universities at most.",
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
         });
     };
 
     exceedError2 = () => {
         confirmAlert({
-          title: "Maximum Work Experience Reached",
-          message: "You can add five work experience at most.",
-          buttons: [
-            {
-              label: 'Ok'
-            }
-          ]
+            title: "Maximum Work Experience Reached",
+            message: "You can add five work experience at most.",
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
         });
     };
 
@@ -106,7 +121,7 @@ export class Profile extends Component {
     removeEducation = (index) => {
         let array = [...this.state.eduCount];
         array.splice(index, 1);
-        this.setState({eduCount: array});
+        this.setState({ eduCount: array });
     }
 
     addWorkExp = () => {
@@ -124,7 +139,7 @@ export class Profile extends Component {
     removeWorkExp = (index) => {
         let array = [...this.state.worCount];
         array.splice(index, 1);
-        this.setState({worCount: array});
+        this.setState({ worCount: array });
     }
 
     setCount = () => {
@@ -152,38 +167,38 @@ export class Profile extends Component {
     }
 
     setVideo = () => {
-        this.setState({isRecordVideo: true});
+        this.setState({ isRecordVideo: true });
     }
 
     setResume = () => {
-        this.setState({isUploadResume: true});
+        this.setState({ isUploadResume: true });
     }
 
     getUpdatedData = () => {
         this.props.getProfileDetail(this.props.userId);
-        setTimeout(() => {this.updateRate();}, 300);
-        setTimeout(() => {this.props.getProfileDetail(this.props.userId);}, 300);
+        setTimeout(() => { this.updateRate(); }, 300);
+        setTimeout(() => { this.props.getProfileDetail(this.props.userId); }, 300);
     }
 
     editInfo = () => {
-//        this.getUpdatedData();
-        setTimeout(() => {this.setState({isEditInfo: true});}, 300);
+        //        this.getUpdatedData();
+        setTimeout(() => { this.setState({ isEditInfo: true }); }, 300);
     }
 
     cancelEditInfo = () => {
         this.getUpdatedData();
-        setTimeout(() => this.setState({isEditInfo: false}), 300);
+        setTimeout(() => this.setState({ isEditInfo: false }), 300);
     }
 
     editMedia = () => {
-//        this.getUpdatedData();
-        setTimeout(() => this.setState({isEditMedia: true}), 300);
+        //        this.getUpdatedData();
+        setTimeout(() => this.setState({ isEditMedia: true }), 300);
 
     }
 
     cancelEditMedia = () => {
         this.getUpdatedData();
-        setTimeout(() => this.setState({isEditMedia: false}), 300);
+        setTimeout(() => this.setState({ isEditMedia: false }), 300);
     }
 
     editJobPreference = () => {
@@ -217,44 +232,44 @@ export class Profile extends Component {
     }
 
     editWorkInfo = () => {
-//        this.getUpdatedData();
-        setTimeout(() => this.setState({isEditWorkInfo: true}), 300);
+        //        this.getUpdatedData();
+        setTimeout(() => this.setState({ isEditWorkInfo: true }), 300);
 
     }
 
     cancelEditWorkInfo = () => {
         this.getUpdatedData();
-        setTimeout(() => this.setState({isEditWorkInfo: false}), 300);
+        setTimeout(() => this.setState({ isEditWorkInfo: false }), 300);
     }
 
     editSummary = () => {
-//        this.getUpdatedData();
-        setTimeout(() => this.setState({isEditSummary: true}), 300);
+        //        this.getUpdatedData();
+        setTimeout(() => this.setState({ isEditSummary: true }), 300);
     }
 
     cancelEditSummary = () => {
         this.getUpdatedData();
-        setTimeout(() => this.setState({isEditSummary: false}), 300);
+        setTimeout(() => this.setState({ isEditSummary: false }), 300);
     }
 
     editEducation = () => {
-//        this.getUpdatedData();
-        setTimeout(() => this.setState({isEditEducation: true}), 300);
+        //        this.getUpdatedData();
+        setTimeout(() => this.setState({ isEditEducation: true }), 300);
     }
 
     cancelEditEducation = () => {
         this.getUpdatedData();
-        setTimeout(() => this.setState({isEditEducation: false}), 300);
+        setTimeout(() => this.setState({ isEditEducation: false }), 300);
     }
 
     editWorkExp = () => {
-//        this.getUpdatedData();
-        setTimeout(() => this.setState({isEditWorkExp: true}), 300);
+        //        this.getUpdatedData();
+        setTimeout(() => this.setState({ isEditWorkExp: true }), 300);
     }
 
     cancelEditWorkExp = () => {
         this.getUpdatedData();
-        setTimeout(() => this.setState({isEditWorkExp: false}), 300);
+        setTimeout(() => this.setState({ isEditWorkExp: false }), 300);
 
     }
 
@@ -287,9 +302,9 @@ export class Profile extends Component {
         let linkedin = document.getElementById("linkedin").value;
         let website = document.getElementById("website").value;
         let github = document.getElementById("github").value;
-        if(((!linkedin.toLowerCase().includes("linkedin")) && (linkedin != "")) || ((!github.toLowerCase().includes("github")) && (github != ""))) {
+        if (((!linkedin.toLowerCase().includes("linkedin")) && (linkedin != "")) || ((!github.toLowerCase().includes("github")) && (github != ""))) {
             alert("Please Enter Correct URL");
-        }else{
+        } else {
             let data = {
                 "user_id": this.props.userId,
                 "email": email,
@@ -460,11 +475,11 @@ export class Profile extends Component {
     }
 
     onClose = () => {
-        this.setState({preview: null})
+        this.setState({ preview: null })
     }
 
     onCrop = (preview) => {
-        this.setState({preview})
+        this.setState({ preview })
     }
 
     onBeforeFileLoad = (elem) => {
@@ -479,7 +494,7 @@ export class Profile extends Component {
             elem.target.value = "";
         }
         else {
-            this.setState({docType: docType});
+            this.setState({ docType: docType });
         }
     }
 
@@ -489,11 +504,11 @@ export class Profile extends Component {
 
         // insert MetaData to profile table
         const metaData = {
-          user_id: this.props.userId,
-          logo_url: logo_url,
+            user_id: this.props.userId,
+            logo_url: logo_url,
         };
         this.props.updateUserLogo(metaData);
-        setTimeout(() => {this.getUpdatedData(); this.getUpdatedData();}, 300);
+        setTimeout(() => { this.getUpdatedData(); this.getUpdatedData(); }, 300);
     };
 
     onUploadError = (err) => {
@@ -509,8 +524,8 @@ export class Profile extends Component {
             var blob = dataURItoBlob(this.state.preview);
             let timestamp = Date.parse(new Date());
             let fakeName = timestamp + "." + this.state.docType;
-            const newLogo = new File([blob], fakeName, {type: blob.type});
-            this.setState({fakeName: fakeName});
+            const newLogo = new File([blob], fakeName, { type: blob.type });
+            this.setState({ fakeName: fakeName });
             this.uploader.uploadFile(newLogo);
         }
     }
@@ -546,11 +561,77 @@ export class Profile extends Component {
         return (
             <React.Fragment>
                 <div className="profile-container">
+                    {/* Completion rate */}
+                    <div className="row" style={{ marginBottom: "2rem" }}>
+                        <div className="col-7">
+
+                            <div className="profile-bg" style={{ textAlign: "left" }}>
+                                <div className="row" style={{ padding: "2rem" }}>
+                                    <div className="col-3">
+                                        <ProfileOverall percent={this.props.profileDetail.profile_rate / 100} />
+                                    </div>
+                                    <div className="col-9">
+                                        <h3 className="profile-h3" style={{ paddingTop: "1rem" }}>Profile Completeness</h3>
+                                        <div className="row" style={{ marginTop: "2rem" }}>
+                                            <div style={{width: "50%"}}>
+                                                <p className="profile-p">
+                                                    <i className="bx-fw bx bx-check-circle" style={{ color: "#13C4A1" }}></i>
+                                                    <span style={{ marginLeft: "1rem" }}>Verify email address</span>
+                                                </p>
+                                            </div>
+                                            <div style={{width: "50%"}}>
+                                                <p className="profile-p">
+                                                    {this.props.profileDetail.resume_url != "" && this.props.profileDetail.resume_url != null ?
+                                                        <i className="bx-fw bx bx-check-circle" style={{ color: "#13C4A1" }}></i> :
+                                                        <i className="bx-fw bx bx-circle"></i>
+                                                    }
+                                                    <span style={{ marginLeft: "1rem" }}>Upload resume</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="row" style={{ paddingTop: "1rem" }}>
+                                            <div style={{width: "50%"}}>
+                                                <p className="profile-p">
+                                                    {this.props.profileDetail.video_url != "" && this.props.profileDetail.video_url != null ?
+                                                        <i className="bx-fw bx bx-check-circle" style={{ color: "#13C4A1" }}></i> :
+                                                        <i className="bx-fw bx bx-circle"></i>
+                                                    }
+                                                    <span style={{ marginLeft: "1rem" }}>Record self-introduction video</span>
+                                                </p>
+                                            </div>
+                                            <div style={{width: "50%"}}>
+                                                <p className="profile-p">
+                                                    {this.props.profileDetail.info_rate == 25 ?
+                                                        <i className="bx-fw bx bx-check-circle" style={{ color: "#13C4A1" }}></i> :
+                                                        <i className="bx-fw bx bx-circle"></i>
+                                                    }
+                                                    <span style={{ marginLeft: "1rem" }}>Finish personal information</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-4">
+                            {/* Public share */}
+                            <div className="profile-bg" style={{ textAlign: "left" }}>
+                                <div style={{ padding: "2rem" }}>
+                                    <p className="profile-p"><i style={{ color: "#13c4a1" }} className="bx-fw bx bx-check-circle"></i> Your profile is now public. <a style={{ marginLeft: "0.5rem" }} href="/"><i class='bx-fw bx bx-link-external bx-xs'></i></a></p>
+                                    <p className="profile-p"><i style={{ color: "#13c4a1" }} className="bx-fw bx bx-check-circle"></i> Your profile is visible to recruiters.</p>
+                                    <p style={{ paddingLeft: "2rem", color: "#7C94B5", fontWeight: "500", fontSize: "0.85rem" }}>These can be changed at anytime. <span style={{ marginLeft: "0.5rem", cursor: "pointer", color: "#67a3f3" }}>Edit</span></p>
+                                    <hr style={{ border: "1px solid #E5E5E5" }} />
+                                    <button className="default-btn" style={{ width:"100%", paddingLeft:"25px", backgroundColor: "#13C4A1", color: "#ffffff" }}>See Employer View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="row">
                         <div className="col-5">
                             {/* Personal Information */}
-                            <div className="profile-bg" style={{textAlign: "left"}}>
-                                <div style={{padding: "2rem"}}>
+                            <div className="profile-bg" style={{ textAlign: "left" }}>
+                                <div style={{ padding: "2rem" }}>
                                     {!this.state.isEditInfo ?
                                         <div className="row">
                                             <div className="col-3">
@@ -567,9 +648,9 @@ export class Profile extends Component {
                                                         </h3>
                                                     </div>
                                                     <div className="col-4 profile-edit">
-                                                        <div style={{float: "right"}}>
+                                                        <div style={{ float: "right" }}>
                                                             <i className="bx bx-edit-alt"></i>
-                                                            <span onClick={this.editInfo} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
+                                                            <span onClick={this.editInfo} style={{ marginLeft: "0.5rem", cursor: "pointer" }}>Edit</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -621,21 +702,21 @@ export class Profile extends Component {
                                                 </div>
                                             </div>
                                             <ReactS3Uploader
-                                              style={{display: "none"}}
-                                              id="uploadFile"
-                                              accept="image/jpeg,image/png,image/jpg"
-                                              signingUrl="/upload-user-logo"
-                                              signingUrlMethod="GET"
-                                              onError={this.onUploadError}
-                                              onFinish={this.onUploadFinish}
-                                              contentDisposition="auto"
-                                              uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
-                                              scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/gi, "")}
-                                              inputRef={(cmp) => (this.uploadInput = cmp)}
-                                              ref={(uploader) => {
-                                                this.uploader = uploader;
-                                              }}
-                                              autoUpload={true}
+                                                style={{ display: "none" }}
+                                                id="uploadFile"
+                                                accept="image/jpeg,image/png,image/jpg"
+                                                signingUrl="/upload-user-logo"
+                                                signingUrlMethod="GET"
+                                                onError={this.onUploadError}
+                                                onFinish={this.onUploadFinish}
+                                                contentDisposition="auto"
+                                                uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
+                                                scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/gi, "")}
+                                                inputRef={(cmp) => (this.uploadInput = cmp)}
+                                                ref={(uploader) => {
+                                                    this.uploader = uploader;
+                                                }}
+                                                autoUpload={true}
                                             />
                                             <div className="row" style={{marginTop: "1rem"}}>
                                                 <div className="col-6" />
@@ -671,9 +752,9 @@ export class Profile extends Component {
                                                     </h3>
                                                 </div>
                                                 <div className="col-4 profile-edit">
-                                                    <div style={{float: "right"}}>
+                                                    <div style={{ float: "right" }}>
                                                         <i className="bx bx-edit-alt"></i>
-                                                        <span onClick={this.editMedia} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
+                                                        <span onClick={this.editMedia} style={{ marginLeft: "0.5rem", cursor: "pointer" }}>Edit</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -696,36 +777,36 @@ export class Profile extends Component {
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
-                                                    <p className="profile-p4" style={{wordBreak: "break-word"}}>
+                                                    <p className="profile-p4" style={{ wordBreak: "break-word" }}>
                                                         {(this.props.profileDetail.linkedin !== null && this.props.profileDetail.linkedin !== "") ? this.props.profileDetail.linkedin : "Link to your LinkedIn"}
                                                     </p>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col-4">
-                                                    <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
-                                                        Website <i class='bx bxs-network-chart' style={{color: "#67A3F3"}}></i>
+                                                    <p className="profile-p3" style={{ display: "flex", alignItems: "center" }}>
+                                                        Website <i class='bx bxs-network-chart' style={{ color: "#67A3F3" }}></i>
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
-                                                    <p className="profile-p4" style={{wordBreak: "break-word"}}>
+                                                    <p className="profile-p4" style={{ wordBreak: "break-word" }}>
                                                         {(this.props.profileDetail.website !== null && this.props.profileDetail.website !== "") ? this.props.profileDetail.website : "Add your personal website"}
                                                     </p>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col-4">
-                                                    <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
-                                                        Github <i class='bx bxl-github' style={{color: "#67A3F3"}}></i>
+                                                    <p className="profile-p3" style={{ display: "flex", alignItems: "center" }}>
+                                                        Github <i class='bx bxl-github' style={{ color: "#67A3F3" }}></i>
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
-                                                    <p className="profile-p4" style={{wordBreak: "break-word"}}>
+                                                    <p className="profile-p4" style={{ wordBreak: "break-word" }}>
                                                         {(this.props.profileDetail.github !== null && this.props.profileDetail.github !== "") ? this.props.profileDetail.github : "Link to your Github"}
                                                     </p>
                                                 </div>
                                             </div>
-                                        </div>:
+                                        </div> :
                                         <div>
                                             <div className="row">
                                                 <div className="col-7">
@@ -737,16 +818,16 @@ export class Profile extends Component {
                                                 <input id="email" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.email}></input>
                                             </div>
                                             <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>LinkedIn <i class='bx bxl-linkedin-square' style={{color: "#090D3A"}}></i></p>
-                                                <input id="linkedin" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.linkedin}></input>
+                                                <p className="profile-p3" style={{ margin: "0rem" }}>LinkedIn <i class='bx bxl-linkedin-square' style={{ color: "#090D3A" }}></i></p>
+                                                <input id="linkedin" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.profileDetail.linkedin}></input>
                                             </div>
-                                            <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Website <i class='bx bxs-network-chart' style={{color: "#090D3A"}}></i></p>
-                                                <input id="website" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.website}></input>
+                                            <div style={{ marginTop: "1rem" }}>
+                                                <p className="profile-p3" style={{ margin: "0rem" }}>Website <i class='bx bxs-network-chart' style={{ color: "#090D3A" }}></i></p>
+                                                <input id="website" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.profileDetail.website}></input>
                                             </div>
-                                             <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Github <i class='bx bxl-github' style={{color: "#090D3A"}}></i></p>
-                                                <input id="github" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.github}></input>
+                                            <div style={{ marginTop: "1rem" }}>
+                                                <p className="profile-p3" style={{ margin: "0rem" }}>Github <i class='bx bxl-github' style={{ color: "#090D3A" }}></i></p>
+                                                <input id="github" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.profileDetail.github}></input>
                                             </div>
                                             <div className="row" style={{marginTop: "1rem"}}>
                                                 <div className="col-6" />
@@ -782,7 +863,7 @@ export class Profile extends Component {
                                                     </h3>
                                                 </div>
                                                 <div className="col-4 profile-edit">
-                                                    <div style={{float: "right"}}>
+                                                    <div style={{ float: "right" }}>
                                                         <i className="bx bx-edit-alt"></i>
                                                         <span onClick={this.editJobPreference} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
                                                     </div>
@@ -855,7 +936,7 @@ export class Profile extends Component {
                                                 })
                                                 }
                                             </div>
-                                        </div>:
+                                        </div> :
                                         <div>
                                             <div className="row">
                                                 <div className="col-7">
@@ -928,58 +1009,6 @@ export class Profile extends Component {
                                     }
                                 </div>
                             </div>
-
-                            {/* Completion Rate */}
-                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
-                                <div style={{padding: "2rem"}}>
-                                    <h3 className="profile-h3">Completeness Rate</h3>
-                                    <p className="profile-p">Your Profile is {this.props.profileDetail.profile_rate}% Complete</p>
-                                    <ProgressBar2 percent={this.props.profileDetail.profile_rate == null ? 25 : this.props.profileDetail.profile_rate} max={100} height={15} />
-                                    <div className="row" style={{marginTop: "1rem"}}>
-                                        <div className="col-5">
-                                            {this.props.profileDetail.profile_rate == 100 ?
-                                                <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/unlock.png" /> :
-                                                <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/lock.png" />
-                                            }
-                                        </div>
-                                        <div className="col-7">
-                                            {this.props.profileDetail.profile_rate == 100 ?
-                                                <span className="profile-p2">
-                                                    You’ve successfully unlocked HireBeat Premium features! Enjoy your practice!
-                                                </span> :
-                                                <span className="profile-p2">
-                                                    Unlock unlimited access to resume review and interview practice by completing the profile.
-                                                </span>
-                                            }
-                                        </div>
-                                    </div>
-                                    <p className="profile-p" style={{display: "flex", alignItems: "center"}}>
-                                        <i className="bx bx-check-circle" style={{color: "#13C4A1"}}></i>
-                                        <span style={{marginLeft: "1rem"}}>Verify email address</span>
-                                    </p>
-                                    <p className="profile-p" style={{display: "flex", alignItems: "center"}}>
-                                        {this.props.profileDetail.video_url != "" && this.props.profileDetail.video_url != null ?
-                                            <i className="bx bx-check-circle" style={{color: "#13C4A1"}}></i> :
-                                            <i className="bx bx-circle"></i>
-                                        }
-                                        <span style={{marginLeft: "1rem"}}>Record self-introduction video</span>
-                                    </p>
-                                    <p className="profile-p" style={{display: "flex", alignItems: "center"}}>
-                                        {this.props.profileDetail.resume_url != "" && this.props.profileDetail.resume_url != null ?
-                                            <i className="bx bx-check-circle" style={{color: "#13C4A1"}}></i> :
-                                            <i className="bx bx-circle"></i>
-                                        }
-                                        <span style={{marginLeft: "1rem"}}>Upload resume</span>
-                                    </p>
-                                    <p className="profile-p" style={{display: "flex", alignItems: "center"}}>
-                                        {this.props.profileDetail.info_rate == 25 ?
-                                            <i className="bx bx-check-circle" style={{color: "#13C4A1"}}></i> :
-                                            <i className="bx bx-circle"></i>
-                                        }
-                                        <span style={{marginLeft: "1rem"}}>Finish personal information</span>
-                                    </p>
-                                </div>
-                            </div>
                         </div>
 
                         {/* Right Part */}
@@ -994,9 +1023,9 @@ export class Profile extends Component {
                                                     <h3 className="profile-h3">Summary</h3>
                                                 </div>
                                                 <div className="col-4 profile-edit">
-                                                    <div style={{float: "right"}}>
+                                                    <div style={{ float: "right" }}>
                                                         <i className="bx bx-edit-alt"></i>
-                                                        <span onClick={this.editSummary} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
+                                                        <span onClick={this.editSummary} style={{ marginLeft: "0.5rem", cursor: "pointer" }}>Edit</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1039,8 +1068,8 @@ export class Profile extends Component {
                             </div>
 
                             {/* Education */}
-                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
-                                <div style={{padding: "2rem"}}>
+                            <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
+                                <div style={{ padding: "2rem" }}>
                                     {!this.state.isEditEducation ?
                                         <div>
                                             {schools.map((s, index) => {
@@ -1075,9 +1104,9 @@ export class Profile extends Component {
                             </div>
 
                             {/* Work Experience */}
-                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
-                                <div style={{padding: "2rem"}}>
-                                        {!this.state.isEditWorkExp ?
+                            <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
+                                <div style={{ padding: "2rem" }}>
+                                    {!this.state.isEditWorkExp ?
                                         <div>
                                             {companies.map((c, index) => {
                                                 if (index == 0 || (this.props.profileDetail[companies[index]] != "" && this.props.profileDetail[companies[index]] != null)) {
@@ -1113,7 +1142,7 @@ export class Profile extends Component {
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         )
     };
 }
