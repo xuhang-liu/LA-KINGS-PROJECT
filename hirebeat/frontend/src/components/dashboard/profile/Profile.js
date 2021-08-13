@@ -7,6 +7,9 @@ import Resume from "./Resume";
 import Education from "./Education";
 import WorkExperience from "./WorkExperience";
 import VideoPanel from "./VideoPanel";
+import JobTypeSelection from "./JobTypeSelection";
+import SkillEdition from "./SkillEdition";
+import LanguageEdition from "./LanguageEdition";
 var ReactS3Uploader = require("react-s3-uploader");
 import Avatar from 'react-avatar-edit';
 
@@ -40,6 +43,9 @@ export class Profile extends Component {
         isEditInfo: false,
         isEditMedia: false,
         isEditWorkInfo: false,
+        isEditJobPreference: false,
+        isEditSkills: false,
+        isEditLanguages: false,
         isEditSummary: false,
         isEditEducation: false,
         isEditWorkExp: false,
@@ -52,6 +58,9 @@ export class Profile extends Component {
         preview: null,
         fakeName: "",
         docType: "",
+        jobType: "",
+        skills: null,
+        languages: null,
     }
 
     componentDidMount() {
@@ -177,6 +186,36 @@ export class Profile extends Component {
         setTimeout(() => this.setState({isEditMedia: false}), 300);
     }
 
+    editJobPreference = () => {
+        setTimeout(() => this.setState({isEditJobPreference: true}), 300);
+
+    }
+
+    cancelEditJobPreference = () => {
+        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditJobPreference: false}), 300);
+    }
+
+    editSkills = () => {
+        setTimeout(() => this.setState({isEditSkills: true}), 300);
+
+    }
+
+    cancelEditSkills = () => {
+        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditSkills: false}), 300);
+    }
+
+    editLanguages = () => {
+        setTimeout(() => this.setState({isEditLanguages: true}), 300);
+
+    }
+
+    cancelEditLanguages = () => {
+        this.getUpdatedData();
+        setTimeout(() => this.setState({isEditLanguages: false}), 300);
+    }
+
     editWorkInfo = () => {
 //        this.getUpdatedData();
         setTimeout(() => this.setState({isEditWorkInfo: true}), 300);
@@ -224,12 +263,18 @@ export class Profile extends Component {
     }
 
     savePersonalInfo = () => {
-        let name = document.getElementById("name").value;
-        let selfDescription = document.getElementById("selfDescription").value;
+        let firstName = document.getElementById("firstName").value;
+        let lastName = document.getElementById("lastName").value;
+        let curJobTitle = document.getElementById("curJobTitle").value;
+        let curCompany = document.getElementById("curCompany").value;
+        let location = document.getElementById("location").value;
         let data = {
             "user_id": this.props.userId,
-            "name": name,
-            "self_description": selfDescription,
+            "f_name": firstName,
+            "l_name": lastName,
+            "current_job_title": curJobTitle,
+            "current_company": curCompany,
+            "location": location,
         }
         this.props.updatePersonalInfo(data);
         this.handleUpload();
@@ -238,6 +283,7 @@ export class Profile extends Component {
     }
 
     saveSocialMedia = () => {
+        let email = document.getElementById("email").value;
         let linkedin = document.getElementById("linkedin").value;
         let website = document.getElementById("website").value;
         let github = document.getElementById("github").value;
@@ -246,6 +292,7 @@ export class Profile extends Component {
         }else{
             let data = {
                 "user_id": this.props.userId,
+                "email": email,
                 "linkedin": linkedin,
                 "website": website,
                 "github": github,
@@ -269,6 +316,51 @@ export class Profile extends Component {
         this.props.updateBasicInfo(data);
         this.getUpdatedData();
         this.cancelEditWorkInfo();
+    }
+
+    saveJobPreference = () => {
+        let jobType = this.state.jobType;
+        let data = {
+            "user_id": this.props.userId,
+            "job_type": jobType,
+        }
+        this.props.updateJobType(data);
+        this.getUpdatedData();
+        this.cancelEditJobPreference();
+    }
+
+    setJobType = (jobType) => {
+        this.setState({jobType: jobType});
+    }
+
+    saveSkills = () => {
+        let skills = this.state.skills;
+        let data = {
+            "user_id": this.props.userId,
+            "skills": skills,
+        }
+        this.props.updateSkills(data);
+        this.getUpdatedData();
+        this.cancelEditSkills();
+    }
+
+    setSkills = (skills) => {
+        this.setState({skills: skills});
+    }
+
+    saveLanguages = () => {
+        let languages = this.state.languages;
+        let data = {
+            "user_id": this.props.userId,
+            "languages": languages,
+        }
+        this.props.updateLanguages(data);
+        this.getUpdatedData();
+        this.cancelEditLanguages();
+    }
+
+    setLanguages = (languages) => {
+        this.setState({languages: languages});
     }
 
     saveSummary = () => {
@@ -424,6 +516,20 @@ export class Profile extends Component {
     }
 
     render () {
+        const name = this.props.profileDetail.f_name + " " + this.props.profileDetail.l_name;
+        const jobType = { value: this.props.profileDetail.job_type, label: this.props.profileDetail.job_type };
+        // format skills
+        let skills = [];
+        for (let i = 0; i < this.props.profileDetail.skills?.length; i++) {
+            let keyValue = {value: this.props.profileDetail.skills[i], label: this.props.profileDetail.skills[i]};
+            skills.push(keyValue);
+        }
+        // format languages
+        let languages = [];
+        for (let i = 0; i < this.props.profileDetail.languages?.length; i++) {
+            let keyValue = {value: this.props.profileDetail.languages[i], label: this.props.profileDetail.languages[i]};
+            languages.push(keyValue);
+        }
         const schools = ["school1", "school2", "school3"];
         const graduationDates = ["graduation_date1", "graduation_date2", "graduation_date3"];
         const majors = ["major1", "major2", "major3"];
@@ -457,7 +563,7 @@ export class Profile extends Component {
                                                 <div className="row">
                                                     <div className="col-8">
                                                         <h3 className="profile-h3">
-                                                            {(this.props.profileDetail.name !== null && this.props.profileDetail.name !== "") ? this.props.profileDetail.name : "Full Name Here"}
+                                                            {name !== " " ? name : "Full Name Here"}
                                                         </h3>
                                                     </div>
                                                     <div className="col-4 profile-edit">
@@ -467,9 +573,9 @@ export class Profile extends Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p className="profile-p">
-                                                    {(this.props.profileDetail.self_description !== null && this.props.profileDetail.self_description !== "") ? this.props.profileDetail.self_description : "Heading here"}
-                                                </p>
+                                                 <p className="profile-p" style={{margin: "0rem"}}>{this.props.profileDetail.current_job_title}</p>
+                                                 <p className="profile-p">{this.props.profileDetail.current_company}</p>
+                                                 <p className="profile-p4">{this.props.profileDetail.location}</p>
                                             </div>
                                         </div> :
                                         <div>
@@ -477,32 +583,42 @@ export class Profile extends Component {
                                                 <div className="col-7">
                                                     <h3 className="profile-h3">Information</h3>
                                                 </div>
-                                                <div className="col-5 profile-edit">
-                                                    <div style={{float: "right"}}>
-                                                        <span style={{cursor:"pointer"}} onClick={this.cancelEditInfo}>Cancel</span>
-                                                        <span onClick={this.savePersonalInfo} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
-                                                    </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-6">
+                                                    <p className="profile-p" style={{margin: "0rem"}}>First Name</p>
+                                                    <input id="firstName" className="profile-input profile-p" defaultValue={this.props.profileDetail.f_name} style={{width: "100%"}}></input>
+                                                </div>
+                                                <div className="col-6">
+                                                    <p className="profile-p" style={{margin: "0rem"}}>Last Name</p>
+                                                    <input id="lastName" className="profile-input profile-p" defaultValue={this.props.profileDetail.l_name} style={{width: "100%"}}></input>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <p className="profile-p" style={{margin: "0rem"}}>Name</p>
-                                                <input id="name" className="profile-input profile-p" defaultValue={this.props.profileDetail.name} style={{width: "100%"}}></input>
+                                            <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p" style={{margin: "0rem"}}>Current Position</p>
+                                                <textarea id="curJobTitle" className="profile-input profile-p" style={{width: "100%"}} placeholder="eg: Software Engineer at HireBeat" defaultValue={this.props.profileDetail.current_job_title}></textarea>
                                             </div>
                                             <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p" style={{margin: "0rem"}}>Job Title</p>
-                                                <textarea id="selfDescription" className="profile-input profile-p" style={{width: "100%"}} placeholder="eg: Software Engineer at HireBeat" defaultValue={this.props.profileDetail.self_description}></textarea>
+                                                <p className="profile-p" style={{margin: "0rem"}}>Current Company/School</p>
+                                                <textarea id="curCompany" className="profile-input profile-p" style={{width: "100%"}} placeholder="eg: HireBeat" defaultValue={this.props.profileDetail.current_company}></textarea>
+                                            </div>
+                                            <div style={{marginTop: "1rem"}}>
+                                                <p className="profile-p" style={{margin: "0rem"}}>Location</p>
+                                                <textarea id="location" className="profile-input profile-p" style={{width: "100%"}} defaultValue={this.props.profileDetail.location}></textarea>
                                             </div>
                                             <div>
                                                 <p className="profile-p" style={{margin: "0rem"}}>User Logo</p>
-                                                <Avatar
-                                                  width={285}
-                                                  height={200}
-                                                  onCrop={this.onCrop}
-                                                  onClose={this.onClose}
-                                                  onBeforeFileLoad={this.onBeforeFileLoad}
-                                                  mimeTypes={"image/jpeg,image/png,image/jpg"}
-                                                />
-                                                {/*<img src={this.state.preview} alt="Preview" />*/}
+                                                <div style={{display: "flex", justifyContent: "center"}}>
+                                                    <Avatar
+                                                      width={285}
+                                                      height={200}
+                                                      onCrop={this.onCrop}
+                                                      onClose={this.onClose}
+                                                      onBeforeFileLoad={this.onBeforeFileLoad}
+                                                      mimeTypes={"image/jpeg,image/png,image/jpg"}
+                                                    />
+                                                    {/*<img src={this.state.preview} alt="Preview" />*/}
+                                                </div>
                                             </div>
                                             <ReactS3Uploader
                                               style={{display: "none"}}
@@ -521,25 +637,56 @@ export class Profile extends Component {
                                               }}
                                               autoUpload={true}
                                             />
+                                            <div className="row" style={{marginTop: "1rem"}}>
+                                                <div className="col-6" />
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.cancelEditInfo}>Cancel</button>
+                                                </div>
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.savePersonalInfo}>Save</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     }
                                 </div>
                             </div>
 
-                            {/* Social Media */}
+                            {/* Contact Info */}
                             <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
                                 <div style={{padding: "2rem"}}>
                                     {!this.state.isEditMedia ?
                                         <div>
                                             <div className="row">
                                                 <div className="col-8">
-                                                    <h3 className="profile-h3">Social Media</h3>
+                                                    <h3 className="profile-h3">
+                                                        Contact Info
+                                                        <span className="tool_tip ml-2">
+                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                <div>
+                                                                    Your email will only be visible to recruiters on HireBeat
+                                                                </div>
+                                                            </p>
+                                                        </span>
+                                                    </h3>
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{float: "right"}}>
                                                         <i className="bx bx-edit-alt"></i>
                                                         <span onClick={this.editMedia} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-4">
+                                                    <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
+                                                        Email <i class='bx-fw bx bx-mail-send' style={{color: "#67A3F3"}}></i>
+                                                    </p>
+                                                </div>
+                                                <div className="col-8">
+                                                    <p className="profile-p4" style={{wordBreak: "break-word"}}>
+                                                        {(this.props.profileDetail.email !== null && this.props.profileDetail.email !== "") ? this.props.profileDetail.email : "Your Email"}
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div className="row">
@@ -584,12 +731,10 @@ export class Profile extends Component {
                                                 <div className="col-7">
                                                     <h3 className="profile-h3">Social Media</h3>
                                                 </div>
-                                                <div className="col-5 profile-edit">
-                                                    <div style={{float: "right"}}>
-                                                        <span style={{cursor:"pointer"}} onClick={this.cancelEditMedia}>Cancel</span>
-                                                        <span onClick={this.saveSocialMedia} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
-                                                    </div>
-                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="profile-p3" style={{margin: "0rem"}}>Email <i class='bx-fw bx bx-mail-send' style={{color: "#090D3A"}}></i></p>
+                                                <input id="email" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.email}></input>
                                             </div>
                                             <div>
                                                 <p className="profile-p3" style={{margin: "0rem"}}>LinkedIn <i class='bx bxl-linkedin-square' style={{color: "#090D3A"}}></i></p>
@@ -603,69 +748,181 @@ export class Profile extends Component {
                                                 <p className="profile-p3" style={{margin: "0rem"}}>Github <i class='bx bxl-github' style={{color: "#090D3A"}}></i></p>
                                                 <input id="github" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.github}></input>
                                             </div>
+                                            <div className="row" style={{marginTop: "1rem"}}>
+                                                <div className="col-6" />
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.cancelEditMedia}>Cancel</button>
+                                                </div>
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.saveSocialMedia}>Save</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     }
                                 </div>
                             </div>
 
-                            {/* Basic info */}
+                            {/* Job Preference */}
                             <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
                                 <div style={{padding: "2rem"}}>
-                                    {!this.state.isEditWorkInfo ?
+                                    {!this.state.isEditJobPreference ?
                                         <div>
                                             <div className="row">
                                                 <div className="col-8">
-                                                    <h3 className="profile-h3">Basic Info</h3>
+                                                    <h3 className="profile-h3">
+                                                        Job Preference
+                                                        <span className="tool_tip ml-2">
+                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                <div>
+                                                                    This section will only be visible to recruiters on HireBeat.
+                                                                </div>
+                                                            </p>
+                                                        </span>
+                                                    </h3>
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{float: "right"}}>
                                                         <i className="bx bx-edit-alt"></i>
-                                                        <span onClick={this.editWorkInfo} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
+                                                        <span onClick={this.editJobPreference} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Years of Experience</p>
                                                 <p className="profile-p4">
-                                                    {(this.props.profileDetail.year_of_exp !== null && this.props.profileDetail.year_of_exp !== "") ? this.props.profileDetail.year_of_exp : "Enter years"}
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Current Company</p>
-                                                <p className="profile-p4">
-                                                    {(this.props.profileDetail.current_company !== null && this.props.profileDetail.current_company !=="") ? this.props.profileDetail.current_company : "Enter company"}
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Location</p>
-                                                <p className="profile-p4">
-                                                    {(this.props.profileDetail.location !== null && this.props.profileDetail.location !== "") ? this.props.profileDetail.location : "Enter location"}
+                                                    {(this.props.profileDetail.job_type !== "") ? this.props.profileDetail.job_type : ""}
                                                 </p>
                                             </div>
                                         </div>:
                                         <div>
                                             <div className="row">
                                                 <div className="col-7">
-                                                    <h3 className="profile-h3">Basic Info</h3>
+                                                    <h3 className="profile-h3">Job Preference</h3>
                                                 </div>
-                                                <div className="col-5 profile-edit">
+                                            </div>
+                                            <div>
+                                                <JobTypeSelection jobType = {jobType} setJobType={this.setJobType}/>
+                                            </div>
+                                            <div className="row" style={{marginTop: "1rem"}}>
+                                                <div className="col-6" />
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.cancelEditJobPreference}>Cancel</button>
+                                                </div>
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.saveJobPreference}>Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            {/* Resume */}
+                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
+                                <Resume
+                                    updateResume={this.props.updateResume}
+                                    userId={this.props.userId}
+                                    resumeName={this.props.profileDetail.resume_name}
+                                    resumeURL={this.props.profileDetail.resume_url}
+                                    setResume={this.setResume}
+                                    getUpdatedData={this.getUpdatedData}
+                                />
+                            </div>
+
+                            {/* Skills */}
+                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
+                                <div style={{padding: "2rem"}}>
+                                    {!this.state.isEditSkills ?
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-8">
+                                                    <h3 className="profile-h3">
+                                                        Skills
+                                                    </h3>
+                                                </div>
+                                                <div className="col-4 profile-edit">
                                                     <div style={{float: "right"}}>
-                                                        <span style={{cursor:"pointer"}} onClick={this.cancelEditWorkInfo}>Cancel</span>
-                                                        <span onClick={this.saveWorkInfo} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
+                                                        <i className="bx bx-edit-alt"></i>
+                                                        <span onClick={this.editSkills} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Years of Experience</p>
-                                                <input id="yoe" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.year_of_exp}></input>
+                                                {(this.props.profileDetail?.skills)?.map((skill) => {
+                                                    return (
+                                                        <span className="circle-tags">{skill}</span>
+                                                    )
+                                                })
+                                                }
                                             </div>
-                                            <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Current Company</p>
-                                                <input id="curCompany" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.current_company}></input>
+                                        </div>:
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-7">
+                                                    <h3 className="profile-h3">Skills</h3>
+                                                </div>
                                             </div>
-                                             <div style={{marginTop: "1rem"}}>
-                                                <p className="profile-p3" style={{margin: "0rem"}}>Location Based</p>
-                                                <input id="location" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.location}></input>
+                                            <div>
+                                                <SkillEdition skills = {skills} setSkills={this.setSkills}/>
+                                            </div>
+                                            <div className="row" style={{marginTop: "1rem"}}>
+                                                <div className="col-6" />
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.cancelEditSkills}>Cancel</button>
+                                                </div>
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.saveSkills}>Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            {/* Languages */}
+                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
+                                <div style={{padding: "2rem"}}>
+                                    {!this.state.isEditLanguages ?
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-8">
+                                                    <h3 className="profile-h3">
+                                                        Languages
+                                                    </h3>
+                                                </div>
+                                                <div className="col-4 profile-edit">
+                                                    <div style={{float: "right"}}>
+                                                        <i className="bx bx-edit-alt"></i>
+                                                        <span onClick={this.editLanguages} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                {(this.props.profileDetail?.languages)?.map((language) => {
+                                                    return (
+                                                        <span className="circle-tags">{language}</span>
+                                                    )
+                                                })
+                                                }
+                                            </div>
+                                        </div>:
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-7">
+                                                    <h3 className="profile-h3">Languages</h3>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <LanguageEdition languages = {languages} setLanguages={this.setLanguages}/>
+                                            </div>
+                                            <div className="row" style={{marginTop: "1rem"}}>
+                                                <div className="col-6" />
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.cancelEditLanguages}>Cancel</button>
+                                                </div>
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.saveLanguages}>Save</button>
+                                                </div>
                                             </div>
                                         </div>
                                     }
@@ -727,33 +984,8 @@ export class Profile extends Component {
 
                         {/* Right Part */}
                         <div className="col-6" style={{marginLeft: "2rem"}}>
-                            {/* Resume */}
-                            <div className="profile-bg" style={{textAlign: "left", marginBottom: "2rem"}}>
-                                <Resume
-                                    updateResume={this.props.updateResume}
-                                    userId={this.props.userId}
-                                    resumeName={this.props.profileDetail.resume_name}
-                                    resumeURL={this.props.profileDetail.resume_url}
-                                    setResume={this.setResume}
-                                    getUpdatedData={this.getUpdatedData}
-                                />
-                            </div>
-
-                            {/* Video Profile */}
-                            <div className="profile-bg" style={{textAlign: "left"}}>
-                                <div style={{padding: "2rem"}}>
-                                    <VideoPanel
-                                        videoURL={this.props.profileDetail.video_url}
-                                        userId={this.props.userId}
-                                        updateVideo={this.props.updateVideo}
-                                        setVideo={this.setVideo}
-                                        getUpdatedData={this.getUpdatedData}
-                                    />
-                                </div>
-                            </div>
-
                             {/* Summary */}
-                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
+                            <div className="profile-bg" style={{textAlign: "left"}}>
                                 <div style={{padding: "2rem"}}>
                                     {!this.state.isEditSummary ?
                                         <div>
@@ -777,16 +1009,32 @@ export class Profile extends Component {
                                                 <div className="col-7">
                                                     <h3 className="profile-h3">Summary</h3>
                                                 </div>
-                                                <div className="col-5 profile-edit">
-                                                    <div style={{float: "right"}}>
-                                                        <span style={{cursor:"pointer"}} onClick={this.cancelEditSummary}>Cancel</span>
-                                                        <span onClick={this.saveSummary} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <textarea id="summary" className="profile-input profile-p" style={{width: "100%", height: "6rem"}} defaultValue={this.props.profileDetail.summary}></textarea>
+                                            <div className="row" style={{marginTop: "1rem"}}>
+                                                <div className="col-6" />
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.cancelEditSummary}>Cancel</button>
+                                                </div>
+                                                <div className="col-3 profile-edit">
+                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.saveSummary}>Save</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     }
+                                </div>
+                            </div>
+
+                            {/* Video Profile */}
+                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
+                                <div style={{padding: "2rem"}}>
+                                    <VideoPanel
+                                        videoURL={this.props.profileDetail.video_url}
+                                        userId={this.props.userId}
+                                        updateVideo={this.props.updateVideo}
+                                        setVideo={this.setVideo}
+                                        getUpdatedData={this.getUpdatedData}
+                                    />
                                 </div>
                             </div>
 

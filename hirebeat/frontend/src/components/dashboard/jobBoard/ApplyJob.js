@@ -7,7 +7,7 @@ import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from "re
 import { register } from "../../../redux/actions/auth_actions";
 import { createMessage } from "../../../redux/actions/message_actions";
 import { addNewApplyCandidate, getCurrentJobs } from "../../../redux/actions/job_actions";
-import parse from 'html-react-parser';
+//import parse from 'html-react-parser';
 import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 var ReactS3Uploader = require("react-s3-uploader");

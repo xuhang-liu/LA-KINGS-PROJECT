@@ -461,6 +461,11 @@ card-row-third-high {
   min-height: 600px;
 }
 
+.my-modal-contact {
+  min-width: 30%;
+  padding-bottom: 1rem;
+}
+
 .resume-modal {
   min-width: 90%;
 }
@@ -4002,7 +4007,7 @@ max-width: 110px;
 }
 
 .resume-title {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.5rem;
@@ -4011,7 +4016,7 @@ max-width: 110px;
 }
 
 .resume-title2 {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.125rem;
@@ -4032,7 +4037,7 @@ max-width: 110px;
 
 #resume-hr hr:after{
   content:"or";
-  font-family: Avenir Next Segoe UI;
+  font-family: Avenir Next, Segoe UI;
   font-weight:600;
   font-size: 0.9375rem;
   color: #000000;
@@ -4043,7 +4048,7 @@ max-width: 110px;
 }
 
 .resume-label {
-  font-family: Avenir Next Segoe UI;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 500;
   font-size: 0.9375rem;
@@ -4051,7 +4056,7 @@ max-width: 110px;
 }
 
 .short-list-title {
-  font-family: Avenir Next Segoe UI;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -4146,4 +4151,22 @@ max-width: 110px;
   }
 .register input[type="number"] {
     -moz-appearance: textfield;
+}
+
+.circle-tags {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-top: 0.3rem;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #000000;
+  border: 2.14815px solid #67A3F3;
+  box-sizing: border-box;
+  border-radius: 16.6481px;
 }

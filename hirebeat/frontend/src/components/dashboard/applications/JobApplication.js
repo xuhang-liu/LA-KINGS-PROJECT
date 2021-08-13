@@ -210,7 +210,7 @@ const JobViewDetail = (props) => {
                     sendFailAlert();
                     props.getPJobs();
                 } else {
-                    encoded_email = window.btoa("email=" + sub_reviewer_email);
+                    encoded_email = window.btoa("email=" + sub_reviewer_email.toLowerCase());
                     let data = {
                         sub_name: sub_reviewer_name,
                         sub_email: sub_reviewer_email,

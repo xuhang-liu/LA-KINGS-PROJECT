@@ -97,6 +97,7 @@ def update_user_profile(sender, instance, created, **kwargs):
 class ProfileDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=True, blank=True)
+    email = models.CharField(max_length=100, default="")
     f_name = models.CharField(max_length=100, default="")
     l_name = models.CharField(max_length=100, default="")
     self_description = models.TextField(null=True, blank=True)
@@ -168,6 +169,7 @@ class ProfileDetail(models.Model):
     job_type = models.CharField(max_length=100, default="")
     current_job_title = models.CharField(max_length=150, default="")
     share_profile = models.BooleanField(default=False)
+    open_to_hr = models.BooleanField(default=False)
 
 class EmployerPost(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -50,6 +50,9 @@ import {
   CHECK_USER_EXISTENCE,
   CHECK_COMPANY_NAME_EXISTENCE,
   CREATE_PROFILE,
+  UPDATE_JOB_TYPE,
+  UPDATE_SKILLS,
+  UPDATE_LANGUAGES,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -803,6 +806,48 @@ export const createProfile = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: CREATE_PROFILE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateJobType = (data) => (dispatch, getState) => {
+  axios
+    .post("accounts/update-job-type", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_JOB_TYPE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateSkills = (data) => (dispatch, getState) => {
+  axios
+    .post("accounts/update-skills", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_SKILLS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateLanguages = (data) => (dispatch, getState) => {
+  axios
+    .post("accounts/update-languages", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_LANGUAGES,
         payload: res.data,
       });
     })
