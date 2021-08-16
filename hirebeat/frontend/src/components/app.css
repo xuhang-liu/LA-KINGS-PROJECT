@@ -474,6 +474,10 @@ card-row-third-high {
   min-width: 60%;
 }
 
+.my-share-modal {
+  min-width: 40%;
+}
+
 .line {
   width: 40%;
   height: 2px;
@@ -4169,4 +4173,47 @@ max-width: 110px;
   border: 2.14815px solid #67A3F3;
   box-sizing: border-box;
   border-radius: 16.6481px;
+}
+
+.share-h1 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #000000;
+  text-align: center;
+}
+
+.share-p {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+  margin-bottom :0rem;
+  text-align: center;
+}
+
+.share-p2 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.share-p3 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.share-p4 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #E35454;
 }

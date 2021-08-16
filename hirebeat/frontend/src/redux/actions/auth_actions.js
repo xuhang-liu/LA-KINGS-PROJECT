@@ -53,6 +53,7 @@ import {
   UPDATE_JOB_TYPE,
   UPDATE_SKILLS,
   UPDATE_LANGUAGES,
+  UPDATE_PROFILE_SHARING,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -848,6 +849,20 @@ export const updateLanguages = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_LANGUAGES,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateProfileSharing = (data) => (dispatch, getState) => {
+  axios
+    .post("accounts/update-profile-sharing", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_PROFILE_SHARING,
         payload: res.data,
       });
     })

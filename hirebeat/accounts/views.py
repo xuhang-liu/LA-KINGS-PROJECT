@@ -920,3 +920,20 @@ def create_profile(request):
         return Response("User not exist", status=status.HTTP_201_CREATED)
 
     return Response("Create or Update user logo successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_profile_sharing(request):
+    user_id = request.data["user_id"]
+    share_profile = request.data["share_profile"]
+    open_to_hr = request.data["open_to_hr"]
+
+    try:
+        # update profile detail information
+        profile = ProfileDetail.objects.get(user_id=user_id)
+        profile.share_profile = share_profile
+        profile.open_to_hr = open_to_hr
+        profile.save()
+    except ObjectDoesNotExist:
+        # create profile detail information
+        ProfileDetail.objects.create(user_id=user_id, share_profile=share_profile, open_to_hr=open_to_hr)
+    return Response("Update user profile sharing successfully", status=status.HTTP_200_OK)

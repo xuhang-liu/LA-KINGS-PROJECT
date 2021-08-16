@@ -3,7 +3,7 @@ import { ProgressBar2 } from "./../../resume/Components";
 import EducationForm from "./EducationForm";
 import WorkExpForm from "./WorkExpForm";
 import Resume from "./Resume";
-//import { confirmAlert } from 'react-confirm-alert';
+import { confirmAlert } from 'react-confirm-alert';
 import Education from "./Education";
 import WorkExperience from "./WorkExperience";
 import VideoPanel from "./VideoPanel";
@@ -14,6 +14,10 @@ var ReactS3Uploader = require("react-s3-uploader");
 import Avatar from 'react-avatar-edit';
 import Chart from "react-apexcharts";
 import { infillBarDataPublicProfile } from "../../../constants/constants";
+import ShareProfile from "./ShareProfile";
+import ShareProfileEdition from "./ShareProfileEdition";
+import { MyShareModal } from "./../DashboardComponents";
+import { Redirect } from "react-router-dom";
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -76,6 +80,9 @@ export class Profile extends Component {
         jobType: "",
         skills: null,
         languages: null,
+        shareLink: "",
+        showShare: false,
+        isEditProfileShare: false,
     }
 
     componentDidMount() {
@@ -530,6 +537,51 @@ export class Profile extends Component {
         }
     }
 
+    enableShowShare = () => {
+        this.setState({showShare: true});
+    }
+
+    disableShowShare = () => {
+        this.setState({showShare: false});
+    }
+
+    enableProfileShare = () => {
+        this.setState({isEditProfileShare: true});
+    }
+
+    disableProfileShare = () => {
+        this.setState({isEditProfileShare: false});
+    }
+
+    previewProfile = () => {
+        if (this.props.profileDetail.f_name === "" || this.props.profileDetail.l_name === "") {
+            alert("Please fill out your full name to generate your personal profile link");
+        }
+        else {
+            const name = this.props.profileDetail.f_name + "-" + this.props.profileDetail.l_name;
+            const encodedUserId = btoa("id=" + this.props.userId);
+            const url = "https://hirebeat.co/talent-profile?" + name + "&" + encodedUserId;
+            return window.open(url, '_blank');
+        }
+    };
+
+    shareProfile = () => {
+        if (this.props.profileDetail.f_name === "" || this.props.profileDetail.l_name === "") {
+            alert("Please fill out your full name to generate your personal profile link");
+        }
+        else {
+            this.generateShareLink();
+            this.enableShowShare();
+        }
+    }
+
+    generateShareLink = () => {
+        const name = this.props.profileDetail.f_name + "-" + this.props.profileDetail.l_name;
+        const encodedUserId = btoa("id=" + this.props.userId);
+        const url = "https://hirebeat.co/talent-profile?" + name + "&" + encodedUserId;
+        this.setState({shareLink: url});
+    }
+
     render () {
         const name = this.props.profileDetail.f_name + " " + this.props.profileDetail.l_name;
         const jobType = { value: this.props.profileDetail.job_type, label: this.props.profileDetail.job_type };
@@ -616,12 +668,72 @@ export class Profile extends Component {
                         <div className="col-4">
                             {/* Public share */}
                             <div className="profile-bg" style={{ textAlign: "left" }}>
-                                <div style={{ padding: "2rem" }}>
-                                    <p className="profile-p"><i style={{ color: "#13c4a1" }} className="bx-fw bx bx-check-circle"></i> Your profile is now public. <a style={{ marginLeft: "0.5rem" }} href="/"><i class='bx-fw bx bx-link-external bx-xs'></i></a></p>
-                                    <p className="profile-p"><i style={{ color: "#13c4a1" }} className="bx-fw bx bx-check-circle"></i> Your profile is visible to recruiters.</p>
-                                    <p style={{ paddingLeft: "2rem", color: "#7C94B5", fontWeight: "500", fontSize: "0.85rem" }}>These can be changed at anytime. <span style={{ marginLeft: "0.5rem", cursor: "pointer", color: "#67a3f3" }}>Edit</span></p>
+                                <div style={{ padding: "2rem", paddingTop: "1rem" }}>
+                                    <p className="profile-p" style={{marginBottom: "0.5rem"}}>
+                                        {this.props.profileDetail.share_profile ?
+                                            <div>
+                                                <i style={{ color: "#13c4a1" }} className="bx-fw bx bx-check-circle"></i>
+                                                Your profile is now public.
+                                            </div>
+                                            :
+                                            <div>
+                                                <i style={{ color: "#C4C4C4" }} className="bx-fw bx bx-minus-circle"></i>
+                                                Your profile is not public.
+                                            </div>
+                                        }
+
+                                    </p>
+                                    <p className="profile-p" style={{marginBottom: "0.5rem"}}>
+                                        {this.props.profileDetail.open_to_hr ?
+                                            <div>
+                                                <i style={{ color: "#13c4a1" }} className="bx-fw bx bx-check-circle"></i>
+                                                Your profile is visible to recruiters.
+                                            </div>
+                                            :
+                                            <div>
+                                                <i style={{ color: "#C4C4C4" }} className="bx-fw bx bx-minus-circle"></i>
+                                                Your profile is not visible to recruiters.
+                                            </div>
+                                        }
+                                    </p>
+                                    <p style={{ paddingLeft: "2rem", color: "#7C94B5", fontWeight: "500", fontSize: "0.85rem", marginBottom: "0.5rem" }} onClick={this.enableProfileShare}>
+                                        These can be changed at anytime. <span style={{ marginLeft: "0.5rem", cursor: "pointer", color: "#67a3f3" }}>Edit</span>
+                                    </p>
+                                    <MyShareModal
+                                        show={this.state.isEditProfileShare}
+                                        onHide={()=>{this.disableProfileShare()}}
+                                    >
+                                        <div className="container" style={{padding: "2rem"}}>
+                                            <ShareProfileEdition
+                                                userId={this.props.userId}
+                                                firstName={this.props.profileDetail.f_name}
+                                                lastName={this.props.profileDetail.l_name}
+                                                shareProfile={this.props.profileDetail.share_profile}
+                                                openToHR={this.props.profileDetail.open_to_hr}
+                                                updateProfileSharing={this.props.updateProfileSharing}
+                                                onHide={()=>{this.disableProfileShare()}}
+                                                getProfileDetail={this.props.getProfileDetail}
+                                            />
+                                        </div>
+                                    </MyShareModal>
                                     <hr style={{ border: "1px solid #E5E5E5" }} />
-                                    <button className="default-btn" style={{ width:"100%", paddingLeft:"25px", backgroundColor: "#13C4A1", color: "#ffffff" }}>See Employer View</button>
+                                    <div className="row d-flex justify-content-center">
+                                        <button className="default-btn" style={{ paddingLeft:"25px", backgroundColor: "#13C4A1", color: "#ffffff" }} onClick={this.previewProfile}>Preview</button>
+                                        {this.props.profileDetail.share_profile ?
+                                            <button className="default-btn" style={{ paddingLeft:"25px", backgroundColor: "#FF6B00", color: "#ffffff", marginLeft: "2rem" }} onClick={this.shareProfile}>Share</button> :
+                                            <button className="default-btn" style={{ paddingLeft:"25px", backgroundColor: "#E5E5E5", color: "#ffffff", marginLeft: "2rem" }} >Share</button>
+                                        }
+                                    </div>
+                                    <MyShareModal
+                                        show={this.state.showShare}
+                                        onHide={()=>{this.disableShowShare()}}
+                                    >
+                                        <div className="container" style={{padding: "2rem"}}>
+                                            <ShareProfile
+                                                shareLink={this.state.shareLink}
+                                            />
+                                        </div>
+                                    </MyShareModal>
                                 </div>
                             </div>
                         </div>
