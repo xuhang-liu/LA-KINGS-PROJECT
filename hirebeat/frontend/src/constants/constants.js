@@ -259,6 +259,42 @@ export var radialBarOptions2 = {
   },
 };
 
+export var radialBarOptions3 = {
+  // input : number for series;
+  //         number for options.label
+  series: [80],
+  options: {
+    chart: {
+      height: "150px",
+      type: "line",
+    },
+    colors: ["#008ffb"],
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: "70%",
+          margin: 5,
+          background: "#91B8FB",
+        },
+        dataLabels: {
+          show: true,
+          name: {
+            show: true,
+            fontSize: "40px",
+            fontWeight: 600,
+            color: "white",
+            offsetY: 13,
+          },
+          value: {
+            show: false,
+          },
+        },
+      },
+    },
+    labels: [8],
+  },
+};
+
 const deepCopyFunction = (inObject) => {
   let outObject, value, key;
   if (typeof inObject !== "object" || inObject === null) {
@@ -278,6 +314,13 @@ export const infillBarData = (scoreNumber) => {
   var options = deepCopyFunction(radialBarOptions);
   options.series[0] = scoreNumber * 10;
   options.options.labels[0] = scoreNumber;
+  return options;
+};
+
+export const infillBarDataPublicProfile = (scoreNumber) => {
+  var options = deepCopyFunction(radialBarOptions3);
+  options.series[0] = scoreNumber * 100;
+  options.options.labels[0] = (scoreNumber * 100)+"%";
   return options;
 };
 

@@ -321,6 +321,20 @@ export const MyVideoModal = (props) => {
     );
 };
 
+export const MyShareModal = (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName="my-share-modal"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton style={{ border: "none", height: "6px" }} />
+            {props.children}
+        </Modal>
+    );
+};
+
 export const OverallScore = (props) => {
     var options = customBarData(props.percent, props.bgColor, props.barColor);
     return (
