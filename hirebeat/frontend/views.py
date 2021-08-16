@@ -3,6 +3,7 @@ from django.utils.html import strip_tags
 from jobs.models import Jobs
 from accounts.models import EmployerProfileDetail, ProfileDetail
 from django.core.exceptions import ObjectDoesNotExist
+import base64
 
 # Create your views here.
 # pointer to the template
@@ -502,7 +503,7 @@ def blog13(request):
 
 
 def talentProfile(request):
-    uid = request.GET.get('id', '')
+    uid = base64.b64decode(request.GET.get('id', ''))
     profileDetail = {}
     context = {
         "name": "",

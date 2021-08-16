@@ -103,6 +103,7 @@ export class Dashboard extends Component {
       viewed_tutorial: true,
     }
     this.props.updateProfile(profile);
+    this.enableBody();
   };
 
   openTour = () => {

@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { confirmAlert } from 'react-confirm-alert';
-import {FacebookIcon, LinkedinIcon, TwitterIcon, EmailIcon} from "react-share";
+import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton } from "react-share";
 
 export class ShareProfile extends Component {
     render() {
@@ -20,35 +20,53 @@ export class ShareProfile extends Component {
                         </div>
                     </div>
                 </div>
-                <div id="resume-hr"><hr/></div>
+                <div id="resume-hr"><hr /></div>
                 <p className="share-p">Share on other platforms</p>
-                <div className="single-footer-widget d-flex justify-content-center">
-                    <ul className="social1">
-                        <li>
-                            <a href="https://www.facebook.com/HireBeat" target="_blank" rel="noreferrer">
-                            <FacebookIcon size={32} round={true}>
-                            </FacebookIcon>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/company/hirebeat/" target="_blank" rel="noreferrer">
-                            <LinkedinIcon size={32} round={true}>
-                            </LinkedinIcon>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/hirebeat" target="_blank" rel="noreferrer">
-                            <TwitterIcon size={32} round={true}>
-                            </TwitterIcon>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto: info@hirebeat.co" target="_blank" rel="noreferrer">
-                            <EmailIcon size={32} round={true}>
-                            </EmailIcon>
-                            </a>
-                        </li>
-                    </ul>
+                <div className="d-flex justify-content-center">
+                    <div className="single-footer-widget1">
+                        <ul className="social">
+                            <li>
+                                <FacebookShareButton
+                                    url={this.props.shareLink}
+                                    quote={this.props.firstName + " " + this.props.lastName + "'s profile."}
+                                    hashtag="#hirebeat">
+                                    <a target="_blank" rel="noreferrer">
+                                        <i className="bx bxl-facebook"></i>
+                                    </a>
+                                </FacebookShareButton>
+                            </li>
+                            <li>
+                                <TwitterShareButton
+                                    url={this.props.shareLink}
+                                    title={this.props.firstName + " " + this.props.lastName + "'s profile."}
+                                    via={"HireBeat"}
+                                    hashtag="#hirebeat">
+                                    <a target="_blank" rel="noreferrer">
+                                        <i className="bx bxl-twitter"></i>
+                                    </a>
+                                </TwitterShareButton>
+                            </li>
+                            <li>
+                                <LinkedinShareButton
+                                    url={this.props.shareLink}
+                                    title={this.props.firstName + " " + this.props.lastName + "'s profile."}
+                                    source={"HireBeat"}>
+                                    <a target="_blank" rel="noreferrer">
+                                        <i className="bx bxl-linkedin"></i>
+                                    </a>
+                                </LinkedinShareButton>
+                            </li>
+                            <li>
+                                <WhatsappShareButton
+                                    url={this.props.shareLink}
+                                    title={this.props.firstName + " " + this.props.lastName + "'s profile."}>
+                                    <a target="_blank" rel="noreferrer">
+                                        <i className="bx bxl-whatsapp"></i>
+                                    </a>
+                                </WhatsappShareButton>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </React.Fragment>
         )
@@ -56,15 +74,15 @@ export class ShareProfile extends Component {
 }
 
 function copyAlert() {
-        confirmAlert({
-            title: "URL Coppied to Clipboard!",
-            message: "",
-            buttons: [
-                {
-                    label: 'Ok'
-                }
-            ]
-        });
-    }
+    confirmAlert({
+        title: "URL Coppied to Clipboard!",
+        message: "",
+        buttons: [
+            {
+                label: 'Ok'
+            }
+        ]
+    });
+}
 
 export default ShareProfile;

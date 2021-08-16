@@ -38,7 +38,7 @@ export class Register extends Component {
     jobTitle: "",
     CompanyName: "",
     jobType: "",
-    shareProfile: true,
+    open_to_hr: true,
     step: 1,
   };
 
@@ -89,7 +89,7 @@ export class Register extends Component {
         current_job_title: this.state.jobTitle,
         current_company: this.state.companyName,
         job_type: this.state.jobType.value,
-        share_profile: this.state.shareProfile,
+        open_to_hr: this.state.open_to_hr,
       };
 //      console.log(data);
       setTimeout(() => {this.props.createProfile(data)}, 300);
@@ -144,8 +144,8 @@ export class Register extends Component {
     this.setState({step: step});
   }
 
-  setShareProfile = () => {
-    this.setState({shareProfile: !this.state.shareProfile});
+  setOpen_to_hr = () => {
+    this.setState({open_to_hr: !this.state.open_to_hr});
   }
 
   checkAccountData = (e) => {
@@ -208,7 +208,7 @@ export class Register extends Component {
           }
         }
     };
-    const {username, email, password, password2, firstName, lastName, location, resume, photo, jobTitle, companyName, jobType, shareProfile} = this.state;
+    const {username, email, password, password2, firstName, lastName, location, resume, photo, jobTitle, companyName, jobType, open_to_hr} = this.state;
     if (this.props.auth.isAuthenticated) {
       if (this.props.user.groups[0] == "reviewers") {
         return <Redirect to="/review"/>;
@@ -411,8 +411,8 @@ export class Register extends Component {
                             {this.state.step === 4 &&
                                 <ShareForm
                                     onChange={this.onChange}
-                                    shareProfile={shareProfile}
-                                    setShareProfile={this.setShareProfile}
+                                    open_to_hr={open_to_hr}
+                                    setOpen_to_hr={this.setOpen_to_hr}
                                     step={this.state.step}
                                     setStep={this.setStep}
                                     registration={this.registration}

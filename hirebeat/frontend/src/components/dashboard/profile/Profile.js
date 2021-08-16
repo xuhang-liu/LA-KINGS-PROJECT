@@ -17,7 +17,7 @@ import { infillBarDataPublicProfile } from "../../../constants/constants";
 import ShareProfile from "./ShareProfile";
 import ShareProfileEdition from "./ShareProfileEdition";
 import { MyShareModal } from "./../DashboardComponents";
-import { Redirect } from "react-router-dom";
+//import { Redirect } from "react-router-dom";
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -559,8 +559,9 @@ export class Profile extends Component {
         }
         else {
             const name = this.props.profileDetail.f_name + "-" + this.props.profileDetail.l_name;
-            const encodedUserId = btoa("id=" + this.props.userId);
-            const url = "https://hirebeat.co/talent-profile?" + name + "&" + encodedUserId;
+            const encodedUserId = btoa(this.props.userId);
+            const url = "https://hirebeat.co/talent-profile?" + name + "&id=" + encodedUserId;
+            //const url = "http://127.0.0.1:8000/talent-profile?" + name + "&id=" + encodedUserId;
             return window.open(url, '_blank');
         }
     };
@@ -577,8 +578,9 @@ export class Profile extends Component {
 
     generateShareLink = () => {
         const name = this.props.profileDetail.f_name + "-" + this.props.profileDetail.l_name;
-        const encodedUserId = btoa("id=" + this.props.userId);
-        const url = "https://hirebeat.co/talent-profile?" + name + "&" + encodedUserId;
+        const encodedUserId = btoa(this.props.userId);
+        const url = "https://hirebeat.co/talent-profile?" + name + "&id=" + encodedUserId;
+        //const url = "http://127.0.0.1:8000/talent-profile?" + name + "&id=" + encodedUserId;
         this.setState({shareLink: url});
     }
 
@@ -731,6 +733,8 @@ export class Profile extends Component {
                                         <div className="container" style={{padding: "2rem"}}>
                                             <ShareProfile
                                                 shareLink={this.state.shareLink}
+                                                firstName={this.props.profileDetail.f_name}
+                                                lastName={this.props.profileDetail.l_name}
                                             />
                                         </div>
                                     </MyShareModal>
