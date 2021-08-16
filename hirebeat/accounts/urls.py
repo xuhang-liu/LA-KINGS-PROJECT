@@ -11,7 +11,8 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     upload_profile_resume, upload_profile_video, create_or_update_profile_rate, subreviewer_update_comment, get_employer_profile_detail, \
     create_or_update_employer_info, create_or_update_employer_social_media, create_or_update_employer_basic_info, create_or_update_employer_video, \
     create_or_update_employer_summary, upload_employer_profile_video, get_employer_post, update_employer_post, add_employer_post, delete_employer_post, \
-    upload_employer_logo, create_or_update_employer_logo, upload_user_logo, create_or_update_user_logo, check_user_existence, check_company_name_existence
+    upload_employer_logo, create_or_update_employer_logo, upload_user_logo, create_or_update_user_logo, check_user_existence, check_company_name_existence, \
+    create_profile, create_or_update_job_type, create_or_update_skills, create_or_update_languages, create_or_update_profile_sharing
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -98,6 +99,10 @@ urlpatterns = [
     path('upload-profile-resume', upload_profile_resume, name="upload profile resume"),
     path('upload-profile-video', upload_profile_video, name="upload profile video"),
     path('update-profile-rate', create_or_update_profile_rate, name="upload profile rate"),
+    path('accounts/update-job-type', create_or_update_job_type, name="create or update job type"),
+    path('accounts/update-skills', create_or_update_skills, name="create or update skills"),
+    path('accounts/update-languages', create_or_update_languages, name="create or update languages"),
+    path('accounts/update-profile-sharing', create_or_update_profile_sharing, name="create or update profile sharing"),
     ### send subreviewer update comment notification
     path('subreviewer_update_comment', subreviewer_update_comment, name="subreviewer update comment"),
     # employer profile
@@ -119,5 +124,6 @@ urlpatterns = [
     path('update-user-logo', create_or_update_user_logo, name="update user logo"),
     path('accounts/check-user-existence', check_user_existence, name="check user existence"),
     path('accounts/check-company-name-existence', check_company_name_existence, name="check user existence"),
+    path('accounts/create-profile', create_profile, name="create user profile"),
 ]
 

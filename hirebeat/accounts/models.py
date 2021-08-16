@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 class ReviewerInfo(models.Model):
@@ -96,6 +97,9 @@ def update_user_profile(sender, instance, created, **kwargs):
 class ProfileDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=True, blank=True)
+    email = models.CharField(max_length=100, default="")
+    f_name = models.CharField(max_length=100, default="")
+    l_name = models.CharField(max_length=100, default="")
     self_description = models.TextField(null=True, blank=True)
     logo_url = models.CharField(max_length=100, null=True, blank=True)
     profile_rate = models.IntegerField(default=25)
@@ -159,6 +163,13 @@ class ProfileDetail(models.Model):
 
     resume_name = models.CharField(max_length=100, null=True, blank=True)
     resume_url = models.CharField(max_length=100, null=True, blank=True)
+
+    skills = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    languages = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    job_type = models.CharField(max_length=100, default="")
+    current_job_title = models.CharField(max_length=150, default="")
+    share_profile = models.BooleanField(default=False)
+    open_to_hr = models.BooleanField(default=False)
 
 class EmployerPost(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

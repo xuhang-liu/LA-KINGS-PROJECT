@@ -291,6 +291,11 @@ def get_profile_detail(request):
     data = model_to_dict(ProfileDetail(user_id=user_id))
     try:
         profile = ProfileDetail.objects.get(user_id=user_id)
+        # get registered email
+        if profile.email == "":
+            user = User.objects.get(id=user_id)
+            profile.email = user.email
+            profile.save()
         data = model_to_dict(profile)
     except ObjectDoesNotExist:
         return Response({"data": data})
@@ -299,36 +304,87 @@ def get_profile_detail(request):
 @api_view(['POST'])
 def create_or_update_personal_info(request):
     user_id = request.data["user_id"]
-    name = request.data["name"]
-    self_description = request.data["self_description"]
+    f_name = request.data["f_name"]
+    l_name = request.data["l_name"]
+    current_job_title = request.data["current_job_title"]
+    current_company = request.data["current_company"]
+    location = request.data["location"]
     try:
         # update personal information
         user_profile = ProfileDetail.objects.get(user_id=user_id)
-        user_profile.name = name
-        user_profile.self_description = self_description
+        user_profile.f_name = f_name
+        user_profile.l_name = l_name
+        user_profile.current_job_title = current_job_title
+        user_profile.current_company = current_company
+        user_profile.location = location
         user_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        ProfileDetail.objects.create(user_id=user_id, name=name, self_description=self_description)
+        ProfileDetail.objects.create(user_id=user_id, f_name=f_name, l_name=l_name, current_job_title=current_job_title,
+                                     current_company=current_company, location=location)
     return Response("Create or Update personal info successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def create_or_update_social_media(request):
     user_id = request.data["user_id"]
+    email = request.data["email"]
     linkedin = request.data["linkedin"]
     website = request.data["website"]
     github = request.data["github"]
     try:
         # update personal information
         user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.email = email
         user_profile.linkedin = linkedin
         user_profile.website = website
         user_profile.github = github
         user_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        ProfileDetail.objects.create(user_id=user_id, linkedin=linkedin, website=website, github=github)
+        ProfileDetail.objects.create(user_id=user_id, email=email, linkedin=linkedin, website=website, github=github)
     return Response("Create or Update social media successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_job_type(request):
+    user_id = request.data["user_id"]
+    job_type = request.data["job_type"]
+    try:
+        # update personal information
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.job_type = job_type
+        user_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        ProfileDetail.objects.create(user_id=user_id, job_type=job_type)
+    return Response("Create or Update job type successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_skills(request):
+    user_id = request.data["user_id"]
+    skills = request.data["skills"]
+    try:
+        # update personal information
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.skills = skills
+        user_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        ProfileDetail.objects.create(user_id=user_id, skills=skills)
+    return Response("Create or Update skills successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_languages(request):
+    user_id = request.data["user_id"]
+    languages = request.data["languages"]
+    try:
+        # update personal information
+        user_profile = ProfileDetail.objects.get(user_id=user_id)
+        user_profile.languages = languages
+        user_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        ProfileDetail.objects.create(user_id=user_id, languages=languages)
+    return Response("Create or Update languages successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def create_or_update_basic_info(request):
@@ -828,3 +884,56 @@ def check_company_name_existence(request):
     if len(profile) != 0:
         data = True
     return Response({"data": data})
+
+@api_view(['POST'])
+def create_profile(request):
+    email = request.data["email"]
+    f_name = request.data["f_name"]
+    l_name = request.data["l_name"]
+    location = request.data["location"]
+    resume_url = request.data["resume_url"]
+    resume_name = request.data["resume_name"]
+    logo_url = request.data["logo_url"]
+    current_job_title = request.data["current_job_title"]
+    current_company = request.data["current_company"]
+    job_type = request.data["job_type"]
+    share_profile = request.data["share_profile"]
+
+    # user exists
+    try:
+        user = User.objects.get(email=email)
+        profile = ProfileDetail(user_id=user.id)
+        profile.email = email
+        profile.f_name = f_name
+        profile.l_name = l_name
+        profile.location = location
+        profile.resume_url = resume_url
+        profile.resume_name = resume_name
+        profile.logo_url = logo_url
+        profile.current_job_title = current_job_title
+        profile.current_company = current_company
+        profile.job_type = job_type
+        profile.share_profile = share_profile
+        profile.save()
+    # user not exist
+    except ObjectDoesNotExist:
+        return Response("User not exist", status=status.HTTP_201_CREATED)
+
+    return Response("Create or Update user logo successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def create_or_update_profile_sharing(request):
+    user_id = request.data["user_id"]
+    share_profile = request.data["share_profile"]
+    open_to_hr = request.data["open_to_hr"]
+
+    try:
+        # update profile detail information
+        profile = ProfileDetail.objects.get(user_id=user_id)
+        profile.share_profile = share_profile
+        profile.open_to_hr = open_to_hr
+        profile.save()
+    except ObjectDoesNotExist:
+        # create profile detail information
+        ProfileDetail.objects.create(user_id=user_id, share_profile=share_profile, open_to_hr=open_to_hr)
+    return Response("Update user profile sharing successfully", status=status.HTTP_200_OK)

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {register, exchangeToken} from "../../redux/actions/auth_actions";
+import {register, exchangeToken, createProfile} from "../../redux/actions/auth_actions";
 import {createMessage} from "../../redux/actions/message_actions";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
@@ -11,6 +11,9 @@ import badge from '../../assets/badge.png';
 import Footer from "../layout/Footer";
 //import leftbg from '../../assets/Login.png';
 import DocumentMeta from 'react-document-meta';
+import BasicInfo from "./BasicInfo";
+import ProfileForm from "./ProfileForm";
+import ShareForm from "./ShareForm";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -26,6 +29,17 @@ export class Register extends Component {
     email: "",
     password: "",
     password2: "",
+    firstName: "",
+    lastName: "",
+    location: "",
+    resumeUrl: "",
+    resumeName: "",
+    logoUrl: "",
+    jobTitle: "",
+    CompanyName: "",
+    jobType: "",
+    shareProfile: true,
+    step: 1,
   };
 
   static propTypes = {
@@ -50,6 +64,37 @@ export class Register extends Component {
       );
       this.gtag_report_conversion();
 //      this.redirectToEmailVerification();
+    }
+  };
+
+  // new registration submit
+  registration = (e) => {
+    e.preventDefault();
+    if (this.passwordsMatch()) {
+      // register account
+      this.props.register(
+          this.state.username,
+          this.state.email,
+          this.state.password
+      );
+      // save profile data to profileDetail table
+      let data = {
+        email: this.state.email,
+        f_name: this.state.firstName,
+        l_name: this.state.lastName,
+        location: this.state.location,
+        resume_url: this.state.resumeUrl,
+        resume_name: this.state.resumeName,
+        logo_url: this.state.logoUrl,
+        current_job_title: this.state.jobTitle,
+        current_company: this.state.companyName,
+        job_type: this.state.jobType.value,
+        share_profile: this.state.shareProfile,
+      };
+//      console.log(data);
+      setTimeout(() => {this.props.createProfile(data)}, 300);
+      // new user registration report
+      this.gtag_report_conversion();
     }
   };
 
@@ -87,10 +132,70 @@ export class Register extends Component {
   };
 
   handleSocialLogin = (user) => {
-    console.log(user);
+//    console.log(user);
     var provider = this.decideProvider(user.provider);
     this.props.exchangeToken(user.token.accessToken, provider);
   };
+
+  updateState = (key, value) => {
+    this.setState({key: value});
+  }
+  setStep = (step) => {
+    this.setState({step: step});
+  }
+
+  setShareProfile = () => {
+    this.setState({shareProfile: !this.state.shareProfile});
+  }
+
+  checkAccountData = (e) => {
+    e.preventDefault();
+    // check passwords
+    if (!this.passwordsMatch()) {
+      alert("The passwords are not consistent");
+    }
+    // move to next step
+    else {
+        let nextStep = this.state.step + 1;
+        this.setStep(nextStep);
+    }
+  };
+
+  setLocation = (location) => {
+    this.setState({location: location});
+  }
+
+  setJobType = (jobType) => {
+    this.setState({jobType: jobType});
+  }
+
+  setResumeUrl = (resumeUrl) => {
+    this.setState({resumeUrl: resumeUrl});
+  }
+
+  setResumeName = (resumeName) => {
+    this.setState({resumeName: resumeName});
+  }
+
+  setLogoUrl = (logoUrl) => {
+    this.setState({logoUrl: logoUrl});
+  }
+
+  setFirstName = (firstName) => {
+    this.setState({firstName: firstName});
+  }
+
+  setLastName = (lastName) => {
+    this.setState({lastName: lastName});
+  }
+
+  setJobTitle = (jobTitle) => {
+    this.setState({jobTitle: jobTitle});
+  }
+
+  setCompanyName = (companyName) => {
+    this.setState({companyName: companyName});
+  }
 
   render() {
     const meta = {
@@ -103,7 +208,7 @@ export class Register extends Component {
           }
         }
     };
-    const {username, email, password, password2} = this.state;
+    const {username, email, password, password2, firstName, lastName, location, resume, photo, jobTitle, companyName, jobType, shareProfile} = this.state;
     if (this.props.auth.isAuthenticated) {
       if (this.props.user.groups[0] == "reviewers") {
         return <Redirect to="/review"/>;
@@ -125,161 +230,196 @@ export class Register extends Component {
 
                     <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"6rem"}}>
-                                    <div className="signup-form">
-                                      <div>
-                                        <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI"}}><b>Start your career with HireBeat</b></h1>
+                            <div className="signup-form">
+                            {this.state.step === 1 &&
+                                <div>
+                                    <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI"}}><b>Start your career with HireBeat</b></h1>
+                                    <form onSubmit={this.checkAccountData}>
+                                      <div className="form-group">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="username"
+                                            placeholder="Username/Email"
+                                            onChange={this.onChange}
+                                            value={username}
+                                            style={{
+                                              fontFamily: "Avenir Next, Segoe UI",
+                                              background: "#FFFFFF",
+                                              borderRadius: "5px",
+                                              paddingLeft: "1rem",
+                                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                            }}
+                                            required
+                                        />
                                       </div>
 
-                    <form onSubmit={this.onSubmit}>
-                      <div className="form-group">
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="username"
-                            placeholder="Username/Email"
-                            onChange={this.onChange}
-                            value={username}
-                            style={{
-                              fontFamily: "Avenir Next, Segoe UI",
-                              background: "#FFFFFF",
-                              borderRadius: "5px",
-                              paddingLeft: "1rem",
-                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                            }}
-                            required
-                        />
-                      </div>
+                                      <div className="form-group">
+                                        <input
+                                            type="email"
+                                            className="form-control"
+                                            name="email"
+                                            placeholder="Email"
+                                            required
+                                            onChange={this.onChange}
+                                            style={{
+                                              fontFamily: "Avenir Next, Segoe UI",
+                                              background: "#FFFFFF",
+                                              borderRadius: "5px",
+                                              paddingLeft: "1rem",
+                                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                            }}
+                                            value={email}/>
+                                      </div>
 
-                      <div className="form-group">
-                        <input
-                            type="email"
-                            className="form-control"
-                            name="email"
-                            placeholder="Email"
-                            required
-                            onChange={this.onChange}
-                            style={{
-                              fontFamily: "Avenir Next, Segoe UI",
-                              background: "#FFFFFF",
-                              borderRadius: "5px",
-                              paddingLeft: "1rem",
-                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                            }}
-                            value={email}/>
-                      </div>
+                                      <div className="form-group">
+                                        <input
+                                            type="password"
+                                            className="form-control"
+                                            name="password"
+                                            onChange={this.onChange}
+                                            value={password}
+                                            placeholder="Create Password"
+                                            minLength="8"
+                                            style={{
+                                              fontFamily: "Avenir Next, Segoe UI",
+                                              background: "#FFFFFF",
+                                              borderRadius: "5px",
+                                              paddingLeft: "1rem",
+                                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                            }}
+                                            required/>
+                                      </div>
 
-                      <div className="form-group">
-                        <input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            onChange={this.onChange}
-                            value={password}
-                            placeholder="Create Password"
-                            minLength="8"
-                            style={{
-                              fontFamily: "Avenir Next, Segoe UI",
-                              background: "#FFFFFF",
-                              borderRadius: "5px",
-                              paddingLeft: "1rem",
-                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                            }}
-                            required/>
-                      </div>
+                                      <div className="form-group">
+                                        <input
+                                            type="password"
+                                            className="form-control"
+                                            name="password2"
+                                            onChange={this.onChange}
+                                            value={password2}
+                                            placeholder="Confirm Password"
+                                            minLength="8"
+                                            style={{
+                                              fontFamily: "Avenir Next, Segoe UI",
+                                              background: "#FFFFFF",
+                                              borderRadius: "5px",
+                                              paddingLeft: "1rem",
+                                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                            }}
+                                            required/>
+                                      </div>
 
-                      <div className="form-group">
-                        <input
-                            type="password"
-                            className="form-control"
-                            name="password2"
-                            onChange={this.onChange}
-                            value={password2}
-                            placeholder="Confirm Password"
-                            minLength="8"
-                            style={{
-                              fontFamily: "Avenir Next, Segoe UI",
-                              background: "#FFFFFF",
-                              borderRadius: "5px",
-                              paddingLeft: "1rem",
-                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                            }}
-                            required/>
-                      </div>
+                                      <p className=" flex-wrap d-flex justify-content-end"
+                                         style={{
+                                           fontSize: "0.9rem",
+                                           color: "grey",
+                                           fontWeight: "400"
+                                         }}>
+                                        Have an account?
+                                        <a href="/login"
+                                           className="active d-flex ml-2"
+                                           style={{
+                                             textDecoration: "underline",
+                                             color: "orange",
+                                             fontWeight: "400"
+                                           }}>
+                                          Log in
+                                        </a>
+                                      </p>
 
-                      <p className=" flex-wrap d-flex justify-content-end"
-                         style={{
-                           fontSize: "0.9rem",
-                           color: "grey",
-                           fontWeight: "400"
-                         }}>
-                        Have an account?
-                        <a href="/login"
-                           className="active d-flex ml-2"
-                           style={{
-                             textDecoration: "underline",
-                             color: "orange",
-                             fontWeight: "400"
-                           }}>
-                          Log in
-                        </a>
-                      </p>
+                                      <br/>
 
-                      <br/>
+                                      <div className="form-group">
+                                        <button
+                                            type="submit"
+                                            className="default-btn"
+                                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
+                                        >
+                                          <i className="bx bxs-hot"></i>
+                                          Try For Free
+                                          <img src="https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10145429&ea=HOC1" alt="icon"/>
+                                        </button>
+                                      </div>
+                                      <p className="d-flex flex-wrap justify-content-end"
+                                         style={{
+                                           fontSize: "0.9rem",
+                                           color: "grey",
+                                           fontWeight: "400"
+                                         }}>
+                                        <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
+                                        I have read and agree to the
+                                        <a
+                                          target="_blank"
+                                          rel="noreferrer"
+                                          href="/term"
+                                           className="active d-flex ml-2"
+                                           style={{
+                                             textDecoration: "underline",
+                                             color: "orange",
+                                             fontWeight: "400"
+                                           }}>
+                                          Terms & Conditions
+                                        </a>
+                                      </p>
 
-                      <div className="form-group">
-                        <button
-                            type="submit"
-                            className="default-btn"
-                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
-                        >
-                          <i className="bx bxs-hot"></i>
-                          Try For Free
-                          <img src="https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10145429&ea=HOC1" alt="icon"/>
-                        </button>
-                      </div>
-                      <p className="d-flex flex-wrap justify-content-end"
-                         style={{
-                           fontSize: "0.9rem",
-                           color: "grey",
-                           fontWeight: "400"
-                         }}>
-                        <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
-                        I have read and agree to the
-                        <a 
-                          target="_blank"
-                          rel="noreferrer"
-                          href="/term"
-                           className="active d-flex ml-2"
-                           style={{
-                             textDecoration: "underline",
-                             color: "orange",
-                             fontWeight: "400"
-                           }}>
-                          Terms & Conditions
-                        </a>
-                      </p>
+                                      <hr className="style-four"
+                                          data-content="Or use"
+                                          style={{
+                                            fontFamily: "Avenir Next, Segoe UI",
+                                            marginBottom:"2rem",
+                                            marginTop:"4rem",
+                                          }}
+                                      />
+                                    </form>
+                                    <SocialButtons handleSocialLogin={this.handleSocialLogin}/>
+                                    <div>
+                                        <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
+                                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI"}}>
+                                            <a>No credit card information needed during signup. Enjoy your free plan.</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
 
-                      <hr className="style-four"
-                          data-content="Or use"
-                          style={{
-                            fontFamily: "Avenir Next, Segoe UI",
-                            marginBottom:"2rem",
-                            marginTop:"4rem",
-                          }}
-                      />
+                            {/* Step2 Basic Info form */}
+                            {this.state.step === 2 &&
+                                <BasicInfo
+                                    setLocation={this.setLocation}
+                                    step={this.state.step}
+                                    setStep={this.setStep}
+                                    setFirstName={this.setFirstName}
+                                    setLastName={this.setLastName}
+                                />
+                            }
 
-                    </form>
+                            {/* Step3 profile form */}
+                            {this.state.step === 3 &&
+                                <ProfileForm
+                                    step={this.state.step}
+                                    setJobType={this.setJobType}
+                                    setStep={this.setStep}
+                                    setLogoUrl={this.setLogoUrl}
+                                    setResumeUrl={this.setResumeUrl}
+                                    setResumeName={this.setResumeName}
+                                    setJobTitle={this.setJobTitle}
+                                    setCompanyName={this.setCompanyName}
+                                />
+                            }
 
-                    <SocialButtons handleSocialLogin={this.handleSocialLogin}/>
-
-                    <div>
-                      <div>
-                        <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
-                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI"}}>
-                        <a>No credit card information needed during signup. Enjoy your free plan.</a>
-                        </div></div>
+                            {/* Step4 share form */}
+                            {this.state.step === 4 &&
+                                <ShareForm
+                                    onChange={this.onChange}
+                                    shareProfile={shareProfile}
+                                    setShareProfile={this.setShareProfile}
+                                    step={this.state.step}
+                                    setStep={this.setStep}
+                                    registration={this.registration}
+                                />
+                            }
+                        <div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -472,4 +612,4 @@ const mapStateToProps = (state) => ({
   user: state.auth_reducer.user,
 });
 
-export default connect(mapStateToProps, {register, createMessage, exchangeToken})(Register);
+export default connect(mapStateToProps, {register, createMessage, exchangeToken, createProfile})(Register);
