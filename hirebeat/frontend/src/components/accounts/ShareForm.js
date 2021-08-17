@@ -15,13 +15,13 @@ export class ShareForm extends Component {
                             Share with Recruiter
                         </label>
                         <div className="register-label">
-                        {this.props.shareProfile ?
+                        {this.props.open_to_hr ?
                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Enabled</button> :
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.props.setShareProfile}>Enabled</button>
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.props.setOpen_to_hr}>Enabled</button>
                         }
-                        {!this.props.shareProfile ?
+                        {!this.props.open_to_hr ?
                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.props.setShareProfile}>Disabled</button>
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.props.setOpen_to_hr}>Disabled</button>
                         }
                         </div>
                         <p className="register-label register-text" style={{color: "#090D3A", marginTop: "2rem"}}>

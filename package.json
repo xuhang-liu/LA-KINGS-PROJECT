@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main344.js",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main344.js",
+    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main345.js",
+    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output ./hirebeat/frontend/static/frontend/main345.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
@@ -55,7 +55,6 @@
     "bootswatch": "^4.5.0",
     "boxicons": "^2.0.7",
     "browserslist": "^4.16.3",
-    "caniuse-lite": "^1.0.30001191",
     "css-loader": "^3.5.2",
     "dotenv": "^8.2.0",
     "emailjs": "^3.3.0",

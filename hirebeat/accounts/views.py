@@ -897,7 +897,7 @@ def create_profile(request):
     current_job_title = request.data["current_job_title"]
     current_company = request.data["current_company"]
     job_type = request.data["job_type"]
-    share_profile = request.data["share_profile"]
+    open_to_hr = request.data["open_to_hr"]
 
     # user exists
     try:
@@ -913,7 +913,7 @@ def create_profile(request):
         profile.current_job_title = current_job_title
         profile.current_company = current_company
         profile.job_type = job_type
-        profile.share_profile = share_profile
+        profile.open_to_hr = open_to_hr
         profile.save()
     # user not exist
     except ObjectDoesNotExist:
