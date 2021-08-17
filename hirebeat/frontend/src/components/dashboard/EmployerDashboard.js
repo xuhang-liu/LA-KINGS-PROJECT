@@ -39,6 +39,7 @@ import DocumentMeta from 'react-document-meta';
 import { EmployerProfile } from "./employerProfile/EmployerProfile";
 import { JobCover } from "./jobBoard/JobCover";
 import { JobCreation } from "./jobBoard/JobCreation";
+import { Sourcing } from "./jobBoard/Sourcing";
 import JobEdition from "./jobBoard/JobEdition";
 import Footer from "../layout/Footer";
 //import ReviewCandidate from "./applications/ReviewCandidate";
@@ -318,6 +319,17 @@ export class EmployerDashboard extends Component {
     }
   }
 
+  renderEmployerSourcing = () => {
+    if (this.state.subpage == "employerSourcing") {
+      this.refreshPage();
+    }
+    sessionStorage.setItem('subpage', "employerSourcing");
+    this.setState({
+      subpage: "employerSourcing",
+    }
+    )
+  }
+
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "jobs":
@@ -486,6 +498,11 @@ export class EmployerDashboard extends Component {
           addCandFromMerge={this.props.addCandFromMerge}
           renderApplications={this.renderApplications}
         />;
+      case "employerSourcing":
+        return <Sourcing
+          user={this.props.user}
+          profile={this.props.profile}
+        />;
       default:
         return null;
       //Do nothing
@@ -527,6 +544,7 @@ export class EmployerDashboard extends Component {
                         renderAnalytics={this.renderAnalytics}
                         renderEmployerProfile={this.renderEmployerProfile}
                         renderJobs={this.renderJobs}
+                        renderEmployerSourcing={this.renderEmployerSourcing}
                         subpage={this.state.subpage}
                         int_dots={this.props.int_dots}
                         job_dots={this.props.job_dots}
@@ -540,7 +558,7 @@ export class EmployerDashboard extends Component {
                       {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
                         (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
                         (this.state.subpage === "applications") || (this.state.subpage === "jobs") ||
-                        (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition") || (this.state.subpage === "mergeintergration")) || (this.state.subpage == "") ? null :
+                        (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition") || (this.state.subpage === "mergeintergration") || (this.state.subpage === "employerSourcing")) || (this.state.subpage == "") ? null :
                         <div className="container-fluid" style={{ height: "22rem" }} data-tut="reactour-rowbox">
                           <RowBoxes userId={this.props.user.id} isEmployer={true} />
                         </div>}
