@@ -172,6 +172,8 @@ export class EssentialUserInfo extends Component {
     var nonselectJobs = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-briefcase-non.png";
     var selectEmployerDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-dashboard-select.png";
     var nonSelectEmployerDash = "https://hirebeat-assets.s3.amazonaws.com/Employer/bxs-dashboard-non.png";
+    var selectSourcing = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-sourcing-select.png";
+    var nonselectSourcing = "https://hirebeat-assets.s3.amazonaws.com/Employer/bx-sourcing-non.png";
     return (
       <React.Fragment>
         <div className="container">
@@ -357,12 +359,11 @@ export class EssentialUserInfo extends Component {
                   {(this.props.profile.is_employer && !this.props.profile.is_external_reviewer) &&
                     <div className="row" style={{ marginTop: "0rem", textAlign: "center", marginBottom: "0.5rem" }}>
                         <div className="col d-flex align-items-center">
-                          <a
-                            target="_blank" 
-                            rel="noreferrer"
+                          <button
+                            type="button"
                             className="panel-button"
-                            href="/employer_talent_sourcing"
-                            style={{ outline: "none", margin: "1%", padding: "0px", background: "none", textDecoration: "none" }}
+                            onClick={this.props.renderEmployerSourcing}
+                            style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
                           >
                             <IconUserText
                               textSize={"12px"}
@@ -370,12 +371,12 @@ export class EssentialUserInfo extends Component {
                               width={"56px"}
                               height={"42px"}
                               marginL={"1rem"}
-                              backColor={defaultBack}
-                              iconSrc={"https://hirebeat-assets.s3.amazonaws.com/Employer/bx-sourcing-non.png"}
-                              textColor={defaultEColor}
+                              backColor={this.props.subpage == "employerSourcing" ? selectBack : defaultBack}
+                              iconSrc={this.props.subpage == "employerSourcing" ? selectSourcing : nonselectSourcing}
+                              textColor={this.props.subpage == "employerSourcing" ? selectEColor : defaultEColor}
                               paddingRight={"1rem"}
                             />
-                          </a>
+                          </button>
                         </div>
                     </div>
                   }
