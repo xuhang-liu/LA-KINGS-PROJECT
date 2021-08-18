@@ -622,7 +622,7 @@ export class Profile extends Component {
                             <div className="profile-bg" style={{ textAlign: "left" }}>
                                 <div className="row" style={{ padding: "2rem" }}>
                                     <div className="col-3">
-                                        <ProfileOverall percent={this.props.profileDetail.profile_rate / 100} />
+                                        <ProfileOverall percent={Math.round(this.props.profileDetail.profile_rate / 100)} />
                                     </div>
                                     <div className="col-9">
                                         <h3 className="profile-h3" style={{ paddingTop: "1rem" }}>Profile Completeness</h3>
