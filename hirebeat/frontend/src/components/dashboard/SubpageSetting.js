@@ -434,6 +434,7 @@ export class SubpageSetting extends Component {
                                     </a>
                                 </div>
                             </div>
+                            {!this.props.profile.is_freetrial &&
                             <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
                                 <div className="form-row" style={{ marginTop: "1%" }}>
                                     <div className="form-group col">
@@ -456,7 +457,7 @@ export class SubpageSetting extends Component {
                                 >
                                     Cancel Membership
                                 </button>
-                            </form>
+                            </form>}
                         </div>
                     </div>}
                 {this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) &&

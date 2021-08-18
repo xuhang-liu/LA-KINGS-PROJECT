@@ -41,6 +41,7 @@ import { JobCover } from "./jobBoard/JobCover";
 import { JobCreation } from "./jobBoard/JobCreation";
 import JobEdition from "./jobBoard/JobEdition";
 import Footer from "../layout/Footer";
+import axios from "axios";
 //import ReviewCandidate from "./applications/ReviewCandidate";
 
 function ScrollToTopOnMount() {
@@ -135,6 +136,23 @@ export class EmployerDashboard extends Component {
     if (((this.props.profile.position_count) >= (this.props.profile.position_limit)) && (this.props.profile.membership == "Regular")) {
       this.props.checkFreeAccountActiveJobs(user);
     }
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let user_id = { "user_id": this.props.user.id };
+    axios.post("api/check_freetrial_expire", user_id, config).then((res) => {
+      if (res.data.data) {
+        sessionStorage.setItem('subpage', "employerProfile");
+        this.setState({
+          subpage: "employerProfile"
+        });
+        window.location.reload(false);
+      }
+    }).catch(error => {
+      console.log(error)
+    });
   }
 
   getInitialSubpage = () => {
@@ -154,10 +172,22 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "jobs") {
       this.refreshPage();
     }
-    sessionStorage.setItem('subpage', "jobs");
-    this.setState({
-      subpage: "jobs",
-    });
+    else if (this.props.profile.membership == "Regular") {
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Your free trial expired',
+        buttons: [
+          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+          { label: 'OK' },
+        ]
+      });
+    }
+    else {
+      sessionStorage.setItem('subpage', "jobs");
+      this.setState({
+        subpage: "jobs",
+      });
+    }
   };
 
   renderJobEdition = () => {
@@ -206,10 +236,21 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "applications") {
       this.refreshPage();
     }
-    sessionStorage.setItem('subpage', "applications");
-    this.setState({
-      subpage: "applications",
-    });
+    else if (this.props.profile.membership == "Regular") {
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Your free trial expired',
+        buttons: [
+          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+          { label: 'OK' },
+        ]
+      });
+    }else{
+      sessionStorage.setItem('subpage', "applications");
+      this.setState({
+        subpage: "applications",
+      });
+    }
   };
 
   renderPosition = () => {
@@ -266,23 +307,45 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "shortlist") {
       this.refreshPage();
     }
-    sessionStorage.setItem('subpage', "shortlist");
-    this.setState({
-      subpage: "shortlist",
-    });
+    else if (this.props.profile.membership == "Regular") {
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Your free trial expired',
+        buttons: [
+          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+          { label: 'OK' },
+        ]
+      });
+    }else{
+      sessionStorage.setItem('subpage', "shortlist");
+      this.setState({
+        subpage: "shortlist",
+      });
+    }
   };
 
   renderAnalytics = () => {
     if (this.state.subpage == "analytics") {
       this.refreshPage();
     }
-    this.props.getAnalyticsInfo(this.props.user.id);
-    sessionStorage.setItem('subpage', "analytics");
-    setTimeout(() => {
-      this.setState({
-        subpage: "analytics",
+    else if (this.props.profile.membership == "Regular") {
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Your free trial expired',
+        buttons: [
+          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+          { label: 'OK' },
+        ]
       });
-    }, 200)
+    }else{
+      this.props.getAnalyticsInfo(this.props.user.id);
+      sessionStorage.setItem('subpage', "analytics");
+      setTimeout(() => {
+        this.setState({
+          subpage: "analytics",
+        });
+      }, 200)
+    }
   };
 
   renderEmployerProfile = () => {

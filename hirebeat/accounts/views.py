@@ -27,6 +27,7 @@ from django.core.exceptions import ObjectDoesNotExist
 load_dotenv()
 import requests
 from django.forms.models import model_to_dict
+from datetime import date, timedelta
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -937,3 +938,27 @@ def create_or_update_profile_sharing(request):
         # create profile detail information
         ProfileDetail.objects.create(user_id=user_id, share_profile=share_profile, open_to_hr=open_to_hr)
     return Response("Update user profile sharing successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def check_freetrial_expire(request):
+    expired = False
+    user_id = request.data["user_id"]
+    user = User.objects.get(pk=user_id)
+    profile = Profile.objects.get(user=user)
+    expire_date = profile.datejoined.date()+timedelta(days=14)
+    today = date.today()
+    if profile.is_freetrial:
+        if(today > expire_date):
+            expired = True
+            try:
+                profile.is_freetrial = False
+                profile.candidate_limit = 25
+                profile.position_limit = 1
+                profile.plan_interval = "Regular"
+                profile.membership = "Regular"
+                profile.save()
+            except ObjectDoesNotExist:
+                return Response("User not exist", status=status.HTTP_201_CREATED)
+    else:
+        expired = False
+    return Response({"data": expired})

@@ -313,6 +313,8 @@ export class EmployerProfile extends Component {
                                                     <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
                                                 </p>
                                             </div>
+                                            {this.props.profile.is_freetrial && 
+                                            <p className="ml-2">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate()+14) - (new Date().getDate()))>=0?parseInt((new Date(this.props.profile.datejoined).getDate()+14) - (new Date().getDate())):"0"} days</p>}
                                         </div>}
                                 </div> :
                                 <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
@@ -327,7 +329,7 @@ export class EmployerProfile extends Component {
                                         <div>
                                             <div className="row" style={{ width: "20rem" }}>
                                                 <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
-                                                    <p style={{ color: "7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>Free Member</p>
+                                                    <p style={{ color: "7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>Expired</p>
                                                 </div>
                                                 <Link to="/employer-pricing" style={{ textDecoration: "none", marginLeft: "1rem" }}><p style={{ color: "#fac046", fontSize: "14px" }}>Upgrade</p></Link>
                                             </div>
