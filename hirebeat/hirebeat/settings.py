@@ -27,8 +27,8 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-#ALLOWED_HOSTS = ['34.230.181.0','www.hirebeat.co','hirebeat.co','localhost',"169.254.169.254","[::ffff:a9fe:a9fe]","127.0.0.1"]
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['34.230.181.0','www.hirebeat.co','hirebeat.co','localhost',"169.254.169.254","[::ffff:a9fe:a9fe]","127.0.0.1"]
+#ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -183,11 +183,11 @@ SOCIAL_AUTH_PIPELINE = (
 
 #EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST="smtp.sendgrid.net"
+EMAIL_HOST="smtp.gmail.com"
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
-EMAIL_HOST_USER="apikey"
-EMAIL_HOST_PASSWORD=os.getenv('SENDGRID_API_KEY')
+EMAIL_HOST_USER=os.getenv("HIREBEAT_GMAIL")
+EMAIL_HOST_PASSWORD=os.getenv("HIREBEAT_GMAIL_PASSWORD")
 
 ### djangostripe
 
