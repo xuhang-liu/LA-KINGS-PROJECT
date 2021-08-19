@@ -29,7 +29,7 @@ class Profile(models.Model):
     membership = models.CharField(
         max_length=20,
         choices=MembershipCategory.choices,
-        default=MembershipCategory.Regular
+        default=MembershipCategory.Premium
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_employer = models.BooleanField(default=False)
@@ -63,7 +63,7 @@ class Profile(models.Model):
     email_confirmed = models.BooleanField(default=False)
     customer_id = models.CharField(max_length=30,null=True, blank=True)
     sub_id = models.CharField(max_length=30,null=True, blank=True)
-    plan_interval = models.CharField(max_length=30,null=True, blank=True)
+    plan_interval = models.CharField(max_length=30, default="Premium")
     company_name = models.CharField(max_length=30,null=True, blank=True)
     is_subreviwer = models.BooleanField(default=False)
     is_external_reviewer = models.BooleanField(default=False)
@@ -76,14 +76,16 @@ class Profile(models.Model):
     position_count = models.IntegerField(default=0, validators=[
         MaxValueValidator(1000)
     ])
-    position_limit = models.IntegerField(default=1, validators=[
+    position_limit = models.IntegerField(default=1000, validators=[
         MaxValueValidator(1000)
     ])
-    candidate_limit = models.IntegerField(default=25, validators=[
+    candidate_limit = models.IntegerField(default=1000, validators=[
         MaxValueValidator(1000)
     ])
     viewed_tutorial = models.BooleanField(default=False)
     merge_public_token = models.TextField(null=True, blank=True)
+    is_freetrial = models.BooleanField(default=True)
+    datejoined = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.user.username
 

@@ -27,6 +27,7 @@ from django.core.exceptions import ObjectDoesNotExist
 load_dotenv()
 import requests
 from django.forms.models import model_to_dict
+from datetime import date, timedelta
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -963,3 +964,27 @@ def create_employer_profile(request):
         return Response("User not exist", status=status.HTTP_200_OK)
 
     return Response("Create employer profile successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def check_freetrial_expire(request):
+    expired = False
+    user_id = request.data["user_id"]
+    user = User.objects.get(pk=user_id)
+    profile = Profile.objects.get(user=user)
+    expire_date = profile.datejoined.date()+timedelta(days=14)
+    today = date.today()
+    if profile.is_freetrial:
+        if(today > expire_date):
+            expired = True
+            try:
+                profile.is_freetrial = False
+                profile.candidate_limit = 25
+                profile.position_limit = 1
+                profile.plan_interval = "Regular"
+                profile.membership = "Regular"
+                profile.save()
+            except ObjectDoesNotExist:
+                return Response("User not exist", status=status.HTTP_201_CREATED)
+    else:
+        expired = False
+    return Response({"data": expired})
