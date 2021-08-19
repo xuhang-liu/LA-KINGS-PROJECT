@@ -919,7 +919,7 @@ def create_profile(request):
     except ObjectDoesNotExist:
         return Response("User not exist", status=status.HTTP_201_CREATED)
 
-    return Response("Create or Update user logo successfully", status=status.HTTP_201_CREATED)
+    return Response("Create or Update user profile successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def create_or_update_profile_sharing(request):
@@ -937,3 +937,29 @@ def create_or_update_profile_sharing(request):
         # create profile detail information
         ProfileDetail.objects.create(user_id=user_id, share_profile=share_profile, open_to_hr=open_to_hr)
     return Response("Update user profile sharing successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def create_employer_profile(request):
+    email = request.data["email"]
+    f_name = request.data["f_name"]
+    l_name = request.data["l_name"]
+    company_size = request.data["company_size"]
+    company_type = request.data["company_type"]
+    location = request.data["location"]
+
+    # user exists
+    try:
+        user = User.objects.get(email=email)
+        profile = EmployerProfileDetail(user_id=user.id)
+        profile.email = email
+        profile.f_name = f_name
+        profile.l_name = l_name
+        profile.company_size = company_size
+        profile.company_type = company_type
+        profile.location = location
+        profile.save()
+    # user not exist
+    except ObjectDoesNotExist:
+        return Response("User not exist", status=status.HTTP_200_OK)
+
+    return Response("Create employer profile successfully", status=status.HTTP_201_CREATED)

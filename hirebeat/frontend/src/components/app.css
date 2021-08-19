@@ -4269,3 +4269,30 @@ max-width: 110px;
   padding: 0.2rem;
   display: inline-block;
 }
+
+.register-input-placeholder {
+  position: relative;
+}
+.register-input-placeholder input {
+  padding: 10px;
+  font-size: 25px;
+}
+.register-input-placeholder input:valid + .placeholder {
+  display: none;
+}
+
+.placeholder {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  bottom: 0;
+  font-size: 14px;
+  height: 25px;
+  left: 10px;
+  margin: auto;
+  color: rgb(153 153 153);
+}
+
+.placeholder span {
+  color: red;
+}

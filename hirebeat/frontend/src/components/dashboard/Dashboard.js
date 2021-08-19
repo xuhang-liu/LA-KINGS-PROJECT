@@ -214,7 +214,14 @@ export class Dashboard extends Component {
     const accentColor = "#5cb7b7";
     // email verification
     if (!this.props.profile.email_confirmed) {
-        return <Redirect to="/email-verification-mini" />;
+        // normal user
+        if (!this.props.profile.is_employer) {
+            return <Redirect to="/email-verification-mini" />;
+        }
+        // employer user
+        else {
+            return <Redirect to="/email-verification-employer-mini" />;
+        }
     }
     if (this.props.profile.is_employer) {
       return <Redirect to="/employer_dashboard" />;
