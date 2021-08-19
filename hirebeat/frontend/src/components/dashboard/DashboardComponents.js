@@ -307,6 +307,20 @@ export const MyModalContact = (props) => {
     );
 };
 
+export const MyModalShare = (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName={"my-modal-share"}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton style={{ border: "none", height: "6px" }} />
+            {props.children}
+        </Modal>
+    );
+};
+
 export const MyVideoModal = (props) => {
     return (
         <Modal
