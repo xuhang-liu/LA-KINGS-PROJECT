@@ -19,12 +19,12 @@ export class ShareProfileEdition extends Component {
 
     saveProfileSharing = () => {
         // check full name
-        if (this.props.firsName === "" || this.props.lastName === "") {
+        if ((this.props.firsName == "" || this.props.lastName == "") && this.state.shareProfile) {
             this.setState({hasFullName: false});
-        }else if (this.props.company === "" || this.props.company === "") {
+        }else if ((this.props.company == "" || this.props.company == null) && this.state.shareProfile) {
             this.setState({hasCompany: false});
         }
-        else if (this.props.location === "" || this.props.location === "") {
+        else if ((this.props.location == "" || this.props.location == null) && this.state.shareProfile) {
             this.setState({hasLocation: false});
         }
         else {
