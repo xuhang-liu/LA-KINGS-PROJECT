@@ -3799,7 +3799,19 @@ export class JobCreation extends Component {
     ];
 
     setJobPost(type) {
-        this.setState({ job_post: type });
+        if (this.props.profile.is_freetrial && type==2){
+            confirmAlert({
+                title: 'Upgrade Now!',
+                message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
+                buttons: [
+                    { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+                    { label: 'OK' },
+                ]
+            });
+        }
+        else{
+            this.setState({ job_post: type });
+        }
     }
 
     //    setJobPostTure = () => {
@@ -4361,10 +4373,10 @@ export class JobCreation extends Component {
                                     </div>
                                 </div>
                             </div>}
-                        <div style={{ float: "left", marginBottom: "1rem", display:"inline-block" }}>
-                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor:"#E5E5E5", color:"#090d3a"}} onClick={this.props.renderJobs}>Cancel</button>
+                        <div style={{ float: "left", marginBottom: "1rem", display: "inline-block" }}>
+                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#E5E5E5", color: "#090d3a" }} onClick={this.props.renderJobs}>Cancel</button>
                         </div>
-                        <div style={{ float: "right", marginBottom: "1rem", display:"inline-block" }}>
+                        <div style={{ float: "right", marginBottom: "1rem", display: "inline-block" }}>
                             <button
                                 type="button"
                                 className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem" }}
