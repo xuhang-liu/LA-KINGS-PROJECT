@@ -12,7 +12,8 @@ import PageTitleArea from '../Common/PageTitleArea';
 import {
   updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus, subreviewerUpdateComment,
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
-  updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence
+  updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence,
+  getSourcingData
 }
   from "../../redux/actions/auth_actions";
 import {
@@ -39,6 +40,7 @@ import DocumentMeta from 'react-document-meta';
 import { EmployerProfile } from "./employerProfile/EmployerProfile";
 import { JobCover } from "./jobBoard/JobCover";
 import { JobCreation } from "./jobBoard/JobCreation";
+import { Sourcing } from "./jobBoard/Sourcing";
 import JobEdition from "./jobBoard/JobEdition";
 import Footer from "../layout/Footer";
 import axios from "axios";
@@ -153,6 +155,16 @@ export class EmployerDashboard extends Component {
     }).catch(error => {
       console.log(error)
     });
+    let queryData = {
+        keywords: "",
+        location: "",
+        skills: [],
+        position: "",
+        has_video: false,
+        page: 1,
+        has_filter: false,
+    }
+    this.props.getSourcingData(queryData);
   }
 
   getInitialSubpage = () => {
@@ -381,6 +393,17 @@ export class EmployerDashboard extends Component {
     }
   }
 
+  renderEmployerSourcing = () => {
+    if (this.state.subpage == "employerSourcing") {
+      this.refreshPage();
+    }
+    sessionStorage.setItem('subpage', "employerSourcing");
+    this.setState({
+      subpage: "employerSourcing",
+    }
+    )
+  }
+
   renderSubpage = () => {
     switch (this.state.subpage) {
       case "jobs":
@@ -549,6 +572,14 @@ export class EmployerDashboard extends Component {
           addCandFromMerge={this.props.addCandFromMerge}
           renderApplications={this.renderApplications}
         />;
+      case "employerSourcing":
+        return <Sourcing
+          user={this.props.user}
+          profile={this.props.profile}
+          sourcingData={this.props.sourcingData}
+          sourcingDataLoaded={this.props.sourcingDataLoaded}
+          getSourcingData={this.props.getSourcingData}
+        />;
       default:
         return null;
       //Do nothing
@@ -590,6 +621,7 @@ export class EmployerDashboard extends Component {
                         renderAnalytics={this.renderAnalytics}
                         renderEmployerProfile={this.renderEmployerProfile}
                         renderJobs={this.renderJobs}
+                        renderEmployerSourcing={this.renderEmployerSourcing}
                         subpage={this.state.subpage}
                         int_dots={this.props.int_dots}
                         job_dots={this.props.job_dots}
@@ -603,7 +635,7 @@ export class EmployerDashboard extends Component {
                       {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
                         (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
                         (this.state.subpage === "applications") || (this.state.subpage === "jobs") ||
-                        (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition") || (this.state.subpage === "mergeintergration")) || (this.state.subpage == "") ? null :
+                        (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition") || (this.state.subpage === "mergeintergration") || (this.state.subpage === "employerSourcing")) || (this.state.subpage == "") ? null :
                         <div className="container-fluid" style={{ height: "22rem" }} data-tut="reactour-rowbox">
                           <RowBoxes userId={this.props.user.id} isEmployer={true} />
                         </div>}
@@ -683,6 +715,8 @@ const mapStateToProps = (state) => {
     link_token: state.job_reducer.link_token,
     interview_stages_api_response: state.job_reducer.interview_stages_api_response,
     jobs_api_response: state.job_reducer.jobs_api_response,
+    sourcingData: state.auth_reducer.sourcingData,
+    sourcingDataLoaded: state.auth_reducer.sourcingDataLoaded,
   }
 };
 
@@ -693,7 +727,7 @@ export default connect(mapStateToProps, {
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
   updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
-  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge
+  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, getSourcingData
 })(
   EmployerDashboard
 );

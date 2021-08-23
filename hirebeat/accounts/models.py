@@ -197,3 +197,5 @@ class EmployerProfileDetail(models.Model):
     summary = models.TextField(null=True, blank=True)
     logo_url = models.CharField(max_length=100, null=True, blank=True)
 
+    f_name = models.CharField(max_length=100, default="")
+    l_name = models.CharField(max_length=100, default="")
