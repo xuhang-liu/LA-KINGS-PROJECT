@@ -1009,23 +1009,35 @@ def get_sourcing_data(request):
         "profiles": []
     }
     if has_filter:
+        res = []
         # has video
         if has_video:
             res = ProfileDetail.objects.annotate(
-                keywords=SearchVector('f_name', 'l_name', 'current_job_title', 'current_company', 'location'),
+                keywords=SearchVector('f_name', 'l_name', 'current_job_title', 'current_company'),
                 video_url_len=Length('video_url')
-            ).filter(Q(keywords__contains=keywords) | Q(keywords__contains=position) | Q(keywords__contains=location),
-                     skills__contains=skills, video_url_len__gt=0, open_to_hr=True
-                     ).values()
+            ).filter(keywords__icontains=keywords, video_url_len__gt=0, open_to_hr=True)
+            # further select skill, location and position
+            if len(skills) > 0:
+                res = res.filter(skills__contains=skills)
+            if len(location) > 0:
+                res = res.filter(location=location)
+            if len(position) > 0:
+                res = res.filter(current_job_title__icontains=position)
+            res = res.values()
         # no video
         else:
             res = ProfileDetail.objects.annotate(
-                keywords=SearchVector('f_name', 'l_name', 'current_job_title', 'current_company', 'location'),
-                video_url_len=Length('video_url')
-            ).filter(Q(keywords=keywords) | Q(keywords=position) | Q(keywords__contains=location),
-                     skills__contains=skills, open_to_hr=True
-                     ).values()
-            print(len(res))
+                keywords=SearchVector('f_name', 'l_name', 'current_job_title', 'current_company'),
+            ).filter(keywords__icontains=keywords, open_to_hr=True)
+            # further select skill, location and position
+            if len(skills) > 0:
+                res = res.filter(skills__contains=skills)
+            if len(location) > 0:
+                res = res.filter(location=location)
+            if len(position) > 0:
+                res = res.filter(current_job_title__icontains=position)
+            res = res.values()
+
         data["total_records"] = len(res)
         data["total_page"] = math.ceil(len(res) / 20)
         if data["total_records"] <= 20:

@@ -126,7 +126,7 @@ export class Sourcing extends Component {
                                             location={this.state.location}
                                             skills={this.state.skills}
                                             position={this.state.position}
-                                            hasVideo={this.hasVideo}
+                                            hasVideo={this.state.hasVideo}
                                             updateState={this.updateState}
                                             setSkills={this.setSkills}
                                             setLocation={this.setLocation}
