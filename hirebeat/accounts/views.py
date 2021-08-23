@@ -28,6 +28,10 @@ load_dotenv()
 import requests
 from django.forms.models import model_to_dict
 from datetime import date, timedelta
+from django.contrib.postgres.search import SearchVector
+import math
+from django.db.models.functions import Length
+from django.db.models import Q
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -988,3 +992,52 @@ def check_freetrial_expire(request):
     else:
         expired = False
     return Response({"data": expired})
+
+@api_view(['POST'])
+def get_sourcing_data(request):
+    keywords = request.data["keywords"]
+    location = request.data["location"]
+    skills = request.data["skills"]
+    position = request.data["position"]
+    has_video = request.data["has_video"]
+    page = request.data["page"]
+    has_filter = request.data["has_filter"]
+
+    data = {
+        "total_page": 0,
+        "total_records": 0,
+        "profiles": []
+    }
+    if has_filter:
+        # has video
+        if has_video:
+            res = ProfileDetail.objects.annotate(
+                keywords=SearchVector('f_name', 'l_name', 'current_job_title', 'current_company', 'location'),
+                video_url_len=Length('video_url')
+            ).filter(Q(keywords__contains=keywords) | Q(keywords__contains=position) | Q(keywords__contains=location),
+                     skills__contains=skills, video_url_len__gt=0, open_to_hr=True
+                     ).values()
+        # no video
+        else:
+            res = ProfileDetail.objects.annotate(
+                keywords=SearchVector('f_name', 'l_name', 'current_job_title', 'current_company', 'location'),
+                video_url_len=Length('video_url')
+            ).filter(Q(keywords=keywords) | Q(keywords=position) | Q(keywords__contains=location),
+                     skills__contains=skills, open_to_hr=True
+                     ).values()
+            print(len(res))
+        data["total_records"] = len(res)
+        data["total_page"] = math.ceil(len(res) / 20)
+        if data["total_records"] <= 20:
+            data["profiles"] = list(res)
+        else:
+            data["profiles"] = list(res)[page - 1:page + 20]
+    else:
+        res = ProfileDetail.objects.filter(open_to_hr=True).values()
+        data["total_records"] = len(res)
+        data["total_page"] = math.ceil(len(res) / 20)
+        if data["total_records"] <= 20:
+            data["profiles"] = list(res)
+        else:
+            data["profiles"] = list(res)[page - 1:page + 20]
+    return Response({"data": data})

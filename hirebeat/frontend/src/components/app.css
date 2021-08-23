@@ -4223,7 +4223,6 @@ max-width: 110px;
   color: #E35454;
 }
 
-<<<<<<< HEAD
 .sourcing-input-search {
   color: #7c94c5;
   border: none;
@@ -4336,4 +4335,55 @@ max-width: 110px;
   line-height: 1.5em;
   color: #818078;
   background-color: #fcfcfa;
+}
+
+.sourcing-input {
+  background: #FFFFFF;
+  border: 2px solid #E8EDFC;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 40px;
+}
+
+.sourcing-radio {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #090D3A;
+  display: flex;
+  align-items: center;
+}
+
+.sourcing-p {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  color: #090D3A;
+  display: flex;
+  align-items: center;
+}
+
+.sourcing-p2 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration-line: underline;
+  color: #090D3A;
+}
+
+.justify-align-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sourcing-input::-webkit-input-placeholder {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  color: #4A6F8A;
 }

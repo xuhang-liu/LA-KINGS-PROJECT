@@ -12,7 +12,8 @@ import PageTitleArea from '../Common/PageTitleArea';
 import {
   updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus, subreviewerUpdateComment,
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
-  updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence
+  updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence,
+  getSourcingData
 }
   from "../../redux/actions/auth_actions";
 import {
@@ -154,6 +155,16 @@ export class EmployerDashboard extends Component {
     }).catch(error => {
       console.log(error)
     });
+    let queryData = {
+        keywords: "",
+        location: "",
+        skills: [],
+        position: "",
+        has_video: false,
+        page: 1,
+        has_filter: false,
+    }
+    this.props.getSourcingData(queryData);
   }
 
   getInitialSubpage = () => {
@@ -565,6 +576,9 @@ export class EmployerDashboard extends Component {
         return <Sourcing
           user={this.props.user}
           profile={this.props.profile}
+          sourcingData={this.props.sourcingData}
+          sourcingDataLoaded={this.props.sourcingDataLoaded}
+          getSourcingData={this.props.getSourcingData}
         />;
       default:
         return null;
@@ -701,6 +715,8 @@ const mapStateToProps = (state) => {
     link_token: state.job_reducer.link_token,
     interview_stages_api_response: state.job_reducer.interview_stages_api_response,
     jobs_api_response: state.job_reducer.jobs_api_response,
+    sourcingData: state.auth_reducer.sourcingData,
+    sourcingDataLoaded: state.auth_reducer.sourcingDataLoaded,
   }
 };
 
@@ -711,7 +727,7 @@ export default connect(mapStateToProps, {
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
   updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
-  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge
+  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, getSourcingData
 })(
   EmployerDashboard
 );

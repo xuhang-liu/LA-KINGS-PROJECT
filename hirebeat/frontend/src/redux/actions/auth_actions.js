@@ -55,6 +55,7 @@ import {
   UPDATE_LANGUAGES,
   UPDATE_PROFILE_SHARING,
   CREATE_EMPLOYER_PROFILE,
+  GET_SOURCING_DATA,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -878,6 +879,20 @@ export const createEmployerProfile = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: CREATE_EMPLOYER_PROFILE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getSourcingData = (data) => (dispatch, getState) => {
+  axios
+    .post("accounts/get-sourcing-data", data)
+    .then((res) => {
+      dispatch({
+        type: GET_SOURCING_DATA,
         payload: res.data,
       });
     })

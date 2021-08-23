@@ -13,7 +13,7 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     create_or_update_employer_summary, upload_employer_profile_video, get_employer_post, update_employer_post, add_employer_post, delete_employer_post, \
     upload_employer_logo, create_or_update_employer_logo, upload_user_logo, create_or_update_user_logo, check_user_existence, check_company_name_existence, \
     create_profile, create_or_update_job_type, create_or_update_skills, create_or_update_languages, create_or_update_profile_sharing, create_employer_profile, \
-    check_freetrial_expire
+    check_freetrial_expire, get_sourcing_data
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -129,6 +129,7 @@ urlpatterns = [
     path('accounts/create-profile', create_profile, name="create user profile"),
 
     # employer free trial
-    path('api/check_freetrial_expire', check_freetrial_expire, name="check user free trial")
+    path('api/check_freetrial_expire', check_freetrial_expire, name="check user free trial"),
+    path('accounts/get-sourcing-data', get_sourcing_data, name="get sourcing data"),
 ]
 

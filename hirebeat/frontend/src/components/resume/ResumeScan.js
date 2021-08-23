@@ -263,7 +263,7 @@ export class ResumeScan extends Component {
                  <textarea
                    id="cvText"
                    className="resume-textarea"
-                   style={{width: "100%", height: "5rem", marginTop: "0.5rem", fontSize: "1.2rem", resize: "none"}}
+                   style={{width: "100%", height: "12rem", marginTop: "0.5rem", fontSize: "1.2rem", resize: "none"}}
                    placeholder="Paste resume here"
                    onChange={this.strToText}
                  >
