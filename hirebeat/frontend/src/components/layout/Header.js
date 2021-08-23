@@ -230,28 +230,33 @@ export class Header extends Component {
               <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{ cursor: 'pointer' }}>
                   Job Seekers <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "16.8rem", width: "18rem" }}>
+                  <ul className="nav_submenu" style={{ height: "21rem", width: "18rem" }}>
                     <li>
-                      <Link id="id-interviewpr2" to="/practice" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd1.png" alt="img"></img></span>Interview Practice</Link></li>
+                      <a id="id-jobseeker3" href="/job-seekers" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                        Home Page</a></li>
+                    <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
                     <li>
-                      <Link id="id-resumeop2" to="/resume" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd2.png" alt="img"></img></span>Resume Optimization</Link></li>
+                      <Link id="id-interviewpr3" to="/practice" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                        Interview Practice</Link></li>
                     <li>
-                      <Link id="id-topcompany2" to="/job-seekers-companydata" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd3.png" alt="img"></img></span>Top Companies Tips</Link></li>
+                      <Link id="id-resumeop3" to="/resume" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                        Resume Optimization</Link></li>
                     <li>
-                      <Link id="id-howitworks2" to="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        How it works</Link></li>
+                      <a id="id-topcompany3" href="/job-seekers-companydata" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                        Top Companies Tips</a></li>
                     <li>
-                      <Link id="id-findajob2" to="/job-seekers-career" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Find a Job</Link></li>
+                      <a id="id-howitworks3" href="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                        How it works</a></li>
                     <li>
-                      <Link id="id-careerquiz2" to="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Career Quiz</Link></li>
+                      <a id="id-findajob3" href="/job-seekers-career" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                        Find a Job</a></li>
                     <li>
-                      <Link id="id-pricing2" to="/pricing" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Pricing</Link></li>
+                      <a id="id-careerquiz3" href="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                        Career Quiz</a></li>
+                    <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
+                    <li>
+                      <Link id="id-careerquiz3" to="/register" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                        Create Free Account</Link></li>
                   </ul>
                 </span>
               </a>
@@ -259,14 +264,24 @@ export class Header extends Component {
             <li className="nav-item ">
               <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Employers <i className="bx-fw bx bx-chevron-down"></i>
+                  Product <i className="bx-fw bx bx-chevron-down"></i>
                   <ul className="nav_submenu" style={{ height: "12rem" }}>
-                    <li><Link id="id-product-interview1" to="/employer-product" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Overview</Link></li>
+                    <li><Link id="id-product-interview3" to="/employer-product" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Overview</Link></li>
                     <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
-                    <li><Link id="id-one-way-interview1" to="/employer-feature-video" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>One-Way Interview</Link></li>
-                    <li><Link id="id-resume-screning1" to="/employer-resume-screening" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Resume Screening</Link></li>
+                    <li><Link id="id-one-way-interview3" to="/employer-feature-video" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>One-Way Interview</Link></li>
+                    <li><Link id="id-resume-screning3" to="/employer-resume-screening" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Resume Screening</Link></li>
                     <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
-                    <li><Link id="id-intergration-page1" to="/employer-intergration-page" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Integrations</Link></li>
+                    <li><Link id="id-intergration-page3" to="/employer-intergration-page" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Integrations</Link></li>
+                  </ul>
+                </span>
+              </a>
+            </li>
+            <li className="nav-item ">
+              <a className="nav-link text-white navbar-font">
+                <span className="header-text" style={{ cursor: 'pointer' }}>
+                  Solutions <i className="bx-fw bx bx-chevron-down"></i>
+                  <ul className="nav_submenu" style={{ height: "3.2rem" }}>
+                    <li><Link id="id-solution-page3" to="/employer-solution-page" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Campus Recruiting</Link></li>
                   </ul>
                 </span>
               </a>
@@ -276,14 +291,14 @@ export class Header extends Component {
         <MediaQuery minDeviceWidth={1224}>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/login">
+              <Link to="/employer-login">
                 <a className="default-btn1 mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "12px" }}>
                   Log In
                 </a>
               </Link>
             </li>
             <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/register">
+              <Link to="/employer_register">
                 <a className="default-btn mr-3" id="id-signup" style={{ color: "white", paddingLeft: "25px" }}>
                   Start for Free
                 </a>
@@ -294,14 +309,14 @@ export class Header extends Component {
         <MediaQuery maxDeviceWidth={1223}>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/login">
+              <Link to="/employer-login">
                 <a className="default-btn mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", backgroundColor: "#ff6b00" }}>
                   Log In
                 </a>
               </Link>
             </li>
             <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/register">
+              <Link to="/employer_register">
                 <a className="default-btn mr-3" id="id-signup" style={{ color: "white", paddingLeft: "25px" }}>
                   Start for Free
                 </a>
