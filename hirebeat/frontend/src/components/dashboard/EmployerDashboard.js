@@ -134,9 +134,13 @@ export class EmployerDashboard extends Component {
     this.props.getEmployerPost(this.props.user.id, 0);
     this.props.getAllJobs(this.props.user.id);
     this.props.getQuestionList();
-    this.props.getReviewersList(user.id)
-    if (((this.props.profile.position_count) >= (this.props.profile.position_limit)) && (this.props.profile.membership == "Regular")) {
-      this.props.checkFreeAccountActiveJobs(user);
+    this.props.getReviewersList(user.id);
+    var data = {
+      "id": this.props.user.id,
+      "limit": this.props.profile.position_limit,
+    }
+    if (((this.props.profile.position_count) >= (this.props.profile.position_limit)) && (this.props.profile.membership == "Regular" || this.props.profile.plan_interval == "Pro")) {
+      this.props.checkFreeAccountActiveJobs(data);
     }
     const config = {
       headers: {

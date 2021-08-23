@@ -132,96 +132,107 @@ const ShortListCard = (props) => {
     const qualifiedApplicants = getQualifiedApplicants(props.applicants);
 
     function inviteExReviewer() {
-        let ex_reviewer_name = "";
-        let ex_reviewer_email = "";
-        let encoded_email = "";
-        function submitExReviewer(e) {
-            e.preventDefault();
-            ex_reviewer_name = document.getElementById("ex_reviewer_name").value;
-            ex_reviewer_email = document.getElementById("ex_reviewer_email").value;
-            //check user exist
-            axios.get(`accounts/check-user-existence?email=${ex_reviewer_email.toLowerCase()}`).then((res) => {
-                let user_existence = res.data.data;
-                if (user_existence) {
-                    sendFailAlert();
-                    props.getPJobs();
-                } else {
-                    encoded_email = window.btoa("email=" + ex_reviewer_email.toLowerCase());
-                    let data = {
-                        "ex_reviewer_name": ex_reviewer_name,
-                        "ex_reviewer_email": ex_reviewer_email,
-                        "encoded_email": encoded_email,
-                        "company_name": props.companyName,
-                        "position_id": props.positionId,
-                        "master_email": props.user.email,
-                    };
-                    props.addExReviewer(data);
-                    props.getPJobs();
-                    sendSuccessAlert();
-                }
-            })
-                .catch(error => {
-                    console.log(error)
-                });
-        }
-
-        confirmAlert({
-            customUI: ({ onClose }) => {
-                return (
-                    <div className="interview-txt7" style={{ backgroundColor: '#ffffff', borderRadius: "10px", border: "2px solid #E8EDFC", padding: "1rem", paddingLeft: "3rem", paddingRight: "3rem" }}>
-                        <form onSubmit={submitExReviewer}>
-                            <div className="form-row">
-                                <h3 className="subreviewer-h3">Invite External Reviewer</h3>
-                            </div>
-                            <div className="form-row">
-                                <p className="subreviewer-p">
-                                    You can invite people outside your organization to join <br />
-                                    the recruiting process as an external reviewer. <br />
-                                    An external reviewer can only see the shortlisted <br />
-                                    candidates for the job position you shared, including <br />
-                                    their video interview and resume.
-                                </p>
-                            </div>
-                            <div className="form-row" style={{ marginTop: "1rem" }}>
-                                <div className="form-group col-5">
-                                    <label style={{ fontSize: "17px", margin: "0.5rem" }}>
-                                        Enter Name
-                                    </label>
-                                    <input type="text" id="ex_reviewer_name" className="form-control" required="required" placeHolder="John" />
-                                </div>
-                                <div className="form-group col-7">
-                                    <label style={{ fontSize: "17px", margin: "0.5rem" }}>
-                                        Enter Email
-                                    </label>
-                                    <input type="email" id="ex_reviewer_email" className="form-control" required="required" placeHolder="john@example.com" />
-                                </div>
-                            </div>
-                            <div className="form-row justify-items">
-                                <div className="form-group col-3" style={{ marginRight: "3rem" }}>
-                                    <button
-                                        type="submit"
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px" }}
-                                    >
-                                        Invite
-                                    </button>
-                                </div>
-                                <div className="form-group col-3">
-                                    <button
-                                        type="button"
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px"}}
-                                        onClick={() => onClose()}
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                );
+        if (props.exReviewers.length >= 5 && props.profile.plan_interval == "Pro") {
+            confirmAlert({
+                title: 'Upgrade Now!',
+                message: "Please upgrade your account to add more than 5 external reviewers.",
+                buttons: [
+                    { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+                    { label: 'OK' },
+                ]
+            });
+        } else {
+            let ex_reviewer_name = "";
+            let ex_reviewer_email = "";
+            let encoded_email = "";
+            function submitExReviewer(e) {
+                e.preventDefault();
+                ex_reviewer_name = document.getElementById("ex_reviewer_name").value;
+                ex_reviewer_email = document.getElementById("ex_reviewer_email").value;
+                //check user exist
+                axios.get(`accounts/check-user-existence?email=${ex_reviewer_email.toLowerCase()}`).then((res) => {
+                    let user_existence = res.data.data;
+                    if (user_existence) {
+                        sendFailAlert();
+                        props.getPJobs();
+                    } else {
+                        encoded_email = window.btoa("email=" + ex_reviewer_email.toLowerCase());
+                        let data = {
+                            "ex_reviewer_name": ex_reviewer_name,
+                            "ex_reviewer_email": ex_reviewer_email,
+                            "encoded_email": encoded_email,
+                            "company_name": props.companyName,
+                            "position_id": props.positionId,
+                            "master_email": props.user.email,
+                        };
+                        props.addExReviewer(data);
+                        props.getPJobs();
+                        sendSuccessAlert();
+                    }
+                })
+                    .catch(error => {
+                        console.log(error)
+                    });
             }
-        });
+
+            confirmAlert({
+                customUI: ({ onClose }) => {
+                    return (
+                        <div className="interview-txt7" style={{ backgroundColor: '#ffffff', borderRadius: "10px", border: "2px solid #E8EDFC", padding: "1rem", paddingLeft: "3rem", paddingRight: "3rem" }}>
+                            <form onSubmit={submitExReviewer}>
+                                <div className="form-row">
+                                    <h3 className="subreviewer-h3">Invite External Reviewer</h3>
+                                </div>
+                                <div className="form-row">
+                                    <p className="subreviewer-p">
+                                        You can invite people outside your organization to join <br />
+                                        the recruiting process as an external reviewer. <br />
+                                        An external reviewer can only see the shortlisted <br />
+                                        candidates for the job position you shared, including <br />
+                                        their video interview and resume.
+                                    </p>
+                                </div>
+                                <div className="form-row" style={{ marginTop: "1rem" }}>
+                                    <div className="form-group col-5">
+                                        <label style={{ fontSize: "17px", margin: "0.5rem" }}>
+                                            Enter Name
+                                        </label>
+                                        <input type="text" id="ex_reviewer_name" className="form-control" required="required" placeHolder="John" />
+                                    </div>
+                                    <div className="form-group col-7">
+                                        <label style={{ fontSize: "17px", margin: "0.5rem" }}>
+                                            Enter Email
+                                        </label>
+                                        <input type="email" id="ex_reviewer_email" className="form-control" required="required" placeHolder="john@example.com" />
+                                    </div>
+                                </div>
+                                <div className="form-row justify-items">
+                                    <div className="form-group col-3" style={{ marginRight: "3rem" }}>
+                                        <button
+                                            type="submit"
+                                            className="default-btn1"
+                                            style={{ paddingLeft: "25px" }}
+                                        >
+                                            Invite
+                                        </button>
+                                    </div>
+                                    <div className="form-group col-3">
+                                        <button
+                                            type="button"
+                                            className="default-btn1"
+                                            style={{ paddingLeft: "25px" }}
+                                            onClick={() => onClose()}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    );
+                }
+            });
+        }
     }
 
     function deleteExReviewer(ex_reviewer_id) {
@@ -250,7 +261,7 @@ const ShortListCard = (props) => {
                             <div className="col-7" style={{ color: "#090D3A" }}>
                                 <div className="row">
                                     <button className="title-button ml-2" style={{ float: "left" }} onClick={() => { props.loadStarList(props.positionId); props.setSelectedId(props.positionId) }}>
-                                        {props.jobTitle.length>50?props.jobTitle.substring(0,48)+"...":props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
+                                        {props.jobTitle.length > 50 ? props.jobTitle.substring(0, 48) + "..." : props.jobTitle} {props.jobId == "" ? null : "(ID: " + props.jobId + ")"}
                                     </button>
                                 </div>
                                 <div className="row mb-2 mt-1">
@@ -350,7 +361,7 @@ const AcceptedCandidate = (props) => {
     return (
         <div>
             <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem" }} className="container min-width-980 mt-4 py-4 chart-bg1">
-                <h2 className="short-list-title">{jobTitle.length > 50 ? jobTitle.substring(0,47)+"..." : jobTitle} {jobId == "" ? null : "(ID: " + jobId + ")"}</h2>
+                <h2 className="short-list-title">{jobTitle.length > 50 ? jobTitle.substring(0, 47) + "..." : jobTitle} {jobId == "" ? null : "(ID: " + jobId + ")"}</h2>
                 <div style={{ color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
                     <div className="col-3">Name</div>
                     {/* <div className="col-3">Email</div> */}
@@ -413,7 +424,7 @@ const CandidateCard = (props) => {
         props.getReviewNote(props.applicant.positions_id, props.applicant.email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
         props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email);
-        setTimeout(()=>{setShow(true);}, 300);
+        setTimeout(() => { setShow(true); }, 300);
     };
 
     const refresh = () => {
@@ -525,7 +536,7 @@ const CandidateCard = (props) => {
                 show={show}
                 setShowResume={setShowResume}
                 setShowEva={setShowEva}
-                onHide={() => {setShow(false)}}
+                onHide={() => { setShow(false) }}
                 int_ques={props.int_ques}
                 positionId={props.applicant.positions_id}
                 resumeURL={props.resumeURL}
