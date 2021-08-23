@@ -4102,7 +4102,7 @@ export class JobCreation extends Component {
                                 <label className="db-txt2">
                                     Job ID
                                 </label>
-                                <span className="job-apply-char2" style={{visibility: "hidden"}}>*</span>
+                                <span className="job-apply-char2" style={{ visibility: "hidden" }}>*</span>
                                 <input type="text" name="jobId" value={this.state.jobId}
                                     onChange={this.handleInputChange} className="form-control" />
                             </div>
@@ -4179,9 +4179,9 @@ export class JobCreation extends Component {
                                     Preferred Skills
                                     <span className="tool_tip ml-2">
                                         <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                        <p className="tool_submenu container" style={{ width: "14rem", zIndex:"99999" }}>
+                                        <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
                                             <div>
-                                            These skills will be part of the resume evaluation and are not visible to applicants.
+                                                These skills will be part of the resume evaluation and are not visible to applicants.
                                             </div>
                                         </p>
                                     </span>
@@ -4219,7 +4219,7 @@ export class JobCreation extends Component {
                                     EEO Question
                                 </label>
                             </div>
-                            <div className="form-group col-12" style={{marginBottom: "0rem"}}>
+                            <div className="form-group col-12" style={{ marginBottom: "0rem" }}>
                                 {this.state.eeo_ques_req == 1 ?
                                     <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Enabled</button> :
                                     <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setEeoQuesReq1}>Enabled</button>
@@ -4239,7 +4239,7 @@ export class JobCreation extends Component {
                             <h5 style={{ color: "#090d3a" }}><b>Application Form</b></h5>
                             <span className="tool_tip ml-2">
                                 <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                <p className="tool_submenu container" style={{ width: "14rem", zIndex:"99999" }}>
+                                <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
                                     This will be filled out by applicants. Name, Email, and Resume are mandatory by default.
                                 </p>
                             </span>
@@ -4274,7 +4274,7 @@ export class JobCreation extends Component {
                                 Location
                             </label>
                         </div>
-                        <div className="form-row" style={{marginBottom: "1rem"}}>
+                        <div className="form-row" style={{ marginBottom: "1rem" }}>
                             {this.state.loc_req == 0 ?
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq0}>Required</button>
@@ -4293,7 +4293,7 @@ export class JobCreation extends Component {
                                 Phone Number
                             </label>
                         </div>
-                        <div className="form-row" style={{marginBottom: "1rem"}}>
+                        <div className="form-row" style={{ marginBottom: "1rem" }}>
                             {this.state.pho_req == 0 ?
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq0}>Required</button>
@@ -4312,7 +4312,7 @@ export class JobCreation extends Component {
                                 LinkedIn URL
                             </label>
                         </div>
-                        <div className="form-row" style={{marginBottom: "1rem"}}>
+                        <div className="form-row" style={{ marginBottom: "1rem" }}>
                             {this.state.lin_req == 0 ?
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq0}>Required</button>
@@ -4361,7 +4361,10 @@ export class JobCreation extends Component {
                                     </div>
                                 </div>
                             </div>}
-                        <div style={{ float: "right", marginBottom: "1rem" }}>
+                        <div style={{ float: "left", marginBottom: "1rem", display:"inline-block" }}>
+                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor:"#E5E5E5", color:"#090d3a"}} onClick={this.props.renderJobs}>Cancel</button>
+                        </div>
+                        <div style={{ float: "right", marginBottom: "1rem", display:"inline-block" }}>
                             <button
                                 type="button"
                                 className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem" }}

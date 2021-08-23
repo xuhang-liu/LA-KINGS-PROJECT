@@ -622,7 +622,7 @@ export class Profile extends Component {
                             <div className="profile-bg" style={{ textAlign: "left" }}>
                                 <div className="row" style={{ padding: "2rem" }}>
                                     <div className="col-3">
-                                        <ProfileOverall percent={Math.round(this.props.profileDetail.profile_rate / 100)} />
+                                        <ProfileOverall percent={(this.props.profileDetail.profile_rate / 100).toFixed(2)} />
                                     </div>
                                     <div className="col-9">
                                         <h3 className="profile-h3" style={{ paddingTop: "1rem" }}>Profile Completeness</h3>
@@ -710,6 +710,8 @@ export class Profile extends Component {
                                                 userId={this.props.userId}
                                                 firstName={this.props.profileDetail.f_name}
                                                 lastName={this.props.profileDetail.l_name}
+                                                company={this.props.profileDetail.current_company}
+                                                location={this.props.profileDetail.location}
                                                 shareProfile={this.props.profileDetail.share_profile}
                                                 openToHR={this.props.profileDetail.open_to_hr}
                                                 updateProfileSharing={this.props.updateProfileSharing}
@@ -720,7 +722,7 @@ export class Profile extends Component {
                                     </MyShareModal>
                                     <hr style={{ border: "1px solid #E5E5E5" }} />
                                     <div className="row d-flex justify-content-center">
-                                        <button className="default-btn" style={{ paddingLeft:"25px", backgroundColor: "#13C4A1", color: "#ffffff" }} onClick={this.previewProfile}>Preview</button>
+                                        <button className="default-btn" style={{ paddingLeft:"25px", backgroundColor: "#4689FA", color: "#ffffff" }} onClick={this.previewProfile}>Preview</button>
                                         {this.props.profileDetail.share_profile ?
                                             <button className="default-btn" style={{ paddingLeft:"25px", backgroundColor: "#FF6B00", color: "#ffffff", marginLeft: "2rem" }} onClick={this.shareProfile}>Share</button> :
                                             <button className="default-btn" style={{ paddingLeft:"25px", backgroundColor: "#E5E5E5", color: "#ffffff", marginLeft: "2rem" }} >Share</button>
@@ -732,6 +734,7 @@ export class Profile extends Component {
                                     >
                                         <div className="container" style={{padding: "2rem"}}>
                                             <ShareProfile
+                                                disableShowShare={this.disableShowShare}
                                                 shareLink={this.state.shareLink}
                                                 firstName={this.props.profileDetail.f_name}
                                                 lastName={this.props.profileDetail.l_name}

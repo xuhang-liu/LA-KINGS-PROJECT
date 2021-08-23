@@ -238,7 +238,6 @@ export class ResumeScan extends Component {
             </div>
           ) : null
         }
-        <div id="resume-hr"><hr/></div>
         <ReactS3Uploader
           style={{display: "none"}}
           id="uploadFile"
@@ -257,14 +256,14 @@ export class ResumeScan extends Component {
           autoUpload={true}
         />
         <div style={{marginTop: "2rem"}}>
-          <h2 className="resume-title">Step 2</h2>
         {!this.state.selected && <div>
+               <div id="resume-hr"><hr/></div>
                <h3 className="resume-title2">Paste Your Resume </h3>
                 <div>
                  <textarea
                    id="cvText"
                    className="resume-textarea"
-                   style={{width: "100%", height: "5rem", marginTop: "0.5rem", fontSize: "1.2rem", resize: "none"}}
+                   style={{width: "100%", height: "12rem", marginTop: "0.5rem", fontSize: "1.2rem", resize: "none"}}
                    placeholder="Paste resume here"
                    onChange={this.strToText}
                  >
@@ -272,6 +271,7 @@ export class ResumeScan extends Component {
               </div>
            </div>}
            <div style={{marginTop: "2rem"}}>
+               <h2 className="resume-title">Step 2</h2>
                <h3 className="resume-title2">Paste Job Description </h3>
                <div>
                 <label className="resume-label">Job Title<span className="job-apply-char2">*</span></label>

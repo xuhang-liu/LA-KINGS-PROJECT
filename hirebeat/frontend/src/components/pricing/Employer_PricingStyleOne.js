@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateProfile, updateUserEmail } from "../../redux/actions/auth_actions";
 import { createMessage } from "../../redux/actions/message_actions";
@@ -13,25 +13,25 @@ const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6
 class Employer_PricingStyleOne extends Component {
     handleInputChange = (e) => {
         this.setState({
-          [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value,
         });
     };
 
     handleCounponUpgrade = () => {
-        if(this.state.coupon_match != 'PH2021PRO' && this.state.coupon_match != 'PH2021PREMIUM' && this.state.coupon_match != 'BL2021PRO' && this.state.coupon_match != 'BL2021PREMIUM'){
-          confirmAlert({
-            title: 'Please Enter A Valid Code',
-            message: '',
-            buttons: [
-              {
-                label: 'Ok'
-              }
-            ]
+        if (this.state.coupon_match != 'PH2021PRO' && this.state.coupon_match != 'PH2021PREMIUM' && this.state.coupon_match != 'BL2021PRO' && this.state.coupon_match != 'BL2021PREMIUM') {
+            confirmAlert({
+                title: 'Please Enter A Valid Code',
+                message: '',
+                buttons: [
+                    {
+                        label: 'Ok'
+                    }
+                ]
             });
-        }else{
-            if(this.state.coupon_match == 'PH2021PRO' || this.state.coupon_match == 'BL2021PRO'){
+        } else {
+            if (this.state.coupon_match == 'PH2021PRO' || this.state.coupon_match == 'BL2021PRO') {
                 this.handleCouponProClickUpgrade();
-            }else if(this.state.coupon_match == 'PH2021PREMIUM' || this.state.coupon_match == 'BL2021PREMIUM'){
+            } else if (this.state.coupon_match == 'PH2021PREMIUM' || this.state.coupon_match == 'BL2021PREMIUM') {
                 this.handleCouponPremiumClickUpgrade();
             }
         }
@@ -41,15 +41,15 @@ class Employer_PricingStyleOne extends Component {
         // When the customer clicks on the button, redirect them to Checkout.
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
-          lineItems: [{
-            price: 'price_1IYahXKxU1MN2zWMFL1rjh6G', // Replace with the ID of your price
-            quantity: 1,
-          }],
-          mode: 'subscription',
-          successUrl: 'https://hirebeat.co/payment',
-          cancelUrl: 'https://hirebeat.co/employer-pricing',
-          billingAddressCollection: 'auto',
-          customerEmail: this.props.user.email,
+            lineItems: [{
+                price: 'price_1IYahXKxU1MN2zWMFL1rjh6G', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'subscription',
+            successUrl: 'https://hirebeat.co/payment',
+            cancelUrl: 'https://hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
         });
         error.message;
     };
@@ -58,103 +58,79 @@ class Employer_PricingStyleOne extends Component {
         // When the customer clicks on the button, redirect them to Checkout.
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
-          lineItems: [{
-            price: 'price_1IYaihKxU1MN2zWMaSeWfXrU', // Replace with the ID of your price
-            quantity: 1,
-          }],
-          mode: 'subscription',
-          successUrl: 'https://hirebeat.co/payment',
-          cancelUrl: 'https://hirebeat.co/employer-pricing',
-          billingAddressCollection: 'auto',
-          customerEmail: this.props.user.email,
+            lineItems: [{
+                price: 'price_1IYaihKxU1MN2zWMaSeWfXrU', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'subscription',
+            successUrl: 'https://hirebeat.co/payment',
+            cancelUrl: 'https://hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
         });
         error.message;
     };
 
     handleProUpgrade = () => {
-        if(this.props.profile.membership == 'Premium'){
-          confirmAlert({
-            title: 'Premium Member Already',
-            message: '',
-            buttons: [
-              {
-                label: 'Sure'
-              }
-            ]
-            });
-        }else{
-          this.handleProClickUpgrade();
-        }
+        this.handleProClickUpgrade();
     };
     handleProClickUpgrade = async (event) => {
         // When the customer clicks on the button, redirect them to Checkout.
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
-          lineItems: [{
-            price: 'price_1ITDJGKxU1MN2zWMKd4L8TOH', // Replace with the ID of your price
-            quantity: 1,
-          }],
-          mode: 'subscription',
-          successUrl: 'https://hirebeat.co/payment',
-          cancelUrl: 'https://hirebeat.co/employer-pricing',
-          billingAddressCollection: 'auto',
-          customerEmail: this.props.user.email,
+            lineItems: [{
+                price: 'price_1ITDJGKxU1MN2zWMKd4L8TOH', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'subscription',
+            successUrl: 'https://hirebeat.co/payment',
+            cancelUrl: 'https://hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
         });
         error.message;
     };
 
     handleYearProUpgrade = () => {
-        if(this.props.profile.membership == 'Premium'){
-          confirmAlert({
-            title: 'Premium Member Already',
-            message: '',
-            buttons: [
-              {
-                label: 'Sure'
-              }
-            ]
-            });
-        }else{
-          this.handleYearProClickUpgrade();
-        }
+        this.handleYearProClickUpgrade();
     };
     handleYearProClickUpgrade = async (event) => {
         // When the customer clicks on the button, redirect them to Checkout.
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
-          lineItems: [{
-            price: 'price_1JAcQeKxU1MN2zWMU4DYwhVA', // Replace with the ID of your price
-            quantity: 1,
-          }],
-          mode: 'subscription',
-          successUrl: 'https://hirebeat.co/payment',
-          cancelUrl: 'https://hirebeat.co/employer-pricing',
-          billingAddressCollection: 'auto',
-          customerEmail: this.props.user.email,
+            lineItems: [{
+                price: 'price_1JAcQeKxU1MN2zWMU4DYwhVA', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'subscription',
+            successUrl: 'https://hirebeat.co/payment',
+            cancelUrl: 'https://hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
         });
         error.message;
     };
 
     handlePremiumUpgrade = () => {
-        if(this.props.profile.membership == 'Premium'){
+        if (this.props.profile.membership == 'Premium' && (!this.props.profile.is_freetrial)) {
             this.handlePremiumClickUpgrade2();
-        }else{
-          this.handlePremiumClickUpgrade();
+        } else {
+            this.handlePremiumClickUpgrade();
         }
     };
     handlePremiumClickUpgrade = async (event) => {
         // When the customer clicks on the button, redirect them to Checkout.
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
-          lineItems: [{
-            price: 'price_1IXyNWKxU1MN2zWMYYlG6Rmp', // Replace with the ID of your price
-            quantity: 1,
-          }],
-          mode: 'subscription',
-          successUrl: 'https://hirebeat.co/payment',
-          cancelUrl: 'https://hirebeat.co/employer-pricing',
-          billingAddressCollection: 'auto',
-          customerEmail: this.props.user.email,
+            lineItems: [{
+                price: 'price_1IXyNWKxU1MN2zWMYYlG6Rmp', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'subscription',
+            successUrl: 'https://hirebeat.co/payment',
+            cancelUrl: 'https://hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
         });
         error.message;
     };
@@ -163,39 +139,39 @@ class Employer_PricingStyleOne extends Component {
         // When the customer clicks on the button, redirect them to Checkout.
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
-          lineItems: [{
-            price: 'price_1IXz0yKxU1MN2zWMEco7GNHO', // Replace with the ID of your price
-            quantity: 1,
-          }],
-          mode: 'subscription',
-          successUrl: 'https://hirebeat.co/payment',
-          cancelUrl: 'https://hirebeat.co/employer-pricing',
-          billingAddressCollection: 'auto',
-          customerEmail: this.props.user.email,
+            lineItems: [{
+                price: 'price_1IXz0yKxU1MN2zWMEco7GNHO', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'subscription',
+            successUrl: 'https://hirebeat.co/payment',
+            cancelUrl: 'https://hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
         });
         error.message;
     };
 
     handleYearPremiumUpgrade = () => {
-        if(this.props.profile.membership == 'Premium'){
+        if (this.props.profile.membership == 'Premium' && (!this.props.profile.is_freetrial)) {
             this.handleYearPremiumClickUpgrade2();
-        }else{
-          this.handleYearPremiumClickUpgrade();
+        } else {
+            this.handleYearPremiumClickUpgrade();
         }
     };
     handleYearPremiumClickUpgrade = async (event) => {
         // When the customer clicks on the button, redirect them to Checkout.
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
-          lineItems: [{
-            price: 'price_1JAcMmKxU1MN2zWMzUmtM0Iv', // Replace with the ID of your price
-            quantity: 1,
-          }],
-          mode: 'subscription',
-          successUrl: 'https://hirebeat.co/payment',
-          cancelUrl: 'https://hirebeat.co/employer-pricing',
-          billingAddressCollection: 'auto',
-          customerEmail: this.props.user.email,
+            lineItems: [{
+                price: 'price_1JAcMmKxU1MN2zWMzUmtM0Iv', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'subscription',
+            successUrl: 'https://hirebeat.co/payment',
+            cancelUrl: 'https://hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
         });
         error.message;
     };
@@ -204,15 +180,15 @@ class Employer_PricingStyleOne extends Component {
         // When the customer clicks on the button, redirect them to Checkout.
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
-          lineItems: [{
-            price: 'price_1JAcdAKxU1MN2zWMWGA4eG9r', // Replace with the ID of your price
-            quantity: 1,
-          }],
-          mode: 'subscription',
-          successUrl: 'https://hirebeat.co/payment',
-          cancelUrl: 'https://hirebeat.co/employer-pricing',
-          billingAddressCollection: 'auto',
-          customerEmail: this.props.user.email,
+            lineItems: [{
+                price: 'price_1JAcdAKxU1MN2zWMWGA4eG9r', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'subscription',
+            successUrl: 'https://hirebeat.co/payment',
+            cancelUrl: 'https://hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
         });
         error.message;
     };
@@ -243,7 +219,7 @@ class Employer_PricingStyleOne extends Component {
                             <li
                                 onClick={(e) => this.openTabSection(e, 'tab1')}
                             >
-                                <span style={{border:"1px solid #090D3A"}}>
+                                <span style={{ border: "1px solid #090D3A" }}>
                                     <i className="bx bxs-calendar-check"></i> &nbsp;&nbsp;Monthly &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </span>
                             </li>
@@ -252,17 +228,17 @@ class Employer_PricingStyleOne extends Component {
                                 className="current"
                                 onClick={(e) => this.openTabSection(e, 'tab2')}
                             >
-                                <span style={{border:"1px solid #090D3A"}}>
+                                <span style={{ border: "1px solid #090D3A" }}>
                                     <i className="bx bxs-calendar-check"></i> Annual (-25%)
                                 </span>
                             </li>
                         </ul>
                         <div className="tab_content">
-                        {/*Annually*/}
-                        <div id="tab2" className="tabs_item">
+                            {/*Annually*/}
+                            <div id="tab2" className="tabs_item">
                                 <div className="row pb-5 pt-3">
                                     {/* Single pricing table 1 */}
-                                    <div className="col-lg-3 col-md-3 px-4">
+                                    {/*<div className="col-lg-3 col-md-3 px-4">
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#F0F6FE", border:"2px solid #67A3F3"}}>
                                             <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600",  marginBottom:"0.6rem"}}>Free</h3>
@@ -354,113 +330,123 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div>*/}
 
                                     {/* Single pricing table 2 */}
-                                    <div className="col-lg-3 col-md-3">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#FFF0E6", border:"2px solid #ff6b00"}}>
+                                    <div className="col-lg-4 col-md-4">
+                                        <div className="single-pricing-table left-align h-100" style={{ backgroundColor: "#FFF0E6", border: "2px solid #ff6b00" }}>
                                             <div className="pricing-header">
-                                                <h3 style={{color:"#ff6b00", fontWeight:"600", marginBottom:"0.6rem"}}>Pro <span style={{color:"#ffffff", fontWeight:"600", marginLeft:"1rem", fontSize:"0.8rem", backgroundColor:"#ff6b00", paddingTop:"5px", paddingBottom:"5px", paddingLeft:"5px", paddingRight:"5px", borderRadius:"7px"}}><box-icon type='solid' name='medal' color="#ffffff" size="xs"></box-icon>Most popular</span></h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Best Value for SME companies</p>
+                                                <h3 style={{ color: "#ff6b00", fontWeight: "600", marginBottom: "0.6rem" }}>Pro <span style={{ color: "#ffffff", fontWeight: "600", marginLeft: "1rem", fontSize: "0.8rem", backgroundColor: "#ff6b00", paddingTop: "5px", paddingBottom: "5px", paddingLeft: "5px", paddingRight: "5px", borderRadius: "7px" }}><box-icon type='solid' name='medal' color="#ffffff" size="xs"></box-icon>Most popular</span></h3>
+                                                <p style={{ color: "#090d3a", fontSize: "12px" }}>Best Value for SME companies</p>
                                             </div>
 
-                                            <div className="price" style={{borderTop:"none", color:"#090d3a", borderBottom:"2px dashed #ff6b00"}}>
-                                                <sup style={{color:"#090d3a"}}>$</sup>126<sub style={{color:"#090d3a"}}>/ mo</sub>
-                                                <p style={{fontSize:"13px", color:"#818181", fontWeight:"600"}}>Billed at <span style={{textDecoration:"line-through"}}>$2,028</span> <span style={{fontWeight:"700", color:"#090d3a"}}>$1,512 /yr</span></p>
-                                            <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
-                                            {
-                                                this.props.profile.membership == null && 
-                                                <div className="btn-box">
-                                                <Link to="/employer_register">
-                                                <a id="id-employer-select2" className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                    Select Plan
-                                                    <span></span>
-                                                </a>
-                                                </Link>
+                                            <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "2px dashed #ff6b00" }}>
+                                                <sup style={{ color: "#090d3a" }}>$</sup>126<sub style={{ color: "#090d3a" }}>/ mo</sub>
+                                                <p style={{ fontSize: "13px", color: "#818181", fontWeight: "600" }}>Billed at <span style={{ textDecoration: "line-through" }}>$2,028</span> <span style={{ fontWeight: "700", color: "#090d3a" }}>$1,512 /yr</span></p>
+                                                <div style={{ marginLeft: "-2rem", marginTop: "-1.5rem", marginBottom: "1rem" }}>
+                                                    {
+                                                        this.props.profile.membership == null &&
+                                                        <div className="btn-box">
+                                                            <Link to="/employer_register">
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                    Start Free Trial
+                                                                    <span></span>
+                                                                </a>
+                                                            </Link>
+                                                        </div>
+                                                    }
+                                                    {this.props.profile.is_freetrial ?
+                                                        <div className="btn-box">
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingLeft: "25px" }} onClick={this.handleYearProUpgrade}>
+                                                                Select Plan
+                                                                <span></span>
+                                                            </button>
+                                                        </div> :
+                                                        <div>
+                                                            {
+                                                                this.props.profile.membership == "Regular" &&
+                                                                <div className="btn-box">
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingLeft: "25px" }} onClick={this.handleYearProUpgrade}>
+                                                                        Select Plan
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                        Premium Already
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                        Premium Already
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                        Current Plan
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    }
                                                 </div>
-                                            }
-                                            {
-                                                this.props.profile.membership == "Regular" &&
-                                                <div className="btn-box">
-                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", paddingLeft:"25px"}} onClick={this.handleYearProUpgrade}>
-                                                        Select Plan
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                        Premium Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                        Premium Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                        Pro Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            </div>
                                             </div>
 
                                             <ul className="pricing-features pr-2">
-                                            <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>5</strong> Job Positions
-                                                    </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    <strong>100</strong> Video Screening per job 
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
+                                                    <strong>100</strong> Video Screening per job
+                                                </li>
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>3</strong> Customizable Video Questions
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Candidate Shortlisting
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Candidate Rating & Feedback
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Custom Branding
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>Unlimited</strong> Team Collaborators
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Built-in ATS
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     AI-powered Resume Evaluation
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     AI-Powered Analytics
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     API Integrations
                                                 </li>
                                             </ul>
@@ -468,109 +454,119 @@ class Employer_PricingStyleOne extends Component {
                                     </div>
 
                                     {/* Single pricing table 3*/}
-                                    <div className="col-lg-3 col-md-3">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E7F9F6", border:"2px solid #13c4a1"}}>
-                                        <div className="pricing-header">
-                                                <h3 style={{fontWeight:"600",  marginBottom:"0.6rem", color:"#13c4a1"}}>Premium</h3>
-                                                <p style={{fontSize:"12px", color:"#090d3a"}}>Great for growing organizations</p>
+                                    <div className="col-lg-4 col-md-4">
+                                        <div className="single-pricing-table left-align h-100" style={{ backgroundColor: "#E7F9F6", border: "2px solid #13c4a1" }}>
+                                            <div className="pricing-header">
+                                                <h3 style={{ fontWeight: "600", marginBottom: "0.6rem", color: "#13c4a1" }}>Premium</h3>
+                                                <p style={{ fontSize: "12px", color: "#090d3a" }}>Great for growing organizations</p>
                                             </div>
 
-                                            <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #13c4a1"}}>
-                                                <sup>$</sup>457<sub style={{color:"#090d3a"}}>/ mo</sub>
-                                                <p style={{fontSize:"13px", color:"#818181", fontWeight:"600"}}>Billed at <span style={{textDecoration:"line-through"}}>$7,188</span> <span style={{fontWeight:"700", color:"#090d3a"}}>$5,391 /yr</span></p>
-                                            <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
-                                            {
-                                                this.props.profile.membership == null && 
-                                                <div className="btn-box">
-                                                <Link to="/employer_register">
-                                                <a id="id-employer-select2" className="default-btn" style={{color:"white", paddingLeft:"25px"}}>
-                                                    Select Plan
-                                                    <span></span>
-                                                </a>
-                                                </Link>
+                                            <div className="price" style={{ borderTop: "none", borderBottom: "2px dashed #13c4a1" }}>
+                                                <sup>$</sup>457<sub style={{ color: "#090d3a" }}>/ mo</sub>
+                                                <p style={{ fontSize: "13px", color: "#818181", fontWeight: "600" }}>Billed at <span style={{ textDecoration: "line-through" }}>$7,188</span> <span style={{ fontWeight: "700", color: "#090d3a" }}>$5,391 /yr</span></p>
+                                                <div style={{ marginLeft: "-2rem", marginTop: "-1.5rem", marginBottom: "1rem" }}>
+                                                    {
+                                                        this.props.profile.membership == null &&
+                                                        <div className="btn-box">
+                                                            <Link to="/employer_register">
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingLeft: "25px" }}>
+                                                                    Start Free Trial
+                                                                    <span></span>
+                                                                </a>
+                                                            </Link>
+                                                        </div>
+                                                    }
+                                                    {this.props.profile.is_freetrial ?
+                                                        <div className="btn-box">
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingLeft: "25px" }} onClick={this.handleYearPremiumUpgrade}>
+                                                                Select Plan
+                                                                <span></span>
+                                                            </button>
+                                                        </div> :
+                                                        <div>
+                                                            {
+                                                                this.props.profile.membership == "Regular" &&
+                                                                <div className="btn-box">
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingLeft: "25px" }} onClick={this.handleYearPremiumUpgrade}>
+                                                                        Select Plan
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                        Current Plan
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                        Current Plan
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn1" style={{ color: "white", paddingLeft: "25px" }} onClick={this.handleYearPremiumUpgrade}>
+                                                                        Upgrade
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    }
                                                 </div>
-                                            }
-                                            {
-                                                this.props.profile.membership == "Regular" &&
-                                                <div className="btn-box">
-                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", paddingLeft:"25px"}} onClick={this.handleYearPremiumUpgrade}>
-                                                        Select Plan
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                        Premium Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                        Premium Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn1" style={{color:"white", paddingLeft:"25px"}} onClick={this.handleYearPremiumUpgrade}>
-                                                        Upgrade
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            </div>
                                             </div>
 
                                             <ul className="pricing-features pr-2">
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>Unlimited</strong> Job Positions
-                                                    </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    <strong>Unlimited</strong> Video Screening 
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
+                                                    <strong>Unlimited</strong> Video Screening
+                                                </li>
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>6</strong> Customizable Video Questions
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Candidate Shortlisting</li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Candidate Rating & Feedback
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Custom Branding
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>Unlimited</strong> Team Collaborators
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Built-in ATS
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     AI-powered Resume Evaluation
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     AI-Powered Analytics
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     API Integrations
                                                 </li>
                                             </ul>
@@ -578,71 +574,71 @@ class Employer_PricingStyleOne extends Component {
                                     </div>
 
                                     {/* Single pricing table 4*/}
-                                    <div className="col-lg-3 col-md-3 px-4">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E7EAFD", border:"2px solid #5269F3"}}>
-                                        <div className="pricing-header">
-                                                <h3 style={{fontWeight:"600",  marginBottom:"0.6rem", color:"#5269f3"}}>Enterprise</h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Perfect for large enterprise</p>
+                                    <div className="col-lg-4 col-md-3 px-4">
+                                        <div className="single-pricing-table left-align h-100" style={{ backgroundColor: "#E7EAFD", border: "2px solid #5269F3" }}>
+                                            <div className="pricing-header">
+                                                <h3 style={{ fontWeight: "600", marginBottom: "0.6rem", color: "#5269f3" }}>Enterprise</h3>
+                                                <p style={{ color: "#090d3a", fontSize: "12px" }}>Perfect for large enterprise</p>
                                             </div>
 
-                                            <div className="price" style={{color:'#090d3a', borderTop:"none", fontSize:"2rem", borderBottom:"2px dashed #5269f3"}}>
+                                            <div className="price" style={{ color: '#090d3a', borderTop: "none", fontSize: "2rem", borderBottom: "2px dashed #5269f3" }}>
                                                 Custom
-                                                <p style={{fontSize:"13px", color:"#E7EAFD", fontWeight:"600"}}>Billed at $0</p>
-                                            <div style={{marginLeft:"-2rem", marginBottom:"0.3rem"}}>
-                                            {
-                                                <div className="btn-box">
-                                                <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{color:"white", paddingLeft:"25px", textDecoration:"none"}}>
-                                                    Contact Us
-                                                    <span></span>
-                                                </a>
+                                                <p style={{ fontSize: "13px", color: "#E7EAFD", fontWeight: "600" }}>Billed at $0</p>
+                                                <div style={{ marginLeft: "-2rem", marginBottom: "0.3rem" }}>
+                                                    {
+                                                        <div className="btn-box">
+                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingLeft: "25px", textDecoration: "none" }}>
+                                                                Contact Us
+                                                                <span></span>
+                                                            </a>
+                                                        </div>
+                                                    }
                                                 </div>
-                                            }
-                                            </div>
                                             </div>
 
                                             <ul className="pricing-features pr-2">
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     <strong>Unlimited</strong> Job Positions
-                                                    </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    <strong>Unlimited</strong> Video Screening 
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
+                                                    <strong>Unlimited</strong> Video Screening
+                                                </li>
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     <strong>Unlimited</strong> Video Questions
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     Candidate Shortlisting
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     Candidate Rating & Feedback
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     Custom Branding
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     <strong>Unlimited</strong> Team Collaborators
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     Built-in ATS
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     AI-powered Resume Evaluation
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     AI-Powered Analytics
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     API Integrations
                                                 </li>
                                             </ul>
@@ -654,7 +650,7 @@ class Employer_PricingStyleOne extends Component {
                             <div id="tab1" className="tabs_item">
                                 <div className="row pb-5 pt-3">
                                     {/* Single pricing table 1 */}
-                                    <div className="col-lg-3 col-md-3 px-4">
+                                    {/*<div className="col-lg-3 col-md-3 px-4">
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#F0F6FE", border:"2px solid #67A3F3"}}>
                                             <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600",  marginBottom:"0.6rem"}}>Free</h3>
@@ -746,113 +742,123 @@ class Employer_PricingStyleOne extends Component {
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div>*/}
 
                                     {/* Single pricing table 2 */}
-                                    <div className="col-lg-3 col-md-3">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#FFF0E6", border:"2px solid #ff6b00"}}>
+                                    <div className="col-lg-4 col-md-4">
+                                        <div className="single-pricing-table left-align h-100" style={{ backgroundColor: "#FFF0E6", border: "2px solid #ff6b00" }}>
                                             <div className="pricing-header">
-                                                <h3 style={{color:"#ff6b00", fontWeight:"600", marginBottom:"0.6rem"}}>Pro <span style={{color:"#ffffff", fontWeight:"600", marginLeft:"1rem", fontSize:"0.8rem", backgroundColor:"#ff6b00", paddingTop:"5px", paddingBottom:"5px", paddingLeft:"5px", paddingRight:"5px", borderRadius:"7px"}}><box-icon type='solid' name='medal' color="#ffffff" size="xs"></box-icon>Most popular</span></h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Best Value for SME companies</p>
+                                                <h3 style={{ color: "#ff6b00", fontWeight: "600", marginBottom: "0.6rem" }}>Pro <span style={{ color: "#ffffff", fontWeight: "600", marginLeft: "1rem", fontSize: "0.8rem", backgroundColor: "#ff6b00", paddingTop: "5px", paddingBottom: "5px", paddingLeft: "5px", paddingRight: "5px", borderRadius: "7px" }}><box-icon type='solid' name='medal' color="#ffffff" size="xs"></box-icon>Most popular</span></h3>
+                                                <p style={{ color: "#090d3a", fontSize: "12px" }}>Best Value for SME companies</p>
                                             </div>
 
-                                            <div className="price" style={{borderTop:"none", color:"#090d3a", borderBottom:"2px dashed #ff6b00"}}>
-                                                <sup style={{color:"#090d3a"}}>$</sup>169<sub style={{color:"#090d3a"}}>/ mo</sub>
-                                                <p style={{fontSize:"13px", color:"#FFF0E6", fontWeight:"600"}}>0</p>
-                                            <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
-                                            {
-                                                this.props.profile.membership == null && 
-                                                <div className="btn-box">
-                                                <Link to="/employer_register">
-                                                <a id="id-employer-select2" className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                    Select Plan
-                                                    <span></span>
-                                                </a>
-                                                </Link>
+                                            <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "2px dashed #ff6b00" }}>
+                                                <sup style={{ color: "#090d3a" }}>$</sup>169<sub style={{ color: "#090d3a" }}>/ mo</sub>
+                                                <p style={{ fontSize: "13px", color: "#FFF0E6", fontWeight: "600" }}>0</p>
+                                                <div style={{ marginLeft: "-2rem", marginTop: "-1.5rem", marginBottom: "1rem" }}>
+                                                    {
+                                                        this.props.profile.membership == null &&
+                                                        <div className="btn-box">
+                                                            <Link to="/employer_register">
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                    Start Free Trial
+                                                                    <span></span>
+                                                                </a>
+                                                            </Link>
+                                                        </div>
+                                                    }
+                                                    {this.props.profile.is_freetrial ?
+                                                        <div className="btn-box">
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingLeft: "25px" }} onClick={this.handleProUpgrade}>
+                                                                Select Plan
+                                                                <span></span>
+                                                            </button>
+                                                        </div> :
+                                                        <div>
+                                                            {
+                                                                this.props.profile.membership == "Regular" &&
+                                                                <div className="btn-box">
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingLeft: "25px" }} onClick={this.handleProUpgrade}>
+                                                                        Select Plan
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                        Premium Already
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                        Premium Already
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                        Current Plan
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    }
                                                 </div>
-                                            }
-                                            {
-                                                this.props.profile.membership == "Regular" &&
-                                                <div className="btn-box">
-                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", paddingLeft:"25px"}} onClick={this.handleProUpgrade}>
-                                                        Select Plan
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                        Premium Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                        Premium Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                        Pro Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            </div>
                                             </div>
 
                                             <ul className="pricing-features pr-2">
-                                            <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>5</strong> Job Positions
-                                                    </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    <strong>100</strong> Video Screening per job 
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
+                                                    <strong>100</strong> Video Screening per job
+                                                </li>
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>3</strong> Customizable Video Questions
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Candidate Shortlisting
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Candidate Rating & Feedback
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Custom Branding
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>Unlimited</strong> Team Collaborators
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Built-in ATS
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     AI-powered Resume Evaluation
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     AI-Powered Analytics
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     API Integrations
                                                 </li>
                                             </ul>
@@ -860,109 +866,119 @@ class Employer_PricingStyleOne extends Component {
                                     </div>
 
                                     {/* Single pricing table 3*/}
-                                    <div className="col-lg-3 col-md-3">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E7F9F6", border:"2px solid #13c4a1"}}>
-                                        <div className="pricing-header">
-                                                <h3 style={{fontWeight:"600",  marginBottom:"0.6rem", color:"#13c4a1"}}>Premium</h3>
-                                                <p style={{fontSize:"12px", color:"#090d3a"}}>Great for growing organizations</p>
+                                    <div className="col-lg-4 col-md-4">
+                                        <div className="single-pricing-table left-align h-100" style={{ backgroundColor: "#E7F9F6", border: "2px solid #13c4a1" }}>
+                                            <div className="pricing-header">
+                                                <h3 style={{ fontWeight: "600", marginBottom: "0.6rem", color: "#13c4a1" }}>Premium</h3>
+                                                <p style={{ fontSize: "12px", color: "#090d3a" }}>Great for growing organizations</p>
                                             </div>
 
-                                            <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #13c4a1"}}>
-                                                <sup>$</sup>599<sub style={{color:"#090d3a"}}>/ mo</sub>
-                                                <p style={{fontSize:"13px", color:"#E7F9F6", fontWeight:"600"}}>0</p>
-                                            <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
-                                            {
-                                                this.props.profile.membership == null && 
-                                                <div className="btn-box">
-                                                <Link to="/employer_register">
-                                                <a id="id-employer-select2" className="default-btn" style={{color:"white", paddingLeft:"25px"}}>
-                                                    Select Plan
-                                                    <span></span>
-                                                </a>
-                                                </Link>
+                                            <div className="price" style={{ borderTop: "none", borderBottom: "2px dashed #13c4a1" }}>
+                                                <sup>$</sup>599<sub style={{ color: "#090d3a" }}>/ mo</sub>
+                                                <p style={{ fontSize: "13px", color: "#E7F9F6", fontWeight: "600" }}>0</p>
+                                                <div style={{ marginLeft: "-2rem", marginTop: "-1.5rem", marginBottom: "1rem" }}>
+                                                    {
+                                                        this.props.profile.membership == null &&
+                                                        <div className="btn-box">
+                                                            <Link to="/employer_register">
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingLeft: "25px" }}>
+                                                                    Start Free Trial
+                                                                    <span></span>
+                                                                </a>
+                                                            </Link>
+                                                        </div>
+                                                    }
+                                                    {this.props.profile.is_freetrial ?
+                                                        <div className="btn-box">
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingLeft: "25px" }} onClick={this.handlePremiumUpgrade}>
+                                                                Select Plan
+                                                                <span></span>
+                                                            </button>
+                                                        </div> :
+                                                        <div>
+                                                            {
+                                                                this.props.profile.membership == "Regular" &&
+                                                                <div className="btn-box">
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingLeft: "25px" }} onClick={this.handlePremiumUpgrade}>
+                                                                        Select Plan
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                        Current Plan
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingLeft: "25px" }}>
+                                                                        Current Plan
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            {
+                                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
+                                                                <div className="btn-box">
+                                                                    <button className="default-btn1" style={{ color: "white", paddingLeft: "25px" }} onClick={this.handlePremiumUpgrade}>
+                                                                        Upgrade
+                                                                        <span></span>
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    }
                                                 </div>
-                                            }
-                                            {
-                                                this.props.profile.membership == "Regular" &&
-                                                <div className="btn-box">
-                                                    <button id="id-tifn5" className="default-btn" style={{color:"white", paddingLeft:"25px"}} onClick={this.handlePremiumUpgrade}>
-                                                        Select Plan
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                        Premium Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#ff6b00", paddingLeft:"25px"}}>
-                                                        Premium Already
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            {
-                                                (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn1" style={{color:"white", paddingLeft:"25px"}} onClick={this.handlePremiumUpgrade}>
-                                                        Upgrade
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            </div>
                                             </div>
 
                                             <ul className="pricing-features pr-2">
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>Unlimited</strong> Job Positions
-                                                    </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    <strong>Unlimited</strong> Video Screening 
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
+                                                    <strong>Unlimited</strong> Video Screening
+                                                </li>
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>6</strong> Customizable Video Questions
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Candidate Shortlisting</li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Candidate Rating & Feedback
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Custom Branding
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     <strong>Unlimited</strong> Team Collaborators
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     Built-in ATS
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     AI-powered Resume Evaluation
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     AI-Powered Analytics
                                                 </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
+                                                <li style={{ fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle"></i>
                                                     API Integrations
                                                 </li>
                                             </ul>
@@ -970,71 +986,71 @@ class Employer_PricingStyleOne extends Component {
                                     </div>
 
                                     {/* Single pricing table 4*/}
-                                    <div className="col-lg-3 col-md-3 px-4">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#E7EAFD", border:"2px solid #5269F3"}}>
-                                        <div className="pricing-header">
-                                                <h3 style={{fontWeight:"600",  marginBottom:"0.6rem", color:"#5269f3"}}>Enterprise</h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Perfect for large enterprise</p>
+                                    <div className="col-lg-4 col-md-4 px-4">
+                                        <div className="single-pricing-table left-align h-100" style={{ backgroundColor: "#E7EAFD", border: "2px solid #5269F3" }}>
+                                            <div className="pricing-header">
+                                                <h3 style={{ fontWeight: "600", marginBottom: "0.6rem", color: "#5269f3" }}>Enterprise</h3>
+                                                <p style={{ color: "#090d3a", fontSize: "12px" }}>Perfect for large enterprise</p>
                                             </div>
 
-                                            <div className="price" style={{color:'#090d3a', borderTop:"none", fontSize:"2rem", borderBottom:"2px dashed #5269f3"}}>
+                                            <div className="price" style={{ color: '#090d3a', borderTop: "none", fontSize: "2rem", borderBottom: "2px dashed #5269f3" }}>
                                                 Custom
-                                                <p style={{fontSize:"13px", color:"#E7EAFD", fontWeight:"600"}}>0</p>
-                                            <div style={{marginLeft:"-2rem", marginBottom:"0.3rem"}}>
-                                            {
-                                                <div className="btn-box">
-                                                <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{color:"white", paddingLeft:"25px", textDecoration:"none"}}>
-                                                    Contact Us
-                                                    <span></span>
-                                                </a>
+                                                <p style={{ fontSize: "13px", color: "#E7EAFD", fontWeight: "600" }}>0</p>
+                                                <div style={{ marginLeft: "-2rem", marginBottom: "0.3rem" }}>
+                                                    {
+                                                        <div className="btn-box">
+                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingLeft: "25px", textDecoration: "none" }}>
+                                                                Contact Us
+                                                                <span></span>
+                                                            </a>
+                                                        </div>
+                                                    }
                                                 </div>
-                                            }
-                                            </div>
                                             </div>
 
                                             <ul className="pricing-features pr-2">
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     <strong>Unlimited</strong> Job Positions
-                                                    </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
-                                                    <strong>Unlimited</strong> Video Screening 
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
+                                                    <strong>Unlimited</strong> Video Screening
+                                                </li>
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     <strong>Unlimited</strong> Video Questions
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     Candidate Shortlisting
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     Candidate Rating & Feedback
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     Custom Branding
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     <strong>Unlimited</strong> Team Collaborators
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     Built-in ATS
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     AI-powered Resume Evaluation
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     AI-Powered Analytics
                                                 </li>
-                                                <li style={{color:"#4a6f8a", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle" style={{color:"#4a6f8a"}}></i> 
+                                                <li style={{ color: "#4a6f8a", fontSize: "1rem", fontWeight: "500" }}>
+                                                    <i className="bx bxs-check-circle" style={{ color: "#4a6f8a" }}></i>
                                                     API Integrations
                                                 </li>
                                             </ul>
@@ -1045,37 +1061,37 @@ class Employer_PricingStyleOne extends Component {
                         </div>
                     </div>
                     {this.props.profile.membership == "Regular" &&
-                    <div className="mt-3 pb-5 pt-5" style={{textAlign:"center", backgroundColor:"#e8edfc"}}>
-                    <h2 style={{width:"80%", fontWeight:"600", color:"#090d3a", marginBottom:"1rem"}}><i className="bx bxs-coupon bx-sm"></i> Enter Coupon Code</h2>
-                    <input
-                    className="form-control"
-                    type="text"
-                    name={"coupon_match"}
-                    placeholder={"Enter coupon code"}
-                    onChange={this.handleInputChange}
-                    style={{  
-                      backgroundColor:"#FFFFFF",
-                      fontSize: "16px",
-                      borderRadius: "5px",
-                      height: "3rem",
-                      color:"grey",
-                      width:"30%",
-                      display:"inline-block",
-                      paddingLeft: "0.5rem"
-                    }}
-                    />
-                    <button
-                    onClick={this.handleCounponUpgrade}
-                    type="button"
-                    className="default-btn" style={{color:"white", display:"inline-block", marginLeft:"1rem", backgroundColor:"#ff6b00"}} 
-                    >
-                      <i className="bx bxs-hot"></i>
-                        Apply
-                        <span></span>
-                    </button>
-                    </div>}
+                        <div className="mt-3 pb-5 pt-5" style={{ textAlign: "center", backgroundColor: "#e8edfc" }}>
+                            <h2 style={{ width: "80%", fontWeight: "600", color: "#090d3a", marginBottom: "1rem" }}><i className="bx bxs-coupon bx-sm"></i> Enter Coupon Code</h2>
+                            <input
+                                className="form-control"
+                                type="text"
+                                name={"coupon_match"}
+                                placeholder={"Enter coupon code"}
+                                onChange={this.handleInputChange}
+                                style={{
+                                    backgroundColor: "#FFFFFF",
+                                    fontSize: "16px",
+                                    borderRadius: "5px",
+                                    height: "3rem",
+                                    color: "grey",
+                                    width: "30%",
+                                    display: "inline-block",
+                                    paddingLeft: "0.5rem"
+                                }}
+                            />
+                            <button
+                                onClick={this.handleCounponUpgrade}
+                                type="button"
+                                className="default-btn" style={{ color: "white", display: "inline-block", marginLeft: "1rem", backgroundColor: "#ff6b00" }}
+                            >
+                                <i className="bx bxs-hot"></i>
+                                Apply
+                                <span></span>
+                            </button>
+                        </div>}
                     <div className="mb-5">
-                        <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn1" style={{paddingLeft:"25px", position:"absolute", color:"#ffffff", textDecoration:"none", left:"46%", cursor:"pointer"}}>Talk to us ></a>
+                        <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn1" style={{ paddingLeft: "25px", position: "absolute", color: "#ffffff", textDecoration: "none", left: "46%", cursor: "pointer" }}>Talk to us ></a>
                     </div>
                 </div>
             </section>
@@ -1088,4 +1104,4 @@ const mapStateToProps = (state) => ({
     profile: state.auth_reducer.profile,
 });
 
-export default connect(mapStateToProps, { updateProfile, createMessage, updateUserEmail }) (Employer_PricingStyleOne);
+export default connect(mapStateToProps, { updateProfile, createMessage, updateUserEmail })(Employer_PricingStyleOne);

@@ -34,6 +34,7 @@ export class AudioRecorder extends Component {
     audioHandled: false,
     audio: null,
     display: "block",
+    againClicked: false,
   };
 
   componentDidMount() {
@@ -124,7 +125,7 @@ export class AudioRecorder extends Component {
   recordAgain = () => {
     this.player.record().reset();
     this.player.record().getDevice();
-    this.setState({testStarted: false});
+    this.setState({testStarted: false, againClicked: true});
   }
 
   startMic = () => {
@@ -137,6 +138,8 @@ export class AudioRecorder extends Component {
   }
 
   render() {
+    const style1 = {position: "absolute", zIndex:"100"};
+    const style2 = {position: "absolute", zIndex:"100", margin: "-4.5rem"};
     return (
       <div className="video-recorder-row">
         <div className="col-7">
@@ -148,7 +151,7 @@ export class AudioRecorder extends Component {
             >
             </audio>
             {!this.state.testStarted && this.props.isTesting ? (
-              <div className="ml-5 pt-2" style={{position: "absolute", zIndex:"100"}}>
+              <div className="ml-5 pt-2" style={!this.state.againClicked ? style1 : style2}>
                 <CardButton 
                 className="ml-5"
                 onTap={()=>{

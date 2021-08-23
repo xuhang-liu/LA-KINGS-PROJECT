@@ -40,9 +40,9 @@ export class JobList extends Component {
                                     <div className="row interview-txt7" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                                         <div className="col-3"><span style={{marginLeft:"1.2rem"}}>Job Title</span></div>
                                         <div className="col-1 d-flex justify-content-center">ID</div>
-                                        <div className="col-2 d-flex justify-content-center">Applicants</div>
+                                        <div className="col-1 d-flex justify-content-center">Applicants</div>
                                         <div className="col-2 d-flex justify-content-center">Created On</div>
-                                        <div className="col-2 d-flex justify-content-center">Job Page</div>
+                                        <div className="col-3 d-flex justify-content-center">Job Page</div>
                                         <div className="col-2"><span style={{marginLeft:"1.2rem"}}>Action</span></div>
                                     </div>
                                     {Object.keys(this.props.jobs).sort((a, b) => new Date(this.props.jobs[b]["job_details"].create_date) - new Date(this.props.jobs[a]["job_details"].create_date)).map((key) => {

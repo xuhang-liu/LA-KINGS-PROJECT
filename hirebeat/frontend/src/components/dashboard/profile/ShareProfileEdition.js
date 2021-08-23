@@ -5,6 +5,8 @@ export class ShareProfileEdition extends Component {
         shareProfile: this.props.shareProfile,
         openToHR: this.props.openToHR,
         hasFullName: true,
+        hasCompany: true,
+        hasLocation: true,
     }
 
     setShareProfile = () => {
@@ -17,8 +19,13 @@ export class ShareProfileEdition extends Component {
 
     saveProfileSharing = () => {
         // check full name
-        if (this.props.firsName === "" || this.props.lastName === "") {
+        if ((this.props.firsName == "" || this.props.lastName == "") && this.state.shareProfile) {
             this.setState({hasFullName: false});
+        }else if ((this.props.company == "" || this.props.company == null) && this.state.shareProfile) {
+            this.setState({hasCompany: false});
+        }
+        else if ((this.props.location == "" || this.props.location == null) && this.state.shareProfile) {
+            this.setState({hasLocation: false});
         }
         else {
             let data = {
@@ -70,6 +77,8 @@ export class ShareProfileEdition extends Component {
                     </div>
                 </div>
                 {!this.state.hasFullName && <p className="share-p4">Please fill out your full name for profile sharing</p>}
+                {!this.state.hasCompany && <p className="share-p4">Please fill out your company/school for profile sharing</p>}
+                {!this.state.hasLocation && <p className="share-p4">Please fill out your location for profile sharing</p>}
                 <div className="row" style={{marginTop: "1rem"}}>
                     <div className="col-4 profile-edit">
                         <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.saveProfileSharing}>Update Status</button>

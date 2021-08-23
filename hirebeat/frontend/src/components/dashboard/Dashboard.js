@@ -86,7 +86,7 @@ export class Dashboard extends Component {
   page = (typeof (this.param) == "undefined" ? "" : this.param.subpage);
 
   state = {
-    subpage: (this.page == "" ? "videos" : this.page),
+    subpage: (this.page == "" ? (sessionStorage.getItem('subPage') || "videos") : this.page),
     isTourOpen: this.props.profile.saved_video_count == 0 && !this.props.profile.viewed_tutorial ? true : false,
   };
 
@@ -111,12 +111,20 @@ export class Dashboard extends Component {
   };
 
   renderVideos = () => {
+    if (this.state.subpage == "videos") {
+      window.location.reload(false);
+    }
+    sessionStorage.setItem('subPage', "videos");
     this.setState({
       subpage: "videos",
     });
   };
 
   renderInterview = () => {
+    if (this.state.subpage == "interview") {
+      window.location.reload(false);
+    }
+    sessionStorage.setItem('subPage', "interview");
     this.setState({
       subpage: "interview",
     });
@@ -129,12 +137,20 @@ export class Dashboard extends Component {
   };*/
 
   renderResume = () => {
+    if (this.state.subpage == "resume") {
+      window.location.reload(false);
+    }
+    sessionStorage.setItem('subPage', "resume");
     this.setState({
       subpage: "resume",
     });
   };
 
   renderSetting = () => {
+    if (this.state.subpage == "settings") {
+      window.location.reload(false);
+    }
+    sessionStorage.setItem('subPage', "settings");
     this.setState({
       subpage: "settings",
     }
@@ -142,6 +158,10 @@ export class Dashboard extends Component {
   }
 
   renderProfile = () => {
+    if (this.state.subpage == "profile") {
+      window.location.reload(false);
+    }
+    sessionStorage.setItem('subPage', "profile");
     // solve async problem
     this.props.getProfileDetail(this.props.user.id);
     this.setState({
@@ -214,7 +234,14 @@ export class Dashboard extends Component {
     const accentColor = "#5cb7b7";
     // email verification
     if (!this.props.profile.email_confirmed) {
-        return <Redirect to="/email-verification-mini" />;
+        // normal user
+        if (!this.props.profile.is_employer) {
+            return <Redirect to="/email-verification-mini" />;
+        }
+        // employer user
+        else {
+            return <Redirect to="/email-verification-employer-mini" />;
+        }
     }
     if (this.props.profile.is_employer) {
       return <Redirect to="/employer_dashboard" />;
