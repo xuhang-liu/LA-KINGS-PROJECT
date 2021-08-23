@@ -1043,7 +1043,9 @@ def get_sourcing_data(request):
         if data["total_records"] <= 20:
             data["profiles"] = list(res)
         else:
-            data["profiles"] = list(res)[page - 1:page + 20]
+            begin = (page - 1) * 20
+            end = page * 20
+            data["profiles"] = list(res)[begin:end]
     else:
         res = ProfileDetail.objects.filter(open_to_hr=True).values()
         data["total_records"] = len(res)
@@ -1051,5 +1053,7 @@ def get_sourcing_data(request):
         if data["total_records"] <= 20:
             data["profiles"] = list(res)
         else:
-            data["profiles"] = list(res)[page - 1:page + 20]
+            begin = (page - 1) * 20
+            end = page * 20
+            data["profiles"] = list(res)[begin:end]
     return Response({"data": data})
