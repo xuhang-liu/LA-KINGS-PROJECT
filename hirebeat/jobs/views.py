@@ -626,13 +626,14 @@ def send_merge_api_request(request):
 @api_view(['POST'])
 def check_free_account_active_jobs(request):
     id = request.data['id']
+    limit = request.data['limit']
     jobs = Jobs.objects.filter(user_id=id).order_by('create_date')
-    for i in range(len(jobs)-1):
+    for i in range(len(jobs)-limit):
         jobs[i].is_closed = True
         jobs[i].save()
 
     positions = Positions.objects.filter(user_id=id).order_by('invite_date')
-    for i in range(len(positions)-1):
+    for i in range(len(positions)-limit):
         positions[i].is_closed = True
         positions[i].save()
 
