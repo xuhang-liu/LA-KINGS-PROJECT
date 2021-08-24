@@ -29,7 +29,7 @@ class Profile(models.Model):
     membership = models.CharField(
         max_length=20,
         choices=MembershipCategory.choices,
-        default=MembershipCategory.Premium
+        default=MembershipCategory.Regular
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_employer = models.BooleanField(default=False)
@@ -63,7 +63,7 @@ class Profile(models.Model):
     email_confirmed = models.BooleanField(default=False)
     customer_id = models.CharField(max_length=30,null=True, blank=True)
     sub_id = models.CharField(max_length=30,null=True, blank=True)
-    plan_interval = models.CharField(max_length=30, default="Premium")
+    plan_interval = models.CharField(max_length=30, null=True, blank=True)
     company_name = models.CharField(max_length=30,null=True, blank=True)
     is_subreviwer = models.BooleanField(default=False)
     is_external_reviewer = models.BooleanField(default=False)

@@ -124,6 +124,8 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
             profile.email_confirmed = True
             profile.is_external_reviewer = True
             profile.company_name = ex_reviewer[0].company_name
+        profile.plan_interval = "Premium"
+        profile.membership = "Premium"
         profile.save()
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
