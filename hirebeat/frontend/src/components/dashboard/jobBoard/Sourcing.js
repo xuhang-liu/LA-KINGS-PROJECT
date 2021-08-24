@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SourcingFilter from "./SourcingFilter";
 import { IconText, MyModal80, MyModalContact } from "../DashboardComponents";
 import ReactPlayer from 'react-player';
+import ReactPaginate from 'react-paginate';
 
 export class Sourcing extends Component {
     state = {
@@ -17,6 +18,7 @@ export class Sourcing extends Component {
         can_index: 0,
         showResume: false,
         showContact: false,
+        pageCount: this.props.sourcingData.total_page,
     }
 
     componentDidMount() {
@@ -120,6 +122,21 @@ export class Sourcing extends Component {
         this.setState({ showContact: false });
     }
 
+    handlePageClick = (data) => {
+        let selectedPage = data.selected; // 0 index based
+        let queryData = {
+            keywords: this.state.keywords,
+            location: this.state.location,
+            skills: this.state.skills,
+            position: this.state.position,
+            has_video: this.state.hasVideo,
+            page: selectedPage + 1,
+            has_filter: this.checkFilterConditions(),
+        }
+        this.props.getSourcingData(queryData);
+
+    };
+
     render() {
         const schools = ["school1", "school2", "school3"];
         const majors = ["major1", "major2", "major3"];
@@ -156,7 +173,7 @@ export class Sourcing extends Component {
                                             location={this.state.location}
                                             skills={this.state.skills}
                                             position={this.state.position}
-                                            hasVideo={this.hasVideo}
+                                            hasVideo={this.state.hasVideo}
                                             updateState={this.updateState}
                                             setSkills={this.setSkills}
                                             setLocation={this.setLocation}
@@ -169,7 +186,25 @@ export class Sourcing extends Component {
                                 <p style={{ color: "#090d3a", fontSize: "0.9rem", fontWeight: "normal", marginTop: "1rem" }}>Didn{"'"}t find what you are looking for? Let us help you! <a style={{ color: "#ff6b00", fontWeight: "600", marginLeft: "0.5rem", textDecoration: "none" }} target="_blank" href="/employer_talent_sourcing">GO >></a></p>
                             </div>
                             <div className="mt-5">
-                                <p style={{ color: "#090d3a" }}>Result:  {this.props.sourcingData.profiles.length} / {this.props.sourcingData.total_records}</p>
+                                <div className="row">
+                                    <div className="col-3 d-flex" style={{alignItems: "center"}}>
+                                        <p className="sourcing-p2" style={{textDecoration: "none"}}>Result:  {this.props.sourcingData.profiles.length} / {this.props.sourcingData.total_records}</p>
+                                    </div>
+                                    <div className="col d-flex justify-content-end">
+                                        <ReactPaginate
+                                              previousLabel={'< prev'}
+                                              nextLabel={'next >'}
+                                              breakLabel={'...'}
+                                              breakClassName={'break-me'}
+                                              pageCount={this.props.sourcingData.total_page}
+                                              marginPagesDisplayed={2}
+                                              pageRangeDisplayed={5}
+                                              onPageChange={this.handlePageClick}
+                                              containerClassName={'pagination2'}
+                                              activeClassName={'active'}
+                                        />
+                                    </div>
+                                </div>
                                 {/* Map profile here */}
                                 <div className="row">
                                     {this.props.sourcingData.profiles.map((p, index) => {
@@ -206,6 +241,23 @@ export class Sourcing extends Component {
                                             </div>
                                         )
                                     })}
+                                </div>
+                                <div className="row">
+                                    <div className="col-3" />
+                                    <div className="col d-flex justify-content-end">
+                                        <ReactPaginate
+                                              previousLabel={'< prev'}
+                                              nextLabel={'next >'}
+                                              breakLabel={'...'}
+                                              breakClassName={'break-me'}
+                                              pageCount={this.props.sourcingData.total_page}
+                                              marginPagesDisplayed={2}
+                                              pageRangeDisplayed={5}
+                                              onPageChange={this.handlePageClick}
+                                              containerClassName={'pagination2'}
+                                              activeClassName={'active'}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div> :

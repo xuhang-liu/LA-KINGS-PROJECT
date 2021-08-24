@@ -18,10 +18,6 @@ export class SourcingFilter extends Component {
         }
     }
 
-    componentDidMount() {
-        this.handleVideoChoice();
-    }
-
     generateSkills = () => {
         let skills = [];
         for (let i = 0; i < this.props.skills.length; i++) {
@@ -35,23 +31,13 @@ export class SourcingFilter extends Component {
     }
 
     generateLocation = () => {
-        let locations = ["", ""];
-        if (this.props.location !== "") {
+        let locations = ["", this.props.location];
+        if (this.props.location !== "" && isNaN(this.props.location)) {
             let array = this.props.location.split(",");
             locations[0] = array[0] + "," + array[1];
             locations[1] = array[2];
         }
         return locations;
-    }
-
-    handleVideoChoice = () => {
-        let btns = document.getElementsByName("hasVideo");
-        if (this.props.hasVideo) {
-            btns[1].checked = true;
-        }
-        else {
-            btns[0].checked = true;
-        }
     }
 
     onFilter = (skills) => {
@@ -72,6 +58,9 @@ export class SourcingFilter extends Component {
             });
             let location = cityState["city"] + "," + cityState["state"] + "," + zipcode;
             this.props.setLocation(location);
+        }
+        else {
+            this.props.setLocation(zipcode);
         }
     };
 
@@ -205,12 +194,12 @@ export class SourcingFilter extends Component {
                         <div className="d-flex" style={{paddingTop: "0.5rem"}}>
                              <div>
                                 <label className="sourcing-radio">
-                                    <input onChange={this.handleRadioBtn} type="radio" name="hasVideo" value="optional" style={{ marginRight: "1rem" }}></input>Optional
+                                    <input onChange={this.handleRadioBtn} checked={!this.props.hasVideo} type="radio" name="hasVideo" value="optional" style={{ marginRight: "1rem" }}></input>Optional
                                 </label>
                              </div>
                              <div style={{marginLeft: "1rem"}}>
                                 <label className="sourcing-radio">
-                                    <input onChange={this.handleRadioBtn} type="radio" name="hasVideo" value="must" style={{ marginRight: "1rem" }}></input>Must Have
+                                    <input onChange={this.handleRadioBtn} checked={this.props.hasVideo} type="radio" name="hasVideo" value="must" style={{ marginRight: "1rem" }}></input>Must Have
                                 </label>
                              </div>
                         </div>
