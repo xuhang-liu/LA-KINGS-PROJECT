@@ -27,6 +27,11 @@ from django.core.exceptions import ObjectDoesNotExist
 load_dotenv()
 import requests
 from django.forms.models import model_to_dict
+from datetime import date, timedelta
+from django.contrib.postgres.search import SearchVector
+import math
+from django.db.models.functions import Length
+from django.db.models import Q
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -919,7 +924,7 @@ def create_profile(request):
     except ObjectDoesNotExist:
         return Response("User not exist", status=status.HTTP_201_CREATED)
 
-    return Response("Create or Update user logo successfully", status=status.HTTP_201_CREATED)
+    return Response("Create or Update user profile successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def create_or_update_profile_sharing(request):
@@ -937,3 +942,118 @@ def create_or_update_profile_sharing(request):
         # create profile detail information
         ProfileDetail.objects.create(user_id=user_id, share_profile=share_profile, open_to_hr=open_to_hr)
     return Response("Update user profile sharing successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def create_employer_profile(request):
+    email = request.data["email"]
+    f_name = request.data["f_name"]
+    l_name = request.data["l_name"]
+    company_size = request.data["company_size"]
+    company_type = request.data["company_type"]
+    location = request.data["location"]
+
+    # user exists
+    try:
+        user = User.objects.get(email=email)
+        profile = EmployerProfileDetail(user_id=user.id)
+        profile.email = email
+        profile.f_name = f_name
+        profile.l_name = l_name
+        profile.company_size = company_size
+        profile.company_type = company_type
+        profile.location = location
+        profile.save()
+    # user not exist
+    except ObjectDoesNotExist:
+        return Response("User not exist", status=status.HTTP_200_OK)
+
+    return Response("Create employer profile successfully", status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def check_freetrial_expire(request):
+    expired = False
+    user_id = request.data["user_id"]
+    user = User.objects.get(pk=user_id)
+    profile = Profile.objects.get(user=user)
+    expire_date = profile.datejoined.date()+timedelta(days=14)
+    today = date.today()
+    if profile.is_freetrial:
+        if(today > expire_date):
+            expired = True
+            try:
+                profile.is_freetrial = False
+                profile.candidate_limit = 25
+                profile.position_limit = 1
+                profile.plan_interval = "Regular"
+                profile.membership = "Regular"
+                profile.save()
+            except ObjectDoesNotExist:
+                return Response("User not exist", status=status.HTTP_201_CREATED)
+    else:
+        expired = False
+    return Response({"data": expired})
+
+@api_view(['POST'])
+def get_sourcing_data(request):
+    keywords = request.data["keywords"]
+    location = request.data["location"]
+    skills = request.data["skills"]
+    position = request.data["position"]
+    has_video = request.data["has_video"]
+    page = request.data["page"]
+    has_filter = request.data["has_filter"]
+
+    data = {
+        "total_page": 0,
+        "total_records": 0,
+        "profiles": []
+    }
+    if has_filter:
+        res = []
+        # has video
+        if has_video:
+            res = ProfileDetail.objects.annotate(
+                keywords=SearchVector('f_name', 'l_name', 'current_job_title', 'current_company'),
+                video_url_len=Length('video_url')
+            ).filter(keywords__icontains=keywords, video_url_len__gt=0, open_to_hr=True)
+            # further select skill, location and position
+            if len(skills) > 0:
+                res = res.filter(skills__contains=skills)
+            if len(location) > 0:
+                res = res.filter(location=location)
+            if len(position) > 0:
+                res = res.filter(current_job_title__icontains=position)
+            res = res.values()
+        # no video
+        else:
+            res = ProfileDetail.objects.annotate(
+                keywords=SearchVector('f_name', 'l_name', 'current_job_title', 'current_company'),
+            ).filter(keywords__icontains=keywords, open_to_hr=True)
+            # further select skill, location and position
+            if len(skills) > 0:
+                res = res.filter(skills__contains=skills)
+            if len(location) > 0:
+                res = res.filter(location=location)
+            if len(position) > 0:
+                res = res.filter(current_job_title__icontains=position)
+            res = res.values()
+
+        data["total_records"] = len(res)
+        data["total_page"] = math.ceil(len(res) / 20)
+        if data["total_records"] <= 20:
+            data["profiles"] = list(res)
+        else:
+            begin = (page - 1) * 20
+            end = page * 20
+            data["profiles"] = list(res)[begin:end]
+    else:
+        res = ProfileDetail.objects.filter(open_to_hr=True).values()
+        data["total_records"] = len(res)
+        data["total_page"] = math.ceil(len(res) / 20)
+        if data["total_records"] <= 20:
+            data["profiles"] = list(res)
+        else:
+            begin = (page - 1) * 20
+            end = page * 20
+            data["profiles"] = list(res)[begin:end]
+    return Response({"data": data})

@@ -12,7 +12,8 @@ import PageTitleArea from '../Common/PageTitleArea';
 import {
   updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus, subreviewerUpdateComment,
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
-  updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence
+  updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence,
+  getSourcingData
 }
   from "../../redux/actions/auth_actions";
 import {
@@ -39,8 +40,10 @@ import DocumentMeta from 'react-document-meta';
 import { EmployerProfile } from "./employerProfile/EmployerProfile";
 import { JobCover } from "./jobBoard/JobCover";
 import { JobCreation } from "./jobBoard/JobCreation";
+import { Sourcing } from "./jobBoard/Sourcing";
 import JobEdition from "./jobBoard/JobEdition";
 import Footer from "../layout/Footer";
+import axios from "axios";
 //import ReviewCandidate from "./applications/ReviewCandidate";
 
 function ScrollToTopOnMount() {
@@ -131,10 +134,41 @@ export class EmployerDashboard extends Component {
     this.props.getEmployerPost(this.props.user.id, 0);
     this.props.getAllJobs(this.props.user.id);
     this.props.getQuestionList();
-    this.props.getReviewersList(user.id)
-    if (((this.props.profile.position_count) >= (this.props.profile.position_limit)) && (this.props.profile.membership == "Regular")) {
-      this.props.checkFreeAccountActiveJobs(user);
+    this.props.getReviewersList(user.id);
+    var data = {
+      "id": this.props.user.id,
+      "limit": this.props.profile.position_limit,
     }
+    if (((this.props.profile.position_count) >= (this.props.profile.position_limit)) && (this.props.profile.membership == "Regular" || this.props.profile.plan_interval == "Pro")) {
+      this.props.checkFreeAccountActiveJobs(data);
+    }
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let user_id = { "user_id": this.props.user.id };
+    axios.post("api/check_freetrial_expire", user_id, config).then((res) => {
+      if (res.data.data) {
+        sessionStorage.setItem('subpage', "employerProfile");
+        this.setState({
+          subpage: "employerProfile"
+        });
+        window.location.reload(false);
+      }
+    }).catch(error => {
+      console.log(error)
+    });
+    let queryData = {
+        keywords: "",
+        location: "",
+        skills: [],
+        position: "",
+        has_video: false,
+        page: 1,
+        has_filter: false,
+    }
+    this.props.getSourcingData(queryData);
   }
 
   getInitialSubpage = () => {
@@ -154,10 +188,22 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "jobs") {
       this.refreshPage();
     }
-    sessionStorage.setItem('subpage', "jobs");
-    this.setState({
-      subpage: "jobs",
-    });
+    else if (this.props.profile.membership == "Regular") {
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Your free trial expired',
+        buttons: [
+          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+          { label: 'OK' },
+        ]
+      });
+    }
+    else {
+      sessionStorage.setItem('subpage', "jobs");
+      this.setState({
+        subpage: "jobs",
+      });
+    }
   };
 
   renderJobEdition = () => {
@@ -206,10 +252,21 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "applications") {
       this.refreshPage();
     }
-    sessionStorage.setItem('subpage', "applications");
-    this.setState({
-      subpage: "applications",
-    });
+    else if (this.props.profile.membership == "Regular") {
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Your free trial expired',
+        buttons: [
+          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+          { label: 'OK' },
+        ]
+      });
+    }else{
+      sessionStorage.setItem('subpage', "applications");
+      this.setState({
+        subpage: "applications",
+      });
+    }
   };
 
   renderPosition = () => {
@@ -266,23 +323,45 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "shortlist") {
       this.refreshPage();
     }
-    sessionStorage.setItem('subpage', "shortlist");
-    this.setState({
-      subpage: "shortlist",
-    });
+    else if (this.props.profile.membership == "Regular") {
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Your free trial expired',
+        buttons: [
+          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+          { label: 'OK' },
+        ]
+      });
+    }else{
+      sessionStorage.setItem('subpage', "shortlist");
+      this.setState({
+        subpage: "shortlist",
+      });
+    }
   };
 
   renderAnalytics = () => {
     if (this.state.subpage == "analytics") {
       this.refreshPage();
     }
-    this.props.getAnalyticsInfo(this.props.user.id);
-    sessionStorage.setItem('subpage', "analytics");
-    setTimeout(() => {
-      this.setState({
-        subpage: "analytics",
+    else if (this.props.profile.membership == "Regular") {
+      confirmAlert({
+        title: 'Upgrade Now!',
+        message: 'Your free trial expired',
+        buttons: [
+          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+          { label: 'OK' },
+        ]
       });
-    }, 200)
+    }else{
+      this.props.getAnalyticsInfo(this.props.user.id);
+      sessionStorage.setItem('subpage', "analytics");
+      setTimeout(() => {
+        this.setState({
+          subpage: "analytics",
+        });
+      }, 200)
+    }
   };
 
   renderEmployerProfile = () => {
@@ -316,6 +395,17 @@ export class EmployerDashboard extends Component {
         ]
       });
     }
+  }
+
+  renderEmployerSourcing = () => {
+    if (this.state.subpage == "employerSourcing") {
+      this.refreshPage();
+    }
+    sessionStorage.setItem('subpage', "employerSourcing");
+    this.setState({
+      subpage: "employerSourcing",
+    }
+    )
   }
 
   renderSubpage = () => {
@@ -486,6 +576,14 @@ export class EmployerDashboard extends Component {
           addCandFromMerge={this.props.addCandFromMerge}
           renderApplications={this.renderApplications}
         />;
+      case "employerSourcing":
+        return <Sourcing
+          user={this.props.user}
+          profile={this.props.profile}
+          sourcingData={this.props.sourcingData}
+          sourcingDataLoaded={this.props.sourcingDataLoaded}
+          getSourcingData={this.props.getSourcingData}
+        />;
       default:
         return null;
       //Do nothing
@@ -527,6 +625,7 @@ export class EmployerDashboard extends Component {
                         renderAnalytics={this.renderAnalytics}
                         renderEmployerProfile={this.renderEmployerProfile}
                         renderJobs={this.renderJobs}
+                        renderEmployerSourcing={this.renderEmployerSourcing}
                         subpage={this.state.subpage}
                         int_dots={this.props.int_dots}
                         job_dots={this.props.job_dots}
@@ -540,7 +639,7 @@ export class EmployerDashboard extends Component {
                       {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
                         (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
                         (this.state.subpage === "applications") || (this.state.subpage === "jobs") ||
-                        (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition") || (this.state.subpage === "mergeintergration")) || (this.state.subpage == "") ? null :
+                        (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition") || (this.state.subpage === "mergeintergration") || (this.state.subpage === "employerSourcing")) || (this.state.subpage == "") ? null :
                         <div className="container-fluid" style={{ height: "22rem" }} data-tut="reactour-rowbox">
                           <RowBoxes userId={this.props.user.id} isEmployer={true} />
                         </div>}
@@ -620,6 +719,8 @@ const mapStateToProps = (state) => {
     link_token: state.job_reducer.link_token,
     interview_stages_api_response: state.job_reducer.interview_stages_api_response,
     jobs_api_response: state.job_reducer.jobs_api_response,
+    sourcingData: state.auth_reducer.sourcingData,
+    sourcingDataLoaded: state.auth_reducer.sourcingDataLoaded,
   }
 };
 
@@ -630,7 +731,7 @@ export default connect(mapStateToProps, {
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
   updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
-  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge
+  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, getSourcingData
 })(
   EmployerDashboard
 );
