@@ -3322,7 +3322,8 @@ Pricing Area CSS
   text-align: center;
   background-color: #ffffff;
   padding-bottom: 30px;
-  border-radius: 5px;
+  box-shadow: 0px 4px 16px rgba(186, 186, 186, 0.4);
+  border-radius: 8px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }

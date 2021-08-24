@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PageTitleArea2 from '../Common/PageTitleArea2';
 import Employer_PricingStyleOne from './Employer_PricingStyleOne';
-import FaqContentEmployer from "../Faq/FaqContentEmployer";
+//import FaqContentEmployer from "../Faq/FaqContentEmployer";
 //import ROICalculator from '../Common/ROICalculator';
 //import FaqContent from '../Faq/FaqContent';
 //import FreeTrialArea from '../HomeSaas/FreeTrialArea';
@@ -40,7 +40,6 @@ class Employer_pricing extends Component {
                 />
                 {/*<ROICalculator/>*/}
                 <Employer_PricingStyleOne />
-                <FaqContentEmployer />
                 <Footer />
             </React.Fragment>
             </DocumentMeta>
