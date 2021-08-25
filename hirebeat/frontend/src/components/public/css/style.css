@@ -3322,7 +3322,8 @@ Pricing Area CSS
   text-align: center;
   background-color: #ffffff;
   padding-bottom: 30px;
-  border-radius: 5px;
+  box-shadow: 0px 4px 16px rgba(186, 186, 186, 0.4);
+  border-radius: 8px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
@@ -3407,13 +3408,6 @@ Pricing Area CSS
 
 .single-pricing-table .btn-box {
   margin-top: 30px;
-}
-
-.single-pricing-table:hover {
-  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-  -webkit-transform: translateY(-10px);
-          transform: translateY(-10px);
 }
 
 .single-pricing-table.left-align {
