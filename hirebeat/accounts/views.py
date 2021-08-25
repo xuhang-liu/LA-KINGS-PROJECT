@@ -977,7 +977,7 @@ def check_freetrial_expire(request):
     profile = Profile.objects.get(user=user)
     expire_date = profile.datejoined.date()+timedelta(days=14)
     today = date.today()
-    if profile.is_freetrial:
+    if profile.is_freetrial and not profile.is_external_reviewer and not profile.is_subreviwer:
         if(today > expire_date):
             expired = True
             try:

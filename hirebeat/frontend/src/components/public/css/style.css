@@ -3410,13 +3410,6 @@ Pricing Area CSS
   margin-top: 30px;
 }
 
-.single-pricing-table:hover {
-  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-  -webkit-transform: translateY(-10px);
-          transform: translateY(-10px);
-}
-
 .single-pricing-table.left-align {
   text-align: left;
 }

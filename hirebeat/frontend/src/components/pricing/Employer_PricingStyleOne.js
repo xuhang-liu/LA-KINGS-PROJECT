@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { updateProfile, updateUserEmail } from "../../redux/actions/auth_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import { loadStripe } from '@stripe/stripe-js';
+import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import 'boxicons';
@@ -17,6 +18,41 @@ class Employer_PricingStyleOne extends Component {
         upAndDown3: false,
         upAndDown4: false,
         upAndDown5: false,
+        hover1: false,
+        hover2: false,
+        hover3: false,
+    }
+
+    componentDidMount() {
+        let allFeaturesIndicate = document.getElementById("allFeaturesIndicate");
+        document.addEventListener("scroll", () => {
+            if (window.scrollY > 1500 && window.innerWidth >= 1200) {
+                allFeaturesIndicate?.classList.add("is-sticky");
+            } else if (window.scrollY > 3000 && window.innerWidth < 1200) {
+                allFeaturesIndicate?.classList.add("is-sticky");
+            }
+            else {
+                allFeaturesIndicate?.classList.remove("is-sticky");
+            }
+        });
+        let allFeaturesIndicate1 = document.getElementById("allFeaturesIndicate1");
+        document.addEventListener("scroll", () => {
+            if (window.scrollY > 3000) {
+                allFeaturesIndicate1?.classList.add("is-sticky");
+            } else {
+                allFeaturesIndicate1?.classList.remove("is-sticky");
+            }
+        });
+    }
+
+    toggleHover1 = () => {
+        this.setState({ hover1: !this.state.hover1 });
+    }
+    toggleHover2 = () => {
+        this.setState({ hover2: !this.state.hover2 });
+    }
+    toggleHover3 = () => {
+        this.setState({ hover3: !this.state.hover3 });
     }
 
     setUpAndDown1 = () => {
@@ -244,6 +280,18 @@ class Employer_PricingStyleOne extends Component {
     }
 
     render() {
+        var linkStyle1;
+        var linkStyle2;
+        var linkStyle3;
+        if (this.state.hover1) {
+            linkStyle1 = { outline: "6px solid #67A3F3", boxShadow: "0px 4px 32px 0px #518AD666", transition: "0.2s" }
+        }
+        if (this.state.hover2) {
+            linkStyle2 = { outline: "6px solid #FF6B00", boxShadow: "0px 4px 32px 0px #C3520066", transition: "0.2s" }
+        }
+        if (this.state.hover3) {
+            linkStyle3 = { outline: "6px solid #13C4A1", boxShadow: "0px 4px 32px 0px #079A7D66", transition: "0.2s" }
+        }
         return (
             <section className="pricing-area pt-100" id="go-to-pricing">
                 <div className="container-xl">
@@ -371,7 +419,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div style={{ backgroundColor: "#ffffff", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
                                             <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}>Most popular</p>
                                         </div>
-                                        <div className="single-pricing-table h-100">
+                                        <div className="single-pricing-table h-100" style={linkStyle1} onMouseEnter={this.toggleHover1} onMouseLeave={this.toggleHover1}>
                                             <div className="pricing-header">
                                                 <h3 style={{ color: "#67a3f3", fontWeight: "700", fontSize: "2.5rem" }}>PRO</h3>
                                             </div>
@@ -379,12 +427,12 @@ class Employer_PricingStyleOne extends Component {
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
                                                 <sup style={{ color: "#090d3a" }}>$</sup>126<sub style={{ color: "#090d3a" }}>/ mo</sub>
                                                 <p style={{ fontSize: "13px", color: "#818181", fontWeight: "600" }}>Billed at <span style={{ textDecoration: "line-through" }}>$2,028</span> <span style={{ fontWeight: "700", color: "#090d3a" }}>$1,512 /yr</span></p>
-                                                <div style={{ marginTop: "-1.5rem", marginBottom: "1rem" }}>
+                                                <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
                                                         this.props.profile.membership == null &&
                                                         <div className="btn-box">
                                                             <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px" }}>
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                     Start Free Trial
                                                                     <span></span>
                                                                 </a>
@@ -393,7 +441,7 @@ class Employer_PricingStyleOne extends Component {
                                                     }
                                                     {this.props.profile.is_freetrial ?
                                                         <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px" }} onClick={this.handleYearProUpgrade}>
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearProUpgrade}>
                                                                 Select Plan
                                                                 <span></span>
                                                             </button>
@@ -402,7 +450,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 this.props.profile.membership == "Regular" &&
                                                                 <div className="btn-box">
-                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px" }} onClick={this.handleYearProUpgrade}>
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearProUpgrade}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -411,7 +459,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Premium Already
                                                                         <span></span>
                                                                     </button>
@@ -420,7 +468,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Premium Already
                                                                         <span></span>
                                                                     </button>
@@ -429,7 +477,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -438,6 +486,9 @@ class Employer_PricingStyleOne extends Component {
                                                         </div>
                                                     }
                                                 </div>
+                                                {this.props.profile.membership == null &&
+                                                    <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
+                                                }
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For smaller teams looking to simplify and speed up the hiring process with the essential features.</p>
@@ -456,7 +507,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div style={{ backgroundColor: "#ff6b00", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
                                             <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}><box-icon type='solid' name='medal' color="#ffffff" size="1rem" ></box-icon> Most popular</p>
                                         </div>
-                                        <div className="single-pricing-table h-100">
+                                        <div className="single-pricing-table h-100" style={linkStyle2} onMouseEnter={this.toggleHover2} onMouseLeave={this.toggleHover2}>
                                             <div className="pricing-header">
                                                 <h3 style={{ color: "#ff6b00", fontWeight: "700", fontSize: "2.5rem" }}>PREMIUM</h3>
                                             </div>
@@ -464,12 +515,12 @@ class Employer_PricingStyleOne extends Component {
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
                                                 <sup>$</sup>457<sub style={{ color: "#090d3a" }}>/ mo</sub>
                                                 <p style={{ fontSize: "13px", color: "#818181", fontWeight: "600" }}>Billed at <span style={{ textDecoration: "line-through" }}>$7,188</span> <span style={{ fontWeight: "700", color: "#090d3a" }}>$5,391 /yr</span></p>
-                                                <div style={{ marginTop: "-1.5rem", marginBottom: "1rem" }}>
+                                                <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
                                                         this.props.profile.membership == null &&
                                                         <div className="btn-box">
                                                             <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00" }}>
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                     Start Free Trial
                                                                     <span></span>
                                                                 </a>
@@ -478,7 +529,7 @@ class Employer_PricingStyleOne extends Component {
                                                     }
                                                     {this.props.profile.is_freetrial ?
                                                         <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00" }} onClick={this.handleYearPremiumUpgrade}>
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearPremiumUpgrade}>
                                                                 Select Plan
                                                                 <span></span>
                                                             </button>
@@ -487,7 +538,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 this.props.profile.membership == "Regular" &&
                                                                 <div className="btn-box">
-                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00" }} onClick={this.handleYearPremiumUpgrade}>
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearPremiumUpgrade}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -496,7 +547,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -505,7 +556,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -514,7 +565,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn1" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00" }} onClick={this.handleYearPremiumUpgrade}>
+                                                                    <button className="default-btn1" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearPremiumUpgrade}>
                                                                         Upgrade
                                                                         <span></span>
                                                                     </button>
@@ -523,6 +574,9 @@ class Employer_PricingStyleOne extends Component {
                                                         </div>
                                                     }
                                                 </div>
+                                                {this.props.profile.membership == null &&
+                                                    <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
+                                                }
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For organizations seeking hiring automation and team collaboration with an all-in-one talent acquisition suite.</p>
@@ -542,7 +596,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div style={{ backgroundColor: "#ffffff", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
                                             <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}>Most popular</p>
                                         </div>
-                                        <div className="single-pricing-table h-100">
+                                        <div className="single-pricing-table h-100" style={linkStyle3} onMouseEnter={this.toggleHover3} onMouseLeave={this.toggleHover3}>
                                             <div className="pricing-header">
                                                 <h3 style={{ color: "#13c4a1", fontWeight: "700", fontSize: "2.5rem" }}>ENTERPRISE</h3>
                                             </div>
@@ -550,16 +604,26 @@ class Employer_PricingStyleOne extends Component {
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)", fontSize: "2rem" }}>
                                                 Custom
                                                 <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>Billed at $0</p>
-                                                <div style={{ marginBottom: "1.3rem", marginTop: "-0.8rem" }}>
-                                                    {
+                                                {this.props.profile.membership == null ?
+                                                    <div style={{ marginBottom: "1.3rem", marginTop: "-0.3rem" }}>
                                                         <div className="btn-box">
-                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingRight: "50px", textDecoration: "none", backgroundColor: "#13c4a1" }}>
+                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingRight: "50px", textDecoration: "none", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                 Contact Us
                                                                 <span></span>
                                                             </a>
                                                         </div>
-                                                    }
-                                                </div>
+                                                    </div> :
+                                                    <div style={{ paddingTop: "1px", paddingBottom: "2px" }}>
+                                                        <div className="btn-box">
+                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingRight: "50px", textDecoration: "none", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                Contact Us
+                                                                <span></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>}
+                                                {this.props.profile.membership == null &&
+                                                    <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#fff", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
+                                                }
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For smaller teams looking to simplify and speed up the hiring process with the essential features.</p>
@@ -679,7 +743,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div style={{ backgroundColor: "#ffffff", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
                                             <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}>Most popular</p>
                                         </div>
-                                        <div className="single-pricing-table h-100">
+                                        <div className="single-pricing-table h-100" style={linkStyle1} onMouseEnter={this.toggleHover1} onMouseLeave={this.toggleHover1}>
                                             <div className="pricing-header">
                                                 <h3 style={{ color: "#67a3f3", fontWeight: "700", fontSize: "2.5rem" }}>PRO</h3>
                                             </div>
@@ -687,12 +751,12 @@ class Employer_PricingStyleOne extends Component {
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
                                                 <sup style={{ color: "#090d3a" }}>$</sup>169<sub style={{ color: "#090d3a" }}>/ mo</sub>
                                                 <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>0</p>
-                                                <div style={{ marginTop: "-1.5rem", marginBottom: "1rem" }}>
+                                                <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
                                                         this.props.profile.membership == null &&
                                                         <div className="btn-box">
                                                             <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px" }}>
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                     Start Free Trial
                                                                     <span></span>
                                                                 </a>
@@ -701,7 +765,7 @@ class Employer_PricingStyleOne extends Component {
                                                     }
                                                     {this.props.profile.is_freetrial ?
                                                         <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px" }} onClick={this.handleProUpgrade}>
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleProUpgrade}>
                                                                 Select Plan
                                                                 <span></span>
                                                             </button>
@@ -710,7 +774,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 this.props.profile.membership == "Regular" &&
                                                                 <div className="btn-box">
-                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px" }} onClick={this.handleProUpgrade}>
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleProUpgrade}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -719,7 +783,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Premium Already
                                                                         <span></span>
                                                                     </button>
@@ -728,7 +792,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Premium Already
                                                                         <span></span>
                                                                     </button>
@@ -737,7 +801,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -746,6 +810,9 @@ class Employer_PricingStyleOne extends Component {
                                                         </div>
                                                     }
                                                 </div>
+                                                {this.props.profile.membership == null &&
+                                                    <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
+                                                }
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For smaller teams looking to simplify and speed up the hiring process with the essential features.</p>
@@ -764,7 +831,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div style={{ backgroundColor: "#ff6b00", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
                                             <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}><box-icon type='solid' name='medal' color="#ffffff" size="1rem" ></box-icon> Most popular</p>
                                         </div>
-                                        <div className="single-pricing-table h-100">
+                                        <div className="single-pricing-table h-100" style={linkStyle2} onMouseEnter={this.toggleHover2} onMouseLeave={this.toggleHover2}>
                                             <div className="pricing-header">
                                                 <h3 style={{ color: "#ff6b00", fontWeight: "700", fontSize: "2.5rem" }}>PREMIUM</h3>
                                             </div>
@@ -772,12 +839,12 @@ class Employer_PricingStyleOne extends Component {
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
                                                 <sup>$</sup>599<sub style={{ color: "#090d3a" }}>/ mo</sub>
                                                 <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>0</p>
-                                                <div style={{ marginTop: "-1.5rem", marginBottom: "1rem" }}>
+                                                <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
                                                         this.props.profile.membership == null &&
                                                         <div className="btn-box">
                                                             <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00" }}>
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                     Start Free Trial
                                                                     <span></span>
                                                                 </a>
@@ -786,7 +853,7 @@ class Employer_PricingStyleOne extends Component {
                                                     }
                                                     {this.props.profile.is_freetrial ?
                                                         <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00" }} onClick={this.handlePremiumUpgrade}>
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePremiumUpgrade}>
                                                                 Select Plan
                                                                 <span></span>
                                                             </button>
@@ -795,7 +862,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 this.props.profile.membership == "Regular" &&
                                                                 <div className="btn-box">
-                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00" }} onClick={this.handlePremiumUpgrade}>
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePremiumUpgrade}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -804,7 +871,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -813,7 +880,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -822,7 +889,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn1" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00" }} onClick={this.handlePremiumUpgrade}>
+                                                                    <button className="default-btn1" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePremiumUpgrade}>
                                                                         Upgrade
                                                                         <span></span>
                                                                     </button>
@@ -831,6 +898,9 @@ class Employer_PricingStyleOne extends Component {
                                                         </div>
                                                     }
                                                 </div>
+                                                {this.props.profile.membership == null &&
+                                                    <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
+                                                }
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For organizations seeking hiring automation and team collaboration with an all-in-one talent acquisition suite.</p>
@@ -850,7 +920,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div style={{ backgroundColor: "#ffffff", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
                                             <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}>Most popular</p>
                                         </div>
-                                        <div className="single-pricing-table h-100">
+                                        <div className="single-pricing-table h-100" style={linkStyle3} onMouseEnter={this.toggleHover3} onMouseLeave={this.toggleHover3}>
                                             <div className="pricing-header">
                                                 <h3 style={{ color: "#13c4a1", fontWeight: "700", fontSize: "2.5rem" }}>ENTERPRISE</h3>
                                             </div>
@@ -858,16 +928,26 @@ class Employer_PricingStyleOne extends Component {
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)", fontSize: "2rem" }}>
                                                 Custom
                                                 <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>0</p>
-                                                <div style={{ marginBottom: "1.3rem", marginTop: "-0.8rem" }}>
-                                                    {
+                                                {this.props.profile.membership == null ?
+                                                    <div style={{ marginBottom: "1.3rem", marginTop: "-0.3rem" }}>
                                                         <div className="btn-box">
-                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingRight: "50px", textDecoration: "none", backgroundColor: "#13c4a1" }}>
+                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingRight: "50px", textDecoration: "none", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                 Contact Us
                                                                 <span></span>
                                                             </a>
                                                         </div>
-                                                    }
-                                                </div>
+                                                    </div> :
+                                                    <div style={{ paddingTop: "1px", paddingBottom: "2px" }}>
+                                                        <div className="btn-box">
+                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingRight: "50px", textDecoration: "none", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                Contact Us
+                                                                <span></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>}
+                                                {this.props.profile.membership == null &&
+                                                    <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#fff", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
+                                                }
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For smaller teams looking to simplify and speed up the hiring process with the essential features.</p>
@@ -916,56 +996,621 @@ class Employer_PricingStyleOne extends Component {
                                 <span></span>
                             </button>
                         </div>}
-                    <div className="mb-5">
-                        <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn1" style={{ paddingLeft: "25px", position: "absolute", color: "#ffffff", textDecoration: "none", left: "46%", cursor: "pointer" }}>Talk to us ></a>
+                    <div className="mb-5 d-flex justify-content-center">
+                        <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn1" style={{ paddingLeft: "25px", color: "#ffffff", textDecoration: "none", cursor: "pointer" }}>Talk to us ></a>
                     </div>
-                    <div className="text-center py-5">
+
+                    {/** All Features Table */}
+                    <div className="text-center pt-5 pb-3">
                         <h1 style={{ fontSize: "2.4rem", fontWeight: "600", color: "#090D3A", marginBottom: "2rem" }}>
                             All Features Compared
                         </h1>
-                        {this.state.upAndDown1 ?
-                            <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="true" aria-controls="multiCollapseExample1">Essentials<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown1}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                            <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="true" aria-controls="multiCollapseExample1">Essentials<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown1}><i class='bx-fw bx bx-chevron-up'></i></span></div>
-                        }
-                        <div class="collapse multi-collapse show" id="multiCollapseExample1">
-                            <div class="card card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        <MediaQuery minDeviceWidth={1224}>
+                            <div className="allFeaturesIndicate" id="allFeaturesIndicate">
+                                <div className="container">
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-3 pro">
+                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#67A3F3" }}>PRO</p>
+                                        </div>
+                                        <div className="col-2 premium">
+                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#FF6B00" }}>PREMIUM</p>
+                                        </div>
+                                        <div className="col-3 enterprise">
+                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#13C4A1" }}>ENTERPRISE</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        {!this.state.upAndDown2 ?
-                            <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="true" aria-controls="multiCollapseExample2">Candidate Sourcing & Job Posting<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown2}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                            <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="true" aria-controls="multiCollapseExample2">Candidate Sourcing & Job Posting<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown2}><i class='bx-fw bx bx-chevron-up'></i></span></div>
-                        }
-                        <div class="collapse multi-collapse" id="multiCollapseExample2">
-                            <div class="card card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        </MediaQuery>
+                        <MediaQuery maxDeviceWidth={1223}>
+                            <div className="container-fluid allFeaturesIndicate1" id="allFeaturesIndicate1">
+                                <div className="row py-3">
+                                    <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                        <p style={{ fontWeight: "500", fontSize: "0.9rem", color: "#090d3a" }}></p>
+                                    </div>
+                                    <div className="col-3">
+                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#67A3F3" }}>PRO</p>
+                                    </div>
+                                    <div className="col-2">
+                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#FF6B00" }}>PREM</p>
+                                    </div>
+                                    <div className="col-3">
+                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#13C4A1" }}>ENT</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        {!this.state.upAndDown3 ?
-                            <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="true" aria-controls="multiCollapseExample3">Applicant Tracking & Screening<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown3}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                            <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="true" aria-controls="multiCollapseExample3">Applicant Tracking & Screening<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown3}><i class='bx-fw bx bx-chevron-up'></i></span></div>
-                        }
-                        <div class="collapse multi-collapse" id="multiCollapseExample3">
-                            <div class="card card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        </MediaQuery>
+
+                        <div>
+                            {/* TABLE 1*/}
+                            {this.state.upAndDown1 ?
+                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="true" aria-controls="multiCollapseExample1">Essentials<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown1}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="true" aria-controls="multiCollapseExample1">Essentials<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown1}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                            }
+                            <div class="collapse multi-collapse show" id="multiCollapseExample1">
+                                <div className="container-fluid">
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Active Job Postings</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>5</p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Candidates</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Built-in Talent Network</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Applicants Tracking</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Built-in One-way Video Interview</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Team Collaborations</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        {!this.state.upAndDown4 ?
-                            <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="true" aria-controls="multiCollapseExample4">Collaboration and decision making<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown4}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                            <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="true" aria-controls="multiCollapseExample4">Collaboration and decision making<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown4}><i class='bx-fw bx bx-chevron-up'></i></span></div>
-                        }
-                        <div class="collapse multi-collapse" id="multiCollapseExample4">
-                            <div class="card card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+
+                            {/* TABLE 2*/}
+                            {!this.state.upAndDown2 ?
+                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="true" aria-controls="multiCollapseExample2">Candidate Sourcing & Job Posting<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown2}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="true" aria-controls="multiCollapseExample2">Candidate Sourcing & Job Posting<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown2}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                            }
+                            <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                <div className="container-fluid">
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Talent Pool</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Talent CRM</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Employee Referral</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Job Position Advertising</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Standard Options</p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Premium Options</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Premium Options</p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Branded Career Website</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Social Recruiting</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        {!this.state.upAndDown5 ?
-                            <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample5" role="button" aria-expanded="true" aria-controls="multiCollapseExample5">Training and Support<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown5}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                            <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample5" role="button" aria-expanded="true" aria-controls="multiCollapseExample5">Training and Support<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown5}><i class='bx-fw bx bx-chevron-up'></i></span></div>
-                        }
-                        <div class="collapse multi-collapse" id="multiCollapseExample5">
-                            <div class="card card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+
+                            {/* TABLE 3*/}
+                            {!this.state.upAndDown3 ?
+                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="true" aria-controls="multiCollapseExample3">Applicant Tracking & Screening<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown3}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="true" aria-controls="multiCollapseExample3">Applicant Tracking & Screening<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown3}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                            }
+                            <div class="collapse multi-collapse" id="multiCollapseExample3">
+                                <div className="container-fluid">
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Resume Parsing</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Resume Evaluation with AI Assistance</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Customizable Application Form</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Knockout Questions</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Interview Screening</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Customizable Video Questions</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>3</p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>6</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Interview Question Bank</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Library Storage</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Configurable Video Interview Response & Prep Times</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Configurable Video Interview Retakes</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Interview Assessments</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Interview Integration with 20+ ATS</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Built-in Live Interviews</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* TABLE 4*/}
+                            {!this.state.upAndDown4 ?
+                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="true" aria-controls="multiCollapseExample4">Collaboration & decision making<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown4}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="true" aria-controls="multiCollapseExample4">Collaboration & decision making<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown4}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                            }
+                            <div class="collapse multi-collapse" id="multiCollapseExample4">
+                                <div className="container-fluid">
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Candidate Rating & Feedback</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Candidate Shortlisting</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Real-Time Analytics</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>EEO survey and reporting</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>External Reviewer</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>3</p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Bulk Action Candidates</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Export Candidate to HRIS integrations</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* TABLE 5*/}
+                            {!this.state.upAndDown5 ?
+                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample5" role="button" aria-expanded="true" aria-controls="multiCollapseExample5">Training & Support<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown5}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample5" role="button" aria-expanded="true" aria-controls="multiCollapseExample5">Training & Support<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown5}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                            }
+                            <div class="collapse multi-collapse" id="multiCollapseExample5">
+                                <div className="container-fluid">
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Email & Web Support</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Tutorials</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Self-serve Onboarding</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Dedicated Onboarding Service</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Dedicated Success Manager</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
