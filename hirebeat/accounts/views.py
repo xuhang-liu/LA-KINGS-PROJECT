@@ -189,6 +189,30 @@ def check_user_registration(request):
 
     return Response({"is_registered": is_registered})
 
+@api_view(['POST'])
+def check_user_name(request):
+    is_registered = False
+    username_registered = False
+    email_registered = False
+
+    username = request.data["username"]
+    email = request.data["email"]
+    username_obj = User.objects.filter(username=username)
+    email_obj = User.objects.filter(email=email)
+
+    # queryset is empty if user not exist
+    if len(email_obj) == 1:
+        email_registered = True
+        is_registered = True
+    if len(username_obj) == 1:
+        username_registered = True
+        is_registered = True
+
+    return Response({"is_registered": is_registered,
+                     "email_registered": email_registered,
+                     "username_registered": username_registered
+                     })
+
 @api_view(['GET'])
 def get_company_name(request):
     position_id = request.query_params.get("position_id")

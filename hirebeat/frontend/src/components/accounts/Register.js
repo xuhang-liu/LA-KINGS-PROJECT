@@ -14,6 +14,8 @@ import DocumentMeta from 'react-document-meta';
 import BasicInfo from "./BasicInfo";
 import ProfileForm from "./ProfileForm";
 import ShareForm from "./ShareForm";
+import axios from "axios";
+import { confirmAlert } from 'react-confirm-alert';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -154,11 +156,50 @@ export class Register extends Component {
     if (!this.passwordsMatch()) {
       alert("The passwords are not consistent");
     }
-    // move to next step
-    else {
+    // check email registered or not
+    const data = {email: this.state.email, username: this.state.username};
+    axios
+    .post("accounts/check-user-name", data)
+    .then((res) => {
+      let isRegistered = res.data.is_registered;
+      let emailRegistered = res.data.email_registered;
+      let usernameRegistered = res.data.username_registered;
+
+      let title = "";
+      let message = "";
+      if (emailRegistered) {
+        title = "Email already exists!";
+        message = "Please use another email to register.";
+      }
+      if (usernameRegistered) {
+        title = "Username already exists!";
+        message = "Please use another Username to register.";
+      }
+      if (emailRegistered && usernameRegistered) {
+        title = "Username and Email already exist!";
+        message = "Please use another Username and Email to register.";
+      }
+
+      if (isRegistered) {
+        confirmAlert({
+            title: title,
+            message: message,
+            buttons: [
+                  {
+                    label: 'Ok'
+                  }
+            ]
+        });
+     }
+     else {
+        // move to next step
         let nextStep = this.state.step + 1;
         this.setStep(nextStep);
-    }
+     }
+    })
+    .catch(error => {
+        console.log(error)
+    });
   };
 
   setLocation = (location) => {
@@ -225,7 +266,7 @@ export class Register extends Component {
             <section className="signup-area min-width-1290">
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0"> 
-                      <img src="https://hirebeat-assets.s3.amazonaws.com/Login.png" alt="image"></img>
+                      <img src="https://hirebeat-assets.s3.amazonaws.com/Login2.jpg" alt="image"></img>
                     </div>
 
                     <div className="col-lg-6 col-md-12 p-0">

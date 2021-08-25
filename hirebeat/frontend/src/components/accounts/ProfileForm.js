@@ -21,6 +21,7 @@ export class ProfileForm extends Component {
         preview: null,
         fakeName2: "",
         docType: "",
+        savePhoto: false,
     }
 
     // upload resume -> bgin
@@ -163,6 +164,11 @@ export class ProfileForm extends Component {
 
     checkStudent = () => {
         this.setState({isStudent: !this.state.isStudent});
+        // clear input
+        if (this.state.isStudent) {
+            let element = document.getElementsByName("jobTitle");
+            element[0].value = "";
+        }
         this.props.setJobTitle("Student");
     }
 
@@ -172,7 +178,7 @@ export class ProfileForm extends Component {
     };
 
     customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff', boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)" }),
+        control: styles => ({ ...styles, backgroundColor: '#ffffff', boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)", height: '55px' }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
@@ -246,12 +252,21 @@ export class ProfileForm extends Component {
         this.props.setCompanyName(companyName);
     }
 
+    handleSavePhoto = () => {
+        this.setState({savePhoto: true});
+    }
+
+    editSavePhoto = () => {
+        this.setState({savePhoto: false, preview: null});
+
+    }
+
     render() {
         return (
             <React.Fragment>
                 <form onSubmit={this.moveToNext}>
+                      <h1 className="register-title" style={{paddingTop: "0.6rem", textAlign: "left"}}>Step3 &nbsp; <span style={{color: "#67A3F3"}}>Profile</span></h1>
                       <div style={{display: "flex"}}>
-                          <h1 className="register-title" style={{paddingTop: "0.6rem", marginRight: "2rem"}}>Step3</h1>
                           <img style={{width: "86%", height: "3vw"}} src="https://hirebeat-assets.s3.amazonaws.com/step3.png" alt="step flow" />
                       </div>
 
@@ -298,15 +313,32 @@ export class ProfileForm extends Component {
                         <label className="register-label register-text">
                             Upload Profile Photo
                         </label>
-                        <Avatar
-                              width={285}
-                              height={200}
-                              onCrop={this.onCrop}
-                              onClose={this.onClose}
-                              onBeforeFileLoad={this.onBeforeFileLoad}
-                              mimeTypes={"image/jpeg,image/png,image/jpg"}
-                        />
-                        <span className="register-label register-text2" style={{marginLeft: "0rem"}}>Support .jpeg/.png</span>
+                        <div>
+                            {!this.state.savePhoto ?
+                                <div>
+                                    <Avatar
+                                          width={285}
+                                          height={200}
+                                          onCrop={this.onCrop}
+                                          onClose={this.onClose}
+                                          onBeforeFileLoad={this.onBeforeFileLoad}
+                                          mimeTypes={"image/jpeg,image/png,image/jpg"}
+                                    />
+                                </div> :
+                                <div className="d-flex justify-content-left">
+                                    {this.state.preview !== null && <img src={this.state.preview} alt="Preview" />}
+                                </div>
+                            }
+                            {this.state.preview != null &&
+                                <div className="d-flex justify-content-left" style={{marginTop: "0.5rem"}}>
+                                    <span className="profile-edit" style={{cursor: "pointer"}} onClick={this.editSavePhoto}>Edit</span>
+                                    {!this.state.savePhoto &&
+                                        <span className="profile-edit" style={{cursor: "pointer", marginLeft: "2rem"}} onClick={this.handleSavePhoto}>Save</span>
+                                    }
+                                </div>
+                            }
+                            <span className="register-label register-text2" style={{marginLeft: "0rem"}}>Support .jpeg/.png</span>
+                        </div>
                         <ReactS3Uploader
                           style={{display: "none"}}
                           id="uploadFile2"
@@ -366,7 +398,7 @@ export class ProfileForm extends Component {
                         <label className="register-label register-text">
                             What type of job are you looking for<span className="job-apply-char2">*</span>
                         </label>
-                        <div>
+                        <div style={{textAlign: "left"}}>
                             <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} />
                         </div>
                       </div>
