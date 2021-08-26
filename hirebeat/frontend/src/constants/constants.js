@@ -324,6 +324,13 @@ export const infillBarDataPublicProfile = (scoreNumber) => {
   return options;
 };
 
+export const infillBarDataPublicProfile2 = (scoreNumber) => {
+  var options = deepCopyFunction(radialBarOptions3);
+  options.series[0] = scoreNumber;
+  options.options.labels[0] = (scoreNumber)+"%";
+  return options;
+};
+
 export const customBarData = (scoreNumber, bgColor, barColor) => {
   var options = deepCopyFunction(radialBarOptions);
   options.series[0] = scoreNumber;

@@ -331,9 +331,11 @@ export class ProfileForm extends Component {
                             }
                             {this.state.preview != null &&
                                 <div className="d-flex justify-content-left" style={{marginTop: "0.5rem"}}>
-                                    <span className="profile-edit" style={{cursor: "pointer"}} onClick={this.editSavePhoto}>Edit</span>
+                                    {this.state.savePhoto &&
+                                        <span className="profile-edit" style={{cursor: "pointer"}} onClick={this.editSavePhoto}>Edit</span>
+                                    }
                                     {!this.state.savePhoto &&
-                                        <span className="profile-edit" style={{cursor: "pointer", marginLeft: "2rem"}} onClick={this.handleSavePhoto}>Save</span>
+                                        <span className="profile-edit" style={{cursor: "pointer"}} onClick={this.handleSavePhoto}>Save</span>
                                     }
                                 </div>
                             }
