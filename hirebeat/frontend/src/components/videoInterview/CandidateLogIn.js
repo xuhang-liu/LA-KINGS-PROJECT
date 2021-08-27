@@ -197,10 +197,10 @@ export class CandidateLogin extends Component {
                               fontSize:"1rem",
                               fontFamily: "Avenir Next, Segoe UI",
                               color: "#7D7D7D",
-                              fontWeight: "300"
+                              fontWeight: "normal"
                             }}
                         >
-                          Forget password?
+                          Forget Password?
                         </a>
 
                       </div>
@@ -211,8 +211,8 @@ export class CandidateLogin extends Component {
                       >
                         <button
                           type="submit"
-                          className="default-btn"
-                          style={{ width: "100%", fontSize: '1rem', fontWeight: 'bold', background: "#090D3A" }}
+                          className="default-btn1"
+                          style={{ width: "100%", fontSize: '1rem', fontWeight: 'bold'}}
                         >
                           Log in
                         </button>
