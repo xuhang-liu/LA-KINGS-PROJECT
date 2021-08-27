@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML } from "../../../redux/actions/job_actions";
 import axios from "axios";
 import { MyModalShare } from "../DashboardComponents";
-import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from "react-share";
+import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton } from "react-share";
 
 export class JobCard extends Component {
 
@@ -134,9 +134,9 @@ export class JobCard extends Component {
                                         </button>
                                     </div>
                                 </div>
-                                <hr className="hr-text" data-content="or" />
-                                <p style={{ textAlign: 'center' }}>Share on other platforms</p>
-                                <div className="single-footer-widget1" style={{textAlign:'center'}}>
+                                <div id="resume-hr"><hr /></div>
+                                <p className="share-p">Share on other platforms</p>
+                                <div className="single-footer-widget1" style={{ textAlign: 'center' }}>
                                     <ul className="social">
                                         <li>
                                             <FacebookShareButton
@@ -168,6 +168,15 @@ export class JobCard extends Component {
                                                     <i className="bx bxl-linkedin"></i>
                                                 </a>
                                             </LinkedinShareButton>
+                                        </li>
+                                        <li>
+                                            <WhatsappShareButton
+                                                url={this.props.job.job_details.job_url}
+                                                title={this.props.job.job_details.job_title + " at " + this.props.profile.company_name}>
+                                                <a target="_blank" rel="noreferrer">
+                                                    <i className="bx bxl-whatsapp"></i>
+                                                </a>
+                                            </WhatsappShareButton>
                                         </li>
                                     </ul>
                                 </div>

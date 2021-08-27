@@ -4302,41 +4302,6 @@ max-width: 110px;
   color: red;
 }
 
-.hr-text{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  line-height: 1rem;
-  position: relative;
-  outline: 0;
-  border: 0;
-  color: black;
-  text-align: center;
-  height: 1.5em;
-  font-size: 0.9rem;
-  font-family: Avenir Next, Segoe UI;
-}
-
-.hr-text::before {
-  content: '';
-    background: linear-gradient(to right, transparent, #818078, transparent);
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    height: 1px;
-}
-
-.hr-text::after{
-  content: attr(data-content);
-  position: relative;
-  display: inline-block;
-  color: black;
-  padding: 0 .5em;
-  line-height: 1.5em;
-  color: #818078;
-  background-color: #fcfcfa;
-}
-
 .sourcing-input {
   background: #FFFFFF;
   border: 2px solid #E8EDFC;

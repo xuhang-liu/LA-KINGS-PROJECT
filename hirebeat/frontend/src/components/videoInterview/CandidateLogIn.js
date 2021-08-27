@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
   login, exchangeToken,
-  register, checkUserRegistration
+  register, checkUserRegistration, getCompanyName
 } from "../../redux/actions/auth_actions";
 //import SocialButton from "../accounts/SocialButton";
 import { createMessage } from "../../redux/actions/message_actions";
@@ -29,7 +29,8 @@ export class CandidateLogin extends Component {
   componentDidMount() {
     // check user exists or not
     let userEmail = this.state.email;
-    let emailData = { email: userEmail }; // json stringfy
+    let emailData = { "email": userEmail }; // json stringfy
+    this.props.getCompanyName(this.state.positionId);
     this.props.checkUserRegistration(emailData);
   }
 
@@ -187,23 +188,24 @@ export class CandidateLogin extends Component {
                           }}
                           required />
                       </div>
-
-                      <a
-                        href="/password_reset"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="navbar-font"
-                        style={{
-                          fontSize: "1rem",
-                          fontFamily: "Avenir Next, Segoe UI",
-                          color: "#7D7D7D",
-                          fontWeight: "300",
-                          float: "right",
-                          marginBottom: "1rem",
-                        }}
-                      >
-                        Forget password?
-                      </a>
+                      <div className="form-group">
+                        <a
+                          href="/password_reset"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="navbar-font"
+                          style={{
+                            fontSize: "1rem",
+                            fontFamily: "Avenir Next, Segoe UI",
+                            color: "#7D7D7D",
+                            fontWeight: "300",
+                            float: "right",
+                            marginBottom: "1rem",
+                          }}
+                        >
+                          Forget password?
+                        </a>
+                      </div>
 
                       <div
                         className="form-group"
@@ -360,9 +362,10 @@ const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
   auth: state.auth_reducer,
   isRegistered: state.auth_reducer.isRegistered,
+  companyName: state.auth_reducer.companyName,
 });
 
 export default connect(mapStateToProps, {
   login, exchangeToken,
-  register, createMessage, checkUserRegistration
+  register, createMessage, checkUserRegistration, getCompanyName
 })(CandidateLogin);

@@ -513,6 +513,7 @@ const CandidateCard = (props) => {
                 {!props.profile.is_external_reviewer &&
                     <div className="col-2">
                         <a
+                            target="_blank"
                             href={mailTo}
                             className="interview-txt9"
                             style={{ color: "#67A3F3", border: "none", background: "white", display: "inline-block", fontSize: "0.7rem" }}

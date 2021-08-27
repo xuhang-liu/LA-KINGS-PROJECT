@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseBadRequest
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .api.serializers import VideoSerializer, VideoLabelSerializer, VideoSentenceSerializer, WPVideoSerializer
+from .api.serializers import VideoSerializer, VideoSentenceSerializer, WPVideoSerializer
 from .models import Video, Label, Transcript, Sentence, WPVideo
 from django.contrib.auth.models import User
 from accounts.models import ReviewerInfo, Profile
@@ -305,7 +305,8 @@ def add_wp_video(request):
         url = url,
         question_id = question_id,
         question_desc = question_desc,
-        owner_id = owner_id
+        owner_id = owner_id,
+        position_id = positions
     )
     wp_video.save()
     invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
