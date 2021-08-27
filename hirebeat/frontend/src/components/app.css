@@ -885,7 +885,7 @@ h5 {
   border: none;
   border-radius: 5px;
   width: 14rem;
-  z-index: 99;
+  z-index: 6;
   display: block;
   visibility: hidden;
   font-size: x-large;
@@ -902,6 +902,7 @@ h5 {
 .header-text:hover .nav_submenu {
   visibility: visible;
   transition-delay: 0s;
+  z-index: 6;
 }
 
 .upgrade {
@@ -4459,6 +4460,7 @@ max-width: 110px;
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
 
 .allFeaturesIndicate.is-sticky{
@@ -4467,7 +4469,7 @@ max-width: 110px;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 99999;
+  z-index: 5;
   background-color: #ffffff !important;
   -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
           animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
@@ -4479,7 +4481,7 @@ max-width: 110px;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 99999;
+  z-index: 5;
   -webkit-box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
           box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
   background-color: #ffffff !important;

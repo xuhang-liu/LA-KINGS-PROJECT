@@ -596,7 +596,7 @@ Navbar Area CSS
   min-width: 1290px;
   background-color: transparent;
   height: auto;
-  z-index: 1040;
+  z-index: 104;
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -610,7 +610,7 @@ Navbar Area CSS
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 99;
   -webkit-box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
           box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
   background-color: #ffffff !important;

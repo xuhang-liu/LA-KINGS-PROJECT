@@ -5,6 +5,7 @@ import { updateProfile, updateUserEmail } from "../../redux/actions/auth_actions
 import { createMessage } from "../../redux/actions/message_actions";
 import { loadStripe } from '@stripe/stripe-js';
 import MediaQuery from 'react-responsive';
+import Collapse from 'react-bootstrap/Collapse'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import 'boxicons';
@@ -13,7 +14,7 @@ const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6
 
 class Employer_PricingStyleOne extends Component {
     state = {
-        upAndDown1: false,
+        upAndDown1: true,
         upAndDown2: false,
         upAndDown3: false,
         upAndDown4: false,
@@ -1047,10 +1048,10 @@ class Employer_PricingStyleOne extends Component {
                         <div>
                             {/* TABLE 1*/}
                             {this.state.upAndDown1 ?
-                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="true" aria-controls="multiCollapseExample1">Essentials<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown1}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="true" aria-controls="multiCollapseExample1">Essentials<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown1}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown1} onClick={this.setUpAndDown1}>Essentials<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown1} onClick={this.setUpAndDown1}>Essentials<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-up'></i></span></div>
                             }
-                            <div class="collapse multi-collapse show" id="multiCollapseExample1">
+                            <Collapse in={this.state.upAndDown1}>
                                 <div className="container-fluid">
                                     <div className="row py-3">
                                         <div className="col-4 pl-4" style={{ textAlign: "left" }}>
@@ -1137,14 +1138,14 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Collapse>
 
                             {/* TABLE 2*/}
-                            {!this.state.upAndDown2 ?
-                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="true" aria-controls="multiCollapseExample2">Candidate Sourcing & Job Posting<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown2}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="true" aria-controls="multiCollapseExample2">Candidate Sourcing & Job Posting<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown2}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                            {this.state.upAndDown2 ?
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown2} onClick={this.setUpAndDown2}>Candidate Sourcing & Job Posting<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown2} onClick={this.setUpAndDown2}>Candidate Sourcing & Job Posting<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-up'></i></span></div>
                             }
-                            <div class="collapse multi-collapse" id="multiCollapseExample2">
+                            <Collapse in={this.state.upAndDown2}>
                                 <div className="container-fluid">
                                     <div className="row py-3">
                                         <div className="col-4 pl-4" style={{ textAlign: "left" }}>
@@ -1231,14 +1232,14 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Collapse>
 
                             {/* TABLE 3*/}
-                            {!this.state.upAndDown3 ?
-                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="true" aria-controls="multiCollapseExample3">Applicant Tracking & Screening<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown3}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="true" aria-controls="multiCollapseExample3">Applicant Tracking & Screening<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown3}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                            {this.state.upAndDown3 ?
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown3} onClick={this.setUpAndDown3}>Applicant Tracking & Screening<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown3} onClick={this.setUpAndDown3}>Applicant Tracking & Screening<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-up'></i></span></div>
                             }
-                            <div class="collapse multi-collapse" id="multiCollapseExample3">
+                            <Collapse in={this.state.upAndDown3}>
                                 <div className="container-fluid">
                                     <div className="row py-3">
                                         <div className="col-4 pl-4" style={{ textAlign: "left" }}>
@@ -1423,14 +1424,14 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Collapse>
 
                             {/* TABLE 4*/}
-                            {!this.state.upAndDown4 ?
-                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="true" aria-controls="multiCollapseExample4">Collaboration & decision making<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown4}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="true" aria-controls="multiCollapseExample4">Collaboration & decision making<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown4}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                            {this.state.upAndDown4 ?
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown4} onClick={this.setUpAndDown4}>Collaboration & decision making<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown4} onClick={this.setUpAndDown4}>Collaboration & decision making<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-up'></i></span></div>
                             }
-                            <div class="collapse multi-collapse" id="multiCollapseExample4">
+                            <Collapse in={this.state.upAndDown4}>
                                 <div className="container-fluid">
                                     <div className="row py-3">
                                         <div className="col-4 pl-4" style={{ textAlign: "left" }}>
@@ -1531,14 +1532,14 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Collapse>
 
                             {/* TABLE 5*/}
-                            {!this.state.upAndDown5 ?
-                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample5" role="button" aria-expanded="true" aria-controls="multiCollapseExample5">Training & Support<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown5}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                                <div className="pricing-toggle-stripe" data-toggle="collapse" href="#multiCollapseExample5" role="button" aria-expanded="true" aria-controls="multiCollapseExample5">Training & Support<span style={{ float: "right", color: "#7C94B5" }} onClick={this.setUpAndDown5}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                            {this.state.upAndDown5 ?
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown5} onClick={this.setUpAndDown5}>Training & Support<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown5} onClick={this.setUpAndDown5}>Training & Support<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-up'></i></span></div>
                             }
-                            <div class="collapse multi-collapse" id="multiCollapseExample5">
+                            <Collapse in={this.state.upAndDown5}>
                                 <div className="container-fluid">
                                     <div className="row py-3">
                                         <div className="col-4 pl-4" style={{ textAlign: "left" }}>
@@ -1611,7 +1612,7 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Collapse>
                         </div>
                     </div>
                 </div>
