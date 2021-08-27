@@ -193,11 +193,10 @@ export class CandidateLogin extends Component {
                           href="/password_reset"
                           target="_blank"
                           rel="noreferrer"
-                          className="navbar-font"
                           style={{
                             fontSize: "1rem",
                             fontFamily: "Avenir Next, Segoe UI",
-                            color: "#7D7D7D",
+                            color: "#090d3a",
                             fontWeight: "300",
                             float: "right",
                             marginBottom: "1rem",
