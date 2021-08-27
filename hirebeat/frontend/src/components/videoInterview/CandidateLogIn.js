@@ -188,22 +188,21 @@ export class CandidateLogin extends Component {
                           }}
                           required />
                       </div>
-                      <div className="form-group">
+                      <div className="d-flex justify-content-end">
                         <a
-                          href="/password_reset"
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{
-                            fontSize: "1rem",
-                            fontFamily: "Avenir Next, Segoe UI",
-                            color: "#090d3a",
-                            fontWeight: "300",
-                            float: "right",
-                            marginBottom: "1rem",
-                          }}
+                            href="/password_reset"
+                            target="_blank"
+                            className="navbar-font"
+                            style={{
+                              fontSize:"1rem",
+                              fontFamily: "Avenir Next, Segoe UI",
+                              color: "#7D7D7D",
+                              fontWeight: "300"
+                            }}
                         >
                           Forget password?
                         </a>
+
                       </div>
 
                       <div
