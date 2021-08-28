@@ -149,7 +149,7 @@ export class JobCard extends Component {
                                     </div>
                                 </div>
                                 <div id="resume-hr"><hr /></div>
-                                <p style={{ textAlign: 'center' }}>Share on other platforms</p>
+                                <p className="share-p">Share on other platforms</p>
                                 <div className="single-footer-widget1" style={{textAlign:'center'}}>
                                     <ul className="social">
                                         <li>

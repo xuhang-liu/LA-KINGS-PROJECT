@@ -264,23 +264,12 @@ export class Header extends Component {
             <li className="nav-item ">
               <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Product <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "12rem" }}>
-                    <li><Link id="id-product-interview3" to="/employer-product" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Overview</Link></li>
+                  Employers <i className="bx-fw bx bx-chevron-down"></i>
+                  <ul className="nav_submenu" style={{ height: "11rem" }}>
+                    <li><Link id="id-product-interview3" to="/employer-product" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Product Overview</Link></li>
                     <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
                     <li><Link id="id-one-way-interview3" to="/employer-feature-video" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>One-Way Interview</Link></li>
                     <li><Link id="id-resume-screning3" to="/employer-resume-screening" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Resume Screening</Link></li>
-                    <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
-                    <li><Link id="id-intergration-page3" to="/employer-intergration-page" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Integrations</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Solutions <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "3.2rem" }}>
                     <li><Link id="id-solution-page3" to="/employer-solution-page" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Campus Recruiting</Link></li>
                   </ul>
                 </span>

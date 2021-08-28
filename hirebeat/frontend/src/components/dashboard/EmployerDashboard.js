@@ -252,7 +252,7 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "applications") {
       this.refreshPage();
     }
-    else if (this.props.profile.membership == "Regular") {
+    else if (this.props.profile.membership == "Regular" && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
       confirmAlert({
         title: 'Upgrade Now!',
         message: 'Your free trial expired',
@@ -323,7 +323,7 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "shortlist") {
       this.refreshPage();
     }
-    else if (this.props.profile.membership == "Regular") {
+    else if (this.props.profile.membership == "Regular" && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
       confirmAlert({
         title: 'Upgrade Now!',
         message: 'Your free trial expired',
@@ -498,6 +498,7 @@ export class EmployerDashboard extends Component {
           phone_number={this.props.profile.phone_number}
           renderApplications={this.renderApplications}
           renderEmployerProfile={this.renderEmployerProfile}
+          renderShortlist={this.renderShortlist}
           sub_r_list={this.props.sub_r_list}
           ext_r_list={this.props.ext_r_list}
           removeReviewerFromList={this.props.removeReviewerFromList}

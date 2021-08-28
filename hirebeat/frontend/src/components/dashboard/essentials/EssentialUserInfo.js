@@ -356,7 +356,7 @@ export class EssentialUserInfo extends Component {
                     </div>
                   }
                   <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr>
-                  {(this.props.profile.is_employer && !this.props.profile.is_external_reviewer) &&
+                  {(this.props.profile.is_employer && !this.props.profile.is_external_reviewer && !this.props.profile.is_subreviwer) &&
                     <div className="row" style={{ marginTop: "0rem", textAlign: "center", marginBottom: "0.5rem" }}>
                         <div className="col d-flex align-items-center">
                           <button
@@ -417,7 +417,8 @@ export class EssentialUserInfo extends Component {
                       </button>
                     </div>
                   </div>
-                  {<div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
+                  {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
+                    <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                     <div className="col d-flex align-items-center">
                       <button
                         type="button"
