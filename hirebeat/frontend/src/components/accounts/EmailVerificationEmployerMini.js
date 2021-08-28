@@ -82,7 +82,7 @@ class EmailVerificationEmployerMini extends Component {
                                       <img style={{height: "3vw"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/registration_step3.png" alt="step flow" />
                                   </div>
                                     <h1 className="email-verify-title" style={{color: "#ffffff"}}>One More Step</h1>
-                                    <p className="email-verify-txt" style={{color: "#ffffff"}}>You will need to verify toyr email to complete registration  </p>
+                                    <p className="email-verify-txt" style={{color: "#ffffff"}}>You will need to verify your email to complete registration  </p>
                                     <div className="justify-items">
                                         <i className="bx bx-mail-send" style={{fontSize: "9.375rem", color: "#ffffff"}}></i>
                                     </div>

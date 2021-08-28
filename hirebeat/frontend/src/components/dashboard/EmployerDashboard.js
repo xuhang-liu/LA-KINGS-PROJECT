@@ -436,6 +436,8 @@ export class EmployerDashboard extends Component {
           getZRFeedXML={this.props.getZRFeedXML}
           getZRPremiumFeedXML={this.props.getZRPremiumFeedXML}
           employerProfileDetail={this.props.employerProfileDetail}
+          jobs={this.props.jobs}
+          companyName={this.props.profile.company_name}
         />;
       case "jobEdition":
         return <JobEdition

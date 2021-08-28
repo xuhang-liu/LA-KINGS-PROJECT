@@ -73,7 +73,7 @@ class EmailVerification extends Component {
                 <section className="signup-area min-width-1290">
                     <div className="row m-0">
                         <div className="col-lg-6 col-md-12 p-0">
-                          <img src="https://hirebeat-assets.s3.amazonaws.com/Login.png" alt="image"></img>
+                          <img src="https://hirebeat-assets.s3.amazonaws.com/Login2.jpg" alt="image"></img>
                         </div>
                         <div className="col-lg-6 col-md-12 p-0">
                             <div className="signup-content" style={{marginTop:"6rem"}}>
@@ -82,7 +82,7 @@ class EmailVerification extends Component {
                                       <img style={{width: "86%", height: "3vw"}} src="https://hirebeat-assets.s3.amazonaws.com/step5.png" alt="step flow" />
                                   </div>
                                     <h1 className="email-verify-title">One More Step</h1>
-                                    <p className="email-verify-txt">You will need to verify toyr email to complete registration  </p>
+                                    <p className="email-verify-txt">You will need to verify your email to complete registration  </p>
                                     <div className="justify-items">
                                         <i className="bx bx-mail-send" style={{fontSize: "9.375rem", color: "#67A3F3"}}></i>
                                     </div>

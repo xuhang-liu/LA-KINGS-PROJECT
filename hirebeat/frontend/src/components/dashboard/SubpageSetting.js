@@ -225,7 +225,7 @@ export class SubpageSetting extends Component {
                                         </div>
                                     </div>
                                 </div>}
-                            <form style={{ marginBottom: "3%" }} onSubmit={this.saveChanges}>
+                            {/*<form style={{ marginBottom: "3%" }} onSubmit={this.saveChanges}>
                                 <div className="form-row" style={{ marginTop: "1%" }}>
                                     {!this.props.profile.is_employer &&
                                         <div className="form-group col-6">
@@ -240,19 +240,19 @@ export class SubpageSetting extends Component {
                                                 required="required"
                                             />
                                         </div>}
-                                    {/*this.props.profile.is_employer &&
-                                    <div className="form-group col-6">
-                                        <label style={{ fontSize: "17px" }}>Company Name</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            name={"company_name"}
-                                            value={this.state.company_name}
-                                            onChange={this.handleInputChange}
-                                            placeholder={"Company Name"}
-                                            required="required"
-                                        />
-                                    </div>*/}
+//                                    {this.props.profile.is_employer &&
+//                                    <div className="form-group col-6">
+//                                        <label style={{ fontSize: "17px" }}>Company Name</label>
+//                                        <input
+//                                            type="text"
+//                                            className="form-control"
+//                                            name={"company_name"}
+//                                            value={this.state.company_name}
+//                                            onChange={this.handleInputChange}
+//                                            placeholder={"Company Name"}
+//                                            required="required"
+//                                        />
+//                                    </div>}
                                     <div className="form-group col-6">
                                         <p style={{ fontSize: "17px", color: "#090d3a" }}>Location</p>
                                         <input
@@ -275,7 +275,7 @@ export class SubpageSetting extends Component {
                                 >
                                     Update Profile
                                 </button>
-                            </form>
+                            </form>*/}
                         </div>
                     </div>}
                 {(!this.props.profile.is_external_reviewer && !this.props.profile.is_subreviwer && this.props.profile.is_employer) &&

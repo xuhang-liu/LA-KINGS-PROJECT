@@ -82,7 +82,7 @@ def add_new_job(request):
 def get_all_jobs(request):
     data = {}
     user_id = request.query_params.get("userId")
-    jobs = list(Jobs.objects.filter(user_id=user_id).values())
+    jobs = list(Jobs.objects.filter(user_id=user_id).order_by('-id').values())
     for i in range(len(jobs)):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]

@@ -58,15 +58,16 @@ export class EmployerRegisterCompanyInfoForm extends Component {
         control: styles => ({ ...styles, backgroundColor: '#ffffff', boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)", height: '55px' }),
         singleValue: styles => ({
             ...styles,
-            fontSize: '0.9375rem',
+            fontSize: '14px',
             fontFamily: 'Avenir Next,Segoe UI, sans-serif',
-            fontWeight: '500'
+            fontWeight: 'normal'
         }),
         placeholder: styles => ({
             ...styles,
              fontFamily: "Avenir Next, Segoe UI",
              background: "#FFFFFF",
              borderRadius: "5px",
+             fontSize: "16px",
              color: "rgb(153 153 153)",
         }),
     };

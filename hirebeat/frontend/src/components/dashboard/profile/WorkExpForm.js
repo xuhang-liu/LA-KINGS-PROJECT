@@ -33,7 +33,7 @@ export class WorkExpForm extends Component {
     }
 
     removeWorkExp = (index) => {
-        this.saveWorkExp(index + 1, index); // delete data from db
+        this.saveWorkExp(index, index); // delete data from db
         // delete from states
         let array = [...this.state.count];
         array.splice(index, 1);
@@ -41,7 +41,8 @@ export class WorkExpForm extends Component {
         this.props.removeWorkExp(index); // manipulate the profile.js layer
     }
 
-    saveWorkExp = (size, delIndex) => {
+    saveWorkExp = (index, delIndex) => {
+        // delIndex === -1 means not deletion, but for update or create
         const companies = ["company1", "company2", "company3", "company4", "company5"];
         const titles = ["title1", "title2", "title3", "title4", "title5"];
         const startDates = ["start_date1", "start_date2", "start_date3", "start_date4", "start_date5"];
@@ -55,26 +56,25 @@ export class WorkExpForm extends Component {
             {"company4": "", "title4": "", "start_date4": "", "end_date4": "", "work_description4": ""},
             {"company5": "", "title5": "", "start_date5": "", "end_date5": "", "work_description5": ""},
         ];
-        for (let i = 0; i < size; i++) {
-            array[i][companies[i]] = i == delIndex ? "" : document.getElementById(companies[i]).value;
-            array[i][titles[i]] = i == delIndex ? "" : document.getElementById(titles[i]).value;
-            array[i][startDates[i]] = i == delIndex ? "" : document.getElementById(startDates[i]).value;
-            if (document.getElementById(endDates[i]) != null) {
-                array[i][endDates[i]] = i == delIndex ? "" : document.getElementById(endDates[i]).value;
-            }else {
-                array[i][endDates[i]] = i == delIndex ? "" : "Present";
-            }
-            array[i][workDescriptions[i]] = i == delIndex ? "" : document.getElementById(workDescriptions[i]).value;
+
+        array[index][companies[index]] = index == delIndex ? "" : document.getElementById(companies[index]).value;
+        if (delIndex === -1 && array[index][companies[index]] == "") return alert("Company name is required");
+        array[index][titles[index]] = index == delIndex ? "" : document.getElementById(titles[index]).value;
+        array[index][startDates[index]] = index == delIndex ? "" : document.getElementById(startDates[index]).value;
+        if (document.getElementById(endDates[index]) != null) {
+            array[index][endDates[index]] = index == delIndex ? "" : document.getElementById(endDates[index]).value;
+        }else {
+            array[index][endDates[index]] = index == delIndex ? "" : "Present";
         }
+        array[index][workDescriptions[index]] = index == delIndex ? "" : document.getElementById(workDescriptions[index]).value;
+
         let data = {
             "user_id": this.props.userId,
             "data": array,
         }
         this.props.updateWorkExp(data);
-        if (delIndex == -1) {  // -1 means not deletion, but for update or create
-            this.props.getUpdatedData();
-            this.props.cancelEditWorkExp();
-        }
+        this.props.getUpdatedData();
+        this.props.cancelEditWorkExp();
     }
 
     render () {
@@ -89,34 +89,21 @@ export class WorkExpForm extends Component {
                     <div className="col-7">
                         <h3 className="profile-h3">Experience</h3>
                     </div>
-                    <div className="col-5 profile-edit">
-                        <div style={{float: "right"}}>
-                            <span style={{cursor:"pointer"}} onClick={this.props.cancelEditWorkExp}>Cancel</span>
-                            <span onClick={() => {this.saveWorkExp(this.state.count.length, -1)}} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
-                        </div>
-                    </div>
                 </div>
 
-                {this.state.count.map((c, index) => {
-                    return (
-                        <WorkFormCard
-                            index={index}
-                            removeWorkExp={this.removeWorkExp}
-                            company={companies[index]}
-                            title={titles[index]}
-                            startDate={startDates[index]}
-                            endDate={endDates[index]}
-                            workDescription={workDescriptions[index]}
-                            profileDetail={this.props.profileDetail}
-                        />
-                    )
-                })}
+                <WorkFormCard
+                    index={this.props.index}
+                    removeWorkExp={this.removeWorkExp}
+                    company={companies[this.props.index]}
+                    title={titles[this.props.index]}
+                    startDate={startDates[this.props.index]}
+                    endDate={endDates[this.props.index]}
+                    workDescription={workDescriptions[this.props.index]}
+                    profileDetail={this.props.profileDetail}
+                    cancelEditWorkExp={this.props.cancelEditWorkExp}
+                    saveWorkExp={() => {this.saveWorkExp(this.props.index, -1)}}
+                />
 
-                <div className="row" style={{marginTop: "1rem"}}>
-                    <div className="col-7">
-                        <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addWorkExp}>Add Experience</span>
-                    </div>
-                </div>
             </div>
         )
 
@@ -161,9 +148,15 @@ const WorkFormCard = (props) => {
                         <p className="profile-p" style={{margin: "0rem"}}>Description</p>
                         <textarea id={props.workDescription} defaultValue={profileDetail[props.workDescription]} className="profile-input profile-p" style={{width: "100%", height: "6rem"}}></textarea>
                     </div>
-                    <div className="row" style={{marginTop: "1rem"}}>
-                        <div style={{paddingLeft: "90%"}}>
-                            <span onClick={() => {props.removeWorkExp(index)}} className="profile-edit" style={{color: "#FF0000", float: "right", cursor:"pointer"}}>Delete</span>
+                    <div className="row d-flex" style={{marginTop: "1rem"}}>
+                        <div className="col-2">
+                            <button onClick={() => {props.removeWorkExp(index)}} className="default-btn" style={{backgroundColor: "#FF0000", paddingLeft: "25px"}}>Delete</button>
+                        </div>
+                        <div className="ml-auto col-2">
+                            <button onClick={props.cancelEditWorkExp} className="default-btn" style={{backgroundColor: "#E5E5E5", paddingLeft: "25px", color: "#090D3A"}}>Cancel</button>
+                        </div>
+                        <div className="col-2">
+                            <button onClick={props.saveWorkExp} className="default-btn" style={{backgroundColor: "#67A3F3", paddingLeft: "25px"}}>Save</button>
                         </div>
                     </div>
                 </div>
