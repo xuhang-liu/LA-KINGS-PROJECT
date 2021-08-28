@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML } from "../../../redux/actions/job_actions";
 import axios from "axios";
 import { MyModalShare } from "../DashboardComponents";
-import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from "react-share";
+import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton } from "react-share";
 
 export class JobCard extends Component {
 
@@ -115,8 +115,22 @@ export class JobCard extends Component {
                     </div>
                     <div className="col-2 interview-txt9 d-flex justify-content-center mt-2">{this.props.job.job_details.create_date.substring(0, 10)}</div>
                     <div className="col-3 interview-txt9 d-flex justify-content-center mt-2" style={{ display: "flex", alignItems: "center" }}>
-                        <a className="title-button2" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }} href={this.props.job.job_details.job_url}><i className="bx-fw bx bx-show"></i>Preview</a>
-                        <button className="title-button2" onClick={this.openShare}><i className="bx-fw bx bx-link-external"></i>Share</button>
+                        <a className="title-button2 tool_tip" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }} href={this.props.job.job_details.job_url}>
+                            <i className="bx-fw bx bx-show"></i>Preview
+                            <p className="tool_submenu container" style={{ width: "9rem", left: "1rem" }}>
+                                <div>
+                                    See what your job posting page looks like.
+                                </div>
+                            </p>
+                        </a>
+                        <button className="title-button2 tool_tip" onClick={this.openShare}>
+                            <i className="bx-fw bx bx-link-external"></i>Share
+                            <p className="tool_submenu container" style={{ width: "9rem", left: "3rem" }}>
+                                <div>
+                                    Get a unique link to your job posting and one-click share to social media.
+                                </div>
+                            </p>
+                        </button>
                         <MyModalShare
                             show={this.state.showShare}
                             onHide={() => { this.disableShowShare() }}
@@ -134,7 +148,7 @@ export class JobCard extends Component {
                                         </button>
                                     </div>
                                 </div>
-                                <hr className="hr-text" data-content="or" />
+                                <div id="resume-hr"><hr /></div>
                                 <p style={{ textAlign: 'center' }}>Share on other platforms</p>
                                 <div className="single-footer-widget1" style={{textAlign:'center'}}>
                                     <ul className="social">
@@ -168,6 +182,15 @@ export class JobCard extends Component {
                                                     <i className="bx bxl-linkedin"></i>
                                                 </a>
                                             </LinkedinShareButton>
+                                        </li>
+                                        <li>
+                                            <WhatsappShareButton
+                                                url={this.props.job.job_details.job_url}
+                                                title={this.props.job.job_details.job_title + " at " + this.props.profile.company_name}>
+                                                <a target="_blank" rel="noreferrer">
+                                                    <i className="bx bxl-whatsapp"></i>
+                                                </a>
+                                            </WhatsappShareButton>
                                         </li>
                                     </ul>
                                 </div>

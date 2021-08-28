@@ -89,6 +89,8 @@ export class Profile extends Component {
             isEditProfileShare: false,
             photoSelected: false,
             location: location,
+            eduEditId: "",
+            expEditId: "",
         }
     }
 
@@ -636,6 +638,26 @@ export class Profile extends Component {
         }
     };
 
+    setEduEditId = (eduEditId) => {
+        this.setState({eduEditId: eduEditId});
+    }
+
+    addNewSchool = () => {
+        let eduEditId = this.state.eduCount.length;
+        this.setEduEditId(eduEditId);
+        this.editEducation();
+    }
+
+    setExpEditId = (expEditId) => {
+        this.setState({expEditId: expEditId});
+    }
+
+    addNewExp = () => {
+        let expEditId = this.state.worCount.length;
+        this.setExpEditId(expEditId);
+        this.editWorkExp();
+    }
+
     render () {
         const name = this.props.profileDetail.f_name + " " + this.props.profileDetail.l_name;
         const jobType = { value: this.props.profileDetail.job_type, label: this.props.profileDetail.job_type };
@@ -764,6 +786,7 @@ export class Profile extends Component {
                                                 lastName={this.props.profileDetail.l_name}
                                                 company={this.props.profileDetail.current_company}
                                                 location={this.props.profileDetail.location}
+                                                position={this.props.profileDetail.current_job_title}
                                                 shareProfile={this.props.profileDetail.share_profile}
                                                 openToHR={this.props.profileDetail.open_to_hr}
                                                 updateProfileSharing={this.props.updateProfileSharing}
@@ -1269,6 +1292,11 @@ export class Profile extends Component {
                                 <div style={{ padding: "2rem" }}>
                                     {!this.state.isEditEducation ?
                                         <div>
+                                            <div className="row">
+                                                <div className="col-8">
+                                                    <h3 className="profile-h3">Education</h3>
+                                                </div>
+                                            </div>
                                             {schools.map((s, index) => {
                                                 if (index == 0 || (this.props.profileDetail[schools[index]] != "" && this.props.profileDetail[schools[index]] != null)) {
                                                     return (
@@ -1279,10 +1307,15 @@ export class Profile extends Component {
                                                             gpa={this.props.profileDetail[gpas[index]]}
                                                             graduationDate={this.props.profileDetail[graduationDates[index]]}
                                                             index={index}
+                                                            setEduEditId={this.setEduEditId}
                                                         />
                                                     )
                                                 }
                                             })}
+                                            <hr />
+                                            <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addNewSchool}>
+                                                + Add School
+                                            </span>
                                         </div> :
                                         <div>
                                             <EducationForm
@@ -1294,6 +1327,7 @@ export class Profile extends Component {
                                                 addEducation={this.addEducation}
                                                 removeEducation={this.removeEducation}
                                                 getUpdatedData={this.getUpdatedData}
+                                                index={this.state.eduEditId}
                                             />
                                         </div>
                                     }
@@ -1303,6 +1337,11 @@ export class Profile extends Component {
                             {/* Work Experience */}
                             <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
                                 <div style={{ padding: "2rem" }}>
+                                    <div className="row">
+                                        <div className="col-8">
+                                            <h3 className="profile-h3">Experience</h3>
+                                        </div>
+                                    </div>
                                     {!this.state.isEditWorkExp ?
                                         <div>
                                             {companies.map((c, index) => {
@@ -1316,10 +1355,15 @@ export class Profile extends Component {
                                                             endDate={this.props.profileDetail[endDates[index]]}
                                                             workDescription={this.props.profileDetail[workDescriptions[index]]}
                                                             index={index}
+                                                            setExpEditId={this.setExpEditId}
                                                         />
                                                     )
                                                 }
                                             })}
+                                            <hr />
+                                            <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addNewExp}>
+                                                + Add Experience
+                                            </span>
                                         </div> :
                                         <div>
                                             <WorkExpForm
@@ -1331,6 +1375,7 @@ export class Profile extends Component {
                                                 addWorkExp={this.addWorkExp}
                                                 removeWorkExp={this.removeWorkExp}
                                                 getUpdatedData={this.getUpdatedData}
+                                                index={this.state.expEditId}
                                             />
                                         </div>
                                     }

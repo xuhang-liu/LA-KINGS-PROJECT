@@ -347,7 +347,7 @@ export class Sourcing extends Component {
                                         <div className="py-3 px-5">
                                             <h3 className="profile-h3">Resume</h3>
                                             {(this.props.sourcingData.profiles[this.state.can_index].resume_url == null || this.props.sourcingData.profiles[this.state.can_index].resume_url == "")?
-                                            <button className="default-btn" type="button" style={{ marginTop: "0.5rem", width:"100%", backgroundColor: "#ffffff", color: "#090d3a", border: "1px solid #E8EDFC", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }}>No Resume</button>:
+                                            <p className="profile-p">Not available</p>:
                                             <button className="default-btn" type="button" style={{ marginTop: "0.5rem", width:"100%", backgroundColor: "#ffffff", color: "#090d3a", border: "1px solid #E8EDFC", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }} onClick={this.enableShowResume}>View Resume</button>}
                                             <MyModal80
                                                 show={this.state.showResume}
@@ -383,6 +383,16 @@ export class Sourcing extends Component {
                                                 })
                                                 }
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div className="chart-bg1 mt-2">
+                                        <div className="py-3 px-5">
+                                            <h3 className="profile-h3">Job Preference</h3>
+                                            <p className="profile-p">
+                                                {(this.props.sourcingData.profiles[this.state.can_index].job_type !== "") ?
+                                                    this.props.sourcingData.profiles[this.state.can_index].job_type : ""
+                                                }
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

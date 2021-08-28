@@ -143,9 +143,9 @@ export class SourcingFilter extends Component {
             <React.Fragment>
                 <div className="row">
                     <div className="col-4">
-                        <p className="profile-p" style={{margin: "0rem"}}>Search</p>
+                        <p className="sourcing-filter-p" style={{margin: "0rem"}}>Search</p>
                         <input
-                            id="keywords" name="keywords" className="sourcing-input profile-p"
+                            id="keywords" name="keywords" className="sourcing-input sourcing-filter-p"
                             defaultValue={this.state.keywords} style={{width: "100%"}} onChange={this.handleInput}
                             placeholder="Enter a keyword"
                         >
@@ -153,7 +153,7 @@ export class SourcingFilter extends Component {
                         </input>
                     </div>
                     <div className="col-4">
-                        <p className="profile-p" style={{margin: "0rem"}}>Location</p>
+                        <p className="sourcing-filter-p" style={{margin: "0rem"}}>Location</p>
                         <div className="d-flex register">
                             <input
                                 type="number"
@@ -161,7 +161,7 @@ export class SourcingFilter extends Component {
                                 id="location"
                                 onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
                                 onChange={this.handleZipcode}
-                                className="sourcing-input profile-p"
+                                className="sourcing-input sourcing-filter-p"
                                 defaultValue={this.state.zipcode}
                                 placeholder="Enter zipcode"
                             />
@@ -171,7 +171,7 @@ export class SourcingFilter extends Component {
                         </div>
                     </div>
                     <div className="col">
-                        <p className="profile-p" style={{margin: "0rem"}}>Skills</p>
+                        <p className="sourcing-filter-p" style={{margin: "0rem"}}>Skills</p>
                         <Select
                              ref={ref => {this.selectRef = ref;}}
                              isMulti value={this.state.skills} onChange={this.onFilter} options={SkillOptions} styles={this.customStyles}
@@ -181,16 +181,16 @@ export class SourcingFilter extends Component {
                 </div>
                 <div className="row" style={{marginTop: "2rem"}}>
                     <div className="col-4">
-                        <p className="profile-p" style={{margin: "0rem"}}>Current Position</p>
+                        <p className="sourcing-filter-p" style={{margin: "0rem"}}>Current Position</p>
                         <input
-                            id="position" name="position" className="sourcing-input profile-p"
+                            id="position" name="position" className="sourcing-input sourcing-filter-p"
                             defaultValue={this.state.position} style={{width: "100%"}} onChange={this.handleInput}
                             placeholder="Enter position name"
                             >
                         </input>
                     </div>
                     <div className="col-3">
-                        <p className="profile-p" style={{margin: "0rem"}}>Video Profile</p>
+                        <p className="sourcing-filter-p" style={{margin: "0rem"}}>Video Profile</p>
                         <div className="d-flex" style={{paddingTop: "0.5rem"}}>
                              <div>
                                 <label className="sourcing-radio">
@@ -207,19 +207,14 @@ export class SourcingFilter extends Component {
                 </div>
 
                 <div className="row" style={{marginTop: "2rem"}}>
-                    <div className="col-2 justify-align-center">
+                    <div className="col-2" style={{display: "flex", alignItems: "center", justifyContent: "left"}}>
                         <span className="sourcing-p2" style={{cursor: "pointer"}} onClick={this.clearForm}>Clear Filter</span>
                     </div>
-                    <div className="col" />
-                    <div className="col-4">
-                        <div className="row d-flex justify-content-center">
-                            <div className="col-3 profile-edit">
-                                <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px", zIndex: "0"}} onClick={this.props.onHide}>Cancel</button>
-                            </div>
-                            <div className="col-3 profile-edit">
-                                <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px", marginLeft: "1rem", zIndex: "0"}} onClick={this.handleSave}>Save</button>
-                            </div>
-                        </div>
+                    <div className="profile-edit" style={{marginLeft: "auto"}}>
+                        <button className="default-btn" style={{background: "#E5E5E5", color: "#7D7D7D", paddingLeft: "25px", zIndex: "0"}} onClick={this.props.onHide}>Cancel</button>
+                    </div>
+                    <div className="profile-edit" style={{marginRight: "15px"}}>
+                        <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px", marginLeft: "1rem", zIndex: "0"}} onClick={this.handleSave}>Apply</button>
                     </div>
                 </div>
             </React.Fragment>

@@ -34,7 +34,7 @@ export class EducationForm extends Component {
     }
 
     removeEducation = (index) => {
-        this.saveEducation(index + 1, index) // delete data from db
+        this.saveEducation(index, index) // delete data from db
         // delete from states
         let array = [...this.state.count];
         array.splice(index, 1);
@@ -46,7 +46,8 @@ export class EducationForm extends Component {
         this.setState({isAddMajor: true});
     }
 
-    saveEducation = (size, delIndex) => {
+    saveEducation = (index, delIndex) => {
+        // delIndex === -1 means not deletion, but for update or create
         const schools = ["school1", "school2", "school3"];
         const graduationDates = ["graduation_date1", "graduation_date2", "graduation_date3"];
         const majors = ["major1", "major2", "major3"];
@@ -59,27 +60,27 @@ export class EducationForm extends Component {
             {"school2": "", "graduation_date2": "", "major2": "", "extra_major2": "", "degree2": "", "gpa2": ""},
             {"school3": "", "graduation_date3": "", "major3": "", "extra_major3": "", "degree3": "", "gpa3": ""},
         ];
-        for (let i = 0; i < size; i++) {
-            array[i][schools[i]] = i == delIndex ? "" : document.getElementById(schools[i]).value;
-            array[i][graduationDates[i]] = i == delIndex ? "" : document.getElementById(graduationDates[i]).value;
-            array[i][majors[i]] = i == delIndex ? "" : document.getElementById(majors[i]).value;
-            if (document.getElementById(extraMajors[i]) != null) {
-                array[i][extraMajors[i]] = i == delIndex ? "" : document.getElementById(extraMajors[i]).value;
-            }else {
-                array[i][extraMajors[i]] = "";
-            }
-            array[i][degrees[i]] = i == delIndex ? "" : document.getElementById(degrees[i]).value;
-            array[i][gpas[i]] = i == delIndex ? "" : document.getElementById(gpas[i]).value;
+
+        array[index][schools[index]] = index == delIndex ? "" : document.getElementById(schools[index]).value;
+        // check school
+        if (delIndex === -1 && array[index][schools[index]] == "") return alert("School name is required");
+        array[index][graduationDates[index]] = index == delIndex ? "" : document.getElementById(graduationDates[index]).value;
+        array[index][majors[index]] = index == delIndex ? "" : document.getElementById(majors[index]).value;
+        if (document.getElementById(extraMajors[index]) != null) {
+            array[index][extraMajors[index]] = index == delIndex ? "" : document.getElementById(extraMajors[index]).value;
+        }else {
+            array[index][extraMajors[index]] = "";
         }
+        array[index][degrees[index]] = index == delIndex ? "" : document.getElementById(degrees[index]).value;
+        array[index][gpas[index]] = index == delIndex ? "" : document.getElementById(gpas[index]).value;
+
         let data = {
             "user_id": this.props.userId,
             "data": array,
         }
         this.props.updateEducation(data);
-        if (delIndex == -1) {  // -1 means not deletion, but for update or create
-            this.props.getUpdatedData();
-            this.props.cancelEditEducation();
-        }
+        this.props.getUpdatedData();
+        this.props.cancelEditEducation();
     }
 
     render () {
@@ -95,35 +96,22 @@ export class EducationForm extends Component {
                     <div className="col-7">
                         <h3 className="profile-h3">Education</h3>
                     </div>
-                    <div className="col-5 profile-edit">
-                        <div style={{float: "right"}}>
-                            <span style={{cursor:"pointer"}} onClick={this.props.cancelEditEducation}>Cancel</span>
-                            <span onClick={() => {this.saveEducation(this.state.count.length, -1)}} style={{marginLeft: "1rem", cursor:"pointer"}}>Save</span>
-                        </div>
-                    </div>
                 </div>
 
-                {this.state.count.map((c, index) => {
-                    return (
-                        <FormCard
-                            index={index}
-                            removeEducation={this.removeEducation}
-                            school={schools[index]}
-                            graduationDate={graduationDates[index]}
-                            major={majors[index]}
-                            extraMajor={extraMajors[index]}
-                            degree={degrees[index]}
-                            gpa={gpas[index]}
-                            profileDetail={this.props.profileDetail}
-                         />
-                    )
-                })}
+                <FormCard
+                    index={this.props.index}
+                    removeEducation={this.removeEducation}
+                    school={schools[this.props.index]}
+                    graduationDate={graduationDates[this.props.index]}
+                    major={majors[this.props.index]}
+                    extraMajor={extraMajors[this.props.index]}
+                    degree={degrees[this.props.index]}
+                    gpa={gpas[this.props.index]}
+                    profileDetail={this.props.profileDetail}
+                    cancelEditEducation={this.props.cancelEditEducation}
+                    saveEducation={() => {this.saveEducation(this.props.index, -1)}}
+                 />
 
-                <div className="row" style={{marginTop: "1rem"}}>
-                    <div className="col-7">
-                        <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addEducation}>Add University</span>
-                    </div>
-                </div>
             </div>
         )
 
@@ -175,9 +163,15 @@ const FormCard = (props) => {
                             <input id={props.gpa} defaultValue={profileDetail[props.gpa]} className="profile-input profile-p4" style={{width: "100%"}}></input>
                         </div>
                     </div>
-                    <div className="row" style={{marginTop: "1rem"}}>
-                        <div style={{paddingLeft: "90%"}}>
-                            <span onClick={() => {props.removeEducation(index)}} className="profile-edit" style={{color: "#FF0000", float: "right", cursor:"pointer"}}>Delete</span>
+                    <div className="row d-flex" style={{marginTop: "1rem"}}>
+                        <div className="col-2">
+                            <button onClick={() => {props.removeEducation(index)}} className="default-btn" style={{backgroundColor: "#FF0000", paddingLeft: "25px"}}>Delete</button>
+                        </div>
+                        <div className="ml-auto col-2">
+                            <button onClick={props.cancelEditEducation} className="default-btn" style={{backgroundColor: "#E5E5E5", paddingLeft: "25px", color: "#090D3A"}}>Cancel</button>
+                        </div>
+                        <div className="col-2">
+                            <button onClick={props.saveEducation} className="default-btn" style={{backgroundColor: "#67A3F3", paddingLeft: "25px"}}>Save</button>
                         </div>
                     </div>
                 </div>
