@@ -18,7 +18,6 @@ export class Sourcing extends Component {
         can_index: 0,
         showResume: false,
         showContact: false,
-        pageCount: this.props.sourcingData.total_page,
     }
 
     componentDidMount() {

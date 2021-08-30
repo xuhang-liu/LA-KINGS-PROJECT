@@ -17,6 +17,7 @@ import QuestionForm from "./QuestionForm";
 import EditQuestion from "./EditQuestion"
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import ReactPaginate from 'react-paginate';
 
 export class JobApplication extends Component {
 
@@ -91,6 +92,9 @@ export class JobApplication extends Component {
                                     getReviewNote={this.props.getReviewNote}
                                     getReviewerEvaluation={this.props.getReviewerEvaluation}
                                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                                    totalRecords={p.total_records}
+                                    totalPage={p.total_page}
+                                    getPostedJobs={this.props.getPostedJobs}
                                 />
                             )
                         })}
@@ -329,7 +333,7 @@ const JobViewDetail = (props) => {
                                     </div>
                                     <div className="row mb-2 mt-1">
                                         <div className="col-4">
-                                            <p style={{ color: "#4A6F8A" }}>Invited Applicants: {props.applicants.length}</p>
+                                            <p style={{ color: "#4A6F8A" }}>Invited Applicants: {props.totalRecords}</p>
                                         </div>
                                         <div className="col-8 mb-4" style={{ color: "#4A6F8A", borderLeft: "outset" }}>
                                             <p>Created On: {props.inviteDate.substring(0, 10)}</p>
@@ -476,6 +480,9 @@ const JobViewDetail = (props) => {
                     getReviewNote={props.getReviewNote}
                     getReviewerEvaluation={props.getReviewerEvaluation}
                     getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                    totalRecords={props.totalRecords}
+                    totalPage={props.totalPage}
+                    getPostedJobs={props.getPostedJobs}
                 />
             }
         </React.Fragment>
@@ -600,17 +607,6 @@ const JobCard = (props) => {
     //            e.preventDefault();
     //        }
     //    }
-
-    // pagination
-    const [offset, setOffset] = useState(0);
-    const [perPage, setPerPage] = useState(8);
-    let pageCount = Math.ceil(props.applicants.length / 8);
-
-    function handlePageClick(data) {
-        let selected = data.selected;
-        let offset = Math.ceil(selected * perPage);
-        setOffset(offset);
-    };
 
     function editQuestions() {
         setShowQEditForm(true);
@@ -943,6 +939,13 @@ const JobCard = (props) => {
         }
     }
 
+    const handlePageClick = (data) => {
+        let selectedPage = data.selected; // 0 index based
+        let page = selectedPage + 1;
+        props.getPostedJobs(props.user.id, page);
+
+    };
+
     return (
         <React.Fragment>
             {/* Job Applications */}
@@ -1024,10 +1027,28 @@ const JobCard = (props) => {
                                 </MyModal80>
                             </div>
                         </div>
-                        <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
-                            <label style={{position:"absolute", left:"3.3rem", marginTop:"0.4rem"}}><i className="bx bx-search bx-sm"></i></label>
-                            <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange}></input>
+                        <div className="row interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px" }}>
+                        <div>
+                            <span style={{ display: "flex", alignItems: "center" }}>
+                                <i style={{position:"absolute", marginLeft:"0.5rem", marginTop:"0.2rem"}} className="bx bx-search bx-sm"></i>
+                                <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={keyWords} onChange={onChange}></input>
+                            </span>
                         </div>
+                        <div className="ml-auto">
+                            <ReactPaginate
+                                  previousLabel={'< prev'}
+                                  nextLabel={'next >'}
+                                  breakLabel={'...'}
+                                  breakClassName={'break-me'}
+                                  pageCount={props.totalPage}
+                                  marginPagesDisplayed={2}
+                                  pageRangeDisplayed={5}
+                                  onPageChange={handlePageClick}
+                                  containerClassName={'pagination3'}
+                                  activeClassName={'active'}
+                            />
+                        </div>
+                    </div>
                         <div className="chart-bg1 container" style={{ marginTop: "2%", boxShadow:"0px 0px 10px rgba(128, 128, 128, 0.16)" }}>
                             <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                                 {!props.profile.is_subreviwer &&
@@ -1085,7 +1106,6 @@ const JobCard = (props) => {
                                     companyName={props.companyName}
                                     jobTitle={props.jobTitle}
                                     updateCommentStatus={props.updateCommentStatus}
-                                    offset={offset}
                                     updateViewStatus={props.updateViewStatus}
                                     subreviewerUpdateComment={props.subreviewerUpdateComment}
                                     getReviewNote={props.getReviewNote}
@@ -1093,19 +1113,6 @@ const JobCard = (props) => {
                                     getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
                                     user={props.user}
                                 />
-                                {/*<ReactPaginate
-                                 previousLabel={'<'}
-                                 nextLabel={'>'}
-                                 breakLabel={'...'}
-                                 breakClassName={'break-me'}
-                                 pageCount={pageCount}
-                                 marginPagesDisplayed={2}
-                                 pageRangeDisplayed={5}
-                                 onPageChange={handlePageClick}
-                                 containerClassName={'pagination'}
-                                 subContainerClassName={'pages pagination'}
-                                 activeClassName={'active'}
-                             />*/}
                             </div>
                         </div>
                     </div>
@@ -1417,9 +1424,6 @@ const InvitationForm = (props) => {
 }
 
 const ApplicantList = (props) => {
-    // get current page applicants(8)
-    //let index = props.offset; // start index at applicants array
-    //let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
     return (
         <div>
             {props.applicants.sort((a, b) => new Date(b.invite_date) - new Date(a.invite_date)).map((a, index) => {

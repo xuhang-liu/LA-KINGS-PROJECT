@@ -118,7 +118,7 @@ export class EmployerDashboard extends Component {
 
   getPJobs = () => {
     var user = { "id": this.props.user.id };
-    this.props.getPostedJobs(user.id);
+    this.props.getPostedJobs(user.id, 1);
   }
 
 
@@ -128,11 +128,11 @@ export class EmployerDashboard extends Component {
     this.verifyEmail();
     var user = { "id": this.props.user.id };
     this.props.loadUserFullname(user);
-    this.props.getPostedJobs(user.id);
+    this.props.getPostedJobs(user.id, 1);
     this.props.getAnalyticsInfo(this.props.user.id);
     this.props.getEmployerProfileDetail(this.props.user.id);
     this.props.getEmployerPost(this.props.user.id, 0);
-    this.props.getAllJobs(this.props.user.id);
+    this.props.getAllJobs(this.props.user.id, 1);
     this.props.getQuestionList();
     this.props.getReviewersList(user.id);
     var data = {
@@ -479,6 +479,7 @@ export class EmployerDashboard extends Component {
           subreviewerUpdateComment={this.props.subreviewerUpdateComment}
           checkUserExistence={this.props.checkUserExistence}
           user_existence={this.props.user_existence}
+          getPostedJobs={this.props.getPostedJobs}
         />;
       case "position":
         return <CreatePosition

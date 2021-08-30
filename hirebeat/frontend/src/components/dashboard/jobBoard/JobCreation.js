@@ -299,7 +299,7 @@ export class JobCreation extends Component {
             alert("Duplicate Job ID detected.");
         } else {
             this.props.addNewJob(data);
-            setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+            setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
             setTimeout(() => {this.showSharePrompt()}, 300);
         }
     }

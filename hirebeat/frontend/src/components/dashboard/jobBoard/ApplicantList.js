@@ -9,7 +9,8 @@ import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/
 import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import Select from 'react-select';
-import EditQuestion from "./EditQuestion"
+import EditQuestion from "./EditQuestion";
+import ReactPaginate from 'react-paginate';
 
 export class ApplicantList extends Component {
     state = {
@@ -238,27 +239,38 @@ export class ApplicantList extends Component {
         this.setState({isSortByScore: !this.state.isSortByScore});
     }
 
+    handlePageClick = (data) => {
+        let selectedPage = data.selected; // 0 index based
+        let page = selectedPage + 1;
+        this.props.getAllJobs(this.props.user.id, page);
+
+    };
+
     render() {
         return (
             <React.Fragment>
                 <div className="chart-bg1 container-fluid mt-3 pt-2 pb-3">
-                    <div className="row interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
-                        <div className="interview-txt5">{this.props.curJob.job_details.job_title}</div>
-                        {/*<div className="interview-txt7 interview-center" style={{marginLeft: "2rem"}}>
-                            <button
-                                type="button"
-                                className="read-more"
-                                onClick={this.editQuestions}
-                                style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
-                            >
-                                <i className="bx bx-info-circle pr-1"></i> Edit Questions
-                            </button>
-                        </div>*/}
-                        <div className="ml-auto">
+                    <div className="interview-txt5" style={{paddingTop: "0.5rem"}}>{this.props.curJob.job_details.job_title}</div>
+                    <div className="row interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px" }}>
+                        <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
                                 <i style={{position:"absolute", marginLeft:"0.5rem", marginTop:"0.2rem"}} className="bx bx-search bx-sm"></i>
                                 <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
                             </span>
+                        </div>
+                        <div className="ml-auto">
+                            <ReactPaginate
+                                  previousLabel={'< prev'}
+                                  nextLabel={'next >'}
+                                  breakLabel={'...'}
+                                  breakClassName={'break-me'}
+                                  pageCount={this.props.curJob.total_page}
+                                  marginPagesDisplayed={2}
+                                  pageRangeDisplayed={5}
+                                  onPageChange={this.handlePageClick}
+                                  containerClassName={'pagination3'}
+                                  activeClassName={'active'}
+                            />
                         </div>
                     </div>
                     <div className="chart-bg1 container-fluid" style={{ marginTop: "1rem", boxShadow:"0px 0px 10px rgba(128, 128, 128, 0.16)" }}>
