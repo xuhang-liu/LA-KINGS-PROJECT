@@ -7,6 +7,7 @@ export class ShareProfileEdition extends Component {
         hasFullName: true,
         hasCompany: true,
         hasLocation: true,
+        hasPosition: true,
     }
 
     setShareProfile = () => {
@@ -26,6 +27,9 @@ export class ShareProfileEdition extends Component {
         }
         else if ((this.props.location == "" || this.props.location == null) && this.state.shareProfile) {
             this.setState({hasLocation: false});
+        }
+        else if ((this.props.position == "" || this.props.position == null) && this.state.shareProfile) {
+            this.setState({hasPosition: false});
         }
         else {
             let data = {
@@ -58,6 +62,12 @@ export class ShareProfileEdition extends Component {
                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setShareProfile}>Disabled</button>
                         }
                     </div>
+                    <div style={{marginTop: "0.5rem"}}>
+                        {!this.state.hasFullName && <p className="share-p4">Please fill out your full name for profile sharing</p>}
+                        {!this.state.hasCompany && <p className="share-p4">Please fill out your company/school for profile sharing</p>}
+                        {!this.state.hasLocation && <p className="share-p4">Please fill out your location for profile sharing</p>}
+                        {!this.state.hasPosition && <p className="share-p4">Please fill out your position for profile sharing</p>}
+                    </div>
                 </div>
                 <hr style={{ border: "1px solid #E5E5E5" }} />
                 <div className="form-group">
@@ -76,9 +86,6 @@ export class ShareProfileEdition extends Component {
                         }
                     </div>
                 </div>
-                {!this.state.hasFullName && <p className="share-p4">Please fill out your full name for profile sharing</p>}
-                {!this.state.hasCompany && <p className="share-p4">Please fill out your company/school for profile sharing</p>}
-                {!this.state.hasLocation && <p className="share-p4">Please fill out your location for profile sharing</p>}
                 <div className="row" style={{marginTop: "1rem"}}>
                     <div className="col-4 profile-edit">
                         <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.saveProfileSharing}>Update Status</button>

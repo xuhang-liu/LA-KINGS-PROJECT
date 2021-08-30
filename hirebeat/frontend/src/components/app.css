@@ -471,6 +471,11 @@ card-row-third-high {
   padding-bottom: 1rem;
 }
 
+.my-modal-upgrade {
+  min-width: 20%;
+  padding-bottom: 1rem;
+}
+
 .resume-modal {
   min-width: 90%;
 }
@@ -4085,7 +4090,7 @@ max-width: 110px;
 }
 
 .register-title {
-  font-family: Avenir Next;
+  font-family: Avenir Next, Segoe UI;
   font-style: normal;
   font-weight: bold;
   font-size: 1.5rem;
@@ -4292,7 +4297,7 @@ max-width: 110px;
   pointer-events: none;
   top: 0;
   bottom: 0;
-  font-size: 14px;
+  font-size: 16px;
   height: 25px;
   left: 10px;
   margin: auto;
@@ -4447,6 +4452,25 @@ max-width: 110px;
 .pagination2-sm > li:last-child > span {
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
+}
+
+.job-share-p {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 0.5rem;
+}
+
+.sourcing-filter-p {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
 }
 
 .pricing-toggle-stripe {

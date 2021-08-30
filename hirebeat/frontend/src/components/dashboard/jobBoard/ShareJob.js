@@ -2,11 +2,19 @@ import React, { Component } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton } from "react-share";
 
-export class ShareProfile extends Component {
+export class ShareJob extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1 className="share-h1" style={{marginBottom: "2rem"}}>Share your profile</h1>
+                <div className="d-flex justify-content-center">
+                    <img src="https://hirebeat-assets.s3.amazonaws.com/job-share-logo.png"/>
+                </div>
+                <p className="job-share-p">
+                    Your position has been posted!
+                </p>
+                <p className="job-share-p" style={{marginBottom: "2rem"}}>
+                    It will also appear on other job boards within 24 hours.
+                </p>
                 <div className="d-flex justify-content-center">
                     <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #67A3F3", width: "90%", height: "3rem" }}>
                         <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
@@ -20,15 +28,15 @@ export class ShareProfile extends Component {
                         </div>
                     </div>
                 </div>
-                <div id="resume-hr"><hr /></div>
-                <p className="share-p">Share on other platforms</p>
+                <hr style={{marginTop: "2rem"}} />
+                <p className="share-p">Don't forget to share!</p>
                 <div className="d-flex justify-content-center">
                     <div className="single-footer-widget1">
                         <ul className="social">
                             <li>
                                 <FacebookShareButton
                                     url={this.props.shareLink}
-                                    quote={this.props.firstName + " " + this.props.lastName + "'s profile."}
+                                    quote={this.props.jobTitle + " at " + this.props.companyName}
                                     hashtag="#hirebeat">
                                     <a target="_blank" rel="noreferrer">
                                         <i className="bx bxl-facebook"></i>
@@ -38,7 +46,7 @@ export class ShareProfile extends Component {
                             <li>
                                 <TwitterShareButton
                                     url={this.props.shareLink}
-                                    title={this.props.firstName + " " + this.props.lastName + "'s profile."}
+                                    title={this.props.jobTitle + " at " + this.props.companyName}
                                     via={"HireBeat"}
                                     hashtag="#hirebeat">
                                     <a target="_blank" rel="noreferrer">
@@ -49,7 +57,7 @@ export class ShareProfile extends Component {
                             <li>
                                 <LinkedinShareButton
                                     url={this.props.shareLink}
-                                    title={this.props.firstName + " " + this.props.lastName + "'s profile."}
+                                    title={this.props.jobTitle + " at " + this.props.companyName}
                                     source={"HireBeat"}>
                                     <a target="_blank" rel="noreferrer">
                                         <i className="bx bxl-linkedin"></i>
@@ -59,7 +67,7 @@ export class ShareProfile extends Component {
                             <li>
                                 <WhatsappShareButton
                                     url={this.props.shareLink}
-                                    title={this.props.firstName + " " + this.props.lastName + "'s profile."}>
+                                    title={this.props.jobTitle + " at " + this.props.companyName}>
                                     <a target="_blank" rel="noreferrer">
                                         <i className="bx bxl-whatsapp"></i>
                                     </a>
@@ -85,4 +93,4 @@ function copyAlert() {
     });
 }
 
-export default ShareProfile;
+export default ShareJob;

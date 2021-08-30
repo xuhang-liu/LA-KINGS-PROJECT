@@ -5,7 +5,7 @@ let timeChange;
 export const CountdownButton = (props) => {
   const [time, setTime] = useState(60);
   const [btnDisabled, setBtnDisabled] = useState(false);
-  const [btnContent, setBtnContent] = useState('Send Confirm Email');
+  const [btnContent, setBtnContent] = useState('Resend');
 
   useEffect(() => {
     clearInterval(timeChange);
@@ -18,7 +18,7 @@ export const CountdownButton = (props) => {
       clearInterval(timeChange);
       setBtnDisabled(false);
       setTime(60);
-      setBtnContent('Send Confirm Email');
+      setBtnContent('Resend');
     }
   }, [time]);
 

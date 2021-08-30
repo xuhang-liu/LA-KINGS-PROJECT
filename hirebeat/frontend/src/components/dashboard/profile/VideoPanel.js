@@ -83,7 +83,9 @@ export class VideoPanel extends Component {
                         <p className="profile-p" style={{margin: "0rem"}}>Self-Introduction</p>
                         <p className="profile-p4" style={{marginBottom: "1rem"}}>Pitch yourself and present to your dream companies.</p>
                         <div className="profile-bg4" style={{justifyContent: "center", height: "5rem", display: "flex", width: "100%"}}>
-                            <button onClick={this.enableShow} className="profile-btn"><i className="bx bx-video-recording"></i> &nbsp;Record Video</button>
+                            <button onClick={this.enableShow} className="profile-btn">
+                                <span style={{display: "flex", alignItems: "center"}}><img src="https://hirebeat-assets.s3.amazonaws.com/record-icon.png" /> &nbsp; Record Video</span>
+                            </button>
                         </div>
                     </div>
                 }

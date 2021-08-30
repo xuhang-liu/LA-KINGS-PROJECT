@@ -2,23 +2,28 @@ import React, { Component } from "react";
 
 export class WorkExperience extends Component {
 
+    handleEdit = () => {
+        let editId = this.props.index;
+        this.props.setExpEditId(editId);
+        this.props.editWorkExp();
+    };
+
     render() {
+        console.log(this.props.title);
         return(
             <div style={{marginBottom: "2rem"}}>
-                <div className="row">
-                    <div className="col-8">
-                        <h3 className="profile-h3">Experience {this.props.index + 1}</h3>
-                    </div>
-                    {this.props.index == 0 &&
-                    <div className="col-4 profile-edit">
-                        <div style={{float: "right"}}>
-                            <i className="bx bx-edit-alt"></i>
-                            <span onClick={this.props.editWorkExp} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
+                {(this.props.company !== null && this.props.company !== "") ?
+                    <div className="row">
+                        <div className="col-8">
+                            <p className="profile-p3">{this.props.title}</p>
                         </div>
-                    </div>}
-                </div>
-                {(this.props.title !== null && this.props.title !== "") ?
-                    <p className="profile-p3" style={{marginBottom: "0.5rem"}}>{this.props.title}</p> :
+                        <div className="col-4 profile-edit">
+                            <div style={{float: "right"}}>
+                                <i className="bx bx-edit-alt"></i>
+                                <span onClick={this.handleEdit} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
+                            </div>
+                        </div>
+                    </div> :
                     <p className="profile-p4" style={{marginBottom: "0.5rem"}}>Add your wok experience</p>
                 }
 

@@ -321,6 +321,19 @@ export const MyModalShare = (props) => {
     );
 };
 
+export const MyModalUpgrade= (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName={"my-modal-upgrade"}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            {props.children}
+        </Modal>
+    );
+};
+
 export const MyVideoModal = (props) => {
     return (
         <Modal
