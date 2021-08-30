@@ -471,6 +471,11 @@ card-row-third-high {
   padding-bottom: 1rem;
 }
 
+.my-modal-upgrade {
+  min-width: 20%;
+  padding-bottom: 1rem;
+}
+
 .resume-modal {
   min-width: 90%;
 }
