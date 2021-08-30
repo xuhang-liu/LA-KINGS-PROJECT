@@ -17,8 +17,7 @@ import { infillBarDataPublicProfile2 } from "../../../constants/constants";
 import ShareProfile from "./ShareProfile";
 import ShareProfileEdition from "./ShareProfileEdition";
 import { MyShareModal } from "./../DashboardComponents";
-import { getByZip } from 'zcs';
-//import { Redirect } from "react-router-dom";
+import Autocomplete from "react-google-autocomplete";
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -61,7 +60,6 @@ const ProfileOverall = (props) => {
 export class Profile extends Component {
     constructor(props) {
         super(props);
-        let location = this.generateLocation();
         this.state = {
             isEditInfo: false,
             isEditMedia: false,
@@ -76,7 +74,7 @@ export class Profile extends Component {
             show: false,
             isRecordVideo: false,
             isUploadResume: false,
-            eduCount: [],  // todo initialization here need to think about
+            eduCount: [],
             worCount: [],
             preview: null,
             fakeName: "",
@@ -88,9 +86,9 @@ export class Profile extends Component {
             showShare: false,
             isEditProfileShare: false,
             photoSelected: false,
-            location: location,
-            eduEditId: "",
-            expEditId: "",
+            location: "",
+            eduEditId: 0,
+            expEditId: 0,
         }
     }
 
@@ -298,7 +296,7 @@ export class Profile extends Component {
         let lastName = document.getElementById("lastName").value;
         let curJobTitle = document.getElementById("curJobTitle").value;
         let curCompany = document.getElementById("curCompany").value;
-        let location = this.state.location + "," + document.getElementById("location").value;
+        let location = this.state.location;
         let data = {
             "user_id": this.props.userId,
             "f_name": firstName,
@@ -601,42 +599,9 @@ export class Profile extends Component {
         this.setState({photoSelected: false, preview: null});
     }
 
-    handleZipcode = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-        let zipcode = e.target.value;
-        if (zipcode.length == 5) {
-            let cityState = getByZip(zipcode);
-            this.setState({
-                location: cityState["city"] + ", " + cityState["state"],
-            });
-        }
-    };
-
-    generateLocation = () => {
-        let location = "";
-        let array = this.props.profileDetail.location.split(",");
-        if (array.length === 3) {
-            location = array[0] + "," + array[1];
-        }
-        return location;
+    handleLocation = (location) => {
+        this.setState({location: location});
     }
-
-    handleZipcodeInputKeyDown = e => {
-        var key = e.which ? e.which : e.keyCode;
-        if (
-            (e.target.value.length >= 5 &&
-                key !== 8 &&
-                key !== 37 &&
-                key !== 38 &&
-                key !== 39 &&
-                key !== 40) ||
-            (key === 18 || key === 189 || key === 229)
-        ) {
-            e.preventDefault();
-        }
-    };
 
     setEduEditId = (eduEditId) => {
         this.setState({eduEditId: eduEditId});
@@ -924,19 +889,16 @@ export class Profile extends Component {
                                             </div>
                                             <div style={{marginTop: "1rem"}}>
                                                 <p className="profile-p" style={{margin: "0rem"}}>Location</p>
-                                                <div className="register">
-                                                    <input
-                                                        type="number"
-                                                        name="zipcode"
-                                                        id="location"
-                                                        onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
-                                                        onChange={this.handleZipcode}
-                                                        className="profile-input profile-p"
-                                                        style={{width: "100%"}}
-                                                        defaultValue={this.props.profileDetail.location.split(",").length === 3 ? this.props.profileDetail.location.split(",")[2] : null}
-                                                    />
-                                                    <p className="profile-p">{this.state.location}</p>
-                                                </div>
+                                                <Autocomplete
+                                                    className="profile-input profile-p"
+                                                    style={{width: "100%"}}
+                                                    language="en"
+                                                    apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                    onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                        this.handleLocation(place.formatted_address);
+                                                    }}
+                                                    defaultValue={this.props.profileDetail.location}
+                                                />
                                             </div>
                                             <div className="row" style={{marginTop: "1rem"}}>
                                                 <div className="col-6" />

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Select from 'react-select';
-import { getByZip } from 'zcs';
+import Autocomplete from "react-google-autocomplete";
 import { SizeOptions, IndustryOptions } from "./Constants";
 
 export class EmployerRegisterCompanyInfoForm extends Component {
@@ -22,36 +22,6 @@ export class EmployerRegisterCompanyInfoForm extends Component {
     selectIndustry = (companyType) => {
         this.setState({ companyType: companyType });
         this.props.setCompanyType(companyType);
-    };
-
-    handleZipcode = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-        let zipcode = e.target.value;
-        if (zipcode.length == 5) {
-            let cityState = getByZip(zipcode);
-            this.setState({
-                location: cityState["city"] + ", " + cityState["state"],
-            });
-            let location = cityState["city"] + "," + cityState["state"] + "," + zipcode;
-            this.props.setLocation(location);
-        }
-    };
-
-    handleZipcodeInputKeyDown = e => {
-        var key = e.which ? e.which : e.keyCode;
-        if (
-            (e.target.value.length >= 5 &&
-                key !== 8 &&
-                key !== 37 &&
-                key !== 38 &&
-                key !== 39 &&
-                key !== 40) ||
-            (key === 18 || key === 189 || key === 229)
-        ) {
-            e.preventDefault();
-        }
     };
 
     customStyles = {
@@ -110,15 +80,15 @@ export class EmployerRegisterCompanyInfoForm extends Component {
                     </div>
                     <div className="form-group">
                         <div className="register">
-                            <input
-                                type="number"
-                                name="zipcode"
-                                placeholder="Company Location"
-                                onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
-                                onChange={this.handleZipcode}
+                            <Autocomplete
                                 className="form-control register-form"
+                                style={{width: "100%"}}
+                                language="en"
+                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                    this.props.setLocation(place.formatted_address);
+                                }}
                             />
-                            <p className="register-label register-text" style={{color: "#FFFFFF"}}>{this.state.location}</p>
                         </div>
                     </div>
 

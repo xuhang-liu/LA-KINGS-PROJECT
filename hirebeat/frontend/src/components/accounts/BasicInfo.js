@@ -1,12 +1,9 @@
 import React, {Component} from "react";
-import { getByZip } from 'zcs';
+import Autocomplete from "react-google-autocomplete";
 
 export class BasicInfo extends Component {
     state = {
         inUS: true,
-        zipcode: null,
-        city: "",
-        state: "",
         location: "",
     }
 
@@ -24,40 +21,15 @@ export class BasicInfo extends Component {
         this.setState({inUS: !this.state.inUS});
     }
 
-    handleZipcode = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-        let zipcode = e.target.value;
-        if (zipcode.length == 5) {
-            let cityState = getByZip(zipcode);
-            this.setState({
-                location: cityState["city"] + ", " + cityState["state"],
-            });
-            let location = cityState["city"] + "," + cityState["state"] + "," + zipcode;
-            this.props.setLocation(location);
-        }
-    };
-
-    handleZipcodeInputKeyDown = e => {
-        var key = e.which ? e.which : e.keyCode;
-        if (
-            (e.target.value.length >= 5 &&
-                key !== 8 &&
-                key !== 37 &&
-                key !== 38 &&
-                key !== 39 &&
-                key !== 40) ||
-            (key === 18 || key === 189 || key === 229)
-        ) {
-            e.preventDefault();
-        }
-    };
-
     onSubmit = (e) => {
         e.preventDefault();
         let nextStep = this.props.step + 1;
         this.props.setStep(nextStep);
+    }
+
+    handleLocation = (location) => {
+        this.setState({location: location});
+        this.props.setLocation(location);
     }
 
     render() {
@@ -97,20 +69,21 @@ export class BasicInfo extends Component {
 
                       <div className="form-group">
                         <label className="register-label register-text">
-                            Location (Zipcode)<span className="job-apply-char2">*</span>
+                            Location<span className="job-apply-char2">*</span>
                             <span style={{marginLeft: "1rem"}}><input type="checkbox" id="registerLocation" onClick={this.checkLocation}/> &nbsp; Not in the US</span>
                         </label>
                         {this.state.inUS &&
                             <div className="register">
-                                <input
-                                    type="number"
-                                    name="zipcode"
-                                    onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
-                                    onChange={this.handleZipcode}
+                                <Autocomplete
                                     className="form-control register-form"
-                                    required="required"
+                                    style={{width: "100%"}}
+                                    language="en"
+                                    apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                    onPlaceSelected={(place, inputRef, autocomplete) => {
+                                        this.handleLocation(place.formatted_address);
+                                    }}
+                                    defaultValue={this.state.location}
                                 />
-                                <p className="register-label register-text">{this.state.location}</p>
                             </div>
                         }
                       </div>

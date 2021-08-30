@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 import Select from 'react-select';
 import {SkillOptions} from "./../profile/Constants";
-import { getByZip } from 'zcs';
+import Autocomplete from "react-google-autocomplete";
 
 export class SourcingFilter extends Component {
     selectRef = null;
     constructor(props) {
         super(props);
         const skills = this.generateSkills();
-        const locations = this.generateLocation();
         this.state = {
             keywords: this.props.keywords,
-            location: locations[0],
-            zipcode: locations[1],
+            location: this.props.location,
             skills: skills,
             position: this.props.position,
         }
@@ -30,16 +28,6 @@ export class SourcingFilter extends Component {
         return skills;
     }
 
-    generateLocation = () => {
-        let locations = ["", this.props.location];
-        if (this.props.location !== "" && isNaN(this.props.location)) {
-            let array = this.props.location.split(",");
-            locations[0] = array[0] + "," + array[1];
-            locations[1] = array[2];
-        }
-        return locations;
-    }
-
     onFilter = (skills) => {
         this.setState({ skills: skills });
         let validSkills = []
@@ -47,36 +35,6 @@ export class SourcingFilter extends Component {
             validSkills.push(skills[i].value);
         }
         this.props.setSkills(validSkills);
-    };
-
-    handleZipcode = (e) => {
-        let zipcode = e.target.value;
-        if (zipcode.length == 5) {
-            let cityState = getByZip(zipcode);
-            this.setState({
-                location: cityState["city"] + ", " + cityState["state"],
-            });
-            let location = cityState["city"] + "," + cityState["state"] + "," + zipcode;
-            this.props.setLocation(location);
-        }
-        else {
-            this.props.setLocation(zipcode);
-        }
-    };
-
-    handleZipcodeInputKeyDown = e => {
-        var key = e.which ? e.which : e.keyCode;
-        if (
-            (e.target.value.length >= 5 &&
-                key !== 8 &&
-                key !== 37 &&
-                key !== 38 &&
-                key !== 39 &&
-                key !== 40) ||
-            (key === 18 || key === 189 || key === 229)
-        ) {
-            e.preventDefault();
-        }
     };
 
     handleInput = (e) => {
@@ -154,21 +112,17 @@ export class SourcingFilter extends Component {
                     </div>
                     <div className="col-4">
                         <p className="sourcing-filter-p" style={{margin: "0rem"}}>Location</p>
-                        <div className="d-flex register">
-                            <input
-                                type="number"
-                                name="location"
-                                id="location"
-                                onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
-                                onChange={this.handleZipcode}
-                                className="sourcing-input sourcing-filter-p"
-                                defaultValue={this.state.zipcode}
-                                placeholder="Enter zipcode"
-                            />
-                            <p className="sourcing-p" style={{color: "#090D3A", alignItems: "center", marginLeft: "0.5rem"}}>
-                                {this.state.location}
-                            </p>
-                        </div>
+                        <Autocomplete
+                            id="location"
+                            className="sourcing-input sourcing-filter-p"
+                            style={{width: "100%"}}
+                            language="en"
+                            apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                            onPlaceSelected={(place, inputRef, autocomplete) => {
+                                this.props.setLocation(place.formatted_address);
+                            }}
+                            defaultValue={this.state.location}
+                        />
                     </div>
                     <div className="col">
                         <p className="sourcing-filter-p" style={{margin: "0rem"}}>Skills</p>

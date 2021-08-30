@@ -10,6 +10,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { Link } from "react-router-dom";
 import Select from 'react-select';
 var ReactS3Uploader = require("react-s3-uploader");
+import Autocomplete from "react-google-autocomplete";
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -76,6 +77,7 @@ export class EmployerProfile extends Component {
         overview: (this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
             RichTextEditor.createValueFromString(this.props.employerProfileDetail.summary, 'html') : RichTextEditor.createEmptyValue(),
         companySize: "",
+        location: "",
     }
 
     customStyles = {
@@ -221,7 +223,7 @@ export class EmployerProfile extends Component {
     saveCompanyInfo = () => {
         let companyType = document.getElementById("companyType").value;
         //        let email = document.getElementById("email").value;
-        let location = document.getElementById("location").value;
+        let location = this.state.location;
         let email = document.getElementById("contactEmail").value;
         let data = {
             "user_id": this.props.userId,
@@ -275,6 +277,10 @@ export class EmployerProfile extends Component {
             this.setState({ fakeName: fakeName });
             this.uploader.uploadFile(newLogo);
         }
+    }
+
+    handleLocation = (location) => {
+        this.setState({location: location});
     }
 
     alert = (title, message) => {
@@ -632,7 +638,16 @@ export class EmployerProfile extends Component {
                                             </div>
                                             <div>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Location</p>
-                                                <input id="location" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.employerProfileDetail.location}></input>
+                                                <Autocomplete
+                                                    className="profile-input profile-p"
+                                                    style={{width: "100%"}}
+                                                    language="en"
+                                                    apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                    onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                        this.handleLocation(place.formatted_address);
+                                                    }}
+                                                    defaultValue={this.props.employerProfileDetail.location}
+                                                />
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Company Size</p>

@@ -459,6 +459,7 @@ card-row-third-high {
 .my-modal-80 {
   min-width: 80%;
   min-height: 600px;
+  z-index: 2000;
 }
 
 .my-modal-contact {
@@ -4506,4 +4507,12 @@ max-width: 110px;
   background-color: #ffffff !important;
   -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
           animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+}
+
+.pac-container {
+    background-color: #FFF;
+    z-index: 2001;
+    position: fixed;
+    display: inline-block;
+    float: left;
 }
