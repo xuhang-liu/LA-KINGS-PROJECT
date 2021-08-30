@@ -492,7 +492,7 @@ export class SubpageSetting extends Component {
                         <div className="row" >
                             <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                                 <IconText
-                                    textDisplayed={"Membership"}
+                                    textDisplayed={"Subscription"}
                                     textSize={"24px"}
                                     textColor={"#090D3A"}
                                     iconMargin={"3px"}
@@ -502,7 +502,7 @@ export class SubpageSetting extends Component {
                         <div className="chart-bg1 container">
                             <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
                                 <div className="form-group col">
-                                    <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
+                                    <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current Plan</p>
                                     {this.props.profile.plan_interval == "Premium" &&
                                         <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
                                             <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
