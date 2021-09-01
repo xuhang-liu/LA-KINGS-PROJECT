@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import 'boxicons';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
-import { getByZip } from 'zcs';
 import Select from 'react-select';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -11,6 +10,7 @@ import parse from 'html-react-parser';
 import {SkillSet} from "./Constants";
 import { MyShareModal } from "./../DashboardComponents";
 import ShareJob from "./ShareJob";
+import Autocomplete from "react-google-autocomplete";
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -41,8 +41,6 @@ export class JobCreation extends Component {
             jobId: "",
             jobLocation: "",
             jobDescription: RichTextEditor.createEmptyValue(),
-            city: "",
-            state: "",
             loc_req: 1,
             pho_req: 1,
             lin_req: 1,
@@ -204,34 +202,9 @@ export class JobCreation extends Component {
         this.setState({ jobDescription });
     };
 
-    handleZipcode = (e) => {
-        let citytstate = "";
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-        if (e.target.value.length == 5) {
-            citytstate = getByZip(e.target.value);
-            this.setState({
-                city: citytstate["city"],
-                state: citytstate["state"],
-            });
-        }
-    };
-
-    handleZipcodeInputKeyDown = e => {
-        var key = e.which ? e.which : e.keyCode;
-        if (
-            (e.target.value.length >= 5 &&
-                key !== 8 &&
-                key !== 37 &&
-                key !== 38 &&
-                key !== 39 &&
-                key !== 40) ||
-            (key === 18 || key === 189 || key === 229)
-        ) {
-            e.preventDefault();
-        }
-    };
+    handleLocation = (location) => {
+        this.setState({jobLocation: location});
+    }
 
     handleInputChange = (e) => {
         this.setState({
@@ -266,7 +239,7 @@ export class JobCreation extends Component {
             jobId: this.state.jobId,
             jobDescription: this.state.jobDescription.toString('html'),
             jobLevel: this.state.jobLevel["value"],
-            jobLocation: this.state.city + "," + this.state.state + "," + this.state.jobLocation,
+            jobLocation: this.state.jobLocation,
             userId: this.props.user.id,
             jobType: this.state.jobType["value"],
             loc_req: this.state.loc_req,
@@ -320,7 +293,7 @@ export class JobCreation extends Component {
                         <div className="row pl-3">
                             <div className="col-8 pl-5" style={{ paddingRight: "3.7rem" }}>
                                 <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobLevel["value"]} • {this.state.jobType["value"]}</p>
-                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(this.state.city == "") ? "Remote" : (this.state.city + "," + this.state.state)}</p>
+                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobLocation}</p>
                                 <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobId}</p>
                                 <div>
                                     <div>
@@ -449,29 +422,23 @@ export class JobCreation extends Component {
                             {!this.state.remote &&
                                 <div className="form-group col-6">
                                     <label className="db-txt2">
-                                        Zipcode
+                                        Job Location
                                     </label><span className="job-apply-char2">*</span>
-                                    <input type="number" name="jobLocation" value={this.state.jobLocation} inputmode="numeric"
-                                        onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
-                                        pattern="\d*"
-                                        onChange={this.handleZipcode} className="form-control" required="required" />
+                                    <Autocomplete
+                                        className="form-control"
+                                        language="en"
+                                        apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                        onPlaceSelected={(place, inputRef, autocomplete) => {
+                                            this.handleLocation(place.formatted_address);
+                                        }}
+                                        required="required"
+                                    />
                                 </div>}
                             <div className="form-group col-6">
-                                {!this.state.remote &&
-                                    <label className="db-txt2" style={{ marginTop: "3.5rem" }}>
-                                        {this.state.city != "" &&
-                                            <div><span>{this.state.city}</span>, <span>{this.state.state}</span></div>}
-                                        {this.state.city == "" &&
-                                            <div><span>City</span>, <span>State</span></div>}
-                                    </label>}
-                                {!this.state.remote ?
-                                    <label className="db-txt2 ml-5">
-                                        <div>Remote Work? <span style={{ float: "right", top: "3.2rem", position: "absolute", marginLeft: "0.5rem" }}><Switch onChange={this.handleChange} checked={this.state.remote} /></span></div>
-                                    </label> :
-                                    <label className="db-txt2">
-                                        <div>Remote Work? <span style={{ marginLeft: "0.5rem" }}><Switch onChange={this.handleChange} checked={this.state.remote} /></span></div>
-                                    </label>
-                                }
+                                <label className="db-txt2">Remote Work?</label>
+                                <div style={{paddingTop: "0.7rem"}}>
+                                    <Switch onChange={this.handleChange} checked={this.state.remote} />
+                                </div>
                             </div>
                         </div>
                         {/*<div className="form-row">
