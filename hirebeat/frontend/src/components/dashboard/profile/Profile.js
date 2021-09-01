@@ -89,6 +89,7 @@ export class Profile extends Component {
             location: "",
             eduEditId: 0,
             expEditId: 0,
+            invalidPersonalInfo: false,
         }
     }
 
@@ -201,7 +202,7 @@ export class Profile extends Component {
 
     cancelEditInfo = () => {
         this.getUpdatedData();
-        setTimeout(() => this.setState({ isEditInfo: false }), 300);
+        setTimeout(() => this.setState({ isEditInfo: false, invalidPersonalInfo: false }), 300);
     }
 
     editMedia = () => {
@@ -297,6 +298,11 @@ export class Profile extends Component {
         let curJobTitle = document.getElementById("curJobTitle").value;
         let curCompany = document.getElementById("curCompany").value;
         let location = this.state.location;
+        // validate input with profile sharing
+        let enabledSharing = this.props.profileDetail.share_profile || this.props.profileDetail.open_to_hr;
+        if (enabledSharing && (firstName == "" || lastName == "" || curJobTitle == "" || curCompany == "" || location == "")) {
+            return this.setState({invalidPersonalInfo: true});
+        }
         let data = {
             "user_id": this.props.userId,
             "f_name": firstName,
@@ -899,6 +905,9 @@ export class Profile extends Component {
                                                     }}
                                                     defaultValue={this.props.profileDetail.location}
                                                 />
+                                            </div>
+                                            <div style={{marginTop: "0.5rem"}}>
+                                                {this.state.invalidPersonalInfo && <p className="share-p4">Please fill out all blanks since you've enabled profile sharing</p>}
                                             </div>
                                             <div className="row" style={{marginTop: "1rem"}}>
                                                 <div className="col-6" />
