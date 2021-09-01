@@ -71,11 +71,11 @@ export class EmployerRegisterCompanyInfoForm extends Component {
                         </div>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group" style={{textAlign: "left"}}>
                         <Select value={this.state.companySize} onChange={this.selectSize} options={SizeOptions} styles={this.customStyles} placeholder={'Company Size'}/>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group" style={{textAlign: "left"}}>
                         <Select value={this.state.companyType} onChange={this.selectIndustry} options={IndustryOptions} styles={this.customStyles} placeholder={'Company Industry'}/>
                     </div>
                     <div className="form-group">

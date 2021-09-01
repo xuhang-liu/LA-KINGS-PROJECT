@@ -939,8 +939,10 @@ const JobCard = (props) => {
         }
     }
 
+    const [selectedPage, setSelectedPage] = useState(0);
     const handlePageClick = (data) => {
         let selectedPage = data.selected; // 0 index based
+        setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page);
 
@@ -1041,11 +1043,12 @@ const JobCard = (props) => {
                                   breakLabel={'...'}
                                   breakClassName={'break-me'}
                                   pageCount={props.totalPage}
-                                  marginPagesDisplayed={2}
+                                  marginPagesDisplayed={1}
                                   pageRangeDisplayed={5}
                                   onPageChange={handlePageClick}
                                   containerClassName={'pagination3'}
                                   activeClassName={'active'}
+                                  forcePage={selectedPage}
                             />
                         </div>
                     </div>
@@ -1114,6 +1117,21 @@ const JobCard = (props) => {
                                     user={props.user}
                                 />
                             </div>
+                        </div>
+                        <div className="interview-txt7 d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                            <ReactPaginate
+                                  previousLabel={'< prev'}
+                                  nextLabel={'next >'}
+                                  breakLabel={'...'}
+                                  breakClassName={'break-me'}
+                                  pageCount={props.totalPage}
+                                  marginPagesDisplayed={1}
+                                  pageRangeDisplayed={5}
+                                  onPageChange={handlePageClick}
+                                  containerClassName={'pagination3'}
+                                  activeClassName={'active'}
+                                  forcePage={selectedPage}
+                            />
                         </div>
                     </div>
                     {(!props.profile.is_subreviwer && props.filter == "active") &&

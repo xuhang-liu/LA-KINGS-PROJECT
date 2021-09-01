@@ -18,6 +18,7 @@ export class Sourcing extends Component {
         can_index: 0,
         showResume: false,
         showContact: false,
+        selectedPage: 0,
     }
 
     componentDidMount() {
@@ -123,6 +124,7 @@ export class Sourcing extends Component {
 
     handlePageClick = (data) => {
         let selectedPage = data.selected; // 0 index based
+        this.setState({selectedPage: selectedPage});
         let queryData = {
             keywords: this.state.keywords,
             location: this.state.location,
@@ -196,11 +198,12 @@ export class Sourcing extends Component {
                                               breakLabel={'...'}
                                               breakClassName={'break-me'}
                                               pageCount={this.props.sourcingData.total_page}
-                                              marginPagesDisplayed={2}
+                                              marginPagesDisplayed={1}
                                               pageRangeDisplayed={5}
                                               onPageChange={this.handlePageClick}
                                               containerClassName={'pagination2'}
                                               activeClassName={'active'}
+                                              forcePage={this.state.selectedPage}
                                         />
                                     </div>
                                 </div>
@@ -250,11 +253,12 @@ export class Sourcing extends Component {
                                               breakLabel={'...'}
                                               breakClassName={'break-me'}
                                               pageCount={this.props.sourcingData.total_page}
-                                              marginPagesDisplayed={2}
+                                              marginPagesDisplayed={1}
                                               pageRangeDisplayed={5}
                                               onPageChange={this.handlePageClick}
                                               containerClassName={'pagination2'}
                                               activeClassName={'active'}
+                                              forcePage={this.state.selectedPage}
                                         />
                                     </div>
                                 </div>

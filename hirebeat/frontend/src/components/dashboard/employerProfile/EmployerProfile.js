@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Select from 'react-select';
 var ReactS3Uploader = require("react-s3-uploader");
 import Autocomplete from "react-google-autocomplete";
+import { IndustryOptions } from "./../../accounts/Constants";
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -76,8 +77,9 @@ export class EmployerProfile extends Component {
         docType: "",
         overview: (this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
             RichTextEditor.createValueFromString(this.props.employerProfileDetail.summary, 'html') : RichTextEditor.createEmptyValue(),
-        companySize: "",
+        companySize: {value: this.props.employerProfileDetail.company_size, label: this.props.employerProfileDetail.company_size},
         location: "",
+        industry: {value: this.props.employerProfileDetail.company_type, label: this.props.employerProfileDetail.company_type},
     }
 
     customStyles = {
@@ -103,6 +105,10 @@ export class EmployerProfile extends Component {
 
     onFilter = (companySize) => {
         this.setState({ companySize: companySize })
+    };
+
+    selectIndustry = (industry) => {
+        this.setState({ industry: industry });
     };
 
     onChange = (overview) => {
@@ -221,13 +227,11 @@ export class EmployerProfile extends Component {
     }
 
     saveCompanyInfo = () => {
-        let companyType = document.getElementById("companyType").value;
-        //        let email = document.getElementById("email").value;
         let location = this.state.location;
         let email = document.getElementById("contactEmail").value;
         let data = {
             "user_id": this.props.userId,
-            "company_type": companyType,
+            "company_type": this.state.industry.value,
             "contactEmail": email,
             "location": location,
             "company_size": (this.state.companySize.value == null || this.state.companySize.value == "") ? this.props.employerProfileDetail.company_size : this.state.companySize.value,
@@ -639,7 +643,7 @@ export class EmployerProfile extends Component {
                                             <div>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Location</p>
                                                 <Autocomplete
-                                                    className="profile-input profile-p"
+                                                    className="profile-input profile-p4"
                                                     style={{width: "100%"}}
                                                     language="en"
                                                     apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
@@ -651,11 +655,11 @@ export class EmployerProfile extends Component {
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Company Size</p>
-                                                <Select value={this.state.companySize} defaultValue={this.props.employerProfileDetail.company_size} onChange={this.onFilter} options={this.options} styles={this.customStyles} />
+                                                <Select value={this.state.companySize} onChange={this.onFilter} options={this.options} styles={this.customStyles} placeholder={'Enter Company Size'}/>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Industry</p>
-                                                <input id="companyType" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.employerProfileDetail.company_type}></input>
+                                                <Select value={this.state.industry} onChange={this.selectIndustry} options={IndustryOptions} styles={this.customStyles} placeholder={'Enter Company Industry'}/>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Contact Email</p>

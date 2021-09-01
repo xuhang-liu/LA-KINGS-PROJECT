@@ -80,8 +80,8 @@ export class Profile extends Component {
             fakeName: "",
             docType: "",
             jobType: "",
-            skills: null,
-            languages: null,
+            skills: this.props.profileDetail.skills,
+            languages: this.props.profileDetail.languages,
             shareLink: "",
             showShare: false,
             isEditProfileShare: false,
@@ -1126,7 +1126,7 @@ export class Profile extends Component {
                                                 </div>
                                             </div>
                                             <div>
-                                                <SkillEdition skills = {skills} setSkills={this.setSkills}/>
+                                                <SkillEdition skills={skills} setSkills={this.setSkills}/>
                                             </div>
                                             <div className="row" style={{marginTop: "1rem"}}>
                                                 <div className="col-6" />

@@ -20,6 +20,7 @@ export class ApplicantList extends Component {
         category: { value: 'All', label: 'All' },
         editQuestion: false,
         isSortByScore: true,
+        selectedPage: 0,
     }
 
     onFilter = (category) => {
@@ -241,6 +242,7 @@ export class ApplicantList extends Component {
 
     handlePageClick = (data) => {
         let selectedPage = data.selected; // 0 index based
+        this.setState({selectedPage: selectedPage});
         let page = selectedPage + 1;
         this.props.getAllJobs(this.props.user.id, page);
 
@@ -265,11 +267,12 @@ export class ApplicantList extends Component {
                                   breakLabel={'...'}
                                   breakClassName={'break-me'}
                                   pageCount={this.props.curJob.total_page}
-                                  marginPagesDisplayed={2}
+                                  marginPagesDisplayed={1}
                                   pageRangeDisplayed={5}
                                   onPageChange={this.handlePageClick}
                                   containerClassName={'pagination3'}
                                   activeClassName={'active'}
+                                  forcePage={this.state.selectedPage}
                             />
                         </div>
                     </div>
@@ -374,6 +377,21 @@ export class ApplicantList extends Component {
                                 />
                             )
                         })}
+                    </div>
+                    <div className="interview-txt7 d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                        <ReactPaginate
+                              previousLabel={'< prev'}
+                              nextLabel={'next >'}
+                              breakLabel={'...'}
+                              breakClassName={'break-me'}
+                              pageCount={this.props.curJob.total_page}
+                              marginPagesDisplayed={1}
+                              pageRangeDisplayed={5}
+                              onPageChange={this.handlePageClick}
+                              containerClassName={'pagination3'}
+                              activeClassName={'active'}
+                              forcePage={this.state.selectedPage}
+                        />
                     </div>
                 </div>
                 {this.props.filter == "active" &&
