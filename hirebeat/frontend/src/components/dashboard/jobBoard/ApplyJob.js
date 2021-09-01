@@ -453,18 +453,34 @@ const ApplyJob = (props) => {
                                                             <div>
                                                                 <i className="bx bxs-file-pdf resume-name"></i>
                                                                 <label className="resume-name" id="fileName"></label>
-                                                                <label className="resume-success" style={{ marginLeft: "0.5rem" }}>selected</label>
-                                                                <i className="bx bxs-check-circle resume-success" style={{ marginLeft: "1rem" }}></i>
+                                                                <label className="resume-success" style={{ marginLeft: "0.5rem" }}>selected <i className="bx-fw bx bxs-check-circle resume-success" style={{ marginLeft: "0.5rem" }}></i></label>
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{ color: "#ff0000" }}>Support .pdf only</span>
                                                     }
                                                     <div class="form-group row">
                                                         <div class="col-sm-10">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="gridCheck1" required />
-                                                                <label style={{ color: "#B0B0B0" }} class="form-check-label mb-4" for="gridCheck1">
-                                                                    I have read and agreed to the
-                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
+                                                                <p className="d-flex flex-wrap justify-content-start mb-2"
+                                                                    style={{
+                                                                        fontSize: "0.9rem",
+                                                                        color: "#B0B0B0",
+                                                                        fontWeight: "500"
+                                                                    }}>
+                                                                    <input type="checkbox" required name="terms" style={{ marginRight: '5%', display: 'inline', marginTop: "1%" }}></input>
+                                                                    I have read and agree to the
+                                                                    <a
+                                                                        target="_blank"
+                                                                        rel="noreferrer"
+                                                                        href="/term"
+                                                                        className="active d-flex ml-2"
+                                                                        style={{
+                                                                            textDecoration: "underline",
+                                                                            color: "#ff612f",
+                                                                            fontWeight: "500"
+                                                                        }}>
+                                                                        Terms & Conditions
+                                                                    </a>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -692,18 +708,34 @@ const ApplyJob = (props) => {
                                                                 <br />
                                                                 <i className="bx bxs-file-pdf resume-name"></i>
                                                                 <label className="resume-name" id="fileName"></label>
-                                                                <label className="resume-success" style={{ marginLeft: "0.5rem" }}>selected</label>
-                                                                <i className="bx bxs-check-circle resume-success" style={{ marginLeft: "1rem" }}></i>
+                                                                <label className="resume-success" style={{ marginLeft: "0.5rem" }}>selected <i className="bx-fw bx bxs-check-circle resume-success" style={{ marginLeft: "0.5rem" }}></i></label>
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{ color: "#ff0000" }}>Support .pdf only</span>
                                                     }
                                                     <div class="form-group row">
                                                         <div class="col-sm-10">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="gridCheck1" required />
-                                                                <label style={{ color: "#B0B0B0" }} class="form-check-label mb-4" for="gridCheck1">
-                                                                    I have read and agreed to the
-                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
+                                                                <p className="d-flex flex-wrap justify-content-start mb-2"
+                                                                    style={{
+                                                                        fontSize: "0.9rem",
+                                                                        color: "#B0B0B0",
+                                                                        fontWeight: "500"
+                                                                    }}>
+                                                                    <input type="checkbox" required name="terms" style={{ marginRight: '5%', display: 'inline', marginTop: "1%" }}></input>
+                                                                    I have read and agree to the
+                                                                    <a
+                                                                        target="_blank"
+                                                                        rel="noreferrer"
+                                                                        href="/term"
+                                                                        className="active d-flex ml-2"
+                                                                        style={{
+                                                                            textDecoration: "underline",
+                                                                            color: "#ff612f",
+                                                                            fontWeight: "500"
+                                                                        }}>
+                                                                        Terms & Conditions
+                                                                    </a>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1131,8 +1163,7 @@ const ApplyJob = (props) => {
                                                             <div>
                                                                 <i className="bx bxs-file-pdf resume-name"></i>
                                                                 <label className="resume-name" id="fileName"></label>
-                                                                <label className="resume-success" style={{ marginLeft: "0.5rem" }}>selected</label>
-                                                                <i className="bx bxs-check-circle resume-success" style={{ marginLeft: "1rem" }}></i>
+                                                                <label className="resume-success" style={{ marginLeft: "0.5rem" }}>selected <i className="bx-fw bx bxs-check-circle resume-success" style={{ marginLeft: "0.5rem" }}></i></label>
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{ color: "#ff0000" }}>Support .pdf only</span>
                                                     }
@@ -1387,8 +1418,7 @@ const ApplyJob = (props) => {
                                                                 <br />
                                                                 <i className="bx bxs-file-pdf resume-name"></i>
                                                                 <label className="resume-name" id="fileName"></label>
-                                                                <label className="resume-success" style={{ marginLeft: "0.5rem" }}>selected</label>
-                                                                <i className="bx bxs-check-circle resume-success" style={{ marginLeft: "1rem" }}></i>
+                                                                <label className="resume-success" style={{ marginLeft: "0.5rem" }}>selected <i className="bx-fw bx bxs-check-circle resume-success" style={{ marginLeft: "0.5rem" }}></i></label>
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{ color: "#ff0000" }}>Support .pdf only</span>
                                                     }

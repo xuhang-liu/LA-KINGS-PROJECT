@@ -1,3 +1,11 @@
+import stripe
+from django.db.models import Q
+from django.db.models.functions import Length
+import math
+from django.contrib.postgres.search import SearchVector
+from datetime import date, timedelta
+from django.forms.models import model_to_dict
+import requests
 import boto
 import mimetypes
 import json
@@ -25,13 +33,7 @@ from django.core.mail import EmailMessage
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
 load_dotenv()
-import requests
-from django.forms.models import model_to_dict
-from datetime import date, timedelta
-from django.contrib.postgres.search import SearchVector
-import math
-from django.db.models.functions import Length
-from django.db.models import Q
+stripe.api_key = os.getenv("STRIPE_API_KEY")
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -39,21 +41,22 @@ if not boto.config.get('s3', 'use-sigv4'):
 boto.config.set('s3', 'host', 's3.amazonaws.com')
 
 conn = boto.connect_s3(os.getenv("AWSAccessKeyId"), os.getenv("AWSSecretKey"))
- 
+
+
 def sign_s3_upload(request):
     print("===== sign api called =======")
     object_name = request.GET['objectName']
     content_type = request.GET['contentType']
     # content_type = mimetypes.guess_type(object_name)[0]
     # content_type = content_type + ";codecs=vp8,opus" ### ATTENTION: this added part is required if upload dirctly from the browser. If used for uploading local files, comment this line out.###
- 
+
     signed_url = conn.generate_url(
         300,
         "PUT",
         os.getenv("Bucket"),
         object_name,
-        headers = {'Content-Type': content_type, 'x-amz-acl':'public-read'})
-    
+        headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
+
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
 
 
@@ -73,6 +76,7 @@ class ActivateAccount(View):
             return render(request, 'accounts/activation_success.html')
         else:
             return render(request, 'accounts/activation_failure.html')
+
 
 @api_view(['POST'])
 def upgrade_accounts(request):
@@ -99,6 +103,7 @@ def upgrade_accounts(request):
     return Response({
         "premiums": premiums
     })
+
 
 @api_view(['POST'])
 def resend_activation_email(request):
@@ -130,6 +135,7 @@ def resend_activation_email(request):
         "msg": "Email Sent Successfully"
     })
 
+
 @api_view(['POST'])
 def update_user_email(request):
     print("===Update User Email Called===")
@@ -140,6 +146,7 @@ def update_user_email(request):
     return Response({
         "email": email
     })
+
 
 @api_view(['POST'])
 def update_user_password(request):
@@ -152,6 +159,7 @@ def update_user_password(request):
         "newPassword": newPassword
     })
 
+
 @api_view(['POST'])
 def check_password(request):
     print("==check password")
@@ -159,24 +167,28 @@ def check_password(request):
     password = request.data['password']
     return Response({user.check_password(password)})
 
+
 @api_view(['POST'])
 def get_user_fullname(request):
     print("==get user fullname")
     user = User.objects.get(pk=request.data["id"])
     return Response({user.get_full_name()})
 
+
 @api_view(['GET'])
 def get_ziprecruiter_jobs(request):
     url = 'https://api.ziprecruiter.com/jobs/v1?search={}&location={}&jobs_per_page={}&days_ago={}&refine_by_salary={}&api_key={}'
-    search= request.query_params.get("search")
-    location=request.query_params.get("location")
+    search = request.query_params.get("search")
+    location = request.query_params.get("location")
     jobs_per_page = 500
     days_ago = request.query_params.get("days_ago")
     refine_by_salary = request.query_params.get("refine_by_salary")
     api_key = os.getenv('REACT_APP_ZR_API_KEY')
-    data = requests.get(url.format(search, location, jobs_per_page, days_ago, refine_by_salary, api_key)).json()
+    data = requests.get(url.format(
+        search, location, jobs_per_page, days_ago, refine_by_salary, api_key)).json()
 
     return Response({"data": data})
+
 
 @api_view(['POST'])
 def check_user_registration(request):
@@ -188,6 +200,7 @@ def check_user_registration(request):
         is_registered = True
 
     return Response({"is_registered": is_registered})
+
 
 @api_view(['POST'])
 def check_user_name(request):
@@ -213,6 +226,7 @@ def check_user_name(request):
                      "username_registered": username_registered
                      })
 
+
 @api_view(['GET'])
 def get_company_name(request):
     position_id = request.query_params.get("position_id")
@@ -221,28 +235,33 @@ def get_company_name(request):
     user_id = position.user_id
     profile = Profile.objects.get(user_id=user_id)
     company_name = profile.company_name
-    return Response({"company_name": company_name, "job_title": job_title,})
+    return Response({"company_name": company_name, "job_title": job_title, })
+
 
 @api_view(['POST'])
 def update_record(request):
     email = request.data["email"]
     positions = request.data["positions"]
-    interview_obj = CandidatesInterview.objects.get(email=email, positions=positions)
+    interview_obj = CandidatesInterview.objects.get(
+        email=email, positions=positions)
     interview_obj.is_recorded = True
     interview_obj.save()
 
-    invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
+    invited_obj = InvitedCandidates.objects.get(
+        email=email, positions=positions)
     invited_obj.is_recorded = True
     # update saved video count
     invited_obj.save()
 
     return Response("Update record status successfully", status=status.HTTP_200_OK)
 
+
 @api_view(['POST'])
 def employer_notification(request):
     email = request.data["email"]
     positions = request.data["positions"]
-    invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
+    invited_obj = InvitedCandidates.objects.get(
+        email=email, positions=positions)
     can_name = invited_obj.name
     position = Positions.objects.get(id=positions)
     user = User.objects.get(pk=position.user_id)
@@ -268,32 +287,38 @@ def employer_notification(request):
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
 
+
 @api_view(['POST'])
 def update_record_refresh(request):
     email = request.data["email"]
     positions = request.data["positions"]
-    interview_obj = CandidatesInterview.objects.get(email=email, positions=positions)
+    interview_obj = CandidatesInterview.objects.get(
+        email=email, positions=positions)
     interview_obj.is_recorded = True
     interview_obj.save()
 
-    invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
+    invited_obj = InvitedCandidates.objects.get(
+        email=email, positions=positions)
     invited_obj.is_recorded = True
     invited_obj.save()
 
     return Response("Update record status successfully after reloading", status=status.HTTP_200_OK)
 
+
 @api_view(['GET'])
 def get_record_status(request):
     position_id = request.query_params.get("position_id")
     email = request.query_params.get("email")
-    interview_info = CandidatesInterview.objects.get(positions=position_id, email=email)
+    interview_info = CandidatesInterview.objects.get(
+        positions=position_id, email=email)
     is_recorded = interview_info.is_recorded
     url_clicked = interview_info.url_clicked
 
     return Response({
         "is_recorded": is_recorded,
-         "url_clicked": url_clicked,
-         })
+        "url_clicked": url_clicked,
+    })
+
 
 @api_view(['GET'])
 def get_received_interview(request):
@@ -303,16 +328,20 @@ def get_received_interview(request):
     for i in range(len(can_int)):
         obj = can_int[i]
         position = Positions.objects.get(pk=obj.positions_id)
-        interview_questions = InterviewQuestions.objects.filter(positions_id=obj.positions_id)
+        interview_questions = InterviewQuestions.objects.filter(
+            positions_id=obj.positions_id)
         iq_count = len(interview_questions)
-        create_date = InvitedCandidates.objects.get(email=email, positions_id=obj.positions_id).invite_date
+        create_date = InvitedCandidates.objects.get(
+            email=email, positions_id=obj.positions_id).invite_date
         user = User.objects.get(pk=position.user_id)
         profile = Profile.objects.get(user_id=user.id)
         company_name = profile.company_name
-        int_info = {"job_title": position.job_title, "is_recorded": obj.is_recorded, "position_id": obj.positions_id, "iq_count": iq_count, "create_date": create_date, "company_name": company_name}
+        int_info = {"job_title": position.job_title, "is_recorded": obj.is_recorded, "position_id": obj.positions_id,
+                    "iq_count": iq_count, "create_date": create_date, "company_name": company_name}
         received_interview.append(int_info)
 
     return Response({"received_interview": received_interview})
+
 
 @api_view(['GET'])
 def get_profile_detail(request):
@@ -329,6 +358,7 @@ def get_profile_detail(request):
     except ObjectDoesNotExist:
         return Response({"data": data})
     return Response({"data": data})
+
 
 @api_view(['POST'])
 def create_or_update_personal_info(request):
@@ -353,6 +383,7 @@ def create_or_update_personal_info(request):
                                      current_company=current_company, location=location)
     return Response("Create or Update personal info successfully", status=status.HTTP_201_CREATED)
 
+
 @api_view(['POST'])
 def create_or_update_social_media(request):
     user_id = request.data["user_id"]
@@ -370,8 +401,10 @@ def create_or_update_social_media(request):
         user_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        ProfileDetail.objects.create(user_id=user_id, email=email, linkedin=linkedin, website=website, github=github)
+        ProfileDetail.objects.create(
+            user_id=user_id, email=email, linkedin=linkedin, website=website, github=github)
     return Response("Create or Update social media successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_job_type(request):
@@ -387,6 +420,7 @@ def create_or_update_job_type(request):
         ProfileDetail.objects.create(user_id=user_id, job_type=job_type)
     return Response("Create or Update job type successfully", status=status.HTTP_201_CREATED)
 
+
 @api_view(['POST'])
 def create_or_update_skills(request):
     user_id = request.data["user_id"]
@@ -401,6 +435,7 @@ def create_or_update_skills(request):
         ProfileDetail.objects.create(user_id=user_id, skills=skills)
     return Response("Create or Update skills successfully", status=status.HTTP_201_CREATED)
 
+
 @api_view(['POST'])
 def create_or_update_languages(request):
     user_id = request.data["user_id"]
@@ -414,6 +449,7 @@ def create_or_update_languages(request):
         # create personal information
         ProfileDetail.objects.create(user_id=user_id, languages=languages)
     return Response("Create or Update languages successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_basic_info(request):
@@ -430,8 +466,10 @@ def create_or_update_basic_info(request):
         user_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        ProfileDetail.objects.create(user_id=user_id, year_of_exp=year_of_exp, current_company=current_company, location=location)
+        ProfileDetail.objects.create(
+            user_id=user_id, year_of_exp=year_of_exp, current_company=current_company, location=location)
     return Response("Create or Update basic info successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_video(request):
@@ -447,6 +485,7 @@ def create_or_update_video(request):
         ProfileDetail.objects.create(user_id=user_id, video_url=video_url)
     return Response("Create or Update video successfully", status=status.HTTP_201_CREATED)
 
+
 @api_view(['POST'])
 def create_or_update_summary(request):
     user_id = request.data["user_id"]
@@ -461,6 +500,7 @@ def create_or_update_summary(request):
         ProfileDetail.objects.create(user_id=user_id, summary=summary)
     return Response("Create or Update summary successfully", status=status.HTTP_201_CREATED)
 
+
 @api_view(['POST'])
 def create_or_update_resume(request):
     user_id = request.data["user_id"]
@@ -474,8 +514,10 @@ def create_or_update_resume(request):
         user_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        ProfileDetail.objects.create(user_id=user_id, resume_name=resume_name, resume_url=resume_url)
+        ProfileDetail.objects.create(
+            user_id=user_id, resume_name=resume_name, resume_url=resume_url)
     return Response("Create or Update resume successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_profile_rate(request):
@@ -490,8 +532,10 @@ def create_or_update_profile_rate(request):
         user_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        ProfileDetail.objects.create(user_id=user_id, profile_rate=profile_rate, info_rate=info_rate)
+        ProfileDetail.objects.create(
+            user_id=user_id, profile_rate=profile_rate, info_rate=info_rate)
     return Response("Create or Update profile rate successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_education(request):
@@ -547,6 +591,7 @@ def create_or_update_education(request):
         user_profile.gpa3 = data[2]["gpa3"]
         user_profile.save()
     return Response("Create or Update education successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_work_exp(request):
@@ -635,6 +680,7 @@ def upload_profile_resume(request):
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
 
+
 def upload_profile_video(request):
     object_name = request.GET['objectName']
     content_type = request.GET['contentType']
@@ -649,6 +695,7 @@ def upload_profile_video(request):
         headers={'Content-Type': content_type, 'x-amz-acl': 'public-read'})
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
+
 
 @api_view(['POST'])
 def subreviewer_update_comment(request):
@@ -683,18 +730,23 @@ def subreviewer_update_comment(request):
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
 
+
 @api_view(['GET'])
 def get_employer_profile_detail(request):
     user_id = request.query_params.get("user_id")
     data = {}
-    employerprofiledetail = EmployerProfileDetail.objects.filter(user_id=user_id)
+    employerprofiledetail = EmployerProfileDetail.objects.filter(
+        user_id=user_id)
     if len(employerprofiledetail) > 0:
-        data = EmployerProfileDetail.objects.filter(user_id=user_id).values()[0]
+        data = EmployerProfileDetail.objects.filter(
+            user_id=user_id).values()[0]
     else:
         EmployerProfileDetail.objects.create(user_id=user_id)
-        data = EmployerProfileDetail.objects.filter(user_id=user_id).values()[0]
+        data = EmployerProfileDetail.objects.filter(
+            user_id=user_id).values()[0]
     # post = EmployerPost.objects.filer(user_id=user_id).values()  # todo append post here
     return Response({"data": data})
+
 
 @api_view(['POST'])
 def create_or_update_employer_info(request):
@@ -711,8 +763,10 @@ def create_or_update_employer_info(request):
         employer_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        EmployerProfileDetail.objects.create(user_id=user_id, name=name, website=website)
+        EmployerProfileDetail.objects.create(
+            user_id=user_id, name=name, website=website)
     return Response("Create or Update employer info successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_employer_logo(request):
@@ -725,8 +779,10 @@ def create_or_update_employer_logo(request):
         employer_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        EmployerProfileDetail.objects.create(user_id=user_id, logo_url=logo_url)
+        EmployerProfileDetail.objects.create(
+            user_id=user_id, logo_url=logo_url)
     return Response("Create or Update employer logo successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_employer_social_media(request):
@@ -743,8 +799,10 @@ def create_or_update_employer_social_media(request):
         employer_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        EmployerProfileDetail.objects.create(user_id=user_id, linkedin=linkedin, facebook=facebook, twitter=twitter)
+        EmployerProfileDetail.objects.create(
+            user_id=user_id, linkedin=linkedin, facebook=facebook, twitter=twitter)
     return Response("Create or Update employer social media successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_employer_basic_info(request):
@@ -753,7 +811,7 @@ def create_or_update_employer_basic_info(request):
     email = request.data["contactEmail"]
     location = request.data["location"]
     company_size = request.data["company_size"]
-        
+
     try:
         # update personal information
         employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
@@ -764,8 +822,10 @@ def create_or_update_employer_basic_info(request):
         employer_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        EmployerProfileDetail.objects.create(user_id=user_id, company_type=company_type, email=email, location=location, company_size=company_size)
+        EmployerProfileDetail.objects.create(
+            user_id=user_id, company_type=company_type, email=email, location=location, company_size=company_size)
     return Response("Create or Update employer basic info successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_employer_video(request):
@@ -778,8 +838,10 @@ def create_or_update_employer_video(request):
         employer_profile.save()
     except ObjectDoesNotExist:
         # create personal information
-        EmployerProfileDetail.objects.create(user_id=user_id, video_url=video_url)
+        EmployerProfileDetail.objects.create(
+            user_id=user_id, video_url=video_url)
     return Response("Create or Update video successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 def create_or_update_employer_summary(request):
@@ -811,19 +873,23 @@ def upload_employer_profile_video(request):
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
 
+
 @api_view(['GET'])
 def get_employer_post(request):
     user_id = request.query_params.get("user_id")
     index = int(request.query_params.get("index"))
     count = EmployerPost.objects.filter(user_id=user_id).count()
     if count <= 2:
-        data = list(EmployerPost.objects.filter(user_id=user_id).order_by('-created_at').values())
+        data = list(EmployerPost.objects.filter(
+            user_id=user_id).order_by('-created_at').values())
 
     else:
         # slice data, only fetch 2 records
-        data = list(EmployerPost.objects.filter(user_id=user_id).order_by('-created_at').values())[index:index+2]
+        data = list(EmployerPost.objects.filter(user_id=user_id).order_by(
+            '-created_at').values())[index:index+2]
     return Response({"data": data,
                      "total": count})
+
 
 @api_view(['POST'])
 def update_employer_post(request):
@@ -831,8 +897,9 @@ def update_employer_post(request):
     content = request.data["content"]
     post = EmployerPost.objects.get(id=post_id)
     post.content = content
-    post.save();
+    post.save()
     return Response("Update employer post successfully", status=status.HTTP_205_RESET_CONTENT)
+
 
 @api_view(['POST'])
 def add_employer_post(request):
@@ -841,11 +908,13 @@ def add_employer_post(request):
     EmployerPost.objects.create(user_id=user_id, content=content)
     return Response("Create employer post successfully", status=status.HTTP_201_CREATED)
 
+
 @api_view(['POST'])
 def delete_employer_post(request):
     post_id = request.data["post_id"]
     EmployerPost.objects.filter(id=post_id).delete()
     return Response("Delete employer post successfully", status=status.HTTP_202_ACCEPTED)
+
 
 def upload_employer_logo(request):
     object_name = request.GET['objectName']
@@ -862,6 +931,7 @@ def upload_employer_logo(request):
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
 
+
 def upload_user_logo(request):
     object_name = request.GET['objectName']
     content_type = request.GET['contentType']
@@ -877,6 +947,7 @@ def upload_user_logo(request):
 
     return HttpResponse(json.dumps({'signedUrl': signed_url}))
 
+
 @api_view(['POST'])
 def create_or_update_user_logo(request):
     user_id = request.data["user_id"]
@@ -890,6 +961,7 @@ def create_or_update_user_logo(request):
         # create profile detail information
         ProfileDetail.objects.create(user_id=user_id, logo_url=logo_url)
     return Response("Create or Update user logo successfully", status=status.HTTP_201_CREATED)
+
 
 @api_view(['GET'])
 def check_user_existence(request):
@@ -905,6 +977,7 @@ def check_user_existence(request):
                 data = True
     return Response({"data": data})
 
+
 @api_view(['GET'])
 def check_company_name_existence(request):
     companyName = request.query_params.get("companyName")
@@ -913,6 +986,7 @@ def check_company_name_existence(request):
     if len(profile) != 0:
         data = True
     return Response({"data": data})
+
 
 @api_view(['POST'])
 def create_profile(request):
@@ -950,6 +1024,7 @@ def create_profile(request):
 
     return Response("Create or Update user profile successfully", status=status.HTTP_201_CREATED)
 
+
 @api_view(['POST'])
 def create_or_update_profile_sharing(request):
     user_id = request.data["user_id"]
@@ -964,8 +1039,10 @@ def create_or_update_profile_sharing(request):
         profile.save()
     except ObjectDoesNotExist:
         # create profile detail information
-        ProfileDetail.objects.create(user_id=user_id, share_profile=share_profile, open_to_hr=open_to_hr)
+        ProfileDetail.objects.create(
+            user_id=user_id, share_profile=share_profile, open_to_hr=open_to_hr)
     return Response("Update user profile sharing successfully", status=status.HTTP_200_OK)
+
 
 @api_view(['POST'])
 def create_employer_profile(request):
@@ -993,6 +1070,7 @@ def create_employer_profile(request):
 
     return Response("Create employer profile successfully", status=status.HTTP_201_CREATED)
 
+
 @api_view(['POST'])
 def check_freetrial_expire(request):
     expired = False
@@ -1017,6 +1095,7 @@ def check_freetrial_expire(request):
         expired = False
     return Response({"data": expired})
 
+
 @api_view(['POST'])
 def get_sourcing_data(request):
     keywords = request.data["keywords"]
@@ -1037,7 +1116,8 @@ def get_sourcing_data(request):
         # has video
         if has_video:
             res = ProfileDetail.objects.annotate(
-                keywords=SearchVector('f_name', 'l_name', 'current_job_title', 'current_company'),
+                keywords=SearchVector('f_name', 'l_name',
+                                      'current_job_title', 'current_company'),
                 video_url_len=Length('video_url')
             ).filter(keywords__icontains=keywords, video_url_len__gt=0, open_to_hr=True)
             # further select skill, location and position
@@ -1051,7 +1131,8 @@ def get_sourcing_data(request):
         # no video
         else:
             res = ProfileDetail.objects.annotate(
-                keywords=SearchVector('f_name', 'l_name', 'current_job_title', 'current_company'),
+                keywords=SearchVector('f_name', 'l_name',
+                                      'current_job_title', 'current_company'),
             ).filter(keywords__icontains=keywords, open_to_hr=True)
             # further select skill, location and position
             if len(skills) > 0:
@@ -1081,3 +1162,16 @@ def get_sourcing_data(request):
             end = page * 20
             data["profiles"] = list(res)[begin:end]
     return Response({"data": data})
+
+
+@api_view(['POST'])
+def go_stripe_customer_portal(request):
+    id = request.data["id"]
+    user = User.objects.get(pk=id)
+    profile = Profile.objects.get(user=user)
+    session = stripe.billing_portal.Session.create(
+    customer = profile.customer_id,
+    return_url='https://hirebeat.co/employer_dashboard',
+    )
+
+    return Response({"session_url": session.url})

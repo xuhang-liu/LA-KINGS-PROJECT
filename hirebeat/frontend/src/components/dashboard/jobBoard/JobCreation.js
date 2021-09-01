@@ -7,7 +7,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Switch from "react-switch";
 import parse from 'html-react-parser';
-import {SkillSet} from "./Constants";
+import { SkillSet } from "./Constants";
 import { MyShareModal } from "./../DashboardComponents";
 import ShareJob from "./ShareJob";
 import Autocomplete from "react-google-autocomplete";
@@ -71,7 +71,7 @@ export class JobCreation extends Component {
         this.setState({ skills: skills })
     };
     customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff' }),
+        control: styles => ({ ...styles, backgroundColor: '#ffffff', border: "2px solid #E8EDFC", borderRadius: "5px" }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
@@ -96,7 +96,7 @@ export class JobCreation extends Component {
     ];
 
     setJobPost(type) {
-        if (this.props.profile.is_freetrial && type==2){
+        if (this.props.profile.is_freetrial && type == 2) {
             confirmAlert({
                 title: 'Upgrade Now!',
                 message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
@@ -106,7 +106,7 @@ export class JobCreation extends Component {
                 ]
             });
         }
-        else{
+        else {
             this.setState({ job_post: type });
         }
     }
@@ -351,11 +351,11 @@ export class JobCreation extends Component {
     };
 
     showSharePrompt = () => {
-        this.setState({showShare: true});
+        this.setState({ showShare: true });
     }
 
     disableShowShare = () => {
-        this.setState({showShare: false});
+        this.setState({ showShare: false });
         this.props.renderJobs();
     }
 
@@ -389,15 +389,15 @@ export class JobCreation extends Component {
                                     Job Title
                                 </label><span className="job-apply-char2">*</span>
                                 <input type="text" name="jobTitle" value={this.state.jobTitle}
-                                    onChange={this.handleInputChange} className="form-control" required="required" />
+                                    onChange={this.handleInputChange} className="form-control" required="required" style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }} />
                             </div>
-                            <div className="form-group col-6">
+                            <div className="form-group col-3">
                                 <label className="db-txt2">
                                     Job ID
                                 </label>
                                 <span className="job-apply-char2" style={{ visibility: "hidden" }}>*</span>
                                 <input type="text" name="jobId" value={this.state.jobId}
-                                    onChange={this.handleInputChange} className="form-control" />
+                                    onChange={this.handleInputChange} className="form-control" style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }} />
                             </div>
                         </div>
                         <div className="form-row">
@@ -409,6 +409,8 @@ export class JobCreation extends Component {
                                     <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} />
                                 </div>
                             </div>
+                        </div>
+                        <div className="form-row">
                             <div className="form-group col-6">
                                 <label className="db-txt2">
                                     Experience Level
@@ -650,34 +652,32 @@ export class JobCreation extends Component {
                             </div>}
                         <MyShareModal
                             show={this.state.showShare}
-                            onHide={()=>{this.disableShowShare()}}
+                            onHide={() => { this.disableShowShare() }}
                         >
-                            <div className="container" style={{padding: "2rem"}}>
+                            <div className="container" style={{ padding: "2rem" }}>
                                 <ShareJob
                                     disableShowShare={this.disableShowShare}
-                                    shareLink={"https://hirebeat.co/apply-job/" + this.props.companyName + "?id=" + Object.keys(this.props.jobs).sort(function (a, b) {return b - a;})[0]}
+                                    shareLink={"https://hirebeat.co/apply-job/" + this.props.companyName + "?id=" + Object.keys(this.props.jobs).sort(function (a, b) { return b - a; })[0]}
                                     companyName={this.props.companyName}
                                     jobTitle={this.state.jobTitle}
                                 />
                             </div>
                         </MyShareModal>
-                        <div style={{ float: "left", marginBottom: "1rem", display: "inline-block" }}>
-                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#E5E5E5", color: "#090d3a" }} onClick={this.props.renderJobs}>Cancel</button>
-                        </div>
-                        <div style={{ float: "right", marginBottom: "1rem", display: "inline-block" }}>
-                            <button
-                                type="button"
-                                className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem" }}
-                                onClick={() => { this.previewJob() }}
-                            >
-                                <i className="bx bx-show"></i>Preview
-                            </button>
+                        <div style={{ float: "left", marginBottom: "1rem", display: "inline-block"}}>
                             <button
                                 type="submit"
-                                className="default-btn1" style={{ marginBottom: "1.5%", paddingLeft: "25px" }}
+                                className="default-btn" style={{ marginBottom: "1.5%", paddingLeft: "25px", marginRight: "1rem" }}
                             >
                                 Save & Post
                             </button>
+                            <button
+                                type="button"
+                                className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#56a3fa", border: "2px solid #56a3fa", paddingTop: "9px", paddingBottom: "8px" }}
+                                onClick={() => { this.previewJob() }}
+                            >
+                                <i className="bx bx-show" style={{ color: "#56a3fa" }}></i>Preview
+                            </button>
+                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#fff", color: "#979797" }} onClick={this.props.renderJobs}>Cancel</button>
                         </div>
                     </form>
                 </div>

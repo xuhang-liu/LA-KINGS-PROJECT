@@ -77,7 +77,7 @@ export class JobEdition extends Component {
         this.setState({ skills: skills })
     };
     customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff' }),
+        control: styles => ({ ...styles, backgroundColor: '#ffffff', border:"2px solid #E8EDFC", borderRadius:"5px" }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
@@ -302,8 +302,7 @@ export class JobEdition extends Component {
                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                         >
                             <div className="center-items back-to-text">
-                                <i className="bx bx-arrow-back bx-sm"></i>
-                                <p className="back-to-text">Back to Jobs</p>
+                                <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to Jobs</p>
                             </div>
                         </button>
                     </div>
@@ -316,15 +315,15 @@ export class JobEdition extends Component {
                                     Job Title
                                 </label><span className="job-apply-char2">*</span>
                                 <input type="text" name="jobTitle" value={this.state.jobTitle}
-                                    onChange={this.handleInputChange} className="form-control" required="required" />
+                                    onChange={this.handleInputChange} className="form-control" required="required" style={{border:"2px solid #E8EDFC", borderRadius:"5px", height:"2.5rem"}} />
                             </div>
-                            <div className="form-group col-6">
+                            <div className="form-group col-3">
                                 <label className="db-txt2">
                                     Job ID
                                 </label>
                                 <span className="job-apply-char2" style={{visibility: "hidden"}}>*</span>
                                 <input type="text" name="jobId" value={this.state.jobId}
-                                    onChange={this.handleInputChange} className="form-control" />
+                                    onChange={this.handleInputChange} className="form-control" style={{border:"2px solid #E8EDFC", borderRadius:"5px", height:"2.5rem"}} />
                             </div>
                         </div>
                         <div className="form-row">
@@ -336,6 +335,8 @@ export class JobEdition extends Component {
                                     <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} />
                                 </div>
                             </div>
+                        </div>
+                        <div className="form-row">
                             <div className="form-group col-6">
                                 <label className="db-txt2">
                                     Experience Level
@@ -574,16 +575,14 @@ export class JobEdition extends Component {
                                     </div>
                                 </div>
                             </div>}
-                        <div style={{ float: "left", marginBottom: "1rem", display: "inline-block" }}>
-                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#E5E5E5", color: "#090d3a" }} onClick={this.props.renderJobs}>Cancel</button>
-                        </div>
-                        <div style={{ float: "right", marginBottom: "1rem" }}>
+                        <div style={{ float: "left", marginBottom: "1rem"}}>
                             <button
                                 type="submit"
-                                className="default-btn1" style={{ marginBottom: "1.5%", paddingLeft: "25px" }}
+                                className="default-btn" style={{ marginBottom: "1.5%", paddingLeft: "25px", marginRight:"1rem" }}
                             >
                                 Save
                             </button>
+                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#fff", color: "#979797" }} onClick={this.props.renderJobs}>Cancel</button>
                         </div>
 
                     </form>

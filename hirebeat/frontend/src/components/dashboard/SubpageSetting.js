@@ -26,6 +26,23 @@ export class SubpageSetting extends Component {
         });
     }
 
+    stripeCustomerPortal = () => {
+        let config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let data = { "id": this.props.user.id };
+
+        axios.post("api/go_stripe_customer_portal", data, config).then((res) => {
+            //console.log(res);
+            const session_url = res['data']['session_url'];
+            window.location.href = session_url;
+        }).catch(error => {
+            console.log(error)
+        });
+    }
+
     handleInputChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
@@ -81,7 +98,7 @@ export class SubpageSetting extends Component {
                     alert("Incorrect Password");
                 }
             }).catch(error => {
-                    console.log(error)
+                console.log(error)
             });
             // user login judgement, third partiy login.
             // user email /go to database user social auth. Matching function. filter(same user id.) question view.(objects.filter)
@@ -159,32 +176,35 @@ export class SubpageSetting extends Component {
                     <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                         {this.props.profile.is_employer ?
                             this.props.profile.is_external_reviewer ?
-                            <button type="button" style={{ backgroundColor: "#e8edfc", border: "none" }} onClick={this.props.renderShortlist}>
-                                <IconText
-                                    iconName={"bx bx-arrow-back bx-sm"}
-                                    textDisplayed={"Back"}
-                                    textSize={"18px"}
-                                    textColor={"#56a3fa"}
-                                    iconMargin={"3px"}
-                                />
-                            </button>:
-                            <button type="button" style={{ backgroundColor: "#e8edfc", border: "none" }} onClick={this.props.renderEmployerProfile}>
-                                <IconText
-                                    iconName={"bx bx-arrow-back bx-sm"}
-                                    textDisplayed={"Back"}
-                                    textSize={"18px"}
-                                    textColor={"#56a3fa"}
-                                    iconMargin={"3px"}
-                                />
-                            </button> :
-                            <button type="button" style={{ backgroundColor: "#e8edfc", border: "none" }} onClick={this.props.renderVideos}>
-                                <IconText
-                                    iconName={"bx bx-arrow-back bx-sm"}
-                                    textDisplayed={"Back"}
-                                    textSize={"18px"}
-                                    textColor={"#56a3fa"}
-                                    iconMargin={"3px"}
-                                />
+                                <button
+                                    type="button"
+                                    className="panel-button"
+                                    onClick={this.props.renderShortlist}
+                                    style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                                >
+                                    <div className="center-items back-to-text">
+                                        <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                                    </div>
+                                </button> :
+                                <button
+                                    type="button"
+                                    className="panel-button"
+                                    onClick={this.props.renderEmployerProfile}
+                                    style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                                >
+                                    <div className="center-items back-to-text">
+                                        <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                                    </div>
+                                </button> :
+                            <button
+                                type="button"
+                                className="panel-button"
+                                onClick={this.props.renderVideos}
+                                style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                            >
+                                <div className="center-items back-to-text">
+                                    <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                                </div>
                             </button>}
                     </div>
                 </div>
@@ -402,7 +422,7 @@ export class SubpageSetting extends Component {
                         </button>
                     </form>
                 </div>
-                {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) &&
+                {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_employer)) &&
                     <div>
                         <div className="row" >
                             <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
@@ -445,32 +465,73 @@ export class SubpageSetting extends Component {
                                 </div>
                             </div>
                             {!this.props.profile.is_freetrial &&
-                            <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
-                                <div className="form-row" style={{ marginTop: "1%" }}>
-                                    <div className="form-group col">
-                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Type your email to cancel the membership</p>
-                                        <input
-                                            type="email"
-                                            className="form-control"
-                                            name={"useremail"}
-                                            value={this.state.useremail}
-                                            onChange={this.handleInputChange}
-                                            placeholder={"email"}
-                                            required="required"
-                                        />
+                                <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
+                                    <div className="form-row" style={{ marginTop: "1%" }}>
+                                        <div className="form-group col">
+                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Type your email to cancel the membership</p>
+                                            <input
+                                                type="email"
+                                                className="form-control"
+                                                name={"useremail"}
+                                                value={this.state.useremail}
+                                                onChange={this.handleInputChange}
+                                                placeholder={"email"}
+                                                required="required"
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="default-btn"
-                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                >
-                                    Cancel Membership
-                                </button>
-                            </form>}
+                                    <button
+                                        type="submit"
+                                        className="default-btn"
+                                        style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                    >
+                                        Cancel Membership
+                                    </button>
+                                </form>}
                         </div>
                     </div>}
-                {this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) &&
+                {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer) && (this.props.profile.is_employer)) &&
+                    <div>
+                        <div className="row" >
+                            <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                <IconText
+                                    textDisplayed={"Subscription"}
+                                    textSize={"24px"}
+                                    textColor={"#090D3A"}
+                                    iconMargin={"3px"}
+                                />
+                            </div>
+                        </div>
+                        <div className="chart-bg1 container">
+                            <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
+                                <div className="form-group col">
+                                    <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current Plan</p>
+                                    {this.props.profile.plan_interval == "Premium" &&
+                                        <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                            <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
+                                            </p>
+                                        </div>}
+                                    {this.props.profile.plan_interval == "Pro" &&
+                                        <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                            <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                <i className="bx-fw bx bx-diamond bx-xs"></i><span>Pro</span>
+                                            </p>
+                                        </div>}
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col">
+                                    {((this.props.profile.customer_id != "" && this.props.profile.customer_id != null && this.props.profile.customer_id != "none") && (!this.props.profile.is_freetrial)) &&
+                                        <div>
+                                            <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.stripeCustomerPortal}>Manage Subscription</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>}
+                {(this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) && (!this.props.profile.is_subreviwer)) &&
                     <div>
                         <div className="row" >
                             <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
@@ -483,7 +544,7 @@ export class SubpageSetting extends Component {
                             </div>
                         </div>
                         <div className="chart-bg1 container">
-                            <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
+                            <form style={{ marginBottom: "3%" }}>
                                 <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
                                     <div className="form-group col">
                                         <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
@@ -499,7 +560,6 @@ export class SubpageSetting extends Component {
                                         {!this.props.profile.is_subreviwer &&
                                             <a
                                                 href="/employer-pricing"
-                                                type="submit"
                                                 className="default-btn"
                                                 style={{ paddingLeft: "25px", textDecoration: "none" }}
                                             >
@@ -507,7 +567,6 @@ export class SubpageSetting extends Component {
                                             </a>}</div> :
                                     <a
                                         href="/pricing"
-                                        type="submit"
                                         className="default-btn"
                                         style={{ paddingLeft: "25px", textDecoration: "none" }}
                                     >

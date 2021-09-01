@@ -7,6 +7,7 @@ import MergeIntergration from "./essentials/MergeIntergration";
 import { CreatePosition } from "./position/CreatePosition";
 import { ApplicationCover } from "./applications/ApplicationCover";
 import ShortList from "./ShortList";
+import { MyModalUpgrade } from "./DashboardComponents";
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import {
@@ -63,6 +64,8 @@ export class EmployerDashboard extends Component {
     this.state = {
       subpage: subpage,
       jobInfo: {},
+      showUpgradeM: false,
+      showUpgradeM1: false,
     }
     // store user info to sessionStorage
     sessionStorage.setItem('user', JSON.stringify(this.props.user));
@@ -75,6 +78,30 @@ export class EmployerDashboard extends Component {
     position_list: PropTypes.array.isRequired,
     user_existence: PropTypes.bool,
   };
+
+  setShowUpgradeM = () => {
+    this.setState({
+      showUpgradeM: true
+    });
+  }
+
+  setShowUpgradeM1 = () => {
+    this.setState({
+      showUpgradeM1: true
+    });
+  }
+
+  setHideUpgradeM = () => {
+    this.setState({
+      showUpgradeM: false
+    });
+  }
+
+  setHideUpgradeM1 = () => {
+    this.setState({
+      showUpgradeM1: false
+    });
+  }
 
   makeProfile = () => {
     return {
@@ -160,13 +187,13 @@ export class EmployerDashboard extends Component {
       console.log(error)
     });
     let queryData = {
-        keywords: "",
-        location: "",
-        skills: [],
-        position: "",
-        has_video: false,
-        page: 1,
-        has_filter: false,
+      keywords: "",
+      location: "",
+      skills: [],
+      position: "",
+      has_video: false,
+      page: 1,
+      has_filter: false,
     }
     this.props.getSourcingData(queryData);
   }
@@ -189,14 +216,7 @@ export class EmployerDashboard extends Component {
       this.refreshPage();
     }
     else if (this.props.profile.membership == "Regular") {
-      confirmAlert({
-        title: 'Upgrade Now!',
-        message: 'Your free trial expired',
-        buttons: [
-          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-          { label: 'OK' },
-        ]
-      });
+      this.setShowUpgradeM();
     }
     else {
       sessionStorage.setItem('subpage', "jobs");
@@ -232,14 +252,7 @@ export class EmployerDashboard extends Component {
       }
       )
     } else if ((this.props.profile.position_count) >= (this.props.profile.position_limit)) {
-      confirmAlert({
-        title: 'Upgrade Now!',
-        message: 'Exceed max number of positions! Upgrade now to create more positions',
-        buttons: [
-          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-          { label: 'OK' },
-        ]
-      });
+      this.setShowUpgradeM();
     } else {
       this.setState({
         subpage: "jobCreation",
@@ -253,15 +266,8 @@ export class EmployerDashboard extends Component {
       this.refreshPage();
     }
     else if (this.props.profile.membership == "Regular" && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
-      confirmAlert({
-        title: 'Upgrade Now!',
-        message: 'Your free trial expired',
-        buttons: [
-          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-          { label: 'OK' },
-        ]
-      });
-    }else{
+      this.setShowUpgradeM();
+    } else {
       sessionStorage.setItem('subpage', "applications");
       this.setState({
         subpage: "applications",
@@ -324,15 +330,8 @@ export class EmployerDashboard extends Component {
       this.refreshPage();
     }
     else if (this.props.profile.membership == "Regular" && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
-      confirmAlert({
-        title: 'Upgrade Now!',
-        message: 'Your free trial expired',
-        buttons: [
-          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-          { label: 'OK' },
-        ]
-      });
-    }else{
+      this.setShowUpgradeM();
+    } else {
       sessionStorage.setItem('subpage', "shortlist");
       this.setState({
         subpage: "shortlist",
@@ -345,15 +344,8 @@ export class EmployerDashboard extends Component {
       this.refreshPage();
     }
     else if (this.props.profile.membership == "Regular") {
-      confirmAlert({
-        title: 'Upgrade Now!',
-        message: 'Your free trial expired',
-        buttons: [
-          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-          { label: 'OK' },
-        ]
-      });
-    }else{
+      return this.setShowUpgradeM();
+    } else {
       this.props.getAnalyticsInfo(this.props.user.id);
       sessionStorage.setItem('subpage', "analytics");
       setTimeout(() => {
@@ -379,33 +371,28 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "mergeintergration") {
       this.refreshPage();
     }
-    if (this.props.profile.membership == "Premium") {
+    if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") {
       this.props.createMergeLinkToken(this.props.user.id);
       sessionStorage.setItem('subpage', "mergeintergration");
       this.setState({
         subpage: "mergeintergration",
       });
     } else {
-      confirmAlert({
-        title: 'Upgrade Now!',
-        message: 'You need upgrade to use intergration',
-        buttons: [
-          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-          { label: 'OK' },
-        ]
-      });
+      this.setShowUpgradeM1();
     }
   }
 
   renderEmployerSourcing = () => {
     if (this.state.subpage == "employerSourcing") {
       this.refreshPage();
+    } else if (this.props.profile.membership == "Regular") {
+      this.setShowUpgradeM();
+    } else {
+      sessionStorage.setItem('subpage', "employerSourcing");
+      this.setState({
+        subpage: "employerSourcing",
+      });
     }
-    sessionStorage.setItem('subpage', "employerSourcing");
-    this.setState({
-      subpage: "employerSourcing",
-    }
-    )
   }
 
   renderSubpage = () => {
@@ -611,6 +598,40 @@ export class EmployerDashboard extends Component {
         <React.Fragment>
           {this.props.employerDetailLoaded ?
             <div>
+              <MyModalUpgrade
+                show={this.state.showUpgradeM}
+                onHide={this.setHideUpgradeM}
+              >
+                <div className="container" style={{borderRadius:"10px", boxShadow:"2px 2px 4px rgba(128, 128, 128, 0.16)", padding:"2rem"}}>
+                  <h3 style={{color:"#090d3a", fontWeight:"600", fontSize:"1.6rem"}}>Your Free Trial Has Expired</h3>
+                  <p className="pt-3">Want to continue using HireBeat? Select a Subscription Plan today!</p>
+                  <div className="row" style={{margin:"auto", width:"80%"}}>
+                    <div className="col-6">
+                      <Link to="/employer-pricing" className="default-btn" style={{paddingLeft:"25px", paddingTop:"8px", paddingBottom:"8px", textDecoration:"none"}}>Select Plan</Link>
+                    </div>
+                    <div className="col-6">
+                      <button onClick={this.setHideUpgradeM} className="default-btn" style={{paddingLeft:"25px", paddingTop:"8px", paddingBottom:"8px", backgroundColor:"#979797"}}>Maybe Later</button>
+                    </div>
+                  </div>
+                </div>
+              </MyModalUpgrade>
+              <MyModalUpgrade
+                show={this.state.showUpgradeM1}
+                onHide={this.setHideUpgradeM1}
+              >
+                <div className="container" style={{borderRadius:"10px", boxShadow:"2px 2px 4px rgba(128, 128, 128, 0.16)", padding:"2rem"}}>
+                  <h3 style={{color:"#090d3a", fontWeight:"600", fontSize:"1.6rem"}}>You need upgrade to use intergration</h3>
+                  <p className="pt-3">Want to continue using intergration? Select the Premium Plan today!</p>
+                  <div className="row" style={{margin:"auto", width:"80%"}}>
+                    <div className="col-6">
+                      <Link to="/employer-pricing" className="default-btn" style={{paddingLeft:"25px", paddingTop:"8px", paddingBottom:"8px", textDecoration:"none"}}>Select Plan</Link>
+                    </div>
+                    <div className="col-6">
+                      <button onClick={this.setHideUpgradeM1} className="default-btn" style={{paddingLeft:"25px", paddingTop:"8px", paddingBottom:"8px", backgroundColor:"#979797"}}>Maybe Later</button>
+                    </div>
+                  </div>
+                </div>
+              </MyModalUpgrade>
               <ScrollToTopOnMount />
               {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
               <MediaQuery minDeviceWidth={1224}>

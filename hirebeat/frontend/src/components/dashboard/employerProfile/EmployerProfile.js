@@ -331,15 +331,15 @@ export class EmployerProfile extends Component {
                                     {this.props.profile.is_subreviwer ?
                                         <div>
                                             <div className="row">
-                                                <div style={{ borderColor: "#cad9fc", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
-                                                    <p style={{ color: "#cad9fc", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>Sub-Reviewer</p>
+                                                <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
+                                                    <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>Sub-Reviewer</p>
                                                 </div>
                                             </div>
                                         </div> :
                                         <div>
                                             <div className="row" style={{ width: "20rem" }}>
                                                 <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
-                                                    <p style={{ color: "7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>Expired</p>
+                                                    <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>Expired</p>
                                                 </div>
                                                 <Link to="/employer-pricing" style={{ textDecoration: "none", marginLeft: "1rem" }}><p style={{ color: "#fac046", fontSize: "14px" }}>Upgrade</p></Link>
                                             </div>

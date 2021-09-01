@@ -133,8 +133,7 @@ class CandidateApplication extends Component {
                         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                     >
                         <div className="center-items back-to-text">
-                            <i className="bx bx-arrow-back bx-sm"></i>
-                            <p className="back-to-text">Back to List</p>
+                            <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to List</p>
                         </div>
                     </button>
                 </div>

@@ -35,7 +35,7 @@ class MainBanner extends Component {
                                 <div className="hero-content">
                                     <h1 style={{fontSize:"70px", lineHeight: "normal", marginBottom:"0.8rem"}}>Simplify the <br/> Hiring Process</h1>
                                     <div>
-                                        <p>Meet Candidate Behind the Resume</p>
+                                        <p>Meet Candidates Behind the Resume</p>
                                         <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#f4c534"}}>One</span> Platform</p>
                                     </div>
                                     <div className="banner-btn">
@@ -73,7 +73,7 @@ class MainBanner extends Component {
                                         <div className="hero-content pl-6 pt-5">
                                             <h1>Simplify the Hiring Process</h1>
                                             <div>
-                                            <p>Meet Candidate Behind the Resume</p>
+                                            <p>Meet Candidates Behind the Resume</p>
                                             <p className="pb-5">Reviewing <span style={{color:"#f4c534"}}>Hundreds</span> of candidates on <span style={{color:"#f4c534"}}>One</span> Platform</p>
                                             </div>                               
                                             <div className="banner-btn">
@@ -121,7 +121,7 @@ class MainBanner extends Component {
                             </div>
                             <div className="justify-items">
                                 <p className="section-txt1" style={{lineHeight:"26px", marginTop:"0.5rem", textAlign:"center", width:"70%", color:"#090d3a"}}>
-                                Distribute job postings to different sources
+                                Distribute job postings to different boards
                                 </p>
                             </div>
                         </div>

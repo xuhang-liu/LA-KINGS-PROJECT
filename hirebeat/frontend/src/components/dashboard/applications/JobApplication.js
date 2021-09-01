@@ -652,7 +652,7 @@ const JobCard = (props) => {
             ...styles,
             color: '#090D3A',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next',
+            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     }
@@ -961,8 +961,7 @@ const JobCard = (props) => {
                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                         >
                             <div className="center-items back-to-text">
-                                <i className="bx bx-arrow-back bx-sm"></i>
-                                <p className="back-to-text">Back to Interviews</p>
+                                <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to Interviews</p>
                             </div>
                         </button>
                     </div>
@@ -1029,29 +1028,27 @@ const JobCard = (props) => {
                                 </MyModal80>
                             </div>
                         </div>
-                        <div className="row interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px" }}>
-                        <div>
-                            <span style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{position:"absolute", marginLeft:"0.5rem", marginTop:"0.2rem"}} className="bx bx-search bx-sm"></i>
-                                <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={keyWords} onChange={onChange}></input>
-                            </span>
+                        <div className="row">
+                            <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
+                                <label style={{position:"absolute", left:"2.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
+                                <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
+                            </div>
+                            <div className="ml-auto">
+                                <ReactPaginate
+                                      previousLabel={'< prev'}
+                                      nextLabel={'next >'}
+                                      breakLabel={'...'}
+                                      breakClassName={'break-me'}
+                                      pageCount={props.totalPage}
+                                      marginPagesDisplayed={1}
+                                      pageRangeDisplayed={5}
+                                      onPageChange={handlePageClick}
+                                      containerClassName={'pagination3'}
+                                      activeClassName={'active'}
+                                      forcePage={selectedPage}
+                                />
+                            </div>
                         </div>
-                        <div className="ml-auto">
-                            <ReactPaginate
-                                  previousLabel={'< prev'}
-                                  nextLabel={'next >'}
-                                  breakLabel={'...'}
-                                  breakClassName={'break-me'}
-                                  pageCount={props.totalPage}
-                                  marginPagesDisplayed={1}
-                                  pageRangeDisplayed={5}
-                                  onPageChange={handlePageClick}
-                                  containerClassName={'pagination3'}
-                                  activeClassName={'active'}
-                                  forcePage={selectedPage}
-                            />
-                        </div>
-                    </div>
                         <div className="chart-bg1 container" style={{ marginTop: "2%", boxShadow:"0px 0px 10px rgba(128, 128, 128, 0.16)" }}>
                             <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                                 {!props.profile.is_subreviwer &&

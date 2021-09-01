@@ -712,7 +712,7 @@ export class Profile extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-4">
+                        <div className="col-4" style={{marginLeft:"2rem"}}>
                             {/* Public share */}
                             <div className="profile-bg" style={{ textAlign: "left" }}>
                                 <div style={{ padding: "2rem", paddingTop: "1rem" }}>
