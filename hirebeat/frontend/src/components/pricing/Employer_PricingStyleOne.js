@@ -1404,8 +1404,8 @@ class Employer_PricingStyleOne extends Component {
 
                             {/* TABLE 4*/}
                             {this.state.upAndDown4 ?
-                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown4} onClick={this.setUpAndDown4}>Collaboration & decision making<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown4} onClick={this.setUpAndDown4}>Collaboration & decision making<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown4} onClick={this.setUpAndDown4}>Collaboration & Decision Making<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown4} onClick={this.setUpAndDown4}>Collaboration & Decision Making<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-up'></i></span></div>
                             }
                             <Collapse in={this.state.upAndDown4}>
                                 <div className="container-fluid">
@@ -1453,7 +1453,7 @@ class Employer_PricingStyleOne extends Component {
                                     </div>
                                     <div className="row py-3">
                                         <div className="col-4 pl-4" style={{ textAlign: "left" }}>
-                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>EEO survey and reporting</p>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>EEO Survey and Reporting</p>
                                         </div>
                                         <div className="col-3">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>

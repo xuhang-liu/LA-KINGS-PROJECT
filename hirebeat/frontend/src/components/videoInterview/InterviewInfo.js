@@ -258,8 +258,7 @@ class InterviewInfo extends Component {
                                                             <div style={{textAlign: "center", marginTop: "1.7rem"}}>
                                                                 <i className="bx bxs-file-pdf resume-name"></i>
                                                                 <label className="resume-name" id="fileName"></label>
-                                                                <label className="resume-success" style={{marginLeft: "0.5rem"}}>selected</label>
-                                                                <i className="bx bxs-check-circle resume-success" style={{marginLeft: "1rem"}}></i>
+                                                                <label className="resume-success" style={{marginLeft: "0.5rem"}}>selected <i className="bx-fw bx bxs-check-circle resume-success" style={{marginLeft: "0.5rem"}}></i></label>
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{color:"#ff0000"}}>Support .pdf only</span>
                                                         }
@@ -277,7 +276,7 @@ class InterviewInfo extends Component {
                                                 <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>{this.props.interview_position.questionTime} seconds of  response time</span> for each interview question.</p>
                                                 <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>Camera</span> is <span style={{color:"#ff6b00"}}>{this.props.interview_position.camera_on ? "" : "not"}</span> needed for each interview question.</p>
                                             </div>
-                                            <h3 className="interview-txt1 mt-2">Interview Tips</h3>
+                                            <h3 className="interview-txt1 mt-4">Interview Tips</h3>
                                             <div className="interview-txt2" style={{color: "#4A6F8A"}}>
                                                 <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>Ensure you are in a <span style={{color:"#ff6b00"}}>quiet, distraction-free area</span>. Avoid places with lots of echo.</p>
                                                 <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>If you are filming a video, make sure to film in a <span style={{color:"#ff6b00"}}>well-lit area</span>. Make <span style={{color:"#ff6b00"}}>eye contact</span> with the camera whenever possible.</p>

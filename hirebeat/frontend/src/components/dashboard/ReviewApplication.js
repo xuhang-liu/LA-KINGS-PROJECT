@@ -133,8 +133,7 @@ class ReviewApplication extends Component {
                         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                     >
                         <div className="center-items back-to-text">
-                            <i className="bx bx-arrow-back bx-sm"></i>
-                            <p className="back-to-text">Back to List</p>
+                            <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to List</p>
                         </div>
                     </button>
                 </div>
@@ -234,7 +233,7 @@ class ReviewApplication extends Component {
                                 <div>
                                     {this.props.commentStatus == 1 ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn btn-success ml-2" style={{ width: "8rem", fontSize: "0.8rem" }}>
+                                            <button className="default-btn ml-2" style={{ width: "8rem", fontSize: "0.8rem", backgroundColor:"#13c4a1" }}>
                                                 <i class='bx bx-bookmark-plus'></i>Shortlist
                                             </button>
                                         </div> :
@@ -249,7 +248,7 @@ class ReviewApplication extends Component {
                                     }
                                     {this.props.commentStatus == 2 ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn btn-warning ml-2" style={{ width: "8rem", fontSize: "0.8rem" }}>
+                                            <button className="default-btn ml-2" style={{ width: "8rem", fontSize: "0.8rem", backgroundColor:"#ff6b00" }}>
                                                 <i class='bx bx-help-circle'></i>Hold
                                             </button>
                                         </div> :
@@ -264,7 +263,7 @@ class ReviewApplication extends Component {
                                     }
                                     {this.props.commentStatus == 3 ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn btn-danger ml-2" style={{ width: "8rem", fontSize: "0.8rem" }}>
+                                            <button className="default-btn ml-2" style={{ width: "8rem", fontSize: "0.8rem", backgroundColor:"#ff0000" }}>
                                                 <i class='bx bx-calendar-x'></i>Reject
                                             </button>
                                         </div> :

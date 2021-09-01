@@ -176,32 +176,35 @@ export class SubpageSetting extends Component {
                     <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                         {this.props.profile.is_employer ?
                             this.props.profile.is_external_reviewer ?
-                                <button type="button" style={{ backgroundColor: "#e8edfc", border: "none" }} onClick={this.props.renderShortlist}>
-                                    <IconText
-                                        iconName={"bx bx-arrow-back bx-sm"}
-                                        textDisplayed={"Back"}
-                                        textSize={"18px"}
-                                        textColor={"#56a3fa"}
-                                        iconMargin={"3px"}
-                                    />
+                                <button
+                                    type="button"
+                                    className="panel-button"
+                                    onClick={this.props.renderShortlist}
+                                    style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                                >
+                                    <div className="center-items back-to-text">
+                                        <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                                    </div>
                                 </button> :
-                                <button type="button" style={{ backgroundColor: "#e8edfc", border: "none" }} onClick={this.props.renderEmployerProfile}>
-                                    <IconText
-                                        iconName={"bx bx-arrow-back bx-sm"}
-                                        textDisplayed={"Back"}
-                                        textSize={"18px"}
-                                        textColor={"#56a3fa"}
-                                        iconMargin={"3px"}
-                                    />
+                                <button
+                                    type="button"
+                                    className="panel-button"
+                                    onClick={this.props.renderEmployerProfile}
+                                    style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                                >
+                                    <div className="center-items back-to-text">
+                                        <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                                    </div>
                                 </button> :
-                            <button type="button" style={{ backgroundColor: "#e8edfc", border: "none" }} onClick={this.props.renderVideos}>
-                                <IconText
-                                    iconName={"bx bx-arrow-back bx-sm"}
-                                    textDisplayed={"Back"}
-                                    textSize={"18px"}
-                                    textColor={"#56a3fa"}
-                                    iconMargin={"3px"}
-                                />
+                            <button
+                                type="button"
+                                className="panel-button"
+                                onClick={this.props.renderVideos}
+                                style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                            >
+                                <div className="center-items back-to-text">
+                                    <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                                </div>
                             </button>}
                     </div>
                 </div>
@@ -528,7 +531,7 @@ export class SubpageSetting extends Component {
                             </div>
                         </div>
                     </div>}
-                {this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) &&
+                {(this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) && (!this.props.profile.is_subreviwer)) &&
                     <div>
                         <div className="row" >
                             <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>

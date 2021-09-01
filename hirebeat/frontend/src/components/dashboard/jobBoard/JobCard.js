@@ -94,7 +94,7 @@ export class JobCard extends Component {
                         marginTop: "0rem"
                     }}
                 />
-                <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
+                <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginBottom: "0.5rem" }}>
                     <div className="col-3 interview-txt9 mt-2">
                         {this.props.job.un_view ? <span className="dot"></span> : <span className="dot" style={{ visibility: "hidden" }}></span>}
                         <button

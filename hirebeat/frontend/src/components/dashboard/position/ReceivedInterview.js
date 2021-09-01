@@ -23,8 +23,8 @@ export class ReceivedInterview extends Component {
                             </div>
                             <div className="col-4">
                                 {!this.props.received_interview.is_recorded ?
-                                <h5 style={{color:"#ff6b00"}}><i className="bx bx-loader-circle bx-sm"></i> Pending</h5> :
-                                <h5 style={{color:"#13C4A1"}}><i className="bx bx-check-double bx-sm"></i> Completed</h5>}
+                                <h5 style={{color:"#ff6b00"}}><i className="bx-fw bx bx-loader-circle bx-sm"></i> Pending</h5> :
+                                <h5 style={{color:"#13C4A1"}}><i className="bx-fw bx bx-check-double bx-sm"></i> Completed</h5>}
                             </div>
                             <div className="col-3 mt-2">
                             {!this.props.received_interview.is_recorded &&

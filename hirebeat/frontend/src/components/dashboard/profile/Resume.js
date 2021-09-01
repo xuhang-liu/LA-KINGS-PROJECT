@@ -199,8 +199,7 @@ export class Resume extends Component {
                                 <div style={{ textAlign: "center", marginTop: "1rem" }}>
                                     <i className="bx bxs-file-pdf resume-name"></i>
                                     <label className="resume-name" id="fileName"></label>
-                                    <label className="resume-success" style={{ marginLeft: "0.5rem" }}>selected</label>
-                                    <i className="bx bxs-check-circle resume-success" style={{ marginLeft: "1rem" }}></i>
+                                    <label className="resume-success" style={{marginLeft: "0.5rem"}}>selected <i className="bx-fw bx bxs-check-circle resume-success" style={{marginLeft: "0.5rem"}}></i></label>
                                 </div>
                                 <div style={{ textAlign: "center", marginTop: "1rem" }}>
                                     <button onClick={this.handleUpload} className="default-btn resume-scan" style={{ backgroundColor: "#090D3A" }}>
