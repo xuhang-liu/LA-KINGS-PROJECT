@@ -3,12 +3,13 @@ import 'boxicons';
 import { confirmAlert } from 'react-confirm-alert';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
-import { getByZip } from 'zcs';
 import Select from 'react-select';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getZRFeedXML, getZRPremiumFeedXML } from "../../../redux/actions/job_actions";
 import {SkillSet} from "./Constants";
+import Autocomplete from "react-google-autocomplete";
+import Switch from "react-switch";
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -31,27 +32,29 @@ const toolbarConfig = {
 };
 
 export class JobEdition extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            jobTitle: this.props.jobInfo.job_title,
+            jobId: this.props.jobInfo.job_id,
+            jobLocation: this.props.jobInfo.job_location,
+            jobDescription: RichTextEditor.createValueFromString(this.props.jobInfo.job_description, 'html'),
+            loc_req: this.props.jobInfo.loc_req,
+            pho_req: this.props.jobInfo.pho_req,
+            lin_req: this.props.jobInfo.lin_req,
+            eeo_req: this.props.jobInfo.eeo_req,
+            eeo_ques_req: this.props.jobInfo.eeo_ques_req,
+            job_post: this.props.jobInfo.job_post,
+            jobType: { value: this.props.jobInfo.job_type, label: this.props.jobInfo.job_type },
+            jobLevel: { value: this.props.jobInfo.job_level, label: this.props.jobInfo.job_level },
+            skills: [],
+            remote: this.props.jobInfo.job_location == "Remote" ? true : false,
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
     static propTypes = {
         onChange: PropTypes.func,
     };
-
-    state = {
-        city: this.props.jobInfo.job_location?.split(",")[0],
-        state: this.props.jobInfo.job_location?.split(",")[1],
-        jobTitle: this.props.jobInfo.job_title,
-        jobId: this.props.jobInfo.job_id,
-        jobLocation: this.props.jobInfo.job_location?.split(",")[2],
-        jobDescription: RichTextEditor.createValueFromString(this.props.jobInfo.job_description, 'html'),
-        loc_req: this.props.jobInfo.loc_req,
-        pho_req: this.props.jobInfo.pho_req,
-        lin_req: this.props.jobInfo.lin_req,
-        eeo_req: this.props.jobInfo.eeo_req,
-        eeo_ques_req: this.props.jobInfo.eeo_ques_req,
-        job_post: this.props.jobInfo.job_post,
-        jobType: { value: this.props.jobInfo.job_type, label: this.props.jobInfo.job_type },
-        jobLevel: { value: this.props.jobInfo.job_level, label: this.props.jobInfo.job_level },
-        skills: [],
-    }
 
     componentDidMount() {
         if(this.props.jobInfo.skills!=null){
@@ -74,7 +77,7 @@ export class JobEdition extends Component {
         this.setState({ skills: skills })
     };
     customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff' }),
+        control: styles => ({ ...styles, backgroundColor: '#ffffff', border:"2px solid #E8EDFC", borderRadius:"5px" }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
@@ -179,34 +182,13 @@ export class JobEdition extends Component {
         });
     };
 
-    handleZipcode = (e) => {
-        let citytstate = "";
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-        if (e.target.value.length == 5) {
-            citytstate = getByZip(e.target.value);
-            this.setState({
-                city: citytstate["city"],
-                state: citytstate["state"],
-            });
-        }
-    };
+    handleLocation = (location) => {
+        this.setState({jobLocation: location});
+    }
 
-    handleZipcodeInputKeyDown = e => {
-        var key = e.which ? e.which : e.keyCode;
-        if (
-            (e.target.value.length >= 5 &&
-                key !== 8 &&
-                key !== 37 &&
-                key !== 38 &&
-                key !== 39 &&
-                key !== 40) ||
-            (key === 18 || key === 189 || key === 229)
-        ) {
-            e.preventDefault();
-        }
-    };
+    handleChange() {
+        this.setState({ remote: !this.state.remote });
+    }
 
     onChange = (jobDescription) => {
         this.setState({ jobDescription });
@@ -238,7 +220,7 @@ export class JobEdition extends Component {
             jobId: this.state.jobId,
             jobDescription: this.state.jobDescription.toString('html'),
             jobLevel: this.state.jobLevel["value"],
-            jobLocation: this.state.city + "," + this.state.state + "," + this.state.jobLocation,
+            jobLocation: this.state.jobLocation,
             jobType: this.state.jobType["value"],
             loc_req: this.state.loc_req,
             pho_req: this.state.pho_req,
@@ -248,7 +230,7 @@ export class JobEdition extends Component {
             job_post: this.state.job_post,
             skills: this.state.skills,
         };
-        if (this.props.jobInfo.job_location == "Remote") {
+        if (this.state.remote) {
             data = {
                 id: this.props.jobInfo.id,
                 jobTitle: this.state.jobTitle,
@@ -267,7 +249,7 @@ export class JobEdition extends Component {
             };
         };
         this.props.updateJob(data);
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
         this.props.renderJobs();
     }
 
@@ -320,8 +302,7 @@ export class JobEdition extends Component {
                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                         >
                             <div className="center-items back-to-text">
-                                <i className="bx bx-arrow-back bx-sm"></i>
-                                <p className="back-to-text">Back to Jobs</p>
+                                <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to Jobs</p>
                             </div>
                         </button>
                     </div>
@@ -334,15 +315,15 @@ export class JobEdition extends Component {
                                     Job Title
                                 </label><span className="job-apply-char2">*</span>
                                 <input type="text" name="jobTitle" value={this.state.jobTitle}
-                                    onChange={this.handleInputChange} className="form-control" required="required" />
+                                    onChange={this.handleInputChange} className="form-control" required="required" style={{border:"2px solid #E8EDFC", borderRadius:"5px", height:"2.5rem"}} />
                             </div>
-                            <div className="form-group col-6">
+                            <div className="form-group col-3">
                                 <label className="db-txt2">
                                     Job ID
                                 </label>
                                 <span className="job-apply-char2" style={{visibility: "hidden"}}>*</span>
                                 <input type="text" name="jobId" value={this.state.jobId}
-                                    onChange={this.handleInputChange} className="form-control" />
+                                    onChange={this.handleInputChange} className="form-control" style={{border:"2px solid #E8EDFC", borderRadius:"5px", height:"2.5rem"}} />
                             </div>
                         </div>
                         <div className="form-row">
@@ -354,6 +335,8 @@ export class JobEdition extends Component {
                                     <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} />
                                 </div>
                             </div>
+                        </div>
+                        <div className="form-row">
                             <div className="form-group col-6">
                                 <label className="db-txt2">
                                     Experience Level
@@ -363,34 +346,36 @@ export class JobEdition extends Component {
                                 </div>
                             </div>
                         </div>
-                        {this.props.jobInfo.job_location != "Remote" ?
-                            <div className="form-row">
-                                <div className="form-group col-6">
-                                    <label className="db-txt2">
-                                        Zipcode
-                                    </label><span className="job-apply-char2">*</span>
-                                    <input type="number" name="jobLocation" value={this.state.jobLocation} inputmode="numeric"
-                                        onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
-                                        pattern="\d*"
-                                        onChange={this.handleZipcode} className="form-control" required="required" />
-                                </div>
-                                <div className="form-group col-6">
-                                    <label className="db-txt2" style={{ marginTop: "3.5rem" }}>
-                                        {this.state.city != "" &&
-                                            <div><span>{this.state.city}</span>, <span>{this.state.state}</span></div>}
-                                        {this.state.city == "" &&
-                                            <div><span>City</span>, <span>State</span></div>}
-                                    </label>
-                                </div>
-                            </div> :
-                            <div className="form-row">
-                                <div className="form-group col-6">
-                                    <label className="db-txt2" style={{ marginTop: "2%" }}>
-                                        Location: Remote
-                                    </label>
+
+                        <div className="form-row">
+                            <div className="form-group col-6">
+                                <div className="d-flex">
+                                    {!this.state.remote &&
+                                    <div className="form-group" style={{width: "40%"}}>
+                                        <label className="db-txt2">
+                                            Job Location
+                                        </label><span className="job-apply-char2">*</span>
+                                        <Autocomplete
+                                            className="form-control"
+                                            language="en"
+                                            apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                            onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                this.handleLocation(place.formatted_address);
+                                            }}
+                                            required="required"
+                                            defaultValue={this.state.jobLocation == "Remote" ? "" : this.state.jobLocation}
+                                        />
+                                    </div>}
+                                    <div className={this.state.remote ? "form-group" : "form-group ml-auto"}>
+                                        <label className="db-txt2">Remote Work?</label>
+                                        <div style={{paddingTop: "0.7rem"}}>
+                                            <Switch onChange={this.handleChange} checked={this.state.remote} />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        }
+                        </div>
+
                         <div className="form-row">
                             <div className="col-6">
                                 <label className="db-txt2">
@@ -594,16 +579,14 @@ export class JobEdition extends Component {
                                     </div>
                                 </div>
                             </div>}
-                        <div style={{ float: "left", marginBottom: "1rem", display: "inline-block" }}>
-                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#E5E5E5", color: "#090d3a" }} onClick={this.props.renderJobs}>Cancel</button>
-                        </div>
-                        <div style={{ float: "right", marginBottom: "1rem" }}>
+                        <div style={{ float: "left", marginBottom: "1rem"}}>
                             <button
                                 type="submit"
-                                className="default-btn1" style={{ marginBottom: "1.5%", paddingLeft: "25px" }}
+                                className="default-btn" style={{ marginBottom: "1.5%", paddingLeft: "25px", marginRight:"1rem" }}
                             >
                                 Save
                             </button>
+                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#fff", color: "#979797" }} onClick={this.props.renderJobs}>Cancel</button>
                         </div>
 
                     </form>

@@ -65,6 +65,7 @@ export class EmployerDashboard extends Component {
       subpage: subpage,
       jobInfo: {},
       showUpgradeM: false,
+      showUpgradeM1: false,
     }
     // store user info to sessionStorage
     sessionStorage.setItem('user', JSON.stringify(this.props.user));
@@ -84,9 +85,21 @@ export class EmployerDashboard extends Component {
     });
   }
 
+  setShowUpgradeM1 = () => {
+    this.setState({
+      showUpgradeM1: true
+    });
+  }
+
   setHideUpgradeM = () => {
     this.setState({
       showUpgradeM: false
+    });
+  }
+
+  setHideUpgradeM1 = () => {
+    this.setState({
+      showUpgradeM1: false
     });
   }
 
@@ -132,7 +145,7 @@ export class EmployerDashboard extends Component {
 
   getPJobs = () => {
     var user = { "id": this.props.user.id };
-    this.props.getPostedJobs(user.id);
+    this.props.getPostedJobs(user.id, 1);
   }
 
 
@@ -142,11 +155,11 @@ export class EmployerDashboard extends Component {
     this.verifyEmail();
     var user = { "id": this.props.user.id };
     this.props.loadUserFullname(user);
-    this.props.getPostedJobs(user.id);
+    this.props.getPostedJobs(user.id, 1);
     this.props.getAnalyticsInfo(this.props.user.id);
     this.props.getEmployerProfileDetail(this.props.user.id);
     this.props.getEmployerPost(this.props.user.id, 0);
-    this.props.getAllJobs(this.props.user.id);
+    this.props.getAllJobs(this.props.user.id, 1);
     this.props.getQuestionList();
     this.props.getReviewersList(user.id);
     var data = {
@@ -331,7 +344,7 @@ export class EmployerDashboard extends Component {
       this.refreshPage();
     }
     else if (this.props.profile.membership == "Regular") {
-      this.setShowUpgradeM();
+      return this.setShowUpgradeM();
     } else {
       this.props.getAnalyticsInfo(this.props.user.id);
       sessionStorage.setItem('subpage', "analytics");
@@ -365,14 +378,7 @@ export class EmployerDashboard extends Component {
         subpage: "mergeintergration",
       });
     } else {
-      confirmAlert({
-        title: 'Upgrade Now!',
-        message: 'You need upgrade to use intergration',
-        buttons: [
-          { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-          { label: 'OK' },
-        ]
-      });
+      this.setShowUpgradeM1();
     }
   }
 
@@ -460,6 +466,7 @@ export class EmployerDashboard extends Component {
           subreviewerUpdateComment={this.props.subreviewerUpdateComment}
           checkUserExistence={this.props.checkUserExistence}
           user_existence={this.props.user_existence}
+          getPostedJobs={this.props.getPostedJobs}
         />;
       case "position":
         return <CreatePosition
@@ -608,6 +615,23 @@ export class EmployerDashboard extends Component {
                   </div>
                 </div>
               </MyModalUpgrade>
+              <MyModalUpgrade
+                show={this.state.showUpgradeM1}
+                onHide={this.setHideUpgradeM1}
+              >
+                <div className="container" style={{borderRadius:"10px", boxShadow:"2px 2px 4px rgba(128, 128, 128, 0.16)", padding:"2rem"}}>
+                  <h3 style={{color:"#090d3a", fontWeight:"600", fontSize:"1.6rem"}}>You need upgrade to use intergration</h3>
+                  <p className="pt-3">Want to continue using intergration? Select the Premium Plan today!</p>
+                  <div className="row" style={{margin:"auto", width:"80%"}}>
+                    <div className="col-6">
+                      <Link to="/employer-pricing" className="default-btn" style={{paddingLeft:"25px", paddingTop:"8px", paddingBottom:"8px", textDecoration:"none"}}>Select Plan</Link>
+                    </div>
+                    <div className="col-6">
+                      <button onClick={this.setHideUpgradeM1} className="default-btn" style={{paddingLeft:"25px", paddingTop:"8px", paddingBottom:"8px", backgroundColor:"#979797"}}>Maybe Later</button>
+                    </div>
+                  </div>
+                </div>
+              </MyModalUpgrade>
               <ScrollToTopOnMount />
               {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
               <MediaQuery minDeviceWidth={1224}>
@@ -645,7 +669,7 @@ export class EmployerDashboard extends Component {
                           <RowBoxes userId={this.props.user.id} isEmployer={true} />
                         </div>}
                       <div className="container-fluid" style={{ marginBottom: "20vh" }}>
-                        <div style={{ marginBottom: "auto", height: "auto", paddingTop: '5%' }}>
+                        <div style={{ marginBottom: "auto", height: "auto", paddingTop: '2%' }}>
                           {this.renderSubpage()}
                         </div>
                       </div>

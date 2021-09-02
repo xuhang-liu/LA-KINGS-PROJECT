@@ -166,7 +166,7 @@ export class EmployerRegisterInfoForm extends Component {
                     <div>
                         <img src={this.props.badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
                         <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI", color:'#ffffff'}}>
-                            <a>No credit card information needed during signup. Enjoy your free plan.</a>
+                            <a>No credit card information needed during signup. Enjoy your free trial.</a>
                         </div>
                     </div>
                 </form>

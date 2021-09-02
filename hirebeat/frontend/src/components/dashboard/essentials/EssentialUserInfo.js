@@ -116,7 +116,8 @@ export class EssentialUserInfo extends Component {
   };
 
   renderApplications = () => {
-    if (this.props.profile.membership == "Premium") {
+    this.props.renderAnalytics();
+    /*if (this.props.profile.membership == "Premium") {
       this.props.renderAnalytics();
     } else {
       confirmAlert({
@@ -129,7 +130,7 @@ export class EssentialUserInfo extends Component {
         afterClose: () => { this.props.renderApplications() }
       });
       this.props.renderAnalytics();
-    }
+    }*/
   };
 
   makeProfile = () => {

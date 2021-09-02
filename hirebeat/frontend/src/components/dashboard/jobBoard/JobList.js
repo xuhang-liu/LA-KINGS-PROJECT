@@ -29,15 +29,15 @@ export class JobList extends Component {
                 {this.props.isLoaded &&
                     <div>
                         {(!this.props.view) ?
-                            <div className="chart-bg1 container-fluid mt-5 pt-2 pb-3">
+                            <div className="chart-bg1 container-fluid mt-5 pt-3 pb-3">
                                 <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex" }}>
                                     <div style={{position:"absolute", left:"2.2rem", marginTop:"0.4rem"}}><i className="bx bx-search bx-sm"></i></div>
                                     <div>
                                         <input placeholder="Search jobs" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
                                     </div>
                                 </div>
-                                <div className="chart-bg1 container-fluid" style={{ marginTop: "1.5rem", boxShadow:"0px 0px 10px rgba(128, 128, 128, 0.16)" }}>
-                                    <div className="row interview-txt7" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
+                                <div className="container-fluid" style={{ marginTop: "1rem"}}>
+                                    <div className="row interview-txt7" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "0.5rem" }}>
                                         <div className="col-3"><span style={{marginLeft:"1.2rem"}}>Job Title</span></div>
                                         <div className="col-1 d-flex justify-content-center">ID</div>
                                         <div className="col-1 d-flex justify-content-center">Applicants</div>
@@ -45,7 +45,7 @@ export class JobList extends Component {
                                         <div className="col-3 d-flex justify-content-center">Job Page</div>
                                         <div className="col-2"><span style={{marginLeft:"1.2rem"}}>Action</span></div>
                                     </div>
-                                    {Object.keys(this.props.jobs).sort((a, b) => new Date(this.props.jobs[b]["job_details"].create_date) - new Date(this.props.jobs[a]["job_details"].create_date)).map((key) => {
+                                    {Object.keys(this.props.jobs).sort((a, b) => parseInt(b) - parseInt(a)).map((key) => {
                                         let job = this.props.jobs[key];
                                         let curJobKey = key;
                                         if (this.props.filter) {
@@ -99,8 +99,7 @@ export class JobList extends Component {
                                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                                         >
                                             <div className="center-items back-to-text">
-                                                <i className="bx bx-arrow-back bx-sm"></i>
-                                                <p className="back-to-text">Back to Jobs</p>
+                                                <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to Jobs</p>
                                             </div>
                                         </button>
                                     </div>

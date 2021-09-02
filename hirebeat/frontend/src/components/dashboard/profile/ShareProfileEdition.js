@@ -20,15 +20,15 @@ export class ShareProfileEdition extends Component {
 
     saveProfileSharing = () => {
         // check full name
-        if ((this.props.firsName == "" || this.props.lastName == "") && this.state.shareProfile) {
+        if ((this.props.firsName == "" || this.props.lastName == "") && (this.state.shareProfile || this.state.openToHR)) {
             this.setState({hasFullName: false});
-        }else if ((this.props.company == "" || this.props.company == null) && this.state.shareProfile) {
+        }else if ((this.props.company == "" || this.props.company == null) && (this.state.shareProfile || this.state.openToHR)) {
             this.setState({hasCompany: false});
         }
-        else if ((this.props.location == "" || this.props.location == null) && this.state.shareProfile) {
+        else if ((this.props.location == "" || this.props.location == null) && (this.state.shareProfile || this.state.openToHR)) {
             this.setState({hasLocation: false});
         }
-        else if ((this.props.position == "" || this.props.position == null) && this.state.shareProfile) {
+        else if ((this.props.position == "" || this.props.position == null) && (this.state.shareProfile || this.state.openToHR)) {
             this.setState({hasPosition: false});
         }
         else {

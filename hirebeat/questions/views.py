@@ -112,6 +112,7 @@ def get_posted_jobs(request):
     int_dots = 0
     job_dots = 0
     user_id = request.query_params.get("user_id")
+    page = int(request.query_params.get("page"))
     profile = Profile.objects.get(user_id=user_id)
     # employer role
     if profile.is_subreviwer is False and profile.is_external_reviewer is False:
@@ -119,7 +120,14 @@ def get_posted_jobs(request):
         for i in range(len(positions)):
             positions_id = positions[i].id
             # get each position applicants
-            applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).values())
+            applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).order_by('-id').values())
+            total_records = len(applicants)
+            total_page = math.ceil(len(applicants) / 15)
+            if total_records > 15:
+                begin = (page - 1) * 15
+                end = page * 15
+                applicants = applicants[begin:end]
+
             for j in range(len(applicants)):
                 applicant_info = User.objects.filter(email=applicants[j]["email"]).values()
                 if len(applicant_info) == 1:
@@ -146,6 +154,8 @@ def get_posted_jobs(request):
                 "ex_reviewers": ex_reviewers,
                 "position": position,
                 "all_invited": all_invited,
+                "total_records": total_records,
+                "total_page": total_page,
             }
             # convert to json
             data[positions_id] = job_details
@@ -164,6 +174,12 @@ def get_posted_jobs(request):
             position_id = subreviewers[i].position.id
             # get each position applicants
             applicants = list(InvitedCandidates.objects.filter(positions_id=position_id).values())
+            total_records = len(applicants)
+            total_page = math.ceil(len(applicants) / 15)
+            if total_records > 15:
+                begin = (page - 1) * 15
+                end = page * 15
+                applicants = applicants[begin:end]
             for j in range(len(applicants)):
                 applicant_info = User.objects.filter(email=applicants[j]["email"]).values()
                 if len(applicant_info) == 1:
@@ -181,6 +197,8 @@ def get_posted_jobs(request):
                 "applicants": applicants,
                 "questions": questions,
                 "subreviewers": subs,
+                "total_records": total_records,
+                "total_page": total_page,
             }
             # convert to json
             data[position_id] = job_details
@@ -194,6 +212,12 @@ def get_posted_jobs(request):
             company_name = ex_reviewers[i].company_name
             # get each position applicants
             applicants = list(InvitedCandidates.objects.filter(positions_id=position_id).values())
+            total_records = len(applicants)
+            total_page = math.ceil(len(applicants) / 15)
+            if total_records > 15:
+                begin = (page - 1) * 15
+                end = page * 15
+                applicants = applicants[begin:end]
             for j in range(len(applicants)):
                 applicant_info = User.objects.filter(email=applicants[j]["email"]).values()
                 if len(applicant_info) == 1:
@@ -212,6 +236,8 @@ def get_posted_jobs(request):
                 "questions": questions,
                 "subreviewers": subs,
                 "company_name": company_name,
+                "total_records": total_records,
+                "total_page": total_page,
             }
             # convert to json
             data[position_id] = job_details

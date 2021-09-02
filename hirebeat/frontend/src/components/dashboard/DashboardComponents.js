@@ -300,7 +300,7 @@ export const MyModalContact = (props) => {
             centered
         >
             <Modal.Header closeButton style={{ borderBottom: "1px solid #E5E5E5", paddingBottom:"0.5rem"}} >
-                <h3 className="profile-h3">{props.contactName}</h3>
+                <h3 className="profile-h3" style={{marginLeft:"1rem"}}>{props.contactName}</h3>
             </Modal.Header>
             {props.children}
         </Modal>

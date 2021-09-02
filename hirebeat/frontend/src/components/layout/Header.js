@@ -182,14 +182,14 @@ export class Header extends Component {
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{ paddingTop: "10px" }}>
               <Link to="/login">
-                <a className="default-btn1 mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "12px" }}>
+                <a className="default-btn1 mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "11px" }}>
                   Log In
                 </a>
               </Link>
             </li>
             <li className="nav-item" style={{ paddingTop: "10px" }}>
               <Link to="/register">
-                <a className="default-btn mr-3" id="id-signup" style={{ color: "white", paddingLeft: "25px" }}>
+                <a className="default-btn mr-3" id="id-signup" style={{ color: "white", paddingLeft: "25px", paddingBottom: "13px", paddingTop: "13px" }}>
                   Start for Free
                 </a>
               </Link>
@@ -281,14 +281,14 @@ export class Header extends Component {
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{ paddingTop: "10px" }}>
               <Link to="/employer-login">
-                <a className="default-btn1 mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "12px" }}>
+                <a className="default-btn1 mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "11px" }}>
                   Log In
                 </a>
               </Link>
             </li>
             <li className="nav-item" style={{ paddingTop: "10px" }}>
               <Link to="/employer_register">
-                <a className="default-btn mr-3" id="id-signup" style={{ color: "white", paddingLeft: "25px" }}>
+                <a className="default-btn mr-3" id="id-signup" style={{ color: "white", paddingLeft: "25px", paddingBottom: "13px", paddingTop: "13px" }}>
                   Start for Free
                 </a>
               </Link>
@@ -327,6 +327,7 @@ export class Header extends Component {
       <React.Fragment>
         <div className="nav-item order-xl-1 align-self-center mr-5">
           <div className="nav-link text-white navbar-font">
+          {!this.props.profile.is_subreviwer ?
             <div className="row">
               <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
               <span className="header-text" style={{ cursor: 'pointer', marginRight: "1rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
@@ -343,7 +344,25 @@ export class Header extends Component {
                   </li>
                 </ul>
               </span>
-            </div>
+            </div>:
+            <div className="row">
+            <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
+            <span className="header-text" style={{ cursor: 'pointer', marginRight: "2.5rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
+              <ul className="nav_submenu" style={{ width: "10rem" }}>
+                <li>
+                  <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{ textDecoration: "none", marginLeft: '1rem' }}>
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link id="id-logout" to="/" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                    Log out
+                  </Link>
+                </li>
+              </ul>
+            </span>
+          </div>
+          }
           </div>
         </div>
 
@@ -482,14 +501,14 @@ export class Header extends Component {
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{ paddingTop: "10px" }}>
               <Link to="/employer-login">
-                <a className="default-btn1 mr-3" id="id-login-employer" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "12px" }}>
+                <a className="default-btn1 mr-3" id="id-login-employer" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "11px" }}>
                   Log In
                 </a>
               </Link>
             </li>
             <li className="nav-item" style={{ paddingTop: "10px" }}>
               <Link to="/employer_register">
-                <a className="default-btn mr-3" id="id-signup-employer" style={{ color: "white", paddingLeft: "25px" }}>
+                <a className="default-btn mr-3" id="id-signup-employer" style={{ color: "white", paddingLeft: "25px", paddingBottom: "13px", paddingTop: "13px" }}>
                   Start Hiring For Free
                 </a>
               </Link>

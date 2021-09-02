@@ -200,7 +200,15 @@ export class EmployerRegister extends Component {
     }
     // check passwords
     if (!this.passwordsMatch()) {
-      alert("The passwords are not consistent");
+      return confirmAlert({
+            title: "Wrong Password",
+            message: "The passwords you entered are not consistent",
+            buttons: [
+                  {
+                    label: 'Ok'
+                  }
+            ]
+      });
     }
 
     // check email registered or not

@@ -10,13 +10,13 @@ import 'boxicons';
 //import { IconText } from "../DashboardComponents";
 import { getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation } from "./../../../redux/actions/question_actions";
 import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews } from "./../../../redux/actions/question_actions";
-//import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
 import QuestionForm from "./QuestionForm";
 import EditQuestion from "./EditQuestion"
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import ReactPaginate from 'react-paginate';
 
 export class JobApplication extends Component {
 
@@ -24,7 +24,7 @@ export class JobApplication extends Component {
         return (
             <React.Fragment>
                 {this.props.loaded &&
-                    <div>
+                    <div style={{paddingBottom:"1rem"}}>
                         {Object.keys(this.props.postedJobs).reverse().map((key) => {
                             let p = this.props.postedJobs[key];
                             // filter positions according to is_closed attribute
@@ -91,6 +91,9 @@ export class JobApplication extends Component {
                                     getReviewNote={this.props.getReviewNote}
                                     getReviewerEvaluation={this.props.getReviewerEvaluation}
                                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                                    totalRecords={p.total_records}
+                                    totalPage={p.total_page}
+                                    getPostedJobs={this.props.getPostedJobs}
                                 />
                             )
                         })}
@@ -329,7 +332,7 @@ const JobViewDetail = (props) => {
                                     </div>
                                     <div className="row mb-2 mt-1">
                                         <div className="col-4">
-                                            <p style={{ color: "#4A6F8A" }}>Invited Applicants: {props.applicants.length}</p>
+                                            <p style={{ color: "#4A6F8A" }}>Invited Applicants: {props.totalRecords}</p>
                                         </div>
                                         <div className="col-8 mb-4" style={{ color: "#4A6F8A", borderLeft: "outset" }}>
                                             <p>Created On: {props.inviteDate.substring(0, 10)}</p>
@@ -476,6 +479,9 @@ const JobViewDetail = (props) => {
                     getReviewNote={props.getReviewNote}
                     getReviewerEvaluation={props.getReviewerEvaluation}
                     getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                    totalRecords={props.totalRecords}
+                    totalPage={props.totalPage}
+                    getPostedJobs={props.getPostedJobs}
                 />
             }
         </React.Fragment>
@@ -601,17 +607,6 @@ const JobCard = (props) => {
     //        }
     //    }
 
-    // pagination
-    const [offset, setOffset] = useState(0);
-    const [perPage, setPerPage] = useState(8);
-    let pageCount = Math.ceil(props.applicants.length / 8);
-
-    function handlePageClick(data) {
-        let selected = data.selected;
-        let offset = Math.ceil(selected * perPage);
-        setOffset(offset);
-    };
-
     function editQuestions() {
         setShowQEditForm(true);
     }
@@ -656,7 +651,7 @@ const JobCard = (props) => {
             ...styles,
             color: '#090D3A',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next',
+            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     }
@@ -943,6 +938,15 @@ const JobCard = (props) => {
         }
     }
 
+    const [selectedPage, setSelectedPage] = useState(0);
+    const handlePageClick = (data) => {
+        let selectedPage = data.selected; // 0 index based
+        setSelectedPage(selectedPage);
+        let page = selectedPage + 1;
+        props.getPostedJobs(props.user.id, page);
+
+    };
+
     return (
         <React.Fragment>
             {/* Job Applications */}
@@ -956,8 +960,7 @@ const JobCard = (props) => {
                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                         >
                             <div className="center-items back-to-text">
-                                <i className="bx bx-arrow-back bx-sm"></i>
-                                <p className="back-to-text">Back to Interviews</p>
+                                <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to Interviews</p>
                             </div>
                         </button>
                     </div>
@@ -1024,11 +1027,28 @@ const JobCard = (props) => {
                                 </MyModal80>
                             </div>
                         </div>
-                        <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
-                            <label style={{position:"absolute", left:"3.3rem", marginTop:"0.4rem"}}><i className="bx bx-search bx-sm"></i></label>
-                            <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange}></input>
+                        <div className="row" style={{paddingLeft: "15px", paddingRight: "15px"}}>
+                            <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
+                                <label style={{position:"absolute", left:"2.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
+                                <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
+                            </div>
+                            <div className="ml-auto interview-txt7">
+                                <ReactPaginate
+                                      previousLabel={'< prev'}
+                                      nextLabel={'next >'}
+                                      breakLabel={'...'}
+                                      breakClassName={'break-me'}
+                                      pageCount={props.totalPage}
+                                      marginPagesDisplayed={1}
+                                      pageRangeDisplayed={5}
+                                      onPageChange={handlePageClick}
+                                      containerClassName={'pagination3'}
+                                      activeClassName={'active'}
+                                      forcePage={selectedPage}
+                                />
+                            </div>
                         </div>
-                        <div className="chart-bg1 container" style={{ marginTop: "2%", boxShadow:"0px 0px 10px rgba(128, 128, 128, 0.16)" }}>
+                        <div className="container" style={{ marginTop: "2%" }}>
                             <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                                 {!props.profile.is_subreviwer &&
                                     <div style={{ marginLeft: "1rem", display: "flex" }}>
@@ -1085,7 +1105,6 @@ const JobCard = (props) => {
                                     companyName={props.companyName}
                                     jobTitle={props.jobTitle}
                                     updateCommentStatus={props.updateCommentStatus}
-                                    offset={offset}
                                     updateViewStatus={props.updateViewStatus}
                                     subreviewerUpdateComment={props.subreviewerUpdateComment}
                                     getReviewNote={props.getReviewNote}
@@ -1093,20 +1112,22 @@ const JobCard = (props) => {
                                     getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
                                     user={props.user}
                                 />
-                                {/*<ReactPaginate
-                                 previousLabel={'<'}
-                                 nextLabel={'>'}
-                                 breakLabel={'...'}
-                                 breakClassName={'break-me'}
-                                 pageCount={pageCount}
-                                 marginPagesDisplayed={2}
-                                 pageRangeDisplayed={5}
-                                 onPageChange={handlePageClick}
-                                 containerClassName={'pagination'}
-                                 subContainerClassName={'pages pagination'}
-                                 activeClassName={'active'}
-                             />*/}
                             </div>
+                        </div>
+                        <div className="interview-txt7 d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                            <ReactPaginate
+                                  previousLabel={'< prev'}
+                                  nextLabel={'next >'}
+                                  breakLabel={'...'}
+                                  breakClassName={'break-me'}
+                                  pageCount={props.totalPage}
+                                  marginPagesDisplayed={1}
+                                  pageRangeDisplayed={5}
+                                  onPageChange={handlePageClick}
+                                  containerClassName={'pagination3'}
+                                  activeClassName={'active'}
+                                  forcePage={selectedPage}
+                            />
                         </div>
                     </div>
                     {(!props.profile.is_subreviwer && props.filter == "active") &&
@@ -1417,9 +1438,6 @@ const InvitationForm = (props) => {
 }
 
 const ApplicantList = (props) => {
-    // get current page applicants(8)
-    //let index = props.offset; // start index at applicants array
-    //let applicants = props.applicants.slice(index, index + 8); // each page has 8 candidates at most
     return (
         <div>
             {props.applicants.sort((a, b) => new Date(b.invite_date) - new Date(a.invite_date)).map((a, index) => {
@@ -1837,15 +1855,15 @@ const Applicant = (props) => {
     const renderStatus = (status) => {
         switch (status) {
             case 1:
-                    return <button className="btn btn-success" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem", background: "#13C4A1", cursor: "auto" }}>
+                    return <button className="interview-status-label" style={{ background: "#13C4A1"}}>
                                 Shortlist
                            </button>
             case 2:
-                    return <button className="btn btn-warning" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem", background: "#FF6B00", cursor: "auto" }}>
+                    return <button className="interview-status-label" style={{ background: "#FF6B00"}}>
                                 Hold
                            </button>
             case 3:
-                    return <button className="btn btn-danger" style={{ minWidth: "7rem", maxHeight: "2.4rem", paddingTop: "0.6rem", background: "#FF0000", cursor: "auto" }}>
+                    return <button className="interview-status-label" style={{ background: "#FF0000"}}>
                                 Reject
                            </button>
             default:
@@ -1867,7 +1885,7 @@ const Applicant = (props) => {
                     marginTop: "0rem"
                 }}
             />
-            <div className="row interview-center" style={{ color: "#7D7D7D", height: "3rem" }}>
+            <div className="row interview-center" style={{ color: "#7D7D7D", height: "2.5rem" }}>
                 {!props.profile.is_subreviwer &&
                     <div className="interview-txt9" style={{ marginLeft: "1rem" }}>
                         {(!applicants[current].is_invited && !applicants[current].is_recorded) ?

@@ -94,7 +94,7 @@ export class JobCard extends Component {
                         marginTop: "0rem"
                     }}
                 />
-                <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
+                <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginBottom: "0.5rem" }}>
                     <div className="col-3 interview-txt9 mt-2">
                         {this.props.job.un_view ? <span className="dot"></span> : <span className="dot" style={{ visibility: "hidden" }}></span>}
                         <button
@@ -110,7 +110,7 @@ export class JobCard extends Component {
                             className="title-button2"
                             onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.enableView(); sessionStorage.setItem("view", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)) }}
                         >
-                            {this.props.job.applicants.length}
+                            {this.props.job.total_records}
                         </button>
                     </div>
                     <div className="col-2 interview-txt9 d-flex justify-content-center mt-2">{this.props.job.job_details.create_date.substring(0, 10)}</div>
@@ -206,7 +206,7 @@ export class JobCard extends Component {
                             renderJobEdition={this.props.renderJobEdition}
                             setJobInfo={this.props.setJobInfo}
                             jobInfo={this.props.job.job_details}
-                            applicantsNum={this.props.job.applicants.length}
+                            applicantsNum={this.props.job.total_records}
                             curJobKey={this.props.curJobKey}
                         />
                     </div>

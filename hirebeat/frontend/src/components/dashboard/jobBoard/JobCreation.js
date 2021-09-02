@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import 'boxicons';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
-import { getByZip } from 'zcs';
 import Select from 'react-select';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Switch from "react-switch";
 import parse from 'html-react-parser';
-import {SkillSet} from "./Constants";
+import { SkillSet } from "./Constants";
 import { MyShareModal } from "./../DashboardComponents";
 import ShareJob from "./ShareJob";
+import Autocomplete from "react-google-autocomplete";
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -41,8 +41,6 @@ export class JobCreation extends Component {
             jobId: "",
             jobLocation: "",
             jobDescription: RichTextEditor.createEmptyValue(),
-            city: "",
-            state: "",
             loc_req: 1,
             pho_req: 1,
             lin_req: 1,
@@ -73,7 +71,7 @@ export class JobCreation extends Component {
         this.setState({ skills: skills })
     };
     customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff' }),
+        control: styles => ({ ...styles, backgroundColor: '#ffffff', border: "2px solid #E8EDFC", borderRadius: "5px" }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
@@ -98,7 +96,7 @@ export class JobCreation extends Component {
     ];
 
     setJobPost(type) {
-        if (this.props.profile.is_freetrial && type==2){
+        if (this.props.profile.is_freetrial && type == 2) {
             confirmAlert({
                 title: 'Upgrade Now!',
                 message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
@@ -108,7 +106,7 @@ export class JobCreation extends Component {
                 ]
             });
         }
-        else{
+        else {
             this.setState({ job_post: type });
         }
     }
@@ -204,34 +202,9 @@ export class JobCreation extends Component {
         this.setState({ jobDescription });
     };
 
-    handleZipcode = (e) => {
-        let citytstate = "";
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-        if (e.target.value.length == 5) {
-            citytstate = getByZip(e.target.value);
-            this.setState({
-                city: citytstate["city"],
-                state: citytstate["state"],
-            });
-        }
-    };
-
-    handleZipcodeInputKeyDown = e => {
-        var key = e.which ? e.which : e.keyCode;
-        if (
-            (e.target.value.length >= 5 &&
-                key !== 8 &&
-                key !== 37 &&
-                key !== 38 &&
-                key !== 39 &&
-                key !== 40) ||
-            (key === 18 || key === 189 || key === 229)
-        ) {
-            e.preventDefault();
-        }
-    };
+    handleLocation = (location) => {
+        this.setState({jobLocation: location});
+    }
 
     handleInputChange = (e) => {
         this.setState({
@@ -266,7 +239,7 @@ export class JobCreation extends Component {
             jobId: this.state.jobId,
             jobDescription: this.state.jobDescription.toString('html'),
             jobLevel: this.state.jobLevel["value"],
-            jobLocation: this.state.city + "," + this.state.state + "," + this.state.jobLocation,
+            jobLocation: this.state.jobLocation,
             userId: this.props.user.id,
             jobType: this.state.jobType["value"],
             loc_req: this.state.loc_req,
@@ -299,7 +272,7 @@ export class JobCreation extends Component {
             alert("Duplicate Job ID detected.");
         } else {
             this.props.addNewJob(data);
-            setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+            setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
             setTimeout(() => {this.showSharePrompt()}, 300);
         }
     }
@@ -310,7 +283,7 @@ export class JobCreation extends Component {
             closeOnClickOutside: true,
             customUI: ({ onClose }) => {
                 return (
-                    <div className="container-fluid" style={{ fontFamily: "Avenir Next, Segoe UI", margin: "auto", width: "80%", overflow: "auto", height: "80vh", backgroundColor: "#ffffff" }}>
+                    <div className="container-fluid" style={{ fontFamily: "Avenir Next, Segoe UI", margin: "auto", width: "80%", overflow: "auto", height: "80vh", backgroundColor: "#ffffff", borderRadius:"5px" }}>
                         <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer", marginTop: "3rem" }}><i className="bx bx-x bx-md"></i></div>
                         <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
                         <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={this.props.employerProfileDetail.logo_url} alt="icon" />
@@ -320,7 +293,7 @@ export class JobCreation extends Component {
                         <div className="row pl-3">
                             <div className="col-8 pl-5" style={{ paddingRight: "3.7rem" }}>
                                 <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobLevel["value"]} • {this.state.jobType["value"]}</p>
-                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(this.state.city == "") ? "Remote" : (this.state.city + "," + this.state.state)}</p>
+                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobLocation}</p>
                                 <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobId}</p>
                                 <div>
                                     <div>
@@ -378,11 +351,11 @@ export class JobCreation extends Component {
     };
 
     showSharePrompt = () => {
-        this.setState({showShare: true});
+        this.setState({ showShare: true });
     }
 
     disableShowShare = () => {
-        this.setState({showShare: false});
+        this.setState({ showShare: false });
         this.props.renderJobs();
     }
 
@@ -416,15 +389,15 @@ export class JobCreation extends Component {
                                     Job Title
                                 </label><span className="job-apply-char2">*</span>
                                 <input type="text" name="jobTitle" value={this.state.jobTitle}
-                                    onChange={this.handleInputChange} className="form-control" required="required" />
+                                    onChange={this.handleInputChange} className="form-control" required="required" style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }} />
                             </div>
-                            <div className="form-group col-6">
+                            <div className="form-group col-3">
                                 <label className="db-txt2">
                                     Job ID
                                 </label>
                                 <span className="job-apply-char2" style={{ visibility: "hidden" }}>*</span>
                                 <input type="text" name="jobId" value={this.state.jobId}
-                                    onChange={this.handleInputChange} className="form-control" />
+                                    onChange={this.handleInputChange} className="form-control" style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }} />
                             </div>
                         </div>
                         <div className="form-row">
@@ -436,6 +409,8 @@ export class JobCreation extends Component {
                                     <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} />
                                 </div>
                             </div>
+                        </div>
+                        <div className="form-row">
                             <div className="form-group col-6">
                                 <label className="db-txt2">
                                     Experience Level
@@ -446,32 +421,31 @@ export class JobCreation extends Component {
                             </div>
                         </div>
                         <div className="form-row">
-                            {!this.state.remote &&
-                                <div className="form-group col-6">
-                                    <label className="db-txt2">
-                                        Zipcode
-                                    </label><span className="job-apply-char2">*</span>
-                                    <input type="number" name="jobLocation" value={this.state.jobLocation} inputmode="numeric"
-                                        onKeyDown={e => this.handleZipcodeInputKeyDown(e)}
-                                        pattern="\d*"
-                                        onChange={this.handleZipcode} className="form-control" required="required" />
-                                </div>}
                             <div className="form-group col-6">
-                                {!this.state.remote &&
-                                    <label className="db-txt2" style={{ marginTop: "3.5rem" }}>
-                                        {this.state.city != "" &&
-                                            <div><span>{this.state.city}</span>, <span>{this.state.state}</span></div>}
-                                        {this.state.city == "" &&
-                                            <div><span>City</span>, <span>State</span></div>}
-                                    </label>}
-                                {!this.state.remote ?
-                                    <label className="db-txt2 ml-5">
-                                        <div>Remote Work? <span style={{ float: "right", top: "3.2rem", position: "absolute", marginLeft: "0.5rem" }}><Switch onChange={this.handleChange} checked={this.state.remote} /></span></div>
-                                    </label> :
-                                    <label className="db-txt2">
-                                        <div>Remote Work? <span style={{ marginLeft: "0.5rem" }}><Switch onChange={this.handleChange} checked={this.state.remote} /></span></div>
-                                    </label>
-                                }
+                                <div className="d-flex">
+                                    {!this.state.remote &&
+                                        <div className="form-group" style={{width: "40%"}}>
+                                            <label className="db-txt2">
+                                                Job Location
+                                            </label><span className="job-apply-char2">*</span>
+                                            <Autocomplete
+                                                className="form-control"
+                                                style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }}
+                                                language="en"
+                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                    this.handleLocation(place.formatted_address);
+                                                }}
+                                                required="required"
+                                            />
+                                        </div>}
+                                    <div className={this.state.remote ? "form-group" : "form-group ml-auto"}>
+                                        <label className="db-txt2">Remote Work?</label>
+                                        <div style={{paddingTop: "0.7rem"}}>
+                                            <Switch onChange={this.handleChange} checked={this.state.remote} />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         {/*<div className="form-row">
@@ -683,34 +657,32 @@ export class JobCreation extends Component {
                             </div>}
                         <MyShareModal
                             show={this.state.showShare}
-                            onHide={()=>{this.disableShowShare()}}
+                            onHide={() => { this.disableShowShare() }}
                         >
-                            <div className="container" style={{padding: "2rem"}}>
+                            <div className="container" style={{ padding: "2rem" }}>
                                 <ShareJob
                                     disableShowShare={this.disableShowShare}
-                                    shareLink={"https://hirebeat.co/apply-job/" + this.props.companyName + "?id=" + Object.keys(this.props.jobs).sort(function (a, b) {return b - a;})[0]}
+                                    shareLink={"https://hirebeat.co/apply-job/" + this.props.companyName + "?id=" + Object.keys(this.props.jobs).sort(function (a, b) { return b - a; })[0]}
                                     companyName={this.props.companyName}
                                     jobTitle={this.state.jobTitle}
                                 />
                             </div>
                         </MyShareModal>
-                        <div style={{ float: "left", marginBottom: "1rem", display: "inline-block" }}>
-                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#E5E5E5", color: "#090d3a" }} onClick={this.props.renderJobs}>Cancel</button>
-                        </div>
-                        <div style={{ float: "right", marginBottom: "1rem", display: "inline-block" }}>
-                            <button
-                                type="button"
-                                className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem" }}
-                                onClick={() => { this.previewJob() }}
-                            >
-                                <i className="bx bx-show"></i>Preview
-                            </button>
+                        <div style={{ float: "left", marginBottom: "1rem", display: "inline-block"}}>
                             <button
                                 type="submit"
-                                className="default-btn1" style={{ marginBottom: "1.5%", paddingLeft: "25px" }}
+                                className="default-btn" style={{ marginBottom: "1.5%", paddingLeft: "25px", marginRight: "1rem" }}
                             >
                                 Save & Post
                             </button>
+                            <button
+                                type="button"
+                                className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#56a3fa", border: "2px solid #56a3fa", paddingTop: "9px", paddingBottom: "8px" }}
+                                onClick={() => { this.previewJob() }}
+                            >
+                                <i className="bx bx-show" style={{ color: "#56a3fa" }}></i>Preview
+                            </button>
+                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#fff", color: "#979797" }} onClick={this.props.renderJobs}>Cancel</button>
                         </div>
                     </form>
                 </div>

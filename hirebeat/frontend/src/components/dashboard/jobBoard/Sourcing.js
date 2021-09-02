@@ -18,7 +18,7 @@ export class Sourcing extends Component {
         can_index: 0,
         showResume: false,
         showContact: false,
-        pageCount: this.props.sourcingData.total_page,
+        selectedPage: 0,
     }
 
     componentDidMount() {
@@ -124,6 +124,7 @@ export class Sourcing extends Component {
 
     handlePageClick = (data) => {
         let selectedPage = data.selected; // 0 index based
+        this.setState({selectedPage: selectedPage});
         let queryData = {
             keywords: this.state.keywords,
             location: this.state.location,
@@ -187,8 +188,8 @@ export class Sourcing extends Component {
                             </div>
                             <div className="mt-5">
                                 <div className="row">
-                                    <div className="col-3 d-flex" style={{alignItems: "center"}}>
-                                        <p className="sourcing-p2" style={{textDecoration: "none"}}>Result:  {this.props.sourcingData.profiles.length} / {this.props.sourcingData.total_records}</p>
+                                    <div className="col-3 d-flex" style={{ alignItems: "center" }}>
+                                        <p className="sourcing-p2" style={{ textDecoration: "none" }}>Result:  {this.props.sourcingData.profiles.length} / {this.props.sourcingData.total_records}</p>
                                     </div>
                                     <div className="col d-flex justify-content-end">
                                         <ReactPaginate
@@ -197,11 +198,12 @@ export class Sourcing extends Component {
                                               breakLabel={'...'}
                                               breakClassName={'break-me'}
                                               pageCount={this.props.sourcingData.total_page}
-                                              marginPagesDisplayed={2}
+                                              marginPagesDisplayed={1}
                                               pageRangeDisplayed={5}
                                               onPageChange={this.handlePageClick}
                                               containerClassName={'pagination2'}
                                               activeClassName={'active'}
+                                              forcePage={this.state.selectedPage}
                                         />
                                     </div>
                                 </div>
@@ -251,11 +253,12 @@ export class Sourcing extends Component {
                                               breakLabel={'...'}
                                               breakClassName={'break-me'}
                                               pageCount={this.props.sourcingData.total_page}
-                                              marginPagesDisplayed={2}
+                                              marginPagesDisplayed={1}
                                               pageRangeDisplayed={5}
                                               onPageChange={this.handlePageClick}
                                               containerClassName={'pagination2'}
                                               activeClassName={'active'}
+                                              forcePage={this.state.selectedPage}
                                         />
                                     </div>
                                 </div>
@@ -267,14 +270,15 @@ export class Sourcing extends Component {
                             </div>
                             <div className="row" >
                                 <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                    <button type="button" style={{ backgroundColor: "#e8edfc", border: "none" }} onClick={this.hideProfileDetail}>
-                                        <IconText
-                                            iconName={"bx-fw bx bx-arrow-back bx-sm"}
-                                            textDisplayed={"Back To All Result"}
-                                            textSize={"16px"}
-                                            textColor={"#56a3fa"}
-                                            iconMargin={"3px"}
-                                        />
+                                    <button
+                                        type="button"
+                                        className="panel-button"
+                                        onClick={this.hideProfileDetail}
+                                        style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                                    >
+                                        <div className="center-items back-to-text">
+                                            <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to All Result</p>
+                                        </div>
                                     </button>
                                 </div>
                             </div>
@@ -302,8 +306,8 @@ export class Sourcing extends Component {
                                                 contactName={this.props.sourcingData.profiles[this.state.can_index].f_name + " " + this.props.sourcingData.profiles[this.state.can_index].l_name}
                                             >
                                                 <div class="container py-4">
-                                                    <h3 className="profile-h3">Contact Info</h3>
-                                                    <div className="row" style={{ margin: "auto", width: "60%" }}>
+                                                    <h3 className="profile-h3" style={{marginLeft:"1rem"}}>Contact Info</h3>
+                                                    <div className="row" style={{ margin: "auto", width: "70%" }}>
                                                         <div className="col-3">
                                                             <i class='bx bx-mail-send' style={{ color: "#67A3F3", fontSize: "50px" }}></i>
                                                         </div>
@@ -312,7 +316,7 @@ export class Sourcing extends Component {
                                                             <p style={{ marginTop: "-1rem", color: "#4a6f8a", fontWeight: "400", fontSize: "0.9rem" }}>{(this.props.sourcingData.profiles[this.state.can_index].email !== null && this.props.sourcingData.profiles[this.state.can_index].email !== "") ? this.props.sourcingData.profiles[this.state.can_index].email : ""}</p>
                                                         </div>
                                                     </div>
-                                                    <div className="row" style={{ margin: "auto", width: "60%", paddingTop: "0.5rem"  }}>
+                                                    <div className="row" style={{ margin: "auto", width: "70%", paddingTop: "0.5rem" }}>
                                                         <div className="col-3">
                                                             <i class='bx bxl-linkedin-square' style={{ color: "#67A3F3", fontSize: "50px" }}></i>
                                                         </div>
@@ -321,7 +325,7 @@ export class Sourcing extends Component {
                                                             <p style={{ marginTop: "-1rem", color: "#4a6f8a", fontWeight: "400", fontSize: "0.9rem" }}>{(this.props.sourcingData.profiles[this.state.can_index].linkedin !== null && this.props.sourcingData.profiles[this.state.can_index].linkedin !== "") ? this.props.sourcingData.profiles[this.state.can_index].linkedin : ""}</p>
                                                         </div>
                                                     </div>
-                                                    <div className="row" style={{ margin: "auto", width: "60%", paddingTop: "0.5rem" }}>
+                                                    <div className="row" style={{ margin: "auto", width: "70%", paddingTop: "0.5rem" }}>
                                                         <div className="col-3">
                                                             <i class='bx bxs-network-chart' style={{ color: "#67A3F3", fontSize: "50px" }}></i>
                                                         </div>
@@ -330,7 +334,7 @@ export class Sourcing extends Component {
                                                             <p style={{ marginTop: "-1rem", color: "#4a6f8a", fontWeight: "400", fontSize: "0.9rem" }}>{(this.props.sourcingData.profiles[this.state.can_index].website !== null && this.props.sourcingData.profiles[this.state.can_index].website !== "") ? this.props.sourcingData.profiles[this.state.can_index].website : ""}</p>
                                                         </div>
                                                     </div>
-                                                    <div className="row" style={{ margin: "auto", width: "60%", paddingTop: "0.5rem" }}>
+                                                    <div className="row" style={{ margin: "auto", width: "70%", paddingTop: "0.5rem" }}>
                                                         <div className="col-3">
                                                             <i class='bx bxl-github' style={{ color: "#67A3F3", fontSize: "50px" }}></i>
                                                         </div>
@@ -346,9 +350,9 @@ export class Sourcing extends Component {
                                     <div className="chart-bg1 mt-2">
                                         <div className="py-3 px-5">
                                             <h3 className="profile-h3">Resume</h3>
-                                            {(this.props.sourcingData.profiles[this.state.can_index].resume_url == null || this.props.sourcingData.profiles[this.state.can_index].resume_url == "")?
-                                            <p className="profile-p">Not available</p>:
-                                            <button className="default-btn" type="button" style={{ marginTop: "0.5rem", width:"100%", backgroundColor: "#ffffff", color: "#090d3a", border: "1px solid #E8EDFC", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }} onClick={this.enableShowResume}>View Resume</button>}
+                                            {(this.props.sourcingData.profiles[this.state.can_index].resume_url == null || this.props.sourcingData.profiles[this.state.can_index].resume_url == "") ?
+                                                <p className="profile-p">Not available</p> :
+                                                <button className="default-btn" type="button" style={{ marginTop: "0.5rem", width: "100%", backgroundColor: "#ffffff", color: "#090d3a", border: "1px solid #E8EDFC", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }} onClick={this.enableShowResume}>View Resume</button>}
                                             <MyModal80
                                                 show={this.state.showResume}
                                                 onHide={() => { this.disableShowResume() }}

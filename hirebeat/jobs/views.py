@@ -20,6 +20,7 @@ import requests
 import MergeATSClient
 from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_interview_stages_api, applications_api, attachments_api
 from pprint import pprint
+import math
 
 # configure s3
 if not boto.config.get('s3', 'use-sigv4'):
@@ -80,14 +81,23 @@ def add_new_job(request):
 
 @api_view(['GET'])
 def get_all_jobs(request):
-    data = {}
     user_id = request.query_params.get("userId")
+    page = int(request.query_params.get("page"))
+
+    data = {}
     jobs = list(Jobs.objects.filter(user_id=user_id).order_by('-id').values())
     for i in range(len(jobs)):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]
-        # get each position applicants
-        applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).values())
+        # get each position applicants, pagination here
+        applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).order_by('-id').values())
+        total_records = len(applicants)
+        total_page = math.ceil(len(applicants) / 15)
+        if total_records > 15:
+            begin = (page - 1) * 15
+            end = page * 15
+            applicants = applicants[begin:end]
+
         un_view = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
         all_invited = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_invited=1).count() == len(applicants) else False
         questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
@@ -99,6 +109,8 @@ def get_all_jobs(request):
             "un_view": un_view,
             "all_invited": all_invited,
             "position": position,
+            "total_records": total_records,
+            "total_page": total_page,
         }
         data[job_id] = job_details
 

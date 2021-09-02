@@ -27,7 +27,7 @@ export const JobCover = (props) => {
           Archived
         </button>
         <button className="default-btn" onClick={props.renderJobCreation}
-          style={{ color: "white", float: "right", marginBottom: "1rem" }}>
+          style={{ color: "white", float: "right", marginBottom: "2rem" }}>
           <i className="bx bx-plus"></i>
           Create New Position
           <span></span>
