@@ -9,7 +9,8 @@ import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/
 import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import Select from 'react-select';
-import EditQuestion from "./EditQuestion"
+import EditQuestion from "./EditQuestion";
+import ReactPaginate from 'react-paginate';
 
 export class ApplicantList extends Component {
     state = {
@@ -19,6 +20,7 @@ export class ApplicantList extends Component {
         category: { value: 'All', label: 'All' },
         editQuestion: false,
         isSortByScore: true,
+        selectedPage: 0,
     }
 
     onFilter = (category) => {
@@ -238,30 +240,43 @@ export class ApplicantList extends Component {
         this.setState({isSortByScore: !this.state.isSortByScore});
     }
 
+    handlePageClick = (data) => {
+        let selectedPage = data.selected; // 0 index based
+        this.setState({selectedPage: selectedPage});
+        let page = selectedPage + 1;
+        this.props.getAllJobs(this.props.user.id, page);
+
+    };
+
     render() {
         return (
             <React.Fragment>
                 <div className="chart-bg1 container-fluid mt-3 pt-2 pb-3">
+                    <div className="interview-txt5" style={{paddingTop: "1rem"}}>{this.props.curJob.job_details.job_title}</div>
                     <div className="row interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
-                        <div className="interview-txt5">{this.props.curJob.job_details.job_title}</div>
-                        {/*<div className="interview-txt7 interview-center" style={{marginLeft: "2rem"}}>
-                            <button
-                                type="button"
-                                className="read-more"
-                                onClick={this.editQuestions}
-                                style={{border:"none", backgroundColor:"#ffffff", fontSize:"0.9rem", fontWeight:"500", color:'#7d7d7d'}}
-                            >
-                                <i className="bx bx-info-circle pr-1"></i> Edit Questions
-                            </button>
-                        </div>*/}
-                        <div className="ml-auto">
+                        <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
                                 <i style={{position:"absolute", marginLeft:"0.5rem", marginTop:"0.2rem"}} className="bx bx-search bx-sm"></i>
                                 <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
                             </span>
                         </div>
+                        <div className="ml-auto">
+                            <ReactPaginate
+                                  previousLabel={'< prev'}
+                                  nextLabel={'next >'}
+                                  breakLabel={'...'}
+                                  breakClassName={'break-me'}
+                                  pageCount={this.props.curJob.total_page}
+                                  marginPagesDisplayed={1}
+                                  pageRangeDisplayed={5}
+                                  onPageChange={this.handlePageClick}
+                                  containerClassName={'pagination3'}
+                                  activeClassName={'active'}
+                                  forcePage={this.state.selectedPage}
+                            />
+                        </div>
                     </div>
-                    <div className="chart-bg1 container-fluid" style={{ marginTop: "1rem", boxShadow:"0px 0px 10px rgba(128, 128, 128, 0.16)" }}>
+                    <div className="container-fluid" style={{ marginTop: "1rem"}}>
                         <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             <div style={{ marginLeft: "2rem" }}>
                                 <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: (this.props.curJob.all_invited ? "none" : "inline") }} />
@@ -363,6 +378,21 @@ export class ApplicantList extends Component {
                             )
                         })}
                     </div>
+                    <div className="interview-txt7 d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                        <ReactPaginate
+                              previousLabel={'< prev'}
+                              nextLabel={'next >'}
+                              breakLabel={'...'}
+                              breakClassName={'break-me'}
+                              pageCount={this.props.curJob.total_page}
+                              marginPagesDisplayed={1}
+                              pageRangeDisplayed={5}
+                              onPageChange={this.handlePageClick}
+                              containerClassName={'pagination3'}
+                              activeClassName={'active'}
+                              forcePage={this.state.selectedPage}
+                        />
+                    </div>
                 </div>
                 {this.props.filter == "active" &&
                     <div style={{ marginTop: "2rem" }}>
@@ -453,11 +483,11 @@ const ApplicantRow = (props) => {
                     backgroundColor: "#E8EDFC",
                     height: 3,
                     marginBottom: "0.5rem",
-                    marginTop: "0rem"
+                    marginTop: "0.2rem"
                 }}
             />
-            <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
-                <div className="interview-txt9 mt-2" style={{ marginLeft: "1rem" }}>
+            <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem"}}>
+                <div className="interview-txt9 mb-2" style={{ marginLeft: "1rem" }}>
                     {(props.applicant.is_invited != 1) ?
                         <div>
                             <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
@@ -467,7 +497,7 @@ const ApplicantRow = (props) => {
                         </div>
                     }
                 </div>
-                <div className="col-4 interview-txt9 mt-2" style={{ cursor: "pointer", color: "#67A3F3", paddingLeft: "0.3rem" }}>
+                <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#67A3F3", paddingLeft: "0.3rem" }}>
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
@@ -484,9 +514,9 @@ const ApplicantRow = (props) => {
                     }
                 </div>
                 {/*<div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>*/}
-                <div className="col-2 interview-txt9 mt-2"><span style={{marginLeft:"0.6rem"}}>{props.applicant.apply_date.substring(0, 10)}</span></div>
+                <div className="col-2 interview-txt9 mb-2"><span style={{marginLeft:"0.6rem"}}>{props.applicant.apply_date.substring(0, 10)}</span></div>
                 {/*<div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); onView()}}>View</div>*/}
-                <div className="col-3 interview-txt9 mt-2" style={{ padding: "0rem" }}>
+                <div className="col-3 interview-txt9 mb-2" style={{ padding: "0rem"}}>
                     <div className="row" style={{padding: "0rem"}}>
                         {/* place holder */}
                         <span className="job-status" style={{marginLeft: "15px", visibility: "hidden"}}>Status</span>
@@ -515,7 +545,7 @@ const ApplicantRow = (props) => {
                         </span>
                     </div>
                 </div>
-                <div className="col-2 interview-txt9 mt-2" style={{marginLeft: "30px"}}>
+                <div className="col-2 interview-txt9 mb-2" style={{marginLeft: "30px"}}>
                     {resumeScore >= 76 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-great.png" />}
                     {resumeScore >= 51 && resumeScore < 76 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-good.png" />}
                     {resumeScore >= 26 && resumeScore < 51 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-avg.png" />}

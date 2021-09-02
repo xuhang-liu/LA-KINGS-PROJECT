@@ -178,8 +178,7 @@ const ReviewCandidate = (props) => {
                     style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                 >
                     <div className="center-items back-to-text">
-                        <i className="bx bx-arrow-back bx-sm"></i>
-                        <p className="back-to-text">Back to List</p>
+                        <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to List</p>
                     </div>
                 </button>
             </div>
@@ -237,11 +236,11 @@ const ReviewCandidate = (props) => {
                         {props.linkedin != null && props.linkedin != "" ?
                             <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
                                 <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#67A3F3", marginRight: "3px" }}></i>
-                                <a style={{ fontSize: "0.7rem", color: "#67A3F3" }} href={props.linkedin} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
+                                <a style={{ fontSize: "0.7rem", color: "#67A3F3", fontWeight:"500" }} href={props.linkedin} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
                             </div> :
                             <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
                                 <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#979797", marginRight: "3px" }}></i>
-                                <p style={{ fontSize: "0.7rem", color: "#979797" }}>LinkedIn  not available</p>
+                                <p style={{ fontSize: "0.7rem", color: "#979797", fontWeight:"500" }}>LinkedIn not available</p>
                             </div>
                         }
                     </div>

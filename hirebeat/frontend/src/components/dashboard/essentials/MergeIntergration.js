@@ -54,16 +54,16 @@ const MergeIntergration = (props) => {
         };
         axios.post("jobs/send-merge-api-request", data, config).then((res) => {
             res.data?.interview_stages_api_response?.map((i) => {
-                if(i?.job == null){
+                if (i?.job == null) {
                     setOptions2(options2 => [...options2, { value: i?.id, label: i?.name }]);
-                }else{
+                } else {
                     if (job['value'] == i?.job) {
                         setOptions2(options2 => [...options2, { value: i?.id, label: i?.name }]);
                     }
                 }
             });
         }).catch(error => {
-                console.log(error)
+            console.log(error)
         });
     };
 
@@ -116,7 +116,7 @@ const MergeIntergration = (props) => {
             },
         };
         axios.post("jobs/send-merge-api-request", data, config).then((res) => {
-            if(res.data?.jobs_api_response.length > 0){
+            if (res.data?.jobs_api_response.length > 0) {
                 confirmAlert({
                     title: "Data Synchronized",
                     message: "Select a job to continue.",
@@ -129,11 +129,11 @@ const MergeIntergration = (props) => {
                 res.data?.jobs_api_response?.map((j) => {
                     setOptions1(options1 => [...options1, { value: j?.id, label: j?.name }]);
                 })
-            }else{
+            } else {
                 alert("Data not ready yet");
             }
         }).catch(error => {
-                console.log(error)
+            console.log(error)
         });
     }
 
@@ -171,9 +171,9 @@ const MergeIntergration = (props) => {
     }
 
     return (
-        <div className="container" style={{ paddingBottom: "9rem" }}>
-            <div style={{ marginBottom: "30px" }}><h3><b><span style={{marginRight:"0.6rem"}}><img src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-eos-icons_api-outlined.png" alt="icon"></img></span><span className="ml-2">Integration</span></b></h3></div>
-            <div className="chart-bg1 container">
+        <div className="container min-width-980" style={{ paddingBottom: "9rem" }}>
+            <div style={{ marginBottom: "30px" }}><h3><b><span style={{ marginRight: "0.6rem" }}><img src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-eos-icons_api-outlined.png" alt="icon"></img></span><span className="ml-2">Integration</span></b></h3></div>
+            <div className="chart-bg1 container min-width-980">
                 <div className="form-row" style={{ marginTop: "1%" }}>
                     <div className="form-group col">
                         <p style={{ fontSize: "1.2rem", color: "#090d3a", fontWeight: "600" }}>Integrate with your ATS</p>
@@ -182,17 +182,21 @@ const MergeIntergration = (props) => {
                             <p style={{ fontSize: "1rem", color: "#090d3a", fontWeight: "500" }}>To do so, click on the "Integrate" button below, and select your current platform to log in.</p>
                             <p style={{ fontSize: "1rem", color: "#090d3a", fontWeight: "500" }}>Once integrated, follow the instructions below to conduct <span style={{ color: "#ff6b00" }}>one-way video interviews</span> through HireBeat.</p>
                         </div>
-                        <div className="row ml-1" style={{ marginTop: "1.5rem" }}>
-                            <button className="default-btn" disabled={!isReady} onClick={open} style={{ paddingLeft: "25px", borderRadius: "10px" }}>
-                                Integrate
-                            </button>
-                            <p className="pt-4" style={{ fontSize: "0.8rem", color: "#979797", fontWeight: "500", marginLeft: "1rem" }}>Powered by Merge</p>
+                        <div className="row" style={{ marginTop: "1.5rem" }}>
+                            <div className="col-2 ml-1">
+                                <button className="default-btn" onClick={open} style={{ paddingLeft: "25px", paddingBottom: "10px", paddingTop: "10px" }}>
+                                    Integrate
+                                </button>
+                            </div>
+                            <div className="col-2">
+                                <p className="pt-4" style={{ fontSize: "0.8rem", color: "#979797", fontWeight: "500"}}>Powered by Merge</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             {inted &&
-                <div className="chart-bg1 container mt-4">
+                <div className="chart-bg1 container mt-4 min-width-980">
                     <div className="form-row" style={{ marginTop: "1%" }}>
                         <div className="form-group col">
                             <p style={{ fontSize: "1.2rem", color: "#090d3a", fontWeight: "600" }}>Import job, job stage, and candidates</p>
@@ -203,7 +207,7 @@ const MergeIntergration = (props) => {
                                 <p style={{ fontSize: "1rem", color: "#090d3a", fontWeight: "500" }}>Click <span style={{ color: "#ff6b00" }}>Confirm</span> and we will import all the candidates that are currently under your specified job stage.</p>
                             </div>
                             <div className="row ml-1" style={{ marginTop: "1rem" }}>
-                                <button className="default-btn" style={{ paddingLeft: "25px", borderRadius: "10px" }} onClick={getMergeData}>
+                                <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={getMergeData}>
                                     Synchronize
                                 </button>
                             </div>
@@ -215,7 +219,7 @@ const MergeIntergration = (props) => {
                                     <Select value={stage} onChange={onFilter2} options={options2} styles={customStyles} placeholder="Stage" />
                                 </div>
                                 <div className="row ml-1" style={{ marginTop: "2rem" }}>
-                                    <button className="default-btn" style={{ paddingLeft: "25px", borderRadius: "10px" }} onClick={createCanFromMerge}>
+                                    <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={createCanFromMerge}>
                                         Confirm
                                     </button>
                                 </div>

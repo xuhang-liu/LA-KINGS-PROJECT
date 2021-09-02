@@ -154,7 +154,15 @@ export class Register extends Component {
     e.preventDefault();
     // check passwords
     if (!this.passwordsMatch()) {
-      alert("The passwords are not consistent");
+      return confirmAlert({
+            title: "Wrong Password",
+            message: "The passwords you entered are not consistent",
+            buttons: [
+                  {
+                    label: 'Ok'
+                  }
+            ]
+      });
     }
     // check email registered or not
     const data = {email: this.state.email, username: this.state.username};
@@ -417,7 +425,7 @@ export class Register extends Component {
                                     <div>
                                         <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
                                         <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI"}}>
-                                            <a>No credit card information needed during signup. Enjoy your free plan.</a>
+                                            <a>No credit card information needed during signup. Enjoy your free trial.</a>
                                         </div>
                                     </div>
                                 </div>

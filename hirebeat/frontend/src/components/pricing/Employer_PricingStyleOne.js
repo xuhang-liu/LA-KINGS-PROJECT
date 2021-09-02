@@ -9,6 +9,7 @@ import Collapse from 'react-bootstrap/Collapse'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import 'boxicons';
+import axios from "axios";
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
@@ -183,11 +184,7 @@ class Employer_PricingStyleOne extends Component {
     };
 
     handlePremiumUpgrade = () => {
-        if (this.props.profile.membership == 'Premium' && (!this.props.profile.is_freetrial)) {
-            this.handlePremiumClickUpgrade2();
-        } else {
-            this.handlePremiumClickUpgrade();
-        }
+        this.handlePremiumClickUpgrade();
     };
     handlePremiumClickUpgrade = async (event) => {
         // When the customer clicks on the button, redirect them to Checkout.
@@ -206,29 +203,8 @@ class Employer_PricingStyleOne extends Component {
         error.message;
     };
 
-    handlePremiumClickUpgrade2 = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1IXz0yKxU1MN2zWMEco7GNHO', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'subscription',
-            successUrl: 'https://hirebeat.co/payment',
-            cancelUrl: 'https://hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-        });
-        error.message;
-    };
-
     handleYearPremiumUpgrade = () => {
-        if (this.props.profile.membership == 'Premium' && (!this.props.profile.is_freetrial)) {
-            this.handleYearPremiumClickUpgrade2();
-        } else {
-            this.handleYearPremiumClickUpgrade();
-        }
+        this.handleYearPremiumClickUpgrade();
     };
     handleYearPremiumClickUpgrade = async (event) => {
         // When the customer clicks on the button, redirect them to Checkout.
@@ -236,23 +212,6 @@ class Employer_PricingStyleOne extends Component {
         const { error } = await stripe.redirectToCheckout({
             lineItems: [{
                 price: 'price_1JAcMmKxU1MN2zWMzUmtM0Iv', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'subscription',
-            successUrl: 'https://hirebeat.co/payment',
-            cancelUrl: 'https://hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-        });
-        error.message;
-    };
-
-    handleYearPremiumClickUpgrade2 = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1JAcdAKxU1MN2zWMWGA4eG9r', // Replace with the ID of your price
                 quantity: 1,
             }],
             mode: 'subscription',
@@ -278,6 +237,23 @@ class Employer_PricingStyleOne extends Component {
 
         document.getElementById(tabNmae).style.display = "block";
         evt.currentTarget.className += "current";
+    }
+
+    stripeCustomerPortal = () => {
+        let config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let data = { "id": this.props.user.id };
+
+        axios.post("api/go_stripe_customer_portal", data, config).then((res) => {
+            //console.log(res);
+            const session_url = res['data']['session_url'];
+            window.location.href = session_url;
+        }).catch(error => {
+            console.log(error)
+        });
     }
 
     render() {
@@ -469,8 +445,8 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
-                                                                        Premium Already
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.stripeCustomerPortal}>
+                                                                        Select Plan
                                                                         <span></span>
                                                                     </button>
                                                                 </div>
@@ -566,7 +542,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn1" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearPremiumUpgrade}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }} onClick={this.stripeCustomerPortal}>
                                                                         Upgrade
                                                                         <span></span>
                                                                     </button>
@@ -793,8 +769,8 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
-                                                                        Premium Already
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.stripeCustomerPortal}>
+                                                                        Select Plan
                                                                         <span></span>
                                                                     </button>
                                                                 </div>
@@ -890,7 +866,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn1" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePremiumUpgrade}>
+                                                                    <button className="default-btn1" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.stripeCustomerPortal}>
                                                                         Upgrade
                                                                         <span></span>
                                                                     </button>
@@ -1428,8 +1404,8 @@ class Employer_PricingStyleOne extends Component {
 
                             {/* TABLE 4*/}
                             {this.state.upAndDown4 ?
-                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown4} onClick={this.setUpAndDown4}>Collaboration & decision making<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
-                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown4} onClick={this.setUpAndDown4}>Collaboration & decision making<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-up'></i></span></div>
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown4} onClick={this.setUpAndDown4}>Collaboration & Decision Making<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-down'></i></span></div> :
+                                <div className="pricing-toggle-stripe" aria-expanded={this.state.upAndDown4} onClick={this.setUpAndDown4}>Collaboration & Decision Making<span style={{ float: "right", color: "#7C94B5" }}><i class='bx-fw bx bx-chevron-up'></i></span></div>
                             }
                             <Collapse in={this.state.upAndDown4}>
                                 <div className="container-fluid">
@@ -1477,7 +1453,7 @@ class Employer_PricingStyleOne extends Component {
                                     </div>
                                     <div className="row py-3">
                                         <div className="col-4 pl-4" style={{ textAlign: "left" }}>
-                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>EEO survey and reporting</p>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>EEO Survey and Reporting</p>
                                         </div>
                                         <div className="col-3">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>

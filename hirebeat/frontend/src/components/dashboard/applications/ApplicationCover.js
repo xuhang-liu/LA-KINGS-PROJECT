@@ -67,6 +67,7 @@ export const ApplicationCover = (props) => {
         subreviewerUpdateComment={props.subreviewerUpdateComment}
         checkUserExistence={props.checkUserExistence}
         user_existence={props.user_existence}
+        getPostedJobs={props.getPostedJobs}
       />
     </div>
   );

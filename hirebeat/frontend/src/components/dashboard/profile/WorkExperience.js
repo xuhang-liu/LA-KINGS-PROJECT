@@ -9,7 +9,6 @@ export class WorkExperience extends Component {
     };
 
     render() {
-        console.log(this.props.title);
         return(
             <div style={{marginBottom: "2rem"}}>
                 {(this.props.company !== null && this.props.company !== "") ?
