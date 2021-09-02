@@ -251,10 +251,10 @@ export class ApplicantList extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="chart-bg1 container-fluid mt-3 pt-2 pb-3" style={{paddingLeft:"0px"}}>
+                <div className="chart-bg1 container-fluid mt-3 pt-2 pb-3">
+                    <div className="interview-txt5" style={{paddingTop: "1rem"}}>{this.props.curJob.job_details.job_title}</div>
                     <div className="row interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
-                        <div className="interview-txt5 ml-4">{this.props.curJob.job_details.job_title}</div>
-                        <div className="ml-auto">
+                        <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
                                 <i style={{position:"absolute", marginLeft:"0.5rem", marginTop:"0.2rem"}} className="bx bx-search bx-sm"></i>
                                 <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>

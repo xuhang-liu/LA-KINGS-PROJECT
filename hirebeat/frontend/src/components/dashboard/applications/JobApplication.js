@@ -10,7 +10,6 @@ import 'boxicons';
 //import { IconText } from "../DashboardComponents";
 import { getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation } from "./../../../redux/actions/question_actions";
 import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews } from "./../../../redux/actions/question_actions";
-//import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
 import QuestionForm from "./QuestionForm";
@@ -1028,12 +1027,12 @@ const JobCard = (props) => {
                                 </MyModal80>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row" style={{paddingLeft: "15px", paddingRight: "15px"}}>
                             <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
                                 <label style={{position:"absolute", left:"2.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
                                 <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                             </div>
-                            <div className="ml-auto">
+                            <div className="ml-auto interview-txt7">
                                 <ReactPaginate
                                       previousLabel={'< prev'}
                                       nextLabel={'next >'}

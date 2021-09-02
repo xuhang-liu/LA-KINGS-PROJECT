@@ -347,30 +347,34 @@ export class JobEdition extends Component {
                             </div>
                         </div>
 
-                            <div className="form-row">
-                                {!this.state.remote &&
-                                <div className="form-group col-6">
-                                    <label className="db-txt2">
-                                        Job Location
-                                    </label><span className="job-apply-char2">*</span>
-                                    <Autocomplete
-                                        className="form-control"
-                                        language="en"
-                                        apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
-                                        onPlaceSelected={(place, inputRef, autocomplete) => {
-                                            this.handleLocation(place.formatted_address);
-                                        }}
-                                        required="required"
-                                        defaultValue={this.state.jobLocation}
-                                    />
-                                </div>}
-                                <div className="form-group col-6">
-                                    <label className="db-txt2">Remote Work?</label>
-                                    <div style={{paddingTop: "0.7rem"}}>
-                                        <Switch onChange={this.handleChange} checked={this.state.remote} />
+                        <div className="form-row">
+                            <div className="form-group col-6">
+                                <div className="d-flex">
+                                    {!this.state.remote &&
+                                    <div className="form-group" style={{width: "40%"}}>
+                                        <label className="db-txt2">
+                                            Job Location
+                                        </label><span className="job-apply-char2">*</span>
+                                        <Autocomplete
+                                            className="form-control"
+                                            language="en"
+                                            apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                            onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                this.handleLocation(place.formatted_address);
+                                            }}
+                                            required="required"
+                                            defaultValue={this.state.jobLocation == "Remote" ? "" : this.state.jobLocation}
+                                        />
+                                    </div>}
+                                    <div className={this.state.remote ? "form-group" : "form-group ml-auto"}>
+                                        <label className="db-txt2">Remote Work?</label>
+                                        <div style={{paddingTop: "0.7rem"}}>
+                                            <Switch onChange={this.handleChange} checked={this.state.remote} />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                         <div className="form-row">
                             <div className="col-6">

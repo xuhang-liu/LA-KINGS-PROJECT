@@ -669,7 +669,7 @@ export class EmployerDashboard extends Component {
                           <RowBoxes userId={this.props.user.id} isEmployer={true} />
                         </div>}
                       <div className="container-fluid" style={{ marginBottom: "20vh" }}>
-                        <div style={{ marginBottom: "auto", height: "auto", paddingTop: '5%' }}>
+                        <div style={{ marginBottom: "auto", height: "auto", paddingTop: '2%' }}>
                           {this.renderSubpage()}
                         </div>
                       </div>

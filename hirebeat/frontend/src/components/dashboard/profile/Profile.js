@@ -60,6 +60,7 @@ const ProfileOverall = (props) => {
 export class Profile extends Component {
     constructor(props) {
         super(props);
+        const counts = this.setCount();
         this.state = {
             isEditInfo: false,
             isEditMedia: false,
@@ -74,8 +75,8 @@ export class Profile extends Component {
             show: false,
             isRecordVideo: false,
             isUploadResume: false,
-            eduCount: [],
-            worCount: [],
+            eduCount: counts[0],
+            worCount: counts[1],
             preview: null,
             fakeName: "",
             docType: "",
@@ -87,14 +88,10 @@ export class Profile extends Component {
             isEditProfileShare: false,
             photoSelected: false,
             location: "",
-            eduEditId: 0,
-            expEditId: 0,
+            eduEditId: -1,
+            expEditId: -1,
             invalidPersonalInfo: false,
         }
-    }
-
-    componentDidMount() {
-        this.setCount();
     }
 
     exceedError1 = () => {
@@ -123,62 +120,47 @@ export class Profile extends Component {
 
     addEducation = () => {
         // max 3 education
-        let size = this.state.eduCount.length;
-        if (size < 3) {
-            this.setState(prevState => ({
-                eduCount: [...prevState.eduCount, 1]
-            }));
+        if (this.state.eduCount < 3) {
+            this.editEducation();
         } else {
             return this.exceedError1();
         }
     }
 
-    removeEducation = (index) => {
-        let array = [...this.state.eduCount];
-        array.splice(index, 1);
-        this.setState({ eduCount: array });
+    updateEduCount = (eduCount) => {
+        this.setState({eduCount: eduCount});
     }
 
     addWorkExp = () => {
         // max 5 work experience
-        let size = this.state.worCount.length;
-        if (size < 5) {
-            this.setState(prevState => ({
-                worCount: [...prevState.worCount, 1]
-            }));
+        if (this.state.worCount < 5) {
+            this.editWorkExp();
         } else {
             return this.exceedError2();
         }
     }
 
-    removeWorkExp = (index) => {
-        let array = [...this.state.worCount];
-        array.splice(index, 1);
-        this.setState({ worCount: array });
+    updateWorCount = (worCount) => {
+        this.setState({worCount: worCount});
     }
 
     setCount = () => {
+        let counts = [0, 0];
         const schools = ["school1", "school2", "school3"];
         const companies = ["company1", "company2", "company3", "company4", "company5"];
 
-        let eduCount = [];
-        let worCount = [];
-
         for (let i = 0; i < schools.length; i++) {
             if (this.props.profileDetail[schools[i]] != "" && this.props.profileDetail[schools[i]] != null) {
-                eduCount.push(1);
+                counts[0]++;
             }
         }
 
         for (let i = 0; i < companies.length; i++) {
             if (this.props.profileDetail[companies[i]] != "" && this.props.profileDetail[companies[i]] != null) {
-                worCount.push(1);
+                counts[1]++;
             }
         }
-        this.setState({
-            eduCount: eduCount,
-            worCount: worCount,
-        });
+        return counts;
     }
 
     setVideo = () => {
@@ -273,6 +255,7 @@ export class Profile extends Component {
     }
 
     cancelEditEducation = () => {
+        this.setState({eduEditId: -1});
         this.getUpdatedData();
         setTimeout(() => this.setState({ isEditEducation: false }), 300);
     }
@@ -283,6 +266,7 @@ export class Profile extends Component {
     }
 
     cancelEditWorkExp = () => {
+        this.setState({expEditId: -1});
         this.getUpdatedData();
         setTimeout(() => this.setState({ isEditWorkExp: false }), 300);
 
@@ -613,20 +597,8 @@ export class Profile extends Component {
         this.setState({eduEditId: eduEditId});
     }
 
-    addNewSchool = () => {
-        let eduEditId = this.state.eduCount.length;
-        this.setEduEditId(eduEditId);
-        this.editEducation();
-    }
-
     setExpEditId = (expEditId) => {
         this.setState({expEditId: expEditId});
-    }
-
-    addNewExp = () => {
-        let expEditId = this.state.worCount.length;
-        this.setExpEditId(expEditId);
-        this.editWorkExp();
     }
 
     render () {
@@ -1261,13 +1233,13 @@ export class Profile extends Component {
                             {/* Education */}
                             <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
                                 <div style={{ padding: "2rem" }}>
+                                    <div className="row">
+                                        <div className="col-8">
+                                            <h3 className="profile-h3">Education</h3>
+                                        </div>
+                                    </div>
                                     {!this.state.isEditEducation ?
                                         <div>
-                                            <div className="row">
-                                                <div className="col-8">
-                                                    <h3 className="profile-h3">Education</h3>
-                                                </div>
-                                            </div>
                                             {schools.map((s, index) => {
                                                 if (index == 0 || (this.props.profileDetail[schools[index]] != "" && this.props.profileDetail[schools[index]] != null)) {
                                                     return (
@@ -1284,7 +1256,7 @@ export class Profile extends Component {
                                                 }
                                             })}
                                             <hr />
-                                            <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addNewSchool}>
+                                            <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addEducation}>
                                                 + Add School
                                             </span>
                                         </div> :
@@ -1294,14 +1266,13 @@ export class Profile extends Component {
                                                 userId={this.props.userId}
                                                 updateEducation={this.props.updateEducation}
                                                 profileDetail={this.props.profileDetail}
-                                                count={this.state.eduCount}
-                                                addEducation={this.addEducation}
-                                                removeEducation={this.removeEducation}
                                                 getUpdatedData={this.getUpdatedData}
-                                                index={this.state.eduEditId}
+                                                count={this.state.eduCount}
+                                                updateEduCount={this.updateEduCount}
+                                                eduEditId={this.state.eduEditId}
+                                                setEduEditId={this.setEduEditId}
                                             />
-                                        </div>
-                                    }
+                                        </div>}
                                 </div>
                             </div>
 
@@ -1332,7 +1303,7 @@ export class Profile extends Component {
                                                 }
                                             })}
                                             <hr />
-                                            <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addNewExp}>
+                                            <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addWorkExp}>
                                                 + Add Experience
                                             </span>
                                         </div> :
@@ -1342,11 +1313,11 @@ export class Profile extends Component {
                                                 userId={this.props.userId}
                                                 updateWorkExp={this.props.updateWorkExp}
                                                 profileDetail={this.props.profileDetail}
-                                                count={this.state.worCount}
-                                                addWorkExp={this.addWorkExp}
-                                                removeWorkExp={this.removeWorkExp}
                                                 getUpdatedData={this.getUpdatedData}
-                                                index={this.state.expEditId}
+                                                count={this.state.worCount}
+                                                expEditId={this.state.expEditId}
+                                                setExpEditId={this.setExpEditId}
+                                                updateWorCount={this.updateWorCount}
                                             />
                                         </div>
                                     }
