@@ -283,7 +283,7 @@ export class JobCreation extends Component {
             closeOnClickOutside: true,
             customUI: ({ onClose }) => {
                 return (
-                    <div className="container-fluid" style={{ fontFamily: "Avenir Next, Segoe UI", margin: "auto", width: "80%", overflow: "auto", height: "80vh", backgroundColor: "#ffffff" }}>
+                    <div className="container-fluid" style={{ fontFamily: "Avenir Next, Segoe UI", margin: "auto", width: "80%", overflow: "auto", height: "80vh", backgroundColor: "#ffffff", borderRadius:"5px" }}>
                         <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer", marginTop: "3rem" }}><i className="bx bx-x bx-md"></i></div>
                         <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
                         <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={this.props.employerProfileDetail.logo_url} alt="icon" />
