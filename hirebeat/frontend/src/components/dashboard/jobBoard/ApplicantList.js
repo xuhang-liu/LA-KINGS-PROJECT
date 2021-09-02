@@ -252,7 +252,7 @@ export class ApplicantList extends Component {
         return (
             <React.Fragment>
                 <div className="chart-bg1 container-fluid mt-3 pt-2 pb-3">
-                    <div className="interview-txt5" style={{paddingTop: "1rem"}}>{this.props.curJob.job_details.job_title}</div>
+                    <div className="interview-txt5 pl-1" style={{paddingTop: "1rem"}}>{this.props.curJob.job_details.job_title}</div>
                     <div className="row interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
                         <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
@@ -276,7 +276,7 @@ export class ApplicantList extends Component {
                             />
                         </div>
                     </div>
-                    <div className="container-fluid" style={{ marginTop: "1rem"}}>
+                    <div className="container-fluid" style={{ marginTop: "1rem", paddingLeft:"0px"}}>
                         <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             <div style={{ marginLeft: "2rem" }}>
                                 <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: (this.props.curJob.all_invited ? "none" : "inline") }} />

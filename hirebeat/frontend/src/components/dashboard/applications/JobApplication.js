@@ -24,7 +24,7 @@ export class JobApplication extends Component {
         return (
             <React.Fragment>
                 {this.props.loaded &&
-                    <div>
+                    <div style={{paddingBottom:"1rem"}}>
                         {Object.keys(this.props.postedJobs).reverse().map((key) => {
                             let p = this.props.postedJobs[key];
                             // filter positions according to is_closed attribute
@@ -1048,7 +1048,7 @@ const JobCard = (props) => {
                                 />
                             </div>
                         </div>
-                        <div className="chart-bg1 container" style={{ marginTop: "2%", boxShadow:"0px 0px 10px rgba(128, 128, 128, 0.16)" }}>
+                        <div className="container" style={{ marginTop: "2%" }}>
                             <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                                 {!props.profile.is_subreviwer &&
                                     <div style={{ marginLeft: "1rem", display: "flex" }}>
