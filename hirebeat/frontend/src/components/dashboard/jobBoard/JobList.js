@@ -95,7 +95,7 @@ export class JobList extends Component {
                                         <button
                                             type="button"
                                             className="panel-button"
-                                            onClick={() => { sessionStorage.removeItem("view"); sessionStorage.removeItem("jobKey"); this.setViewFalse() }}
+                                            onClick={() => { sessionStorage.removeItem("view"); sessionStorage.removeItem("jobKey"); sessionStorage.removeItem("jobAppPage"); this.setViewFalse(); this.props.getAllJobs(this.props.user.id, 1) }}
                                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                                         >
                                             <div className="center-items back-to-text">

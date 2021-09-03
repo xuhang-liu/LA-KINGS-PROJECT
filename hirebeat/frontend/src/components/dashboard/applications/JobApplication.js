@@ -944,7 +944,7 @@ const JobCard = (props) => {
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page);
-
+        sessionStorage.setItem("intAppPage", String(selectedPage));
     };
 
     return (
@@ -956,7 +956,7 @@ const JobCard = (props) => {
                         <button
                             type="button"
                             className="panel-button"
-                            onClick={() => { props.hideView(); props.getPJobs() }}
+                            onClick={() => { props.hideView(); props.getPJobs(); sessionStorage.removeItem("intAppPage"); props.getPostedJobs(props.user.id, 1)}}
                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                         >
                             <div className="center-items back-to-text">
@@ -1044,7 +1044,7 @@ const JobCard = (props) => {
                                       onPageChange={handlePageClick}
                                       containerClassName={'pagination3'}
                                       activeClassName={'active'}
-                                      forcePage={selectedPage}
+                                      forcePage={sessionStorage.getItem("intAppPage")?parseInt(sessionStorage.getItem("intAppPage")):selectedPage}
                                 />
                             </div>
                         </div>
@@ -1071,7 +1071,7 @@ const JobCard = (props) => {
                                 {!props.profile.is_subreviwer &&
                                     <div className="col-1">Reinvite</div>
                                 }
-                                <div className="col-2 d-flex justify-content-end">
+                                <div className="col-2 d-flex justify-content-end" style={{ zIndex: "9999" }}>
                                     <div className="row">
                                         <Select value={category2} onChange={onFilter2} options={options2} className="select-category" styles={customStyles} />
                                     </div>
@@ -1126,7 +1126,7 @@ const JobCard = (props) => {
                                   onPageChange={handlePageClick}
                                   containerClassName={'pagination3'}
                                   activeClassName={'active'}
-                                  forcePage={selectedPage}
+                                  forcePage={sessionStorage.getItem("intAppPage")?parseInt(sessionStorage.getItem("intAppPage")):selectedPage}
                             />
                         </div>
                     </div>
@@ -1152,7 +1152,7 @@ const JobCard = (props) => {
                         <button
                             type="button"
                             className="panel-button"
-                            onClick={() => { setInvite(false); props.getPJobs() }}
+                            onClick={() => { setInvite(false); props.getPostedJobs(props.user.id, (sessionStorage.getItem("intAppPage")?parseInt(sessionStorage.getItem("intAppPage"))+1:1))}}
                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                         >
                             <div className="center-items back-to-text">
