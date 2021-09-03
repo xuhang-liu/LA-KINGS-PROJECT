@@ -83,7 +83,7 @@ export class Sourcing extends Component {
     checkFilterConditions = () => {
         let hasFilter = false;
         if (this.state.keywords.length > 0 ||
-            this.state.location.length > 0 ||
+            this.state.location?.length > 0 ||
             this.state.skills.length > 0 ||
             this.state.position.length > 0 ||
             this.state.hasVideo
@@ -97,6 +97,19 @@ export class Sourcing extends Component {
         let queryData = {
             keywords: this.state.keywords,
             location: this.state.location,
+            skills: this.state.skills,
+            position: this.state.position,
+            has_video: this.state.hasVideo,
+            page: 1,
+            has_filter: this.checkFilterConditions(),
+        }
+        this.props.getSourcingData(queryData);
+    }
+
+    getFilterProfiles2 = () => {
+        let queryData = {
+            keywords: this.state.keywords,
+            location: "",
             skills: this.state.skills,
             position: this.state.position,
             has_video: this.state.hasVideo,
@@ -181,6 +194,7 @@ export class Sourcing extends Component {
                                             clearState={this.clearState}
                                             page={this.state.page}
                                             getFilterProfiles={this.getFilterProfiles}
+                                            getFilterProfiles2={this.getFilterProfiles2}
                                         />
                                     </div>
                                 </MyModal80>
