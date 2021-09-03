@@ -174,8 +174,8 @@ export class Resume extends Component {
                                 <span className="profile-edit" type="button" onClick={this.deleteResume}>Remove</span>
                             </div>}
                     </p>
-                    <div className="profile-bg4" style={{ justifyContent: "center", height: "5rem", display: "flex", marginTop: "2rem", width: "100%" }}>
-                        <button onClick={this.selectFile} className="profile-btn"><i className="bx bx-cloud-upload"></i>&nbsp;Select New Resume</button>
+                    <div className="profile-bg4" style={{ justifyContent: "center", display: "flex", marginTop: "2rem", width: "100%", border:"none" }}>
+                        <button onClick={this.selectFile} className="default-btn" style={{backgroundColor:"#fff", color:"#7C94B5", border:"1px solid #E8EDFC", width:"60%", boxShadow:"2px 2px 10px rgba(128, 128, 128, 0.16)"}}><i className="bx bx-cloud-upload" style={{color:"#7C94B5", fontSize:"1.6rem"}}></i>Upload New Resume</button>
                         <ReactS3Uploader
                             style={{ display: "none" }}
                             id="uploadFile"

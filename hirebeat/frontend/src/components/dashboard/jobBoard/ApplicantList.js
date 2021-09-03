@@ -245,7 +245,7 @@ export class ApplicantList extends Component {
         this.setState({selectedPage: selectedPage});
         let page = selectedPage + 1;
         this.props.getAllJobs(this.props.user.id, page);
-
+        sessionStorage.setItem("jobAppPage", String(selectedPage));
     };
 
     render() {
@@ -272,7 +272,7 @@ export class ApplicantList extends Component {
                                   onPageChange={this.handlePageClick}
                                   containerClassName={'pagination3'}
                                   activeClassName={'active'}
-                                  forcePage={this.state.selectedPage}
+                                  forcePage={sessionStorage.getItem("jobAppPage")?parseInt(sessionStorage.getItem("jobAppPage")):this.state.selectedPage}
                             />
                         </div>
                     </div>
@@ -390,7 +390,7 @@ export class ApplicantList extends Component {
                               onPageChange={this.handlePageClick}
                               containerClassName={'pagination3'}
                               activeClassName={'active'}
-                              forcePage={this.state.selectedPage}
+                              forcePage={sessionStorage.getItem("jobAppPage")?parseInt(sessionStorage.getItem("jobAppPage")):this.state.selectedPage}
                         />
                     </div>
                 </div>
