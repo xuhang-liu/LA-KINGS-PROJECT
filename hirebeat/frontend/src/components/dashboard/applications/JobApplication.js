@@ -1071,7 +1071,7 @@ const JobCard = (props) => {
                                 {!props.profile.is_subreviwer &&
                                     <div className="col-1">Reinvite</div>
                                 }
-                                <div className="col-2 d-flex justify-content-end">
+                                <div className="col-2 d-flex justify-content-end" style={{ zIndex: "9999" }}>
                                     <div className="row">
                                         <Select value={category2} onChange={onFilter2} options={options2} className="select-category" styles={customStyles} />
                                     </div>

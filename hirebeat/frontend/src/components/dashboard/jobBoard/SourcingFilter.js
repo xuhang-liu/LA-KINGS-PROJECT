@@ -52,7 +52,13 @@ export class SourcingFilter extends Component {
     }
 
     handleSave = () => {
-        this.props.getFilterProfiles();
+        // reset location when its empty
+        let element = document.getElementById("location");
+        if (element.value == null || element.value == "") {
+            this.props.getFilterProfiles2();
+        } else {
+            this.props.getFilterProfiles();
+        }
         this.props.onHide();
     }
 
