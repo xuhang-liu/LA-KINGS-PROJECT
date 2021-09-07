@@ -4648,3 +4648,11 @@ max-width: 110px;
   background: none;
 }
 
+.register-p {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9375rem;
+  color: #E35454;
+  text-align: left;
+}

@@ -68,6 +68,8 @@ export class EmployerRegisterCompanyInfoForm extends Component {
                             <div class="placeholder">
                                 Company Name <span>*</span>
                             </div>
+                            {!this.props.validCompanyName &&
+                            <p className="register-p">Company Name Invalid Format!</p>}
                         </div>
                     </div>
 
