@@ -67,7 +67,7 @@ export class Header extends Component {
             <div className="row">
               <i className="bx bx-user-circle 1 bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
               <span className="header-text" style={{ cursor: 'pointer' }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
-                <ul className="nav_submenu" style={{ width: "10rem" }}>
+                <ul className="nav_submenu" style={{ width: "8rem", marginLeft:"-1rem"}}>
                   <li>
                     <Link id="id-logout" to="/job-seekers" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                       Log out
@@ -331,7 +331,7 @@ export class Header extends Component {
             <div className="row">
               <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
               <span className="header-text" style={{ cursor: 'pointer', marginRight: "1rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
-                <ul className="nav_submenu" style={{ width: "10rem" }}>
+                <ul className="nav_submenu" style={{ width: "9rem" }}>
                   <li>
                     <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{ textDecoration: "none", marginLeft: '1rem' }}>
                       Dashboard
