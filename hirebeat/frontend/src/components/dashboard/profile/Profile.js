@@ -87,7 +87,7 @@ export class Profile extends Component {
             showShare: false,
             isEditProfileShare: false,
             photoSelected: false,
-            location: "",
+            location: this.props.profileDetail.location,
             eduEditId: -1,
             expEditId: -1,
             invalidPersonalInfo: false,
@@ -281,7 +281,7 @@ export class Profile extends Component {
         let lastName = document.getElementById("lastName").value;
         let curJobTitle = document.getElementById("curJobTitle").value;
         let curCompany = document.getElementById("curCompany").value;
-        let location = this.state.location;
+        let location = document.getElementById("location").value;
         // validate input with profile sharing
         let enabledSharing = this.props.profileDetail.share_profile || this.props.profileDetail.open_to_hr;
         if (enabledSharing && (firstName == "" || lastName == "" || curJobTitle == "" || curCompany == "" || location == "")) {
@@ -868,6 +868,7 @@ export class Profile extends Component {
                                             <div style={{marginTop: "1rem"}}>
                                                 <p className="profile-p" style={{margin: "0rem"}}>Location</p>
                                                 <Autocomplete
+                                                    id="location"
                                                     className="profile-input profile-p"
                                                     style={{width: "100%"}}
                                                     language="en"
