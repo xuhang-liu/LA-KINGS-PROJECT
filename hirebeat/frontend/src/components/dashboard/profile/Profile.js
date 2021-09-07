@@ -1177,8 +1177,21 @@ export class Profile extends Component {
 
                         {/* Right Part */}
                         <div className="col-6" style={{marginLeft: "2rem"}}>
-                            {/* Summary */}
+                            {/* Video Profile */}
                             <div className="profile-bg" style={{textAlign: "left"}}>
+                                <div style={{padding: "2rem"}}>
+                                    <VideoPanel
+                                        videoURL={this.props.profileDetail.video_url}
+                                        userId={this.props.userId}
+                                        updateVideo={this.props.updateVideo}
+                                        setVideo={this.setVideo}
+                                        getUpdatedData={this.getUpdatedData}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Summary */}
+                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
                                 <div style={{padding: "2rem"}}>
                                     {!this.state.isEditSummary ?
                                         <div>
@@ -1215,19 +1228,6 @@ export class Profile extends Component {
                                             </div>
                                         </div>
                                     }
-                                </div>
-                            </div>
-
-                            {/* Video Profile */}
-                            <div className="profile-bg" style={{textAlign: "left", marginTop: "2rem"}}>
-                                <div style={{padding: "2rem"}}>
-                                    <VideoPanel
-                                        videoURL={this.props.profileDetail.video_url}
-                                        userId={this.props.userId}
-                                        updateVideo={this.props.updateVideo}
-                                        setVideo={this.setVideo}
-                                        getUpdatedData={this.getUpdatedData}
-                                    />
                                 </div>
                             </div>
 
