@@ -11,6 +11,8 @@ import { CardRow, selectParam } from "./CardComponents";
 import PageTitleArea from '../Common/PageTitleArea';
 import Switch from "react-switch";
 import LoadingForAi from "../shared/LoadingForAi";
+import { getQuestions } from "../../redux/actions/question_actions";
+import { connect } from "react-redux";
 
 export class TechPracticeMode extends Component {
   constructor(props) {
@@ -53,6 +55,8 @@ export class TechPracticeMode extends Component {
     else {
       this.setAudioParam();
     }
+      // get quesitons
+    this.props.getQuestions(this.state.numberOfQuestions.value, this.state.categoryOfQuestion.label, this.state.difficultyOfQuestion.value);
   }
 
   testDeviceDone = () => {
@@ -189,4 +193,4 @@ export class TechPracticeMode extends Component {
   }
 }
 
-export default TechPracticeMode;
+export default connect(null, { getQuestions })(TechPracticeMode);
