@@ -108,6 +108,8 @@ export class ProfileForm extends Component {
             this.alert("Empty file", "Please select your resume first");
         }
         else {
+            console.log("123123123123123");
+            console.log(this.state.resume);
             this.uploader.uploadFile(this.state.resume);
             // update resumeUrl and resumeName states
             var fakeName = this.state.fakeName;
@@ -152,7 +154,7 @@ export class ProfileForm extends Component {
             this.setState({fakeName2: fakeName2});
             this.uploader.uploadFile(newLogo);
             // update logoUrl state
-            var logoUrl = "https://hirebeat-user-logo.s3.amazonaws.com/" + fakeName2;
+            var logoUrl = "https://hirebeat-user-resume.s3.amazonaws.com/" + fakeName2;
             this.props.setLogoUrl(logoUrl);
         }
     }
@@ -344,11 +346,10 @@ export class ProfileForm extends Component {
                           style={{display: "none"}}
                           id="uploadFile2"
                           accept="image/jpeg,image/png,image/jpg"
-                          signingUrl="/upload-user-logo"
+                          signingUrl="/upload-profile-resume"
                           signingUrlMethod="GET"
                           onError={this.onUploadError}
                           onFinish={this.onUploadFinish2}
-                          contentDisposition="auto"
                           uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
                           scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/gi, "")}
                           inputRef={(cmp) => (this.uploadInput = cmp)}

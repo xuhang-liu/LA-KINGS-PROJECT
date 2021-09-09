@@ -199,3 +199,23 @@ class EmployerProfileDetail(models.Model):
 
     f_name = models.CharField(max_length=100, default="")
     l_name = models.CharField(max_length=100, default="")
+
+
+class ProfileDetailEducation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    school = models.CharField(max_length=100, null=True, blank=True)
+    graduation_date = models.CharField(max_length=100, null=True, blank=True)
+    degree = models.CharField(max_length=100, null=True, blank=True)
+    major = models.CharField(max_length=100, null=True, blank=True)
+    extra_major = models.CharField(max_length=100, null=True, blank=True)
+    gpa = models.CharField(max_length=100, null=True, blank=True)
+
+class ProfileDetailExperience(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    company = models.CharField(max_length=100, null=True, blank=True)
+    title = models.CharField(max_length=100, null=True, blank=True)
+    start_date = models.CharField(max_length=100, null=True, blank=True)
+    end_date = models.CharField(max_length=100, null=True, blank=True)
+    work_description = models.TextField(null=True, blank=True)

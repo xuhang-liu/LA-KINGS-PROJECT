@@ -60,7 +60,7 @@ selectMedia = () => {
     this.setAudioParam();
   }
   // get quesitons
-  this.props.getQuestions(this.state.numberOfQuestions.value, this.state.categoryOfQuestion.label, this.state.difficultyOfQuestion.value);
+  this.props.getQuestions(this.state.numberOfQuestions.value, this.state.categoryOfQuestion.label, 1);
 }
 
   testDeviceDone = () => {
@@ -147,12 +147,13 @@ selectMedia = () => {
     const { paramsAreSet, audioParamIsSet } = this.state
     // video test
     if(this.state.loading){
-      return
+      return (
       <DocumentMeta {...meta}>
       <div>
         <LoadingForAi interview={true}/>
       </div>
       </DocumentMeta>
+      )
     }
     if (paramsAreSet === true) {
         return (
