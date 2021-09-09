@@ -3452,11 +3452,11 @@ h5 {
 }
 
 .profile-p4 {
-font-family: Avenir Next, Segoe UI;
-font-style: normal;
-font-weight: 500;
-font-size: 0.9375rem;
-color: #4A6F8A;
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
 }
 
 .profile-p5 {
@@ -3468,11 +3468,45 @@ color: #4A6F8A;
 }
 
 .profile-p6 {
-font-family: Avenir Next, Segoe UI;
-font-style: normal;
-font-weight: 500;
-font-size: 1.125rem;
-color: #090D3A;
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: #090D3A;
+}
+
+.profile-p7 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1rem;
+  font-size: 0.75rem;
+  color: #000000;
+}
+
+.profile-p8 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  text-decoration-line: line-through;
+  color: #7D7D7D;
+}
+
+.profile-h4 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #000000;
+}
+
+.profile-h4-2 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #090D3A;
 }
 
 .profile-bg2 {

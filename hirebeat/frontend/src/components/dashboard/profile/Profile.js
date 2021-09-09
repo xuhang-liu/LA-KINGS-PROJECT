@@ -18,6 +18,8 @@ import ShareProfile from "./ShareProfile";
 import ShareProfileEdition from "./ShareProfileEdition";
 import { MyShareModal } from "./../DashboardComponents";
 import Autocomplete from "react-google-autocomplete";
+import StepProgressBar from "./StepProgressBar";
+import Reminder from "./Reminder";
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -395,26 +397,42 @@ export class Profile extends Component {
 
     updateRate = () => {
         let userId = this.props.userId;
-        let rate = 25;
+        let rate = 5;
         let infoRate = 0;
 
         if (this.props.profileDetail.video_url != "" && this.props.profileDetail.video_url != null) {
-            rate += 25;
+            rate += 20;
         }
         if (this.props.profileDetail.resume_url != "" && this.props.profileDetail.resume_url != null) {
-            rate += 25;
+            rate += 10;
         }
-        if (this.props.profileDetail.name != "" && this.props.profileDetail.name != null) {
+        if (this.props.profileDetail.logo_url != "" && this.props.profileDetail.logo_url != null) {
+            rate += 5;
+            infoRate += 5;
+        }
+        if (this.props.profileDetail.f_name != "" && this.props.profileDetail.f_name != null) {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail.self_description != "" && this.props.profileDetail.self_description != null) {
-            rate += 1;
-            infoRate += 1;
+        if (this.props.profileDetail.l_name != "" && this.props.profileDetail.l_name != null) {
+            rate += 2;
+            infoRate += 2;
+        }
+        if (this.props.profileDetail.current_job_title != "" && this.props.profileDetail.current_job_title != null) {
+            rate += 2;
+            infoRate += 2;
+        }
+        if (this.props.profileDetail.current_company != "" && this.props.profileDetail.current_company != null) {
+            rate += 2;
+            infoRate += 2;
+        }
+        if (this.props.profileDetail.location != "" && this.props.profileDetail.location != null) {
+            rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.summary != "" && this.props.profileDetail.summary != null) {
-            rate += 2;
-            infoRate += 2;
+            rate += 10;
+            infoRate += 10;
         }
         if ((this.props.profileDetail.linkedin != "" && this.props.profileDetail.linkedin != null) ||
             (this.props.profileDetail.website != "" && this.props.profileDetail.website != null) ||
@@ -423,52 +441,57 @@ export class Profile extends Component {
             rate += 5;
             infoRate += 5;
         }
-        if ((this.props.profileDetail.year_of_exp != "" && this.props.profileDetail.year_of_exp != null) ||
-            (this.props.profileDetail.current_company != "" && this.props.profileDetail.current_company != null) ||
-            (this.props.profileDetail.location != "" && this.props.profileDetail.location != null)
-        ) {
-            rate += 5;
-            infoRate += 5;
-        }
         if (this.props.profileDetail.school1 != "" && this.props.profileDetail.school1 != null) {
-            rate += 1;
-            infoRate += 1;
+            rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.graduation_date1 != "" && this.props.profileDetail.graduation_date1 != null) {
-            rate += 1;
-            infoRate += 1;
+            rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.major1 != "" && this.props.profileDetail.major1 != null) {
-            rate += 1;
-            infoRate += 1;
+            rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.degree1 != "" && this.props.profileDetail.degree1 != null) {
-            rate += 1;
-            infoRate += 1;
+            rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.gpa1 != "" && this.props.profileDetail.gpa1 != null) {
-            rate += 1;
-            infoRate += 1;
+            rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.company1 != "" && this.props.profileDetail.company1 != null) {
-            rate += 1;
-            infoRate += 1;
+            rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.title1 != "" && this.props.profileDetail.title1 != null) {
-            rate += 1;
-            infoRate += 1;
+            rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.start_date1 != "" && this.props.profileDetail.start_date1 != null) {
-            rate += 1;
-            infoRate += 1;
+            rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.end_date1 != "" && this.props.profileDetail.end_date1 != null) {
-            rate += 1;
-            infoRate += 1;
+            rate += 2;
+            infoRate += 2;
         }
         if (this.props.profileDetail.work_description1 != "" && this.props.profileDetail.work_description1 != null) {
-            rate += 1;
-            infoRate += 1;
+            rate += 2;
+            infoRate += 2;
+        }
+        if (this.props.profileDetail?.skills.length > 0) {
+            rate += 10;
+            infoRate += 10;
+        }
+        if (this.props.profileDetail?.languages.length > 0) {
+            rate += 2;
+            infoRate += 2;
+        }
+        if (this.props.profileDetail.job_type != "" && this.props.profileDetail.job_type != null) {
+            rate += 3;
+            infoRate += 3;
         }
         let data = {
             "user_id": userId,
@@ -601,6 +624,104 @@ export class Profile extends Component {
         this.setState({expEditId: expEditId});
     }
 
+    renderProfileLevel = () => {
+        let res = "";
+        let rate = this.props.profileDetail.profile_rate;
+        if (rate >= 0 && rate <= 25) {
+            res = "Beginner";
+        }
+        else if (rate >= 26 && rate <= 50) {
+            res = "Intermediate";
+        }
+        else if (rate >= 51 && rate <= 75) {
+            res = "Advanced";
+        }
+        else if (rate >= 76 && rate <= 99) {
+            res = "Expert";
+        }
+        else {
+            res = "All-Star"
+        }
+        return res;
+    }
+
+    getChecklist = () => {
+        let res = {
+            basicInfoFilled: false,
+            photoUploaded: false,
+            videoRecorded: false,
+            skillsFilled: false,
+            summaryFilled: false,
+            profileCompleted: false,
+        };
+        let detail = this.props.profileDetail;
+        // basic info
+        if (detail.f_name != "" && detail.f_name != null &&
+            detail.l_name != "" && detail.l_name != null &&
+            detail.current_job_title != "" && detail.current_job_title != null &&
+            detail.current_company != "" && detail.current_company != null &&
+            detail.location != "" && detail.location != null
+        ) {
+            res.basicInfoFilled = true;
+        }
+        if (detail.logo_url != "" && detail.logo_url != null) {
+            res.photoUploaded = true;
+        }
+        if (detail.video_url != "" && detail.video_url != null) {
+            res.videoRecorded = true;
+        }
+        if (detail.skills?.length > 0) {
+            res.skillsFilled = true;
+        }
+        if (detail.summary != "" && detail.summary != null) {
+            res.summaryFilled = true;
+        }
+        if (detail.profile_rate === 100) {
+            res.profileCompleted = true;
+        }
+        return res;
+    }
+
+    renderRecommendation = () => {
+        let recommendations = {
+            title: "",
+            msg: "",
+            img: "",
+        };
+        const checklist = this.getChecklist();
+        if (!checklist.basicInfoFilled) {
+            recommendations.title = "Complete Your Basic Information";
+            recommendations.msg = "Make your profile more accessible by providing your full name, current position, current company, and location.";
+            recommendations.img = "https://hirebeat-assets.s3.amazonaws.com/profile-advocation-1.png";
+        }
+        else if (!checklist.photoUploaded) {
+            title = "Add a Profile Photo to Help Others Recognize You";
+            msg = "Members with a photo get up to 20x more profile views.";
+            img = "https://hirebeat-assets.s3.amazonaws.com/profile-advocation-2.png";
+        }
+        else if (!checklist.videoRecorded) {
+            recommendations.title = "Record a Short Video to Pitch Yourself";
+            recommendations.msg = "Standout from other applicants and let the recruiter remember you.";
+            recommendations.img = "https://hirebeat-assets.s3.amazonaws.com/profile-advocation-3.png";
+        }
+        else if (!checklist.skillsFilled) {
+            recommendations.title = "Add Skills to Showcase What You Are Great At";
+            recommendations.msg = "Members with 5 or more skills are 25x more likely to be discovered in search by recruiters.";
+            recommendations.img = "https://hirebeat-assets.s3.amazonaws.com/profile-advocation-4.png";
+        }
+        else if (!checklist.summaryFilled) {
+            recommendations.title = "Add a Summary About Your Expertise and Interests";
+            recommendations.msg = "Summary is one of the key section that recruiters look at.";
+            recommendations.img = "https://hirebeat-assets.s3.amazonaws.com/profile-advocation-5.png";
+        }
+        else if (!checklist.profileCompleted) {
+            recommendations.title = "Complete Your Profile";
+            recommendations.msg = "Complete the rest of your profile so recruiters can know you better.";
+            recommendations.img = "https://hirebeat-assets.s3.amazonaws.com/profile-advocation-6.png";
+        }
+        return recommendations;
+    }
+
     render () {
         const name = this.props.profileDetail.f_name + " " + this.props.profileDetail.l_name;
         const jobType = { value: this.props.profileDetail.job_type, label: this.props.profileDetail.job_type };
@@ -629,56 +750,33 @@ export class Profile extends Component {
         const endDates = ["end_date1", "end_date2", "end_date3", "end_date4", "end_date5"];
         const workDescriptions = ["work_description1", "work_description2", "work_description3", "work_description4", "work_description5"];
 
+        const checklist = this.getChecklist();
+        const recommendations = this.renderRecommendation();
+
         return (
             <React.Fragment>
                 <div className="profile-container">
                     {/* Completion rate */}
                     <div className="row" style={{ marginBottom: "2rem" }}>
                         <div className="col-7">
-
                             <div className="profile-bg" style={{ textAlign: "left" }}>
-                                <div className="row" style={{ padding: "2rem" }}>
-                                    <div className="col-3">
-                                        <ProfileOverall percent={this.props.profileDetail.profile_rate} />
+                                <div style={{ padding: "2rem", paddingTop: "1rem" }}>
+                                    <h3 className="profile-h3" style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>Profile Strength: <span style={{color: "#67A3F3"}}>{this.renderProfileLevel()}</span></h3>
+                                    <div style={{paddingLeft: "0.5rem", paddingRight: "0.5rem"}}>
+                                        <span className="tool_tip ml-2">
+                                            <StepProgressBar
+                                                percent={this.props.profileDetail.profile_rate}
+                                            />
+                                            <Reminder  checklist={checklist}/>
+                                        </span>
                                     </div>
-                                    <div className="col-9">
-                                        <h3 className="profile-h3" style={{ paddingTop: "1rem" }}>Profile Completeness</h3>
-                                        <div className="row" style={{ marginTop: "2rem" }}>
-                                            <div style={{width: "50%"}}>
-                                                <p className="profile-p">
-                                                    <i className="bx-fw bx bx-check-circle" style={{ color: "#13C4A1" }}></i>
-                                                    <span style={{ marginLeft: "1rem" }}>Verify email address</span>
-                                                </p>
-                                            </div>
-                                            <div style={{width: "50%"}}>
-                                                <p className="profile-p">
-                                                    {this.props.profileDetail.resume_url != "" && this.props.profileDetail.resume_url != null ?
-                                                        <i className="bx-fw bx bx-check-circle" style={{ color: "#13C4A1" }}></i> :
-                                                        <i className="bx-fw bx bx-circle"></i>
-                                                    }
-                                                    <span style={{ marginLeft: "1rem" }}>Upload resume</span>
-                                                </p>
-                                            </div>
+                                    <div className="row align-center" style={{marginTop: "1rem"}}>
+                                        <div>
+                                            <img src={recommendations.img}/>
                                         </div>
-                                        <div className="row" style={{ paddingTop: "1rem" }}>
-                                            <div style={{width: "50%"}}>
-                                                <p className="profile-p">
-                                                    {this.props.profileDetail.video_url != "" && this.props.profileDetail.video_url != null ?
-                                                        <i className="bx-fw bx bx-check-circle" style={{ color: "#13C4A1" }}></i> :
-                                                        <i className="bx-fw bx bx-circle"></i>
-                                                    }
-                                                    <span style={{ marginLeft: "1rem" }}>Record self-introduction video</span>
-                                                </p>
-                                            </div>
-                                            <div style={{width: "50%"}}>
-                                                <p className="profile-p">
-                                                    {this.props.profileDetail.info_rate == 25 ?
-                                                        <i className="bx-fw bx bx-check-circle" style={{ color: "#13C4A1" }}></i> :
-                                                        <i className="bx-fw bx bx-circle"></i>
-                                                    }
-                                                    <span style={{ marginLeft: "1rem" }}>Finish personal information</span>
-                                                </p>
-                                            </div>
+                                        <div style={{marginLeft: "0.5rem"}}>
+                                            <h4 className="profile-h4">{recommendations.title}</h4>
+                                            <p className="profile-p7">{recommendations.msg}</p>
                                         </div>
                                     </div>
                                 </div>
