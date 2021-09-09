@@ -279,6 +279,7 @@ export class Dashboard extends Component {
                     renderInterview={this.renderInterview}
                     renderProfile={this.renderProfile}
                     subpage={this.state.subpage}
+                    profileDetail={this.props.profileDetail}
                   />
                 </div>
               </div>
@@ -297,7 +298,7 @@ export class Dashboard extends Component {
                   <div className="container-fluid" style={{ marginBottom: "10%" }}>
                     {/* fake h1 tag */}
                     <h1 style={{visibility  : "hidden", textAlign: "center"}}>Dashboard</h1>
-                    <div style={{ marginBottom: "auto", height: "auto", paddingTop: '5%' }}>
+                    <div style={{ marginBottom: "auto", height: "auto", paddingTop: '2%' }}>
                       {this.renderSubpage()}
                     </div>
                   </div>

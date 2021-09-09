@@ -42,6 +42,9 @@ export class Register extends Component {
     jobType: "",
     open_to_hr: true,
     step: 1,
+    validUsername: true,
+    validEmail: true,
+    validPwd: true,
   };
 
   static propTypes = {
@@ -64,6 +67,7 @@ export class Register extends Component {
           this.state.email,
           this.state.password
       );
+      // new user registration report
       this.gtag_report_conversion();
 //      this.redirectToEmailVerification();
     }
@@ -152,17 +156,12 @@ export class Register extends Component {
 
   checkAccountData = (e) => {
     e.preventDefault();
+    // reset error states
+    this.setState({validUsername: true, validEmail: true, validPwd: true});
     // check passwords
-    if (!this.passwordsMatch()) {
-      return confirmAlert({
-            title: "Wrong Password",
-            message: "The passwords you entered are not consistent",
-            buttons: [
-                  {
-                    label: 'Ok'
-                  }
-            ]
-      });
+    if (this.state.password !== this.state.password2) {
+        this.setState({validPwd: false});
+        return;
     }
     // check email registered or not
     const data = {email: this.state.email, username: this.state.username};
@@ -173,37 +172,18 @@ export class Register extends Component {
       let emailRegistered = res.data.email_registered;
       let usernameRegistered = res.data.username_registered;
 
-      let title = "";
-      let message = "";
       if (emailRegistered) {
-        title = "Email already exists!";
-        message = "Please use another email to register.";
+        this.setState({validEmail: false});
       }
       if (usernameRegistered) {
-        title = "Username already exists!";
-        message = "Please use another Username to register.";
-      }
-      if (emailRegistered && usernameRegistered) {
-        title = "Username and Email already exist!";
-        message = "Please use another Username and Email to register.";
+        this.setState({validUsername: false});
       }
 
-      if (isRegistered) {
-        confirmAlert({
-            title: title,
-            message: message,
-            buttons: [
-                  {
-                    label: 'Ok'
-                  }
-            ]
-        });
-     }
-     else {
+      if (!isRegistered) {
         // move to next step
         let nextStep = this.state.step + 1;
         this.setStep(nextStep);
-     }
+      }
     })
     .catch(error => {
         console.log(error)
@@ -291,7 +271,6 @@ export class Register extends Component {
                                             name="username"
                                             placeholder="Username/Email"
                                             onChange={this.onChange}
-                                            value={username}
                                             style={{
                                               fontFamily: "Avenir Next, Segoe UI",
                                               background: "#FFFFFF",
@@ -301,6 +280,8 @@ export class Register extends Component {
                                             }}
                                             required
                                         />
+                                        {!this.state.validUsername &&
+                                            <p className="register-p">Username already exists! Please use another username to register.</p>}
                                       </div>
 
                                       <div className="form-group">
@@ -318,7 +299,9 @@ export class Register extends Component {
                                               paddingLeft: "1rem",
                                               boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                                             }}
-                                            value={email}/>
+                                        />
+                                        {!this.state.validEmail &&
+                                            <p className="register-p">Email already exists! Please use another email to register.</p>}
                                       </div>
 
                                       <div className="form-group">
@@ -327,7 +310,6 @@ export class Register extends Component {
                                             className="form-control"
                                             name="password"
                                             onChange={this.onChange}
-                                            value={password}
                                             placeholder="Create Password"
                                             minLength="8"
                                             style={{
@@ -346,7 +328,6 @@ export class Register extends Component {
                                             className="form-control"
                                             name="password2"
                                             onChange={this.onChange}
-                                            value={password2}
                                             placeholder="Confirm Password"
                                             minLength="8"
                                             style={{
@@ -357,6 +338,8 @@ export class Register extends Component {
                                               boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                                             }}
                                             required/>
+                                        {!this.state.validPwd &&
+                                            <p className="register-p">Wrong Password! The passwords you entered are not consistent</p>}
                                       </div>
 
                                       <p className=" flex-wrap d-flex justify-content-end"
