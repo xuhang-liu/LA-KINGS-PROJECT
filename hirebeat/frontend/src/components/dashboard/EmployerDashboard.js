@@ -371,14 +371,14 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "mergeintergration") {
       this.refreshPage();
     }
-    if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") {
+    if (this.props.profile.membership == "Premium") {
       this.props.createMergeLinkToken(this.props.user.id);
       sessionStorage.setItem('subpage', "mergeintergration");
       this.setState({
         subpage: "mergeintergration",
       });
     } else {
-      this.setShowUpgradeM1();
+      this.setShowUpgradeM();
     }
   }
 
