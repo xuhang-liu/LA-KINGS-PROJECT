@@ -1337,28 +1337,28 @@ export class Profile extends Component {
                                             <h3 className="profile-h3">Education</h3>
                                         </div>
                                     </div>
-                                    {!this.state.isEditEducation ?
-                                        <div>
-                                            {schools.map((s, index) => {
-                                                if (index == 0 || (this.props.profileDetail[schools[index]] != "" && this.props.profileDetail[schools[index]] != null)) {
-                                                    return (
-                                                        <Education
-                                                            editEducation={this.editEducation}
-                                                            school={this.props.profileDetail[schools[index]]}
-                                                            major1={this.props.profileDetail[majors[index]]}
-                                                            gpa={this.props.profileDetail[gpas[index]]}
-                                                            graduationDate={this.props.profileDetail[graduationDates[index]]}
-                                                            index={index}
-                                                            setEduEditId={this.setEduEditId}
-                                                        />
-                                                    )
-                                                }
-                                            })}
-                                            <hr />
-                                            <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addEducation}>
-                                                + Add School
-                                            </span>
-                                        </div> :
+                                    <div>
+                                        {schools.map((s, index) => {
+                                            if (index == 0 || (this.props.profileDetail[schools[index]] != "" && this.props.profileDetail[schools[index]] != null)) {
+                                                return (
+                                                    <Education
+                                                        editEducation={this.editEducation}
+                                                        school={this.props.profileDetail[schools[index]]}
+                                                        major1={this.props.profileDetail[majors[index]]}
+                                                        gpa={this.props.profileDetail[gpas[index]]}
+                                                        graduationDate={this.props.profileDetail[graduationDates[index]]}
+                                                        index={index}
+                                                        setEduEditId={this.setEduEditId}
+                                                    />
+                                                )
+                                            }
+                                        })}
+                                        <hr />
+                                        <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addEducation}>
+                                            + Add School
+                                        </span>
+                                    </div>
+                                    {this.state.isEditEducation &&
                                         <div>
                                             <EducationForm
                                                 cancelEditEducation={this.cancelEditEducation}
@@ -1371,7 +1371,8 @@ export class Profile extends Component {
                                                 eduEditId={this.state.eduEditId}
                                                 setEduEditId={this.setEduEditId}
                                             />
-                                        </div>}
+                                        </div>
+                                    }
                                 </div>
                             </div>
 
@@ -1383,29 +1384,29 @@ export class Profile extends Component {
                                             <h3 className="profile-h3">Experience</h3>
                                         </div>
                                     </div>
-                                    {!this.state.isEditWorkExp ?
-                                        <div>
-                                            {companies.map((c, index) => {
-                                                if (index == 0 || (this.props.profileDetail[companies[index]] != "" && this.props.profileDetail[companies[index]] != null)) {
-                                                    return (
-                                                        <WorkExperience
-                                                            editWorkExp={this.editWorkExp}
-                                                            title={this.props.profileDetail[titles[index]]}
-                                                            company={this.props.profileDetail[companies[index]]}
-                                                            startDate={this.props.profileDetail[startDates[index]]}
-                                                            endDate={this.props.profileDetail[endDates[index]]}
-                                                            workDescription={this.props.profileDetail[workDescriptions[index]]}
-                                                            index={index}
-                                                            setExpEditId={this.setExpEditId}
-                                                        />
-                                                    )
-                                                }
-                                            })}
-                                            <hr />
-                                            <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addWorkExp}>
-                                                + Add Experience
-                                            </span>
-                                        </div> :
+                                    <div>
+                                        {companies.map((c, index) => {
+                                            if (index == 0 || (this.props.profileDetail[companies[index]] != "" && this.props.profileDetail[companies[index]] != null)) {
+                                                return (
+                                                    <WorkExperience
+                                                        editWorkExp={this.editWorkExp}
+                                                        title={this.props.profileDetail[titles[index]]}
+                                                        company={this.props.profileDetail[companies[index]]}
+                                                        startDate={this.props.profileDetail[startDates[index]]}
+                                                        endDate={this.props.profileDetail[endDates[index]]}
+                                                        workDescription={this.props.profileDetail[workDescriptions[index]]}
+                                                        index={index}
+                                                        setExpEditId={this.setExpEditId}
+                                                    />
+                                                )
+                                            }
+                                        })}
+                                        <hr />
+                                        <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addWorkExp}>
+                                            + Add Experience
+                                        </span>
+                                    </div>
+                                    {this.state.isEditWorkExp &&
                                         <div>
                                             <WorkExpForm
                                                 cancelEditWorkExp={this.cancelEditWorkExp}

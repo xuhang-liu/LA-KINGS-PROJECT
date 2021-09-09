@@ -3,7 +3,7 @@ import React from "react";
 class Reminder extends React.Component {
   render() {
     return (
-        <div className="tool_submenu container" style={{ width: "14rem" }}>
+        <div className="tool_submenu container" style={{ width: "14rem", marginLeft: "45%" }}>
             <h4 className="profile-h4-2">CHECKLIST</h4>
             <p className="align-center" style={{marginBottom: "0rem"}}>
                 {this.props.checklist.basicInfoFilled ?
