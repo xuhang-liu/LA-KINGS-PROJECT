@@ -56,6 +56,8 @@ import {
   UPDATE_PROFILE_SHARING,
   CREATE_EMPLOYER_PROFILE,
   GET_SOURCING_DATA,
+  DELETE_PROFILE_EDUCATION,
+  DELETE_PROFILE_WORK_EXP,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -893,6 +895,34 @@ export const getSourcingData = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_SOURCING_DATA,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const deleteProfileEducation = (data) => (dispatch, getState) => {
+  axios
+    .post("accounts/delete-profile-education", data)
+    .then((res) => {
+      dispatch({
+        type: DELETE_PROFILE_EDUCATION,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const deleteProfileWorkExp = (data) => (dispatch, getState) => {
+  axios
+    .post("accounts/delete-profile-work-exp", data)
+    .then((res) => {
+      dispatch({
+        type: DELETE_PROFILE_WORK_EXP,
         payload: res.data,
       });
     })

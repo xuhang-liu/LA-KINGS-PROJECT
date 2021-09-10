@@ -13,7 +13,7 @@ import {
   updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getProfileDetail,
   updatePersonalInfo, updateSocialMedia, updateBasicInfo, updateVideo, updateSummary,
   updateResume, updateEducation, updateWorkExp, updateProfileRate, updateUserLogo, updateJobType, updateSkills,
-  updateLanguages, updateProfileSharing
+  updateLanguages, updateProfileSharing, deleteProfileEducation, deleteProfileWorkExp
 } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
@@ -212,6 +212,8 @@ export class Dashboard extends Component {
           updateSkills={this.props.updateSkills}
           updateLanguages={this.props.updateLanguages}
           updateProfileSharing={this.props.updateProfileSharing}
+          deleteProfileEducation={this.props.deleteProfileEducation}
+          deleteProfileWorkExp={this.props.deleteProfileWorkExp}
         />;
       default:
       //Do nothing
@@ -341,7 +343,7 @@ export default connect(mapStateToProps, {
   loadProfile, updateProfile, loadUserFullname, getReceivedInterview,
   getProfileDetail, updatePersonalInfo, updateSocialMedia, updateBasicInfo, updateVideo, updateSummary,
   updateResume, updateEducation, updateWorkExp, updateProfileRate, updateUserLogo, updateJobType, updateSkills,
-  updateLanguages, updateProfileSharing
+  updateLanguages, updateProfileSharing, deleteProfileEducation, deleteProfileWorkExp
 })(
   Dashboard
 );
