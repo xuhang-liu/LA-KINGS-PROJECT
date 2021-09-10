@@ -169,6 +169,20 @@ def check_password(request):
 
 
 @api_view(['POST'])
+def check_user_login(request):
+    print("==check user login")
+    login_suc = False
+    username = request.data['username']
+    password = request.data['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        login_suc = True
+    else:
+        login_suc = False
+    return Response({"data": login_suc})
+
+
+@api_view(['POST'])
 def get_user_fullname(request):
     print("==get user fullname")
     user = User.objects.get(pk=request.data["id"])
@@ -1170,8 +1184,8 @@ def go_stripe_customer_portal(request):
     user = User.objects.get(pk=id)
     profile = Profile.objects.get(user=user)
     session = stripe.billing_portal.Session.create(
-    customer = profile.customer_id,
-    return_url='https://hirebeat.co/employer_dashboard',
+        customer=profile.customer_id,
+        return_url='https://hirebeat.co/employer_dashboard',
     )
 
     return Response({"session_url": session.url})

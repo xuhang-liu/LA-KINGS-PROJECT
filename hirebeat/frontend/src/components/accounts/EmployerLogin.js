@@ -8,6 +8,7 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
+import axios from "axios";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -21,7 +22,15 @@ export class EmployerLogin extends Component {
   state = {
     username: "",
     password: "",
+    login_fail: false,
   };
+
+  setLoginFail = () => {
+    this.setState({login_fail: true});
+  }
+  setLoginFail1 = () => {
+    this.setState({login_fail: false});
+  }
 
   static propTypes = {
     login: PropTypes.func.isRequired,
@@ -31,7 +40,23 @@ export class EmployerLogin extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.login(this.state.username, this.state.password);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let user_pw = { "username": this.state.username, "password": this.state.password};
+
+    axios.post("api/check_user_login", user_pw, config).then((res) => {
+      if (res.data.data) {
+        this.setLoginFail1();
+        this.props.login(this.state.username, this.state.password);
+      } else {
+        this.setLoginFail();
+      }
+    }).catch(error => {
+      console.log(error)
+    });
   };
 
   onChange = (e) => {
@@ -169,6 +194,10 @@ export class EmployerLogin extends Component {
                               boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             required/>
+                      </div>
+
+                      <div className="d-flex flex-wrap justify-content-between align-items-center" style={{marginTop: "0.6rem", marginBottom:"0.6rem"}}>
+                        {this.state.login_fail && <p className="share-p4" style={{fontWeight:"600"}}>Incorrect username or password. Please try again.</p>}
                       </div>
 
                       <div className="d-flex flex-wrap justify-content-between align-items-center">
