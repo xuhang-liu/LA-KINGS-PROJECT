@@ -17,7 +17,7 @@ class Reminder extends React.Component {
                     <i class='bx bx-checkbox-checked bx-md' style={{color: "#13C4A1"}}></i> :
                     <i class='bx bx-checkbox bx-md' ></i>
                 }
-                <span className={this.props.checklist.photoUploaded ? "profile-p8" : "profile-p"}>Upload Profile Video</span>
+                <span className={this.props.checklist.photoUploaded ? "profile-p8" : "profile-p"}>Upload Profile Photo</span>
             </p>
             <p className="align-center" style={{marginBottom: "0rem"}}>
                 {this.props.checklist.videoRecorded ?
