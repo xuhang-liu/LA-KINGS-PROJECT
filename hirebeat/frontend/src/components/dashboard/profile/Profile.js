@@ -62,7 +62,6 @@ const ProfileOverall = (props) => {
 export class Profile extends Component {
     constructor(props) {
         super(props);
-        const counts = this.setCount();
         this.state = {
             isEditInfo: false,
             isEditMedia: false,
@@ -77,8 +76,6 @@ export class Profile extends Component {
             show: false,
             isRecordVideo: false,
             isUploadResume: false,
-            eduCount: counts[0],
-            worCount: counts[1],
             preview: null,
             fakeName: "",
             docType: "",
@@ -90,8 +87,6 @@ export class Profile extends Component {
             isEditProfileShare: false,
             photoSelected: false,
             location: this.props.profileDetail.location,
-            eduEditId: -1,
-            expEditId: -1,
             invalidPersonalInfo: false,
         }
     }
@@ -121,48 +116,11 @@ export class Profile extends Component {
     };
 
     addEducation = () => {
-        // max 3 education
-        if (this.state.eduCount < 3) {
-            this.editEducation();
-        } else {
-            return this.exceedError1();
-        }
-    }
-
-    updateEduCount = (eduCount) => {
-        this.setState({eduCount: eduCount});
+        this.editEducation();
     }
 
     addWorkExp = () => {
-        // max 5 work experience
-        if (this.state.worCount < 5) {
-            this.editWorkExp();
-        } else {
-            return this.exceedError2();
-        }
-    }
-
-    updateWorCount = (worCount) => {
-        this.setState({worCount: worCount});
-    }
-
-    setCount = () => {
-        let counts = [0, 0];
-        const schools = ["school1", "school2", "school3"];
-        const companies = ["company1", "company2", "company3", "company4", "company5"];
-
-        for (let i = 0; i < schools.length; i++) {
-            if (this.props.profileDetail[schools[i]] != "" && this.props.profileDetail[schools[i]] != null) {
-                counts[0]++;
-            }
-        }
-
-        for (let i = 0; i < companies.length; i++) {
-            if (this.props.profileDetail[companies[i]] != "" && this.props.profileDetail[companies[i]] != null) {
-                counts[1]++;
-            }
-        }
-        return counts;
+        this.editWorkExp();
     }
 
     setVideo = () => {
@@ -399,6 +357,8 @@ export class Profile extends Component {
         let userId = this.props.userId;
         let rate = 5;
         let infoRate = 0;
+        let educations = this.props.profileDetail.educations;
+        let experiences = this.props.profileDetail.experiences;
 
         if (this.props.profileDetail.video_url != "" && this.props.profileDetail.video_url != null) {
             rate += 20;
@@ -441,43 +401,43 @@ export class Profile extends Component {
             rate += 5;
             infoRate += 5;
         }
-        if (this.props.profileDetail.school1 != "" && this.props.profileDetail.school1 != null) {
+        if (educations.length > 0 && educations[0].school != "" && educations[0].school != null) {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail.graduation_date1 != "" && this.props.profileDetail.graduation_date1 != null) {
+        if (educations.length > 0 && educations[0].graduation_date != "" && educations[0].graduation_date != null) {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail.major1 != "" && this.props.profileDetail.major1 != null) {
+        if (educations.length > 0 && educations[0].major != "" && educations[0].major != null) {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail.degree1 != "" && this.props.profileDetail.degree1 != null) {
+        if (educations.length > 0 && educations[0].degree != "" && educations[0].degree != null) {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail.gpa1 != "" && this.props.profileDetail.gpa1 != null) {
+        if (educations.length > 0 && educations[0].gpa != "" && educations[0].gpa != null) {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail.company1 != "" && this.props.profileDetail.company1 != null) {
+        if (experiences.length > 0 && experiences[0].company != "" && experiences[0].company != null) {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail.title1 != "" && this.props.profileDetail.title1 != null) {
+        if (experiences.length > 0 && experiences[0].title != "" && experiences[0].title != null) {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail.start_date1 != "" && this.props.profileDetail.start_date1 != null) {
+        if (experiences.length > 0 && experiences[0].start_date != "" && experiences[0].start_date != null) {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail.end_date1 != "" && this.props.profileDetail.end_date1 != null) {
+        if (experiences.length > 0 && experiences[0].end_date != "" && experiences[0].end_date != null) {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail.work_description1 != "" && this.props.profileDetail.work_description1 != null) {
+        if (experiences.length > 0 && experiences[0].work_description != "" && experiences[0].work_description != null) {
             rate += 2;
             infoRate += 2;
         }
@@ -737,18 +697,6 @@ export class Profile extends Component {
             let keyValue = {value: this.props.profileDetail.languages[i], label: this.props.profileDetail.languages[i]};
             languages.push(keyValue);
         }
-        const schools = ["school1", "school2", "school3"];
-        const graduationDates = ["graduation_date1", "graduation_date2", "graduation_date3"];
-        const majors = ["major1", "major2", "major3"];
-        const extraMajors = ["extra_major1", "extra_major2", "extra_major3"];
-        const degrees = ["degree1", "degree2", "degree3"];
-        const gpas = ["gpa1", "gpa2", "gpa3"];
-
-        const companies = ["company1", "company2", "company3", "company4", "company5"];
-        const titles = ["title1", "title2", "title3", "title4", "title5"];
-        const startDates = ["start_date1", "start_date2", "start_date3", "start_date4", "start_date5"];
-        const endDates = ["end_date1", "end_date2", "end_date3", "end_date4", "end_date5"];
-        const workDescriptions = ["work_description1", "work_description2", "work_description3", "work_description4", "work_description5"];
 
         const checklist = this.getChecklist();
         const recommendations = this.renderRecommendation();
@@ -1338,17 +1286,16 @@ export class Profile extends Component {
                                         </div>
                                     </div>
                                     <div>
-                                        {schools.map((s, index) => {
-                                            if (index == 0 || (this.props.profileDetail[schools[index]] != "" && this.props.profileDetail[schools[index]] != null)) {
+                                        {this.props.profileDetail.educations.map((edu) => {
+                                            if (edu.school != "" && edu.school != null) {
                                                 return (
                                                     <Education
-                                                        editEducation={this.editEducation}
-                                                        school={this.props.profileDetail[schools[index]]}
-                                                        major1={this.props.profileDetail[majors[index]]}
-                                                        gpa={this.props.profileDetail[gpas[index]]}
-                                                        graduationDate={this.props.profileDetail[graduationDates[index]]}
-                                                        index={index}
-                                                        setEduEditId={this.setEduEditId}
+                                                        education={edu}
+                                                        userId={this.props.userId}
+                                                        updateEducation={this.props.updateEducation}
+                                                        getUpdatedData={this.getUpdatedData}
+                                                        cancelEditEducation={this.cancelEditEducation}
+                                                        deleteProfileEducation={this.props.deleteProfileEducation}
                                                     />
                                                 )
                                             }
@@ -1364,12 +1311,7 @@ export class Profile extends Component {
                                                 cancelEditEducation={this.cancelEditEducation}
                                                 userId={this.props.userId}
                                                 updateEducation={this.props.updateEducation}
-                                                profileDetail={this.props.profileDetail}
                                                 getUpdatedData={this.getUpdatedData}
-                                                count={this.state.eduCount}
-                                                updateEduCount={this.updateEduCount}
-                                                eduEditId={this.state.eduEditId}
-                                                setEduEditId={this.setEduEditId}
                                             />
                                         </div>
                                     }
@@ -1385,18 +1327,16 @@ export class Profile extends Component {
                                         </div>
                                     </div>
                                     <div>
-                                        {companies.map((c, index) => {
-                                            if (index == 0 || (this.props.profileDetail[companies[index]] != "" && this.props.profileDetail[companies[index]] != null)) {
+                                        {this.props.profileDetail.experiences.map((exp) => {
+                                            if (exp.company != "" && exp.company != null) {
                                                 return (
                                                     <WorkExperience
-                                                        editWorkExp={this.editWorkExp}
-                                                        title={this.props.profileDetail[titles[index]]}
-                                                        company={this.props.profileDetail[companies[index]]}
-                                                        startDate={this.props.profileDetail[startDates[index]]}
-                                                        endDate={this.props.profileDetail[endDates[index]]}
-                                                        workDescription={this.props.profileDetail[workDescriptions[index]]}
-                                                        index={index}
-                                                        setExpEditId={this.setExpEditId}
+                                                        workExp={exp}
+                                                        userId={this.props.userId}
+                                                        updateWorkExp={this.props.updateWorkExp}
+                                                        getUpdatedData={this.getUpdatedData}
+                                                        cancelEditWorkExp={this.cancelEditWorkExp}
+                                                        deleteProfileWorkExp={this.props.deleteProfileWorkExp}
                                                     />
                                                 )
                                             }
@@ -1412,12 +1352,7 @@ export class Profile extends Component {
                                                 cancelEditWorkExp={this.cancelEditWorkExp}
                                                 userId={this.props.userId}
                                                 updateWorkExp={this.props.updateWorkExp}
-                                                profileDetail={this.props.profileDetail}
                                                 getUpdatedData={this.getUpdatedData}
-                                                count={this.state.worCount}
-                                                expEditId={this.state.expEditId}
-                                                setExpEditId={this.setExpEditId}
-                                                updateWorCount={this.updateWorCount}
                                             />
                                         </div>
                                     }

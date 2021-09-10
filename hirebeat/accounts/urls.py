@@ -13,7 +13,7 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     create_or_update_employer_summary, upload_employer_profile_video, get_employer_post, update_employer_post, add_employer_post, delete_employer_post, \
     upload_employer_logo, create_or_update_employer_logo, upload_user_logo, create_or_update_user_logo, check_user_existence, check_company_name_existence, \
     create_profile, create_or_update_job_type, create_or_update_skills, create_or_update_languages, create_or_update_profile_sharing, create_employer_profile, \
-    check_freetrial_expire, get_sourcing_data, check_user_name, go_stripe_customer_portal, check_user_login
+    check_freetrial_expire, get_sourcing_data, check_user_name, go_stripe_customer_portal, check_user_login, delete_profile_detail_education, delete_profile_detail_work_exp
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -107,6 +107,8 @@ urlpatterns = [
     path('accounts/update-skills', create_or_update_skills, name="create or update skills"),
     path('accounts/update-languages', create_or_update_languages, name="create or update languages"),
     path('accounts/update-profile-sharing', create_or_update_profile_sharing, name="create or update profile sharing"),
+    path('accounts/delete-profile-education', delete_profile_detail_education, name="delete profile education"),
+    path('accounts/delete-profile-work-exp', delete_profile_detail_work_exp, name="delete profile work experience"),
     ### send subreviewer update comment notification
     path('subreviewer_update_comment', subreviewer_update_comment, name="subreviewer update comment"),
     # employer profile
