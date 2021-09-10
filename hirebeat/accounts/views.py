@@ -21,7 +21,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from .models import Profile, CandidatesInterview, ProfileDetail, EmployerPost, EmployerProfileDetail
+from .models import Profile, CandidatesInterview, ProfileDetail, EmployerPost, EmployerProfileDetail, ProfileDetailEducation, ProfileDetailExperience
 from questions.models import Positions, InterviewQuestions, InvitedCandidates
 from videos.models import WPVideo
 from rest_framework.response import Response
@@ -355,6 +355,9 @@ def get_profile_detail(request):
             profile.email = user.email
             profile.save()
         data = model_to_dict(profile)
+        # get education and experience here
+        data["educations"] = list(ProfileDetailEducation.objects.filter(user_id=user_id).values())
+        data["experiences"] = list(ProfileDetailExperience.objects.filter(user_id=user_id).values())
     except ObjectDoesNotExist:
         return Response({"data": data})
     return Response({"data": data})
@@ -542,55 +545,35 @@ def create_or_update_education(request):
     user_id = request.data["user_id"]
     data = request.data["data"]
     try:
-        # first education
-        user_profile = ProfileDetail.objects.get(user_id=user_id)
-        user_profile.school1 = data[0]["school1"]
-        user_profile.graduation_date1 = data[0]["graduation_date1"]
-        user_profile.degree1 = data[0]["degree1"]
-        user_profile.major1 = data[0]["major1"]
-        user_profile.extra_major1 = data[0]["extra_major1"]
-        user_profile.gpa1 = data[0]["gpa1"]
-        # second education
-        user_profile.school2 = data[1]["school2"]
-        user_profile.graduation_date2 = data[1]["graduation_date2"]
-        user_profile.degree2 = data[1]["degree2"]
-        user_profile.major2 = data[1]["major2"]
-        user_profile.extra_major2 = data[1]["extra_major2"]
-        user_profile.gpa2 = data[1]["gpa2"]
-        # third education
-        user_profile.school3 = data[2]["school3"]
-        user_profile.graduation_date3 = data[2]["graduation_date3"]
-        user_profile.degree3 = data[2]["degree3"]
-        user_profile.major3 = data[2]["major3"]
-        user_profile.extra_major3 = data[2]["extra_major3"]
-        user_profile.gpa3 = data[2]["gpa3"]
-        user_profile.save()
+        # update education
+        education = ProfileDetailEducation.objects.get(id=data["educationId"])
+        education.school = data["school"]
+        education.graduation_date = data["graduationDate"]
+        education.degree = data["degree"]
+        education.major = data["major"]
+        education.extra_major = data["extraMajor"]
+        education.gpa = data["gpa"]
+        education.save()
 
     except ObjectDoesNotExist:
-        # first education
-        user_profile = ProfileDetail.objects.create(user_id=user_id)
-        user_profile.school1 = data[0]["school1"]
-        user_profile.graduation_date1 = data[0]["graduation_date1"]
-        user_profile.degree1 = data[0]["degree1"]
-        user_profile.major1 = data[0]["major1"]
-        user_profile.extra_major1 = data[0]["extra_major1"]
-        user_profile.gpa1 = data[0]["gpa1"]
-        # second education
-        user_profile.school2 = data[1]["school2"]
-        user_profile.graduation_date2 = data[1]["graduation_date2"]
-        user_profile.degree2 = data[1]["degree2"]
-        user_profile.major2 = data[1]["major2"]
-        user_profile.extra_major2 = data[1]["extra_major2"]
-        user_profile.gpa2 = data[1]["gpa2"]
-        # third education
-        user_profile.school3 = data[2]["school3"]
-        user_profile.graduation_date3 = data[2]["graduation_date3"]
-        user_profile.degree3 = data[2]["degree3"]
-        user_profile.major3 = data[2]["major3"]
-        user_profile.extra_major3 = data[2]["extra_major3"]
-        user_profile.gpa3 = data[2]["gpa3"]
-        user_profile.save()
+        # create education
+        education = ProfileDetailEducation.objects.create(user_id=user_id)
+        education.school = data["school"]
+        education.graduation_date = data["graduationDate"]
+        education.degree = data["degree"]
+        education.major = data["major"]
+        education.extra_major = data["extraMajor"]
+        education.gpa = data["gpa"]
+        education.save()
+
     return Response("Create or Update education successfully", status=status.HTTP_201_CREATED)
+
+
+@api_view(['POST'])
+def delete_profile_detail_education(request):
+    id = request.data["id"]
+    ProfileDetailEducation.objects.filter(id=id).delete()
+    return Response("Delete education successfully", status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
@@ -598,72 +581,31 @@ def create_or_update_work_exp(request):
     user_id = request.data["user_id"]
     data = request.data["data"]
     try:
-        # first education
-        user_profile = ProfileDetail.objects.get(user_id=user_id)
-        user_profile.company1 = data[0]["company1"]
-        user_profile.title1 = data[0]["title1"]
-        user_profile.start_date1 = data[0]["start_date1"]
-        user_profile.end_date1 = data[0]["end_date1"]
-        user_profile.work_description1 = data[0]["work_description1"]
-
-        user_profile.company2 = data[1]["company2"]
-        user_profile.title2 = data[1]["title2"]
-        user_profile.start_date2 = data[1]["start_date2"]
-        user_profile.end_date2 = data[1]["end_date2"]
-        user_profile.work_description2 = data[1]["work_description2"]
-
-        user_profile.company3 = data[2]["company3"]
-        user_profile.title3 = data[2]["title3"]
-        user_profile.start_date3 = data[2]["start_date3"]
-        user_profile.end_date3 = data[2]["end_date3"]
-        user_profile.work_description3 = data[2]["work_description3"]
-
-        user_profile.company4 = data[3]["company4"]
-        user_profile.title4 = data[3]["title4"]
-        user_profile.start_date4 = data[3]["start_date4"]
-        user_profile.end_date4 = data[3]["end_date4"]
-        user_profile.work_description4 = data[3]["work_description4"]
-
-        user_profile.company5 = data[4]["company5"]
-        user_profile.title5 = data[4]["title5"]
-        user_profile.start_date5 = data[4]["start_date5"]
-        user_profile.end_date5 = data[4]["end_date5"]
-        user_profile.work_description5 = data[4]["work_description5"]
-        user_profile.save()
+        # update work experience
+        work_exp = ProfileDetailExperience.objects.get(id=data["workExpId"])
+        work_exp.company = data["company"]
+        work_exp.title = data["title"]
+        work_exp.start_date = data["startDate"]
+        work_exp.end_date = data["endDate"]
+        work_exp.work_description = data["workDescription"]
+        work_exp.save()
     except ObjectDoesNotExist:
-        user_profile = ProfileDetail.objects.create(user_id=user_id)
-        user_profile.company1 = data[0]["company1"]
-        user_profile.title1 = data[0]["title1"]
-        user_profile.start_date1 = data[0]["start_date1"]
-        user_profile.end_date1 = data[0]["end_date1"]
-        user_profile.work_description1 = data[0]["work_description1"]
-
-        user_profile.company2 = data[1]["company2"]
-        user_profile.title2 = data[1]["title2"]
-        user_profile.start_date2 = data[1]["start_date2"]
-        user_profile.end_date2 = data[1]["end_date2"]
-        user_profile.work_description2 = data[1]["work_description2"]
-
-        user_profile.company3 = data[2]["company3"]
-        user_profile.title3 = data[2]["title3"]
-        user_profile.start_date3 = data[2]["start_date3"]
-        user_profile.end_date3 = data[2]["end_date3"]
-        user_profile.work_description3 = data[2]["work_description3"]
-
-        user_profile.company4 = data[3]["company4"]
-        user_profile.title4 = data[3]["title4"]
-        user_profile.start_date4 = data[3]["start_date4"]
-        user_profile.end_date4 = data[3]["end_date4"]
-        user_profile.work_description4 = data[3]["work_description4"]
-
-        user_profile.company5 = data[4]["company5"]
-        user_profile.title5 = data[4]["title5"]
-        user_profile.start_date5 = data[4]["start_date5"]
-        user_profile.end_date5 = data[4]["end_date5"]
-        user_profile.work_description5 = data[4]["work_description5"]
-        user_profile.save()
+        # add new work experience
+        work_exp = ProfileDetailExperience.objects.create(user_id=user_id)
+        work_exp.company = data["company"]
+        work_exp.title = data["title"]
+        work_exp.start_date = data["startDate"]
+        work_exp.end_date = data["endDate"]
+        work_exp.work_description = data["workDescription"]
+        work_exp.save()
     return Response("Create or Update work experience successfully", status=status.HTTP_201_CREATED)
 
+
+@api_view(['POST'])
+def delete_profile_detail_work_exp(request):
+    id = request.data["id"]
+    ProfileDetailExperience.objects.filter(id=id).delete()
+    return Response("Delete work experience successfully", status=status.HTTP_200_OK)
 
 def upload_profile_resume(request):
     object_name = request.GET['objectName']
