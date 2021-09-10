@@ -481,11 +481,11 @@ export class Profile extends Component {
             rate += 2;
             infoRate += 2;
         }
-        if (this.props.profileDetail?.skills.length > 0) {
+        if (this.props.profileDetail?.skills?.length > 0) {
             rate += 10;
             infoRate += 10;
         }
-        if (this.props.profileDetail?.languages.length > 0) {
+        if (this.props.profileDetail?.languages?.length > 0) {
             rate += 2;
             infoRate += 2;
         }
@@ -695,9 +695,9 @@ export class Profile extends Component {
             recommendations.img = "https://hirebeat-assets.s3.amazonaws.com/profile-advocation-1.png";
         }
         else if (!checklist.photoUploaded) {
-            title = "Add a Profile Photo to Help Others Recognize You";
-            msg = "Members with a photo get up to 20x more profile views.";
-            img = "https://hirebeat-assets.s3.amazonaws.com/profile-advocation-2.png";
+            recommendations.title = "Add a Profile Photo to Help Others Recognize You";
+            recommendations.msg = "Members with a photo get up to 20x more profile views.";
+            recommendations.img = "https://hirebeat-assets.s3.amazonaws.com/profile-advocation-2.png";
         }
         else if (!checklist.videoRecorded) {
             recommendations.title = "Record a Short Video to Pitch Yourself";

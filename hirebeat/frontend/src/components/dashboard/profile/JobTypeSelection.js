@@ -20,6 +20,8 @@ export class JobTypeSelection extends Component {
             fontFamily: 'Avenir Next,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
+        menuPortal: provided => ({ ...provided, zIndex: 99 }),
+        menu: provided => ({ ...provided, zIndex: 99 })
     };
 
     options = [
@@ -53,7 +55,7 @@ export class JobTypeSelection extends Component {
     render() {
         return (
             <div>
-                <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} />
+                <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} menuPortalTarget={document.body}/>
             </div>
         );
     }

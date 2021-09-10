@@ -175,10 +175,19 @@ def check_user_login(request):
     username = request.data['username']
     password = request.data['password']
     user = authenticate(username=username, password=password)
-    if user is not None:
-        login_suc = True
+    if "@" in username:
+        print(username)
+        users = User.objects.filter(email=username)
+        user1 = authenticate(username=users[0].username, password=password)
+        if user1 is not None:
+            login_suc = True
+        else:
+            login_suc = False
     else:
-        login_suc = False
+        if user is not None:
+            login_suc = True
+        else:
+            login_suc = False
     return Response({"data": login_suc})
 
 
