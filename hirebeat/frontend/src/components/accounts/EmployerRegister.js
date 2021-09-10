@@ -41,6 +41,10 @@ export class EmployerRegister extends Component {
         companyType: "",
         location: "",
         step: 1,
+        validEmail: true,
+        validPwd: true,
+        validCompanyName: true,
+        unusedEmail: true,
       };
   }
 
@@ -155,6 +159,8 @@ export class EmployerRegister extends Component {
 
   checkAccountData = (e) => {
     e.preventDefault();
+    // reset error states
+    this.setState({validEmail: true, validPwd: true, unusedEmail: true});
     // check email format
     if((this.state.email.toLowerCase().includes("aol") ||
         this.state.email.toLowerCase().includes("att.net") ||
@@ -188,27 +194,13 @@ export class EmployerRegister extends Component {
         this.state.email.toLowerCase().includes("aliyun.com") ||
         this.state.email.toLowerCase().includes("foxmail.com") ||
         this.state.email.toLowerCase().includes("edu")) && !this.state.isReviewer) {
-          return confirmAlert({
-                title: "Email not permitted!",
-                message: "Please use your work email to register.",
-                buttons: [
-                      {
-                        label: 'Ok'
-                      }
-                ]
-              });
+          this.setState({validEmail: false});
+          return;
     }
     // check passwords
-    if (!this.passwordsMatch()) {
-      return confirmAlert({
-            title: "Wrong Password",
-            message: "The passwords you entered are not consistent",
-            buttons: [
-                  {
-                    label: 'Ok'
-                  }
-            ]
-      });
+    if (this.state.password !== this.state.password2) {
+        this.setState({validPwd: false});
+        return;
     }
 
     // check email registered or not
@@ -217,18 +209,8 @@ export class EmployerRegister extends Component {
     .post("check-user-registration", email)
     .then((res) => {
       let isRegistered = res.data.is_registered;
-      if (isRegistered) {
-        confirmAlert({
-            title: "Email already exists!",
-            message: "Please use another email to register.",
-            buttons: [
-                  {
-                    label: 'Ok'
-                  }
-            ]
-        });
-     }
-     else {
+      this.setState({unusedEmail: false});
+      if (!isRegistered) {
         // move to next step
         let nextStep = this.state.step + 1;
         this.setStep(nextStep);
@@ -262,8 +244,11 @@ export class EmployerRegister extends Component {
   // new employer registration submit
   registration = (e) => {
     e.preventDefault();
+    // reset error state
+    this.setState({validCompanyName: true});
       if(this.state.companyName.trim() == null || this.state.companyName.trim() == ""){
-        return alert("Company Name Invalid Format!");
+        this.setState({validCompanyName: false});
+        return;
       }
 
       // check company name exist or not
@@ -338,6 +323,9 @@ export class EmployerRegister extends Component {
                                     badge={badge}
                                     updateState={this.updateState}
                                     checkAccountData={this.checkAccountData}
+                                    validEmail={this.state.validEmail}
+                                    unusedEmail={this.state.unusedEmail}
+                                    validPwd={this.state.validPwd}
                                 />
                             }
                             {this.state.step === 2 &&
@@ -347,6 +335,7 @@ export class EmployerRegister extends Component {
                                     setCompanyType={this.setCompanyType}
                                     setLocation={this.setLocation}
                                     registration={this.registration}
+                                    validCompanyName={this.state.validCompanyName}
                                 />
                             }
                         </div> :

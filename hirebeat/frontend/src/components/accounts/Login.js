@@ -1,13 +1,14 @@
-import React, {Component} from "react";
-import {Redirect} from "react-router-dom";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {login, exchangeToken} from "../../redux/actions/auth_actions";
+import { login, exchangeToken } from "../../redux/actions/auth_actions";
 import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
+import axios from "axios";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -21,7 +22,15 @@ export class Login extends Component {
   state = {
     username: "",
     password: "",
+    login_fail: false,
   };
+
+  setLoginFail = () => {
+    this.setState({login_fail: true});
+  }
+  setLoginFail1 = () => {
+    this.setState({login_fail: false});
+  }
 
   static propTypes = {
     login: PropTypes.func.isRequired,
@@ -31,7 +40,23 @@ export class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.login(this.state.username, this.state.password);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let user_pw = { "username": this.state.username, "password": this.state.password};
+
+    axios.post("api/check_user_login", user_pw, config).then((res) => {
+      if (res.data.data) {
+        this.setLoginFail1();
+        this.props.login(this.state.username, this.state.password);
+      } else {
+        this.setLoginFail();
+      }
+    }).catch(error => {
+      console.log(error)
+    });
   };
 
   onChange = (e) => {
@@ -48,7 +73,7 @@ export class Login extends Component {
       case "linkedin":
         return provider + "-oauth2";
       default:
-        // Do nothing
+      // Do nothing
     }
   };
 
@@ -74,55 +99,55 @@ export class Login extends Component {
       sessionStorage.setItem('user', JSON.stringify(this.props.user));
       sessionStorage.setItem("isAuthenticated", this.props.isAuthenticated);
       if (this.props.user.groups[0] == "reviewers") {
-        return <Redirect to="/review"/>;
+        return <Redirect to="/review" />;
       } else {
-        return <Redirect to="/dashboard"/>;
+        return <Redirect to="/dashboard" />;
       }
     }
-    const {username, password} = this.state;
+    const { username, password } = this.state;
     return (
-        <DocumentMeta {...meta}>
+      <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
 
           <div
-              className="container-fluid bg-white p-0"
+            className="container-fluid bg-white p-0"
           >
             <MediaQuery minDeviceWidth={1224}>
-            <header
-            className="min-width-1290"
-             id="login-intro"
-                    style={{
-                      background: "#56a3fa",
-                      minHeight: "14rem"
-                    }}>
+              <header
+                className="min-width-1290"
+                id="login-intro"
+                style={{
+                  background: "#56a3fa",
+                  minHeight: "14rem"
+                }}>
 
-              <div className="container"
-                   style={{paddingTop: "5rem"}}>
+                <div className="container"
+                  style={{ paddingTop: "5rem" }}>
 
-                <h1 className="display-4 text-white text-center" style={{fontSize:"3rem", fontWeight:"600"}}>
-                  Welcome back!
-                </h1>
+                  <h1 className="display-4 text-white text-center" style={{ fontSize: "3rem", fontWeight: "600" }}>
+                    Welcome back!
+                  </h1>
 
-              </div>
-            </header>
+                </div>
+              </header>
             </MediaQuery>
             <MediaQuery maxDeviceWidth={1223}>
-            <header id="login-intro"
-                    style={{
-                      background: "#56a3fa",
-                      minHeight: "8rem"
-                    }}>
+              <header id="login-intro"
+                style={{
+                  background: "#56a3fa",
+                  minHeight: "8rem"
+                }}>
 
-              <div className="container"
-                   style={{paddingTop: "3rem"}}>
+                <div className="container"
+                  style={{ paddingTop: "3rem" }}>
 
-                <h1 className="display-8 text-white text-center" style={{paddingBottom:"1rem"}}>
-                  Welcome back!
-                </h1>
+                  <h1 className="display-8 text-white text-center" style={{ paddingBottom: "1rem" }}>
+                    Welcome back!
+                  </h1>
 
-              </div>
-            </header>
+                </div>
+              </header>
             </MediaQuery>
 
             <section className="card border-bottom-0 shadow-none bg-white">
@@ -138,62 +163,66 @@ export class Login extends Component {
 
                       <div className="form-group">
                         <input
-                            type="text"
-                            className="form-control"
-                            name="username"
-                            placeholder="Username"
-                            onChange={this.onChange}
-                            value={username}
-                            style={{
-                              fontFamily: "Avenir Next, Segoe UI",
-                              background: "#FFFFFF",
-                              border: "0.5px solid #E5E5E5",
-                              borderRadius: "0.5rem",
-                              paddingLeft: "1rem",
-                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                            }}
-                            required/>
+                          type="text"
+                          className="form-control"
+                          name="username"
+                          placeholder="Username"
+                          onChange={this.onChange}
+                          value={username}
+                          style={{
+                            fontFamily: "Avenir Next, Segoe UI",
+                            background: "#FFFFFF",
+                            border: "0.5px solid #E5E5E5",
+                            borderRadius: "0.5rem",
+                            paddingLeft: "1rem",
+                            boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
+                          }}
+                          required />
                       </div>
 
                       <div className="form-group">
                         <input
-                            type="password"
-                            placeholder="Password"
-                            className="form-control"
-                            name="password"
-                            onChange={this.onChange}
-                            value={password}
-                            style={{
-                              fontFamily: "Avenir Next, Segoe UI",
-                              background: "#FFFFFF",
-                              border: "0.5px solid #E5E5E5",
-                              borderRadius: "0.5rem",
-                              paddingLeft: "1rem",
-                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                            }}
-                            required/>
+                          type="password"
+                          placeholder="Password"
+                          className="form-control"
+                          name="password"
+                          onChange={this.onChange}
+                          value={password}
+                          style={{
+                            fontFamily: "Avenir Next, Segoe UI",
+                            background: "#FFFFFF",
+                            border: "0.5px solid #E5E5E5",
+                            borderRadius: "0.5rem",
+                            paddingLeft: "1rem",
+                            boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
+                          }}
+                          required />
+                      </div>
+
+                      <div className="d-flex flex-wrap justify-content-between align-items-center" style={{marginTop: "0.6rem", marginBottom:"0.6rem"}}>
+                        {this.state.login_fail && <p className="share-p4" style={{fontWeight:"600"}}>Incorrect username or password. Please try again.</p>}
                       </div>
 
                       <div className="d-flex flex-wrap justify-content-between align-items-center">
                         <a
-                            href="/register"
-                            className="navbar-font"
-                            style={{textDecoration: "underline", color: "#FF6B00", fontWeight: "300", fontFamily: "Avenir Next, Segoe UI", fontSize:"1rem"}}
+                          href="/register"
+                          className="navbar-font"
+                          style={{ textDecoration: "underline", color: "#FF6B00", fontWeight: "300", fontFamily: "Avenir Next, Segoe UI", fontSize: "1rem" }}
                         >
                           Create account
                         </a>
 
                         <a
-                            href="/password_reset"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="navbar-font"
-                            style={{
-                              fontSize:"1rem",
-                              fontFamily: "Avenir Next, Segoe UI",
-                              color: "#7D7D7D",
-                              fontWeight: "300"
-                            }}
+                          href="/password_reset"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="navbar-font"
+                          style={{
+                            fontSize: "1rem",
+                            fontFamily: "Avenir Next, Segoe UI",
+                            color: "#7D7D7D",
+                            fontWeight: "300"
+                          }}
                         >
                           Forget password?
                         </a>
@@ -201,13 +230,13 @@ export class Login extends Component {
                       </div>
 
                       <div
-                          className="form-group"
-                          style={{paddingTop: 30, paddingBottom: 20}}
+                        className="form-group"
+                        style={{ paddingTop: 30, paddingBottom: 20 }}
                       >
                         <button
-                            type="submit"
-                            className="default-btn"
-                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
+                          type="submit"
+                          className="default-btn"
+                          style={{ width: "100%", fontSize: '1rem', fontWeight: 'bold' }}
                         >
                           <i className="bx bxs-hot"></i>
                           Job Seeker Log in
@@ -217,16 +246,16 @@ export class Login extends Component {
                     </form>
 
                     <hr className="style-four"
-                        data-content="Or use"
-                        style={{
-                          marginTop:"4rem",
-                          marginBottom:"2rem",
-                          fontFamily: "Avenir Next, Segoe UI",
-                        }}
+                      data-content="Or use"
+                      style={{
+                        marginTop: "4rem",
+                        marginBottom: "2rem",
+                        fontFamily: "Avenir Next, Segoe UI",
+                      }}
                     />
 
 
-                    <SocialButtons handleSocialLogin={this.handleSocialLogin}/>
+                    <SocialButtons handleSocialLogin={this.handleSocialLogin} />
 
                   </div>
                 </div>
@@ -236,7 +265,7 @@ export class Login extends Component {
           </div>
           <Footer />
         </React.Fragment>
-        </DocumentMeta>
+      </DocumentMeta>
     );
   }
 }
@@ -247,4 +276,4 @@ const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
 });
 
-export default connect(mapStateToProps, {login, exchangeToken})(Login);
+export default connect(mapStateToProps, { login, exchangeToken })(Login);

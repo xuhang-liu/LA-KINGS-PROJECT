@@ -99,18 +99,22 @@ export const IconEmployerText = (props) => {
 export const IconUserText = (props) => {
     //textSize, textDisplayed, iconName, textColor?
     return (
-        <div className="icon-user-text align-items-center" style={{ background: props.backColor, paddingRight: props?.paddingRight }}>
-            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: props.width ?? "36px", height: props.height ?? "36px", marginLeft: props.marginL ?? "" }}></img>}
-            <p
-                className="pt-2"
-                style={{
-                    fontWeight: props.textWeight,
-                    fontSize: props.textSize,
-                    color: props.textColor ?? "#7d7d7d",
-                }}
-            >
-                {props.textDisplayed}
-            </p>
+        <div>
+            {(props.textDisplayed == "My Profile" && props.profileRate < 100) &&
+                <span className="dot" style={{ marginLeft: "1.7rem", marginBottom: "-1.7rem", position: "absolute" }}></span>}
+            <div className="icon-user-text align-items-center" style={{ background: props.backColor, paddingRight: props?.paddingRight }}>
+                {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: props.width ?? "36px", height: props.height ?? "36px", marginLeft: props.marginL ?? "" }}></img>}
+                <p
+                    className="pt-2"
+                    style={{
+                        fontWeight: props.textWeight,
+                        fontSize: props.textSize,
+                        color: props.textColor ?? "#7d7d7d",
+                    }}
+                >
+                    {props.textDisplayed}
+                </p>
+            </div>
         </div>
     );
 };

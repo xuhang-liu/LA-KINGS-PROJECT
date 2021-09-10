@@ -188,6 +188,8 @@ export class ProfileForm extends Component {
             fontFamily: 'Avenir Next,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
+        menuPortal: provided => ({ ...provided, zIndex: 2 }),
+        menu: provided => ({ ...provided, zIndex: 2 })
     };
 
     options = [
@@ -401,7 +403,7 @@ export class ProfileForm extends Component {
                             What type of job are you looking for<span className="job-apply-char2">*</span>
                         </label>
                         <div style={{textAlign: "left"}}>
-                            <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} />
+                            <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} menuPortalTarget={document.body}/>
                         </div>
                       </div>
 

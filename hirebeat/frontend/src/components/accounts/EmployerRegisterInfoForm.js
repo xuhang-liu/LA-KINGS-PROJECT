@@ -64,6 +64,10 @@ export class EmployerRegisterInfoForm extends Component {
                               boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                         />
+                        {!this.props.validEmail &&
+                            <p className="register-p">Please enter your business email address. This form does not accept personal email.</p>}
+                        {!this.props.unusedEmail &&
+                            <p className="register-p">Email already exists! Please use another email to register.</p>}
                     </div>
 
                     <div className="form-group">
@@ -100,6 +104,8 @@ export class EmployerRegisterInfoForm extends Component {
                               boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             required/>
+                        {!this.props.validPwd &&
+                            <p className="register-p">Wrong Password! The passwords you entered are not consistent</p>}
                     </div>
 
                     <p className="d-flex flex-wrap justify-content-end"

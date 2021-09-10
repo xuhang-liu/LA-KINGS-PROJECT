@@ -43,7 +43,7 @@ class ROICalculator extends Component {
     state = {
         rec_value: 3,
         numofhire: 3,
-        numofresume: 150,
+        numofresume: 100,
     }
 
     onChange = (event, newValue) => {
@@ -106,7 +106,7 @@ class ROICalculator extends Component {
                         pageTitle="HireBeat Savings Calculator"
                         pageDescription="Find out how much HireBeat can save your organization"
                     />
-                    <section className="video-presentation-area ptb-100" style={{backgroundColor:"#f4f7ff"}}>
+                    <section className="video-presentation-area ptb-100 min-width-1290" style={{backgroundColor:"#f4f7ff"}}>
                         <div className="container">
                            <div className="row">
                                <div className="col-lg-12 col-md-12">
@@ -121,7 +121,7 @@ class ROICalculator extends Component {
                                                         </div>
                                                         <div className="row">
                                                             <div className="col-lg-10 col-md-10 form-group">
-                                                                <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={1} value={this.state.numofhire} onChange={this.onChangeNumOfHires} name="numofhire" min={1} max={2000}/>
+                                                                <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={3} value={this.state.numofhire} onChange={this.onChangeNumOfHires} name="numofhire" min={1} max={30}/>
                                                             </div>
                                                             <MediaQuery minDeviceWidth={1224}>
                                                                 <div className="col-lg-1 col-md-1 form-group" style={{display: "flex", alignItems: "center"}}>
@@ -134,7 +134,7 @@ class ROICalculator extends Component {
                                                         </div>
                                                         <div className="row">
                                                             <div className="col-lg-10 col-md-10 form-group">
-                                                                <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={3} value={this.state.rec_value} onChange={this.onChange} name="rec_value" min={1} max={50}/>
+                                                                <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={3} value={this.state.rec_value} onChange={this.onChange} name="rec_value" min={1} max={30}/>
                                                             </div>
                                                             <MediaQuery minDeviceWidth={1224}>
                                                                 <div className="col-lg-1 col-md-1 form-group" style={{display: "flex", alignItems: "center"}}>
@@ -147,7 +147,7 @@ class ROICalculator extends Component {
                                                         </div>
                                                         <div className="row">
                                                             <div className="col-lg-10 col-md-10 form-group">
-                                                                <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={1} value={this.state.numofresume} onChange={this.onChangeNumOfResumes} name="numofresume" min={1} max={1000}/>
+                                                                <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={100} value={this.state.numofresume} onChange={this.onChangeNumOfResumes} name="numofresume" min={10} max={500}/>
                                                             </div>
                                                             <MediaQuery minDeviceWidth={1224}>
                                                                 <div className="col-lg-1 col-md-1 form-group" style={{display: "flex", alignItems: "center"}}>
@@ -168,7 +168,7 @@ class ROICalculator extends Component {
                                                             <h5 style={{fontWeight:"600", fontSize:"1.5rem", color:"#090d3a"}}>ROI</h5>
                                                         {roi.toFixed(0) <= 0 ?
                                                             <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>---</h5> :
-                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem"}}>{roi.toFixed(0)}X</h5>
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem"}}>{roi.toFixed(0)}x</h5>
                                                         }
                                                         </div>
                                                     </div>

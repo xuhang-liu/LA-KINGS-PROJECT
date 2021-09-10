@@ -450,6 +450,7 @@ export class EssentialUserInfo extends Component {
                         <IconUserText
                           textSize={"12px"}
                           textDisplayed={"My Profile"}
+                          profileRate={this.props.profileDetail.profile_rate}
                           backColor={this.props.subpage == "profile" ? selectBack : defaultBack}
                           iconSrc={this.props.subpage == "profile" ? selectProfile : nonselectProfile}
                           textColor={this.props.subpage == "profile" ? selectEColor : defaultEColor}
