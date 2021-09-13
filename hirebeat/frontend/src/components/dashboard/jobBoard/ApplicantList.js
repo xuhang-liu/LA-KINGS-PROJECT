@@ -253,7 +253,7 @@ export class ApplicantList extends Component {
             <React.Fragment>
                 <div className="chart-bg1 container-fluid mt-3 pt-2 pb-3">
                     <div className="interview-txt5 pl-1" style={{paddingTop: "1rem"}}>{this.props.curJob.job_details.job_title}</div>
-                    <div className="row interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
+                    <div className="row interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
                         <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
                                 <i style={{position:"absolute", marginLeft:"0.5rem", marginTop:"0.2rem"}} className="bx bx-search bx-sm"></i>
@@ -378,7 +378,7 @@ export class ApplicantList extends Component {
                             )
                         })}
                     </div>
-                    <div className="interview-txt7 d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                    <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
                         <ReactPaginate
                               previousLabel={'< prev'}
                               nextLabel={'next >'}
