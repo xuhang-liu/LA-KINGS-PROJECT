@@ -123,6 +123,7 @@ export class JobCard extends Component {
                                 </div>
                             </p>
                         </a>
+                        {this.props.filter !== "closed" &&
                         <button className="title-button2 tool_tip" onClick={this.openShare}>
                             <i className="bx-fw bx bx-link-external"></i>Share
                             <p className="tool_submenu container" style={{ width: "9rem", left: "3rem" }}>
@@ -130,7 +131,7 @@ export class JobCard extends Component {
                                     Get a unique link to your job posting and one-click share to social media.
                                 </div>
                             </p>
-                        </button>
+                        </button>}
                         <MyModalShare
                             show={this.state.showShare}
                             onHide={() => { this.disableShowShare() }}
@@ -251,7 +252,7 @@ const ActionButton = (props) => {
     return (
         <div>
             {filter == "active" ?
-                <div className="row">
+                <div className="row d-flex justify-content-center">
                     <div className="profile-edit">
                         <i className="bx bx-edit-alt"></i>
                         <span className="tool_tip" style={{ cursor: "pointer" }} onClick={() => { props.setJobInfo(props.jobInfo); props.renderJobEdition() }}>
@@ -285,7 +286,7 @@ const ActionButton = (props) => {
                             </span>
                         </div>}
                 </div> :
-                <div className="row">
+                <div className="row d-flex justify-content-center">
                     <div className="profile-edit">
                         <span style={{ cursor: "pointer" }} onClick={props.activateJob}>Reactivate</span>
                     </div>

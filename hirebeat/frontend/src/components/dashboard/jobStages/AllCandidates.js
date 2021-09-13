@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { confirmAlert } from 'react-confirm-alert';
-import QuestionForm from "./QuestionForm";
+import QuestionForm from "./../jobBoard/QuestionForm";
 import { MyModal80 } from "./../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -9,10 +9,10 @@ import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/
 import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import Select from 'react-select';
-import EditQuestion from "./EditQuestion";
+import EditQuestion from "./../jobBoard/EditQuestion";
 import ReactPaginate from 'react-paginate';
 
-export class ApplicantList extends Component {
+export class AllCandidates extends Component {
     state = {
         keyWords: "",
         showQForm: false,
@@ -598,5 +598,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview })(
-    ApplicantList
+    AllCandidates
 ));

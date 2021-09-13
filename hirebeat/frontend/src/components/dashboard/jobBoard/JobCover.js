@@ -62,6 +62,9 @@ export const JobCover = (props) => {
       job={props.jobs[parseInt(sessionStorage.getItem("jobKey")) || jobKey]}
       user={props.user}
       profile={props.profile}
+      filter={filter}
+      getAllJobs={props.getAllJobs}
+      getPJobs={props.getPJobs}
     />
     }
     </div>
