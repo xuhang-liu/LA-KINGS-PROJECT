@@ -83,6 +83,7 @@ export class JobList extends Component {
                                                 getPJobs={this.props.getPJobs}
                                                 curJobKey={curJobKey}
                                                 setJobKey={this.props.setJobKey}
+                                                setViewPortal={this.props.setViewPortal}
                                             />
                                         );
                                     })
