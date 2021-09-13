@@ -10,7 +10,7 @@ export const JobCover = (props) => {
   const [jobKey, setJobKey] = useState(0);
   const [view, setView] = useState((sessionStorage.getItem("view") == "true") ? true : false);
   return (
-    <div style={{ marginBottom: "5%" }} className="container min-width-980">
+    <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
       <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b></h3></div>
       <div style={{ marginBottom: "20px" }}>
         <button
