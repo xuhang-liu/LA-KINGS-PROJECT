@@ -99,7 +99,7 @@ export class JobCard extends Component {
                         {this.props.job.un_view ? <span className="dot"></span> : <span className="dot" style={{ visibility: "hidden" }}></span>}
                         <button
                             className="title-button2"
-                            onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.enableView(); sessionStorage.setItem("view", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)) }}
+                            onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.setViewPortal(true); sessionStorage.setItem("viewPortal", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)) }}
                         >
                             {this.props.job.job_details.job_title.length > 24 ? (this.props.job.job_details.job_title.substring(0, 22) + "...") : (this.props.job.job_details.job_title)}
                         </button>
@@ -108,7 +108,7 @@ export class JobCard extends Component {
                     <div className="col-1 interview-txt9 d-flex justify-content-center mt-2">
                         <button
                             className="title-button2"
-                            onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.enableView(); sessionStorage.setItem("view", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)) }}
+                            onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.setViewPortal(true); sessionStorage.setItem("viewPortal", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)) }}
                         >
                             {this.props.job.total_records}
                         </button>

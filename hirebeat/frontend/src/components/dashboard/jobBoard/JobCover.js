@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import JobList from "./JobList";
+import JobPortalPage from "./JobPortalPage";
+
 const decideClassName = (filter, text) => {
   return filter == text ? "btn-selected2" : "btn-unselected2";
 };
@@ -9,8 +11,11 @@ export const JobCover = (props) => {
   const [curJob, setCurJob] = useState([]);
   const [jobKey, setJobKey] = useState(0);
   const [view, setView] = useState((sessionStorage.getItem("view") == "true") ? true : false);
+  const [viewPortal, setViewPortal] = useState((sessionStorage.getItem("viewPortal") == "true") ? true : false);
   return (
-    <div style={{ marginBottom: "5%" }} className="container min-width-980">
+    <div>
+    {!viewPortal ?
+    <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
       <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b></h3></div>
       <div style={{ marginBottom: "20px" }}>
         <button
@@ -49,7 +54,16 @@ export const JobCover = (props) => {
         setJobKey={setJobKey}
         view={view}
         setView={setView}
+        setViewPortal={setViewPortal}
       />
+    </div>:
+    <JobPortalPage
+      setViewPortal={setViewPortal}
+      job={props.jobs[parseInt(sessionStorage.getItem("jobKey")) || jobKey]}
+      user={props.user}
+      profile={props.profile}
+    />
+    }
     </div>
   );
 };
