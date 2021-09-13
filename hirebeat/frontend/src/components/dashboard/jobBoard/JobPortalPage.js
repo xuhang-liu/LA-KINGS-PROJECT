@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AllCandidates from "../jobStages/AllCandidates";
+import ResumeScreening from "../jobStages/ResumeScreening";
 
 export class JobPortalPage extends Component {
     constructor(props) {
@@ -12,48 +13,53 @@ export class JobPortalPage extends Component {
 
     renderAllCandidates = () => {
         this.setState({
-            subpage: "allCandidates",
+            portalSubpage: "allCandidates",
         });
     };
     renderResumeScreen = () => {
         this.setState({
-            subpage: "resumeScreen",
+            portalSubpage: "resumeScreen",
         });
     };
     renderVideoInterview = () => {
         this.setState({
-            subpage: "videoInterview",
+            portalSubpage: "videoInterview",
         });
     };
     renderLiveInterview = () => {
         this.setState({
-            subpage: "liveInterview",
+            portalSubpage: "liveInterview",
         });
     };
     renderShortList = () => {
         this.setState({
-            subpage: "shortList",
+            portalSubpage: "shortList",
         });
     };
     renderPipeline = () => {
         this.setState({
-            subpage: "pipeline",
+            portalSubpage: "pipeline",
         });
     };
 
     renderSubpage = () => {
-        switch (this.state.subpage) {
+        switch (this.state.portalSubpage) {
             case "pipeline":
                 return null;
             case "allCandidates":
                 return <AllCandidates
-                        filter={this.props.filter}
-                        curJob={this.props.job}
-                        getAllJobs={this.props.getAllJobs}
-                        getPJobs={this.props.getPJobs}
+                            filter={this.props.filter}
+                            curJob={this.props.job}
+                            getAllJobs={this.props.getAllJobs}
+                            getPJobs={this.props.getPJobs}
                         />;
             case "resumeScreen":
-                return null;
+                return <ResumeScreening
+                            filter={this.props.filter}
+                            curJob={this.props.job}
+                            getAllJobs={this.props.getAllJobs}
+                            getPJobs={this.props.getPJobs}
+                        />;
             case "videoInterview":
                 return null;
             case "liveInterview":
