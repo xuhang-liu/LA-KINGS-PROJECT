@@ -36,6 +36,9 @@ export class Education extends Component {
                         {(this.props.education.major != "" && this.props.education.major != null) &&
                             <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{this.props.education.major} | {this.props.education.gpa}</p>
                         }
+                        {(this.props.education.extra_major != "" && this.props.education.extra_major != null) &&
+                            <p className="profile-p4" style={{marginBottom: "0.5rem"}}>Minor: {this.props.education.extra_major}</p>
+                        }
                         <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{this.props.education.graduation_date}</p>
                     </div> :
                     <div>

@@ -1,6 +1,33 @@
 import React, { Component, useState } from "react";
+import {MajorOptions} from "./Constants";
+import Select from 'react-select';
 
 export class EducationForm extends Component {
+    state = {
+        majorName: {value: this.props.education?.major, label: this.props.education?.major},
+        extraMajorName: {value: this.props.education?.extra_major, label: this.props.education?.extra_major},
+    }
+    onFilter = (majorName) => {
+        this.setState({ majorName: majorName });
+    };
+
+    onFilterExtraMajor = (extraMajorName) => {
+        this.setState({ extraMajorName: extraMajorName });
+    };
+
+    customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#ffffff', boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)" }),
+        singleValue: styles => ({
+            ...styles,
+            color: '#4a6f8a',
+            fontSize: '0.9375rem',
+            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontWeight: '500'
+        }),
+        menuPortal: provided => ({ ...provided, zIndex: 99 }),
+        menu: provided => ({ ...provided, zIndex: 99 })
+    };
+
     addEducation = () => {
         let array = {
             educationId: this.props.education?.id || 0,
@@ -15,9 +42,9 @@ export class EducationForm extends Component {
         // check school
         if (array.school == "") return alert("School name is required");
         array.graduationDate = document.getElementById("graduationDate").value;
-        array.major = document.getElementById("major").value;
+        array.major = this.state.majorName.value;
         if (document.getElementById("extraMajor") != null) {
-             array.extraMajor = document.getElementById("extraMajor").value;
+             array.extraMajor = this.state.extraMajorName.value;
         }
         array.degree = document.getElementById("degree").value;
         array.gpa = document.getElementById("gpa").value;
@@ -50,6 +77,11 @@ export class EducationForm extends Component {
                     education={this.props.education}
                     cancelEditEducation={this.props.cancelEditEducation}
                     closeEdit={this.props.closeEdit}
+                    majorName={this.state.majorName}
+                    extraMajorName={this.state.extraMajorName}
+                    onFilter={this.onFilter}
+                    onFilterExtraMajor={this.onFilterExtraMajor}
+                    customStyles={this.customStyles}
                  />
             </div>
         )
@@ -78,7 +110,7 @@ const FormCard = (props) => {
                     <div className="row" style={{marginTop: "1rem"}}>
                         <div className="col-8">
                             <p className="profile-p" style={{margin: "0rem"}}>Major</p>
-                            <input id="major" defaultValue={education?.major} className="profile-input profile-p4" style={{width: "100%"}}></input>
+                            <Select id="major" value={props.majorName} onChange={props.onFilter} options={MajorOptions} styles={props.customStyles} menuPortalTarget={document.body}/>
                         </div>
                         <div className="col-4">
                             <p className="profile-p" style={{margin: "0rem"}}>Degree</p>
@@ -92,7 +124,7 @@ const FormCard = (props) => {
                             {addMajor &&
                                 <div>
                                     <p className="profile-p" style={{margin: "0rem"}}>Another Major</p>
-                                    <input id="extraMajor" defaultValue={education?.extra_major} className="profile-input profile-p4" style={{width: "100%"}}></input>
+                                    <Select id="extraMajor" value={props.extraMajorName} onChange={props.onFilterExtraMajor} options={MajorOptions} styles={props.customStyles} menuPortalTarget={document.body}/>
                                 </div>
                         }
                         </div>

@@ -379,8 +379,8 @@ def get_profile_detail(request):
             profile.save()
         data = model_to_dict(profile)
         # get education and experience here
-        data["educations"] = list(ProfileDetailEducation.objects.filter(user_id=user_id).values())
-        data["experiences"] = list(ProfileDetailExperience.objects.filter(user_id=user_id).values())
+        data["educations"] = list(ProfileDetailEducation.objects.filter(user_id=user_id).order_by("id").values())
+        data["experiences"] = list(ProfileDetailExperience.objects.filter(user_id=user_id).order_by("id").values())
     except ObjectDoesNotExist:
         return Response({"data": data})
     return Response({"data": data})
