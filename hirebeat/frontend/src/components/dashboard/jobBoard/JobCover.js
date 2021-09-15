@@ -65,6 +65,7 @@ export const JobCover = (props) => {
       filter={filter}
       getAllJobs={props.getAllJobs}
       getPJobs={props.getPJobs}
+      postedJobs={props.postedJobs}
     />
     }
     </div>

@@ -409,6 +409,7 @@ export class EmployerDashboard extends Component {
           isLoaded={this.props.isLoaded}
           getAllJobs={this.props.getAllJobs}
           getPJobs={this.getPJobs}
+          postedJobs={this.props.postedJobs}
         />;
       case "jobCreation":
         return <JobCreation
