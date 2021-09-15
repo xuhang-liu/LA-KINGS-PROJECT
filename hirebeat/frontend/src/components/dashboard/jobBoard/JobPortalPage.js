@@ -53,6 +53,11 @@ export class JobPortalPage extends Component {
                     renderVideoInterview={this.renderVideoInterview}
                     renderLiveInterview={this.renderLiveInterview}
                     renderShortList={this.renderShortList}
+                    postedJobs={this.props.postedJobs}
+                    job={this.props.job}
+                    getPJobs={this.props.getPJobs}
+                    profile={this.props.profile}
+                    user={this.props.user}
                 />;
             case "allCandidates":
                 return <AllCandidates
@@ -83,7 +88,7 @@ export class JobPortalPage extends Component {
         return (
             <React.Fragment>
                 <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
-                    <div className="chart-bg1" style={{ paddingTop: "0px" }}>
+                    <div className="chart-bg1" style={{ paddingTop: "0px", paddingBottom:"5rem" }}>
                         <div style={{ padding: "0.6rem", backgroundColor: "#f4f7ff", borderRadius: "10px" }}><h3 style={{ fontSize: "1.25rem" }}><b><i class='bx-fw bx bx-chevron-left' style={{ color: "#c4c4c4", cursor: "pointer" }} onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); }}></i><span className="ml-2">{this.props.job.job_details.job_title}</span></b></h3></div>
                         <div className="row" style={{ border: "1px solid #e8edfc" }}>
                             <div className="col-2">

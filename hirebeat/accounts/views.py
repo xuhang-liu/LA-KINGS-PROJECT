@@ -936,10 +936,10 @@ def check_user_existence(request):
     if len(user) != 0:
         for i in range(len(user)):
             profile = Profile.objects.get(user=user[i])
-            if profile.is_subreviwer or profile.is_external_reviewer:
-                data = False
-            else:
+            if (not profile.is_subreviwer) and (not profile.is_external_reviewer):
                 data = True
+            else:
+                data = False
     return Response({"data": data})
 
 
