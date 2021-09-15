@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AllCandidates from "../jobStages/AllCandidates";
+import ResumeScreening from "../jobStages/ResumeScreening";
 import Pipeline from "../jobStages/Pipeline";
 
 export class JobPortalPage extends Component {
@@ -55,13 +56,18 @@ export class JobPortalPage extends Component {
                 />;
             case "allCandidates":
                 return <AllCandidates
-                    filter={this.props.filter}
-                    curJob={this.props.job}
-                    getAllJobs={this.props.getAllJobs}
-                    getPJobs={this.props.getPJobs}
-                />;
+                            filter={this.props.filter}
+                            curJob={this.props.job}
+                            getAllJobs={this.props.getAllJobs}
+                            getPJobs={this.props.getPJobs}
+                        />;
             case "resumeScreen":
-                return null;
+                return <ResumeScreening
+                            filter={this.props.filter}
+                            curJob={this.props.job}
+                            getAllJobs={this.props.getAllJobs}
+                            getPJobs={this.props.getPJobs}
+                        />;
             case "videoInterview":
                 return null;
             case "liveInterview":
