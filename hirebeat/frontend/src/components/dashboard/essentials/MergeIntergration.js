@@ -163,7 +163,7 @@ const MergeIntergration = (props) => {
                 buttons: [
                     {
                         label: 'Confirm',
-                        onClick: () => { props.renderApplications(); window.location.reload(false) }
+                        onClick: () => { props.renderJobs(); window.location.reload(false) }
                     }
                 ]
             });
