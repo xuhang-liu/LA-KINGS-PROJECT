@@ -767,3 +767,46 @@ def check_interview_candidates_num(request):
     return Response({
         "intCanNumBo": intCanNumBo
     })
+
+@api_view(['POST'])
+def get_pipeline_analytics(request):
+    analytics = {}
+    job_id = request.data['job_id']
+    job = Jobs.objects.get(pk=job_id)
+    applyc = ApplyCandidates.objects.filter(jobs=job)
+    all_can_num = len(applyc)
+    all_can_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True))
+    all_can_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False))
+    resume_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Resume Review"))
+    resume_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Resume Review"))
+    resume_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Resume Review"))
+    video_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Video Interview"))
+    video_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Video Interview"))
+    video_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Video Interview"))
+    live_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Live Interview"))
+    live_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Live Interview"))
+    live_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Live Interview"))
+    short_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Short List"))
+    short_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Short List"))
+    short_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Short List"))
+    analytics = {
+        "all_can_num": all_can_num,
+        "resume_num": resume_num,
+        "video_num": video_num,
+        "live_num": live_num,
+        "short_num": short_num,
+        "all_can_act_num": all_can_act_num,
+        "all_can_rej_num": all_can_rej_num,
+        "resume_num_act_num": resume_num_act_num,
+        "resume_num_rej_num": resume_num_rej_num,
+        "video_num_act_num": video_num_act_num,
+        "video_num_rej_num": video_num_rej_num,
+        "live_num_act_num": live_num_act_num,
+        "live_num_rej_num": live_num_rej_num,
+        "short_num_act_num": short_num_act_num,
+        "short_num_rej_num": short_num_rej_num,
+    }
+
+    return Response({
+        "analytics": analytics
+    })

@@ -6,6 +6,7 @@ import {
     GET_RESUME_FROM_JOB_APPLICATION,
     CREATE_MERGE_LINK_TOKEN,
     SEND_MERGE_API_REQUEST,
+    GET_PIPELINE_ANALYTICS,
 } from "../actions/action_types";
 
 const initialState = {
@@ -29,6 +30,7 @@ const initialState = {
   link_token: "",
   jobs_api_response: [],
   interview_stages_api_response: [],
+  analytics: {},
 };
 
 export default function (state = initialState, action) {
@@ -80,6 +82,11 @@ export default function (state = initialState, action) {
         ...state,
         interview_stages_api_response: action.payload.interview_stages_api_response,
         jobs_api_response: action.payload.jobs_api_response,
+      }
+    case GET_PIPELINE_ANALYTICS:
+      return {
+        ...state,
+        analytics: action.payload.analytics
       }
     default:
       return state;
