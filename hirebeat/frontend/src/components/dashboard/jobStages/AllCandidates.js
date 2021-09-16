@@ -365,6 +365,7 @@ export class AllCandidates extends Component {
                                     getPJobs={this.props.getPJobs}
                                     user={this.props.user}
                                     moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                    selectedPage={this.state.selectedPage}
                                 />
                             )
                         })}
@@ -453,15 +454,16 @@ const ApplicantRow = (props) => {
             "applyIds": applyIds,
             "isViewed": true,
         }
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
         props.updateCandidateViewedStatus(data);
-        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
         sessionStorage.setItem(("showPreview" + props.index), "true");
         sessionStorage.setItem("current", props.index);
         setShowPreview(true);
     }
 
     function hideModal() {
-        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
         sessionStorage.removeItem("showPreview" + props.index);
         sessionStorage.removeItem("current");
         setShowPreview(false);

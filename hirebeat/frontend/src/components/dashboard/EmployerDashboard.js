@@ -410,6 +410,29 @@ export class EmployerDashboard extends Component {
           getAllJobs={this.props.getAllJobs}
           getPJobs={this.getPJobs}
           postedJobs={this.props.postedJobs}
+          companyName={this.props.profile.company_name}
+          loaded={this.props.loaded}
+          addInterviews={this.props.addInterviews}
+          getReceivedInterview={this.props.getReceivedInterview}
+          getApplicantsVideos={this.props.getApplicantsVideos}
+          getApplicantsInfo={this.props.getApplicantsInfo}
+          getRecordStatus={this.props.getRecordStatus}
+          dataLoaded={this.props.dataLoaded}
+          isRecorded={this.props.isRecorded}
+          int_ques={this.props.int_ques}
+          id_candidate={this.props.id_candidate}
+          username_candidate={this.props.username_candidate}
+          email_candidate={this.props.email_candidate}
+          phone_candidate={this.props.phone_candidate}
+          location_candidate={this.props.location_candidate}
+          resendInvitation={this.props.resendInvitation}
+          updateCommentStatus={this.props.updateCommentStatus}
+          renderPosition={this.renderPosition}
+          updateViewStatus={this.props.updateViewStatus}
+          subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+          checkUserExistence={this.props.checkUserExistence}
+          user_existence={this.props.user_existence}
+          getPostedJobs={this.props.getPostedJobs}
         />;
       case "jobCreation":
         return <JobCreation

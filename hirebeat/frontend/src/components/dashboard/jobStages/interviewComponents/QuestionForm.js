@@ -1,25 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Select from 'react-select'
+//import { IconText } from "../DashboardComponents";
 import { withRouter } from "react-router-dom";
-import { addInterviewQuestion, getAllJobs } from "./../../../../redux/actions/job_actions";
-import { deleteInterviewQuestions } from "./../../../../redux/actions/question_actions";
+import { addInterviewQuestion } from "./../../../../redux/actions/job_actions";
+import { confirmAlert } from 'react-confirm-alert';
 
-export class EditQuestion extends Component {
+export class QuestionForm extends Component {
 
     state = {
         categoryOfQuestion: { value: "Positive Attitude", label: "Positive Attitude" },
-        preTime: this.props.position.prepare_time,
-        resTime: this.props.position.questionTime,
-        cameraOn: this.props.position.camera_on,
+        preTime: 30,
+        resTime: 90,
+        cameraOn: true,
     }
 
     setPreTime = (time) => {
         this.setState({ preTime: time });
-    }
-
-    setCameraOn = (choice) => {
-        this.setState({cameraOn: choice});
     }
 
     setResTime = (time) => {
@@ -66,36 +63,105 @@ export class EditQuestion extends Component {
         let size = elements.length;
         for (let i = 0; i < size; i++) {
             let question = elements[i].value;
-            // skip empty strings and strings consists of white spaces only
+            // skip empty strings and strings consists of white spaces
             if (!question.match(/^[ ]*$/)) {
                 questions.push(question);
             }
         }
+        this.props.setTempQuestion(questions);
         return questions;
+    }
+
+    noCandidateAlert = () => {
+        confirmAlert({
+            title: "No Candidate Selected",
+            message: "Please select candidates for interview",
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
+        });
     }
 
     saveQuestions = (e) => {
         e.preventDefault();
         // invite candidates
-        let positionId = this.props.positionId;
-        // add question
-        let questions = this.getQuestions();
-        if (questions.length == 0) { return alert("You need to add at least one question!") }
-        let data = {
-            "preTime": this.state.preTime,
-            "resTime": this.state.resTime,
-            "cameraOn": this.state.cameraOn,
-            "questions": questions,
-            "positionId": positionId,
+        let candidateCount = 0;
+        let companyName = this.props.curJob.job_details.company_name;
+        let jobTitle = this.props.curJob.job_details.job_title;
+        let positionId = this.props.curJob.job_details.positions_id;
+        // collect input name and email
+        const emails = [];
+        const names = [];
+        const invitedCandidates = [];
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                // name
+                names.push(candidate.first_name + " " + candidate.last_name);
+                // email
+                emails.push(candidate.email.toLowerCase());
+                invitedCandidates.push(candidate.id);
+                candidateCount += 1;
+            }
         }
-        // delete old interview questions
-        this.props.deleteInterviewQuestions({ "position_id": positionId });
-        // add new interview questions
-        setTimeout(() => { this.props.addInterviewQuestion(data) }, 300);
-        let page = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) + 1 : 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page); this.props.getPJobs(); }, 300);
-        alert("Change interview questions Success!");
-        this.props.hideQEditForm();
+        // check candidates selected or not
+        if (candidateCount > 0) {
+            if (candidateCount > (this.props.profile.candidate_limit)) {
+                return alert('Upgrade Now! You can only add ' + parseInt(this.props.profile.candidate_limit) + ' more candidates for this position!');
+            }
+            // add question
+            let questions = this.getQuestions();
+            if (questions.length == 0) { return alert("You need to add at least one question!") }
+            let data = {
+                "preTime": this.state.preTime,
+                "resTime": this.state.resTime,
+                "cameraOn": this.state.cameraOn,
+                "questions": questions,
+                "positionId": this.props.curJob.job_details.positions_id,
+            }
+            this.props.addInterviewQuestion(data);
+            // generate interview urls and send emails
+            let urls = [];
+            for (let i = 0; i < emails.length; i++) {
+                // make sure urls have the same size of emails and names
+                let url = "";
+                if (emails[i] != "" && names[i] != "") {
+                    //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+                    let prefix = "https://hirebeat.co/candidate-login?";  // online
+                    let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
+                    let encode = window.btoa(params);
+                    url = prefix + encode;
+                }
+                urls.push(url);
+            }
+            let meta = {
+                company_name: companyName,
+                job_title: jobTitle,
+                position_id: positionId,
+                emails: emails,
+                names: names,
+                expire: 14,
+                urls: urls,
+            }
+            // add interviews
+            this.props.addInterviews(meta);
+            let inviteData = {
+                "candidates": invitedCandidates,
+                "isInvited": 1,
+            }
+            // update invite status
+            this.props.updateInviteStatus(inviteData);
+            setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); }, 300);
+            alert("Send Invitation Success");
+            setTimeout(() => { this.props.hideQForm() }, 300);
+        }
+        else {
+            this.props.hideQForm();
+            this.noCandidateAlert();
+        }
     }
 
     render() {
@@ -121,10 +187,10 @@ export class EditQuestion extends Component {
         return (
             <React.Fragment>
                 <div>
-                    <div className="container" style={{ marginTop: "1%", marginBottom: "3%" }}>
+                    <div className="card container" style={{ marginTop: "1%", marginBottom: "3%" }}>
                         <form>
                             <div className="form-row" style={{ justifyContent: "center", marginTop: "1rem", justifyContent: "left" }}>
-                                <p className="db-txt5" style={{ paddingLeft: "5px" }}>{this.props.jobTitle}</p>
+                                <p className="db-txt5" style={{ paddingLeft: "5px" }}>{this.props.curJob.job_details.job_title}</p>
                             </div>
                             <div className="form-row" style={{ justifyContent: "center" }}>
                                 <div className="form-group col-6">
@@ -166,11 +232,7 @@ export class EditQuestion extends Component {
                                     <p className="center-items db-txt3 ml-2">Please note that the interview questions will be the same for all invited applicants under this job position.</p>
                                     <div className="row">
                                         <textarea id="q1" type="text" style={{ width: "85%" }} className="db-question"
-                                            placeholder="You can also type in your own question."
-                                            defaultValue={this.props.questions?.[0]?.description}
-                                            required
-                                        >
-                                        </textarea>
+                                            placeholder="You can also type in your own question." required></textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q1")} className="delete-btn">
                                                 <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
@@ -178,10 +240,7 @@ export class EditQuestion extends Component {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <textarea id="q2" type="text" style={{ width: "85%" }} className="db-question"
-                                            defaultValue={this.props.questions?.[1]?.description}
-                                        >
-                                        </textarea>
+                                        <textarea id="q2" type="text" style={{ width: "85%" }} className="db-question"></textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q2")} className="delete-btn">
                                                 <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
@@ -189,10 +248,7 @@ export class EditQuestion extends Component {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <textarea id="q3" type="text" style={{ width: "85%" }} className="db-question"
-                                            defaultValue={this.props.questions?.[2]?.description}
-                                        >
-                                        </textarea>
+                                        <textarea id="q3" type="text" style={{ width: "85%" }} className="db-question"></textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q3")} className="delete-btn">
                                                 <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
@@ -202,10 +258,7 @@ export class EditQuestion extends Component {
                                     {this.props.profile.plan_interval == "Premium" &&
                                         <div>
                                             <div className="row">
-                                                <textarea id="q4" type="text" style={{ width: "85%" }} className="db-question"
-                                                    defaultValue={this.props.questions?.[3]?.description}
-                                                >
-                                                </textarea>
+                                                <textarea id="q4" type="text" style={{ width: "85%" }} className="db-question"></textarea>
                                                 <div className="col-1 center-items">
                                                     <button type="button" onClick={() => this.clearQuestion("q4")} className="delete-btn">
                                                         <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
@@ -213,10 +266,7 @@ export class EditQuestion extends Component {
                                                 </div>
                                             </div>
                                             <div className="row">
-                                                <textarea id="q5" type="text" style={{ width: "85%" }} className="db-question"
-                                                    defaultValue={this.props.questions?.[4]?.description}
-                                                >
-                                                </textarea>
+                                                <textarea id="q5" type="text" style={{ width: "85%" }} className="db-question"></textarea>
                                                 <div className="col-1 center-items">
                                                     <button type="button" onClick={() => this.clearQuestion("q5")} className="delete-btn">
                                                         <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
@@ -224,10 +274,7 @@ export class EditQuestion extends Component {
                                                 </div>
                                             </div>
                                             <div className="row">
-                                                <textarea id="q6" type="text" style={{ width: "85%" }} className="db-question"
-                                                    defaultValue={this.props.questions?.[5]?.description}
-                                                >
-                                                </textarea>
+                                                <textarea id="q6" type="text" style={{ width: "85%" }} className="db-question"></textarea>
                                                 <div className="col-1 center-items">
                                                     <button type="button" onClick={() => this.clearQuestion("q6")} className="delete-btn">
                                                         <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
@@ -242,7 +289,7 @@ export class EditQuestion extends Component {
                                     <label className="db-txt2" style={{ margin: "2%" }}>
                                         Preparation Time
                                     </label>
-                                    <div className="form-row" style={{margin: "2%"}}>
+                                    <div className="form-row">
                                         {this.state.preTime == 30 ?
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>30s</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setPreTime(30)}>30s</button>
@@ -254,10 +301,10 @@ export class EditQuestion extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group col-5">
-                                    <label className="db-txt2" style={{ margin: "2%" }}>
+                                    <label className="db-txt2" style={{ marginTop: "2%" }}>
                                         Response Time
                                     </label>
-                                    <div className="form-row" style={{margin: "2%"}}>
+                                    <div className="form-row">
                                         {this.state.resTime == 60 ?
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>60s</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setResTime(60)}>60s</button>
@@ -269,21 +316,6 @@ export class EditQuestion extends Component {
                                         {this.state.resTime == 120 ?
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>120s</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setResTime(120)}>120s</button>
-                                        }
-                                    </div>
-                                </div>
-                                <div className="form-group col-3">
-                                    <label className="db-txt2" style={{ margin:"2%"}}>
-                                        Camera
-                                    </label>
-                                    <div className="form-row" style={{margin: "2%"}}>
-                                        {this.state.cameraOn ?
-                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>ON</button>:
-                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setCameraOn(true)}>ON</button>
-                                        }
-                                        {!this.state.cameraOn ?
-                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>OFF</button>:
-                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setCameraOn(false)}>OFF</button>
                                         }
                                     </div>
                                 </div>
@@ -312,6 +344,6 @@ const mapStateToProps = (state) => ({
     jobs: state.job_reducer.jobs,
 });
 
-export default withRouter(connect(mapStateToProps, { addInterviewQuestion, deleteInterviewQuestions, getAllJobs })(
-    EditQuestion
+export default withRouter(connect(mapStateToProps, { addInterviewQuestion })(
+    QuestionForm
 ));

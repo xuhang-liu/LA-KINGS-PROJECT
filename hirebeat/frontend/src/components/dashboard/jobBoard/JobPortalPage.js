@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import AllCandidates from "../jobStages/AllCandidates";
 import ResumeScreening from "../jobStages/ResumeScreening";
 import Pipeline from "../jobStages/Pipeline";
+import {VideoInterview} from "../jobStages/VideoInterview";
+import ShortList from "./../jobStages/ShortList";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation } from "./../../../redux/actions/question_actions";
+import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews } from "./../../../redux/actions/question_actions";
 
 export class JobPortalPage extends Component {
     constructor(props) {
@@ -74,11 +80,86 @@ export class JobPortalPage extends Component {
                             getPJobs={this.props.getPJobs}
                         />;
             case "videoInterview":
-                return null;
+                const p = this.props.postedJobs[this.props.job.job_details.positions_id];
+                return <VideoInterview
+                        filter={this.props.filter}
+                        removeSubReviewer={this.props.removeSubReviewer}
+                        addSubReviewer={this.props.addSubReviewer}
+                        getPJobs={this.props.getPJobs}
+                        resumeURL={this.props.resumeURL}
+                        addSelected={this.props.setselectedId}
+                        questions={p.questions}
+                        companyName={this.props.companyName}
+                        positionId={p.position_id}
+                        jobId={p.job_id}
+                        jobTitle={p.job_title}
+                        isClosed={p.is_closed}
+                        inviteDate={p.invite_date}
+                        applicants={p.applicants}
+                        subreviewers={p.subreviewers}
+                        addInterviews={this.props.addInterviews}
+                        getApplicantsVideos={this.props.getApplicantsVideos}
+                        getApplicantsInfo={this.props.getApplicantsInfo}
+                        getRecordStatus={this.props.getRecordStatus}
+                        dataLoaded={this.props.dataLoaded}
+                        isRecorded={this.props.isRecorded}
+                        int_ques={this.props.int_ques}
+                        id_candidate={this.props.id_candidate}
+                        username_candidate={this.props.username_candidate}
+                        email_candidate={this.props.email_candidate}
+                        phone_candidate={this.props.phone_candidate}
+                        location_candidate={this.props.location_candidate}
+                        resendInvitation={this.props.resendInvitation}
+                        updateCommentStatus={this.props.updateCommentStatus}
+                        closePosition={this.props.closePosition}
+                        deletePosition={this.props.deletePosition}
+                        getResumeURL={this.props.getResumeURL}
+                        recordTime={this.props.recordTime}
+                        interviewResume={this.props.interviewResume}
+                        user={this.props.user}
+                        profile={this.props.profile}
+                        updateViewStatus={this.props.updateViewStatus}
+                        subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                        position={p.position}
+                        allInvited={p.all_invited}
+                        moveCandidateToInterview={this.props.moveCandidateToInterview}
+                        sendInterviews={this.props.sendInterviews}
+                        checkUserExistence={this.props.checkUserExistence}
+                        user_existence={this.props.user_existence}
+                        getReviewNote={this.props.getReviewNote}
+                        getReviewerEvaluation={this.props.getReviewerEvaluation}
+                        getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                        totalRecords={p.total_records}
+                        totalPage={p.total_page}
+                        getPostedJobs={this.props.getPostedJobs}
+                />;
             case "liveInterview":
                 return null;
             case "shortList":
-                return null;
+                const pos = this.props.postedJobs[this.props.job.job_details.positions_id];
+                return <ShortList
+                    getPJobs={this.props.getPJobs}
+                    postedJobs={this.props.postedJobs}
+                    int_ques={this.props.int_ques}
+                    getApplicantsVideos={this.props.getApplicantsVideos}
+                    getApplicantsInfo={this.props.getApplicantsInfo}
+                    id_candidate={this.props.id_candidate}
+                    username_candidate={this.props.username_candidate}
+                    email_candidate={this.props.email_candidate}
+                    phone_candidate={this.props.phone_candidate}
+                    location_candidate={this.props.location_candidate}
+                    star_list={this.props.star_list}
+                    resume_list={this.props.resume_list}
+                    updateCommentStatus={this.props.updateCommentStatus}
+                    profile={this.props.profile}
+                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                    user={this.props.user}
+                    companyName={this.props.profile.company_name}
+                    getReviewNote={this.props.getReviewNote}
+                    getReviewerEvaluation={this.props.getReviewerEvaluation}
+                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                    positionId={pos.position_id}
+                />;
             default:
                 return null;
         };
@@ -138,4 +219,18 @@ export class JobPortalPage extends Component {
     }
 }
 
-export default JobPortalPage
+const mapStateToProps = (state) => ({
+    received_interview: state.auth_reducer.received_interview,
+    resumeURL: state.video_reducer.resumeURL,
+    recordTime: state.video_reducer.recordTime,
+    interviewResume: state.video_reducer.interviewResume,
+    star_list: state.question_reducer.star_list,
+    resume_list: state.question_reducer.resume_list,
+});
+
+export default withRouter(connect(mapStateToProps, {
+    closePosition, deletePosition, getResumeURL, addSubReviewer,
+    removeSubReviewer, moveCandidateToInterview, sendInterviews, getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation
+})(
+    JobPortalPage
+));
