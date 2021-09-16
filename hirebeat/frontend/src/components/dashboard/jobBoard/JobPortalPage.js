@@ -15,35 +15,41 @@ export class JobPortalPage extends Component {
     }
 
     state = {
-        portalSubpage: "pipeline"
+        portalSubpage: sessionStorage.getItem(this.props.job.job_details.job_title+'portalSubpage') || "pipeline"
     }
 
     renderAllCandidates = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "allCandidates");
         this.setState({
             portalSubpage: "allCandidates",
         });
     };
     renderResumeScreen = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "resumeScreen");
         this.setState({
             portalSubpage: "resumeScreen",
         });
     };
     renderVideoInterview = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "videoInterview");
         this.setState({
             portalSubpage: "videoInterview",
         });
     };
     renderLiveInterview = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "liveInterview");
         this.setState({
             portalSubpage: "liveInterview",
         });
     };
     renderShortList = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "shortList");
         this.setState({
             portalSubpage: "shortList",
         });
     };
     renderPipeline = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "pipeline");
         this.setState({
             portalSubpage: "pipeline",
         });

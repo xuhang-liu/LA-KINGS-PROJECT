@@ -589,7 +589,7 @@ export class EmployerDashboard extends Component {
           interview_stages_api_response={this.props.interview_stages_api_response}
           jobs_api_response={this.props.jobs_api_response}
           addCandFromMerge={this.props.addCandFromMerge}
-          renderApplications={this.renderApplications}
+          renderJobs={this.renderJobs}
         />;
       case "employerSourcing":
         return <Sourcing

@@ -250,8 +250,7 @@ export class ResumeScreening extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="chart-bg1 container-fluid mt-3 pt-2 pb-3">
-                    <div className="interview-txt5 pl-1" style={{paddingTop: "1rem"}}>{this.props.curJob.job_details.job_title}</div>
+                <div className="container-fluid mt-3 pt-2 pb-3">
                     <div className="row interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
                         <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
@@ -386,13 +385,21 @@ export class ResumeScreening extends Component {
                     </div>
                 </div>
                 {this.props.filter == "active" &&
-                    <div style={{ marginTop: "2rem" }}>
+                    <div style={{ marginTop: "2rem", marginLeft:"2rem" }}>
                         <button
-                            className="default-btn1 interview-txt6"
-                            style={{ paddingLeft: "25px", marginBottom: "1rem" }}
+                            className="default-btn"
+                            style={{ paddingLeft: "25px", backgroundColor:"#090d3a", paddingTop:"8px", paddingBottom:"8px" }}
                             onClick={this.inviteCandidates}
                         >
-                            Proceed to Interview
+                            Move All
+                            <span></span>
+                        </button>
+                        <button
+                            className="default-btn"
+                            style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor:"#ff0000", paddingTop:"8px", paddingBottom:"8px" }}
+                            onClick={this.inviteCandidates}
+                        >
+                            Reject All
                             <span></span>
                         </button>
                     </div>

@@ -90,7 +90,7 @@ class Employer_PricingStyleOne extends Component {
     };
 
     handleCounponUpgrade = () => {
-        if (this.state.coupon_match != 'PH2021PRO' && this.state.coupon_match != 'PH2021PREMIUM' && this.state.coupon_match != 'BL2021PRO' && this.state.coupon_match != 'BL2021PREMIUM') {
+        if (this.state.coupon_match != 'STARTHIREM1' && this.state.coupon_match != 'STARTHIREA1' && this.state.coupon_match != 'STARTHIREM2' && this.state.coupon_match != 'STARTHIREA2') {
             confirmAlert({
                 title: 'Please Enter A Valid Code',
                 message: '',
@@ -101,10 +101,14 @@ class Employer_PricingStyleOne extends Component {
                 ]
             });
         } else {
-            if (this.state.coupon_match == 'PH2021PRO' || this.state.coupon_match == 'BL2021PRO') {
+            if (this.state.coupon_match == 'STARTHIREM1') {
                 this.handleCouponProClickUpgrade();
-            } else if (this.state.coupon_match == 'PH2021PREMIUM' || this.state.coupon_match == 'BL2021PREMIUM') {
+            } else if (this.state.coupon_match == 'STARTHIREA1') {
+                this.handleCouponProClickUpgrade1();
+            } else if (this.state.coupon_match == 'STARTHIREM2') {
                 this.handleCouponPremiumClickUpgrade();
+            } else if (this.state.coupon_match == 'STARTHIREA2') {
+                this.handleCouponPremiumClickUpgrade1();
             }
         }
     };
@@ -114,7 +118,24 @@ class Employer_PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
             lineItems: [{
-                price: 'price_1IYahXKxU1MN2zWMFL1rjh6G', // Replace with the ID of your price
+                price: 'price_1JaNk3KxU1MN2zWM6CwDmYlc', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'subscription',
+            successUrl: 'https://hirebeat.co/payment',
+            cancelUrl: 'https://hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
+    handleCouponProClickUpgrade1 = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{
+                price: 'price_1JaNkTKxU1MN2zWM66Du2Y71', // Replace with the ID of your price
                 quantity: 1,
             }],
             mode: 'subscription',
@@ -131,7 +152,24 @@ class Employer_PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
             lineItems: [{
-                price: 'price_1IYaihKxU1MN2zWMaSeWfXrU', // Replace with the ID of your price
+                price: 'price_1JaNlFKxU1MN2zWMQTRM80px', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'subscription',
+            successUrl: 'https://hirebeat.co/payment',
+            cancelUrl: 'https://hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
+    handleCouponPremiumClickUpgrade1 = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{
+                price: 'price_1JaNlPKxU1MN2zWMWalh2W8e', // Replace with the ID of your price
                 quantity: 1,
             }],
             mode: 'subscription',

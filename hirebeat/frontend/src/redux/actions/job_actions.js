@@ -19,6 +19,7 @@ import {
     CHECK_FREE_ACCOUNT_ACTIVE_JOBS,
     SEND_MERGE_API_REQUEST,
     ADD_CAND_FROM_MERGE,
+    GET_PIPELINE_ANALYTICS
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -296,6 +297,20 @@ export const addCandFromMerge = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: ADD_CAND_FROM_MERGE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const getPipelineAnalytics = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/get-pipeline-analytics", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_PIPELINE_ANALYTICS,
         payload: res.data,
       });
     })

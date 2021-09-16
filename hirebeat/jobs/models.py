@@ -67,4 +67,5 @@ class ApplyCandidates(models.Model):
     transferable_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
     transferable_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
     transferable_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
-    current_stage = models.CharField(max_length=100, default="")
+    current_stage = models.CharField(max_length=100, default="Resume Review") # Resume Review, Video Interview, Live Interview, Short List
+    is_active = models.BooleanField(default=True)

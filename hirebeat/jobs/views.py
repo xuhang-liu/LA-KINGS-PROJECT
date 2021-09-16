@@ -654,6 +654,7 @@ def check_free_account_active_jobs(request):
 @api_view(['POST'])
 def add_cand_from_merge(request):
     position = {}
+    job = {}
     candidatesInterview = {}
     candidates_api_response = {}
     jobs_api_response = {}
@@ -668,6 +669,9 @@ def add_cand_from_merge(request):
     merge_stage_id = request.data['merge_stage_id']
     merge_job_title = request.data['merge_job_title']
     merge_stage_title = request.data['merge_stage_title']
+    company_name = ""
+    company_overview = ""
+    company_logo = ""
 
     configuration = MergeATSClient.Configuration()
 
@@ -691,13 +695,34 @@ def add_cand_from_merge(request):
     
     job_name = "External: "+jobs_api_response['name']+" ("+merge_stage_title+")"
     positions = Positions.objects.filter(user=user, job_title=job_name)
+    jobs = Jobs.objects.filter(user=user, job_title=job_name)
     if len(positions) > 0 :
         position = positions[0]
+    if len(jobs) > 0 :
+        job = jobs[0]
     else:
         if len(applications_api_response['results']) > 0:
             #create postion
             position = Positions.objects.create(user=user, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_description=jobs_api_response['description'], job_id="")
-    
+            # get company name and overview
+            try:
+            # update personal information
+                employer_profile = EmployerProfileDetail.objects.get(user=user)
+                company_name = employer_profile.name
+                company_overview = employer_profile.summary
+                company_logo = employer_profile.logo_url
+            except ObjectDoesNotExist:
+                company_overview = ""
+                company_name = ""
+                company_logo = ""
+            job = Jobs.objects.create(user=user, positions=position, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_id="", job_description=jobs_api_response['description'],
+            company_overview=company_overview, company_name=company_name, company_logo=company_logo,
+            loc_req="1", pho_req="1", lin_req="1", job_post=0, eeo_req="1", eeo_ques_req="1")
+            # save job link
+            job_url = "https://hirebeat.co/apply-job/"+company_name+"?id=" + str(job.id)
+            job.job_url = job_url
+            job.save()
+            # Create jobs apply candidates
     #create applicants
     for a in range(len(applications_api_response['results'])):
         candidate_id = applications_api_response['results'][a]['candidate']
@@ -726,7 +751,8 @@ def add_cand_from_merge(request):
         if len(candidatesInterview) <= 0:
             CandidatesInterview.objects.create(email=emailAddress, positions=position)
             InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response['first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url)
-
+            ApplyCandidates.objects.create(jobs=job, first_name=candidates_api_response['first_name'], last_name=candidates_api_response['last_name'], phone=phone,
+                                           email=emailAddress, location=location, current_stage="Video Interview", gender="N/A", race="N/A")
     return Response("Create candidates from merge success", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
@@ -740,4 +766,47 @@ def check_interview_candidates_num(request):
         intCanNumBo=True
     return Response({
         "intCanNumBo": intCanNumBo
+    })
+
+@api_view(['POST'])
+def get_pipeline_analytics(request):
+    analytics = {}
+    job_id = request.data['job_id']
+    job = Jobs.objects.get(pk=job_id)
+    applyc = ApplyCandidates.objects.filter(jobs=job)
+    all_can_num = len(applyc)
+    all_can_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True))
+    all_can_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False))
+    resume_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Resume Review"))
+    resume_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Resume Review"))
+    resume_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Resume Review"))
+    video_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Video Interview"))
+    video_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Video Interview"))
+    video_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Video Interview"))
+    live_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Live Interview"))
+    live_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Live Interview"))
+    live_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Live Interview"))
+    short_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Short List"))
+    short_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Short List"))
+    short_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Short List"))
+    analytics = {
+        "all_can_num": all_can_num,
+        "resume_num": resume_num,
+        "video_num": video_num,
+        "live_num": live_num,
+        "short_num": short_num,
+        "all_can_act_num": all_can_act_num,
+        "all_can_rej_num": all_can_rej_num,
+        "resume_num_act_num": resume_num_act_num,
+        "resume_num_rej_num": resume_num_rej_num,
+        "video_num_act_num": video_num_act_num,
+        "video_num_rej_num": video_num_rej_num,
+        "live_num_act_num": live_num_act_num,
+        "live_num_rej_num": live_num_rej_num,
+        "short_num_act_num": short_num_act_num,
+        "short_num_rej_num": short_num_rej_num,
+    }
+
+    return Response({
+        "analytics": analytics
     })

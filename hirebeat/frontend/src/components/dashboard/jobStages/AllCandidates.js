@@ -33,10 +33,8 @@ export class AllCandidates extends Component {
     }
     // filter selections
     options = [
-        { value: 'Invited', label: 'Interview' },
-        { value: 'Hold', label: 'Hold' },
-        { value: 'Rejected', label: 'Rejected' },
-        { value: 'Unreviewed', label: 'Unreviewed' },
+        { value: true, label: 'Active' },
+        { value: false, label: 'Rejected' },
         { value: 'All', label: 'All' },
     ];
 
@@ -265,8 +263,7 @@ export class AllCandidates extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="chart-bg1 container-fluid mt-3 pt-2 pb-3">
-                    <div className="interview-txt5 pl-1" style={{paddingTop: "1rem"}}>{this.props.curJob.job_details.job_title}</div>
+                <div className="container-fluid mt-3 pt-2 pb-3">
                     <div className="row interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
                         <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
@@ -334,17 +331,11 @@ export class AllCandidates extends Component {
                             }
                             if (this.state.category.value != "All") {
                                 switch (this.state.category.value) {
-                                    case "Invited":
-                                        if (a.is_invited != 1) return null;
+                                    case true:
+                                        if (a.is_active != true) return null;
                                         break;
-                                    case "Hold":
-                                        if (a.is_invited != 2) return null;
-                                        break;
-                                    case "Rejected":
-                                        if (a.is_invited != 3) return null;
-                                        break;
-                                    case "Unreviewed":
-                                        if (a.is_invited != 0) return null;
+                                    case false:
+                                        if (a.is_active != false) return null;
                                         break;
                                 }
                             }
@@ -386,18 +377,6 @@ export class AllCandidates extends Component {
                         />
                     </div>
                 </div>
-                {this.props.filter == "active" &&
-                    <div style={{ marginTop: "2rem" }}>
-                        <button
-                            className="default-btn1 interview-txt6"
-                            style={{ paddingLeft: "25px", marginBottom: "1rem" }}
-                            onClick={this.inviteCandidates}
-                        >
-                            Proceed to Interview
-                            <span></span>
-                        </button>
-                    </div>
-                }
                 {/* add new questions */}
                 <MyModal80
                     show={this.state.showQForm}
@@ -546,18 +525,11 @@ const ApplicantRow = (props) => {
                         {/* place holder */}
                         <span className="job-status" style={{marginLeft: "15px", visibility: "hidden"}}>Status</span>
                         <span>
-                        {(props.applicant.is_invited == 1) &&
+                        {(props.applicant.is_active) &&
                             <button className="default-btn invite-btn"
-                                style={{ backgroundColor: "#13C4A1", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
+                                style={{ backgroundColor: "#0DC68E", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
                             >
-                                Interview
-                            </button>
-                        }
-                        {(props.applicant.is_invited == 2) &&
-                            <button className="default-btn invite-btn"
-                                style={{ backgroundColor: "#FF6B00", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
-                            >
-                                Hold
+                                Active
                             </button>
                         }
                         {(props.applicant.is_invited == 3) &&
