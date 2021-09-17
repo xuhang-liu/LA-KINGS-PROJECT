@@ -309,7 +309,7 @@ def update_invite_status(request):
     for i in range(len(candidates)):
         candidate = ApplyCandidates.objects.get(id=candidates[i])
         if is_reject:
-            candidate.is_active = False
+            candidate.is_active = not candidate.is_active
             candidate.save()
         else:
             try:
