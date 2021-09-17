@@ -13,6 +13,10 @@ const ShortList = (props) => {
     const [curJobId, setCurJobId] = useState(Object.keys(props.postedJobs)[0]);
     const [selectedId, setSelectedId] = useState(props.positionId);
 
+    useEffect(() => {
+        props.loadStarList(props.positionId);
+    }, [])
+
     function refreshPage() {
         props.loadStarList(curJobId);
     }
