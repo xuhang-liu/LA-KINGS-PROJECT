@@ -66,6 +66,29 @@ export const JobCover = (props) => {
       getAllJobs={props.getAllJobs}
       getPJobs={props.getPJobs}
       postedJobs={props.postedJobs}
+      companyName={props.profile.company_name}
+      loaded={props.loaded}
+      addInterviews={props.addInterviews}
+      getReceivedInterview={props.getReceivedInterview}
+      getApplicantsVideos={props.getApplicantsVideos}
+      getApplicantsInfo={props.getApplicantsInfo}
+      getRecordStatus={props.getRecordStatus}
+      dataLoaded={props.dataLoaded}
+      isRecorded={props.isRecorded}
+      int_ques={props.int_ques}
+      id_candidate={props.id_candidate}
+      username_candidate={props.username_candidate}
+      email_candidate={props.email_candidate}
+      phone_candidate={props.phone_candidate}
+      location_candidate={props.location_candidate}
+      resendInvitation={props.resendInvitation}
+      updateCommentStatus={props.updateCommentStatus}
+      renderPosition={props.renderPosition}
+      updateViewStatus={props.updateViewStatus}
+      subreviewerUpdateComment={props.subreviewerUpdateComment}
+      checkUserExistence={props.checkUserExistence}
+      user_existence={props.user_existence}
+      getPostedJobs={props.getPostedJobs}
     />
     }
     </div>
