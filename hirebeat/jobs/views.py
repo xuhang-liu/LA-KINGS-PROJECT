@@ -82,7 +82,12 @@ def add_new_job(request):
 @api_view(['GET'])
 def get_all_jobs(request):
     user_id = request.query_params.get("userId")
-    page = int(request.query_params.get("page"))
+    page = 1
+    try:
+        page = int(request.query_params.get("page"))
+    except:
+        pass
+    subpage = request.query_params.get("subpage")
 
     data = {}
     jobs = list(Jobs.objects.filter(user_id=user_id).order_by('-id').values())
@@ -90,7 +95,11 @@ def get_all_jobs(request):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]
         # get each position applicants, pagination here
-        applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).order_by('-id').values())
+        if(subpage == "Resume Review"):
+            applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id, current_stage="Resume Review", is_active=True).order_by('-id').values())
+        else:
+            applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).order_by('-id').values())
+        
         total_records = len(applicants)
         total_page = math.ceil(len(applicants) / 15)
         if total_records > 15:
@@ -294,12 +303,24 @@ def add_interview_question(request):
 @api_view(['POST'])
 def update_invite_status(request):
     candidates = request.data['candidates']
-    is_invited = request.data['isInvited']
+    nextStage = request.data['nextStage']
+    positionId = request.data["positionId"]
+    is_reject = request.data["is_reject"]
     for i in range(len(candidates)):
         candidate = ApplyCandidates.objects.get(id=candidates[i])
-        candidate.is_invited = is_invited
-        # save update to db
-        candidate.save()
+        if is_reject:
+            candidate.is_active = False
+            candidate.save()
+        else:
+            try:
+                invitedCan = InvitedCandidates.objects.get(email=candidate.email, positions_id=positionId)
+                invitedCan.current_stage = nextStage
+                invitedCan.save()
+            except ObjectDoesNotExist:
+                pass
+            # save update to db
+            candidate.current_stage = nextStage
+            candidate.save()
     return Response("Archive new job successfully", status=status.HTTP_202_ACCEPTED)
 
 @api_view(['POST'])

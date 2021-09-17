@@ -67,7 +67,8 @@ export class AllCandidates extends Component {
     }
 
     hideQForm = () => {
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); }, 300);
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : this.state.selectedPage+1;
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page); this.props.getPJobs(); }, 300);
         this.setState({ showQForm: false });
 
     }
@@ -148,7 +149,8 @@ export class AllCandidates extends Component {
                 this.props.updateInviteStatus(data);
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
-                setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs() }, 300);
+                let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : this.state.selectedPage+1;
+                setTimeout(() => { this.props.getAllJobs(this.props.user.id, page); this.props.getPJobs() }, 300);
                 this.sendSuccessAlert();
             }
         }
@@ -287,11 +289,8 @@ export class AllCandidates extends Component {
                             />
                         </div>
                     </div>
-                    <div className="container-fluid" style={{ marginTop: "1rem", paddingLeft:"0px"}}>
-                        <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
-                            <div style={{ marginLeft: "2rem" }}>
-                                <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: (this.props.curJob.all_invited ? "none" : "inline") }} />
-                            </div>
+                    <div className="container-fluid" style={{ marginTop: "1rem"}}>
+                        <div className="row interview-txt7 interview-center pl-3" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             <div className="col-4"><span>Name</span></div>
                             <div className="col-2">Applied On</div>
                             <div className="col-3" style={{ padding: "0rem", zIndex: "9999" }}>
@@ -356,6 +355,7 @@ export class AllCandidates extends Component {
                                     getPJobs={this.props.getPJobs}
                                     user={this.props.user}
                                     moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                    selectedPage={this.state.selectedPage}
                                 />
                             )
                         })}
@@ -433,14 +433,16 @@ const ApplicantRow = (props) => {
             "isViewed": true,
         }
         props.updateCandidateViewedStatus(data);
-        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : props.selectedPage+1;
+        setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
         sessionStorage.setItem(("showPreview" + props.index), "true");
         sessionStorage.setItem("current", props.index);
         setShowPreview(true);
     }
 
     function hideModal() {
-        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : props.selectedPage+1;
+        setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
         sessionStorage.removeItem("showPreview" + props.index);
         sessionStorage.removeItem("current");
         setShowPreview(false);
@@ -475,17 +477,7 @@ const ApplicantRow = (props) => {
                     marginTop: "0.8rem"
                 }}
             />
-            <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem"}}>
-                <div className="interview-txt9 mb-2" style={{ marginLeft: "1rem" }}>
-                    {(props.applicant.is_invited != 1) ?
-                        <div>
-                            <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
-                        </div> :
-                        <div>
-                            <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" style={{ visibility: "hidden" }} />
-                        </div>
-                    }
-                </div>
+            <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem"}}>
                 <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#67A3F3", paddingLeft: "0.3rem" }}>
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
@@ -530,7 +522,7 @@ const ApplicantRow = (props) => {
                                 Active
                             </button>
                         }
-                        {(props.applicant.is_invited == 3) &&
+                        {(!props.applicant.is_active) &&
                             <button className="default-btn invite-btn"
                                 style={{ backgroundColor: "#FF0000", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
                             >
@@ -573,6 +565,7 @@ const ApplicantRow = (props) => {
                         linkedin={applicants[parseInt(sessionStorage.getItem("current")) || current].linkedinurl}
                         moveCandidateToInterview={props.moveCandidateToInterview}
                         filter={props.filter}
+                        selectedPage={props.selectedPage}
                     />
                 </MyFullModal>
             </div>
