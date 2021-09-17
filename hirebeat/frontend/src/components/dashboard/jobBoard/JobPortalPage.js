@@ -20,36 +20,54 @@ export class JobPortalPage extends Component {
 
     renderAllCandidates = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "allCandidates");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "");
+        this.props.getPJobs();
         this.setState({
             portalSubpage: "allCandidates",
         });
     };
     renderResumeScreen = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "resumeScreen");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "Resume Review");
+        this.props.getPJobs();
         this.setState({
             portalSubpage: "resumeScreen",
         });
     };
     renderVideoInterview = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "videoInterview");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "");
+        this.props.getPJobs();
         this.setState({
             portalSubpage: "videoInterview",
         });
     };
     renderLiveInterview = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "liveInterview");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "");
+        this.props.getPJobs();
         this.setState({
             portalSubpage: "liveInterview",
         });
     };
     renderShortList = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "shortList");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "");
+        this.props.getPJobs();
         this.setState({
             portalSubpage: "shortList",
         });
     };
     renderPipeline = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "pipeline");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "");
+        this.props.getPJobs();
         this.setState({
             portalSubpage: "pipeline",
         });

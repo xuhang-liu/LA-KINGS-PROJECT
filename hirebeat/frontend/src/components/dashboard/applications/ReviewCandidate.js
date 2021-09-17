@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import { IconText } from "../DashboardComponents";
-import { MyModal80 } from "./../DashboardComponents";
+import { MyModal80, MyModalUpgrade } from "./../DashboardComponents";
 import { ResumeEvaJobs } from "./ResumeEvaJobs";
 import EmbedQuestionForm from "./../jobBoard/EmbedQuestionForm"
 
 const ReviewCandidate = (props) => {
     const [showEva, setShowEva] = useState(false);
     const [showEmbedQForm, setShowEmbedQForm] = useState(false);
+    const [showMoveForm, setShowMoveForm] = useState(false);
+    const [nextStage, setNextStage] = useState("");
+    const [currentStage, setCurrentStage] = useState(props.applicant.current_stage);
 
-    function inviteCandidates() {
+    function openMoveForm() {
+        setShowMoveForm(true);
+    }
+
+    function moveCandidates() {
         let candidateCount = 1;
         let positionId = props.curJob.job_details.positions_id;
         let jobId = props.curJob.job_details.id;
@@ -18,12 +25,12 @@ const ReviewCandidate = (props) => {
         emails.push(props.email);
         names.push(props.first_name + " " + props.last_name);
         invitedCandidates.push(props.candidateId);
-        if (candidateCount > (props.profile.candidate_limit)) {
-            alert('Upgrade Now! You can only add ' + parseInt(props.profile.candidate_limit) + ' more candidates for this position!');
-        } else {
+        if (nextStage != "") {
             let data = {
+                "positionId": props.curJob.job_details.positions_id,
                 "candidates": invitedCandidates,
-                "isInvited": 1,
+                "nextStage": nextStage,
+                "is_reject": false,
             }
             let meta = {
                 position_id: positionId,
@@ -31,12 +38,33 @@ const ReviewCandidate = (props) => {
                 emails: emails,
                 names: names,
             }
-            props.moveCandidateToInterview(meta);
+            if(props.applicant.current_stage == "Resume Review"){
+                props.moveCandidateToInterview(meta);
+            }
             props.updateInviteStatus(data);
+            setShowMoveForm(false);
             // update
-            setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
-            alert("Move to Interview Process Success!");
+            let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : props.selectedPage+1;
+            setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
+            alert("Move Stage Success!");
+        } else {
+            alert("Please select a stage to move.");
         }
+    };
+
+    function rejectCandidates() {
+        const invitedCandidates = [];
+        invitedCandidates.push(props.candidateId);
+        let data = {
+            "positionId": props.curJob.job_details.positions_id,
+            "candidates": invitedCandidates,
+            "nextStage": nextStage,
+            "is_reject": true,
+        }
+        props.updateInviteStatus(data);
+        // update
+        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
+        alert("Candidate Rejected!");
     };
 
     //    function inviteCandidates() {
@@ -112,28 +140,6 @@ const ReviewCandidate = (props) => {
         setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
     }
 
-    function holdCandidates(index) {
-        let invitedCandidates = [];
-        invitedCandidates.push(props.applicants[index].id);
-        let data = {
-            "candidates": invitedCandidates,
-            "isInvited": 2,
-        }
-        props.updateInviteStatus(data);
-        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
-    }
-
-    function rejectCandidates(index) {
-        let invitedCandidates = [];
-        invitedCandidates.push(props.applicants[index].id);
-        let data = {
-            "candidates": invitedCandidates,
-            "isInvited": 3,
-        }
-        props.updateInviteStatus(data);
-        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
-    }
-
     function showResumeEva() {
         if (props.profile.membership == "Premium") {
             setShowEva(true);
@@ -143,7 +149,7 @@ const ReviewCandidate = (props) => {
     }
 
     const renderResume = (resumes) => {
-        if (resumes == "-1"){
+        if (resumes == "-1") {
             return;
         }
         return (
@@ -236,11 +242,11 @@ const ReviewCandidate = (props) => {
                         {props.linkedin != null && props.linkedin != "" ?
                             <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
                                 <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#67A3F3", marginRight: "3px" }}></i>
-                                <a style={{ fontSize: "0.7rem", color: "#67A3F3", fontWeight:"500" }} href={props.linkedin} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
+                                <a style={{ fontSize: "0.7rem", color: "#67A3F3", fontWeight: "500" }} href={props.linkedin} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
                             </div> :
                             <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
                                 <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#979797", marginRight: "3px" }}></i>
-                                <p style={{ fontSize: "0.7rem", color: "#979797", fontWeight:"500" }}>LinkedIn not available</p>
+                                <p style={{ fontSize: "0.7rem", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
                             </div>
                         }
                     </div>
@@ -271,37 +277,25 @@ const ReviewCandidate = (props) => {
                                 </button>
                             </div>
                         }
-                        <div>
-                            {(props.is_invited != 1 && props.filter == "active") &&
+                        <div style={{ paddingBottom: "2rem" }}>
                                 <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                    <button onClick={inviteCandidates} className="default-btn1" style={{ paddingLeft: "25px", width: "13rem" }}>
-                                        Proceed to Interview
+                                    <button onClick={props.filter == "active" ? openMoveForm : jobClosedAlert} className="default-btn1" style={{ paddingLeft: "25px", width: "13rem" }}>
+                                        Move Stage
                                     </button>
-                                </div>}
-                            {(props.is_invited != 1) &&
+                                </div>
                                 <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                                     <button
-                                        onClick={props.filter == "active" ? (() => { holdCandidates(props.current) }) : jobClosedAlert }
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", width: "13rem", background: ((props.is_invited == 2) ? "#FF6B00" : "#E8EDFC"), color: ((props.is_invited == 2) ? "#ffffff" : "#090D3A") }}
-                                    >
-                                        <i className="bx-fw bx bx-help-circle" style={{color: ((props.is_invited == 2) ? "#ffffff" : "#090D3A")}}></i> Hold
-                                    </button>
-                                </div>}
-                            {(props.is_invited != 1) &&
-                                <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                    <button
-                                        onClick={props.filter == "active" ? (() => { rejectCandidates(props.current)}) : jobClosedAlert }
+                                        onClick={props.filter == "active" ? rejectCandidates : jobClosedAlert}
                                         className="default-btn1"
                                         style={{ paddingLeft: "25px", width: "13rem", background: ((props.is_invited == 3) ? "#FF0000" : "#E8EDFC"), color: ((props.is_invited == 3) ? "#ffffff" : "#090D3A") }}
                                     >
-                                        <i class='bx-fw bx bxs-x-circle' style={{color: ((props.is_invited == 3) ? "#ffffff" : "#090D3A")}}></i> Rejected
+                                        <i class='bx-fw bx bxs-x-circle' style={{ color: ((props.is_invited == 3) ? "#ffffff" : "#090D3A") }}></i> Reject
                                     </button>
-                                </div>}
+                                </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", height: "44rem", width: "73%" }}>
+                <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", height: "46rem", width: "73%" }}>
                     <h2
                         style={{
                             fontWeight: "600",
@@ -346,6 +340,54 @@ const ReviewCandidate = (props) => {
                     </div>
                 </div>
             </div>
+            <MyModalUpgrade
+                show={showMoveForm}
+                onHide={() => { setShowMoveForm(false) }}
+            >
+                <div className="container chart-bg1" style={{ padding: "2rem" }}>
+                    <h3 style={{ fontSize: "1.25rem", color: "#090d3a", fontWeight: "600", textAlign: "center" }}>Move to Another Stage</h3>
+                    {currentStage == "Resume Review" ?
+                        <div className="row d-flex justify-content-center mt-5">
+                            <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Resume Review</button>
+                        </div> :
+                        <div className="row d-flex justify-content-center mt-5">
+                            <button onClick={() => {setNextStage("Resume Review"); setCurrentStage("Resume Review")}} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Resume Review</button>
+                        </div>
+                    }
+                    {currentStage == "Video Interview" ?
+                        <div className="row d-flex justify-content-center mt-2">
+                            <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Video Interview</button>
+                        </div> :
+                        <div className="row d-flex justify-content-center mt-2">
+                            <button onClick={() => {setNextStage("Video Interview"); setCurrentStage("Video Interview")}} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Video Interview</button>
+                        </div>
+                    }
+                    {currentStage == "Live Interview" ?
+                        <div className="row d-flex justify-content-center mt-2">
+                            <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Live Interview</button>
+                        </div> :
+                        <div className="row d-flex justify-content-center mt-2">
+                            <button onClick={() => {setNextStage("Live Interview"); setCurrentStage("Live Interview")}} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Live Interview</button>
+                        </div>
+                    }
+                    {currentStage == "Short List" ?
+                        <div className="row d-flex justify-content-center mt-2">
+                            <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Shortlist</button>
+                        </div> :
+                        <div className="row d-flex justify-content-center mt-2">
+                            <button onClick={() => {setNextStage("Short List"); setCurrentStage("Short List")}} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Shortlist</button>
+                        </div>
+                    }
+                    <div className="row d-flex justify-content-center mt-5">
+                        <div className="col-6 d-flex justify-content-end">
+                            <button onClick={moveCandidates} className="default-btn" style={{ backgroundColor: "#090d3a", paddingLeft: "25px" }}>Confirm</button>
+                        </div>
+                        <div className="col-6 d-flex justify-content-start">
+                            <button onClick={() => { setShowMoveForm(false) }} className="default-btn" style={{ backgroundColor: "#979797", paddingLeft: "25px" }}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </MyModalUpgrade>
             <MyModal80
                 show={showEva}
                 onHide={() => { setShowEva(false) }}

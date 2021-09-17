@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import QuestionForm from "./../jobBoard/QuestionForm";
-import { MyModal80 } from "./../DashboardComponents";
+import { MyModal80, MyModalUpgrade } from "./../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addInterviews, moveCandidateToInterview } from "../../../redux/actions/question_actions";
@@ -20,6 +20,14 @@ export class ResumeScreening extends Component {
         editQuestion: false,
         isSortByScore: true,
         selectedPage: 0,
+        showMoveForm: false,
+        nextStage: "",
+        currentStage: "Resume Review",
+    }
+
+    componentDidMount() {
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review"); this.props.getPJobs(); }, 300);
     }
 
     onFilter = (category) => {
@@ -54,7 +62,8 @@ export class ResumeScreening extends Component {
     }
 
     hideQForm = () => {
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); }, 300);
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review"); this.props.getPJobs(); }, 300);
         this.setState({ showQForm: false });
 
     }
@@ -75,16 +84,20 @@ export class ResumeScreening extends Component {
         });
     };
 
-    noCandidateAlert = () => {
+    rejectSuccessAlert = () => {
         confirmAlert({
-            title: "No Candidate Selected",
-            message: "Please select candidates for interview",
+            title: "Candidate Rejected!",
+            message: "You have rejected the candidates successfully.",
             buttons: [
                 {
                     label: 'Ok'
                 }
             ]
         });
+    };
+
+    noCandidateAlert = () => {
+        alert("No Candidate Selected!");
     }
 
     disableQuestionEdition = () => {
@@ -95,7 +108,13 @@ export class ResumeScreening extends Component {
         this.setState({ editQuestion: true });
     }
 
-    inviteCandidates = () => {
+    openMoveForm = () => {
+        this.setState({
+            showMoveForm: true
+        })
+    }
+
+    moveCandidates = () => {
         let candidateCount = 0;
         let positionId = this.props.curJob.job_details.positions_id;
         let jobId = this.props.curJob.job_details.id;
@@ -114,12 +133,12 @@ export class ResumeScreening extends Component {
         }
         // check candidates selected or not
         if (candidateCount > 0) {
-            if (candidateCount > (this.props.profile.candidate_limit)) {
-                alert('Upgrade Now! You can only add ' + parseInt(this.props.profile.candidate_limit) + ' more candidates for this position!');
-            } else {
+            if ((this.state.nextStage != "") && (this.state.nextStage != "Resume Review")) {
                 let data = {
+                    "positionId": positionId,
                     "candidates": invitedCandidates,
-                    "isInvited": 1,
+                    "nextStage": this.state.nextStage,
+                    "is_reject": false,
                 }
                 let viewedData = {
                     "applyIds": invitedCandidates,
@@ -134,15 +153,56 @@ export class ResumeScreening extends Component {
                 this.props.moveCandidateToInterview(meta);
                 this.props.updateInviteStatus(data);
                 this.props.updateCandidateViewedStatus(viewedData);
+                this.setState({
+                    showMoveForm: false
+                });
                 // update
-                setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs() }, 300);
+                let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
+                setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review"); this.props.getPJobs() }, 300);
                 this.sendSuccessAlert();
+            } else if (this.state.nextStage == "Resume Review") {
+                alert("These candidates are already in this stage!");
+            } else {
+                alert("Please select a stage to move!");
             }
         }
         else {
             this.noCandidateAlert();
         }
     }
+
+    rejectCandidates = () => {
+        let candidateCount = 0;
+        let positionId = this.props.curJob.job_details.positions_id;
+        const emails = [];
+        const names = [];
+        const invitedCandidates = [];
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                names.push(candidate.first_name + " " + candidate.last_name);
+                emails.push(candidate.email.toLowerCase());
+                invitedCandidates.push(candidate.id);
+                candidateCount += 1;
+            }
+        }
+        if (candidateCount > 0) {
+            let data = {
+                "positionId": positionId,
+                "candidates": invitedCandidates,
+                "nextStage": this.state.nextStage,
+                "is_reject": true,
+            }
+            this.props.updateInviteStatus(data);
+            // update
+            let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
+            setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review"); this.props.getPJobs() }, 300);
+            this.rejectSuccessAlert();
+        } else {
+            this.noCandidateAlert();
+        }
+    };
     // invite candidates with video interviews
     //    inviteCandidates = () => {
     //        let candidateCount = 0;
@@ -236,14 +296,14 @@ export class ResumeScreening extends Component {
     }
 
     sortByScore = () => {
-        this.setState({isSortByScore: !this.state.isSortByScore});
+        this.setState({ isSortByScore: !this.state.isSortByScore });
     }
 
     handlePageClick = (data) => {
         let selectedPage = data.selected; // 0 index based
-        this.setState({selectedPage: selectedPage});
+        this.setState({ selectedPage: selectedPage });
         let page = selectedPage + 1;
-        this.props.getAllJobs(this.props.user.id, page);
+        this.props.getAllJobs(this.props.user.id, page, "Resume Review");
         sessionStorage.setItem("jobAppPage", String(selectedPage));
     };
 
@@ -254,34 +314,34 @@ export class ResumeScreening extends Component {
                     <div className="row interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
                         <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{position:"absolute", marginLeft:"0.5rem", marginTop:"0.2rem"}} className="bx bx-search bx-sm"></i>
+                                <i style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
                                 <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
                             </span>
                         </div>
                         <div className="ml-auto">
                             <ReactPaginate
-                                  previousLabel={'< prev'}
-                                  nextLabel={'next >'}
-                                  breakLabel={'...'}
-                                  breakClassName={'break-me'}
-                                  pageCount={this.props.curJob.total_page}
-                                  marginPagesDisplayed={1}
-                                  pageRangeDisplayed={5}
-                                  onPageChange={this.handlePageClick}
-                                  containerClassName={'pagination3'}
-                                  activeClassName={'active'}
-                                  forcePage={sessionStorage.getItem("jobAppPage")?parseInt(sessionStorage.getItem("jobAppPage")):this.state.selectedPage}
+                                previousLabel={'< prev'}
+                                nextLabel={'next >'}
+                                breakLabel={'...'}
+                                breakClassName={'break-me'}
+                                pageCount={this.props.curJob.total_page}
+                                marginPagesDisplayed={1}
+                                pageRangeDisplayed={5}
+                                onPageChange={this.handlePageClick}
+                                containerClassName={'pagination3'}
+                                activeClassName={'active'}
+                                forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
                             />
                         </div>
                     </div>
-                    <div className="container-fluid" style={{ marginTop: "1rem", paddingLeft:"0px"}}>
-                        <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem"}}>
+                    <div className="container-fluid" style={{ marginTop: "1rem", paddingLeft: "0px" }}>
+                        <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             <div style={{ marginLeft: "2rem" }}>
                                 <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: (this.props.curJob.all_invited ? "none" : "inline") }} />
                             </div>
                             <div className="col-4"><span>Name</span></div>
                             <div className="col-2">Applied On</div>
-                            <div className="col-2">Resume Score <span onClick={this.sortByScore} style={{color: "#67A3F3", cursor: "pointer"}}><i class='bx bx-sort'></i></span></div>
+                            <div className="col-2">Resume Score <span onClick={this.sortByScore} style={{ color: "#67A3F3", cursor: "pointer" }}><i class='bx bx-sort'></i></span></div>
                         </div>
                         {/* sort by resume score descending */}
                         {this.state.isSortByScore && this.props.curJob.applicants.sort((a, b) => parseInt(b.result_rate) - parseInt(a.result_rate)).map((a, index) => {
@@ -322,6 +382,7 @@ export class ResumeScreening extends Component {
                                     getPJobs={this.props.getPJobs}
                                     user={this.props.user}
                                     moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                    selectedPage={this.state.selectedPage}
                                 />
                             )
                         })}
@@ -364,46 +425,95 @@ export class ResumeScreening extends Component {
                                     getPJobs={this.props.getPJobs}
                                     user={this.props.user}
                                     moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                    selectedPage={this.state.selectedPage}
                                 />
                             )
                         })}
                     </div>
-                    <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                    <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
                         <ReactPaginate
-                              previousLabel={'< prev'}
-                              nextLabel={'next >'}
-                              breakLabel={'...'}
-                              breakClassName={'break-me'}
-                              pageCount={this.props.curJob.total_page}
-                              marginPagesDisplayed={1}
-                              pageRangeDisplayed={5}
-                              onPageChange={this.handlePageClick}
-                              containerClassName={'pagination3'}
-                              activeClassName={'active'}
-                              forcePage={sessionStorage.getItem("jobAppPage")?parseInt(sessionStorage.getItem("jobAppPage")):this.state.selectedPage}
+                            previousLabel={'< prev'}
+                            nextLabel={'next >'}
+                            breakLabel={'...'}
+                            breakClassName={'break-me'}
+                            pageCount={this.props.curJob.total_page}
+                            marginPagesDisplayed={1}
+                            pageRangeDisplayed={5}
+                            onPageChange={this.handlePageClick}
+                            containerClassName={'pagination3'}
+                            activeClassName={'active'}
+                            forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
                         />
                     </div>
                 </div>
                 {this.props.filter == "active" &&
-                    <div style={{ marginTop: "2rem", marginLeft:"2rem" }}>
+                    <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
                         <button
                             className="default-btn"
-                            style={{ paddingLeft: "25px", backgroundColor:"#090d3a", paddingTop:"8px", paddingBottom:"8px" }}
-                            onClick={this.inviteCandidates}
+                            style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                            onClick={this.openMoveForm}
                         >
                             Move All
                             <span></span>
                         </button>
                         <button
                             className="default-btn"
-                            style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor:"#ff0000", paddingTop:"8px", paddingBottom:"8px" }}
-                            onClick={this.inviteCandidates}
+                            style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                            onClick={this.rejectCandidates}
                         >
                             Reject All
                             <span></span>
                         </button>
                     </div>
                 }
+                <MyModalUpgrade
+                    show={this.state.showMoveForm}
+                    onHide={() => { this.setState({ showMoveForm: false }) }}
+                >
+                    <div className="container chart-bg1" style={{ padding: "2rem" }}>
+                        <h3 style={{ fontSize: "1.25rem", color: "#090d3a", fontWeight: "600", textAlign: "center" }}>Move to Another Stage</h3>
+                        {this.state.currentStage == "Resume Review" ?
+                            <div className="row d-flex justify-content-center mt-5">
+                                <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Resume Review</button>
+                            </div> :
+                            <div className="row d-flex justify-content-center mt-5">
+                                <button onClick={() => { this.setState({ nextStage: "Resume Review" }); this.setState({ currentStage: "Resume Review" }) }} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Resume Review</button>
+                            </div>
+                        }
+                        {this.state.currentStage == "Video Interview" ?
+                            <div className="row d-flex justify-content-center mt-2">
+                                <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Video Interview</button>
+                            </div> :
+                            <div className="row d-flex justify-content-center mt-2">
+                                <button onClick={() => { this.setState({ nextStage: "Video Interview" }); this.setState({ currentStage: "Video Interview" }) }} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Video Interview</button>
+                            </div>
+                        }
+                        {this.state.currentStage == "Live Interview" ?
+                            <div className="row d-flex justify-content-center mt-2">
+                                <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Live Interview</button>
+                            </div> :
+                            <div className="row d-flex justify-content-center mt-2">
+                                <button onClick={() => { this.setState({ nextStage: "Live Interview" }); this.setState({ currentStage: "Live Interview" }) }} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Live Interview</button>
+                            </div>
+                        }
+                        {this.state.currentStage == "Short List" ?
+                            <div className="row d-flex justify-content-center mt-2">
+                                <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Shortlist</button>
+                            </div> :
+                            <div className="row d-flex justify-content-center mt-2">
+                                <button onClick={() => { this.setState({ nextStage: "Short List" }); this.setState({ currentStage: "Short List" }) }} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Shortlist</button>
+                            </div>
+                        }
+                        <div className="row d-flex justify-content-center mt-5">
+                            <div className="col-6 d-flex justify-content-end">
+                                <button onClick={this.moveCandidates} className="default-btn" style={{ backgroundColor: "#090d3a", paddingLeft: "25px" }}>Confirm</button>
+                            </div>
+                            <div className="col-6 d-flex justify-content-start">
+                                <button onClick={() => { this.setState({ showMoveForm: false }) }} className="default-btn" style={{ backgroundColor: "#979797", paddingLeft: "25px" }}>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </MyModalUpgrade>
                 {/* add new questions */}
                 <MyModal80
                     show={this.state.showQForm}
@@ -461,14 +571,16 @@ const ApplicantRow = (props) => {
             "isViewed": true,
         }
         props.updateCandidateViewedStatus(data);
-        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
         sessionStorage.setItem(("showPreview" + props.index), "true");
         sessionStorage.setItem("current", props.index);
         setShowPreview(true);
     }
 
     function hideModal() {
-        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
         sessionStorage.removeItem("showPreview" + props.index);
         sessionStorage.removeItem("current");
         setShowPreview(false);
@@ -484,7 +596,7 @@ const ApplicantRow = (props) => {
                     marginTop: "0.8rem"
                 }}
             />
-            <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem"}}>
+            <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem" }}>
                 <div className="interview-txt9 mb-2" style={{ marginLeft: "1rem" }}>
                     {(props.applicant.is_invited != 1) ?
                         <div>
@@ -499,24 +611,24 @@ const ApplicantRow = (props) => {
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView()}}>
+                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
                                 {name.length > 29 ? name.substring(0, 27) + "..." : name}
                             </span>
                         </div> :
                         <div>
                             <span className="dot" style={{ visibility: "hidden" }}></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView()}}>
+                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
                                 {name.length > 29 ? name.substring(0, 27) + "..." : name}
                             </span>
                         </div>
                     }
                 </div>
-                <div className="col-2 interview-txt9 mb-2"><span style={{marginLeft:"0.6rem"}}>{props.applicant.apply_date.substring(0, 10)}</span></div>
-                <div className="col-2 interview-txt9 mb-2" style={{marginLeft: "30px"}}>
-                    {resumeScore >= 76 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-great.png" />}
-                    {resumeScore >= 51 && resumeScore < 76 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-good.png" />}
-                    {resumeScore >= 26 && resumeScore < 51 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-avg.png" />}
-                    {resumeScore >= 0 && resumeScore < 26 && <img style={{width: "75%"}} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-bad.png" />}
+                <div className="col-2 interview-txt9 mb-2"><span style={{ marginLeft: "0.6rem" }}>{props.applicant.apply_date.substring(0, 10)}</span></div>
+                <div className="col-2 interview-txt9 mb-2" style={{ marginLeft: "30px" }}>
+                    {resumeScore >= 76 && <img style={{ width: "75%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-great.png" />}
+                    {resumeScore >= 51 && resumeScore < 76 && <img style={{ width: "75%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-good.png" />}
+                    {resumeScore >= 26 && resumeScore < 51 && <img style={{ width: "75%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-avg.png" />}
+                    {resumeScore >= 0 && resumeScore < 26 && <img style={{ width: "75%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-bad.png" />}
                 </div>
             </div>
             <div style={{ background: "#E8EDFC" }}>
@@ -551,6 +663,7 @@ const ApplicantRow = (props) => {
                         linkedin={applicants[parseInt(sessionStorage.getItem("current")) || current].linkedinurl}
                         moveCandidateToInterview={props.moveCandidateToInterview}
                         filter={props.filter}
+                        selectedPage={props.selectedPage}
                     />
                 </MyFullModal>
             </div>
