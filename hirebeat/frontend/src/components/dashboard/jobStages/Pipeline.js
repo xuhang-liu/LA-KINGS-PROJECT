@@ -311,7 +311,7 @@ export class Pipeline extends Component {
                     {/*Resume Screening*/}
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
                         <div onClick={this.props.renderResumeScreen} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage2.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 4 }}>
-                            <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Resume Screening</p>
+                            <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Resume Review</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props.analytics.resume_num}</p>
                         </div>
                         <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>

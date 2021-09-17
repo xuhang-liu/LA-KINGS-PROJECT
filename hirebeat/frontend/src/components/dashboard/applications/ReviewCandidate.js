@@ -38,13 +38,13 @@ const ReviewCandidate = (props) => {
                 emails: emails,
                 names: names,
             }
-            if(props.applicant.current_stage == "Resume Review"){
+            if (props.applicant.current_stage == "Resume Review") {
                 props.moveCandidateToInterview(meta);
             }
             props.updateInviteStatus(data);
             setShowMoveForm(false);
             // update
-            let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : props.selectedPage+1;
+            let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
             setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
             alert("Move Stage Success!");
         } else {
@@ -64,7 +64,11 @@ const ReviewCandidate = (props) => {
         props.updateInviteStatus(data);
         // update
         setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
-        alert("Candidate Rejected!");
+        if (props.applicant.is_active){
+            alert("Candidate Rejected!");
+        } else {
+            alert("Candidate Unrejected!");
+        }
     };
 
     //    function inviteCandidates() {
@@ -278,20 +282,43 @@ const ReviewCandidate = (props) => {
                             </div>
                         }
                         <div style={{ paddingBottom: "2rem" }}>
+                            <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}><p style={{ color: "#090d3a" }}>Current Stage: {props.applicant.current_stage}</p></div>
+                            {props.applicant.is_active &&
                                 <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                                     <button onClick={props.filter == "active" ? openMoveForm : jobClosedAlert} className="default-btn1" style={{ paddingLeft: "25px", width: "13rem" }}>
                                         Move Stage
                                     </button>
-                                </div>
+                                </div>}
+                            {props.applicant.is_active ?
                                 <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                                     <button
                                         onClick={props.filter == "active" ? rejectCandidates : jobClosedAlert}
                                         className="default-btn1"
-                                        style={{ paddingLeft: "25px", width: "13rem", background: ((props.is_invited == 3) ? "#FF0000" : "#E8EDFC"), color: ((props.is_invited == 3) ? "#ffffff" : "#090D3A") }}
+                                        style={{ paddingLeft: "25px", width: "13rem", background: "#E8EDFC", color: "#090D3A" }}
                                     >
-                                        <i class='bx-fw bx bxs-x-circle' style={{ color: ((props.is_invited == 3) ? "#ffffff" : "#090D3A") }}></i> Reject
+                                        <i class='bx-fw bx bxs-x-circle' style={{ color: "#090D3A" }}></i> Reject
+                                    </button>
+                                </div> :
+                                <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                    <button
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px", width: "13rem", background: "#FF0000", color: "#ffffff" }}
+                                    >
+                                        <i class='bx-fw bx bxs-x-circle' style={{ color: "#ffffff" }}></i> Rejected
                                     </button>
                                 </div>
+                            }
+                            {!props.applicant.is_active &&
+                                <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                    <button
+                                        onClick={props.filter == "active" ? rejectCandidates : jobClosedAlert}
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px", width: "13rem", background: "#fff", color: "#090D3A", textDecoration:"underline" }}
+                                    >
+                                        Unreject
+                                    </button>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -351,7 +378,7 @@ const ReviewCandidate = (props) => {
                             <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Resume Review</button>
                         </div> :
                         <div className="row d-flex justify-content-center mt-5">
-                            <button onClick={() => {setNextStage("Resume Review"); setCurrentStage("Resume Review")}} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Resume Review</button>
+                            <button onClick={() => { setNextStage("Resume Review"); setCurrentStage("Resume Review") }} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Resume Review</button>
                         </div>
                     }
                     {currentStage == "Video Interview" ?
@@ -359,7 +386,7 @@ const ReviewCandidate = (props) => {
                             <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Video Interview</button>
                         </div> :
                         <div className="row d-flex justify-content-center mt-2">
-                            <button onClick={() => {setNextStage("Video Interview"); setCurrentStage("Video Interview")}} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Video Interview</button>
+                            <button onClick={() => { setNextStage("Video Interview"); setCurrentStage("Video Interview") }} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Video Interview</button>
                         </div>
                     }
                     {currentStage == "Live Interview" ?
@@ -367,7 +394,7 @@ const ReviewCandidate = (props) => {
                             <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Live Interview</button>
                         </div> :
                         <div className="row d-flex justify-content-center mt-2">
-                            <button onClick={() => {setNextStage("Live Interview"); setCurrentStage("Live Interview")}} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Live Interview</button>
+                            <button onClick={() => { setNextStage("Live Interview"); setCurrentStage("Live Interview") }} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Live Interview</button>
                         </div>
                     }
                     {currentStage == "Short List" ?
@@ -375,7 +402,7 @@ const ReviewCandidate = (props) => {
                             <button className="default-btn w-50" style={{ backgroundColor: "#1E5EFF", paddingRight: "50px" }}>Shortlist</button>
                         </div> :
                         <div className="row d-flex justify-content-center mt-2">
-                            <button onClick={() => {setNextStage("Short List"); setCurrentStage("Short List")}} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Shortlist</button>
+                            <button onClick={() => { setNextStage("Short List"); setCurrentStage("Short List") }} className="default-btn w-50" style={{ backgroundColor: "#E8EDFC", color: "#090d3a", paddingRight: "50px" }}>Shortlist</button>
                         </div>
                     }
                     <div className="row d-flex justify-content-center mt-5">
