@@ -300,18 +300,20 @@ def move_candidate_to_interview(request):
     emails = request.data["emails"]
     names = request.data["names"]
     job_id = request.data["job_id"]
+    nextStage = request.data["nextStage"]
+    candidates = request.data['candidates']
 
     for i in range(len(emails)):
         if emails[i] != "" and names[i] != "":
             # avoid duplicate data
             try:
                 candidate = CandidatesInterview.objects.get(email=emails[i], positions_id=position_id)
-                invited = InvitedCandidates.objects.get(email=emails[i], positions_id=position_id)
+                invitedCan = InvitedCandidates.objects.get(email=emails[i], positions_id=position_id)
             except ObjectDoesNotExist:
                 # manually add case
                 if job_id == -1:
-                    CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
-                    InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,)
+                    candidate = CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
+                    invitedCan = InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,)
                 #  apply from career page case
                 else:
                     # get resume url, phone, location, resume analysis
@@ -344,7 +346,7 @@ def move_candidate_to_interview(request):
                     transferable_skills_occurrence = candidate_info.transferable_skills_occurrence
                     # save data
                     CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
-                    InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,
+                    invitedCan = InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,
                                                      resume_url=resume_url, location=location, phone=phone, result_rate=result_rate,
                                                      hard_skill_jd_list=hard_skill_jd_list, hard_skill_resume_list=hard_skill_resume_list,
                                                      hard_skill_info_list=hard_skill_info_list, soft_skill_resume_list=soft_skill_resume_list,
@@ -358,6 +360,13 @@ def move_candidate_to_interview(request):
                                                      transferable_skills_name=transferable_skills_name, transferable_skills_on_resume=transferable_skills_on_resume,
                                                      transferable_skills_occurrence=transferable_skills_occurrence
                                                      )
+
+    for i in range(len(candidates)):
+        candidate = ApplyCandidates.objects.get(id=candidates[i])
+        candidate.current_stage = nextStage
+        candidate.save()
+        invitedCan.current_stage = nextStage
+        invitedCan.save()
 
     return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)
 
