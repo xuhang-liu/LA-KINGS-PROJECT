@@ -74,8 +74,8 @@ export class ResumeScreening extends Component {
 
     sendSuccessAlert = () => {
         confirmAlert({
-            title: "Move to Interview Process Success",
-            message: "You have moved the candidates to interview process successfully.",
+            title: "Move to next stage Success",
+            message: "You have moved the candidates to selected stage successfully.",
             buttons: [
                 {
                     label: 'Ok'
@@ -134,12 +134,6 @@ export class ResumeScreening extends Component {
         // check candidates selected or not
         if (candidateCount > 0) {
             if ((this.state.nextStage != "") && (this.state.nextStage != "Resume Review")) {
-                let data = {
-                    "positionId": positionId,
-                    "candidates": invitedCandidates,
-                    "nextStage": this.state.nextStage,
-                    "is_reject": false,
-                }
                 let viewedData = {
                     "applyIds": invitedCandidates,
                     "isViewed": true,
@@ -149,9 +143,10 @@ export class ResumeScreening extends Component {
                     job_id: jobId,
                     emails: emails,
                     names: names,
+                    "candidates": invitedCandidates,
+                    "nextStage": this.state.nextStage,
                 }
                 this.props.moveCandidateToInterview(meta);
-                this.props.updateInviteStatus(data);
                 this.props.updateCandidateViewedStatus(viewedData);
                 this.setState({
                     showMoveForm: false

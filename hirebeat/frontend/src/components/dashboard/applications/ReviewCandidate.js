@@ -37,6 +37,8 @@ const ReviewCandidate = (props) => {
                 job_id: jobId,
                 emails: emails,
                 names: names,
+                "candidates": invitedCandidates,
+                "nextStage": nextStage,
             }
             if (props.applicant.current_stage == "Resume Review") {
                 props.moveCandidateToInterview(meta);
@@ -47,6 +49,7 @@ const ReviewCandidate = (props) => {
             let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
             setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
             alert("Move Stage Success!");
+            props.onHide();
         } else {
             alert("Please select a stage to move.");
         }
