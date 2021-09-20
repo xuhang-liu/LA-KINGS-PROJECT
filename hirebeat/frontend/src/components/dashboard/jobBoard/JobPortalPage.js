@@ -38,8 +38,8 @@ export class JobPortalPage extends Component {
     };
     renderVideoInterview = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "videoInterview");
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : 1;
-        this.props.getAllJobs(this.props.user.id, page, "");
+        let interviewPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
+        this.props.getPostedJobs(this.props.user.id, interviewPage, "Video Interview");
         this.props.getPJobs();
         this.setState({
             portalSubpage: "videoInterview",
@@ -56,9 +56,8 @@ export class JobPortalPage extends Component {
     };
     renderShortList = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "shortList");
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : 1;
-        this.props.getAllJobs(this.props.user.id, page, "");
-        this.props.getPJobs();
+        let shortListPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
+        this.props.getPostedJobs(this.props.user.id, shortListPage, "Short List");
         this.setState({
             portalSubpage: "shortList",
         });
@@ -183,6 +182,7 @@ export class JobPortalPage extends Component {
                     getReviewerEvaluation={this.props.getReviewerEvaluation}
                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
                     positionId={pos.position_id}
+                    getPostedJobs={this.props.getPostedJobs}
                 />;
             default:
                 return null;

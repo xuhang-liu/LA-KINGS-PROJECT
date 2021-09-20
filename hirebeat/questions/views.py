@@ -112,15 +112,20 @@ def get_posted_jobs(request):
     int_dots = 0
     job_dots = 0
     user_id = request.query_params.get("user_id")
-    page = int(request.query_params.get("page"))
+    page = int(request.GET.get("page", 1))
+    stage = request.GET.get("stage", "")
     profile = Profile.objects.get(user_id=user_id)
     # employer role
     if profile.is_subreviwer is False and profile.is_external_reviewer is False:
         positions = Positions.objects.filter(user_id=user_id)
         for i in range(len(positions)):
             positions_id = positions[i].id
-            # get each position applicants
-            applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).order_by('-id').values())
+            # get each position applicants by current stage
+            applicants = []
+            if stage == "":
+                applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).order_by('-id').values())
+            else:
+                applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id, current_stage=stage).order_by('-id').values())
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)
             if total_records > 15:

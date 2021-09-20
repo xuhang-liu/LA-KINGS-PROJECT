@@ -12,6 +12,10 @@ import axios from "axios";
 import ReactPaginate from 'react-paginate';
 
 export function VideoInterview(props){
+    useEffect(() => {
+        props.getPostedJobs(props.user.id, 1, "Video Interview");
+    }, [])
+
     var curlimit = 0;
     const [invite, setInvite] = useState(false);
     const [showQForm, setShowQForm] = useState(false);

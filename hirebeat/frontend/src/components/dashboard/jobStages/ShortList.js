@@ -14,6 +14,7 @@ const ShortList = (props) => {
     const [selectedId, setSelectedId] = useState(props.positionId);
 
     useEffect(() => {
+        props.getPostedJobs(props.user.id, 1, "Short List");
         props.loadStarList(props.positionId);
     }, [])
 
