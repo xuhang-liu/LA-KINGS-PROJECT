@@ -4,8 +4,10 @@ import QuestionForm from "./../jobBoard/QuestionForm";
 import { MyModal80 } from "./../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addInterviews, moveCandidateToInterview } from "../../../redux/actions/question_actions";
+import { addInterviews, moveCandidateToInterview, getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, updateViewStatus, updateCommentStatus } from "../../../redux/actions/question_actions";
 import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/actions/job_actions";
+import { getApplicantsVideos, getApplicantsInfo } from "../../../redux/actions/video_actions";
+import { subreviewerUpdateComment } from "../../../redux/actions/auth_actions";
 import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import Select from 'react-select';
@@ -67,7 +69,7 @@ export class AllCandidates extends Component {
     }
 
     hideQForm = () => {
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : this.state.selectedPage+1;
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
         setTimeout(() => { this.props.getAllJobs(this.props.user.id, page); this.props.getPJobs(); }, 300);
         this.setState({ showQForm: false });
 
@@ -149,7 +151,7 @@ export class AllCandidates extends Component {
                 this.props.updateInviteStatus(data);
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
-                let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : this.state.selectedPage+1;
+                let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
                 setTimeout(() => { this.props.getAllJobs(this.props.user.id, page); this.props.getPJobs() }, 300);
                 this.sendSuccessAlert();
             }
@@ -251,12 +253,12 @@ export class AllCandidates extends Component {
     }
 
     sortByScore = () => {
-        this.setState({isSortByScore: !this.state.isSortByScore});
+        this.setState({ isSortByScore: !this.state.isSortByScore });
     }
 
     handlePageClick = (data) => {
         let selectedPage = data.selected; // 0 index based
-        this.setState({selectedPage: selectedPage});
+        this.setState({ selectedPage: selectedPage });
         let page = selectedPage + 1;
         this.props.getAllJobs(this.props.user.id, page);
         sessionStorage.setItem("jobAppPage", String(selectedPage));
@@ -269,38 +271,38 @@ export class AllCandidates extends Component {
                     <div className="row interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
                         <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{position:"absolute", marginLeft:"0.5rem", marginTop:"0.2rem"}} className="bx bx-search bx-sm"></i>
+                                <i style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
                                 <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
                             </span>
                         </div>
                         <div className="ml-auto">
                             <ReactPaginate
-                                  previousLabel={'< prev'}
-                                  nextLabel={'next >'}
-                                  breakLabel={'...'}
-                                  breakClassName={'break-me'}
-                                  pageCount={this.props.curJob.total_page}
-                                  marginPagesDisplayed={1}
-                                  pageRangeDisplayed={5}
-                                  onPageChange={this.handlePageClick}
-                                  containerClassName={'pagination3'}
-                                  activeClassName={'active'}
-                                  forcePage={sessionStorage.getItem("jobAppPage")?parseInt(sessionStorage.getItem("jobAppPage")):this.state.selectedPage}
+                                previousLabel={'< prev'}
+                                nextLabel={'next >'}
+                                breakLabel={'...'}
+                                breakClassName={'break-me'}
+                                pageCount={this.props.curJob.total_page}
+                                marginPagesDisplayed={1}
+                                pageRangeDisplayed={5}
+                                onPageChange={this.handlePageClick}
+                                containerClassName={'pagination3'}
+                                activeClassName={'active'}
+                                forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
                             />
                         </div>
                     </div>
-                    <div className="container-fluid" style={{ marginTop: "1rem"}}>
+                    <div className="container-fluid" style={{ marginTop: "1rem" }}>
                         <div className="row interview-txt7 interview-center pl-3" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             <div className="col-4"><span>Name</span></div>
                             <div className="col-2">Applied On</div>
                             <div className="col-3" style={{ padding: "0rem", zIndex: "9999" }}>
-                                <div className="row" style={{padding: "0rem"}}>
+                                <div className="row" style={{ padding: "0rem" }}>
                                     <span className="job-status">Current Stage</span>
                                     <Select value={this.state.stage} onChange={this.filterStage} options={this.stageOptions} className="select-category" styles={this.customStyles} />
                                 </div>
                             </div>
                             <div className="col-2" style={{ padding: "0rem", zIndex: "9999" }}>
-                                <div className="row" style={{padding: "0rem"}}>
+                                <div className="row" style={{ padding: "0rem" }}>
                                     <span className="job-status">Status</span>
                                     <Select value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles} />
                                 </div>
@@ -356,23 +358,42 @@ export class AllCandidates extends Component {
                                     user={this.props.user}
                                     moveCandidateToInterview={this.props.moveCandidateToInterview}
                                     selectedPage={this.state.selectedPage}
+                                    getReviewNote={this.props.getReviewNote}
+                                    addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
+                                    getReviewerEvaluation={this.props.getReviewerEvaluation}
+                                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                                    evaluations={this.props.evaluations}
+                                    curEvaluation={this.props.curEvaluation}
+                                    getApplicantsVideos={this.props.getApplicantsVideos}
+                                    getApplicantsInfo={this.props.getApplicantsInfo}
+                                    int_ques={this.props.int_ques}
+                                    quesiton_array={this.props.quesiton_array}
+                                    video_array={this.props.video_array}
+                                    stars={this.props.stars}
+                                    comments={this.props.comments}
+                                    pk={this.props.pk}
+                                    transcripts={this.props.transcripts}
+                                    updateViewStatus={this.props.updateViewStatus}
+                                    updateCommentStatus={this.props.updateCommentStatus}
+                                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                    reviews={this.props.reviews}
                                 />
                             )
                         })}
                     </div>
-                    <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                    <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
                         <ReactPaginate
-                              previousLabel={'< prev'}
-                              nextLabel={'next >'}
-                              breakLabel={'...'}
-                              breakClassName={'break-me'}
-                              pageCount={this.props.curJob.total_page}
-                              marginPagesDisplayed={1}
-                              pageRangeDisplayed={5}
-                              onPageChange={this.handlePageClick}
-                              containerClassName={'pagination3'}
-                              activeClassName={'active'}
-                              forcePage={sessionStorage.getItem("jobAppPage")?parseInt(sessionStorage.getItem("jobAppPage")):this.state.selectedPage}
+                            previousLabel={'< prev'}
+                            nextLabel={'next >'}
+                            breakLabel={'...'}
+                            breakClassName={'break-me'}
+                            pageCount={this.props.curJob.total_page}
+                            marginPagesDisplayed={1}
+                            pageRangeDisplayed={5}
+                            onPageChange={this.handlePageClick}
+                            containerClassName={'pagination3'}
+                            activeClassName={'active'}
+                            forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
                         />
                     </div>
                 </div>
@@ -424,6 +445,7 @@ const ApplicantRow = (props) => {
         if (sessionStorage.getItem("showPreview" + props.index) === "true") {
             setShowPreview(true);
         }
+        props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
     }, []);
     function onView() {
         let applyIds = [];
@@ -433,15 +455,20 @@ const ApplicantRow = (props) => {
             "isViewed": true,
         }
         props.updateCandidateViewedStatus(data);
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : props.selectedPage+1;
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
         setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
+        props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
+        props.getApplicantsInfo(applicants[current].email);
+        props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
+        props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
+        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email);
         sessionStorage.setItem(("showPreview" + props.index), "true");
         sessionStorage.setItem("current", props.index);
         setShowPreview(true);
     }
 
     function hideModal() {
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : props.selectedPage+1;
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
         setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
         sessionStorage.removeItem("showPreview" + props.index);
         sessionStorage.removeItem("current");
@@ -450,7 +477,7 @@ const ApplicantRow = (props) => {
 
     function getBackgroundColor() {
         let backgroundColor = "";
-            if (props.applicant.current_stage == "Resume Review") {
+        if (props.applicant.current_stage == "Resume Review") {
             backgroundColor = "#1E5EFF";
         }
         else if (props.applicant.current_stage == "Video Interview") {
@@ -466,6 +493,49 @@ const ApplicantRow = (props) => {
     }
     const backgroundColor = getBackgroundColor();
 
+    function getReviewPageData(index) {
+        let applyIds = [];
+        applyIds.push(applicants[current].id);
+        let data = {
+            "applyIds": applyIds,
+            "isViewed": true,
+        }
+        props.updateCandidateViewedStatus(data);
+        props.updateViewStatus({ "candidate_id": applicants[index].id });
+        props.getApplicantsVideos(applicants[index].email, props.curJob.job_details.positions_id);
+        props.getApplicantsInfo(applicants[index].email);
+        props.getReviewNote(props.curJob.job_details.positions_id, applicants[index].email);
+        props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[index].email);
+        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[index].email, props.user.email);
+        sessionStorage.setItem(("showPreview" + index), "true");
+        sessionStorage.setItem("current", index);
+    }
+
+    function viewNextResult(curIndex) {
+        sessionStorage.removeItem("showPreview" + curIndex);
+        let next = curIndex + 1;
+        getReviewPageData(next);
+        setCurrent(curIndex + 1);
+    };
+
+    function viewPrevResult(curIndex) {
+        sessionStorage.removeItem("showPreview" + curIndex);
+        let prev = curIndex - 1;
+        getReviewPageData(prev);
+        setCurrent(curIndex - 1);
+    };
+
+    const refresh = () => {
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
+        props.updateViewStatus({ "candidate_id": applicants[current].id });
+        props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
+        props.getApplicantsInfo(applicants[current].email);
+        props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
+        props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
+        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email);
+    }
+
     return (
         <div className="container-fluid">
             <hr
@@ -477,28 +547,28 @@ const ApplicantRow = (props) => {
                     marginTop: "0.8rem"
                 }}
             />
-            <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem"}}>
+            <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem" }}>
                 <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#67A3F3", paddingLeft: "0.3rem" }}>
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView()}}>
+                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
                                 {name.length > 29 ? name.substring(0, 27) + "..." : name}
                             </span>
                         </div> :
                         <div>
                             <span className="dot" style={{ visibility: "hidden" }}></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView()}}>
+                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
                                 {name.length > 29 ? name.substring(0, 27) + "..." : name}
                             </span>
                         </div>
                     }
                 </div>
-                <div className="col-2 interview-txt9 mb-2"><span style={{marginLeft:"0.6rem"}}>{props.applicant.apply_date.substring(0, 10)}</span></div>
-                <div className="col-3 interview-txt9 mb-2" style={{ padding: "0rem"}}>
-                    <div className="row" style={{padding: "0rem"}}>
+                <div className="col-2 interview-txt9 mb-2"><span style={{ marginLeft: "0.6rem" }}>{props.applicant.apply_date.substring(0, 10)}</span></div>
+                <div className="col-3 interview-txt9 mb-2" style={{ padding: "0rem" }}>
+                    <div className="row" style={{ padding: "0rem" }}>
                         {/* place holder */}
-                        <span className="job-status" style={{marginLeft: "15px", visibility: "hidden"}}>Status</span>
+                        <span className="job-status" style={{ marginLeft: "15px", visibility: "hidden" }}>Status</span>
                         <span>
                             {props.applicant.current_stage !== "" &&
                                 <button className="default-btn invite-btn"
@@ -510,25 +580,25 @@ const ApplicantRow = (props) => {
                         </span>
                     </div>
                 </div>
-                <div className="col-2 interview-txt9 mb-2" style={{ padding: "0rem"}}>
-                    <div className="row" style={{padding: "0rem"}}>
+                <div className="col-2 interview-txt9 mb-2" style={{ padding: "0rem" }}>
+                    <div className="row" style={{ padding: "0rem" }}>
                         {/* place holder */}
-                        <span className="job-status" style={{marginLeft: "15px", visibility: "hidden"}}>Status</span>
+                        <span className="job-status" style={{ marginLeft: "15px", visibility: "hidden" }}>Status</span>
                         <span>
-                        {(props.applicant.is_active) &&
-                            <button className="default-btn invite-btn"
-                                style={{ backgroundColor: "#0DC68E", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
-                            >
-                                Active
-                            </button>
-                        }
-                        {(!props.applicant.is_active) &&
-                            <button className="default-btn invite-btn"
-                                style={{ backgroundColor: "#FF0000", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
-                            >
-                                Rejected
-                            </button>
-                        }
+                            {(props.applicant.is_active) &&
+                                <button className="default-btn invite-btn"
+                                    style={{ backgroundColor: "#0DC68E", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
+                                >
+                                    Active
+                                </button>
+                            }
+                            {(!props.applicant.is_active) &&
+                                <button className="default-btn invite-btn"
+                                    style={{ backgroundColor: "#FF0000", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
+                                >
+                                    Rejected
+                                </button>
+                            }
                         </span>
                     </div>
                 </div>
@@ -566,6 +636,25 @@ const ApplicantRow = (props) => {
                         moveCandidateToInterview={props.moveCandidateToInterview}
                         filter={props.filter}
                         selectedPage={props.selectedPage}
+                        getReviewNote={props.getReviewNote}
+                        addOrUpdateReviewerEvaluation={props.addOrUpdateReviewerEvaluation}
+                        getReviewerEvaluation={props.getReviewerEvaluation}
+                        getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                        evaluations={props.evaluations}
+                        curEvaluation={props.curEvaluation}
+                        int_ques={props.int_ques}
+                        quesiton_array={props.quesiton_array}
+                        video_array={props.video_array}
+                        stars={props.stars}
+                        comments={props.comments}
+                        pk={props.pk}
+                        transcripts={props.transcripts}
+                        viewNextResult={viewNextResult}
+                        viewPrevResult={viewPrevResult}
+                        refresh={refresh}
+                        updateCommentStatus={props.updateCommentStatus}
+                        subreviewerUpdateComment={props.subreviewerUpdateComment}
+                        reviews={props.reviews}
                     />
                 </MyFullModal>
             </div>
@@ -573,12 +662,43 @@ const ApplicantRow = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    profile: state.auth_reducer.profile,
-    user: state.auth_reducer.user,
-    jobs: state.job_reducer.jobs,
-});
+const mapStateToProps = (state) => {
+    var quesiton_array = [];
+    var video_array = [];
+    var stars = [];
+    var comments = [];
+    var transcripts = [];
+    var pk = [];
 
-export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview })(
+    state.video_reducer.int_ques.map((i) => {
+        stars.push(i.video_stars);
+        comments.push(i.video_comment)
+        quesiton_array.push(i.question_desc);
+        video_array.push(i.url);
+        transcripts.push(i.transcripts);
+        pk.push(i.id)
+    });
+    return {
+        quesiton_array: quesiton_array,
+        video_array: video_array,
+        stars: stars,
+        comments: comments,
+        pk: pk,
+        transcripts: transcripts,
+        profile: state.auth_reducer.profile,
+        user: state.auth_reducer.user,
+        jobs: state.job_reducer.jobs,
+        evaluations: state.question_reducer.evaluations,
+        curEvaluation: state.question_reducer.curEvaluation,
+        int_ques: state.video_reducer.int_ques,
+        reviews: state.question_reducer.reviews,
+    }
+};
+
+export default withRouter(connect(mapStateToProps, {
+    addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview,
+    getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, getApplicantsVideos,
+    updateViewStatus, getApplicantsInfo, updateCommentStatus, subreviewerUpdateComment
+})(
     AllCandidates
 ));

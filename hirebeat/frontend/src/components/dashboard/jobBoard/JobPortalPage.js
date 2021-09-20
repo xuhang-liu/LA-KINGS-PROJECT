@@ -95,6 +95,8 @@ export class JobPortalPage extends Component {
                             curJob={this.props.job}
                             getAllJobs={this.props.getAllJobs}
                             getPJobs={this.props.getPJobs}
+                            profile={this.props.profile}
+                            user={this.props.user}
                         />;
             case "resumeScreen":
                 return <ResumeScreening
@@ -102,6 +104,8 @@ export class JobPortalPage extends Component {
                             curJob={this.props.job}
                             getAllJobs={this.props.getAllJobs}
                             getPJobs={this.props.getPJobs}
+                            profile={this.props.profile}
+                            user={this.props.user}
                         />;
             case "videoInterview":
                 const p = this.props.postedJobs[this.props.job.job_details.positions_id];

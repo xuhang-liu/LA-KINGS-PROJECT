@@ -3,13 +3,36 @@ import { IconText } from "../DashboardComponents";
 import { MyModal80, MyModalUpgrade } from "./../DashboardComponents";
 import { ResumeEvaJobs } from "./ResumeEvaJobs";
 import EmbedQuestionForm from "./../jobBoard/EmbedQuestionForm"
+import ApplicationVideo from "../videos/ApplicationVideo";
+import ReviewNote from "./ReviewNote";
 
 const ReviewCandidate = (props) => {
     const [showEva, setShowEva] = useState(false);
     const [showEmbedQForm, setShowEmbedQForm] = useState(false);
     const [showMoveForm, setShowMoveForm] = useState(false);
     const [nextStage, setNextStage] = useState("");
-    const [currentStage, setCurrentStage] = useState(props.applicant.current_stage);
+    const [currentStage, setCurrentStage] = useState(props.applicants[props.current].current_stage);
+    const [viewResume, setViewResume] = useState(true);
+    const [viewVideo, setviewVideo] = useState(false);
+    const [viewNotes, setViewNotes] = useState(false);
+
+    function setViewResumes() {
+        setViewResume(true);
+        setviewVideo(false);
+        setViewNotes(false);
+    }
+
+    function setViewVideos() {
+        setViewResume(false);
+        setviewVideo(true);
+        setViewNotes(false);
+    }
+
+    function setViewNotess() {
+        setViewResume(false);
+        setviewVideo(false);
+        setViewNotes(true);
+    }
 
     function openMoveForm() {
         setShowMoveForm(true);
@@ -67,7 +90,7 @@ const ReviewCandidate = (props) => {
         props.updateInviteStatus(data);
         // update
         setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
-        if (props.applicant.is_active){
+        if (props.applicant.is_active) {
             alert("Candidate Rejected!");
         } else {
             alert("Candidate Unrejected!");
@@ -180,6 +203,40 @@ const ReviewCandidate = (props) => {
         alert("Current job is closed, you can't make any change");
     }
 
+    function updateEvaluation(evaluation) {
+        // identify employer or reviewer
+        let reviewer_type = "";
+        if (props.profile.is_subreviwer) {
+            reviewer_type = "sub_reviewer";
+        }
+        else if (props.profile.is_external_reviewer) {
+            reviewer_type = "external_reviewer";
+        }
+        let data = {
+            evaluation: evaluation,
+            applicant_email: props.applicant.email,
+            position_id: props.curJob.job_details.positions_id,
+            reviewer_type: reviewer_type,
+            reviewer_email: props.user.email,
+        }
+        props.addOrUpdateReviewerEvaluation(data);
+        setTimeout(() => {
+            props.getReviewerEvaluation(props.curJob.job_details.positions_id, props.applicant.email);
+            props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, props.applicant.email, props.user.email);
+        }, 300);
+    }
+
+    const updateStatus = (status) => {
+        let data = {
+            "email": props.applicant.email,
+            "positionId": props.curJob.job_details.positions_id,
+            "status": status,
+            "userId": props.user.id
+        };
+        props.updateCommentStatus(data);
+        setTimeout(() => { props.getPJobs() }, 200);
+    }
+
     return (
         <div className="container-fluid ml-5 pb-5" style={{ width: '92%' }}>
             <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs / Review Candidate</span></b></h3></div>
@@ -284,68 +341,116 @@ const ReviewCandidate = (props) => {
                                 </button>
                             </div>
                         }
-                        <div style={{ paddingBottom: "2rem" }}>
-                            <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}><p style={{ color: "#090d3a" }}>Current Stage: {props.applicant.current_stage}</p></div>
-                            {props.applicant.is_active &&
-                                <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                    <button onClick={props.filter == "active" ? openMoveForm : jobClosedAlert} className="default-btn1" style={{ paddingLeft: "25px", width: "13rem" }}>
-                                        Move Stage
-                                    </button>
-                                </div>}
-                            {props.applicant.is_active ?
-                                <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                    <button
-                                        onClick={props.filter == "active" ? rejectCandidates : jobClosedAlert}
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", width: "13rem", background: "#E8EDFC", color: "#090D3A" }}
-                                    >
-                                        <i class='bx-fw bx bxs-x-circle' style={{ color: "#090D3A" }}></i> Reject
-                                    </button>
-                                </div> :
-                                <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                    <button
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", width: "13rem", background: "#FF0000", color: "#ffffff" }}
-                                    >
-                                        <i class='bx-fw bx bxs-x-circle' style={{ color: "#ffffff" }}></i> Rejected
-                                    </button>
-                                </div>
-                            }
-                            {!props.applicant.is_active &&
-                                <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                    <button
-                                        onClick={props.filter == "active" ? rejectCandidates : jobClosedAlert}
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", width: "13rem", background: "#fff", color: "#090D3A", textDecoration:"underline" }}
-                                    >
-                                        Unreject
-                                    </button>
-                                </div>
-                            }
-                        </div>
+                        {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer) &&
+                            <div style={{ paddingBottom: "2rem" }}>
+                                <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}><p style={{ color: "#090d3a" }}>Current Stage: {props.applicant.current_stage}</p></div>
+                                {props.applicant.is_active &&
+                                    <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                        <button onClick={props.filter == "active" ? openMoveForm : jobClosedAlert} className="default-btn1" style={{ paddingLeft: "25px", width: "13rem" }}>
+                                            Move Stage
+                                        </button>
+                                    </div>}
+                                {props.applicant.is_active ?
+                                    <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                        <button
+                                            onClick={props.filter == "active" ? rejectCandidates : jobClosedAlert}
+                                            className="default-btn1"
+                                            style={{ paddingLeft: "25px", width: "13rem", background: "#E8EDFC", color: "#090D3A" }}
+                                        >
+                                            <i class='bx-fw bx bxs-x-circle' style={{ color: "#090D3A" }}></i> Reject
+                                        </button>
+                                    </div> :
+                                    <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                        <button
+                                            className="default-btn1"
+                                            style={{ paddingLeft: "25px", width: "13rem", background: "#FF0000", color: "#ffffff" }}
+                                        >
+                                            <i class='bx-fw bx bxs-x-circle' style={{ color: "#ffffff" }}></i> Rejected
+                                        </button>
+                                    </div>
+                                }
+                                {!props.applicant.is_active &&
+                                    <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                        <button
+                                            onClick={props.filter == "active" ? rejectCandidates : jobClosedAlert}
+                                            className="default-btn1"
+                                            style={{ paddingLeft: "25px", width: "13rem", background: "#fff", color: "#090D3A", textDecoration: "underline" }}
+                                        >
+                                            Unreject
+                                        </button>
+                                    </div>
+                                }
+                            </div>}
                     </div>
                 </div>
                 <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", height: "46rem", width: "73%" }}>
-                    <h2
-                        style={{
-                            fontWeight: "600",
-                            marginRight: "0.8rem",
-                            wordWrap: "break-word",
-                            wordBreak: "break-all",
-                            color: "#090D3A",
-                            borderBottom: '4px solid #4689FA',
-                            paddingBottom: "0.2rem",
-                            display: "inline-block",
-                        }}
-                    >
-                        Resume
-                    </h2>
-                    <div className="light-blue-border" style={{ width: "100%", height: "90%" }}>
-                        {props.resume_url != null && props.resume_url != "" &&
-                            <object data={props.resume_url}
-                                style={{ width: "100%", height: "100%" }} />
+                    <div>
+                        <h2
+                            className={viewResume ? "head-btn-selected" : "head-btn-unselected"}
+                            onClick={() => { setViewResumes()}}
+                        >
+                            Resume
+                        </h2>
+                        {(props.video_array?.length > 0) &&
+                            <h2
+                                className={viewVideo ? "head-btn-selected" : "head-btn-unselected"}
+                                onClick={() => { setViewVideos()}}
+                            >
+                                Video Interview
+                            </h2>
                         }
+                        <h2
+                            className={viewNotes ? "head-btn-selected" : "head-btn-unselected"}
+                            onClick={() => { setViewNotess()}}
+                        >
+                            Evaluation Notes
+                        </h2>
                     </div>
+                    {viewResume &&
+                        <div className="light-blue-border" style={{ width: "100%", height: "90%" }}>
+                            {props.resume_url != null && props.resume_url != "" &&
+                                <object data={props.resume_url}
+                                    style={{ width: "100%", height: "100%" }} />
+                            }
+                        </div>}
+                    {viewVideo &&
+                        <ApplicationVideo
+                            int_ques={props.int_ques}
+                            positionId={props.curJob.job_details.positions_id}
+                            quesiton_array={props.quesiton_array}
+                            video_array={props.video_array}
+                            stars={props.stars}
+                            comments={props.comments}
+                            pk={props.pk}
+                            refresh={props.refresh}
+                            updateStatus={updateStatus}
+                            commentStatus={props.applicant.comment_status}
+                            profile={props.profile}
+                            subreviewerUpdateComment={props.subreviewerUpdateComment}
+                            current={props.current}
+                            setCurrent={props.setCurrent}
+                            start={0}
+                            end={props.applicants?.length - 1}
+                            viewPrevResult={props.viewPrevResult}
+                            viewNextResult={props.viewNextResult}
+                            hasSwitch={true}
+                            recordedVideoCount={props.applicants[props.current].video_count}
+                            transcripts={props.transcripts}
+                            filter={props.filter}
+                        />
+                    }
+                    {viewNotes &&
+                        <ReviewNote
+                            reviews={props.reviews}
+                            positionId={props.curJob.job_details.positions_id}
+                            applicantEmail={props.applicant.email}
+                            reviewer={props.user.username}
+                            profile={props.profile}
+                            reviewerEmail={props.user.email}
+                            evaluations={props.evaluations}
+                            filter={props.filter}
+                        />
+                    }
                 </div>
             </div>
             <div className="row">
@@ -355,14 +460,14 @@ const ReviewCandidate = (props) => {
                         <button
                             className={props.current == 0 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == 0 ? true : false}
-                            onClick={() => { nextOrPreUpdate(); updateIsViewed(props.current - 1); setTimeout(() => { props.setCurrent(props.current - 1); sessionStorage.setItem("current", props.current - 1) }, 200) }}
+                            onClick={() => {setViewResumes(); props.viewPrevResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current - 1); setTimeout(() => { props.setCurrent(props.current - 1); sessionStorage.setItem("current", props.current - 1) }, 200) }}
                         >
                             &lt; Prev
                         </button>
                         <button
                             className={props.current == props.applicants.length - 1 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == props.applicants.length - 1 ? true : false}
-                            onClick={() => { nextOrPreUpdate(); updateIsViewed(props.current + 1); setTimeout(() => { props.setCurrent(props.current + 1); sessionStorage.setItem("current", props.current + 1) }, 200) }}
+                            onClick={() => {setViewResumes(); props.viewNextResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current + 1); setTimeout(() => { props.setCurrent(props.current + 1); sessionStorage.setItem("current", props.current + 1) }, 200) }}
                             style={{ marginLeft: "2rem" }}
                         >
                             Next &gt;
@@ -447,7 +552,7 @@ const ReviewCandidate = (props) => {
                     hideEmbedQForm={() => setShowEmbedQForm(false)}
                 />
             </MyModal80>
-        </div>
+        </div >
     )
 
 };
