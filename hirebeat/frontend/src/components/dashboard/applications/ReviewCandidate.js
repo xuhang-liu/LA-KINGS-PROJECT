@@ -383,7 +383,7 @@ const ReviewCandidate = (props) => {
                             </div>}
                     </div>
                 </div>
-                <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", height: "46rem", width: "73%" }}>
+                <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", height: "52rem", width: "73%" }}>
                     <div>
                         <h2
                             className={viewResume ? "head-btn-selected" : "head-btn-unselected"}

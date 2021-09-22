@@ -294,7 +294,7 @@ export class EssentialUserInfo extends Component {
                         </button>
                       </div>
                     </div>}
-                  {!this.props.profile.is_external_reviewer &&
+                  {this.props.profile.is_subreviwer &&
                     <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                       <div className="col d-flex align-items-center">
                         <button
@@ -315,7 +315,7 @@ export class EssentialUserInfo extends Component {
                       </div>
                     </div>}
                   {/*Only Main Employer*/}
-                  {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
+                  {(this.props.profile.is_external_reviewer) &&
                     <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                       <div className="col d-flex align-items-center">
                         <button
