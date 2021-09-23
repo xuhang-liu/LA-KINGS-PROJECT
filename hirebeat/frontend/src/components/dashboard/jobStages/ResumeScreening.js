@@ -4,8 +4,10 @@ import QuestionForm from "./../jobBoard/QuestionForm";
 import { MyModal80, MyModalUpgrade } from "./../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addInterviews, moveCandidateToInterview } from "../../../redux/actions/question_actions";
+import { addInterviews, moveCandidateToInterview, getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, updateViewStatus, updateCommentStatus } from "../../../redux/actions/question_actions";
 import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/actions/job_actions";
+import { getApplicantsVideos, getApplicantsInfo } from "../../../redux/actions/video_actions";
+import { subreviewerUpdateComment } from "../../../redux/actions/auth_actions";
 import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import EditQuestion from "./../jobBoard/EditQuestion";
@@ -379,6 +381,25 @@ export class ResumeScreening extends Component {
                                     user={this.props.user}
                                     moveCandidateToInterview={this.props.moveCandidateToInterview}
                                     selectedPage={this.state.selectedPage}
+                                    getReviewNote={this.props.getReviewNote}
+                                    addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
+                                    getReviewerEvaluation={this.props.getReviewerEvaluation}
+                                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                                    evaluations={this.props.evaluations}
+                                    curEvaluation={this.props.curEvaluation}
+                                    getApplicantsVideos={this.props.getApplicantsVideos}
+                                    getApplicantsInfo={this.props.getApplicantsInfo}
+                                    int_ques={this.props.int_ques}
+                                    quesiton_array={this.props.quesiton_array}
+                                    video_array={this.props.video_array}
+                                    stars={this.props.stars}
+                                    comments={this.props.comments}
+                                    pk={this.props.pk}
+                                    transcripts={this.props.transcripts}
+                                    updateViewStatus={this.props.updateViewStatus}
+                                    updateCommentStatus={this.props.updateCommentStatus}
+                                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                    reviews={this.props.reviews}
                                 />
                             )
                         })}
@@ -422,6 +443,25 @@ export class ResumeScreening extends Component {
                                     user={this.props.user}
                                     moveCandidateToInterview={this.props.moveCandidateToInterview}
                                     selectedPage={this.state.selectedPage}
+                                    getReviewNote={this.props.getReviewNote}
+                                    addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
+                                    getReviewerEvaluation={this.props.getReviewerEvaluation}
+                                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                                    evaluations={this.props.evaluations}
+                                    curEvaluation={this.props.curEvaluation}
+                                    getApplicantsVideos={this.props.getApplicantsVideos}
+                                    getApplicantsInfo={this.props.getApplicantsInfo}
+                                    int_ques={this.props.int_ques}
+                                    quesiton_array={this.props.quesiton_array}
+                                    video_array={this.props.video_array}
+                                    stars={this.props.stars}
+                                    comments={this.props.comments}
+                                    pk={this.props.pk}
+                                    transcripts={this.props.transcripts}
+                                    updateViewStatus={this.props.updateViewStatus}
+                                    updateCommentStatus={this.props.updateCommentStatus}
+                                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                    reviews={this.props.reviews}
                                 />
                             )
                         })}
@@ -558,6 +598,7 @@ const ApplicantRow = (props) => {
         if (sessionStorage.getItem("showPreview" + props.index) === "true") {
             setShowPreview(true);
         }
+        props.getApplicantsVideos(props.applicant.email, props.curJob.job_details.positions_id);
     }, []);
     function onView() {
         let applyIds = [];
@@ -569,6 +610,11 @@ const ApplicantRow = (props) => {
         props.updateCandidateViewedStatus(data);
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
         setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
+        props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
+        props.getApplicantsInfo(applicants[current].email);
+        props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
+        props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
+        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email);
         sessionStorage.setItem(("showPreview" + props.index), "true");
         sessionStorage.setItem("current", props.index);
         setShowPreview(true);
@@ -581,6 +627,50 @@ const ApplicantRow = (props) => {
         sessionStorage.removeItem("current");
         setShowPreview(false);
     }
+
+    function getReviewPageData(index) {
+        let applyIds = [];
+        applyIds.push(applicants[current].id);
+        let data = {
+            "applyIds": applyIds,
+            "isViewed": true,
+        }
+        props.updateCandidateViewedStatus(data);
+        props.updateViewStatus({ "candidate_id": applicants[index].id });
+        props.getApplicantsVideos(applicants[index].email, props.curJob.job_details.positions_id);
+        props.getApplicantsInfo(applicants[index].email);
+        props.getReviewNote(props.curJob.job_details.positions_id, applicants[index].email);
+        props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[index].email);
+        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[index].email, props.user.email);
+        sessionStorage.setItem(("showPreview" + index), "true");
+        sessionStorage.setItem("current", index);
+    }
+
+    function viewNextResult(curIndex) {
+        setCurrent(curIndex + 1);
+        sessionStorage.removeItem("show" + curIndex);
+        let next = curIndex + 1;
+        getReviewPageData(next);
+    };
+
+    function viewPrevResult(curIndex) {
+        setCurrent(curIndex - 1);
+        sessionStorage.removeItem("show" + curIndex);
+        let prev = curIndex - 1;
+        getReviewPageData(prev);
+    };
+
+    const refresh = () => {
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
+        props.updateViewStatus({ "candidate_id": applicants[current].id });
+        props.getApplicantsVideos(props.applicant.email, props.curJob.job_details.positions_id);
+        props.getApplicantsInfo(applicants[current].email);
+        props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
+        props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
+        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email);
+    }
+
     return (
         <div className="container-fluid">
             <hr
@@ -661,6 +751,25 @@ const ApplicantRow = (props) => {
                         moveCandidateToInterview={props.moveCandidateToInterview}
                         filter={props.filter}
                         selectedPage={props.selectedPage}
+                        getReviewNote={props.getReviewNote}
+                        addOrUpdateReviewerEvaluation={props.addOrUpdateReviewerEvaluation}
+                        getReviewerEvaluation={props.getReviewerEvaluation}
+                        getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                        evaluations={props.evaluations}
+                        curEvaluation={props.curEvaluation}
+                        int_ques={props.int_ques}
+                        quesiton_array={props.quesiton_array}
+                        video_array={props.video_array}
+                        stars={props.stars}
+                        comments={props.comments}
+                        pk={props.pk}
+                        transcripts={props.transcripts}
+                        viewNextResult={viewNextResult}
+                        viewPrevResult={viewPrevResult}
+                        refresh={refresh}
+                        updateCommentStatus={props.updateCommentStatus}
+                        subreviewerUpdateComment={props.subreviewerUpdateComment}
+                        reviews={props.reviews}
                     />
                 </MyFullModal>
             </div>
@@ -668,12 +777,41 @@ const ApplicantRow = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    profile: state.auth_reducer.profile,
-    user: state.auth_reducer.user,
-    jobs: state.job_reducer.jobs,
-});
+const mapStateToProps = (state) => {
+    var quesiton_array = [];
+    var video_array = [];
+    var stars = [];
+    var comments = [];
+    var transcripts = [];
+    var pk = [];
 
-export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview })(
+    state.video_reducer.int_ques.map((i) => {
+        stars.push(i.video_stars);
+        comments.push(i.video_comment)
+        quesiton_array.push(i.question_desc);
+        video_array.push(i.url);
+        transcripts.push(i.transcripts);
+        pk.push(i.id)
+    });
+    return {
+        quesiton_array: quesiton_array,
+        video_array: video_array,
+        stars: stars,
+        comments: comments,
+        pk: pk,
+        transcripts: transcripts,
+        profile: state.auth_reducer.profile,
+        user: state.auth_reducer.user,
+        jobs: state.job_reducer.jobs,
+        evaluations: state.question_reducer.evaluations,
+        curEvaluation: state.question_reducer.curEvaluation,
+        int_ques: state.video_reducer.int_ques,
+        reviews: state.question_reducer.reviews,
+    }
+};
+
+export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview, 
+    getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, getApplicantsVideos, updateViewStatus, getApplicantsInfo, updateCommentStatus,
+    subreviewerUpdateComment })(
     ResumeScreening
 ));
