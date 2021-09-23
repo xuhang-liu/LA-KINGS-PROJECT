@@ -788,6 +788,7 @@ const ApplicantRow = (props) => {
                         updateCommentStatus={props.updateCommentStatus}
                         subreviewerUpdateComment={props.subreviewerUpdateComment}
                         reviews={props.reviews}
+                        currentStage={"Resume Review"}
                     />
                 </MyFullModal>
             </div>

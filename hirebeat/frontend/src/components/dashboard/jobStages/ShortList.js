@@ -79,8 +79,6 @@ const AcceptedCandidate = (props) => {
                 <h2 className="short-list-title">{jobTitle.length > 50 ? jobTitle.substring(0, 47) + "..." : jobTitle} {jobId == "" ? null : "(ID: " + jobId + ")"}</h2>
                 <div style={{ color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
                     <div className="col-3">Name</div>
-                    {/* <div className="col-3">Email</div> */}
-                    {/* <div className="col-2">Recorded On</div> */}
                     <div className="col-3">Video Average Score</div>
                     <div className="col-2">Resume Score</div>
                     {(!props.profile.is_external_reviewer) && <div className="col-2">Contact</div>}

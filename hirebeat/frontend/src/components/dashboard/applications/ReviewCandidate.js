@@ -239,7 +239,7 @@ const ReviewCandidate = (props) => {
 
     return (
         <div className="container-fluid ml-5 pb-5" style={{ width: '92%' }}>
-            <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs / Review Candidate</span></b></h3></div>
+            <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-chevron-left"></i><span className="ml-2">{props.currentStage}</span></b></h3></div>
             <div className="col d-flex align-items-center pl-0">
                 <button
                     type="button"

@@ -183,7 +183,7 @@ export class ReviewApplication extends Component {
         const resumeScore = Math.max(interviewResume.result_rate, candidateInfo.result_rate);
         return (
             <div className="container-fluid ml-5 mb-5" style={{ width: '95%' }}>
-                <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-microphone"></i><span className="ml-2">Interview / Review Candidate</span></b></h3></div>
+                <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-chevron-left"></i><span className="ml-2">{this.props.currentStage}</span></b></h3></div>
                 <div className="col d-flex align-items-center pl-0">
                     <button
                         type="button"
