@@ -94,7 +94,20 @@ export function LiveInterview(props){
     const [nextStage, setNextStage] = useState("Short List");
 
     const openMoveForm = () => {
-        setShowMoveForm(true);
+        let candidateCount = 0;
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                candidateCount += 1;
+            }
+        };
+        if (candidateCount > 0) {
+            setShowMoveForm(true);
+        }
+        else {
+            noCandidateAlert();
+        }
+
     }
 
     const hideMoveForm = () => {
@@ -303,6 +316,7 @@ export function LiveInterview(props){
                         </button>
                         <button
                             className="default-btn"
+                            onClick={rejectCandidates}
                             style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
                         >
                             Reject All

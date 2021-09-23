@@ -444,6 +444,10 @@ export function VideoInterview(props){
                     candidate_ids: invitedCandidates,
                 }
                 props.sendInterviews(meta);
+                // update
+                let page = 1;
+                let userId = props.user.id;
+                setTimeout(() => {props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
                 inviteSuccessAlert();
             }
         }
@@ -466,7 +470,20 @@ export function VideoInterview(props){
     const [nextStage, setNextStage] = useState("Live Interview");
 
     const openMoveForm = () => {
-        setShowMoveForm(true);
+        let candidateCount = 0;
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                candidateCount += 1;
+            }
+        };
+        if (candidateCount > 0) {
+            setShowMoveForm(true);
+        }
+        else {
+            noCandidateAlert();
+        }
+
     }
 
     const hideMoveForm = () => {
@@ -742,6 +759,7 @@ export function VideoInterview(props){
                             </button>
                             <button
                                 className="default-btn"
+                                onClick={rejectCandidates}
                                 style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
                             >
                                 Reject All
