@@ -83,7 +83,7 @@ export const archiveJob = (data) => (dispatch, getState) => {
 
 export const addNewApplyCandidate = (data) => (dispatch, getState) => {
   axios
-    .post("/add-new-apply-candidate", data, tokenConfig(getState))
+    .post("/add-new-apply-candidate", data)
     .then((res) => {
       dispatch({
         type: ADD_NEW_APPLY_CANDIDATE,

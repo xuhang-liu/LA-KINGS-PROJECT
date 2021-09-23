@@ -126,6 +126,12 @@ def get_posted_jobs(request):
                 applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).order_by('-id').values())
             else:
                 applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id, current_stage=stage).order_by('-id').values())
+            # get linkedin and is_active values from ApplyCandidates model
+            for applicant in applicants:
+                candidate = ApplyCandidates.objects.get(email=applicant["email"], jobs_id=applicant["positions_id"])
+                applicant["linkedinurl"] = candidate.linkedinurl
+                applicant["is_active"] = candidate.is_active
+                applicant["apply_candidate_id"] = candidate.id
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)
             if total_records > 15:
@@ -305,20 +311,27 @@ def move_candidate_to_interview(request):
     emails = request.data["emails"]
     names = request.data["names"]
     job_id = request.data["job_id"]
-    nextStage = request.data["nextStage"]
+    next_stage = request.data["nextStage"]
     candidates = request.data['candidates']
 
     for i in range(len(emails)):
         if emails[i] != "" and names[i] != "":
+            applicant = ApplyCandidates.objects.get(email=emails[i], jobs_id=job_id)
+            applicant.current_stage = next_stage
+            applicant.save()
             # avoid duplicate data
+            candidate = {}
+            invitedCan = {}
             try:
                 candidate = CandidatesInterview.objects.get(email=emails[i], positions_id=position_id)
                 invitedCan = InvitedCandidates.objects.get(email=emails[i], positions_id=position_id)
+                invitedCan.current_stage = next_stage
+                invitedCan.save()
             except ObjectDoesNotExist:
                 # manually add case
                 if job_id == -1:
                     candidate = CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
-                    invitedCan = InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,)
+                    invitedCan = InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0, current_stage=next_stage)
                 #  apply from career page case
                 else:
                     # get resume url, phone, location, resume analysis
@@ -363,15 +376,8 @@ def move_candidate_to_interview(request):
                                                      required_skills_occurrence=required_skills_occurrence, extra_skills_name=extra_skills_name,
                                                      extra_skills_on_resume=extra_skills_on_resume, extra_skills_occurrence=extra_skills_occurrence,
                                                      transferable_skills_name=transferable_skills_name, transferable_skills_on_resume=transferable_skills_on_resume,
-                                                     transferable_skills_occurrence=transferable_skills_occurrence
+                                                     transferable_skills_occurrence=transferable_skills_occurrence, current_stage=next_stage
                                                      )
-
-    for i in range(len(candidates)):
-        candidate = ApplyCandidates.objects.get(id=candidates[i])
-        candidate.current_stage = nextStage
-        candidate.save()
-        invitedCan.current_stage = nextStage
-        invitedCan.save()
 
     return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)
 

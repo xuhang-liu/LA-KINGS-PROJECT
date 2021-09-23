@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
-import { MyModal80, MyFullModal1 } from "./../DashboardComponents";
+import { MyModal80 } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import { ResumeEva } from "./interviewComponents/ResumeEva";
 import {ApplicantList} from "./interviewComponents/ApplicantList";
@@ -10,6 +10,7 @@ import QuestionForm from "./interviewComponents/QuestionForm";
 import EditQuestion from "./interviewComponents/EditQuestion"
 import axios from "axios";
 import ReactPaginate from 'react-paginate';
+import MoveForm from "./interviewComponents/MoveForm";
 
 export function VideoInterview(props){
     useEffect(() => {
@@ -68,7 +69,7 @@ export function VideoInterview(props){
             // save data to db
             props.moveCandidateToInterview(meta);
             // disable webpage refresh
-            sendSuccessAlert();
+            sendSuccessAlert(nextStage);
             clearInvitationForm();
             e.preventDefault();
         }
@@ -443,7 +444,6 @@ export function VideoInterview(props){
                     candidate_ids: invitedCandidates,
                 }
                 props.sendInterviews(meta);
-                setTimeout(() => { props.getPJobs() }, 600);
                 inviteSuccessAlert();
             }
         }
@@ -461,17 +461,109 @@ export function VideoInterview(props){
         sessionStorage.setItem("intAppPage", String(selectedPage));
     };
 
+    const [showMoveForm, setShowMoveForm] = useState(false);
+    const [currentStage, setCurrentStage] = useState("Video Interview");
+    const [nextStage, setNextStage] = useState("Live Interview");
+
+    const openMoveForm = () => {
+        setShowMoveForm(true);
+    }
+
+    const hideMoveForm = () => {
+        setShowMoveForm(false);
+    }
+
+    const moveCandidates = () => {
+        let candidateCount = 0;
+        let positionId = props.positionId;
+        let jobId = props.jobsId;
+        const emails = [];
+        const names = [];
+        const invitedCandidates = [];
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                names.push(candidate.first_name + " " + candidate.last_name);
+                emails.push(candidate.email.toLowerCase());
+                invitedCandidates.push(candidate.id);
+                candidateCount += 1;
+            }
+        }
+        // check candidates selected or not
+        if (candidateCount > 0) {
+            if ((nextStage != "") && (nextStage != "Video Interview")) {
+                let meta = {
+                    position_id: positionId,
+                    job_id: jobId,
+                    emails: emails,
+                    names: names,
+                    candidates: invitedCandidates,
+                    nextStage: nextStage,
+                }
+                props.moveCandidateToInterview(meta);
+                hideMoveForm();
+                // update
+                let page = 1;
+                let userId = props.user.id;
+                setTimeout(() => {props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+                sendSuccessAlert(nextStage);
+            } else if (nextStage == "Video Interview") {
+                alert("These candidates are already in this stage!");
+            } else {
+                alert("Please select a stage to move!");
+            }
+        }
+        else {
+            noCandidateAlert();
+        }
+    }
+
+    const rejectCandidates = () => {
+        let candidateCount = 0;
+        let positionId = props.positionId;
+        const emails = [];
+        const names = [];
+        const invitedCandidates = [];
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                names.push(candidate.first_name + " " + candidate.last_name);
+                emails.push(candidate.email.toLowerCase());
+                invitedCandidates.push(candidate.id);
+                candidateCount += 1;
+            }
+        }
+        if (candidateCount > 0) {
+            let data = {
+                positionId: positionId,
+                candidates: invitedCandidates,
+                nextStage: nextStage,
+                is_reject: true,
+            }
+            props.updateInviteStatus(data);
+            // update
+            let page = 1;
+            let userId = props.user.id;
+            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page,"Video Interview" ) }, 300);
+            rejectSuccessAlert();
+        } else {
+            noCandidateAlert();
+        }
+    };
+
     return (
         <React.Fragment>
             {/* Job Applications */}
             {!invite &&
-                <div className="container-fluid" style={{paddingLeft:"0px", paddingRight:"0px"}}>
+                <div className="container-fluid">
                     <div className="chart-bg1 container-fluid mt-4 pt-3 pb-3">
                         <div className="row">
                             <div className="col-6 interview-center mt-2">
                                 <h3 className="interview-txt5" style={{ wordWrap: "break-word", wordBreak: "break-all", }}>{props.jobTitle}</h3>
                             </div>
-                            {(!props.profile.is_subreviwer && props.filter=="active") &&
+                            {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter=="active") &&
                                 <div className="col-2 interview-txt7 mt-2" style={{textAlign:"right"}}>
                                     <button
                                         type="button"
@@ -494,7 +586,7 @@ export function VideoInterview(props){
                                 </button>
                             </div>
                             <div className="col-2 interview-center">
-                                {!props.profile.is_subreviwer &&
+                                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                     <div>
                                         {!props.isClosed &&
                                             <button
@@ -531,7 +623,7 @@ export function VideoInterview(props){
                         </div>
                         <div className="row" style={{paddingLeft: "15px", paddingRight: "15px"}}>
                             <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
-                                <label style={{position:"absolute", left:"2.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
+                                <label style={{position:"absolute", left:"3.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
                                 <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                             </div>
                             <div className="ml-auto interview-txt7">
@@ -552,7 +644,7 @@ export function VideoInterview(props){
                         </div>
                         <div className="container-fluid" style={{ marginTop: "2%" }}>
                             <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
-                                {!props.profile.is_subreviwer &&
+                                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                     <div style={{ marginLeft: "1rem", display: "flex" }}>
                                         <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
                                     </div>
@@ -570,7 +662,7 @@ export function VideoInterview(props){
                                     </div>
                                 </div>
                                 {/*<div className="col-1">Action</div>*/}
-                                {!props.profile.is_subreviwer &&
+                                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                     <div className="col-1">Reinvite</div>
                                 }
                             </div>
@@ -608,6 +700,9 @@ export function VideoInterview(props){
                                     getReviewerEvaluation={props.getReviewerEvaluation}
                                     getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
                                     user={props.user}
+                                    currentStage={currentStage}
+                                    getPostedJobs={props.getPostedJobs}
+                                    getAllJobs={props.getAllJobs}
                                 />
                             </div>
                         </div>
@@ -627,18 +722,42 @@ export function VideoInterview(props){
                             />
                         </div>
                     </div>
-                    {(!props.profile.is_subreviwer && props.filter == "active") &&
-                        <div style={{ marginTop: "2rem" }}>
+                    {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
+                        <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
                             <button
                                 className="default-btn1 interview-txt6"
-                                style={{ paddingLeft: "25px", marginBottom: "1rem" }}
+                                style={{ paddingLeft: "25px", backgroundColor: "#67A3F3", paddingTop: "8px", paddingBottom: "8px" }}
                                 onClick={sendVideoInterview}
                             >
                                 Invite to Video Interview
                                 <span></span>
                             </button>
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                onClick={openMoveForm}
+                            >
+                                Move All
+                                <span></span>
+                            </button>
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                            >
+                                Reject All
+                                <span></span>
+                            </button>
                         </div>
                     }
+                    <MoveForm
+                        showMoveForm={showMoveForm}
+                        hideMoveForm={hideMoveForm}
+                        currentStage={currentStage}
+                        setCurrentStage={setCurrentStage}
+                        nextStage={nextStage}
+                        setNextStage={setNextStage}
+                        moveCandidates={moveCandidates}
+                    />
                 </div>
             }
 
@@ -917,10 +1036,22 @@ function nameError() {
     });
 };
 
-function sendSuccessAlert() {
+function sendSuccessAlert(nextStage) {
     confirmAlert({
-        title: "Add Candidates Success",
-        message: "You have added candidates to interview process successfully.",
+        title: "Move Candidates Success",
+        message: `You have moved candidates to ${nextStage} stage successfully.`,
+        buttons: [
+            {
+                label: 'Ok'
+            }
+        ]
+    });
+};
+
+function rejectSuccessAlert() {
+    confirmAlert({
+        title: "Candidate Rejected!",
+        message: "You have rejected the candidates successfully.",
         buttons: [
             {
                 label: 'Ok'

@@ -36,6 +36,9 @@ export function MyVerticallyCenteredModal(props) {
                     applicants={props.applicants}
                     hasSwitch={true}
                     filter={props.filter}
+                    currentStage={props.currentStage}
+                    getPostedJobs={props.getPostedJobs}
+                    getAllJobs={props.getAllJobs}
                 />
             </MyFullModal1>
         </div>

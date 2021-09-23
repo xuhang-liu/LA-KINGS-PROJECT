@@ -3,11 +3,13 @@ import AllCandidates from "../jobStages/AllCandidates";
 import ResumeScreening from "../jobStages/ResumeScreening";
 import Pipeline from "../jobStages/Pipeline";
 import {VideoInterview} from "../jobStages/VideoInterview";
+import {LiveInterview} from "../jobStages/LiveInterview";
 import ShortList from "./../jobStages/ShortList";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation } from "./../../../redux/actions/question_actions";
-import { closePosition, deletePosition, getResumeURL, addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews } from "./../../../redux/actions/question_actions";
+import { updateInviteStatus, updateCandidateViewedStatus } from "./../../../redux/actions/question_actions";
+import { getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation, closePosition, deletePosition, getResumeURL,
+ addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews } from "./../../../redux/actions/question_actions";
 
 export class JobPortalPage extends Component {
     constructor(props) {
@@ -40,16 +42,14 @@ export class JobPortalPage extends Component {
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "videoInterview");
         let interviewPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
         this.props.getPostedJobs(this.props.user.id, interviewPage, "Video Interview");
-        this.props.getPJobs();
         this.setState({
             portalSubpage: "videoInterview",
         });
     };
     renderLiveInterview = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "liveInterview");
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : 1;
-        this.props.getAllJobs(this.props.user.id, page, "");
-        this.props.getPJobs();
+        let page = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
+        this.props.getPostedJobs(this.props.user.id, page, "Live Interview");
         this.setState({
             portalSubpage: "liveInterview",
         });
@@ -101,6 +101,7 @@ export class JobPortalPage extends Component {
                             curJob={this.props.job}
                             getAllJobs={this.props.getAllJobs}
                             getPJobs={this.props.getPJobs}
+                            getPostedJobs={this.props.getPostedJobs}
                         />;
             case "videoInterview":
                 const p = this.props.postedJobs[this.props.job.job_details.positions_id];
@@ -155,9 +156,67 @@ export class JobPortalPage extends Component {
                         totalRecords={p.total_records}
                         totalPage={p.total_page}
                         getPostedJobs={this.props.getPostedJobs}
+                        updateInviteStatus={this.props.updateInviteStatus}
+                        jobsId={this.props.job.job_details.id}
+                        getAllJobs={this.props.getAllJobs}
                 />;
             case "liveInterview":
-                return null;
+                const curPos = this.props.postedJobs[this.props.job.job_details.positions_id];
+                return <LiveInterview
+                        filter={this.props.filter}
+                        removeSubReviewer={this.props.removeSubReviewer}
+                        addSubReviewer={this.props.addSubReviewer}
+                        getPJobs={this.props.getPJobs}
+                        resumeURL={this.props.resumeURL}
+                        addSelected={this.props.setselectedId}
+                        questions={curPos.questions}
+                        companyName={this.props.companyName}
+                        positionId={curPos.position_id}
+                        jobId={curPos.job_id}
+                        jobTitle={curPos.job_title}
+                        isClosed={curPos.is_closed}
+                        inviteDate={curPos.invite_date}
+                        applicants={curPos.applicants}
+                        subreviewers={curPos.subreviewers}
+                        addInterviews={this.props.addInterviews}
+                        getApplicantsVideos={this.props.getApplicantsVideos}
+                        getApplicantsInfo={this.props.getApplicantsInfo}
+                        getRecordStatus={this.props.getRecordStatus}
+                        dataLoaded={this.props.dataLoaded}
+                        isRecorded={this.props.isRecorded}
+                        int_ques={this.props.int_ques}
+                        id_candidate={this.props.id_candidate}
+                        username_candidate={this.props.username_candidate}
+                        email_candidate={this.props.email_candidate}
+                        phone_candidate={this.props.phone_candidate}
+                        location_candidate={this.props.location_candidate}
+                        resendInvitation={this.props.resendInvitation}
+                        updateCommentStatus={this.props.updateCommentStatus}
+                        closePosition={this.props.closePosition}
+                        deletePosition={this.props.deletePosition}
+                        getResumeURL={this.props.getResumeURL}
+                        recordTime={this.props.recordTime}
+                        interviewResume={this.props.interviewResume}
+                        user={this.props.user}
+                        profile={this.props.profile}
+                        updateViewStatus={this.props.updateViewStatus}
+                        subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                        position={curPos.position}
+                        allInvited={curPos.all_invited}
+                        moveCandidateToInterview={this.props.moveCandidateToInterview}
+                        sendInterviews={this.props.sendInterviews}
+                        checkUserExistence={this.props.checkUserExistence}
+                        user_existence={this.props.user_existence}
+                        getReviewNote={this.props.getReviewNote}
+                        getReviewerEvaluation={this.props.getReviewerEvaluation}
+                        getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                        totalRecords={curPos.total_records}
+                        totalPage={curPos.total_page}
+                        getPostedJobs={this.props.getPostedJobs}
+                        updateInviteStatus={this.props.updateInviteStatus}
+                        jobsId={this.props.job.job_details.id}
+                        getAllJobs={this.props.getAllJobs}
+                />;
             case "shortList":
                 const pos = this.props.postedJobs[this.props.job.job_details.positions_id];
                 return <ShortList
@@ -183,6 +242,7 @@ export class JobPortalPage extends Component {
                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
                     positionId={pos.position_id}
                     getPostedJobs={this.props.getPostedJobs}
+                    getAllJobs={this.props.getAllJobs}
                 />;
             default:
                 return null;
