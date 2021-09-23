@@ -61,9 +61,6 @@ class Positions(models.Model):
     prepare_time = models.IntegerField(default=30)
     camera_on = models.BooleanField(default=True)
 
-    def __str__(self):
-        return self.job_title
-
 
 class InterviewQuestions(models.Model): 
     description = models.TextField(default="No description",null=True)

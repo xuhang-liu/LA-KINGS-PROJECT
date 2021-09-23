@@ -1,14 +1,14 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MyModal80 } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
-import { ResumeEva } from "./interviewComponents/ResumeEva";
+//import { ResumeEva } from "./interviewComponents/ResumeEva";
 import {ApplicantList} from "./interviewComponents/ApplicantList";
 import 'boxicons';
 import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
 import QuestionForm from "./interviewComponents/QuestionForm";
 import EditQuestion from "./interviewComponents/EditQuestion"
-import axios from "axios";
+//import axios from "axios";
 import ReactPaginate from 'react-paginate';
 import MoveForm from "./interviewComponents/MoveForm";
 

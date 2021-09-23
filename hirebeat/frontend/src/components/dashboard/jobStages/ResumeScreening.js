@@ -99,7 +99,14 @@ export class ResumeScreening extends Component {
     };
 
     noCandidateAlert = () => {
-        alert("No Candidate Selected!");
+        confirmAlert({
+            title: "No Candidate Selected!",
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
+        });
     }
 
     disableQuestionEdition = () => {
@@ -111,9 +118,20 @@ export class ResumeScreening extends Component {
     }
 
     openMoveForm = () => {
-        this.setState({
-            showMoveForm: true
-        })
+        let candidateCount = 0;
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                candidateCount += 1;
+            }
+        };
+        if (candidateCount > 0) {
+            this.setState({
+                showMoveForm: true
+            })
+        }else{
+            this.noCandidateAlert();
+        }
     }
 
     moveCandidates = () => {
@@ -810,8 +828,10 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default withRouter(connect(mapStateToProps, { addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview, 
+export default withRouter(connect(mapStateToProps, {
+    addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview,
     getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, getApplicantsVideos, updateViewStatus, getApplicantsInfo, updateCommentStatus,
-    subreviewerUpdateComment })(
+    subreviewerUpdateComment
+})(
     ResumeScreening
 ));

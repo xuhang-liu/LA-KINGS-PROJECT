@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MyModal80, MyFullModal1 } from './../DashboardComponents';
+import { MyModal80 } from './../DashboardComponents';
 import { ResumeEva } from "./interviewComponents/ResumeEva";
 import { connect } from 'react-redux';
 import { loadStarList, getResumeURL, addExReviewer, delExReviewer } from './../../../redux/actions/question_actions';
@@ -258,6 +258,7 @@ const CandidateCard = (props) => {
                 filter={"active"}
                 getPostedJobs={props.getPostedJobs}
                 getAllJobs={props.getAllJobs}
+                currentStage={"Short List"}
             />
             <MyModal80
                 show={showResume}

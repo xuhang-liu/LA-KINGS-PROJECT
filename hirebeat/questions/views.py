@@ -111,7 +111,7 @@ def get_posted_jobs(request):
     data = {}
     int_dots = 0
     job_dots = 0
-    user_id = request.query_params.get("user_id")
+    user_id = int(request.GET.get("user_id", 0))
     page = int(request.GET.get("page", 1))
     stage = request.GET.get("stage", "")
     profile = Profile.objects.get(user_id=user_id)
@@ -120,18 +120,25 @@ def get_posted_jobs(request):
         positions = Positions.objects.filter(user_id=user_id)
         for i in range(len(positions)):
             positions_id = positions[i].id
+            position = positions[i]
             # get each position applicants by current stage
             applicants = []
             if stage == "":
-                applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id).order_by('-id').values())
+                applicants = list(InvitedCandidates.objects.filter(positions=position).order_by('-id').values())
             else:
-                applicants = list(InvitedCandidates.objects.filter(positions_id=positions_id, current_stage=stage).order_by('-id').values())
+                applicants = list(InvitedCandidates.objects.filter(positions=position, current_stage=stage).order_by('-id').values())
             # get linkedin and is_active values from ApplyCandidates model
             for applicant in applicants:
-                candidate = ApplyCandidates.objects.get(email=applicant["email"], jobs_id=applicant["positions_id"])
-                applicant["linkedinurl"] = candidate.linkedinurl
-                applicant["is_active"] = candidate.is_active
-                applicant["apply_candidate_id"] = candidate.id
+                applicant["linkedinurl"] = ""
+                applicant["is_active"] = False
+                applicant["apply_candidate_id"] = 0
+                jobs = Jobs.objects.filter(positions=position, user_id=user_id)
+                if len(jobs) > 0:
+                    candidate = ApplyCandidates.objects.filter(email=applicant["email"], jobs_id=jobs[0].id)
+                    if len(candidate) > 0:
+                        applicant["linkedinurl"] = candidate[0].linkedinurl
+                        applicant["is_active"] = candidate[0].is_active
+                        applicant["apply_candidate_id"] = candidate[0].id
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)
             if total_records > 15:
