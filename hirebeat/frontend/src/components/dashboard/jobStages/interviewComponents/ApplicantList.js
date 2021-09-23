@@ -271,6 +271,9 @@ export const ApplicantList = (props) => {
                         getReviewerEvaluation={props.getReviewerEvaluation}
                         getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
                         user={props.user}
+                        currentStage={props.currentStage}
+                        getPostedJobs={props.getPostedJobs}
+                        getAllJobs={props.getAllJobs}
                     />
                 )
             })}

@@ -2806,8 +2806,8 @@ h5 {
 
 .chart-bg {
   background: #FFFFFF;
-  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
-  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.16);
+  border-radius: 12px;
   margin-top: 4rem;
 }
 
@@ -2815,8 +2815,8 @@ h5 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   background: #FFFFFF;
-  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
-  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.16);
+  border-radius: 12px;
 }
 
 .back-to-text {
@@ -3350,13 +3350,13 @@ h5 {
 
 .short-list-text {
   color: #090D3A;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   cursor: pointer;
 }
 
 .short-list-text2 {
   color: #090D3A;
-  font-size: 1rem;
+  font-size: 0.9375rem;
 }
 
 .short-list-text:hover {

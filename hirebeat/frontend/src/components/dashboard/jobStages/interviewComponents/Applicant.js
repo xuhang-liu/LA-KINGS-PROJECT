@@ -131,16 +131,17 @@ export const Applicant = (props) => {
                 }}
             />
             <div className="row interview-center" style={{ color: "#7D7D7D", height: "2.5rem" }}>
-                {!props.profile.is_subreviwer &&
+                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                     <div className="interview-txt9" style={{ marginLeft: "1rem" }}>
-                        {(!applicants[current].is_invited && !applicants[current].is_recorded) ?
+                        <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" />
+                        {/*(!applicants[current].is_invited && !applicants[current].is_recorded) ?
                             <div>
                                 <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" />
                             </div> :
                             <div>
                                 <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" style={{ visibility: "hidden" }} />
                             </div>
-                        }
+                        */}
                     </div>
                 }
                 <div className="col-3 mb-1">
@@ -225,7 +226,7 @@ export const Applicant = (props) => {
                         </div>
                     }
                 </div>*/}
-                {!props.profile.is_subreviwer &&
+                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                     <div className="col-1">
                         {(isInvited && props.filter == "active") &&
                             <button
@@ -269,6 +270,9 @@ export const Applicant = (props) => {
                 viewNextResult={viewNextResult}
                 applicants={applicants}
                 filter={props.filter}
+                currentStage={props.currentStage}
+                getPostedJobs={props.getPostedJobs}
+                getAllJobs={props.getAllJobs}
             />
             <MyModal80
                 show={showResume}

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { IconText } from "./../../DashboardComponents";
 import ApplicationVideo from "./../../videos/ApplicationVideo";
 import { connect } from "react-redux";
+import { updateInviteStatus } from "./../../../../redux/actions/job_actions";
 import { getPostedJobs, getResumeURL, getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation } from "./../../../../redux/actions/question_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReviewNote from "./ReviewNote";
+import MoveForm from "./MoveForm";
 
 export class ReviewApplication extends Component {
     constructor(props) {
@@ -14,7 +16,26 @@ export class ReviewApplication extends Component {
             viewResume: (sessionStorage.getItem("subpageStatus") == "video" || sessionStorage.getItem("subpageStatus") == "note") ? false : true,
             viewVideo: (sessionStorage.getItem("subpageStatus") == "video" ? true : false) || false,
             viewNotes: (sessionStorage.getItem("subpageStatus") == "note" ? true : false) || false,
+            showMoveForm: false,
+            currentStage: this.props.currentStage,
+            nextStage: "",
         }
+    }
+
+    openMoveForm = () => {
+        this.setState({showMoveForm: true});
+    }
+
+    hideMoveForm = () => {
+        this.setState({showMoveForm: false});
+    }
+
+    setCurrentStage = (currentStage) => {
+        this.setState({currentStage: currentStage});
+    }
+
+    setNextStage = (nextStage) => {
+        this.setState({nextStage: nextStage});
     }
 
     setViewResume = () => {
@@ -41,16 +62,54 @@ export class ReviewApplication extends Component {
         })
     }
 
-    updateStatus = (status) => {
+    sendSuccessAlert = (nextStage) => {
+        alert(`You have moved candidates to ${nextStage} stage successfully.`);
+    };
+
+    moveCandidates = () => {
+        if (this.state.nextStage == "") {
+            return alert("Please select a stage to move.");
+        }
+        const applicant = this.props.applicants[this.props.current];
+        const invitedCandidates = [];
+        invitedCandidates.push(applicant.apply_candidate_id);
         let data = {
-            "email": this.props.applicants[this.props.current].email,
-            "positionId": this.props.positionId,
-            "status": status,
-            "userId": this.props.user.id
-        };
-        this.props.updateCommentStatus(data);
-        setTimeout(() => { this.props.getPJobs() }, 200);
-    }
+            "positionId": applicant.positions_id,
+            "candidates": invitedCandidates,
+            "nextStage": this.state.nextStage,
+            "is_reject": false,
+        }
+        this.props.updateInviteStatus(data);
+        this.sendSuccessAlert(this.state.nextStage);
+        this.hideMoveForm();
+        // update
+        let page = 1;
+        let userId = this.props.user.id;
+        setTimeout(() => {this.props.getAllJobs(userId, page, this.state.currentStage); this.props.getPostedJobs(userId, page, this.state.currentStage) }, 300);
+        this.props.hide();
+    };
+
+    rejectCandidates = () => {
+        const applicant = this.props.applicants[this.props.current];
+        const invitedCandidates = [];
+        invitedCandidates.push(applicant.apply_candidate_id);
+        let data = {
+            "positionId": applicant.positions_id,
+            "candidates": invitedCandidates,
+            "nextStage": this.state.nextStage,
+            "is_reject": true,
+        }
+        this.props.updateInviteStatus(data);
+        // update
+        let page = 1;
+        let userId = this.props.user.id;
+        setTimeout(() => {this.props.getAllJobs(userId, page, this.state.currentStage); this.props.getPostedJobs(userId, page, this.state.currentStage) }, 300);
+        if (applicant.is_active){
+            alert("Candidate Rejected!");
+        } else {
+            alert("Candidate Unrejected!");
+        }
+    };
 
     updateEvaluation = (evaluation) => {
         // identify employer or reviewer
@@ -189,6 +248,16 @@ export class ReviewApplication extends Component {
                                     />
                                 </div>
                             </div>
+                            {this.props.applicants[this.props.current].linkedinurl != null && this.props.applicants[this.props.current].linkedinurl != "" ?
+                            <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
+                                <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#67A3F3", marginRight: "3px" }}></i>
+                                <a style={{ fontSize: "0.7rem", color: "#67A3F3", fontWeight: "500" }} href={this.props.applicants[this.props.current].linkedinurl} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
+                            </div> :
+                            <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
+                                <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#979797", marginRight: "3px" }}></i>
+                                <p style={{ fontSize: "0.7rem", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
+                            </div>
+                        }
                         </div>
                         <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "10px", width: "100%", position: "relative", minHeight: "28rem" }}>
                             <h2
@@ -229,55 +298,58 @@ export class ReviewApplication extends Component {
                                     </button>}
                                 </div>*/}
                             </div>
-                            {!this.props.profile.is_subreviwer &&
+                            <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                <p style={{ color: "#090d3a" }}>Current Stage: {this.props.applicants[this.props.current].current_stage}</p>
+                            </div>
+                            {!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer &&
                                 <div>
-                                    {this.props.commentStatus == 1 ?
-                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn ml-2" style={{ width: "8rem", fontSize: "0.8rem", backgroundColor:"#13c4a1" }}>
-                                                <i class='bx bx-bookmark-plus'></i>Shortlist
-                                            </button>
-                                        </div> :
+                                    {this.props.applicants[this.props.current].is_active &&
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                                             <button
-                                                className="default-btn ml-2"
-                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "8rem", fontSize: "0.8rem" }}
-                                                onClick={this.props.filter == "active" ? (() => { this.updateStatus(1); this.props.refresh()}) : this.jobClosedAlert}>
-                                                <i class='bx bx-bookmark-plus' style={{ color: "#090D3A" }}></i>Shortlist
+                                                className="default-btn1"
+                                                style={{ width: "13rem", paddingLeft: "25px"}}
+                                                onClick={this.props.filter == "active" ? this.openMoveForm : this.jobClosedAlert}>
+                                                Move Stage
                                             </button>
                                         </div>
                                     }
-                                    {this.props.commentStatus == 2 ?
+                                    {!this.props.applicants[this.props.current].is_active ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn ml-2" style={{ width: "8rem", fontSize: "0.8rem", backgroundColor:"#ff6b00" }}>
-                                                <i class='bx bx-help-circle'></i>Hold
-                                            </button>
-                                        </div> :
-                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button
-                                                className="default-btn ml-2"
-                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "8rem", fontSize: "0.8rem" }}
-                                                onClick={this.props.filter == "active" ? (() => { this.updateStatus(2); this.props.refresh()}) : this.jobClosedAlert}>
-                                                <i class='bx bx-help-circle' style={{ color: "#090D3A" }}></i>Hold
-                                            </button>
-                                        </div>
-                                    }
-                                    {this.props.commentStatus == 3 ?
-                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                            <button className="default-btn ml-2" style={{ width: "8rem", fontSize: "0.8rem", backgroundColor:"#ff0000" }}>
+                                            <button className="default-btn ml-2" style={{ width: "13rem", backgroundColor:"#ff0000" }}>
                                                 <i class='bx bx-calendar-x'></i>Reject
                                             </button>
                                         </div> :
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                                             <button
                                                 className="default-btn ml-2"
-                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "8rem", fontSize: "0.8rem" }}
-                                                onClick={this.props.filter == "active" ? (() => { this.updateStatus(3); this.props.refresh()}) : this.jobClosedAlert}>
+                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "13rem"}}
+                                                onClick={this.props.filter == "active" ? (() => { this.rejectCandidates(); this.props.refresh()}) : this.jobClosedAlert}>
                                                 <i class='bx bx-calendar-x' style={{ color: "#090D3A" }}></i>Reject
+                                            </button>
+                                        </div>
+                                    }
+                                    {!this.props.applicants[this.props.current].is_active &&
+                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                            <button
+                                                onClick={this.props.filter == "active" ? (() => { this.rejectCandidates(); this.props.refresh()}) : this.jobClosedAlert}
+                                                className="default-btn1"
+                                                style={{ paddingLeft: "25px", width: "13rem", background: "#fff", color: "#090D3A", textDecoration:"underline" }}
+                                            >
+                                                Unreject
                                             </button>
                                         </div>
                                     }
                                 </div>
                             }
+                            <MoveForm
+                                showMoveForm={this.state.showMoveForm}
+                                hideMoveForm={this.hideMoveForm}
+                                currentStage={this.state.currentStage}
+                                setCurrentStage={this.setCurrentStage}
+                                nextStage={this.state.nextStage}
+                                setNextStage={this.setNextStage}
+                                moveCandidates={this.moveCandidates}
+                            />
                             {(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer) &&
                                 <div>
                                     {this.props.curEvaluation.evaluation == 1 ?
@@ -367,7 +439,6 @@ export class ReviewApplication extends Component {
                                     comments={this.props.comments}
                                     pk={this.props.pk}
                                     refresh={this.props.refresh}
-                                    updateStatus={this.updateStatus}
                                     commentStatus={this.props.commentStatus}
                                     profile={this.props.profile}
                                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
@@ -461,5 +532,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     getPostedJobs, getResumeURL, getReviewNote, addOrUpdateReviewerEvaluation,
-    getReviewerEvaluation, getCurrentReviewerEvaluation
+    getReviewerEvaluation, getCurrentReviewerEvaluation, updateInviteStatus
 })(ReviewApplication);
