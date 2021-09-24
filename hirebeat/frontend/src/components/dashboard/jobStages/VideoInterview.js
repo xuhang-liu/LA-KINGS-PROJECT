@@ -575,7 +575,7 @@ export function VideoInterview(props){
             {/* Job Applications */}
             {!invite &&
                 <div className="container-fluid">
-                    <div className="chart-bg1 container-fluid mt-4 pt-3 pb-3">
+                    <div className="container-fluid mt-4 pt-3 pb-3">
                         <div className="row">
                             <div className="col-6 interview-center mt-2">
                                 <h3 className="interview-txt5" style={{ wordWrap: "break-word", wordBreak: "break-all", }}>{props.jobTitle}</h3>

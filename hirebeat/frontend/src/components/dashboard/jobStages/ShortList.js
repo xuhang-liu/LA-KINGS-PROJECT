@@ -6,7 +6,7 @@ import { loadStarList, getResumeURL, addExReviewer, delExReviewer } from './../.
 import { checkUserExistence } from './../../../redux/actions/auth_actions';
 import { withRouter } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
-import {MyVerticallyCenteredModal} from "./interviewComponents/MyVerticallyCenteredModal";
+import { MyVerticallyCenteredModal } from "./interviewComponents/MyVerticallyCenteredModal";
 
 const ShortList = (props) => {
     const [curJobId, setCurJobId] = useState(Object.keys(props.postedJobs)[0]);
@@ -73,10 +73,18 @@ export default withRouter(connect(mapStateToProps, { loadStarList, getResumeURL,
 const AcceptedCandidate = (props) => {
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
+    const [keyWords, setkeyWords] = useState("");
+    function onChange(e) {
+        setkeyWords(e.target.value);
+    };
+
     return (
         <div>
-            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem" }} className="container-fluid min-width-980 mt-4 py-4 chart-bg1">
-                <h2 className="short-list-title">{jobTitle.length > 50 ? jobTitle.substring(0, 47) + "..." : jobTitle} {jobId == "" ? null : "(ID: " + jobId + ")"}</h2>
+            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem" }} className="container-fluid min-width-980 mt-4 py-4">
+                <div className="interview-txt7 interview-center mb-4" style={{ color: "#56a3fa", fontSize: "1rem" }}>
+                    <label style={{ position: "absolute", left: "1.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
+                    <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
+                </div>
                 <div style={{ color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
                     <div className="col-3">Name</div>
                     <div className="col-3">Video Average Score</div>
@@ -84,6 +92,10 @@ const AcceptedCandidate = (props) => {
                     {(!props.profile.is_external_reviewer) && <div className="col-2">Contact</div>}
                 </div>
                 {props.theJob.applicants.map((applicant, index) => {
+                    if (keyWords != "") {
+                        var canName = applicant.name;
+                        if (!canName?.toLowerCase()?.includes(keyWords?.toLowerCase())) return null;
+                    }
                     return (
                         <div>
                             <CandidateCard

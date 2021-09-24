@@ -197,12 +197,7 @@ export function LiveInterview(props){
     return (
         <React.Fragment>
             <div className="container-fluid">
-                <div className="chart-bg1 container-fluid mt-4 pt-3 pb-3">
-                    <div className="row">
-                        <div className="col-6 interview-center mt-2">
-                            <h3 className="interview-txt5" style={{ wordWrap: "break-word", wordBreak: "break-all", }}>{props.jobTitle}</h3>
-                        </div>
-                    </div>
+                <div className="container-fluid mt-4 pt-3 pb-3">
                     <div className="row" style={{paddingLeft: "15px", paddingRight: "15px"}}>
                         <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
                             <label style={{position:"absolute", left:"3.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
