@@ -358,68 +358,69 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {subreviewers.length > 0 &&
-                        <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                            {subreviewers.slice(0, 3).map((sub, i) => {
-                                return (
-                                    <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                        <p className="sub_submenu container" style={{ width: "12rem" }}>
-                                            <div className="row">
-                                                <div className="col-3 px-3 py-2">
-                                                    <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                            <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                                {subreviewers.slice(0, 3).map((sub, i) => {
+                                    return (
+                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                            <p className="sub_submenu container" style={{ width: "12rem" }}>
+                                                <div className="row">
+                                                    <div className="col-3 px-3 py-2">
+                                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                    </div>
+                                                    <div className="col-9">
+                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                        <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
+                                                        <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                    </div>
                                                 </div>
-                                                <div className="col-9">
-                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                    <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
-                                                    <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                            </p>
+                                        </span>
+                                    )
+                                })}
+                                {subreviewers.length > 3 &&
+                                    <span className="sub_number3" style={{ color: "white" }}>+{subreviewers.length - 3}
+                                        <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
+                                            <div className="row">
+                                                <div className="col-12">
+                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Sub-Reviewers</p>
+                                                    {subreviewers.map((sub, i) => {
+                                                        return (
+                                                            <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                                <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
+                                                                    <div className="row">
+                                                                        <div className="col-3 px-2 py-2">
+                                                                            <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                                        </div>
+                                                                        <div className="col-9">
+                                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
+                                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </p>
+                                                            </span>
+                                                        )
+                                                    })}
                                                 </div>
                                             </div>
                                         </p>
-                                    </span>
-                                )
-                            })}
-                            {subreviewers.length > 3 &&
-                                <span className="sub_number3" style={{ color: "white" }}>+{subreviewers.length - 3}
-                                    <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
-                                        <div className="row">
-                                            <div className="col-12">
-                                                <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Sub-Reviewers</p>
-                                                {subreviewers.map((sub, i) => {
-                                                    return (
-                                                        <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                                            <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
-                                                                <div className="row">
-                                                                    <div className="col-3 px-2 py-2">
-                                                                        <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
-                                                                    </div>
-                                                                    <div className="col-9">
-                                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                                        <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
-                                                                        <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
-                                                                    </div>
-                                                                </div>
-                                                            </p>
-                                                        </span>
-                                                    )
-                                                })}
-                                            </div>
-                                        </div>
-                                    </p>
-                                </span>}
-                        </div>}
-                        <div style={{ marginLeft: "2rem" }}>
-                            {this.props.analytics.all_can_num > 0 &&
-                                <div>
-                                    {(this.props.profile.membership == "Premium") &&
-                                        <button
-                                            className="default-btn1 interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px" }}
-                                            onClick={this.inviteReviever}
-                                        >
-                                            + Sub-Reviewer
-                                            <span></span>
-                                        </button>}
-                                </div>}
-                        </div>
+                                    </span>}
+                            </div>}
+                        {(!this.props.job.job_details.is_closed) &&
+                            <div style={{ marginLeft: "2rem" }}>
+                                {this.props.analytics.all_can_num > 0 &&
+                                    <div>
+                                        {(this.props.profile.membership == "Premium") &&
+                                            <button
+                                                className="default-btn1 interview-txt6 mt-4"
+                                                style={{ paddingLeft: "25px" }}
+                                                onClick={this.inviteReviever}
+                                            >
+                                                + Sub-Reviewer
+                                                <span></span>
+                                            </button>}
+                                    </div>}
+                            </div>}
                     </div>
                     {/*Live Interview*/}
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
@@ -471,69 +472,70 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {exReviewers.length > 0 &&
-                        <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                            {(exReviewers.slice(0, 3).map((sub, i) => {
-                                return (
-                                    <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                        <p className="sub_submenu container" style={{ minWidth: "12rem" }}>
-                                            <div className="row">
-                                                <div className="col-2 px-3 py-2">
-                                                    <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                            <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                                {(exReviewers.slice(0, 3).map((sub, i) => {
+                                    return (
+                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                            <p className="sub_submenu container" style={{ minWidth: "12rem" }}>
+                                                <div className="row">
+                                                    <div className="col-2 px-3 py-2">
+                                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                    </div>
+                                                    <div className="col-10">
+                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                        <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "3px" }}>{sub.r_email}</p>
+                                                        <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteExReviewer(sub.id) }}>Remove</a>
+                                                    </div>
                                                 </div>
-                                                <div className="col-10">
-                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                    <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "3px" }}>{sub.r_email}</p>
-                                                    <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteExReviewer(sub.id) }}>Remove</a>
+                                            </p>
+                                        </span>
+                                    )
+                                }))}
+                                {exReviewers.length > 3 &&
+                                    <span className="sub_number3" style={{ color: "white" }}>+{exReviewers.length - 3}
+                                        <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
+                                            <div className="row">
+                                                <div className="col-12">
+                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>External-Reviewers</p>
+                                                    {exReviewers.map((sub, i) => {
+                                                        return (
+                                                            <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                                <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
+                                                                    <div className="row">
+                                                                        <div className="col-2 px-2 py-2">
+                                                                            <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                                        </div>
+                                                                        <div className="col-10">
+                                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "3px" }}>{sub.r_email}</p>
+                                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteExReviewer(sub.id) }}>Remove</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </p>
+                                                            </span>
+                                                        )
+                                                    })}
                                                 </div>
                                             </div>
                                         </p>
                                     </span>
-                                )
-                            }))}
-                            {exReviewers.length > 3 &&
-                                <span className="sub_number3" style={{ color: "white" }}>+{exReviewers.length - 3}
-                                    <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
-                                        <div className="row">
-                                            <div className="col-12">
-                                                <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>External-Reviewers</p>
-                                                {exReviewers.map((sub, i) => {
-                                                    return (
-                                                        <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                                            <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
-                                                                <div className="row">
-                                                                    <div className="col-2 px-2 py-2">
-                                                                        <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
-                                                                    </div>
-                                                                    <div className="col-10">
-                                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                                        <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "3px" }}>{sub.r_email}</p>
-                                                                        <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteExReviewer(sub.id) }}>Remove</a>
-                                                                    </div>
-                                                                </div>
-                                                            </p>
-                                                        </span>
-                                                    )
-                                                })}
-                                            </div>
-                                        </div>
-                                    </p>
-                                </span>
-                            }
-                        </div>}
-                        <div style={{ marginLeft: "2rem" }}>
-                            {this.props.analytics.all_can_num > 0 &&
-                                <div>
-                                    {(this.props.profile.membership == "Premium") &&
-                                        <button
-                                            className="default-btn1 interview-txt6 mt-4"
-                                            onClick={this.inviteExReviewer}
-                                            style={{ paddingLeft: "25px" }}
-                                        >
-                                            + External Reviewer
-                                            <span></span>
-                                        </button>}
-                                </div>}
-                        </div>
+                                }
+                            </div>}
+                        {(!this.props.job.job_details.is_closed) &&
+                            <div style={{ marginLeft: "2rem" }}>
+                                {this.props.analytics.all_can_num > 0 &&
+                                    <div>
+                                        {(this.props.profile.membership == "Premium") &&
+                                            <button
+                                                className="default-btn1 interview-txt6 mt-4"
+                                                onClick={this.inviteExReviewer}
+                                                style={{ paddingLeft: "25px" }}
+                                            >
+                                                + External Reviewer
+                                                <span></span>
+                                            </button>}
+                                    </div>}
+                            </div>}
                     </div>
                 </div>
             </React.Fragment>
@@ -543,7 +545,7 @@ export class Pipeline extends Component {
 
 const mapStateToProps = (state) => ({
     analytics: state.job_reducer.analytics,
-  });
+});
 
 export default withRouter(connect(mapStateToProps, {
     removeSubReviewer, delExReviewer, addSubReviewer, addExReviewer, getPipelineAnalytics
