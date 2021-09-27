@@ -1286,7 +1286,7 @@ export class Profile extends Component {
                                         </div>
                                     </div>
                                     <div>
-                                        {this.props.profileDetail.educations.map((edu) => {
+                                        {this.props.profileDetail?.educations?.map((edu) => {
                                             if (edu.school != "" && edu.school != null) {
                                                 return (
                                                     <Education
@@ -1327,7 +1327,7 @@ export class Profile extends Component {
                                         </div>
                                     </div>
                                     <div>
-                                        {this.props.profileDetail.experiences.map((exp) => {
+                                        {this.props.profileDetail?.experiences?.map((exp) => {
                                             if (exp.company != "" && exp.company != null) {
                                                 return (
                                                     <WorkExperience

@@ -370,6 +370,8 @@ def get_received_interview(request):
 def get_profile_detail(request):
     user_id = request.query_params.get("user_id")
     data = model_to_dict(ProfileDetail(user_id=user_id))
+    data["educations"] = []
+    data["experiences"] = []
     try:
         profile = ProfileDetail.objects.get(user_id=user_id)
         # get registered email
