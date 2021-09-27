@@ -403,12 +403,14 @@ export class ReviewApplication extends Component {
                                 >
                                     Resume
                                 </h2>
-                                <h2
-                                    className={this.state.viewVideo ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={() => { this.setViewVideo(); sessionStorage.setItem("subpageStatus", "video") }}
-                                >
-                                    Video Interview
-                                </h2>
+                                {(this.props.video_array?.length > 0) &&
+                                    <h2
+                                        className={this.state.viewVideo ? "head-btn-selected" : "head-btn-unselected"}
+                                        onClick={() => { this.setViewVideo(); sessionStorage.setItem("subpageStatus", "video") }}
+                                    >
+                                        Video Interview
+                                    </h2>
+                                }
                                 <h2
                                     className={this.state.viewNotes ? "head-btn-selected" : "head-btn-unselected"}
                                     onClick={() => { this.setViewNotes(); sessionStorage.setItem("subpageStatus", "note") }}

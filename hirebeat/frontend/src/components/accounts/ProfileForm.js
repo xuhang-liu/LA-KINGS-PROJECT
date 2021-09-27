@@ -108,8 +108,6 @@ export class ProfileForm extends Component {
             this.alert("Empty file", "Please select your resume first");
         }
         else {
-            console.log("123123123123123");
-            console.log(this.state.resume);
             this.uploader.uploadFile(this.state.resume);
             // update resumeUrl and resumeName states
             var fakeName = this.state.fakeName;

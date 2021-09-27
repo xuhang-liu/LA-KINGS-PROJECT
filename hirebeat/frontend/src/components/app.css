@@ -4690,3 +4690,13 @@ max-width: 110px;
   color: #E35454;
   text-align: left;
 }
+
+.resume-bg {
+  background: #FFFFFF;
+  border: 2px dashed #E8EDFC;
+  box-sizing: border-box;
+  width: 36rem;
+  height: 18rem;
+  margin-left: auto;
+  margin-right: auto;
+}

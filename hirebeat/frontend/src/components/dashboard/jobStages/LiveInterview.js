@@ -9,9 +9,9 @@ import ReactPaginate from 'react-paginate';
 import MoveForm from "./interviewComponents/MoveForm";
 
 export function LiveInterview(props){
-    useEffect(() => {
-        props.getPostedJobs(props.user.id, 1, "Live Interview");
-    }, [])
+//    useEffect(() => {
+//        props.getPostedJobs(props.user.id, 1, "Live Interview");
+//    }, [])
 
     const [expire, setExpire] = useState({ value: 7, label: '7 days' });
 
@@ -85,8 +85,8 @@ export function LiveInterview(props){
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page);
-        sessionStorage.setItem("intAppPage", String(selectedPage));
+        props.getPostedJobs(props.user.id, page, "Live Interview");
+        sessionStorage.setItem("liveInterviewPage", String(selectedPage));
     };
 
     const [showMoveForm, setShowMoveForm] = useState(false);
@@ -197,18 +197,13 @@ export function LiveInterview(props){
     return (
         <React.Fragment>
             <div className="container-fluid">
-                <div className="chart-bg1 container-fluid mt-4 pt-3 pb-3">
-                    <div className="row">
-                        <div className="col-6 interview-center mt-2">
-                            <h3 className="interview-txt5" style={{ wordWrap: "break-word", wordBreak: "break-all", }}>{props.jobTitle}</h3>
-                        </div>
-                    </div>
+                <div className="container-fluid mt-4 pt-3 pb-3">
                     <div className="row" style={{paddingLeft: "15px", paddingRight: "15px"}}>
                         <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
                             <label style={{position:"absolute", left:"3.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
                             <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                         </div>
-                        <div className="ml-auto interview-txt7">
+                        <div className="ml-auto">
                             <ReactPaginate
                                   previousLabel={'< prev'}
                                   nextLabel={'next >'}
@@ -220,7 +215,7 @@ export function LiveInterview(props){
                                   onPageChange={handlePageClick}
                                   containerClassName={'pagination3'}
                                   activeClassName={'active'}
-                                  forcePage={sessionStorage.getItem("intAppPage")?parseInt(sessionStorage.getItem("intAppPage")):selectedPage}
+                                  forcePage={sessionStorage.getItem("liveInterviewPage")?parseInt(sessionStorage.getItem("liveInterviewPage")):selectedPage}
                             />
                         </div>
                     </div>
@@ -288,7 +283,7 @@ export function LiveInterview(props){
                             />
                         </div>
                     </div>
-                    <div className="interview-txt7 d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                    <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
                         <ReactPaginate
                               previousLabel={'< prev'}
                               nextLabel={'next >'}
@@ -300,7 +295,7 @@ export function LiveInterview(props){
                               onPageChange={handlePageClick}
                               containerClassName={'pagination3'}
                               activeClassName={'active'}
-                              forcePage={sessionStorage.getItem("intAppPage")?parseInt(sessionStorage.getItem("intAppPage")):selectedPage}
+                              forcePage={sessionStorage.getItem("liveInterviewPage")?parseInt(sessionStorage.getItem("liveInterviewPage")):selectedPage}
                         />
                     </div>
                 </div>

@@ -39,6 +39,7 @@ export class JobPortalPage extends Component {
         });
     };
     renderVideoInterview = () => {
+        sessionStorage.setItem('selectedSubpage', "Video Interview");
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "videoInterview");
         let interviewPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
         this.props.getPostedJobs(this.props.user.id, interviewPage, "Video Interview");
@@ -47,6 +48,7 @@ export class JobPortalPage extends Component {
         });
     };
     renderLiveInterview = () => {
+        sessionStorage.setItem('selectedSubpage', "Live Interview");
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "liveInterview");
         let page = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
         this.props.getPostedJobs(this.props.user.id, page, "Live Interview");
@@ -55,6 +57,7 @@ export class JobPortalPage extends Component {
         });
     };
     renderShortList = () => {
+        sessionStorage.setItem('selectedSubpage', "Short List");
         sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "shortList");
         let shortListPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
         this.props.getPostedJobs(this.props.user.id, shortListPage, "Short List");
@@ -73,6 +76,7 @@ export class JobPortalPage extends Component {
     };
 
     renderSubpage = () => {
+        const p = this.props.postedJobs[this.props.job.job_details.positions_id];
         switch (this.state.portalSubpage) {
             case "pipeline":
                 return <Pipeline
@@ -96,6 +100,8 @@ export class JobPortalPage extends Component {
                             getPJobs={this.props.getPJobs}
                             profile={this.props.profile}
                             user={this.props.user}
+                            isClosed={p.is_closed}
+                            getPostedJobs={this.props.getPostedJobs}
                         />;
             case "resumeScreen":
                 return <ResumeScreening
@@ -108,7 +114,6 @@ export class JobPortalPage extends Component {
                             user={this.props.user}
                         />;
             case "videoInterview":
-                const p = this.props.postedJobs[this.props.job.job_details.positions_id];
                 return <VideoInterview
                         filter={this.props.filter}
                         removeSubReviewer={this.props.removeSubReviewer}
@@ -165,7 +170,6 @@ export class JobPortalPage extends Component {
                         getAllJobs={this.props.getAllJobs}
                 />;
             case "liveInterview":
-                const curPos = this.props.postedJobs[this.props.job.job_details.positions_id];
                 return <LiveInterview
                         filter={this.props.filter}
                         removeSubReviewer={this.props.removeSubReviewer}
@@ -173,15 +177,15 @@ export class JobPortalPage extends Component {
                         getPJobs={this.props.getPJobs}
                         resumeURL={this.props.resumeURL}
                         addSelected={this.props.setselectedId}
-                        questions={curPos.questions}
+                        questions={p.questions}
                         companyName={this.props.companyName}
-                        positionId={curPos.position_id}
-                        jobId={curPos.job_id}
-                        jobTitle={curPos.job_title}
-                        isClosed={curPos.is_closed}
-                        inviteDate={curPos.invite_date}
-                        applicants={curPos.applicants}
-                        subreviewers={curPos.subreviewers}
+                        positionId={p.position_id}
+                        jobId={p.job_id}
+                        jobTitle={p.job_title}
+                        isClosed={p.is_closed}
+                        inviteDate={p.invite_date}
+                        applicants={p.applicants}
+                        subreviewers={p.subreviewers}
                         addInterviews={this.props.addInterviews}
                         getApplicantsVideos={this.props.getApplicantsVideos}
                         getApplicantsInfo={this.props.getApplicantsInfo}
@@ -205,8 +209,8 @@ export class JobPortalPage extends Component {
                         profile={this.props.profile}
                         updateViewStatus={this.props.updateViewStatus}
                         subreviewerUpdateComment={this.props.subreviewerUpdateComment}
-                        position={curPos.position}
-                        allInvited={curPos.all_invited}
+                        position={p.position}
+                        allInvited={p.all_invited}
                         moveCandidateToInterview={this.props.moveCandidateToInterview}
                         sendInterviews={this.props.sendInterviews}
                         checkUserExistence={this.props.checkUserExistence}
@@ -214,15 +218,14 @@ export class JobPortalPage extends Component {
                         getReviewNote={this.props.getReviewNote}
                         getReviewerEvaluation={this.props.getReviewerEvaluation}
                         getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
-                        totalRecords={curPos.total_records}
-                        totalPage={curPos.total_page}
+                        totalRecords={p.total_records}
+                        totalPage={p.total_page}
                         getPostedJobs={this.props.getPostedJobs}
                         updateInviteStatus={this.props.updateInviteStatus}
                         jobsId={this.props.job.job_details.id}
                         getAllJobs={this.props.getAllJobs}
                 />;
             case "shortList":
-                const pos = this.props.postedJobs[this.props.job.job_details.positions_id];
                 return <ShortList
                     getPJobs={this.props.getPJobs}
                     postedJobs={this.props.postedJobs}
@@ -244,9 +247,10 @@ export class JobPortalPage extends Component {
                     getReviewNote={this.props.getReviewNote}
                     getReviewerEvaluation={this.props.getReviewerEvaluation}
                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
-                    positionId={pos.position_id}
+                    positionId={p.position_id}
                     getPostedJobs={this.props.getPostedJobs}
                     getAllJobs={this.props.getAllJobs}
+                    totalPage={p.total_page}
                 />;
             default:
                 return null;

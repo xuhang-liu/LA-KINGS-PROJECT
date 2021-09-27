@@ -87,11 +87,7 @@ export class JobCard extends Component {
             <div>
                 <hr
                     style={{
-                        color: "#E8EDFC",
-                        backgroundColor: "#E8EDFC",
-                        height: 3,
-                        marginBottom: "0.5rem",
-                        marginTop: "0rem"
+                        border: "1px solid #E5E5E5",
                     }}
                 />
                 <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginBottom: "0.5rem" }}>

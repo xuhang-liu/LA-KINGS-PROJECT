@@ -634,7 +634,6 @@ const ApplicantRow = (props) => {
         props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
         props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email);
         sessionStorage.setItem(("showPreview" + props.index), "true");
-        sessionStorage.setItem("current", props.index);
         setShowPreview(true);
     }
 
@@ -642,7 +641,6 @@ const ApplicantRow = (props) => {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
         setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
         sessionStorage.removeItem("showPreview" + props.index);
-        sessionStorage.removeItem("current");
         setShowPreview(false);
     }
 
@@ -693,11 +691,8 @@ const ApplicantRow = (props) => {
         <div className="container-fluid">
             <hr
                 style={{
-                    color: "#E8EDFC",
-                    backgroundColor: "#E8EDFC",
-                    height: 3,
-                    marginBottom: "0.3rem",
-                    marginTop: "0.8rem"
+                    border: props.index == 0 ? "1px solid #E8EDFC" : "1px solid #E5E5E5",
+                    boxShadow: props.index == 0 ? "0px 1px 2px #E8EDFC" : "",
                 }}
             />
             <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem" }}>
