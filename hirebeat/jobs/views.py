@@ -207,41 +207,43 @@ def add_new_apply_candidate(request):
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
-                                                     email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
-                                                     gender=gender, race=race)
-    # add candidate resume url to prifile detail table
-    applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
-    if applicant_registered:
-        applicant = User.objects.get(email=email)
-        has_profile = True if len(ProfileDetail.objects.filter(user_id=applicant.id)) == 1 else False
-        # only insert resume url when user doesn't have a profile detail record
-        if has_profile is False:
-            resume_name = firstname + "_" + lastname + ".pdf"
-            ProfileDetail.objects.create(
-                user_id=applicant.id,
-                resume_name=resume_name,
-                resume_url=resume_url,
-                profile_rate=50,
-            )
-    # print("===New Candidate Notify Email Called===")
-    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
-    message = get_template("jobs/new_candidate_notification_email.html")
-    context = {
-        'fullname': fullname,
-        'title': jobs.job_title,
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [user.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    if not applied:
+        applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
+                                                         email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
+                                                         gender=gender, race=race)
+        # add candidate resume url to prifile detail table
+        applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
+        if applicant_registered:
+            applicant = User.objects.get(email=email)
+            has_profile = True if len(ProfileDetail.objects.filter(user_id=applicant.id)) == 1 else False
+            # only insert resume url when user doesn't have a profile detail record
+            if has_profile is False:
+                resume_name = firstname + "_" + lastname + ".pdf"
+                ProfileDetail.objects.create(
+                    user_id=applicant.id,
+                    resume_name=resume_name,
+                    resume_url=resume_url,
+                    profile_rate=50,
+                )
+        # print("===New Candidate Notify Email Called===")
+        subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+        message = get_template("jobs/new_candidate_notification_email.html")
+        context = {
+            'fullname': fullname,
+            'title': jobs.job_title,
+        }
+        from_email = 'HireBeat Team <tech@hirebeat.co>'
+        to_list = [user.email]
+        content = message.render(context)
+        email = EmailMessage(
+            subject,
+            content,
+            from_email,
+            to_list,
+        )
+        email.content_subtype = "html"
+        email.send()
 
     return Response("Add new apply candidate successfully", status=status.HTTP_202_ACCEPTED)
 
@@ -309,8 +311,13 @@ def update_invite_status(request):
     for i in range(len(candidates)):
         candidate = ApplyCandidates.objects.get(id=candidates[i])
         if is_reject:
-            candidate.is_active = not candidate.is_active
+            is_active = not candidate.is_active
+            # update ApplyCandidates model
+            candidate.is_active = is_active
             candidate.save()
+            # update InvitedCandidates model
+            if InvitedCandidates.objects.filter(email=candidate.email, positions_id=positionId).exists():
+                InvitedCandidates.objects.filter(email=candidate.email, positions_id=positionId).update(is_active=is_active)
         else:
             try:
                 invitedCan = InvitedCandidates.objects.get(email=candidate.email, positions_id=positionId)
@@ -507,8 +514,8 @@ def add_new_apply_candidate_from_zr(request):
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs)
-    if len(applied) == 0:
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    if not applied:
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                     location="", resume_url=resume_url, linkedinurl="", apply_source="ZipRecruiter")
     else:
