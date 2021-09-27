@@ -11,7 +11,7 @@ export class ReviewerRegisterForm extends Component {
             <React.Fragment>
                 <div style={{marginBottom:"3rem", paddingTop:"3rem"}}>
                     <h1 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
-                    <h3 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Start your 14-Day Free Trial</b></h3>
+                    <h3 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Start your Hiring Now!</b></h3>
                 </div>
                 <form onSubmit={this.props.onSubmit}>
                     {/*<div className="form-group">

@@ -223,6 +223,20 @@ export class EmployerRegister extends Component {
 
   updateState = (key, value) => {
     this.setState({[key]: value});
+    if(key == "email"){
+      // check if it reviewer
+      axios
+        .get(`accounts/check-if-it-reviewer?email=${value?.toLowerCase()}`)
+        .then((res) => {
+          let is_reviewer = res?.data?.is_reviewer;
+          if (is_reviewer) {
+            this.setState({isReviewer: true, companyName: "External or Sub Reviewer"});
+          }
+        })
+        .catch((err) =>
+          console.log(err)
+        );
+    }
   }
 
   setStep = (step) => {

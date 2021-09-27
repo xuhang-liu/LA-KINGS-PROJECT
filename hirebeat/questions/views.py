@@ -667,20 +667,19 @@ def get_stars_list(request):
 
 @api_view(['POST'])
 def add_sub_reviewer(request):
-    profile = {}
     sub_name = request.data["sub_name"]
     sub_email = request.data["sub_email"]
     encoded_email = request.data["encoded_email"]
     company_name = request.data["company_name"]
     position_id = request.data["position_id"]
     master_email = request.data["master_email"]
+    current_stage = request.data["current_stage"]
+    master_user = request.data["master_user"]
+    jobs_id = request.data["jobs_id"]
     positions = Positions.objects.get(pk=position_id)
-    user = User.objects.filter(email=sub_email)
     subreviewers = SubReviewers.objects.filter(company_name=company_name, r_email=sub_email, position=positions)
-    for u in user:
-        profile = Profile.objects.filter(user_id=u.id, is_subreviwer=False)
-    if((len(profile) == 0) and (len(subreviewers) == 0)):
-        SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name, position=positions)
+    if((len(subreviewers) == 0)):
+        SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name, position=positions, current_stage=current_stage, master_user=master_user, jobs_id=jobs_id)
         send_sub_invitation(sub_name, sub_email, encoded_email, company_name, master_email, positions.job_title)
     else:
         send_sub_invitation(sub_name, sub_email, encoded_email, company_name, master_email, positions.job_title)
@@ -848,20 +847,18 @@ def delete_interview_questions(request):
 
 @api_view(['POST'])
 def add_external_reviewer(request):
-    profile = {}
     ex_reviewer_name = request.data["ex_reviewer_name"]
     ex_reviewer_email = request.data["ex_reviewer_email"]
     encoded_email = request.data["encoded_email"]
     company_name = request.data["company_name"]
     position_id = request.data["position_id"]
     master_email = request.data["master_email"]
+    master_user = request.data["master_user"]
+    jobs_id = request.data["jobs_id"]
     positions = Positions.objects.get(pk=position_id)
-    user = User.objects.filter(email=ex_reviewer_email)
     externalReviewers = ExternalReviewers.objects.filter(company_name=company_name, r_email=ex_reviewer_email, position=positions)
-    for u in user:
-        profile = Profile.objects.filter(user_id=u.id, is_external_reviewer=False)
-    if (len(profile) == 0) and (len(externalReviewers) == 0):
-        ExternalReviewers.objects.create(r_name=ex_reviewer_name, r_email=ex_reviewer_email, company_name=company_name, position=positions)
+    if (len(externalReviewers) == 0):
+        ExternalReviewers.objects.create(r_name=ex_reviewer_name, r_email=ex_reviewer_email, company_name=company_name, position=positions, master_user=master_user, jobs_id=jobs_id)
         send_ex_reviewer_invitation(ex_reviewer_name, ex_reviewer_email,encoded_email, company_name, master_email, positions.job_title)
     else:
         send_ex_reviewer_invitation(ex_reviewer_name, ex_reviewer_email,encoded_email, company_name, master_email, positions.job_title)
