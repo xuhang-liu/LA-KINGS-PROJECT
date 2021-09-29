@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { MyModal80 } from "./../DashboardComponents";
+import { MyModal80, MyModalShare } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 //import { ResumeEva } from "./interviewComponents/ResumeEva";
 import {ApplicantList} from "./interviewComponents/ApplicantList";
 import 'boxicons';
 import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
-import QuestionForm from "./interviewComponents/QuestionForm";
 import EditQuestion from "./interviewComponents/EditQuestion"
 //import axios from "axios";
 import ReactPaginate from 'react-paginate';
@@ -18,8 +17,9 @@ export function VideoInterview(props){
 //    }, [])
 
     var curlimit = 0;
-    const [showQForm, setShowQForm] = useState(false);
     const [showQEditForm, setShowQEditForm] = useState(false);
+    const [showNoQuestionAlert, setShowNoQuestionAlert] = useState(false);
+    const [showInviteAlert, setShowInviteAlert] = useState(false);
     const [expire, setExpire] = useState({ value: 7, label: '7 days' });
     function onFilter1(expire) {
         setExpire(expire);
@@ -158,6 +158,28 @@ export function VideoInterview(props){
         });
     }
 
+    function handleInvitation() {
+        let candidateCount = 0;
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                candidateCount += 1;
+            }
+        }
+        // check candidate selected or not
+        if (candidateCount <= 0) {
+            noCandidateAlert();
+        }
+
+        // check question
+        else if (props.questions.length <= 0) {
+             setShowNoQuestionAlert(true);
+        }
+        else {
+            setShowInviteAlert(true);
+        }
+    }
+
     function sendVideoInterview() {
         let candidateCount = 0;
         let companyName = props.companyName;
@@ -179,9 +201,6 @@ export function VideoInterview(props){
         }
         // check candidates selected or not
         if (candidateCount > 0) {
-            if (props.questions.length <= 0) {
-                return setShowQForm(true);
-            }
             if (candidateCount > (props.profile.candidate_limit)) {
                 alert('Upgrade Now! You can only add ' + parseInt(props.profile.candidate_limit) + ' more candidates for this position!');
             } else {
@@ -341,12 +360,6 @@ export function VideoInterview(props){
                     <div className="container-fluid mt-4 pt-3 pb-3">
                         <div className="row">
                             <div className="col-2 interview-center">
-                                <MyModal80
-                                    show={showQForm}
-                                    onHide={() => { setShowQForm(false) }}
-                                >
-                                    <QuestionForm jobTitle={props.jobTitle} positionId={props.positionId} hideQForm={() => { props.getPJobs(); setShowQForm(false) }} />
-                                </MyModal80>
                                 {/* Edit Questions */}
                                 <MyModal80
                                     show={showQEditForm}
@@ -357,7 +370,7 @@ export function VideoInterview(props){
                                         positionId={props.positionId}
                                         questions={props.questions}
                                         hideQEditForm={() => { setShowQEditForm(false) }}
-                                        getPJobs={props.getPJobs}
+                                        getPostedJobs={props.getPostedJobs}
                                         position={props.position}
                                     />
                                 </MyModal80>
@@ -491,7 +504,7 @@ export function VideoInterview(props){
                             <button
                                 className="default-btn1 interview-txt6"
                                 style={{ paddingLeft: "25px", backgroundColor: "#67A3F3", paddingTop: "8px", paddingBottom: "8px" }}
-                                onClick={sendVideoInterview}
+                                onClick={handleInvitation}
                             >
                                 Invite to Video Interview
                                 <span></span>
@@ -523,6 +536,31 @@ export function VideoInterview(props){
                         setNextStage={setNextStage}
                         moveCandidates={moveCandidates}
                     />
+                    {/* No question alert form */}
+                    <MyModalShare show={showNoQuestionAlert} onHide={() => setShowNoQuestionAlert(false)}>
+                        <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                            <h3 className="interview-h3">Video Interview Invitation</h3>
+                            <p className="interview-p">Please note that select candidate(s) <span style={{color: "#67A3F3"}}>will receive an email invitation to record their responses.</span></p>
+                            <p className="interview-p">Looks like <span style={{color: "#67A3F3"}}>you haven&apos;t set up the interview questions yet.</span></p>
+                            <p className="interview-p">Would you like to continue to configure interview questions first?</p>
+                            <div className="row d-flex justify-content-center">
+                                <button onClick={() => { setShowQEditForm(true); setShowNoQuestionAlert(false); }} className="default-btn1" style={{ paddingLeft: "25px", float: "right", marginTop: "2rem", marginBottom: '2rem' }}>confirm</button>
+                                <button onClick={() => setShowNoQuestionAlert(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem", marginTop: "2rem", marginBottom: '2rem' }}>cancel</button>
+                            </div>
+                        </div>
+                    </MyModalShare>
+                    {/* Invite alert form */}
+                    <MyModalShare show={showInviteAlert} onHide={() => setShowInviteAlert(false)}>
+                        <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", width: "80%", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                            <h3 className="interview-h3">Video Interview Invitation</h3>
+                            <p className="interview-p">Please note that select candidate(s) <span style={{color: "#67A3F3"}}>will receive an email invitation to record their responses.</span></p>
+                            <p className="interview-p">Do you confirm to proceed and send the interview invitation?</p>
+                            <div className="row d-flex justify-content-center">
+                                <button onClick={() => {sendVideoInterview(); setShowInviteAlert(false)}} className="default-btn1" style={{ paddingLeft: "25px", float: "right", marginTop: "2rem", marginBottom: '2rem' }}>confirm</button>
+                                <button onClick={() => setShowInviteAlert(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem", marginTop: "2rem", marginBottom: '2rem' }}>cancel</button>
+                            </div>
+                        </div>
+                    </MyModalShare>
                 </div>
         </React.Fragment>
     )

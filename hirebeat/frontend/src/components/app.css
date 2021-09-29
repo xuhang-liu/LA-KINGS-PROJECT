@@ -4716,3 +4716,19 @@ max-width: 110px;
   font-size: 0.9375rem;
   color: #4A6F8A;
 }
+
+.interview-h3 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #7A7A7A;
+}
+
+.interview-p {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: #7A7A7A;
+}

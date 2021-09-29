@@ -92,8 +92,8 @@ export class EditQuestion extends Component {
         this.props.deleteInterviewQuestions({ "position_id": positionId });
         // add new interview questions
         setTimeout(() => { this.props.addInterviewQuestion(data) }, 300);
-        let page = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) + 1 : 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page); this.props.getPJobs(); }, 300);
+//        let page = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) + 1 : 1;
+        setTimeout(() => { this.props.getPostedJobs(this.props.user.id, 1, "Video Interview")}, 300);
         alert("Change interview questions Success!");
         this.props.hideQEditForm();
     }
