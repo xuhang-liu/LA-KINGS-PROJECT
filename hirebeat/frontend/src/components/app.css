@@ -4700,3 +4700,19 @@ max-width: 110px;
   margin-left: auto;
   margin-right: auto;
 }
+
+.candidate-txt1 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.candidate-txt2 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}

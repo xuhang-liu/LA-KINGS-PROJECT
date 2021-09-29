@@ -3,7 +3,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { confirmAlert } from 'react-confirm-alert';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addNewApplyCandidate } from "./../../../../redux/actions/job_actions";
+import { addNewApplyCandidateByCv } from "./../../../../redux/actions/job_actions";
 var ReactS3Uploader = require("react-s3-uploader");
 
 
@@ -20,7 +20,7 @@ export class NewCandidateAdditionForm extends Component {
     }
 
     closeForm = () => {
-        this.props.getPostedJobs(this.props.user.id, (sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage"))+1 : 1));
+        this.props.getAllJobs(this.props.user.id, 1, "");
         this.props.hideAdditionForm();
     };
 
@@ -38,11 +38,15 @@ export class NewCandidateAdditionForm extends Component {
             let num = input.files.length;
             // limit 10 pdfs at one time
             if (num > 10) {
-                return overwhelm();
+                return this.overwhelm();
             }
             // get selected files
             for (let i = 0; i < num; i++) {
                 let pdf = input.files[i]
+                // check file size
+                if (pdf.size > 5000000) {
+                    return this.sizeAlert();
+                }
                 let candidateInfo = new Object();
                 candidateInfo.resume = pdf;
                 candidateInfo.resumeName = pdf.name;
@@ -58,38 +62,58 @@ export class NewCandidateAdditionForm extends Component {
         }
     }
 
-    onUploadFinish = () => {
+    pdfToBase64 = (fileToLoad) => {
+        return new Promise(resolve => {
+            let fileReader = new FileReader();
+            // Onload of file read the file content
+            fileReader.onload = function(fileLoadedEvent) {
+                 resolve(fileLoadedEvent.target.result);
+            };
+            // Convert data to base64
+            fileReader.readAsDataURL(fileToLoad);
+        });
+    }
+
+    handleUpload = (e) => {
+        e.preventDefault();
+        // check resume size
+        if (this.state.candidates.length <= 0) {
+            return this.noResumeAlert();
+        }
         // get the most recent information
         let nameElements = document.getElementsByClassName("candidate-name");
         let emailElements = document.getElementsByClassName("candidate-email");
+        let candidates = this.state.candidates;
+        // todo bug below
         for (let i = 0; i < nameElements.length; i++) {
-            let candidate = this.state.candidates[i];
+            let candidate = candidates[i];
             candidate.name = nameElements[i].value;
+            if (!this.checkName(candidate.name)) {
+                return this.nameError();
+            }
             let value = emailElements[i].value;
             candidate.email = value.toLowerCase();
         }
 
         for (let i = 0; i < this.state.candidates.length; i++) {
-            let candidate = this.state.candidates[i];
-            let fakeResumeName = candidate.fakeResumeName;
-            let resumeUrl = "https://hirebeat-interview-resume.s3.amazonaws.com/" + fakeResumeName;
-            let names = candidate.name.split(" ");
+            let candidate = candidates[i];
+            this.pdfToBase64(candidate.resume).then(resume => {
+                let names = candidate.name.split(" ");
+                let data = {
+                    job_id: this.props.jobId,
+                    first_name: names.length >= 1 ? names[0] : "",
+                    last_name: names.length >= 2 ? names[1] : "",
+                    phone: "",
+                    email: candidate.email.toLowerCase(),
+                    location: "",
+                    resume: resume.split(",")[1], // here to remove encoded header of resume
+                    linkedinurl: "",
+                };
+                setTimeout(() => this.props.addNewApplyCandidateByCv(data), 1000);
+            });
 
-            let data = {
-                job_id: this.props.jobId,
-                firstname: names.length > 1 ? names[0] : "",
-                lastname: names.length > 2 ? names[1] : "",
-                resume_url: resumeUrl,
-                email: candidate.email.toLowerCase(),
-                phone: "",
-                location: "",
-                linkedinurl: "",
-                gender: "",
-                race: "",
-            };
-            this.props.addNewApplyCandidate(data);
         }
-        setTimeout(() => {this.setState({candidates: []})}, 500);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id, 1, ""); this.setState({candidates: []}); this.uploadSuccess()}, 500);
     };
 
     onUploadError = (err) => {
@@ -99,16 +123,6 @@ export class NewCandidateAdditionForm extends Component {
     onUploadProgress = () => {
         console.log("In progress");
     };
-
-   handleUpload = (e) => {
-        e.preventDefault();
-        for (let i = 0; i < this.state.candidates.length; i++) {
-            let candidate = this.state.candidates[i];
-            let resume = new File([candidate.resume], candidate.fakeResumeName, {type: candidate.resume.type});
-            this.uploader.uploadFile(resume);
-        }
-   }
-
 
     // parse resumes from url
     getTextByURL = (pdfUrl) => {
@@ -178,11 +192,11 @@ export class NewCandidateAdditionForm extends Component {
         fileReader.readAsArrayBuffer(pdf);
     }
 
-//    checkName = (text) => {
-//        // allow alphabets and space
-//        var regex = /^[A-Za-z ]+$/ig;
-//        return regex.test(text);
-//    }
+    checkName = (text) => {
+        // allow alphabets and space
+        var regex = /^[A-Za-z ]+$/ig;
+        return regex.test(text);
+    }
 
     overwhelm = () => {
         confirmAlert({
@@ -196,17 +210,53 @@ export class NewCandidateAdditionForm extends Component {
         });
     };
 
-//    nameError = () => {
-//        confirmAlert({
-//            title: "Name Error",
-//            message: "The candidate name in the resume file is invalid, please type it manually",
-//            buttons: [
-//                {
-//                    label: 'Ok'
-//                }
-//            ]
-//        });
-//    };
+    noResumeAlert = () => {
+        confirmAlert({
+            title: "No Resume Selected",
+            message: "Please select resume first",
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
+        });
+    };
+
+    sizeAlert = () => {
+        confirmAlert({
+            title: "File size is too big",
+            message: "The maximum size of a single resume file is 5MB!",
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
+        });
+    };
+
+    uploadSuccess = () => {
+        confirmAlert({
+            title: "Upload Success",
+            message: "You have uploaded the resumes successfully!",
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
+        });
+    };
+
+    nameError = () => {
+        confirmAlert({
+            title: "Name Error",
+            message: "The candidate name in the resume file is invalid, please type it manually",
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
+        });
+    };
 
     deleteResume = (index) => {
         let cache = this.state.candidates;
@@ -231,20 +281,19 @@ export class NewCandidateAdditionForm extends Component {
     }
 
     render() {
-        console.log(this.state.candidates);
         return (
             <React.Fragment>
                 <div>
                     {this.state.resumeSelected ?
-                        <div style={{ marginTop: "2rem", paddingLeft: "2rem", paddingRight: "2rem" }}>
+                        <div style={{ marginTop: "2rem", marginLeft: "8%", marginRight: "8%" }}>
                             <div className="row">
-                                <div className="col-3 mt-3 mb-3">
+                                <div className="mt-3 mb-3">
                                     <button type="button" className="default-btn resume-upload" onClick={this.uploadResume}>
                                         <i className="bx bx-cloud-upload bx-sm"></i>
                                         Upload Resume
                                     </button>
                                 </div>
-                                <div className="col-5" style={{ marginLeft: "-2rem", marginTop: "2rem" }}>
+                                <div style={{ marginLeft: "1rem", marginTop: "2rem" }}>
                                     <input id="resume" type="file" multiple style={{ display: "none" }} accept=".pdf" />
                                     <div>
                                         <span className="upload-txt">
@@ -255,62 +304,61 @@ export class NewCandidateAdditionForm extends Component {
                             </div>
                             <form onSubmit={this.handleUpload}>
                                 <div className="form-row">
-                                    <div className="form-group col-3">
-                                        <label style={{ fontSize: "17px", margin: "2%" }}>
+                                    <div className="form-group col-2">
+                                        <label className="candidate-txt1">
                                             Resume
                                         </label>
                                     </div>
                                     <div className="form-group col-3">
-                                        <label style={{ fontSize: "17px", margin: "2%" }}>
+                                        <label className="candidate-txt1">
                                             Candidate Name
                                         </label>
                                     </div>
                                     <div className="form-group col-3">
-                                        <label style={{ fontSize: "17px", margin: "2%" }}>
+                                        <label className="candidate-txt1">
                                             Candidate Email
                                         </label>
                                     </div>
                                 </div>
-                                {/* todo css below */}
                                 {this.state.candidates.map((c, index) => {
                                     return(
                                         <div className="form-row">
-                                            <div className="form-group col-3">
-                                                <label>{c.resumeName}</label>
+                                            <div className="form-group col-2 align-center">
+                                                <label className="candidate-txt2">{c.resumeName}</label>
                                             </div>
                                             <div className="form-group col-3">
-                                                <input type="text" name="name2" defaultValue={c.name} className="form-control candidate-name" />
+                                                <input type="text" name="name2" defaultValue={c.name} className="form-control candidate-name candidate-txt2" />
                                             </div>
                                             <div className="form-group col-3">
-                                                <input type="email" name="email2" defaultValue={c.email} className="form-control candidate-email" />
+                                                <input type="email" name="email2" defaultValue={c.email} className="form-control candidate-email candidate-txt2" />
                                             </div>
-                                            <div className="form-group col-2">
-                                                <i className="bx bx-trash"></i>
-                                                <span style={{ cursor: "pointer" }} onClick={this.deleteAlert}>Delete</span>
+                                            <div className="form-group col-1 align-center">
+                                                <i className="bx bx-trash bx-sm" style={{color: "#F36F67"}}></i>
+                                                <span className="candidate-txt2" style={{ cursor: "pointer", color: "#F36F67" }} onClick={this.deleteAlert}>Delete</span>
                                             </div>
                                         </div>
                                     )
                                 })}
 
                                 <div className="form-row justify-items" style={{ marginBottom: "1rem" }}>
-                                    <div className="col-2 d-flex justify-items">
+                                    <div className="d-flex justify-items">
                                         <button
                                             type="button"
-                                            className="default-btn interview-txt6"
-                                            style={{ paddingLeft: "25px", background: "#67A3F3" }}
+                                            className="default-btn1"
+                                            style={{ paddingLeft: "25px" }}
                                             onClick={this.closeForm}
                                         >
-                                            Close
+                                            Cancel
                                             <span></span>
                                         </button>
                                     </div>
-                                    <div className="col-3 d-flex justify-items">
+                                    <div className="d-flex justify-items" style={{marginLeft: "2rem"}}>
                                         <button
                                             type="submit"
                                             className="default-btn1"
                                             style={{ marginBottom: "1.5%", paddingLeft: "25px" }}
                                         >
-                                            Add
+                                            + Add
                                         </button>
                                     </div>
                                 </div>
@@ -336,18 +384,30 @@ export class NewCandidateAdditionForm extends Component {
                         <div style={{ marginTop: "2rem", paddingLeft: "2rem", paddingRight: "2rem" }}>
                             <div className="resume-bg center-items">
                                 <div>
-                                    <button type="button" className="default-btn resume-upload" onClick={this.uploadResume} style={{marginBottom: "1rem"}}>
-                                        <i className="bx bx-cloud-upload bx-sm"></i>
-                                        Upload Resume
-                                    </button>
-                                    <input id="resume" type="file" multiple style={{ display: "none" }} accept=".pdf" />
-                                    <div>
-                                        <span className="upload-txt">
-                                            Bulk Upload (.pdf only; max:10)
-                                        </span>
+                                    <div className="row justify-content-center">
+                                        <button type="button" className="default-btn resume-upload" onClick={this.uploadResume} style={{marginBottom: "1rem"}}>
+                                            <i className="bx bx-cloud-upload bx-sm"></i>
+                                            Upload Resume
+                                        </button>
+                                        <input id="resume" type="file" multiple style={{ display: "none" }} accept=".pdf" />
                                     </div>
-
+                                    <div className="row">
+                                        <label className="upload-txt">
+                                            Bulk Upload (.pdf only; max:10)
+                                        </label>
+                                    </div>
                                 </div>
+                            </div>
+                            <div style={{marginTop: "2rem"}} className="d-flex justify-content-center">
+                                <button
+                                    type="button"
+                                    className="default-btn1"
+                                    style={{ paddingLeft: "25px" }}
+                                    onClick={this.closeForm}
+                                >
+                                    Cancel
+                                    <span></span>
+                                </button>
                             </div>
                         </div>
                     }
@@ -378,6 +438,6 @@ function extractName(text) {
     return name;
 }
 
-export default withRouter(connect(null, {addNewApplyCandidate})(
+export default withRouter(connect(null, {addNewApplyCandidateByCv})(
     NewCandidateAdditionForm
 ));

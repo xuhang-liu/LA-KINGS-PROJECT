@@ -3,7 +3,7 @@ from .views import add_new_job, get_all_jobs, update_job, archive_job, add_new_a
     add_interview_question, update_invite_status, delete_job, get_jobid_list, update_viewed_status, get_zr_xml, \
     add_new_apply_candidate_from_zr, getCompanyBrandingInfo, get_resume_from_job_application, get_zr_premium_xml, \
     create_merge_link_token, retrive_merge_account_token, send_merge_api_request, check_free_account_active_jobs, \
-    add_cand_from_merge, check_interview_candidates_num, get_pipeline_analytics
+    add_cand_from_merge, check_interview_candidates_num, get_pipeline_analytics, add_new_apply_candidate_by_cv
 
 urlpatterns = [
     path('add-new-job', add_new_job),
@@ -28,5 +28,6 @@ urlpatterns = [
     path('jobs/check-free-account-active-jobs', check_free_account_active_jobs),
     path('jobs/add-cand-from-merge', add_cand_from_merge),
     path('job/check-interview-candidates-num', check_interview_candidates_num),
-    path('jobs/get-pipeline-analytics', get_pipeline_analytics)
+    path('jobs/get-pipeline-analytics', get_pipeline_analytics),
+    path('jobs/add-new-apply-candidate-by-cv', add_new_apply_candidate_by_cv)
 ]

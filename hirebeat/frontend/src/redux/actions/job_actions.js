@@ -19,7 +19,8 @@ import {
     CHECK_FREE_ACCOUNT_ACTIVE_JOBS,
     SEND_MERGE_API_REQUEST,
     ADD_CAND_FROM_MERGE,
-    GET_PIPELINE_ANALYTICS
+    GET_PIPELINE_ANALYTICS,
+    ADD_NEW_APPLY_CANDIDATE_BY_CV
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -311,6 +312,20 @@ export const getPipelineAnalytics = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_PIPELINE_ANALYTICS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const addNewApplyCandidateByCv = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/add-new-apply-candidate-by-cv", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_NEW_APPLY_CANDIDATE_BY_CV,
         payload: res.data,
       });
     })

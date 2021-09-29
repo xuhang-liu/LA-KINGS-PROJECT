@@ -481,24 +481,66 @@ def add_zr_feed_xml(job_id):
     root.append(job)
     tree.write('zrjobs.xml')
 
-def upload_cv_to_s3(encoded_cv):
+def upload_cv_to_s3(encoded_cv, cv_name):
     # decode resume and convert to pdf file
     resume = base64.b64decode(encoded_cv)
     #content = resume.decode("utf-8")
-    content = open("cv.pdf", "wb")
+    file_name = cv_name + str(int(time.time())) + ".pdf"
+    content = open(file_name, "wb")
     content.write(resume)
     content.close()
-    file_name = str(int(time.time())) + '.pdf'
     # upload txt file to s3
     b = conn.get_bucket(os.getenv("CV_Interview_Bucket"))
     k = Key(b)
     k.key = file_name
-    k.set_contents_from_filename("cv.pdf")
+    k.set_contents_from_filename(file_name)
     resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
     # delete cv.pdf cache
-    if os.path.exists("cv.pdf"):
-        os.remove("cv.pdf")
+    if os.path.exists(file_name):
+        os.remove(file_name)
     return resume_url
+
+@api_view(['POST'])
+def add_new_apply_candidate_by_cv(request):
+    job_id = request.data['job_id']
+    first_name = request.data['first_name']
+    last_name = request.data['last_name']
+    phone = request.data['phone']
+    email = request.data['email']
+    location = request.data['location']
+    resume = request.data['resume']
+    cv_name = email.split("@")[0]
+    resume_url = upload_cv_to_s3(resume, cv_name)
+    linkedinurl = request.data['linkedinurl']
+    fullname = first_name + " " + last_name
+    jobs = Jobs.objects.get(pk=job_id)
+    user = User.objects.get(pk=jobs.user_id)
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    if not applied:
+        ApplyCandidates.objects.create(jobs=jobs, first_name=first_name, last_name=last_name, phone=phone, email=email,
+                                    location=location, resume_url=resume_url, linkedinurl=linkedinurl)
+    else:
+        return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
+    # send email notification
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
+    }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+
+    return Response("Add new apply candidates successfully", status=status.HTTP_202_ACCEPTED)
 
 @api_view(['POST'])
 def add_new_apply_candidate_from_zr(request):
@@ -509,7 +551,8 @@ def add_new_apply_candidate_from_zr(request):
     email = request.data['email']
     # location = request.data['location']
     resume = request.data['resume']
-    resume_url = upload_cv_to_s3(resume)
+    cv_name = email.split("@")[0]
+    resume_url = upload_cv_to_s3(resume, cv_name)
     # linkedinurl = request.data['linkedinurl']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)

@@ -116,52 +116,54 @@ const AcceptedCandidate = (props) => {
                         />
                     </div>
                 </div>
-                <div style={{ marginTop: "2%", color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
-                    <div className="col-3">Name</div>
-                    <div className="col-3">Video Average Score</div>
-                    <div className="col-2">Resume Score</div>
-                    {(!props.profile.is_external_reviewer) && <div className="col-2">Contact</div>}
+                <div className="container-fluid chart-bg1" style={{ marginTop: "2%"}}>
+                    <div style={{color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start row">
+                        <div className="col-3">Name</div>
+                        <div className="col-3">Video Average Score</div>
+                        <div className="col-2">Resume Score</div>
+                        {(!props.profile.is_external_reviewer) && <div className="col-2">Contact</div>}
+                    </div>
+                    {props.theJob.applicants.map((applicant, index) => {
+                        if (props.keyWords != "") {
+                                let name = applicant.name;
+                                if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
+                            }
+                        return (
+                            <div>
+                                <CandidateCard
+                                    getPJobs={props.getPJobs}
+                                    refreshPage={props.refreshPage}
+                                    stars={props.stars[applicant.email]}
+                                    resume_list={Math.max(props.resume_list[applicant.email], applicant.result_rate)} // get max resume score
+                                    applicant={applicant}
+                                    getApplicantsVideos={props.getApplicantsVideos}
+                                    getApplicantsInfo={props.getApplicantsInfo}
+                                    int_ques={props.int_ques}
+                                    id_candidate={props.id_candidate}
+                                    username_candidate={props.username_candidate}
+                                    email_candidate={props.email_candidate}
+                                    phone_candidate={props.phone_candidate}
+                                    location_candidate={props.location_candidate}
+                                    resumeURL={props.resumeURL}
+                                    recordTime={props.recordTime}
+                                    interviewResume={props.interviewResume}
+                                    getResumeURL={props.getResumeURL}
+                                    updateCommentStatus={props.updateCommentStatus}
+                                    profile={props.profile}
+                                    subreviewerUpdateComment={props.subreviewerUpdateComment}
+                                    applicants={props.theJob.applicants}
+                                    current={index}
+                                    getReviewNote={props.getReviewNote}
+                                    getReviewerEvaluation={props.getReviewerEvaluation}
+                                    getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                                    user={props.user}
+                                    getPostedJobs={props.getPostedJobs}
+                                    getAllJobs={props.getAllJobs}
+                                />
+                            </div>
+                        )
+                    })}
                 </div>
-                {props.theJob.applicants.map((applicant, index) => {
-                    if (props.keyWords != "") {
-                            let name = applicant.name;
-                            if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
-                        }
-                    return (
-                        <div>
-                            <CandidateCard
-                                getPJobs={props.getPJobs}
-                                refreshPage={props.refreshPage}
-                                stars={props.stars[applicant.email]}
-                                resume_list={Math.max(props.resume_list[applicant.email], applicant.result_rate)} // get max resume score
-                                applicant={applicant}
-                                getApplicantsVideos={props.getApplicantsVideos}
-                                getApplicantsInfo={props.getApplicantsInfo}
-                                int_ques={props.int_ques}
-                                id_candidate={props.id_candidate}
-                                username_candidate={props.username_candidate}
-                                email_candidate={props.email_candidate}
-                                phone_candidate={props.phone_candidate}
-                                location_candidate={props.location_candidate}
-                                resumeURL={props.resumeURL}
-                                recordTime={props.recordTime}
-                                interviewResume={props.interviewResume}
-                                getResumeURL={props.getResumeURL}
-                                updateCommentStatus={props.updateCommentStatus}
-                                profile={props.profile}
-                                subreviewerUpdateComment={props.subreviewerUpdateComment}
-                                applicants={props.theJob.applicants}
-                                current={index}
-                                getReviewNote={props.getReviewNote}
-                                getReviewerEvaluation={props.getReviewerEvaluation}
-                                getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
-                                user={props.user}
-                                getPostedJobs={props.getPostedJobs}
-                                getAllJobs={props.getAllJobs}
-                            />
-                        </div>
-                    )
-                })}
                 <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
                     <ReactPaginate
                           previousLabel={'< prev'}

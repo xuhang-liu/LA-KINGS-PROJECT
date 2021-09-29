@@ -234,7 +234,7 @@ export class AllCandidates extends Component {
                                             {!this.props.isClosed &&
                                                 <button
                                                     className="default-btn1 interview-txt6"
-                                                    style={{ paddingLeft: "25px" }}
+                                                    style={{ paddingLeft: "25px", marginLeft: "2rem" }}
                                                     onClick={this.addNewCandidates}
                                                 >
                                                     + Candidates
@@ -260,7 +260,7 @@ export class AllCandidates extends Component {
                                     />
                                 </div>
                             </div>
-                            <div className="container-fluid" style={{ marginTop: "1rem" }}>
+                            <div className="container-fluid chart-bg1" style={{ marginTop: "1rem" }}>
                                 <div className="row interview-txt7 interview-center pl-3" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                                     <div className="col-4"><span>Name</span></div>
                                     <div className="col-2">Applied On</div>
@@ -400,6 +400,7 @@ export class AllCandidates extends Component {
                     </div> :
                     <NewCandidateAdditionForm
                         hideAdditionForm={this.hideAdditionForm}
+                        getAllJobs={this.props.getAllJobs}
                         getPostedJobs={this.props.getPostedJobs}
                         jobId={this.props.curJob.job_details.id}
                         user={this.props.user}
