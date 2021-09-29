@@ -301,7 +301,7 @@ export class ReviewApplication extends Component {
                             <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                                 <p style={{ color: "#090d3a" }}>Current Stage: {this.props.applicants[this.props.current].current_stage}</p>
                             </div>
-                            {!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer &&
+                            {!this.props.profile.is_subreviwer &&
                                 <div>
                                     {this.props.applicants[this.props.current].is_active &&
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
@@ -350,7 +350,7 @@ export class ReviewApplication extends Component {
                                 setNextStage={this.setNextStage}
                                 moveCandidates={this.moveCandidates}
                             />
-                            {(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer) &&
+                            {(this.props.profile.is_subreviwer) &&
                                 <div>
                                     {this.props.curEvaluation.evaluation == 1 ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>

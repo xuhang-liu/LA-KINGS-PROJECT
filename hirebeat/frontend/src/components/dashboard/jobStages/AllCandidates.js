@@ -377,6 +377,7 @@ export class AllCandidates extends Component {
                                     updateCommentStatus={this.props.updateCommentStatus}
                                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     reviews={this.props.reviews}
+                                    positionId={this.props.curJob.job_details.positions_id}
                                 />
                             )
                         })}
@@ -656,6 +657,7 @@ const ApplicantRow = (props) => {
                         subreviewerUpdateComment={props.subreviewerUpdateComment}
                         reviews={props.reviews}
                         currentStage={"All Candidates"}
+                        positionId={props.positionId}
                     />
                 </MyFullModal>
             </div>

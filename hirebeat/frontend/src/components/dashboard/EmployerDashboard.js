@@ -19,7 +19,7 @@ import {
   from "../../redux/actions/auth_actions";
 import {
   addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, createMergeLinkToken, retrieveMergeAccountToken,
-  checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge
+  checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, checkIfMasterActive
 } from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import {
@@ -66,6 +66,7 @@ export class EmployerDashboard extends Component {
       jobInfo: {},
       showUpgradeM: false,
       showUpgradeM1: false,
+      showUpgradeM2: false,
     }
     // store user info to sessionStorage
     sessionStorage.setItem('user', JSON.stringify(this.props.user));
@@ -91,6 +92,12 @@ export class EmployerDashboard extends Component {
     });
   }
 
+  setShowUpgradeM2 = () => {
+    this.setState({
+      showUpgradeM2: true
+    });
+  }
+
   setHideUpgradeM = () => {
     this.setState({
       showUpgradeM: false
@@ -100,6 +107,12 @@ export class EmployerDashboard extends Component {
   setHideUpgradeM1 = () => {
     this.setState({
       showUpgradeM1: false
+    });
+  }
+
+  setHideUpgradeM2 = () => {
+    this.setState({
+      showUpgradeM2: false
     });
   }
 
@@ -155,11 +168,11 @@ export class EmployerDashboard extends Component {
     this.verifyEmail();
     var user = { "id": this.props.user.id };
     this.props.loadUserFullname(user);
-    this.props.getPostedJobs(user.id, (sessionStorage.getItem("intAppPage")?parseInt(sessionStorage.getItem("intAppPage"))+1:1));
+    this.props.getPostedJobs(user.id, (sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) + 1 : 1));
     this.props.getAnalyticsInfo(this.props.user.id);
     this.props.getEmployerProfileDetail(this.props.user.id);
     this.props.getEmployerPost(this.props.user.id, 0);
-    this.props.getAllJobs(this.props.user.id, (sessionStorage.getItem("jobAppPage")?parseInt(sessionStorage.getItem("jobAppPage"))+1:1));
+    this.props.getAllJobs(this.props.user.id, (sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1));
     this.props.getQuestionList();
     this.props.getReviewersList(user.id);
     var data = {
@@ -169,6 +182,10 @@ export class EmployerDashboard extends Component {
     if (((this.props.profile.position_count) >= (this.props.profile.position_limit)) && (this.props.profile.plan_interval == "Pro")) {
       this.props.checkFreeAccountActiveJobs(data);
     }
+    let data1 = {
+      "user_id": this.props.user.id
+    };
+    this.props.checkIfMasterActive(data1);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -200,8 +217,8 @@ export class EmployerDashboard extends Component {
 
   getInitialSubpage = () => {
     let subpage = sessionStorage.getItem('subpage') || "employerProfile";
-    if (this.props.profile.is_external_reviewer) {
-      subpage = "shortlist";
+    if (this.props.profile.is_external_reviewer || this.props.profile.is_subreviwer) {
+      subpage = "jobs";
     }
     return subpage;
 
@@ -217,6 +234,9 @@ export class EmployerDashboard extends Component {
     }
     else if (this.props.profile.membership == "Regular") {
       this.setShowUpgradeM();
+    }
+    else if (!this.props.master_is_active) {
+      this.setShowUpgradeM2();
     }
     else {
       sessionStorage.setItem('subpage', "jobs");
@@ -510,7 +530,7 @@ export class EmployerDashboard extends Component {
           phone_number={this.props.profile.phone_number}
           renderApplications={this.renderApplications}
           renderEmployerProfile={this.renderEmployerProfile}
-          renderShortlist={this.renderShortlist}
+          renderJobs={this.renderJobs}
           sub_r_list={this.props.sub_r_list}
           ext_r_list={this.props.ext_r_list}
           removeReviewerFromList={this.props.removeReviewerFromList}
@@ -626,15 +646,15 @@ export class EmployerDashboard extends Component {
                 show={this.state.showUpgradeM}
                 onHide={this.setHideUpgradeM}
               >
-                <div className="container" style={{borderRadius:"10px", boxShadow:"2px 2px 4px rgba(128, 128, 128, 0.16)", padding:"2rem"}}>
-                  <h3 style={{color:"#090d3a", fontWeight:"600", fontSize:"1.6rem"}}>Your Free Trial Has Expired</h3>
+                <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                  <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Your Free Trial Has Expired</h3>
                   <p className="pt-3">Want to continue using HireBeat? Select a Subscription Plan today!</p>
-                  <div className="row" style={{margin:"auto", width:"80%"}}>
+                  <div className="row" style={{ margin: "auto", width: "80%" }}>
                     <div className="col-6">
-                      <Link to="/employer-pricing" className="default-btn" style={{paddingLeft:"25px", paddingTop:"8px", paddingBottom:"8px", textDecoration:"none"}}>Select Plan</Link>
+                      <Link to="/employer-pricing" className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", textDecoration: "none" }}>Select Plan</Link>
                     </div>
                     <div className="col-6">
-                      <button onClick={this.setHideUpgradeM} className="default-btn" style={{paddingLeft:"25px", paddingTop:"8px", paddingBottom:"8px", backgroundColor:"#979797"}}>Maybe Later</button>
+                      <button onClick={this.setHideUpgradeM} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Maybe Later</button>
                     </div>
                   </div>
                 </div>
@@ -643,15 +663,30 @@ export class EmployerDashboard extends Component {
                 show={this.state.showUpgradeM1}
                 onHide={this.setHideUpgradeM1}
               >
-                <div className="container" style={{borderRadius:"10px", boxShadow:"2px 2px 4px rgba(128, 128, 128, 0.16)", padding:"2rem"}}>
-                  <h3 style={{color:"#090d3a", fontWeight:"600", fontSize:"1.6rem"}}>You need upgrade to use intergration</h3>
+                <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                  <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>You need upgrade to use intergration</h3>
                   <p className="pt-3">Want to continue using intergration? Select the Premium Plan today!</p>
-                  <div className="row" style={{margin:"auto", width:"80%"}}>
+                  <div className="row" style={{ margin: "auto", width: "80%" }}>
                     <div className="col-6">
-                      <Link to="/employer-pricing" className="default-btn" style={{paddingLeft:"25px", paddingTop:"8px", paddingBottom:"8px", textDecoration:"none"}}>Select Plan</Link>
+                      <Link to="/employer-pricing" className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", textDecoration: "none" }}>Select Plan</Link>
                     </div>
                     <div className="col-6">
-                      <button onClick={this.setHideUpgradeM1} className="default-btn" style={{paddingLeft:"25px", paddingTop:"8px", paddingBottom:"8px", backgroundColor:"#979797"}}>Maybe Later</button>
+                      <button onClick={this.setHideUpgradeM1} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Maybe Later</button>
+                    </div>
+                  </div>
+                </div>
+              </MyModalUpgrade>
+              <MyModalUpgrade
+                show={this.state.showUpgradeM2}
+                onHide={this.setHideUpgradeM2}
+              >
+                <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                  <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Account Disabled</h3>
+                  <p className="pt-3">You can no longer access the content because your company has stopped the HireBeat subscription.</p>
+                  <p className="pt-3">Please get in touch with your admin for more details.</p>
+                  <div className="row" style={{ margin: "auto", width: "30%" }}>
+                    <div className="col-12">
+                      <button onClick={this.setHideUpgradeM2} className="default-btn1" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px" }}>OK</button>
                     </div>
                   </div>
                 </div>
@@ -770,6 +805,7 @@ const mapStateToProps = (state) => {
     jobs_api_response: state.job_reducer.jobs_api_response,
     sourcingData: state.auth_reducer.sourcingData,
     sourcingDataLoaded: state.auth_reducer.sourcingDataLoaded,
+    master_is_active: state.job_reducer.master_is_active
   }
 };
 
@@ -780,7 +816,7 @@ export default connect(mapStateToProps, {
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
   updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
-  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, getSourcingData
+  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, getSourcingData, checkIfMasterActive
 })(
   EmployerDashboard
 );

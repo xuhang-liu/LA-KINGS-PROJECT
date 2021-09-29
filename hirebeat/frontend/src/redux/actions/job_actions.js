@@ -19,7 +19,8 @@ import {
     CHECK_FREE_ACCOUNT_ACTIVE_JOBS,
     SEND_MERGE_API_REQUEST,
     ADD_CAND_FROM_MERGE,
-    GET_PIPELINE_ANALYTICS
+    GET_PIPELINE_ANALYTICS,
+    CHECK_IF_MASTER_ACTIVE,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -311,6 +312,20 @@ export const getPipelineAnalytics = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_PIPELINE_ANALYTICS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const checkIfMasterActive = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/check_if_master_active", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: CHECK_IF_MASTER_ACTIVE,
         payload: res.data,
       });
     })

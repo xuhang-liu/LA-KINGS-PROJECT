@@ -14,12 +14,12 @@ export class ReviewerRegisterForm extends Component {
                     <h3 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Start your Hiring Now!</b></h3>
                 </div>
                 <form onSubmit={this.props.onSubmit}>
-                    {/*<div className="form-group">
+                    <div className="form-group">
                         <input
                             type="text"
                             className="form-control"
                             name="firstName"
-                            onChange={this.updateState}
+                            onChange={this.handleInput}
                             placeholder="First Name"
                             style={{
                               fontFamily: "Avenir Next, Segoe UI",
@@ -37,7 +37,7 @@ export class ReviewerRegisterForm extends Component {
                             type="text"
                             className="form-control"
                             name="lastName"
-                            onChange={this.updateState}
+                            onChange={this.handleInput}
                             placeholder="Last Name"
                             style={{
                               fontFamily: "Avenir Next, Segoe UI",
@@ -47,7 +47,7 @@ export class ReviewerRegisterForm extends Component {
                               boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
                             }}
                             required/>
-                    </div>*/}
+                    </div>
 
                     <div className="form-group">
                         <input

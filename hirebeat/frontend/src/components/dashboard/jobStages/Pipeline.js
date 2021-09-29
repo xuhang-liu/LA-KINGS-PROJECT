@@ -405,7 +405,7 @@ export class Pipeline extends Component {
                                     </span>
                                 }
                             </div>}
-                        {(!this.props.job.job_details.is_closed) &&
+                        {((!this.props.job.job_details.is_closed) && (!this.props.profile.is_subreviwer))&&
                             <div style={{ marginLeft: "2rem" }}>
                                 {this.props.analytics.all_can_num > 0 &&
                                     <div>
@@ -466,7 +466,7 @@ export class Pipeline extends Component {
                                     )
                                 })}
                                 {resume_review_count > 3 &&
-                                    <span className="sub_number3" style={{ color: "white" }}>+{subreviewers.length - 3}
+                                    <span className="sub_number3" style={{ color: "white" }}>+{resume_review_count - 3}
                                         <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
                                             <div className="row">
                                                 <div className="col-12">
@@ -494,7 +494,7 @@ export class Pipeline extends Component {
                                         </p>
                                     </span>}
                             </div>}
-                        {(!this.props.job.job_details.is_closed) &&
+                        {((!this.props.job.job_details.is_closed)  && (!this.props.profile.is_subreviwer))&&
                             <div style={{ marginLeft: "2rem" }}>
                                 {this.props.analytics.all_can_num > 0 &&
                                     <div>
@@ -557,7 +557,7 @@ export class Pipeline extends Component {
                                     )
                                 })}
                                 {video_review_count > 3 &&
-                                    <span className="sub_number3" style={{ color: "white" }}>+{subreviewers.length - 3}
+                                    <span className="sub_number3" style={{ color: "white" }}>+{video_review_count - 3}
                                         <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
                                             <div className="row">
                                                 <div className="col-12">
@@ -585,7 +585,7 @@ export class Pipeline extends Component {
                                         </p>
                                     </span>}
                             </div>}
-                        {(!this.props.job.job_details.is_closed) &&
+                        {((!this.props.job.job_details.is_closed)  && (!this.props.profile.is_subreviwer))&&
                             <div style={{ marginLeft: "2rem" }}>
                                 {this.props.analytics.all_can_num > 0 &&
                                     <div>
@@ -648,7 +648,7 @@ export class Pipeline extends Component {
                                     )
                                 })}
                                 {live_review_count > 3 &&
-                                    <span className="sub_number3" style={{ color: "white" }}>+{subreviewers.length - 3}
+                                    <span className="sub_number3" style={{ color: "white" }}>+{live_review_count - 3}
                                         <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
                                             <div className="row">
                                                 <div className="col-12">
@@ -676,7 +676,7 @@ export class Pipeline extends Component {
                                         </p>
                                     </span>}
                             </div>}
-                        {(!this.props.job.job_details.is_closed) &&
+                        {((!this.props.job.job_details.is_closed)  && (!this.props.profile.is_subreviwer))&&
                             <div style={{ marginLeft: "2rem" }}>
                                 {this.props.analytics.all_can_num > 0 &&
                                     <div>
@@ -739,7 +739,7 @@ export class Pipeline extends Component {
                                     )
                                 })}
                                 {shortlist_review_count > 3 &&
-                                    <span className="sub_number3" style={{ color: "white" }}>+{subreviewers.length - 3}
+                                    <span className="sub_number3" style={{ color: "white" }}>+{shortlist_review_count - 3}
                                         <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
                                             <div className="row">
                                                 <div className="col-12">
@@ -767,7 +767,7 @@ export class Pipeline extends Component {
                                         </p>
                                     </span>}
                             </div>}
-                        {(!this.props.job.job_details.is_closed) &&
+                        {((!this.props.job.job_details.is_closed)  && (!this.props.profile.is_subreviwer))&&
                             <div style={{ marginLeft: "2rem" }}>
                                 {this.props.analytics.all_can_num > 0 &&
                                     <div>

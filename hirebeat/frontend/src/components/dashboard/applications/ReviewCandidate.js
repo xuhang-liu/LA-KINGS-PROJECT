@@ -341,7 +341,7 @@ const ReviewCandidate = (props) => {
                                 </button>
                             </div>
                         }
-                        {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer) &&
+                        {(!props.profile.is_subreviwer) &&
                             <div style={{ paddingBottom: "2rem" }}>
                                 <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}><p style={{ color: "#090d3a" }}>Current Stage: {props.applicant.current_stage}</p></div>
                                 {props.applicant.is_active &&
@@ -381,6 +381,48 @@ const ReviewCandidate = (props) => {
                                     </div>
                                 }
                             </div>}
+                            {(props.profile.is_subreviwer) &&
+                                <div>
+                                    {props.curEvaluation.evaluation == 1 ?
+                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                            <button
+                                                className="default-btn btn-success ml-2"
+                                                style={{ width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", background: "#13C4A1" }}>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-white.png" style={{ width: "1.25rem", marginRight: "0.5rem" }} />
+                                                <p style={{ fontSize: "0.8rem", color: "#ffffff" }}>Qualified</p>
+                                            </button>
+                                        </div> :
+                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                            <button
+                                                className="default-btn ml-2"
+                                                style={{ color: "#090D3A", backgroundColor: "#ffffff", width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }}
+                                                onClick={props.filter == "active" ? () => {updateEvaluation(1)} : jobClosedAlert}>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good.png" style={{ width: "1.25rem", marginRight: "0.5rem" }} />
+                                                <p style={{ fontSize: "0.8rem", color: "#13C4A1" }}>Qualified</p>
+                                            </button>
+                                        </div>
+                                    }
+                                    {props.curEvaluation.evaluation == 2 ?
+                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                            <button
+                                                className="default-btn btn-danger ml-2"
+                                                style={{ width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", background: "#E42424" }}>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-white.png" style={{ width: "1.25rem", marginRight: "0.5rem", paddingTop: "2%" }} />
+                                                <p style={{ fontSize: "0.8rem", color: "#ffffff" }}>Unqualified</p>
+                                            </button>
+                                        </div> :
+                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                            <button
+                                                className="default-btn ml-2"
+                                                style={{ color: "#090D3A", backgroundColor: "#ffffff", width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }}
+                                                onClick={props.filter == "active" ? () => {updateEvaluation(2)} : jobClosedAlert}>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad.png" style={{ width: "1.25rem", marginRight: "0.5rem", paddingTop: "2%" }} />
+                                                <p style={{ fontSize: "0.8rem", color: "#E42424" }}>Unqualified</p>
+                                            </button>
+                                        </div>
+                                    }
+                                </div>
+                            }
                     </div>
                 </div>
                 <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", height: "52rem", width: "73%" }}>
