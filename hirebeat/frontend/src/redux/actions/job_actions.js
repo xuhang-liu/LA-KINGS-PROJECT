@@ -21,6 +21,7 @@ import {
     ADD_CAND_FROM_MERGE,
     GET_PIPELINE_ANALYTICS,
     ADD_NEW_APPLY_CANDIDATE_BY_CV
+    CHECK_IF_MASTER_ACTIVE,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -326,6 +327,20 @@ export const addNewApplyCandidateByCv = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: ADD_NEW_APPLY_CANDIDATE_BY_CV,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const checkIfMasterActive = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/check_if_master_active", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: CHECK_IF_MASTER_ACTIVE,
         payload: res.data,
       });
     })

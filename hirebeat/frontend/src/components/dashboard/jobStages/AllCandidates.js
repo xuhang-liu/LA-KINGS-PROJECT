@@ -72,7 +72,7 @@ export class AllCandidates extends Component {
 
     hideQForm = () => {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page); this.props.getPJobs(); }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, ""); this.props.getPostedJobs(this.props.user.id, page, ""); }, 300);
         this.setState({ showQForm: false });
 
     }
@@ -154,7 +154,7 @@ export class AllCandidates extends Component {
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
                 let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
-                setTimeout(() => { this.props.getAllJobs(this.props.user.id, page); this.props.getPJobs() }, 300);
+                setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, ""); this.props.getPostedJobs(this.props.user.id, page, "") }, 300);
                 this.sendSuccessAlert();
             }
         }
@@ -346,6 +346,7 @@ export class AllCandidates extends Component {
                                             updateCommentStatus={this.props.updateCommentStatus}
                                             subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                             reviews={this.props.reviews}
+                                            positionId={this.props.curJob.job_details.positions_id}
                                         />
                                     )
                                 })}
@@ -434,7 +435,7 @@ const ApplicantRow = (props) => {
         }
         props.updateCandidateViewedStatus(data);
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, ""); props.getPostedJobs(props.user.id, page, "") }, 300);
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
@@ -446,7 +447,7 @@ const ApplicantRow = (props) => {
 
     function hideModal() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, ""); props.getPostedJobs(props.user.id, page, "") }, 300);
         sessionStorage.removeItem("showPreview" + props.index);
         setShowPreview(false);
     }
@@ -503,7 +504,7 @@ const ApplicantRow = (props) => {
 
     const refresh = () => {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPostedJobs(props.user.id, page, "Resume Review") }, 300);
         props.updateViewStatus({ "candidate_id": applicants[current].id });
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
@@ -629,6 +630,7 @@ const ApplicantRow = (props) => {
                         subreviewerUpdateComment={props.subreviewerUpdateComment}
                         reviews={props.reviews}
                         currentStage={"All Candidates"}
+                        positionId={props.positionId}
                     />
                 </MyFullModal>
             </div>

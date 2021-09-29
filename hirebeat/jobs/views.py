@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates
-from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates
+from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview
 from rest_framework.response import Response
 from rest_framework import status
@@ -21,6 +21,7 @@ import MergeATSClient
 from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_interview_stages_api, applications_api, attachments_api
 from pprint import pprint
 import math
+from django.forms.models import model_to_dict
 
 # configure s3
 if not boto.config.get('s3', 'use-sigv4'):
@@ -81,16 +82,31 @@ def add_new_job(request):
 
 @api_view(['GET'])
 def get_all_jobs(request):
+    jobs = []
     user_id = request.query_params.get("userId")
     page = 1
     try:
         page = int(request.query_params.get("page"))
     except:
         pass
-    subpage = request.query_params.get("subpage")
+    subpage = request.GET.get("subpage", "")
 
     data = {}
-    jobs = list(Jobs.objects.filter(user_id=user_id).order_by('-id').values())
+    profile = Profile.objects.get(user_id=user_id)
+    if profile.is_subreviwer:
+        user = User.objects.get(pk=user_id)
+        subreviewers = SubReviewers.objects.filter(r_email=user.email)
+        for s in range(len(subreviewers)):
+            current_job_id = subreviewers[s].jobs_id
+            jobs.append(Jobs.objects.filter(id=current_job_id).values()[0])
+    elif profile.is_external_reviewer:
+        user = User.objects.get(pk=user_id)
+        ext_reviewers = ExternalReviewers.objects.filter(r_email=user.email)
+        for s in range(len(ext_reviewers)):
+            current_job_id = ext_reviewers[s].jobs_id
+            jobs.append(Jobs.objects.filter(id=current_job_id).values()[0])
+    else:
+        jobs = list(Jobs.objects.filter(user_id=user_id).order_by('-id').values())
     for i in range(len(jobs)):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]
@@ -880,4 +896,46 @@ def get_pipeline_analytics(request):
 
     return Response({
         "analytics": analytics
+    })
+
+@api_view(['POST'])
+def check_id_master_active(request):
+    master_is_active = True
+    subreviewers = []
+    ext_reviewers = []
+    user_id = request.data['user_id']
+    user = User.objects.get(pk=user_id)
+    profile = Profile.objects.get(user=user)
+    if profile.is_subreviwer:
+        subreviewers = SubReviewers.objects.filter(r_email=user.email)
+        if len(subreviewers) > 0:
+            job = Jobs.objects.get(pk=subreviewers[0].jobs_id)
+            master_user = User.objects.get(pk=job.user.id)
+            master_profile = Profile.objects.get(user=master_user)
+            if master_profile.membership != "Premium":
+                master_is_active  =  False
+    if profile.is_external_reviewer:
+        ext_reviewers = ExternalReviewers.objects.filter(r_email=user.email)
+        if len(ext_reviewers) > 0:
+            job = Jobs.objects.get(pk=ext_reviewers[0].jobs_id)
+            master_user = User.objects.get(pk=job.user.id)
+            master_profile = Profile.objects.get(user=master_user)
+            if master_profile.membership != "Premium":
+                master_is_active  =  False
+
+    return Response({
+        "master_is_active": master_is_active
+    })
+
+@api_view(['POST'])
+def check_subreviewer_currentstage(request):
+    current_stage = ""
+    job_id = request.data['job_id']
+    email = request.data['email']
+    subreviewers = SubReviewers.objects.filter(r_email=email, jobs_id=job_id)
+    if len(subreviewers) > 0:
+        current_stage = subreviewers[0].current_stage
+
+    return Response({
+        "current_stage": current_stage
     })

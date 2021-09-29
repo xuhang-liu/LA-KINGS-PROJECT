@@ -10,6 +10,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import {CountdownButton} from "./CountdownButton";
 import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
+import {Redirect} from "react-router-dom";
 //import MediaQuery from 'react-responsive';
 
 function ScrollToTopOnMount() {
@@ -70,6 +71,9 @@ class EmailVerification extends Component {
               }
             }
         };
+        if (this.props?.profile?.email_confirmed) {
+          return <Redirect to="/employer_dashboard"/>;
+        }
         return (
             <DocumentMeta {...meta}>
             <React.Fragment>

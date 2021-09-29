@@ -128,6 +128,8 @@ export class EmployerRegister extends Component {
           else {
             if (this.passwordsMatch()) {
                 this.props.employer_register(
+                  this.state.firstName,
+                  this.state.lastName,
                   this.state.email,
                   this.state.email,
                   this.state.password,
@@ -223,6 +225,20 @@ export class EmployerRegister extends Component {
 
   updateState = (key, value) => {
     this.setState({[key]: value});
+    if(key == "email"){
+      // check if it reviewer
+      axios
+        .get(`accounts/check-if-it-reviewer?email=${value?.toLowerCase()}`)
+        .then((res) => {
+          let is_reviewer = res?.data?.is_reviewer;
+          if (is_reviewer) {
+            this.setState({isReviewer: true, companyName: "External or Sub Reviewer"});
+          }
+        })
+        .catch((err) =>
+          console.log(err)
+        );
+    }
   }
 
   setStep = (step) => {
@@ -294,7 +310,7 @@ export class EmployerRegister extends Component {
         }
       }
     };
-    const {companyName, email, password, password2, isReviewer} = this.state;
+    const {firstName, lastName, companyName, email, password, password2, isReviewer} = this.state;
     if (this.props.auth.isAuthenticated) {
       return <Redirect to="/email-verification-employer-mini"/>;
     }
@@ -371,6 +387,42 @@ export class EmployerRegister extends Component {
                             placeholder="company Name"
                             onChange={this.onChange}
                             value={companyName}
+                            style={{
+                              fontFamily: "Avenir Next, Segoe UI",
+                              background: "#FFFFFF",
+                              borderRadius: "5px",
+                              paddingLeft: "1rem",
+                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                            }}
+                            required
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="firstName"
+                            placeholder="First Name"
+                            onChange={this.onChange}
+                            value={firstName}
+                            style={{
+                              fontFamily: "Avenir Next, Segoe UI",
+                              background: "#FFFFFF",
+                              borderRadius: "5px",
+                              paddingLeft: "1rem",
+                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                            }}
+                            required
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="lastName"
+                            placeholder="Last Name"
+                            onChange={this.onChange}
+                            value={lastName}
                             style={{
                               fontFamily: "Avenir Next, Segoe UI",
                               background: "#FFFFFF",

@@ -175,11 +175,11 @@ export class SubpageSetting extends Component {
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                         {this.props.profile.is_employer ?
-                            this.props.profile.is_external_reviewer ?
+                            (this.props.profile.is_external_reviewer || this.props.profile.is_subreviwer) ?
                                 <button
                                     type="button"
                                     className="panel-button"
-                                    onClick={this.props.renderShortlist}
+                                    onClick={this.props.renderJobs}
                                     style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                                 >
                                     <div className="center-items back-to-text">
@@ -313,7 +313,7 @@ export class SubpageSetting extends Component {
                         <div className="chart-bg1 container">
                             <div className="row pb-4 pt-2" style={{ marginTop: "1%" }}>
                                 <div className="col-6 h-100">
-                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Sub-Reviewers</p>
+                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Reviewers</p>
                                     {this.props.sub_r_list.map((s, i) => {
                                         return (
                                             <div className="row ml-1">
@@ -332,7 +332,7 @@ export class SubpageSetting extends Component {
                                     })}
                                 </div>
                                 <div className="col-6 h-100">
-                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>External Reviewers</p>
+                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Hiring Managers</p>
                                     {this.props.ext_r_list.map((s, i) => {
                                         return (
                                             <div className="row ml-1">

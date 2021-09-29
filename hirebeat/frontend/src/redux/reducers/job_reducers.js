@@ -7,6 +7,7 @@ import {
     CREATE_MERGE_LINK_TOKEN,
     SEND_MERGE_API_REQUEST,
     GET_PIPELINE_ANALYTICS,
+    CHECK_IF_MASTER_ACTIVE,
 } from "../actions/action_types";
 
 const initialState = {
@@ -87,6 +88,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         analytics: action.payload.analytics
+      }
+    case CHECK_IF_MASTER_ACTIVE:
+      return {
+        ...state,
+        master_is_active: action.payload.master_is_active
       }
     default:
       return state;
