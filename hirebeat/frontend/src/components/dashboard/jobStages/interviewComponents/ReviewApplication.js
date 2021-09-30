@@ -8,14 +8,16 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReviewNote from "./ReviewNote";
 import MoveForm from "./MoveForm";
+import ReviewApplicationTab from "./ReviewApplicationTab";
 
 export class ReviewApplication extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            viewResume: (sessionStorage.getItem("subpageStatus") == "video" || sessionStorage.getItem("subpageStatus") == "note") ? false : true,
+            viewResume: (sessionStorage.getItem("subpageStatus") == "video" || sessionStorage.getItem("subpageStatus") == "note" || sessionStorage.getItem("subpageStatus") == "application") ? false : true,
             viewVideo: (sessionStorage.getItem("subpageStatus") == "video" ? true : false) || false,
             viewNotes: (sessionStorage.getItem("subpageStatus") == "note" ? true : false) || false,
+            viewApplication: (sessionStorage.getItem("subpageStatus") == "application" ? true : false) || false,
             showMoveForm: false,
             currentStage: this.props.currentStage,
             nextStage: "",
@@ -43,6 +45,7 @@ export class ReviewApplication extends Component {
             viewResume: true,
             viewVideo: false,
             viewNotes: false,
+            viewApplication: false,
         })
     }
 
@@ -51,6 +54,7 @@ export class ReviewApplication extends Component {
             viewResume: false,
             viewVideo: true,
             viewNotes: false,
+            viewApplication: false,
         })
     }
 
@@ -59,6 +63,16 @@ export class ReviewApplication extends Component {
             viewResume: false,
             viewVideo: false,
             viewNotes: true,
+            viewApplication: false,
+        })
+    }
+
+    setViewApplications = () => {
+        this.setState({
+            viewResume: false,
+            viewVideo: false,
+            viewNotes: false,
+            viewApplication: true,
         })
     }
 
@@ -398,6 +412,12 @@ export class ReviewApplication extends Component {
                         <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px" }}>
                             <div>
                                 <h2
+                                    className={this.state.viewApplication ? "head-btn-selected" : "head-btn-unselected"}
+                                    onClick={() => { this.setViewApplications(); sessionStorage.setItem("subpageStatus", "application") }}
+                                >
+                                    Application
+                                </h2>
+                                <h2
                                     className={this.state.viewResume ? "head-btn-selected" : "head-btn-unselected"}
                                     onClick={() => { this.setViewResume(); sessionStorage.setItem("subpageStatus", "resume") }}
                                 >
@@ -416,6 +436,9 @@ export class ReviewApplication extends Component {
                                     Evaluation Notes
                                 </h2>
                             </div>
+                            {this.state.viewApplication &&
+                                <ReviewApplicationTab/>
+                            }
                             {this.state.viewResume && (
                                 ((this.props.resumeURL != "") && (this.props.resumeURL != null)) ?
                                     <div class="iframe-container">
