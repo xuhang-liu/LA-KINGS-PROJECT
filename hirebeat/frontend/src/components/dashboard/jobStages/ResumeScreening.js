@@ -12,6 +12,7 @@ import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import EditQuestion from "./../jobBoard/EditQuestion";
 import ReactPaginate from 'react-paginate';
+import Select from 'react-select';
 
 export class ResumeScreening extends Component {
     state = {
@@ -19,6 +20,7 @@ export class ResumeScreening extends Component {
         showQForm: false,
         tempQuestion: [],
         category: { value: 'All', label: 'All' },
+        category3: { value: 'All', label: 'All' },
         editQuestion: false,
         isSortByScore: true,
         selectedPage: 0,
@@ -43,6 +45,16 @@ export class ResumeScreening extends Component {
         { value: 'Unreviewed', label: 'Unreviewed' },
         { value: 'All', label: 'All' },
     ];
+
+    options3 = [
+        { value: 'Pending', label: 'Pending' },
+        { value: 'Reviewed', label: 'Reviewed' },
+        { value: 'All', label: 'All' },
+    ];
+
+    onFilter3 = (category) => {
+        this.setState({ category3: category })
+    }
 
     customStyles = {
         control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
@@ -129,7 +141,7 @@ export class ResumeScreening extends Component {
             this.setState({
                 showMoveForm: true
             })
-        }else{
+        } else {
             this.noCandidateAlert();
         }
     }
@@ -353,11 +365,20 @@ export class ResumeScreening extends Component {
                     <div className="container-fluid" style={{ marginTop: "1rem", paddingLeft: "0px" }}>
                         <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             <div style={{ marginLeft: "2rem" }}>
-                                <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: (this.props.curJob.all_invited ? "none" : "inline") }} />
+                                {!this.props.profile.is_subreviwer &&
+                                    <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: (this.props.curJob.all_invited ? "none" : "inline") }} />
+                                }
                             </div>
                             <div className="col-4"><span>Name</span></div>
                             <div className="col-2">Applied On</div>
                             <div className="col-2">Resume Score <span onClick={this.sortByScore} style={{ color: "#67A3F3", cursor: "pointer" }}><i class='bx bx-sort'></i></span></div>
+                            {this.props.profile.is_subreviwer &&
+                                <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Status</div>
+                                    <div style={{ display: "inline-block" }}>
+                                        <Select value={this.state.category3} onChange={this.onFilter3} options={this.options3} className="select-category" styles={this.customStyles} />
+                                    </div>
+                                </div>
+                            }
                         </div>
                         {/* sort by resume score descending */}
                         {this.state.isSortByScore && this.props.curJob.applicants.sort((a, b) => parseInt(b.result_rate) - parseInt(a.result_rate)).map((a, index) => {
@@ -378,6 +399,16 @@ export class ResumeScreening extends Component {
                                         break;
                                     case "Unreviewed":
                                         if (a.is_invited != 0) return null;
+                                        break;
+                                }
+                            }
+                            else if (this.state.category3.value != "All") {
+                                switch (this.state.category3.value) {
+                                    case "Pending":
+                                        if (a.reviewer_review_status) return null;
+                                        break;
+                                    case "Reviewed":
+                                        if (!a.reviewer_review_status) return null;
                                         break;
                                 }
                             }
@@ -501,7 +532,7 @@ export class ResumeScreening extends Component {
                         />
                     </div>
                 </div>
-                {this.props.filter == "active" &&
+                {(this.props.filter == "active" && !this.props.profile.is_subreviwer) &&
                     <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
                         <button
                             className="default-btn"
@@ -703,7 +734,9 @@ const ApplicantRow = (props) => {
             />
             <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem" }}>
                 <div className="interview-txt9 mb-2" style={{ marginLeft: "1rem" }}>
-                    <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
+                    {!props.profile.is_subreviwer &&
+                        <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
+                    }
                     {/*(props.applicant.is_invited != 1) ?
                         <div>
                             <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
@@ -736,6 +769,13 @@ const ApplicantRow = (props) => {
                     {resumeScore >= 26 && resumeScore < 51 && <img style={{ width: "55%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-avg.png" />}
                     {resumeScore >= 0 && resumeScore < 26 && <img style={{ width: "55%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-bad.png" />}
                 </div>
+                {props.profile.is_subreviwer &&
+                    <div className="col-3">
+                        {props.applicant?.reviewer_review_status ?
+                            <p style={{ fontWeight: "600", color: "#4A6F8A" }}>Reviewed</p> :
+                            <p style={{ fontWeight: "600", color: "#090D3A" }}>Pending</p>
+                        }
+                    </div>}
             </div>
             <div style={{ background: "#E8EDFC" }}>
                 <MyFullModal className="light-blue-modal" show={showPreview} onHide={hideModal}>

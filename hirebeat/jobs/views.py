@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates
-from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers
+from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview
 from rest_framework.response import Response
 from rest_framework import status
@@ -115,7 +115,12 @@ def get_all_jobs(request):
             applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id, current_stage="Resume Review", is_active=True).order_by('-id').values())
         else:
             applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).order_by('-id').values())
-        
+        for applicant in applicants:
+            applicant["reviewer_review_status"] = False
+            user = User.objects.get(pk=user_id)
+            reviewerEvaluation = ReviewerEvaluation.objects.filter(reviewer_email=user.email, applicant_email=applicant["email"])
+            if len(reviewerEvaluation) >0:
+                applicant["reviewer_review_status"] = True
         total_records = len(applicants)
         total_page = math.ceil(len(applicants) / 15)
         if total_records > 15:

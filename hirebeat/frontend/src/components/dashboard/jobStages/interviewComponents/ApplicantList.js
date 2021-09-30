@@ -227,6 +227,16 @@ export const ApplicantList = (props) => {
                             break;
                     }
                 }
+                else if (props.category3.value != "All") {
+                    switch (props.category3.value) {
+                        case "Pending":
+                            if (a.reviewer_review_status) return null;
+                            break;
+                        case "Reviewed":
+                            if (!a.reviewer_review_status) return null;
+                            break;
+                    }
+                }
                 {/*else if(props.profile.is_subreviwer && !a.is_recorded){
                     return null;
                 }*/}
