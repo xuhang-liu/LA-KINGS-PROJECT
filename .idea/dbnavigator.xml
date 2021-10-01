@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DBNavigator.Project.DataEditorManager">
+    <record-view-column-sorting-type value="BY_INDEX" />
+    <value-preview-text-wrapping value="false" />
+    <value-preview-pinned value="false" />
+  </component>
+  <component name="DBNavigator.Project.DataExportManager">
+    <export-instructions>
+      <create-header value="true" />
+      <quote-values-containing-separator value="true" />
+      <quote-all-values value="false" />
+      <value-separator value="" />
+      <file-name value="questions_question.xls" />
+      <file-location value="$USER_HOME$/Desktop" />
+      <scope value="GLOBAL" />
+      <destination value="FILE" />
+      <format value="EXCEL" />
+      <charset value="UTF-8" />
+    </export-instructions>
+  </component>
+  <component name="DBNavigator.Project.DatabaseBrowserManager">
+    <autoscroll-to-editor value="false" />
+    <autoscroll-from-editor value="true" />
+    <show-object-properties value="true" />
+    <loaded-nodes />
+  </component>
+  <component name="DBNavigator.Project.DatabaseConsoleManager">
+    <connection id="b6e6aa7a-e707-4856-a33c-92790656fe8e">
+      <console name="Connection" type="STANDARD" schema="public" session="Main"><![CDATA[INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (11, 'Colby', 'Dumonchelle', '4102077509', 'Sykesville, MD', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620221671000.pdf', 5, '2021-05-05 13:34:47.327176+00', 'dumonchelle123@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,3,0,2,0,0,0,0}', '53.33333333333333', '{0,1,0}', '{"learning new technologies",responsive,collaboration}', '{0,1,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (242, 'Pooja', 'Poudel', '5713635075', 'Norfolk,VA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620966785000.pdf', 5, '2021-05-14 04:33:12.223529+00', 'ppoudel0030@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,2,0,0,1,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,1,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,1,0,0,0,1,0,2,0,1}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (8, 'Chris', 'Wei', '', 'Jersey City', 'https://hirebeat-interview-resume.s3.amazonaws.com/1619816401000.pdf', 5, '2021-04-30 21:00:05.038843+00', 'nwei1201@gmail.com', 'f', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (9, 'Chris W', 'Wei', '7323182442', 'Jersey City', 'https://hirebeat-interview-resume.s3.amazonaws.com/1619816503000.pdf', 5, '2021-04-30 21:02:10.728884+00', 'test123@hirebeat.co', 'f', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (13, 'Siddhant', 'Oswal', '8329979013', 'Pune, India', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620224456000.pdf', 5, '2021-05-05 14:21:06.956518+00', 'oswalsid124@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,1,0,0,1,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,1,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,1}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (12, 'Elijah', 'Sciammas', '9253529036', 'Boston, MA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620222128000.pdf', 5, '2021-05-05 13:42:14.102687+00', 'eli.sciammas@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,1,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,3,0,1,0,0}', '57.33333333333333', '{0,0,1}', '{"learning new technologies",responsive,collaboration}', '{0,0,1}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (14, 'Jessica', 'Perez', '9178471533', 'Brooklyn', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620225394000.pdf', 5, '2021-05-05 14:36:56.57102+00', '1jessicaperez@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,6,3,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,1,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,3,0,1,0,1}', '89.33333333333333', '{0,1,0}', '{"learning new technologies",responsive,collaboration}', '{0,1,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (15, 'Irene', 'He', '9172878611', 'Edison, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620226857000.pdf', 5, '2021-05-05 15:01:03.186886+00', 'irene_he2020@hotmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,1,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (16, 'Ori', 'Markowitz', '2013362994', 'New York, NY', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620228126000.pdf', 5, '2021-05-05 15:22:15.058168+00', 'ori.markowitz@gmail.com', 't', NULL, '{N/A}', '{1}', '{1,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{1,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,2,0,1,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (17, 'Amulya', 'Prodduturi', '6097218140', 'Charlotte', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620228509000.pdf', 5, '2021-05-05 15:28:53.836234+00', 'amulyareddyp15@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,2,0,0,0,2,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,1,0,1,0,1,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (18, 'Nikolas', 'Vigil', '2104258558', 'San Antonio, Texas', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620229449000.pdf', 5, '2021-05-05 15:45:12.334399+00', 'kinghaze2@yahoo.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,2,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,2,1,0,0,0,0,0,1}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (19, 'Francis', 'Akoji', '2348163088362', 'Ipaja, Lagos, Nigeria ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620238027000.pdf', 5, '2021-05-05 18:07:12.825442+00', 'contactakojif@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,0,0,1}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (20, 'Mena', 'Bebawy', '6468042957', 'Brooklyn, NY', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620238136000.pdf', 5, '2021-05-05 18:09:10.573425+00', 'mena.m.bebawy@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,2,1,0,0,0,0,1,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,0,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,0,1,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (21, 'Rashed', 'Rifat', '6317460327', 'New York, New York', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620239487000.pdf', 5, '2021-05-05 18:31:47.008761+00', 'rmr557@nyu.edu', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (22, 'Sahal', 'Asghar', '9177746668', 'Brooklyn, New York', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620242343000.pdf', 5, '2021-05-05 19:19:14.720011+00', 'sahaldos1@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,1,1,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{1,0,0,0,0,0,0,0,0,0}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (26, 'Jackson', 'Bainbridge', '7325138309', 'New Brunswick l, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620248096000.pdf', 5, '2021-05-05 20:55:13.663093+00', 'jdb343@scarletmail.rutgers.edu', 't', NULL, '{N/A}', '{1}', '{0,2,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (25, 'Ayush', 'Budhwani', '4694564219', 'Arlington, Texas', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620248058000.pdf', 5, '2021-05-05 20:54:36.80047+00', 'ayushbudhwani41@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,1,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,1,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (24, 'Ashish', 'Pulluri', '3476915327', 'Jersey City', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620244038000.pdf', 5, '2021-05-05 19:47:36.770396+00', 'ashish.pulluri@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,3,3,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,1,0,0,0,1,0,0}', '64.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (23, 'hangchen1128@gmail.com', 'Chen', '9175287098', 'New York City, New York', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620243634000.pdf', 5, '2021-05-05 19:40:46.295011+00', 'hangchen1128@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,1,0,1,0,0,0,0,1}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,1,0,0,0,0,1}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,2,1,0}', '65.33333333333333', '{0,1,0}', '{"learning new technologies",responsive,collaboration}', '{0,1,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (27, 'Sai Manudeep', 'Gadde', '7852269952', 'Lawrence, Kansas', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620249604000.pdf', 5, '2021-05-05 21:20:14.745522+00', 'manudeepgadde01@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,1,0,0,0,1,0,0,0,1}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,1,0,0,0,1}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,1,0,2}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (28, 'Mena', 'Bebawy', '6468042957', 'Brooklyn, NY', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620249597000.pdf', 5, '2021-05-05 21:20:24.285063+00', 'mena.m.bebawy@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,2,1,0,0,0,0,1,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,0,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,0,1,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (30, 'FACUNDO', 'MARTIN', '7324031273', 'Manalapan NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620253555000.pdf', 5, '2021-05-05 22:26:09.193371+00', 'facundomartin305@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,1,1,0,0,2,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (32, 'Rachid', 'Sassine', '9176601691', 'Glendale, New York', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620256602000.pdf', 5, '2021-05-05 23:17:03.544696+00', 'rsassine325@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,1,1,0,0,0,0,0,1,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,0,0,0,1,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,1,0,0,0}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (204, 'Yusuf', 'kebbe', '+48789259708', 'Istanbul/Turkey', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620768045000.pdf', 5, '2021-05-11 21:21:27.554721+00', 'kebbeyusuf@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,1,0,0,1,1,0,1,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,1,1,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,3,0,1,0,0}', '69.33333333333333', '{0,1,0}', '{"learning new technologies",responsive,collaboration}', '{0,1,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (31, 'Oumaima', 'Ouhaik', '212635113797', 'Casablanca', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620256311000.pdf', 5, '2021-05-05 23:12:09.064737+00', 'oumaima.ouhaik@hotmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,1,0,0,2,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,1,0,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,5,0,0,0,1}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (225, 'Mohamad', 'Elshalati', '2016733836', 'Wayne, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620858713000.pdf', 5, '2021-05-12 22:32:00.201347+00', 'moe.shalati@gmail.con', 'f', NULL, '{N/A}', '{1}', '{0,1,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (243, 'Ian ', 'Hancock ', '817-600-6097', 'Watauga, Texas ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620989528000.pdf', 5, '2021-05-14 10:52:29.627172+00', 'northroadian@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,2,0,0,1,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,1,0,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,1,0,0,2,0,1,0,0}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (33, 'rajesh', 'palthya', '09378182559', 'cleveland', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620257561000.pdf', 5, '2021-05-05 23:33:14.959408+00', 'rajesh.palthya711@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,1,0,1,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,1,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{2,0,0,2,0,1,0,0,0,1}', '65.33333333333333', '{0,1,0}', '{"learning new technologies",responsive,collaboration}', '{0,1,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (35, 'Ankith', 'Madadi', '6508809308', 'San Jose, CA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620258368000.pdf', 5, '2021-05-05 23:46:21.305273+00', 'ankithm28@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,1,0,0,1,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,1,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,1,0,0,0,2,0,1,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (34, 'Ivana', 'Zdravevska', '9734200393', 'Rochelle Park', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620258015000.pdf', 5, '2021-05-05 23:40:42.962595+00', 'iz9@njit.edu', 'f', NULL, '{N/A}', '{1}', '{0,3,2,0,1,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,1,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{1,0,0,0,0,1,0,0,1,1}', '64.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (244, 'Xi', 'Kang', '2066585996', 'Evanston, Illinois ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621003073000.pdf', 5, '2021-05-14 14:38:02.341828+00', 'cindykang2023@u.northwestern.edu', 'f', NULL, '{N/A}', '{1}', '{0,1,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,1,1,1}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (205, 'Sicheng', 'Yang', '1(514)6550325', 'Montreal, Canada', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620768893000.pdf', 5, '2021-05-11 21:37:47.128331+00', 'kkarzyang@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (36, 'Anish', 'Thakur', '6822487455', 'Arlington,Texas', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620262642000.pdf', 5, '2021-05-06 00:57:27.212254+00', 'anish.thakur@mavs.uta.edu', 'f', NULL, '{N/A}', '{1}', '{0,1,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,1,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (38, 'Kausik', 'Amancherla ', '4707752429', 'Atlanta, GA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620266263000.pdf', 5, '2021-05-06 01:58:07.506177+00', 'ucangetkausik@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,2,1,0,1,3,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,1,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,1,0,0,0,0,0,0}', '68.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (37, 'Samariddinkhon', 'Fazliddinov', '3156649245', 'Staten Island, NY', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620265893000.pdf', 5, '2021-05-06 01:51:36.237649+00', 's.fazliddinov01@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,2,0,0,0,3,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,1,0,2}', '73.33333333333333', '{0,0,1}', '{"learning new technologies",responsive,collaboration}', '{0,0,1}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (262, 'Mekhi ', 'Greene', '7188076405', 'Queens', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621053003000.pdf', 5, '2021-05-15 04:30:13.730959+00', 'mgreene@albany.edu', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (39, 'Kausik', 'Amancherla', '4707752429', 'Atlanta, GA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620266359000.pdf', 5, '2021-05-06 01:59:33.853559+00', 'ucangetkausik@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,2,1,0,1,3,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,1,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,1,0,0,0,0,0,0}', '68.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (41, 'Oscar', 'Lui', '3479011720', 'Flushing, NY', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620271661000.pdf', 5, '2021-05-06 03:27:58.397578+00', 'ooscarlui97@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,1,1,0,0,1,0,0,1,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,1,0,0,1,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (40, 'Manikanta Reddy', 'Nayini', '6572536448', 'Milpitas, CA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620269323000.pdf', 5, '2021-05-06 02:48:49.380961+00', 'nayini1997@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,4,1,0,0,2,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{1,0,0,0,0,0,0,1,0,0}', '68.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (206, 'Sicheng', 'Yang', '5146550325', 'Montreal, Canada', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620769250000.pdf', 5, '2021-05-11 21:41:29.14405+00', 'kkarzyang@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (44, 'Stephen', 'Black', '5163201434', 'Levittown New York', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620276592000.pdf', 5, '2021-05-06 04:49:59.699903+00', 'sblack3@binghamton.edu', 'f', NULL, '{N/A}', '{1}', '{0,1,2,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,2,0,0,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (42, 'Dawei', 'Wei', '4805659139', 'Los Angeles, CA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620273812000.pdf', 5, '2021-05-06 04:03:43.581349+00', 'davidwei000@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,2,1,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{2,0,0,0,0,0,0,1,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (43, 'Qinyu', 'Wang', '3369799393', 'Atlanta, GA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620276416000.pdf', 5, '2021-05-06 04:47:01.211865+00', 'qwang437@gatech.edu', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,0,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (207, 'Srijan', 'Srivastava', '4253622214', 'Redmond', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620769909000.pdf', 5, '2021-05-11 21:52:15.854637+00', 'srivastava.sr@northeastern.edu', 'f', NULL, '{N/A}', '{1}', '{0,0,2,0,2,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,1,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,0,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (47, 'Ganesh Somashakhar', 'Margada', '6692881114', 'San Jose, USA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620280913000.pdf', 5, '2021-05-06 06:01:59.953383+00', 'ganeshsomashekhar.margada@sjsu.edu', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,3,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,1,0,0,0,1,0,1}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (45, 'Edmund', 'Li', '7323185659', 'College Park, Maryland', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620278202000.pdf', 5, '2021-05-06 05:16:54.380066+00', 'edmund.li427@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,1,0,0,0,0,0,1,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,2,0,0,0,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (46, 'Hafiz', 'Bhuyan', '5713258078', 'Leesburg, VA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620278409000.pdf', 5, '2021-05-06 05:20:17.807427+00', 'bhuyanha@dukes.jmu.edu', 'f', NULL, '{N/A}', '{1}', '{0,0,2,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,1,0,0,0,0,0,0,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (51, 'Juhi', 'Chaudhari ', '7329399509', 'Old bridge, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620311888000.pdf', 5, '2021-05-06 14:39:32.484154+00', 'juhichaudhari@gmail.com', 'f', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (49, 'Christopher', 'Conti', '9733967432', 'Little Falls, New Jersey', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620308914000.pdf', 5, '2021-05-06 13:48:52.10368+00', 'cjc2818cjc@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,4,0,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{1,0,0,0,0,0,0,2,0,0}', '73.33333333333333', '{0,0,1}', '{"learning new technologies",responsive,collaboration}', '{0,0,1}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (263, 'Ali', 'Shaikh', '8324620643', 'Richmond, Texas 77407', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621058811000.pdf', 5, '2021-05-15 06:06:55.645629+00', 'alisoofia97@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,2,0,0,0,6,0,3,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,1,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,1,0,2,0,0,0,0}', '97.33333333333333', '{0,1,0}', '{"learning new technologies",responsive,collaboration}', '{0,1,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (48, 'owen', 'huang', '9175148170', 'new york city', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620287267000.pdf', 5, '2021-05-06 07:47:52.646928+00', 'ohuang2@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,2,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,2,0,1,0,0}', '61.33333333333333', '{1,0,0}', '{"learning new technologies",responsive,collaboration}', '{1,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (50, 'Anomitro', 'Paul', '2157304027', 'Philadelphia,PA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620310467000.pdf', 5, '2021-05-06 14:14:34.923431+00', 'anomitro.paul@drexel.edu', 't', NULL, '{N/A}', '{1}', '{0,1,0,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,1,0,1}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (58, 'Vincent', 'Savarese', '7327706120', 'Howell NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620319064000.pdf', 5, '2021-05-06 16:37:59.972658+00', 'ves35@drexel.edu', 'f', NULL, '{N/A}', '{1}', '{0,1,0,0,0,2,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,2,0,0,0,0}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (229, 'Khalil', 'Tavarez', '6463396765', 'Ozone Park, NY', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620870413000.pdf', 5, '2021-05-13 01:47:32.599665+00', 'KhalilTavarez@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,3,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (271, 'Peter', 'Schwarzkopf', '3026854195', 'Hockessin, Delaware', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621111780000.pdf', 5, '2021-05-15 20:49:47.39247+00', 'pjs4644@rit.edu', 'f', NULL, '{N/A}', '{1}', '{0,1,2,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,1,0,0,0,0,0,1,0,0}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (278, 'dharam.keerthi@gmail.com', 'DHARAM', '2175188227', '', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621186166000.pdf', 5, '2021-05-16 17:26:41.460188+00', 'dharam.keerthi@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,2,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,2,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (64, 'Roland', 'Otuo-Acheampong', '7323189858', 'Caldwell, New Jersey', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620325297000.pdf', 5, '2021-05-06 18:22:03.004065+00', 'rotuo@caldwell.edu', 'f', NULL, '{N/A}', '{1}', '{0,1,1,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,0,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (67, 'Noah', 'Zacharia', '3473721041', 'Staten Island, New York', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620326277000.pdf', 5, '2021-05-06 18:38:09.75648+00', 'nzach02@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,2,0,0,0,1,0,1,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,1,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (70, 'Srijan', 'Srivastava', '4253622214', 'Redmond,WA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620327010000.pdf', 5, '2021-05-06 18:50:18.678146+00', 'srivastava.sr@northeastern.edu', 'f', NULL, '{N/A}', '{1}', '{0,0,2,0,2,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,1,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,0,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (211, 'Jeffrey', 'Woods', '2087014054', 'Union City, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620782617000.pdf', 5, '2021-05-12 01:23:50.833992+00', 'jeffreytwoods2@icloud.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,1,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,1,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (231, 'Krishna Chaitanya', 'Paluru', '+1 6822345757', 'Texas', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620906676000.pdf', 5, '2021-05-13 11:51:25.526396+00', 'krishnachaitanya925@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,2,1,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,1,2,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (77, 'Jaimie', 'Bertoli', '9737382187', 'Rockaway, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620330423000.pdf', 5, '2021-05-06 19:47:18.303586+00', 'jaimie.bertoli@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,3,0,6,2,0,2,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,1,1,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,8,0,0,0,2}', '92.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (272, 'Jenny', 'Bao', '', 'New York, NY', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621111859000.pdf', 5, '2021-05-15 20:51:13.089279+00', 'jennybao1004@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,1,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,0,0,0}', '57.33333333333333', '{0,1,0}', '{"learning new technologies",responsive,collaboration}', '{0,1,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (265, 'Yashik', 'Khunt', '9157836636', 'Surat, Gujarat', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621080210000.pdf', 5, '2021-05-15 12:03:39.232013+00', 'yashikkhunt2002@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (91, 'Runjia', 'Jiang', '9176553626', 'Queens, NY', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620350461000.pdf', 5, '2021-05-07 01:21:10.17317+00', 'vjiang4538@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,1,0,0}', '53.33333333333333', '{0,1,0}', '{"learning new technologies",responsive,collaboration}', '{0,1,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (90, 'aevans@bowdoin.edu', 'Evans', '5183227733', 'Delmar, New York', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620349052000.pdf', 5, '2021-05-07 00:57:38.362331+00', 'aevans@bowdoin.edu', 't', NULL, '{N/A}', '{1}', '{0,5,2,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,1,0,0}', '72.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (273, 'Tae Yeong (Tony)', 'So', '8476300489', 'Northbrook, Illinois', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621112259000.pdf', 5, '2021-05-15 20:57:49.043637+00', 'tyso88@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,2,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,1,0,0,0,0,0,2,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (282, 'Md. Rakibul ', 'Hasan', '+8801727020294', 'Rajshahi, Bangladesh', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621210175000.pdf', 5, '2021-05-17 00:09:50.474731+00', 'rakibul.tqs@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,6,1,0,2,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (217, 'Sejal', 'Agarwal', '4256598860', 'Amherst MA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620835629000.pdf', 5, '2021-05-12 16:07:31.742805+00', 'sejalagarwal@umass.edu', 'f', NULL, '{N/A}', '{1}', '{0,0,1,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,2,0,2,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (116, 'selinaaaa742@gmail.com', 'Govani', '9087051660', 'Bridgewater, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620407814000.pdf', 5, '2021-05-07 17:17:27.31787+00', 'selinaaaa742@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,1,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,1,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (119, 'Steven', 'Necola', '3479443968', 'New York, New York', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620410375000.pdf', 5, '2021-05-07 17:59:53.004579+00', 'necola.steven@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,2,2,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,1,0,1}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (127, 'Manish ', 'Malakar', '9736528447', 'Bloomfield, New Jersey', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620420737000.pdf', 5, '2021-05-07 20:52:25.730202+00', 'mani.malakar12@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,1,0,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,2,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (136, 'Tanmay', 'Siwach', '5107097515', 'San Jose, CA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620449190000.pdf', 5, '2021-05-08 04:46:33.582752+00', 'siwachtanmayus@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,2,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,1,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (139, 'Sowjanya', 'Chintala', '4697932605', 'Atlanta, Georgia', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620481564000.pdf', 5, '2021-05-08 13:46:12.456273+00', 'sowjanyatejomayee@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,4,2,0,0,0,0,1,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,0,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{1,0,0,1,0,0,0,1,0,0}', '68.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (138, 'Vishnu', 'Suram', '6823309376', 'Arlington, Texas', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620460914000.pdf', 5, '2021-05-08 08:02:21.013623+00', 'vishnuvardhanre.suram@mavs.uta.edu', 'f', NULL, '{N/A}', '{1}', '{0,2,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,1,0,0,0,2,0,3,0,1}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (137, 'Sanaayah ', 'Velasquez', '6462494553', 'NY,NY', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620451086000.pdf', 5, '2021-05-08 05:18:47.041952+00', 'sanaayah.sama@yahoo.com', 'f', NULL, '{N/A}', '{1}', '{0,2,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,1}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (143, 'Sunil', 'GOULAMHOUSSEN', '33783789427', 'France, Paris', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620502010000.pdf', 5, '2021-05-08 19:26:56.625671+00', 'sunil.goulamhoussen@edu.devinci.fr', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,1,1,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (141, 'hitupishmaelsemail@gmail.com', 'Jalloh', '2144377468', 'Dallas, Texas', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620490362000.pdf', 5, '2021-05-08 16:13:21.317951+00', 'hitupishmaelsemail@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,1,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (151, 'swarghad@stevens.edu', 'Warghade', '2017247123', 'Jersey City, New Jersey', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620536469000.pdf', 5, '2021-05-09 05:01:38.009692+00', 'swarghad@stevens.edu', 't', NULL, '{N/A}', '{1}', '{0,1,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,1,1,0,0,0,0,2,1,0}', '57.33333333333333', '{0,0,1}', '{"learning new technologies",responsive,collaboration}', '{0,0,1}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (283, 'Ritik', 'Singh', '09625244176', '', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621212004000.pdf', 5, '2021-05-17 00:40:15.140388+00', 'mr.ritik99@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,1,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (157, 'pavan', 'singara', '5054854730', 'Albuquerque, New Mexico', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620556896000.pdf', 5, '2021-05-09 10:41:43.29058+00', 'fuzenxtechno@gmail.com', 'f', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (164, 'abdi djama ', 'waberi', '', '', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620585836000.pdf', 5, '2021-05-09 18:44:05.485043+00', 'asus.adw98@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,2,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,1,0,0,0,0,0,1,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (165, 'Mir', 'Khan', '7328257757', 'Brooklyn, New York', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620587908000.pdf', 5, '2021-05-09 19:18:37.775902+00', 'mirkhan1497@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,2,0,0,1,0,2,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,0,1,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{1,0,0,0,0,0,0,0,1,0}', '60.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (160, 'Zhengnan', 'Xie', '3128892420', 'Tucson, AZ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620570660000.pdf', 5, '2021-05-09 14:31:17.700526+00', 'zhengnanx87@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{1,1,0,0,0,1,0,0,0,0}', '53.33333333333333', '{0,1,0}', '{"learning new technologies",responsive,collaboration}', '{0,1,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (166, 'Mitul', 'Patel', '2244285352', 'Hoffman Estates', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620588234000.pdf', 5, '2021-05-09 19:24:37.818619+00', 'mitul.patel2@ontariotechu.net', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,2,0,1,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,1,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,0,0,0}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (168, 'Matthew', 'Feliciano', '6094025153', 'Atlantic City, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620600583000.pdf', 5, '2021-05-09 22:50:04.5155+00', 'mattfeliciano28@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (167, 'Mustafa Cihan', 'Gönen', '905326469138', 'İzmir / Turkey', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620588680000.pdf', 5, '2021-05-09 19:31:36.716491+00', 'cihangonen4k@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,2,0,0,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (189, 'Anisha', 'Bhagat', '9082082554', 'Somerset, New Jersey', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620679013000.pdf', 5, '2021-05-10 20:37:04.477229+00', 'ab2728@rit.edu', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,1,1,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (258, 'Jonathan', 'Min', '9177436252', 'New York, NY', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621032119000.pdf', 5, '2021-05-14 22:42:04.083994+00', 'jonathan.min@stonybrook.edu', 't', NULL, '{N/A}', '{1}', '{0,4,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (172, 'Xin', 'Sheng', '6198690517', 'Honolulu, Hawaii', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620619296000.pdf', 5, '2021-05-10 04:01:48.681863+00', 'xisheng@ucsd.edu', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,4,0,1,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,1,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,1,0,0}', '73.33333333333333', '{0,0,1}', '{"learning new technologies",responsive,collaboration}', '{0,0,1}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (169, 'Matthew', 'Feliciano', '6094025153', 'Atlantic City, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620600656000.pdf', 5, '2021-05-09 22:51:50.078939+00', 'mattfeliciano28@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (179, 'Mihir', 'Patel ', '5705948789', 'Orangeville, PA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620650778000.pdf', 5, '2021-05-10 12:46:24.78931+00', 'mvp42310@huskies.bloomu.edu', 't', NULL, '{N/A}', '{1}', '{0,1,0,1,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,1,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (176, 'Ala''', 'Mashaqi', '00970595294410', 'Nablus, Palestine', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620635351000.pdf', 5, '2021-05-10 08:29:21.408714+00', 'mashaqiala415@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,2,1,0,0,0}', '57.33333333333333', '{0,1,0}', '{"learning new technologies",responsive,collaboration}', '{0,1,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (192, 'Won Kyu', 'Jeong', '4084441058', 'San Jose', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620688302000.pdf', 5, '2021-05-10 23:11:49.646451+00', 'codewonky@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,1,1,0,0,4,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '64.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (181, 'Andrew', 'Chuah', '6319221000', 'East Brunswick, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620660950000.pdf', 5, '2021-05-10 15:35:59.381075+00', 'andchuah@outlook.com', 't', NULL, '{N/A}', '{1}', '{0,1,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,1,0,0,0,0,0,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (195, 'Mahamadou ', 'Drame', '2159314491', 'Philadelphia, Pa ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620711362000.pdf', 5, '2021-05-11 05:36:10.631409+00', 'dramem52@yahoo.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (182, 'Ian', 'Wiley', '', 'Cape May, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620666723000.pdf', 5, '2021-05-10 17:12:18.10104+00', 'iwiley98@yahoo.com', 't', NULL, '{N/A}', '{1}', '{0,0,1,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{1,0,0,0,0,0,0,0,0,0}', '48.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (186, 'Facundo', 'Martin', '7324031273', 'Manalapan, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620672820000.pdf', 5, '2021-05-10 18:53:50.121409+00', 'facundomartin305@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,1,1,0,0,2,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,1,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '56.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (196, 'Md. Masud', 'Rana', '+8801303156357', 'Dhaka, Bangladesh', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620726253000.pdf', 5, '2021-05-11 09:44:43.449028+00', 'mr.hasib45@gmail.com', 'f', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (200, 'Rachel', 'Nelson-Schille', '5054023796', 'Seattle, Washington', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620746320000.pdf', 5, '2021-05-11 15:18:49.477371+00', 'rachelnelsonschille@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,1,0,0,0,0,2,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,0,0,0,1,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (241, 'ppoudel0030@gmail.com', 'Poudel', '5713635075', 'Norfolk,VA', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620963644000.pdf', 5, '2021-05-14 03:40:52.94538+00', 'ppoudel0030@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,2,0,0,1,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,1,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,1,0,0,0,1,0,2,0,1}', '52.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (201, 'Cirill Florenz', 'Dalangin', '', 'Nutley, NJ', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620748318000.pdf', 5, '2021-05-11 16:01:05.577355+00', 'florenzdalangin@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,0,0,0}', '40.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (223, 'John', 'Shodipo', '+2349034727466', 'Lagos, Nigeria', 'https://hirebeat-interview-resume.s3.amazonaws.com/1620854253000.pdf', 5, '2021-05-12 21:17:43.65481+00', 'newtonjohn043@gmail.com', 't', NULL, '{N/A}', '{1}', '{0,0,0,0,0,1,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,0,0,0,1,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,1,0,0,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (285, 'Xi', 'Kang', '2066585996', 'Evanston,Il', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621216784000.pdf', 5, '2021-05-17 01:59:52.938443+00', 'cindykang2023@u.northwestern.edu', 't', NULL, '{N/A}', '{1}', '{0,1,0,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,1,0,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,0,0,0,0,1,1,1}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');
+INSERT INTO "jobs_applycandidates" ("id", "first_name", "last_name", "phone", "location", "resume_url", "jobs_id", "apply_date", "email", "is_invited", "basic_cri_info_list", "basic_cri_jd_list", "basic_cri_resume_list", "hard_skill_info_list", "hard_skill_jd_list", "hard_skill_resume_list", "other_keyword_info_list", "other_keyword_jd_list", "other_keyword_resume_list", "result_rate", "soft_skill_info_list", "soft_skill_jd_list", "soft_skill_resume_list") VALUES (288, 'Shrey', 'Shah', '3064501976', 'Calgary, Alberta, Canada', 'https://hirebeat-interview-resume.s3.amazonaws.com/1621263165000.pdf', 5, '2021-05-17 14:53:54.681424+00', 'shreyshah9@gmail.com', 'f', NULL, '{N/A}', '{1}', '{0,0,1,0,0,0,0,0,0,0}', '{seo,"computer science",sql,scripting,marketing,design,investigation,front-end,"web technologies",vendors}', '{0,0,1,0,0,0,0,0,0,0}', NULL, '{knowledge,complex,maintaining,core,you,developer,field,learning,websites,communication}', '{0,0,0,1,0,1,0,2,0,0}', '44.0', '{0,0,0}', '{"learning new technologies",responsive,collaboration}', '{0,0,0}');]]></console>
+    </connection>
+    <connection id="588a7897-5a98-448e-90f8-721310423f2a">
+      <console name="AWS" type="STANDARD" schema="public" session="Main" />
+    </connection>
+    <connection id="5ed18e95-d975-4b78-839e-627d6e8a1b7f">
+      <console name="WPDB" type="STANDARD" schema="bitnami_wordpress" session="Main" />
+    </connection>
+  </component>
+  <component name="DBNavigator.Project.DatabaseFileManager">
+    <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="b6e6aa7a-e707-4856-a33c-92790656fe8e" />
+    <connection id="588a7897-5a98-448e-90f8-721310423f2a" />
+    <connection id="5ed18e95-d975-4b78-839e-627d6e8a1b7f" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.accounts_profile" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.videos_label" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.questions_positions" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.questions_categorys" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.auth_user" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.questions_interviewquestions" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.videos_video" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.questions_subcategory" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.videos_wpvideo" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.questions_question" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.videos_transcript" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="588a7897-5a98-448e-90f8-721310423f2a" dataset="public.videos_sentence" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.accounts_reviewerinfo" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.questions_positions" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.auth_user" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.videos_video" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.questions_subcategory" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.jobs_applycandidates" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.videos_sentence" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.jobs_jobs" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.accounts_profile" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.auth_group" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.accounts_employerprofiledetail" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.videos_label" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.auth_user_groups" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.questions_interviewfeedback" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.questions_categorys" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.questions_interviewquestions" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.questions_invitedcandidates" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.videos_wpvideo" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.questions_question" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.accounts_profiledetail" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b6e6aa7a-e707-4856-a33c-92790656fe8e" dataset="public.videos_transcript" active-filter-id="EMPTY_FILTER" />
+  </component>
+  <component name="DBNavigator.Project.EditorStateManager">
+    <last-used-providers />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.MethodExecutionManager">
+    <method-browser />
+    <execution-history>
+      <group-entries value="true" />
+      <execution-inputs />
+    </execution-history>
+    <argument-values-cache />
+  </component>
+  <component name="DBNavigator.Project.ObjectDependencyManager">
+    <last-used-dependency-type value="INCOMING" />
+  </component>
+  <component name="DBNavigator.Project.ObjectQuickFilterManager">
+    <last-used-operator value="EQUAL" />
+    <filters />
+  </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces>
+      <mapping database-type="POSTGRES" interface-id="DEFAULT" />
+    </recently-used-interfaces>
+  </component>
+  <component name="DBNavigator.Project.Settings">
+    <connections>
+      <connection id="b6e6aa7a-e707-4856-a33c-92790656fe8e" active="true">
+        <database>
+          <name value="Local" />
+          <description value="Local" />
+          <database-type value="POSTGRES" />
+          <config-type value="BASIC" />
+          <database-version value="13.1" />
+          <driver-source value="BUILTIN" />
+          <driver-library value="" />
+          <driver value="" />
+          <url-type value="DATABASE" />
+          <host value="localhost" />
+          <port value="5432" />
+          <database value="hirebeat" />
+          <type value="USER_PASSWORD" />
+          <user value="postgres" />
+          <deprecated-pwd value="eGw3NjcxOTc4Mjc=" />
+        </database>
+        <properties>
+          <auto-commit value="false" />
+        </properties>
+        <ssh-settings>
+          <active value="false" />
+          <proxy-host value="" />
+          <proxy-port value="22" />
+          <proxy-user value="" />
+          <deprecated-proxy-pwd value="" />
+          <auth-type value="PASSWORD" />
+          <key-file value="" />
+          <key-passphrase value="" />
+        </ssh-settings>
+        <ssl-settings>
+          <active value="false" />
+          <certificate-authority-file value="" />
+          <client-certificate-file value="" />
+          <client-key-file value="" />
+        </ssl-settings>
+        <details>
+          <charset value="UTF-8" />
+          <session-management value="true" />
+          <ddl-file-binding value="true" />
+          <database-logging value="false" />
+          <connect-automatically value="true" />
+          <restore-workspace value="true" />
+          <restore-workspace-deep value="true" />
+          <environment-type value="default" />
+          <idle-time-to-disconnect value="30" />
+          <idle-time-to-disconnect-pool value="5" />
+          <credential-expiry-time value="10" />
+          <max-connection-pool-size value="7" />
+          <alternative-statement-delimiter value="" />
+        </details>
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
+          <object-type-filter use-master-settings="true">
+            <object-type name="SCHEMA" enabled="true" />
+            <object-type name="USER" enabled="true" />
+            <object-type name="ROLE" enabled="true" />
+            <object-type name="PRIVILEGE" enabled="true" />
+            <object-type name="CHARSET" enabled="true" />
+            <object-type name="TABLE" enabled="true" />
+            <object-type name="VIEW" enabled="true" />
+            <object-type name="MATERIALIZED_VIEW" enabled="true" />
+            <object-type name="NESTED_TABLE" enabled="true" />
+            <object-type name="COLUMN" enabled="true" />
+            <object-type name="INDEX" enabled="true" />
+            <object-type name="CONSTRAINT" enabled="true" />
+            <object-type name="DATASET_TRIGGER" enabled="true" />
+            <object-type name="DATABASE_TRIGGER" enabled="true" />
+            <object-type name="SYNONYM" enabled="true" />
+            <object-type name="SEQUENCE" enabled="true" />
+            <object-type name="PROCEDURE" enabled="true" />
+            <object-type name="FUNCTION" enabled="true" />
+            <object-type name="PACKAGE" enabled="true" />
+            <object-type name="TYPE" enabled="true" />
+            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
+            <object-type name="ARGUMENT" enabled="true" />
+            <object-type name="DIMENSION" enabled="true" />
+            <object-type name="CLUSTER" enabled="true" />
+            <object-type name="DBLINK" enabled="true" />
+          </object-type-filter>
+          <object-name-filters />
+        </object-filters>
+      </connection>
+      <connection id="588a7897-5a98-448e-90f8-721310423f2a" active="true">
+        <database>
+          <name value="AWS" />
+          <description value="" />
+          <database-type value="POSTGRES" />
+          <config-type value="BASIC" />
+          <database-version value="10.15" />
+          <driver-source value="BUILTIN" />
+          <driver-library value="" />
+          <driver value="" />
+          <url-type value="DATABASE" />
+          <host value="ec2-34-230-181-0.compute-1.amazonaws.com" />
+          <port value="5432" />
+          <database value="postgres" />
+          <type value="USER_PASSWORD" />
+          <user value="django" />
+          <deprecated-pwd value="Vng2UE5CbE9CNmY2UG9CRWdHSFJWRVh4Wi9wb0U5WlBEVm4vSlNmZQ==" />
+        </database>
+        <properties>
+          <auto-commit value="false" />
+        </properties>
+        <ssh-settings>
+          <active value="false" />
+          <proxy-host value="" />
+          <proxy-port value="22" />
+          <proxy-user value="" />
+          <deprecated-proxy-pwd value="" />
+          <auth-type value="PASSWORD" />
+          <key-file value="" />
+          <key-passphrase value="" />
+        </ssh-settings>
+        <ssl-settings>
+          <active value="false" />
+          <certificate-authority-file value="" />
+          <client-certificate-file value="" />
+          <client-key-file value="" />
+        </ssl-settings>
+        <details>
+          <charset value="UTF-8" />
+          <session-management value="true" />
+          <ddl-file-binding value="true" />
+          <database-logging value="false" />
+          <connect-automatically value="true" />
+          <restore-workspace value="true" />
+          <restore-workspace-deep value="true" />
+          <environment-type value="default" />
+          <idle-time-to-disconnect value="30" />
+          <idle-time-to-disconnect-pool value="5" />
+          <credential-expiry-time value="10" />
+          <max-connection-pool-size value="7" />
+          <alternative-statement-delimiter value="" />
+        </details>
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
+          <object-type-filter use-master-settings="true">
+            <object-type name="SCHEMA" enabled="true" />
+            <object-type name="USER" enabled="true" />
+            <object-type name="ROLE" enabled="true" />
+            <object-type name="PRIVILEGE" enabled="true" />
+            <object-type name="CHARSET" enabled="true" />
+            <object-type name="TABLE" enabled="true" />
+            <object-type name="VIEW" enabled="true" />
+            <object-type name="MATERIALIZED_VIEW" enabled="true" />
+            <object-type name="NESTED_TABLE" enabled="true" />
+            <object-type name="COLUMN" enabled="true" />
+            <object-type name="INDEX" enabled="true" />
+            <object-type name="CONSTRAINT" enabled="true" />
+            <object-type name="DATASET_TRIGGER" enabled="true" />
+            <object-type name="DATABASE_TRIGGER" enabled="true" />
+            <object-type name="SYNONYM" enabled="true" />
+            <object-type name="SEQUENCE" enabled="true" />
+            <object-type name="PROCEDURE" enabled="true" />
+            <object-type name="FUNCTION" enabled="true" />
+            <object-type name="PACKAGE" enabled="true" />
+            <object-type name="TYPE" enabled="true" />
+            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
+            <object-type name="ARGUMENT" enabled="true" />
+            <object-type name="DIMENSION" enabled="true" />
+            <object-type name="CLUSTER" enabled="true" />
+            <object-type name="DBLINK" enabled="true" />
+          </object-type-filter>
+          <object-name-filters />
+        </object-filters>
+      </connection>
+      <connection id="5ed18e95-d975-4b78-839e-627d6e8a1b7f" active="true">
+        <database>
+          <name value="WPDB" />
+          <description value="" />
+          <database-type value="MYSQL" />
+          <config-type value="BASIC" />
+          <database-version value="8.0" />
+          <driver-source value="BUILTIN" />
+          <driver-library value="" />
+          <driver value="" />
+          <url-type value="DATABASE" />
+          <host value="ls-74eed93e6f474e3fed5fc04f4a89f07416b468ca.crk7v91phmbh.us-east-1.rds.amazonaws.com" />
+          <port value="3306" />
+          <database value="bitnami_wordpress" />
+          <type value="USER_PASSWORD" />
+          <user value="dbmasteruser" />
+          <deprecated-pwd value="SjwpKzFDVnJ+PHc3UjcldT9RQ0x7anRycyZ0LSMyPFg=" />
+        </database>
+        <properties>
+          <auto-commit value="false" />
+        </properties>
+        <ssh-settings>
+          <active value="false" />
+          <proxy-host value="" />
+          <proxy-port value="22" />
+          <proxy-user value="" />
+          <deprecated-proxy-pwd value="" />
+          <auth-type value="PASSWORD" />
+          <key-file value="" />
+          <key-passphrase value="" />
+        </ssh-settings>
+        <ssl-settings>
+          <active value="false" />
+          <certificate-authority-file value="" />
+          <client-certificate-file value="" />
+          <client-key-file value="" />
+        </ssl-settings>
+        <details>
+          <charset value="UTF-8" />
+          <session-management value="true" />
+          <ddl-file-binding value="true" />
+          <database-logging value="false" />
+          <connect-automatically value="true" />
+          <restore-workspace value="true" />
+          <restore-workspace-deep value="true" />
+          <environment-type value="default" />
+          <idle-time-to-disconnect value="30" />
+          <idle-time-to-disconnect-pool value="5" />
+          <credential-expiry-time value="10" />
+          <max-connection-pool-size value="7" />
+          <alternative-statement-delimiter value="" />
+        </details>
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
+          <object-type-filter use-master-settings="true">
+            <object-type name="SCHEMA" enabled="true" />
+            <object-type name="USER" enabled="true" />
+            <object-type name="ROLE" enabled="true" />
+            <object-type name="PRIVILEGE" enabled="true" />
+            <object-type name="CHARSET" enabled="true" />
+            <object-type name="TABLE" enabled="true" />
+            <object-type name="VIEW" enabled="true" />
+            <object-type name="MATERIALIZED_VIEW" enabled="true" />
+            <object-type name="NESTED_TABLE" enabled="true" />
+            <object-type name="COLUMN" enabled="true" />
+            <object-type name="INDEX" enabled="true" />
+            <object-type name="CONSTRAINT" enabled="true" />
+            <object-type name="DATASET_TRIGGER" enabled="true" />
+            <object-type name="DATABASE_TRIGGER" enabled="true" />
+            <object-type name="SYNONYM" enabled="true" />
+            <object-type name="SEQUENCE" enabled="true" />
+            <object-type name="PROCEDURE" enabled="true" />
+            <object-type name="FUNCTION" enabled="true" />
+            <object-type name="PACKAGE" enabled="true" />
+            <object-type name="TYPE" enabled="true" />
+            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
+            <object-type name="ARGUMENT" enabled="true" />
+            <object-type name="DIMENSION" enabled="true" />
+            <object-type name="CLUSTER" enabled="true" />
+            <object-type name="DBLINK" enabled="true" />
+          </object-type-filter>
+          <object-name-filters />
+        </object-filters>
+      </connection>
+    </connections>
+    <browser-settings>
+      <general>
+        <display-mode value="TABBED" />
+        <navigation-history-size value="100" />
+        <show-object-details value="false" />
+      </general>
+      <filters>
+        <object-type-filter>
+          <object-type name="SCHEMA" enabled="true" />
+          <object-type name="USER" enabled="true" />
+          <object-type name="ROLE" enabled="true" />
+          <object-type name="PRIVILEGE" enabled="true" />
+          <object-type name="CHARSET" enabled="true" />
+          <object-type name="TABLE" enabled="true" />
+          <object-type name="VIEW" enabled="true" />
+          <object-type name="MATERIALIZED_VIEW" enabled="true" />
+          <object-type name="NESTED_TABLE" enabled="true" />
+          <object-type name="COLUMN" enabled="true" />
+          <object-type name="INDEX" enabled="true" />
+          <object-type name="CONSTRAINT" enabled="true" />
+          <object-type name="DATASET_TRIGGER" enabled="true" />
+          <object-type name="DATABASE_TRIGGER" enabled="true" />
+          <object-type name="SYNONYM" enabled="true" />
+          <object-type name="SEQUENCE" enabled="true" />
+          <object-type name="PROCEDURE" enabled="true" />
+          <object-type name="FUNCTION" enabled="true" />
+          <object-type name="PACKAGE" enabled="true" />
+          <object-type name="TYPE" enabled="true" />
+          <object-type name="TYPE_ATTRIBUTE" enabled="true" />
+          <object-type name="ARGUMENT" enabled="true" />
+          <object-type name="DIMENSION" enabled="true" />
+          <object-type name="CLUSTER" enabled="true" />
+          <object-type name="DBLINK" enabled="true" />
+        </object-type-filter>
+      </filters>
+      <sorting>
+        <object-type name="COLUMN" sorting-type="NAME" />
+        <object-type name="FUNCTION" sorting-type="NAME" />
+        <object-type name="PROCEDURE" sorting-type="NAME" />
+        <object-type name="ARGUMENT" sorting-type="POSITION" />
+      </sorting>
+      <default-editors>
+        <object-type name="VIEW" editor-type="SELECTION" />
+        <object-type name="PACKAGE" editor-type="SELECTION" />
+        <object-type name="TYPE" editor-type="SELECTION" />
+      </default-editors>
+    </browser-settings>
+    <navigation-settings>
+      <lookup-filters>
+        <lookup-objects>
+          <object-type name="SCHEMA" enabled="true" />
+          <object-type name="USER" enabled="false" />
+          <object-type name="ROLE" enabled="false" />
+          <object-type name="PRIVILEGE" enabled="false" />
+          <object-type name="CHARSET" enabled="false" />
+          <object-type name="TABLE" enabled="true" />
+          <object-type name="VIEW" enabled="true" />
+          <object-type name="MATERIALIZED VIEW" enabled="true" />
+          <object-type name="NESTED TABLE" enabled="false" />
+          <object-type name="COLUMN" enabled="false" />
+          <object-type name="INDEX" enabled="true" />
+          <object-type name="CONSTRAINT" enabled="true" />
+          <object-type name="DATASET TRIGGER" enabled="true" />
+          <object-type name="DATABASE TRIGGER" enabled="true" />
+          <object-type name="SYNONYM" enabled="false" />
+          <object-type name="SEQUENCE" enabled="true" />
+          <object-type name="PROCEDURE" enabled="true" />
+          <object-type name="FUNCTION" enabled="true" />
+          <object-type name="PACKAGE" enabled="true" />
+          <object-type name="TYPE" enabled="true" />
+          <object-type name="TYPE ATTRIBUTE" enabled="false" />
+          <object-type name="ARGUMENT" enabled="false" />
+          <object-type name="DIMENSION" enabled="false" />
+          <object-type name="CLUSTER" enabled="false" />
+          <object-type name="DBLINK" enabled="true" />
+        </lookup-objects>
+        <force-database-load value="false" />
+        <prompt-connection-selection value="true" />
+        <prompt-schema-selection value="true" />
+      </lookup-filters>
+    </navigation-settings>
+    <dataset-grid-settings>
+      <general>
+        <enable-zooming value="true" />
+        <enable-column-tooltip value="true" />
+      </general>
+      <sorting>
+        <nulls-first value="true" />
+        <max-sorting-columns value="4" />
+      </sorting>
+      <tracking-columns>
+        <columnNames value="" />
+        <visible value="true" />
+        <editable value="false" />
+      </tracking-columns>
+    </dataset-grid-settings>
+    <dataset-editor-settings>
+      <text-editor-popup>
+        <active value="false" />
+        <active-if-empty value="false" />
+        <data-length-threshold value="100" />
+        <popup-delay value="1000" />
+      </text-editor-popup>
+      <values-actions-popup>
+        <show-popup-button value="true" />
+        <element-count-threshold value="1000" />
+        <data-length-threshold value="250" />
+      </values-actions-popup>
+      <general>
+        <fetch-block-size value="100" />
+        <fetch-timeout value="30" />
+        <trim-whitespaces value="true" />
+        <convert-empty-strings-to-null value="true" />
+        <select-content-on-cell-edit value="true" />
+        <large-value-preview-active value="true" />
+      </general>
+      <filters>
+        <prompt-filter-dialog value="true" />
+        <default-filter-type value="BASIC" />
+      </filters>
+      <qualified-text-editor text-length-threshold="300">
+        <content-types>
+          <content-type name="Text" enabled="true" />
+          <content-type name="Properties" enabled="true" />
+          <content-type name="XML" enabled="true" />
+          <content-type name="DTD" enabled="true" />
+          <content-type name="HTML" enabled="true" />
+          <content-type name="XHTML" enabled="true" />
+          <content-type name="SQL" enabled="true" />
+          <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JSON" enabled="true" />
+          <content-type name="JSON5" enabled="true" />
+          <content-type name="YAML" enabled="true" />
+        </content-types>
+      </qualified-text-editor>
+      <record-navigation>
+        <navigation-target value="VIEWER" />
+      </record-navigation>
+    </dataset-editor-settings>
+    <code-editor-settings>
+      <general>
+        <show-object-navigation-gutter value="false" />
+        <show-spec-declaration-navigation-gutter value="true" />
+        <enable-spellchecking value="true" />
+        <enable-reference-spellchecking value="false" />
+      </general>
+      <confirmations>
+        <save-changes value="false" />
+        <revert-changes value="true" />
+      </confirmations>
+    </code-editor-settings>
+    <code-completion-settings>
+      <filters>
+        <basic-filter>
+          <filter-element type="RESERVED_WORD" id="keyword" selected="true" />
+          <filter-element type="RESERVED_WORD" id="function" selected="true" />
+          <filter-element type="RESERVED_WORD" id="parameter" selected="true" />
+          <filter-element type="RESERVED_WORD" id="datatype" selected="true" />
+          <filter-element type="RESERVED_WORD" id="exception" selected="true" />
+          <filter-element type="OBJECT" id="schema" selected="true" />
+          <filter-element type="OBJECT" id="role" selected="true" />
+          <filter-element type="OBJECT" id="user" selected="true" />
+          <filter-element type="OBJECT" id="privilege" selected="true" />
+          <user-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="false" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </user-schema>
+          <public-schema>
+            <filter-element type="OBJECT" id="table" selected="false" />
+            <filter-element type="OBJECT" id="view" selected="false" />
+            <filter-element type="OBJECT" id="materialized view" selected="false" />
+            <filter-element type="OBJECT" id="index" selected="false" />
+            <filter-element type="OBJECT" id="constraint" selected="false" />
+            <filter-element type="OBJECT" id="trigger" selected="false" />
+            <filter-element type="OBJECT" id="synonym" selected="false" />
+            <filter-element type="OBJECT" id="sequence" selected="false" />
+            <filter-element type="OBJECT" id="procedure" selected="false" />
+            <filter-element type="OBJECT" id="function" selected="false" />
+            <filter-element type="OBJECT" id="package" selected="false" />
+            <filter-element type="OBJECT" id="type" selected="false" />
+            <filter-element type="OBJECT" id="dimension" selected="false" />
+            <filter-element type="OBJECT" id="cluster" selected="false" />
+            <filter-element type="OBJECT" id="dblink" selected="false" />
+          </public-schema>
+          <any-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </any-schema>
+        </basic-filter>
+        <extended-filter>
+          <filter-element type="RESERVED_WORD" id="keyword" selected="true" />
+          <filter-element type="RESERVED_WORD" id="function" selected="true" />
+          <filter-element type="RESERVED_WORD" id="parameter" selected="true" />
+          <filter-element type="RESERVED_WORD" id="datatype" selected="true" />
+          <filter-element type="RESERVED_WORD" id="exception" selected="true" />
+          <filter-element type="OBJECT" id="schema" selected="true" />
+          <filter-element type="OBJECT" id="user" selected="true" />
+          <filter-element type="OBJECT" id="role" selected="true" />
+          <filter-element type="OBJECT" id="privilege" selected="true" />
+          <user-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </user-schema>
+          <public-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </public-schema>
+          <any-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </any-schema>
+        </extended-filter>
+      </filters>
+      <sorting enabled="true">
+        <sorting-element type="RESERVED_WORD" id="keyword" />
+        <sorting-element type="RESERVED_WORD" id="datatype" />
+        <sorting-element type="OBJECT" id="column" />
+        <sorting-element type="OBJECT" id="table" />
+        <sorting-element type="OBJECT" id="view" />
+        <sorting-element type="OBJECT" id="materialized view" />
+        <sorting-element type="OBJECT" id="index" />
+        <sorting-element type="OBJECT" id="constraint" />
+        <sorting-element type="OBJECT" id="trigger" />
+        <sorting-element type="OBJECT" id="synonym" />
+        <sorting-element type="OBJECT" id="sequence" />
+        <sorting-element type="OBJECT" id="procedure" />
+        <sorting-element type="OBJECT" id="function" />
+        <sorting-element type="OBJECT" id="package" />
+        <sorting-element type="OBJECT" id="type" />
+        <sorting-element type="OBJECT" id="dimension" />
+        <sorting-element type="OBJECT" id="cluster" />
+        <sorting-element type="OBJECT" id="dblink" />
+        <sorting-element type="OBJECT" id="schema" />
+        <sorting-element type="OBJECT" id="role" />
+        <sorting-element type="OBJECT" id="user" />
+        <sorting-element type="RESERVED_WORD" id="function" />
+        <sorting-element type="RESERVED_WORD" id="parameter" />
+      </sorting>
+      <format>
+        <enforce-code-style-case value="true" />
+      </format>
+    </code-completion-settings>
+    <execution-engine-settings>
+      <statement-execution>
+        <fetch-block-size value="100" />
+        <execution-timeout value="20" />
+        <debug-execution-timeout value="600" />
+        <focus-result value="false" />
+        <prompt-execution value="false" />
+      </statement-execution>
+      <script-execution>
+        <command-line-interfaces>
+          <value id="5e4828df-6c73-4b55-8eed-37032fc55481" name="PostgreSQL terminal" executable-path="$USER_HOME$/Desktop/questions_question.sql" database-type="POSTGRES" />
+        </command-line-interfaces>
+        <execution-timeout value="300" />
+      </script-execution>
+      <method-execution>
+        <execution-timeout value="30" />
+        <debug-execution-timeout value="600" />
+        <parameter-history-size value="10" />
+      </method-execution>
+    </execution-engine-settings>
+    <operation-settings>
+      <transactions>
+        <uncommitted-changes>
+          <on-project-close value="ASK" />
+          <on-disconnect value="ASK" />
+          <on-autocommit-toggle value="ASK" />
+        </uncommitted-changes>
+        <multiple-uncommitted-changes>
+          <on-commit value="ASK" />
+          <on-rollback value="ASK" />
+        </multiple-uncommitted-changes>
+      </transactions>
+      <session-browser>
+        <disconnect-session value="ASK" />
+        <kill-session value="ASK" />
+        <reload-on-filter-change value="false" />
+      </session-browser>
+      <compiler>
+        <compile-type value="KEEP" />
+        <compile-dependencies value="ASK" />
+        <always-show-controls value="false" />
+      </compiler>
+      <debugger>
+        <debugger-type value="JDBC" />
+        <use-generic-runners value="true" />
+      </debugger>
+    </operation-settings>
+    <ddl-file-settings>
+      <extensions>
+        <mapping file-type-id="VIEW" extensions="vw" />
+        <mapping file-type-id="TRIGGER" extensions="trg" />
+        <mapping file-type-id="PROCEDURE" extensions="prc" />
+        <mapping file-type-id="FUNCTION" extensions="fnc" />
+        <mapping file-type-id="PACKAGE" extensions="pkg" />
+        <mapping file-type-id="PACKAGE_SPEC" extensions="pks" />
+        <mapping file-type-id="PACKAGE_BODY" extensions="pkb" />
+        <mapping file-type-id="TYPE" extensions="tpe" />
+        <mapping file-type-id="TYPE_SPEC" extensions="tps" />
+        <mapping file-type-id="TYPE_BODY" extensions="tpb" />
+      </extensions>
+      <general>
+        <lookup-ddl-files value="true" />
+        <create-ddl-files value="false" />
+        <synchronize-ddl-files value="true" />
+        <use-qualified-names value="false" />
+        <make-scripts-rerunnable value="true" />
+      </general>
+    </ddl-file-settings>
+    <general-settings>
+      <regional-settings>
+        <date-format value="MEDIUM" />
+        <number-format value="UNGROUPED" />
+        <locale value="SYSTEM_DEFAULT" />
+        <use-custom-formats value="false" />
+      </regional-settings>
+      <environment>
+        <environment-types>
+          <environment-type id="development" name="Development" description="Development environment" color="-2430209/-12296320" readonly-code="false" readonly-data="false" />
+          <environment-type id="integration" name="Integration" description="Integration environment" color="-2621494/-12163514" readonly-code="true" readonly-data="false" />
+          <environment-type id="production" name="Production" description="Productive environment" color="-11574/-10271420" readonly-code="true" readonly-data="true" />
+          <environment-type id="other" name="Other" description="" color="-1576/-10724543" readonly-code="false" readonly-data="false" />
+        </environment-types>
+        <visibility-settings>
+          <connection-tabs value="true" />
+          <dialog-headers value="true" />
+          <object-editor-tabs value="true" />
+          <script-editor-tabs value="false" />
+          <execution-result-tabs value="true" />
+        </visibility-settings>
+      </environment>
+    </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
+  </component>
+</project>
