@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
-from .models import Jobs, ApplyCandidates
+from .models import Jobs, ApplyCandidates, JobQuestion
 from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview
 from rest_framework.response import Response
@@ -46,6 +46,7 @@ def add_new_job(request):
     eeo_ques_req = request.data['eeo_ques_req']
     job_post = request.data['job_post']
     skills = request.data['skills']
+    questions = request.data["questions"]
     user = User.objects.get(pk=request.data["userId"])
     company_name = ""
     company_overview = ""
@@ -75,6 +76,11 @@ def add_new_job(request):
     job_url = "https://hirebeat.co/apply-job/"+company_name+"?id=" + str(job.id)
     job.job_url = job_url
     job.save()
+    # add job screening questions
+    for question in questions:
+        answer_type = "Numeric" if question["responseType"] == "Numeric" else "boolean"
+        answer = str(question["numAns"]) if question["responseType"] == "Numeric" else question["ans"]
+        JobQuestion.objects.create(jobs=job, question=question["question"], answer_type=answer_type, answer=answer, is_must=question["isMustHave"])
     # add to zrjobs.xml
     # if job_post:
     #     add_zr_feed_xml(job.id)
@@ -220,14 +226,23 @@ def add_new_apply_candidate(request):
     linkedinurl = request.data['linkedinurl']
     gender = request.data['gender']
     race = request.data['race']
+    ansObjs = request.data['answers']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
     if not applied:
+        questions = []
+        answers = []
+        current_stage = "Resume Review"
+        for obj in ansObjs:
+            if not obj["isQualified"]:
+                current_stage = "Unqualified"
+            questions.append(obj["question"])
+            answers.append(str(obj["answer"]))
         applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
                                                          email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
-                                                         gender=gender, race=race)
+                                                         gender=gender, race=race, questions=questions, answers=answers, current_stage=current_stage)
         # add candidate resume url to prifile detail table
         applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
         if applicant_registered:
@@ -268,6 +283,7 @@ def get_current_jobs(request, companyName):
     emails = []
     job_id = request.query_params.get("jobid")
     jobs = Jobs.objects.get(pk=job_id)
+    questions = list(JobQuestion.objects.filter(jobs_id=job_id).values())
     employerp = EmployerProfileDetail.objects.get(user_id = jobs.user_id)
     applyCandidates = ApplyCandidates.objects.filter(jobs=jobs)
     for i in range(len(applyCandidates)):
@@ -294,6 +310,7 @@ def get_current_jobs(request, companyName):
         "eeo_req": jobs.eeo_req,
         "eeo_ques_req": jobs.eeo_ques_req,
         "company_website": employerp.website,
+        "questions": questions,
     }
 
     return Response({

@@ -20,7 +20,7 @@ import {
     SEND_MERGE_API_REQUEST,
     ADD_CAND_FROM_MERGE,
     GET_PIPELINE_ANALYTICS,
-    ADD_NEW_APPLY_CANDIDATE_BY_CV
+    ADD_NEW_APPLY_CANDIDATE_BY_CV,
     CHECK_IF_MASTER_ACTIVE,
     } from "./action_types";
 import axios from "axios";

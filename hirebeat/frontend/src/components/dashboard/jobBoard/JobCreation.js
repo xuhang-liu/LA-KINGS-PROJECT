@@ -11,6 +11,7 @@ import { SkillSet } from "./Constants";
 import { MyShareModal } from "./../DashboardComponents";
 import ShareJob from "./ShareJob";
 import Autocomplete from "react-google-autocomplete";
+import ScreenQuestion from "./ScreenQuestion";
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -52,6 +53,8 @@ export class JobCreation extends Component {
             remote: false,
             skills: null,
             showShare: false,
+            questionCount: 0,
+            questions: [],
         }
         this.props.getjobidlist(this.props.user.id);
         this.handleChange = this.handleChange.bind(this);
@@ -249,6 +252,7 @@ export class JobCreation extends Component {
             eeo_ques_req: this.state.eeo_ques_req,
             job_post: this.state.job_post,
             skills: this.state.skills,
+            questions: this.state.questions,
         };
         if (this.state.remote) {
             data = {
@@ -266,6 +270,7 @@ export class JobCreation extends Component {
                 eeo_ques_req: this.state.eeo_ques_req,
                 job_post: 0,
                 skills: this.state.skills,
+                questions: this.state.questions,
             };
         }
         if (this.props.jobid_list.includes(this.state.jobId) && this.state.jobId != "" && this.state.jobId != null) {
@@ -357,6 +362,49 @@ export class JobCreation extends Component {
     disableShowShare = () => {
         this.setState({ showShare: false });
         this.props.renderJobs();
+    }
+
+    overWhelm = () => {
+        confirmAlert({
+            title: 'Question Limit',
+            message: "You can add at most 3 screening questions for each postion",
+            buttons: [
+                { label: 'OK' },
+            ]
+        });
+    }
+
+    addQuestion = () => {
+        if (this.state.questionCount >= 3) {
+            return this.overWhelm();
+        }
+        let questions = this.state.questions;
+        questions.push(new Object({
+            question: "",
+            responseType: "Yes/No",
+            ans: "Yes",
+            numAns: 0,
+            isMustHave: false,
+        }))
+        this.setState({ questionCount: this.state.questionCount + 1, questions: questions});
+    }
+
+    removeQuestion = (i) => {
+        let questions = [...this.state.questions];
+        questions.splice(i, 1);
+        this.setState({questions: questions, questionCount: this.state.questionCount - 1});
+    }
+
+    handleQFormChange = (i, key, e) => {
+        let questions = [...this.state.questions];
+        questions[i][key] = e.target.value;
+        this.setState({questions: questions});
+    }
+
+    handleQFormChange2 = (i, key, value) => {
+        let questions = [...this.state.questions];
+        questions[i][key] = value;
+        this.setState({questions: questions});
     }
 
     render() {
@@ -619,6 +667,31 @@ export class JobCreation extends Component {
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq2}>Disabled</button>
                             }
+                        </div>
+                        <div className="form-row">
+                            <label className="db-txt2">
+                                Screen Questions
+                            </label>
+                        </div>
+                        {this.state.questions.map((q, index) => {
+                            return(
+                                <div key={index} className="form-row" style={{ marginBottom: "1rem" }}>
+                                    <div className="col-12">
+                                        <ScreenQuestion
+                                            questionObj={q}
+                                            handleQFormChange={this.handleQFormChange}
+                                            handleQFormChange2={this.handleQFormChange2}
+                                            index={index}
+                                            removeQuestion={this.removeQuestion}
+                                        />
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <div className="form-row">
+                            <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addQuestion}>
+                                + Add Screening Questions
+                            </span>
                         </div>
                         {!this.state.remote &&
                             <div>
