@@ -24,6 +24,7 @@ from rest_framework.decorators import api_view
 from .models import Profile, CandidatesInterview, ProfileDetail, EmployerPost, EmployerProfileDetail, ProfileDetailEducation, ProfileDetailExperience
 from questions.models import Positions, InterviewQuestions, InvitedCandidates
 from videos.models import WPVideo
+from questions.models import SubReviewers, ExternalReviewers
 from rest_framework.response import Response
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
@@ -938,10 +939,10 @@ def check_user_existence(request):
     if len(user) != 0:
         for i in range(len(user)):
             profile = Profile.objects.get(user=user[i])
-            if profile.is_subreviwer or profile.is_external_reviewer:
-                data = False
-            else:
+            if (not profile.is_subreviwer) and (not profile.is_external_reviewer):
                 data = True
+            else:
+                data = False
     return Response({"data": data})
 
 
@@ -1019,7 +1020,7 @@ def create_employer_profile(request):
     company_size = request.data["company_size"]
     company_type = request.data["company_type"]
     location = request.data["location"]
-
+    company_name = request.data["company_name"]
     # user exists
     try:
         user = User.objects.get(email=email)
@@ -1030,6 +1031,7 @@ def create_employer_profile(request):
         profile.company_size = company_size
         profile.company_type = company_type
         profile.location = location
+        profile.name = company_name
         profile.save()
     # user not exist
     except ObjectDoesNotExist:
@@ -1142,3 +1144,14 @@ def go_stripe_customer_portal(request):
     )
 
     return Response({"session_url": session.url})
+
+@api_view(['GET'])
+def check_if_it_reviewer(request):
+    email = request.query_params.get("email")
+    is_reviewer = False
+    subreviewer = SubReviewers.objects.filter(r_email = email)
+    exreviewer = ExternalReviewers.objects.filter(r_email = email)
+    if (len(subreviewer)>0 or len(exreviewer)>0):
+        is_reviewer = True
+
+    return Response({"is_reviewer": is_reviewer})

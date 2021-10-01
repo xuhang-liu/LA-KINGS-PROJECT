@@ -67,3 +67,16 @@ class ApplyCandidates(models.Model):
     transferable_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
     transferable_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
     transferable_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
+    current_stage = models.CharField(max_length=100, default="Resume Review") # Resume Review, Video Interview, Live Interview, Short List
+    is_active = models.BooleanField(default=True)
+    questions = ArrayField(models.CharField(default="", max_length=500), blank=True, null=True)
+    answers = ArrayField(models.CharField(default="", max_length=100), blank=True, null=True)
+    qualifications = ArrayField(models.BooleanField(default=True), blank=True, null=True)
+    must_haves = ArrayField(models.BooleanField(default=True), blank=True, null=True)
+
+class JobQuestion(models.Model):
+    jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)
+    question = models.CharField(max_length=300, default="")
+    answer_type = models.CharField(max_length=100, default="boolean")
+    answer = models.CharField(max_length=100, default="yes")
+    is_must = models.BooleanField(default=False)

@@ -61,9 +61,6 @@ class Positions(models.Model):
     prepare_time = models.IntegerField(default=30)
     camera_on = models.BooleanField(default=True)
 
-    def __str__(self):
-        return self.job_title
-
 
 class InterviewQuestions(models.Model): 
     description = models.TextField(default="No description",null=True)
@@ -109,6 +106,8 @@ class InvitedCandidates(models.Model):
     transferable_skills_name = ArrayField(models.CharField(default=0, max_length=100), blank=True, null=True)
     transferable_skills_on_resume = ArrayField(models.BooleanField(default=False), blank=True, null=True)
     transferable_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
+    current_stage = models.CharField(max_length=100, default="Video Interview")
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name + '|' + self.email
@@ -164,15 +163,18 @@ class SubReviewers(models.Model):
     r_email = models.CharField(max_length=50, null=True, blank=True)
     company_name = models.CharField(max_length=30,null=True, blank=True)
     position = models.ForeignKey(Positions, null=True, blank=True, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.r_email
+    jobs_id = models.IntegerField(default=0)
+    master_user = models.IntegerField(default=0)
+    current_stage = models.CharField(max_length=100, default="Resume Review")
 
 class ExternalReviewers(models.Model):
     r_name = models.CharField(max_length=30, null=True, blank=True)
     r_email = models.CharField(max_length=50, null=True, blank=True)
     company_name = models.CharField(max_length=30,null=True, blank=True)
     position = models.ForeignKey(Positions, null=True, blank=True, on_delete=models.CASCADE)
-
+    jobs_id = models.IntegerField(default=0)
+    master_user = models.IntegerField(default=0)
+    current_stage = models.CharField(max_length=100, default="All") 
 
 class InterviewNote(models.Model):
     reviewer = models.CharField(max_length=200, null=True, blank=True)

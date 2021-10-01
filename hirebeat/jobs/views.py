@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
-from .models import Jobs, ApplyCandidates
-from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates
+from .models import Jobs, ApplyCandidates, JobQuestion
+from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview
 from rest_framework.response import Response
 from rest_framework import status
@@ -21,6 +21,7 @@ import MergeATSClient
 from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_interview_stages_api, applications_api, attachments_api
 from pprint import pprint
 import math
+from django.forms.models import model_to_dict
 
 # configure s3
 if not boto.config.get('s3', 'use-sigv4'):
@@ -45,6 +46,7 @@ def add_new_job(request):
     eeo_ques_req = request.data['eeo_ques_req']
     job_post = request.data['job_post']
     skills = request.data['skills']
+    questions = request.data["questions"]
     user = User.objects.get(pk=request.data["userId"])
     company_name = ""
     company_overview = ""
@@ -71,9 +73,19 @@ def add_new_job(request):
             job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name, company_logo=company_logo,
             loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req, skills=skills)
     # save job link
+    print("asdasdasd")
+    print(company_name)
+    print(job.id)
     job_url = "https://hirebeat.co/apply-job/"+company_name+"?id=" + str(job.id)
+    print(job_url)
     job.job_url = job_url
     job.save()
+    # add job screening questions
+    for question in questions:
+        answer_type = "Numeric" if question["responseType"] == "Numeric" else "boolean"
+        answer = question["numAns"] if question["responseType"] == "Numeric" else question["ans"]
+        is_must = True if question["isMustHave"] == "true" else False
+        JobQuestion.objects.create(jobs=job, question=question["question"], answer_type=answer_type, answer=answer, is_must=is_must)
     # add to zrjobs.xml
     # if job_post:
     #     add_zr_feed_xml(job.id)
@@ -81,16 +93,45 @@ def add_new_job(request):
 
 @api_view(['GET'])
 def get_all_jobs(request):
+    jobs = []
     user_id = request.query_params.get("userId")
-    page = int(request.query_params.get("page"))
+    page = 1
+    try:
+        page = int(request.query_params.get("page"))
+    except:
+        pass
+    subpage = request.GET.get("subpage", "")
 
     data = {}
-    jobs = list(Jobs.objects.filter(user_id=user_id).order_by('-id').values())
+    profile = Profile.objects.get(user_id=user_id)
+    if profile.is_subreviwer:
+        user = User.objects.get(pk=user_id)
+        subreviewers = SubReviewers.objects.filter(r_email=user.email)
+        for s in range(len(subreviewers)):
+            current_job_id = subreviewers[s].jobs_id
+            jobs.append(Jobs.objects.filter(id=current_job_id).values()[0])
+    elif profile.is_external_reviewer:
+        user = User.objects.get(pk=user_id)
+        ext_reviewers = ExternalReviewers.objects.filter(r_email=user.email)
+        for s in range(len(ext_reviewers)):
+            current_job_id = ext_reviewers[s].jobs_id
+            jobs.append(Jobs.objects.filter(id=current_job_id).values()[0])
+    else:
+        jobs = list(Jobs.objects.filter(user_id=user_id).order_by('-id').values())
     for i in range(len(jobs)):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]
         # get each position applicants, pagination here
-        applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).order_by('-id').values())
+        if(subpage == "Resume Review"):
+            applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id, current_stage="Resume Review", is_active=True).order_by('-id').values())
+        else:
+            applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).order_by('-id').values())
+        for applicant in applicants:
+            applicant["reviewer_review_status"] = False
+            user = User.objects.get(pk=user_id)
+            reviewerEvaluation = ReviewerEvaluation.objects.filter(reviewer_email=user.email, applicant_email=applicant["email"])
+            if len(reviewerEvaluation) >0:
+                applicant["reviewer_review_status"] = True
         total_records = len(applicants)
         total_page = math.ceil(len(applicants) / 15)
         if total_records > 15:
@@ -195,44 +236,63 @@ def add_new_apply_candidate(request):
     linkedinurl = request.data['linkedinurl']
     gender = request.data['gender']
     race = request.data['race']
+    ansObjs = request.data['answers']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
-                                                     email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
-                                                     gender=gender, race=race)
-    # add candidate resume url to prifile detail table
-    applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
-    if applicant_registered:
-        applicant = User.objects.get(email=email)
-        has_profile = True if len(ProfileDetail.objects.filter(user_id=applicant.id)) == 1 else False
-        # only insert resume url when user doesn't have a profile detail record
-        if has_profile is False:
-            resume_name = firstname + "_" + lastname + ".pdf"
-            ProfileDetail.objects.create(
-                user_id=applicant.id,
-                resume_name=resume_name,
-                resume_url=resume_url,
-                profile_rate=50,
-            )
-    # print("===New Candidate Notify Email Called===")
-    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
-    message = get_template("jobs/new_candidate_notification_email.html")
-    context = {
-        'fullname': fullname,
-        'title': jobs.job_title,
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [user.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    if not applied:
+        questions = []
+        answers = []
+        qualifications = []
+        must_haves = []
+        current_stage = "Resume Review"
+        is_active = True
+        for obj in ansObjs:
+            if not obj["isQualified"]:
+                current_stage = "Unqualified"
+                qualifications.append(False)
+                is_active = False
+            else:
+                qualifications.append(True)
+            must_haves.append(obj["is_must"])
+            questions.append(obj["question"])
+            answers.append(str(obj["answer"]))
+        applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
+                                                         email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
+                                                         gender=gender, race=race, questions=questions, answers=answers, current_stage=current_stage, qualifications=qualifications, must_haves=must_haves, is_active=is_active)
+        # add candidate resume url to prifile detail table
+        applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
+        if applicant_registered:
+            applicant = User.objects.get(email=email)
+            has_profile = True if len(ProfileDetail.objects.filter(user_id=applicant.id)) == 1 else False
+            # only insert resume url when user doesn't have a profile detail record
+            if has_profile is False:
+                resume_name = firstname + "_" + lastname + ".pdf"
+                ProfileDetail.objects.create(
+                    user_id=applicant.id,
+                    resume_name=resume_name,
+                    resume_url=resume_url,
+                    profile_rate=50,
+                )
+        # print("===New Candidate Notify Email Called===")
+        subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+        message = get_template("jobs/new_candidate_notification_email.html")
+        context = {
+            'fullname': fullname,
+            'title': jobs.job_title,
+        }
+        from_email = 'HireBeat Team <tech@hirebeat.co>'
+        to_list = [user.email]
+        content = message.render(context)
+        email = EmailMessage(
+            subject,
+            content,
+            from_email,
+            to_list,
+        )
+        email.content_subtype = "html"
+        email.send()
 
     return Response("Add new apply candidate successfully", status=status.HTTP_202_ACCEPTED)
 
@@ -241,6 +301,7 @@ def get_current_jobs(request, companyName):
     emails = []
     job_id = request.query_params.get("jobid")
     jobs = Jobs.objects.get(pk=job_id)
+    questions = list(JobQuestion.objects.filter(jobs_id=job_id).values())
     employerp = EmployerProfileDetail.objects.get(user_id = jobs.user_id)
     applyCandidates = ApplyCandidates.objects.filter(jobs=jobs)
     for i in range(len(applyCandidates)):
@@ -267,6 +328,7 @@ def get_current_jobs(request, companyName):
         "eeo_req": jobs.eeo_req,
         "eeo_ques_req": jobs.eeo_ques_req,
         "company_website": employerp.website,
+        "questions": questions,
     }
 
     return Response({
@@ -294,12 +356,29 @@ def add_interview_question(request):
 @api_view(['POST'])
 def update_invite_status(request):
     candidates = request.data['candidates']
-    is_invited = request.data['isInvited']
+    nextStage = request.data['nextStage']
+    positionId = request.data["positionId"]
+    is_reject = request.data["is_reject"]
     for i in range(len(candidates)):
         candidate = ApplyCandidates.objects.get(id=candidates[i])
-        candidate.is_invited = is_invited
-        # save update to db
-        candidate.save()
+        if is_reject:
+            is_active = not candidate.is_active
+            # update ApplyCandidates model
+            candidate.is_active = is_active
+            candidate.save()
+            # update InvitedCandidates model
+            if InvitedCandidates.objects.filter(email=candidate.email, positions_id=positionId).exists():
+                InvitedCandidates.objects.filter(email=candidate.email, positions_id=positionId).update(is_active=is_active)
+        else:
+            try:
+                invitedCan = InvitedCandidates.objects.get(email=candidate.email, positions_id=positionId)
+                invitedCan.current_stage = nextStage
+                invitedCan.save()
+            except ObjectDoesNotExist:
+                pass
+            # save update to db
+            candidate.current_stage = nextStage
+            candidate.save()
     return Response("Archive new job successfully", status=status.HTTP_202_ACCEPTED)
 
 @api_view(['POST'])
@@ -453,24 +532,66 @@ def add_zr_feed_xml(job_id):
     root.append(job)
     tree.write('zrjobs.xml')
 
-def upload_cv_to_s3(encoded_cv):
+def upload_cv_to_s3(encoded_cv, cv_name):
     # decode resume and convert to pdf file
     resume = base64.b64decode(encoded_cv)
     #content = resume.decode("utf-8")
-    content = open("cv.pdf", "wb")
+    file_name = cv_name + str(int(time.time())) + ".pdf"
+    content = open(file_name, "wb")
     content.write(resume)
     content.close()
-    file_name = str(int(time.time())) + '.pdf'
     # upload txt file to s3
     b = conn.get_bucket(os.getenv("CV_Interview_Bucket"))
     k = Key(b)
     k.key = file_name
-    k.set_contents_from_filename("cv.pdf")
+    k.set_contents_from_filename(file_name)
     resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
     # delete cv.pdf cache
-    if os.path.exists("cv.pdf"):
-        os.remove("cv.pdf")
+    if os.path.exists(file_name):
+        os.remove(file_name)
     return resume_url
+
+@api_view(['POST'])
+def add_new_apply_candidate_by_cv(request):
+    job_id = request.data['job_id']
+    first_name = request.data['first_name']
+    last_name = request.data['last_name']
+    phone = request.data['phone']
+    email = request.data['email']
+    location = request.data['location']
+    resume = request.data['resume']
+    cv_name = email.split("@")[0]
+    resume_url = upload_cv_to_s3(resume, cv_name)
+    linkedinurl = request.data['linkedinurl']
+    fullname = first_name + " " + last_name
+    jobs = Jobs.objects.get(pk=job_id)
+    user = User.objects.get(pk=jobs.user_id)
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    if not applied:
+        ApplyCandidates.objects.create(jobs=jobs, first_name=first_name, last_name=last_name, phone=phone, email=email,
+                                    location=location, resume_url=resume_url, linkedinurl=linkedinurl)
+    else:
+        return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
+    # send email notification
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
+    }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+
+    return Response("Add new apply candidates successfully", status=status.HTTP_202_ACCEPTED)
 
 @api_view(['POST'])
 def add_new_apply_candidate_from_zr(request):
@@ -481,13 +602,14 @@ def add_new_apply_candidate_from_zr(request):
     email = request.data['email']
     # location = request.data['location']
     resume = request.data['resume']
-    resume_url = upload_cv_to_s3(resume)
+    cv_name = email.split("@")[0]
+    resume_url = upload_cv_to_s3(resume, cv_name)
     # linkedinurl = request.data['linkedinurl']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs)
-    if len(applied) == 0:
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    if not applied:
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                     location="", resume_url=resume_url, linkedinurl="", apply_source="ZipRecruiter")
     else:
@@ -654,6 +776,7 @@ def check_free_account_active_jobs(request):
 @api_view(['POST'])
 def add_cand_from_merge(request):
     position = {}
+    job = {}
     candidatesInterview = {}
     candidates_api_response = {}
     jobs_api_response = {}
@@ -668,6 +791,9 @@ def add_cand_from_merge(request):
     merge_stage_id = request.data['merge_stage_id']
     merge_job_title = request.data['merge_job_title']
     merge_stage_title = request.data['merge_stage_title']
+    company_name = ""
+    company_overview = ""
+    company_logo = ""
 
     configuration = MergeATSClient.Configuration()
 
@@ -691,13 +817,34 @@ def add_cand_from_merge(request):
     
     job_name = "External: "+jobs_api_response['name']+" ("+merge_stage_title+")"
     positions = Positions.objects.filter(user=user, job_title=job_name)
+    jobs = Jobs.objects.filter(user=user, job_title=job_name)
     if len(positions) > 0 :
         position = positions[0]
+    if len(jobs) > 0 :
+        job = jobs[0]
     else:
         if len(applications_api_response['results']) > 0:
             #create postion
             position = Positions.objects.create(user=user, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_description=jobs_api_response['description'], job_id="")
-    
+            # get company name and overview
+            try:
+            # update personal information
+                employer_profile = EmployerProfileDetail.objects.get(user=user)
+                company_name = employer_profile.name
+                company_overview = employer_profile.summary
+                company_logo = employer_profile.logo_url
+            except ObjectDoesNotExist:
+                company_overview = ""
+                company_name = ""
+                company_logo = ""
+            job = Jobs.objects.create(user=user, positions=position, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_id="", job_description=jobs_api_response['description'],
+            company_overview=company_overview, company_name=company_name, company_logo=company_logo,
+            loc_req="1", pho_req="1", lin_req="1", job_post=0, eeo_req="1", eeo_ques_req="1")
+            # save job link
+            job_url = "https://hirebeat.co/apply-job/"+company_name+"?id=" + str(job.id)
+            job.job_url = job_url
+            job.save()
+            # Create jobs apply candidates
     #create applicants
     for a in range(len(applications_api_response['results'])):
         candidate_id = applications_api_response['results'][a]['candidate']
@@ -726,7 +873,8 @@ def add_cand_from_merge(request):
         if len(candidatesInterview) <= 0:
             CandidatesInterview.objects.create(email=emailAddress, positions=position)
             InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response['first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url)
-
+            ApplyCandidates.objects.create(jobs=job, first_name=candidates_api_response['first_name'], last_name=candidates_api_response['last_name'], phone=phone,
+                                           email=emailAddress, location=location, current_stage="Video Interview", gender="N/A", race="N/A")
     return Response("Create candidates from merge success", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
@@ -740,4 +888,89 @@ def check_interview_candidates_num(request):
         intCanNumBo=True
     return Response({
         "intCanNumBo": intCanNumBo
+    })
+
+@api_view(['POST'])
+def get_pipeline_analytics(request):
+    analytics = {}
+    job_id = request.data['job_id']
+    job = Jobs.objects.get(pk=job_id)
+    applyc = ApplyCandidates.objects.filter(jobs=job)
+    all_can_num = len(applyc)
+    all_can_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True))
+    all_can_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False))
+    resume_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Resume Review"))
+    resume_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Resume Review"))
+    resume_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Resume Review"))
+    video_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Video Interview"))
+    video_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Video Interview"))
+    video_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Video Interview"))
+    live_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Live Interview"))
+    live_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Live Interview"))
+    live_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Live Interview"))
+    short_num = len(ApplyCandidates.objects.filter(jobs=job, current_stage="Short List"))
+    short_num_act_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=True, current_stage="Short List"))
+    short_num_rej_num = len(ApplyCandidates.objects.filter(jobs=job, is_active=False, current_stage="Short List"))
+    analytics = {
+        "all_can_num": all_can_num,
+        "resume_num": resume_num,
+        "video_num": video_num,
+        "live_num": live_num,
+        "short_num": short_num,
+        "all_can_act_num": all_can_act_num,
+        "all_can_rej_num": all_can_rej_num,
+        "resume_num_act_num": resume_num_act_num,
+        "resume_num_rej_num": resume_num_rej_num,
+        "video_num_act_num": video_num_act_num,
+        "video_num_rej_num": video_num_rej_num,
+        "live_num_act_num": live_num_act_num,
+        "live_num_rej_num": live_num_rej_num,
+        "short_num_act_num": short_num_act_num,
+        "short_num_rej_num": short_num_rej_num,
+    }
+
+    return Response({
+        "analytics": analytics
+    })
+
+@api_view(['POST'])
+def check_id_master_active(request):
+    master_is_active = True
+    subreviewers = []
+    ext_reviewers = []
+    user_id = request.data['user_id']
+    user = User.objects.get(pk=user_id)
+    profile = Profile.objects.get(user=user)
+    if profile.is_subreviwer:
+        subreviewers = SubReviewers.objects.filter(r_email=user.email)
+        if len(subreviewers) > 0:
+            job = Jobs.objects.get(pk=subreviewers[0].jobs_id)
+            master_user = User.objects.get(pk=job.user.id)
+            master_profile = Profile.objects.get(user=master_user)
+            if master_profile.membership != "Premium":
+                master_is_active  =  False
+    if profile.is_external_reviewer:
+        ext_reviewers = ExternalReviewers.objects.filter(r_email=user.email)
+        if len(ext_reviewers) > 0:
+            job = Jobs.objects.get(pk=ext_reviewers[0].jobs_id)
+            master_user = User.objects.get(pk=job.user.id)
+            master_profile = Profile.objects.get(user=master_user)
+            if master_profile.membership != "Premium":
+                master_is_active  =  False
+
+    return Response({
+        "master_is_active": master_is_active
+    })
+
+@api_view(['POST'])
+def check_subreviewer_currentstage(request):
+    current_stage = ""
+    job_id = request.data['job_id']
+    email = request.data['email']
+    subreviewers = SubReviewers.objects.filter(r_email=email, jobs_id=job_id)
+    if len(subreviewers) > 0:
+        current_stage = subreviewers[0].current_stage
+
+    return Response({
+        "current_stage": current_stage
     })

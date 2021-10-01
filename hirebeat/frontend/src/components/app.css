@@ -2806,8 +2806,8 @@ h5 {
 
 .chart-bg {
   background: #FFFFFF;
-  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
-  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.16);
+  border-radius: 12px;
   margin-top: 4rem;
 }
 
@@ -2815,8 +2815,8 @@ h5 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   background: #FFFFFF;
-  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
-  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.16);
+  border-radius: 12px;
 }
 
 .back-to-text {
@@ -3350,13 +3350,13 @@ h5 {
 
 .short-list-text {
   color: #090D3A;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   cursor: pointer;
 }
 
 .short-list-text2 {
   color: #090D3A;
-  font-size: 1rem;
+  font-size: 0.9375rem;
 }
 
 .short-list-text:hover {
@@ -4689,4 +4689,62 @@ max-width: 110px;
   font-size: 0.9375rem;
   color: #E35454;
   text-align: left;
+}
+
+.resume-bg {
+  background: #FFFFFF;
+  border: 2px dashed #E8EDFC;
+  box-sizing: border-box;
+  width: 36rem;
+  height: 18rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.candidate-txt1 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #090D3A;
+}
+
+.candidate-txt2 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+}
+
+.interview-h3 {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #7A7A7A;
+}
+
+.interview-p {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: #7A7A7A;
+}
+
+.job-creation-input {
+  border: 2px solid #E8EDFC;
+  border-radius: 5px;
+  height: 2.5rem;
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #4A6F8A;
+  width: 80%;
+}
+
+.apply-s {
+  font-weight: 500;
 }
