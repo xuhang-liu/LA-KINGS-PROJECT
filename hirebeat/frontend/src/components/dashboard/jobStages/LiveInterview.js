@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 //import { MyModal80 } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 //import { ResumeEva } from "./interviewComponents/ResumeEva";
-import {ApplicantList} from "./interviewComponents/ApplicantList";
+import { ApplicantList } from "./interviewComponents/ApplicantList";
 import 'boxicons';
 import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
@@ -27,10 +27,20 @@ export function LiveInterview(props){
         { value: 'Withdrawn', label: 'N/A' },
         { value: 'All', label: 'All' },
     ];
+    const options3 = [
+        { value: 'Pending', label: 'Pending' },
+        { value: 'Reviewed', label: 'Reviewed' },
+        { value: 'All', label: 'All' },
+    ];
 
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
     function onFilter(category) {
         setCategory(category);
+    }
+
+    const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
+    function onFilter3(category) {
+        setCategory3(category);
     }
 
     const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
@@ -147,7 +157,7 @@ export function LiveInterview(props){
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => {props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview") }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview") }, 300);
                 sendSuccessAlert(nextStage);
             } else if (nextStage == "Live Interview") {
                 alert("These candidates are already in this stage!");
@@ -187,7 +197,7 @@ export function LiveInterview(props){
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page,"Video Interview" ) }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
             rejectSuccessAlert();
         } else {
             noCandidateAlert();
@@ -198,9 +208,9 @@ export function LiveInterview(props){
         <React.Fragment>
             <div className="container-fluid">
                 <div className="container-fluid mt-4 pt-3 pb-3">
-                    <div className="row" style={{paddingLeft: "15px", paddingRight: "15px"}}>
+                    <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
                         <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
-                            <label style={{position:"absolute", left:"3.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
+                            <label style={{ position: "absolute", left: "3.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
                             <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                         </div>
                         <div className="ml-auto">
@@ -242,6 +252,12 @@ export function LiveInterview(props){
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div className="col-1">Reinvite</div>
                             }
+                            {props.profile.is_subreviwer &&
+                                <div className="row">
+                                    <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Status</div>
+                                    <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
+                                </div>
+                            }
                         </div>
                         <div style={{ marginBottom: "0.5rem" }}>
                             <ApplicantList
@@ -256,6 +272,7 @@ export function LiveInterview(props){
                                 keyWords={keyWords}
                                 category={category}
                                 category2={category2}
+                                category3={category3}
                                 applicants={props.applicants}
                                 getApplicantsVideos={props.getApplicantsVideos}
                                 getApplicantsInfo={props.getApplicantsInfo}

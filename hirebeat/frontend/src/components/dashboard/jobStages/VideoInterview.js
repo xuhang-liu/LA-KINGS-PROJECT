@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MyModal80, MyModalShare } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 //import { ResumeEva } from "./interviewComponents/ResumeEva";
-import {ApplicantList} from "./interviewComponents/ApplicantList";
+import { ApplicantList } from "./interviewComponents/ApplicantList";
 import 'boxicons';
 import Select from 'react-select';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -94,12 +94,22 @@ export function VideoInterview(props){
         { value: 7, label: '7 days' },
     ];
 
+    const options3 = [
+        { value: 'Pending', label: 'Pending' },
+        { value: 'Reviewed', label: 'Reviewed' },
+        { value: 'All', label: 'All' },
+    ];
+
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
     function onFilter(category) {
         setCategory(category);
     }
 
     const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
+    const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
+    function onFilter3(category) {
+        setCategory3(category);
+    }
 
     const customStyles = {
         control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
@@ -231,7 +241,7 @@ export function VideoInterview(props){
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => {props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
                 inviteSuccessAlert();
             }
         }
@@ -307,7 +317,7 @@ export function VideoInterview(props){
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => {props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
                 sendSuccessAlert(nextStage);
             } else if (nextStage == "Video Interview") {
                 alert("These candidates are already in this stage!");
@@ -347,7 +357,7 @@ export function VideoInterview(props){
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page,"Video Interview" ) }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
             rejectSuccessAlert();
         } else {
             noCandidateAlert();
@@ -381,26 +391,26 @@ export function VideoInterview(props){
                                 <label style={{position:"absolute", left:"3.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
                                 <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                             </div>
-                            {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter=="active") &&
-                                <div className="col-2 interview-txt7 mt-2" style={{textAlign:"right"}}>
+                            {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
+                                <div className="col-2 interview-txt7 mt-2" style={{ textAlign: "right" }}>
                                     <button
                                         type="button"
                                         className="read-more"
-                                        style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500"}}
+                                        style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500" }}
                                         onClick={editQuestions}
                                     >
                                         <i className="bx bx-info-circle pr-1"></i> Edit Questions
                                     </button>
                                 </div>
                             }
-                            <div className="col-2 interview-txt7 mt-2" style={{textAlign:"left"}}>
+                            <div className="col-2 interview-txt7 mt-2" style={{ textAlign: "left" }}>
                                 <button
                                     onClick={() => { previewEmail(props.jobTitle, props.companyName, expire.value) }}
                                     type="button"
                                     className="read-more"
-                                    style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500"}}
+                                    style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500" }}
                                 >
-                                    <i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i> Preview Email
+                                    <i style={{ color: "#56a3fa" }} className="bx bx-bullseye pr-1"></i> Preview Email
                                 </button>
                             </div>
                             <div className="ml-auto">
@@ -442,6 +452,12 @@ export function VideoInterview(props){
                                 {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                     <div className="col-1">Reinvite</div>
                                 }
+                                {props.profile.is_subreviwer &&
+                                    <div className="row">
+                                        <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Status</div>
+                                        <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
+                                    </div>
+                                }
                             </div>
                             <div style={{ marginBottom: "0.5rem" }}>
                                 <ApplicantList
@@ -456,6 +472,7 @@ export function VideoInterview(props){
                                     keyWords={keyWords}
                                     category={category}
                                     category2={category2}
+                                    category3={category3}
                                     applicants={props.applicants}
                                     getApplicantsVideos={props.getApplicantsVideos}
                                     getApplicantsInfo={props.getApplicantsInfo}
@@ -656,7 +673,7 @@ function previewEmail(jobTitle, companyName, expire) {
         closeOnClickOutside: true,
         customUI: ({ onClose }) => {
             return (
-                <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", width: "50%", overflow: "auto", height: "40rem", backgroundColor: "#ffffff", paddingTop:"1rem"}}>
+                <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", width: "50%", overflow: "auto", height: "40rem", backgroundColor: "#ffffff", paddingTop: "1rem" }}>
                     <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer" }}><i className="bx bx-x bx-md"></i></div>
                     <div style={{ marginBottom: "2rem", paddingTop: "2rem" }}>
                         <img src="https://hirebeat-assets.s3.amazonaws.com/HireBeatLogo2.png" alt="HireBeat Logo" style={{ display: "inline-block" }}></img>

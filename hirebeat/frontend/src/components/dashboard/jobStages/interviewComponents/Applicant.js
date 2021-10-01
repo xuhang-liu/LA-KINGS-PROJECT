@@ -175,6 +175,13 @@ export const Applicant = (props) => {
                         </div>
                     }
                 </div>
+                {props.profile.is_subreviwer &&
+                <div className="col-3">
+                    {applicants[current]?.reviewer_review_status ?
+                        <p style={{fontWeight:"600", color:"#4A6F8A"}}>Reviewed</p>:
+                        <p style={{fontWeight:"600", color:"#090D3A"}}>Pending</p>
+                    }
+                </div>}
                 {/*<div className="col-1">
                     <div>
                         <button

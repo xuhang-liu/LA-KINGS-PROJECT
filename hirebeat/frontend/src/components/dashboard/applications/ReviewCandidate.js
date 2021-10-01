@@ -5,6 +5,7 @@ import { ResumeEvaJobs } from "./ResumeEvaJobs";
 import EmbedQuestionForm from "./../jobBoard/EmbedQuestionForm"
 import ApplicationVideo from "../videos/ApplicationVideo";
 import ReviewNote from "./ReviewNote";
+import ReviewApplicationTab from "../jobStages/interviewComponents/ReviewApplicationTab";
 
 const ReviewCandidate = (props) => {
     const [showEva, setShowEva] = useState(false);
@@ -15,23 +16,34 @@ const ReviewCandidate = (props) => {
     const [viewResume, setViewResume] = useState(true);
     const [viewVideo, setviewVideo] = useState(false);
     const [viewNotes, setViewNotes] = useState(false);
+    const [viewApplication, setViewApplication] = useState(false);
 
     function setViewResumes() {
         setViewResume(true);
         setviewVideo(false);
         setViewNotes(false);
+        setViewApplication(false);
     }
 
     function setViewVideos() {
         setViewResume(false);
         setviewVideo(true);
         setViewNotes(false);
+        setViewApplication(false);
     }
 
     function setViewNotess() {
         setViewResume(false);
         setviewVideo(false);
         setViewNotes(true);
+        setViewApplication(false);
+    }
+
+    function setViewApplications() {
+        setViewResume(false);
+        setviewVideo(false);
+        setViewNotes(false);
+        setViewApplication(true);
     }
 
     function openMoveForm() {
@@ -428,6 +440,12 @@ const ReviewCandidate = (props) => {
                 <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", height: "52rem", width: "73%" }}>
                     <div>
                         <h2
+                            className={viewApplication ? "head-btn-selected" : "head-btn-unselected"}
+                            onClick={() => { setViewApplications()}}
+                        >
+                            Application
+                        </h2>
+                        <h2
                             className={viewResume ? "head-btn-selected" : "head-btn-unselected"}
                             onClick={() => { setViewResumes()}}
                         >
@@ -448,6 +466,9 @@ const ReviewCandidate = (props) => {
                             Evaluation Notes
                         </h2>
                     </div>
+                    {viewApplication &&
+                        <ReviewApplicationTab/>
+                    }
                     {viewResume &&
                         <div className="light-blue-border" style={{ width: "100%", height: "90%" }}>
                             {props.resume_url != null && props.resume_url != "" &&

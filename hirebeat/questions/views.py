@@ -1,3 +1,4 @@
+from re import T
 from django.db.models.aggregates import Count
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, \
     InterviewResumes, SubReviewers, ExternalReviewers, InterviewNote, ReviewerEvaluation
@@ -221,6 +222,11 @@ def get_posted_jobs(request):
                 applicant["linkedinurl"] = ""
                 applicant["is_active"] = False
                 applicant["apply_candidate_id"] = 0
+                applicant["reviewer_review_status"] = False
+                user = User.objects.get(pk=user_id)
+                reviewerEvaluation = ReviewerEvaluation.objects.filter(reviewer_email=user.email, applicant_email=applicant["email"])
+                if len(reviewerEvaluation) >0:
+                    applicant["reviewer_review_status"] = True
                 jobs = Jobs.objects.filter(positions_id=position_id, user_id=subreviewers[i].master_user)
                 if len(jobs) > 0:
                     candidate = ApplyCandidates.objects.filter(
