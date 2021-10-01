@@ -284,6 +284,7 @@ export const ApplicantList = (props) => {
                         currentStage={props.currentStage}
                         getPostedJobs={props.getPostedJobs}
                         getAllJobs={props.getAllJobs}
+                        showCandidateModal={sessionStorage.getItem("showCandidateModal" + index) === "true" ? true : false}
                     />
                 )
             })}

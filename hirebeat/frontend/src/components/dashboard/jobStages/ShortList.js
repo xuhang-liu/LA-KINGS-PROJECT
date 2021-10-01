@@ -6,21 +6,36 @@ import { loadStarList, getResumeURL, addExReviewer, delExReviewer } from './../.
 import { checkUserExistence } from './../../../redux/actions/auth_actions';
 import { withRouter } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
-import { MyVerticallyCenteredModal } from "./interviewComponents/MyVerticallyCenteredModal";
+import {MyVerticallyCenteredModal} from "./interviewComponents/MyVerticallyCenteredModal";
+import ReactPaginate from 'react-paginate';
 
 const ShortList = (props) => {
     const [curJobId, setCurJobId] = useState(Object.keys(props.postedJobs)[0]);
     const [selectedId, setSelectedId] = useState(props.positionId);
     const theJob = props.postedJobs[selectedId.toString()];
 
-    useEffect(() => {
-        props.getPostedJobs(props.user.id, 1, "Short List");
-        props.loadStarList(props.positionId);
-    }, [])
+//    useEffect(() => {
+//        props.getPostedJobs(props.user.id, 1, "Short List");
+//        props.loadStarList(props.positionId);
+//    }, [])
 
     function refreshPage() {
         props.loadStarList(curJobId);
     }
+
+    const [keyWords, setkeyWords] = useState("");
+    function onChange(e) {
+        setkeyWords(e.target.value);
+    };
+
+    const [selectedPage, setSelectedPage] = useState(0);
+    const handlePageClick = (data) => {
+        let selectedPage = data.selected; // 0 index based
+        setSelectedPage(selectedPage);
+        let page = selectedPage + 1;
+        props.getPostedJobs(props.user.id, page, "Short List");
+        sessionStorage.setItem("shortListPage", String(selectedPage));
+    };
 
     return (
         <div>
@@ -52,6 +67,10 @@ const ShortList = (props) => {
                     user={props.user}
                     getPostedJobs={props.getPostedJobs}
                     getAllJobs={props.getAllJobs}
+                    keyWords={keyWords}
+                    onChange={onChange}
+                    totalPage={props.totalPage}
+                    selectedPage={selectedPage}
                 />
             </div>
         </div>
@@ -73,64 +92,93 @@ export default withRouter(connect(mapStateToProps, { loadStarList, getResumeURL,
 const AcceptedCandidate = (props) => {
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
-    const [keyWords, setkeyWords] = useState("");
-    function onChange(e) {
-        setkeyWords(e.target.value);
-    };
-
     return (
         <div>
-            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem" }} className="container-fluid min-width-980 mt-4 py-4">
-                <div className="interview-txt7 interview-center mb-4" style={{ color: "#56a3fa", fontSize: "1rem" }}>
-                    <label style={{ position: "absolute", left: "1.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
-                    <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
+            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem" }} className="container-fluid mt-4 pt-3 pb-3">
+                <div className="row" style={{paddingLeft: "15px", paddingRight: "15px"}}>
+                    <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
+                        <label style={{position:"absolute", left:"2.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
+                        <input placeholder={"Search candidate"} className="search-candidate-input" value={props.keyWords} onChange={props.onChange} style={{ height: "auto" }}></input>
+                    </div>
+                    <div className="ml-auto">
+                        <ReactPaginate
+                              previousLabel={'< prev'}
+                              nextLabel={'next >'}
+                              breakLabel={'...'}
+                              breakClassName={'break-me'}
+                              pageCount={props.totalPage}
+                              marginPagesDisplayed={1}
+                              pageRangeDisplayed={5}
+                              onPageChange={props.handlePageClick}
+                              containerClassName={'pagination3'}
+                              activeClassName={'active'}
+                              forcePage={sessionStorage.getItem("shortListPage") ? parseInt(sessionStorage.getItem("shortListPage")): props.selectedPage}
+                        />
+                    </div>
                 </div>
-                <div style={{ color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
-                    <div className="col-3">Name</div>
-                    <div className="col-3">Video Average Score</div>
-                    <div className="col-2">Resume Score</div>
-                    {(!props.profile.is_external_reviewer) && <div className="col-2">Contact</div>}
+                <div className="container-fluid chart-bg1" style={{ marginTop: "2%"}}>
+                    <div style={{color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start row">
+                        <div className="col-3">Name</div>
+                        <div className="col-3">Video Average Score</div>
+                        <div className="col-2">Resume Score</div>
+                        {(!props.profile.is_external_reviewer) && <div className="col-2">Contact</div>}
+                    </div>
+                    {props.theJob.applicants.map((applicant, index) => {
+                        if (props.keyWords != "") {
+                                let name = applicant.name;
+                                if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
+                            }
+                        return (
+                            <div>
+                                <CandidateCard
+                                    getPJobs={props.getPJobs}
+                                    refreshPage={props.refreshPage}
+                                    stars={props.stars[applicant.email]}
+                                    resume_list={Math.max(props.resume_list[applicant.email], applicant.result_rate)} // get max resume score
+                                    applicant={applicant}
+                                    getApplicantsVideos={props.getApplicantsVideos}
+                                    getApplicantsInfo={props.getApplicantsInfo}
+                                    int_ques={props.int_ques}
+                                    id_candidate={props.id_candidate}
+                                    username_candidate={props.username_candidate}
+                                    email_candidate={props.email_candidate}
+                                    phone_candidate={props.phone_candidate}
+                                    location_candidate={props.location_candidate}
+                                    resumeURL={props.resumeURL}
+                                    recordTime={props.recordTime}
+                                    interviewResume={props.interviewResume}
+                                    getResumeURL={props.getResumeURL}
+                                    updateCommentStatus={props.updateCommentStatus}
+                                    profile={props.profile}
+                                    subreviewerUpdateComment={props.subreviewerUpdateComment}
+                                    applicants={props.theJob.applicants}
+                                    current={index}
+                                    getReviewNote={props.getReviewNote}
+                                    getReviewerEvaluation={props.getReviewerEvaluation}
+                                    getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                                    user={props.user}
+                                    getPostedJobs={props.getPostedJobs}
+                                    getAllJobs={props.getAllJobs}
+                                />
+                            </div>
+                        )
+                    })}
                 </div>
-                {props.theJob.applicants.map((applicant, index) => {
-                    if (keyWords != "") {
-                        var canName = applicant.name;
-                        if (!canName?.toLowerCase()?.includes(keyWords?.toLowerCase())) return null;
-                    }
-                    return (
-                        <div>
-                            <CandidateCard
-                                getPJobs={props.getPJobs}
-                                refreshPage={props.refreshPage}
-                                stars={props.stars[applicant.email]}
-                                resume_list={Math.max(props.resume_list[applicant.email], applicant.result_rate)} // get max resume score
-                                applicant={applicant}
-                                getApplicantsVideos={props.getApplicantsVideos}
-                                getApplicantsInfo={props.getApplicantsInfo}
-                                int_ques={props.int_ques}
-                                id_candidate={props.id_candidate}
-                                username_candidate={props.username_candidate}
-                                email_candidate={props.email_candidate}
-                                phone_candidate={props.phone_candidate}
-                                location_candidate={props.location_candidate}
-                                resumeURL={props.resumeURL}
-                                recordTime={props.recordTime}
-                                interviewResume={props.interviewResume}
-                                getResumeURL={props.getResumeURL}
-                                updateCommentStatus={props.updateCommentStatus}
-                                profile={props.profile}
-                                subreviewerUpdateComment={props.subreviewerUpdateComment}
-                                applicants={props.theJob.applicants}
-                                current={index}
-                                getReviewNote={props.getReviewNote}
-                                getReviewerEvaluation={props.getReviewerEvaluation}
-                                getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
-                                user={props.user}
-                                getPostedJobs={props.getPostedJobs}
-                                getAllJobs={props.getAllJobs}
-                            />
-                        </div>
-                    )
-                })}
+                <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                    <ReactPaginate
+                          previousLabel={'< prev'}
+                          nextLabel={'next >'}
+                          breakLabel={'...'}
+                          breakClassName={'break-me'}
+                          pageCount={props.totalPage}
+                          marginPagesDisplayed={1}
+                          pageRangeDisplayed={5}
+                          onPageChange={props.handlePageClick}
+                          containerClassName={'pagination3'}
+                          activeClassName={'active'}
+                          forcePage={sessionStorage.getItem("shortListPage") ? parseInt(sessionStorage.getItem("shortListPage")) : props.selectedPage}
+                    />
+                </div>
             </div>
         </div>
     )
@@ -141,6 +189,12 @@ const CandidateCard = (props) => {
     const [showResume, setShowResume] = useState(false);
     const [showEva, setShowEva] = useState(false);
 
+    useEffect(() => {
+        if (sessionStorage.getItem("showShortListModal" + props.current) === "true") {
+            setShow(true);
+        }
+    }, [setShow]);
+
     function viewResult() {
         // get videos and info
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
@@ -149,7 +203,8 @@ const CandidateCard = (props) => {
         props.getReviewNote(props.applicant.positions_id, props.applicant.email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
         props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email);
-        setTimeout(() => { setShow(true); }, 300);
+        sessionStorage.setItem(("showShortListModal" + props.current), "true");
+        setShow(true);
     };
 
     const refresh = () => {
@@ -211,10 +266,19 @@ const CandidateCard = (props) => {
     }
 
     const mailTo = "mailto:" + props.applicant.email;
+    function hideModal() {
+        sessionStorage.removeItem("showShortListModal" + props.current);
+        setShow(false);
+    }
     return (
         <React.Fragment>
             <div className="px-4">
-                <hr />
+                <hr
+                    style={{
+                        border: props.current == 0 ? "1px solid #E8EDFC" : "1px solid #E5E5E5",
+                        boxShadow: props.current == 0 ? "0px 1px 2px #E8EDFC" : "",
+                    }}
+                />
             </div>
             <div style={{ fontFamily: "Avenir Next, Segoe UI", fontWeight: "600" }} className="ml-0 d-flex justify-content-start container-fluid row h-100">
                 <div className="col-3 short-list-text" onClick={() => { viewResult(); }}>
@@ -254,7 +318,7 @@ const CandidateCard = (props) => {
                 show={show}
                 setShowResume={setShowResume}
                 setShowEva={setShowEva}
-                onHide={() => { setShow(false) }}
+                onHide={hideModal}
                 int_ques={props.int_ques}
                 positionId={props.applicant.positions_id}
                 resumeURL={props.resumeURL}
@@ -272,7 +336,7 @@ const CandidateCard = (props) => {
             />
             <MyModal80
                 show={showResume}
-                onHide={() => { setShowResume(false); setShow(true); }}
+                onHide={() => { setShowResume(false); }}
             >
                 <div class="iframe-container">
                     <iframe className="responsive-iframe" src={props.resumeURL} />
@@ -280,7 +344,7 @@ const CandidateCard = (props) => {
             </MyModal80>
             <MyModal80
                 show={showEva}
-                onHide={() => { setShowEva(false); setShow(true); }}
+                onHide={() => { setShowEva(false); }}
             >
                 <ResumeEva interviewResume={(props.interviewResume.result_rate != "-1") ? props.interviewResume : props.applicants[props.current]} />
             </MyModal80>

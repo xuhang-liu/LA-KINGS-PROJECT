@@ -13,10 +13,10 @@ const ReviewCandidate = (props) => {
     const [showMoveForm, setShowMoveForm] = useState(false);
     const [nextStage, setNextStage] = useState("");
     const [currentStage, setCurrentStage] = useState(props.applicants[props.current].current_stage);
-    const [viewResume, setViewResume] = useState(true);
+    const [viewResume, setViewResume] = useState(props.applicants[props.current].answers?.length > 0 ? false : true);
     const [viewVideo, setviewVideo] = useState(false);
     const [viewNotes, setViewNotes] = useState(false);
-    const [viewApplication, setViewApplication] = useState(false);
+    const [viewApplication, setViewApplication] = useState(props.applicants[props.current].answers?.length > 0 ? true : false);
 
     function setViewResumes() {
         setViewResume(true);
@@ -75,7 +75,7 @@ const ReviewCandidate = (props) => {
                 "candidates": invitedCandidates,
                 "nextStage": nextStage,
             }
-            if (props.applicant.current_stage == "Resume Review") {
+            if (props.applicant.current_stage == "Resume Review" || props.applicant.current_stage == "Unqualified") {
                 props.moveCandidateToInterview(meta);
             }
             props.updateInviteStatus(data);
@@ -439,12 +439,14 @@ const ReviewCandidate = (props) => {
                 </div>
                 <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", height: "52rem", width: "73%" }}>
                     <div>
-                        <h2
-                            className={viewApplication ? "head-btn-selected" : "head-btn-unselected"}
-                            onClick={() => { setViewApplications()}}
-                        >
-                            Application
-                        </h2>
+                        {props.applicants[props.current].answers?.length > 0 &&
+                            <h2
+                                className={viewApplication ? "head-btn-selected" : "head-btn-unselected"}
+                                onClick={() => { setViewApplications()}}
+                            >
+                                Application
+                            </h2>
+                        }
                         <h2
                             className={viewResume ? "head-btn-selected" : "head-btn-unselected"}
                             onClick={() => { setViewResumes()}}
@@ -467,7 +469,12 @@ const ReviewCandidate = (props) => {
                         </h2>
                     </div>
                     {viewApplication &&
-                        <ReviewApplicationTab/>
+                        <ReviewApplicationTab
+                            questions={props.applicants[props.current].questions}
+                            answers={props.applicants[props.current].answers}
+                            qualifications={props.applicants[props.current].qualifications}
+                            mustHaves={props.applicants[props.current].must_haves}
+                        />
                     }
                     {viewResume &&
                         <div className="light-blue-border" style={{ width: "100%", height: "90%" }}>

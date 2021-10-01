@@ -135,15 +135,12 @@ def get_posted_jobs(request):
             # get each position applicants by current stage
             applicants = []
             if stage == "":
-                applicants = list(InvitedCandidates.objects.filter(
-                    positions=position).order_by('-id').values())
+                applicants = list(InvitedCandidates.objects.filter(positions=position, is_active=True).order_by('-id').values())
             else:
-                applicants = list(InvitedCandidates.objects.filter(
-                    positions=position, current_stage=stage).order_by('-id').values())
+                applicants = list(InvitedCandidates.objects.filter(positions=position, current_stage=stage, is_active=True).order_by('-id').values())
             # get linkedin and is_active values from ApplyCandidates model
             for applicant in applicants:
                 applicant["linkedinurl"] = ""
-                applicant["is_active"] = False
                 applicant["apply_candidate_id"] = 0
                 jobs = Jobs.objects.filter(positions=position, user_id=user_id)
                 if len(jobs) > 0:
@@ -151,8 +148,11 @@ def get_posted_jobs(request):
                         email=applicant["email"], jobs_id=jobs[0].id)
                     if len(candidate) > 0:
                         applicant["linkedinurl"] = candidate[0].linkedinurl
-                        applicant["is_active"] = candidate[0].is_active
                         applicant["apply_candidate_id"] = candidate[0].id
+                        applicant["questions"] = candidate[0].questions
+                        applicant["answers"] = candidate[0].answers
+                        applicant["qualifications"] = candidate[0].qualifications
+                        applicant["must_haves"] = candidate[0].must_haves
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)
             if total_records > 15:
@@ -239,6 +239,10 @@ def get_posted_jobs(request):
                         applicant["linkedinurl"] = candidate[0].linkedinurl
                         applicant["is_active"] = candidate[0].is_active
                         applicant["apply_candidate_id"] = candidate[0].id
+                        applicant["questions"] = candidate[0].questions
+                        applicant["answers"] = candidate[0].answers
+                        applicant["qualifications"] = candidate[0].qualifications
+                        applicant["must_haves"] = candidate[0].must_haves
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)
             if total_records > 15:
@@ -304,6 +308,10 @@ def get_posted_jobs(request):
                         applicant["linkedinurl"] = candidate[0].linkedinurl
                         applicant["is_active"] = candidate[0].is_active
                         applicant["apply_candidate_id"] = candidate[0].id
+                        applicant["questions"] = candidate[0].questions
+                        applicant["answers"] = candidate[0].answers
+                        applicant["qualifications"] = candidate[0].qualifications
+                        applicant["must_haves"] = candidate[0].must_haves
             # get each position applicants
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)

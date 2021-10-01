@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
-from .models import Jobs, ApplyCandidates
+from .models import Jobs, ApplyCandidates, JobQuestion
 from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview
 from rest_framework.response import Response
@@ -46,6 +46,7 @@ def add_new_job(request):
     eeo_ques_req = request.data['eeo_ques_req']
     job_post = request.data['job_post']
     skills = request.data['skills']
+    questions = request.data["questions"]
     user = User.objects.get(pk=request.data["userId"])
     company_name = ""
     company_overview = ""
@@ -75,6 +76,12 @@ def add_new_job(request):
     job_url = "https://hirebeat.co/apply-job/"+company_name+"?id=" + str(job.id)
     job.job_url = job_url
     job.save()
+    # add job screening questions
+    for question in questions:
+        answer_type = "Numeric" if question["responseType"] == "Numeric" else "boolean"
+        answer = question["numAns"] if question["responseType"] == "Numeric" else question["ans"]
+        is_must = True if question["isMustHave"] == "true" else False
+        JobQuestion.objects.create(jobs=job, question=question["question"], answer_type=answer_type, answer=answer, is_must=is_must)
     # add to zrjobs.xml
     # if job_post:
     #     add_zr_feed_xml(job.id)
@@ -225,44 +232,63 @@ def add_new_apply_candidate(request):
     linkedinurl = request.data['linkedinurl']
     gender = request.data['gender']
     race = request.data['race']
+    ansObjs = request.data['answers']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
-                                                     email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
-                                                     gender=gender, race=race)
-    # add candidate resume url to prifile detail table
-    applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
-    if applicant_registered:
-        applicant = User.objects.get(email=email)
-        has_profile = True if len(ProfileDetail.objects.filter(user_id=applicant.id)) == 1 else False
-        # only insert resume url when user doesn't have a profile detail record
-        if has_profile is False:
-            resume_name = firstname + "_" + lastname + ".pdf"
-            ProfileDetail.objects.create(
-                user_id=applicant.id,
-                resume_name=resume_name,
-                resume_url=resume_url,
-                profile_rate=50,
-            )
-    # print("===New Candidate Notify Email Called===")
-    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
-    message = get_template("jobs/new_candidate_notification_email.html")
-    context = {
-        'fullname': fullname,
-        'title': jobs.job_title,
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [user.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    if not applied:
+        questions = []
+        answers = []
+        qualifications = []
+        must_haves = []
+        current_stage = "Resume Review"
+        is_active = True
+        for obj in ansObjs:
+            if not obj["isQualified"]:
+                current_stage = "Unqualified"
+                qualifications.append(False)
+                is_active = False
+            else:
+                qualifications.append(True)
+            must_haves.append(obj["is_must"])
+            questions.append(obj["question"])
+            answers.append(str(obj["answer"]))
+        applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
+                                                         email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
+                                                         gender=gender, race=race, questions=questions, answers=answers, current_stage=current_stage, qualifications=qualifications, must_haves=must_haves, is_active=is_active)
+        # add candidate resume url to prifile detail table
+        applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
+        if applicant_registered:
+            applicant = User.objects.get(email=email)
+            has_profile = True if len(ProfileDetail.objects.filter(user_id=applicant.id)) == 1 else False
+            # only insert resume url when user doesn't have a profile detail record
+            if has_profile is False:
+                resume_name = firstname + "_" + lastname + ".pdf"
+                ProfileDetail.objects.create(
+                    user_id=applicant.id,
+                    resume_name=resume_name,
+                    resume_url=resume_url,
+                    profile_rate=50,
+                )
+        # print("===New Candidate Notify Email Called===")
+        subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+        message = get_template("jobs/new_candidate_notification_email.html")
+        context = {
+            'fullname': fullname,
+            'title': jobs.job_title,
+        }
+        from_email = 'HireBeat Team <tech@hirebeat.co>'
+        to_list = [user.email]
+        content = message.render(context)
+        email = EmailMessage(
+            subject,
+            content,
+            from_email,
+            to_list,
+        )
+        email.content_subtype = "html"
+        email.send()
 
     return Response("Add new apply candidate successfully", status=status.HTTP_202_ACCEPTED)
 
@@ -271,6 +297,7 @@ def get_current_jobs(request, companyName):
     emails = []
     job_id = request.query_params.get("jobid")
     jobs = Jobs.objects.get(pk=job_id)
+    questions = list(JobQuestion.objects.filter(jobs_id=job_id).values())
     employerp = EmployerProfileDetail.objects.get(user_id = jobs.user_id)
     applyCandidates = ApplyCandidates.objects.filter(jobs=jobs)
     for i in range(len(applyCandidates)):
@@ -297,6 +324,7 @@ def get_current_jobs(request, companyName):
         "eeo_req": jobs.eeo_req,
         "eeo_ques_req": jobs.eeo_ques_req,
         "company_website": employerp.website,
+        "questions": questions,
     }
 
     return Response({
@@ -330,8 +358,13 @@ def update_invite_status(request):
     for i in range(len(candidates)):
         candidate = ApplyCandidates.objects.get(id=candidates[i])
         if is_reject:
-            candidate.is_active = not candidate.is_active
+            is_active = not candidate.is_active
+            # update ApplyCandidates model
+            candidate.is_active = is_active
             candidate.save()
+            # update InvitedCandidates model
+            if InvitedCandidates.objects.filter(email=candidate.email, positions_id=positionId).exists():
+                InvitedCandidates.objects.filter(email=candidate.email, positions_id=positionId).update(is_active=is_active)
         else:
             try:
                 invitedCan = InvitedCandidates.objects.get(email=candidate.email, positions_id=positionId)
@@ -495,24 +528,66 @@ def add_zr_feed_xml(job_id):
     root.append(job)
     tree.write('zrjobs.xml')
 
-def upload_cv_to_s3(encoded_cv):
+def upload_cv_to_s3(encoded_cv, cv_name):
     # decode resume and convert to pdf file
     resume = base64.b64decode(encoded_cv)
     #content = resume.decode("utf-8")
-    content = open("cv.pdf", "wb")
+    file_name = cv_name + str(int(time.time())) + ".pdf"
+    content = open(file_name, "wb")
     content.write(resume)
     content.close()
-    file_name = str(int(time.time())) + '.pdf'
     # upload txt file to s3
     b = conn.get_bucket(os.getenv("CV_Interview_Bucket"))
     k = Key(b)
     k.key = file_name
-    k.set_contents_from_filename("cv.pdf")
+    k.set_contents_from_filename(file_name)
     resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
     # delete cv.pdf cache
-    if os.path.exists("cv.pdf"):
-        os.remove("cv.pdf")
+    if os.path.exists(file_name):
+        os.remove(file_name)
     return resume_url
+
+@api_view(['POST'])
+def add_new_apply_candidate_by_cv(request):
+    job_id = request.data['job_id']
+    first_name = request.data['first_name']
+    last_name = request.data['last_name']
+    phone = request.data['phone']
+    email = request.data['email']
+    location = request.data['location']
+    resume = request.data['resume']
+    cv_name = email.split("@")[0]
+    resume_url = upload_cv_to_s3(resume, cv_name)
+    linkedinurl = request.data['linkedinurl']
+    fullname = first_name + " " + last_name
+    jobs = Jobs.objects.get(pk=job_id)
+    user = User.objects.get(pk=jobs.user_id)
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    if not applied:
+        ApplyCandidates.objects.create(jobs=jobs, first_name=first_name, last_name=last_name, phone=phone, email=email,
+                                    location=location, resume_url=resume_url, linkedinurl=linkedinurl)
+    else:
+        return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
+    # send email notification
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
+    }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+
+    return Response("Add new apply candidates successfully", status=status.HTTP_202_ACCEPTED)
 
 @api_view(['POST'])
 def add_new_apply_candidate_from_zr(request):
@@ -523,13 +598,14 @@ def add_new_apply_candidate_from_zr(request):
     email = request.data['email']
     # location = request.data['location']
     resume = request.data['resume']
-    resume_url = upload_cv_to_s3(resume)
+    cv_name = email.split("@")[0]
+    resume_url = upload_cv_to_s3(resume, cv_name)
     # linkedinurl = request.data['linkedinurl']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs)
-    if len(applied) == 0:
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    if not applied:
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                     location="", resume_url=resume_url, linkedinurl="", apply_source="ZipRecruiter")
     else:

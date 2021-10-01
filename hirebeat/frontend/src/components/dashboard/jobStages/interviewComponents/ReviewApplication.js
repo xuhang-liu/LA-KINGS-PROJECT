@@ -13,11 +13,12 @@ import ReviewApplicationTab from "./ReviewApplicationTab";
 export class ReviewApplication extends Component {
     constructor(props) {
         super(props);
+        const hasExtraQuestions = this.props.applicants[this.props.current]?.questions?.length > 0 ? true : false;
         this.state = {
-            viewResume: (sessionStorage.getItem("subpageStatus") == "video" || sessionStorage.getItem("subpageStatus") == "note" || sessionStorage.getItem("subpageStatus") == "application") ? false : true,
-            viewVideo: (sessionStorage.getItem("subpageStatus") == "video" ? true : false) || false,
-            viewNotes: (sessionStorage.getItem("subpageStatus") == "note" ? true : false) || false,
-            viewApplication: (sessionStorage.getItem("subpageStatus") == "application" ? true : false) || false,
+            viewResume: hasExtraQuestions ? false : true,
+            viewVideo: false,
+            viewNotes: false,
+            viewApplication: hasExtraQuestions? true:false,
             showMoveForm: false,
             currentStage: this.props.currentStage,
             nextStage: "",
@@ -411,33 +412,42 @@ export class ReviewApplication extends Component {
                     <div className="col-9 mt-3 pl-3 pr-2" >
                         <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px" }}>
                             <div>
-                                <h2
-                                    className={this.state.viewApplication ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={() => { this.setViewApplications(); sessionStorage.setItem("subpageStatus", "application") }}
-                                >
-                                    Application
-                                </h2>
+                                {this.props.applicants[this.props.current]?.questions?.length > 0 &&
+                                    <h2
+                                        className={this.state.viewApplication ? "head-btn-selected" : "head-btn-unselected"}
+                                        onClick={() => { this.setViewApplications()}}
+                                    >
+                                        Application
+                                    </h2>
+                                }
                                 <h2
                                     className={this.state.viewResume ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={() => { this.setViewResume(); sessionStorage.setItem("subpageStatus", "resume") }}
+                                    onClick={() => { this.setViewResume()}}
                                 >
                                     Resume
                                 </h2>
-                                <h2
-                                    className={this.state.viewVideo ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={() => { this.setViewVideo(); sessionStorage.setItem("subpageStatus", "video") }}
-                                >
-                                    Video Interview
-                                </h2>
+                                {(this.props.video_array?.length > 0) &&
+                                    <h2
+                                        className={this.state.viewVideo ? "head-btn-selected" : "head-btn-unselected"}
+                                        onClick={() => { this.setViewVideo()}}
+                                    >
+                                        Video Interview
+                                    </h2>
+                                }
                                 <h2
                                     className={this.state.viewNotes ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={() => { this.setViewNotes(); sessionStorage.setItem("subpageStatus", "note") }}
+                                    onClick={() => { this.setViewNotes()}}
                                 >
                                     Evaluation Notes
                                 </h2>
                             </div>
                             {this.state.viewApplication &&
-                                <ReviewApplicationTab/>
+                                <ReviewApplicationTab
+                                    questions={this.props.applicants[this.props.current].questions}
+                                    answers={this.props.applicants[this.props.current].answers}
+                                    qualifications={this.props.applicants[this.props.current].qualifications}
+                                    mustHaves={this.props.applicants[this.props.current].must_haves}
+                                />
                             }
                             {this.state.viewResume && (
                                 ((this.props.resumeURL != "") && (this.props.resumeURL != null)) ?

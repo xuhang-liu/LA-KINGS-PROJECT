@@ -12,6 +12,7 @@ import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 var ReactS3Uploader = require("react-s3-uploader");
 import RichTextEditor from 'react-rte';
+import Select from 'react-select';
 
 const ApplyJob = (props) => {
     var uri = window.location.search;
@@ -36,6 +37,56 @@ const ApplyJob = (props) => {
     const [phone, setPhone] = useState("");
     const [location, setLocation] = useState("");
     const [linkedinurl, setLinkedinurl] = useState("");
+    const [ans, setAns] = useState({"value": "Yes", "label": "Yes"});
+    const [ansObjs, setAnsObjs] = useState([...props.job?.questions]);
+
+    const ansOptions = [
+        {"value": "Yes", "label": "Yes"},
+        {"value": "No", "label": "No"},
+    ];
+
+    const customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#ffffff', boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)" }),
+        singleValue: styles => ({
+            ...styles,
+            color: '#4a6f8a',
+            fontSize: '0.9375rem',
+            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontWeight: '500'
+        }),
+        menuPortal: provided => ({ ...provided, zIndex: 99 }),
+        menu: provided => ({ ...provided, zIndex: 99 })
+    };
+
+    function filterAnsType(e, index) {
+        setAns({value: e.value, label: e.value});
+        let tempAnsObjs = ansObjs;
+        let obj = new Object(props.job?.questions[index])
+        // compare with standard answer
+        let standardAns = props.job?.questions[index]["answer"];
+        obj["isQualified"] = false;
+        if (e.value == standardAns){
+            obj["isQualified"] = true;
+        }
+        obj["answer"] = e.value;
+        tempAnsObjs[index] = obj;
+        setAnsObjs(tempAnsObjs);
+    };
+
+    function handleQuestion(e, index) {
+        let tempAnsObjs = ansObjs;
+        let obj = new Object(props.job?.questions[index]);
+        // compare with standard answer
+        let value = e.target.value;
+        let standardAns = props.job?.questions[index]["answer"];
+        obj["isQualified"] = false;
+        if (parseInt(value) >= parseInt(standardAns)){
+            obj["isQualified"] = true;
+        }
+        obj["answer"] = value;
+        tempAnsObjs[index] = obj;
+        setAnsObjs(tempAnsObjs);
+    }
 
     function applySubmit(e) {
         e.preventDefault();
@@ -111,6 +162,7 @@ const ApplyJob = (props) => {
                 linkedinurl: linkedinurl,
                 gender: gender,
                 race: race,
+                answers: ansObjs.slice(0, props.job?.questions?.length),
             };
             props.addNewApplyCandidate(data);
             props.uploader.uploadFile(resume);
@@ -132,6 +184,7 @@ const ApplyJob = (props) => {
                     linkedinurl: linkedinurl,
                     gender: gender,
                     race: race,
+                    answers: ansObjs.slice(0, props.job?.questions?.length),
                 };
                 setTimeout(() => { props.addNewApplyCandidate(data); }, 300);
                 props.uploader.uploadFile(resume);
@@ -211,6 +264,7 @@ const ApplyJob = (props) => {
             linkedinurl: linkedinurl,
             gender: gender,
             race: race,
+            answers: ansObjs.slice(0, props.job?.questions?.length),
         };
         props.addNewApplyCandidate(data);
         props.uploader.uploadFile(resume);
@@ -484,6 +538,37 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {/* Additional Questions */}
+                                                    {props.job?.questions?.length > 0 &&
+                                                        <div className="form-group">
+                                                            <div className="form-row">
+                                                                <label className="job-apply-char1">Additional Questions</label><span className="job-apply-char2">*</span>
+                                                            </div>
+                                                            {props.job?.questions.map((q, index) => {
+                                                                const qIndex = "Question" + String(index + 1) + ":";
+                                                                return(
+                                                                    <div>
+                                                                        <div className="form-row">
+                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
+                                                                        </div>
+                                                                        <div className="form-row">
+                                                                            <div className="col-2 align-center">
+                                                                                <label className="job-apply-char1">Answer: </label>
+                                                                            </div>
+                                                                            {q.answer_type != "boolean" ?
+                                                                                <div className="col-3">
+                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required />
+                                                                                </div> :
+                                                                                <div className="col-3">
+                                                                                    <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
+                                                                                </div>
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            })}
+                                                        </div>
+                                                    }
                                                     {/*  EEO Survey */}
                                                     {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
@@ -739,6 +824,37 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {/* Additional Questions */}
+                                                    {props.job?.questions?.length > 0 &&
+                                                        <div className="form-group">
+                                                            <div className="form-row">
+                                                                <label className="job-apply-char1">Additional Questions</label><span className="job-apply-char2">*</span>
+                                                            </div>
+                                                            {props.job?.questions.map((q, index) => {
+                                                                const qIndex = "Question" + String(index + 1) + ":";
+                                                                return(
+                                                                    <div>
+                                                                        <div className="form-row">
+                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
+                                                                        </div>
+                                                                        <div className="form-row">
+                                                                            <div className="col-2 align-center">
+                                                                                <label className="job-apply-char1">Answer: </label>
+                                                                            </div>
+                                                                            {q.answer_type != "boolean" ?
+                                                                                <div className="col-3">
+                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required />
+                                                                                </div> :
+                                                                                <div className="col-3">
+                                                                                    <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
+                                                                                </div>
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            })}
+                                                        </div>
+                                                    }
                                                     {/*  EEO Survey */}
                                                     {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
@@ -1177,6 +1293,37 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {/* Additional Questions */}
+                                                    {props.job?.questions?.length > 0 &&
+                                                        <div className="form-group">
+                                                            <div className="form-row">
+                                                                <label className="job-apply-char1">Additional Questions</label><span className="job-apply-char2">*</span>
+                                                            </div>
+                                                            {props.job?.questions.map((q, index) => {
+                                                                const qIndex = "Question" + String(index + 1) + ":";
+                                                                return(
+                                                                    <div>
+                                                                        <div className="form-row">
+                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
+                                                                        </div>
+                                                                        <div className="form-row">
+                                                                            <div className="col-12 align-center">
+                                                                                <label className="job-apply-char1">Answer: </label>
+                                                                            </div>
+                                                                            {q.answer_type != "boolean" ?
+                                                                                <div className="col-12">
+                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required/>
+                                                                                </div> :
+                                                                                <div className="col-12">
+                                                                                    <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
+                                                                                </div>
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            })}
+                                                        </div>
+                                                    }
                                                     {/*  EEO Survey */}
                                                     {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
@@ -1432,6 +1579,37 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {/* Additional Questions */}
+                                                    {props.job?.questions?.length > 0 &&
+                                                        <div className="form-group">
+                                                            <div className="form-row">
+                                                                <label className="job-apply-char1">Additional Questions</label><span className="job-apply-char2">*</span>
+                                                            </div>
+                                                            {props.job?.questions.map((q, index) => {
+                                                                const qIndex = "Question" + String(index + 1) + ":";
+                                                                return(
+                                                                    <div>
+                                                                        <div className="form-row">
+                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
+                                                                        </div>
+                                                                        <div className="form-row">
+                                                                            <div className="col-12 align-center">
+                                                                                <label className="job-apply-char1">Answer: </label>
+                                                                            </div>
+                                                                            {q.answer_type != "boolean" ?
+                                                                                <div className="col-12">
+                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required/>
+                                                                                </div> :
+                                                                                <div className="col-12">
+                                                                                    <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
+                                                                                </div>
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            })}
+                                                        </div>
+                                                    }
                                                     {/*  EEO Survey */}
                                                     {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">

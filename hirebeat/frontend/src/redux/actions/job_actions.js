@@ -20,6 +20,7 @@ import {
     SEND_MERGE_API_REQUEST,
     ADD_CAND_FROM_MERGE,
     GET_PIPELINE_ANALYTICS,
+    ADD_NEW_APPLY_CANDIDATE_BY_CV,
     CHECK_IF_MASTER_ACTIVE,
     } from "./action_types";
 import axios from "axios";
@@ -312,6 +313,20 @@ export const getPipelineAnalytics = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_PIPELINE_ANALYTICS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const addNewApplyCandidateByCv = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/add-new-apply-candidate-by-cv", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_NEW_APPLY_CANDIDATE_BY_CV,
         payload: res.data,
       });
     })

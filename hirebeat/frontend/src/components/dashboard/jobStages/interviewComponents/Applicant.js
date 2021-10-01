@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MyModal80 } from "./../../DashboardComponents";
 import {ResumeEva} from "./ResumeEva";
 import { MyVerticallyCenteredModal } from "./MyVerticallyCenteredModal";
@@ -6,6 +6,9 @@ import { confirmAlert } from 'react-confirm-alert';
 
 export const Applicant = (props) => {
     const [current, setCurrent] = useState(props.index);
+    const [show, setShow] = useState(props.showCandidateModal);
+    const [showResume, setShowResume] = useState(false);
+    const [showEva, setShowEva] = useState(false);
     let applicants = props.applicants;
     let email = applicants[current].email;
     let positionId = props.positionId;
@@ -19,6 +22,12 @@ export const Applicant = (props) => {
     const start = 0;
     const end = applicants.length - 1;
 
+    useEffect(() => {
+        if (sessionStorage.getItem("showCandidateModal" + props.index) === "true") {
+            setShow(true);
+        }
+    }, [setShow]);
+
     function viewResult() {
         if (!isViewed) {
             props.updateViewStatus({ "candidate_id": applicants[props.index].id });
@@ -31,8 +40,8 @@ export const Applicant = (props) => {
         props.getReviewNote(positionId, applicants[props.index].email);
         props.getReviewerEvaluation(positionId, applicants[props.index].email);
         props.getCurrentReviewerEvaluation(positionId, applicants[props.index].email, props.user.email);
-        setTimeout(() => { setShow(true); }, 200);
-        sessionStorage.setItem(("show" + current), "true");
+        sessionStorage.setItem(("showCandidateModal" + props.index), "true");
+        setShow(true);
     };
 
     function getReviewPageData(index) {
@@ -47,16 +56,16 @@ export const Applicant = (props) => {
     }
 
     function viewNextResult(curIndex) {
-        sessionStorage.removeItem("show" + curIndex)
+        sessionStorage.removeItem("showCandidateModal" + curIndex)
         let next = curIndex + 1;
-        sessionStorage.setItem(("show" + next), "true");
+        sessionStorage.setItem(("showCandidateModal" + next), "true");
         getReviewPageData(next);
     };
 
     function viewPrevResult(curIndex) {
-        sessionStorage.removeItem("show" + curIndex)
+        sessionStorage.removeItem("showCandidateModal" + curIndex)
         let prev = curIndex - 1;
-        sessionStorage.setItem(("show" + prev), "true");
+        sessionStorage.setItem(("showCandidateModal" + prev), "true");
         getReviewPageData(prev);
     };
 
@@ -115,32 +124,23 @@ export const Applicant = (props) => {
         alert1();
     }
 
-    const [show, setShow] = useState(sessionStorage.getItem("show" + current) == "true" ? true : false);
-    const [showResume, setShowResume] = useState(false);
-    const [showEva, setShowEva] = useState(false);
+    function hideModal() {
+        sessionStorage.removeItem("showCandidateModal" + props.index);
+        setShow(false);
+    }
 
     return (
         <div>
             <hr
                 style={{
-                    color: "#E8EDFC",
-                    backgroundColor: "#E8EDFC",
-                    height: 3,
-                    marginBottom: "0.5rem",
-                    marginTop: "0rem"
+                    border: props.index == 0 ? "1px solid #E8EDFC" : "1px solid #E5E5E5",
+                    boxShadow: props.index == 0 ? "0px 1px 2px #E8EDFC" : "",
                 }}
             />
             <div className="row interview-center" style={{ color: "#7D7D7D", height: "2.5rem" }}>
                 {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                     <div className="interview-txt9" style={{ marginLeft: "1rem" }}>
-                        {(!applicants[current].is_invited && !applicants[current].is_recorded) ?
-                            <div>
-                                <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" />
-                            </div> :
-                            <div>
-                                <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" style={{ visibility: "hidden" }} />
-                            </div>
-                        }
+                        <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" />
                     </div>
                 }
                 <div className="col-3 mb-1">
@@ -149,13 +149,6 @@ export const Applicant = (props) => {
                         {props.name.split("(")[0].length > 20 ? props.name.split("(")[0].substring(0, 18) + "..." : props.name.split("(")[0]}
                     </button>
                 </div>
-                {/*props.videoCount > 0 ?
-                <div className="col-2 mb-1">
-                    <button className="title-button1" onClick={() => viewResult()}>
-                    {props.email.split("(")[0].length > 16 ? props.email.split("(")[0].substring(0, 14) + "..." : props.email.split("(")[0]}</button></div>
-                : <div className="col-2 interview-txt9 mb-1">
-                    {props.email.split("(")[0].length > 16 ? props.email.split("(")[0].substring(0, 14) + "..." : props.email.split("(")[0]}</div>
-                */}
                 <div className="col-2">
                     {(isInvited || props.isRecorded) &&
                         <div className="interview-txt9">
@@ -257,7 +250,7 @@ export const Applicant = (props) => {
                 show={show}
                 setShowResume={setShowResume}
                 setShowEva={setShowEva}
-                onHide={() => { setCurrent(props.index); sessionStorage.removeItem("show" + current); sessionStorage.removeItem("subpageStatus"); setShow(false) }}
+                onHide={hideModal}
                 int_ques={props.int_ques}
                 id_candidate={props.id_candidate}
                 username_candidate={props.username_candidate}
@@ -282,7 +275,7 @@ export const Applicant = (props) => {
             />
             <MyModal80
                 show={showResume}
-                onHide={() => { setShowResume(false); setShow(true); }}
+                onHide={() => { setShowResume(false); }}
             >
                 <div class="iframe-container">
                     <iframe className="responsive-iframe" src={props.resumeURL} />
@@ -290,7 +283,7 @@ export const Applicant = (props) => {
             </MyModal80>
             <MyModal80
                 show={showEva}
-                onHide={() => { setShowEva(false); setShow(true); }}
+                onHide={() => { setShowEva(false); }}
             >
                 <ResumeEva
                     interviewResume={(props.interviewResume.result_rate != "-1") ? props.interviewResume : applicants[current]} />

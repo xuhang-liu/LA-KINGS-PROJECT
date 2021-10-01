@@ -13,6 +13,7 @@ import ReviewCandidate from "../applications/ReviewCandidate";
 import Select from 'react-select';
 import EditQuestion from "./../jobBoard/EditQuestion";
 import ReactPaginate from 'react-paginate';
+import NewCandidateAdditionForm from "./interviewComponents/NewCandidateAdditionForm";
 
 export class AllCandidates extends Component {
     state = {
@@ -24,6 +25,7 @@ export class AllCandidates extends Component {
         isSortByScore: true,
         selectedPage: 0,
         stage: { value: 'All', label: 'All' },
+        isAddNewCandidate: false,
     }
 
     onFilter = (category) => {
@@ -70,7 +72,7 @@ export class AllCandidates extends Component {
 
     hideQForm = () => {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page); this.props.getPJobs(); }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, ""); this.props.getPostedJobs(this.props.user.id, page, ""); }, 300);
         this.setState({ showQForm: false });
 
     }
@@ -152,7 +154,7 @@ export class AllCandidates extends Component {
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
                 let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
-                setTimeout(() => { this.props.getAllJobs(this.props.user.id, page); this.props.getPJobs() }, 300);
+                setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, ""); this.props.getPostedJobs(this.props.user.id, page, "") }, 300);
                 this.sendSuccessAlert();
             }
         }
@@ -160,80 +162,6 @@ export class AllCandidates extends Component {
             this.noCandidateAlert();
         }
     }
-    // invite candidates with video interviews
-    //    inviteCandidates = () => {
-    //        let candidateCount = 0;
-    //        let companyName = this.props.curJob.job_details.company_name;
-    //        let jobTitle = this.props.curJob.job_details.job_title;
-    //        let positionId = this.props.curJob.job_details.positions_id;
-    //        // collect input name and email
-    //        const emails = [];
-    //        const names = [];
-    //        const invitedCandidates = [];
-    //        let candidates = document.getElementsByClassName("selected-candidate");
-    //        for (let i = 0; i < candidates.length; i++) {
-    //            if (candidates[i].checked) {
-    //                let candidate = JSON.parse(candidates[i].value);
-    //                // name
-    //                names.push(candidate.first_name + " " + candidate.last_name);
-    //                // email
-    //                emails.push(candidate.email.toLowerCase());
-    //                invitedCandidates.push(candidate.id);
-    //                candidateCount+=1;
-    //            }
-    //        }
-    //        // check candidates selected or not
-    //        if (candidateCount > 0) {
-    //            if (this.props.curJob.questions.length == 0 && this.state.tempQuestion.length == 0) {
-    //                return this.showQForm();
-    //            }
-    //            if(candidateCount > (this.props.profile.candidate_limit)){
-    //                alert('Upgrade Now! You can only add ' +parseInt(this.props.profile.candidate_limit)+ ' more candidates for this position!');
-    //            } else{
-    //                // generate interview urls and send emails
-    //                let urls = [];
-    //                for (let i = 0; i < emails.length; i++) {
-    //                    // make sure urls have the same size of emails and names
-    //                    let url = "";
-    //                    if (emails[i] != "" && names[i] != "") {
-    //                        //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-    //                        let prefix = "https://hirebeat.co/candidate-login?";  // online
-    //                        let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
-    //                        let encode = window.btoa(params);
-    //                        url = prefix + encode;
-    //                    }
-    //                    urls.push(url);
-    //                }
-    //                let meta = {
-    //                    company_name: companyName,
-    //                    job_title: jobTitle,
-    //                    position_id: positionId,
-    //                    emails: emails,
-    //                    names: names,
-    //                    expire: 14,
-    //                    urls: urls,
-    //                }
-    //                // save data to db
-    //                this.props.addInterviews(meta);
-    //                let data = {
-    //                    "candidates": invitedCandidates,
-    //                    "isInvited": 1,
-    //                }
-    //                let viewedData = {
-    //                    "applyIds": invitedCandidates,
-    //                    "isViewed": true,
-    //                }
-    //                this.props.updateInviteStatus(data);
-    //                this.props.updateCandidateViewedStatus(viewedData);
-    //                // update
-    //                setTimeout(() => {this.props.getAllJobs(this.props.user.id); this.props.getPJobs()}, 600);
-    //                this.sendSuccessAlert();
-    //            }
-    //        }
-    //        else {
-    //            this.noCandidateAlert();
-    //        }
-    //    }
 
     selectAllCandidates = () => {
         let checkbox = document.getElementById("select-all");
@@ -264,171 +192,221 @@ export class AllCandidates extends Component {
         sessionStorage.setItem("jobAppPage", String(selectedPage));
     };
 
+    addNewCandidates = () => {
+        if ((this.props.curJob.applicant) >= (this.props.profile.candidate_limit)) {
+            this.candidateLimitAlert();
+        } else {
+            this.setState({isAddNewCandidate: true});
+        }
+    }
+
+    hideAdditionForm = () => {
+        this.setState({isAddNewCandidate: false});
+    }
+
+    candidateLimitAlert = () => {
+        confirmAlert({
+            title: 'Upgrade Now!',
+            message: 'Exceed max number of candidates! Upgrade now to invite more candidates',
+            buttons: [
+                { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+                { label: 'OK' },
+            ]
+        });
+    };
+
     render() {
         return (
             <React.Fragment>
-                <div className="container-fluid mt-3 pt-2 pb-3">
-                    <div className="row interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
-                        <div>
-                            <span style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
-                                <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
-                            </span>
-                        </div>
-                        <div className="ml-auto">
-                            <ReactPaginate
-                                previousLabel={'< prev'}
-                                nextLabel={'next >'}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={this.props.curJob.total_page}
-                                marginPagesDisplayed={1}
-                                pageRangeDisplayed={5}
-                                onPageChange={this.handlePageClick}
-                                containerClassName={'pagination3'}
-                                activeClassName={'active'}
-                                forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
-                            />
-                        </div>
-                    </div>
-                    <div className="container-fluid" style={{ marginTop: "1rem" }}>
-                        <div className="row interview-txt7 interview-center pl-3" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
-                            <div className="col-4"><span>Name</span></div>
-                            <div className="col-2">Applied On</div>
-                            <div className="col-3" style={{ padding: "0rem", zIndex: "9999" }}>
-                                <div className="row" style={{ padding: "0rem" }}>
-                                    <span className="job-status">Current Stage</span>
-                                    <Select value={this.state.stage} onChange={this.filterStage} options={this.stageOptions} className="select-category" styles={this.customStyles} />
+                {!this.state.isAddNewCandidate ?
+                    <div>
+                        <div className="container-fluid mt-3 pt-2 pb-3">
+                            <div className="row interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
+                                <div>
+                                    <span style={{ display: "flex", alignItems: "center" }}>
+                                        <i style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
+                                        <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
+                                    </span>
+                                </div>
+                                <div>
+                                    {!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer &&
+                                        <div>
+                                            {!this.props.isClosed &&
+                                                <button
+                                                    className="default-btn1 interview-txt6"
+                                                    style={{ paddingLeft: "25px", marginLeft: "2rem" }}
+                                                    onClick={this.addNewCandidates}
+                                                >
+                                                    + Candidates
+                                                    <span></span>
+                                                </button>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                                <div className="ml-auto">
+                                    <ReactPaginate
+                                        previousLabel={'< prev'}
+                                        nextLabel={'next >'}
+                                        breakLabel={'...'}
+                                        breakClassName={'break-me'}
+                                        pageCount={this.props.curJob.total_page}
+                                        marginPagesDisplayed={1}
+                                        pageRangeDisplayed={5}
+                                        onPageChange={this.handlePageClick}
+                                        containerClassName={'pagination3'}
+                                        activeClassName={'active'}
+                                        forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
+                                    />
                                 </div>
                             </div>
-                            <div className="col-2" style={{ padding: "0rem", zIndex: "9999" }}>
-                                <div className="row" style={{ padding: "0rem" }}>
-                                    <span className="job-status">Status</span>
-                                    <Select value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles} />
+                            <div className="container-fluid chart-bg1" style={{ marginTop: "1rem" }}>
+                                <div className="row interview-txt7 interview-center pl-3" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
+                                    <div className="col-4"><span>Name</span></div>
+                                    <div className="col-2">Applied On</div>
+                                    <div className="col-3" style={{ padding: "0rem", zIndex: "9999" }}>
+                                        <div className="row" style={{ padding: "0rem" }}>
+                                            <span className="job-status">Current Stage</span>
+                                            <Select value={this.state.stage} onChange={this.filterStage} options={this.stageOptions} className="select-category" styles={this.customStyles} />
+                                        </div>
+                                    </div>
+                                    <div className="col-2" style={{ padding: "0rem", zIndex: "9999" }}>
+                                        <div className="row" style={{ padding: "0rem" }}>
+                                            <span className="job-status">Status</span>
+                                            <Select value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles} />
+                                        </div>
+                                    </div>
                                 </div>
+                                {/* sort by resume score descending */}
+                                {this.state.isSortByScore && this.props.curJob.applicants.sort((a, b) => parseInt(b.result_rate) - parseInt(a.result_rate)).map((a, index) => {
+                                    if (this.state.keyWords != "") {
+                                        let name = a.first_name + " " + a.last_name;
+                                        if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
+                                    }
+                                    if (this.state.stage.value != "All") {
+                                        switch (this.state.stage.value) {
+                                            case "Resume Review":
+                                                if (a.current_stage != "Resume Review") return null;
+                                                break;
+                                            case "Video Interview":
+                                                if (a.current_stage != "Video Interview") return null;
+                                                break;
+                                            case "Live Interview":
+                                                if (a.current_stage != "Live Interview") return null;
+                                                break;
+                                            case "Short List":
+                                                if (a.current_stage != "Short List") return null;
+                                                break;
+                                        }
+                                    }
+                                    if (this.state.category.value != "All") {
+                                        switch (this.state.category.value) {
+                                            case true:
+                                                if (a.is_active != true) return null;
+                                                break;
+                                            case false:
+                                                if (a.is_active != false) return null;
+                                                break;
+                                        }
+                                    }
+                                    return (
+                                        <ApplicantRow
+                                            filter={this.props.filter}
+                                            applicant={a}
+                                            index={index}
+                                            applicants={this.props.curJob.applicants}
+                                            curJob={this.props.curJob}
+                                            tempQuestion={this.state.tempQuestion}
+                                            setTempQuestion={this.setTempQuestion}
+                                            profile={this.props.profile}
+                                            addInterviews={this.props.addInterviews}
+                                            updateInviteStatus={this.props.updateInviteStatus}
+                                            updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
+                                            getAllJobs={this.props.getAllJobs}
+                                            getPJobs={this.props.getPJobs}
+                                            user={this.props.user}
+                                            moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                            selectedPage={this.state.selectedPage}
+                                            getReviewNote={this.props.getReviewNote}
+                                            addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
+                                            getReviewerEvaluation={this.props.getReviewerEvaluation}
+                                            getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                                            evaluations={this.props.evaluations}
+                                            curEvaluation={this.props.curEvaluation}
+                                            getApplicantsVideos={this.props.getApplicantsVideos}
+                                            getApplicantsInfo={this.props.getApplicantsInfo}
+                                            int_ques={this.props.int_ques}
+                                            quesiton_array={this.props.quesiton_array}
+                                            video_array={this.props.video_array}
+                                            stars={this.props.stars}
+                                            comments={this.props.comments}
+                                            pk={this.props.pk}
+                                            transcripts={this.props.transcripts}
+                                            updateViewStatus={this.props.updateViewStatus}
+                                            updateCommentStatus={this.props.updateCommentStatus}
+                                            subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                            reviews={this.props.reviews}
+                                            positionId={this.props.curJob.job_details.positions_id}
+                                        />
+                                    )
+                                })}
                             </div>
-                        </div>
-                        {/* sort by resume score descending */}
-                        {this.state.isSortByScore && this.props.curJob.applicants.sort((a, b) => parseInt(b.result_rate) - parseInt(a.result_rate)).map((a, index) => {
-                            if (this.state.keyWords != "") {
-                                let name = a.first_name + " " + a.last_name;
-                                if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
-                            }
-                            if (this.state.stage.value != "All") {
-                                switch (this.state.stage.value) {
-                                    case "Resume Review":
-                                        if (a.current_stage != "Resume Review") return null;
-                                        break;
-                                    case "Video Interview":
-                                        if (a.current_stage != "Video Interview") return null;
-                                        break;
-                                    case "Live Interview":
-                                        if (a.current_stage != "Live Interview") return null;
-                                        break;
-                                    case "Short List":
-                                        if (a.current_stage != "Short List") return null;
-                                        break;
-                                }
-                            }
-                            if (this.state.category.value != "All") {
-                                switch (this.state.category.value) {
-                                    case true:
-                                        if (a.is_active != true) return null;
-                                        break;
-                                    case false:
-                                        if (a.is_active != false) return null;
-                                        break;
-                                }
-                            }
-                            return (
-                                <ApplicantRow
-                                    filter={this.props.filter}
-                                    applicant={a}
-                                    index={index}
-                                    applicants={this.props.curJob.applicants}
-                                    curJob={this.props.curJob}
-                                    tempQuestion={this.state.tempQuestion}
-                                    setTempQuestion={this.setTempQuestion}
-                                    profile={this.props.profile}
-                                    addInterviews={this.props.addInterviews}
-                                    updateInviteStatus={this.props.updateInviteStatus}
-                                    updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
-                                    getAllJobs={this.props.getAllJobs}
-                                    getPJobs={this.props.getPJobs}
-                                    user={this.props.user}
-                                    moveCandidateToInterview={this.props.moveCandidateToInterview}
-                                    selectedPage={this.state.selectedPage}
-                                    getReviewNote={this.props.getReviewNote}
-                                    addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
-                                    getReviewerEvaluation={this.props.getReviewerEvaluation}
-                                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
-                                    evaluations={this.props.evaluations}
-                                    curEvaluation={this.props.curEvaluation}
-                                    getApplicantsVideos={this.props.getApplicantsVideos}
-                                    getApplicantsInfo={this.props.getApplicantsInfo}
-                                    int_ques={this.props.int_ques}
-                                    quesiton_array={this.props.quesiton_array}
-                                    video_array={this.props.video_array}
-                                    stars={this.props.stars}
-                                    comments={this.props.comments}
-                                    pk={this.props.pk}
-                                    transcripts={this.props.transcripts}
-                                    updateViewStatus={this.props.updateViewStatus}
-                                    updateCommentStatus={this.props.updateCommentStatus}
-                                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
-                                    reviews={this.props.reviews}
-                                    positionId={this.props.curJob.job_details.positions_id}
+                            <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
+                                <ReactPaginate
+                                    previousLabel={'< prev'}
+                                    nextLabel={'next >'}
+                                    breakLabel={'...'}
+                                    breakClassName={'break-me'}
+                                    pageCount={this.props.curJob.total_page}
+                                    marginPagesDisplayed={1}
+                                    pageRangeDisplayed={5}
+                                    onPageChange={this.handlePageClick}
+                                    containerClassName={'pagination3'}
+                                    activeClassName={'active'}
+                                    forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
                                 />
-                            )
-                        })}
-                    </div>
-                    <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
-                        <ReactPaginate
-                            previousLabel={'< prev'}
-                            nextLabel={'next >'}
-                            breakLabel={'...'}
-                            breakClassName={'break-me'}
-                            pageCount={this.props.curJob.total_page}
-                            marginPagesDisplayed={1}
-                            pageRangeDisplayed={5}
-                            onPageChange={this.handlePageClick}
-                            containerClassName={'pagination3'}
-                            activeClassName={'active'}
-                            forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
-                        />
-                    </div>
-                </div>
-                {/* add new questions */}
-                <MyModal80
-                    show={this.state.showQForm}
-                    onHide={() => { this.hideQForm() }}
-                >
-                    <QuestionForm
-                        curJob={this.props.curJob}
-                        setCurJob={this.props.setCurJob}
-                        hideQForm={this.hideQForm}
+                            </div>
+                        </div>
+                        {/* add new questions */}
+                        <MyModal80
+                            show={this.state.showQForm}
+                            onHide={() => { this.hideQForm() }}
+                        >
+                            <QuestionForm
+                                curJob={this.props.curJob}
+                                setCurJob={this.props.setCurJob}
+                                hideQForm={this.hideQForm}
+                                getAllJobs={this.props.getAllJobs}
+                                tempQuestion={this.state.tempQuestion}
+                                setTempQuestion={this.setTempQuestion}
+                                getPJobs={this.props.getPJobs}
+                                addInterviews={this.props.addInterviews}
+                                updateInviteStatus={this.props.updateInviteStatus}
+                            />
+                        </MyModal80>
+                        {/* Edit Questions */}
+                        <MyModal80
+                            show={this.state.editQuestion}
+                            onHide={() => { this.disableQuestionEdition() }}
+                        >
+                            <EditQuestion
+                                curJob={this.props.curJob}
+                                questions={this.props.curJob.questions}
+                                position={this.props.curJob.position}
+                                disableQuestionEdition={this.disableQuestionEdition}
+                                getAllJobs={this.props.getAllJobs}
+                                getPJobs={this.props.getPJobs}
+                            />
+                        </MyModal80>
+                    </div> :
+                    <NewCandidateAdditionForm
+                        hideAdditionForm={this.hideAdditionForm}
                         getAllJobs={this.props.getAllJobs}
-                        tempQuestion={this.state.tempQuestion}
-                        setTempQuestion={this.setTempQuestion}
-                        getPJobs={this.props.getPJobs}
-                        addInterviews={this.props.addInterviews}
-                        updateInviteStatus={this.props.updateInviteStatus}
+                        getPostedJobs={this.props.getPostedJobs}
+                        jobId={this.props.curJob.job_details.id}
+                        user={this.props.user}
                     />
-                </MyModal80>
-                {/* Edit Questions */}
-                <MyModal80
-                    show={this.state.editQuestion}
-                    onHide={() => { this.disableQuestionEdition() }}
-                >
-                    <EditQuestion
-                        curJob={this.props.curJob}
-                        questions={this.props.curJob.questions}
-                        position={this.props.curJob.position}
-                        disableQuestionEdition={this.disableQuestionEdition}
-                        getAllJobs={this.props.getAllJobs}
-                        getPJobs={this.props.getPJobs}
-                    />
-                </MyModal80>
+                }
             </React.Fragment>
         )
     }
@@ -457,22 +435,20 @@ const ApplicantRow = (props) => {
         }
         props.updateCandidateViewedStatus(data);
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, ""); props.getPostedJobs(props.user.id, page, "") }, 300);
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
         props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
         props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email);
         sessionStorage.setItem(("showPreview" + props.index), "true");
-        sessionStorage.setItem("current", props.index);
         setShowPreview(true);
     }
 
     function hideModal() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, ""); props.getPostedJobs(props.user.id, page, "") }, 300);
         sessionStorage.removeItem("showPreview" + props.index);
-        sessionStorage.removeItem("current");
         setShowPreview(false);
     }
 
@@ -486,6 +462,9 @@ const ApplicantRow = (props) => {
         }
         else if (props.applicant.current_stage == "Live Interview") {
             backgroundColor = "#09C6F3";
+        }
+        else if (props.applicant.current_stage == "Unqualified") {
+            backgroundColor = "#979797";
         }
         else {
             backgroundColor = "#0DC68E";
@@ -528,7 +507,7 @@ const ApplicantRow = (props) => {
 
     const refresh = () => {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPostedJobs(props.user.id, page, "Resume Review") }, 300);
         props.updateViewStatus({ "candidate_id": applicants[current].id });
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
@@ -541,11 +520,8 @@ const ApplicantRow = (props) => {
         <div className="container-fluid">
             <hr
                 style={{
-                    color: "#E8EDFC",
-                    backgroundColor: "#E8EDFC",
-                    height: 3,
-                    marginBottom: "0.3rem",
-                    marginTop: "0.8rem"
+                    border: props.index == 0 ? "1px solid #E8EDFC" : "1px solid #E5E5E5",
+                    boxShadow: props.index == 0 ? "0px 1px 2px #E8EDFC" : "",
                 }}
             />
             <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem" }}>

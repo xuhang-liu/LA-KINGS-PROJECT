@@ -8,10 +8,10 @@ import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
 import MoveForm from "./interviewComponents/MoveForm";
 
-export function LiveInterview(props) {
-    useEffect(() => {
-        props.getPostedJobs(props.user.id, 1, "Live Interview");
-    }, [])
+export function LiveInterview(props){
+//    useEffect(() => {
+//        props.getPostedJobs(props.user.id, 1, "Live Interview");
+//    }, [])
 
     const [expire, setExpire] = useState({ value: 7, label: '7 days' });
 
@@ -95,8 +95,8 @@ export function LiveInterview(props) {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page);
-        sessionStorage.setItem("intAppPage", String(selectedPage));
+        props.getPostedJobs(props.user.id, page, "Live Interview");
+        sessionStorage.setItem("liveInterviewPage", String(selectedPage));
     };
 
     const [showMoveForm, setShowMoveForm] = useState(false);
@@ -213,23 +213,23 @@ export function LiveInterview(props) {
                             <label style={{ position: "absolute", left: "3.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
                             <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                         </div>
-                        <div className="ml-auto interview-txt7">
+                        <div className="ml-auto">
                             <ReactPaginate
-                                previousLabel={'< prev'}
-                                nextLabel={'next >'}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={props.totalPage}
-                                marginPagesDisplayed={1}
-                                pageRangeDisplayed={5}
-                                onPageChange={handlePageClick}
-                                containerClassName={'pagination3'}
-                                activeClassName={'active'}
-                                forcePage={sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) : selectedPage}
+                                  previousLabel={'< prev'}
+                                  nextLabel={'next >'}
+                                  breakLabel={'...'}
+                                  breakClassName={'break-me'}
+                                  pageCount={props.totalPage}
+                                  marginPagesDisplayed={1}
+                                  pageRangeDisplayed={5}
+                                  onPageChange={handlePageClick}
+                                  containerClassName={'pagination3'}
+                                  activeClassName={'active'}
+                                  forcePage={sessionStorage.getItem("liveInterviewPage")?parseInt(sessionStorage.getItem("liveInterviewPage")):selectedPage}
                             />
                         </div>
                     </div>
-                    <div className="container-fluid" style={{ marginTop: "2%" }}>
+                    <div className="container-fluid chart-bg1" style={{ marginTop: "2%" }}>
                         <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div style={{ marginLeft: "1rem", display: "flex" }}>
@@ -300,19 +300,19 @@ export function LiveInterview(props) {
                             />
                         </div>
                     </div>
-                    <div className="interview-txt7 d-flex justify-content-end" style={{ marginTop: "1rem" }}>
+                    <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
                         <ReactPaginate
-                            previousLabel={'< prev'}
-                            nextLabel={'next >'}
-                            breakLabel={'...'}
-                            breakClassName={'break-me'}
-                            pageCount={props.totalPage}
-                            marginPagesDisplayed={1}
-                            pageRangeDisplayed={5}
-                            onPageChange={handlePageClick}
-                            containerClassName={'pagination3'}
-                            activeClassName={'active'}
-                            forcePage={sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) : selectedPage}
+                              previousLabel={'< prev'}
+                              nextLabel={'next >'}
+                              breakLabel={'...'}
+                              breakClassName={'break-me'}
+                              pageCount={props.totalPage}
+                              marginPagesDisplayed={1}
+                              pageRangeDisplayed={5}
+                              onPageChange={handlePageClick}
+                              containerClassName={'pagination3'}
+                              activeClassName={'active'}
+                              forcePage={sessionStorage.getItem("liveInterviewPage")?parseInt(sessionStorage.getItem("liveInterviewPage")):selectedPage}
                         />
                     </div>
                 </div>
