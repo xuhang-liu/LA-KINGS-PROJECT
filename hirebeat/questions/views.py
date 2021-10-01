@@ -149,6 +149,10 @@ def get_posted_jobs(request):
                     if len(candidate) > 0:
                         applicant["linkedinurl"] = candidate[0].linkedinurl
                         applicant["apply_candidate_id"] = candidate[0].id
+                        applicant["questions"] = candidate[0].questions
+                        applicant["answers"] = candidate[0].answers
+                        applicant["qualifications"] = candidate[0].qualifications
+                        applicant["must_haves"] = candidate[0].must_haves
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)
             if total_records > 15:
@@ -235,6 +239,10 @@ def get_posted_jobs(request):
                         applicant["linkedinurl"] = candidate[0].linkedinurl
                         applicant["is_active"] = candidate[0].is_active
                         applicant["apply_candidate_id"] = candidate[0].id
+                        applicant["questions"] = candidate[0].questions
+                        applicant["answers"] = candidate[0].answers
+                        applicant["qualifications"] = candidate[0].qualifications
+                        applicant["must_haves"] = candidate[0].must_haves
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)
             if total_records > 15:
@@ -300,6 +308,10 @@ def get_posted_jobs(request):
                         applicant["linkedinurl"] = candidate[0].linkedinurl
                         applicant["is_active"] = candidate[0].is_active
                         applicant["apply_candidate_id"] = candidate[0].id
+                        applicant["questions"] = candidate[0].questions
+                        applicant["answers"] = candidate[0].answers
+                        applicant["qualifications"] = candidate[0].qualifications
+                        applicant["must_haves"] = candidate[0].must_haves
             # get each position applicants
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)

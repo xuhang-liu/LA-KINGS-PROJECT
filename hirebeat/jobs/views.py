@@ -79,8 +79,9 @@ def add_new_job(request):
     # add job screening questions
     for question in questions:
         answer_type = "Numeric" if question["responseType"] == "Numeric" else "boolean"
-        answer = str(question["numAns"]) if question["responseType"] == "Numeric" else question["ans"]
-        JobQuestion.objects.create(jobs=job, question=question["question"], answer_type=answer_type, answer=answer, is_must=question["isMustHave"])
+        answer = question["numAns"] if question["responseType"] == "Numeric" else question["ans"]
+        is_must = True if question["isMustHave"] == "true" else False
+        JobQuestion.objects.create(jobs=job, question=question["question"], answer_type=answer_type, answer=answer, is_must=is_must)
     # add to zrjobs.xml
     # if job_post:
     #     add_zr_feed_xml(job.id)
@@ -239,15 +240,23 @@ def add_new_apply_candidate(request):
     if not applied:
         questions = []
         answers = []
+        qualifications = []
+        must_haves = []
         current_stage = "Resume Review"
+        is_active = True
         for obj in ansObjs:
             if not obj["isQualified"]:
                 current_stage = "Unqualified"
+                qualifications.append(False)
+                is_active = False
+            else:
+                qualifications.append(True)
+            must_haves.append(obj["is_must"])
             questions.append(obj["question"])
             answers.append(str(obj["answer"]))
         applyCandidates = ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone,
                                                          email=email, location=location, resume_url=resume_url, linkedinurl=linkedinurl,
-                                                         gender=gender, race=race, questions=questions, answers=answers, current_stage=current_stage)
+                                                         gender=gender, race=race, questions=questions, answers=answers, current_stage=current_stage, qualifications=qualifications, must_haves=must_haves, is_active=is_active)
         # add candidate resume url to prifile detail table
         applicant_registered = True if len(User.objects.filter(email=email)) == 1 else False
         if applicant_registered:

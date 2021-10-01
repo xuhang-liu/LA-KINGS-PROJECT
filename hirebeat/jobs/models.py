@@ -71,6 +71,8 @@ class ApplyCandidates(models.Model):
     is_active = models.BooleanField(default=True)
     questions = ArrayField(models.CharField(default="", max_length=500), blank=True, null=True)
     answers = ArrayField(models.CharField(default="", max_length=100), blank=True, null=True)
+    qualifications = ArrayField(models.BooleanField(default=True), blank=True, null=True)
+    must_haves = ArrayField(models.BooleanField(default=True), blank=True, null=True)
 
 class JobQuestion(models.Model):
     jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)

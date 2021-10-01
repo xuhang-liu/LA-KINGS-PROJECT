@@ -383,8 +383,8 @@ export class JobCreation extends Component {
             question: "",
             responseType: "Yes/No",
             ans: "Yes",
-            numAns: 0,
-            isMustHave: false,
+            numAns: "0",
+            isMustHave: "false",
         }))
         this.setState({ questionCount: this.state.questionCount + 1, questions: questions});
     }

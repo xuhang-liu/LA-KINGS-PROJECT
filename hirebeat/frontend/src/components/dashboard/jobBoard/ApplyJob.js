@@ -38,7 +38,7 @@ const ApplyJob = (props) => {
     const [location, setLocation] = useState("");
     const [linkedinurl, setLinkedinurl] = useState("");
     const [ans, setAns] = useState({"value": "Yes", "label": "Yes"});
-    const [ansObjs, setAnsObjs] = useState(props.job?.questions);
+    const [ansObjs, setAnsObjs] = useState([...props.job?.questions]);
 
     const ansOptions = [
         {"value": "Yes", "label": "Yes"},
@@ -61,28 +61,30 @@ const ApplyJob = (props) => {
     function filterAnsType(e, index) {
         setAns({value: e.value, label: e.value});
         let tempAnsObjs = ansObjs;
+        let obj = new Object(props.job?.questions[index])
         // compare with standard answer
-        let standardAns = tempAnsObjs[index]["answer"];
+        let standardAns = props.job?.questions[index]["answer"];
+        obj["isQualified"] = false;
         if (e.value == standardAns){
-            tempAnsObjs[index]["isQualified"] = true;
-        } else {
-            tempAnsObjs[index]["isQualified"] = false;
+            obj["isQualified"] = true;
         }
-        tempAnsObjs[index]["answer"] = e.value;
+        obj["answer"] = e.value;
+        tempAnsObjs[index] = obj;
         setAnsObjs(tempAnsObjs);
     };
 
     function handleQuestion(e, index) {
         let tempAnsObjs = ansObjs;
+        let obj = new Object(props.job?.questions[index]);
         // compare with standard answer
         let value = e.target.value;
-        let standardAns = tempAnsObjs[index]["answer"];
+        let standardAns = props.job?.questions[index]["answer"];
+        obj["isQualified"] = false;
         if (parseInt(value) >= parseInt(standardAns)){
-            tempAnsObjs[index]["isQualified"] = true;
-        } else {
-            tempAnsObjs[index]["isQualified"] = false;
+            obj["isQualified"] = true;
         }
-        tempAnsObjs[index]["answer"] = value;
+        obj["answer"] = value;
+        tempAnsObjs[index] = obj;
         setAnsObjs(tempAnsObjs);
     }
 
@@ -160,7 +162,7 @@ const ApplyJob = (props) => {
                 linkedinurl: linkedinurl,
                 gender: gender,
                 race: race,
-                answers: ansObjs,
+                answers: ansObjs.slice(0, props.job?.questions?.length),
             };
             props.addNewApplyCandidate(data);
             props.uploader.uploadFile(resume);
@@ -182,7 +184,7 @@ const ApplyJob = (props) => {
                     linkedinurl: linkedinurl,
                     gender: gender,
                     race: race,
-                    answers: ansObjs,
+                    answers: ansObjs.slice(0, props.job?.questions?.length),
                 };
                 setTimeout(() => { props.addNewApplyCandidate(data); }, 300);
                 props.uploader.uploadFile(resume);
@@ -262,7 +264,7 @@ const ApplyJob = (props) => {
             linkedinurl: linkedinurl,
             gender: gender,
             race: race,
-            answers: ansObjs,
+            answers: ansObjs.slice(0, props.job?.questions?.length),
         };
         props.addNewApplyCandidate(data);
         props.uploader.uploadFile(resume);
@@ -547,7 +549,7 @@ const ApplyJob = (props) => {
                                                                 return(
                                                                     <div>
                                                                         <div className="form-row">
-                                                                            <label className="job-apply-char1">{qIndex} <span className="apply-s">{q.question}</span></label>
+                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
                                                                         </div>
                                                                         <div className="form-row">
                                                                             <div className="col-2 align-center">
@@ -555,7 +557,7 @@ const ApplyJob = (props) => {
                                                                             </div>
                                                                             {q.answer_type != "boolean" ?
                                                                                 <div className="col-3">
-                                                                                    <input type="number" min="0" onchange={(e) => handleQuestion(e, index)} className="job-creation-input"/>
+                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required />
                                                                                 </div> :
                                                                                 <div className="col-3">
                                                                                     <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
@@ -833,7 +835,7 @@ const ApplyJob = (props) => {
                                                                 return(
                                                                     <div>
                                                                         <div className="form-row">
-                                                                            <label className="job-apply-char1">{qIndex} <span className="apply-s">{q.question}</span></label>
+                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
                                                                         </div>
                                                                         <div className="form-row">
                                                                             <div className="col-2 align-center">
@@ -841,7 +843,7 @@ const ApplyJob = (props) => {
                                                                             </div>
                                                                             {q.answer_type != "boolean" ?
                                                                                 <div className="col-3">
-                                                                                    <input type="number" min="0" onchange={(e) => handleQuestion(e, index)} className="job-creation-input"/>
+                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required />
                                                                                 </div> :
                                                                                 <div className="col-3">
                                                                                     <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
@@ -1302,7 +1304,7 @@ const ApplyJob = (props) => {
                                                                 return(
                                                                     <div>
                                                                         <div className="form-row">
-                                                                            <label className="job-apply-char1">{qIndex} <span className="apply-s">{q.question}</span></label>
+                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
                                                                         </div>
                                                                         <div className="form-row">
                                                                             <div className="col-12 align-center">
@@ -1310,7 +1312,7 @@ const ApplyJob = (props) => {
                                                                             </div>
                                                                             {q.answer_type != "boolean" ?
                                                                                 <div className="col-12">
-                                                                                    <input type="number" min="0" onchange={(e) => handleQuestion(e, index)} className="job-creation-input"/>
+                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required/>
                                                                                 </div> :
                                                                                 <div className="col-12">
                                                                                     <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
@@ -1588,7 +1590,7 @@ const ApplyJob = (props) => {
                                                                 return(
                                                                     <div>
                                                                         <div className="form-row">
-                                                                            <label className="job-apply-char1">{qIndex} <span className="apply-s">{q.question}</span></label>
+                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
                                                                         </div>
                                                                         <div className="form-row">
                                                                             <div className="col-12 align-center">
@@ -1596,7 +1598,7 @@ const ApplyJob = (props) => {
                                                                             </div>
                                                                             {q.answer_type != "boolean" ?
                                                                                 <div className="col-12">
-                                                                                    <input type="number" min="0" onchange={(e) => handleQuestion(e, index)} className="job-creation-input"/>
+                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required/>
                                                                                 </div> :
                                                                                 <div className="col-12">
                                                                                     <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>

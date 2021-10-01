@@ -32,12 +32,12 @@ export class ScreenQuestion extends Component {
 
     filterResponseType = (responseType) => {
         this.setState({ responseType: responseType });
-        this.props.handleQFormChange2(this.props.index, responseType.value, responseType.value);
+        this.props.handleQFormChange2(this.props.index, "responseType", responseType.value);
     };
 
     filterAnsType = (ans) => {
         this.setState({ ans: ans });
-        this.props.handleQFormChange2(this.props.index, ans.value, ans.value);
+        this.props.handleQFormChange2(this.props.index, "ans", ans.value);
     };
 
     render() {
@@ -81,7 +81,7 @@ export class ScreenQuestion extends Component {
                                 <div className="col-3">
                                     <p className="profile-p" style={{margin: "0rem", visibility: "hidden"}}>Must Have</p>
                                     <p  className="profile-p" style={{marginTop: "0.5rem"}}>
-                                        <input type="checkbox" onChange={(e) => this.props.handleQFormChange(index, "isMustHave", e)}/>
+                                        <input type="checkbox" onChange={(e) => this.props.handleQFormChange(index, "isMustHave", e)} value="true"/>
                                         &nbsp; Must-have qualification
                                     </p>
                                 </div>

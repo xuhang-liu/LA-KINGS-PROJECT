@@ -463,6 +463,9 @@ const ApplicantRow = (props) => {
         else if (props.applicant.current_stage == "Live Interview") {
             backgroundColor = "#09C6F3";
         }
+        else if (props.applicant.current_stage == "Unqualified") {
+            backgroundColor = "#979797";
+        }
         else {
             backgroundColor = "#0DC68E";
         }
