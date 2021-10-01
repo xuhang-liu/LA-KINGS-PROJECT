@@ -216,10 +216,10 @@ def get_posted_jobs(request):
             applicants = []
             if stage == "":
                 applicants = list(InvitedCandidates.objects.filter(
-                    positions_id=position_id).order_by('-id').values())
+                    positions_id=position_id, is_active=True).order_by('-id').values())
             else:
                 applicants = list(InvitedCandidates.objects.filter(
-                    positions_id=position_id, current_stage=stage).order_by('-id').values())
+                    positions_id=position_id, current_stage=stage, is_active=True).order_by('-id').values())
             company_name = subreviewers[i].company_name
             # get linkedin and is_active values from ApplyCandidates model
             for applicant in applicants:
@@ -290,10 +290,10 @@ def get_posted_jobs(request):
             applicants = []
             if stage == "":
                 applicants = list(InvitedCandidates.objects.filter(
-                    positions_id=position_id).order_by('-id').values())
+                    positions_id=position_id, is_active=True).order_by('-id').values())
             else:
                 applicants = list(InvitedCandidates.objects.filter(
-                    positions_id=position_id, current_stage=stage).order_by('-id').values())
+                    positions_id=position_id, current_stage=stage, is_active=True).order_by('-id').values())
             company_name = ex_reviewers[i].company_name
             # get linkedin and is_active values from ApplyCandidates model
             for applicant in applicants:

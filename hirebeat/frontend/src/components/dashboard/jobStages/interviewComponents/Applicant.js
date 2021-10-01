@@ -126,6 +126,7 @@ export const Applicant = (props) => {
 
     function hideModal() {
         sessionStorage.removeItem("showCandidateModal" + props.index);
+        setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, 1, props.currentStage) }, 300);
         setShow(false);
     }
 

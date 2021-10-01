@@ -82,7 +82,7 @@ const ReviewCandidate = (props) => {
             setShowMoveForm(false);
             // update
             let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-            setTimeout(() => { props.getAllJobs(props.user.id, page); props.getPJobs() }, 300);
+            setTimeout(() => { props.getAllJobs(props.user.id, page, props.currentStage); props.getPostedJobs(props.user.id, page, props.currentStage) }, 300);
             alert("Move Stage Success!");
             props.onHide();
         } else {
@@ -101,12 +101,14 @@ const ReviewCandidate = (props) => {
         }
         props.updateInviteStatus(data);
         // update
-        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.currentStage); props.getPostedJobs(props.user.id, page, props.currentStage) }, 300);
         if (props.applicant.is_active) {
             alert("Candidate Rejected!");
         } else {
             alert("Candidate Unrejected!");
         }
+        props.onHide();
     };
 
     //    function inviteCandidates() {
