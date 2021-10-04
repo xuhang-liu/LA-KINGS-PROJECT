@@ -5,7 +5,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { ApplicantList } from "./interviewComponents/ApplicantList";
 import 'boxicons';
 import Select from 'react-select';
-import * as pdfjsLib from 'pdfjs-dist';
+//import * as pdfjsLib from 'pdfjs-dist';
 import EditQuestion from "./interviewComponents/EditQuestion"
 //import axios from "axios";
 import ReactPaginate from 'react-paginate';

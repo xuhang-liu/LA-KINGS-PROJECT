@@ -1020,7 +1020,7 @@ def create_employer_profile(request):
     company_size = request.data["company_size"]
     company_type = request.data["company_type"]
     location = request.data["location"]
-
+    company_name = request.data["company_name"]
     # user exists
     try:
         user = User.objects.get(email=email)
@@ -1031,6 +1031,7 @@ def create_employer_profile(request):
         profile.company_size = company_size
         profile.company_type = company_type
         profile.location = location
+        profile.name = company_name
         profile.save()
     # user not exist
     except ObjectDoesNotExist:

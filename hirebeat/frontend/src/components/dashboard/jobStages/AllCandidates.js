@@ -229,7 +229,7 @@ export class AllCandidates extends Component {
                                     </span>
                                 </div>
                                 <div>
-                                    {!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer &&
+                                    {!this.props.profile.is_subreviwer &&
                                         <div>
                                             {!this.props.isClosed &&
                                                 <button

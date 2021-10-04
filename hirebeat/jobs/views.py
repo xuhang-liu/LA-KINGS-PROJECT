@@ -73,7 +73,11 @@ def add_new_job(request):
             job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name, company_logo=company_logo,
             loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req, skills=skills)
     # save job link
+    print("asdasdasd")
+    print(company_name)
+    print(job.id)
     job_url = "https://hirebeat.co/apply-job/"+company_name+"?id=" + str(job.id)
+    print(job_url)
     job.job_url = job_url
     job.save()
     # add job screening questions

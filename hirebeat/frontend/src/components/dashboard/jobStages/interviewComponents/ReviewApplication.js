@@ -118,7 +118,7 @@ export class ReviewApplication extends Component {
         // update
         let page = 1;
         let userId = this.props.user.id;
-        setTimeout(() => {this.props.getAllJobs(userId, page, this.state.currentStage); this.props.getPostedJobs(userId, page, this.state.currentStage) }, 300);
+        setTimeout(() => {this.props.getAllJobs(userId, page, this.state.currentStage); this.props.getPostedJobs(userId, page, this.state.currentStage); this.props.hide(); }, 300);
         if (applicant.is_active){
             alert("Candidate Rejected!");
         } else {

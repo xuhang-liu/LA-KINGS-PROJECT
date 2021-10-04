@@ -277,6 +277,8 @@ export class EmployerRegister extends Component {
           }
           else {
             this.props.employer_register(
+              this.state.firstName,
+              this.state.lastName,
               this.state.email,
               this.state.email,
               this.state.password,
@@ -289,6 +291,7 @@ export class EmployerRegister extends Component {
                 l_name: this.state.lastName,
                 company_size: this.state.companySize.value,
                 company_type: this.state.companyType.value,
+                company_name: this.state.companyName,
                 location: this.state.location,
             }
             setTimeout(() => {this.props.createEmployerProfile(data)}, 300);
