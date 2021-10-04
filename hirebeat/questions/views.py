@@ -22,6 +22,7 @@ from django.utils import timezone
 import math
 from django.forms.models import model_to_dict
 import base64
+from itertools import chain
 
 
 class QuestionAPIView(generics.ListCreateAPIView):
@@ -208,7 +209,7 @@ def get_posted_jobs(request):
     # sub reviewer
     elif profile.is_subreviwer:
         user = User.objects.get(pk=user_id)
-        subreviewers = SubReviewers.objects.filter(r_email=user.email)
+        subreviewers = list(chain(SubReviewers.objects.filter(r_email=user.email), ExternalReviewers.objects.filter(r_email=user.email)))
         for i in range(len(subreviewers)):
             position_id = subreviewers[i].position.id
             # get each position applicants
@@ -283,7 +284,7 @@ def get_posted_jobs(request):
     # external reviewer
     else:
         user = User.objects.get(pk=user_id)
-        ex_reviewers = ExternalReviewers.objects.filter(r_email=user.email)
+        ex_reviewers = list(chain(SubReviewers.objects.filter(r_email=user.email), ExternalReviewers.objects.filter(r_email=user.email)))
         for i in range(len(ex_reviewers)):
             position_id = ex_reviewers[i].position.id
             # get each position applicants by current stage

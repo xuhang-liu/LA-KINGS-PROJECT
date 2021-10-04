@@ -30,7 +30,8 @@ export class JobPortalPage extends Component {
                 "Content-Type": "application/json",
             },
         };
-        if (this.props.profile.is_subreviwer) {
+        console.log(this.props.job?.reviewer_type);
+        if (this.props.job?.reviewer_type == "subr") {
             let data = { "job_id": this.props.job.job_details.id, "email": this.props.user.email };
             axios.post("jobs/check_subreviewer_currentstage", data, config).then((res) => {
                 if (res?.data?.current_stage == "Resume Review") {

@@ -104,23 +104,26 @@ def get_all_jobs(request):
 
     data = {}
     profile = Profile.objects.get(user_id=user_id)
-    if profile.is_subreviwer:
+    if profile.is_subreviwer or profile.is_external_reviewer:
         user = User.objects.get(pk=user_id)
         subreviewers = SubReviewers.objects.filter(r_email=user.email)
         for s in range(len(subreviewers)):
-            current_job_id = subreviewers[s].jobs_id
-            jobs.append(Jobs.objects.filter(id=current_job_id).values()[0])
-    elif profile.is_external_reviewer:
-        user = User.objects.get(pk=user_id)
+            current_job_id1 = subreviewers[s].jobs_id
+            jobs.append(Jobs.objects.filter(id=current_job_id1).values()[0])
         ext_reviewers = ExternalReviewers.objects.filter(r_email=user.email)
-        for s in range(len(ext_reviewers)):
-            current_job_id = ext_reviewers[s].jobs_id
-            jobs.append(Jobs.objects.filter(id=current_job_id).values()[0])
+        for e in range(len(ext_reviewers)):
+            current_job_id2 = ext_reviewers[e].jobs_id
+            jobs.append(Jobs.objects.filter(id=current_job_id2).values()[0])
     else:
         jobs = list(Jobs.objects.filter(user_id=user_id).order_by('-id').values())
     for i in range(len(jobs)):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]
+        reviewer_type = ""
+        if (len(ExternalReviewers.objects.filter(r_email=user.email, jobs_id=job_id))>0):
+            reviewer_type = "extr"
+        elif (len(SubReviewers.objects.filter(r_email=user.email, jobs_id=job_id))>0):
+            reviewer_type = "subr"
         # get each position applicants, pagination here
         if(subpage == "Resume Review"):
             applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id, current_stage="Resume Review", is_active=True).order_by('-id').values())
@@ -152,6 +155,7 @@ def get_all_jobs(request):
             "position": position,
             "total_records": total_records,
             "total_page": total_page,
+            "reviewer_type": reviewer_type,
         }
         data[job_id] = job_details
 
