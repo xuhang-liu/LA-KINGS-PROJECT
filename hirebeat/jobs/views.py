@@ -120,10 +120,12 @@ def get_all_jobs(request):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]
         reviewer_type = ""
-        if (len(ExternalReviewers.objects.filter(r_email=user.email, jobs_id=job_id))>0):
-            reviewer_type = "extr"
-        elif (len(SubReviewers.objects.filter(r_email=user.email, jobs_id=job_id))>0):
-            reviewer_type = "subr"
+        if profile.is_subreviwer or profile.is_external_reviewer:
+            user = User.objects.get(pk=user_id)
+            if (len(ExternalReviewers.objects.filter(r_email=user.email, jobs_id=job_id))>0):
+                reviewer_type = "extr"
+            elif (len(SubReviewers.objects.filter(r_email=user.email, jobs_id=job_id))>0):
+                reviewer_type = "subr"
         # get each position applicants, pagination here
         if(subpage == "Resume Review"):
             applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id, current_stage="Resume Review", is_active=True).order_by('-id').values())
