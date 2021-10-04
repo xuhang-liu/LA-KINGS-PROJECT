@@ -191,22 +191,22 @@ export class PublicProfile extends Component {
                                             <div className="py-3 px-5">
                                                 <h3 className="profile-h3">Education</h3>
                                                 <div style={{ marginTop: "0.5rem" }}>
-                                                    {schools.map((s, index) => {
-                                                        if ((this.props.profileDetail[schools[index]] != "" && this.props.profileDetail[schools[index]] != null)) {
+                                                    {this.props.profileDetail?.educations?.map((edu) => {
+                                                        if (edu.school != "" && edu.school != null) {
                                                             return (
-                                                                <div>
-                                                                    {
-                                                                        (this.props.profileDetail[schools[index]] != null && this.props.profileDetail[schools[index]] != "") &&
-                                                                        <p className="profile-p3" style={{ marginBottom: "0.5rem", fontWeight: "500" }}>{this.props.profileDetail[schools[index]]}</p>
+                                                                <div style={{marginBottom: "2rem"}}>
+                                                                    <div className="row">
+                                                                        <div className="col-8">
+                                                                            <p className="profile-p3">{edu.school}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    {(edu.major != "" && edu.major != null) &&
+                                                                        <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{edu.major} | {edu.gpa}</p>
                                                                     }
-                                                                    {
-                                                                        (this.props.profileDetail[majors[index]] != "" && this.props.profileDetail[majors[index]] != null) &&
-                                                                        <p className="profile-p4" style={{ marginBottom: "0.5rem" }}>{this.props.profileDetail[majors[index]]} | {this.props.profileDetail[gpas[index]]}</p>
+                                                                    {(edu.extra_major != "" && edu.extra_major != null) &&
+                                                                        <p className="profile-p4" style={{marginBottom: "0.5rem"}}>Minor: {edu.extra_major}</p>
                                                                     }
-                                                                    {
-                                                                        (this.props.profileDetail[graduationDates[index]] != "" && this.props.profileDetail[graduationDates[index]] != null) &&
-                                                                        <p className="profile-p4" style={{ marginBottom: "0.5rem", color: "#7D7D7D" }}>{this.props.profileDetail[graduationDates[index]]}</p>
-                                                                    }
+                                                                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{edu.graduation_date}</p>
                                                                 </div>
                                                             )
                                                         }
@@ -218,26 +218,22 @@ export class PublicProfile extends Component {
                                             <div className="py-3 px-5">
                                                 <h3 className="profile-h3">Experience</h3>
                                                 <div style={{ marginTop: "0.5rem" }}>
-                                                    {companies.map((s, index) => {
-                                                        if ((this.props.profileDetail[companies[index]] != "" && this.props.profileDetail[companies[index]] != null)) {
+                                                    {this.props.profileDetail?.experiences?.map((exp) => {
+                                                        if (exp.company != "" && exp.company != null) {
                                                             return (
-                                                                <div>
-                                                                    {
-                                                                        (this.props.profileDetail[titles[index]] != null && this.props.profileDetail[titles[index]] != "") &&
-                                                                        <p className="profile-p3" style={{ marginBottom: "0.5rem", fontWeight: "500" }}>{this.props.profileDetail[titles[index]]}</p>
-                                                                    }
-                                                                    {
-                                                                        (this.props.profileDetail[companies[index]] != null && this.props.profileDetail[companies[index]] != "") &&
-                                                                        <p className="profile-p4" style={{ marginBottom: "0.5rem" }}>{this.props.profileDetail[companies[index]]}</p>
-                                                                    }
-                                                                    {(this.props.profileDetail[startDates[index]] != "" && this.props.profileDetail[startDates[index]] != null) &&
-                                                                        <p className="profile-p4" style={{ marginBottom: "0.5rem", color: "#7D7D7D" }}>
-                                                                            {this.props.profileDetail[startDates[index]]} - {this.props.profileDetail[endDates[index]]}
+                                                                <div style={{marginBottom: "2rem"}}>
+                                                                    <div className="row">
+                                                                        <div className="col-8">
+                                                                            <p className="profile-p3">{exp.title}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{exp.company}</p>
+                                                                    {(exp.startDate != "" && exp.startDate != null) &&
+                                                                        <p className="profile-p4" style={{marginBottom: "0.5rem", color: "#7D7D7D"}}>
+                                                                            {exp.start_date} - {exp.end_date}
                                                                         </p>
                                                                     }
-                                                                    {(this.props.profileDetail[workDescriptions[index]] != "" && this.props.profileDetail[workDescriptions[index]] != null) &&
-                                                                        <p className="profile-p4" style={{ marginBottom: "0.5rem" }}>{this.props.profileDetail[workDescriptions[index]]}</p>
-                                                                    }
+                                                                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{exp.work_description}</p>
                                                                 </div>
                                                             )
                                                         }

@@ -91,8 +91,8 @@ export class EducationForm extends Component {
 };
 
 const FormCard = (props) => {
-    const [addMajor, setAddMajor] = useState(false);
     const education = props.education;
+    const [addMajor, setAddMajor] = useState(education?.extra_major?.length > 0 ? true : false);
     return (
         <div style={{marginBottom: "3rem"}}>
             <div className="profile-bg2">

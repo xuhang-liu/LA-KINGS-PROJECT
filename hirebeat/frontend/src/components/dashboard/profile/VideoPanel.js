@@ -132,13 +132,13 @@ export class VideoPanel extends Component {
                                     <h3 className="profile-h3" style={{marginBottom: "1.5rem" }}>What you can say in your video:</h3>
                                     <div style={{marginBottom: "2rem" }}>
                                         <p className="profile-p" style={{ color: "#090D3A", marginBottom: "0.5rem" }}>
-                                            1. <span style={{color: "#FF6B00"}}>Your personal info.</span> What is your name, where do you work, and what do you do there? (Max 20sec)
+                                            1. <span style={{color: "#FF6B00"}}>Your personal info.</span> What is your name, where do you work, and what do you do there? (Max 20 sec)
                                         </p>
                                         <p className="profile-p" style={{ color: "#090D3A", marginBottom: "0.5rem" }}>
                                             2. <span style={{color: "#FF6B00"}}>Brief overview of your career to date.</span> Talk about the companies you have worked with, and the types of jobs you have held. (Max 20 sec)
                                         </p>
                                         <p className="profile-p" style={{ color: "#090D3A", marginBottom: "0.5rem" }}>
-                                            3. <span style={{color: "#FF6B00"}}>Sell yourself.</span> What sets you apart? What are your strengths? Or simply share a Fun Fact about yourself to surprise and delight the recruiter. (Max 20sec)
+                                            3. <span style={{color: "#FF6B00"}}>Sell yourself.</span> What sets you apart? What are your strengths? Or simply share a Fun Fact about yourself to surprise and delight the recruiter. (Max 20 sec)
                                         </p>
                                     </div>
                                 </div>
