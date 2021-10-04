@@ -355,7 +355,7 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        {((!this.props.job.job_details.is_closed) && (!this.props.profile.is_subreviwer)) &&
+                        {((!this.props.job.job_details.is_closed)) &&
                             <div style={{ marginLeft: "2rem", marginRight:"1rem" }}>
                                 <div>
                                     {(this.props.profile.membership == "Premium") &&
@@ -444,7 +444,7 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        {((!this.props.job.job_details.is_closed) && (!this.props.profile.is_subreviwer)) &&
+                        {((!this.props.job.job_details.is_closed)) &&
                             <div style={{ marginLeft: "2rem", marginRight:"3.8rem" }}>
                                 <div>
                                     {(this.props.profile.membership == "Premium") &&
@@ -534,7 +534,7 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        {((!this.props.job.job_details.is_closed) && (!this.props.profile.is_subreviwer)) &&
+                        {((!this.props.job.job_details.is_closed)) &&
                             <div style={{ marginLeft: "2rem", marginRight:"3.8rem" }}>
                                 <div>
                                     {(this.props.profile.membership == "Premium") &&
@@ -624,7 +624,7 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        {((!this.props.job.job_details.is_closed) && (!this.props.profile.is_subreviwer)) &&
+                        {((!this.props.job.job_details.is_closed)) &&
                             <div style={{ marginLeft: "2rem", marginRight:"3.8rem" }}>
                                 <div>
                                     {(this.props.profile.membership == "Premium") &&
@@ -714,7 +714,7 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        {((!this.props.job.job_details.is_closed) && (!this.props.profile.is_subreviwer)) &&
+                        {((!this.props.job.job_details.is_closed)) &&
                             <div style={{ marginLeft: "2rem", marginRight:"3.8rem" }}>
                                 <div>
                                     {(this.props.profile.membership == "Premium") &&

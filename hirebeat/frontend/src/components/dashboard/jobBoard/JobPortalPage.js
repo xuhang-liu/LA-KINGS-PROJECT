@@ -45,18 +45,24 @@ export class JobPortalPage extends Component {
                         reviewerStage: "videoInterview",
                         portalSubpage: "videoInterview",
                     });
+                    this.props.getPostedJobs(this.props.user.id, 1, "Video Interview");
+                    sessionStorage.setItem('selectedSubpage', "Video Interview");
                 }
                 else if (res?.data?.current_stage == "Live Interview") {
                     this.setState({
                         reviewerStage: "liveInterview",
                         portalSubpage: "liveInterview",
                     });
+                    sessionStorage.setItem('selectedSubpage', "Live Interview");
+                    this.props.getPostedJobs(this.props.user.id, 1, "Live Interview");
                 }
                 else if (res?.data?.current_stage == "Short List") {
                     this.setState({
                         reviewerStage: "shortList",
                         portalSubpage: "shortList",
                     });
+                    sessionStorage.setItem('selectedSubpage', "Short List");
+                    this.props.getPostedJobs(this.props.user.id, 1, "Short List");
                 }
             }).catch(error => {
                 console.log(error)

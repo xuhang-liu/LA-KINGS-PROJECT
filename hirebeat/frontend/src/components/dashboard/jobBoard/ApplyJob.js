@@ -16,7 +16,7 @@ import Select from 'react-select';
 
 const ApplyJob = (props) => {
     var uri = window.location.search;
-    var job_id = uri.substring(1, uri.length).split("=")[1];
+    var job_id = uri.substring(1, uri.length).split("id=")[1];
     var url = String(window.location);
     const { companyName } = useParams()
     useEffect(() => {
