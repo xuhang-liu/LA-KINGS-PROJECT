@@ -73,11 +73,8 @@ def add_new_job(request):
             job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview,company_name=company_name, company_logo=company_logo,
             loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req, skills=skills)
     # save job link
-    print("asdasdasd")
-    print(company_name)
-    print(job.id)
-    job_url = "https://hirebeat.co/apply-job/"+company_name+"?id=" + str(job.id)
-    print(job_url)
+    encode_url_id = str(base64.b64encode(bytes(str(job.id), "utf-8")), "utf-8")
+    job_url = "https://hirebeat.co/apply-job/"+company_name+"?id="+encode_url_id
     job.job_url = job_url
     job.save()
     # add job screening questions
@@ -104,23 +101,28 @@ def get_all_jobs(request):
 
     data = {}
     profile = Profile.objects.get(user_id=user_id)
-    if profile.is_subreviwer:
+    if profile.is_subreviwer or profile.is_external_reviewer:
         user = User.objects.get(pk=user_id)
         subreviewers = SubReviewers.objects.filter(r_email=user.email)
         for s in range(len(subreviewers)):
-            current_job_id = subreviewers[s].jobs_id
-            jobs.append(Jobs.objects.filter(id=current_job_id).values()[0])
-    elif profile.is_external_reviewer:
-        user = User.objects.get(pk=user_id)
+            current_job_id1 = subreviewers[s].jobs_id
+            jobs.append(Jobs.objects.filter(id=current_job_id1).values()[0])
         ext_reviewers = ExternalReviewers.objects.filter(r_email=user.email)
-        for s in range(len(ext_reviewers)):
-            current_job_id = ext_reviewers[s].jobs_id
-            jobs.append(Jobs.objects.filter(id=current_job_id).values()[0])
+        for e in range(len(ext_reviewers)):
+            current_job_id2 = ext_reviewers[e].jobs_id
+            jobs.append(Jobs.objects.filter(id=current_job_id2).values()[0])
     else:
         jobs = list(Jobs.objects.filter(user_id=user_id).order_by('-id').values())
     for i in range(len(jobs)):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]
+        reviewer_type = ""
+        if profile.is_subreviwer or profile.is_external_reviewer:
+            user = User.objects.get(pk=user_id)
+            if (len(ExternalReviewers.objects.filter(r_email=user.email, jobs_id=job_id))>0):
+                reviewer_type = "extr"
+            elif (len(SubReviewers.objects.filter(r_email=user.email, jobs_id=job_id))>0):
+                reviewer_type = "subr"
         # get each position applicants, pagination here
         if(subpage == "Resume Review"):
             applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id, current_stage="Resume Review", is_active=True).order_by('-id').values())
@@ -152,6 +154,7 @@ def get_all_jobs(request):
             "position": position,
             "total_records": total_records,
             "total_page": total_page,
+            "reviewer_type": reviewer_type,
         }
         data[job_id] = job_details
 
@@ -299,7 +302,7 @@ def add_new_apply_candidate(request):
 @api_view(['GET'])
 def get_current_jobs(request, companyName):
     emails = []
-    job_id = request.query_params.get("jobid")
+    job_id = int(base64.b64decode(request.query_params.get("jobid")))
     jobs = Jobs.objects.get(pk=job_id)
     questions = list(JobQuestion.objects.filter(jobs_id=job_id).values())
     employerp = EmployerProfileDetail.objects.get(user_id = jobs.user_id)
@@ -941,7 +944,7 @@ def check_id_master_active(request):
     user_id = request.data['user_id']
     user = User.objects.get(pk=user_id)
     profile = Profile.objects.get(user=user)
-    if profile.is_subreviwer:
+    if profile.is_subreviwer or profile.is_external_reviewer:
         subreviewers = SubReviewers.objects.filter(r_email=user.email)
         if len(subreviewers) > 0:
             job = Jobs.objects.get(pk=subreviewers[0].jobs_id)
@@ -949,7 +952,6 @@ def check_id_master_active(request):
             master_profile = Profile.objects.get(user=master_user)
             if master_profile.membership != "Premium":
                 master_is_active  =  False
-    if profile.is_external_reviewer:
         ext_reviewers = ExternalReviewers.objects.filter(r_email=user.email)
         if len(ext_reviewers) > 0:
             job = Jobs.objects.get(pk=ext_reviewers[0].jobs_id)

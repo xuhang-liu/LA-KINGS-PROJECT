@@ -19,7 +19,7 @@ def jobseeker(request):
 
 
 def applyjob(request, companyName):
-    job_id = request.GET.get('id', '')
+    job_id = int(base64.b64decode(request.GET.get('id', '')))
     jobs = Jobs.objects.get(pk=job_id)
     employerp = EmployerProfileDetail.objects.get(user_id=jobs.user_id)
     context = {
