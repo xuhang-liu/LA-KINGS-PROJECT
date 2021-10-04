@@ -719,10 +719,10 @@ export class Profile extends Component {
                                         </span>
                                     </div>
                                     <div className="row align-center" style={{marginTop: "1rem"}}>
-                                        <div>
+                                        <div className="col-2 justify-items">
                                             <img src={recommendations.img}/>
                                         </div>
-                                        <div style={{marginLeft: "0.5rem"}}>
+                                        <div className="col">
                                             <h4 className="profile-h4">{recommendations.title}</h4>
                                             <p className="profile-p7">{recommendations.msg}</p>
                                         </div>

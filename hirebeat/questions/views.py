@@ -403,22 +403,23 @@ def move_candidate_to_interview(request):
                     transferable_skills_on_resume = candidate_info.transferable_skills_on_resume
                     transferable_skills_occurrence = candidate_info.transferable_skills_occurrence
                     # save data
-                    CandidatesInterview.objects.create(
-                        email=emails[i], positions_id=position_id)
-                    invitedCan = InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,
-                                                                  resume_url=resume_url, location=location, phone=phone, result_rate=result_rate,
-                                                                  hard_skill_jd_list=hard_skill_jd_list, hard_skill_resume_list=hard_skill_resume_list,
-                                                                  hard_skill_info_list=hard_skill_info_list, soft_skill_resume_list=soft_skill_resume_list,
-                                                                  soft_skill_jd_list=soft_skill_jd_list, soft_skill_info_list=soft_skill_info_list,
-                                                                  other_keyword_resume_list=other_keyword_resume_list, other_keyword_jd_list=other_keyword_jd_list,
-                                                                  other_keyword_info_list=other_keyword_info_list, basic_cri_resume_list=basic_cri_resume_list,
-                                                                  basic_cri_jd_list=basic_cri_jd_list, basic_cri_info_list=basic_cri_info_list,
-                                                                  required_skills_name=required_skills_name, required_skills_on_resume=required_skills_on_resume,
-                                                                  required_skills_occurrence=required_skills_occurrence, extra_skills_name=extra_skills_name,
-                                                                  extra_skills_on_resume=extra_skills_on_resume, extra_skills_occurrence=extra_skills_occurrence,
-                                                                  transferable_skills_name=transferable_skills_name, transferable_skills_on_resume=transferable_skills_on_resume,
-                                                                  transferable_skills_occurrence=transferable_skills_occurrence, current_stage=next_stage
-                                                                  )
+                    if not CandidatesInterview.objects.filter(email=emails[i], positions_id=position_id).exists():
+                        CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
+                    if not InvitedCandidates.objects.filter(email=emails[i], positions_id=position_id).exists():
+                        invitedCan = InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,
+                                                                      resume_url=resume_url, location=location, phone=phone, result_rate=result_rate,
+                                                                      hard_skill_jd_list=hard_skill_jd_list, hard_skill_resume_list=hard_skill_resume_list,
+                                                                      hard_skill_info_list=hard_skill_info_list, soft_skill_resume_list=soft_skill_resume_list,
+                                                                      soft_skill_jd_list=soft_skill_jd_list, soft_skill_info_list=soft_skill_info_list,
+                                                                      other_keyword_resume_list=other_keyword_resume_list, other_keyword_jd_list=other_keyword_jd_list,
+                                                                      other_keyword_info_list=other_keyword_info_list, basic_cri_resume_list=basic_cri_resume_list,
+                                                                      basic_cri_jd_list=basic_cri_jd_list, basic_cri_info_list=basic_cri_info_list,
+                                                                      required_skills_name=required_skills_name, required_skills_on_resume=required_skills_on_resume,
+                                                                      required_skills_occurrence=required_skills_occurrence, extra_skills_name=extra_skills_name,
+                                                                      extra_skills_on_resume=extra_skills_on_resume, extra_skills_occurrence=extra_skills_occurrence,
+                                                                      transferable_skills_name=transferable_skills_name, transferable_skills_on_resume=transferable_skills_on_resume,
+                                                                      transferable_skills_occurrence=transferable_skills_occurrence, current_stage=next_stage
+                                                                      )
 
     return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)
 
