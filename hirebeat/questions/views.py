@@ -744,8 +744,16 @@ def add_sub_reviewer(request):
     subreviewers = SubReviewers.objects.filter(
         company_name=company_name, r_email=sub_email, position=positions)
     if((len(subreviewers) == 0)):
-        SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name,
+        created_sub_reviewer = SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name,
                                     position=positions, current_stage=current_stage, master_user=master_user, jobs_id=jobs_id)
+        ext_rev = ExternalReviewers.objects.filter(r_email=sub_email)
+        sub_rev = SubReviewers.objects.filter(r_email=sub_email)
+        if (len(ext_rev)>0):
+            created_sub_reviewer.r_name = ext_rev[0].r_name
+            created_sub_reviewer.save()
+        if (len(sub_rev)>0):
+            created_sub_reviewer.r_name = sub_rev[0].r_name
+            created_sub_reviewer.save()
         send_sub_invitation(sub_name, sub_email, encoded_email,
                             company_name, master_email, positions.job_title)
     else:
@@ -939,8 +947,16 @@ def add_external_reviewer(request):
     externalReviewers = ExternalReviewers.objects.filter(
         company_name=company_name, r_email=ex_reviewer_email, position=positions)
     if (len(externalReviewers) == 0):
-        ExternalReviewers.objects.create(r_name=ex_reviewer_name, r_email=ex_reviewer_email,
+        created_ext_reviewer = ExternalReviewers.objects.create(r_name=ex_reviewer_name, r_email=ex_reviewer_email,
                                          company_name=company_name, position=positions, master_user=master_user, jobs_id=jobs_id)
+        ext_rev = ExternalReviewers.objects.filter(r_email=ex_reviewer_email)
+        sub_rev = SubReviewers.objects.filter(r_email=ex_reviewer_email)
+        if (len(ext_rev)>0):
+            created_ext_reviewer.r_name = ext_rev[0].r_name
+            created_ext_reviewer.save()
+        if (len(sub_rev)>0):
+            created_ext_reviewer.r_name = sub_rev[0].r_name
+            created_ext_reviewer.save()
         send_ex_reviewer_invitation(ex_reviewer_name, ex_reviewer_email,
                                     encoded_email, company_name, master_email, positions.job_title)
     else:
@@ -1082,13 +1098,21 @@ def get_reviewers_list(request):
     user_id = request.query_params.get('user_id')
     user = User.objects.get(pk=user_id)
     position = Positions.objects.filter(user=user)
+    s_r_email = set()
+    e_r_email = set()
     for p in position:
         subreviewers = SubReviewers.objects.filter(position_id=p.id)
         ex_reviewers = ExternalReviewers.objects.filter(position_id=p.id)
         for s in subreviewers:
+            if s.r_email in s_r_email:
+                continue
+            s_r_email.add(s.r_email)
             data1 = s.r_name + "&" + s.r_email
             sub_r_list.append(data1)
         for e in ex_reviewers:
+            if e.r_email in e_r_email:
+                continue
+            e_r_email.add(e.r_email)
             data2 = e.r_name + "&" + e.r_email
             ext_r_list.append(data2)
     sub_r_list = list(set(list(sub_r_list)))
