@@ -13,6 +13,7 @@ import { confirmAlert } from 'react-confirm-alert';
 var ReactS3Uploader = require("react-s3-uploader");
 import RichTextEditor from 'react-rte';
 import Select from 'react-select';
+import Autocomplete from "react-google-autocomplete";
 
 const ApplyJob = (props) => {
     var uri = window.location.search;
@@ -482,12 +483,30 @@ const ApplyJob = (props) => {
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "0" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "1" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.lin_req) == "0" &&
                                                         <div class="form-group">
@@ -767,12 +786,30 @@ const ApplyJob = (props) => {
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "0" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "1" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.lin_req) == "0" &&
                                                         <div class="form-group">
@@ -1254,12 +1291,30 @@ const ApplyJob = (props) => {
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "0" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "1" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.lin_req) == "0" &&
                                                         <div class="form-group">
@@ -1539,12 +1594,30 @@ const ApplyJob = (props) => {
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "0" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "1" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.lin_req) == "0" &&
                                                         <div class="form-group">

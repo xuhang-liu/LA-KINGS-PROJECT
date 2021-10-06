@@ -1,4 +1,4 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates, JobQuestion
@@ -19,9 +19,9 @@ import os
 import requests
 import MergeATSClient
 from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_interview_stages_api, applications_api, attachments_api
-from pprint import pprint
+#from pprint import pprint
 import math
-from django.forms.models import model_to_dict
+#from django.forms.models import model_to_dict
 
 # configure s3
 if not boto.config.get('s3', 'use-sigv4'):
@@ -98,6 +98,8 @@ def get_all_jobs(request):
     except:
         pass
     subpage = request.GET.get("subpage", "")
+    has_is_active = True if (request.GET.get("status", "") != "") else False
+    has_resume_sort = True if (request.GET.get("sort", "") != "") else False
 
     data = {}
     profile = Profile.objects.get(user_id=user_id)
@@ -124,22 +126,42 @@ def get_all_jobs(request):
             elif (len(SubReviewers.objects.filter(r_email=user.email, jobs_id=job_id))>0):
                 reviewer_type = "subr"
         # get each position applicants, pagination here
-        if(subpage == "Resume Review"):
-            applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id, current_stage="Resume Review", is_active=True).order_by('-id').values())
+        applicants = []
+        if subpage != "":
+            if has_is_active:
+                is_active = True if request.GET.get("status") == "True" else False
+                applicants = ApplyCandidates.objects.filter(jobs_id=job_id, current_stage=subpage, is_active=is_active)
+            else:
+                applicants = ApplyCandidates.objects.filter(jobs_id=job_id, current_stage=subpage)
         else:
-            applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).order_by('-id').values())
-        for applicant in applicants:
-            applicant["reviewer_review_status"] = False
-            user = User.objects.get(pk=user_id)
-            reviewerEvaluation = ReviewerEvaluation.objects.filter(reviewer_email=user.email, applicant_email=applicant["email"])
-            if len(reviewerEvaluation) >0:
-                applicant["reviewer_review_status"] = True
+            if has_is_active:
+                is_active = True if request.GET.get("status") == "True" else False
+                applicants = ApplyCandidates.objects.filter(jobs_id=job_id, is_active=is_active)
+            else:
+                applicants = ApplyCandidates.objects.filter(jobs_id=job_id)
+        applicants = list(applicants.values())
+        # sort by score or id
+        if has_resume_sort:
+            resume_sort = True if request.GET.get("sort") == "True" else False
+            if resume_sort:
+                applicants.sort(key=lambda a: -int(a["result_rate"]))
+            else:
+                applicants.sort(key=lambda a: int(a["result_rate"]))
+        else:
+            applicants.sort(key=lambda a: -a["id"])
         total_records = len(applicants)
         total_page = math.ceil(len(applicants) / 15)
         if total_records > 15:
             begin = (page - 1) * 15
             end = page * 15
             applicants = applicants[begin:end]
+
+        for applicant in applicants:
+            applicant["reviewer_review_status"] = False
+            user = User.objects.get(pk=user_id)
+            reviewerEvaluation = ReviewerEvaluation.objects.filter(reviewer_email=user.email, applicant_email=applicant["email"])
+            if len(reviewerEvaluation) >0:
+                applicant["reviewer_review_status"] = True
 
         un_view = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
         all_invited = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_invited=1).count() == len(applicants) else False

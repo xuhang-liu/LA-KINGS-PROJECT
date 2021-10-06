@@ -413,21 +413,23 @@ export function VideoInterview(props){
                                     <i style={{ color: "#56a3fa" }} className="bx bx-bullseye pr-1"></i> Preview Email
                                 </button>
                             </div>
-                            <div className="ml-auto">
-                                <ReactPaginate
-                                      previousLabel={'< prev'}
-                                      nextLabel={'next >'}
-                                      breakLabel={'...'}
-                                      breakClassName={'break-me'}
-                                      pageCount={props.totalPage}
-                                      marginPagesDisplayed={1}
-                                      pageRangeDisplayed={5}
-                                      onPageChange={handlePageClick}
-                                      containerClassName={'pagination3'}
-                                      activeClassName={'active'}
-                                      forcePage={sessionStorage.getItem("videoInterviewPage")?parseInt(sessionStorage.getItem("videoInterviewPage")):selectedPage}
-                                />
-                            </div>
+                            {props.totalPage > 1 &&
+                                <div className="ml-auto">
+                                    <ReactPaginate
+                                          previousLabel={'< Prev'}
+                                          nextLabel={'Next >'}
+                                          breakLabel={'...'}
+                                          breakClassName={'break-me'}
+                                          pageCount={props.totalPage}
+                                          marginPagesDisplayed={1}
+                                          pageRangeDisplayed={5}
+                                          onPageChange={handlePageClick}
+                                          containerClassName={'pagination3'}
+                                          activeClassName={'active'}
+                                          forcePage={sessionStorage.getItem("videoInterviewPage")?parseInt(sessionStorage.getItem("videoInterviewPage")):selectedPage}
+                                    />
+                                </div>
+                            }
                         </div>
                         <div className="container-fluid chart-bg1" style={{ marginTop: "2%" }}>
                             <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
@@ -500,21 +502,23 @@ export function VideoInterview(props){
                                 />
                             </div>
                         </div>
-                        <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
-                            <ReactPaginate
-                                  previousLabel={'< prev'}
-                                  nextLabel={'next >'}
-                                  breakLabel={'...'}
-                                  breakClassName={'break-me'}
-                                  pageCount={props.totalPage}
-                                  marginPagesDisplayed={1}
-                                  pageRangeDisplayed={5}
-                                  onPageChange={handlePageClick}
-                                  containerClassName={'pagination3'}
-                                  activeClassName={'active'}
-                                  forcePage={sessionStorage.getItem("videoInterviewPage")?parseInt(sessionStorage.getItem("videoInterviewPage")):selectedPage}
-                            />
-                        </div>
+                        {props.totalPage > 1 &&
+                            <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                                <ReactPaginate
+                                      previousLabel={'< Prev'}
+                                      nextLabel={'Next >'}
+                                      breakLabel={'...'}
+                                      breakClassName={'break-me'}
+                                      pageCount={props.totalPage}
+                                      marginPagesDisplayed={1}
+                                      pageRangeDisplayed={5}
+                                      onPageChange={handlePageClick}
+                                      containerClassName={'pagination3'}
+                                      activeClassName={'active'}
+                                      forcePage={sessionStorage.getItem("videoInterviewPage")?parseInt(sessionStorage.getItem("videoInterviewPage")):selectedPage}
+                                />
+                            </div>
+                        }
                     </div>
                     {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
                         <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>

@@ -100,21 +100,23 @@ const AcceptedCandidate = (props) => {
                         <label style={{position:"absolute", left:"2.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
                         <input placeholder={"Search candidate"} className="search-candidate-input" value={props.keyWords} onChange={props.onChange} style={{ height: "auto" }}></input>
                     </div>
-                    <div className="ml-auto">
-                        <ReactPaginate
-                              previousLabel={'< prev'}
-                              nextLabel={'next >'}
-                              breakLabel={'...'}
-                              breakClassName={'break-me'}
-                              pageCount={props.totalPage}
-                              marginPagesDisplayed={1}
-                              pageRangeDisplayed={5}
-                              onPageChange={props.handlePageClick}
-                              containerClassName={'pagination3'}
-                              activeClassName={'active'}
-                              forcePage={sessionStorage.getItem("shortListPage") ? parseInt(sessionStorage.getItem("shortListPage")): props.selectedPage}
-                        />
-                    </div>
+                    {props.totalPage > 1 &&
+                        <div className="ml-auto">
+                            <ReactPaginate
+                                  previousLabel={'< Prev'}
+                                  nextLabel={'Next >'}
+                                  breakLabel={'...'}
+                                  breakClassName={'break-me'}
+                                  pageCount={props.totalPage}
+                                  marginPagesDisplayed={1}
+                                  pageRangeDisplayed={5}
+                                  onPageChange={props.handlePageClick}
+                                  containerClassName={'pagination3'}
+                                  activeClassName={'active'}
+                                  forcePage={sessionStorage.getItem("shortListPage") ? parseInt(sessionStorage.getItem("shortListPage")): props.selectedPage}
+                            />
+                        </div>
+                    }
                 </div>
                 <div className="container-fluid chart-bg1" style={{ marginTop: "2%"}}>
                     <div style={{color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start row">
@@ -164,21 +166,23 @@ const AcceptedCandidate = (props) => {
                         )
                     })}
                 </div>
-                <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
-                    <ReactPaginate
-                          previousLabel={'< prev'}
-                          nextLabel={'next >'}
-                          breakLabel={'...'}
-                          breakClassName={'break-me'}
-                          pageCount={props.totalPage}
-                          marginPagesDisplayed={1}
-                          pageRangeDisplayed={5}
-                          onPageChange={props.handlePageClick}
-                          containerClassName={'pagination3'}
-                          activeClassName={'active'}
-                          forcePage={sessionStorage.getItem("shortListPage") ? parseInt(sessionStorage.getItem("shortListPage")) : props.selectedPage}
-                    />
-                </div>
+                {props.totalPage > 1 &&
+                    <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                        <ReactPaginate
+                              previousLabel={'< Prev'}
+                              nextLabel={'Next >'}
+                              breakLabel={'...'}
+                              breakClassName={'break-me'}
+                              pageCount={props.totalPage}
+                              marginPagesDisplayed={1}
+                              pageRangeDisplayed={5}
+                              onPageChange={props.handlePageClick}
+                              containerClassName={'pagination3'}
+                              activeClassName={'active'}
+                              forcePage={sessionStorage.getItem("shortListPage") ? parseInt(sessionStorage.getItem("shortListPage")) : props.selectedPage}
+                        />
+                    </div>
+                }
             </div>
         </div>
     )

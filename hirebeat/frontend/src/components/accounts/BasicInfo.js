@@ -70,7 +70,7 @@ export class BasicInfo extends Component {
                       <div className="form-group">
                         <label className="register-label register-text">
                             Location<span className="job-apply-char2">*</span>
-                            <span style={{marginLeft: "1rem"}}><input type="checkbox" id="registerLocation" onClick={this.checkLocation}/> &nbsp; Not in the US</span>
+                            {/*<span style={{marginLeft: "1rem"}}><input type="checkbox" id="registerLocation" onClick={this.checkLocation}/> &nbsp; Not in the US</span>*/}
                         </label>
                         {this.state.inUS &&
                             <div className="register">
