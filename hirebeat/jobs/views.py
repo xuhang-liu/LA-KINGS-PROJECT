@@ -18,8 +18,10 @@ import boto
 import os
 import requests
 import MergeATSClient
-from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_interview_stages_api, applications_api, attachments_api
-#from pprint import pprint
+from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_interview_stages_api, applications_api, attachments_api, users_api
+from MergeATSClient.model.attachment import Attachment
+from MergeATSClient.model.attachment_request import AttachmentRequest
+from pprint import pprint
 import math
 #from django.forms.models import model_to_dict
 
@@ -714,7 +716,7 @@ def create_merge_link_token(request):
     employer_profile = EmployerProfileDetail.objects.get(user=user)
     api_key = os.getenv("MERGE_API_KEY")
     body = {
-        "end_user_origin_id": user_id, # unique entity ID
+        "end_user_origin_id": user_id+str(datetime.now()), # unique entity ID
         "end_user_organization_name": employer_profile.name,  # your user's organization name
         "end_user_email_address": user.email, # your user's email address
         "categories": ["ats"], # choose your category
@@ -752,7 +754,9 @@ def send_merge_api_request(request):
     user_id = request.data['user_id']
     user = User.objects.get(pk=user_id)
     profile = Profile.objects.get(user=user)
-    configuration = MergeATSClient.Configuration()
+    configuration = MergeATSClient.Configuration(
+    host = "https://api.merge.dev/api/ats/v1"
+    )
 
     # Swap YOUR_API_KEY below with your production key from:
     # https://app.merge.dev/configuration/keys 
@@ -768,8 +772,8 @@ def send_merge_api_request(request):
     # The string 'TEST_ACCOUNT_TOKEN' below works to test your connection
     # to Merge and will return dummy data in the response.
     # In production, replace this with account_token from user.
+    #x_account_token = "TEST_ACCOUNT_TOKEN"
     x_account_token = profile.merge_public_token
-    #x_account_token = 'iBYMfisbrp6WgO-9Y1fLGLcAisJARYAbZK8rGxVFOEPJCv0AzUYkzw'
 
     try:
         jobs_api_response = jobs_api_instance.jobs_list(x_account_token)
@@ -833,7 +837,10 @@ def add_cand_from_merge(request):
     applications_api_instance = applications_api.ApplicationsApi(api_client)
     candidates_api_instance = candidates_api.CandidatesApi(api_client)
     attachments_api_instance = attachments_api.AttachmentsApi(api_client)
+    #x_account_token = "TEST_ACCOUNT_TOKEN"
     x_account_token = profile.merge_public_token
+    jobs_api_response = {}
+    applications_api_response = []
     try:
         jobs_api_response = jobs_api_instance.jobs_retrieve(x_account_token, merge_job_id)
         applications_api_response = applications_api_instance.applications_list(x_account_token, current_stage_id=merge_stage_id, job_id=merge_job_id)

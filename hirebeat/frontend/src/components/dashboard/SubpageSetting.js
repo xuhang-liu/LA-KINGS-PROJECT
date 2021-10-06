@@ -303,7 +303,7 @@ export class SubpageSetting extends Component {
                         <div className="row" >
                             <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                                 <IconText
-                                    textDisplayed={"Reviewer List"}
+                                    textDisplayed={"Hiring Team"}
                                     textSize={"24px"}
                                     textColor={"#090D3A"}
                                     iconMargin={"3px"}

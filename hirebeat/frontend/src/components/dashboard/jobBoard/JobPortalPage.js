@@ -179,6 +179,7 @@ export class JobPortalPage extends Component {
                     inviteDate={p.invite_date}
                     applicants={p.applicants}
                     subreviewers={p.subreviewers}
+                    reviewer_type={p.reviewer_type}
                     addInterviews={this.props.addInterviews}
                     getApplicantsVideos={this.props.getApplicantsVideos}
                     getApplicantsInfo={this.props.getApplicantsInfo}
@@ -235,6 +236,7 @@ export class JobPortalPage extends Component {
                         inviteDate={p.invite_date}
                         applicants={p.applicants}
                         subreviewers={p.subreviewers}
+                        reviewer_type={p.reviewer_type}
                         addInterviews={this.props.addInterviews}
                         getApplicantsVideos={this.props.getApplicantsVideos}
                         getApplicantsInfo={this.props.getApplicantsInfo}
@@ -297,6 +299,7 @@ export class JobPortalPage extends Component {
                     getReviewerEvaluation={this.props.getReviewerEvaluation}
                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
                     positionId={p.position_id}
+                    reviewer_type={p.reviewer_type}
                     getPostedJobs={this.props.getPostedJobs}
                     getAllJobs={this.props.getAllJobs}
                     totalPage={p.total_page}

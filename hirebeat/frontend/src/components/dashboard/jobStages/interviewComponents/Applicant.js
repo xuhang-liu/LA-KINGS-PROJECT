@@ -273,6 +273,7 @@ export const Applicant = (props) => {
                 currentStage={props.currentStage}
                 getPostedJobs={props.getPostedJobs}
                 getAllJobs={props.getAllJobs}
+                reviewer_type={props.reviewer_type}
             />
             <MyModal80
                 show={showResume}

@@ -63,7 +63,7 @@ export class ReviewNote extends Component {
                                     <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                                     <p className="tool_submenu container" style={{ width: "14rem", left:"0" }}>
                                         <div>
-                                            The decision from sub-reviewers will be listed here.
+                                            The decision from reviewers will be listed here.
                                         </div>
                                     </p>
                                 </span>
