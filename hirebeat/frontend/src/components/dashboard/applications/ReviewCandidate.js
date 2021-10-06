@@ -355,7 +355,7 @@ const ReviewCandidate = (props) => {
                                 </button>
                             </div>
                         }
-                        {(!props.profile.is_subreviwer) &&
+                        {(props.curJob?.reviewer_type != "subr") &&
                             <div style={{ paddingBottom: "2rem" }}>
                                 <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}><p style={{ color: "#090d3a" }}>Current Stage: {props.applicant.current_stage}</p></div>
                                 {props.applicant.is_active &&
@@ -395,7 +395,7 @@ const ReviewCandidate = (props) => {
                                     </div>
                                 }
                             </div>}
-                            {(props.profile.is_subreviwer) &&
+                            {(props.curJob?.reviewer_type == "subr") &&
                                 <div>
                                     {props.curEvaluation.evaluation == 1 ?
                                         <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>

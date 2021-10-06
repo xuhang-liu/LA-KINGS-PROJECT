@@ -30,7 +30,6 @@ export class JobPortalPage extends Component {
                 "Content-Type": "application/json",
             },
         };
-        console.log(this.props.job?.reviewer_type);
         if (this.props.job?.reviewer_type == "subr") {
             let data = { "job_id": this.props.job.job_details.id, "email": this.props.user.email };
             axios.post("jobs/check_subreviewer_currentstage", data, config).then((res) => {
@@ -180,6 +179,7 @@ export class JobPortalPage extends Component {
                     inviteDate={p.invite_date}
                     applicants={p.applicants}
                     subreviewers={p.subreviewers}
+                    reviewer_type={p.reviewer_type}
                     addInterviews={this.props.addInterviews}
                     getApplicantsVideos={this.props.getApplicantsVideos}
                     getApplicantsInfo={this.props.getApplicantsInfo}
@@ -236,6 +236,7 @@ export class JobPortalPage extends Component {
                         inviteDate={p.invite_date}
                         applicants={p.applicants}
                         subreviewers={p.subreviewers}
+                        reviewer_type={p.reviewer_type}
                         addInterviews={this.props.addInterviews}
                         getApplicantsVideos={this.props.getApplicantsVideos}
                         getApplicantsInfo={this.props.getApplicantsInfo}
@@ -298,6 +299,7 @@ export class JobPortalPage extends Component {
                     getReviewerEvaluation={this.props.getReviewerEvaluation}
                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
                     positionId={p.position_id}
+                    reviewer_type={p.reviewer_type}
                     getPostedJobs={this.props.getPostedJobs}
                     getAllJobs={this.props.getAllJobs}
                     totalPage={p.total_page}

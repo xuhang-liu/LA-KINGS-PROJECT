@@ -120,14 +120,14 @@ export class JobCard extends Component {
                             </p>
                         </a>
                         {this.props.filter !== "closed" &&
-                        <button className="title-button2 tool_tip" onClick={this.openShare}>
-                            <i className="bx-fw bx bx-link-external"></i>Share
-                            <p className="tool_submenu container" style={{ width: "9rem", left: "3rem" }}>
-                                <div>
-                                    Get a unique link to your job posting and one-click share to social media.
-                                </div>
-                            </p>
-                        </button>}
+                            <button className="title-button2 tool_tip" onClick={this.openShare}>
+                                <i className="bx-fw bx bx-link-external"></i>Share
+                                <p className="tool_submenu container" style={{ width: "9rem", left: "3rem" }}>
+                                    <div>
+                                        Get a unique link to your job posting and one-click share to social media.
+                                    </div>
+                                </p>
+                            </button>}
                         <MyModalShare
                             show={this.state.showShare}
                             onHide={() => { this.disableShowShare() }}
@@ -147,7 +147,7 @@ export class JobCard extends Component {
                                 </div>
                                 <div id="resume-hr"><hr /></div>
                                 <p className="share-p">Share on other platforms</p>
-                                <div className="single-footer-widget1" style={{textAlign:'center'}}>
+                                <div className="single-footer-widget1" style={{ textAlign: 'center' }}>
                                     <ul className="social">
                                         <li>
                                             <FacebookShareButton
@@ -205,6 +205,7 @@ export class JobCard extends Component {
                             jobInfo={this.props.job.job_details}
                             applicantsNum={this.props.job.total_records}
                             curJobKey={this.props.curJobKey}
+                            job={this.props.job}
                         />
                     </div>
                 </div>
@@ -247,50 +248,51 @@ const ActionButton = (props) => {
     }
     return (
         <div>
-            {filter == "active" ?
-                <div className="row d-flex justify-content-center">
-                    <div className="profile-edit">
-                        <i className="bx bx-edit-alt"></i>
-                        <span className="tool_tip" style={{ cursor: "pointer" }} onClick={() => { props.setJobInfo(props.jobInfo); props.renderJobEdition() }}>
-                            Edit
-                            <p className="tool_submenu container" style={{ width: "9rem", left: "1rem" }}>
-                                <div>
-                                    Edit job posting.
-                                </div>
-                            </p>
-                        </span>
-                    </div>
-                    {(props.applicantsNum > 0 || intCanNumBo) ?
-                        <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%" }}>
-                            <i className="bx bx-box"></i>
-                            <span style={{ cursor: "pointer" }} onClick={props.archiveJob} className="tool_tip">Archive
-                                <p className="tool_submenu container" style={{ width: "14rem", left: "2rem" }}>
-                                    <div>
-                                        This will close the position on job boards. You can reactivate the job at any time.
-                                    </div>
-                                </p>
-                            </span>
+            {props.job?.reviewer_type != "subr" &&
+                <div>
+                    {filter == "active" ?
+                        <div className="row d-flex justify-content-center">
+                            <div className="profile-edit">
+                                <i className="bx bx-edit-alt"></i>
+                                <span className="tool_tip" style={{ cursor: "pointer" }} onClick={() => { props.setJobInfo(props.jobInfo); props.renderJobEdition() }}>
+                                    Edit
+                                    <p className="tool_submenu container" style={{ width: "9rem", left: "1rem" }}>
+                                        <div>
+                                            Edit job posting.
+                                        </div>
+                                    </p>
+                                </span>
+                            </div>
+                            {(props.applicantsNum > 0 || intCanNumBo) ?
+                                <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%" }}>
+                                    <i className="bx bx-box"></i>
+                                    <span style={{ cursor: "pointer" }} onClick={props.archiveJob} className="tool_tip">Archive
+                                        <p className="tool_submenu container" style={{ width: "14rem", left: "2rem" }}>
+                                            <div>
+                                                This will close the position on job boards. You can reactivate the job at any time.
+                                            </div>
+                                        </p>
+                                    </span>
+                                </div> :
+                                <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%" }}>
+                                    <i className="bx bx-trash"></i>
+                                    <span style={{ cursor: "pointer" }} onClick={deleteAlert} className="tool_tip">Delete
+                                        <p className="tool_submenu container" style={{ width: "12rem", left: "2rem" }}>
+                                            <div>
+                                                You cannot recover the job posting after deleting it.
+                                            </div>
+                                        </p>
+                                    </span>
+                                </div>}
                         </div> :
-                        <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%" }}>
-                            <i className="bx bx-trash"></i>
-                            <span style={{ cursor: "pointer" }} onClick={deleteAlert} className="tool_tip">Delete
-                                <p className="tool_submenu container" style={{ width: "12rem", left: "2rem" }}>
-                                    <div>
-                                        You cannot recover the job posting after deleting it.
-                                    </div>
-                                </p>
-                            </span>
-                        </div>}
-                </div> :
-                <div className="row d-flex justify-content-center">
-                    <div className="profile-edit">
-                        <span style={{ cursor: "pointer" }} onClick={props.activateJob}>Reactivate</span>
-                    </div>
-                </div>
-            }
+                        <div className="row d-flex justify-content-center">
+                            <div className="profile-edit">
+                                <span style={{ cursor: "pointer" }} onClick={props.activateJob}>Reactivate</span>
+                            </div>
+                        </div>
+                    }
+                </div>}
         </div>
-
-
     );
 }
 

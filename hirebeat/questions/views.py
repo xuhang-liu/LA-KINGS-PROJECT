@@ -211,7 +211,12 @@ def get_posted_jobs(request):
         user = User.objects.get(pk=user_id)
         ex_reviewers = list(chain(SubReviewers.objects.filter(r_email=user.email), ExternalReviewers.objects.filter(r_email=user.email)))
         for i in range(len(ex_reviewers)):
+            reviewer_type = ""
             position_id = ex_reviewers[i].position.id
+            if (len(ExternalReviewers.objects.filter(r_email=user.email, position_id=position_id))>0):
+                reviewer_type = "extr"
+            elif (len(SubReviewers.objects.filter(r_email=user.email, position_id=position_id))>0):
+                reviewer_type = "subr"
             # get each position applicants by current stage
             applicants = []
             if stage == "":
@@ -274,6 +279,7 @@ def get_posted_jobs(request):
                 "company_name": company_name,
                 "total_records": total_records,
                 "total_page": total_page,
+                "reviewer_type": reviewer_type
             }
             # convert to json
             data[position_id] = job_details
