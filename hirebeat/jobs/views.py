@@ -12,9 +12,9 @@ from django.core.mail import EmailMessage
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import base64
-from boto.s3.key import Key
 import time
-import boto
+import boto3
+import io
 import os
 import requests
 import MergeATSClient
@@ -24,14 +24,6 @@ from MergeATSClient.model.attachment_request import AttachmentRequest
 from pprint import pprint
 import math
 #from django.forms.models import model_to_dict
-
-# configure s3
-if not boto.config.get('s3', 'use-sigv4'):
-    boto.config.add_section('s3')
-    boto.config.set('s3', 'use-sigv4', 'True')
-boto.config.set('s3', 'host', 's3.amazonaws.com')
-
-conn = boto.connect_s3(os.getenv("AWSAccessKeyId"), os.getenv("AWSSecretKey"))
 
 @api_view(['POST'])
 def add_new_job(request):
@@ -560,22 +552,22 @@ def add_zr_feed_xml(job_id):
     tree.write('zrjobs.xml')
 
 def upload_cv_to_s3(encoded_cv, cv_name):
-    # decode resume and convert to pdf file
-    resume = base64.b64decode(encoded_cv)
-    #content = resume.decode("utf-8")
+    # decode resume and convert to readable pdf file using io.BytesIO
+    resume = io.BytesIO(base64.b64decode(encoded_cv))
+    # content = resume.decode("utf-8")
     file_name = cv_name + str(int(time.time())) + ".pdf"
-    content = open(file_name, "wb")
-    content.write(resume)
-    content.close()
+    # get bucket name and connect to s3
+    bucket = os.getenv("CV_Interview_Bucket")
+    client = boto3.client('s3', aws_access_key_id=os.getenv("AWSAccessKeyId"),
+                          aws_secret_access_key=os.getenv("AWSSecretKey"))
     # upload txt file to s3
-    b = conn.get_bucket(os.getenv("CV_Interview_Bucket"))
-    k = Key(b)
-    k.key = file_name
-    k.set_contents_from_filename(file_name)
+    client.upload_fileobj(
+        resume,
+        bucket,
+        file_name,
+        ExtraArgs={'ACL': 'public-read', 'ContentDisposition': 'inline', 'ContentType': 'application/pdf'}
+    )
     resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
-    # delete cv.pdf cache
-    if os.path.exists(file_name):
-        os.remove(file_name)
     return resume_url
 
 @api_view(['POST'])

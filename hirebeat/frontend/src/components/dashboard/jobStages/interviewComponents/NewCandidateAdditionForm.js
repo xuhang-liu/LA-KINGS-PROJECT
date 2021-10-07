@@ -111,7 +111,7 @@ export class NewCandidateAdditionForm extends Component {
                     resume: resume.split(",")[1], // here to remove encoded header of resume
                     linkedinurl: "",
                 };
-                setTimeout(() => this.props.addNewApplyCandidateByCv(data), 1000);
+                this.props.addNewApplyCandidateByCv(data);
             });
 
         }
