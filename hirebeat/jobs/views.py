@@ -22,6 +22,8 @@ from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_i
 from MergeATSClient.model.attachment import Attachment
 from MergeATSClient.model.attachment_request import AttachmentRequest
 from pprint import pprint
+import requests
+import json
 import math
 #from django.forms.models import model_to_dict
 
@@ -816,7 +818,9 @@ def add_cand_from_merge(request):
     company_overview = ""
     company_logo = ""
 
-    configuration = MergeATSClient.Configuration()
+    configuration = MergeATSClient.Configuration(
+    host = "https://api.merge.dev/api/ats/v1"
+    )
 
     # Swap YOUR_API_KEY below with your production key from:
     # https://app.merge.dev/configuration/keys 
@@ -829,10 +833,11 @@ def add_cand_from_merge(request):
     applications_api_instance = applications_api.ApplicationsApi(api_client)
     candidates_api_instance = candidates_api.CandidatesApi(api_client)
     attachments_api_instance = attachments_api.AttachmentsApi(api_client)
+    user_api_instance = users_api.UsersApi(api_client)
     #x_account_token = "TEST_ACCOUNT_TOKEN"
     x_account_token = profile.merge_public_token
     jobs_api_response = {}
-    applications_api_response = []
+    applications_api_response = {}
     try:
         jobs_api_response = jobs_api_instance.jobs_retrieve(x_account_token, merge_job_id)
         applications_api_response = applications_api_instance.applications_list(x_account_token, current_stage_id=merge_stage_id, job_id=merge_job_id)
@@ -895,10 +900,31 @@ def add_cand_from_merge(request):
         
         candidatesInterview = CandidatesInterview.objects.filter(email=emailAddress, positions=position)
         if len(candidatesInterview) <= 0:
+            remote_user_id = ""
+            remote_user_remote_id = ""
             CandidatesInterview.objects.create(email=emailAddress, positions=position)
             InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response['first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url)
             ApplyCandidates.objects.create(jobs=job, first_name=candidates_api_response['first_name'], last_name=candidates_api_response['last_name'], phone=phone,
                                            email=emailAddress, location=location, current_stage="Video Interview", gender="N/A", race="N/A")
+            # try:
+            #     user_api_response = user_api_instance.users_list(x_account_token)
+            #     for u in range(len(user_api_response['results'])):
+            #         if user_api_response['results'][u]['access_role'] ==  'ADMIN':
+            #             remote_user_id = user_api_response['results'][u]["id"]
+            #             remote_user_remote_id = user_api_response['results'][u]['remote_id']
+            #             print(remote_user_id)
+            # except MergeATSClient.ApiException as e:
+            #     print('Exception: %s' % e)
+            # attachment_request = AttachmentRequest(
+            #     remote_id=remote_user_remote_id,
+            #     file_name="Candidate Evaluation",
+            #     file_url="https://hirebeat-test-video-bucket.s3.amazonaws.com/Evaluations.pdf",
+            #     candidate=candidate_id,
+            # )
+            # try:
+            #      attachments_api_instance.attachments_create(x_account_token, remote_user_id, attachment_request=attachment_request)
+            # except MergeATSClient.ApiException as e:
+            #     print("Exception when calling ApplicationsApi->applications_create: %s\n" % e)
     return Response("Create candidates from merge success", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
@@ -997,3 +1023,23 @@ def check_subreviewer_currentstage(request):
     return Response({
         "current_stage": current_stage
     })
+
+@api_view(['GET'])
+def greenhouse_api_test(request):
+    # url = "https://harvest.greenhouse.io/v1/applications/6451411004/move"
+    # data = {"from_stage_id": '4306101004', "to_stage_id": '4306103004'}
+    # headers = {'Content-type': 'application/json', 'Accept': 'text/plain', 'On-Behalf-Of': '4010069004'}
+    # res = requests.post(url, data=json.dumps(data), headers=headers, auth=('6b64f9aca07ae1f18ee0a63276358594-4', ''))
+    # print(res.json())
+
+    # url = "https://harvest.greenhouse.io/v1/applications/6451411004"
+    # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    # res = requests.get(url, headers=headers, auth=('6b64f9aca07ae1f18ee0a63276358594-4', ''))
+    # print(res.json())
+
+    # url = "https://harvest.greenhouse.io/v1/users"
+    # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    # res = requests.get(url, headers=headers, auth=('6b64f9aca07ae1f18ee0a63276358594-4', ''))
+    # print(res.json())
+
+    return Response("POST Greenhouse requst success", status=status.HTTP_201_CREATED)
