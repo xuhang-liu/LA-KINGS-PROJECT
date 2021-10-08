@@ -397,6 +397,7 @@ def create_or_update_personal_info(request):
     current_job_title = request.data["current_job_title"]
     current_company = request.data["current_company"]
     location = request.data["location"]
+    logo_url = request.data["logo_url"]
     try:
         # update personal information
         user_profile = ProfileDetail.objects.get(user_id=user_id)
@@ -405,11 +406,12 @@ def create_or_update_personal_info(request):
         user_profile.current_job_title = current_job_title
         user_profile.current_company = current_company
         user_profile.location = location
+        user_profile.logo_url = logo_url
         user_profile.save()
     except ObjectDoesNotExist:
         # create personal information
         ProfileDetail.objects.create(user_id=user_id, f_name=f_name, l_name=l_name, current_job_title=current_job_title,
-                                     current_company=current_company, location=location)
+                                     current_company=current_company, location=location, logo_url=logo_url)
     return Response("Create or Update personal info successfully", status=status.HTTP_201_CREATED)
 
 
