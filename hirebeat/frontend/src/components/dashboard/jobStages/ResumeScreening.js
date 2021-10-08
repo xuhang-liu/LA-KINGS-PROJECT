@@ -31,7 +31,7 @@ export class ResumeScreening extends Component {
 
     componentDidMount() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review"); this.props.getPJobs(); }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True"); this.props.getPJobs(); }, 300);
     }
 
     onFilter = (category) => {
@@ -324,6 +324,12 @@ export class ResumeScreening extends Component {
     }
 
     sortByScore = () => {
+        if (!this.state.isSortByScore) {
+            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "True");
+        }
+        else {
+            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "False");
+        }
         this.setState({ isSortByScore: !this.state.isSortByScore });
     }
 
@@ -346,21 +352,23 @@ export class ResumeScreening extends Component {
                                 <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
                             </span>
                         </div>
-                        <div className="ml-auto">
-                            <ReactPaginate
-                                previousLabel={'< prev'}
-                                nextLabel={'next >'}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={this.props.curJob.total_page}
-                                marginPagesDisplayed={1}
-                                pageRangeDisplayed={5}
-                                onPageChange={this.handlePageClick}
-                                containerClassName={'pagination3'}
-                                activeClassName={'active'}
-                                forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
-                            />
-                        </div>
+                        {this.props.curJob.total_page > 1 &&
+                            <div className="ml-auto">
+                                <ReactPaginate
+                                    previousLabel={'< Prev'}
+                                    nextLabel={'Next >'}
+                                    breakLabel={'...'}
+                                    breakClassName={'break-me'}
+                                    pageCount={this.props.curJob.total_page}
+                                    marginPagesDisplayed={1}
+                                    pageRangeDisplayed={5}
+                                    onPageChange={this.handlePageClick}
+                                    containerClassName={'pagination3'}
+                                    activeClassName={'active'}
+                                    forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
+                                />
+                            </div>
+                        }
                     </div>
                     <div className="container-fluid chart-bg1" style={{ marginTop: "1rem", paddingLeft: "0px" }}>
                         <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
@@ -380,8 +388,7 @@ export class ResumeScreening extends Component {
                                 </div>
                             }
                         </div>
-                        {/* sort by resume score descending */}
-                        {this.state.isSortByScore && this.props.curJob.applicants.sort((a, b) => parseInt(b.result_rate) - parseInt(a.result_rate)).map((a, index) => {
+                        {this.props.curJob.applicants.map((a, index) => {
                             if (this.state.keyWords != "") {
                                 let name = a.first_name + " " + a.last_name;
                                 if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
@@ -453,84 +460,24 @@ export class ResumeScreening extends Component {
                                 />
                             )
                         })}
-                        {/* sort by resume score ascending*/}
-                        {!this.state.isSortByScore && this.props.curJob.applicants.sort((a, b) => parseInt(a.result_rate) - parseInt(b.result_rate)).map((a, index) => {
-                            if (this.state.keyWords != "") {
-                                let name = a.first_name + " " + a.last_name;
-                                if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
-                            }
-                            if (this.state.category.value != "All") {
-                                switch (this.state.category.value) {
-                                    case "Invited":
-                                        if (a.is_invited != 1) return null;
-                                        break;
-                                    case "Hold":
-                                        if (a.is_invited != 2) return null;
-                                        break;
-                                    case "Rejected":
-                                        if (a.is_invited != 3) return null;
-                                        break;
-                                    case "Unreviewed":
-                                        if (a.is_invited != 0) return null;
-                                        break;
-                                }
-                            }
-                            return (
-                                <ApplicantRow
-                                    filter={this.props.filter}
-                                    applicant={a}
-                                    index={index}
-                                    applicants={this.props.curJob.applicants}
-                                    curJob={this.props.curJob}
-                                    tempQuestion={this.state.tempQuestion}
-                                    setTempQuestion={this.setTempQuestion}
-                                    profile={this.props.profile}
-                                    addInterviews={this.props.addInterviews}
-                                    updateInviteStatus={this.props.updateInviteStatus}
-                                    updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
-                                    getAllJobs={this.props.getAllJobs}
-                                    getPJobs={this.props.getPJobs}
-                                    user={this.props.user}
-                                    moveCandidateToInterview={this.props.moveCandidateToInterview}
-                                    selectedPage={this.state.selectedPage}
-                                    getReviewNote={this.props.getReviewNote}
-                                    addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
-                                    getReviewerEvaluation={this.props.getReviewerEvaluation}
-                                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
-                                    evaluations={this.props.evaluations}
-                                    curEvaluation={this.props.curEvaluation}
-                                    getApplicantsVideos={this.props.getApplicantsVideos}
-                                    getApplicantsInfo={this.props.getApplicantsInfo}
-                                    int_ques={this.props.int_ques}
-                                    quesiton_array={this.props.quesiton_array}
-                                    video_array={this.props.video_array}
-                                    stars={this.props.stars}
-                                    comments={this.props.comments}
-                                    pk={this.props.pk}
-                                    transcripts={this.props.transcripts}
-                                    updateViewStatus={this.props.updateViewStatus}
-                                    updateCommentStatus={this.props.updateCommentStatus}
-                                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
-                                    reviews={this.props.reviews}
-                                />
-                            )
-                        })}
                     </div>
-                    <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
-                        <ReactPaginate
-                            previousLabel={'< prev'}
-                            nextLabel={'next >'}
-                            breakLabel={'...'}
-                            breakClassName={'break-me'}
-                            pageCount={this.props.curJob.total_page}
-                            marginPagesDisplayed={1}
-                            pageRangeDisplayed={5}
-                            onPageChange={this.handlePageClick}
-                            containerClassName={'pagination3'}
-                            activeClassName={'active'}
-                            forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
-                        />
-                    </div>
+                    {this.props.curJob.total_page > 1 &&
+                        <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
+                            <ReactPaginate
+                                previousLabel={'< Prev'}
+                                nextLabel={'Next >'}
+                                breakLabel={'...'}
+                                breakClassName={'break-me'}
+                                pageCount={this.props.curJob.total_page}
+                                marginPagesDisplayed={1}
+                                pageRangeDisplayed={5}
+                                onPageChange={this.handlePageClick}
+                                containerClassName={'pagination3'}
+                                activeClassName={'active'}
+                                forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
+                            />
+                        </div>
+                    }
                 </div>
                 {(this.props.filter == "active" && !this.props.profile.is_subreviwer) &&
                     <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>

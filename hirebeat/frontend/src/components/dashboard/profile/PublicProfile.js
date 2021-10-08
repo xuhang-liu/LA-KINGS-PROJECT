@@ -52,16 +52,6 @@ export class PublicProfile extends Component {
                 }
             }
         };
-        const schools = ["school1", "school2", "school3"];
-        const majors = ["major1", "major2", "major3"];
-        const gpas = ["gpa1", "gpa2", "gpa3"];
-        const graduationDates = ["graduation_date1", "graduation_date2", "graduation_date3"];
-
-        const companies = ["company1", "company2", "company3", "company4", "company5"];
-        const titles = ["title1", "title2", "title3", "title4", "title5"];
-        const startDates = ["start_date1", "start_date2", "start_date3", "start_date4", "start_date5"];
-        const endDates = ["end_date1", "end_date2", "end_date3", "end_date4", "end_date5"];
-        const workDescriptions = ["work_description1", "work_description2", "work_description3", "work_description4", "work_description5"];
         return (
             <DocumentMeta {...meta}>
                 <React.Fragment>
@@ -200,9 +190,10 @@ export class PublicProfile extends Component {
                                                                             <p className="profile-p3">{edu.school}</p>
                                                                         </div>
                                                                     </div>
-                                                                    {(edu.major != "" && edu.major != null) &&
-                                                                        <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{edu.major} | {edu.gpa}</p>
-                                                                    }
+                                                                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>
+                                                                        {edu.degree} {edu.degree?.length > 0 && " | "}
+                                                                        {edu.major} {edu.major?.length > 0 && " | "} {edu.gpa}
+                                                                    </p>
                                                                     {(edu.extra_major != "" && edu.extra_major != null) &&
                                                                         <p className="profile-p4" style={{marginBottom: "0.5rem"}}>Minor: {edu.extra_major}</p>
                                                                     }

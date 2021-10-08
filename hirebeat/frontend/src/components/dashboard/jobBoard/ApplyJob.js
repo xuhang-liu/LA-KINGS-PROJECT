@@ -13,6 +13,8 @@ import { confirmAlert } from 'react-confirm-alert';
 var ReactS3Uploader = require("react-s3-uploader");
 import RichTextEditor from 'react-rte';
 import Select from 'react-select';
+import Autocomplete from "react-google-autocomplete";
+import ApplyQuestion from "./ApplyQuestion";
 
 const ApplyJob = (props) => {
     var uri = window.location.search;
@@ -37,29 +39,9 @@ const ApplyJob = (props) => {
     const [phone, setPhone] = useState("");
     const [location, setLocation] = useState("");
     const [linkedinurl, setLinkedinurl] = useState("");
-    const [ans, setAns] = useState({"value": "Yes", "label": "Yes"});
-    const [ansObjs, setAnsObjs] = useState([props.job?.questions]);
+    const [ansObjs, setAnsObjs] = useState(props.job?.questions);
 
-    const ansOptions = [
-        {"value": "Yes", "label": "Yes"},
-        {"value": "No", "label": "No"},
-    ];
-
-    const customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff', boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)" }),
-        singleValue: styles => ({
-            ...styles,
-            color: '#4a6f8a',
-            fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
-            fontWeight: '500'
-        }),
-        menuPortal: provided => ({ ...provided, zIndex: 99 }),
-        menu: provided => ({ ...provided, zIndex: 99 })
-    };
-
-    function filterAnsType(e, index) {
-        setAns({value: e.value, label: e.value});
+    function handleBooleanInput(e, index) {
         let tempAnsObjs = ansObjs;
         let obj = new Object(props.job?.questions[index])
         obj["isQualified"] = true;
@@ -76,7 +58,7 @@ const ApplyJob = (props) => {
         setAnsObjs(tempAnsObjs);
     };
 
-    function handleQuestion(e, index) {
+    function handleNumInput(e, index) {
         let tempAnsObjs = ansObjs;
         let obj = new Object(props.job?.questions[index]);
         let value = e.target.value;
@@ -166,7 +148,7 @@ const ApplyJob = (props) => {
                 linkedinurl: linkedinurl,
                 gender: gender,
                 race: race,
-                answers: ansObjs.slice(0, props.job?.questions?.length),
+                answers: ansObjs,
             };
             props.addNewApplyCandidate(data);
             props.uploader.uploadFile(resume);
@@ -188,7 +170,7 @@ const ApplyJob = (props) => {
                     linkedinurl: linkedinurl,
                     gender: gender,
                     race: race,
-                    answers: ansObjs.slice(0, props.job?.questions?.length),
+                    answers: ansObjs,
                 };
                 setTimeout(() => { props.addNewApplyCandidate(data); }, 300);
                 props.uploader.uploadFile(resume);
@@ -268,7 +250,7 @@ const ApplyJob = (props) => {
             linkedinurl: linkedinurl,
             gender: gender,
             race: race,
-            answers: ansObjs.slice(0, props.job?.questions?.length),
+            answers: ansObjs,
         };
         props.addNewApplyCandidate(data);
         props.uploader.uploadFile(resume);
@@ -482,12 +464,30 @@ const ApplyJob = (props) => {
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "0" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "1" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.lin_req) == "0" &&
                                                         <div class="form-group">
@@ -516,60 +516,22 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{ color: "#ff0000" }}>Support .pdf only</span>
                                                     }
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-10">
-                                                            <div class="form-check">
-                                                                <p className="d-flex flex-wrap justify-content-start mb-2"
-                                                                    style={{
-                                                                        fontSize: "0.9rem",
-                                                                        color: "#B0B0B0",
-                                                                        fontWeight: "500"
-                                                                    }}>
-                                                                    <input type="checkbox" required name="terms" style={{ marginRight: '5%', display: 'inline', marginTop: "1%" }}></input>
-                                                                    I have read and agree to the
-                                                                    <a
-                                                                        target="_blank"
-                                                                        rel="noreferrer"
-                                                                        href="/term"
-                                                                        className="active d-flex ml-2"
-                                                                        style={{
-                                                                            textDecoration: "underline",
-                                                                            color: "#ff612f",
-                                                                            fontWeight: "500"
-                                                                        }}>
-                                                                        Terms & Conditions
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     {/* Additional Questions */}
                                                     {props.job?.questions?.length > 0 &&
                                                         <div className="form-group">
-                                                            <div className="form-row">
+                                                            <div>
                                                                 <label className="job-apply-char1">Additional Questions</label><span className="job-apply-char2">*</span>
                                                             </div>
                                                             {props.job?.questions?.map((q, index) => {
                                                                 const qIndex = "Question" + String(index + 1) + ":";
                                                                 return(
-                                                                    <div>
-                                                                        <div className="form-row">
-                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
-                                                                        </div>
-                                                                        <div className="form-row">
-                                                                            <div className="col-2 align-center">
-                                                                                <label className="job-apply-char1">Answer: </label>
-                                                                            </div>
-                                                                            {q.answer_type != "boolean" ?
-                                                                                <div className="col-3">
-                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required />
-                                                                                </div> :
-                                                                                <div className="col-3">
-                                                                                    <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
-                                                                                </div>
-                                                                            }
-                                                                        </div>
-                                                                    </div>
+                                                                    <ApplyQuestion
+                                                                        index={index}
+                                                                        handleNumInput={handleNumInput}
+                                                                        handleBooleanInput={handleBooleanInput}
+                                                                        questionObj={q}
+                                                                        qIndex={qIndex}
+                                                                    />
                                                                 )
                                                             })}
                                                         </div>
@@ -707,6 +669,29 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     }
+                                                    <div class="form-group">
+                                                        <p className="d-flex flex-wrap justify-content-start mb-2"
+                                                            style={{
+                                                                fontSize: "0.9rem",
+                                                                color: "#B0B0B0",
+                                                                fontWeight: "500"
+                                                            }}>
+                                                            <input type="checkbox" required name="terms" style={{ marginRight: '2%', display: 'inline', marginTop: "1%" }}></input>
+                                                            I have read and agree to the
+                                                            <a
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                href="/term"
+                                                                className="active d-flex ml-2"
+                                                                style={{
+                                                                    textDecoration: "underline",
+                                                                    color: "#ff612f",
+                                                                    fontWeight: "500"
+                                                                }}>
+                                                                Terms & Conditions
+                                                            </a>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                                 <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
@@ -767,12 +752,30 @@ const ApplyJob = (props) => {
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "0" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "1" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.lin_req) == "0" &&
                                                         <div class="form-group">
@@ -802,60 +805,22 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{ color: "#ff0000" }}>Support .pdf only</span>
                                                     }
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-10">
-                                                            <div class="form-check">
-                                                                <p className="d-flex flex-wrap justify-content-start mb-2"
-                                                                    style={{
-                                                                        fontSize: "0.9rem",
-                                                                        color: "#B0B0B0",
-                                                                        fontWeight: "500"
-                                                                    }}>
-                                                                    <input type="checkbox" required name="terms" style={{ marginRight: '5%', display: 'inline', marginTop: "1%" }}></input>
-                                                                    I have read and agree to the
-                                                                    <a
-                                                                        target="_blank"
-                                                                        rel="noreferrer"
-                                                                        href="/term"
-                                                                        className="active d-flex ml-2"
-                                                                        style={{
-                                                                            textDecoration: "underline",
-                                                                            color: "#ff612f",
-                                                                            fontWeight: "500"
-                                                                        }}>
-                                                                        Terms & Conditions
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     {/* Additional Questions */}
                                                     {props.job?.questions?.length > 0 &&
                                                         <div className="form-group">
-                                                            <div className="form-row">
+                                                            <div>
                                                                 <label className="job-apply-char1">Additional Questions</label><span className="job-apply-char2">*</span>
                                                             </div>
                                                             {props.job?.questions?.map((q, index) => {
                                                                 const qIndex = "Question" + String(index + 1) + ":";
                                                                 return(
-                                                                    <div>
-                                                                        <div className="form-row">
-                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
-                                                                        </div>
-                                                                        <div className="form-row">
-                                                                            <div className="col-2 align-center">
-                                                                                <label className="job-apply-char1">Answer: </label>
-                                                                            </div>
-                                                                            {q.answer_type != "boolean" ?
-                                                                                <div className="col-3">
-                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required />
-                                                                                </div> :
-                                                                                <div className="col-3">
-                                                                                    <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
-                                                                                </div>
-                                                                            }
-                                                                        </div>
-                                                                    </div>
+                                                                    <ApplyQuestion
+                                                                        index={index}
+                                                                        handleNumInput={handleNumInput}
+                                                                        handleBooleanInput={handleBooleanInput}
+                                                                        questionObj={q}
+                                                                        qIndex={qIndex}
+                                                                    />
                                                                 )
                                                             })}
                                                         </div>
@@ -993,6 +958,29 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     }
+                                                    <div class="form-group">
+                                                        <p className="d-flex flex-wrap justify-content-start mb-2"
+                                                            style={{
+                                                                fontSize: "0.9rem",
+                                                                color: "#B0B0B0",
+                                                                fontWeight: "500"
+                                                            }}>
+                                                            <input type="checkbox" required name="terms" style={{ marginRight: '5%', display: 'inline', marginTop: "1%" }}></input>
+                                                            I have read and agree to the
+                                                            <a
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                href="/term"
+                                                                className="active d-flex ml-2"
+                                                                style={{
+                                                                    textDecoration: "underline",
+                                                                    color: "#ff612f",
+                                                                    fontWeight: "500"
+                                                                }}>
+                                                                Terms & Conditions
+                                                            </a>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                                 <button className="default-btn mt-3" style={{ paddingLeft: "25px", float: "right" }}>
                                                     Submit Application
@@ -1254,12 +1242,30 @@ const ApplyJob = (props) => {
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "0" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "1" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.lin_req) == "0" &&
                                                         <div class="form-group">
@@ -1288,43 +1294,22 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{ color: "#ff0000" }}>Support .pdf only</span>
                                                     }
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-10">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="gridCheck1" required />
-                                                                <label style={{ color: "#B0B0B0" }} class="form-check-label mb-4" for="gridCheck1">
-                                                                    I have read and agreed to the
-                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     {/* Additional Questions */}
                                                     {props.job?.questions?.length > 0 &&
                                                         <div className="form-group">
-                                                            <div className="form-row">
+                                                            <div>
                                                                 <label className="job-apply-char1">Additional Questions</label><span className="job-apply-char2">*</span>
                                                             </div>
                                                             {props.job?.questions?.map((q, index) => {
                                                                 const qIndex = "Question" + String(index + 1) + ":";
                                                                 return(
-                                                                    <div>
-                                                                        <div className="form-row">
-                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
-                                                                        </div>
-                                                                        <div className="form-row">
-                                                                            <div className="col-12 align-center">
-                                                                                <label className="job-apply-char1">Answer: </label>
-                                                                            </div>
-                                                                            {q.answer_type != "boolean" ?
-                                                                                <div className="col-12">
-                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required/>
-                                                                                </div> :
-                                                                                <div className="col-12">
-                                                                                    <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
-                                                                                </div>
-                                                                            }
-                                                                        </div>
-                                                                    </div>
+                                                                    <ApplyQuestion
+                                                                        index={index}
+                                                                        handleNumInput={handleNumInput}
+                                                                        handleBooleanInput={handleBooleanInput}
+                                                                        questionObj={q}
+                                                                        qIndex={qIndex}
+                                                                    />
                                                                 )
                                                             })}
                                                         </div>
@@ -1479,6 +1464,13 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     }
+                                                    <div class="form-group">
+                                                        <input class="form-check-input" type="checkbox" id="gridCheck1" required />
+                                                        <label style={{ color: "#B0B0B0" }} class="form-check-label" for="gridCheck1">
+                                                            I have read and agreed to the
+                                                            <a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                                 <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
@@ -1539,12 +1531,30 @@ const ApplyJob = (props) => {
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "0" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label><span className="job-apply-char2">*</span>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} required />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.loc_req) == "1" &&
                                                         <div class="form-group">
                                                             <label className="job-apply-char1" for="inputAddress">Location</label>
-                                                            <input type="text" class="form-control" id="inputAddress" placeholder="City, State" onChange={onChange7} />
+                                                            <Autocomplete
+                                                                id="location"
+                                                                className="form-control"
+                                                                style={{width: "100%"}}
+                                                                language="en"
+                                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                                    setLocation(place.formatted_address);
+                                                                }}
+                                                            />
                                                         </div>}
                                                     {((job_id == null || job_id == "") ? "" : props.job.lin_req) == "0" &&
                                                         <div class="form-group">
@@ -1574,43 +1584,22 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{ color: "#ff0000" }}>Support .pdf only</span>
                                                     }
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-10">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="gridCheck1" required />
-                                                                <label style={{ color: "#B0B0B0" }} class="form-check-label mb-4" for="gridCheck1">
-                                                                    I have read and agreed to the
-                                                                </label><a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     {/* Additional Questions */}
                                                     {props.job?.questions?.length > 0 &&
                                                         <div className="form-group">
-                                                            <div className="form-row">
+                                                            <div>
                                                                 <label className="job-apply-char1">Additional Questions</label><span className="job-apply-char2">*</span>
                                                             </div>
                                                             {props.job?.questions?.map((q, index) => {
                                                                 const qIndex = "Question" + String(index + 1) + ":";
                                                                 return(
-                                                                    <div>
-                                                                        <div className="form-row">
-                                                                            <label className="job-apply-char1">{qIndex} &nbsp; {q.question}<span className="job-apply-char2">*</span></label>
-                                                                        </div>
-                                                                        <div className="form-row">
-                                                                            <div className="col-12 align-center">
-                                                                                <label className="job-apply-char1">Answer: </label>
-                                                                            </div>
-                                                                            {q.answer_type != "boolean" ?
-                                                                                <div className="col-12">
-                                                                                    <input type="number" min="0" onChange={(e) => handleQuestion(e, index)} className="job-creation-input" required/>
-                                                                                </div> :
-                                                                                <div className="col-12">
-                                                                                    <Select value={ans} onChange={(e) => filterAnsType(e, index)} options={ansOptions} styles={customStyles} menuPortalTarget={document.body}/>
-                                                                                </div>
-                                                                            }
-                                                                        </div>
-                                                                    </div>
+                                                                    <ApplyQuestion
+                                                                        index={index}
+                                                                        handleNumInput={handleNumInput}
+                                                                        handleBooleanInput={handleBooleanInput}
+                                                                        questionObj={q}
+                                                                        qIndex={qIndex}
+                                                                    />
                                                                 )
                                                             })}
                                                         </div>
@@ -1677,7 +1666,8 @@ const ApplyJob = (props) => {
                                                                             </p>
                                                                         </span>
                                                                     </label>
-                                                                </div><div>
+                                                                </div>
+                                                                <div>
                                                                     <label className="job-apply-char1">
                                                                         <input type="radio" name="race" value="Black or African American" style={{ marginRight: "1rem" }} />
                                                                         Black or African American (Not Hispanic or Latino)
@@ -1765,6 +1755,13 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         </div>
                                                     }
+                                                    <div class="form-group">
+                                                        <input class="form-check-input" type="checkbox" id="gridCheck1" required />
+                                                        <label style={{ color: "#B0B0B0" }} class="form-check-label" for="gridCheck1">
+                                                            I have read and agreed to the
+                                                            <a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                                 <button className="default-btn mt-3" style={{ paddingLeft: "25px", marginLeft: "20%" }}>
                                                     Submit Application

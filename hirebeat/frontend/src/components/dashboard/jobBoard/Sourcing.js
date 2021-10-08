@@ -205,21 +205,23 @@ export class Sourcing extends Component {
                                     <div className="col-3 d-flex" style={{ alignItems: "center" }}>
                                         <p className="sourcing-p2" style={{ textDecoration: "none" }}>Result:  {this.props.sourcingData.profiles.length} / {this.props.sourcingData.total_records}</p>
                                     </div>
-                                    <div className="col d-flex justify-content-end">
-                                        <ReactPaginate
-                                              previousLabel={'< prev'}
-                                              nextLabel={'next >'}
-                                              breakLabel={'...'}
-                                              breakClassName={'break-me'}
-                                              pageCount={this.props.sourcingData.total_page}
-                                              marginPagesDisplayed={1}
-                                              pageRangeDisplayed={5}
-                                              onPageChange={this.handlePageClick}
-                                              containerClassName={'pagination2'}
-                                              activeClassName={'active'}
-                                              forcePage={this.state.selectedPage}
-                                        />
-                                    </div>
+                                    {this.props.sourcingData.total_page > 1 &&
+                                        <div className="col d-flex justify-content-end">
+                                            <ReactPaginate
+                                                  previousLabel={'< Prev'}
+                                                  nextLabel={'Next >'}
+                                                  breakLabel={'...'}
+                                                  breakClassName={'break-me'}
+                                                  pageCount={this.props.sourcingData.total_page}
+                                                  marginPagesDisplayed={1}
+                                                  pageRangeDisplayed={5}
+                                                  onPageChange={this.handlePageClick}
+                                                  containerClassName={'pagination2'}
+                                                  activeClassName={'active'}
+                                                  forcePage={this.state.selectedPage}
+                                            />
+                                        </div>
+                                    }
                                 </div>
                                 {/* Map profile here */}
                                 <div className="row">
@@ -258,24 +260,26 @@ export class Sourcing extends Component {
                                         )
                                     })}
                                 </div>
-                                <div className="row">
-                                    <div className="col-3" />
-                                    <div className="col d-flex justify-content-end">
-                                        <ReactPaginate
-                                              previousLabel={'< prev'}
-                                              nextLabel={'next >'}
-                                              breakLabel={'...'}
-                                              breakClassName={'break-me'}
-                                              pageCount={this.props.sourcingData.total_page}
-                                              marginPagesDisplayed={1}
-                                              pageRangeDisplayed={5}
-                                              onPageChange={this.handlePageClick}
-                                              containerClassName={'pagination2'}
-                                              activeClassName={'active'}
-                                              forcePage={this.state.selectedPage}
-                                        />
+                                {this.props.sourcingData.total_page > 1 &&
+                                    <div className="row">
+                                        <div className="col-3" />
+                                        <div className="col d-flex justify-content-end">
+                                            <ReactPaginate
+                                                  previousLabel={'< Prev'}
+                                                  nextLabel={'Next >'}
+                                                  breakLabel={'...'}
+                                                  breakClassName={'break-me'}
+                                                  pageCount={this.props.sourcingData.total_page}
+                                                  marginPagesDisplayed={1}
+                                                  pageRangeDisplayed={5}
+                                                  onPageChange={this.handlePageClick}
+                                                  containerClassName={'pagination2'}
+                                                  activeClassName={'active'}
+                                                  forcePage={this.state.selectedPage}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
+                                }
                             </div>
                         </div> :
                         <div className="container min-width-980">

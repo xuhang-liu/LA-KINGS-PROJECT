@@ -88,6 +88,9 @@ export class Profile extends Component {
             photoSelected: false,
             location: this.props.profileDetail.location,
             invalidPersonalInfo: false,
+            showPhotoSelection: false,
+            delPhoto: false,
+            hideUpload: this.props.profileDetail.logo_url?.length > 0 ? true : false,
         }
     }
 
@@ -144,7 +147,10 @@ export class Profile extends Component {
 
     cancelEditInfo = () => {
         this.getUpdatedData();
-        setTimeout(() => this.setState({ isEditInfo: false, invalidPersonalInfo: false }), 300);
+        setTimeout(() => {
+            let hideUpload = this.props.profileDetail.logo_url?.length > 0 ? true : false;
+            this.setState({ isEditInfo: false, invalidPersonalInfo: false, delPhoto: false, preview: null, hideUpload: hideUpload, photoSelected: false, showPhotoSelection: false });
+        }, 500);
     }
 
     editMedia = () => {
@@ -254,6 +260,7 @@ export class Profile extends Component {
             "current_job_title": curJobTitle,
             "current_company": curCompany,
             "location": location,
+            "logo_url": this.state.delPhoto ? "" : this.props.profileDetail.logo_url,
         }
         this.props.updatePersonalInfo(data);
         this.handleUpload();
@@ -682,6 +689,19 @@ export class Profile extends Component {
         return recommendations;
     }
 
+    openPhotoSelection = () => {
+        this.setState({showPhotoSelection: true});
+    }
+
+
+    removePhoto = () => {
+        this.setState({delPhoto: true, hideUpload: false});
+    }
+
+    uploadPhoto = () => {
+        this.setState({showPhotoSelection: true, hideUpload: true});
+    }
+
     render () {
         const name = this.props.profileDetail.f_name + " " + this.props.profileDetail.l_name;
         const jobType = { value: this.props.profileDetail.job_type, label: this.props.profileDetail.job_type };
@@ -850,7 +870,28 @@ export class Profile extends Component {
                                             </div>
                                             <div style={{marginBottom: "1rem"}}>
                                                 <p className="profile-p" style={{margin: "0rem"}}>User Profile</p>
-                                                {!this.state.photoSelected ?
+                                                {/* show original photo here */}
+                                                {(this.props.profileDetail.logo_url !== null && this.props.profileDetail.logo_url !== "" && !this.state.showPhotoSelection && !this.state.delPhoto) &&
+                                                    <div>
+                                                        <div className="d-flex justify-content-center">
+                                                            <img src={this.props.profileDetail.logo_url} />
+                                                        </div>
+                                                        <div className="d-flex justify-content-center" style={{marginTop: "0.5rem"}}>
+                                                            <span className="profile-edit" style={{cursor: "pointer", color: "#7D7D7D", textDecoration: "underline"}} onClick={this.removePhoto}>Remove</span>
+                                                            <span className="profile-edit" style={{cursor: "pointer", textDecoration: "underline", marginLeft: "0.5rem"}} onClick={this.openPhotoSelection} >Update</span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                {(!this.state.hideUpload) &&
+                                                    <div>
+                                                        <div className="d-flex justify-content-center" style={{marginTop: "0.5rem"}}>
+                                                            <span className="profile-edit" style={{cursor: "pointer"}} onClick={this.uploadPhoto} >
+                                                                <img style={{width: "110px", height: "110px"}} src="https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle-2.png" />
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                {(this.state.showPhotoSelection && !this.state.photoSelected) ?
                                                     <div className="d-flex justify-content-center">
                                                         <Avatar
                                                               width={285}

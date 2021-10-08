@@ -41,8 +41,8 @@ export class ScreenQuestion extends Component {
     };
 
     render() {
-        const questionObj = this.props.questionObj;
-        const index = this.props.index;
+        let questionObj = this.props.questionObj;
+        let index = this.props.index;
         return (
             <React.Fragment>
                 <div>
@@ -60,7 +60,7 @@ export class ScreenQuestion extends Component {
                             <div className="row">
                                 <div className="col-12">
                                     <textarea
-                                        defaultValue={questionObj?.question}
+                                        value={questionObj?.question}
                                         onChange={(e) => this.props.handleQFormChange(index, "question", e)}
                                         className="profile-input profile-p4" style={{width: "100%"}}
                                     />
@@ -69,13 +69,13 @@ export class ScreenQuestion extends Component {
                             <div className="row" style={{marginTop: "0.5rem"}}>
                                 <div className="col-2">
                                     <p className="profile-p" style={{margin: "0rem"}}>Response Type</p>
-                                    <Select value={this.state.responseType} onChange={this.filterResponseType} options={this.responseOptions} styles={this.customStyles} menuPortalTarget={document.body}/>
+                                    <Select value={this.props.responseType} onChange={this.filterResponseType} options={this.responseOptions} styles={this.customStyles} menuPortalTarget={document.body}/>
                                 </div>
                                 <div className="col-2">
                                     <p className="profile-p" style={{margin: "0rem"}}>Ideal Answer</p>
-                                    {this.state.responseType.value == "Numeric" ?
-                                        <input type="number" min="0" className="job-creation-input" defaultValue={this.props.questionObj?.numAns} onChange={(e) => this.props.handleQFormChange(index, "numAns", e)}/> :
-                                        <Select value={this.state.ans} onChange={this.filterAnsType} options={this.ansOptions} styles={this.customStyles} menuPortalTarget={document.body}/>
+                                    {this.props.responseType.value == "Numeric" ?
+                                        <input type="number" min="0" className="job-creation-input" value={this.props.questionObj?.numAns} onChange={(e) => this.props.handleQFormChange(index, "numAns", e)}/> :
+                                        <Select value={this.props.ans} onChange={this.filterAnsType} options={this.ansOptions} styles={this.customStyles} menuPortalTarget={document.body}/>
                                     }
                                 </div>
                                 <div className="col-3">

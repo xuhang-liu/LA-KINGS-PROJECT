@@ -674,6 +674,8 @@ export class JobCreation extends Component {
                             </label>
                         </div>
                         {this.state.questions.map((q, index) => {
+                            let responseType = {value: q?.responseType, label: q?.responseType} ||{value: "Yes/No", label: "Yes/No"};
+                            let ans = {value: q?.ans, label: q?.ans} ||{value: "Yes/No", label: "Yes/No"};
                             return(
                                 <div key={index} className="form-row" style={{ marginBottom: "1rem" }}>
                                     <div className="col-12">
@@ -683,16 +685,20 @@ export class JobCreation extends Component {
                                             handleQFormChange2={this.handleQFormChange2}
                                             index={index}
                                             removeQuestion={this.removeQuestion}
+                                            responseType={responseType}
+                                            ans={ans}
                                         />
                                     </div>
                                 </div>
                             )
                         })}
-                        <div className="form-row">
-                            <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addQuestion}>
-                                + Add Screening Questions
-                            </span>
-                        </div>
+                        {this.state.questionCount < 3 &&
+                            <div className="form-row">
+                                <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addQuestion}>
+                                    + Add Screening Questions
+                                </span>
+                            </div>
+                        }
                         {!this.state.remote &&
                             <div>
                                 <hr style={{ border: "1.5px solid #E8EDFC" }} />

@@ -33,9 +33,10 @@ export class Education extends Component {
                             </div> :
                             <p className="profile-p4" style={{marginBottom: "0.5rem"}}>Add your education history</p>
                         }
-                        {(this.props.education.major != "" && this.props.education.major != null) &&
-                            <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{this.props.education.major} | {this.props.education.gpa}</p>
-                        }
+                        <p className="profile-p4" style={{marginBottom: "0.5rem"}}>
+                            {this.props.education.degree} {this.props.education.degree?.length > 0 && " | "}
+                            {this.props.education.major} {this.props.education.major?.length > 0 && " | "} {this.props.education.gpa}
+                        </p>
                         {(this.props.education.extra_major != "" && this.props.education.extra_major != null) &&
                             <p className="profile-p4" style={{marginBottom: "0.5rem"}}>Minor: {this.props.education.extra_major}</p>
                         }
