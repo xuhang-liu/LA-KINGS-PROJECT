@@ -494,7 +494,7 @@ export class Profile extends Component {
 
     onUploadFinish = () => {
         var fakeName = this.state.fakeName;
-        logo_url = "https://hirebeat-user-logo.s3.amazonaws.com/" + fakeName;
+        var logo_url = "https://hirebeat-user-logo.s3.amazonaws.com/" + fakeName;
 
         // insert MetaData to profile table
         const metaData = {

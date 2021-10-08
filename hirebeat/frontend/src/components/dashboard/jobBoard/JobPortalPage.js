@@ -117,7 +117,7 @@ export class JobPortalPage extends Component {
     renderPipeline = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "pipeline");
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
-        this.props.getAllJobs(this.props.user.id, page, "");
+        this.props.getAllJobs(this.props.user.id, page, "", "", "");
         this.props.getPJobs();
         this.setState({
             portalSubpage: "pipeline",
@@ -314,7 +314,7 @@ export class JobPortalPage extends Component {
             <React.Fragment>
                 <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
                     <div className="chart-bg1" style={{ paddingTop: "0px", paddingBottom: "5rem" }}>
-                        <div style={{ padding: "0.6rem", backgroundColor: "#f4f7ff", borderRadius: "10px" }}><h3 style={{ fontSize: "1.25rem" }}><b><i class='bx-fw bx bx-chevron-left' style={{ color: "#c4c4c4", cursor: "pointer" }} onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); }}></i><span className="ml-2">{this.props.job.job_details.job_title}</span></b></h3></div>
+                        <div style={{ padding: "0.6rem", backgroundColor: "#f4f7ff", borderRadius: "10px" }}><h3 style={{ fontSize: "1.25rem" }}><b><i class='bx-fw bx bx-chevron-left' style={{ color: "#c4c4c4", cursor: "pointer" }} onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", "")}}></i><span className="ml-2">{this.props.job.job_details.job_title}</span></b></h3></div>
                         <div className="row" style={{ border: "1px solid #e8edfc" }}>
                             <div className="col-2">
                                 {this.state.reviewerStage == "pipeline" || this.state.reviewerStage == "" ?
