@@ -4458,6 +4458,7 @@ max-width: 110px;
   color: #090d3a;
   font-weight: 600;
   cursor: default;
+  text-decoration: underline;
 }
 .pagination2 > .disabled > span,
 .pagination2 > .disabled > span:hover,
@@ -4552,12 +4553,13 @@ max-width: 110px;
   z-index: 3;
   color: #090d3a;
   font-weight: 600;
+  text-decoration: underline;
   cursor: default;
 }
 .pagination3 > .disabled > span,
 .pagination3 > .disabled > span:hover,
 .pagination3 > .disabled > span:focus,
-.pagination2 > .disabled > a,
+.pagination3 > .disabled > a,
 .pagination3 > .disabled > a:hover,
 .pagination3 > .disabled > a:focus {
   color: #979797;
@@ -4689,6 +4691,8 @@ max-width: 110px;
   font-size: 0.9375rem;
   color: #E35454;
   text-align: left;
+  background: #FEFFC6;
+  padding: 0.5rem;
 }
 
 .resume-bg {

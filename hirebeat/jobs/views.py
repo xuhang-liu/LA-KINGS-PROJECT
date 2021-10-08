@@ -1,4 +1,4 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates, JobQuestion
@@ -12,9 +12,9 @@ from django.core.mail import EmailMessage
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import base64
-from boto.s3.key import Key
 import time
-import boto
+import boto3
+import io
 import os
 import requests
 import MergeATSClient
@@ -22,18 +22,10 @@ from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_i
 from MergeATSClient.model.attachment import Attachment
 from MergeATSClient.model.attachment_request import AttachmentRequest
 from pprint import pprint
-import math
-from django.forms.models import model_to_dict
 import requests
 import json
-
-# configure s3
-if not boto.config.get('s3', 'use-sigv4'):
-    boto.config.add_section('s3')
-    boto.config.set('s3', 'use-sigv4', 'True')
-boto.config.set('s3', 'host', 's3.amazonaws.com')
-
-conn = boto.connect_s3(os.getenv("AWSAccessKeyId"), os.getenv("AWSSecretKey"))
+import math
+#from django.forms.models import model_to_dict
 
 @api_view(['POST'])
 def add_new_job(request):
@@ -102,6 +94,8 @@ def get_all_jobs(request):
     except:
         pass
     subpage = request.GET.get("subpage", "")
+    has_is_active = True if (request.GET.get("status", "") != "") else False
+    has_resume_sort = True if (request.GET.get("sort", "") != "") else False
 
     data = {}
     profile = Profile.objects.get(user_id=user_id)
@@ -128,22 +122,42 @@ def get_all_jobs(request):
             elif (len(SubReviewers.objects.filter(r_email=user.email, jobs_id=job_id))>0):
                 reviewer_type = "subr"
         # get each position applicants, pagination here
-        if(subpage == "Resume Review"):
-            applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id, current_stage="Resume Review", is_active=True).order_by('-id').values())
+        applicants = []
+        if subpage != "":
+            if has_is_active:
+                is_active = True if request.GET.get("status") == "True" else False
+                applicants = ApplyCandidates.objects.filter(jobs_id=job_id, current_stage=subpage, is_active=is_active)
+            else:
+                applicants = ApplyCandidates.objects.filter(jobs_id=job_id, current_stage=subpage)
         else:
-            applicants = list(ApplyCandidates.objects.filter(jobs_id=job_id).order_by('-id').values())
-        for applicant in applicants:
-            applicant["reviewer_review_status"] = False
-            user = User.objects.get(pk=user_id)
-            reviewerEvaluation = ReviewerEvaluation.objects.filter(reviewer_email=user.email, applicant_email=applicant["email"])
-            if len(reviewerEvaluation) >0:
-                applicant["reviewer_review_status"] = True
+            if has_is_active:
+                is_active = True if request.GET.get("status") == "True" else False
+                applicants = ApplyCandidates.objects.filter(jobs_id=job_id, is_active=is_active)
+            else:
+                applicants = ApplyCandidates.objects.filter(jobs_id=job_id)
+        applicants = list(applicants.values())
+        # sort by score or id
+        if has_resume_sort:
+            resume_sort = True if request.GET.get("sort") == "True" else False
+            if resume_sort:
+                applicants.sort(key=lambda a: -int(a["result_rate"]))
+            else:
+                applicants.sort(key=lambda a: int(a["result_rate"]))
+        else:
+            applicants.sort(key=lambda a: -a["id"])
         total_records = len(applicants)
         total_page = math.ceil(len(applicants) / 15)
         if total_records > 15:
             begin = (page - 1) * 15
             end = page * 15
             applicants = applicants[begin:end]
+
+        for applicant in applicants:
+            applicant["reviewer_review_status"] = False
+            user = User.objects.get(pk=user_id)
+            reviewerEvaluation = ReviewerEvaluation.objects.filter(reviewer_email=user.email, applicant_email=applicant["email"])
+            if len(reviewerEvaluation) >0:
+                applicant["reviewer_review_status"] = True
 
         un_view = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
         all_invited = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_invited=1).count() == len(applicants) else False
@@ -540,22 +554,22 @@ def add_zr_feed_xml(job_id):
     tree.write('zrjobs.xml')
 
 def upload_cv_to_s3(encoded_cv, cv_name):
-    # decode resume and convert to pdf file
-    resume = base64.b64decode(encoded_cv)
-    #content = resume.decode("utf-8")
+    # decode resume and convert to readable pdf file using io.BytesIO
+    resume = io.BytesIO(base64.b64decode(encoded_cv))
+    # content = resume.decode("utf-8")
     file_name = cv_name + str(int(time.time())) + ".pdf"
-    content = open(file_name, "wb")
-    content.write(resume)
-    content.close()
+    # get bucket name and connect to s3
+    bucket = os.getenv("CV_Interview_Bucket")
+    client = boto3.client('s3', aws_access_key_id=os.getenv("AWSAccessKeyId"),
+                          aws_secret_access_key=os.getenv("AWSSecretKey"))
     # upload txt file to s3
-    b = conn.get_bucket(os.getenv("CV_Interview_Bucket"))
-    k = Key(b)
-    k.key = file_name
-    k.set_contents_from_filename(file_name)
+    client.upload_fileobj(
+        resume,
+        bucket,
+        file_name,
+        ExtraArgs={'ACL': 'public-read', 'ContentDisposition': 'inline', 'ContentType': 'application/pdf'}
+    )
     resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
-    # delete cv.pdf cache
-    if os.path.exists(file_name):
-        os.remove(file_name)
     return resume_url
 
 @api_view(['POST'])

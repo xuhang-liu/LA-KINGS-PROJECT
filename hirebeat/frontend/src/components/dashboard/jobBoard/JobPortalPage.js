@@ -72,7 +72,7 @@ export class JobPortalPage extends Component {
     renderAllCandidates = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "allCandidates");
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
-        this.props.getAllJobs(this.props.user.id, page, "");
+        this.props.getAllJobs(this.props.user.id, page, "", "", "");
         this.props.getPJobs();
         this.setState({
             portalSubpage: "allCandidates",
@@ -81,7 +81,7 @@ export class JobPortalPage extends Component {
     renderResumeScreen = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "resumeScreen");
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
-        this.props.getAllJobs(this.props.user.id, page, "Resume Review");
+        this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True");
         this.props.getPJobs();
         this.setState({
             portalSubpage: "resumeScreen",

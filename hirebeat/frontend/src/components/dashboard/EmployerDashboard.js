@@ -172,7 +172,7 @@ export class EmployerDashboard extends Component {
     this.props.getAnalyticsInfo(this.props.user.id);
     this.props.getEmployerProfileDetail(this.props.user.id);
     this.props.getEmployerPost(this.props.user.id, 0);
-    this.props.getAllJobs(this.props.user.id, (sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1), "");
+    this.props.getAllJobs(this.props.user.id, (sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1), "", "", "");
     this.props.getQuestionList();
     this.props.getReviewersList(user.id);
     var data = {

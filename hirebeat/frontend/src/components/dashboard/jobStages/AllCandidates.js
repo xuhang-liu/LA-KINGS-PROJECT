@@ -20,26 +20,31 @@ export class AllCandidates extends Component {
         keyWords: "",
         showQForm: false,
         tempQuestion: [],
-        category: { value: 'All', label: 'All' },
+        category: { value: '', label: 'All' },
         editQuestion: false,
-        isSortByScore: true,
         selectedPage: 0,
-        stage: { value: 'All', label: 'All' },
+        stage: { value: '', label: 'All' },
         isAddNewCandidate: false,
     }
 
     onFilter = (category) => {
         this.setState({ category: category })
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
+        let stage = this.state.stage.value;
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage, category.value, "")}, 300);
     }
 
     filterStage = (stage) => {
-        this.setState({ stage: stage })
+        this.setState({ stage: stage });
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
+        let status = this.state.category.value;
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage.value, status, "")}, 300);
     }
     // filter selections
     options = [
-        { value: true, label: 'Active' },
-        { value: false, label: 'Rejected' },
-        { value: 'All', label: 'All' },
+        { value: "True", label: 'Active' },
+        { value: "False", label: 'Rejected' },
+        { value: '', label: 'All' },
     ];
 
     // filter selections
@@ -48,7 +53,8 @@ export class AllCandidates extends Component {
         { value: 'Video Interview', label: 'Video Interview' },
         { value: 'Live Interview', label: 'Live Interview' },
         { value: 'Short List', label: 'Short List' },
-        { value: 'All', label: 'All' },
+        { value: 'Unqualified', label: 'Unqualified' },
+        { value: '', label: 'All' },
     ];
 
     customStyles = {
@@ -72,7 +78,7 @@ export class AllCandidates extends Component {
 
     hideQForm = () => {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, ""); this.props.getPostedJobs(this.props.user.id, page, ""); }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "", "", ""); this.props.getPostedJobs(this.props.user.id, page, ""); }, 300);
         this.setState({ showQForm: false });
 
     }
@@ -154,7 +160,7 @@ export class AllCandidates extends Component {
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
                 let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
-                setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, ""); this.props.getPostedJobs(this.props.user.id, page, "") }, 300);
+                setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "", "", ""); this.props.getPostedJobs(this.props.user.id, page, "") }, 300);
                 this.sendSuccessAlert();
             }
         }
@@ -180,15 +186,11 @@ export class AllCandidates extends Component {
         }
     }
 
-    sortByScore = () => {
-        this.setState({ isSortByScore: !this.state.isSortByScore });
-    }
-
     handlePageClick = (data) => {
         let selectedPage = data.selected; // 0 index based
         this.setState({ selectedPage: selectedPage });
         let page = selectedPage + 1;
-        this.props.getAllJobs(this.props.user.id, page);
+        this.props.getAllJobs(this.props.user.id, page, "", "", "");
         sessionStorage.setItem("jobAppPage", String(selectedPage));
     };
 
@@ -244,21 +246,23 @@ export class AllCandidates extends Component {
                                         </div>
                                     }
                                 </div>
-                                <div className="ml-auto">
-                                    <ReactPaginate
-                                        previousLabel={'< prev'}
-                                        nextLabel={'next >'}
-                                        breakLabel={'...'}
-                                        breakClassName={'break-me'}
-                                        pageCount={this.props.curJob.total_page}
-                                        marginPagesDisplayed={1}
-                                        pageRangeDisplayed={5}
-                                        onPageChange={this.handlePageClick}
-                                        containerClassName={'pagination3'}
-                                        activeClassName={'active'}
-                                        forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
-                                    />
-                                </div>
+                                {this.props.curJob.total_page > 1 &&
+                                    <div className="ml-auto">
+                                        <ReactPaginate
+                                            previousLabel={'< Prev'}
+                                            nextLabel={'Next >'}
+                                            breakLabel={'...'}
+                                            breakClassName={'break-me'}
+                                            pageCount={this.props.curJob.total_page}
+                                            marginPagesDisplayed={1}
+                                            pageRangeDisplayed={5}
+                                            onPageChange={this.handlePageClick}
+                                            containerClassName={'pagination3'}
+                                            activeClassName={'active'}
+                                            forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
+                                        />
+                                    </div>
+                                }
                             </div>
                             <div className="container-fluid chart-bg1" style={{ marginTop: "1rem" }}>
                                 <div className="row interview-txt7 interview-center pl-3" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
@@ -277,37 +281,10 @@ export class AllCandidates extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                {/* sort by resume score descending */}
-                                {this.state.isSortByScore && this.props.curJob.applicants.sort((a, b) => parseInt(b.result_rate) - parseInt(a.result_rate)).map((a, index) => {
+                                {this.props.curJob.applicants.map((a, index) => {
                                     if (this.state.keyWords != "") {
                                         let name = a.first_name + " " + a.last_name;
                                         if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
-                                    }
-                                    if (this.state.stage.value != "All") {
-                                        switch (this.state.stage.value) {
-                                            case "Resume Review":
-                                                if (a.current_stage != "Resume Review") return null;
-                                                break;
-                                            case "Video Interview":
-                                                if (a.current_stage != "Video Interview") return null;
-                                                break;
-                                            case "Live Interview":
-                                                if (a.current_stage != "Live Interview") return null;
-                                                break;
-                                            case "Short List":
-                                                if (a.current_stage != "Short List") return null;
-                                                break;
-                                        }
-                                    }
-                                    if (this.state.category.value != "All") {
-                                        switch (this.state.category.value) {
-                                            case true:
-                                                if (a.is_active != true) return null;
-                                                break;
-                                            case false:
-                                                if (a.is_active != false) return null;
-                                                break;
-                                        }
                                     }
                                     return (
                                         <ApplicantRow
@@ -351,21 +328,23 @@ export class AllCandidates extends Component {
                                     )
                                 })}
                             </div>
-                            <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
-                                <ReactPaginate
-                                    previousLabel={'< prev'}
-                                    nextLabel={'next >'}
-                                    breakLabel={'...'}
-                                    breakClassName={'break-me'}
-                                    pageCount={this.props.curJob.total_page}
-                                    marginPagesDisplayed={1}
-                                    pageRangeDisplayed={5}
-                                    onPageChange={this.handlePageClick}
-                                    containerClassName={'pagination3'}
-                                    activeClassName={'active'}
-                                    forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
-                                />
-                            </div>
+                            {this.props.curJob.total_page > 1 &&
+                                <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
+                                    <ReactPaginate
+                                        previousLabel={'< Prev'}
+                                        nextLabel={'Next >'}
+                                        breakLabel={'...'}
+                                        breakClassName={'break-me'}
+                                        pageCount={this.props.curJob.total_page}
+                                        marginPagesDisplayed={1}
+                                        pageRangeDisplayed={5}
+                                        onPageChange={this.handlePageClick}
+                                        containerClassName={'pagination3'}
+                                        activeClassName={'active'}
+                                        forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
+                                    />
+                                </div>
+                            }
                         </div>
                         {/* add new questions */}
                         <MyModal80
@@ -435,7 +414,7 @@ const ApplicantRow = (props) => {
         }
         props.updateCandidateViewedStatus(data);
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, ""); props.getPostedJobs(props.user.id, page, "") }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "", "", ""); props.getPostedJobs(props.user.id, page, "") }, 300);
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
@@ -447,7 +426,7 @@ const ApplicantRow = (props) => {
 
     function hideModal() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, ""); props.getPostedJobs(props.user.id, page, "") }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "", "", ""); props.getPostedJobs(props.user.id, page, "") }, 300);
         sessionStorage.removeItem("showPreview" + props.index);
         setShowPreview(false);
     }
@@ -507,7 +486,7 @@ const ApplicantRow = (props) => {
 
     const refresh = () => {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPostedJobs(props.user.id, page, "Resume Review") }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", ""); props.getPostedJobs(props.user.id, page, "Resume Review") }, 300);
         props.updateViewStatus({ "candidate_id": applicants[current].id });
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);

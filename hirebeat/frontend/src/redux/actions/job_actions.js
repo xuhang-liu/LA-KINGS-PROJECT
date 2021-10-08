@@ -41,9 +41,9 @@ export const addNewJob = (data) => (dispatch, getState) => {
     );
 }
 
-export const getAllJobs = (userId, page, subpage) => (dispatch, getState) => {
+export const getAllJobs = (userId, page, subpage, status, sort) => (dispatch, getState) => {
   axios
-    .get(`get-all-jobs?userId=${userId}&page=${page}&subpage=${subpage}`)
+    .get(`get-all-jobs?userId=${userId}&page=${page}&subpage=${subpage}&status=${status}&sort=${sort}`)
     .then((res) => {
       dispatch({
         type: GET_ALL_JOBS,

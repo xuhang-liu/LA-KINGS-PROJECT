@@ -20,7 +20,7 @@ export class NewCandidateAdditionForm extends Component {
     }
 
     closeForm = () => {
-        this.props.getAllJobs(this.props.user.id, 1, "");
+        this.props.getAllJobs(this.props.user.id, 1, "", "", "");
         this.props.hideAdditionForm();
     };
 
@@ -84,7 +84,6 @@ export class NewCandidateAdditionForm extends Component {
         let nameElements = document.getElementsByClassName("candidate-name");
         let emailElements = document.getElementsByClassName("candidate-email");
         let candidates = this.state.candidates;
-        // todo bug below
         for (let i = 0; i < nameElements.length; i++) {
             let candidate = candidates[i];
             candidate.name = nameElements[i].value;
@@ -93,6 +92,9 @@ export class NewCandidateAdditionForm extends Component {
             }
             let value = emailElements[i].value;
             candidate.email = value.toLowerCase();
+            if (candidate.name?.length <= 0 || candidate.email?.length <= 0) {
+                return this.emptyError();
+            }
         }
 
         for (let i = 0; i < this.state.candidates.length; i++) {
@@ -109,11 +111,11 @@ export class NewCandidateAdditionForm extends Component {
                     resume: resume.split(",")[1], // here to remove encoded header of resume
                     linkedinurl: "",
                 };
-                setTimeout(() => this.props.addNewApplyCandidateByCv(data), 1000);
+                this.props.addNewApplyCandidateByCv(data);
             });
 
         }
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id, 1, ""); this.setState({candidates: []}); this.uploadSuccess()}, 500);
+        setTimeout(() => {this.props.getAllJobs(this.props.user.id, 1, "", "", "");; this.setState({candidates: []}); this.uploadSuccess(); this.props.hideAdditionForm();}, 500);
     };
 
     onUploadError = (err) => {
@@ -258,6 +260,18 @@ export class NewCandidateAdditionForm extends Component {
         });
     };
 
+    emptyError = () => {
+        confirmAlert({
+            title: "Invalid Formant",
+            message: "The candidate name or email can't be empty",
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
+        });
+    }
+
     deleteResume = (index) => {
         let cache = this.state.candidates;
         cache.splice(index, 1);
@@ -286,7 +300,7 @@ export class NewCandidateAdditionForm extends Component {
                 <div>
                     {this.state.resumeSelected ?
                         <div style={{ marginTop: "2rem", marginLeft: "8%", marginRight: "8%" }}>
-                            <div className="row">
+                            {/*<div className="row">
                                 <div className="mt-3 mb-3">
                                     <button type="button" className="default-btn resume-upload" onClick={this.uploadResume}>
                                         <i className="bx bx-cloud-upload bx-sm"></i>
@@ -301,7 +315,7 @@ export class NewCandidateAdditionForm extends Component {
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*/}
                             <form onSubmit={this.handleUpload}>
                                 <div className="form-row">
                                     <div className="form-group col-2">
@@ -343,6 +357,15 @@ export class NewCandidateAdditionForm extends Component {
                                 <div className="form-row justify-items" style={{ marginBottom: "1rem" }}>
                                     <div className="d-flex justify-items">
                                         <button
+                                            type="submit"
+                                            className="default-btn1"
+                                            style={{ marginBottom: "1.5%", paddingLeft: "25px" }}
+                                        >
+                                            Confirm
+                                        </button>
+                                    </div>
+                                    <div className="d-flex justify-items" style={{marginLeft: "2rem"}}>
+                                        <button
                                             type="button"
                                             className="default-btn1"
                                             style={{ paddingLeft: "25px" }}
@@ -350,15 +373,6 @@ export class NewCandidateAdditionForm extends Component {
                                         >
                                             Cancel
                                             <span></span>
-                                        </button>
-                                    </div>
-                                    <div className="d-flex justify-items" style={{marginLeft: "2rem"}}>
-                                        <button
-                                            type="submit"
-                                            className="default-btn1"
-                                            style={{ marginBottom: "1.5%", paddingLeft: "25px" }}
-                                        >
-                                            + Add
                                         </button>
                                     </div>
                                 </div>
