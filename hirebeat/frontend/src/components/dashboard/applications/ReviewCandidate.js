@@ -253,19 +253,7 @@ const ReviewCandidate = (props) => {
 
     return (
         <div className="container-fluid ml-5 pb-5" style={{ width: '92%' }}>
-            <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-chevron-left"></i><span className="ml-2">{props.currentStage}</span></b></h3></div>
-            <div className="col d-flex align-items-center pl-0">
-                <button
-                    type="button"
-                    className="panel-button"
-                    onClick={props.onHide}
-                    style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                >
-                    <div className="center-items back-to-text">
-                        <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to List</p>
-                    </div>
-                </button>
-            </div>
+                <div style={{ marginBottom: "30px" }}><h3 onClick={props.onHide} style={{cursor: "pointer"}}><b><i className="bx-fw bx bx-chevron-left" style={{display: "inherit"}}></i><span className="ml-2" style={{verticalAlign: "middle"}}>{props.currentStage}</span></b></h3></div>
             <div className="row" style={{ display: "flex" }}>
                 <div className="col-3 pl-3 mt-3 pr-2">
                     <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", height: "35%" }}>
