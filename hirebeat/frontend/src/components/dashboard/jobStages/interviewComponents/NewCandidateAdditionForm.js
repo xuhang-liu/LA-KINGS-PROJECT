@@ -273,7 +273,7 @@ export class NewCandidateAdditionForm extends Component {
     }
 
     deleteResume = (index) => {
-        let cache = this.state.candidates;
+        let cache = [...this.state.candidates];
         cache.splice(index, 1);
         this.setState({candidates: cache});
     }
@@ -341,14 +341,14 @@ export class NewCandidateAdditionForm extends Component {
                                                 <label className="candidate-txt2">{c.resumeName}</label>
                                             </div>
                                             <div className="form-group col-3">
-                                                <input type="text" name="name2" defaultValue={c.name} className="form-control candidate-name candidate-txt2" />
+                                                <input type="text" name="name2" key={c.name} defaultValue={c.name} className="form-control candidate-name candidate-txt2" />
                                             </div>
                                             <div className="form-group col-3">
-                                                <input type="email" name="email2" defaultValue={c.email} className="form-control candidate-email candidate-txt2" />
+                                                <input type="email" name="email2" key={c.email} defaultValue={c.email} className="form-control candidate-email candidate-txt2" />
                                             </div>
                                             <div className="form-group col-1 align-center">
                                                 <i className="bx bx-trash bx-sm" style={{color: "#F36F67"}}></i>
-                                                <span className="candidate-txt2" style={{ cursor: "pointer", color: "#F36F67" }} onClick={this.deleteAlert}>Delete</span>
+                                                <span className="candidate-txt2" style={{ cursor: "pointer", color: "#F36F67" }} onClick={() => this.deleteAlert(index)}>Delete</span>
                                             </div>
                                         </div>
                                     )
