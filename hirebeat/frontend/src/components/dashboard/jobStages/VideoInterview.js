@@ -11,10 +11,10 @@ import EditQuestion from "./interviewComponents/EditQuestion"
 import ReactPaginate from 'react-paginate';
 import MoveForm from "./interviewComponents/MoveForm";
 
-export function VideoInterview(props){
-//    useEffect(() => {
-//        props.getPostedJobs(props.user.id, 1, "Video Interview");
-//    }, [])
+export function VideoInterview(props) {
+    //    useEffect(() => {
+    //        props.getPostedJobs(props.user.id, 1, "Video Interview");
+    //    }, [])
 
     var curlimit = 0;
     const [showQEditForm, setShowQEditForm] = useState(false);
@@ -183,7 +183,7 @@ export function VideoInterview(props){
 
         // check question
         else if (props.questions.length <= 0) {
-             setShowNoQuestionAlert(true);
+            setShowNoQuestionAlert(true);
         }
         else {
             setShowInviteAlert(true);
@@ -342,7 +342,7 @@ export function VideoInterview(props){
                 let candidate = JSON.parse(candidates[i].value);
                 names.push(candidate.first_name + " " + candidate.last_name);
                 emails.push(candidate.email.toLowerCase());
-                invitedCandidates.push(candidate.id);
+                invitedCandidates.push(candidate.apply_candidate_id);
                 candidateCount += 1;
             }
         }
@@ -366,171 +366,172 @@ export function VideoInterview(props){
 
     return (
         <React.Fragment>
-                <div className="container-fluid">
-                    <div className="container-fluid mt-4 pt-3 pb-3">
-                        <div className="row">
-                            <div className="col-2 interview-center">
-                                {/* Edit Questions */}
-                                <MyModal80
-                                    show={showQEditForm}
-                                    onHide={() => { setShowQEditForm(false) }}
-                                >
-                                    <EditQuestion
-                                        jobTitle={props.jobTitle}
-                                        positionId={props.positionId}
-                                        questions={props.questions}
-                                        hideQEditForm={() => { setShowQEditForm(false) }}
-                                        getPostedJobs={props.getPostedJobs}
-                                        position={props.position}
-                                    />
-                                </MyModal80>
-                            </div>
+            <div className="container-fluid">
+                <div className="container-fluid mt-4 pt-3 pb-3">
+                    <div className="row">
+                        <div className="col-2 interview-center">
+                            {/* Edit Questions */}
+                            <MyModal80
+                                show={showQEditForm}
+                                onHide={() => { setShowQEditForm(false) }}
+                            >
+                                <EditQuestion
+                                    jobTitle={props.jobTitle}
+                                    positionId={props.positionId}
+                                    questions={props.questions}
+                                    hideQEditForm={() => { setShowQEditForm(false) }}
+                                    getPostedJobs={props.getPostedJobs}
+                                    position={props.position}
+                                />
+                            </MyModal80>
                         </div>
-                        <div className="row" style={{paddingLeft: "15px", paddingRight: "15px"}}>
-                            <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
-                                <label style={{position:"absolute", left:"3.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
-                                <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
-                            </div>
-                            {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
-                                <div className="col-2 interview-txt7 mt-2" style={{ textAlign: "right" }}>
-                                    <button
-                                        type="button"
-                                        className="read-more"
-                                        style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500" }}
-                                        onClick={editQuestions}
-                                    >
-                                        <i className="bx bx-info-circle pr-1"></i> Edit Questions
-                                    </button>
-                                </div>
-                            }
-                            <div className="col-2 interview-txt7 mt-2" style={{ textAlign: "left" }}>
+                    </div>
+                    <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
+                        <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
+                            <label style={{ position: "absolute", left: "3.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
+                            <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
+                        </div>
+                        {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
+                            <div className="col-2 interview-txt7 mt-2" style={{ textAlign: "right" }}>
                                 <button
-                                    onClick={() => { previewEmail(props.jobTitle, props.companyName, expire.value) }}
                                     type="button"
                                     className="read-more"
                                     style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500" }}
+                                    onClick={editQuestions}
                                 >
-                                    <i style={{ color: "#56a3fa" }} className="bx bx-bullseye pr-1"></i> Preview Email
+                                    <i className="bx bx-info-circle pr-1"></i> Edit Questions
                                 </button>
                             </div>
-                            {props.totalPage > 1 &&
-                                <div className="ml-auto">
-                                    <ReactPaginate
-                                          previousLabel={'< Prev'}
-                                          nextLabel={'Next >'}
-                                          breakLabel={'...'}
-                                          breakClassName={'break-me'}
-                                          pageCount={props.totalPage}
-                                          marginPagesDisplayed={1}
-                                          pageRangeDisplayed={5}
-                                          onPageChange={handlePageClick}
-                                          containerClassName={'pagination3'}
-                                          activeClassName={'active'}
-                                          forcePage={sessionStorage.getItem("videoInterviewPage")?parseInt(sessionStorage.getItem("videoInterviewPage")):selectedPage}
-                                    />
-                                </div>
-                            }
-                        </div>
-                        <div className="container-fluid chart-bg1" style={{ marginTop: "2%" }}>
-                            <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
-                                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
-                                    <div style={{ marginLeft: "1rem", display: "flex" }}>
-                                        <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
-                                    </div>
-                                }
-                                <div className="col-3">
-                                    <span className="dot" style={{ background: "none", visibility: "hidden" }}></span>
-                                    Name
-                                </div>
-                                {/*<div className="col-2">Email</div>*/}
-                                <div className="col-2">Invited On</div>
-                                <div className="col-3">
-                                    <div className="row">
-                                        <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Video</div>
-                                        <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles} />
-                                    </div>
-                                </div>
-                                {/*<div className="col-1">Action</div>*/}
-                                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
-                                    <div className="col-1">Reinvite</div>
-                                }
-                                {props.profile.is_subreviwer &&
-                                    <div className="row">
-                                        <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Status</div>
-                                        <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
-                                    </div>
-                                }
-                            </div>
-                            <div style={{ marginBottom: "0.5rem" }}>
-                                <ApplicantList
-                                    filter={props.filter}
-                                    getPJobs={props.getPJobs}
-                                    profile={props.profile}
-                                    recordTime={props.recordTime}
-                                    interviewResume={props.interviewResume}
-                                    getResumeURL={props.getResumeURL}
-                                    resumeURL={props.resumeURL}
-                                    isClosed={props.isClosed}
-                                    keyWords={keyWords}
-                                    category={category}
-                                    category2={category2}
-                                    category3={category3}
-                                    applicants={props.applicants}
-                                    getApplicantsVideos={props.getApplicantsVideos}
-                                    getApplicantsInfo={props.getApplicantsInfo}
-                                    getRecordStatus={props.getRecordStatus}
-                                    dataLoaded={props.dataLoaded}
-                                    int_ques={props.int_ques}
-                                    id_candidate={props.id_candidate}
-                                    username_candidate={props.username_candidate}
-                                    email_candidate={props.email_candidate}
-                                    phone_candidate={props.phone_candidate}
-                                    location_candidate={props.location_candidate}
-                                    resendInvitation={props.resendInvitation}
-                                    companyName={props.companyName}
-                                    jobTitle={props.jobTitle}
-                                    updateCommentStatus={props.updateCommentStatus}
-                                    updateViewStatus={props.updateViewStatus}
-                                    subreviewerUpdateComment={props.subreviewerUpdateComment}
-                                    getReviewNote={props.getReviewNote}
-                                    getReviewerEvaluation={props.getReviewerEvaluation}
-                                    getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
-                                    user={props.user}
-                                    currentStage={currentStage}
-                                    getPostedJobs={props.getPostedJobs}
-                                    getAllJobs={props.getAllJobs}
-                                    reviewer_type={props.reviewer_type}
-                                />
-                            </div>
+                        }
+                        <div className="col-2 interview-txt7 mt-2" style={{ textAlign: "left" }}>
+                            <button
+                                onClick={() => { previewEmail(props.jobTitle, props.companyName, expire.value) }}
+                                type="button"
+                                className="read-more"
+                                style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500" }}
+                            >
+                                <i style={{ color: "#56a3fa" }} className="bx bx-bullseye pr-1"></i> Preview Email
+                            </button>
                         </div>
                         {props.totalPage > 1 &&
-                            <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                            <div className="ml-auto">
                                 <ReactPaginate
-                                      previousLabel={'< Prev'}
-                                      nextLabel={'Next >'}
-                                      breakLabel={'...'}
-                                      breakClassName={'break-me'}
-                                      pageCount={props.totalPage}
-                                      marginPagesDisplayed={1}
-                                      pageRangeDisplayed={5}
-                                      onPageChange={handlePageClick}
-                                      containerClassName={'pagination3'}
-                                      activeClassName={'active'}
-                                      forcePage={sessionStorage.getItem("videoInterviewPage")?parseInt(sessionStorage.getItem("videoInterviewPage")):selectedPage}
+                                    previousLabel={'< Prev'}
+                                    nextLabel={'Next >'}
+                                    breakLabel={'...'}
+                                    breakClassName={'break-me'}
+                                    pageCount={props.totalPage}
+                                    marginPagesDisplayed={1}
+                                    pageRangeDisplayed={5}
+                                    onPageChange={handlePageClick}
+                                    containerClassName={'pagination3'}
+                                    activeClassName={'active'}
+                                    forcePage={sessionStorage.getItem("videoInterviewPage") ? parseInt(sessionStorage.getItem("videoInterviewPage")) : selectedPage}
                                 />
                             </div>
                         }
                     </div>
-                    {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
-                        <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
-                            <button
-                                className="default-btn interview-txt6"
-                                style={{ paddingLeft: "25px", backgroundColor: "#67A3F3", paddingTop: "8px", paddingBottom: "8px" }}
-                                onClick={handleInvitation}
-                            >
-                                Invite to Video Interview
-                                <span></span>
-                            </button>
+                    <div className="container-fluid chart-bg1" style={{ marginTop: "2%" }}>
+                        <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
+                            {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
+                                <div style={{ marginLeft: "1rem", display: "flex" }}>
+                                    <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
+                                </div>
+                            }
+                            <div className="col-3">
+                                <span className="dot" style={{ background: "none", visibility: "hidden" }}></span>
+                                Name
+                            </div>
+                            {/*<div className="col-2">Email</div>*/}
+                            <div className="col-2">Invited On</div>
+                            <div className="col-3">
+                                <div className="row">
+                                    <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Video</div>
+                                    <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles} />
+                                </div>
+                            </div>
+                            {/*<div className="col-1">Action</div>*/}
+                            {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
+                                <div className="col-1">Reinvite</div>
+                            }
+                            {props.profile.is_subreviwer &&
+                                <div className="row">
+                                    <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Status</div>
+                                    <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
+                                </div>
+                            }
+                        </div>
+                        <div style={{ marginBottom: "0.5rem" }}>
+                            <ApplicantList
+                                filter={props.filter}
+                                getPJobs={props.getPJobs}
+                                profile={props.profile}
+                                recordTime={props.recordTime}
+                                interviewResume={props.interviewResume}
+                                getResumeURL={props.getResumeURL}
+                                resumeURL={props.resumeURL}
+                                isClosed={props.isClosed}
+                                keyWords={keyWords}
+                                category={category}
+                                category2={category2}
+                                category3={category3}
+                                applicants={props.applicants}
+                                getApplicantsVideos={props.getApplicantsVideos}
+                                getApplicantsInfo={props.getApplicantsInfo}
+                                getRecordStatus={props.getRecordStatus}
+                                dataLoaded={props.dataLoaded}
+                                int_ques={props.int_ques}
+                                id_candidate={props.id_candidate}
+                                username_candidate={props.username_candidate}
+                                email_candidate={props.email_candidate}
+                                phone_candidate={props.phone_candidate}
+                                location_candidate={props.location_candidate}
+                                resendInvitation={props.resendInvitation}
+                                companyName={props.companyName}
+                                jobTitle={props.jobTitle}
+                                updateCommentStatus={props.updateCommentStatus}
+                                updateViewStatus={props.updateViewStatus}
+                                subreviewerUpdateComment={props.subreviewerUpdateComment}
+                                getReviewNote={props.getReviewNote}
+                                getReviewerEvaluation={props.getReviewerEvaluation}
+                                getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                                user={props.user}
+                                currentStage={currentStage}
+                                getPostedJobs={props.getPostedJobs}
+                                getAllJobs={props.getAllJobs}
+                                reviewer_type={props.reviewer_type}
+                            />
+                        </div>
+                    </div>
+                    {props.totalPage > 1 &&
+                        <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
+                            <ReactPaginate
+                                previousLabel={'< Prev'}
+                                nextLabel={'Next >'}
+                                breakLabel={'...'}
+                                breakClassName={'break-me'}
+                                pageCount={props.totalPage}
+                                marginPagesDisplayed={1}
+                                pageRangeDisplayed={5}
+                                onPageChange={handlePageClick}
+                                containerClassName={'pagination3'}
+                                activeClassName={'active'}
+                                forcePage={sessionStorage.getItem("videoInterviewPage") ? parseInt(sessionStorage.getItem("videoInterviewPage")) : selectedPage}
+                            />
+                        </div>
+                    }
+                </div>
+                {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
+                    <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
+                        <button
+                            className="default-btn1 interview-txt6"
+                            style={{ paddingLeft: "25px", backgroundColor: "#67A3F3", paddingTop: "8px", paddingBottom: "8px" }}
+                            onClick={handleInvitation}
+                        >
+                            Invite to Video Interview
+                            <span></span>
+                        </button>
+                        {(props.gh_current_stage_id == "" || props.gh_current_stage_id == null) ?
                             <button
                                 className="default-btn"
                                 style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
@@ -538,7 +539,16 @@ export function VideoInterview(props){
                             >
                                 Move All
                                 <span></span>
+                            </button> :
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                onClick={openMoveForm}
+                            >
+                                Greenhouse
+                                <span></span>
                             </button>
+                            }
                             <button
                                 className="default-btn"
                                 onClick={rejectCandidates}

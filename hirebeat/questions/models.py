@@ -108,6 +108,7 @@ class InvitedCandidates(models.Model):
     transferable_skills_occurrence = ArrayField(models.IntegerField(default=0), blank=True, null=True)
     current_stage = models.CharField(max_length=100, default="Video Interview")
     is_active = models.BooleanField(default=True)
+    gh_applications_id = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name + '|' + self.email
