@@ -231,7 +231,7 @@ export class AllCandidates extends Component {
                                     </span>
                                 </div>
                                 <div>
-                                    {!this.props.profile.is_subreviwer &&
+                                    {(!this.props.profile.is_subreviwer && (this.props.curJob.job_details.gh_current_stage_id == "" || this.props.curJob.job_details.gh_current_stage_id == null)) &&
                                         <div>
                                             {!this.props.isClosed &&
                                                 <button

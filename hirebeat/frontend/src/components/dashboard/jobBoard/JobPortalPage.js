@@ -7,7 +7,7 @@ import { LiveInterview } from "../jobStages/LiveInterview";
 import ShortList from "./../jobStages/ShortList";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-//import { updateInviteStatus, updateCandidateViewedStatus } from "./../../../redux/actions/question_actions";
+import { updateInviteStatus, updateCandidateViewedStatus } from "./../../../redux/actions/job_actions";
 import {
     getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation, closePosition, deletePosition, getResumeURL,
     addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews
@@ -79,13 +79,17 @@ export class JobPortalPage extends Component {
         });
     };
     renderResumeScreen = () => {
-        sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "resumeScreen");
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
-        this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True");
-        this.props.getPJobs();
-        this.setState({
-            portalSubpage: "resumeScreen",
-        });
+        if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null){
+            alert("This is a integration job.")
+        }else{
+            sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "resumeScreen");
+            let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
+            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True");
+            this.props.getPJobs();
+            this.setState({
+                portalSubpage: "resumeScreen",
+            });
+        }
     };
     renderVideoInterview = () => {
         sessionStorage.setItem('selectedSubpage', "Video Interview");
@@ -97,22 +101,30 @@ export class JobPortalPage extends Component {
         });
     };
     renderLiveInterview = () => {
-        sessionStorage.setItem('selectedSubpage', "Live Interview");
-        sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "liveInterview");
-        let page = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
-        this.props.getPostedJobs(this.props.user.id, page, "Live Interview");
-        this.setState({
-            portalSubpage: "liveInterview",
-        });
+        if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null){
+            alert("This is a integration job.")
+        }else{
+            sessionStorage.setItem('selectedSubpage', "Live Interview");
+            sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "liveInterview");
+            let page = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
+            this.props.getPostedJobs(this.props.user.id, page, "Live Interview");
+            this.setState({
+                portalSubpage: "liveInterview",
+            });
+        }
     };
     renderShortList = () => {
-        sessionStorage.setItem('selectedSubpage', "Short List");
-        sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "shortList");
-        let shortListPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
-        this.props.getPostedJobs(this.props.user.id, shortListPage, "Short List");
-        this.setState({
-            portalSubpage: "shortList",
-        });
+        if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null){
+            alert("This is a integration job.")
+        }else{
+            sessionStorage.setItem('selectedSubpage', "Short List");
+            sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "shortList");
+            let shortListPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
+            this.props.getPostedJobs(this.props.user.id, shortListPage, "Short List");
+            this.setState({
+                portalSubpage: "shortList",
+            });
+        }
     };
     renderPipeline = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "pipeline");
@@ -218,6 +230,7 @@ export class JobPortalPage extends Component {
                     updateInviteStatus={this.props.updateInviteStatus}
                     jobsId={this.props.job.job_details.id}
                     getAllJobs={this.props.getAllJobs}
+                    gh_current_stage_id = {this.props.job.job_details.gh_current_stage_id}
                 />;
             case "liveInterview":
                 return <LiveInterview
@@ -338,7 +351,7 @@ export class JobPortalPage extends Component {
                                 }
                             </div>
                             <div className="col-2">
-                                {this.state.reviewerStage == "resumeScreen"  || this.state.reviewerStage == "" ?
+                                {(this.state.reviewerStage == "resumeScreen"  || this.state.reviewerStage == "") && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "resumeScreen" ?
                                             <p onClick={this.renderResumeScreen} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p> :
@@ -360,7 +373,7 @@ export class JobPortalPage extends Component {
                                 }
                             </div>
                             <div className="col-2">
-                                {this.state.reviewerStage == "liveInterview"  || this.state.reviewerStage == "" ?
+                                {(this.state.reviewerStage == "liveInterview"  || this.state.reviewerStage == "") && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "liveInterview" ?
                                             <p onClick={this.renderLiveInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
@@ -371,7 +384,7 @@ export class JobPortalPage extends Component {
                                 }
                             </div>
                             <div className="col-2">
-                                {this.state.reviewerStage == "shortList"  || this.state.reviewerStage == "" ?
+                                {(this.state.reviewerStage == "shortList"  || this.state.reviewerStage == "") && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "shortList" ?
                                             <p onClick={this.renderShortList} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Short List</p> :
@@ -403,7 +416,8 @@ const mapStateToProps = (state) => ({
 
 export default withRouter(connect(mapStateToProps, {
     closePosition, deletePosition, getResumeURL, addSubReviewer,
-    removeSubReviewer, moveCandidateToInterview, sendInterviews, getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation
+    removeSubReviewer, moveCandidateToInterview, sendInterviews, getReviewNote, getReviewerEvaluation, getCurrentReviewerEvaluation,
+    updateInviteStatus, updateCandidateViewedStatus
 })(
     JobPortalPage
 ));

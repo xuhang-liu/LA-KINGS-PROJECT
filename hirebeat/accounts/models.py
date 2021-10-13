@@ -84,6 +84,7 @@ class Profile(models.Model):
     ])
     viewed_tutorial = models.BooleanField(default=False)
     merge_public_token = models.TextField(null=True, blank=True)
+    ats_api_token = models.TextField(null=True, blank=True)
     is_freetrial = models.BooleanField(default=True)
     datejoined = models.DateTimeField(auto_now_add=True)
     def __str__(self):

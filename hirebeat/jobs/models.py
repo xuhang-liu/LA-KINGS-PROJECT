@@ -27,6 +27,7 @@ class Jobs(models.Model):
     eeo_req = models.CharField(max_length=10, default="1") # 0 means disabled, 1 means enabled
     eeo_ques_req = models.CharField(max_length=10, default="1") # 0 means disabled, 1 means enabled
     skills = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
+    gh_current_stage_id = models.TextField(null=True, blank=True)
 
 
 class ApplyCandidates(models.Model):

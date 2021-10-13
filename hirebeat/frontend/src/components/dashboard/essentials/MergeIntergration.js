@@ -14,6 +14,8 @@ const MergeIntergration = (props) => {
     const [stage, setStage] = useState(null);
     const [options1, setOptions1] = useState([]);
     const [options2, setOptions2] = useState([]);
+    const [int_type, setInt_type] = useState("");
+    const [greenhouse_api, setGreenhouse_api] = useState("")
 
     useEffect(() => {
         if (props.profile.merge_public_token != "" && props.profile.merge_public_token != null) {
@@ -22,6 +24,9 @@ const MergeIntergration = (props) => {
                 "user_id": props.user.id
             };
             props.sendMergeApiRequest(data);
+        }
+        if (props.profile.ats_api_token != "" && props.profile.ats_api_token != null){
+            setGreenhouse_api(props.profile.ats_api_token);
         }
     }, []);
 
@@ -70,6 +75,10 @@ const MergeIntergration = (props) => {
     const onFilter2 = (stage) => {
         setStage(stage)
     };
+
+    const onChange = (e) => {
+        setGreenhouse_api(e.target.value)
+      };
 
     const onSuccess = useCallback((public_token) => {
         // Send public_token to server (Step 3)
@@ -126,6 +135,7 @@ const MergeIntergration = (props) => {
                         }
                     ]
                 });
+                setInt_type(res.data?.integration_type);
                 res.data?.jobs_api_response?.map((j) => {
                     setOptions1(options1 => [...options1, { value: j?.id, label: j?.name }]);
                 })
@@ -148,13 +158,24 @@ const MergeIntergration = (props) => {
                     }
                 ]
             });
+        } else if (greenhouse_api == "" || greenhouse_api == null){
+            confirmAlert({
+                title: "Api Key Missing!",
+                message: "Please copy your Greenhouse API key again.",
+                buttons: [
+                    {
+                        label: 'OK'
+                    }
+                ]
+            });
         } else {
             let data = {
                 "user_id": props.user.id,
                 "merge_job_id": job['value'],
                 "merge_stage_id": stage['value'],
                 "merge_job_title": job['label'],
-                "merge_stage_title": stage['label']
+                "merge_stage_title": stage['label'],
+                "greenhouse_api_key": greenhouse_api,
             }
             props.addCandFromMerge(data);
             confirmAlert({
@@ -189,7 +210,7 @@ const MergeIntergration = (props) => {
                                 </button>
                             </div>
                             <div className="col-2">
-                                <p className="pt-4" style={{ fontSize: "0.8rem", color: "#979797", fontWeight: "500"}}>Powered by Merge</p>
+                                <p className="pt-4" style={{ fontSize: "0.8rem", color: "#979797", fontWeight: "500" }}>Powered by Merge</p>
                             </div>
                         </div>
                     </div>
@@ -218,6 +239,28 @@ const MergeIntergration = (props) => {
                                 <div className="col-4" style={{ zIndex: "9998", marginTop: "1.5rem" }}>
                                     <Select value={stage} onChange={onFilter2} options={options2} styles={customStyles} placeholder="Stage" />
                                 </div>
+                                {(int_type == "Greenhouse" && (props.profile.ats_api_token == "" || props.profile.ats_api_token == null)) &&
+                                    <div className="row ml-3" style={{ marginTop: "2rem" }}>
+                                        <div className="form-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="greenhouse"
+                                                placeholder="Enter Greenhouse API Key"
+                                                onChange={onChange}
+                                                value={greenhouse_api}
+                                                style={{
+                                                    width: "20rem",
+                                                    fontFamily: "Avenir Next, Segoe UI",
+                                                    background: "#FFFFFF",
+                                                    border: "0.5px solid #E5E5E5",
+                                                    borderRadius: "0.5rem",
+                                                    paddingLeft: "1rem",
+                                                    boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                                }}
+                                                required />
+                                        </div>
+                                    </div>}
                                 <div className="row ml-1" style={{ marginTop: "2rem" }}>
                                     <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={createCanFromMerge}>
                                         Confirm
