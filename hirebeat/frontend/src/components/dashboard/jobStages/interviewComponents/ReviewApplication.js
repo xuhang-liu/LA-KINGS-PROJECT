@@ -198,19 +198,7 @@ export class ReviewApplication extends Component {
         const resumeScore = Math.max(interviewResume.result_rate, candidateInfo.result_rate);
         return (
             <div className="container-fluid ml-5 mb-5" style={{ width: '95%' }}>
-                <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-chevron-left"></i><span className="ml-2">{this.props.currentStage}</span></b></h3></div>
-                <div className="col d-flex align-items-center pl-0">
-                    <button
-                        type="button"
-                        className="panel-button"
-                        onClick={this.props.hide}
-                        style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                    >
-                        <div className="center-items back-to-text">
-                            <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to List</p>
-                        </div>
-                    </button>
-                </div>
+                <div style={{ marginBottom: "30px" }}><h3 onClick={this.props.hide} style={{cursor: "pointer"}}><b><i className="bx-fw bx bx-chevron-left" style={{display: "inherit"}}></i><span className="ml-2" style={{verticalAlign: "middle"}}>{this.props.currentStage}</span></b></h3></div>
                 <div className="row" style={{ display: "flex" }}>
                     <div className="col-3 pl-3 mt-3 pr-2">
                         <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", height: "25%", minHeight: "14rem" }}>

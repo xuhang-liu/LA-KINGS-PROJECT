@@ -149,11 +149,11 @@ def get_all_jobs(request):
         applicants = list(applicants.values())
         # sort by score or id
         if has_resume_sort:
-            resume_sort = True if request.GET.get("sort") == "True" else False
+            resume_sort = True if (request.GET.get("sort") == "True" or request.GET.get("sort") == "true") else False
             if resume_sort:
-                applicants.sort(key=lambda a: -int(a["result_rate"]))
+                applicants.sort(key=lambda a: (-int(a["result_rate"]), -a["id"]))
             else:
-                applicants.sort(key=lambda a: int(a["result_rate"]))
+                applicants.sort(key=lambda a: (int(a["result_rate"]), -a["id"]))
         else:
             applicants.sort(key=lambda a: -a["id"])
         total_records = len(applicants)
@@ -171,12 +171,11 @@ def get_all_jobs(request):
             if len(reviewerEvaluation) > 0:
                 applicant["reviewer_review_status"] = True
 
-        un_view = True if ApplyCandidates.objects.filter(
-            jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
-        all_invited = True if ApplyCandidates.objects.filter(
-            jobs_id=job_id, is_invited=1).count() == len(applicants) else False
-        questions = list(InterviewQuestions.objects.filter(
-            positions_id=positions_id).values())
+        un_view = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
+        all_invited = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_invited=1).count() == len(applicants) else False
+        questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
+        screen_questions = list(JobQuestion.objects.filter(jobs_id=job_id).values())
+        jobs[i]["screen_questions"] = screen_questions
         position = Positions.objects.filter(id=positions_id).values()[0]
         job_details = {
             "job_details": jobs[i],
@@ -212,6 +211,7 @@ def update_job(request):
     job_post = request.data['job_post']
     eeo_ques_req = request.data['eeo_ques_req']
     skills = request.data['skills']
+    questions = request.data["questions"]
 
     job = Jobs.objects.get(id=id)
     job.job_title = job_title
@@ -230,6 +230,15 @@ def update_job(request):
     # save update to db
     job.save()
 
+    # delete old screen questions
+    JobQuestion.objects.filter(jobs_id=id).delete()
+    # add job screening questions
+    for question in questions:
+        answer_type = "Numeric" if question["responseType"] == "Numeric" else "boolean"
+        answer = question["numAns"] if question["responseType"] == "Numeric" else question["ans"]
+        is_must = True if question["isMustHave"] == "true" else False
+        JobQuestion.objects.create(jobs=job, question=question["question"], answer_type=answer_type, answer=answer,
+                                   is_must=is_must)
     # delete or add to zrjobs.xml
     # if job_post:
     #     add_zr_feed_xml(id)

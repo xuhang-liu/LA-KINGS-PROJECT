@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MyModal80, MyModalShare } from "./../DashboardComponents";
+import { MyModal80, MyModalShare2 } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 //import { ResumeEva } from "./interviewComponents/ResumeEva";
 import { ApplicantList } from "./interviewComponents/ApplicantList";
@@ -548,52 +548,52 @@ export function VideoInterview(props) {
                                 Greenhouse
                                 <span></span>
                             </button>
-                        }
-                        <button
-                            className="default-btn"
-                            onClick={rejectCandidates}
-                            style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                        >
-                            Reject All
-                            <span></span>
-                        </button>
-                    </div>
-                }
-                <MoveForm
-                    showMoveForm={showMoveForm}
-                    hideMoveForm={hideMoveForm}
-                    currentStage={currentStage}
-                    setCurrentStage={setCurrentStage}
-                    nextStage={nextStage}
-                    setNextStage={setNextStage}
-                    moveCandidates={moveCandidates}
-                />
-                {/* No question alert form */}
-                <MyModalShare show={showNoQuestionAlert} onHide={() => setShowNoQuestionAlert(false)}>
-                    <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
-                        <h3 className="interview-h3">Video Interview Invitation</h3>
-                        <p className="interview-p">Please note that select candidate(s) <span style={{ color: "#67A3F3" }}>will receive an email invitation to record their responses.</span></p>
-                        <p className="interview-p">Looks like <span style={{ color: "#67A3F3" }}>you haven&apos;t set up the interview questions yet.</span></p>
-                        <p className="interview-p">Would you like to continue to configure interview questions first?</p>
-                        <div className="row d-flex justify-content-center">
-                            <button onClick={() => { setShowQEditForm(true); setShowNoQuestionAlert(false); }} className="default-btn1" style={{ paddingLeft: "25px", float: "right", marginTop: "2rem", marginBottom: '2rem' }}>confirm</button>
-                            <button onClick={() => setShowNoQuestionAlert(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem", marginTop: "2rem", marginBottom: '2rem' }}>cancel</button>
+                            }
+                            <button
+                                className="default-btn"
+                                onClick={rejectCandidates}
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                            >
+                                Reject All
+                                <span></span>
+                            </button>
                         </div>
-                    </div>
-                </MyModalShare>
-                {/* Invite alert form */}
-                <MyModalShare show={showInviteAlert} onHide={() => setShowInviteAlert(false)}>
-                    <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", width: "80%", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
-                        <h3 className="interview-h3">Video Interview Invitation</h3>
-                        <p className="interview-p">Please note that select candidate(s) <span style={{ color: "#67A3F3" }}>will receive an email invitation to record their responses.</span></p>
-                        <p className="interview-p">Do you confirm to proceed and send the interview invitation?</p>
-                        <div className="row d-flex justify-content-center">
-                            <button onClick={() => { sendVideoInterview(); setShowInviteAlert(false) }} className="default-btn1" style={{ paddingLeft: "25px", float: "right", marginTop: "2rem", marginBottom: '2rem' }}>confirm</button>
-                            <button onClick={() => setShowInviteAlert(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem", marginTop: "2rem", marginBottom: '2rem' }}>cancel</button>
+                    }
+                    <MoveForm
+                        showMoveForm={showMoveForm}
+                        hideMoveForm={hideMoveForm}
+                        currentStage={currentStage}
+                        setCurrentStage={setCurrentStage}
+                        nextStage={nextStage}
+                        setNextStage={setNextStage}
+                        moveCandidates={moveCandidates}
+                    />
+                    {/* No question alert form */}
+                    <MyModalShare2 show={showNoQuestionAlert} onHide={() => setShowNoQuestionAlert(false)}>
+                        <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                            <h3 className="interview-h3">Video Interview Invitation</h3>
+                            <p className="interview-p">Please note that select candidate(s) <span style={{color: "#67A3F3"}}>will receive an email invitation to record their responses.</span></p>
+                            <p className="interview-p">Looks like <span style={{color: "#67A3F3"}}>you haven&apos;t set up the interview questions yet.</span></p>
+                            <p className="interview-p">Would you like to continue to configure interview questions first?</p>
+                            <div className="row d-flex justify-content-center">
+                                <button onClick={() => { setShowQEditForm(true); setShowNoQuestionAlert(false); }} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
+                                <button onClick={() => setShowNoQuestionAlert(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem"}}>Cancel</button>
+                            </div>
                         </div>
-                    </div>
-                </MyModalShare>
-            </div>
+                    </MyModalShare2>
+                    {/* Invite alert form */}
+                    <MyModalShare2 show={showInviteAlert} onHide={() => setShowInviteAlert(false)}>
+                        <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                            <h3 className="interview-h3">Video Interview Invitation</h3>
+                            <p className="interview-p">Please note that select candidate(s) <span style={{color: "#67A3F3"}}>will receive an email invitation to record their responses.</span></p>
+                            <p className="interview-p">Do you confirm to proceed and send the interview invitation?</p>
+                            <div className="row d-flex justify-content-center">
+                                <button onClick={() => {sendVideoInterview(); setShowInviteAlert(false)}} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Confirm</button>
+                                <button onClick={() => setShowInviteAlert(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem"}}>Cancel</button>
+                            </div>
+                        </div>
+                    </MyModalShare2>
+                </div>
         </React.Fragment>
     )
 };
