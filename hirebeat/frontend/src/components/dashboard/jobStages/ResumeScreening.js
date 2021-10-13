@@ -22,7 +22,7 @@ export class ResumeScreening extends Component {
         category: { value: 'All', label: 'All' },
         category3: { value: 'All', label: 'All' },
         editQuestion: false,
-        isSortByScore: true,
+        isSortByScore: true, // true means descending by resume score
         selectedPage: 0,
         showMoveForm: false,
         nextStage: "",
@@ -77,7 +77,7 @@ export class ResumeScreening extends Component {
 
     hideQForm = () => {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review"); this.props.getPJobs(); }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True"); this.props.getPJobs(); }, 300);
         this.setState({ showQForm: false });
 
     }
@@ -185,7 +185,8 @@ export class ResumeScreening extends Component {
                 // update
                 let page = 1;
                 let userId = this.props.user.id;
-                setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review"); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
+                setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review", "True", "True"); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
+                this.unSelectAllCandidates();
                 this.sendSuccessAlert();
             } else if (this.state.nextStage == "Resume Review") {
                 alert("These candidates are already in this stage!");
@@ -225,7 +226,8 @@ export class ResumeScreening extends Component {
             // update
             let page = 1;
             let userId = this.props.user.id;
-            setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review"); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
+            setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review", "True", "True"); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
+            this.unSelectAllCandidates();
             this.rejectSuccessAlert();
         } else {
             this.noCandidateAlert();
@@ -323,6 +325,13 @@ export class ResumeScreening extends Component {
         }
     }
 
+    unSelectAllCandidates = () => {
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            candidates[i].checked = false;
+        }
+    }
+
     sortByScore = () => {
         if (!this.state.isSortByScore) {
             this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "True");
@@ -337,7 +346,12 @@ export class ResumeScreening extends Component {
         let selectedPage = data.selected; // 0 index based
         this.setState({ selectedPage: selectedPage });
         let page = selectedPage + 1;
-        this.props.getAllJobs(this.props.user.id, page, "Resume Review");
+        if (this.state.isSortByScore) {
+            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True");
+        }
+        else {
+            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "False");
+        }
         sessionStorage.setItem("jobAppPage", String(selectedPage));
     };
 
@@ -457,6 +471,7 @@ export class ResumeScreening extends Component {
                                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     reviews={this.props.reviews}
                                     positionId={this.props.curJob.job_details.positions_id}
+                                    isSortByScore={this.state.isSortByScore}
                                 />
                             )
                         })}
@@ -606,7 +621,7 @@ const ApplicantRow = (props) => {
         }
         props.updateCandidateViewedStatus(data);
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); props.getPJobs() }, 300);
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
@@ -618,7 +633,7 @@ const ApplicantRow = (props) => {
 
     function hideModal() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); props.getPJobs() }, 300);
         sessionStorage.removeItem("showPreview" + props.index);
         setShowPreview(false);
     }
@@ -657,7 +672,7 @@ const ApplicantRow = (props) => {
 
     const refresh = () => {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review"); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); props.getPJobs() }, 300);
         props.updateViewStatus({ "candidate_id": applicants[current].id });
         props.getApplicantsVideos(props.applicant.email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
