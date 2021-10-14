@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IconText } from "../DashboardComponents";
-import { MyModal80, MyModalUpgrade } from "./../DashboardComponents";
+import { MyModal80, MyModalUpgrade, AlertModal } from "./../DashboardComponents";
 import { ResumeEvaJobs } from "./ResumeEvaJobs";
 import EmbedQuestionForm from "./../jobBoard/EmbedQuestionForm"
 import ApplicationVideo from "../videos/ApplicationVideo";
@@ -17,6 +17,9 @@ const ReviewCandidate = (props) => {
     const [viewVideo, setviewVideo] = useState(false);
     const [viewNotes, setViewNotes] = useState(false);
     const [viewApplication, setViewApplication] = useState(props.applicants[props.current].answers?.length > 0 ? true : false);
+    const [showMoveSuccessAlert, setShowMoveSuccessAlert] = useState(false);
+    const [showRejectSuccessAlert, setShowRejectSuccessAlert] = useState(false);
+    const [isReject, setIsReject] = useState(true);
 
     function setViewResumes() {
         setViewResume(true);
@@ -82,9 +85,12 @@ const ReviewCandidate = (props) => {
             setShowMoveForm(false);
             // update
             let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-            setTimeout(() => { props.getAllJobs(props.user.id, page, props.currentStage); props.getPostedJobs(props.user.id, page, props.currentStage) }, 300);
-            alert("Move Stage Success!");
-            props.onHide();
+            setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
+            let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
+            if (!noShowAgainMove) {
+                enableSuccessAlert();
+            }
+            // props.onHide();
         } else {
             alert("Please select a stage to move.");
         }
@@ -102,13 +108,18 @@ const ReviewCandidate = (props) => {
         props.updateInviteStatus(data);
         // update
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, props.currentStage); props.getPostedJobs(props.user.id, page, props.currentStage) }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
+        let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
         if (props.applicant.is_active) {
-            alert("Candidate Rejected!");
+            if (!noShowAgainReject) {
+                enableRejectSuccessAlert("Rejected");
+            }
         } else {
-            alert("Candidate Unrejected!");
+            if (!noShowAgainReject) {
+                enableRejectSuccessAlert("Unrejected");
+            }
         }
-        props.onHide();
+        // props.onHide();
     };
 
     //    function inviteCandidates() {
@@ -168,8 +179,8 @@ const ReviewCandidate = (props) => {
     //    };
 
     function nextOrPreUpdate() {
-        props.getAllJobs(props.user.id);
-        props.getPJobs();
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");
         sessionStorage.removeItem("current");
     }
 
@@ -181,7 +192,8 @@ const ReviewCandidate = (props) => {
             "isViewed": true,
         }
         props.updateCandidateViewedStatus(data);
-        setTimeout(() => { props.getAllJobs(props.user.id); props.getPJobs() }, 300);
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
     }
 
     function showResumeEva() {
@@ -249,6 +261,52 @@ const ReviewCandidate = (props) => {
         };
         props.updateCommentStatus(data);
         setTimeout(() => { props.getPJobs() }, 200);
+    }
+
+    const hideSuccessAlert = () => {
+        handleAlertChoice();
+        setShowMoveSuccessAlert(false);
+    }
+
+    const enableSuccessAlert = () => {
+        setShowMoveSuccessAlert(true);
+    }
+
+    const handleAlertChoice = () => {
+        let checkbox = document.getElementById("alertCheckbox");
+        let isChecked = checkbox.checked;
+        if (isChecked) {
+            localStorage.setItem("noShowAgainMove", "true");
+        }
+        else {
+            localStorage.setItem("noShowAgainMove", "false");
+        }
+    }
+
+    const hideRejectSuccessAlert = () => {
+        handleRejectAlertChoice();
+        setShowRejectSuccessAlert(false);
+    }
+
+    const enableRejectSuccessAlert = (type) => {
+        if (type == "Rejected") {
+            setIsReject(true);
+        }
+        else if (type == "Unrejected") {
+            setIsReject(false);
+        }
+        setShowRejectSuccessAlert(true);
+    }
+
+    const handleRejectAlertChoice = () => {
+        let checkbox = document.getElementById("rejectAlertCheckbox");
+        let isChecked = checkbox.checked;
+        if (isChecked) {
+            localStorage.setItem("noShowAgainReject", "true");
+        }
+        else {
+            localStorage.setItem("noShowAgainReject", "false");
+        }
     }
 
     return (
@@ -612,6 +670,34 @@ const ReviewCandidate = (props) => {
                     hideEmbedQForm={() => setShowEmbedQForm(false)}
                 />
             </MyModal80>
+            {/*  move success alert prompt */}
+            <AlertModal show={showMoveSuccessAlert} onHide={hideSuccessAlert}>
+                <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                    <h3 className="interview-h3">Move to next stage Success</h3>
+                    <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have moved the candidates to selected stage successfully.</p>
+                    <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
+                        <input id="alertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                        Don't show again
+                    </div>
+                    <div className="row d-flex justify-content-center">
+                        <button onClick={hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                    </div>
+                </div>
+            </AlertModal>
+            {/*  reject success alert prompt */}
+            <AlertModal show={showRejectSuccessAlert} onHide={hideRejectSuccessAlert}>
+                <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                    <h3 className="interview-h3">Candidate {isReject ? "Rejected!" : "Unrejected!"}</h3>
+                    <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have {isReject ? "rejected!" : "unrejected!"} the candidates successfully.</p>
+                    <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
+                        <input id="rejectAlertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                        Don't show again
+                    </div>
+                    <div className="row d-flex justify-content-center">
+                        <button onClick={hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                    </div>
+                </div>
+            </AlertModal>
         </div >
     )
 

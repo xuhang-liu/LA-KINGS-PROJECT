@@ -324,6 +324,8 @@ export class AllCandidates extends Component {
                                             subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                             reviews={this.props.reviews}
                                             positionId={this.props.curJob.job_details.positions_id}
+                                            selectedCurrentStage={this.state.stage.value}
+                                            selectedStatus={this.state.category.value}
                                         />
                                     )
                                 })}
@@ -414,7 +416,7 @@ const ApplicantRow = (props) => {
         }
         props.updateCandidateViewedStatus(data);
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "", "", ""); props.getPostedJobs(props.user.id, page, "") }, 300);
+        // setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
@@ -426,8 +428,9 @@ const ApplicantRow = (props) => {
 
     function hideModal() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "", "", ""); props.getPostedJobs(props.user.id, page, "") }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, ""); props.getPostedJobs(props.user.id, page, "") }, 300);
         sessionStorage.removeItem("showPreview" + props.index);
+        sessionStorage.removeItem("current");
         setShowPreview(false);
     }
 
@@ -613,6 +616,8 @@ const ApplicantRow = (props) => {
                         reviews={props.reviews}
                         currentStage={"All Candidates"}
                         positionId={props.positionId}
+                        selectedCurrentStage={props.selectedCurrentStage}
+                        selectedStatus={props.selectedStatus}
                     />
                 </MyFullModal>
             </div>

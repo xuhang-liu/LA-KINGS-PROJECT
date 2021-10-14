@@ -489,6 +489,10 @@ card-row-third-high {
   min-width: 40%;
 }
 
+.my-alert-modal {
+  min-width: 30%;
+}
+
 .line {
   width: 40%;
   height: 2px;
