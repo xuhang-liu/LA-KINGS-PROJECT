@@ -1677,6 +1677,12 @@ h5 {
   width: 11rem;
 }
 
+.select-category4 {
+  width: 30rem;
+  margin-bottom: 5rem;
+  z-index: 999;
+}
+
 .select-difficulty {
   width: 24rem;
 }

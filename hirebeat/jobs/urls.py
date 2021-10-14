@@ -4,7 +4,7 @@ from .views import add_new_job, get_all_jobs, update_job, archive_job, add_new_a
     add_new_apply_candidate_from_zr, getCompanyBrandingInfo, get_resume_from_job_application, get_zr_premium_xml, \
     create_merge_link_token, retrive_merge_account_token, send_merge_api_request, check_free_account_active_jobs, \
     add_cand_from_merge, check_interview_candidates_num, get_pipeline_analytics, add_new_apply_candidate_by_cv, \
-    check_id_master_active, check_subreviewer_currentstage, greenhouse_api_test
+    check_id_master_active, check_subreviewer_currentstage, greenhouse_api_test, greenhouse_update_invite_status, greenhouse_get_interview_stages
 
 urlpatterns = [
     path('add-new-job', add_new_job),
@@ -34,4 +34,6 @@ urlpatterns = [
     path('jobs/check_if_master_active', check_id_master_active),
     path('jobs/check_subreviewer_currentstage', check_subreviewer_currentstage),
     path('jobs/greenhouse-api-test', greenhouse_api_test),
+    path('jobs/greenhouse-update-invite-status', greenhouse_update_invite_status),
+    path('jobs/greenhouse-get-interview-stages', greenhouse_get_interview_stages)
 ]
