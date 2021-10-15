@@ -1044,14 +1044,12 @@ def add_or_update_reviewer_evaluation(request):
     reviewer_type = request.data["reviewer_type"]
     # get reviewer name
     reviewer_name = ""
-    if reviewer_type == "sub_reviewer":
-        sub_reviewer = SubReviewers.objects.filter(
-            r_email=reviewer_email, position_id=position_id)[0]
-        reviewer_name = sub_reviewer.r_name
-    elif reviewer_type == "external_reviewer":
-        external_reviewer = ExternalReviewers.objects.filter(
-            r_email=reviewer_email, position_id=position_id)[0]
-        reviewer_name = external_reviewer.r_name
+    sub_reviewer = SubReviewers.objects.filter(r_email=reviewer_email, position_id=position_id)
+    external_reviewer = ExternalReviewers.objects.filter(r_email=reviewer_email, position_id=position_id)
+    if len(sub_reviewer) > 0:
+        reviewer_name = sub_reviewer[0].r_name
+    elif len(external_reviewer) > 0:
+        reviewer_name = external_reviewer[0].r_name
     else:
         reviewer_name = request.data["reviewer"]
 
