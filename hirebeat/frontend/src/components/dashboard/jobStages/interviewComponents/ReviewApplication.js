@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { IconText } from "./../../DashboardComponents";
+import { IconText, AlertModal } from "./../../DashboardComponents";
 import ApplicationVideo from "./../../videos/ApplicationVideo";
 import { connect } from "react-redux";
 import { updateInviteStatus } from "./../../../../redux/actions/job_actions";
@@ -22,6 +22,9 @@ export class ReviewApplication extends Component {
             showMoveForm: false,
             currentStage: this.props.currentStage,
             nextStage: "",
+            showMoveSuccessAlert: false,
+            showRejectSuccessAlert: false,
+            isReject: true,
         }
     }
 
@@ -95,13 +98,16 @@ export class ReviewApplication extends Component {
             "is_reject": false,
         }
         this.props.updateInviteStatus(data);
-        this.sendSuccessAlert(this.state.nextStage);
         this.hideMoveForm();
         // update
         let page = 1;
         let userId = this.props.user.id;
-        setTimeout(() => {this.props.getAllJobs(userId, page, this.state.currentStage); this.props.getPostedJobs(userId, page, this.state.currentStage) }, 300);
-        this.props.hide();
+        setTimeout(() => {this.props.getPostedJobs(userId, page, this.state.currentStage) }, 300);
+        let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
+        if (!noShowAgainMove) {
+            this.enableSuccessAlert();
+        }
+        // this.props.hide();
     };
 
     rejectCandidates = () => {
@@ -118,11 +124,16 @@ export class ReviewApplication extends Component {
         // update
         let page = 1;
         let userId = this.props.user.id;
-        setTimeout(() => {this.props.getAllJobs(userId, page, this.state.currentStage); this.props.getPostedJobs(userId, page, this.state.currentStage); this.props.hide(); }, 300);
-        if (applicant.is_active){
-            alert("Candidate Rejected!");
+        setTimeout(() => {this.props.getPostedJobs(userId, page, this.state.currentStage);}, 300);
+        let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
+        if (applicant.is_active) {
+            if (!noShowAgainReject) {
+                this.enableRejectSuccessAlert("Rejected");
+            }
         } else {
-            alert("Candidate Unrejected!");
+            if (!noShowAgainReject) {
+                this.enableRejectSuccessAlert("Unrejected");
+            }
         }
     };
 
@@ -189,6 +200,52 @@ export class ReviewApplication extends Component {
                 </div>
             </div>
         )
+    }
+
+    hideSuccessAlert = () => {
+        this.handleAlertChoice();
+        this.setState({showMoveSuccessAlert: false});
+    }
+
+    enableSuccessAlert = () => {
+        this.setState({showMoveSuccessAlert: true});
+    }
+
+    handleAlertChoice = () => {
+        let checkbox = document.getElementById("alertCheckbox");
+        let isChecked = checkbox.checked;
+        if (isChecked) {
+            localStorage.setItem("noShowAgainMove", "true");
+        }
+        else {
+            localStorage.setItem("noShowAgainMove", "false");
+        }
+    }
+
+    hideRejectSuccessAlert = () => {
+        this.handleRejectAlertChoice();
+        this.setState({showRejectSuccessAlert: false});
+    }
+
+    enableRejectSuccessAlert = (type) => {
+        if (type == "Rejected") {
+            this.setState({showRejectSuccessAlert: true, isReject: true});
+        }
+        else if (type == "Unrejected") {
+            this.setState({showRejectSuccessAlert: true, isReject: false});
+        }
+
+    }
+
+    handleRejectAlertChoice = () => {
+        let checkbox = document.getElementById("rejectAlertCheckbox");
+        let isChecked = checkbox.checked;
+        if (isChecked) {
+            localStorage.setItem("noShowAgainReject", "true");
+        }
+        else {
+            localStorage.setItem("noShowAgainReject", "false");
+        }
     }
 
     render() {
@@ -512,6 +569,34 @@ export class ReviewApplication extends Component {
                         </div>
                     </div>
                 }
+                {/*  move success alert prompt */}
+                <AlertModal show={this.state.showMoveSuccessAlert} onHide={this.hideSuccessAlert}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                        <h3 className="interview-h3">Move to next stage Success</h3>
+                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have moved the candidates to selected stage successfully.</p>
+                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
+                            <input id="alertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                            Don't show again
+                        </div>
+                        <div className="row d-flex justify-content-center">
+                            <button onClick={this.hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                        </div>
+                    </div>
+                </AlertModal>
+                {/*  reject success alert prompt */}
+                <AlertModal show={this.state.showRejectSuccessAlert} onHide={this.hideRejectSuccessAlert}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                        <h3 className="interview-h3">Candidate {this.state.isReject ? "Rejected!" : "Unrejected!"}</h3>
+                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have {this.state.isReject ? "rejected!" : "unrejected!"} the candidates successfully.</p>
+                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
+                            <input id="rejectAlertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                            Don't show again
+                        </div>
+                        <div className="row d-flex justify-content-center">
+                            <button onClick={this.hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                        </div>
+                    </div>
+                </AlertModal>
             </div>
         )
     };

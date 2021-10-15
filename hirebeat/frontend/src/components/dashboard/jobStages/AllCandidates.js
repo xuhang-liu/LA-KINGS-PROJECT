@@ -428,8 +428,9 @@ const ApplicantRow = (props) => {
 
     function hideModal() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, ""); props.getPostedJobs(props.user.id, page, "") }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
         sessionStorage.removeItem("showPreview" + props.index);
+        sessionStorage.removeItem("showPreview" + current);
         sessionStorage.removeItem("current");
         setShowPreview(false);
     }

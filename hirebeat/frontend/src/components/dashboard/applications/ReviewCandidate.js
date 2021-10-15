@@ -181,7 +181,7 @@ const ReviewCandidate = (props) => {
     function nextOrPreUpdate() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
         props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");
-        sessionStorage.removeItem("current");
+//        sessionStorage.removeItem("current");
     }
 
     function updateIsViewed(index) {

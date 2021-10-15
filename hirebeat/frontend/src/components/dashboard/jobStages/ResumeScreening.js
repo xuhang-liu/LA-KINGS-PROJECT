@@ -520,6 +520,8 @@ export class ResumeScreening extends Component {
                                     reviews={this.props.reviews}
                                     positionId={this.props.curJob.job_details.positions_id}
                                     isSortByScore={this.state.isSortByScore}
+                                    selectedCurrentStage="Resume Review"
+                                    selectedStatus={this.state.isSortByScore ? "True" : "False"}
                                 />
                             )
                         })}
@@ -709,8 +711,9 @@ const ApplicantRow = (props) => {
 
     function hideModal() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore);}, 300);
         sessionStorage.removeItem("showPreview" + props.index);
+        sessionStorage.removeItem("showPreview" + current);
         setShowPreview(false);
     }
 
@@ -864,6 +867,8 @@ const ApplicantRow = (props) => {
                         reviews={props.reviews}
                         currentStage={"Resume Review"}
                         positionId={props.positionId}
+                        selectedCurrentStage={props.selectedCurrentStage}
+                        selectedStatus={props.selectedStatus}
                     />
                 </MyFullModal>
             </div>

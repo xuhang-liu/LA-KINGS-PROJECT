@@ -808,10 +808,12 @@ def get_question_list(request):
 @api_view(['POST'])
 def update_view_status(request):
     id = request.data["candidate_id"]
-    candidate = InvitedCandidates.objects.get(id=id)
-    candidate.is_viewed = True
-    candidate.save()
-    return Response("Update is_reviewed successfully", status=status.HTTP_200_OK)
+    if InvitedCandidates.objects.filter(id=id).exists():
+        candidate = InvitedCandidates.objects.get(id=id)
+        candidate.is_viewed = True
+        candidate.save()
+        return Response("Update is_reviewed successfully", status=status.HTTP_200_OK)
+    return Response("The candidate may not exist", status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])

@@ -470,9 +470,10 @@ def update_viewed_status(request):
     is_viewed = request.data['isViewed']
 
     for i in range(len(apply_ids)):
-        candidate = ApplyCandidates.objects.get(id=apply_ids[i])
-        candidate.is_viewed = is_viewed
-        candidate.save()
+        if ApplyCandidates.objects.filter(id=apply_ids[i]).exists():
+            candidate = ApplyCandidates.objects.get(id=apply_ids[i])
+            candidate.is_viewed = is_viewed
+            candidate.save()
     return Response("Candidate is viewed successfully", status=status.HTTP_202_ACCEPTED)
 
 

@@ -9,6 +9,8 @@ export const Applicant = (props) => {
     const [show, setShow] = useState(props.showCandidateModal);
     const [showResume, setShowResume] = useState(false);
     const [showEva, setShowEva] = useState(false);
+    const [next, setNext] = useState(null);
+    const [prev, setPrev] = useState(null);
     let applicants = props.applicants;
     let email = applicants[current].email;
     let positionId = props.positionId;
@@ -56,15 +58,15 @@ export const Applicant = (props) => {
     }
 
     function viewNextResult(curIndex) {
-        sessionStorage.removeItem("showCandidateModal" + curIndex)
-        let next = curIndex + 1;
+        sessionStorage.removeItem("showCandidateModal" + curIndex);
+        setNext(curIndex + 1);
         sessionStorage.setItem(("showCandidateModal" + next), "true");
         getReviewPageData(next);
     };
 
     function viewPrevResult(curIndex) {
-        sessionStorage.removeItem("showCandidateModal" + curIndex)
-        let prev = curIndex - 1;
+        sessionStorage.removeItem("showCandidateModal" + curIndex);
+        setPrev(curIndex - 1);
         sessionStorage.setItem(("showCandidateModal" + prev), "true");
         getReviewPageData(prev);
     };
@@ -125,6 +127,11 @@ export const Applicant = (props) => {
     }
 
     function hideModal() {
+        if (next != null){
+            sessionStorage.removeItem("showCandidateModal" + next);
+        }else if (prev != null){
+            sessionStorage.removeItem("showCandidateModal" + prev);
+        }
         sessionStorage.removeItem("showCandidateModal" + props.index);
         setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, 1, props.currentStage) }, 300);
         setShow(false);
