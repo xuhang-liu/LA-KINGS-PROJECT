@@ -40,6 +40,7 @@ export function MyVerticallyCenteredModal(props) {
                     getPostedJobs={props.getPostedJobs}
                     getAllJobs={props.getAllJobs}
                     reviewer_type={props.reviewer_type}
+                    gh_current_stage_id={props.gh_current_stage_id}
                 />
             </MyFullModal1>
         </div>

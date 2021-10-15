@@ -18,10 +18,11 @@ import io
 import os
 import requests
 import MergeATSClient
-from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_interview_stages_api, applications_api, attachments_api, users_api, available_actions_api
+from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_interview_stages_api, applications_api, attachments_api, users_api, available_actions_api, job_interview_stages_api
 from MergeATSClient.model.attachment import Attachment
 from MergeATSClient.model.attachment_request import AttachmentRequest
 from MergeATSClient.model.available_actions import AvailableActions
+from MergeATSClient.model.job_interview_stage import JobInterviewStage
 from pprint import pprint
 import requests
 import json
@@ -149,11 +150,14 @@ def get_all_jobs(request):
         applicants = list(applicants.values())
         # sort by score or id
         if has_resume_sort:
-            resume_sort = True if (request.GET.get("sort") == "True" or request.GET.get("sort") == "true") else False
+            resume_sort = True if (request.GET.get(
+                "sort") == "True" or request.GET.get("sort") == "true") else False
             if resume_sort:
-                applicants.sort(key=lambda a: (-int(a["result_rate"]), -a["id"]))
+                applicants.sort(
+                    key=lambda a: (-int(a["result_rate"]), -a["id"]))
             else:
-                applicants.sort(key=lambda a: (int(a["result_rate"]), -a["id"]))
+                applicants.sort(key=lambda a: (
+                    int(a["result_rate"]), -a["id"]))
         else:
             applicants.sort(key=lambda a: -a["id"])
         total_records = len(applicants)
@@ -171,10 +175,14 @@ def get_all_jobs(request):
             if len(reviewerEvaluation) > 0:
                 applicant["reviewer_review_status"] = True
 
-        un_view = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
-        all_invited = True if ApplyCandidates.objects.filter(jobs_id=job_id, is_invited=1).count() == len(applicants) else False
-        questions = list(InterviewQuestions.objects.filter(positions_id=positions_id).values())
-        screen_questions = list(JobQuestion.objects.filter(jobs_id=job_id).values())
+        un_view = True if ApplyCandidates.objects.filter(
+            jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
+        all_invited = True if ApplyCandidates.objects.filter(
+            jobs_id=job_id, is_invited=1).count() == len(applicants) else False
+        questions = list(InterviewQuestions.objects.filter(
+            positions_id=positions_id).values())
+        screen_questions = list(
+            JobQuestion.objects.filter(jobs_id=job_id).values())
         jobs[i]["screen_questions"] = screen_questions
         position = Positions.objects.filter(id=positions_id).values()[0]
         job_details = {
@@ -899,15 +907,18 @@ def add_cand_from_merge(request):
     candidates_api_instance = candidates_api.CandidatesApi(api_client)
     attachments_api_instance = attachments_api.AttachmentsApi(api_client)
     user_api_instance = users_api.UsersApi(api_client)
+    stage_api_instance = job_interview_stages_api.JobInterviewStagesApi(api_client)
     #x_account_token = "TEST_ACCOUNT_TOKEN"
     x_account_token = profile.merge_public_token
     jobs_api_response = {}
     applications_api_response = {}
+    stage_api_response = {}
     try:
         jobs_api_response = jobs_api_instance.jobs_retrieve(
             x_account_token, merge_job_id)
         applications_api_response = applications_api_instance.applications_list(
             x_account_token, current_stage_id=merge_stage_id, job_id=merge_job_id)
+        stage_api_response = stage_api_instance.job_interview_stages_retrieve(x_account_token, applications_api_response['results'][0]['current_stage'])
     except MergeATSClient.ApiException as e:
         print('Exception: %s' % e)
 
@@ -939,7 +950,7 @@ def add_cand_from_merge(request):
             if greenhouse_api_key != "":
                 job = Jobs.objects.create(user=user, positions=position, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_id="", job_description=jobs_api_response['description'],
                                           company_overview=company_overview, company_name=company_name, company_logo=company_logo,
-                                          loc_req="1", pho_req="1", lin_req="1", job_post=0, eeo_req="1", eeo_ques_req="1", gh_current_stage_id=applications_api_response['results'][0]['current_stage'])
+                                          loc_req="1", pho_req="1", lin_req="1", job_post=0, eeo_req="1", eeo_ques_req="1", gh_current_stage_id=stage_api_response['remote_id'], gh_job_id=jobs_api_response['remote_id'])
             else:
                 job = Jobs.objects.create(user=user, positions=position, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_id="", job_description=jobs_api_response['description'],
                                           company_overview=company_overview, company_name=company_name, company_logo=company_logo,
@@ -992,7 +1003,7 @@ def add_cand_from_merge(request):
                 InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response[
                     'first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url)
             ApplyCandidates.objects.create(jobs=job, first_name=candidates_api_response['first_name'], last_name=candidates_api_response['last_name'], phone=phone,
-                                           email=emailAddress, location=location, current_stage="Video Interview", gender="N/A", race="N/A")
+                                           email=emailAddress, location=location, current_stage="Video Interview", gender="N/A", race="N/A", resume_url=resume_url)
             # try:
             #     user_api_response = user_api_instance.users_list(x_account_token)
             #     for u in range(len(user_api_response['results'])):
@@ -1138,9 +1149,10 @@ def greenhouse_api_test(request):
     # res = requests.post(url, data=json.dumps(data), headers=headers, auth=('6b64f9aca07ae1f18ee0a63276358594-4', ''))
     # print(res.json())
 
-    # url = "https://harvest.greenhouse.io/v1/applications/6451411004"
+    # url = "https://harvest.greenhouse.io/v1/applications/6451492004/reject"
+    # data = {"notes": "123123123123"}
     # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    # res = requests.get(url, headers=headers, auth=('6b64f9aca07ae1f18ee0a63276358594-4', ''))
+    # res = requests.post(url, data=json.dumps(data), headers=headers, auth=('6b64f9aca07ae1f18ee0a63276358594-4', ''))
     # print(res.json())
 
     # url = "https://harvest.greenhouse.io/v1/users"
@@ -1149,3 +1161,66 @@ def greenhouse_api_test(request):
     # print(res.json())
 
     return Response("POST Greenhouse requst success", status=status.HTTP_201_CREATED)
+
+
+@api_view(['POST'])
+def greenhouse_update_invite_status(request):
+    remote_user_id = ""
+    positionId = request.data["positionId"]
+    candidates = request.data['candidates']
+    is_reject = request.data["is_reject"]
+    rejectNotes = request.data["rejectNotes"]
+    gh_current_stage_id = request.data["gh_current_stage_id"]
+    gh_next_stage_id = request.data["gh_next_stage_id"]
+    position = Positions.objects.get(pk=positionId)
+    user =  position.user
+    profile = Profile.objects.get(user_id=user.id)
+
+    #get userid from greenhouse
+    user_url = "https://harvest.greenhouse.io/v1/users"
+    user_headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    user_res = requests.get(user_url, headers=user_headers, auth=(profile.ats_api_token, ''))
+    for u in range(len(user_res.json())):
+        if user_res.json()[u]['site_admin']:
+            remote_user_id = user_res.json()[u]['id']
+
+    for i in range(len(candidates)):
+        candidate = InvitedCandidates.objects.get(id=candidates[i])
+        if is_reject:
+            #post reject
+            url = "https://harvest.greenhouse.io/v1/applications/"+candidate.gh_applications_id+"/reject"
+            data1 = {"notes": rejectNotes}
+            headers = {'Content-type': 'application/json', 'Accept': 'text/plain', 'On-Behalf-Of': str(remote_user_id)}
+            res = requests.post(url, data=json.dumps(data1), headers=headers, auth=(profile.ats_api_token, ''))
+        else:
+            url = "https://harvest.greenhouse.io/v1/applications/"+candidate.gh_applications_id+"/move"
+            data = {"from_stage_id": str(gh_current_stage_id), "to_stage_id": str(gh_next_stage_id)}
+            headers = {'Content-type': 'application/json', 'Accept': 'text/plain', 'On-Behalf-Of': str(remote_user_id)}
+            res = requests.post(url, data=json.dumps(data), headers=headers, auth=(profile.ats_api_token, ''))
+            print(res.json())
+    return Response("Update Greenhouse job successfully", status=status.HTTP_202_ACCEPTED)
+
+
+@api_view(['GET'])
+def greenhouse_get_interview_stages(request):
+    stages = []
+    positionId = request.query_params.get("positionId")
+    position = Positions.objects.get(pk=positionId)
+    user =  position.user
+    profile = Profile.objects.get(user_id=user.id)
+    job = Jobs.objects.get(positions_id=positionId)
+
+    url = "https://harvest.greenhouse.io/v1/jobs/"+job.gh_job_id+"/stages"
+    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    res = requests.get(url, headers=headers, auth=(profile.ats_api_token, ''))
+
+    if len(res.json()) > 0:
+        for r in range(len(res.json())):
+            data = {"id": res.json()[r]['id'], "name": res.json()[r]['name']}
+            stages.append(data)
+
+    print(stages)
+
+    return Response({
+        "stages": stages
+    })
