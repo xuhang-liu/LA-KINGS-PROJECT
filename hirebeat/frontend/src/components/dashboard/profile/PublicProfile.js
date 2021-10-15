@@ -218,12 +218,7 @@ export class PublicProfile extends Component {
                                                                             <p className="profile-p3">{exp.title}</p>
                                                                         </div>
                                                                     </div>
-                                                                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{exp.company}</p>
-                                                                    {(exp.startDate != "" && exp.startDate != null) &&
-                                                                        <p className="profile-p4" style={{marginBottom: "0.5rem", color: "#7D7D7D"}}>
-                                                                            {exp.start_date} - {exp.end_date}
-                                                                        </p>
-                                                                    }
+                                                                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{exp.company} &nbsp; {exp.start_date} {exp.end_date?.length > 0 && " - "} {exp.end_date}</p>
                                                                     <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{exp.work_description}</p>
                                                                 </div>
                                                             )
