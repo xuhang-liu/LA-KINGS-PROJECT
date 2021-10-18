@@ -78,12 +78,12 @@ const WorkFormCard = (props) => {
                     <div className="row" style={{marginTop: "1rem"}}>
                         <div className="col-6">
                             <p className="profile-p" style={{margin: "0rem"}}>Start Date</p>
-                            <input id="startDate" defaultValue={workExp?.startDate} className="profile-input profile-p4" style={{width: "100%"}}></input>
+                            <input id="startDate" type="date" defaultValue={workExp?.start_date} className="profile-input profile-p4" style={{width: "100%"}}></input>
                         </div>
                         {!present &&
                             <div className="col-6">
                                 <p className="profile-p" style={{margin: "0rem"}}>End Date</p>
-                                <input id="endDate" defaultValue={workExp?.endDate} className="profile-input profile-p4" style={{width: "100%"}}></input>
+                                <input id="endDate" type="date" defaultValue={workExp?.end_date} className="profile-input profile-p4" style={{width: "100%"}}></input>
                             </div>
                         }
                     </div>
@@ -93,7 +93,7 @@ const WorkFormCard = (props) => {
                     </div>
                     <div style={{marginTop: "1rem"}}>
                         <p className="profile-p" style={{margin: "0rem"}}>Description</p>
-                        <textarea id="workDescription" defaultValue={workExp?.workDescription} className="profile-input profile-p" style={{width: "100%", height: "6rem"}}></textarea>
+                        <textarea id="workDescription" defaultValue={workExp?.work_description} className="profile-input profile-p" style={{width: "100%", height: "6rem"}}></textarea>
                     </div>
                     <div className="row d-flex" style={{marginTop: "1rem"}}>
                         <div className="col-2">

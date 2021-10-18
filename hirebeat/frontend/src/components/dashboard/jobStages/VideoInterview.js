@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MyModal80, MyModalShare } from "./../DashboardComponents";
+import { MyModal80, MyModalShare2, AlertModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 //import { ResumeEva } from "./interviewComponents/ResumeEva";
 import { ApplicantList } from "./interviewComponents/ApplicantList";
@@ -7,7 +7,7 @@ import 'boxicons';
 import Select from 'react-select';
 //import * as pdfjsLib from 'pdfjs-dist';
 import EditQuestion from "./interviewComponents/EditQuestion"
-//import axios from "axios";
+import axios from "axios";
 import ReactPaginate from 'react-paginate';
 import MoveForm from "./interviewComponents/MoveForm";
 
@@ -20,7 +20,17 @@ export function VideoInterview(props) {
     const [showQEditForm, setShowQEditForm] = useState(false);
     const [showNoQuestionAlert, setShowNoQuestionAlert] = useState(false);
     const [showInviteAlert, setShowInviteAlert] = useState(false);
+    const [showRejectNote, setShowRejectNote] = useState(false);
+    const [rejectNotes, setRejectNotes] = useState(null);
+    const [invitedCandidates1, setInvitedCandidates1] = useState([]);
+    const [invitedCandidates, setInvitedCandidates] = useState([]);
+    const [gh_names, setGh_names] = useState([]);
+    const [gh_emails, setGh_emails] = useState([]);
+    const [showGreenhouseMoveForm, setShowGreenhouseMoveForm] = useState(false);
+    const [options4, setOptions4] = useState([])
     const [expire, setExpire] = useState({ value: 7, label: '7 days' });
+    const [showMoveSuccessAlert, setShowMoveSuccessAlert] = useState(false);
+    const [showRejectSuccessAlert, setShowRejectSuccessAlert] = useState(false);
     function onFilter1(expire) {
         setExpire(expire);
     }
@@ -111,6 +121,11 @@ export function VideoInterview(props) {
         setCategory3(category);
     }
 
+    const [category4, setCategory4] = useState({ value: 'Select stage', label: 'Select stage' });
+    function onFilter4(category4) {
+        setCategory4(category4);
+    }
+
     const customStyles = {
         control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
         singleValue: styles => ({
@@ -122,10 +137,25 @@ export function VideoInterview(props) {
         }),
     }
 
+    const customStyles1 = {
+        control: styles => ({ ...styles, backgroundColor: '#fff' }),
+        singleValue: styles => ({
+            ...styles,
+            color: '#4A6F8A',
+            fontSize: '0.9375rem',
+            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontWeight: '500'
+        }),
+    }
+
     const [keyWords, setkeyWords] = useState("");
     function onChange(e) {
         setkeyWords(e.target.value);
     };
+
+    function onChange1(e) {
+        setRejectNotes(e.target.value);
+    }
 
     function selectAllCandidates() {
         let checkbox = document.getElementById("select-all");
@@ -141,6 +171,13 @@ export function VideoInterview(props) {
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = false;
             }
+        }
+    }
+
+    function unSelectAllCandidates() {
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            candidates[i].checked = false;
         }
     }
 
@@ -318,7 +355,11 @@ export function VideoInterview(props) {
                 let page = 1;
                 let userId = props.user.id;
                 setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
-                sendSuccessAlert(nextStage);
+                unSelectAllCandidates();
+                let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
+                if (!noShowAgainMove) {
+                    enableSuccessAlert();
+                }
             } else if (nextStage == "Video Interview") {
                 alert("These candidates are already in this stage!");
             } else {
@@ -333,15 +374,11 @@ export function VideoInterview(props) {
     const rejectCandidates = () => {
         let candidateCount = 0;
         let positionId = props.positionId;
-        const emails = [];
-        const names = [];
         const invitedCandidates = [];
         let candidates = document.getElementsByClassName("selected-candidate");
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked) {
                 let candidate = JSON.parse(candidates[i].value);
-                names.push(candidate.first_name + " " + candidate.last_name);
-                emails.push(candidate.email.toLowerCase());
                 invitedCandidates.push(candidate.apply_candidate_id);
                 candidateCount += 1;
             }
@@ -358,9 +395,177 @@ export function VideoInterview(props) {
             let page = 1;
             let userId = props.user.id;
             setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+            unSelectAllCandidates();
+            let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
+            if (!noShowAgainReject) {
+                enableRejectSuccessAlert();
+            }
+        } else {
+            noCandidateAlert();
+        }
+    };
+
+    const hideSuccessAlert = () => {
+        handleAlertChoice();
+        setShowMoveSuccessAlert(false);
+    }
+
+    const enableSuccessAlert = () => {
+        setShowMoveSuccessAlert(true);
+    }
+
+    const handleAlertChoice = () => {
+        let checkbox = document.getElementById("alertCheckbox");
+        let isChecked = checkbox.checked;
+        if (isChecked) {
+            localStorage.setItem("noShowAgainMove", "true");
+        }
+        else {
+            localStorage.setItem("noShowAgainMove", "false");
+        }
+    }
+
+    const hideRejectSuccessAlert = () => {
+        handleRejectAlertChoice();
+        setShowRejectSuccessAlert(false);
+    }
+
+    const enableRejectSuccessAlert = () => {
+        setShowRejectSuccessAlert(true);
+    }
+
+    const handleRejectAlertChoice = () => {
+        let checkbox = document.getElementById("rejectAlertCheckbox");
+        let isChecked = checkbox.checked;
+        if (isChecked) {
+            localStorage.setItem("noShowAgainReject", "true");
+        }
+        else {
+            localStorage.setItem("noShowAgainReject", "false");
+        }
+    }
+
+    const greenhouserejectCandidates = (e) => {
+        e.preventDefault();
+        let positionId = props.positionId;
+        if (invitedCandidates1?.length > 0) {
+            let data = {
+                positionId: positionId,
+                candidates: invitedCandidates,
+                nextStage: nextStage,
+                is_reject: true,
+            }
+            props.updateInviteStatus(data);
+            let data1 = {
+                "positionId": positionId,
+                "candidates": invitedCandidates1,
+                "is_reject": true,
+                "rejectNotes": rejectNotes,
+                "gh_current_stage_id": props.gh_current_stage_id,
+                "gh_next_stage_id": category4['value'],
+            }
+            axios
+                .post("jobs/greenhouse-update-invite-status", data1)
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+            // update
+            let page = 1;
+            let userId = props.user.id;
+            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
             rejectSuccessAlert();
         } else {
             noCandidateAlert();
+        }
+    };
+
+    const openRejectNoteForm = () => {
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                setInvitedCandidates1(invitedCandidates1 => [...invitedCandidates1, candidate.id])
+                setInvitedCandidates(invitedCandidates => [...invitedCandidates, candidate.apply_candidate_id])
+            }
+        }
+        setShowRejectNote(true);
+    }
+
+    const openGreenhouseMoveForm = () => {
+        setOptions4([]);
+        axios
+            .get(`jobs/greenhouse-get-interview-stages?positionId=${props.positionId}`)
+            .then((res) => {
+                if (res?.data?.stages?.length > 0) {
+                    for (let s = 0; s < res?.data?.stages?.length; s++) {
+                        setOptions4(options4 => [...options4, { value: res?.data?.stages[s]['id'], label: res?.data?.stages[s]['name'] }]);
+                    }
+                    let candidates = document.getElementsByClassName("selected-candidate");
+                    for (let i = 0; i < candidates.length; i++) {
+                        if (candidates[i].checked) {
+                            let candidate = JSON.parse(candidates[i].value);
+                            setInvitedCandidates1(invitedCandidates1 => [...invitedCandidates1, candidate.id])
+                            setInvitedCandidates(invitedCandidates => [...invitedCandidates, candidate.apply_candidate_id])
+                            setGh_names(gh_names => [...gh_names, candidate.first_name + " " + candidate.last_name])
+                            setGh_emails(gh_emails => [...gh_emails, candidate.email.toLowerCase()])
+                        }
+                    }
+                    setShowGreenhouseMoveForm(true);
+                } else {
+                    alert("No stage available.");
+                }
+            })
+            .catch((err) =>
+                console.log(err)
+            );
+    }
+
+    const greenhouseMoveCandidates = () => {
+        if (category4['value'] != "Select stage") {
+            let positionId = props.positionId;
+            let jobId = props.jobsId;
+            // check candidates selected or not
+            if (invitedCandidates1?.length > 0) {
+                let meta = {
+                    position_id: positionId,
+                    job_id: jobId,
+                    emails: gh_emails,
+                    names: gh_names,
+                    candidates: invitedCandidates,
+                    nextStage: category4['label'],
+                }
+                props.moveCandidateToInterview(meta);
+                let data1 = {
+                    "positionId": positionId,
+                    "candidates": invitedCandidates1,
+                    "is_reject": false,
+                    "rejectNotes": rejectNotes,
+                    "gh_current_stage_id": props.gh_current_stage_id,
+                    "gh_next_stage_id": category4['value'],
+                }
+                axios
+                    .post("jobs/greenhouse-update-invite-status", data1)
+                    .then((res) => {
+                        console.log(res);
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    });
+                setShowGreenhouseMoveForm(false);
+                // update
+                let page = 1;
+                let userId = props.user.id;
+                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+                sendSuccessAlert(category4['label']);
+            }
+            else {
+                noCandidateAlert();
+            }
+        } else {
+            alert("Please select a stage!");
         }
     };
 
@@ -500,6 +705,7 @@ export function VideoInterview(props) {
                                 getPostedJobs={props.getPostedJobs}
                                 getAllJobs={props.getAllJobs}
                                 reviewer_type={props.reviewer_type}
+                                gh_current_stage_id={props.gh_current_stage_id}
                             />
                         </div>
                     </div>
@@ -543,20 +749,30 @@ export function VideoInterview(props) {
                             <button
                                 className="default-btn"
                                 style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
-                                onClick={openMoveForm}
+                                onClick={openGreenhouseMoveForm}
                             >
-                                Greenhouse
+                                Move All
                                 <span></span>
                             </button>
                         }
-                        <button
-                            className="default-btn"
-                            onClick={rejectCandidates}
-                            style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                        >
-                            Reject All
-                            <span></span>
-                        </button>
+                        {(props.gh_current_stage_id == "" || props.gh_current_stage_id == null) ?
+                            <button
+                                className="default-btn"
+                                onClick={rejectCandidates}
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                            >
+                                Reject All
+                                <span></span>
+                            </button> :
+                            <button
+                                className="default-btn"
+                                onClick={openRejectNoteForm}
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                            >
+                                Reject All
+                                <span></span>
+                            </button>
+                        }
                     </div>
                 }
                 <MoveForm
@@ -569,30 +785,100 @@ export function VideoInterview(props) {
                     moveCandidates={moveCandidates}
                 />
                 {/* No question alert form */}
-                <MyModalShare show={showNoQuestionAlert} onHide={() => setShowNoQuestionAlert(false)}>
-                    <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
+                <MyModalShare2 show={showNoQuestionAlert} onHide={() => setShowNoQuestionAlert(false)}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
                         <h3 className="interview-h3">Video Interview Invitation</h3>
                         <p className="interview-p">Please note that select candidate(s) <span style={{ color: "#67A3F3" }}>will receive an email invitation to record their responses.</span></p>
                         <p className="interview-p">Looks like <span style={{ color: "#67A3F3" }}>you haven&apos;t set up the interview questions yet.</span></p>
                         <p className="interview-p">Would you like to continue to configure interview questions first?</p>
                         <div className="row d-flex justify-content-center">
-                            <button onClick={() => { setShowQEditForm(true); setShowNoQuestionAlert(false); }} className="default-btn1" style={{ paddingLeft: "25px", float: "right", marginTop: "2rem", marginBottom: '2rem' }}>confirm</button>
-                            <button onClick={() => setShowNoQuestionAlert(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem", marginTop: "2rem", marginBottom: '2rem' }}>cancel</button>
+                            <button onClick={() => { setShowQEditForm(true); setShowNoQuestionAlert(false); }} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
+                            <button onClick={() => setShowNoQuestionAlert(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem" }}>Cancel</button>
                         </div>
                     </div>
-                </MyModalShare>
+                </MyModalShare2>
                 {/* Invite alert form */}
-                <MyModalShare show={showInviteAlert} onHide={() => setShowInviteAlert(false)}>
-                    <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", width: "80%", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
+                <MyModalShare2 show={showInviteAlert} onHide={() => setShowInviteAlert(false)}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
                         <h3 className="interview-h3">Video Interview Invitation</h3>
                         <p className="interview-p">Please note that select candidate(s) <span style={{ color: "#67A3F3" }}>will receive an email invitation to record their responses.</span></p>
                         <p className="interview-p">Do you confirm to proceed and send the interview invitation?</p>
                         <div className="row d-flex justify-content-center">
-                            <button onClick={() => { sendVideoInterview(); setShowInviteAlert(false) }} className="default-btn1" style={{ paddingLeft: "25px", float: "right", marginTop: "2rem", marginBottom: '2rem' }}>confirm</button>
-                            <button onClick={() => setShowInviteAlert(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem", marginTop: "2rem", marginBottom: '2rem' }}>cancel</button>
+                            <button onClick={() => { sendVideoInterview(); setShowInviteAlert(false) }} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
+                            <button onClick={() => setShowInviteAlert(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem" }}>Cancel</button>
                         </div>
                     </div>
-                </MyModalShare>
+                </MyModalShare2>
+                <MyModalShare2 show={showRejectNote} onHide={() => setShowRejectNote(false)}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
+                        <form onSubmit={(e) => { greenhouserejectCandidates(e); setShowRejectNote(false); }}>
+                            <h3 className="interview-h3">Rejection Notes</h3>
+                            <p>The candidate's rejection status and rejection reason will be synchronized at Greenhouse.</p>
+                            <p style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2rem" }}>Rejection notes:</p>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="rejectNotes"
+                                placeholder="Rejection notes"
+                                onChange={onChange1}
+                                value={rejectNotes}
+                                style={{
+                                    fontFamily: "Avenir Next, Segoe UI",
+                                    background: "#FFFFFF",
+                                    borderRadius: "5px",
+                                    paddingLeft: "1rem",
+                                    border: "2px solid #E8EDFC",
+                                    boxSizing: "border-box",
+                                    marginBottom: "1rem"
+                                }}
+                                required />
+                            <div className="row d-flex justify-content-center">
+                                <button type="submit" className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
+                                <button type="button" onClick={() => setShowRejectNote(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem" }}>Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </MyModalShare2>
+                <MyModalShare2 show={showGreenhouseMoveForm} onHide={() => setShowGreenhouseMoveForm(false)}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem", paddingBottom: "4rem" }}>
+                        <h3 className="interview-h3">Move Stage</h3>
+                        <p className="interview-p">The candidate's stage status will be synchronized at Greenhouse.</p>
+                        <p style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2rem" }}>Move stage:</p>
+                        <Select value={category4} onChange={onFilter4} options={options4} className="select-category4" styles={customStyles1} />
+                        <div className="row d-flex justify-content-center">
+                            <button onClick={() => { greenhouseMoveCandidates(); setShowGreenhouseMoveForm(false) }} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
+                            <button onClick={() => setShowGreenhouseMoveForm(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem" }}>Cancel</button>
+                        </div>
+                    </div>
+                </MyModalShare2>
+                {/*  move success alert prompt */}
+                <AlertModal show={showMoveSuccessAlert} onHide={hideSuccessAlert}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                        <h3 className="interview-h3">Move to next stage Success</h3>
+                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have moved the candidates to selected stage successfully.</p>
+                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
+                            <input id="alertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                            Don't show again
+                        </div>
+                        <div className="row d-flex justify-content-center">
+                            <button onClick={hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                        </div>
+                    </div>
+                </AlertModal>
+                {/*  reject success alert prompt */}
+                <AlertModal show={showRejectSuccessAlert} onHide={hideRejectSuccessAlert}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                        <h3 className="interview-h3">Candidate Rejected!</h3>
+                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have rejected the candidates successfully.</p>
+                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
+                            <input id="rejectAlertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                            Don't show again
+                        </div>
+                        <div className="row d-flex justify-content-center">
+                            <button onClick={hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                        </div>
+                    </div>
+                </AlertModal>
             </div>
         </React.Fragment>
     )

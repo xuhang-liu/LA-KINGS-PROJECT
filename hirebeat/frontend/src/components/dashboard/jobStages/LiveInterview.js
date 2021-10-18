@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-//import { MyModal80 } from "./../DashboardComponents";
+import { AlertModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 //import { ResumeEva } from "./interviewComponents/ResumeEva";
 import { ApplicantList } from "./interviewComponents/ApplicantList";
@@ -14,6 +14,8 @@ export function LiveInterview(props){
 //    }, [])
 
     const [expire, setExpire] = useState({ value: 7, label: '7 days' });
+    const [showMoveSuccessAlert, setShowMoveSuccessAlert] = useState(false);
+    const [showRejectSuccessAlert, setShowRejectSuccessAlert] = useState(false);
 
     function onFilter1(expire) {
         setExpire(expire);
@@ -75,6 +77,13 @@ export function LiveInterview(props){
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = false;
             }
+        }
+    }
+
+    function unSelectAllCandidates() {
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            candidates[i].checked = false;
         }
     }
 
@@ -158,7 +167,11 @@ export function LiveInterview(props){
                 let page = 1;
                 let userId = props.user.id;
                 setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview") }, 300);
-                sendSuccessAlert(nextStage);
+                unSelectAllCandidates();
+                let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
+                if (!noShowAgainMove) {
+                    enableSuccessAlert();
+                }
             } else if (nextStage == "Live Interview") {
                 alert("These candidates are already in this stage!");
             } else {
@@ -182,7 +195,7 @@ export function LiveInterview(props){
                 let candidate = JSON.parse(candidates[i].value);
                 names.push(candidate.first_name + " " + candidate.last_name);
                 emails.push(candidate.email.toLowerCase());
-                invitedCandidates.push(candidate.id);
+                invitedCandidates.push(candidate.apply_candidate_id);
                 candidateCount += 1;
             }
         }
@@ -197,12 +210,56 @@ export function LiveInterview(props){
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
-            rejectSuccessAlert();
+            setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview") }, 300);
+            unSelectAllCandidates();
+            let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
+            if (!noShowAgainReject) {
+                enableRejectSuccessAlert();
+            }
         } else {
             noCandidateAlert();
         }
     };
+
+    const hideSuccessAlert = () => {
+        handleAlertChoice();
+        setShowMoveSuccessAlert(false);
+    }
+
+    const enableSuccessAlert = () => {
+        setShowMoveSuccessAlert(true);
+    }
+
+    const handleAlertChoice = () => {
+        let checkbox = document.getElementById("alertCheckbox");
+        let isChecked = checkbox.checked;
+        if (isChecked) {
+            localStorage.setItem("noShowAgainMove", "true");
+        }
+        else {
+            localStorage.setItem("noShowAgainMove", "false");
+        }
+    }
+
+    const hideRejectSuccessAlert = () => {
+        handleRejectAlertChoice();
+        setShowRejectSuccessAlert(false);
+    }
+
+    const enableRejectSuccessAlert = () => {
+        setShowRejectSuccessAlert(true);
+    }
+
+    const handleRejectAlertChoice = () => {
+        let checkbox = document.getElementById("rejectAlertCheckbox");
+        let isChecked = checkbox.checked;
+        if (isChecked) {
+            localStorage.setItem("noShowAgainReject", "true");
+        }
+        else {
+            localStorage.setItem("noShowAgainReject", "false");
+        }
+    }
 
     return (
         <React.Fragment>
@@ -350,6 +407,34 @@ export function LiveInterview(props){
                     setNextStage={setNextStage}
                     moveCandidates={moveCandidates}
                 />
+                {/*  move success alert prompt */}
+                <AlertModal show={showMoveSuccessAlert} onHide={hideSuccessAlert}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                        <h3 className="interview-h3">Move to next stage Success</h3>
+                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have moved the candidates to selected stage successfully.</p>
+                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
+                            <input id="alertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                            Don't show again
+                        </div>
+                        <div className="row d-flex justify-content-center">
+                            <button onClick={hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                        </div>
+                    </div>
+                </AlertModal>
+                {/*  reject success alert prompt */}
+                <AlertModal show={showRejectSuccessAlert} onHide={hideRejectSuccessAlert}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                        <h3 className="interview-h3">Candidate Rejected!</h3>
+                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have rejected the candidates successfully.</p>
+                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
+                            <input id="rejectAlertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                            Don't show again
+                        </div>
+                        <div className="row d-flex justify-content-center">
+                            <button onClick={hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                        </div>
+                    </div>
+                </AlertModal>
             </div>
         </React.Fragment>
     )

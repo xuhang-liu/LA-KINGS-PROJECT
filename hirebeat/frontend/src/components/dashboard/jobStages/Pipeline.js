@@ -296,7 +296,7 @@ export class Pipeline extends Component {
     alertSuccess = () => {
         confirmAlert({
             title: "Invitation Sent",
-            message: "Invitation of Reviewer successfully",
+            message: "You've successfully invited your team member.",
             buttons: [
                 {
                     label: 'Ok'

@@ -366,6 +366,32 @@ export const MyShareModal = (props) => {
     );
 };
 
+export const MyModalShare2 = (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName="my-share-modal"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            {props.children}
+        </Modal>
+    );
+};
+
+export const AlertModal = (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName="my-alert-modal"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            {props.children}
+        </Modal>
+    );
+};
+
 export const OverallScore = (props) => {
     var options = customBarData(props.percent, props.bgColor, props.barColor);
     return (
