@@ -104,7 +104,7 @@ const FormCard = (props) => {
                         </div>
                         <div className="col-4">
                             <p className="profile-p" style={{margin: "0rem"}}>Graduation</p>
-                            <input id="graduationDate" defaultValue={education?.graduation_date} className="profile-input profile-p4" style={{width: "100%"}} placeHolder="June 2020"></input>
+                            <input id="graduationDate" type="date" defaultValue={education?.graduation_date} className="profile-input profile-p4" style={{width: "100%"}} placeHolder="June 2020"></input>
                         </div>
                     </div>
                     <div className="row" style={{marginTop: "1rem"}}>

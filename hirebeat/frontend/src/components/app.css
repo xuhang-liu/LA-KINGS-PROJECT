@@ -489,6 +489,10 @@ card-row-third-high {
   min-width: 40%;
 }
 
+.my-alert-modal {
+  min-width: 30%;
+}
+
 .line {
   width: 40%;
   height: 2px;
@@ -1675,6 +1679,12 @@ h5 {
 
 .select-category3 {
   width: 11rem;
+}
+
+.select-category4 {
+  width: 30rem;
+  margin-bottom: 5rem;
+  z-index: 999;
 }
 
 .select-difficulty {
@@ -4735,6 +4745,7 @@ max-width: 110px;
   font-weight: 500;
   font-size: 1.125rem;
   color: #7A7A7A;
+  line-height: 1.5625rem;
 }
 
 .job-creation-input {
