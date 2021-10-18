@@ -693,7 +693,7 @@ export class JobCreation extends Component {
                             )
                         })}
                         {this.state.questionCount < 3 &&
-                            <div className="form-row">
+                            <div className="form-row" style={{marginBottom: "1rem"}}>
                                 <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addQuestion}>
                                     + Add Screening Questions
                                 </span>
