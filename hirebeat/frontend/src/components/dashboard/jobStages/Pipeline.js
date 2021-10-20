@@ -81,7 +81,48 @@ export class Pipeline extends Component {
                                     <input type="email" id="sub_reviewer_email" className="form-control" required="required" placeHolder="john@example.com" />
                                 </div>
                             </div>
-                            <div className="form-row justify-items">
+                            <div className="form-row" style={{ marginTop: "0.6rem" }}>
+                                <label style={{ fontSize: "17px", margin: "1rem" }}>
+                                    Invite to:
+                                </label>
+                            </div>
+                            <div className="form-row ml-5" style={{ marginTop: "0.6rem" }}>
+                                <div>
+                                    {stage == "Resume Review"?
+                                    <input type="checkbox" style={{ display: "inline-block" }} id="ResumeReview" checked/>:
+                                    <input type="checkbox" style={{ display: "inline-block" }} id="ResumeReview"/>
+                                    }
+                                    <p style={{ display: "inline-block", marginLeft: "1rem" }}>Resume Review</p>
+                                </div>
+                            </div>
+                            <div className="form-row ml-5" style={{ marginTop: "0.6rem" }}>
+                                <div>
+                                    {stage == "Video Interview"?
+                                    <input type="checkbox" style={{ display: "inline-block" }} id="VideoInterview" checked/>:
+                                    <input type="checkbox" style={{ display: "inline-block" }} id="VideoInterview"/>
+                                    }
+                                    <p style={{ display: "inline-block", marginLeft: "1rem" }}>Video Interview</p>
+                                </div>
+                            </div>
+                            <div className="form-row ml-5" style={{ marginTop: "0.6rem" }}>
+                                <div>
+                                    {stage == "Live Interview"?
+                                    <input type="checkbox" style={{ display: "inline-block" }} id="LiveInterview" checked/>:
+                                    <input type="checkbox" style={{ display: "inline-block" }} id="LiveInterview"/>
+                                    }
+                                    <p style={{ display: "inline-block", marginLeft: "1rem" }}>Live Interview</p>
+                                </div>
+                            </div>
+                            <div className="form-row ml-5" style={{ marginTop: "0.6rem" }}>
+                                <div>
+                                    {stage == "Short List"?
+                                    <input type="checkbox" style={{ display: "inline-block" }} id="ShortList" checked/>:
+                                    <input type="checkbox" style={{ display: "inline-block" }} id="ShortList"/>
+                                    }
+                                    <p style={{ display: "inline-block", marginLeft: "1rem" }}>Short List</p>
+                                </div>
+                            </div>
+                            <div className="form-row justify-items mt-3">
                                 <div className="form-group col-3" style={{ marginRight: "3rem" }}>
                                     <button
                                         type="submit"
@@ -95,7 +136,7 @@ export class Pipeline extends Component {
                                     <button
                                         type="button"
                                         className="default-btn1"
-                                        style={{ paddingLeft: "25px" }}
+                                        style={{ paddingLeft: "25px", backgroundColor: "#979797" }}
                                         onClick={() => onClose()}
                                     >
                                         Cancel
@@ -115,14 +156,20 @@ export class Pipeline extends Component {
         let sub_reviewer_email = "";
         let encoded_email = "";
         let email_list = [];
+        let check_ResumeReview = false;
+        let check_VideoInterview = false;
+        let check_LiveInterview = false;
+        let check_ShortList = false;
+        check_ResumeReview = document.getElementById("ResumeReview").checked;
+        check_VideoInterview = document.getElementById("VideoInterview").checked;
+        check_LiveInterview = document.getElementById("LiveInterview").checked;
+        check_ShortList = document.getElementById("ShortList").checked;
+        let check_stage_array = [check_ResumeReview, check_VideoInterview, check_LiveInterview, check_ShortList];
         sub_reviewer_name = document.getElementById("sub_reviewer_name").value;
         sub_reviewer_email = document.getElementById("sub_reviewer_email").value;
         //check user exist
         (this.props?.postedJobs[this.props?.job?.job_details?.positions_id]?.ex_reviewers)?.map((ext, i) => {
             email_list.push(ext.r_email);
-        });
-        (this.props?.postedJobs[this.props?.job?.job_details?.positions_id]?.subreviewers)?.map((sub, i) => {
-            email_list.push(sub.r_email);
         });
         if (email_list?.indexOf(sub_reviewer_email?.toLowerCase()) != -1) {
             return this.sendFailAlert1();
@@ -143,7 +190,7 @@ export class Pipeline extends Component {
                     "master_email": this.props.user.email,
                     "master_user": this.props.user.id,
                     "jobs_id": this.props.job.job_details.id,
-                    "current_stage": stage,
+                    "check_stage_array": check_stage_array,
                 };
                 this.props.addSubReviewer(data);
                 this.props.getPJobs();
@@ -198,7 +245,7 @@ export class Pipeline extends Component {
                                     <button
                                         type="button"
                                         className="default-btn1"
-                                        style={{ paddingLeft: "25px" }}
+                                        style={{ paddingLeft: "25px", backgroundColor: "#979797" }}
                                         onClick={() => onClose()}
                                     >
                                         Cancel
@@ -356,7 +403,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {((!this.props.job.job_details.is_closed)) &&
-                            <div style={{ marginLeft: "2rem", marginRight:"1rem" }}>
+                            <div style={{ marginLeft: "2rem", marginRight: "1rem" }}>
                                 <div>
                                     {(this.props.profile.membership == "Premium") &&
                                         <button
@@ -445,7 +492,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {((!this.props.job.job_details.is_closed)) &&
-                            <div style={{ marginLeft: "2rem", marginRight:"3.8rem" }}>
+                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
                                 <div>
                                     {(this.props.profile.membership == "Premium") &&
                                         <div>
@@ -535,7 +582,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {((!this.props.job.job_details.is_closed)) &&
-                            <div style={{ marginLeft: "2rem", marginRight:"3.8rem" }}>
+                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
                                 <div>
                                     {(this.props.profile.membership == "Premium") &&
                                         <div>
@@ -625,7 +672,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {((!this.props.job.job_details.is_closed)) &&
-                            <div style={{ marginLeft: "2rem", marginRight:"3.8rem" }}>
+                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
                                 <div>
                                     {(this.props.profile.membership == "Premium") &&
                                         <div>
@@ -715,7 +762,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {((!this.props.job.job_details.is_closed)) &&
-                            <div style={{ marginLeft: "2rem", marginRight:"3.8rem" }}>
+                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
                                 <div>
                                     {(this.props.profile.membership == "Premium") &&
                                         <div>

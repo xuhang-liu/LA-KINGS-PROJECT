@@ -136,9 +136,11 @@ def get_posted_jobs(request):
             # get each position applicants by current stage
             applicants = []
             if stage == "":
-                applicants = list(InvitedCandidates.objects.filter(positions=position, is_active=True).order_by('-id').values())
+                applicants = list(InvitedCandidates.objects.filter(
+                    positions=position, is_active=True).order_by('-id').values())
             else:
-                applicants = list(InvitedCandidates.objects.filter(positions=position, current_stage=stage, is_active=True).order_by('-id').values())
+                applicants = list(InvitedCandidates.objects.filter(
+                    positions=position, current_stage=stage, is_active=True).order_by('-id').values())
             # get linkedin and is_active values from ApplyCandidates model
             for applicant in applicants:
                 applicant["linkedinurl"] = ""
@@ -209,13 +211,14 @@ def get_posted_jobs(request):
     # reviewer
     else:
         user = User.objects.get(pk=user_id)
-        ex_reviewers = list(chain(SubReviewers.objects.filter(r_email=user.email), ExternalReviewers.objects.filter(r_email=user.email)))
+        ex_reviewers = list(chain(SubReviewers.objects.filter(
+            r_email=user.email), ExternalReviewers.objects.filter(r_email=user.email)))
         for i in range(len(ex_reviewers)):
             reviewer_type = ""
             position_id = ex_reviewers[i].position.id
-            if (len(ExternalReviewers.objects.filter(r_email=user.email, position_id=position_id))>0):
+            if (len(ExternalReviewers.objects.filter(r_email=user.email, position_id=position_id)) > 0):
                 reviewer_type = "extr"
-            elif (len(SubReviewers.objects.filter(r_email=user.email, position_id=position_id))>0):
+            elif (len(SubReviewers.objects.filter(r_email=user.email, position_id=position_id)) > 0):
                 reviewer_type = "subr"
             # get each position applicants by current stage
             applicants = []
@@ -231,7 +234,8 @@ def get_posted_jobs(request):
                 applicant["linkedinurl"] = ""
                 applicant["is_active"] = False
                 applicant["apply_candidate_id"] = 0
-                jobs = Jobs.objects.filter(positions_id=position_id, user_id=ex_reviewers[i].master_user)
+                jobs = Jobs.objects.filter(
+                    positions_id=position_id, user_id=ex_reviewers[i].master_user)
                 if len(jobs) > 0:
                     candidate = ApplyCandidates.objects.filter(
                         email=applicant["email"], jobs_id=jobs[0].id)
@@ -410,7 +414,8 @@ def move_candidate_to_interview(request):
                     transferable_skills_occurrence = candidate_info.transferable_skills_occurrence
                     # save data
                     if not CandidatesInterview.objects.filter(email=emails[i], positions_id=position_id).exists():
-                        CandidatesInterview.objects.create(email=emails[i], positions_id=position_id)
+                        CandidatesInterview.objects.create(
+                            email=emails[i], positions_id=position_id)
                     if not InvitedCandidates.objects.filter(email=emails[i], positions_id=position_id).exists():
                         invitedCan = InvitedCandidates.objects.create(positions_id=position_id, email=emails[i], name=names[i], comment_status=0,
                                                                       resume_url=resume_url, location=location, phone=phone, result_rate=result_rate,
@@ -737,28 +742,62 @@ def add_sub_reviewer(request):
     company_name = request.data["company_name"]
     position_id = request.data["position_id"]
     master_email = request.data["master_email"]
-    current_stage = request.data["current_stage"]
     master_user = request.data["master_user"]
     jobs_id = request.data["jobs_id"]
+    check_stage_array = request.data["check_stage_array"]
+    subreviewers_length = 0
     positions = Positions.objects.get(pk=position_id)
-    subreviewers = SubReviewers.objects.filter(
-        company_name=company_name, r_email=sub_email, position=positions)
-    if((len(subreviewers) == 0)):
-        created_sub_reviewer = SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name,
-                                    position=positions, current_stage=current_stage, master_user=master_user, jobs_id=jobs_id)
-        ext_rev = ExternalReviewers.objects.filter(r_email=sub_email)
-        sub_rev = SubReviewers.objects.filter(r_email=sub_email)
-        if (len(ext_rev)>0):
-            created_sub_reviewer.r_name = ext_rev[0].r_name
-            created_sub_reviewer.save()
-        if (len(sub_rev)>0):
-            created_sub_reviewer.r_name = sub_rev[0].r_name
-            created_sub_reviewer.save()
-        send_sub_invitation(sub_name, sub_email, encoded_email,
-                            company_name, master_email, positions.job_title)
+    if len(check_stage_array) > 0:
+        for c in range(len(check_stage_array)):
+            subreviewers = []
+            if (check_stage_array[c]):
+                if c == 0:
+                    subreviewers = SubReviewers.objects.filter(
+                        company_name=company_name, r_email=sub_email, position=positions, current_stage="Resume Review")
+                elif c == 1:
+                    subreviewers = SubReviewers.objects.filter(
+                        company_name=company_name, r_email=sub_email, position=positions, current_stage="Video Interview")
+                elif c == 2:
+                    subreviewers = SubReviewers.objects.filter(
+                        company_name=company_name, r_email=sub_email, position=positions, current_stage="Live Interview")
+                elif c == 3:
+                    subreviewers = SubReviewers.objects.filter(
+                        company_name=company_name, r_email=sub_email, position=positions, current_stage="Short List")
+            if len(subreviewers) > 0:
+                subreviewers_length += 1
     else:
-        send_sub_invitation(sub_name, sub_email, encoded_email,
-                            company_name, master_email, positions.job_title)
+        subreviewers = SubReviewers.objects.filter(
+            company_name=company_name, r_email=sub_email, position=positions)
+        if len(subreviewers) > 0:
+            subreviewers_length += 1
+    for c in range(len(check_stage_array)):
+        if (check_stage_array[c]):
+            if(subreviewers_length == 0):
+                if c == 0:
+                    created_sub_reviewer = SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name,
+                                                                       position=positions, current_stage="Resume Review", master_user=master_user, jobs_id=jobs_id)
+                elif c == 1:
+                    created_sub_reviewer = SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name,
+                                                                       position=positions, current_stage="Video Interview", master_user=master_user, jobs_id=jobs_id)
+                elif c == 2:
+                    created_sub_reviewer = SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name,
+                                                                       position=positions, current_stage="Live Interview", master_user=master_user, jobs_id=jobs_id)
+                elif c == 3:
+                    created_sub_reviewer = SubReviewers.objects.create(r_name=sub_name, r_email=sub_email, company_name=company_name,
+                                                                       position=positions, current_stage="Short List", master_user=master_user, jobs_id=jobs_id)
+                ext_rev = ExternalReviewers.objects.filter(r_email=sub_email)
+                sub_rev = SubReviewers.objects.filter(r_email=sub_email)
+                if (len(ext_rev) > 0):
+                    created_sub_reviewer.r_name = ext_rev[0].r_name
+                    created_sub_reviewer.save()
+                if (len(sub_rev) > 0):
+                    created_sub_reviewer.r_name = sub_rev[0].r_name
+                    created_sub_reviewer.save()
+                send_sub_invitation(sub_name, sub_email, encoded_email,
+                                    company_name, master_email, positions.job_title)
+            else:
+                send_sub_invitation(sub_name, sub_email, encoded_email,
+                                    company_name, master_email, positions.job_title)
     return Response("Add sub reviewer successfully", status=status.HTTP_200_OK)
 
 
@@ -950,13 +989,13 @@ def add_external_reviewer(request):
         company_name=company_name, r_email=ex_reviewer_email, position=positions)
     if (len(externalReviewers) == 0):
         created_ext_reviewer = ExternalReviewers.objects.create(r_name=ex_reviewer_name, r_email=ex_reviewer_email,
-                                         company_name=company_name, position=positions, master_user=master_user, jobs_id=jobs_id)
+                                                                company_name=company_name, position=positions, master_user=master_user, jobs_id=jobs_id)
         ext_rev = ExternalReviewers.objects.filter(r_email=ex_reviewer_email)
         sub_rev = SubReviewers.objects.filter(r_email=ex_reviewer_email)
-        if (len(ext_rev)>0):
+        if (len(ext_rev) > 0):
             created_ext_reviewer.r_name = ext_rev[0].r_name
             created_ext_reviewer.save()
-        if (len(sub_rev)>0):
+        if (len(sub_rev) > 0):
             created_ext_reviewer.r_name = sub_rev[0].r_name
             created_ext_reviewer.save()
         send_ex_reviewer_invitation(ex_reviewer_name, ex_reviewer_email,
@@ -1046,8 +1085,10 @@ def add_or_update_reviewer_evaluation(request):
     reviewer_type = request.data["reviewer_type"]
     # get reviewer name
     reviewer_name = ""
-    sub_reviewer = SubReviewers.objects.filter(r_email=reviewer_email, position_id=position_id)
-    external_reviewer = ExternalReviewers.objects.filter(r_email=reviewer_email, position_id=position_id)
+    sub_reviewer = SubReviewers.objects.filter(
+        r_email=reviewer_email, position_id=position_id)
+    external_reviewer = ExternalReviewers.objects.filter(
+        r_email=reviewer_email, position_id=position_id)
     if len(sub_reviewer) > 0:
         reviewer_name = sub_reviewer[0].r_name
     elif len(external_reviewer) > 0:
