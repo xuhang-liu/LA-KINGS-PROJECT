@@ -74,6 +74,12 @@ const ApplyJob = (props) => {
         setAnsObjs(tempAnsObjs);
     }
 
+    function isValidLinkedin(url) {
+        const regex = /^(http(s)?:\/\/)?([\w]+\.)?linkedin\.com\/(pub|in|profile)/gm
+        const isMatch = url.match(regex);
+        return isMatch != null;
+    }
+
     function applySubmit(e) {
         e.preventDefault();
         let gender = null;
@@ -97,6 +103,18 @@ const ApplyJob = (props) => {
         if (props.job.eeo_ques_req == "0") {
             gender = "";
             race = "";
+        }
+        // check linkedin url
+        if (props.job.lin_req == "0" && !isValidLinkedin(linkedinurl)) {
+            return confirmAlert({
+                title: "Invalid Linkedin",
+                message: "Please enter a valid linkedin url",
+                buttons: [
+                    {
+                        label: 'Ok'
+                    }
+                ]
+            });
         }
         if (resume_url == "") {
             return confirmAlert({
@@ -200,6 +218,18 @@ const ApplyJob = (props) => {
         if (props.job.eeo_ques_req == "0") {
             gender = "";
             race = "";
+        }
+        // check linkedin url
+        if (props.job.lin_req == "0" && !isValidLinkedin(linkedinurl)) {
+            return confirmAlert({
+                title: "Invalid Linkedin",
+                message: "Please enter a valid linkedin url",
+                buttons: [
+                    {
+                        label: 'Ok'
+                    }
+                ]
+            });
         }
         if (resume_url == "") {
             return confirmAlert({

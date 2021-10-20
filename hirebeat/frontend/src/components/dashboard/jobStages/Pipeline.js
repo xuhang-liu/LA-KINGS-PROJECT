@@ -146,7 +146,8 @@ export class Pipeline extends Component {
                         </form>
                     </div>
                 );
-            }
+            },
+            overlayClassName: "overlay",
         });
     }
 
@@ -255,7 +256,8 @@ export class Pipeline extends Component {
                         </form>
                     </div>
                 );
-            }
+            },
+            overlayClassName: "overlay",
         });
     }
 
