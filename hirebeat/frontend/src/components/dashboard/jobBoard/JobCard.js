@@ -23,7 +23,7 @@ export class JobCard extends Component {
 
     editJob = () => {
         let id = this.props.job.job_details.id;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1); }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); }, 300);
 
     };
 
@@ -35,7 +35,7 @@ export class JobCard extends Component {
             "userId": this.props.user.id,
         }
         this.props.archiveJob(data);
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1); this.props.getPJobs(); this.props.getZRFeedXML() }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML() }, 300);
     };
 
     deleteJob = () => {
@@ -45,7 +45,7 @@ export class JobCard extends Component {
             "userId": this.props.user.id,
         }
         this.props.deleteJob(data);
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1); this.props.getPJobs(); this.props.getZRFeedXML() }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML() }, 300);
     };
 
     activateJob = () => {
@@ -66,7 +66,7 @@ export class JobCard extends Component {
                 "userId": this.props.user.id,
             }
             this.props.archiveJob(data);
-            setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1); this.props.getPJobs(); this.props.getZRFeedXML() }, 300);
+            setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML() }, 300);
         }
     };
 

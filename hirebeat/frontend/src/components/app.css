@@ -4763,3 +4763,7 @@ max-width: 110px;
 .apply-s {
   font-weight: 500;
 }
+
+.overlay {
+  background: rgba(255, 255, 255, 0.9);
+}

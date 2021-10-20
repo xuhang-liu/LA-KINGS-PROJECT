@@ -74,7 +74,10 @@ export class ScreenQuestion extends Component {
                                 <div className="col-2">
                                     <p className="profile-p" style={{margin: "0rem"}}>Ideal Answer</p>
                                     {this.props.responseType.value == "Numeric" ?
-                                        <input type="number" min="0" className="job-creation-input" value={this.props.questionObj?.numAns} onChange={(e) => this.props.handleQFormChange(index, "numAns", e)}/> :
+                                        <div style={{display: "flex", alignItems: "center"}}>
+                                            <input type="number" min="0" className="job-creation-input" value={this.props.questionObj?.numAns} onChange={(e) => this.props.handleQFormChange(index, "numAns", e)}/>
+                                            <span className="profile-p" style={{marginLeft: "0.5rem"}}>minimum</span>
+                                        </div> :
                                         <Select value={this.props.ans} onChange={this.filterAnsType} options={this.ansOptions} styles={this.customStyles} menuPortalTarget={document.body}/>
                                     }
                                 </div>
