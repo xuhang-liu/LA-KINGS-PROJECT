@@ -1129,12 +1129,13 @@ def check_id_master_active(request):
 
 @api_view(['POST'])
 def check_subreviewer_currentstage(request):
-    current_stage = ""
+    current_stage = []
     job_id = request.data['job_id']
     email = request.data['email']
     subreviewers = SubReviewers.objects.filter(r_email=email, jobs_id=job_id)
     if len(subreviewers) > 0:
-        current_stage = subreviewers[0].current_stage
+        for s in range(len(subreviewers)):
+            current_stage.append(subreviewers[s].current_stage)
 
     return Response({
         "current_stage": current_stage

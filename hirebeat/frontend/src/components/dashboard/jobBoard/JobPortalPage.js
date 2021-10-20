@@ -21,7 +21,7 @@ export class JobPortalPage extends Component {
 
     state = {
         portalSubpage: sessionStorage.getItem(this.props.job.job_details.job_title + 'portalSubpage') || "pipeline",
-        reviewerStage: ""
+        reviewerStage: []
     }
 
     componentDidMount() {
@@ -33,35 +33,40 @@ export class JobPortalPage extends Component {
         if (this.props.job?.reviewer_type == "subr") {
             let data = { "job_id": this.props.job.job_details.id, "email": this.props.user.email };
             axios.post("jobs/check_subreviewer_currentstage", data, config).then((res) => {
-                if (res?.data?.current_stage == "Resume Review") {
-                    this.setState({
-                        reviewerStage: "resumeScreen",
-                        portalSubpage: "resumeScreen",
-                    });
-                }
-                else if (res?.data?.current_stage == "Video Interview") {
-                    this.setState({
-                        reviewerStage: "videoInterview",
-                        portalSubpage: "videoInterview",
-                    });
-                    this.props.getPostedJobs(this.props.user.id, 1, "Video Interview");
-                    sessionStorage.setItem('selectedSubpage', "Video Interview");
-                }
-                else if (res?.data?.current_stage == "Live Interview") {
-                    this.setState({
-                        reviewerStage: "liveInterview",
-                        portalSubpage: "liveInterview",
-                    });
-                    sessionStorage.setItem('selectedSubpage', "Live Interview");
-                    this.props.getPostedJobs(this.props.user.id, 1, "Live Interview");
-                }
-                else if (res?.data?.current_stage == "Short List") {
-                    this.setState({
-                        reviewerStage: "shortList",
-                        portalSubpage: "shortList",
-                    });
-                    sessionStorage.setItem('selectedSubpage', "Short List");
-                    this.props.getPostedJobs(this.props.user.id, 1, "Short List");
+                let stage_array = res?.data?.current_stage;
+                if (stage_array?.length > 0) {
+                    stage_array?.map(s => {
+                        if (s == "Resume Review") {
+                            this.setState({
+                                portalSubpage: "resumeScreen"
+                            });
+                            this.setState({ reviewerStage: [...this.state.reviewerStage, 'resumeScreen'] });
+                        }
+                        else if (s == "Video Interview") {
+                            this.setState({
+                                portalSubpage: "videoInterview"
+                            });
+                            this.setState({ reviewerStage: [...this.state.reviewerStage, 'videoInterview'] });
+                            this.props.getPostedJobs(this.props.user.id, 1, "Video Interview");
+                            sessionStorage.setItem('selectedSubpage', "Video Interview");
+                        }
+                        else if (s == "Live Interview") {
+                            this.setState({
+                                portalSubpage: "liveInterview"
+                            });
+                            this.setState({ reviewerStage: [...this.state.reviewerStage, 'liveInterview'] });
+                            sessionStorage.setItem('selectedSubpage', "Live Interview");
+                            this.props.getPostedJobs(this.props.user.id, 1, "Live Interview");
+                        }
+                        else if (s == "Short List") {
+                            this.setState({
+                                portalSubpage: "shortList"
+                            });
+                            this.setState({ reviewerStage: [...this.state.reviewerStage, 'shortList'] });
+                            sessionStorage.setItem('selectedSubpage', "Short List");
+                            this.props.getPostedJobs(this.props.user.id, 1, "Short List");
+                        }
+                    })
                 }
             }).catch(error => {
                 console.log(error)
@@ -79,9 +84,9 @@ export class JobPortalPage extends Component {
         });
     };
     renderResumeScreen = () => {
-        if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null){
+        if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null) {
             alert("This is a integration job.")
-        }else{
+        } else {
             sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "resumeScreen");
             let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
             this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True");
@@ -93,20 +98,20 @@ export class JobPortalPage extends Component {
     };
     renderVideoInterview = () => {
         sessionStorage.setItem('selectedSubpage', "Video Interview");
-        sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "videoInterview");
-        let interviewPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
+        sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "videoInterview");
+        let interviewPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) + 1 : 1;
         this.props.getPostedJobs(this.props.user.id, interviewPage, "Video Interview");
         this.setState({
             portalSubpage: "videoInterview",
         });
     };
     renderLiveInterview = () => {
-        if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null){
+        if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null) {
             alert("This is a integration job.")
-        }else{
+        } else {
             sessionStorage.setItem('selectedSubpage', "Live Interview");
-            sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "liveInterview");
-            let page = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
+            sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "liveInterview");
+            let page = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) + 1 : 1;
             this.props.getPostedJobs(this.props.user.id, page, "Live Interview");
             this.setState({
                 portalSubpage: "liveInterview",
@@ -114,12 +119,12 @@ export class JobPortalPage extends Component {
         }
     };
     renderShortList = () => {
-        if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null){
+        if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null) {
             alert("This is a integration job.")
-        }else{
+        } else {
             sessionStorage.setItem('selectedSubpage', "Short List");
-            sessionStorage.setItem(this.props.job.job_details.job_title+'portalSubpage', "shortList");
-            let shortListPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage"))+1 : 1;
+            sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "shortList");
+            let shortListPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) + 1 : 1;
             this.props.getPostedJobs(this.props.user.id, shortListPage, "Short List");
             this.setState({
                 portalSubpage: "shortList",
@@ -155,15 +160,15 @@ export class JobPortalPage extends Component {
                 />;
             case "allCandidates":
                 return <AllCandidates
-                            filter={this.props.filter}
-                            curJob={this.props.job}
-                            getAllJobs={this.props.getAllJobs}
-                            getPJobs={this.props.getPJobs}
-                            profile={this.props.profile}
-                            user={this.props.user}
-                            isClosed={p.is_closed}
-                            getPostedJobs={this.props.getPostedJobs}
-                        />;
+                    filter={this.props.filter}
+                    curJob={this.props.job}
+                    getAllJobs={this.props.getAllJobs}
+                    getPJobs={this.props.getPJobs}
+                    profile={this.props.profile}
+                    user={this.props.user}
+                    isClosed={p.is_closed}
+                    getPostedJobs={this.props.getPostedJobs}
+                />;
             case "resumeScreen":
                 return <ResumeScreening
                     filter={this.props.filter}
@@ -230,64 +235,64 @@ export class JobPortalPage extends Component {
                     updateInviteStatus={this.props.updateInviteStatus}
                     jobsId={this.props.job.job_details.id}
                     getAllJobs={this.props.getAllJobs}
-                    gh_current_stage_id = {this.props.job.job_details.gh_current_stage_id}
+                    gh_current_stage_id={this.props.job.job_details.gh_current_stage_id}
                 />;
             case "liveInterview":
                 return <LiveInterview
-                        filter={this.props.filter}
-                        removeSubReviewer={this.props.removeSubReviewer}
-                        addSubReviewer={this.props.addSubReviewer}
-                        getPJobs={this.props.getPJobs}
-                        resumeURL={this.props.resumeURL}
-                        addSelected={this.props.setselectedId}
-                        questions={p.questions}
-                        companyName={this.props.companyName}
-                        positionId={p.position_id}
-                        jobId={p.job_id}
-                        jobTitle={p.job_title}
-                        isClosed={p.is_closed}
-                        inviteDate={p.invite_date}
-                        applicants={p.applicants}
-                        subreviewers={p.subreviewers}
-                        reviewer_type={p.reviewer_type}
-                        addInterviews={this.props.addInterviews}
-                        getApplicantsVideos={this.props.getApplicantsVideos}
-                        getApplicantsInfo={this.props.getApplicantsInfo}
-                        getRecordStatus={this.props.getRecordStatus}
-                        dataLoaded={this.props.dataLoaded}
-                        isRecorded={this.props.isRecorded}
-                        int_ques={this.props.int_ques}
-                        id_candidate={this.props.id_candidate}
-                        username_candidate={this.props.username_candidate}
-                        email_candidate={this.props.email_candidate}
-                        phone_candidate={this.props.phone_candidate}
-                        location_candidate={this.props.location_candidate}
-                        resendInvitation={this.props.resendInvitation}
-                        updateCommentStatus={this.props.updateCommentStatus}
-                        closePosition={this.props.closePosition}
-                        deletePosition={this.props.deletePosition}
-                        getResumeURL={this.props.getResumeURL}
-                        recordTime={this.props.recordTime}
-                        interviewResume={this.props.interviewResume}
-                        user={this.props.user}
-                        profile={this.props.profile}
-                        updateViewStatus={this.props.updateViewStatus}
-                        subreviewerUpdateComment={this.props.subreviewerUpdateComment}
-                        position={p.position}
-                        allInvited={p.all_invited}
-                        moveCandidateToInterview={this.props.moveCandidateToInterview}
-                        sendInterviews={this.props.sendInterviews}
-                        checkUserExistence={this.props.checkUserExistence}
-                        user_existence={this.props.user_existence}
-                        getReviewNote={this.props.getReviewNote}
-                        getReviewerEvaluation={this.props.getReviewerEvaluation}
-                        getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
-                        totalRecords={p.total_records}
-                        totalPage={p.total_page}
-                        getPostedJobs={this.props.getPostedJobs}
-                        updateInviteStatus={this.props.updateInviteStatus}
-                        jobsId={this.props.job.job_details.id}
-                        getAllJobs={this.props.getAllJobs}
+                    filter={this.props.filter}
+                    removeSubReviewer={this.props.removeSubReviewer}
+                    addSubReviewer={this.props.addSubReviewer}
+                    getPJobs={this.props.getPJobs}
+                    resumeURL={this.props.resumeURL}
+                    addSelected={this.props.setselectedId}
+                    questions={p.questions}
+                    companyName={this.props.companyName}
+                    positionId={p.position_id}
+                    jobId={p.job_id}
+                    jobTitle={p.job_title}
+                    isClosed={p.is_closed}
+                    inviteDate={p.invite_date}
+                    applicants={p.applicants}
+                    subreviewers={p.subreviewers}
+                    reviewer_type={p.reviewer_type}
+                    addInterviews={this.props.addInterviews}
+                    getApplicantsVideos={this.props.getApplicantsVideos}
+                    getApplicantsInfo={this.props.getApplicantsInfo}
+                    getRecordStatus={this.props.getRecordStatus}
+                    dataLoaded={this.props.dataLoaded}
+                    isRecorded={this.props.isRecorded}
+                    int_ques={this.props.int_ques}
+                    id_candidate={this.props.id_candidate}
+                    username_candidate={this.props.username_candidate}
+                    email_candidate={this.props.email_candidate}
+                    phone_candidate={this.props.phone_candidate}
+                    location_candidate={this.props.location_candidate}
+                    resendInvitation={this.props.resendInvitation}
+                    updateCommentStatus={this.props.updateCommentStatus}
+                    closePosition={this.props.closePosition}
+                    deletePosition={this.props.deletePosition}
+                    getResumeURL={this.props.getResumeURL}
+                    recordTime={this.props.recordTime}
+                    interviewResume={this.props.interviewResume}
+                    user={this.props.user}
+                    profile={this.props.profile}
+                    updateViewStatus={this.props.updateViewStatus}
+                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                    position={p.position}
+                    allInvited={p.all_invited}
+                    moveCandidateToInterview={this.props.moveCandidateToInterview}
+                    sendInterviews={this.props.sendInterviews}
+                    checkUserExistence={this.props.checkUserExistence}
+                    user_existence={this.props.user_existence}
+                    getReviewNote={this.props.getReviewNote}
+                    getReviewerEvaluation={this.props.getReviewerEvaluation}
+                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                    totalRecords={p.total_records}
+                    totalPage={p.total_page}
+                    getPostedJobs={this.props.getPostedJobs}
+                    updateInviteStatus={this.props.updateInviteStatus}
+                    jobsId={this.props.job.job_details.id}
+                    getAllJobs={this.props.getAllJobs}
                 />;
             case "shortList":
                 return <ShortList
@@ -327,10 +332,10 @@ export class JobPortalPage extends Component {
             <React.Fragment>
                 <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
                     <div className="chart-bg1" style={{ paddingTop: "0px", paddingBottom: "5rem" }}>
-                        <div style={{ padding: "1rem", backgroundColor: "#f4f7ff", borderRadius: "10px" }}><h3 style={{ fontSize: "1.25rem", marginBottom: "0rem" }}><b><i class='bx-fw bx bx-chevron-left' style={{ color: "#c4c4c4", cursor: "pointer", display: "inherit" }} onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", "")}}></i><span className="ml-2" style={{verticalAlign: "middle"}}>{this.props.job.job_details.job_title}</span></b></h3></div>
+                        <div style={{ padding: "1rem", backgroundColor: "#f4f7ff", borderRadius: "10px" }}><h3 style={{ fontSize: "1.25rem", marginBottom: "0rem" }}><b><i class='bx-fw bx bx-chevron-left' style={{ color: "#c4c4c4", cursor: "pointer", display: "inherit" }} onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", "") }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.job.job_details.job_title}</span></b></h3></div>
                         <div className="row" style={{ border: "1px solid #e8edfc" }}>
                             <div className="col-2">
-                                {this.state.reviewerStage == "pipeline" || this.state.reviewerStage == "" ?
+                                {(this.state.reviewerStage.includes("pipeline") ||  this.state.reviewerStage?.length == 0) ?
                                     <div>
                                         {this.state.portalSubpage == "pipeline" ?
                                             <p onClick={this.renderPipeline} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p> :
@@ -340,7 +345,7 @@ export class JobPortalPage extends Component {
                                 }
                             </div>
                             <div className="col-2">
-                                {this.state.reviewerStage == "allCandidates"  || this.state.reviewerStage == "" ?
+                                {(this.state.reviewerStage.includes("allCandidates") || this.state.reviewerStage?.length == 0)?
                                     <div>
                                         {this.state.portalSubpage == "allCandidates" ?
                                             <p onClick={this.renderAllCandidates} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>>></span></p> :
@@ -351,7 +356,7 @@ export class JobPortalPage extends Component {
                                 }
                             </div>
                             <div className="col-2">
-                                {(this.state.reviewerStage == "resumeScreen"  || this.state.reviewerStage == "") && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
+                                {((this.state.reviewerStage.includes("resumeScreen") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "resumeScreen" ?
                                             <p onClick={this.renderResumeScreen} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p> :
@@ -362,7 +367,7 @@ export class JobPortalPage extends Component {
                                 }
                             </div>
                             <div className="col-2">
-                                {this.state.reviewerStage == "videoInterview"  || this.state.reviewerStage == "" ?
+                                {(this.state.reviewerStage.includes("videoInterview") || this.state.reviewerStage?.length == 0) ?
                                     <div>
                                         {this.state.portalSubpage == "videoInterview" ?
                                             <p onClick={this.renderVideoInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
@@ -373,7 +378,7 @@ export class JobPortalPage extends Component {
                                 }
                             </div>
                             <div className="col-2">
-                                {(this.state.reviewerStage == "liveInterview"  || this.state.reviewerStage == "") && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
+                                {((this.state.reviewerStage.includes("liveInterview") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "liveInterview" ?
                                             <p onClick={this.renderLiveInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
@@ -384,7 +389,7 @@ export class JobPortalPage extends Component {
                                 }
                             </div>
                             <div className="col-2">
-                                {(this.state.reviewerStage == "shortList"  || this.state.reviewerStage == "") && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
+                                {((this.state.reviewerStage.includes("shortList") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "shortList" ?
                                             <p onClick={this.renderShortList} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Short List</p> :

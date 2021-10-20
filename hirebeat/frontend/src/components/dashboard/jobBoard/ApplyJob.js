@@ -39,7 +39,7 @@ const ApplyJob = (props) => {
     const [phone, setPhone] = useState("");
     const [location, setLocation] = useState("");
     const [linkedinurl, setLinkedinurl] = useState("");
-    const [ansObjs, setAnsObjs] = useState(props.job?.questions);
+    const [ansObjs, setAnsObjs] = useState(props.job?.questions || []);
 
     function handleBooleanInput(e, index) {
         let tempAnsObjs = ansObjs;
@@ -172,7 +172,7 @@ const ApplyJob = (props) => {
                     race: race,
                     answers: ansObjs,
                 };
-                setTimeout(() => { props.addNewApplyCandidate(data); }, 300);
+                props.addNewApplyCandidate(data);
                 props.uploader.uploadFile(resume);
             }
         }
