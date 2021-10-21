@@ -5,7 +5,7 @@ import { MyModal80 } from "./../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addInterviews, moveCandidateToInterview, getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, updateViewStatus, updateCommentStatus } from "../../../redux/actions/question_actions";
-import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/actions/job_actions";
+import { updateInviteStatus, updateCandidateViewedStatus, updateApplicantBasicInfo } from "../../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../../redux/actions/video_actions";
 import { subreviewerUpdateComment } from "../../../redux/actions/auth_actions";
 import { MyFullModal } from "../DashboardComponents";
@@ -326,6 +326,7 @@ export class AllCandidates extends Component {
                                             positionId={this.props.curJob.job_details.positions_id}
                                             selectedCurrentStage={this.state.stage.value}
                                             selectedStatus={this.state.category.value}
+                                            updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
                                         />
                                     )
                                 })}
@@ -619,6 +620,7 @@ const ApplicantRow = (props) => {
                         positionId={props.positionId}
                         selectedCurrentStage={props.selectedCurrentStage}
                         selectedStatus={props.selectedStatus}
+                        updateApplicantBasicInfo={props.updateApplicantBasicInfo}
                     />
                 </MyFullModal>
             </div>
@@ -662,7 +664,7 @@ const mapStateToProps = (state) => {
 export default withRouter(connect(mapStateToProps, {
     addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview,
     getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, getApplicantsVideos,
-    updateViewStatus, getApplicantsInfo, updateCommentStatus, subreviewerUpdateComment
+    updateViewStatus, getApplicantsInfo, updateCommentStatus, subreviewerUpdateComment, updateApplicantBasicInfo
 })(
     AllCandidates
 ));

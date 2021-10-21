@@ -22,6 +22,7 @@ import {
     GET_PIPELINE_ANALYTICS,
     ADD_NEW_APPLY_CANDIDATE_BY_CV,
     CHECK_IF_MASTER_ACTIVE,
+    UPDATE_APPLICANT_BASIC_INFO,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -341,6 +342,20 @@ export const checkIfMasterActive = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: CHECK_IF_MASTER_ACTIVE,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const updateApplicantBasicInfo = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/update-applicant-basic-info", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_APPLICANT_BASIC_INFO,
         payload: res.data,
       });
     })

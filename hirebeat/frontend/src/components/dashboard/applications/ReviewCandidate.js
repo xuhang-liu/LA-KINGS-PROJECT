@@ -6,6 +6,7 @@ import EmbedQuestionForm from "./../jobBoard/EmbedQuestionForm"
 import ApplicationVideo from "../videos/ApplicationVideo";
 import ReviewNote from "./ReviewNote";
 import ReviewApplicationTab from "../jobStages/interviewComponents/ReviewApplicationTab";
+import BasicInfoEdition from "./BasicInfoEdition";
 
 const ReviewCandidate = (props) => {
     const [showEva, setShowEva] = useState(false);
@@ -20,6 +21,7 @@ const ReviewCandidate = (props) => {
     const [showMoveSuccessAlert, setShowMoveSuccessAlert] = useState(false);
     const [showRejectSuccessAlert, setShowRejectSuccessAlert] = useState(false);
     const [isReject, setIsReject] = useState(true);
+    const [isEdit, setIsEdit] = useState(false);
 
     function setViewResumes() {
         setViewResume(true);
@@ -85,7 +87,8 @@ const ReviewCandidate = (props) => {
             setShowMoveForm(false);
             // update
             let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-            setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
+            let isSortByScore = props.isSortByScore || ""
+            setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore);}, 300);
             let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
             if (!noShowAgainMove) {
                 enableSuccessAlert();
@@ -108,7 +111,8 @@ const ReviewCandidate = (props) => {
         props.updateInviteStatus(data);
         // update
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
+        let isSortByScore = props.isSortByScore || "";
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore);}, 300);
         let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
         if (props.applicant.is_active) {
             if (!noShowAgainReject) {
@@ -180,7 +184,8 @@ const ReviewCandidate = (props) => {
 
     function nextOrPreUpdate() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");
+        let isSortByScore = props.isSortByScore || "";
+        props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore);
 //        sessionStorage.removeItem("current");
     }
 
@@ -193,7 +198,8 @@ const ReviewCandidate = (props) => {
         }
         props.updateCandidateViewedStatus(data);
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
+        let isSortByScore = props.isSortByScore || "";
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore);}, 300);
     }
 
     function showResumeEva() {
@@ -311,9 +317,10 @@ const ReviewCandidate = (props) => {
 
     return (
         <div className="container-fluid ml-5 pb-5" style={{ width: '92%' }}>
-                <div style={{ marginBottom: "30px" }}><h3 onClick={props.onHide} style={{cursor: "pointer"}}><b><i className="bx-fw bx bx-chevron-left" style={{display: "inherit"}}></i><span className="ml-2" style={{verticalAlign: "middle"}}>{props.currentStage}</span></b></h3></div>
+            <div style={{ marginBottom: "30px" }}><h3 onClick={props.onHide} style={{cursor: "pointer"}}><b><i className="bx-fw bx bx-chevron-left" style={{display: "inherit"}}></i><span className="ml-2" style={{verticalAlign: "middle"}}>{props.currentStage}</span></b></h3></div>
             <div className="row" style={{ display: "flex" }}>
                 <div className="col-3 pl-3 mt-3 pr-2">
+                    {!isEdit ?
                     <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", height: "35%" }}>
                         <div className="row mb-3" style={{ marginBottom: "2%" }}>
                             <div className="col d-flex align-items-center">
@@ -324,9 +331,11 @@ const ReviewCandidate = (props) => {
                                         wordWrap: "break-word",
                                         wordBreak: "break-all",
                                         color: "#090D3A",
+                                        width: "100%"
                                     }}
                                 >
                                     {(props.first_name + " " + props.last_name).length > 12 ? (props.first_name + " " + props.last_name).substring(0, 10) + "..." : (props.first_name + " " + props.last_name)}
+                                    <span style={{float: "right"}}><i className="bx bx-edit-alt" style={{cursor: "pointer"}} onClick={() => setIsEdit(true)}></i></span>
                                 </h2>
                             </div>
                         </div>
@@ -335,7 +344,7 @@ const ReviewCandidate = (props) => {
                                 <IconText
                                     iconName={"bx bx-phone bx-sm"}
                                     textDisplayed={props.phone}
-                                    textSize={"0.7rem"}
+                                    textSize={"0.9rem"}
                                     textColor={"#4A6F8A"}
                                     iconMargin={"3px"}
                                 />
@@ -346,7 +355,7 @@ const ReviewCandidate = (props) => {
                                 <IconText
                                     iconName={"bx bx-envelope bx-sm"}
                                     textDisplayed={props.email}
-                                    textSize={"0.7rem"}
+                                    textSize={"0.9rem"}
                                     textColor={"#4A6F8A"}
                                     iconMargin={"5px"}
                                 />
@@ -357,7 +366,7 @@ const ReviewCandidate = (props) => {
                                 <IconText
                                     iconName={"bx bx-location-plus bx-sm"}
                                     textDisplayed={props.location}
-                                    textSize={"0.7rem"}
+                                    textSize={"0.9rem"}
                                     textColor={"#4A6F8A"}
                                     iconMargin={"3px"}
                                 />
@@ -366,14 +375,32 @@ const ReviewCandidate = (props) => {
                         {props.linkedin != null && props.linkedin != "" ?
                             <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
                                 <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#67A3F3", marginRight: "3px" }}></i>
-                                <a style={{ fontSize: "0.7rem", color: "#67A3F3", fontWeight: "500" }} href={props.linkedin} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
+                                <a style={{ fontSize: "0.9rem", color: "#67A3F3", fontWeight: "500" }} href={props.linkedin} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
                             </div> :
                             <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
                                 <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#979797", marginRight: "3px" }}></i>
-                                <p style={{ fontSize: "0.7rem", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
+                                <p style={{ fontSize: "0.9rem", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
                             </div>
                         }
-                    </div>
+                    </div> :
+                    <BasicInfoEdition
+                        first_name={props.first_name}
+                        last_name={props.last_name}
+                        phone={props.phone}
+                        email={props.email}
+                        location={props.location}
+                        linkedin={props.linkedin}
+                        updateApplicantBasicInfo={props.updateApplicantBasicInfo}
+                        setIsEdit={setIsEdit}
+                        jobId={props.curJob.job_details.id}
+                        selectedPage={props.selectedPage}
+                        selectedCurrentStage={props.selectedCurrentStage}
+                        selectedStatus={props.selectedStatus}
+                        getAllJobs={props.getAllJobs}
+                        isSortByScore={props.isSortByScore}
+                        user={props.user}
+                    />
+                    }
                     <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "10px", width: "100%", height: "61.6%", position: "relative" }}>
                         <h2
                             style={{
