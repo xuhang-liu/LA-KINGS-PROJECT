@@ -321,6 +321,7 @@ export class JobPortalPage extends Component {
                     getPostedJobs={this.props.getPostedJobs}
                     getAllJobs={this.props.getAllJobs}
                     totalPage={p.total_page}
+                    jobsId={this.props.job.job_details.id}
                 />;
             default:
                 return null;

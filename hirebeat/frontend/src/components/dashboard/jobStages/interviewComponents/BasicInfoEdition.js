@@ -19,12 +19,12 @@ export class BasicInfoEdition extends Component {
             "location": this.state.location,
             "linkedinurl": linkedin,
         }
+        console.log(data);
         this.props.updateApplicantBasicInfo(data);
         setTimeout(() => {
-            let isSortByScore = this.props.isSortByScore || "";
             let page = this.props.selectedPage + 1; // selectedPage is 0 indexed
-            this.props.getAllJobs(this.props.user.id, page, this.props.selectedCurrentStage, this.props.selectedStatus, isSortByScore);
-            this.props.setIsEdit(false);
+            this.props.getPostedJobs(this.props.user.id, page, this.props.selectedCurrentStage);
+            this.props.disableEdit();
         }, 300)
 
     }
@@ -44,7 +44,10 @@ export class BasicInfoEdition extends Component {
                                 width: "100%"
                             }}
                         >
-                            {(this.props.first_name + " " + this.props.last_name).length > 12 ? (this.props.first_name + " " + this.props.last_name).substring(0, 10) + "..." : (this.props.first_name + " " + this.props.last_name)}
+                            {this.props.name.length > 14 ?
+                                this.props.name.substring(0, 12) + "..." :
+                                this.props.name
+                            }
                         </h2>
                     </div>
                 </div>
@@ -72,7 +75,7 @@ export class BasicInfoEdition extends Component {
                 </div>
                 <div className="d-flex justify-content-between" style={{marginTop: "1rem"}}>
                     <button className="default-btn" style={{paddingLeft: "25px"}} onClick={this.saveUpdate}>Save</button>
-                    <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={() => this.props.setIsEdit(false)}>Cancel</button>
+                    <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.props.disableEdit}>Cancel</button>
                 </div>
             </div>
         )

@@ -357,6 +357,8 @@ export function LiveInterview(props){
                                 getPostedJobs={props.getPostedJobs}
                                 getAllJobs={props.getAllJobs}
                                 reviewer_type={props.reviewer_type}
+                                jobsId={props.jobsId}
+                                selectedPage={selectedPage}
                             />
                         </div>
                     </div>

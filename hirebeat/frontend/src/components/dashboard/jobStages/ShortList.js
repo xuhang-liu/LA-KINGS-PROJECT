@@ -72,6 +72,7 @@ const ShortList = (props) => {
                     totalPage={props.totalPage}
                     selectedPage={selectedPage}
                     reviewer_type={props.reviewer_type}
+                    jobsId={props.jobsId}
                 />
             </div>
         </div>
@@ -163,6 +164,8 @@ const AcceptedCandidate = (props) => {
                                     getPostedJobs={props.getPostedJobs}
                                     getAllJobs={props.getAllJobs}
                                     reviewer_type={props.reviewer_type}
+                                    selectedPage={props.selectedPage}
+                                    jobsId={props.jobsId}
                                 />
                             </div>
                         )
@@ -340,6 +343,8 @@ const CandidateCard = (props) => {
                 getAllJobs={props.getAllJobs}
                 currentStage={"Short List"}
                 reviewer_type={props.reviewer_type}
+                jobsId={props.jobsId}
+                selectedPage={props.selectedPage}
             />
             <MyModal80
                 show={showResume}

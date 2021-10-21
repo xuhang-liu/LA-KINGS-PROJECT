@@ -287,6 +287,8 @@ export const ApplicantList = (props) => {
                         showCandidateModal={sessionStorage.getItem("showCandidateModal" + index) === "true" ? true : false}
                         reviewer_type={props.reviewer_type}
                         gh_current_stage_id={props.gh_current_stage_id}
+                        jobsId={props.jobsId}
+                        selectedPage={props.selectedPage}
                     />
                 )
             })}

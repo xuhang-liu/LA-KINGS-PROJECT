@@ -706,6 +706,8 @@ export function VideoInterview(props) {
                                 getAllJobs={props.getAllJobs}
                                 reviewer_type={props.reviewer_type}
                                 gh_current_stage_id={props.gh_current_stage_id}
+                                jobsId={props.jobsId}
+                                selectedPage={selectedPage}
                             />
                         </div>
                     </div>
