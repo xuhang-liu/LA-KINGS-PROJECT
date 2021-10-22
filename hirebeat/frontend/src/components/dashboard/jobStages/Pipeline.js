@@ -193,8 +193,12 @@ export class Pipeline extends Component {
                     "jobs_id": this.props.job.job_details.id,
                     "check_stage_array": check_stage_array,
                 };
-                this.props.addSubReviewer(data);
-                setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
+                const myPromise = new Promise((resolve, reject) => {
+                    this.props.addSubReviewer(data);
+                });
+                myPromise.then(this.props.getPostedJobs(this.props.user.id, 1, ""));           
+                //this.props.addSubReviewer(data);
+                //setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
                 this.alertSuccess();
             }
         })
@@ -296,8 +300,12 @@ export class Pipeline extends Component {
                     "master_user": this.props.user.id,
                     "jobs_id": this.props.job.job_details.id,
                 };
-                this.props.addExReviewer(data);
-                setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
+                const myPromise = new Promise((resolve, reject) => {
+                    this.props.addExReviewer(data);
+                });
+                myPromise.then(this.props.getPostedJobs(this.props.user.id, 1, "")); 
+                //this.props.addExReviewer(data);
+                //setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
                 this.alertSuccess();
             }
         })
