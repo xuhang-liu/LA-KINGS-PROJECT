@@ -13,6 +13,7 @@ export class SourcingFilter extends Component {
             location: this.props.location,
             skills: skills,
             position: this.props.position,
+            loc_radius: this.props.loc_radius,
         }
     }
 
@@ -35,6 +36,11 @@ export class SourcingFilter extends Component {
             validSkills.push(skills[i].value);
         }
         this.props.setSkills(validSkills);
+    };
+
+    onFilter1 = (radius) => {
+        this.setState({ loc_radius: radius });
+        this.props.setRadius(radius);
     };
 
     handleInput = (e) => {
@@ -104,6 +110,13 @@ export class SourcingFilter extends Component {
     };
 
     render() {
+        const RadiusOptions = [
+            { value: 0, label: 'Exact Location' },
+            { value: 25, label: 'Within 25 miles' },
+            { value: 50, label: 'Within 50 miles' },
+            { value: 100, label: 'Within 100 miles' },
+            { value: 200, label: 'Within 200 miles' },
+        ]
         return (
             <React.Fragment>
                 <div className="row">
@@ -132,12 +145,8 @@ export class SourcingFilter extends Component {
                         />
                     </div>
                     <div className="col">
-                        <p className="sourcing-filter-p" style={{margin: "0rem"}}>Skills</p>
-                        <Select
-                             ref={ref => {this.selectRef = ref;}}
-                             isMulti value={this.state.skills} onChange={this.onFilter} options={SkillOptions} styles={this.customStyles}
-                             placeholder="Type your skills here"
-                        />
+                        <p className="sourcing-filter-p" style={{margin: "0rem"}}>Radius</p>
+                        <Select value={this.state.loc_radius} onChange={this.onFilter1} options={RadiusOptions} styles={this.customStyles} placeholder='Select Radiuss'/>
                     </div>
                 </div>
                 <div className="row" style={{marginTop: "2rem"}}>
@@ -164,6 +173,16 @@ export class SourcingFilter extends Component {
                                 </label>
                              </div>
                         </div>
+                    </div>
+                </div>
+                <div className="row" style={{marginTop: "2rem"}}>
+                    <div className="col-6">
+                        <p className="sourcing-filter-p" style={{margin: "0rem"}}>Skills</p>
+                        <Select
+                             ref={ref => {this.selectRef = ref;}}
+                             isMulti value={this.state.skills} onChange={this.onFilter} options={SkillOptions} styles={this.customStyles}
+                             placeholder="Type your skills here"
+                        />
                     </div>
                 </div>
 

@@ -52,6 +52,7 @@ class Question(models.Model):
 
 class Positions(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job_id_in_jobs = models.BigIntegerField(default=0)
     job_title = models.CharField(max_length=300, null=True, blank=True)
     job_id = models.CharField(max_length=100, null=True, blank=True)
     job_description = models.TextField(blank=True, null=True)

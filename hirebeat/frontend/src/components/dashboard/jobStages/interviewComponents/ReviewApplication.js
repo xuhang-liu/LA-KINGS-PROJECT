@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { IconText, AlertModal } from "./../../DashboardComponents";
 import ApplicationVideo from "./../../videos/ApplicationVideo";
 import { connect } from "react-redux";
-import { updateInviteStatus } from "./../../../../redux/actions/job_actions";
+import { updateInviteStatus, updateApplicantBasicInfo } from "./../../../../redux/actions/job_actions";
 import { getPostedJobs, getResumeURL, getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation } from "./../../../../redux/actions/question_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -12,6 +12,7 @@ import ReviewApplicationTab from "./ReviewApplicationTab";
 import { MyModalShare2 } from "../../DashboardComponents";
 import axios from "axios";
 import Select from 'react-select';
+import BasicInfoEdition from "./BasicInfoEdition";
 
 export class ReviewApplication extends Component {
     constructor(props) {
@@ -33,6 +34,7 @@ export class ReviewApplication extends Component {
             category4: { value: 'Select stage', label: 'Select stage' },
             options4: [],
             showGreenhouseMoveForm: false,
+            isEdit: false,
         }
     }
 
@@ -368,6 +370,14 @@ export class ReviewApplication extends Component {
         this.setState({ category4: category4 });
     }
 
+    enableEdit = () => {
+        this.setState({isEdit: true});
+    }
+
+    disableEdit = () => {
+        this.setState({isEdit: false});
+    }
+
     render() {
         const recordTime = this.props.recordTime;
         const interviewResume = this.props.interviewResume;
@@ -388,6 +398,7 @@ export class ReviewApplication extends Component {
                 <div style={{ marginBottom: "30px" }}><h3 onClick={this.props.hide} style={{ cursor: "pointer" }}><b><i className="bx-fw bx bx-chevron-left" style={{ display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.currentStage}</span></b></h3></div>
                 <div className="row" style={{ display: "flex" }}>
                     <div className="col-3 pl-3 mt-3 pr-2">
+                        {!this.state.isEdit ?
                         <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", height: "25%", minHeight: "14rem" }}>
                             <div className="row mb-3" style={{ marginBottom: "2%" }}>
                                 <div className="col d-flex align-items-center">
@@ -397,11 +408,13 @@ export class ReviewApplication extends Component {
                                             marginRight: "0.8rem",
                                             wordWrap: "break-word",
                                             wordBreak: "break-all",
+                                            width: "100%",
                                         }}
                                     >
                                         {this.props.applicants[this.props.current].name.length > 14 ?
                                             this.props.applicants[this.props.current].name.substring(0, 12) + "..." :
                                             this.props.applicants[this.props.current].name}
+                                        <span style={{float: "right"}}><i className="bx bx-edit-alt" style={{cursor: "pointer"}} onClick={this.enableEdit}></i></span>
                                     </h4>
                                 </div>
                             </div>
@@ -448,7 +461,23 @@ export class ReviewApplication extends Component {
                                     <p style={{ fontSize: "0.7rem", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
                                 </div>
                             }
-                        </div>
+                        </div> :
+                        <BasicInfoEdition
+                            name={this.props.applicants[this.props.current].name}
+                            phone={this.props.applicants[this.props.current].phone}
+                            email={this.props.applicants[this.props.current].email}
+                            location={this.props.applicants[this.props.current].location}
+                            linkedin={this.props.applicants[this.props.current].linkedinurl}
+                            jobId={this.props.jobsId}
+                            selectedPage={this.props.selectedPage}
+                            selectedCurrentStage={this.props.currentStage}
+                            user={this.props.user}
+                            getPostedJobs={this.props.getPostedJobs}
+                            enableEdit={this.enableEdit}
+                            disableEdit={this.disableEdit}
+                            updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
+                        />
+                        }
                         <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "10px", width: "100%", position: "relative", minHeight: "28rem" }}>
                             <h2
                                 style={{
@@ -806,5 +835,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     getPostedJobs, getResumeURL, getReviewNote, addOrUpdateReviewerEvaluation,
-    getReviewerEvaluation, getCurrentReviewerEvaluation, updateInviteStatus
+    getReviewerEvaluation, getCurrentReviewerEvaluation, updateInviteStatus,
+    updateApplicantBasicInfo
 })(ReviewApplication);

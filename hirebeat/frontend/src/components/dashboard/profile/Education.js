@@ -14,6 +14,14 @@ export class Education extends Component {
         this.setState({isEdit: false});
     }
 
+    dateConversion = (date) => {
+        let dates = date.split("-");
+        if (dates.length == 3) {
+            return dates[1] + "/" + dates[2] + "/" + dates[0];
+        }
+        return date;
+    }
+
     render() {
         return(
             <div>
@@ -40,7 +48,7 @@ export class Education extends Component {
                         {(this.props.education.extra_major != "" && this.props.education.extra_major != null) &&
                             <p className="profile-p4" style={{marginBottom: "0.5rem"}}>Minor: {this.props.education.extra_major}</p>
                         }
-                        <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{this.props.education.graduation_date}</p>
+                        <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{this.dateConversion(this.props.education.graduation_date)}</p>
                     </div> :
                     <div>
                         <EducationForm

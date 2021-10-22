@@ -34,7 +34,6 @@ const ShortList = (props) => {
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page, "Short List");
-        sessionStorage.setItem("shortListPage", String(selectedPage));
     };
 
     return (
@@ -72,6 +71,7 @@ const ShortList = (props) => {
                     totalPage={props.totalPage}
                     selectedPage={selectedPage}
                     reviewer_type={props.reviewer_type}
+                    jobsId={props.jobsId}
                 />
             </div>
         </div>
@@ -114,7 +114,7 @@ const AcceptedCandidate = (props) => {
                                   onPageChange={props.handlePageClick}
                                   containerClassName={'pagination3'}
                                   activeClassName={'active'}
-                                  forcePage={sessionStorage.getItem("shortListPage") ? parseInt(sessionStorage.getItem("shortListPage")): props.selectedPage}
+                                  forcePage={props.selectedPage}
                             />
                         </div>
                     }
@@ -163,6 +163,8 @@ const AcceptedCandidate = (props) => {
                                     getPostedJobs={props.getPostedJobs}
                                     getAllJobs={props.getAllJobs}
                                     reviewer_type={props.reviewer_type}
+                                    selectedPage={props.selectedPage}
+                                    jobsId={props.jobsId}
                                 />
                             </div>
                         )
@@ -181,7 +183,7 @@ const AcceptedCandidate = (props) => {
                               onPageChange={props.handlePageClick}
                               containerClassName={'pagination3'}
                               activeClassName={'active'}
-                              forcePage={sessionStorage.getItem("shortListPage") ? parseInt(sessionStorage.getItem("shortListPage")) : props.selectedPage}
+                              forcePage={props.selectedPage}
                         />
                     </div>
                 }
@@ -194,12 +196,15 @@ const CandidateCard = (props) => {
     const [show, setShow] = useState(false);
     const [showResume, setShowResume] = useState(false);
     const [showEva, setShowEva] = useState(false);
+    const [current, setCurrent] = useState(props.current);
+    const start = 0;
+    const end = props.applicants.length - 1;
 
-    useEffect(() => {
-        if (sessionStorage.getItem("showShortListModal" + props.current) === "true") {
-            setShow(true);
-        }
-    }, [setShow]);
+    // useEffect(() => {
+    //     if (sessionStorage.getItem("showShortListModal" + props.current) === "true") {
+    //         setShow(true);
+    //     }
+    // }, [setShow]);
 
     function viewResult() {
         // get videos and info
@@ -209,9 +214,28 @@ const CandidateCard = (props) => {
         props.getReviewNote(props.applicant.positions_id, props.applicant.email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
         props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email);
-        sessionStorage.setItem(("showShortListModal" + props.current), "true");
+        //sessionStorage.setItem(("showShortListModal" + props.current), "true");
         setShow(true);
     };
+
+    function getReviewPageData(index) {
+        props.getApplicantsVideos(props.applicants[index].email, props.applicant.positions_id);
+        props.getApplicantsInfo(props.applicants[index].email);
+        props.getResumeURL(props.applicant.positions_id, props.applicants[index].user_id);
+        props.getReviewNote(props.applicant.positions_id, props.applicants[index].email);
+        props.getReviewerEvaluation(props.applicant.positions_id, props.applicants[index].email);
+        props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicants[index].email, props.user.email);
+        setCurrent(index);
+    }
+
+    function viewNextResult(curIndex) {
+        getReviewPageData(curIndex + 1);
+    };
+
+    function viewPrevResult(curIndex) {
+        getReviewPageData(curIndex - 1);
+    };
+
 
     const refresh = () => {
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
@@ -273,8 +297,9 @@ const CandidateCard = (props) => {
 
     const mailTo = "mailto:" + props.applicant.email;
     function hideModal() {
-        sessionStorage.removeItem("showShortListModal" + props.current);
+        //sessionStorage.removeItem("showShortListModal" + props.current);
         setShow(false);
+        setCurrent(props.current);
     }
     return (
         <React.Fragment>
@@ -334,12 +359,19 @@ const CandidateCard = (props) => {
                 profile={props.profile}
                 subreviewerUpdateComment={props.subreviewerUpdateComment}
                 applicants={props.applicants}
-                current={props.current}
+                current={current}
+                setCurrent={setCurrent}
+                start={start}
+                end={end}
                 filter={"active"}
                 getPostedJobs={props.getPostedJobs}
                 getAllJobs={props.getAllJobs}
                 currentStage={"Short List"}
                 reviewer_type={props.reviewer_type}
+                jobsId={props.jobsId}
+                selectedPage={props.selectedPage}
+                viewPrevResult={viewPrevResult}
+                viewNextResult={viewNextResult}
             />
             <MyModal80
                 show={showResume}

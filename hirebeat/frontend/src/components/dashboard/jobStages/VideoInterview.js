@@ -113,12 +113,18 @@ export function VideoInterview(props) {
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
     function onFilter(category) {
         setCategory(category);
+        let page = 1;
+        let userId = props.user.id;
+        props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value);
     }
 
     const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
     const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
-    function onFilter3(category) {
-        setCategory3(category);
+    function onFilter3(category3) {
+        setCategory3(category3);
+        let page = 1;
+        let userId = props.user.id;
+        props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value);
     }
 
     const [category4, setCategory4] = useState({ value: 'Select stage', label: 'Select stage' });
@@ -293,7 +299,6 @@ export function VideoInterview(props) {
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page, "Video Interview");
-        sessionStorage.setItem("videoInterviewPage", String(selectedPage));
     };
 
     const [showMoveForm, setShowMoveForm] = useState(false);
@@ -631,7 +636,7 @@ export function VideoInterview(props) {
                                     onPageChange={handlePageClick}
                                     containerClassName={'pagination3'}
                                     activeClassName={'active'}
-                                    forcePage={sessionStorage.getItem("videoInterviewPage") ? parseInt(sessionStorage.getItem("videoInterviewPage")) : selectedPage}
+                                    forcePage={selectedPage}
                                 />
                             </div>
                         }
@@ -706,6 +711,8 @@ export function VideoInterview(props) {
                                 getAllJobs={props.getAllJobs}
                                 reviewer_type={props.reviewer_type}
                                 gh_current_stage_id={props.gh_current_stage_id}
+                                jobsId={props.jobsId}
+                                selectedPage={selectedPage}
                             />
                         </div>
                     </div>
@@ -722,7 +729,7 @@ export function VideoInterview(props) {
                                 onPageChange={handlePageClick}
                                 containerClassName={'pagination3'}
                                 activeClassName={'active'}
-                                forcePage={sessionStorage.getItem("videoInterviewPage") ? parseInt(sessionStorage.getItem("videoInterviewPage")) : selectedPage}
+                                forcePage={selectedPage}
                             />
                         </div>
                     }

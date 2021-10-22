@@ -77,6 +77,9 @@ def add_new_job(request):
     job_url = "https://hirebeat.co/apply-job/"+company_name+"?id="+encode_url_id
     job.job_url = job_url
     job.save()
+    # update job_id_in_jobs field
+    position.job_id_in_jobs = job.id
+    position.save()
     # add job screening questions
     for question in questions:
         answer_type = "Numeric" if question["responseType"] == "Numeric" else "boolean"
@@ -149,15 +152,16 @@ def get_all_jobs(request):
                 applicants = ApplyCandidates.objects.filter(jobs_id=job_id)
         applicants = list(applicants.values())
         # sort by score or id
+        # note the result_rate is float (string)! 
         if has_resume_sort:
             resume_sort = True if (request.GET.get(
                 "sort") == "True" or request.GET.get("sort") == "true") else False
             if resume_sort:
                 applicants.sort(
-                    key=lambda a: (-int(a["result_rate"]), -a["id"]))
+                    key=lambda a: (-float(a["result_rate"]), -a["id"]))
             else:
                 applicants.sort(key=lambda a: (
-                    int(a["result_rate"]), -a["id"]))
+                    float(a["result_rate"]), -a["id"]))
         else:
             applicants.sort(key=lambda a: -a["id"])
         total_records = len(applicants)
@@ -1225,3 +1229,30 @@ def greenhouse_get_interview_stages(request):
     return Response({
         "stages": stages
     })
+
+
+@api_view(['POST'])
+def update_applicant_basic_info(request):
+    job_id = request.data["job_id"]
+    email = request.data["email"]
+    phone = request.data["phone"]
+    location = request.data["location"]
+    linkedinurl = request.data["linkedinurl"]
+    # update ApplyCandidates model
+    if ApplyCandidates.objects.filter(jobs_id=job_id, email=email).exists():
+        apply_candidate =ApplyCandidates.objects.get(jobs_id=job_id, email=email)
+        apply_candidate.phone = phone
+        apply_candidate.location = location
+        apply_candidate.linkedinurl = linkedinurl
+        apply_candidate.save()
+
+    # update InvitedCandidates model
+    if Positions.objects.filter(job_id_in_jobs=job_id).exists():
+        position = Positions.objects.get(job_id_in_jobs=job_id)
+        if InvitedCandidates.objects.filter(positions=position, email=email).exists():
+            invited_candidate =InvitedCandidates.objects.get(positions=position, email=email)
+            invited_candidate.phone = phone
+            invited_candidate.location = location
+            invited_candidate.save()
+
+    return Response("Update applicant information successfully", status=status.HTTP_202_ACCEPTED)

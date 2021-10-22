@@ -229,7 +229,7 @@ def get_applicants_videos(request):
     # print("===Get Candidate Videos Called===")
     int_ques = []
     email = request.query_params.get("email")
-    positionId = request.query_params.get("positionId")
+    positionId = int(request.query_params.get("positionId"))
     position = Positions.objects.get(pk=positionId)
     questions = InterviewQuestions.objects.filter(positions=position)
     user = User.objects.filter(email=email)
@@ -248,6 +248,7 @@ def get_applicants_videos(request):
             int_ques.append(serializer.data)
     # if no videos, then get applicant videos by position_id
     if len(int_ques) == 0:
+        user_id = user[0].id
         wpvideos = WPVideo.objects.filter(position_id=positionId, owner_id=user_id)
         for i in range(len(wpvideos)):
             video = wpvideos[i]

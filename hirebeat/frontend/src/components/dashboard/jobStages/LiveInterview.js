@@ -38,11 +38,17 @@ export function LiveInterview(props){
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
     function onFilter(category) {
         setCategory(category);
+        let page = 1;
+        let userId = props.user.id;
+        props.getPostedJobs(userId, page, "Live Interview", category.value, category3.value);
     }
 
     const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
-    function onFilter3(category) {
-        setCategory3(category);
+    function onFilter3(category3) {
+        setCategory3(category3);
+        let page = 1;
+        let userId = props.user.id;
+        props.getPostedJobs(userId, page, "Live Interview", category.value, category3.value);
     }
 
     const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
@@ -105,7 +111,6 @@ export function LiveInterview(props){
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page, "Live Interview");
-        sessionStorage.setItem("liveInterviewPage", String(selectedPage));
     };
 
     const [showMoveForm, setShowMoveForm] = useState(false);
@@ -283,7 +288,7 @@ export function LiveInterview(props){
                                       onPageChange={handlePageClick}
                                       containerClassName={'pagination3'}
                                       activeClassName={'active'}
-                                      forcePage={sessionStorage.getItem("liveInterviewPage")?parseInt(sessionStorage.getItem("liveInterviewPage")):selectedPage}
+                                      forcePage={selectedPage}
                                 />
                             </div>
                         }
@@ -357,6 +362,8 @@ export function LiveInterview(props){
                                 getPostedJobs={props.getPostedJobs}
                                 getAllJobs={props.getAllJobs}
                                 reviewer_type={props.reviewer_type}
+                                jobsId={props.jobsId}
+                                selectedPage={selectedPage}
                             />
                         </div>
                     </div>
@@ -373,7 +380,7 @@ export function LiveInterview(props){
                                   onPageChange={handlePageClick}
                                   containerClassName={'pagination3'}
                                   activeClassName={'active'}
-                                  forcePage={sessionStorage.getItem("liveInterviewPage")?parseInt(sessionStorage.getItem("liveInterviewPage")):selectedPage}
+                                  forcePage={selectedPage}
                             />
                         </div>
                     }

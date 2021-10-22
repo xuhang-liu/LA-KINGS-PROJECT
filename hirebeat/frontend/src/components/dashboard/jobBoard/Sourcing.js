@@ -19,6 +19,7 @@ export class Sourcing extends Component {
         showResume: false,
         showContact: false,
         selectedPage: 0,
+        loc_radius: { value: 0, label: 'Exact Location' },
     }
 
     componentDidMount() {
@@ -30,6 +31,7 @@ export class Sourcing extends Component {
             has_video: false,
             page: 1,
             has_filter: false,
+            loc_radius: 0,
         }
         this.props.getSourcingData(queryData);
     }
@@ -54,6 +56,10 @@ export class Sourcing extends Component {
             position: "",
             hasVideo: false,
         })
+    }
+
+    setRadius = (loc_radius) => {
+        this.setState({ loc_radius: loc_radius });
     }
 
     setSkills = (skills) => {
@@ -102,6 +108,7 @@ export class Sourcing extends Component {
             has_video: this.state.hasVideo,
             page: 1,
             has_filter: this.checkFilterConditions(),
+            loc_radius: this.state.loc_radius.value,
         }
         this.props.getSourcingData(queryData);
     }
@@ -115,6 +122,7 @@ export class Sourcing extends Component {
             has_video: this.state.hasVideo,
             page: 1,
             has_filter: this.checkFilterConditions(),
+            loc_radius: this.state.loc_radius.value,
         }
         this.props.getSourcingData(queryData);
     }
@@ -146,6 +154,7 @@ export class Sourcing extends Component {
             has_video: this.state.hasVideo,
             page: selectedPage + 1,
             has_filter: this.checkFilterConditions(),
+            loc_radius: this.state.loc_radius.value,
         }
         this.props.getSourcingData(queryData);
 
@@ -188,9 +197,11 @@ export class Sourcing extends Component {
                                             skills={this.state.skills}
                                             position={this.state.position}
                                             hasVideo={this.state.hasVideo}
+                                            loc_radius={this.state.loc_radius}
                                             updateState={this.updateState}
                                             setSkills={this.setSkills}
                                             setLocation={this.setLocation}
+                                            setRadius={this.setRadius}
                                             clearState={this.clearState}
                                             page={this.state.page}
                                             getFilterProfiles={this.getFilterProfiles}

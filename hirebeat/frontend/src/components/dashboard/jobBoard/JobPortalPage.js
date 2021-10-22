@@ -17,6 +17,32 @@ import axios from "axios";
 export class JobPortalPage extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            portalSubpage: sessionStorage.getItem(this.props.job.job_details.job_title + 'portalSubpage') || "pipeline",
+            reviewerStage: []
+        }
+        if (this.props.job?.reviewer_type == "subr") {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+            let data = { "job_id": this.props.job.job_details.id, "email": this.props.user.email };
+            axios.post("jobs/check_subreviewer_currentstage", data, config).then((res) => {
+                let stage_array = res?.data?.current_stage;
+                if (stage_array.includes("Resume Review")) {
+                    this.setState({portalSubpage: "resumeScreen"})
+                } else if (stage_array.includes("Video Interview")) {
+                    this.setState({portalSubpage: "videoInterview"})
+                } else if (stage_array.includes("Live Interview")) {
+                    this.setState({portalSubpage: "liveInterview"})
+                } else if (stage_array.includes("Short List")) {
+                    this.setState({portalSubpage: "shortList"})
+                }
+            }).catch(error => {
+                console.log(error)
+            });
+        }
     }
 
     state = {
@@ -41,6 +67,7 @@ export class JobPortalPage extends Component {
                                 portalSubpage: "resumeScreen"
                             });
                             this.setState({ reviewerStage: [...this.state.reviewerStage, 'resumeScreen'] });
+                            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "True");
                         }
                         else if (s == "Video Interview") {
                             this.setState({
@@ -321,6 +348,7 @@ export class JobPortalPage extends Component {
                     getPostedJobs={this.props.getPostedJobs}
                     getAllJobs={this.props.getAllJobs}
                     totalPage={p.total_page}
+                    jobsId={this.props.job.job_details.id}
                 />;
             default:
                 return null;
