@@ -121,9 +121,9 @@ export const getInterviewQuestions = (positionId) => (dispatch, getState) => {
     );
 };
 
-export const getPostedJobs = (userId, page, stage) => (dispatch, getState) => {
+export const getPostedJobs = (userId, page, stage, filter, reviewed) => (dispatch, getState) => {
   axios
-    .get(`/get-posted-jobs?user_id=${userId}&page=${page}&stage=${stage}`, tokenConfig(getState))
+    .get(`/get-posted-jobs?user_id=${userId}&page=${page}&stage=${stage}&filter=${filter}&reviewed=${reviewed}`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_POSTED_JOBS,
