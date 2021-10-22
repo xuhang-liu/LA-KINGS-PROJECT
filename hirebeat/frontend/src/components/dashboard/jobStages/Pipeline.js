@@ -26,7 +26,7 @@ export class Pipeline extends Component {
             buttons: [
                 {
                     label: 'Yes',
-                    onClick: () => { this.props.removeSubReviewer(data); this.deletSuccessAlert(); this.props.getPJobs(); }
+                    onClick: () => { this.props.removeSubReviewer(data); this.deletSuccessAlert(); this.props.getPostedJobs(this.props.user.id, 1, "")}
                 },
                 {
                     label: 'No'
@@ -43,7 +43,7 @@ export class Pipeline extends Component {
             buttons: [
                 {
                     label: 'Yes',
-                    onClick: () => { this.props.delExReviewer(data); this.deletSuccessAlert(); this.props.getPJobs(); }
+                    onClick: () => { this.props.delExReviewer(data); this.deletSuccessAlert(); this.props.getPostedJobs(this.props.user.id, 1, "") }
                 },
                 {
                     label: 'No'
@@ -179,7 +179,7 @@ export class Pipeline extends Component {
             let user_existence = res.data.data;
             if (user_existence) {
                 this.sendFailAlert();
-                this.props.getPJobs();
+                this.props.getPostedJobs(this.props.user.id, 1, "");
             } else {
                 encoded_email = window.btoa("email=" + sub_reviewer_email?.toLowerCase());
                 let data = {
@@ -194,7 +194,7 @@ export class Pipeline extends Component {
                     "check_stage_array": check_stage_array,
                 };
                 this.props.addSubReviewer(data);
-                this.props.getPJobs();
+                this.props.getPostedJobs(this.props.user.id, 1, "");
                 this.alertSuccess();
             }
         })
@@ -283,7 +283,7 @@ export class Pipeline extends Component {
             let user_existence = res.data.data;
             if (user_existence) {
                 this.sendFailAlert();
-                this.props.getPJobs();
+                this.props.getPostedJobs(this.props.user.id, 1, "");
             } else {
                 encoded_email = window.btoa("email=" + ex_reviewer_email?.toLowerCase());
                 let data = {
@@ -297,7 +297,7 @@ export class Pipeline extends Component {
                     "jobs_id": this.props.job.job_details.id,
                 };
                 this.props.addExReviewer(data);
-                this.props.getPJobs();
+                this.props.getPostedJobs(this.props.user.id, 1, "");
                 this.alertSuccess();
             }
         })

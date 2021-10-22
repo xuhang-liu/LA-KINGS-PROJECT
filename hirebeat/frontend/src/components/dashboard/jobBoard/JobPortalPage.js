@@ -182,6 +182,8 @@ export class JobPortalPage extends Component {
                     postedJobs={this.props.postedJobs}
                     job={this.props.job}
                     getPJobs={this.props.getPJobs}
+                    getPostedJobs={this.props.getPostedJobs}
+                    getAllJobs={this.props.getAllJobs}
                     profile={this.props.profile}
                     user={this.props.user}
                 />;
