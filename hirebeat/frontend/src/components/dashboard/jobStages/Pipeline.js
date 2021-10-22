@@ -179,7 +179,7 @@ export class Pipeline extends Component {
             let user_existence = res.data.data;
             if (user_existence) {
                 this.sendFailAlert();
-                this.props.getPostedJobs(this.props.user.id, 1, "");
+                setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
             } else {
                 encoded_email = window.btoa("email=" + sub_reviewer_email?.toLowerCase());
                 let data = {
@@ -194,7 +194,7 @@ export class Pipeline extends Component {
                     "check_stage_array": check_stage_array,
                 };
                 this.props.addSubReviewer(data);
-                this.props.getPostedJobs(this.props.user.id, 1, "");
+                setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
                 this.alertSuccess();
             }
         })
@@ -283,7 +283,7 @@ export class Pipeline extends Component {
             let user_existence = res.data.data;
             if (user_existence) {
                 this.sendFailAlert();
-                this.props.getPostedJobs(this.props.user.id, 1, "");
+                setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
             } else {
                 encoded_email = window.btoa("email=" + ex_reviewer_email?.toLowerCase());
                 let data = {
@@ -297,7 +297,7 @@ export class Pipeline extends Component {
                     "jobs_id": this.props.job.job_details.id,
                 };
                 this.props.addExReviewer(data);
-                this.props.getPostedJobs(this.props.user.id, 1, "");
+                setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
                 this.alertSuccess();
             }
         })
