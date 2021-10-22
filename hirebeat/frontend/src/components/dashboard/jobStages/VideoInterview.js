@@ -299,7 +299,6 @@ export function VideoInterview(props) {
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page, "Video Interview");
-        sessionStorage.setItem("videoInterviewPage", String(selectedPage));
     };
 
     const [showMoveForm, setShowMoveForm] = useState(false);
@@ -637,7 +636,7 @@ export function VideoInterview(props) {
                                     onPageChange={handlePageClick}
                                     containerClassName={'pagination3'}
                                     activeClassName={'active'}
-                                    forcePage={sessionStorage.getItem("videoInterviewPage") ? parseInt(sessionStorage.getItem("videoInterviewPage")) : selectedPage}
+                                    forcePage={selectedPage}
                                 />
                             </div>
                         }
@@ -730,7 +729,7 @@ export function VideoInterview(props) {
                                 onPageChange={handlePageClick}
                                 containerClassName={'pagination3'}
                                 activeClassName={'active'}
-                                forcePage={sessionStorage.getItem("videoInterviewPage") ? parseInt(sessionStorage.getItem("videoInterviewPage")) : selectedPage}
+                                forcePage={selectedPage}
                             />
                         </div>
                     }

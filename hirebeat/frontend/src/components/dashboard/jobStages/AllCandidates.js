@@ -29,14 +29,14 @@ export class AllCandidates extends Component {
 
     onFilter = (category) => {
         this.setState({ category: category })
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
+        let page = this.state.selectedPage + 1;
         let stage = this.state.stage.value;
         setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage, category.value, "")}, 300);
     }
 
     filterStage = (stage) => {
         this.setState({ stage: stage });
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
+        let page = this.state.selectedPage + 1;
         let status = this.state.category.value;
         setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage.value, status, "")}, 300);
     }
@@ -77,7 +77,7 @@ export class AllCandidates extends Component {
     }
 
     hideQForm = () => {
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
+        let page = this.state.selectedPage + 1;
         setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "", "", ""); this.props.getPostedJobs(this.props.user.id, page, ""); }, 300);
         this.setState({ showQForm: false });
 
@@ -159,7 +159,7 @@ export class AllCandidates extends Component {
                 this.props.updateInviteStatus(data);
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
-                let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
+                let page = this.state.selectedPage + 1;
                 setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "", "", ""); this.props.getPostedJobs(this.props.user.id, page, "") }, 300);
                 this.sendSuccessAlert();
             }
@@ -191,7 +191,6 @@ export class AllCandidates extends Component {
         this.setState({ selectedPage: selectedPage });
         let page = selectedPage + 1;
         this.props.getAllJobs(this.props.user.id, page, "", "", "");
-        sessionStorage.setItem("jobAppPage", String(selectedPage));
     };
 
     addNewCandidates = () => {
@@ -259,7 +258,7 @@ export class AllCandidates extends Component {
                                             onPageChange={this.handlePageClick}
                                             containerClassName={'pagination3'}
                                             activeClassName={'active'}
-                                            forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
+                                            forcePage={this.state.selectedPage}
                                         />
                                     </div>
                                 }
@@ -344,7 +343,7 @@ export class AllCandidates extends Component {
                                         onPageChange={this.handlePageClick}
                                         containerClassName={'pagination3'}
                                         activeClassName={'active'}
-                                        forcePage={sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) : this.state.selectedPage}
+                                        forcePage={this.state.selectedPage}
                                     />
                                 </div>
                             }
@@ -403,9 +402,9 @@ const ApplicantRow = (props) => {
     let name = props.applicant.first_name + " " + props.applicant.last_name;
     let resumeScore = props.applicant.result_rate;
     useEffect(() => {
-        if (sessionStorage.getItem("showPreview" + props.index) === "true") {
-            setShowPreview(true);
-        }
+        // if (sessionStorage.getItem("showPreview" + props.index) === "true") {
+        //     setShowPreview(true);
+        // }
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
     }, []);
     function onView() {
@@ -416,23 +415,23 @@ const ApplicantRow = (props) => {
             "isViewed": true,
         }
         props.updateCandidateViewedStatus(data);
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        let page = props.selectedPage + 1;
         // setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
         props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
         props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email);
-        sessionStorage.setItem(("showPreview" + props.index), "true");
+        //sessionStorage.setItem(("showPreview" + props.index), "true");
         setShowPreview(true);
     }
 
     function hideModal() {
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        let page = props.selectedPage + 1;
         setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
-        sessionStorage.removeItem("showPreview" + props.index);
-        sessionStorage.removeItem("showPreview" + current);
-        sessionStorage.removeItem("current");
+        //sessionStorage.removeItem("showPreview" + props.index);
+        //sessionStorage.removeItem("showPreview" + current);
+        //sessionStorage.removeItem("current");
         setShowPreview(false);
     }
 
@@ -471,26 +470,26 @@ const ApplicantRow = (props) => {
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[index].email);
         props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[index].email);
         props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[index].email, props.user.email);
-        sessionStorage.setItem(("showPreview" + index), "true");
-        sessionStorage.setItem("current", index);
+        //sessionStorage.setItem(("showPreview" + index), "true");
+        //sessionStorage.setItem("current", index);
     }
 
     function viewNextResult(curIndex) {
-        sessionStorage.removeItem("showPreview" + curIndex);
+        //sessionStorage.removeItem("showPreview" + curIndex);
         let next = curIndex + 1;
         getReviewPageData(next);
         setCurrent(curIndex + 1);
     };
 
     function viewPrevResult(curIndex) {
-        sessionStorage.removeItem("showPreview" + curIndex);
+        //sessionStorage.removeItem("showPreview" + curIndex);
         let prev = curIndex - 1;
         getReviewPageData(prev);
         setCurrent(curIndex - 1);
     };
 
     const refresh = () => {
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        let page = props.selectedPage + 1;
         setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", ""); props.getPostedJobs(props.user.id, page, "Resume Review") }, 300);
         props.updateViewStatus({ "candidate_id": applicants[current].id });
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
@@ -567,33 +566,33 @@ const ApplicantRow = (props) => {
             <div style={{ background: "#E8EDFC" }}>
                 <MyFullModal className="light-blue-modal" show={showPreview} onHide={hideModal}>
                     <ReviewCandidate
-                        phone={applicants[parseInt(sessionStorage.getItem("current")) || current].phone}
-                        email={applicants[parseInt(sessionStorage.getItem("current")) || current].email}
-                        location={applicants[parseInt(sessionStorage.getItem("current")) || current].location}
-                        resume_url={applicants[parseInt(sessionStorage.getItem("current")) || current].resume_url}
-                        first_name={applicants[parseInt(sessionStorage.getItem("current")) || current].first_name}
-                        last_name={applicants[parseInt(sessionStorage.getItem("current")) || current].last_name}
-                        applicant={applicants[parseInt(sessionStorage.getItem("current")) || current]}
+                        phone={applicants[current].phone}
+                        email={applicants[current].email}
+                        location={applicants[current].location}
+                        resume_url={applicants[current].resume_url}
+                        first_name={applicants[current].first_name}
+                        last_name={applicants[current].last_name}
+                        applicant={applicants[current]}
                         curJob={props.curJob}
                         tempQuestion={props.tempQuestion}
                         setTempQuestion={props.setTempQuestion}
                         profile={props.profile}
                         addInterviews={props.addInterviews}
-                        candidateId={applicants[parseInt(sessionStorage.getItem("current")) || current].id}
+                        candidateId={applicants[current].id}
                         updateInviteStatus={props.updateInviteStatus}
                         getAllJobs={props.getAllJobs}
                         getPJobs={props.getPJobs}
                         user={props.user}
                         setStatus={setStatus}
-                        is_invited={applicants[parseInt(sessionStorage.getItem("current")) || current].is_invited}
+                        is_invited={applicants[current].is_invited}
                         style={{ backgroundColor: "black" }}
                         onHide={hideModal}
-                        current={parseInt(sessionStorage.getItem("current")) || current}
+                        current={current}
                         setCurrent={setCurrent}
                         applicants={applicants}
                         status={status}
                         updateCandidateViewedStatus={props.updateCandidateViewedStatus}
-                        linkedin={applicants[parseInt(sessionStorage.getItem("current")) || current].linkedinurl}
+                        linkedin={applicants[current].linkedinurl}
                         moveCandidateToInterview={props.moveCandidateToInterview}
                         filter={props.filter}
                         selectedPage={props.selectedPage}

@@ -152,15 +152,16 @@ def get_all_jobs(request):
                 applicants = ApplyCandidates.objects.filter(jobs_id=job_id)
         applicants = list(applicants.values())
         # sort by score or id
+        # note the result_rate is float (string)! 
         if has_resume_sort:
             resume_sort = True if (request.GET.get(
                 "sort") == "True" or request.GET.get("sort") == "true") else False
             if resume_sort:
                 applicants.sort(
-                    key=lambda a: (-int(a["result_rate"]), -a["id"]))
+                    key=lambda a: (-float(a["result_rate"]), -a["id"]))
             else:
                 applicants.sort(key=lambda a: (
-                    int(a["result_rate"]), -a["id"]))
+                    float(a["result_rate"]), -a["id"]))
         else:
             applicants.sort(key=lambda a: -a["id"])
         total_records = len(applicants)

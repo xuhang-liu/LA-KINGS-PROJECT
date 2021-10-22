@@ -111,7 +111,6 @@ export function LiveInterview(props){
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page, "Live Interview");
-        sessionStorage.setItem("liveInterviewPage", String(selectedPage));
     };
 
     const [showMoveForm, setShowMoveForm] = useState(false);
@@ -289,7 +288,7 @@ export function LiveInterview(props){
                                       onPageChange={handlePageClick}
                                       containerClassName={'pagination3'}
                                       activeClassName={'active'}
-                                      forcePage={sessionStorage.getItem("liveInterviewPage")?parseInt(sessionStorage.getItem("liveInterviewPage")):selectedPage}
+                                      forcePage={selectedPage}
                                 />
                             </div>
                         }
@@ -381,7 +380,7 @@ export function LiveInterview(props){
                                   onPageChange={handlePageClick}
                                   containerClassName={'pagination3'}
                                   activeClassName={'active'}
-                                  forcePage={sessionStorage.getItem("liveInterviewPage")?parseInt(sessionStorage.getItem("liveInterviewPage")):selectedPage}
+                                  forcePage={selectedPage}
                             />
                         </div>
                     }

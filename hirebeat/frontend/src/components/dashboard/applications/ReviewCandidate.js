@@ -86,7 +86,7 @@ const ReviewCandidate = (props) => {
             props.updateInviteStatus(data);
             setShowMoveForm(false);
             // update
-            let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+            let page = props.selectedPage + 1;
             let isSortByScore = props.isSortByScore || ""
             setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore);}, 300);
             let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
@@ -110,7 +110,7 @@ const ReviewCandidate = (props) => {
         }
         props.updateInviteStatus(data);
         // update
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        let page = props.selectedPage + 1;
         let isSortByScore = props.isSortByScore || "";
         setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore);}, 300);
         let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
@@ -183,7 +183,7 @@ const ReviewCandidate = (props) => {
     //    };
 
     function nextOrPreUpdate() {
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        let page = props.selectedPage + 1;
         let isSortByScore = props.isSortByScore || "";
         props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore);
 //        sessionStorage.removeItem("current");
@@ -197,7 +197,7 @@ const ReviewCandidate = (props) => {
             "isViewed": true,
         }
         props.updateCandidateViewedStatus(data);
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        let page = props.selectedPage + 1;
         let isSortByScore = props.isSortByScore || "";
         setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore);}, 300);
     }
@@ -605,14 +605,14 @@ const ReviewCandidate = (props) => {
                         <button
                             className={props.current == 0 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == 0 ? true : false}
-                            onClick={() => {setViewResumes(); props.viewPrevResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current - 1); setTimeout(() => { props.setCurrent(props.current - 1); sessionStorage.setItem("current", props.current - 1) }, 200) }}
+                            onClick={() => {setViewResumes(); props.viewPrevResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current - 1); setTimeout(() => { props.setCurrent(props.current - 1);}, 200) }}
                         >
                             &lt; Prev
                         </button>
                         <button
                             className={props.current == props.applicants.length - 1 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == props.applicants.length - 1 ? true : false}
-                            onClick={() => {setViewResumes(); props.viewNextResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current + 1); setTimeout(() => { props.setCurrent(props.current + 1); sessionStorage.setItem("current", props.current + 1) }, 200) }}
+                            onClick={() => {setViewResumes(); props.viewNextResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current + 1); setTimeout(() => { props.setCurrent(props.current + 1);}, 200) }}
                             style={{ marginLeft: "2rem" }}
                         >
                             Next &gt;

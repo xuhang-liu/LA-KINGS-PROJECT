@@ -49,7 +49,7 @@ export const ApplicantList = (props) => {
                         currentStage={props.currentStage}
                         getPostedJobs={props.getPostedJobs}
                         getAllJobs={props.getAllJobs}
-                        showCandidateModal={sessionStorage.getItem("showCandidateModal" + index) === "true" ? true : false}
+                        showCandidateModal={false}
                         reviewer_type={props.reviewer_type}
                         gh_current_stage_id={props.gh_current_stage_id}
                         jobsId={props.jobsId}
