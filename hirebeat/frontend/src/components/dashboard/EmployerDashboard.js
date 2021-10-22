@@ -211,6 +211,7 @@ export class EmployerDashboard extends Component {
       has_video: false,
       page: 1,
       has_filter: false,
+      loc_radius: 0,
     }
     this.props.getSourcingData(queryData);
   }

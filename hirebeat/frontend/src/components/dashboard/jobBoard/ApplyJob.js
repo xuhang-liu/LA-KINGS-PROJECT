@@ -1128,7 +1128,7 @@ const ApplyJob = (props) => {
                                                 Apply Now
                                             </a>}
                                         <p className="mt-3">Link to this job</p>
-                                        <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #67A3F3", width: "90%", height: "2.6rem" }}>
+                                        <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #67A3F3", width: "90%", height: "4rem" }}>
                                             <div className="pt-2 pl-2" style={{ color: "#090D3A", fontWeight: "500", alignItems: "center" }}>
                                                 <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url)) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
                                             </div>
@@ -1139,7 +1139,7 @@ const ApplyJob = (props) => {
                                                 </button>
                                             </div>
                                         </div>
-                                        <div className="single-footer-widget1 row my-5 pl-3">
+                                        <div className="single-footer-widget1 row pl-3" style={{marginTop:"4rem"}}>
                                             <ul className="social">
                                                 <li>
                                                     <FacebookShareButton

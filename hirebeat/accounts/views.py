@@ -382,8 +382,10 @@ def get_profile_detail(request):
             profile.save()
         data = model_to_dict(profile)
         # get education and experience here
-        data["educations"] = list(ProfileDetailEducation.objects.filter(user_id=user_id).order_by("id").values())
-        data["experiences"] = list(ProfileDetailExperience.objects.filter(user_id=user_id).order_by("id").values())
+        data["educations"] = list(ProfileDetailEducation.objects.filter(
+            user_id=user_id).order_by("id").values())
+        data["experiences"] = list(ProfileDetailExperience.objects.filter(
+            user_id=user_id).order_by("id").values())
     except ObjectDoesNotExist:
         return Response({"data": data})
     return Response({"data": data})
@@ -634,6 +636,7 @@ def delete_profile_detail_work_exp(request):
     id = request.data["id"]
     ProfileDetailExperience.objects.filter(id=id).delete()
     return Response("Delete work experience successfully", status=status.HTTP_200_OK)
+
 
 def upload_profile_resume(request):
     object_name = request.GET['objectName']
@@ -1076,7 +1079,7 @@ def get_sourcing_data(request):
     has_video = request.data["has_video"]
     page = request.data["page"]
     has_filter = request.data["has_filter"]
-
+    loc_radius = request.data["loc_radius"]
     data = {
         "total_page": 0,
         "total_records": 0,
@@ -1095,7 +1098,18 @@ def get_sourcing_data(request):
             if len(skills) > 0:
                 res = res.filter(skills__contains=skills)
             if len(location) > 0:
-                res = res.filter(location=location)
+                if loc_radius == 0:
+                    res = res.filter(location=location)
+                else:
+                    for p in range(len(res)):
+                        destination = res[p].location
+                        if destination is not None and len(destination) > 0:
+                            url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins={location}&destinations={destination}&units=imperial&key=AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U".format(location=location, destination=destination)
+                            payload={}
+                            headers = {}
+                            response = requests.request("GET", url, headers=headers, data=payload)
+                            if float(response.json()["rows"][0]["elements"][0]["distance"]["text"].split(" ")[0].replace(",", "")) > float(loc_radius):
+                                res = res.exclude(pk=res[p].id)
             if len(position) > 0:
                 res = res.filter(current_job_title__icontains=position)
             res = res.values()
@@ -1109,7 +1123,18 @@ def get_sourcing_data(request):
             if len(skills) > 0:
                 res = res.filter(skills__contains=skills)
             if len(location) > 0:
-                res = res.filter(location=location)
+                if loc_radius == 0:
+                    res = res.filter(location=location)
+                else:
+                    for p in range(len(res)):
+                        destination = res[p].location
+                        if destination is not None and len(destination) > 0:
+                            url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins={location}&destinations={destination}&units=imperial&key=AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U".format(location=location, destination=destination)
+                            payload={}
+                            headers = {}
+                            response = requests.request("GET", url, headers=headers, data=payload)
+                            if float(response.json()["rows"][0]["elements"][0]["distance"]["text"].split(" ")[0].replace(",", "")) > float(loc_radius):
+                                res = res.exclude(pk=res[p].id)
             if len(position) > 0:
                 res = res.filter(current_job_title__icontains=position)
             res = res.values()
