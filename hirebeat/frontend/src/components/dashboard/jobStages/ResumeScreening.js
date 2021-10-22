@@ -5,7 +5,7 @@ import { MyModal80, MyModalUpgrade, AlertModal } from "./../DashboardComponents"
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addInterviews, moveCandidateToInterview, getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, updateViewStatus, updateCommentStatus } from "../../../redux/actions/question_actions";
-import { updateInviteStatus, updateCandidateViewedStatus } from "../../../redux/actions/job_actions";
+import { updateInviteStatus, updateCandidateViewedStatus, updateApplicantBasicInfo } from "../../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../../redux/actions/video_actions";
 import { subreviewerUpdateComment } from "../../../redux/actions/auth_actions";
 import { MyFullModal } from "../DashboardComponents";
@@ -33,7 +33,7 @@ export class ResumeScreening extends Component {
 
     componentDidMount() {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True"); this.props.getPJobs(); }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", this.state.isSortByScore); this.props.getPJobs(); }, 300);
     }
 
     onFilter = (category) => {
@@ -79,7 +79,7 @@ export class ResumeScreening extends Component {
 
     hideQForm = () => {
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : this.state.selectedPage + 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True"); this.props.getPJobs(); }, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", this.state.isSortByScore); this.props.getPJobs(); }, 300);
         this.setState({ showQForm: false });
 
     }
@@ -187,7 +187,7 @@ export class ResumeScreening extends Component {
                 // update
                 let page = 1;
                 let userId = this.props.user.id;
-                setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review", "True", "True"); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
+                setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
                 this.unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -231,7 +231,7 @@ export class ResumeScreening extends Component {
             // update
             let page = 1;
             let userId = this.props.user.id;
-            setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review", "True", "True"); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
+            setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
             this.unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             if (!noShowAgainReject) {
@@ -522,6 +522,7 @@ export class ResumeScreening extends Component {
                                     isSortByScore={this.state.isSortByScore}
                                     selectedCurrentStage="Resume Review"
                                     selectedStatus={this.state.isSortByScore ? "True" : "False"}
+                                    updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
                                 />
                             )
                         })}
@@ -698,8 +699,8 @@ const ApplicantRow = (props) => {
             "isViewed": true,
         }
         props.updateCandidateViewedStatus(data);
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); props.getPJobs() }, 300);
+//        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+//        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); props.getPJobs() }, 300);
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
@@ -869,6 +870,8 @@ const ApplicantRow = (props) => {
                         positionId={props.positionId}
                         selectedCurrentStage={props.selectedCurrentStage}
                         selectedStatus={props.selectedStatus}
+                        isSortByScore={props.isSortByScore}
+                        updateApplicantBasicInfo={props.updateApplicantBasicInfo}
                     />
                 </MyFullModal>
             </div>
@@ -912,7 +915,7 @@ const mapStateToProps = (state) => {
 export default withRouter(connect(mapStateToProps, {
     addInterviews, updateInviteStatus, updateCandidateViewedStatus, moveCandidateToInterview,
     getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, getApplicantsVideos, updateViewStatus, getApplicantsInfo, updateCommentStatus,
-    subreviewerUpdateComment
+    subreviewerUpdateComment, updateApplicantBasicInfo
 })(
     ResumeScreening
 ));

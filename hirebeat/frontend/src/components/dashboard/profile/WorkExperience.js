@@ -14,6 +14,14 @@ export class WorkExperience extends Component {
         this.setState({isEdit: false});
     }
 
+    dateConversion = (date) => {
+        let dates = date.split("-");
+        if (dates.length == 3) {
+            return dates[1] + "/" + dates[2] + "/" + dates[0];
+        }
+        return date;
+    }
+
     render() {
         return(
             <div>
@@ -34,7 +42,7 @@ export class WorkExperience extends Component {
                             <p className="profile-p4" style={{marginBottom: "0.5rem"}}>Add your wok experience</p>
                         }
 
-                        <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{this.props.workExp.company} &nbsp; {this.props.workExp.start_date} {this.props.workExp.end_date?.length > 0 && " - "} {this.props.workExp.end_date}</p>
+                        <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{this.props.workExp.company} &nbsp; {this.dateConversion(this.props.workExp.start_date)} {this.props.workExp.end_date?.length > 0 && " - "} {this.dateConversion(this.props.workExp.end_date)}</p>
                         {(this.props.workExp.startDate != "" && this.props.workExp.startDate != null) &&
                             <p className="profile-p4" style={{marginBottom: "0.5rem", color: "#7D7D7D"}}>
                                 {this.props.workExp.start_date} - {this.props.workExp.end_date}

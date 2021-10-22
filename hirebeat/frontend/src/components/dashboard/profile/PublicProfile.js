@@ -40,6 +40,14 @@ export class PublicProfile extends Component {
         this.setState({ showContact: false });
     }
 
+    dateConversion = (date) => {
+        let dates = date.split("-");
+        if (dates.length == 3) {
+            return dates[1] + "/" + dates[2] + "/" + dates[0];
+        }
+        return date;
+    }
+
     render() {
         const meta = {
             title: 'HireBeat – Talent Profiles',
@@ -197,7 +205,7 @@ export class PublicProfile extends Component {
                                                                     {(edu.extra_major != "" && edu.extra_major != null) &&
                                                                         <p className="profile-p4" style={{marginBottom: "0.5rem"}}>Minor: {edu.extra_major}</p>
                                                                     }
-                                                                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{edu.graduation_date}</p>
+                                                                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{this.dateConversion(edu.graduation_date)}</p>
                                                                 </div>
                                                             )
                                                         }
@@ -218,7 +226,7 @@ export class PublicProfile extends Component {
                                                                             <p className="profile-p3">{exp.title}</p>
                                                                         </div>
                                                                     </div>
-                                                                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{exp.company} &nbsp; {exp.start_date} {exp.end_date?.length > 0 && " - "} {exp.end_date}</p>
+                                                                    <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{exp.company} &nbsp; {this.dateConversion(exp.start_date)} {exp.end_date?.length > 0 && " - "} {this.dateConversion(exp.end_date)}</p>
                                                                     <p className="profile-p4" style={{marginBottom: "0.5rem"}}>{exp.work_description}</p>
                                                                 </div>
                                                             )

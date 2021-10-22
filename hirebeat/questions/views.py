@@ -126,7 +126,16 @@ def get_posted_jobs(request):
     user_id = int(request.GET.get("user_id", 0))
     page = int(request.GET.get("page", 1))
     stage = request.GET.get("stage", "")
+    if stage == "undefined":
+        stage = ""
+    video_filter = request.GET.get("filter", "")
+    if video_filter == "undefined":
+        video_filter = ""
+    reviewed = request.GET.get("reviewed", "")
+    if reviewed == "undefined":
+        reviewed = ""
     profile = Profile.objects.get(user_id=user_id)
+    user = User.objects.get(pk=user_id)
     # employer role
     if profile.is_subreviwer is False and profile.is_external_reviewer is False:
         positions = Positions.objects.filter(user_id=user_id)
@@ -136,11 +145,24 @@ def get_posted_jobs(request):
             # get each position applicants by current stage
             applicants = []
             if stage == "":
-                applicants = list(InvitedCandidates.objects.filter(
-                    positions=position, is_active=True).order_by('-id').values())
+                applicants = InvitedCandidates.objects.filter(
+                    positions=position, is_active=True)
             else:
-                applicants = list(InvitedCandidates.objects.filter(
-                    positions=position, current_stage=stage, is_active=True).order_by('-id').values())
+                applicants = InvitedCandidates.objects.filter(
+                    positions=position, current_stage=stage, is_active=True)
+            # filter by video
+            if video_filter != "":
+                # Uninvited case
+                if video_filter == "Uninvited":
+                    applicants = applicants.filter(is_invited=False)
+                elif video_filter == "Completed":
+                    applicants = applicants.filter(is_invited=True, is_recorded=True, video_count__gt=0)
+                elif video_filter == "Pending":
+                    applicants = applicants.filter(is_invited=True, is_recorded=False)
+                elif video_filter == "Withdrawn":
+                    applicants = applicants.filter(is_invited=True, is_recorded=True, video_count__lte=0)
+            # convert queryset to list
+            applicants = list(applicants.order_by('-id').values())
             # get linkedin and is_active values from ApplyCandidates model
             for applicant in applicants:
                 applicant["linkedinurl"] = ""
@@ -223,17 +245,32 @@ def get_posted_jobs(request):
             # get each position applicants by current stage
             applicants = []
             if stage == "":
-                applicants = list(InvitedCandidates.objects.filter(
-                    positions_id=position_id, is_active=True).order_by('-id').values())
+                applicants = InvitedCandidates.objects.filter(
+                    positions_id=position_id, is_active=True)
             else:
-                applicants = list(InvitedCandidates.objects.filter(
-                    positions_id=position_id, current_stage=stage, is_active=True).order_by('-id').values())
+                applicants = InvitedCandidates.objects.filter(
+                    positions_id=position_id, current_stage=stage, is_active=True)
+            # filter by video
+            if video_filter != "":
+                # Uninvited case
+                if video_filter == "Uninvited":
+                    applicants = applicants.filter(is_invited=False)
+                elif video_filter == "Completed":
+                    applicants = applicants.filter(is_invited=True, is_recorded=True, video_count__gt=0)
+                elif video_filter == "Pending":
+                    applicants = applicants.filter(is_invited=True, is_recorded=False)
+                elif video_filter == "Withdrawn":
+                    applicants = applicants.filter(is_invited=True, is_recorded=True, video_count__lte=0)
+            # convert queryset to list
+            applicants = list(applicants.order_by('-id').values())
             company_name = ex_reviewers[i].company_name
             # get linkedin and is_active values from ApplyCandidates model
             for applicant in applicants:
                 applicant["linkedinurl"] = ""
                 applicant["is_active"] = False
                 applicant["apply_candidate_id"] = 0
+                applicant["reviewer_review_status"] = ReviewerEvaluation.objects.filter(
+                    reviewer_email=user.email, applicant_email=applicant["email"]).exists()
                 jobs = Jobs.objects.filter(
                     positions_id=position_id, user_id=ex_reviewers[i].master_user)
                 if len(jobs) > 0:
@@ -247,6 +284,11 @@ def get_posted_jobs(request):
                         applicant["answers"] = candidate[0].answers
                         applicant["qualifications"] = candidate[0].qualifications
                         applicant["must_haves"] = candidate[0].must_haves
+            # filter by reviewed status
+            if reviewed == "Reviewed":
+                applicants = [a for a in applicants if a["reviewer_review_status"]]
+            elif reviewed == "Pending":
+                applicants = [a for a in applicants if not a["reviewer_review_status"]]
             # get each position applicants
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)

@@ -4767,3 +4767,14 @@ max-width: 110px;
 .overlay {
   background: rgba(255, 255, 255, 0.9);
 }
+
+.basic-info-input {
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
+  border-radius: 3px;
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: rgb(74, 111, 138);
+  font-weight: 500;
+  width: 100%;
+}

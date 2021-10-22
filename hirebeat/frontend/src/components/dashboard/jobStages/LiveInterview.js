@@ -38,11 +38,17 @@ export function LiveInterview(props){
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
     function onFilter(category) {
         setCategory(category);
+        let page = 1;
+        let userId = props.user.id;
+        props.getPostedJobs(userId, page, "Live Interview", category.value, category3.value);
     }
 
     const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
-    function onFilter3(category) {
-        setCategory3(category);
+    function onFilter3(category3) {
+        setCategory3(category3);
+        let page = 1;
+        let userId = props.user.id;
+        props.getPostedJobs(userId, page, "Live Interview", category.value, category3.value);
     }
 
     const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
@@ -357,6 +363,8 @@ export function LiveInterview(props){
                                 getPostedJobs={props.getPostedJobs}
                                 getAllJobs={props.getAllJobs}
                                 reviewer_type={props.reviewer_type}
+                                jobsId={props.jobsId}
+                                selectedPage={selectedPage}
                             />
                         </div>
                     </div>
