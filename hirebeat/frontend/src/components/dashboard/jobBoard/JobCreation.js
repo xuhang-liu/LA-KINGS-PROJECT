@@ -253,6 +253,7 @@ export class JobCreation extends Component {
             job_post: this.state.job_post,
             skills: this.state.skills,
             questions: this.state.questions,
+            is_closed: 0
         };
         if (this.state.remote) {
             data = {
@@ -271,6 +272,7 @@ export class JobCreation extends Component {
                 job_post: 0,
                 skills: this.state.skills,
                 questions: this.state.questions,
+                is_closed: 0
             };
         }
         if (this.props.jobid_list.includes(this.state.jobId) && this.state.jobId != "" && this.state.jobId != null) {
@@ -279,6 +281,54 @@ export class JobCreation extends Component {
             this.props.addNewJob(data);
             setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
             setTimeout(() => {this.showSharePrompt()}, 300);
+        }
+    }
+
+    saveDraft = () => {
+        let data = {
+            jobTitle: this.state.jobTitle,
+            jobId: this.state.jobId,
+            jobDescription: this.state.jobDescription.toString('html'),
+            jobLevel: this.state.jobLevel["value"],
+            jobLocation: this.state.jobLocation,
+            userId: this.props.user.id,
+            jobType: this.state.jobType["value"],
+            loc_req: this.state.loc_req,
+            pho_req: this.state.pho_req,
+            lin_req: this.state.lin_req,
+            eeo_req: this.state.eeo_req,
+            eeo_ques_req: this.state.eeo_ques_req,
+            job_post: this.state.job_post,
+            skills: this.state.skills,
+            questions: this.state.questions,
+            is_closed: 3
+        };
+        if (this.state.remote) {
+            data = {
+                jobTitle: this.state.jobTitle,
+                jobId: this.state.jobId,
+                jobDescription: this.state.jobDescription.toString('html'),
+                jobLevel: this.state.jobLevel["value"],
+                jobLocation: "Remote",
+                userId: this.props.user.id,
+                jobType: this.state.jobType["value"],
+                loc_req: this.state.loc_req,
+                pho_req: this.state.pho_req,
+                lin_req: this.state.lin_req,
+                eeo_req: this.state.eeo_req,
+                eeo_ques_req: this.state.eeo_ques_req,
+                job_post: 0,
+                skills: this.state.skills,
+                questions: this.state.questions,
+                is_closed: 3
+            };
+        }
+        if (this.props.jobid_list.includes(this.state.jobId) && this.state.jobId != "" && this.state.jobId != null) {
+            alert("Duplicate Job ID detected.");
+        } else {
+            this.props.addNewJob(data);
+            setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs()}, 300);
+            setTimeout(() => {this.props.renderJobs()}, 300);
         }
     }
 
@@ -752,7 +802,14 @@ export class JobCreation extends Component {
                                 type="submit"
                                 className="default-btn" style={{ marginBottom: "1.5%", paddingLeft: "25px", marginRight: "1rem" }}
                             >
-                                Save & Post
+                                Save & Publish
+                            </button>
+                            <button
+                                type="button"
+                                className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#56a3fa", border: "2px solid #56a3fa", paddingTop: "9px", paddingBottom: "8px", paddingLeft:"25px" }}
+                                onClick={() => { this.saveDraft() }}
+                            >
+                                Save Draft
                             </button>
                             <button
                                 type="button"

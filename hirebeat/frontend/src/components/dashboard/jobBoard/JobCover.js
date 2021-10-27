@@ -16,8 +16,15 @@ export const JobCover = (props) => {
     <div>
     {!viewPortal ?
     <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
-      <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b></h3></div>
-      <div style={{ marginBottom: "20px" }}>
+      <div style={{ paddingBottom: "1rem" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b></h3>
+        <button className="default-btn" onClick={props.renderJobCreation}
+          style={{ color: "white", float: "right", marginBottom: "2rem" }}>
+          <i className="bx bx-plus"></i>
+          Create New Position
+          <span></span>
+        </button>
+      </div>
+      {/* <div style={{ paddingBottom: "2rem", paddingTop:"-2rem" }}>
         <button
           className={decideClassName(filter, "active")}
           onClick={() => { setView(false); setFilter("active"); sessionStorage.setItem("filter", "active"); sessionStorage.removeItem("view"); sessionStorage.removeItem("jobKey")}}
@@ -37,7 +44,7 @@ export const JobCover = (props) => {
           Create New Position
           <span></span>
         </button>
-      </div>
+      </div> */}
       <JobList
         jobs={props.jobs}
         user={props.user}

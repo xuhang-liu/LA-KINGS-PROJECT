@@ -23,6 +23,7 @@ import {
     ADD_NEW_APPLY_CANDIDATE_BY_CV,
     CHECK_IF_MASTER_ACTIVE,
     UPDATE_APPLICANT_BASIC_INFO,
+    SWITCH_JOB_CLOSED_STATUS,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -356,6 +357,20 @@ export const updateApplicantBasicInfo = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: UPDATE_APPLICANT_BASIC_INFO,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const switchJobClosedStatus = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/switch-job-closed-status", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: SWITCH_JOB_CLOSED_STATUS,
         payload: res.data,
       });
     })
