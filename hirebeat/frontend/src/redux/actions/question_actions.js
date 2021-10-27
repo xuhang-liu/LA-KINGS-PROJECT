@@ -479,9 +479,9 @@ export const getReviewerEvaluation = (position_id, applicant_email) => (dispatch
     );
 }
 
-export const getCurrentReviewerEvaluation = (position_id, applicant_email, reviewer_email) => (dispatch, getState) => {
+export const getCurrentReviewerEvaluation = (position_id, applicant_email, reviewer_email, current_stage) => (dispatch, getState) => {
   axios
-    .get(`/questions/get-current-reviewer-evaluation?position_id=${position_id}&applicant_email=${applicant_email}&reviewer_email=${reviewer_email}`, tokenConfig(getState))
+    .get(`/questions/get-current-reviewer-evaluation?position_id=${position_id}&applicant_email=${applicant_email}&reviewer_email=${reviewer_email}&current_stage=${current_stage}`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_CURRENT_EVALUATION,

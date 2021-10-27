@@ -1092,6 +1092,7 @@ def add_review_note(request):
     position_id = request.data["position_id"]
     reviewer_email = request.data["reviewer_email"]
     reviewer_type = request.data["reviewer_type"]
+    current_stage = request.data["current_stage"]
     reviewer = ""
     if reviewer_type == "sub_reviewer":
         sub_reviewer = SubReviewers.objects.filter(
@@ -1103,7 +1104,7 @@ def add_review_note(request):
         reviewer = external_reviewer.r_name
     else:
         reviewer = request.data["reviewer"]
-    InterviewNote.objects.create(reviewer=reviewer, comment=comment,
+    InterviewNote.objects.create(reviewer=reviewer, comment=comment, current_stage=current_stage, reviewer_email=reviewer_email,
                                  applicant_email=applicant_email, position_id=position_id)
 
     return Response("Added review successfully", status=status.HTTP_200_OK)
@@ -1125,6 +1126,7 @@ def add_or_update_reviewer_evaluation(request):
     position_id = request.data["position_id"]
     reviewer_email = request.data["reviewer_email"]
     reviewer_type = request.data["reviewer_type"]
+    current_stage = request.data["current_stage"]
     # get reviewer name
     reviewer_name = ""
     sub_reviewer = SubReviewers.objects.filter(
@@ -1140,12 +1142,12 @@ def add_or_update_reviewer_evaluation(request):
 
     try:
         evaluation_obj = ReviewerEvaluation.objects.get(reviewer_email=reviewer_email, applicant_email=applicant_email,
-                                                        position_id=position_id)
+                                                        position_id=position_id, current_stage=current_stage)
         evaluation_obj.evaluation = evaluation
         evaluation_obj.save()
     except ObjectDoesNotExist:
         ReviewerEvaluation.objects.create(reviewer_name=reviewer_name, reviewer_email=reviewer_email, evaluation=evaluation,
-                                          position_id=position_id, applicant_email=applicant_email)
+                                          position_id=position_id, applicant_email=applicant_email, current_stage=current_stage)
 
     return Response("Add or update reviewer evaluation successfully", status=status.HTTP_200_OK)
 
@@ -1164,10 +1166,11 @@ def get_current_reviewer_evaluation(request):
     position_id = request.query_params.get('position_id')
     applicant_email = request.query_params.get('applicant_email')
     reviewer_email = request.query_params.get('reviewer_email')
+    current_stage = request.query_params.get('current_stage')
     evaluation = ReviewerEvaluation(evaluation=0)
     try:
         evaluation = ReviewerEvaluation.objects.get(
-            position_id=position_id, applicant_email=applicant_email, reviewer_email=reviewer_email)
+            position_id=position_id, applicant_email=applicant_email, reviewer_email=reviewer_email, current_stage=current_stage)
         evaluation = model_to_dict(evaluation)
     except ObjectDoesNotExist:
         evaluation = model_to_dict(evaluation)

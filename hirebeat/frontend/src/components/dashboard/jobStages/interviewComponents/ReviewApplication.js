@@ -270,11 +270,12 @@ export class ReviewApplication extends Component {
             position_id: this.props.positionId,
             reviewer_type: reviewer_type,
             reviewer_email: this.props.user.email,
+            current_stage: this.props.currentStage,
         }
         this.props.addOrUpdateReviewerEvaluation(data);
         setTimeout(() => {
             this.props.getReviewerEvaluation(this.props.positionId, this.props.applicants[this.props.current].email);
-            this.props.getCurrentReviewerEvaluation(this.props.positionId, this.props.applicants[this.props.current].email, this.props.user.email);
+            this.props.getCurrentReviewerEvaluation(this.props.positionId, this.props.applicants[this.props.current].email, this.props.user.email, this.props.currentStage);
         }, 300);
     }
 
@@ -739,6 +740,9 @@ export class ReviewApplication extends Component {
                                     reviewerEmail={this.props.user.email}
                                     evaluations={this.props.evaluations}
                                     filter={this.props.filter}
+                                    currentStage={this.props.currentStage}
+                                    reviewerType={this.props.reviewer_type}
+                                    user={this.props.user}
                                 />
                             }
                         </div>

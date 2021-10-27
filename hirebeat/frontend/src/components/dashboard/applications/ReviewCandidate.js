@@ -250,11 +250,12 @@ const ReviewCandidate = (props) => {
             position_id: props.curJob.job_details.positions_id,
             reviewer_type: reviewer_type,
             reviewer_email: props.user.email,
+            current_stage: props.currentStage,
         }
         props.addOrUpdateReviewerEvaluation(data);
         setTimeout(() => {
             props.getReviewerEvaluation(props.curJob.job_details.positions_id, props.applicant.email);
-            props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, props.applicant.email, props.user.email);
+            props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, props.applicant.email, props.user.email, props.currentStage);
         }, 300);
     }
 
@@ -594,6 +595,9 @@ const ReviewCandidate = (props) => {
                             reviewerEmail={props.user.email}
                             evaluations={props.evaluations}
                             filter={props.filter}
+                            currentStage={props.currentStage}
+                            reviewerType={props.curJob?.reviewer_type}
+                            user={props.user}
                         />
                     }
                 </div>

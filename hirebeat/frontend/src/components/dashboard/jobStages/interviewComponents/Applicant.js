@@ -41,7 +41,7 @@ export const Applicant = (props) => {
         props.getResumeURL(positionId, applicants[props.index].user_id);
         props.getReviewNote(positionId, applicants[props.index].email);
         props.getReviewerEvaluation(positionId, applicants[props.index].email);
-        props.getCurrentReviewerEvaluation(positionId, applicants[props.index].email, props.user.email);
+        props.getCurrentReviewerEvaluation(positionId, applicants[props.index].email, props.user.email, props.currentStage);
         //sessionStorage.setItem(("showCandidateModal" + props.index), "true");
         setShow(true);
     };
@@ -53,7 +53,7 @@ export const Applicant = (props) => {
         props.getResumeURL(positionId, applicants[index].user_id);
         props.getReviewNote(positionId, applicants[index].email);
         props.getReviewerEvaluation(positionId, applicants[index].email);
-        props.getCurrentReviewerEvaluation(positionId, applicants[index].email, props.user.email);
+        props.getCurrentReviewerEvaluation(positionId, applicants[index].email, props.user.email, props.currentStage);
         setCurrent(index);
     }
 

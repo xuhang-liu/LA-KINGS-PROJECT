@@ -30,70 +30,21 @@ export class JobPortalPage extends Component {
             let data = { "job_id": this.props.job.job_details.id, "email": this.props.user.email };
             axios.post("jobs/check_subreviewer_currentstage", data, config).then((res) => {
                 let stage_array = res?.data?.current_stage;
-                if (stage_array.includes("Resume Review")) {
-                    this.setState({portalSubpage: "resumeScreen"})
-                } else if (stage_array.includes("Video Interview")) {
-                    this.setState({portalSubpage: "videoInterview"})
-                } else if (stage_array.includes("Live Interview")) {
-                    this.setState({portalSubpage: "liveInterview"})
-                } else if (stage_array.includes("Short List")) {
-                    this.setState({portalSubpage: "shortList"})
+                if (stage_array.includes("Short List")) {
+                    this.setState({portalSubpage: "shortList"});
+                    this.setState({ reviewerStage: [...this.state.reviewerStage, 'shortList'] });
                 }
-            }).catch(error => {
-                console.log(error)
-            });
-        }
-    }
-
-    state = {
-        portalSubpage: sessionStorage.getItem(this.props.job.job_details.job_title + 'portalSubpage') || "pipeline",
-        reviewerStage: []
-    }
-
-    componentDidMount() {
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
-        if (this.props.job?.reviewer_type == "subr") {
-            let data = { "job_id": this.props.job.job_details.id, "email": this.props.user.email };
-            axios.post("jobs/check_subreviewer_currentstage", data, config).then((res) => {
-                let stage_array = res?.data?.current_stage;
-                if (stage_array?.length > 0) {
-                    stage_array?.map(s => {
-                        if (s == "Resume Review") {
-                            this.setState({
-                                portalSubpage: "resumeScreen"
-                            });
-                            this.setState({ reviewerStage: [...this.state.reviewerStage, 'resumeScreen'] });
-                            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "True");
-                        }
-                        else if (s == "Video Interview") {
-                            this.setState({
-                                portalSubpage: "videoInterview"
-                            });
-                            this.setState({ reviewerStage: [...this.state.reviewerStage, 'videoInterview'] });
-                            this.props.getPostedJobs(this.props.user.id, 1, "Video Interview");
-                            sessionStorage.setItem('selectedSubpage', "Video Interview");
-                        }
-                        else if (s == "Live Interview") {
-                            this.setState({
-                                portalSubpage: "liveInterview"
-                            });
-                            this.setState({ reviewerStage: [...this.state.reviewerStage, 'liveInterview'] });
-                            sessionStorage.setItem('selectedSubpage', "Live Interview");
-                            this.props.getPostedJobs(this.props.user.id, 1, "Live Interview");
-                        }
-                        else if (s == "Short List") {
-                            this.setState({
-                                portalSubpage: "shortList"
-                            });
-                            this.setState({ reviewerStage: [...this.state.reviewerStage, 'shortList'] });
-                            sessionStorage.setItem('selectedSubpage', "Short List");
-                            this.props.getPostedJobs(this.props.user.id, 1, "Short List");
-                        }
-                    })
+                if (stage_array.includes("Live Interview")) {
+                    this.setState({portalSubpage: "liveInterview"});
+                    this.setState({ reviewerStage: [...this.state.reviewerStage, 'liveInterview'] });
+                }
+                if (stage_array.includes("Video Interview")) {
+                    this.setState({portalSubpage: "videoInterview"});
+                    this.setState({ reviewerStage: [...this.state.reviewerStage, 'videoInterview'] });
+                }
+                if (stage_array.includes("Resume Review")) {
+                    this.setState({portalSubpage: "resumeScreen"});
+                    this.setState({ reviewerStage: [...this.state.reviewerStage, 'resumeScreen'] });
                 }
             }).catch(error => {
                 console.log(error)
@@ -105,7 +56,6 @@ export class JobPortalPage extends Component {
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "allCandidates");
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
         this.props.getAllJobs(this.props.user.id, page, "", "", "");
-        this.props.getPJobs();
         this.setState({
             portalSubpage: "allCandidates",
         });
@@ -117,7 +67,6 @@ export class JobPortalPage extends Component {
             sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "resumeScreen");
             let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
             this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True");
-            this.props.getPJobs();
             this.setState({
                 portalSubpage: "resumeScreen",
             });
@@ -162,7 +111,6 @@ export class JobPortalPage extends Component {
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "pipeline");
         let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
         this.props.getAllJobs(this.props.user.id, page, "", "", "");
-        this.props.getPJobs();
         this.setState({
             portalSubpage: "pipeline",
         });

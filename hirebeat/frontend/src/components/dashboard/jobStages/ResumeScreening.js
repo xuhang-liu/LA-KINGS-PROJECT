@@ -704,7 +704,7 @@ const ApplicantRow = (props) => {
         props.getApplicantsInfo(applicants[current].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
         props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
-        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email);
+        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email, "Resume Review");
         //sessionStorage.setItem(("showPreview" + props.index), "true");
         setShowPreview(true);
     }
@@ -730,7 +730,7 @@ const ApplicantRow = (props) => {
         props.getApplicantsInfo(applicants[index].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[index].email);
         props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[index].email);
-        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[index].email, props.user.email);
+        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[index].email, props.user.email, "Resume Review");
         //sessionStorage.setItem(("showPreview" + index), "true");
         //sessionStorage.setItem("current", index);
     }
@@ -757,7 +757,7 @@ const ApplicantRow = (props) => {
         props.getApplicantsInfo(applicants[current].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
         props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
-        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email);
+        props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email, "Resume Review");
     }
 
     return (

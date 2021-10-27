@@ -213,7 +213,7 @@ const CandidateCard = (props) => {
         props.getResumeURL(props.applicant.positions_id, props.applicant.user_id);
         props.getReviewNote(props.applicant.positions_id, props.applicant.email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
-        props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email);
+        props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email, "Short List");
         //sessionStorage.setItem(("showShortListModal" + props.current), "true");
         setShow(true);
     };
@@ -224,7 +224,7 @@ const CandidateCard = (props) => {
         props.getResumeURL(props.applicant.positions_id, props.applicants[index].user_id);
         props.getReviewNote(props.applicant.positions_id, props.applicants[index].email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicants[index].email);
-        props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicants[index].email, props.user.email);
+        props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicants[index].email, props.user.email, "Short List");
         setCurrent(index);
     }
 
