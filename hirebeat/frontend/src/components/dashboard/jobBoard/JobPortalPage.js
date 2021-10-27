@@ -64,6 +64,7 @@ export class JobPortalPage extends Component {
         if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null) {
             alert("This is a integration job.")
         } else {
+            sessionStorage.setItem('selectedSubpage', "Resume Review");
             sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "resumeScreen");
             let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
             this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True");

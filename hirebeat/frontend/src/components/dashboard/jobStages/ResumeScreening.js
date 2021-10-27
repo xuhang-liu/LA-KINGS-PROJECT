@@ -448,6 +448,19 @@ export class ResumeScreening extends Component {
                                     </div>
                                 </div>
                             }
+                            {!this.props.profile.is_subreviwer &&
+                                <div className="col-2">
+                                    Team Review
+                                    <span className="tool_tip ml-2">
+                                        <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                        <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                            <div>
+                                                Affirmative Votes over Total Votes. Pending votes are not included.
+                                            </div>
+                                        </p>
+                                    </span>
+                                </div>
+                            }
                         </div>
                         {this.props.curJob.applicants.map((a, index) => {
                             if (this.state.keyWords != "") {
@@ -810,6 +823,12 @@ const ApplicantRow = (props) => {
                         {props.applicant?.reviewer_review_status ?
                             <p style={{ fontWeight: "600", color: "#4A6F8A" }}>Reviewed</p> :
                             <p style={{ fontWeight: "600", color: "#090D3A" }}>Pending</p>
+                        }
+                    </div>}
+                {!props.profile.is_subreviwer &&
+                    <div className="col-2">
+                        {props.applicant?.num_votes > 0 &&
+                            <p style={{ fontWeight: "600", color: "#090D3A" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
                         }
                     </div>}
             </div>

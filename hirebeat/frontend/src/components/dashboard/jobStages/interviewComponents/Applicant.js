@@ -248,6 +248,13 @@ export const Applicant = (props) => {
                         }
                     </div>
                 }
+                {!props.profile.is_subreviwer &&
+                    <div className="col-2">
+                        {applicants[current]?.num_votes > 0 &&
+                            <p style={{ fontWeight: "600", color: "#090D3A" }}>{applicants[current]?.num_vote_yes + "/" + applicants[current]?.num_votes}</p>
+                        }
+                    </div>
+                }
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal

@@ -120,11 +120,24 @@ const AcceptedCandidate = (props) => {
                     }
                 </div>
                 <div className="container-fluid chart-bg1" style={{ marginTop: "2%"}}>
-                    <div style={{color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start row">
+                    <div style={{color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
                         <div className="col-3">Name</div>
                         <div className="col-3">Video Average Score</div>
                         <div className="col-2">Resume Score</div>
-                        {(!props.profile.is_external_reviewer) && <div className="col-2">Contact</div>}
+                        {!props.profile.is_subreviwer &&
+                            <div className="col-2">
+                                Team Review
+                                <span className="tool_tip ml-2">
+                                    <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                    <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                        <div>
+                                            Affirmative Votes over Total Votes. Pending votes are not included.
+                                        </div>
+                                    </p>
+                                </span>
+                            </div>
+                        }
+                        {(!props.profile.is_external_reviewer && !props.profile.is_subreviwer) && <div className="col-2">Contact</div>}
                     </div>
                     {props.theJob.applicants.map((applicant, index) => {
                         if (props.keyWords != "") {
@@ -322,7 +335,14 @@ const CandidateCard = (props) => {
                 <div className="col-2">
                     {renderResume(props.resume_list)}
                 </div>
-                {!props.profile.is_external_reviewer &&
+                {!props.profile.is_subreviwer &&
+                    <div className="col-2">
+                        {props.applicant?.num_votes > 0 &&
+                            <p style={{ fontWeight: "600", color: "#090D3A" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
+                        }
+                    </div>
+                }
+                {!props.profile.is_external_reviewer && !props.profile.is_subreviwer &&
                     <div className="col-2">
                         <a
                             target="_blank"

@@ -167,6 +167,13 @@ def get_posted_jobs(request):
             for applicant in applicants:
                 applicant["linkedinurl"] = ""
                 applicant["apply_candidate_id"] = 0
+                # get vote rate
+                applicant["num_vote_yes"] = 0
+                applicant["num_votes"] = 0
+                applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
+                    applicant_email=applicant["email"], position_id=positions_id, evaluation=1).count()
+                applicant["num_votes"] = ReviewerEvaluation.objects.filter(
+                    applicant_email=applicant["email"], position_id=positions_id).count()
                 jobs = Jobs.objects.filter(positions=position, user_id=user_id)
                 if len(jobs) > 0:
                     candidate = ApplyCandidates.objects.filter(
@@ -269,6 +276,13 @@ def get_posted_jobs(request):
                 applicant["linkedinurl"] = ""
                 applicant["is_active"] = False
                 applicant["apply_candidate_id"] = 0
+                # get vote rate
+                applicant["num_vote_yes"] = 0
+                applicant["num_votes"] = 0
+                applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
+                    applicant_email=applicant["email"], position_id=position_id, evaluation=1).count()
+                applicant["num_votes"] = ReviewerEvaluation.objects.filter(
+                    applicant_email=applicant["email"], position_id=position_id).count()
                 applicant["reviewer_review_status"] = ReviewerEvaluation.objects.filter(
                     reviewer_email=user.email, applicant_email=applicant["email"]).exists()
                 jobs = Jobs.objects.filter(

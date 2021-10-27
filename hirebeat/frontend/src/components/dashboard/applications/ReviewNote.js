@@ -47,25 +47,29 @@ export class ReviewNote extends Component {
                         user={this.props.user}
                         reviewerType={this.props.reviewerType}
                     />
-                    <div className="row">
-                        <textarea
-                            className="note-border3"
-                            style={{ height: "10rem", width: "92%" }}
-                            type="text"
-                            value={this.state.comment}
-                            placeholder="Write your comment here"
-                            onChange={(e) => { this.setState({ comment: e.target.value }) }}
-                        />
-                    </div>
-                    <div className="row" style={{ justifyContent: "flex-end" }}>
-                        <button
-                            style={{ marginRight: "5%", marginBottom: "2rem" }}
-                            className="default-btn d-flex"
-                            onClick={this.updateReview}
-                        >
-                            <i className="bx bxs-send"></i>Post
-                        </button>
-                    </div>
+                    {this.props.currentStage != "All Candidates" &&
+                        <div>
+                            <div className="row">
+                                <textarea
+                                    className="note-border3"
+                                    style={{ height: "10rem", width: "92%" }}
+                                    type="text"
+                                    value={this.state.comment}
+                                    placeholder="Write your comment here"
+                                    onChange={(e) => { this.setState({ comment: e.target.value }) }}
+                                />
+                            </div>
+                            <div className="row" style={{ justifyContent: "flex-end" }}>
+                                <button
+                                    style={{ marginRight: "5%", marginBottom: "2rem" }}
+                                    className="default-btn d-flex"
+                                    onClick={this.updateReview}
+                                >
+                                    <i className="bx bxs-send"></i>Post
+                                </button>
+                            </div>
+                        </div>
+                    }
                 </div>
             </React.Fragment>
         )
