@@ -1681,6 +1681,16 @@ h5 {
   width: 11rem;
 }
 
+.select-category-jobs-closed {
+  width: 7rem;
+  display: inline-block;
+}
+
+.select-category-jobs-closed1 {
+  width: 10rem;
+  margin-top: 0.6rem;
+}
+
 .select-category4 {
   width: 30rem;
   margin-bottom: 5rem;
@@ -4777,4 +4787,19 @@ max-width: 110px;
   color: rgb(74, 111, 138);
   font-weight: 500;
   width: 100%;
+}
+
+#jobs-actions-hover {
+  display: none;
+  color: "#7D7D7D"; 
+  height: "2rem"; 
+  margin-bottom: "0.5rem";
+  transition: transform 1.5s ease-in;
+  -webkit-transition: transform 1.5s ease-in;
+}
+
+#show-jobs-actions:hover > #jobs-actions-hover {
+  display: flex;
+  transition: transform 1.5s ease-out;
+  -webkit-transition:transform 1.5s ease-out;
 }

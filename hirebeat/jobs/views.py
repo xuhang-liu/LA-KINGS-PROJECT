@@ -46,6 +46,7 @@ def add_new_job(request):
     job_post = request.data['job_post']
     skills = request.data['skills']
     questions = request.data["questions"]
+    is_closed = request.data["is_closed"]
     user = User.objects.get(pk=request.data["userId"])
     company_name = ""
     company_overview = ""
@@ -71,7 +72,7 @@ def add_new_job(request):
     # create job
     job = Jobs.objects.create(user=user, positions=position, job_title=job_title, job_id=job_id, job_description=job_description,
                               job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview, company_name=company_name, company_logo=company_logo,
-                              loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req, skills=skills)
+                              loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req, skills=skills, is_closed=is_closed)
     # save job link
     encode_url_id = str(base64.b64encode(bytes(str(job.id), "utf-8")), "utf-8")
     job_url = "https://hirebeat.co/apply-job/"+company_name+"?id="+encode_url_id
@@ -548,7 +549,7 @@ def get_zr_xml(request):
     job_details = Jobs.objects.filter(job_post=1).values()
     for i in range(len(job_details)):
         # job description has min length of 25 and job is not closed
-        if len(job_details[i]['job_description']) > 25 and job_details[i]['is_closed'] is False:
+        if len(job_details[i]['job_description']) > 25 and job_details[i]['is_closed'] == 0:
             job = create_zr_job_feed(job_details[i])
             source.append(job)
     # save xml file
@@ -573,7 +574,7 @@ def get_zr_premium_xml(request):
     job_details = Jobs.objects.filter(job_post=2).values()
     for i in range(len(job_details)):
         # job description has min length of 25 and job is not closed
-        if len(job_details[i]['job_description']) > 25 and job_details[i]['is_closed'] is False:
+        if len(job_details[i]['job_description']) > 25 and job_details[i]['is_closed'] == 0:
             job = create_zr_job_feed(job_details[i])
             source.append(job)
     # save xml file
@@ -961,11 +962,11 @@ def add_cand_from_merge(request):
             if greenhouse_api_key != "":
                 job = Jobs.objects.create(user=user, positions=position, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_id="", job_description=jobs_api_response['description'],
                                           company_overview=company_overview, company_name=company_name, company_logo=company_logo,
-                                          loc_req="1", pho_req="1", lin_req="1", job_post=0, eeo_req="1", eeo_ques_req="1", gh_current_stage_id=stage_api_response['remote_id'], gh_job_id=jobs_api_response['remote_id'])
+                                          loc_req="1", pho_req="1", lin_req="1", job_post=0, eeo_req="1", eeo_ques_req="1", gh_current_stage_id=stage_api_response['remote_id'], gh_job_id=jobs_api_response['remote_id'], is_closed=2)
             else:
                 job = Jobs.objects.create(user=user, positions=position, job_title="External: "+merge_job_title+" ("+merge_stage_title+")", job_id="", job_description=jobs_api_response['description'],
                                           company_overview=company_overview, company_name=company_name, company_logo=company_logo,
-                                          loc_req="1", pho_req="1", lin_req="1", job_post=0, eeo_req="1", eeo_ques_req="1")
+                                          loc_req="1", pho_req="1", lin_req="1", job_post=0, eeo_req="1", eeo_ques_req="1", is_closed=2)
             # save job link
             job_url = "https://hirebeat.co/apply-job/" + \
                 company_name+"?id=" + str(job.id)
@@ -1263,3 +1264,13 @@ def update_applicant_basic_info(request):
             invited_candidate.save()
 
     return Response("Update applicant information successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def switch_job_closed_status(request):
+    job_id = request.data["job_id"]
+    next_status = request.data["next_status"]
+    job = Jobs.objects.get(pk=job_id)
+    job.is_closed = next_status
+    job.save()
+
+    return Response("Update job closed status successfully", status=status.HTTP_202_ACCEPTED)

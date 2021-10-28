@@ -392,7 +392,7 @@ export class Pipeline extends Component {
                     <div className="row">
                         <div onClick={this.props.renderAllCandidates} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage1.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 5 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>All Candidates</p>
-                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props.analytics.all_can_num}</p>
+                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.all_can_num}</p>
                         </div>
                         <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
@@ -400,7 +400,7 @@ export class Pipeline extends Component {
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
                                 </div>
                                 <div className="col-4">
-                                    <p>{this.props.analytics.all_can_act_num}</p>
+                                    <p>{this.props?.analytics?.all_can_act_num}</p>
                                 </div>
                             </div>
                             <div className="row px-4 pb-3">
@@ -408,7 +408,7 @@ export class Pipeline extends Component {
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
                                 </div>
                                 <div className="col-4">
-                                    <p>{this.props.analytics.all_can_rej_num}</p>
+                                    <p>{this.props?.analytics?.all_can_rej_num}</p>
                                 </div>
                             </div>
                         </div>
@@ -481,7 +481,7 @@ export class Pipeline extends Component {
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
                         <div onClick={this.props.renderResumeScreen} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage2.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 4 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Resume Review</p>
-                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props.analytics.resume_num}</p>
+                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.resume_num}</p>
                         </div>
                         <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
@@ -489,7 +489,7 @@ export class Pipeline extends Component {
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
                                 </div>
                                 <div className="col-4">
-                                    <p>{this.props.analytics.resume_num_act_num}</p>
+                                    <p>{this.props?.analytics?.resume_num_act_num}</p>
                                 </div>
                             </div>
                             <div className="row px-4 pb-3">
@@ -497,7 +497,7 @@ export class Pipeline extends Component {
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
                                 </div>
                                 <div className="col-4">
-                                    <p>{this.props.analytics.resume_num_rej_num}</p>
+                                    <p>{this.props?.analytics?.resume_num_rej_num}</p>
                                 </div>
                             </div>
                         </div>
@@ -571,7 +571,7 @@ export class Pipeline extends Component {
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
                         <div onClick={this.props.renderVideoInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage3.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 3 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Video Interview</p>
-                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props.analytics.video_num}</p>
+                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.video_num}</p>
                         </div>
                         <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
@@ -579,7 +579,7 @@ export class Pipeline extends Component {
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
                                 </div>
                                 <div className="col-4">
-                                    <p>{this.props.analytics.video_num_act_num}</p>
+                                    <p>{this.props?.analytics?.video_num_act_num}</p>
                                 </div>
                             </div>
                             <div className="row px-4 pb-3">
@@ -587,7 +587,7 @@ export class Pipeline extends Component {
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
                                 </div>
                                 <div className="col-4">
-                                    <p>{this.props.analytics.video_num_rej_num}</p>
+                                    <p>{this.props?.analytics?.video_num_rej_num}</p>
                                 </div>
                             </div>
                         </div>
@@ -661,7 +661,7 @@ export class Pipeline extends Component {
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
                         <div onClick={this.props.renderLiveInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage4.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 2 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Live Interview</p>
-                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props.analytics.live_num}</p>
+                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.live_num}</p>
                         </div>
                         <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
@@ -669,7 +669,7 @@ export class Pipeline extends Component {
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
                                 </div>
                                 <div className="col-4">
-                                    <p>{this.props.analytics.live_num_act_num}</p>
+                                    <p>{this.props?.analytics?.live_num_act_num}</p>
                                 </div>
                             </div>
                             <div className="row px-4 pb-3">
@@ -677,7 +677,7 @@ export class Pipeline extends Component {
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
                                 </div>
                                 <div className="col-4">
-                                    <p>{this.props.analytics.live_num_rej_num}</p>
+                                    <p>{this.props?.analytics?.live_num_rej_num}</p>
                                 </div>
                             </div>
                         </div>
@@ -751,7 +751,7 @@ export class Pipeline extends Component {
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
                         <div onClick={this.props.renderShortList} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage5.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 1 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Short List</p>
-                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props.analytics.short_num}</p>
+                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.short_num}</p>
                         </div>
                         <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
@@ -759,7 +759,7 @@ export class Pipeline extends Component {
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
                                 </div>
                                 <div className="col-4">
-                                    <p>{this.props.analytics.short_num_act_num}</p>
+                                    <p>{this.props?.analytics?.short_num_act_num}</p>
                                 </div>
                             </div>
                             <div className="row px-4 pb-3">
@@ -767,7 +767,7 @@ export class Pipeline extends Component {
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
                                 </div>
                                 <div className="col-4">
-                                    <p>{this.props.analytics.short_num_rej_num}</p>
+                                    <p>{this.props?.analytics?.short_num_rej_num}</p>
                                 </div>
                             </div>
                         </div>
