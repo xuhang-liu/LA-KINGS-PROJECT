@@ -178,7 +178,7 @@ export class JobPortalPage extends Component {
                     isClosed={p.is_closed}
                     inviteDate={p.invite_date}
                     applicants={p.applicants}
-                    subreviewers={p.subreviewers}
+                    subreviewers={p?.subreviewers}
                     reviewer_type={p.reviewer_type}
                     addInterviews={this.props.addInterviews}
                     getApplicantsVideos={this.props.getApplicantsVideos}
@@ -236,7 +236,7 @@ export class JobPortalPage extends Component {
                     isClosed={p.is_closed}
                     inviteDate={p.invite_date}
                     applicants={p.applicants}
-                    subreviewers={p.subreviewers}
+                    subreviewers={p?.subreviewers}
                     reviewer_type={p.reviewer_type}
                     addInterviews={this.props.addInterviews}
                     getApplicantsVideos={this.props.getApplicantsVideos}
