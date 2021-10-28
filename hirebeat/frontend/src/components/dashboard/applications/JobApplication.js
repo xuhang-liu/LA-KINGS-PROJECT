@@ -359,7 +359,7 @@ const JobViewDetail = (props) => {
                                         )
                                     })}
                                     {props.subreviewers?.length > 3 &&
-                                        <span className="sub_number3" style={{ color: "white" }}>+{props.subreviewers.length - 3}
+                                        <span className="sub_number3" style={{ color: "white" }}>+{props.subreviewers?.length - 3}
                                             <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
                                                 <div className="row">
                                                     <div className="col-12">
@@ -388,11 +388,11 @@ const JobViewDetail = (props) => {
                                         </span>}
                                 </div>
                                 <div className="col-3 ml-4">
-                                    {!props.profile.is_subreviwer &&
+                                    {!props.profile?.is_subreviwer &&
                                         <div>
-                                            {props.applicants.length > 0 &&
+                                            {props.applicants?.length > 0 &&
                                                 <div>
-                                                    {((!props.isClosed) && (props.subreviewers?.length < Number(props.profile.reviewer_count) || (props.profile.membership == "Premium"))) &&
+                                                    {((!props?.isClosed) && (props.subreviewers?.length < Number(props.profile?.reviewer_count) || (props.profile.membership == "Premium"))) &&
                                                         <button
                                                             className="default-btn1 interview-txt6 mt-4"
                                                             style={{ paddingLeft: "25px" }}
