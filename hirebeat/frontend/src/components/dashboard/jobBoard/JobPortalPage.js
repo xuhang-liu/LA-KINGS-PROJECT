@@ -54,7 +54,7 @@ export class JobPortalPage extends Component {
 
     renderAllCandidates = () => {
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "allCandidates");
-        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
+        let page = 1;
         this.props.getAllJobs(this.props.user.id, page, "", "", "");
         this.setState({
             portalSubpage: "allCandidates",
@@ -64,9 +64,9 @@ export class JobPortalPage extends Component {
         if (this.props.job.job_details.gh_current_stage_id != "" && this.props.job.job_details.gh_current_stage_id != null) {
             alert("This is a integration job.")
         } else {
-            sessionStorage.setItem('selectedSubpage', "Resume Review");
+            sessionStorage.setItem('selectedSubpageForJob', "Resume Review");
             sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "resumeScreen");
-            let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
+            let page = 1;
             this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True");
             this.setState({
                 portalSubpage: "resumeScreen",
@@ -76,8 +76,8 @@ export class JobPortalPage extends Component {
     renderVideoInterview = () => {
         sessionStorage.setItem('selectedSubpage', "Video Interview");
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "videoInterview");
-        let interviewPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) + 1 : 1;
-        this.props.getPostedJobs(this.props.user.id, interviewPage, "Video Interview");
+        let page = 1;
+        this.props.getPostedJobs(this.props.user.id, page, "Video Interview");
         this.setState({
             portalSubpage: "videoInterview",
         });
@@ -88,7 +88,7 @@ export class JobPortalPage extends Component {
         } else {
             sessionStorage.setItem('selectedSubpage', "Live Interview");
             sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "liveInterview");
-            let page = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) + 1 : 1;
+            let page = 1;
             this.props.getPostedJobs(this.props.user.id, page, "Live Interview");
             this.setState({
                 portalSubpage: "liveInterview",
@@ -101,8 +101,8 @@ export class JobPortalPage extends Component {
         } else {
             sessionStorage.setItem('selectedSubpage', "Short List");
             sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "shortList");
-            let shortListPage = sessionStorage.getItem("intAppPage") ? parseInt(sessionStorage.getItem("intAppPage")) + 1 : 1;
-            this.props.getPostedJobs(this.props.user.id, shortListPage, "Short List");
+            let page = 1;
+            this.props.getPostedJobs(this.props.user.id, page, "Short List");
             this.setState({
                 portalSubpage: "shortList",
             });
@@ -311,7 +311,7 @@ export class JobPortalPage extends Component {
             <React.Fragment>
                 <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
                     <div className="chart-bg1" style={{ paddingTop: "0px", paddingBottom: "5rem" }}>
-                        <div style={{ padding: "1rem", backgroundColor: "#f4f7ff", borderRadius: "10px" }}><h3 style={{ fontSize: "1.25rem", marginBottom: "0rem" }}><b><i class='bx-fw bx bx-chevron-left' style={{ color: "#c4c4c4", cursor: "pointer", display: "inherit" }} onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", "") }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.job.job_details.job_title}</span></b></h3></div>
+                        <div style={{ padding: "1rem", backgroundColor: "#f4f7ff", borderRadius: "10px" }}><h3 onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", "") }} style={{ fontSize: "1.25rem", marginBottom: "0rem", cursor: "pointer" }}><b><i class='bx-fw bx bx-chevron-left' style={{ color: "#c4c4c4", display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.job.job_details.job_title}</span></b></h3></div>
                         <div className="row" style={{ border: "1px solid #e8edfc" }}>
                             <div className="col-2">
                                 {(this.state.reviewerStage.includes("pipeline") ||  this.state.reviewerStage?.length == 0) ?

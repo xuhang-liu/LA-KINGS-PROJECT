@@ -750,7 +750,7 @@ export function VideoInterview(props) {
                 {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
                     <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
                         <button
-                            className="default-btn1 interview-txt6"
+                            className="default-btn interview-txt6"
                             style={{ paddingLeft: "25px", backgroundColor: "#67A3F3", paddingTop: "8px", paddingBottom: "8px" }}
                             onClick={handleInvitation}
                         >
