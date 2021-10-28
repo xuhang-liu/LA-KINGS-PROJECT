@@ -250,11 +250,12 @@ const ReviewCandidate = (props) => {
             position_id: props.curJob.job_details.positions_id,
             reviewer_type: reviewer_type,
             reviewer_email: props.user.email,
+            current_stage: props.currentStage,
         }
         props.addOrUpdateReviewerEvaluation(data);
         setTimeout(() => {
             props.getReviewerEvaluation(props.curJob.job_details.positions_id, props.applicant.email);
-            props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, props.applicant.email, props.user.email);
+            props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, props.applicant.email, props.user.email, props.currentStage);
         }, 300);
     }
 
@@ -321,7 +322,7 @@ const ReviewCandidate = (props) => {
             <div className="row" style={{ display: "flex" }}>
                 <div className="col-3 pl-3 mt-3 pr-2">
                     {!isEdit ?
-                    <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", height: "35%" }}>
+                    <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", minHeight: "14rem" }}>
                         <div className="row mb-3" style={{ marginBottom: "2%" }}>
                             <div className="col d-flex align-items-center">
                                 <h2
@@ -401,7 +402,7 @@ const ReviewCandidate = (props) => {
                         user={props.user}
                     />
                     }
-                    <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "10px", width: "100%", height: "61.6%", position: "relative" }}>
+                    <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "10px", width: "100%", minHeight: "28rem", position: "relative" }}>
                         <h2
                             style={{
                                 fontWeight: "600",
@@ -512,7 +513,7 @@ const ReviewCandidate = (props) => {
                             }
                     </div>
                 </div>
-                <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", height: "52rem", width: "73%" }}>
+                <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", width: "73%" }}>
                     <div>
                         {props.applicants[props.current].answers?.length > 0 &&
                             <h2
@@ -594,6 +595,9 @@ const ReviewCandidate = (props) => {
                             reviewerEmail={props.user.email}
                             evaluations={props.evaluations}
                             filter={props.filter}
+                            currentStage={props.currentStage}
+                            reviewerType={props.curJob?.reviewer_type}
+                            user={props.user}
                         />
                     }
                 </div>

@@ -174,11 +174,18 @@ def get_all_jobs(request):
 
         for applicant in applicants:
             applicant["reviewer_review_status"] = False
+            applicant["num_vote_yes"] = 0
+            applicant["num_votes"] = 0
             user = User.objects.get(pk=user_id)
             reviewerEvaluation = ReviewerEvaluation.objects.filter(
-                reviewer_email=user.email, applicant_email=applicant["email"])
-            if len(reviewerEvaluation) > 0:
+                reviewer_email=user.email, applicant_email=applicant["email"]).exists()
+            if reviewerEvaluation:
                 applicant["reviewer_review_status"] = True
+            # get team vote rate
+            applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
+                applicant_email=applicant["email"], position_id=positions_id, evaluation=1).count()
+            applicant["num_votes"] = ReviewerEvaluation.objects.filter(
+                applicant_email=applicant["email"], position_id=positions_id).count()
 
         un_view = True if ApplyCandidates.objects.filter(
             jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
