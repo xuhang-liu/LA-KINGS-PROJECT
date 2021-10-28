@@ -670,6 +670,19 @@ export function VideoInterview(props) {
                                     <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
                                 </div>
                             }
+                            {!props.profile.is_subreviwer &&
+                                <div className="col-2">
+                                    Team Review
+                                    <span className="tool_tip ml-2">
+                                        <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                        <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                            <div>
+                                                Affirmative Votes over Total Votes. Pending votes are not included.
+                                            </div>
+                                        </p>
+                                    </span>
+                                </div>
+                            }
                         </div>
                         <div style={{ marginBottom: "0.5rem" }}>
                             <ApplicantList
@@ -737,7 +750,7 @@ export function VideoInterview(props) {
                 {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
                     <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
                         <button
-                            className="default-btn1 interview-txt6"
+                            className="default-btn interview-txt6"
                             style={{ paddingLeft: "25px", backgroundColor: "#67A3F3", paddingTop: "8px", paddingBottom: "8px" }}
                             onClick={handleInvitation}
                         >

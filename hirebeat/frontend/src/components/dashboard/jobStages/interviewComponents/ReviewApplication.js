@@ -270,11 +270,12 @@ export class ReviewApplication extends Component {
             position_id: this.props.positionId,
             reviewer_type: reviewer_type,
             reviewer_email: this.props.user.email,
+            current_stage: this.props.currentStage,
         }
         this.props.addOrUpdateReviewerEvaluation(data);
         setTimeout(() => {
             this.props.getReviewerEvaluation(this.props.positionId, this.props.applicants[this.props.current].email);
-            this.props.getCurrentReviewerEvaluation(this.props.positionId, this.props.applicants[this.props.current].email, this.props.user.email);
+            this.props.getCurrentReviewerEvaluation(this.props.positionId, this.props.applicants[this.props.current].email, this.props.user.email, this.props.currentStage);
         }, 300);
     }
 
@@ -395,7 +396,7 @@ export class ReviewApplication extends Component {
         }
         return (
             <div className="container-fluid ml-5 mb-5" style={{ width: '95%' }}>
-                <div style={{ marginBottom: "30px" }}><h3 onClick={this.props.hide} style={{ cursor: "pointer" }}><b><i className="bx-fw bx bx-chevron-left" style={{ display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.currentStage}</span></b></h3></div>
+                <div style={{ marginBottom: "30px" }}><h3 className="job-title-hover-orange" onClick={this.props.hide} style={{ cursor: "pointer" }}><b><i className="bx-fw bx bx-chevron-left" style={{ display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.currentStage}</span></b></h3></div>
                 <div className="row" style={{ display: "flex" }}>
                     <div className="col-3 pl-3 mt-3 pr-2">
                         {!this.state.isEdit ?
@@ -739,6 +740,9 @@ export class ReviewApplication extends Component {
                                     reviewerEmail={this.props.user.email}
                                     evaluations={this.props.evaluations}
                                     filter={this.props.filter}
+                                    currentStage={this.props.currentStage}
+                                    reviewerType={this.props.reviewer_type}
+                                    user={this.props.user}
                                 />
                             }
                         </div>

@@ -41,7 +41,7 @@ export const Applicant = (props) => {
         props.getResumeURL(positionId, applicants[props.index].user_id);
         props.getReviewNote(positionId, applicants[props.index].email);
         props.getReviewerEvaluation(positionId, applicants[props.index].email);
-        props.getCurrentReviewerEvaluation(positionId, applicants[props.index].email, props.user.email);
+        props.getCurrentReviewerEvaluation(positionId, applicants[props.index].email, props.user.email, props.currentStage);
         //sessionStorage.setItem(("showCandidateModal" + props.index), "true");
         setShow(true);
     };
@@ -53,7 +53,7 @@ export const Applicant = (props) => {
         props.getResumeURL(positionId, applicants[index].user_id);
         props.getReviewNote(positionId, applicants[index].email);
         props.getReviewerEvaluation(positionId, applicants[index].email);
-        props.getCurrentReviewerEvaluation(positionId, applicants[index].email, props.user.email);
+        props.getCurrentReviewerEvaluation(positionId, applicants[index].email, props.user.email, props.currentStage);
         setCurrent(index);
     }
 
@@ -245,6 +245,13 @@ export const Applicant = (props) => {
                                 {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
                                 Resend
                             </button>
+                        }
+                    </div>
+                }
+                {!props.profile.is_subreviwer &&
+                    <div className="col-2">
+                        {applicants[current]?.num_votes > 0 &&
+                            <p style={{ fontWeight: "600", color: "#090D3A" }}>{applicants[current]?.num_vote_yes + "/" + applicants[current]?.num_votes}</p>
                         }
                     </div>
                 }

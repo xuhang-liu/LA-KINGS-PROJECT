@@ -830,6 +830,7 @@ export class Profile extends Component {
                         </div>
                     </div>
 
+                    {/* profile detail begins here */}
                     <div className="row">
                         <div className="col-5">
                             {/* Personal Information */}
