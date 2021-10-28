@@ -4803,3 +4803,7 @@ max-width: 110px;
   transition: transform 1.5s ease-out;
   -webkit-transition:transform 1.5s ease-out;
 }
+
+.job-title-hover-orange:hover {
+  color: #ff6b00;
+}

@@ -31,18 +31,22 @@ export class JobPortalPage extends Component {
             axios.post("jobs/check_subreviewer_currentstage", data, config).then((res) => {
                 let stage_array = res?.data?.current_stage;
                 if (stage_array.includes("Short List")) {
+                    this.props.getPostedJobs(this.props.user.id, 1, "Short List");
                     this.setState({portalSubpage: "shortList"});
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'shortList'] });
                 }
                 if (stage_array.includes("Live Interview")) {
+                    this.props.getPostedJobs(this.props.user.id, 1, "Live Interview");
                     this.setState({portalSubpage: "liveInterview"});
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'liveInterview'] });
                 }
                 if (stage_array.includes("Video Interview")) {
+                    this.props.getPostedJobs(this.props.user.id, 1, "Video Interview");
                     this.setState({portalSubpage: "videoInterview"});
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'videoInterview'] });
                 }
                 if (stage_array.includes("Resume Review")) {
+                    this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "True");
                     this.setState({portalSubpage: "resumeScreen"});
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'resumeScreen'] });
                 }
@@ -53,6 +57,7 @@ export class JobPortalPage extends Component {
     }
 
     renderAllCandidates = () => {
+        sessionStorage.setItem('selectedSubpageForJob', "");
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "allCandidates");
         let page = 1;
         this.props.getAllJobs(this.props.user.id, page, "", "", "");
@@ -311,7 +316,7 @@ export class JobPortalPage extends Component {
             <React.Fragment>
                 <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
                     <div className="chart-bg1" style={{ paddingTop: "0px", paddingBottom: "5rem" }}>
-                        <div style={{ padding: "1rem", backgroundColor: "#f4f7ff", borderRadius: "10px" }}><h3 onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", "") }} style={{ fontSize: "1.25rem", marginBottom: "0rem", cursor: "pointer" }}><b><i class='bx-fw bx bx-chevron-left' style={{ color: "#c4c4c4", display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.job.job_details.job_title}</span></b></h3></div>
+                        <div style={{ padding: "1rem", backgroundColor: "#f4f7ff", borderRadius: "10px" }}><h3 className="job-title-hover-orange" onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", "") }} style={{ fontSize: "1.25rem", marginBottom: "0rem", cursor: "pointer" }}><b><i class='bx-fw bx bx-chevron-left' style={{ display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.job.job_details.job_title}</span></b></h3></div>
                         <div className="row" style={{ border: "1px solid #e8edfc" }}>
                             <div className="col-2">
                                 {(this.state.reviewerStage.includes("pipeline") ||  this.state.reviewerStage?.length == 0) ?
