@@ -4803,3 +4803,14 @@ max-width: 110px;
   transition: transform 1.5s ease-out;
   -webkit-transition:transform 1.5s ease-out;
 }
+
+.no-review {
+  font-family: Avenir Next, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #979797;
+  text-align: center;
+  margin-bottom: 1rem;
+}

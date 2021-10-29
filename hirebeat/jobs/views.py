@@ -51,10 +51,12 @@ def add_new_job(request):
     company_name = ""
     company_overview = ""
     company_logo = ""
-    # update user profile
+
+    # update user profile, increase the position_count for current user
     profile = Profile.objects.get(user_id=user.id)
     profile.position_count += 1
     profile.save()
+
     # create position
     position = Positions.objects.create(
         user=user, job_title=job_title, job_id=job_id, job_description=job_description)
@@ -69,18 +71,21 @@ def add_new_job(request):
         company_overview = ""
         company_name = ""
         company_logo = ""
+
     # create job
     job = Jobs.objects.create(user=user, positions=position, job_title=job_title, job_id=job_id, job_description=job_description,
                               job_location=job_location, job_level=job_level, job_type=job_type, company_overview=company_overview, company_name=company_name, company_logo=company_logo,
                               loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req, skills=skills, is_closed=is_closed)
-    # save job link
+    # save job link in Job table
     encode_url_id = str(base64.b64encode(bytes(str(job.id), "utf-8")), "utf-8")
     job_url = "https://hirebeat.co/apply-job/"+company_name+"?id="+encode_url_id
     job.job_url = job_url
     job.save()
+
     # update job_id_in_jobs field
     position.job_id_in_jobs = job.id
     position.save()
+
     # add job screening questions
     for question in questions:
         answer_type = "Numeric" if question["responseType"] == "Numeric" else "boolean"
@@ -108,7 +113,9 @@ def get_all_jobs(request):
     has_resume_sort = True if (request.GET.get("sort", "") != "") else False
 
     data = {}
+    # check user type with Profile table
     profile = Profile.objects.get(user_id=user_id)
+    # hiring manager or reviewer roles
     if profile.is_subreviwer or profile.is_external_reviewer:
         user = User.objects.get(pk=user_id)
         subreviewers = SubReviewers.objects.filter(r_email=user.email)
@@ -119,12 +126,14 @@ def get_all_jobs(request):
         for e in range(len(ext_reviewers)):
             current_job_id2 = ext_reviewers[e].jobs_id
             jobs.append(Jobs.objects.filter(id=current_job_id2).values()[0])
+    # employer role
     else:
         jobs = list(Jobs.objects.filter(
             user_id=user_id).order_by('-id').values())
     for i in range(len(jobs)):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]
+        # get reviewer type for each job in jobs
         reviewer_type = ""
         if profile.is_subreviwer or profile.is_external_reviewer:
             user = User.objects.get(pk=user_id)
@@ -134,7 +143,9 @@ def get_all_jobs(request):
                 reviewer_type = "subr"
         # get each position applicants, pagination here
         applicants = []
+        # get all candidates for each job at the specific stage: current_stage=subpage
         if subpage != "":
+            # has_is_active is a filter, which is used to screen applicants that got rejected or not
             if has_is_active:
                 is_active = True if request.GET.get(
                     "status") == "True" else False
@@ -143,6 +154,7 @@ def get_all_jobs(request):
             else:
                 applicants = ApplyCandidates.objects.filter(
                     jobs_id=job_id, current_stage=subpage)
+        # get all candidates for each job
         else:
             if has_is_active:
                 is_active = True if request.GET.get(
@@ -153,7 +165,7 @@ def get_all_jobs(request):
                 applicants = ApplyCandidates.objects.filter(jobs_id=job_id)
         applicants = list(applicants.values())
         # sort by score or id
-        # note the result_rate is float (string)! 
+        # note the result_rate is the type of string, make sure to convert it to float
         if has_resume_sort:
             resume_sort = True if (request.GET.get(
                 "sort") == "True" or request.GET.get("sort") == "true") else False
@@ -165,6 +177,7 @@ def get_all_jobs(request):
                     float(a["result_rate"]), -a["id"]))
         else:
             applicants.sort(key=lambda a: -a["id"])
+        # begin pagination, each single page should have at most 15 applicants
         total_records = len(applicants)
         total_page = math.ceil(len(applicants) / 15)
         if total_records > 15:
@@ -172,6 +185,7 @@ def get_all_jobs(request):
             end = page * 15
             applicants = applicants[begin:end]
 
+        # get each applicant's answers for resume screen questions
         for applicant in applicants:
             applicant["reviewer_review_status"] = False
             applicant["num_vote_yes"] = 0
@@ -187,15 +201,20 @@ def get_all_jobs(request):
             applicant["num_votes"] = ReviewerEvaluation.objects.filter(
                 applicant_email=applicant["email"], position_id=positions_id).count()
 
+        # get statistic data for each job
         un_view = True if ApplyCandidates.objects.filter(
             jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
         all_invited = True if ApplyCandidates.objects.filter(
             jobs_id=job_id, is_invited=1).count() == len(applicants) else False
+
+        # get interview questions for current job
         questions = list(InterviewQuestions.objects.filter(
             positions_id=positions_id).values())
+        # get job screen questions
         screen_questions = list(
             JobQuestion.objects.filter(jobs_id=job_id).values())
         jobs[i]["screen_questions"] = screen_questions
+        # get corresponding position information for current job
         position = Positions.objects.filter(id=positions_id).values()[0]
         job_details = {
             "job_details": jobs[i],
@@ -214,7 +233,7 @@ def get_all_jobs(request):
         "data": data,
     })
 
-
+# for job edition
 @api_view(['POST'])
 def update_job(request):
     id = request.data['id']
@@ -611,7 +630,7 @@ def add_zr_feed_xml(job_id):
     root.append(job)
     tree.write('zrjobs.xml')
 
-
+# upload a pdf file to s3 buckets with the input of base64 encoded string
 def upload_cv_to_s3(encoded_cv, cv_name):
     # decode resume and convert to readable pdf file using io.BytesIO
     resume = io.BytesIO(base64.b64decode(encoded_cv))
@@ -632,7 +651,7 @@ def upload_cv_to_s3(encoded_cv, cv_name):
     resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
     return resume_url
 
-
+# add new candidate to hiring pipeline through uploading resumes
 @api_view(['POST'])
 def add_new_apply_candidate_by_cv(request):
     job_id = request.data['job_id']
@@ -675,7 +694,7 @@ def add_new_apply_candidate_by_cv(request):
 
     return Response("Add new apply candidates successfully", status=status.HTTP_202_ACCEPTED)
 
-
+# the webhook api designed for ZipRecruiter to post candidates back to HireBeat platform
 @api_view(['POST'])
 def add_new_apply_candidate_from_zr(request):
     job_id = request.data['job_id']
@@ -1238,7 +1257,7 @@ def greenhouse_get_interview_stages(request):
         "stages": stages
     })
 
-
+# below function is used for updating candidate information in review window
 @api_view(['POST'])
 def update_applicant_basic_info(request):
     job_id = request.data["job_id"]
