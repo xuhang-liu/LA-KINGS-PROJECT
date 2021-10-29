@@ -177,17 +177,21 @@ const MergeIntergration = (props) => {
                 "merge_stage_title": stage['label'],
                 "greenhouse_api_key": greenhouse_api,
             }
-            props.addCandFromMerge(data);
-            confirmAlert({
-                title: "Import Success!",
-                message: "You have successfully imported all candidates under the specified job stage. Please go to Interview to configure interview questions and send invitations.",
-                buttons: [
-                    {
-                        label: 'Confirm',
-                        onClick: () => { props.renderJobs(); window.location.reload(false) }
-                    }
-                ]
+            const myPromise = new Promise((resolve, reject) => {
+                props.addCandFromMerge(data);
             });
+            myPromise.then(
+                confirmAlert({
+                    title: "Import Success!",
+                    message: "You have successfully imported all candidates under the specified job stage. Please go to Interview to configure interview questions and send invitations.",
+                    buttons: [
+                        {
+                            label: 'Confirm',
+                            onClick: () => { props.renderJobs(); window.location.reload(false) }
+                        }
+                    ]
+                })
+            ); 
         }
     }
 

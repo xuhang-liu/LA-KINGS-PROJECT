@@ -18,7 +18,7 @@ import io
 import os
 import requests
 import MergeATSClient
-from MergeATSClient.api import candidates_api, applications_api, jobs_api, job_interview_stages_api, applications_api, attachments_api, users_api, available_actions_api, job_interview_stages_api
+from MergeATSClient.api import candidates_api, jobs_api, job_interview_stages_api, applications_api, attachments_api, users_api, available_actions_api, job_interview_stages_api
 from MergeATSClient.model.attachment import Attachment
 from MergeATSClient.model.attachment_request import AttachmentRequest
 from MergeATSClient.model.available_actions import AvailableActions
@@ -949,7 +949,7 @@ def add_cand_from_merge(request):
             x_account_token, merge_job_id)
         applications_api_response = applications_api_instance.applications_list(
             x_account_token, current_stage_id=merge_stage_id, job_id=merge_job_id)
-        stage_api_response = stage_api_instance.job_interview_stages_retrieve(x_account_token, applications_api_response['results'][0]['current_stage'])
+        stage_api_response = stage_api_instance.job_interview_stages_retrieve(x_account_token, merge_stage_id)
     except MergeATSClient.ApiException as e:
         print('Exception: %s' % e)
 
@@ -996,6 +996,10 @@ def add_cand_from_merge(request):
     for a in range(len(applications_api_response['results'])):
         candidate_id = applications_api_response['results'][a]['candidate']
         gh_applications_id = applications_api_response['results'][a]['remote_id']
+        emailAddress = ""
+        location = ""
+        phone = ""
+        resume_url = ""
         try:
             candidates_api_response = candidates_api_instance.candidates_retrieve(
                 x_account_token, candidate_id)
@@ -1019,41 +1023,42 @@ def add_cand_from_merge(request):
                     x_account_token, attachments_id[a])
                 if attachments_api_response['attachment_type'] == 'RESUME':
                     resume_url = attachments_api_response['file_url']
-
-        candidatesInterview = CandidatesInterview.objects.filter(
-            email=emailAddress, positions=position)
-        if len(candidatesInterview) <= 0:
-            remote_user_id = ""
-            remote_user_remote_id = ""
-            CandidatesInterview.objects.create(
+        
+        if len(emailAddress) > 0:
+            candidatesInterview = CandidatesInterview.objects.filter(
                 email=emailAddress, positions=position)
-            if greenhouse_api_key != "":
-                InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response[
-                    'first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url, current_stage="Video Interview", gh_applications_id=gh_applications_id)
-            else:
-                InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response[
-                    'first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url)
-            ApplyCandidates.objects.create(jobs=job, first_name=candidates_api_response['first_name'], last_name=candidates_api_response['last_name'], phone=phone,
-                                           email=emailAddress, location=location, current_stage="Video Interview", gender="N/A", race="N/A", resume_url=resume_url)
-            # try:
-            #     user_api_response = user_api_instance.users_list(x_account_token)
-            #     for u in range(len(user_api_response['results'])):
-            #         if user_api_response['results'][u]['access_role'] ==  'ADMIN':
-            #             remote_user_id = user_api_response['results'][u]["id"]
-            #             remote_user_remote_id = user_api_response['results'][u]['remote_id']
-            #             print(remote_user_id)
-            # except MergeATSClient.ApiException as e:
-            #     print('Exception: %s' % e)
-            # attachment_request = AttachmentRequest(
-            #     remote_id=remote_user_remote_id,
-            #     file_name="Candidate Evaluation",
-            #     file_url="https://hirebeat-test-video-bucket.s3.amazonaws.com/Evaluations.pdf",
-            #     candidate=candidate_id,
-            # )
-            # try:
-            #      attachments_api_instance.attachments_create(x_account_token, remote_user_id, attachment_request=attachment_request)
-            # except MergeATSClient.ApiException as e:
-            #     print("Exception when calling ApplicationsApi->applications_create: %s\n" % e)
+            if len(candidatesInterview) <= 0:
+                remote_user_id = ""
+                remote_user_remote_id = ""
+                CandidatesInterview.objects.create(
+                    email=emailAddress, positions=position)
+                if greenhouse_api_key != "":
+                    InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response[
+                        'first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url, current_stage="Video Interview", gh_applications_id=gh_applications_id)
+                else:
+                    InvitedCandidates.objects.create(positions=position, email=emailAddress, name=candidates_api_response[
+                        'first_name']+" "+candidates_api_response['last_name'], location=location, phone=phone, resume_url=resume_url)
+                ApplyCandidates.objects.create(jobs=job, first_name=candidates_api_response['first_name'], last_name=candidates_api_response['last_name'], phone=phone,
+                                               email=emailAddress, location=location, current_stage="Video Interview", gender="N/A", race="N/A", resume_url=resume_url)
+                # try:
+                #     user_api_response = user_api_instance.users_list(x_account_token)
+                #     for u in range(len(user_api_response['results'])):
+                #         if user_api_response['results'][u]['access_role'] ==  'ADMIN':
+                #             remote_user_id = user_api_response['results'][u]["id"]
+                #             remote_user_remote_id = user_api_response['results'][u]['remote_id']
+                #             print(remote_user_id)
+                # except MergeATSClient.ApiException as e:
+                #     print('Exception: %s' % e)
+                # attachment_request = AttachmentRequest(
+                #     remote_id=remote_user_remote_id,
+                #     file_name="Candidate Evaluation",
+                #     file_url="https://hirebeat-test-video-bucket.s3.amazonaws.com/Evaluations.pdf",
+                #     candidate=candidate_id,
+                # )
+                # try:
+                #      attachments_api_instance.attachments_create(x_account_token, remote_user_id, attachment_request=attachment_request)
+                # except MergeATSClient.ApiException as e:
+                #     print("Exception when calling ApplicationsApi->applications_create: %s\n" % e)
     return Response("Create candidates from merge success", status=status.HTTP_201_CREATED)
 
 

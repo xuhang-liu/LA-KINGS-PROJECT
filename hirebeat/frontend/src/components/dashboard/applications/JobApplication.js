@@ -58,7 +58,7 @@ export class JobApplication extends Component {
                                     isClosed={p.is_closed}
                                     inviteDate={p.invite_date}
                                     applicants={p.applicants}
-                                    subreviewers={p.subreviewers}
+                                    subreviewers={p?.subreviewers}
                                     addInterviews={this.props.addInterviews}
                                     getApplicantsVideos={this.props.getApplicantsVideos}
                                     getApplicantsInfo={this.props.getApplicantsInfo}
@@ -340,7 +340,7 @@ const JobViewDetail = (props) => {
                                     </div>
                                 </div>
                                 <div className="col-2 mt-4" style={{ marginRight: "-2rem" }}>
-                                    {props.subreviewers.slice(0, 3).map((sub, i) => {
+                                    {props.subreviewers?.slice(0, 3).map((sub, i) => {
                                         return (
                                             <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
                                                 <p className="sub_submenu container" style={{ width: "12rem"}}>
@@ -358,13 +358,13 @@ const JobViewDetail = (props) => {
                                             </span>
                                         )
                                     })}
-                                    {props.subreviewers.length > 3 &&
-                                        <span className="sub_number3" style={{ color: "white" }}>+{props.subreviewers.length - 3}
+                                    {props.subreviewers?.length > 3 &&
+                                        <span className="sub_number3" style={{ color: "white" }}>+{props.subreviewers?.length - 3}
                                             <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
                                                 <div className="row">
                                                     <div className="col-12">
                                                         <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Sub-Reviewers</p>
-                                                        {props.subreviewers.map((sub, i) => {
+                                                        {props.subreviewers?.map((sub, i) => {
                                                             return (
                                                                 <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
                                                                     <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
@@ -388,11 +388,11 @@ const JobViewDetail = (props) => {
                                         </span>}
                                 </div>
                                 <div className="col-3 ml-4">
-                                    {!props.profile.is_subreviwer &&
+                                    {!props.profile?.is_subreviwer &&
                                         <div>
-                                            {props.applicants.length > 0 &&
+                                            {props.applicants?.length > 0 &&
                                                 <div>
-                                                    {((!props.isClosed) && (props.subreviewers.length < Number(props.profile.reviewer_count) || (props.profile.membership == "Premium"))) &&
+                                                    {((!props?.isClosed) && (props.subreviewers?.length < Number(props.profile?.reviewer_count) || (props.profile.membership == "Premium"))) &&
                                                         <button
                                                             className="default-btn1 interview-txt6 mt-4"
                                                             style={{ paddingLeft: "25px" }}

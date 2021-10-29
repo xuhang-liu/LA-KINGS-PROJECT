@@ -364,10 +364,10 @@ export class Pipeline extends Component {
 
     render() {
         let position_detail = this.props.postedJobs[this.props.job.job_details.positions_id];
-        let subreviewers = position_detail.subreviewers;
-        let exReviewers = position_detail.ex_reviewers;
-        let applicants = position_detail.applicants;
-        let isClosed = position_detail.is_closed;
+        let subreviewers = position_detail?.subreviewers;
+        let exReviewers = position_detail?.ex_reviewers;
+        let applicants = position_detail?.applicants;
+        let isClosed = position_detail?.is_closed;
         let resume_review_count = 0;
         let video_review_count = 0;
         let live_review_count = 0;
@@ -519,7 +519,7 @@ export class Pipeline extends Component {
                             </div>}
                         {resume_review_count > 0 &&
                             <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                                {subreviewers.filter(sub1 => sub1.current_stage == "Resume Review").slice(0, 3).map((sub, i) => {
+                                {subreviewers?.filter(sub1 => sub1.current_stage == "Resume Review").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
                                             <p className="sub_submenu container" style={{ width: "12rem" }}>
@@ -543,7 +543,7 @@ export class Pipeline extends Component {
                                             <div className="row">
                                                 <div className="col-12">
                                                     <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
-                                                    {subreviewers.filter(sub1 => sub1.current_stage == "Resume Review").map((sub, i) => {
+                                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Resume Review").map((sub, i) => {
                                                         return (
                                                             <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
                                                                 <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
@@ -609,7 +609,7 @@ export class Pipeline extends Component {
                             </div>}
                         {video_review_count > 0 &&
                             <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                                {subreviewers.filter(sub1 => sub1.current_stage == "Video Interview").slice(0, 3).map((sub, i) => {
+                                {subreviewers?.filter(sub1 => sub1.current_stage == "Video Interview").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
                                             <p className="sub_submenu container" style={{ width: "12rem" }}>
@@ -633,7 +633,7 @@ export class Pipeline extends Component {
                                             <div className="row">
                                                 <div className="col-12">
                                                     <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
-                                                    {subreviewers.filter(sub1 => sub1.current_stage == "Video Interview").map((sub, i) => {
+                                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Video Interview").map((sub, i) => {
                                                         return (
                                                             <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
                                                                 <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
@@ -699,7 +699,7 @@ export class Pipeline extends Component {
                             </div>}
                         {live_review_count > 0 &&
                             <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                                {subreviewers.filter(sub1 => sub1.current_stage == "Live Interview").slice(0, 3).map((sub, i) => {
+                                {subreviewers?.filter(sub1 => sub1.current_stage == "Live Interview").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
                                             <p className="sub_submenu container" style={{ width: "12rem" }}>
@@ -723,7 +723,7 @@ export class Pipeline extends Component {
                                             <div className="row">
                                                 <div className="col-12">
                                                     <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
-                                                    {subreviewers.filter(sub1 => sub1.current_stage == "Live Interview").map((sub, i) => {
+                                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Live Interview").map((sub, i) => {
                                                         return (
                                                             <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
                                                                 <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
@@ -789,7 +789,7 @@ export class Pipeline extends Component {
                             </div>}
                         {shortlist_review_count > 0 &&
                             <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                                {subreviewers.filter(sub1 => sub1.current_stage == "Short List").slice(0, 3).map((sub, i) => {
+                                {subreviewers?.filter(sub1 => sub1.current_stage == "Short List").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
                                             <p className="sub_submenu container" style={{ width: "12rem" }}>
@@ -813,7 +813,7 @@ export class Pipeline extends Component {
                                             <div className="row">
                                                 <div className="col-12">
                                                     <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
-                                                    {subreviewers.filter(sub1 => sub1.current_stage == "Short List").map((sub, i) => {
+                                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Short List").map((sub, i) => {
                                                         return (
                                                             <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
                                                                 <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
