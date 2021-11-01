@@ -735,7 +735,11 @@ export class ReviewApplication extends Component {
                                     reviews={this.props.reviews}
                                     positionId={this.props.positionId}
                                     applicantEmail={this.props.applicants[this.props.current].email}
-                                    reviewer={this.props.user.username}
+                                    reviewer={
+                                        ((this.props.employerProfileDetail.f_name + this.props.employerProfileDetail.l_name)?.length > 0)?
+                                        (this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name):
+                                        (this.props.user.username)
+                                    }
                                     profile={this.props.profile}
                                     reviewerEmail={this.props.user.email}
                                     evaluations={this.props.evaluations}

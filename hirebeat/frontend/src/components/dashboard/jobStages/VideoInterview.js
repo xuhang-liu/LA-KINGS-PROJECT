@@ -664,13 +664,13 @@ export function VideoInterview(props) {
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div className="col-1">Reinvite</div>
                             }
-                            {props.profile.is_subreviwer &&
+                            {(props.reviewerStageLength > 0) &&
                                 <div className="row">
                                     <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Status</div>
                                     <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
                                 </div>
                             }
-                            {!props.profile.is_subreviwer &&
+                            {(props.reviewerStageLength == 0) &&
                                 <div className="col-2">
                                     Team Review
                                     <span className="tool_tip ml-2">
@@ -726,6 +726,8 @@ export function VideoInterview(props) {
                                 gh_current_stage_id={props.gh_current_stage_id}
                                 jobsId={props.jobsId}
                                 selectedPage={selectedPage}
+                                employerProfileDetail={props.employerProfileDetail}
+                                reviewerStageLength={props.reviewerStageLength}
                             />
                         </div>
                     </div>
@@ -763,7 +765,7 @@ export function VideoInterview(props) {
                                 style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
                                 onClick={openMoveForm}
                             >
-                                Move All
+                                Move
                                 <span></span>
                             </button> :
                             <button
@@ -771,7 +773,7 @@ export function VideoInterview(props) {
                                 style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
                                 onClick={openGreenhouseMoveForm}
                             >
-                                Move All
+                                Move
                                 <span></span>
                             </button>
                         }
@@ -781,7 +783,7 @@ export function VideoInterview(props) {
                                 onClick={rejectCandidates}
                                 style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
                             >
-                                Reject All
+                                Reject
                                 <span></span>
                             </button> :
                             <button
@@ -789,7 +791,7 @@ export function VideoInterview(props) {
                                 onClick={openRejectNoteForm}
                                 style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
                             >
-                                Reject All
+                                Reject
                                 <span></span>
                             </button>
                         }

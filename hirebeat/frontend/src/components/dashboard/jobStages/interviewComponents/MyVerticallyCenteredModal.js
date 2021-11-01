@@ -43,6 +43,7 @@ export function MyVerticallyCenteredModal(props) {
                     gh_current_stage_id={props.gh_current_stage_id}
                     jobsId={props.jobsId}
                     selectedPage={props.selectedPage}
+                    employerProfileDetail={props.employerProfileDetail}
                 />
             </MyFullModal1>
         </div>

@@ -174,28 +174,28 @@ export class SubpageSetting extends Component {
                 <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-cog"></i><span className="ml-2">Setting</span></b></h3></div>
                 <div className="row" >
                     <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                        {this.props.profile.is_employer ?
-                            (this.props.profile.is_external_reviewer || this.props.profile.is_subreviwer) ?
-                                <button
-                                    type="button"
-                                    className="panel-button"
-                                    onClick={this.props.renderJobs}
-                                    style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                                >
-                                    <div className="center-items back-to-text">
-                                        <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
-                                    </div>
-                                </button> :
-                                <button
-                                    type="button"
-                                    className="panel-button"
-                                    onClick={this.props.renderEmployerProfile}
-                                    style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                                >
-                                    <div className="center-items back-to-text">
-                                        <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
-                                    </div>
-                                </button> :
+                        {!this.props.profile.is_employer &&
+                            // (this.props.profile.is_external_reviewer || this.props.profile.is_subreviwer) ?
+                            //     <button
+                            //         type="button"
+                            //         className="panel-button"
+                            //         onClick={this.props.renderJobs}
+                            //         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                            //     >
+                            //         <div className="center-items back-to-text">
+                            //             <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                            //         </div>
+                            //     </button> :
+                            //     <button
+                            //         type="button"
+                            //         className="panel-button"
+                            //         onClick={this.props.renderEmployerProfile}
+                            //         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                            //     >
+                            //         <div className="center-items back-to-text">
+                            //             <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                            //         </div>
+                            //     </button> :
                             <button
                                 type="button"
                                 className="panel-button"
@@ -546,14 +546,24 @@ export class SubpageSetting extends Component {
                         <div className="chart-bg1 container">
                             <form style={{ marginBottom: "3%" }}>
                                 <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                                    <div className="form-group col">
-                                        <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
-                                        <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                            <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                <span>Expired</span>
-                                            </p>
+                                    {(this.props.profile.is_employer) ?
+                                        <div className="form-group col">
+                                            <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
+                                            <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                    <span>Expired</span>
+                                                </p>
+                                            </div>
+                                        </div> :
+                                        <div className="form-group col">
+                                            <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
+                                            <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                    <span>Free</span>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    }
                                 </div>
                                 {this.props.profile.is_employer ?
                                     <div>

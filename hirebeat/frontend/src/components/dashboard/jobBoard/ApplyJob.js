@@ -461,7 +461,7 @@ const ApplyJob = (props) => {
                                     {(Applied && !props.auth.isAuthenticated) &&
                                         <form onSubmit={applySubmit}>
                                             <div>
-                                                <div className="px-5 pt-3 light-blue-border">
+                                                <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
                                                     </h2>
@@ -723,7 +723,7 @@ const ApplyJob = (props) => {
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
+                                                {/* <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
                                                         Create Account
                                                     </h2>
@@ -739,7 +739,7 @@ const ApplyJob = (props) => {
                                                         <label className="job-apply-char1" for="inputAddress">Confirm Password</label>
                                                         <input type="password" class="form-control" id="inputAddress" placeholder="Enter your password again" onChange={onChange3} minLength="8" />
                                                     </div>
-                                                </div>
+                                                </div> */}
                                                 <button className="default-btn" style={{ position: "absolute", right: "3.7rem", bottom: "5rem", paddingLeft: "25px" }}>
                                                     Submit Application
                                                 </button>
@@ -749,7 +749,7 @@ const ApplyJob = (props) => {
                                     {(Applied && props.auth.isAuthenticated) &&
                                         <form onSubmit={applySubmit1}>
                                             <div>
-                                                <div className="px-5 pt-3 light-blue-border">
+                                                <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
                                                     </h2>
@@ -1239,7 +1239,7 @@ const ApplyJob = (props) => {
                                     {(Applied && !props.auth.isAuthenticated) &&
                                         <form onSubmit={applySubmit}>
                                             <div className="mt-3">
-                                                <div className="px-5 pt-3 light-blue-border">
+                                                <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
                                                     </h2>
@@ -1502,7 +1502,7 @@ const ApplyJob = (props) => {
                                                         </label>
                                                     </div>
                                                 </div>
-                                                <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
+                                                {/* <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
                                                         Create Account
                                                     </h2>
@@ -1518,7 +1518,7 @@ const ApplyJob = (props) => {
                                                         <label className="job-apply-char1" for="inputAddress">Confirm Password</label>
                                                         <input type="password" class="form-control" id="inputAddress" placeholder="Enter your password again" onChange={onChange3} minLength="8" />
                                                     </div>
-                                                </div>
+                                                </div> */}
                                                 <button className="default-btn" style={{ marginLeft: "20%", bottom: "5rem", paddingLeft: "25px" }}>
                                                     Submit Application
                                                 </button>
@@ -1528,7 +1528,7 @@ const ApplyJob = (props) => {
                                     {(Applied && props.auth.isAuthenticated) &&
                                         <form onSubmit={applySubmit1}>
                                             <div className="mt-3">
-                                                <div className="px-5 pt-3 light-blue-border">
+                                                <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
                                                         Application
                                                     </h2>

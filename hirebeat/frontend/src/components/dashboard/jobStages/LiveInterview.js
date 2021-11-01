@@ -316,13 +316,13 @@ export function LiveInterview(props){
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div className="col-1">Reinvite</div>
                             }
-                            {props.profile.is_subreviwer &&
+                            {(props.reviewerStageLength > 0) &&
                                 <div className="row">
                                     <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Status</div>
                                     <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
                                 </div>
                             }
-                            {!props.profile.is_subreviwer &&
+                            {(props.reviewerStageLength == 0) &&
                                 <div className="col-2">
                                     Team Review
                                     <span className="tool_tip ml-2">
@@ -377,6 +377,8 @@ export function LiveInterview(props){
                                 reviewer_type={props.reviewer_type}
                                 jobsId={props.jobsId}
                                 selectedPage={selectedPage}
+                                employerProfileDetail={props.employerProfileDetail}
+                                reviewerStageLength={props.reviewerStageLength}
                             />
                         </div>
                     </div>
@@ -405,7 +407,7 @@ export function LiveInterview(props){
                             style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
                             onClick={openMoveForm}
                         >
-                            Move All
+                            Move
                             <span></span>
                         </button>
                         <button
@@ -413,7 +415,7 @@ export function LiveInterview(props){
                             onClick={rejectCandidates}
                             style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
                         >
-                            Reject All
+                            Reject
                             <span></span>
                         </button>
                     </div>

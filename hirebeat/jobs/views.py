@@ -987,8 +987,8 @@ def add_cand_from_merge(request):
                                           company_overview=company_overview, company_name=company_name, company_logo=company_logo,
                                           loc_req="1", pho_req="1", lin_req="1", job_post=0, eeo_req="1", eeo_ques_req="1", is_closed=2)
             # save job link
-            job_url = "https://hirebeat.co/apply-job/" + \
-                company_name+"?id=" + str(job.id)
+            encode_url_id = str(base64.b64encode(bytes(str(job.id), "utf-8")), "utf-8")
+            job_url = "https://hirebeat.co/apply-job/"+company_name+"?id="+encode_url_id
             job.job_url = job_url
             job.save()
             # Create jobs apply candidates

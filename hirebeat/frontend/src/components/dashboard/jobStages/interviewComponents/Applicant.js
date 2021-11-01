@@ -184,7 +184,7 @@ export const Applicant = (props) => {
                         </div>
                     }
                 </div>
-                {props.profile.is_subreviwer &&
+                {(props.reviewerStageLength > 0) &&
                 <div className="col-3">
                     {applicants[current]?.reviewer_review_status ?
                         <p style={{fontWeight:"600", color:"#4A6F8A"}}>Reviewed</p>:
@@ -248,7 +248,7 @@ export const Applicant = (props) => {
                         }
                     </div>
                 }
-                {!props.profile.is_subreviwer &&
+                {(props.reviewerStageLength == 0) &&
                     <div className="col-2">
                         {applicants[current]?.num_votes > 0 &&
                             <p style={{ fontWeight: "600", color: "#090D3A" }}>{applicants[current]?.num_vote_yes + "/" + applicants[current]?.num_votes}</p>
@@ -292,6 +292,7 @@ export const Applicant = (props) => {
                 gh_current_stage_id={props.gh_current_stage_id}
                 jobsId={props.jobsId}
                 selectedPage={props.selectedPage}
+                employerProfileDetail={props.employerProfileDetail}
             />
             <MyModal80
                 show={showResume}

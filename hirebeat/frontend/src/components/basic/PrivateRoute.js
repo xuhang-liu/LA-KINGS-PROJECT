@@ -24,9 +24,9 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => {
           return <h2>Loading...</h2>;
         } else if (!isAuthenticated) {
           if(uri == "employer_dashboard" || uri == "dashboard"){
-            return <Redirect to="/login" />;
+            return <Redirect to="/employer-login" />;
           }else{
-          return <Redirect to="/register" />;
+          return <Redirect to="/employer_register" />;
           }
         } else {
           return <Component {...props} />;

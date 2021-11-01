@@ -67,6 +67,7 @@ export class EmployerDashboard extends Component {
       showUpgradeM: false,
       showUpgradeM1: false,
       showUpgradeM2: false,
+      job_back_home: false,
     }
     // store user info to sessionStorage
     sessionStorage.setItem('user', JSON.stringify(this.props.user));
@@ -79,6 +80,12 @@ export class EmployerDashboard extends Component {
     position_list: PropTypes.array.isRequired,
     user_existence: PropTypes.bool,
   };
+
+  setJob_back_home = () => {
+    this.setState({
+      job_back_home: false
+    })
+  }
 
   setShowUpgradeM = () => {
     this.setState({
@@ -231,7 +238,9 @@ export class EmployerDashboard extends Component {
 
   renderJobs = () => {
     if (this.state.subpage == "jobs") {
-      this.refreshPage();
+      this.setState({
+        job_back_home: true
+      });
     }
     else if (this.props.profile.membership == "Regular") {
       this.setShowUpgradeM();
@@ -454,6 +463,9 @@ export class EmployerDashboard extends Component {
           checkUserExistence={this.props.checkUserExistence}
           user_existence={this.props.user_existence}
           getPostedJobs={this.props.getPostedJobs}
+          employerProfileDetail={this.props.employerProfileDetail}
+          job_back_home={this.state.job_back_home}
+          setJob_back_home={this.setJob_back_home}
         />;
       case "jobCreation":
         return <JobCreation

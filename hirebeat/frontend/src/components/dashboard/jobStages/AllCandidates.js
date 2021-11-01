@@ -326,6 +326,7 @@ export class AllCandidates extends Component {
                                             selectedCurrentStage={this.state.stage.value}
                                             selectedStatus={this.state.category.value}
                                             updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
+                                            employerProfileDetail={this.props.employerProfileDetail}
                                         />
                                     )
                                 })}
@@ -620,6 +621,7 @@ const ApplicantRow = (props) => {
                         selectedCurrentStage={props.selectedCurrentStage}
                         selectedStatus={props.selectedStatus}
                         updateApplicantBasicInfo={props.updateApplicantBasicInfo}
+                        employerProfileDetail={props.employerProfileDetail}
                     />
                 </MyFullModal>
             </div>
