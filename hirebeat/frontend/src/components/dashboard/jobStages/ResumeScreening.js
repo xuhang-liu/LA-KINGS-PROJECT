@@ -364,11 +364,11 @@ export class ResumeScreening extends Component {
 
     hideSuccessAlert = () => {
         this.handleAlertChoice();
-        this.setState({showMoveSuccessAlert: false});
+        this.setState({ showMoveSuccessAlert: false });
     }
 
     enableSuccessAlert = () => {
-        this.setState({showMoveSuccessAlert: true});
+        this.setState({ showMoveSuccessAlert: true });
     }
 
     handleAlertChoice = () => {
@@ -384,11 +384,11 @@ export class ResumeScreening extends Component {
 
     hideRejectSuccessAlert = () => {
         this.handleRejectAlertChoice();
-        this.setState({showRejectSuccessAlert: false});
+        this.setState({ showRejectSuccessAlert: false });
     }
 
     enableRejectSuccessAlert = () => {
-        this.setState({showRejectSuccessAlert: true});
+        this.setState({ showRejectSuccessAlert: true });
     }
 
     handleRejectAlertChoice = () => {
@@ -441,14 +441,14 @@ export class ResumeScreening extends Component {
                             <div className="col-4"><span>Name</span></div>
                             <div className="col-2">Applied On</div>
                             <div className="col-2">Resume Score <span onClick={this.sortByScore} style={{ color: "#67A3F3", cursor: "pointer" }}><i class='bx bx-sort'></i></span></div>
-                            {this.props.profile.is_subreviwer &&
+                            {(this.props.reviewerStageLength > 0) &&
                                 <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Status</div>
                                     <div style={{ display: "inline-block" }}>
                                         <Select value={this.state.category3} onChange={this.onFilter3} options={this.options3} className="select-category" styles={this.customStyles} />
                                     </div>
                                 </div>
                             }
-                            {!this.props.profile.is_subreviwer &&
+                            {(this.props.reviewerStageLength == 0) &&
                                 <div className="col-2">
                                     Team Review
                                     <span className="tool_tip ml-2">
@@ -535,6 +535,8 @@ export class ResumeScreening extends Component {
                                     selectedCurrentStage="Resume Review"
                                     selectedStatus={this.state.isSortByScore ? "True" : "False"}
                                     updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
+                                    employerProfileDetail={this.props.employerProfileDetail}
+                                    reviewerStageLength={this.props.reviewerStageLength}
                                 />
                             )
                         })}
@@ -564,7 +566,7 @@ export class ResumeScreening extends Component {
                             style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
                             onClick={this.openMoveForm}
                         >
-                            Move All
+                            Move
                             <span></span>
                         </button>
                         <button
@@ -572,7 +574,7 @@ export class ResumeScreening extends Component {
                             style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
                             onClick={this.rejectCandidates}
                         >
-                            Reject All
+                            Reject
                             <span></span>
                         </button>
                     </div>
@@ -658,29 +660,29 @@ export class ResumeScreening extends Component {
                 </MyModal80>
                 {/*  move success alert prompt */}
                 <AlertModal show={this.state.showMoveSuccessAlert} onHide={this.hideSuccessAlert}>
-                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
                         <h3 className="interview-h3">Move to next stage Success</h3>
-                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have moved the candidates to selected stage successfully.</p>
-                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
-                            <input id="alertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                        <p className="interview-p" style={{ marginBottom: "0.5rem" }}>You have moved the candidates to selected stage successfully.</p>
+                        <div className="interview-p align-center" style={{ marginBottom: "1rem" }}>
+                            <input id="alertCheckbox" type="checkbox" style={{ marginRight: "1rem" }} />
                             Don't show again
                         </div>
                         <div className="row d-flex justify-content-center">
-                            <button onClick={this.hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                            <button onClick={this.hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
                         </div>
                     </div>
                 </AlertModal>
                 {/*  reject success alert prompt */}
                 <AlertModal show={this.state.showRejectSuccessAlert} onHide={this.hideRejectSuccessAlert}>
-                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
                         <h3 className="interview-h3">Candidate Rejected!</h3>
-                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have rejected the candidates successfully.</p>
-                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
-                            <input id="rejectAlertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                        <p className="interview-p" style={{ marginBottom: "0.5rem" }}>You have rejected the candidates successfully.</p>
+                        <div className="interview-p align-center" style={{ marginBottom: "1rem" }}>
+                            <input id="rejectAlertCheckbox" type="checkbox" style={{ marginRight: "1rem" }} />
                             Don't show again
                         </div>
                         <div className="row d-flex justify-content-center">
-                            <button onClick={this.hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                            <button onClick={this.hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
                         </div>
                     </div>
                 </AlertModal>
@@ -711,8 +713,8 @@ const ApplicantRow = (props) => {
             "isViewed": true,
         }
         props.updateCandidateViewedStatus(data);
-//        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
-//        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); props.getPJobs() }, 300);
+        //        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : props.selectedPage + 1;
+        //        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); props.getPJobs() }, 300);
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
         props.getReviewNote(props.curJob.job_details.positions_id, applicants[current].email);
@@ -724,7 +726,7 @@ const ApplicantRow = (props) => {
 
     function hideModal() {
         let page = props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore);}, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); }, 300);
         //sessionStorage.removeItem("showPreview" + props.index);
         //sessionStorage.removeItem("showPreview" + current);
         setShowPreview(false);
@@ -818,14 +820,14 @@ const ApplicantRow = (props) => {
                     {resumeScore >= 26 && resumeScore < 51 && <img style={{ width: "55%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-avg.png" />}
                     {resumeScore >= 0 && resumeScore < 26 && <img style={{ width: "55%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-bad.png" />}
                 </div>
-                {props.profile.is_subreviwer &&
+                {(props.reviewerStageLength > 0) &&
                     <div className="col-3">
                         {props.applicant?.reviewer_review_status ?
                             <p style={{ fontWeight: "600", color: "#4A6F8A" }}>Reviewed</p> :
                             <p style={{ fontWeight: "600", color: "#090D3A" }}>Pending</p>
                         }
                     </div>}
-                {!props.profile.is_subreviwer &&
+                {(props.reviewerStageLength == 0) &&
                     <div className="col-2">
                         {props.applicant?.num_votes > 0 &&
                             <p style={{ fontWeight: "600", color: "#090D3A" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
@@ -890,6 +892,7 @@ const ApplicantRow = (props) => {
                         selectedStatus={props.selectedStatus}
                         isSortByScore={props.isSortByScore}
                         updateApplicantBasicInfo={props.updateApplicantBasicInfo}
+                        employerProfileDetail={props.employerProfileDetail}
                     />
                 </MyFullModal>
             </div>

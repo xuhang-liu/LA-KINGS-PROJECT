@@ -332,6 +332,7 @@ export class ApplicantList extends Component {
                                     getPJobs={this.props.getPJobs}
                                     user={this.props.user}
                                     moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                    employerProfileDetail={this.props.employerProfileDetail}
                                 />
                             )
                         })}
@@ -374,6 +375,7 @@ export class ApplicantList extends Component {
                                     getPJobs={this.props.getPJobs}
                                     user={this.props.user}
                                     moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                    employerProfileDetail={this.props.employerProfileDetail}
                                 />
                             )
                         })}
@@ -584,6 +586,7 @@ const ApplicantRow = (props) => {
                         linkedin={applicants[parseInt(sessionStorage.getItem("current")) || current].linkedinurl}
                         moveCandidateToInterview={props.moveCandidateToInterview}
                         filter={props.filter}
+                        employerProfileDetail={props.employerProfileDetail}
                     />
                 </MyFullModal>
             </div>

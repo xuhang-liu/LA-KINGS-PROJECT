@@ -26,7 +26,7 @@ export class Pipeline extends Component {
             buttons: [
                 {
                     label: 'Yes',
-                    onClick: () => { this.props.removeSubReviewer(data); this.deletSuccessAlert(); this.props.getPostedJobs(this.props.user.id, 1, "")}
+                    onClick: () => { this.props.removeSubReviewer(data); this.deletSuccessAlert(); this.props.getPostedJobs(this.props.user.id, 1, "") }
                 },
                 {
                     label: 'No'
@@ -88,36 +88,36 @@ export class Pipeline extends Component {
                             </div>
                             <div className="form-row ml-5" style={{ marginTop: "0.6rem" }}>
                                 <div>
-                                    {stage == "Resume Review"?
-                                    <input type="checkbox" style={{ display: "inline-block" }} id="ResumeReview" checked/>:
-                                    <input type="checkbox" style={{ display: "inline-block" }} id="ResumeReview"/>
+                                    {stage == "Resume Review" ?
+                                        <input type="checkbox" style={{ display: "inline-block" }} id="ResumeReview" checked /> :
+                                        <input type="checkbox" style={{ display: "inline-block" }} id="ResumeReview" />
                                     }
                                     <p style={{ display: "inline-block", marginLeft: "1rem" }}>Resume Review</p>
                                 </div>
                             </div>
                             <div className="form-row ml-5" style={{ marginTop: "0.6rem" }}>
                                 <div>
-                                    {stage == "Video Interview"?
-                                    <input type="checkbox" style={{ display: "inline-block" }} id="VideoInterview" checked/>:
-                                    <input type="checkbox" style={{ display: "inline-block" }} id="VideoInterview"/>
+                                    {stage == "Video Interview" ?
+                                        <input type="checkbox" style={{ display: "inline-block" }} id="VideoInterview" checked /> :
+                                        <input type="checkbox" style={{ display: "inline-block" }} id="VideoInterview" />
                                     }
                                     <p style={{ display: "inline-block", marginLeft: "1rem" }}>Video Interview</p>
                                 </div>
                             </div>
                             <div className="form-row ml-5" style={{ marginTop: "0.6rem" }}>
                                 <div>
-                                    {stage == "Live Interview"?
-                                    <input type="checkbox" style={{ display: "inline-block" }} id="LiveInterview" checked/>:
-                                    <input type="checkbox" style={{ display: "inline-block" }} id="LiveInterview"/>
+                                    {stage == "Live Interview" ?
+                                        <input type="checkbox" style={{ display: "inline-block" }} id="LiveInterview" checked /> :
+                                        <input type="checkbox" style={{ display: "inline-block" }} id="LiveInterview" />
                                     }
                                     <p style={{ display: "inline-block", marginLeft: "1rem" }}>Live Interview</p>
                                 </div>
                             </div>
                             <div className="form-row ml-5" style={{ marginTop: "0.6rem" }}>
                                 <div>
-                                    {stage == "Short List"?
-                                    <input type="checkbox" style={{ display: "inline-block" }} id="ShortList" checked/>:
-                                    <input type="checkbox" style={{ display: "inline-block" }} id="ShortList"/>
+                                    {stage == "Short List" ?
+                                        <input type="checkbox" style={{ display: "inline-block" }} id="ShortList" checked /> :
+                                        <input type="checkbox" style={{ display: "inline-block" }} id="ShortList" />
                                     }
                                     <p style={{ display: "inline-block", marginLeft: "1rem" }}>Short List</p>
                                 </div>
@@ -179,7 +179,7 @@ export class Pipeline extends Component {
             let user_existence = res.data.data;
             if (user_existence) {
                 this.sendFailAlert();
-                setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
+                setTimeout(() => { this.props.getPostedJobs(this.props.user.id, 1, "") }, 300);
             } else {
                 encoded_email = window.btoa("email=" + sub_reviewer_email?.toLowerCase());
                 let data = {
@@ -196,7 +196,7 @@ export class Pipeline extends Component {
                 const myPromise = new Promise((resolve, reject) => {
                     this.props.addSubReviewer(data);
                 });
-                myPromise.then(this.props.getPostedJobs(this.props.user.id, 1, ""));           
+                myPromise.then(this.props.getPostedJobs(this.props.user.id, 1, ""));
                 //this.props.addSubReviewer(data);
                 //setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
                 this.alertSuccess();
@@ -287,7 +287,7 @@ export class Pipeline extends Component {
             let user_existence = res.data.data;
             if (user_existence) {
                 this.sendFailAlert();
-                setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
+                setTimeout(() => { this.props.getPostedJobs(this.props.user.id, 1, "") }, 300);
             } else {
                 encoded_email = window.btoa("email=" + ex_reviewer_email?.toLowerCase());
                 let data = {
@@ -303,7 +303,7 @@ export class Pipeline extends Component {
                 const myPromise = new Promise((resolve, reject) => {
                     this.props.addExReviewer(data);
                 });
-                myPromise.then(this.props.getPostedJobs(this.props.user.id, 1, "")); 
+                myPromise.then(this.props.getPostedJobs(this.props.user.id, 1, ""));
                 //this.props.addExReviewer(data);
                 //setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
                 this.alertSuccess();
@@ -412,20 +412,19 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        {((!this.props.job.job_details.is_closed)) &&
-                            <div style={{ marginLeft: "2rem", marginRight: "1rem" }}>
-                                <div>
-                                    {(this.props.profile.membership == "Premium") &&
-                                        <button
-                                            className="default-btn1 interview-txt6 mt-4"
-                                            onClick={this.inviteExReviewer}
-                                            style={{ paddingLeft: "25px" }}
-                                        >
-                                            + Add Hiring Manager
-                                            <span></span>
-                                        </button>}
-                                </div>
-                            </div>}
+                        <div style={{ marginLeft: "2rem", marginRight: "1rem" }}>
+                            <div>
+                                {(this.props.profile.membership == "Premium") &&
+                                    <button
+                                        className="default-btn1 interview-txt6 mt-4"
+                                        onClick={this.inviteExReviewer}
+                                        style={{ paddingLeft: "25px" }}
+                                    >
+                                        + Add Hiring Manager
+                                        <span></span>
+                                    </button>}
+                            </div>
+                        </div>
                         {exReviewers.length > 0 &&
                             <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {(exReviewers.slice(0, 3).map((sub, i) => {
@@ -501,22 +500,21 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        {((!this.props.job.job_details.is_closed)) &&
-                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                                <div>
-                                    {(this.props.profile.membership == "Premium") &&
-                                        <div>
-                                            <button
-                                                className="default-btn interview-txt6 mt-4"
-                                                style={{ paddingLeft: "25px" }}
-                                                onClick={(e) => this.inviteReviever(e, "Resume Review")}
-                                            >
-                                                + Add Reviewer
-                                                <span></span>
-                                            </button>
-                                        </div>}
-                                </div>
-                            </div>}
+                        <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                            <div>
+                                {(this.props.profile.membership == "Premium") &&
+                                    <div>
+                                        <button
+                                            className="default-btn interview-txt6 mt-4"
+                                            style={{ paddingLeft: "25px" }}
+                                            onClick={(e) => this.inviteReviever(e, "Resume Review")}
+                                        >
+                                            + Add Reviewer
+                                            <span></span>
+                                        </button>
+                                    </div>}
+                            </div>
+                        </div>
                         {resume_review_count > 0 &&
                             <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Resume Review").slice(0, 3).map((sub, i) => {
@@ -591,22 +589,21 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        {((!this.props.job.job_details.is_closed)) &&
-                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                                <div>
-                                    {(this.props.profile.membership == "Premium") &&
-                                        <div>
-                                            <button
-                                                className="default-btn interview-txt6 mt-4"
-                                                style={{ paddingLeft: "25px" }}
-                                                onClick={(e) => this.inviteReviever(e, "Video Interview")}
-                                            >
-                                                + Add Reviewer
-                                                <span></span>
-                                            </button>
-                                        </div>}
-                                </div>
-                            </div>}
+                        <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                            <div>
+                                {(this.props.profile.membership == "Premium") &&
+                                    <div>
+                                        <button
+                                            className="default-btn interview-txt6 mt-4"
+                                            style={{ paddingLeft: "25px" }}
+                                            onClick={(e) => this.inviteReviever(e, "Video Interview")}
+                                        >
+                                            + Add Reviewer
+                                            <span></span>
+                                        </button>
+                                    </div>}
+                            </div>
+                        </div>
                         {video_review_count > 0 &&
                             <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Video Interview").slice(0, 3).map((sub, i) => {
@@ -681,22 +678,21 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        {((!this.props.job.job_details.is_closed)) &&
-                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                                <div>
-                                    {(this.props.profile.membership == "Premium") &&
-                                        <div>
-                                            <button
-                                                className="default-btn interview-txt6 mt-4"
-                                                style={{ paddingLeft: "25px" }}
-                                                onClick={(e) => this.inviteReviever(e, "Live Interview")}
-                                            >
-                                                + Add Reviewer
-                                                <span></span>
-                                            </button>
-                                        </div>}
-                                </div>
-                            </div>}
+                        <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                            <div>
+                                {(this.props.profile.membership == "Premium") &&
+                                    <div>
+                                        <button
+                                            className="default-btn interview-txt6 mt-4"
+                                            style={{ paddingLeft: "25px" }}
+                                            onClick={(e) => this.inviteReviever(e, "Live Interview")}
+                                        >
+                                            + Add Reviewer
+                                            <span></span>
+                                        </button>
+                                    </div>}
+                            </div>
+                        </div>
                         {live_review_count > 0 &&
                             <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Live Interview").slice(0, 3).map((sub, i) => {
@@ -771,22 +767,21 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        {((!this.props.job.job_details.is_closed)) &&
-                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                                <div>
-                                    {(this.props.profile.membership == "Premium") &&
-                                        <div>
-                                            <button
-                                                className="default-btn interview-txt6 mt-4"
-                                                style={{ paddingLeft: "25px" }}
-                                                onClick={(e) => this.inviteReviever(e, "Short List")}
-                                            >
-                                                + Add Reviewer
-                                                <span></span>
-                                            </button>
-                                        </div>}
-                                </div>
-                            </div>}
+                        <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                            <div>
+                                {(this.props.profile.membership == "Premium") &&
+                                    <div>
+                                        <button
+                                            className="default-btn interview-txt6 mt-4"
+                                            style={{ paddingLeft: "25px" }}
+                                            onClick={(e) => this.inviteReviever(e, "Short List")}
+                                        >
+                                            + Add Reviewer
+                                            <span></span>
+                                        </button>
+                                    </div>}
+                            </div>
+                        </div>
                         {shortlist_review_count > 0 &&
                             <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Short List").slice(0, 3).map((sub, i) => {

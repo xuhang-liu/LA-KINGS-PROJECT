@@ -590,7 +590,11 @@ const ReviewCandidate = (props) => {
                             reviews={props.reviews}
                             positionId={props.curJob.job_details.positions_id}
                             applicantEmail={props.applicant.email}
-                            reviewer={props.user.username}
+                            reviewer={
+                                ((props.employerProfileDetail.f_name + props.employerProfileDetail.l_name)?.length > 0)?
+                                (props.employerProfileDetail.f_name + " " + props.employerProfileDetail.l_name):
+                                (props.user.username)
+                            }
                             profile={props.profile}
                             reviewerEmail={props.user.email}
                             evaluations={props.evaluations}

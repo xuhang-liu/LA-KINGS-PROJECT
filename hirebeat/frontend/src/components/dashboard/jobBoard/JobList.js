@@ -144,6 +144,7 @@ export class JobList extends Component {
                                                 curJobKey={curJobKey}
                                                 setJobKey={this.props.setJobKey}
                                                 setViewPortal={this.props.setViewPortal}
+                                                setJob_back_home={this.props.setJob_back_home}
                                             />
                                         );
                                     })
@@ -171,6 +172,7 @@ export class JobList extends Component {
                                     setCurJob={this.props.setCurJob}
                                     getAllJobs={this.props.getAllJobs}
                                     getPJobs={this.props.getPJobs}
+                                    employerProfileDetail={this.props.employerProfileDetail}
                                 />
                             </div>}
                     </div>}

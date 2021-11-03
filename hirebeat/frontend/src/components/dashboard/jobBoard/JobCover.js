@@ -14,7 +14,7 @@ export const JobCover = (props) => {
   const [viewPortal, setViewPortal] = useState((sessionStorage.getItem("viewPortal") == "true") ? true : false);
   return (
     <div>
-    {!viewPortal ?
+    {((!viewPortal) || (props.job_back_home)) ?
     <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
       <div style={{ paddingBottom: "1rem" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b></h3>
         <button className="default-btn" onClick={props.renderJobCreation}
@@ -62,6 +62,8 @@ export const JobCover = (props) => {
         view={view}
         setView={setView}
         setViewPortal={setViewPortal}
+        employerProfileDetail={props.employerProfileDetail}
+        setJob_back_home={props.setJob_back_home}
       />
     </div>:
     <JobPortalPage
@@ -96,6 +98,7 @@ export const JobCover = (props) => {
       checkUserExistence={props.checkUserExistence}
       user_existence={props.user_existence}
       getPostedJobs={props.getPostedJobs}
+      employerProfileDetail={props.employerProfileDetail}
     />
     }
     </div>

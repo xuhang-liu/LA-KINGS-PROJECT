@@ -151,6 +151,7 @@ export class JobPortalPage extends Component {
                     user={this.props.user}
                     isClosed={p.is_closed}
                     getPostedJobs={this.props.getPostedJobs}
+                    employerProfileDetail={this.props.employerProfileDetail}
                 />;
             case "resumeScreen":
                 return <ResumeScreening
@@ -161,6 +162,8 @@ export class JobPortalPage extends Component {
                     getPostedJobs={this.props.getPostedJobs}
                     profile={this.props.profile}
                     user={this.props.user}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                    reviewerStageLength={this.state.reviewerStage?.length}
                 />;
             case "videoInterview":
                 return <VideoInterview
@@ -219,6 +222,8 @@ export class JobPortalPage extends Component {
                     jobsId={this.props.job.job_details.id}
                     getAllJobs={this.props.getAllJobs}
                     gh_current_stage_id={this.props.job.job_details.gh_current_stage_id}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                    reviewerStageLength={this.state.reviewerStage?.length}
                 />;
             case "liveInterview":
                 return <LiveInterview
@@ -276,6 +281,8 @@ export class JobPortalPage extends Component {
                     updateInviteStatus={this.props.updateInviteStatus}
                     jobsId={this.props.job.job_details.id}
                     getAllJobs={this.props.getAllJobs}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                    reviewerStageLength={this.state.reviewerStage?.length}
                 />;
             case "shortList":
                 return <ShortList
@@ -305,6 +312,8 @@ export class JobPortalPage extends Component {
                     getAllJobs={this.props.getAllJobs}
                     totalPage={p.total_page}
                     jobsId={this.props.job.job_details.id}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                    reviewerStageLength={this.state.reviewerStage?.length}
                 />;
             default:
                 return null;

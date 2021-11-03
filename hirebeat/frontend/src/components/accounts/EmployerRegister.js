@@ -15,6 +15,7 @@ import ReviewerRegisterForm from "./ReviewerRegisterForm";
 import EmployerRegisterInfoForm from "./EmployerRegisterInfoForm";
 import EmployerRegisterCompanyInfoForm from "./EmployerRegisterCompanyInfoForm";
 import axios from "axios";
+import { Email_Block_List } from "./Constants";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -72,38 +73,7 @@ export class EmployerRegister extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if((this.state.email.toLowerCase().includes("aol") ||
-        this.state.email.toLowerCase().includes("att.net") ||
-        this.state.email.toLowerCase().includes("comcast.net") ||
-        this.state.email.toLowerCase().includes("facebook.com") ||
-        this.state.email.toLowerCase().includes("gmail.com") ||
-        this.state.email.toLowerCase().includes("googlemail.com") ||
-        this.state.email.toLowerCase().includes("google.com") ||
-        this.state.email.toLowerCase().includes("hotmail.com") ||
-        this.state.email.toLowerCase().includes("hotmail.co.uk") ||
-        this.state.email.toLowerCase().includes("mac.com") ||
-        this.state.email.toLowerCase().includes("me.com") ||
-        this.state.email.toLowerCase().includes("mail.com") ||
-        this.state.email.toLowerCase().includes("msn.com") ||
-        this.state.email.toLowerCase().includes("live.com") ||
-        this.state.email.toLowerCase().includes("sbcglobal.net") ||
-        this.state.email.toLowerCase().includes("verizon.net") ||
-        this.state.email.toLowerCase().includes("yahoo.com") ||
-        this.state.email.toLowerCase().includes("yahoo.co.uk") ||
-        this.state.email.toLowerCase().includes("email.com") ||
-        this.state.email.toLowerCase().includes("icloud.com") ||
-        this.state.email.toLowerCase().includes("outlook.com") ||
-        this.state.email.toLowerCase().includes("zoho.com") ||
-        this.state.email.toLowerCase().includes("hush.com") ||
-        this.state.email.toLowerCase().includes("sina.com") ||
-        this.state.email.toLowerCase().includes("sina.cn") ||
-        this.state.email.toLowerCase().includes("qq.com") ||
-        this.state.email.toLowerCase().includes("163.com") ||
-        this.state.email.toLowerCase().includes("126.com") ||
-        this.state.email.toLowerCase().includes("21cn.com") ||
-        this.state.email.toLowerCase().includes("aliyun.com") ||
-        this.state.email.toLowerCase().includes("foxmail.com") ||
-        this.state.email.toLowerCase().includes("edu")) && !this.state.isReviewer
+    if((Email_Block_List.includes(this.state.email.toLowerCase().split("@")[1])) && !this.state.isReviewer
         ){
       confirmAlert({
         title: "Email not permitted!",
@@ -164,38 +134,7 @@ export class EmployerRegister extends Component {
     // reset error states
     this.setState({validEmail: true, validPwd: true, unusedEmail: true});
     // check email format
-    if((this.state.email.toLowerCase().includes("aol") ||
-        this.state.email.toLowerCase().includes("att.net") ||
-        this.state.email.toLowerCase().includes("comcast.net") ||
-        this.state.email.toLowerCase().includes("facebook.com") ||
-        this.state.email.toLowerCase().includes("gmail.com") ||
-        this.state.email.toLowerCase().includes("googlemail.com") ||
-        this.state.email.toLowerCase().includes("google.com") ||
-        this.state.email.toLowerCase().includes("hotmail.com") ||
-        this.state.email.toLowerCase().includes("hotmail.co.uk") ||
-        this.state.email.toLowerCase().includes("mac.com") ||
-        this.state.email.toLowerCase().includes("me.com") ||
-        this.state.email.toLowerCase().includes("mail.com") ||
-        this.state.email.toLowerCase().includes("msn.com") ||
-        this.state.email.toLowerCase().includes("live.com") ||
-        this.state.email.toLowerCase().includes("sbcglobal.net") ||
-        this.state.email.toLowerCase().includes("verizon.net") ||
-        this.state.email.toLowerCase().includes("yahoo.com") ||
-        this.state.email.toLowerCase().includes("yahoo.co.uk") ||
-        this.state.email.toLowerCase().includes("email.com") ||
-        this.state.email.toLowerCase().includes("icloud.com") ||
-        this.state.email.toLowerCase().includes("outlook.com") ||
-        this.state.email.toLowerCase().includes("zoho.com") ||
-        this.state.email.toLowerCase().includes("hush.com") ||
-        this.state.email.toLowerCase().includes("sina.com") ||
-        this.state.email.toLowerCase().includes("sina.cn") ||
-        this.state.email.toLowerCase().includes("qq.com") ||
-        this.state.email.toLowerCase().includes("163.com") ||
-        this.state.email.toLowerCase().includes("126.com") ||
-        this.state.email.toLowerCase().includes("21cn.com") ||
-        this.state.email.toLowerCase().includes("aliyun.com") ||
-        this.state.email.toLowerCase().includes("foxmail.com") ||
-        this.state.email.toLowerCase().includes("edu")) && !this.state.isReviewer) {
+    if((Email_Block_List.includes(this.state.email.toLowerCase().split("@")[1])) && !this.state.isReviewer) {
           this.setState({validEmail: false});
           return;
     }

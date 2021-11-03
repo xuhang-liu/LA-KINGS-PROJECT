@@ -54,6 +54,8 @@ export const ApplicantList = (props) => {
                         gh_current_stage_id={props.gh_current_stage_id}
                         jobsId={props.jobsId}
                         selectedPage={props.selectedPage}
+                        employerProfileDetail={props.employerProfileDetail}
+                        reviewerStageLength={props.reviewerStageLength}
                     />
                 )
             })}

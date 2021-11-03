@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { MyModal80 } from './../DashboardComponents';
 import { ResumeEva } from "./interviewComponents/ResumeEva";
 import { connect } from 'react-redux';
@@ -6,18 +6,19 @@ import { loadStarList, getResumeURL, addExReviewer, delExReviewer } from './../.
 import { checkUserExistence } from './../../../redux/actions/auth_actions';
 import { withRouter } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
-import {MyVerticallyCenteredModal} from "./interviewComponents/MyVerticallyCenteredModal";
+import { MyVerticallyCenteredModal } from "./interviewComponents/MyVerticallyCenteredModal";
 import ReactPaginate from 'react-paginate';
+import Select from 'react-select';
 
 const ShortList = (props) => {
     const [curJobId, setCurJobId] = useState(Object.keys(props.postedJobs)[0]);
     const [selectedId, setSelectedId] = useState(props.positionId);
     const theJob = props.postedJobs[selectedId.toString()];
 
-//    useEffect(() => {
-//        props.getPostedJobs(props.user.id, 1, "Short List");
-//        props.loadStarList(props.positionId);
-//    }, [])
+    //    useEffect(() => {
+    //        props.getPostedJobs(props.user.id, 1, "Short List");
+    //        props.loadStarList(props.positionId);
+    //    }, [])
 
     function refreshPage() {
         props.loadStarList(curJobId);
@@ -72,6 +73,8 @@ const ShortList = (props) => {
                     selectedPage={selectedPage}
                     reviewer_type={props.reviewer_type}
                     jobsId={props.jobsId}
+                    employerProfileDetail={props.employerProfileDetail}
+                    reviewerStageLength={props.reviewerStageLength}
                 />
             </div>
         </div>
@@ -91,40 +94,69 @@ const mapStateToProps = (state) => ({
 export default withRouter(connect(mapStateToProps, { loadStarList, getResumeURL, addExReviewer, delExReviewer, checkUserExistence })(ShortList));
 
 const AcceptedCandidate = (props) => {
+    const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
+
+    function onFilter3(category) {
+        setCategory3(category)
+    }
+
+    const options3 = [
+        { value: 'Pending', label: 'Pending' },
+        { value: 'Reviewed', label: 'Reviewed' },
+        { value: 'All', label: 'All' },
+    ]
+
+    const customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
+        singleValue: styles => ({
+            ...styles,
+            color: '#090D3A',
+            fontSize: '0.9375rem',
+            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontWeight: '500'
+        }),
+    }
     return (
         <div>
             <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem" }} className="container-fluid mt-4 pt-3 pb-3">
-                <div className="row" style={{paddingLeft: "15px", paddingRight: "15px"}}>
+                <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
                     <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
-                        <label style={{position:"absolute", left:"2.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
+                        <label style={{ position: "absolute", left: "2.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
                         <input placeholder={"Search candidate"} className="search-candidate-input" value={props.keyWords} onChange={props.onChange} style={{ height: "auto" }}></input>
                     </div>
                     {props.totalPage > 1 &&
                         <div className="ml-auto">
                             <ReactPaginate
-                                  previousLabel={'< Prev'}
-                                  nextLabel={'Next >'}
-                                  breakLabel={'...'}
-                                  breakClassName={'break-me'}
-                                  pageCount={props.totalPage}
-                                  marginPagesDisplayed={1}
-                                  pageRangeDisplayed={5}
-                                  onPageChange={props.handlePageClick}
-                                  containerClassName={'pagination3'}
-                                  activeClassName={'active'}
-                                  forcePage={props.selectedPage}
+                                previousLabel={'< Prev'}
+                                nextLabel={'Next >'}
+                                breakLabel={'...'}
+                                breakClassName={'break-me'}
+                                pageCount={props.totalPage}
+                                marginPagesDisplayed={1}
+                                pageRangeDisplayed={5}
+                                onPageChange={props.handlePageClick}
+                                containerClassName={'pagination3'}
+                                activeClassName={'active'}
+                                forcePage={props.selectedPage}
                             />
                         </div>
                     }
                 </div>
-                <div className="container-fluid chart-bg1" style={{ marginTop: "2%"}}>
-                    <div style={{color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
+                <div className="container-fluid chart-bg1" style={{ marginTop: "2%" }}>
+                    <div style={{ color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
                         <div className="col-3">Name</div>
                         <div className="col-3">Video Average Score</div>
                         <div className="col-2">Resume Score</div>
-                        {!props.profile.is_subreviwer &&
+                        {(props.reviewerStageLength > 0) &&
+                            <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Status</div>
+                                <div style={{ display: "inline-block" }}>
+                                    <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
+                                </div>
+                            </div>
+                        }
+                        {(props.reviewerStageLength == 0) &&
                             <div className="col-2">
                                 Team Review
                                 <span className="tool_tip ml-2">
@@ -141,9 +173,9 @@ const AcceptedCandidate = (props) => {
                     </div>
                     {props.theJob.applicants.map((applicant, index) => {
                         if (props.keyWords != "") {
-                                let name = applicant.name;
-                                if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
-                            }
+                            let name = applicant.name;
+                            if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
+                        }
                         return (
                             <div>
                                 <CandidateCard
@@ -178,25 +210,27 @@ const AcceptedCandidate = (props) => {
                                     reviewer_type={props.reviewer_type}
                                     selectedPage={props.selectedPage}
                                     jobsId={props.jobsId}
+                                    employerProfileDetail={props.employerProfileDetail}
+                                    reviewerStageLength={props.reviewerStageLength}
                                 />
                             </div>
                         )
                     })}
                 </div>
                 {props.totalPage > 1 &&
-                    <div className="d-flex justify-content-end" style={{marginTop: "1rem"}}>
+                    <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
                         <ReactPaginate
-                              previousLabel={'< Prev'}
-                              nextLabel={'Next >'}
-                              breakLabel={'...'}
-                              breakClassName={'break-me'}
-                              pageCount={props.totalPage}
-                              marginPagesDisplayed={1}
-                              pageRangeDisplayed={5}
-                              onPageChange={props.handlePageClick}
-                              containerClassName={'pagination3'}
-                              activeClassName={'active'}
-                              forcePage={props.selectedPage}
+                            previousLabel={'< Prev'}
+                            nextLabel={'Next >'}
+                            breakLabel={'...'}
+                            breakClassName={'break-me'}
+                            pageCount={props.totalPage}
+                            marginPagesDisplayed={1}
+                            pageRangeDisplayed={5}
+                            onPageChange={props.handlePageClick}
+                            containerClassName={'pagination3'}
+                            activeClassName={'active'}
+                            forcePage={props.selectedPage}
                         />
                     </div>
                 }
@@ -335,7 +369,15 @@ const CandidateCard = (props) => {
                 <div className="col-2">
                     {renderResume(props.resume_list)}
                 </div>
-                {!props.profile.is_subreviwer &&
+                {(props.reviewerStageLength > 0) &&
+                    <div className="col-3">
+                        {props.applicant?.reviewer_review_status ?
+                            <p style={{ fontWeight: "600", color: "#4A6F8A" }}>Reviewed</p> :
+                            <p style={{ fontWeight: "600", color: "#090D3A" }}>Pending</p>
+                        }
+                    </div>
+                }
+                {(props.reviewerStageLength == 0) &&
                     <div className="col-2">
                         {props.applicant?.num_votes > 0 &&
                             <p style={{ fontWeight: "600", color: "#090D3A" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
@@ -392,6 +434,7 @@ const CandidateCard = (props) => {
                 selectedPage={props.selectedPage}
                 viewPrevResult={viewPrevResult}
                 viewNextResult={viewNextResult}
+                employerProfileDetail={props.employerProfileDetail}
             />
             <MyModal80
                 show={showResume}

@@ -124,19 +124,19 @@ export class ReviewStage extends Component {
 
 
     switchResumeReview = () => {
-        this.setState({showResumeReview: !this.state.showResumeReview});
+        this.setState({ showResumeReview: !this.state.showResumeReview });
     }
 
     switchVideoInterview = () => {
-        this.setState({showVideoInterview: !this.state.showVideoInterview});
+        this.setState({ showVideoInterview: !this.state.showVideoInterview });
     }
 
     switchLiveInterview = () => {
-        this.setState({showLiveInterview: !this.state.showLiveInterview});
+        this.setState({ showLiveInterview: !this.state.showLiveInterview });
     }
 
     switchShortList = () => {
-        this.setState({showShortList: !this.state.showShortList});
+        this.setState({ showShortList: !this.state.showShortList });
     }
 
     render() {
@@ -151,57 +151,60 @@ export class ReviewStage extends Component {
                 }
                 <Collapse in={this.state.showResumeReview}>
                     <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-9">
-                                <h3 className="note-h3">Reviews</h3>
-                                {/* map here */}
-                                {stageToReviews["resumeReview"].length > 0 &&
-                                    <div className="note-border2">
-                                        {stageToReviews["resumeReview"].map((r) => {
-                                            let name = r.reviewer.split("@")[0];
-                                            return (
-                                                <div style={{ marginBottom: "0.5rem" }}>
-                                                    <p className="note-p">
-                                                        <span className="note-span">{name + ":"}</span> {r.comment}
-                                                    </p>
+                        {(stageToReviews["resumeReview"].length == 0 && stageToEvaluations["resumeReview"].length == 0) ?
+                            <div className="no-review">No reviews yet</div> :
+                            <div className="row">
+                                <div className="col-9">
+                                    <h3 className="note-h3">Reviews</h3>
+                                    {/* map here */}
+                                    {stageToReviews["resumeReview"].length > 0 &&
+                                        <div className="note-border2">
+                                            {stageToReviews["resumeReview"].map((r) => {
+                                                let name = r.reviewer.split("@")[0];
+                                                return (
+                                                    <div style={{ marginBottom: "0.5rem" }}>
+                                                        <p className="note-p">
+                                                            <span className="note-span">{name + ":"}</span> {r.comment}
+                                                        </p>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    }
+                                </div>
+                                <div className="col-3" style={{ marginLeft: "-1rem" }}>
+                                    <h3 className="note-h3">Evaluation
+                                        <span className="tool_tip ml-2">
+                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                            <p className="tool_submenu container" style={{ width: "14rem", left: "0" }}>
+                                                <div>
+                                                    The decision from reviewers will be listed here.
                                                 </div>
-                                            )
-                                        })}
-                                    </div>
-                                }
+                                            </p>
+                                        </span>
+                                    </h3>
+                                    {/* map here */}
+                                    {stageToEvaluations["resumeReview"].length > 0 &&
+                                        <div className="note-border2">
+                                            {stageToEvaluations["resumeReview"].map((eva) => {
+                                                let name = eva.reviewer_name.split("@")[0];
+                                                return (
+                                                    <div style={{ marginBottom: "0.5rem" }}>
+                                                        <p className="note-p">
+                                                            <span className="note-span" style={{ marginLeft: "0.5rem", marginRight: "0rem" }}>{name + ":"}</span>
+                                                            {
+                                                                eva.evaluation == 1 ? <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} /> :
+                                                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} />
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    }
+                                </div>
                             </div>
-                            <div className="col-3" style={{ marginLeft: "-1rem" }}>
-                                <h3 className="note-h3">Evaluation
-                                    <span className="tool_tip ml-2">
-                                        <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                        <p className="tool_submenu container" style={{ width: "14rem", left:"0" }}>
-                                            <div>
-                                                The decision from reviewers will be listed here.
-                                            </div>
-                                        </p>
-                                    </span>
-                                </h3>
-                                {/* map here */}
-                                {stageToEvaluations["resumeReview"].length > 0 &&
-                                    <div className="note-border2">
-                                        {stageToEvaluations["resumeReview"].map((eva) => {
-                                            let name = eva.reviewer_name.split("@")[0];
-                                            return (
-                                                <div style={{ marginBottom: "0.5rem" }}>
-                                                    <p className="note-p">
-                                                        <span className="note-span" style={{ marginLeft: "0.5rem", marginRight: "0rem" }}>{name + ":"}</span>
-                                                        {
-                                                            eva.evaluation == 1 ? <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} /> :
-                                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} />
-                                                        }
-                                                    </p>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                        }
                     </div>
                 </Collapse>
 
@@ -212,57 +215,60 @@ export class ReviewStage extends Component {
                 }
                 <Collapse in={this.state.showVideoInterview}>
                     <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-9">
-                                <h3 className="note-h3">Reviews</h3>
-                                {/* map here */}
-                                {stageToReviews["videoInterview"].length > 0 &&
-                                    <div className="note-border2">
-                                        {stageToReviews["videoInterview"].map((r) => {
-                                            let name = r.reviewer.split("@")[0];
-                                            return (
-                                                <div style={{ marginBottom: "0.5rem" }}>
-                                                    <p className="note-p">
-                                                        <span className="note-span">{name + ":"}</span> {r.comment}
-                                                    </p>
+                        {(stageToReviews["videoInterview"].length == 0 && stageToEvaluations["videoInterview"].length == 0) ?
+                            <div className="no-review">No reviews yet</div> :
+                            <div className="row">
+                                <div className="col-9">
+                                    <h3 className="note-h3">Reviews</h3>
+                                    {/* map here */}
+                                    {stageToReviews["videoInterview"].length > 0 &&
+                                        <div className="note-border2">
+                                            {stageToReviews["videoInterview"].map((r) => {
+                                                let name = r.reviewer.split("@")[0];
+                                                return (
+                                                    <div style={{ marginBottom: "0.5rem" }}>
+                                                        <p className="note-p">
+                                                            <span className="note-span">{name + ":"}</span> {r.comment}
+                                                        </p>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    }
+                                </div>
+                                <div className="col-3" style={{ marginLeft: "-1rem" }}>
+                                    <h3 className="note-h3">Evaluation
+                                        <span className="tool_tip ml-2">
+                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                            <p className="tool_submenu container" style={{ width: "14rem", left: "0" }}>
+                                                <div>
+                                                    The decision from reviewers will be listed here.
                                                 </div>
-                                            )
-                                        })}
-                                    </div>
-                                }
+                                            </p>
+                                        </span>
+                                    </h3>
+                                    {/* map here */}
+                                    {stageToEvaluations["videoInterview"].length > 0 &&
+                                        <div className="note-border2">
+                                            {stageToEvaluations["videoInterview"].map((eva) => {
+                                                let name = eva.reviewer_name.split("@")[0];
+                                                return (
+                                                    <div style={{ marginBottom: "0.5rem" }}>
+                                                        <p className="note-p">
+                                                            <span className="note-span" style={{ marginLeft: "0.5rem", marginRight: "0rem" }}>{name + ":"}</span>
+                                                            {
+                                                                eva.evaluation == 1 ? <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} /> :
+                                                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} />
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    }
+                                </div>
                             </div>
-                            <div className="col-3" style={{ marginLeft: "-1rem" }}>
-                                <h3 className="note-h3">Evaluation
-                                    <span className="tool_tip ml-2">
-                                        <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                        <p className="tool_submenu container" style={{ width: "14rem", left:"0" }}>
-                                            <div>
-                                                The decision from reviewers will be listed here.
-                                            </div>
-                                        </p>
-                                    </span>
-                                </h3>
-                                {/* map here */}
-                                {stageToEvaluations["videoInterview"].length > 0 &&
-                                    <div className="note-border2">
-                                        {stageToEvaluations["videoInterview"].map((eva) => {
-                                            let name = eva.reviewer_name.split("@")[0];
-                                            return (
-                                                <div style={{ marginBottom: "0.5rem" }}>
-                                                    <p className="note-p">
-                                                        <span className="note-span" style={{ marginLeft: "0.5rem", marginRight: "0rem" }}>{name + ":"}</span>
-                                                        {
-                                                            eva.evaluation == 1 ? <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} /> :
-                                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} />
-                                                        }
-                                                    </p>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                        }
                     </div>
                 </Collapse>
 
@@ -273,57 +279,60 @@ export class ReviewStage extends Component {
                 }
                 <Collapse in={this.state.showLiveInterview}>
                     <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-9">
-                                <h3 className="note-h3">Reviews</h3>
-                                {/* map here */}
-                                {stageToReviews["liveInterview"].length > 0 &&
-                                    <div className="note-border2">
-                                        {stageToReviews["liveInterview"].map((r) => {
-                                            let name = r.reviewer.split("@")[0];
-                                            return (
-                                                <div style={{ marginBottom: "0.5rem" }}>
-                                                    <p className="note-p">
-                                                        <span className="note-span">{name + ":"}</span> {r.comment}
-                                                    </p>
+                        {(stageToReviews["liveInterview"].length == 0 && stageToEvaluations["liveInterview"].length == 0) ?
+                            <div className="no-review">No reviews yet</div> :
+                            <div className="row">
+                                <div className="col-9">
+                                    <h3 className="note-h3">Reviews</h3>
+                                    {/* map here */}
+                                    {stageToReviews["liveInterview"].length > 0 &&
+                                        <div className="note-border2">
+                                            {stageToReviews["liveInterview"].map((r) => {
+                                                let name = r.reviewer.split("@")[0];
+                                                return (
+                                                    <div style={{ marginBottom: "0.5rem" }}>
+                                                        <p className="note-p">
+                                                            <span className="note-span">{name + ":"}</span> {r.comment}
+                                                        </p>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    }
+                                </div>
+                                <div className="col-3" style={{ marginLeft: "-1rem" }}>
+                                    <h3 className="note-h3">Evaluation
+                                        <span className="tool_tip ml-2">
+                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                            <p className="tool_submenu container" style={{ width: "14rem", left: "0" }}>
+                                                <div>
+                                                    The decision from reviewers will be listed here.
                                                 </div>
-                                            )
-                                        })}
-                                    </div>
-                                }
+                                            </p>
+                                        </span>
+                                    </h3>
+                                    {/* map here */}
+                                    {stageToEvaluations["liveInterview"].length > 0 &&
+                                        <div className="note-border2">
+                                            {stageToEvaluations["liveInterview"].map((eva) => {
+                                                let name = eva.reviewer_name.split("@")[0];
+                                                return (
+                                                    <div style={{ marginBottom: "0.5rem" }}>
+                                                        <p className="note-p">
+                                                            <span className="note-span" style={{ marginLeft: "0.5rem", marginRight: "0rem" }}>{name + ":"}</span>
+                                                            {
+                                                                eva.evaluation == 1 ? <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} /> :
+                                                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} />
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    }
+                                </div>
                             </div>
-                            <div className="col-3" style={{ marginLeft: "-1rem" }}>
-                                <h3 className="note-h3">Evaluation
-                                    <span className="tool_tip ml-2">
-                                        <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                        <p className="tool_submenu container" style={{ width: "14rem", left:"0" }}>
-                                            <div>
-                                                The decision from reviewers will be listed here.
-                                            </div>
-                                        </p>
-                                    </span>
-                                </h3>
-                                {/* map here */}
-                                {stageToEvaluations["liveInterview"].length > 0 &&
-                                    <div className="note-border2">
-                                        {stageToEvaluations["liveInterview"].map((eva) => {
-                                            let name = eva.reviewer_name.split("@")[0];
-                                            return (
-                                                <div style={{ marginBottom: "0.5rem" }}>
-                                                    <p className="note-p">
-                                                        <span className="note-span" style={{ marginLeft: "0.5rem", marginRight: "0rem" }}>{name + ":"}</span>
-                                                        {
-                                                            eva.evaluation == 1 ? <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} /> :
-                                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} />
-                                                        }
-                                                    </p>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                        }
                     </div>
                 </Collapse>
 
@@ -334,57 +343,60 @@ export class ReviewStage extends Component {
                 }
                 <Collapse in={this.state.showShortList}>
                     <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-9">
-                                <h3 className="note-h3">Reviews</h3>
-                                {/* map here */}
-                                {stageToReviews["shortList"].length > 0 &&
-                                    <div className="note-border2">
-                                        {stageToReviews["shortList"].map((r) => {
-                                            let name = r.reviewer.split("@")[0];
-                                            return (
-                                                <div style={{ marginBottom: "0.5rem" }}>
-                                                    <p className="note-p">
-                                                        <span className="note-span">{name + ":"}</span> {r.comment}
-                                                    </p>
+                        {(stageToReviews["shortList"].length == 0 && stageToEvaluations["shortList"].length == 0) ?
+                            <div className="no-review">No reviews yet</div> :
+                            <div className="row">
+                                <div className="col-9">
+                                    <h3 className="note-h3">Reviews</h3>
+                                    {/* map here */}
+                                    {stageToReviews["shortList"].length > 0 &&
+                                        <div className="note-border2">
+                                            {stageToReviews["shortList"].map((r) => {
+                                                let name = r.reviewer.split("@")[0];
+                                                return (
+                                                    <div style={{ marginBottom: "0.5rem" }}>
+                                                        <p className="note-p">
+                                                            <span className="note-span">{name + ":"}</span> {r.comment}
+                                                        </p>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    }
+                                </div>
+                                <div className="col-3" style={{ marginLeft: "-1rem" }}>
+                                    <h3 className="note-h3">Evaluation
+                                        <span className="tool_tip ml-2">
+                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                            <p className="tool_submenu container" style={{ width: "14rem", left: "0" }}>
+                                                <div>
+                                                    The decision from reviewers will be listed here.
                                                 </div>
-                                            )
-                                        })}
-                                    </div>
-                                }
+                                            </p>
+                                        </span>
+                                    </h3>
+                                    {/* map here */}
+                                    {stageToEvaluations["shortList"].length > 0 &&
+                                        <div className="note-border2">
+                                            {stageToEvaluations["shortList"].map((eva) => {
+                                                let name = eva.reviewer_name.split("@")[0];
+                                                return (
+                                                    <div style={{ marginBottom: "0.5rem" }}>
+                                                        <p className="note-p">
+                                                            <span className="note-span" style={{ marginLeft: "0.5rem", marginRight: "0rem" }}>{name + ":"}</span>
+                                                            {
+                                                                eva.evaluation == 1 ? <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} /> :
+                                                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} />
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    }
+                                </div>
                             </div>
-                            <div className="col-3" style={{ marginLeft: "-1rem" }}>
-                                <h3 className="note-h3">Evaluation
-                                    <span className="tool_tip ml-2">
-                                        <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                        <p className="tool_submenu container" style={{ width: "14rem", left:"0" }}>
-                                            <div>
-                                                The decision from reviewers will be listed here.
-                                            </div>
-                                        </p>
-                                    </span>
-                                </h3>
-                                {/* map here */}
-                                {stageToEvaluations["shortList"].length > 0 &&
-                                    <div className="note-border2">
-                                        {stageToEvaluations["shortList"].map((eva) => {
-                                            let name = eva.reviewer_name.split("@")[0];
-                                            return (
-                                                <div style={{ marginBottom: "0.5rem" }}>
-                                                    <p className="note-p">
-                                                        <span className="note-span" style={{ marginLeft: "0.5rem", marginRight: "0rem" }}>{name + ":"}</span>
-                                                        {
-                                                            eva.evaluation == 1 ? <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} /> :
-                                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-circle.png" style={{ width: "1.25rem", marginLeft: "2rem" }} />
-                                                        }
-                                                    </p>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                        }
                     </div>
                 </Collapse>
             </div>

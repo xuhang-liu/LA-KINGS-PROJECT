@@ -95,7 +95,7 @@ def get_interview_questions(request):
         "position": position,
     })
 
-
+# create a position record in Position table, which is used for video interview reference
 @api_view(['POST'])
 def add_position(request):
     # print("==add position==")
@@ -117,7 +117,7 @@ def add_position(request):
         "jobtitle": jobtitle
     })
 
-
+# get position objects from Position table
 @api_view(['GET'])
 def get_posted_jobs(request):
     data = {}
@@ -134,16 +134,21 @@ def get_posted_jobs(request):
     reviewed = request.GET.get("reviewed", "")
     if reviewed == "undefined":
         reviewed = ""
+    # get user profile
     profile = Profile.objects.get(user_id=user_id)
+    # get user object
     user = User.objects.get(pk=user_id)
+
     # employer role
     if profile.is_subreviwer is False and profile.is_external_reviewer is False:
+        # get all positions posted by current user
         positions = Positions.objects.filter(user_id=user_id)
         for i in range(len(positions)):
             positions_id = positions[i].id
             position = positions[i]
             # get each position applicants by current stage
             applicants = []
+            # get all candidates for each position at the specific stage: current_stage=stage
             if stage == "":
                 applicants = InvitedCandidates.objects.filter(
                     positions=position, is_active=True)
@@ -155,13 +160,16 @@ def get_posted_jobs(request):
                 # Uninvited case
                 if video_filter == "Uninvited":
                     applicants = applicants.filter(is_invited=False)
+                # finished video interview
                 elif video_filter == "Completed":
                     applicants = applicants.filter(is_invited=True, is_recorded=True, video_count__gt=0)
+                # waiting for video recording
                 elif video_filter == "Pending":
                     applicants = applicants.filter(is_invited=True, is_recorded=False)
+                # ghosted case
                 elif video_filter == "Withdrawn":
                     applicants = applicants.filter(is_invited=True, is_recorded=True, video_count__lte=0)
-            # convert queryset to list
+            # convert queryset to list， order applicants by id descending
             applicants = list(applicants.order_by('-id').values())
             # get linkedin and is_active values from ApplyCandidates model
             for applicant in applicants:
@@ -174,6 +182,7 @@ def get_posted_jobs(request):
                     applicant_email=applicant["email"], position_id=positions_id, evaluation=1).count()
                 applicant["num_votes"] = ReviewerEvaluation.objects.filter(
                     applicant_email=applicant["email"], position_id=positions_id).count()
+                # get applicant application information from ApplyCandidates table
                 jobs = Jobs.objects.filter(positions=position, user_id=user_id)
                 if len(jobs) > 0:
                     candidate = ApplyCandidates.objects.filter(
@@ -185,6 +194,8 @@ def get_posted_jobs(request):
                         applicant["answers"] = candidate[0].answers
                         applicant["qualifications"] = candidate[0].qualifications
                         applicant["must_haves"] = candidate[0].must_haves
+
+            # begin pagination, each single page should have at most 15 applicants
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)
             if total_records > 15:
@@ -192,6 +203,7 @@ def get_posted_jobs(request):
                 end = page * 15
                 applicants = applicants[begin:end]
 
+            # get each applicant user_id, if not registered, the user_id will be -1
             for j in range(len(applicants)):
                 applicant_info = User.objects.filter(
                     email=applicants[j]["email"]).values()
@@ -199,17 +211,22 @@ def get_posted_jobs(request):
                     applicants[j]["user_id"] = applicant_info[0]["id"]
                 else:
                     applicants[j]["user_id"] = -1
+            # get interview questions for current job
             questions = list(InterviewQuestions.objects.filter(
                 positions_id=positions_id).values())
+            # int_dots > 0 means some applicants finished video interview but haven't been reviewed
             int_dot = InvitedCandidates.objects.filter(
                 positions_id=positions_id, is_recorded=True, video_count__gt=0, is_viewed=False, comment_status=0).count()
             int_dots += int_dot
 
+            # get subreviewers and external reviews(hiring manager) for this position
             subreviewers = list(SubReviewers.objects.filter(
                 position_id=positions_id).values())
             ex_reviewers = list(ExternalReviewers.objects.filter(
                 position_id=positions_id).values())
+            # get position detail
             position = Positions.objects.filter(id=positions_id).values()[0]
+            # all_invited == True means all the applicants in the position were invited for a video interview
             all_invited = True if InvitedCandidates.objects.filter(
                 positions_id=positions_id, is_invited=True).count() == len(applicants) else False
             job_details = {
@@ -230,6 +247,7 @@ def get_posted_jobs(request):
             # convert to json
             data[positions_id] = job_details
 
+        # count the number of applicants that haven't been reviewed
         jobs = Jobs.objects.filter(user_id=user_id)
         for i in range(len(jobs)):
             jobs_id = jobs[i].id
@@ -239,10 +257,11 @@ def get_posted_jobs(request):
 
     # reviewer
     else:
-        user = User.objects.get(pk=user_id)
+        # get the combinations of subreviewers and external reviewers using user.email
         ex_reviewers = list(chain(SubReviewers.objects.filter(
             r_email=user.email), ExternalReviewers.objects.filter(r_email=user.email)))
         for i in range(len(ex_reviewers)):
+            # check reviewer type
             reviewer_type = ""
             position_id = ex_reviewers[i].position.id
             if (len(ExternalReviewers.objects.filter(r_email=user.email, position_id=position_id)) > 0):
@@ -251,6 +270,7 @@ def get_posted_jobs(request):
                 reviewer_type = "subr"
             # get each position applicants by current stage
             applicants = []
+            # get all candidates for each position at the specific stage: current_stage=stage
             if stage == "":
                 applicants = InvitedCandidates.objects.filter(
                     positions_id=position_id, is_active=True)
@@ -262,29 +282,35 @@ def get_posted_jobs(request):
                 # Uninvited case
                 if video_filter == "Uninvited":
                     applicants = applicants.filter(is_invited=False)
+                # finished video interview
                 elif video_filter == "Completed":
                     applicants = applicants.filter(is_invited=True, is_recorded=True, video_count__gt=0)
+                # waiting for video recording
                 elif video_filter == "Pending":
                     applicants = applicants.filter(is_invited=True, is_recorded=False)
+                # ghosted case
                 elif video_filter == "Withdrawn":
                     applicants = applicants.filter(is_invited=True, is_recorded=True, video_count__lte=0)
-            # convert queryset to list
+            # convert queryset to list， order applicants by id descending
             applicants = list(applicants.order_by('-id').values())
             company_name = ex_reviewers[i].company_name
-            # get linkedin and is_active values from ApplyCandidates model
+            # get extra information like linkedin and is_active values from ApplyCandidates model
+            # and get review evaluation for each applicant
             for applicant in applicants:
                 applicant["linkedinurl"] = ""
                 applicant["is_active"] = False
                 applicant["apply_candidate_id"] = 0
-                # get vote rate
+                # get vote evaluation
                 applicant["num_vote_yes"] = 0
                 applicant["num_votes"] = 0
                 applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
                     applicant_email=applicant["email"], position_id=position_id, evaluation=1).count()
                 applicant["num_votes"] = ReviewerEvaluation.objects.filter(
                     applicant_email=applicant["email"], position_id=position_id).count()
+                # get each applicant review status
                 applicant["reviewer_review_status"] = ReviewerEvaluation.objects.filter(
                     reviewer_email=user.email, applicant_email=applicant["email"]).exists()
+                # get each applicant answers to each position screen questions
                 jobs = Jobs.objects.filter(
                     positions_id=position_id, user_id=ex_reviewers[i].master_user)
                 if len(jobs) > 0:
@@ -303,13 +329,14 @@ def get_posted_jobs(request):
                 applicants = [a for a in applicants if a["reviewer_review_status"]]
             elif reviewed == "Pending":
                 applicants = [a for a in applicants if not a["reviewer_review_status"]]
-            # get each position applicants
+            # begin pagination, each single page should have at most 15 applicants
             total_records = len(applicants)
             total_page = math.ceil(len(applicants) / 15)
             if total_records > 15:
                 begin = (page - 1) * 15
                 end = page * 15
                 applicants = applicants[begin:end]
+            # get each applicant user_id, if not registered, the user_id will be -1
             for j in range(len(applicants)):
                 applicant_info = User.objects.filter(
                     email=applicants[j]["email"]).values()
@@ -317,12 +344,15 @@ def get_posted_jobs(request):
                     applicants[j]["user_id"] = applicant_info[0]["id"]
                 else:
                     applicants[j]["user_id"] = -1
+            # get interview questions for current job
             questions = list(InterviewQuestions.objects.filter(
                 positions_id=position_id).values())
+            # get subreviewers and external reviews(hiring manager) for this position
             subs = list(SubReviewers.objects.filter(
                 position_id=position_id).values())
             exts = list(ExternalReviewers.objects.filter(
                 position_id=position_id).values())
+            # all_invited == True means all the applicants in the position were invited for a video interview
             all_invited = True if InvitedCandidates.objects.filter(
                 positions_id=position_id, is_invited=True).count() == len(applicants) else False
             job_details = {
@@ -349,7 +379,7 @@ def get_posted_jobs(request):
         "job_dots": job_dots,
     })
 
-
+# for bulk interview invitation
 @api_view(['POST'])
 def add_interviews(request):
     company_name = request.data["company_name"]
@@ -380,7 +410,7 @@ def add_interviews(request):
 
     return Response("Add interviews data successfully", status=status.HTTP_200_OK)
 
-
+# resend video interview for multiple candidates at one time
 @api_view(['POST'])
 def send_video_interviews(request):
     company_name = request.data["company_name"]
@@ -404,7 +434,7 @@ def send_video_interviews(request):
 
     return Response("Send interviews successfully", status=status.HTTP_200_OK)
 
-
+# move applicant to video interview or stages after video interview
 @api_view(['POST'])
 def move_candidate_to_interview(request):
     position_id = request.data["position_id"]
@@ -490,7 +520,7 @@ def move_candidate_to_interview(request):
 
     return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)
 
-
+# send interview email notice via smtp
 def send_interviews(name, email, url, job_title, company_name, expire):
     subject = 'Follow up on your application of ' + job_title + " at " + company_name
     message = get_template("questions/interview_email.html")
@@ -513,7 +543,7 @@ def send_interviews(name, email, url, job_title, company_name, expire):
     email.content_subtype = "html"
     email.send()
 
-
+# resend video interview for a single person
 @api_view(['POST'])
 def resend_invitation(request):
     company_name = request.data["company_name"]

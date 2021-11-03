@@ -720,6 +720,24 @@ def get_employer_profile_detail(request):
     # post = EmployerPost.objects.filer(user_id=user_id).values()  # todo append post here
     return Response({"data": data})
 
+@api_view(['POST'])
+def create_or_update_employer_name(request):
+    user_id = request.data["user_id"]
+    firstname = request.data["firstname"]
+    lastname = request.data["lastname"]
+    # self_description = request.data["self_description"]
+    try:
+        # update personal information
+        employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
+        employer_profile.f_name = firstname
+        # employer_profile.self_description = self_description
+        employer_profile.l_name = lastname
+        employer_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        EmployerProfileDetail.objects.create(
+            user_id=user_id, f_name=firstname, l_name=lastname)
+    return Response("Create or Update employer name successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def create_or_update_employer_info(request):
