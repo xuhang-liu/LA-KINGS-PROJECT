@@ -549,6 +549,8 @@ export class EmployerDashboard extends Component {
           removeReviewerFromList={this.props.removeReviewerFromList}
           getReviewersList={this.props.getReviewersList}
           getPJobs={this.getPJobs}
+          employerProfileDetail={this.props.employerProfileDetail}
+          getEmployerProfileDetail={this.props.getEmployerProfileDetail}
         />;
       case "analytics":
         if (Object.keys(this.props.position_list).length > 0) {
@@ -733,13 +735,13 @@ export class EmployerDashboard extends Component {
                   </div>
                   <div className='col-11' style={{ backgroundColor: "#e8edfc" }}>
                     <div className="dashboard-main">
-                      {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
+                      {/* {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
                         (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
                         (this.state.subpage === "applications") || (this.state.subpage === "jobs") ||
                         (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition") || (this.state.subpage === "mergeintergration") || (this.state.subpage === "employerSourcing")) || (this.state.subpage == "") ? null :
                         <div className="container-fluid" style={{ height: "22rem" }} data-tut="reactour-rowbox">
                           <RowBoxes userId={this.props.user.id} isEmployer={true} />
-                        </div>}
+                        </div>} */}
                       <div className="container-fluid" style={{ marginBottom: "20vh" }}>
                         <div style={{ marginBottom: "auto", height: "auto", paddingTop: '2%' }}>
                           {this.renderSubpage()}

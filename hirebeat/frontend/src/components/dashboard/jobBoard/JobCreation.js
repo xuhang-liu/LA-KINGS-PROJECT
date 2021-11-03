@@ -206,7 +206,7 @@ export class JobCreation extends Component {
     };
 
     handleLocation = (location) => {
-        this.setState({jobLocation: location});
+        this.setState({ jobLocation: location });
     }
 
     handleInputChange = (e) => {
@@ -280,7 +280,7 @@ export class JobCreation extends Component {
         } else {
             this.props.addNewJob(data);
             setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
-            setTimeout(() => {this.showSharePrompt()}, 300);
+            setTimeout(() => { this.showSharePrompt() }, 300);
         }
     }
 
@@ -327,8 +327,8 @@ export class JobCreation extends Component {
             alert("Duplicate Job ID detected.");
         } else {
             this.props.addNewJob(data);
-            setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs()}, 300);
-            setTimeout(() => {this.props.renderJobs()}, 300);
+            setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs() }, 300);
+            setTimeout(() => { this.props.renderJobs() }, 300);
         }
     }
 
@@ -338,7 +338,7 @@ export class JobCreation extends Component {
             closeOnClickOutside: true,
             customUI: ({ onClose }) => {
                 return (
-                    <div className="container-fluid" style={{ fontFamily: "Avenir Next, Segoe UI", margin: "auto", width: "80%", overflow: "auto", height: "80vh", backgroundColor: "#ffffff", borderRadius:"5px" }}>
+                    <div className="container-fluid" style={{ fontFamily: "Avenir Next, Segoe UI", margin: "auto", width: "80%", overflow: "auto", height: "80vh", backgroundColor: "#ffffff", borderRadius: "5px" }}>
                         <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer", marginTop: "3rem" }}><i className="bx bx-x bx-md"></i></div>
                         <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
                         <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={this.props.employerProfileDetail.logo_url} alt="icon" />
@@ -436,25 +436,25 @@ export class JobCreation extends Component {
             numAns: "0",
             isMustHave: "false",
         }))
-        this.setState({ questionCount: this.state.questionCount + 1, questions: questions});
+        this.setState({ questionCount: this.state.questionCount + 1, questions: questions });
     }
 
     removeQuestion = (i) => {
         let questions = [...this.state.questions];
         questions.splice(i, 1);
-        this.setState({questions: questions, questionCount: this.state.questionCount - 1});
+        this.setState({ questions: questions, questionCount: this.state.questionCount - 1 });
     }
 
     handleQFormChange = (i, key, e) => {
         let questions = [...this.state.questions];
         questions[i][key] = e.target.value;
-        this.setState({questions: questions});
+        this.setState({ questions: questions });
     }
 
     handleQFormChange2 = (i, key, value) => {
         let questions = [...this.state.questions];
         questions[i][key] = value;
-        this.setState({questions: questions});
+        this.setState({ questions: questions });
     }
 
     render() {
@@ -522,7 +522,7 @@ export class JobCreation extends Component {
                             <div className="form-group col-6">
                                 <div className="d-flex">
                                     {!this.state.remote &&
-                                        <div className="form-group" style={{width: "40%"}}>
+                                        <div className="form-group" style={{ width: "40%" }}>
                                             <label className="db-txt2">
                                                 Job Location
                                             </label><span className="job-apply-char2">*</span>
@@ -539,7 +539,7 @@ export class JobCreation extends Component {
                                         </div>}
                                     <div className={this.state.remote ? "form-group" : "form-group ml-auto"}>
                                         <label className="db-txt2">Remote Work?</label>
-                                        <div style={{paddingTop: "0.7rem"}}>
+                                        <div style={{ paddingTop: "0.7rem" }}>
                                             <Switch onChange={this.handleChange} checked={this.state.remote} />
                                         </div>
                                     </div>
@@ -580,7 +580,16 @@ export class JobCreation extends Component {
                                 </label>
                             </div>
                             <div className="form-group col-6" style={{ zIndex: "9999" }}>
-                                <Select isMulti value={this.state.skills} onChange={this.onFilter2} options={SkillSet} styles={this.customStyles} />
+                                <Select isMulti value={this.state.skills} onChange={this.onFilter2} options={SkillSet.sort((a, b) => {
+                                    let fa = a.value.toLowerCase(), fb = b.value.toLowerCase();
+                                    if (fa < fb) {
+                                        return -1;
+                                    }
+                                    if (fa > fb) {
+                                        return 1;
+                                    }
+                                    return 0;
+                                })} styles={this.customStyles} />
                             </div>
                         </div>
                         <div className="form-row">
@@ -724,9 +733,9 @@ export class JobCreation extends Component {
                             </label>
                         </div>
                         {this.state.questions.map((q, index) => {
-                            let responseType = {value: q?.responseType, label: q?.responseType} ||{value: "Yes/No", label: "Yes/No"};
-                            let ans = {value: q?.ans, label: q?.ans} ||{value: "Yes/No", label: "Yes/No"};
-                            return(
+                            let responseType = { value: q?.responseType, label: q?.responseType } || { value: "Yes/No", label: "Yes/No" };
+                            let ans = { value: q?.ans, label: q?.ans } || { value: "Yes/No", label: "Yes/No" };
+                            return (
                                 <div key={index} className="form-row" style={{ marginBottom: "1rem" }}>
                                     <div className="col-12">
                                         <ScreenQuestion
@@ -743,8 +752,8 @@ export class JobCreation extends Component {
                             )
                         })}
                         {this.state.questionCount < 3 &&
-                            <div className="form-row" style={{marginBottom: "1rem"}}>
-                                <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addQuestion}>
+                            <div className="form-row" style={{ marginBottom: "1rem" }}>
+                                <span style={{ cursor: "pointer" }} className="profile-edit" onClick={this.addQuestion}>
                                     + Add Screening Questions
                                 </span>
                             </div>
@@ -771,6 +780,11 @@ export class JobCreation extends Component {
                                         }
                                     </div>
                                     <div className="form-group col-12">
+                                        {this.state.job_post == 0 &&
+                                            <label className="db-txt2" style={{ fontWeight: "500" }}>
+                                                Your position will be posted on HireBeat job board and your company career page.
+                                            </label>
+                                        }
                                         {this.state.job_post == 1 &&
                                             <label className="db-txt2" style={{ fontWeight: "500" }}>
                                                 Standard advertising: your position will appear on ZipRecruiter within 24 hours.
@@ -797,7 +811,7 @@ export class JobCreation extends Component {
                                 />
                             </div>
                         </MyShareModal>
-                        <div style={{ float: "left", marginBottom: "1rem", display: "inline-block"}}>
+                        <div style={{ float: "left", marginBottom: "1rem", display: "inline-block" }}>
                             <button
                                 type="submit"
                                 className="default-btn" style={{ marginBottom: "1.5%", paddingLeft: "25px", marginRight: "1rem" }}
@@ -806,7 +820,7 @@ export class JobCreation extends Component {
                             </button>
                             <button
                                 type="button"
-                                className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#56a3fa", border: "2px solid #56a3fa", paddingTop: "9px", paddingBottom: "8px", paddingLeft:"25px" }}
+                                className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#56a3fa", border: "2px solid #56a3fa", paddingTop: "9px", paddingBottom: "8px", paddingLeft: "25px" }}
                                 onClick={() => { this.saveDraft() }}
                             >
                                 Save Draft

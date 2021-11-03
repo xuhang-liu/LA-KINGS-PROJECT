@@ -1045,7 +1045,7 @@ const ApplyJob = (props) => {
                                             Apply Now
                                         </a>}
                                     <p className="mt-5">Link to this job</p>
-                                    <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #67A3F3", width: "90%", height: "3rem" }}>
+                                    <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #67A3F3", width: "90%", height: "3.7rem" }}>
                                         <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
                                             <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url)) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
                                         </div>
