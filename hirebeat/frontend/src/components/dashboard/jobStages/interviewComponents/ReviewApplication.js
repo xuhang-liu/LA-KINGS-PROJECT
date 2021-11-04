@@ -694,17 +694,15 @@ export class ReviewApplication extends Component {
                             }
                             {this.state.viewResume && (
                                 ((this.props.resumeURL != "") && (this.props.resumeURL != null)) ?
-                                <div className="light-blue-border" style={{ width: "100%", height: "37.5rem" }}>
-                                    <object data={this.props.resumeURL}
-                                    style={{ width: "100%", height: "100%" }} />
+                                    <div class="iframe-container">
+                                        <iframe className="responsive-iframe" src={this.props.resumeURL} />
                                     </div> :
                                     (this.props.applicants[this.props.current].resume_url != "" && this.props.applicants[this.props.current].resume_url != null) ?
-                                    <div className="light-blue-border" style={{ width: "100%", height: "37.5rem" }}>
-                                    <object data={this.props.resumeURL}
-                                    style={{ width: "100%", height: "100%" }} />
-                                    </div> :
+                                        <div class="iframe-container">
+                                            <iframe className="responsive-iframe" src={this.props.applicants[this.props.current].resume_url} />
+                                        </div> :
                                         <div>
-                                            <h3 style={{ marginTop: "10%", textAlign: "center", height: "29.5rem" }}>Candidate does not upload resume.</h3>
+                                            <h3 style={{ marginTop: "10%", textAlign: "center", height: "38rem" }}>Candidate does not upload resume.</h3>
                                         </div>
                             )}
                             {this.state.viewVideo &&
