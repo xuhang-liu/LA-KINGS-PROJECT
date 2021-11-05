@@ -279,7 +279,7 @@ export class ApplicantList extends Component {
                     <div className="container-fluid" style={{ marginTop: "1rem", paddingLeft:"0px"}}>
                         <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             <div style={{ marginLeft: "2rem" }}>
-                                <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: (this.props.curJob.all_invited ? "none" : "inline") }} />
+                                <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: "inline" }} />
                             </div>
                             <div className="col-4"><span>Name</span></div>
                             {/*<div className="col-3"><span style={{marginLeft:"0.5rem"}}>Email</span></div>*/}

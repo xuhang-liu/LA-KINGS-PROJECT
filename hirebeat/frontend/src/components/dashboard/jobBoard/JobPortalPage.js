@@ -207,7 +207,6 @@ export class JobPortalPage extends Component {
                     updateViewStatus={this.props.updateViewStatus}
                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                     position={p.position}
-                    allInvited={p.all_invited}
                     moveCandidateToInterview={this.props.moveCandidateToInterview}
                     sendInterviews={this.props.sendInterviews}
                     checkUserExistence={this.props.checkUserExistence}
@@ -267,7 +266,6 @@ export class JobPortalPage extends Component {
                     updateViewStatus={this.props.updateViewStatus}
                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                     position={p.position}
-                    allInvited={p.all_invited}
                     moveCandidateToInterview={this.props.moveCandidateToInterview}
                     sendInterviews={this.props.sendInterviews}
                     checkUserExistence={this.props.checkUserExistence}

@@ -491,7 +491,7 @@ const ApplicantRow = (props) => {
 
     const refresh = () => {
         let page = props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", ""); props.getPostedJobs(props.user.id, page, "Resume Review") }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "", "", ""); props.getPostedJobs(props.user.id, page, "") }, 300);
         props.updateViewStatus({ "candidate_id": applicants[current].id });
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);

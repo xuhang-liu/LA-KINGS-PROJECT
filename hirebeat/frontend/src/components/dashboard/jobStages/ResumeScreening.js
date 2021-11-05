@@ -435,7 +435,7 @@ export class ResumeScreening extends Component {
                         <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             <div style={{ marginLeft: "2rem" }}>
                                 {!this.props.profile.is_subreviwer &&
-                                    <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: (this.props.curJob.all_invited ? "none" : "inline") }} />
+                                    <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: "inline" }} />
                                 }
                             </div>
                             <div className="col-4"><span>Name</span></div>

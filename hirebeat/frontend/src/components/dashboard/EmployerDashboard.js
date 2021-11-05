@@ -165,7 +165,7 @@ export class EmployerDashboard extends Component {
 
   getPJobs = () => {
     var user = { "id": this.props.user.id };
-    this.props.getPostedJobs(user.id, 1);
+    this.props.getPostedJobs(user.id, 1, sessionStorage.getItem("selectedSubpage") || "");
   }
 
 
@@ -726,7 +726,6 @@ export class EmployerDashboard extends Component {
                         renderJobs={this.renderJobs}
                         renderEmployerSourcing={this.renderEmployerSourcing}
                         subpage={this.state.subpage}
-                        int_dots={this.props.int_dots}
                         job_dots={this.props.job_dots}
                         createMergeLinkToken={this.props.createMergeLinkToken}
                         renderMergeIntergration={this.renderMergeIntergration}
@@ -790,7 +789,6 @@ const mapStateToProps = (state) => {
     isAuthenticated: state.auth_reducer.isAuthenticated,
     loaded: state.question_reducer.loaded,
     postedJobs: state.question_reducer.postedJobs,
-    int_dots: state.question_reducer.int_dots,
     job_dots: state.question_reducer.job_dots,
     dataLoaded: state.auth_reducer.dataLoaded,
     isRecorded: state.auth_reducer.isRecorded,

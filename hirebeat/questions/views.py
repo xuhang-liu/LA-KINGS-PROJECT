@@ -23,6 +23,7 @@ import math
 from django.forms.models import model_to_dict
 import base64
 from itertools import chain
+import time
 
 
 class QuestionAPIView(generics.ListCreateAPIView):
@@ -121,7 +122,6 @@ def add_position(request):
 @api_view(['GET'])
 def get_posted_jobs(request):
     data = {}
-    int_dots = 0
     job_dots = 0
     user_id = int(request.GET.get("user_id", 0))
     page = int(request.GET.get("page", 1))
@@ -204,20 +204,17 @@ def get_posted_jobs(request):
                 applicants = applicants[begin:end]
 
             # get each applicant user_id, if not registered, the user_id will be -1
-            for j in range(len(applicants)):
-                applicant_info = User.objects.filter(
-                    email=applicants[j]["email"]).values()
-                if len(applicant_info) == 1:
-                    applicants[j]["user_id"] = applicant_info[0]["id"]
-                else:
-                    applicants[j]["user_id"] = -1
+            if stage == "Short List":
+                for j in range(len(applicants)):
+                    applicant_info = User.objects.filter(
+                        email=applicants[j]["email"]).values()
+                    if len(applicant_info) == 1:
+                        applicants[j]["user_id"] = applicant_info[0]["id"]
+                    else:
+                        applicants[j]["user_id"] = -1
             # get interview questions for current job
             questions = list(InterviewQuestions.objects.filter(
                 positions_id=positions_id).values())
-            # int_dots > 0 means some applicants finished video interview but haven't been reviewed
-            int_dot = InvitedCandidates.objects.filter(
-                positions_id=positions_id, is_recorded=True, video_count__gt=0, is_viewed=False, comment_status=0).count()
-            int_dots += int_dot
 
             # get subreviewers and external reviews(hiring manager) for this position
             subreviewers = list(SubReviewers.objects.filter(
@@ -226,9 +223,6 @@ def get_posted_jobs(request):
                 position_id=positions_id).values())
             # get position detail
             position = Positions.objects.filter(id=positions_id).values()[0]
-            # all_invited == True means all the applicants in the position were invited for a video interview
-            all_invited = True if InvitedCandidates.objects.filter(
-                positions_id=positions_id, is_invited=True).count() == len(applicants) else False
             job_details = {
                 "position_id": positions_id,
                 "job_id": positions[i].job_id,
@@ -240,7 +234,6 @@ def get_posted_jobs(request):
                 "subreviewers": subreviewers,
                 "ex_reviewers": ex_reviewers,
                 "position": position,
-                "all_invited": all_invited,
                 "total_records": total_records,
                 "total_page": total_page,
             }
@@ -337,13 +330,14 @@ def get_posted_jobs(request):
                 end = page * 15
                 applicants = applicants[begin:end]
             # get each applicant user_id, if not registered, the user_id will be -1
-            for j in range(len(applicants)):
-                applicant_info = User.objects.filter(
-                    email=applicants[j]["email"]).values()
-                if len(applicant_info) == 1:
-                    applicants[j]["user_id"] = applicant_info[0]["id"]
-                else:
-                    applicants[j]["user_id"] = -1
+            if stage == "Short List":
+                for j in range(len(applicants)):
+                    applicant_info = User.objects.filter(
+                        email=applicants[j]["email"]).values()
+                    if len(applicant_info) == 1:
+                        applicants[j]["user_id"] = applicant_info[0]["id"]
+                    else:
+                        applicants[j]["user_id"] = -1
             # get interview questions for current job
             questions = list(InterviewQuestions.objects.filter(
                 positions_id=position_id).values())
@@ -352,9 +346,6 @@ def get_posted_jobs(request):
                 position_id=position_id).values())
             exts = list(ExternalReviewers.objects.filter(
                 position_id=position_id).values())
-            # all_invited == True means all the applicants in the position were invited for a video interview
-            all_invited = True if InvitedCandidates.objects.filter(
-                positions_id=position_id, is_invited=True).count() == len(applicants) else False
             job_details = {
                 "position_id": position_id,
                 "job_id": ex_reviewers[i].position.job_id,
@@ -365,7 +356,6 @@ def get_posted_jobs(request):
                 "questions": questions,
                 "subreviewers": subs,
                 "ex_reviewers": exts,
-                "all_invited": all_invited,
                 "company_name": company_name,
                 "total_records": total_records,
                 "total_page": total_page,
@@ -375,7 +365,6 @@ def get_posted_jobs(request):
             data[position_id] = job_details
     return Response({
         "data": data,
-        "int_dots": int_dots,
         "job_dots": job_dots,
     })
 

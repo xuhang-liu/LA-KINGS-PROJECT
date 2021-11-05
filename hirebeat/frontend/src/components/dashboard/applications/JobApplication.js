@@ -83,7 +83,6 @@ export class JobApplication extends Component {
                                     updateViewStatus={this.props.updateViewStatus}
                                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
                                     position={p.position}
-                                    allInvited={p.all_invited}
                                     moveCandidateToInterview={this.props.moveCandidateToInterview}
                                     sendInterviews={this.props.sendInterviews}
                                     checkUserExistence={this.props.checkUserExistence}
@@ -943,7 +942,7 @@ const JobCard = (props) => {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page);
+        props.getPostedJobs(props.user.id, page, "Video Interview");
         sessionStorage.setItem("intAppPage", String(selectedPage));
     };
 
@@ -956,7 +955,7 @@ const JobCard = (props) => {
                         <button
                             type="button"
                             className="panel-button"
-                            onClick={() => { props.hideView(); props.getPJobs(); sessionStorage.removeItem("intAppPage"); props.getPostedJobs(props.user.id, 1)}}
+                            onClick={() => { props.hideView(); props.getPJobs(); sessionStorage.removeItem("intAppPage"); props.getPostedJobs(props.user.id, 1, "Video Interview")}}
                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                         >
                             <div className="center-items back-to-text">
@@ -1152,7 +1151,7 @@ const JobCard = (props) => {
                         <button
                             type="button"
                             className="panel-button"
-                            onClick={() => { setInvite(false); props.getPostedJobs(props.user.id, (sessionStorage.getItem("intAppPage")?parseInt(sessionStorage.getItem("intAppPage"))+1:1))}}
+                            onClick={() => { setInvite(false); props.getPostedJobs(props.user.id, (sessionStorage.getItem("intAppPage")?parseInt(sessionStorage.getItem("intAppPage"))+1:1), "Video Interview")}}
                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                         >
                             <div className="center-items back-to-text">

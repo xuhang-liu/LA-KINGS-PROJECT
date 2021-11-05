@@ -204,8 +204,6 @@ def get_all_jobs(request):
         # get statistic data for each job
         un_view = True if ApplyCandidates.objects.filter(
             jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
-        all_invited = True if ApplyCandidates.objects.filter(
-            jobs_id=job_id, is_invited=1).count() == len(applicants) else False
 
         # get interview questions for current job
         questions = list(InterviewQuestions.objects.filter(
@@ -221,7 +219,6 @@ def get_all_jobs(request):
             "applicants": applicants,
             "questions": questions,
             "un_view": un_view,
-            "all_invited": all_invited,
             "position": position,
             "total_records": total_records,
             "total_page": total_page,
