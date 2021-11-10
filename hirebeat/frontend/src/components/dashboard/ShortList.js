@@ -377,7 +377,7 @@ const AcceptedCandidate = (props) => {
                                     getPJobs={props.getPJobs}
                                     refreshPage={props.refreshPage}
                                     stars={props.stars[applicant.email]}
-                                    resume_list={Math.max(props.resume_list[applicant.email], applicant.result_rate)} // get max resume score
+                                    resume_list={Math.max(props.resume_list[applicant.email]?props.resume_list[applicant.email]:0, applicant.result_rate?applicant.result_rate:0)} // get max resume score
                                     applicant={applicant}
                                     getApplicantsVideos={props.getApplicantsVideos}
                                     getApplicantsInfo={props.getApplicantsInfo}

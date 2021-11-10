@@ -445,14 +445,14 @@ card-row-third-high {
 .my-full-modal {
   overflow-x: auto;
   overflow-y: auto;
-  min-width: 190vh;
+  min-width: 100vw;
   min-height: 500px;
 }
 
 .my-full-modal1 {
   overflow-x: auto;
   overflow-y: auto;
-  min-width: 190vh;
+  min-width: 100vw;
   min-height: 500px;
 }
 
@@ -2787,7 +2787,8 @@ h5 {
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding-top: 50%; /* 16:9 Aspect Ratio */
+  padding-top: 56%; /* 16:9 Aspect Ratio */
+  min-height: 58vh;
 }
 
 .responsive-iframe {

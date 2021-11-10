@@ -37,7 +37,7 @@ export class NewCandidateAdditionForm extends Component {
         input.onchange = () => {
             let num = input.files.length;
             // limit 10 pdfs at one time
-            if (num > 10) {
+            if (num > 1) {
                 return this.overwhelm();
             }
             // get selected files
@@ -203,7 +203,7 @@ export class NewCandidateAdditionForm extends Component {
     overwhelm = () => {
         confirmAlert({
             title: "Too Many Resumes",
-            message: "You can only upload 10 resumes at most each time",
+            message: "You can only upload one resume each time",
             buttons: [
                 {
                     label: 'Ok'
@@ -407,7 +407,7 @@ export class NewCandidateAdditionForm extends Component {
                                     </div>
                                     <div className="row">
                                         <label className="upload-txt">
-                                            Bulk Upload (.pdf only; max:10)
+                                            Upload (.pdf only; max:1)
                                         </label>
                                     </div>
                                 </div>

@@ -6,6 +6,10 @@ import ReviewStage from "./ReviewStage";
 
 export class ReviewNote extends Component {
 
+    componentDidMount() {
+        this.props.getReviewNote(this.props.positionId, this.props.applicantEmail);
+    }
+
     state = {
         comment: "",
     };
@@ -13,6 +17,9 @@ export class ReviewNote extends Component {
     updateReview = () => {
         if (this.props.filter == "closed") {
             return alert("Current job is closed, you can't make any change");
+        }
+        if (this.state.comment == "" || this.state.comment == null) {
+            return alert("Comments Empty!");
         }
         // identify employer or reviewer
         let reviewer_type = "";
@@ -31,7 +38,7 @@ export class ReviewNote extends Component {
             reviewer_email: this.props.reviewerEmail,
             current_stage: this.props.currentStage,
         }
-        this.setState({comment:""});
+        this.setState({ comment: "" });
         this.props.addReviewNote(data);
         setTimeout(() => { this.props.getReviewNote(this.props.positionId, this.props.applicantEmail) }, 300);
     }
@@ -47,25 +54,24 @@ export class ReviewNote extends Component {
                         user={this.props.user}
                         reviewerType={this.props.reviewerType}
                     />
+                </div>
+                <div>
                     {this.props.currentStage != "All Candidates" &&
                         <div>
-                            <div className="row">
+                            <div className="row mt-4 d-flex justify-content-end">
                                 <textarea
-                                    className="note-border3"
-                                    style={{ height: "10rem", width: "92%" }}
+                                    className="note-border"
+                                    style={{ height: "10rem",width:"100%", marginLeft:"1rem", marginRight:"1rem" }}
                                     type="text"
                                     value={this.state.comment}
                                     placeholder="Write your comment here"
                                     onChange={(e) => { this.setState({ comment: e.target.value }) }}
                                 />
-                            </div>
-                            <div className="row" style={{ justifyContent: "flex-end" }}>
-                                <button
-                                    style={{ marginRight: "5%", marginBottom: "2rem" }}
+                                                                <button
                                     className="default-btn d-flex"
                                     onClick={this.updateReview}
-                                >
-                                    <i className="bx bxs-send"></i>Post
+                                    style={{ marginTop: "0.5rem", marginRight: "1rem", paddingLeft: "25px", backgroundColor: "#ff6b00" }}
+                                >Post
                                 </button>
                             </div>
                         </div>

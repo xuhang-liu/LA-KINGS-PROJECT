@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { MyModal80 } from "./../../DashboardComponents";
+import { MyModal80 } from "../../DashboardComponents";
 import {ResumeEva} from "./ResumeEva";
 import { MyVerticallyCenteredModal } from "./MyVerticallyCenteredModal";
 import { confirmAlert } from 'react-confirm-alert';
 
-export const Applicant = (props) => {
+export const Applicant_Live = (props) => {
     const [current, setCurrent] = useState(props.index);
     const [show, setShow] = useState(props.showCandidateModal);
     const [showResume, setShowResume] = useState(false);
@@ -152,37 +152,11 @@ export const Applicant = (props) => {
                         <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" />
                     </div>
                 }
-                <div className="col-3 mb-1">
+                <div className="col-5 mb-1">
                     <button className="title-button1" style={{ wordBreak: "break-all", color: "#67a3f3" }} onClick={(() => viewResult())}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                        {props.name.split("(")[0].length > 20 ? props.name.split("(")[0].substring(0, 18) + "..." : props.name.split("(")[0]}
+                        {props.name.split("(")[0].length > 30 ? props.name.split("(")[0].substring(0, 28) + "..." : props.name.split("(")[0]}
                     </button>
-                </div>
-                <div className="col-2">
-                    {(isInvited || props.isRecorded) &&
-                        <div className="interview-txt9">
-                            <p style={{ color: "#090d3a" }}>{props.date}</p>
-                        </div>
-                    }
-                </div>
-                <div className="col-3">
-                    {(isInvited || props.isRecorded) ?
-                        (props.isRecorded ?
-                            (props.videoCount > 0 ?
-                                <div className="interview-txt9">
-                                    <p style={{ color: "#090d3a" }}><strong>Completed</strong></p>
-                                </div> :
-                                <div className="interview-txt9">
-                                    <p style={{ color: "#7D7D7D" }}>N/A</p>
-                                </div>) :
-                            <div className="interview-txt9">
-                                <p style={{ color: "#7D7D7D" }}>Pending</p>
-                            </div>
-                        ) :
-                        <div className="interview-txt9">
-                            <p style={{ color: "#7D7D7D" }}>Not Invited</p>
-                        </div>
-                    }
                 </div>
                 {(props.reviewerStageLength > 0) &&
                 <div className="col-3">
@@ -191,63 +165,6 @@ export const Applicant = (props) => {
                         <p style={{fontWeight:"600", color:"#090D3A"}}>Pending</p>
                     }
                 </div>}
-                {/*<div className="col-1">
-                    <div>
-                        <button
-                            onClick={() => viewResult()}
-                            className="interview-txt9"
-                            style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
-                        >
-                        <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
-                        </button>
-                    </div>
-                </div>*/}
-                {/*<div className="col-2">
-                    {props.isRecorded ?
-                        (props.videoCount > 0 ?
-                            <div>
-                                <button
-                                    onClick={() => viewResult()}
-                                    className="interview-txt9"
-                                    style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
-                                >
-                                <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
-                                </button>
-                            </div> :
-                            <div className="interview-txt9">
-                            </div>) :
-                            <div>
-                            {!props.profile.is_subreviwer &&
-                            <div>
-                            {!props.isClosed &&
-                            <div>
-                                <button
-                                    onClick={ () => inviteAgain()}
-                                    className="interview-txt9"
-                                    style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
-                                >
-                                    <i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>
-                                    Resend
-                                </button>
-                            </div>}
-                            </div>}
-                        </div>
-                    }
-                </div>*/}
-                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
-                    <div className="col-1">
-                        {(isInvited && props.filter == "active") &&
-                            <button
-                                onClick={() => inviteAgain()}
-                                className="interview-txt9"
-                                style={{ color: "#67A3F3", border: "none", background: "white", paddingLeft: "0px" }}
-                            >
-                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
-                                Resend
-                            </button>
-                        }
-                    </div>
-                }
                 {(props.reviewerStageLength == 0) &&
                     <div className="col-2">
                         {applicants[current]?.num_votes > 0 &&

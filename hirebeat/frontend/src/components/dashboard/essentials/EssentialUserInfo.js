@@ -192,24 +192,24 @@ export class EssentialUserInfo extends Component {
                       />
                     </div>
                   </div>
-                  <div style={{ marginTop: "1rem", textAlign: "center" }}>
-                  {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
-                    <div className="col d-flex align-items-center">
-                      <button
-                        type="button"
-                        className="panel-button"
-                        onClick={this.props.renderEmployerProfile}
-                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
-                      >
-                        <IconUserText
-                          textSize={"12px"}
-                          textDisplayed={"Dashboard"}
-                          backColor={this.props.subpage == "employerProfile" ? selectBack : defaultBack}
-                          iconSrc={this.props.subpage == "employerProfile" ? selectEmployerDash : nonSelectEmployerDash}
-                          textColor={this.props.subpage == "employerProfile" ? selectEColor : defaultEColor}
-                        />
-                      </button>
-                    </div>}
+                  <div style={{ marginTop: "1rem", textAlign: "center", marginBottom: "0.5rem" }}>
+                    {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
+                      <div className="col d-flex align-items-center">
+                        <button
+                          type="button"
+                          className="panel-button"
+                          onClick={this.props.renderEmployerProfile}
+                          style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                        >
+                          <IconUserText
+                            textSize={"12px"}
+                            textDisplayed={"Company"}
+                            backColor={this.props.subpage == "employerProfile" ? selectBack : defaultBack}
+                            iconSrc={this.props.subpage == "employerProfile" ? selectEmployerDash : nonSelectEmployerDash}
+                            textColor={this.props.subpage == "employerProfile" ? selectEColor : defaultEColor}
+                          />
+                        </button>
+                      </div>}
                   </div>
                   {/*this.props.profile.membership == "Premium" ?
                 <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
@@ -271,7 +271,7 @@ export class EssentialUserInfo extends Component {
                   </div>
                 </div>}
               </div>*/}
-                  <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr>
+                  {/* <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr> */}
                 </div>}
               {this.props.profile.is_employer ?
                 <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
@@ -436,6 +436,23 @@ export class EssentialUserInfo extends Component {
                         </button>
                       </div>
                     </div>}
+                  <div className="row" style={{ marginTop: "1rem" }}>
+                    <div className="col d-flex align-items-start">
+                      <a
+                        className="panel-button"
+                        href="/employer_contact"
+                        style={{ outline: "none", margin: "1%", padding:"0px", background: "none", textDecoration: "none" }}
+                      >
+                        <IconEmployerText
+                          textSize={"12px"}
+                          textDisplayed={"Help"}
+                          backColor={defaultBack}
+                          iconSrc={nonselectHelp}
+                          textColor={defaultEColor}
+                        />
+                      </a>
+                    </div>
+                  </div>
                 </div> :
                 <div style={{ minHeight: "58rem" }}>
                   <div className="row" style={{ marginTop: "30%", marginBottom: "1rem" }}>

@@ -320,7 +320,7 @@ export class EmployerRegister extends Component {
                           <h3 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Get started in minutes</b></h3>
                         </div>
                     <div className="signup-form" style={{minWidth:"14rem"}}>
-                    <form onSubmit={this.onSubmit}>
+                    <form id="Employer_Register_Mobile" onSubmit={this.onSubmit}>
                       <div className="form-group">
                         <input
                             type="text"

@@ -35,7 +35,7 @@ export class BasicInfo extends Component {
     render() {
         return (
             <React.Fragment>
-                <form onSubmit={this.onSubmit}>
+                <form id="Candidates_Register_Desk_Step2" onSubmit={this.onSubmit}>
                         <h1 className="register-title" style={{paddingTop: "0.6rem", textAlign: "left"}}>Step2 &nbsp; <span style={{color: "#67A3F3"}}>Basic Info</span></h1>
                       <div style={{display: "flex"}}>
                           <img style={{width: "86%", height: "3vw"}} src="https://hirebeat-assets.s3.amazonaws.com/step2.png" alt="step flow" />

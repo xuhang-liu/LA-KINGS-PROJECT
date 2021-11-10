@@ -237,6 +237,21 @@ export class JobCreation extends Component {
                 })
             )
         }
+        if (this.state.questions?.length > 0){
+            for (const q of this.state.questions){
+                if (q.question?.length == 0){
+                    return (
+                        confirmAlert({
+                            title: 'Question Empty!',
+                            message: "One of your screening questions is empty, please fill in your question to continue.",
+                            buttons: [
+                                { label: 'OK' },
+                            ]
+                        })
+                    )
+                }
+            }
+        }
         let data = {
             jobTitle: this.state.jobTitle,
             jobId: this.state.jobId,
@@ -729,14 +744,14 @@ export class JobCreation extends Component {
                         </div>
                         <div className="form-row">
                             <label className="db-txt2">
-                                Screen Questions
+                                Screening Questions
                             </label>
                         </div>
                         {this.state.questions.map((q, index) => {
                             let responseType = { value: q?.responseType, label: q?.responseType } || { value: "Yes/No", label: "Yes/No" };
                             let ans = { value: q?.ans, label: q?.ans } || { value: "Yes/No", label: "Yes/No" };
                             return (
-                                <div key={index} className="form-row" style={{ marginBottom: "1rem" }}>
+                                <div key={index} className="form-row" style={{ marginBottom: "1rem" }} required>
                                     <div className="col-12">
                                         <ScreenQuestion
                                             questionObj={q}

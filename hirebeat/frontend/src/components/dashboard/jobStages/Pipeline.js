@@ -412,13 +412,13 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div style={{ marginLeft: "2rem", marginRight: "1rem" }}>
+                        <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
                             <div>
                                 {(this.props.profile.membership == "Premium") &&
                                     <button
                                         className="default-btn1 interview-txt6 mt-4"
                                         onClick={this.inviteExReviewer}
-                                        style={{ paddingLeft: "25px" }}
+                                        style={{ paddingLeft: "25px", width:"13rem" }}
                                     >
                                         + Add Hiring Manager
                                         <span></span>
@@ -478,7 +478,7 @@ export class Pipeline extends Component {
                     </div>
                     {/*Resume Screening*/}
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderResumeScreen} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage2.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 4 }}>
+                        <div onClick={this.props.renderResumeScreen} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage2.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 4 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Resume Review</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.resume_num}</p>
                         </div>
@@ -506,7 +506,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px" }}
+                                            style={{ paddingLeft: "25px", width:"13rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Resume Review")}
                                         >
                                             + Add Reviewer
@@ -567,7 +567,7 @@ export class Pipeline extends Component {
                     </div>
                     {/*Video Interview*/}
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderVideoInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage3.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 3 }}>
+                        <div onClick={this.props.renderVideoInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage3.png")', width: "18.8rem", height: "7.86rem", boxSizing: "border-box", position: "relative", zIndex: 3 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Video Interview</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.video_num}</p>
                         </div>
@@ -595,7 +595,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px" }}
+                                            style={{ paddingLeft: "25px", width:"13rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Video Interview")}
                                         >
                                             + Add Reviewer
@@ -656,7 +656,7 @@ export class Pipeline extends Component {
                     </div>
                     {/*Live Interview*/}
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderLiveInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage4.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 2 }}>
+                        <div onClick={this.props.renderLiveInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage4.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 2 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Live Interview</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.live_num}</p>
                         </div>
@@ -684,7 +684,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px" }}
+                                            style={{ paddingLeft: "25px", width:"13rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Live Interview")}
                                         >
                                             + Add Reviewer
@@ -745,7 +745,7 @@ export class Pipeline extends Component {
                     </div>
                     {/*Short List*/}
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderShortList} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage5.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 1 }}>
+                        <div onClick={this.props.renderShortList} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage5.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 1 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Short List</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.short_num}</p>
                         </div>
@@ -773,7 +773,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px" }}
+                                            style={{ paddingLeft: "25px", width:"13rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Short List")}
                                         >
                                             + Add Reviewer

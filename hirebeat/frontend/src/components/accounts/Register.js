@@ -263,7 +263,7 @@ export class Register extends Component {
                             {this.state.step === 1 &&
                                 <div>
                                     <h1 style={{color:"#56a3fa", fontFamily: "Avenir Next, Segoe UI"}}><b>Start your career with HireBeat</b></h1>
-                                    <form onSubmit={this.checkAccountData}>
+                                    <form id="Candidates_Register_Desk_Step1" onSubmit={this.checkAccountData}>
                                       <div className="form-group">
                                         <input
                                             type="text"
@@ -484,7 +484,7 @@ export class Register extends Component {
                   col-sm-6 offset-sm-3
               ">
 
-                    <form onSubmit={this.onSubmit}>
+                    <form id="Candidates_Register_Mobile" onSubmit={this.onSubmit}>
                       <div className="form-group">
                         <input
                             type="text"

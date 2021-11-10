@@ -39,25 +39,26 @@ export class BasicInfoEdition extends Component {
                                 fontWeight: "600",
                                 marginRight: "0.8rem",
                                 wordWrap: "break-word",
-                                wordBreak: "break-all",
+                                wordBreak: "break-word",
                                 color: "#090D3A",
-                                width: "100%"
+                                width: "100%",
+                                fontSize: "1.5vw"
                             }}
                         >
-                            {(this.props.first_name + " " + this.props.last_name).length > 12 ? (this.props.first_name + " " + this.props.last_name).substring(0, 10) + "..." : (this.props.first_name + " " + this.props.last_name)}
+                            {this.props.first_name + " " + this.props.last_name}
                         </h2>
                     </div>
                 </div>
-                <div style={{ marginTop: "1%", display: "flex", alignItems: "center", marginBottom: "1rem" }}>
+                <div style={{ marginTop: "1%", display: "flex", alignItems: "center", marginBottom: "1vw"}}>
                     <i className="bx bx-phone bx-sm"></i>
-                    <input id="phone" className="basic-info-input" defaultValue={this.props.phone}></input>
+                    <input id="phone" className="basic-info-input" defaultValue={this.props.phone} style={{fontSize:"0.9vw"}}></input>
                 </div>
-                <div className="mb-2" style={{ marginTop: "1%", display: "flex", alignItems: "center", marginBottom: "1rem" }}>
+                <div className="mb-2" style={{ marginTop: "1%", display: "flex", alignItems: "center", marginBottom: "1vw"}}>
                     <i className="bx bx-location-plus bx-sm"></i>
                     <Autocomplete
                         id="location"
                         className="basic-info-input"
-                        style={{width: "100%"}}
+                        style={{width: "100%", fontSize:"0.9vw"}}
                         language="en"
                         apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
                         onPlaceSelected={(place, inputRef, autocomplete) => {
@@ -66,11 +67,11 @@ export class BasicInfoEdition extends Component {
                         defaultValue={this.props.location}
                     />
                 </div>
-                <div className="mb-2" style={{ marginTop: "1%", display: "flex", alignItems: "center", marginBottom: "1rem" }}>
+                <div className="mb-2" style={{ marginTop: "1%", display: "flex", alignItems: "center", marginBottom: "1vw", fontSize:"0.9vw" }}>
                     <i className="bx bxl-linkedin-square bx-sm"></i>
-                    <input id="linkedin" className="basic-info-input" defaultValue={this.props.linkedin}></input>
+                    <input id="linkedin" className="basic-info-input" defaultValue={this.props.linkedin} style={{fontSize:"0.9vw"}}></input>
                 </div>
-                <div className="d-flex justify-content-between" style={{marginTop: "1rem"}}>
+                <div className="d-flex justify-content-between" style={{marginTop: "1vw", paddingBottom:"1vw"}}>
                     <button className="default-btn" style={{paddingLeft: "25px"}} onClick={this.saveUpdate}>Save</button>
                     <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={() => this.props.setIsEdit(false)}>Cancel</button>
                 </div>

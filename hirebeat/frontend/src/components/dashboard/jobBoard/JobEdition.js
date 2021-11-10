@@ -234,6 +234,21 @@ export class JobEdition extends Component {
                 })
             )
         }
+        if (this.state.questions?.length > 0){
+            for (const q of this.state.questions){
+                if (q.question?.length == 0){
+                    return (
+                        confirmAlert({
+                            title: 'Question Empty!',
+                            message: "One of your screening questions is empty, please fill in your question to continue.",
+                            buttons: [
+                                { label: 'OK' },
+                            ]
+                        })
+                    )
+                }
+            }
+        }
         let data = {
             id: this.props.jobInfo.id,
             jobTitle: this.state.jobTitle,
@@ -611,7 +626,7 @@ export class JobEdition extends Component {
                         </div>
                         <div className="form-row">
                             <label className="db-txt2">
-                                Screen Questions
+                                Screening Questions
                             </label>
                         </div>
                         {this.state.questions.map((q, index) => {
@@ -662,6 +677,11 @@ export class JobEdition extends Component {
                                         }
                                     </div>
                                     <div className="form-group col-12">
+                                        {this.state.job_post == 0 &&
+                                            <label className="db-txt2" style={{ fontWeight: "500" }}>
+                                                Your position will be posted on HireBeat job board and your company career page.
+                                            </label>
+                                        }
                                         {this.state.job_post == 1 &&
                                             <label className="db-txt2" style={{ fontWeight: "500" }}>
                                                 Standard advertising: your position will appear on ZipRecruiter within 24 hours.

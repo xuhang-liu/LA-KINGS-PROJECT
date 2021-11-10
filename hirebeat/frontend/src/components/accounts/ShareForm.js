@@ -4,7 +4,7 @@ export class ShareForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <form onSubmit={this.props.registration}>
+                <form id="Candidates_Register_Desk_Step4" onSubmit={this.props.registration}>
                       <h1 className="register-title" style={{paddingTop: "0.6rem", textAlign: "left"}}>Step4 &nbsp; <span style={{color: "#67A3F3"}}>Share with Recruiters</span></h1>
                       <div style={{display: "flex"}}>
                           <img style={{width: "86%", height: "3vw"}} src="https://hirebeat-assets.s3.amazonaws.com/step4.png" alt="step flow" />

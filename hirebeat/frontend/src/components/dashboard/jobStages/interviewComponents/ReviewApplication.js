@@ -3,7 +3,7 @@ import { IconText, AlertModal } from "./../../DashboardComponents";
 import ApplicationVideo from "./../../videos/ApplicationVideo";
 import { connect } from "react-redux";
 import { updateInviteStatus, updateApplicantBasicInfo } from "./../../../../redux/actions/job_actions";
-import { getPostedJobs, getResumeURL, getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation } from "./../../../../redux/actions/question_actions";
+import { getPostedJobs, getResumeURL, getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, addReviewNote } from "./../../../../redux/actions/question_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReviewNote from "./ReviewNote";
@@ -13,6 +13,7 @@ import { MyModalShare2 } from "../../DashboardComponents";
 import axios from "axios";
 import Select from 'react-select';
 import BasicInfoEdition from "./BasicInfoEdition";
+import { withRouter } from "react-router-dom";
 
 export class ReviewApplication extends Component {
     constructor(props) {
@@ -35,6 +36,7 @@ export class ReviewApplication extends Component {
             options4: [],
             showGreenhouseMoveForm: false,
             isEdit: false,
+            comment: "",
         }
     }
 
@@ -116,7 +118,7 @@ export class ReviewApplication extends Component {
         // update
         let page = 1;
         let userId = this.props.user.id;
-        setTimeout(() => {this.props.getPostedJobs(userId, page, this.state.currentStage) }, 300);
+        setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage) }, 300);
         let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
         if (!noShowAgainMove) {
             this.enableSuccessAlert();
@@ -138,7 +140,7 @@ export class ReviewApplication extends Component {
         // update
         let page = 1;
         let userId = this.props.user.id;
-        setTimeout(() => {this.props.getPostedJobs(userId, page, this.state.currentStage);}, 300);
+        setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage); }, 300);
         let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
         if (applicant.is_active) {
             if (!noShowAgainReject) {
@@ -202,7 +204,7 @@ export class ReviewApplication extends Component {
                 .catch(error => {
                     console.log(error)
                 });
-            this.setState({showGreenhouseMoveForm: false});
+            this.setState({ showGreenhouseMoveForm: false });
             // update
             let page = 1;
             let userId = this.props.user.id;
@@ -323,11 +325,11 @@ export class ReviewApplication extends Component {
 
     hideSuccessAlert = () => {
         this.handleAlertChoice();
-        this.setState({showMoveSuccessAlert: false});
+        this.setState({ showMoveSuccessAlert: false });
     }
 
     enableSuccessAlert = () => {
-        this.setState({showMoveSuccessAlert: true});
+        this.setState({ showMoveSuccessAlert: true });
     }
 
     handleAlertChoice = () => {
@@ -343,15 +345,15 @@ export class ReviewApplication extends Component {
 
     hideRejectSuccessAlert = () => {
         this.handleRejectAlertChoice();
-        this.setState({showRejectSuccessAlert: false});
+        this.setState({ showRejectSuccessAlert: false });
     }
 
     enableRejectSuccessAlert = (type) => {
         if (type == "Rejected") {
-            this.setState({showRejectSuccessAlert: true, isReject: true});
+            this.setState({ showRejectSuccessAlert: true, isReject: true });
         }
         else if (type == "Unrejected") {
-            this.setState({showRejectSuccessAlert: true, isReject: false});
+            this.setState({ showRejectSuccessAlert: true, isReject: false });
         }
 
     }
@@ -372,24 +374,55 @@ export class ReviewApplication extends Component {
     }
 
     enableEdit = () => {
-        this.setState({isEdit: true});
+        this.setState({ isEdit: true });
     }
 
     disableEdit = () => {
-        this.setState({isEdit: false});
+        this.setState({ isEdit: false });
+    }
+
+    updateReview = () => {
+        if (this.props.filter == "closed") {
+            return alert("Current job is closed, you can't make any change");
+        }
+        if (this.state.comment == "" || this.state.comment == null) {
+            return alert("Empty Comments!");
+        }
+        // identify employer or reviewer
+        let reviewer_type = "";
+        if (this.props.profile.is_subreviwer) {
+            reviewer_type = "sub_reviewer";
+        }
+        else if (this.props.profile.is_external_reviewer) {
+            reviewer_type = "external_reviewer";
+        }
+        let data = {
+            reviewer: ((this.props.employerProfileDetail.f_name + this.props.employerProfileDetail.l_name)?.length > 0) ?
+            (this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name) :
+            (this.props.user.username),
+            comment: this.state.comment,
+            applicant_email: this.props.applicants[this.props.current].email,
+            position_id: this.props.positionId,
+            reviewer_type: reviewer_type,
+            reviewer_email: this.props.user.email,
+            current_stage: this.props.currentStage,
+        }
+        this.setState({ comment: "" });
+        this.props.addReviewNote(data);
+        setTimeout(() => { this.props.getReviewNote(this.props.positionId, this.props.applicants[this.props.current].email) }, 300);
     }
 
     render() {
         const recordTime = this.props.recordTime;
         const interviewResume = this.props.interviewResume;
         const candidateInfo = this.props.applicants[this.props.current];
-        const resumeScore = Math.max(interviewResume.result_rate, candidateInfo.result_rate);
+        const resumeScore = Math.max((interviewResume.result_rate) ? (interviewResume.result_rate) : 0, (candidateInfo.result_rate) ? (candidateInfo.result_rate) : 0);
         const customStyles1 = {
             control: styles => ({ ...styles, backgroundColor: '#fff' }),
             singleValue: styles => ({
                 ...styles,
                 color: '#4A6F8A',
-                fontSize: '0.9375rem',
+                fontSize: '0.9375vw',
                 fontFamily: 'Avenir Next,Segoe UI, sans-serif',
                 fontWeight: '500'
             }),
@@ -400,105 +433,104 @@ export class ReviewApplication extends Component {
                 <div className="row" style={{ display: "flex" }}>
                     <div className="col-3 pl-3 mt-3 pr-2">
                         {!this.state.isEdit ?
-                        <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", height: "25%", minHeight: "14rem" }}>
-                            <div className="row mb-3" style={{ marginBottom: "2%" }}>
-                                <div className="col d-flex align-items-center">
-                                    <h4
-                                        style={{
-                                            fontWeight: "bold",
-                                            marginRight: "0.8rem",
-                                            wordWrap: "break-word",
-                                            wordBreak: "break-all",
-                                            width: "100%",
-                                        }}
-                                    >
-                                        {this.props.applicants[this.props.current].name.length > 14 ?
-                                            this.props.applicants[this.props.current].name.substring(0, 12) + "..." :
-                                            this.props.applicants[this.props.current].name}
-                                        <span style={{float: "right"}}><i className="bx bx-edit-alt" style={{cursor: "pointer"}} onClick={this.enableEdit}></i></span>
-                                    </h4>
+                            <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", minHeight: "20vh" }}>
+                                <div className="row mb-3" style={{ marginBottom: "2%" }}>
+                                    <div className="col d-flex align-items-center">
+                                        <h4
+                                            style={{
+                                                fontWeight: "bold",
+                                                marginRight: "0.8vw",
+                                                wordWrap: "break-word",
+                                                wordBreak: "break-word",
+                                                width: "100%",
+                                                fontSize: "1.5vw"
+                                            }}
+                                        >
+                                            {this.props.applicants[this.props.current].name}
+                                            <span style={{ float: "right" }}><i className="bx bx-edit-alt" style={{ cursor: "pointer" }} onClick={this.enableEdit}></i></span>
+                                        </h4>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="row mb-2" style={{ marginTop: "1%" }}>
-                                <div className="col d-flex align-items-center">
-                                    <IconText
-                                        iconName={"bx bx-phone bx-sm"}
-                                        textDisplayed={this.props.applicants[this.props.current].phone}
-                                        textSize={"12px"}
-                                        textColor={"#0B3861"}
-                                        iconMargin={"3px"}
-                                    />
+                                <div className="row mb-2" style={{ marginTop: "1%" }}>
+                                    <div className="col d-flex align-items-center">
+                                        <IconText
+                                            iconName={"bx bx-phone bx-sm"}
+                                            textDisplayed={this.props.applicants[this.props.current].phone}
+                                            textSize={"0.9vw"}
+                                            textColor={"#0B3861"}
+                                            iconMargin={"3px"}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="row mb-2" style={{ marginTop: "1%" }}>
-                                <div className="col d-flex align-items-center">
-                                    <IconText
-                                        iconName={"bx bx-envelope bx-sm"}
-                                        textDisplayed={this.props.applicants[this.props.current].email}
-                                        textSize={"12px"}
-                                        textColor={"#0B3861"}
-                                        iconMargin={"5px"}
-                                    />
+                                <div className="row mb-2" style={{ marginTop: "1%" }}>
+                                    <div className="col d-flex align-items-center">
+                                        <IconText
+                                            iconName={"bx bx-envelope bx-sm"}
+                                            textDisplayed={this.props.applicants[this.props.current].email}
+                                            textSize={"0.9vw"}
+                                            textColor={"#0B3861"}
+                                            iconMargin={"5px"}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="row mb-2" style={{ marginTop: "1%" }}>
-                                <div className="col d-flex align-items-center">
-                                    <IconText
-                                        iconName={"bx bx-location-plus bx-sm"}
-                                        textDisplayed={this.props.applicants[this.props.current].location}
-                                        textSize={"12px"}
-                                        textColor={"#0B3861"}
-                                        iconMargin={"3px"}
-                                    />
+                                <div className="row mb-2" style={{ marginTop: "1%" }}>
+                                    <div className="col d-flex align-items-center">
+                                        <IconText
+                                            iconName={"bx bx-location-plus bx-sm"}
+                                            textDisplayed={this.props.applicants[this.props.current].location}
+                                            textSize={"0.9vw"}
+                                            textColor={"#0B3861"}
+                                            iconMargin={"3px"}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            {this.props.applicants[this.props.current].linkedinurl != null && this.props.applicants[this.props.current].linkedinurl != "" ?
-                                <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
-                                    <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#67A3F3", marginRight: "3px" }}></i>
-                                    <a style={{ fontSize: "0.7rem", color: "#67A3F3", fontWeight: "500" }} href={this.props.applicants[this.props.current].linkedinurl} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
-                                </div> :
-                                <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
-                                    <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#979797", marginRight: "3px" }}></i>
-                                    <p style={{ fontSize: "0.7rem", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
-                                </div>
-                            }
-                        </div> :
-                        <BasicInfoEdition
-                            name={this.props.applicants[this.props.current].name}
-                            phone={this.props.applicants[this.props.current].phone}
-                            email={this.props.applicants[this.props.current].email}
-                            location={this.props.applicants[this.props.current].location}
-                            linkedin={this.props.applicants[this.props.current].linkedinurl}
-                            jobId={this.props.jobsId}
-                            selectedPage={this.props.selectedPage}
-                            selectedCurrentStage={this.props.currentStage}
-                            user={this.props.user}
-                            getPostedJobs={this.props.getPostedJobs}
-                            enableEdit={this.enableEdit}
-                            disableEdit={this.disableEdit}
-                            updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
-                        />
+                                {this.props.applicants[this.props.current].linkedinurl != null && this.props.applicants[this.props.current].linkedinurl != "" ?
+                                    <div style={{ display: "flex", alignItems: "center", marginTop: "1%", paddingBottom: "1%" }}>
+                                        <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#67A3F3", marginRight: "3px" }}></i>
+                                        <a style={{ fontSize: "0.7vw", color: "#67A3F3", fontWeight: "500" }} href={this.props.applicants[this.props.current].linkedinurl} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
+                                    </div> :
+                                    <div style={{ display: "flex", alignItems: "center", marginTop: "1%", paddingBottom: "1%" }}>
+                                        <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#979797", marginRight: "3px" }}></i>
+                                        <p style={{ fontSize: "0.7vw", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
+                                    </div>
+                                }
+                            </div> :
+                            <BasicInfoEdition
+                                name={this.props.applicants[this.props.current].name}
+                                phone={this.props.applicants[this.props.current].phone}
+                                email={this.props.applicants[this.props.current].email}
+                                location={this.props.applicants[this.props.current].location}
+                                linkedin={this.props.applicants[this.props.current].linkedinurl}
+                                jobId={this.props.jobsId}
+                                selectedPage={this.props.selectedPage}
+                                selectedCurrentStage={this.props.currentStage}
+                                user={this.props.user}
+                                getPostedJobs={this.props.getPostedJobs}
+                                enableEdit={this.enableEdit}
+                                disableEdit={this.disableEdit}
+                                updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
+                            />
                         }
-                        <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "10px", width: "100%", position: "relative", minHeight: "28rem" }}>
-                            <h2
+                        <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "10px", width: "100%", position: "relative", minHeight: "36vh" }}>
+                            {/* <h2
                                 style={{
                                     fontWeight: "600",
-                                    marginRight: "0.8rem",
+                                    marginRight: "0.8vw",
                                     wordWrap: "break-word",
                                     wordBreak: "break-all",
                                     color: "#090D3A",
-                                    fontSize: "1.5rem",
+                                    fontSize: "1.5vw",
                                 }}
                             >
                                 Evaluation Scale
-                            </h2>
+                            </h2> */}
                             <div>
                                 {/*(this.props.recordTime != "" && this.props.recordTime != null) &&
                                     <div className="row mt-5 pl-3">
                                         Recorded on: {this.props.recordTime.substring(0, 10)}
                                     </div>
                                 */}
-                                <div className="mt-5 px-4" style={{ width: "75%", marginLeft: "auto", marginRight: "auto" }}>
+                                <div className="mt-3 px-4" style={{ width: "75%", marginLeft: "auto", marginRight: "auto" }}>
                                     {this.renderResume(resumeScore)}
                                 </div>
                                 <div className="row" style={{ justifyContent: "center" }}>
@@ -518,38 +550,38 @@ export class ReviewApplication extends Component {
                                     </button>}
                                 </div>*/}
                             </div>
-                            <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
-                                <p style={{ color: "#090d3a" }}>Current Stage: {this.props.applicants[this.props.current].current_stage}</p>
+                            <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
+                                <p style={{ color: "#090d3a", fontSize: "1vw" }}>Current Stage: {this.props.applicants[this.props.current].current_stage}</p>
                             </div>
                             {this.props.reviewer_type != "subr" &&
                                 <div>
-                                    <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                    <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                         {(this.props.gh_current_stage_id == "" || this.props.gh_current_stage_id == null) ?
                                             <button
                                                 className="default-btn1"
-                                                style={{ width: "13rem", paddingLeft: "25px" }}
+                                                style={{ width: "13vw", paddingLeft: "25px" }}
                                                 onClick={this.props.filter == "active" ? this.openMoveForm : this.jobClosedAlert}>
                                                 Move Stage
                                             </button> :
                                             <button
                                                 className="default-btn1"
-                                                style={{ width: "13rem", paddingLeft: "25px" }}
+                                                style={{ width: "13vw", paddingLeft: "25px" }}
                                                 onClick={this.props.filter == "active" ? this.openGreenhouseMoveForm : this.jobClosedAlert}>
                                                 Move Stage
                                             </button>
                                         }
                                     </div>
-                                    <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                    <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                         {(this.props.gh_current_stage_id == "" || this.props.gh_current_stage_id == null) ?
                                             <button
                                                 className="default-btn ml-2"
-                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "13rem" }}
+                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "13vw" }}
                                                 onClick={this.props.filter == "active" ? (() => { this.rejectCandidates(); this.props.refresh() }) : this.jobClosedAlert}>
                                                 <i class='bx bx-calendar-x' style={{ color: "#090D3A" }}></i>Reject
                                             </button> :
                                             <button
                                                 className="default-btn ml-2"
-                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "13rem" }}
+                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "13vw" }}
                                                 onClick={this.props.filter == "active" ? (() => { this.openRejectNoteForm(); this.props.refresh() }) : this.jobClosedAlert}>
                                                 <i class='bx bx-calendar-x' style={{ color: "#090D3A" }}></i>Reject
                                             </button>
@@ -567,11 +599,11 @@ export class ReviewApplication extends Component {
                                 moveCandidates={this.moveCandidates}
                             />
                             <MyModalShare2 show={this.state.showRejectNote} onHide={() => this.setState({ showRejectNote: false })}>
-                                <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
+                                <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2vw" }}>
                                     <form onSubmit={(e) => { this.greenhouserejectCandidates(e); this.setState({ showRejectNote: false }); }}>
                                         <h3 className="interview-h3">Rejection Notes</h3>
                                         <p>The candidate's rejection status and rejection reason will be synchronized at Greenhouse.</p>
-                                        <p style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2rem" }}>Rejection notes:</p>
+                                        <p style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2vw" }}>Rejection notes:</p>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -583,73 +615,91 @@ export class ReviewApplication extends Component {
                                                 fontFamily: "Avenir Next, Segoe UI",
                                                 background: "#FFFFFF",
                                                 borderRadius: "5px",
-                                                paddingLeft: "1rem",
+                                                paddingLeft: "1vw",
                                                 border: "2px solid #E8EDFC",
                                                 boxSizing: "border-box",
-                                                marginBottom: "1rem"
+                                                marginBottom: "1vw"
                                             }}
                                             required />
                                         <div className="row d-flex justify-content-center">
                                             <button type="submit" className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
-                                            <button type="button" onClick={() => this.setState({ showRejectNote: false })} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem" }}>Cancel</button>
+                                            <button type="button" onClick={() => this.setState({ showRejectNote: false })} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2vw" }}>Cancel</button>
                                         </div>
                                     </form>
                                 </div>
                             </MyModalShare2>
                             <MyModalShare2 show={this.state.showGreenhouseMoveForm} onHide={() => this.setState({ showGreenhouseMoveForm: false })}>
-                                <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem", paddingBottom: "4rem" }}>
+                                <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2vw", paddingBottom: "4vw" }}>
                                     <h3 className="interview-h3">Move Stage</h3>
                                     <p className="interview-p">The candidate's stage status will be synchronized at Greenhouse.</p>
-                                    <p style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2rem" }}>Move stage:</p>
+                                    <p style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2vw" }}>Move stage:</p>
                                     <Select value={this.state.category4} onChange={this.onFilter4} options={this.state.options4} className="select-category4" styles={customStyles1} />
                                     <div className="row d-flex justify-content-center">
                                         <button onClick={() => { this.greenhouseMoveCandidates(); this.setState({ showGreenhouseMoveForm: false }) }} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
-                                        <button onClick={() => this.setState({ showGreenhouseMoveForm: false })} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem" }}>Cancel</button>
+                                        <button onClick={() => this.setState({ showGreenhouseMoveForm: false })} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2vw" }}>Cancel</button>
                                     </div>
                                 </div>
                             </MyModalShare2>
                             {(this.props.reviewer_type == "subr") &&
                                 <div>
                                     {this.props.curEvaluation.evaluation == 1 ?
-                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                        <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                             <button
                                                 className="default-btn btn-success ml-2"
-                                                style={{ width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", background: "#13C4A1" }}>
-                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-white.png" style={{ width: "1.25rem", marginRight: "0.5rem" }} />
-                                                <p style={{ fontSize: "0.8rem", color: "#ffffff" }}>Qualified</p>
+                                                style={{ width: "9vw", fontSize: "0.8vw", display: "flex", paddingLeft: "25px", background: "#13C4A1" }}>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good-white.png" style={{ width: "1.25vw", marginRight: "0.5vw" }} />
+                                                <p style={{ fontSize: "0.8vw", color: "#ffffff" }}>Qualified</p>
                                             </button>
                                         </div> :
-                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                        <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                             <button
                                                 className="default-btn ml-2"
-                                                style={{ color: "#090D3A", backgroundColor: "#ffffff", width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }}
+                                                style={{ color: "#090D3A", backgroundColor: "#ffffff", width: "9vw", fontSize: "0.8vw", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }}
                                                 onClick={this.props.filter == "active" ? () => { this.updateEvaluation(1) } : this.jobClosedAlert}>
-                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good.png" style={{ width: "1.25rem", marginRight: "0.5rem" }} />
-                                                <p style={{ fontSize: "0.8rem", color: "#13C4A1" }}>Qualified</p>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/good.png" style={{ width: "1.25vw", marginRight: "0.5vw" }} />
+                                                <p style={{ fontSize: "0.8vw", color: "#13C4A1" }}>Qualified</p>
                                             </button>
                                         </div>
                                     }
                                     {this.props.curEvaluation.evaluation == 2 ?
-                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                        <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                             <button
                                                 className="default-btn btn-danger ml-2"
-                                                style={{ width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", background: "#E42424" }}>
-                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-white.png" style={{ width: "1.25rem", marginRight: "0.5rem", paddingTop: "2%" }} />
-                                                <p style={{ fontSize: "0.8rem", color: "#ffffff" }}>Unqualified</p>
+                                                style={{ width: "9vw", fontSize: "0.8vw", display: "flex", paddingLeft: "25px", background: "#E42424" }}>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad-white.png" style={{ width: "1.25vw", marginRight: "0.5vw", paddingTop: "2%" }} />
+                                                <p style={{ fontSize: "0.8vw", color: "#ffffff" }}>Unqualified</p>
                                             </button>
                                         </div> :
-                                        <div className="row" style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                                        <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                             <button
                                                 className="default-btn ml-2"
-                                                style={{ color: "#090D3A", backgroundColor: "#ffffff", width: "9rem", fontSize: "0.8rem", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }}
+                                                style={{ color: "#090D3A", backgroundColor: "#ffffff", width: "9vw", fontSize: "0.8vw", display: "flex", paddingLeft: "25px", boxShadow: "2px 2px 10px rgba(128, 128, 128, 0.16)" }}
                                                 onClick={this.props.filter == "active" ? () => { this.updateEvaluation(2) } : this.jobClosedAlert}>
-                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad.png" style={{ width: "1.25rem", marginRight: "0.5rem", paddingTop: "2%" }} />
-                                                <p style={{ fontSize: "0.8rem", color: "#E42424" }}>Unqualified</p>
+                                                <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/bad.png" style={{ width: "1.25vw", marginRight: "0.5vw", paddingTop: "2%" }} />
+                                                <p style={{ fontSize: "0.8vw", color: "#E42424" }}>Unqualified</p>
                                             </button>
                                         </div>
                                     }
                                 </div>
                             }
+                            <div>
+                                <div className="row mt-4 d-flex justify-content-end">
+                                    <textarea
+                                        className="note-border"
+                                        style={{ height: "10vw", width: "100%", marginLeft: "1rem", marginRight: "1rem", fontSize:"0.9vw" }}
+                                        type="text"
+                                        value={this.state.comment}
+                                        placeholder="Write your comment here"
+                                        onChange={(e) => { this.setState({ comment: e.target.value }) }}
+                                    />
+                                    <button
+                                        className="default-btn"
+                                        onClick={this.updateReview}
+                                        style={{fontSize:"1vw", marginTop:"0.5rem", marginRight:"1rem", paddingLeft:"25px", backgroundColor:"#ff6b00"}}
+                                    >Post
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="col-9 mt-3 pl-3 pr-2" >
@@ -702,7 +752,7 @@ export class ReviewApplication extends Component {
                                             <iframe className="responsive-iframe" src={this.props.applicants[this.props.current].resume_url} />
                                         </div> :
                                         <div>
-                                            <h3 style={{ marginTop: "10%", textAlign: "center", height: "38rem" }}>Candidate does not upload resume.</h3>
+                                            <h3 style={{ marginTop: "10%", textAlign: "center", height: "42rem" }}>Candidate does not upload resume.</h3>
                                         </div>
                             )}
                             {this.state.viewVideo &&
@@ -736,9 +786,9 @@ export class ReviewApplication extends Component {
                                     positionId={this.props.positionId}
                                     applicantEmail={this.props.applicants[this.props.current].email}
                                     reviewer={
-                                        ((this.props.employerProfileDetail.f_name + this.props.employerProfileDetail.l_name)?.length > 0)?
-                                        (this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name):
-                                        (this.props.user.username)
+                                        ((this.props.employerProfileDetail.f_name + this.props.employerProfileDetail.l_name)?.length > 0) ?
+                                            (this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name) :
+                                            (this.props.user.username)
                                     }
                                     profile={this.props.profile}
                                     reviewerEmail={this.props.user.email}
@@ -753,7 +803,7 @@ export class ReviewApplication extends Component {
                     </div>
                 </div>
                 {this.props.hasSwitch &&
-                    <div className="row" style={{ marginTop: "1.5rem", marginBottom: "1rem" }}>
+                    <div className="row" style={{ marginTop: "1.5vw", marginBottom: "1vw" }}>
                         <div className="col-3" />
                         <div className="col-9" style={{ textAlign: "center" }}>
                             <button
@@ -767,7 +817,7 @@ export class ReviewApplication extends Component {
                                 className={this.props.current == this.props.end ? "disable-btn" : "enable-btn"}
                                 disabled={this.props.current == this.props.end ? true : false}
                                 onClick={() => this.props.viewNextResult(this.props.current)}
-                                style={{ marginLeft: "2rem" }}
+                                style={{ marginLeft: "2vw" }}
                             >
                                 Next &gt;
                             </button>
@@ -776,29 +826,29 @@ export class ReviewApplication extends Component {
                 }
                 {/*  move success alert prompt */}
                 <AlertModal show={this.state.showMoveSuccessAlert} onHide={this.hideSuccessAlert}>
-                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2vw" }}>
                         <h3 className="interview-h3">Move to next stage Success</h3>
-                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have moved the candidates to selected stage successfully.</p>
-                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
-                            <input id="alertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                        <p className="interview-p" style={{ marginBottom: "0.5vw" }}>You have moved the candidates to selected stage successfully.</p>
+                        <div className="interview-p align-center" style={{ marginBottom: "1vw" }}>
+                            <input id="alertCheckbox" type="checkbox" style={{ marginRight: "1vw" }} />
                             Don't show again
                         </div>
                         <div className="row d-flex justify-content-center">
-                            <button onClick={this.hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                            <button onClick={this.hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
                         </div>
                     </div>
                 </AlertModal>
                 {/*  reject success alert prompt */}
                 <AlertModal show={this.state.showRejectSuccessAlert} onHide={this.hideRejectSuccessAlert}>
-                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2vw" }}>
                         <h3 className="interview-h3">Candidate {this.state.isReject ? "Rejected!" : "Unrejected!"}</h3>
-                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have {this.state.isReject ? "rejected!" : "unrejected!"} the candidates successfully.</p>
-                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
-                            <input id="rejectAlertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                        <p className="interview-p" style={{ marginBottom: "0.5vw" }}>You have {this.state.isReject ? "rejected!" : "unrejected!"} the candidates successfully.</p>
+                        <div className="interview-p align-center" style={{ marginBottom: "1vw" }}>
+                            <input id="rejectAlertCheckbox" type="checkbox" style={{ marginRight: "1vw" }} />
                             Don't show again
                         </div>
                         <div className="row d-flex justify-content-center">
-                            <button onClick={this.hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                            <button onClick={this.hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
                         </div>
                     </div>
                 </AlertModal>
@@ -841,8 +891,8 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
     getPostedJobs, getResumeURL, getReviewNote, addOrUpdateReviewerEvaluation,
     getReviewerEvaluation, getCurrentReviewerEvaluation, updateInviteStatus,
-    updateApplicantBasicInfo
-})(ReviewApplication);
+    updateApplicantBasicInfo, addReviewNote
+})(ReviewApplication));

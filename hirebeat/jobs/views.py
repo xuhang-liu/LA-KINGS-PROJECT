@@ -196,10 +196,11 @@ def get_all_jobs(request):
             if reviewerEvaluation:
                 applicant["reviewer_review_status"] = True
             # get team vote rate
-            applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
-                applicant_email=applicant["email"], position_id=positions_id, evaluation=1).count()
-            applicant["num_votes"] = ReviewerEvaluation.objects.filter(
-                applicant_email=applicant["email"], position_id=positions_id).count()
+            if subpage != "":
+                applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
+                    applicant_email=applicant["email"], position_id=positions_id, evaluation=1, current_stage=subpage).count()
+                applicant["num_votes"] = ReviewerEvaluation.objects.filter(
+                    applicant_email=applicant["email"], position_id=positions_id, current_stage=subpage).count()
 
         # get statistic data for each job
         un_view = True if ApplyCandidates.objects.filter(

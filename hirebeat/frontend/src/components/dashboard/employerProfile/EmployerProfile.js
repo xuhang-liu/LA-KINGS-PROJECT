@@ -80,6 +80,7 @@ export class EmployerProfile extends Component {
         companySize: {value: this.props.employerProfileDetail.company_size, label: this.props.employerProfileDetail.company_size},
         location: "",
         industry: {value: this.props.employerProfileDetail.company_type, label: this.props.employerProfileDetail.company_type},
+        src: (this.props.employerProfileDetail.logo_url==null || this.props.employerProfileDetail.logo_url == "")?"":this.props.employerProfileDetail.logo_url,
     }
 
     customStyles = {
@@ -304,7 +305,7 @@ export class EmployerProfile extends Component {
             <React.Fragment>
                 <div className="profile-container">
                     <div className="row" style={{ marginBottom: "30px" }}>
-                        <div className="ml-2"><h3><b><i className="bx-fw bx bxs-dashboard ard"></i><span className="ml-2">Dashboard</span></b></h3></div>
+                        <div className="ml-2"><h3><b><i className="bx-fw bx bxs-dashboard ard"></i><span className="ml-2">Company</span></b></h3></div>
                         <div><h3><b>
                             {this.props.profile.membership == "Premium" ?
                                 <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
@@ -410,6 +411,7 @@ export class EmployerProfile extends Component {
                                                     onClose={this.onClose}
                                                     onBeforeFileLoad={this.onBeforeFileLoad}
                                                     mimeTypes={"image/jpeg,image/png,image/jpg"}
+                                                    src={this.state.src}
                                                 />
                                                 {/*<img src={this.state.preview} alt="Preview" />*/}
                                             </div>

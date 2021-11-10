@@ -48,7 +48,7 @@ export class EmployerRegisterCompanyInfoForm extends Component {
                 <div className="d-flex justify-content-center" style={{marginBottom:"3rem", paddingTop:"3rem"}}>
                     <img style={{height: "3vw"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/registration_step2.png" />
                 </div>
-                <form onSubmit={this.props.registration}>
+                <form id="Employer_Register_Desk_Step2" onSubmit={this.props.registration}>
                     <div className="form-group">
                         <div class="register-input-placeholder">
                             <input

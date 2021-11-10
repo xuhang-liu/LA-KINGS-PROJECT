@@ -55,7 +55,7 @@ class MoveForm extends Component {
                                 <button onClick={this.props.moveCandidates} className="default-btn" style={{ backgroundColor: "#090d3a", paddingLeft: "25px" }}>Confirm</button>
                             </div>
                             <div className="col-6 d-flex justify-content-start">
-                                <button onClick={this.props.hideMoveForm} className="default-btn" style={{ backgroundColor: "#979797", paddingLeft: "25px" }}>Cancel</button>
+                                <button onClick={() =>{this.props.hideMoveForm(); this.setState({currentStage:this.props.currentStage })}} className="default-btn" style={{ backgroundColor: "#979797", paddingLeft: "25px" }}>Cancel</button>
                             </div>
                         </div>
                     </div>

@@ -158,10 +158,10 @@ class ApplicationVideoPanel extends Component {
                                 </div>
                             </div>
                             <div className="row pl-2 mt-3">
-                                    <div className="col-3">
-                                        <h5 style={{fontWeight:"500", color:"#090D3A"}}>Rating</h5>
+                                    <div className="col-5">
+                                        <h5 style={{fontWeight:"500", color:"#090D3A"}}>Your Rating</h5>
                                     </div>
-                                    <div className="col-9">
+                                    <div className="col-7">
                                         <Stars
                                             stars={this.props.stars[this.state.page]}
                                             changeStar={this.handleRating}

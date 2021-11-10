@@ -459,7 +459,7 @@ const ApplyJob = (props) => {
                                         </div>
                                     }
                                     {(Applied && !props.auth.isAuthenticated) &&
-                                        <form onSubmit={applySubmit}>
+                                        <form id="Candidates_Apply_Job_Desk_No_Login" onSubmit={applySubmit}>
                                             <div>
                                                 <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
@@ -747,7 +747,7 @@ const ApplyJob = (props) => {
                                         </form>
                                     }
                                     {(Applied && props.auth.isAuthenticated) &&
-                                        <form onSubmit={applySubmit1}>
+                                        <form id="Candidates_Apply_Job_Desk_With_Login" onSubmit={applySubmit1}>
                                             <div>
                                                 <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
@@ -1237,7 +1237,7 @@ const ApplyJob = (props) => {
                                         </div>
                                     }
                                     {(Applied && !props.auth.isAuthenticated) &&
-                                        <form onSubmit={applySubmit}>
+                                        <form id="Candidates_Apply_Job_Mobile_No_Login" onSubmit={applySubmit}>
                                             <div className="mt-3">
                                                 <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>
@@ -1526,7 +1526,7 @@ const ApplyJob = (props) => {
                                         </form>
                                     }
                                     {(Applied && props.auth.isAuthenticated) &&
-                                        <form onSubmit={applySubmit1}>
+                                        <form id="Candidates_Apply_Job_Mobile_With_Login" onSubmit={applySubmit1}>
                                             <div className="mt-3">
                                                 <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-3 mb-5" style={{ color: "#090D3A" }}>

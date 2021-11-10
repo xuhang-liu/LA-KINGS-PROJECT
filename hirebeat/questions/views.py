@@ -178,10 +178,11 @@ def get_posted_jobs(request):
                 # get vote rate
                 applicant["num_vote_yes"] = 0
                 applicant["num_votes"] = 0
-                applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
-                    applicant_email=applicant["email"], position_id=positions_id, evaluation=1).count()
-                applicant["num_votes"] = ReviewerEvaluation.objects.filter(
-                    applicant_email=applicant["email"], position_id=positions_id).count()
+                if stage != "":
+                    applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
+                        applicant_email=applicant["email"], position_id=positions_id, evaluation=1, current_stage=stage).count()
+                    applicant["num_votes"] = ReviewerEvaluation.objects.filter(
+                        applicant_email=applicant["email"], position_id=positions_id, current_stage=stage).count()
                 # get applicant application information from ApplyCandidates table
                 jobs = Jobs.objects.filter(positions=position, user_id=user_id)
                 if len(jobs) > 0:

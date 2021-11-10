@@ -73,6 +73,11 @@ export default function (state = initialState, action) {
         userfullname: action.payload,
       };
     case AUTH_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: false,
+      }
     case LOGIN_FAIL:
     case REGISTER_FAIL:
       localStorage.removeItem("token");

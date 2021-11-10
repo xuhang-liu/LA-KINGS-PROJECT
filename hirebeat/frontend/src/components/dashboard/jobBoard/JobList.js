@@ -55,13 +55,13 @@ export class JobList extends Component {
                     <div>
                         {(!this.props.view) ?
                             <div className="chart-bg1 container-fluid mt-5 pt-3 pb-3">
-                                <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex" }}>
-                                    <div style={{ position: "absolute", left: "2.2rem", marginTop: "0.4rem" }}><i className="bx bx-search bx-sm"></i></div>
+                                <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft:"1rem" }}>
+                                    <div style={{ position: "absolute", left: "3.2rem", marginTop: "0.4rem" }}><i className="bx bx-search bx-sm"></i></div>
                                     <div>
                                         <input placeholder="Search jobs" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
                                     </div>
                                 </div>
-                                <div className="container-fluid" style={{ marginTop: "1rem" }}>
+                                <div className="container-fluid" style={{ marginTop: "2rem" }}>
                                     <div className="row interview-txt7" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "0.5rem" }}>
                                         <div className="col-2"><span style={{ marginLeft: "1.2rem" }}><Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} className="select-category-jobs-closed" placeholder={"Status"} /></span></div>
                                         <div className="col-4 d-flex justify-content-start pl-5">Job Title</div>

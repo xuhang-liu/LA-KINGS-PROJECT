@@ -121,7 +121,7 @@ class CandidateApplication extends Component {
         const recordTime = this.props.recordTime;
         const interviewResume = this.props.interviewResume;
         const candidateInfo = this.props.applicants[this.props.current];
-        const resumeScore = Math.max(interviewResume.result_rate, candidateInfo.result_rate);
+        const resumeScore = Math.max(interviewResume.result_rate?interviewResume.result_rate:0, candidateInfo.result_rate?candidateInfo.result_rate:0);
         return (
             <div className="container-fluid ml-5 mb-5" style={{ width: '95%' }}>
                 <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-microphone"></i><span className="ml-2">Interview / Review Candidate</span></b></h3></div>

@@ -266,7 +266,7 @@ export class ProfileForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <form onSubmit={this.moveToNext}>
+                <form id="Candidates_Register_Desk_Step3" onSubmit={this.moveToNext}>
                       <h1 className="register-title" style={{paddingTop: "0.6rem", textAlign: "left"}}>Step3 &nbsp; <span style={{color: "#67A3F3"}}>Profile</span></h1>
                       <div style={{display: "flex"}}>
                           <img style={{width: "86%", height: "3vw"}} src="https://hirebeat-assets.s3.amazonaws.com/step3.png" alt="step flow" />

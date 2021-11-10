@@ -12,7 +12,7 @@ export class EmployerRegisterInfoForm extends Component {
                     <h1 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
                     <h3 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center", fontSize: "1.125rem"}}><b>Start your 14-Day Free Trial</b></h3>
                 </div>
-                <form onSubmit={this.props.checkAccountData}>
+                <form id="Employer_Register_Desk_Step1" onSubmit={this.props.checkAccountData}>
                     <div className="form-group">
                         <input
                             type="text"

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AlertModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 //import { ResumeEva } from "./interviewComponents/ResumeEva";
-import { ApplicantList } from "./interviewComponents/ApplicantList";
+import { ApplicantList_Live } from "./interviewComponents/ApplicantList_Live";
 import 'boxicons';
 import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
@@ -300,22 +300,10 @@ export function LiveInterview(props){
                                     <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
                                 </div>
                             }
-                            <div className="col-3">
+                            <div className="col-5">
                                 <span className="dot" style={{ background: "none", visibility: "hidden" }}></span>
                                 Name
                             </div>
-                            {/*<div className="col-2">Email</div>*/}
-                            <div className="col-2">Invited On</div>
-                            <div className="col-3">
-                                <div className="row">
-                                    <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Video</div>
-                                    <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles} />
-                                </div>
-                            </div>
-                            {/*<div className="col-1">Action</div>*/}
-                            {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
-                                <div className="col-1">Reinvite</div>
-                            }
                             {(props.reviewerStageLength > 0) &&
                                 <div className="row">
                                     <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Status</div>
@@ -337,7 +325,7 @@ export function LiveInterview(props){
                             }
                         </div>
                         <div style={{ marginBottom: "0.5rem" }}>
-                            <ApplicantList
+                            <ApplicantList_Live
                                 filter={props.filter}
                                 getPJobs={props.getPJobs}
                                 profile={props.profile}
