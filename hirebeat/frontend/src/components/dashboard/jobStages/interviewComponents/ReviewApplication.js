@@ -260,10 +260,10 @@ export class ReviewApplication extends Component {
     updateEvaluation = (evaluation) => {
         // identify employer or reviewer
         let reviewer_type = "";
-        if (this.props.profile.is_subreviwer) {
+        if (this.props?.reviewer_type == "subr") {
             reviewer_type = "sub_reviewer";
         }
-        else if (this.props.profile.is_external_reviewer) {
+        else if (this.props?.reviewer_type == "extr") {
             reviewer_type = "external_reviewer";
         }
         let data = {
@@ -390,10 +390,10 @@ export class ReviewApplication extends Component {
         }
         // identify employer or reviewer
         let reviewer_type = "";
-        if (this.props.profile.is_subreviwer) {
+        if (this.props?.reviewer_type == "subr") {
             reviewer_type = "sub_reviewer";
         }
-        else if (this.props.profile.is_external_reviewer) {
+        else if (this.props?.reviewer_type == "extr") {
             reviewer_type = "external_reviewer";
         }
         let data = {
@@ -795,7 +795,7 @@ export class ReviewApplication extends Component {
                                     evaluations={this.props.evaluations}
                                     filter={this.props.filter}
                                     currentStage={this.props.currentStage}
-                                    reviewerType={this.props.reviewer_type}
+                                    reviewerType={this.props?.reviewer_type}
                                     user={this.props.user}
                                 />
                             }

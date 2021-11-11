@@ -258,9 +258,9 @@ def get_posted_jobs(request):
             # check reviewer type
             reviewer_type = ""
             position_id = ex_reviewers[i].position.id
-            if (len(ExternalReviewers.objects.filter(r_email=user.email, position_id=position_id)) > 0):
+            if (ExternalReviewers.objects.filter(r_email=user.email, position_id=position_id).exists()):
                 reviewer_type = "extr"
-            elif (len(SubReviewers.objects.filter(r_email=user.email, position_id=position_id)) > 0):
+            elif (SubReviewers.objects.filter(r_email=user.email, position_id=position_id).exists()):
                 reviewer_type = "subr"
             # get each position applicants by current stage
             applicants = []
@@ -297,10 +297,11 @@ def get_posted_jobs(request):
                 # get vote evaluation
                 applicant["num_vote_yes"] = 0
                 applicant["num_votes"] = 0
-                applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
-                    applicant_email=applicant["email"], position_id=position_id, evaluation=1).count()
-                applicant["num_votes"] = ReviewerEvaluation.objects.filter(
-                    applicant_email=applicant["email"], position_id=position_id).count()
+                if stage != "":
+                    applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
+                        applicant_email=applicant["email"], position_id=position_id, evaluation=1, current_stage=stage).count()
+                    applicant["num_votes"] = ReviewerEvaluation.objects.filter(
+                        applicant_email=applicant["email"], position_id=position_id, current_stage=stage).count()
                 # get each applicant review status
                 applicant["reviewer_review_status"] = ReviewerEvaluation.objects.filter(
                     reviewer_email=user.email, applicant_email=applicant["email"]).exists()

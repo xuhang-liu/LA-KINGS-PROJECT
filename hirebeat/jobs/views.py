@@ -137,9 +137,9 @@ def get_all_jobs(request):
         reviewer_type = ""
         if profile.is_subreviwer or profile.is_external_reviewer:
             user = User.objects.get(pk=user_id)
-            if (len(ExternalReviewers.objects.filter(r_email=user.email, jobs_id=job_id)) > 0):
+            if (ExternalReviewers.objects.filter(r_email=user.email, jobs_id=job_id).exists()):
                 reviewer_type = "extr"
-            elif (len(SubReviewers.objects.filter(r_email=user.email, jobs_id=job_id)) > 0):
+            elif (SubReviewers.objects.filter(r_email=user.email, jobs_id=job_id).exists()):
                 reviewer_type = "subr"
         # get each position applicants, pagination here
         applicants = []
@@ -249,6 +249,7 @@ def update_job(request):
     eeo_ques_req = request.data['eeo_ques_req']
     skills = request.data['skills']
     questions = request.data["questions"]
+    is_closed = request.data["is_closed"]
 
     job = Jobs.objects.get(id=id)
     job.job_title = job_title
@@ -264,6 +265,7 @@ def update_job(request):
     job.eeo_ques_req = eeo_ques_req
     job.job_post = job_post
     job.skills = skills
+    job.is_closed = is_closed
     # save update to db
     job.save()
 

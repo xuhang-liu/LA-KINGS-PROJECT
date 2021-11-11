@@ -241,10 +241,10 @@ const ReviewCandidate = (props) => {
     function updateEvaluation(evaluation) {
         // identify employer or reviewer
         let reviewer_type = "";
-        if (props.profile.is_subreviwer) {
+        if (props.curJob?.reviewer_type == "subr") {
             reviewer_type = "sub_reviewer";
         }
-        else if (props.profile.is_external_reviewer) {
+        else if (props.curJob?.reviewer_type == "extr") {
             reviewer_type = "external_reviewer";
         }
         let data = {
@@ -328,10 +328,10 @@ const ReviewCandidate = (props) => {
         }
         // identify employer or reviewer
         let reviewer_type = "";
-        if (props.profile.is_subreviwer) {
+        if (props.curJob?.reviewer_type == "subr") {
             reviewer_type = "sub_reviewer";
         }
-        else if (props.profile.is_external_reviewer) {
+        else if (props.curJob?.reviewer_type == "extr") {
             reviewer_type = "external_reviewer";
         }
         let data = {

@@ -7,10 +7,11 @@ import Select from 'react-select';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getZRFeedXML, getZRPremiumFeedXML } from "../../../redux/actions/job_actions";
-import {SkillSet} from "./Constants";
+import { SkillSet } from "./Constants";
 import Autocomplete from "react-google-autocomplete";
 import Switch from "react-switch";
 import ScreenQuestion from "./ScreenQuestion";
+import parse from 'html-react-parser';
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -77,7 +78,7 @@ export class JobEdition extends Component {
     };
 
     componentDidMount() {
-        if(this.props.jobInfo.skills!=null){
+        if (this.props.jobInfo.skills != null) {
             this.props.jobInfo.skills.map((s) => {
                 var skill = JSON.stringify(s);
                 this.setState(previousState => ({
@@ -97,7 +98,7 @@ export class JobEdition extends Component {
         this.setState({ skills: skills })
     };
     customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff', border:"2px solid #E8EDFC", borderRadius:"5px" }),
+        control: styles => ({ ...styles, backgroundColor: '#ffffff', border: "2px solid #E8EDFC", borderRadius: "5px" }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
@@ -203,7 +204,7 @@ export class JobEdition extends Component {
     };
 
     handleLocation = (location) => {
-        this.setState({jobLocation: location});
+        this.setState({ jobLocation: location });
     }
 
     handleChange() {
@@ -234,9 +235,9 @@ export class JobEdition extends Component {
                 })
             )
         }
-        if (this.state.questions?.length > 0){
-            for (const q of this.state.questions){
-                if (q.question?.length == 0){
+        if (this.state.questions?.length > 0) {
+            for (const q of this.state.questions) {
+                if (q.question?.length == 0) {
                     return (
                         confirmAlert({
                             title: 'Question Empty!',
@@ -248,6 +249,17 @@ export class JobEdition extends Component {
                     )
                 }
             }
+        }
+        if (this.state.jobDescription.toString('html') == "<p><br></p>") {
+            return (
+                confirmAlert({
+                    title: 'Job Description Empty',
+                    message: "Please fill in your job description to continue.",
+                    buttons: [
+                        { label: 'OK' },
+                    ]
+                })
+            )
         }
         let data = {
             id: this.props.jobInfo.id,
@@ -265,6 +277,7 @@ export class JobEdition extends Component {
             job_post: this.state.job_post,
             skills: this.state.skills,
             questions: this.state.questions,
+            is_closed: 0,
         };
         if (this.state.remote) {
             data = {
@@ -283,12 +296,132 @@ export class JobEdition extends Component {
                 job_post: 0,
                 skills: this.state.skills,
                 questions: this.state.questions,
+                is_closed: 0,
             };
         };
         this.props.updateJob(data);
         setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
         this.props.renderJobs();
     }
+
+    saveDraft = () => {
+        let data = {
+            id: this.props.jobInfo.id,
+            jobTitle: this.state.jobTitle,
+            jobId: this.state.jobId,
+            jobDescription: this.state.jobDescription.toString('html'),
+            jobLevel: this.state.jobLevel["value"],
+            jobLocation: this.state.jobLocation,
+            userId: this.props.user.id,
+            jobType: this.state.jobType["value"],
+            loc_req: this.state.loc_req,
+            pho_req: this.state.pho_req,
+            lin_req: this.state.lin_req,
+            eeo_req: this.state.eeo_req,
+            eeo_ques_req: this.state.eeo_ques_req,
+            job_post: this.state.job_post,
+            skills: this.state.skills,
+            questions: this.state.questions,
+            is_closed: 3
+        };
+        if (this.state.remote) {
+            data = {
+                id: this.props.jobInfo.id,
+                jobTitle: this.state.jobTitle,
+                jobId: this.state.jobId,
+                jobDescription: this.state.jobDescription.toString('html'),
+                jobLevel: this.state.jobLevel["value"],
+                jobLocation: "Remote",
+                userId: this.props.user.id,
+                jobType: this.state.jobType["value"],
+                loc_req: this.state.loc_req,
+                pho_req: this.state.pho_req,
+                lin_req: this.state.lin_req,
+                eeo_req: this.state.eeo_req,
+                eeo_ques_req: this.state.eeo_ques_req,
+                job_post: 0,
+                skills: this.state.skills,
+                questions: this.state.questions,
+                is_closed: 3
+            };
+        }
+        this.props.updateJob(data);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs() }, 300);
+        setTimeout(() => { this.props.renderJobs() }, 300);
+    }
+
+    previewJob = () => {
+        confirmAlert({
+            closeOnEscape: true,
+            closeOnClickOutside: true,
+            customUI: ({ onClose }) => {
+                return (
+                    <div className="container-fluid" style={{ fontFamily: "Avenir Next, Segoe UI", margin: "auto", width: "80%", overflow: "auto", height: "80vh", backgroundColor: "#ffffff", borderRadius: "5px" }}>
+                        <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer", marginTop: "3rem" }}><i className="bx bx-x bx-md"></i></div>
+                        <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
+                        <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={this.props.employerProfileDetail.logo_url} alt="icon" />
+                        <h1 className="ml-5 mt-5" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A" }}>{this.state.jobTitle}</h1>
+                        <h2 className="ml-5 mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#67A3F3" }}>{this.props.employerProfileDetail.name}
+                        </h2>
+                        <div className="row pl-3">
+                            <div className="col-8 pl-5" style={{ paddingRight: "3.7rem" }}>
+                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobLevel["value"]} • {this.state.jobType["value"]}</p>
+                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobLocation}</p>
+                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobId}</p>
+                                <div>
+                                    <div>
+                                        <h2 className="mb-3">Company Overview</h2>
+                                        <div className="mb-3">
+                                            {parse('' + this.props.employerProfileDetail.summary + '')}
+                                        </div>
+                                    </div>
+                                    <h2 className="mb-3 mt-5">Job Description</h2>
+                                    <div className="mb-3">
+                                        {parse('' + (this.state.jobDescription.toString('html')) + '')}
+                                    </div>
+                                    {this.state.eeo_req == "1" &&
+                                        <div>
+                                            <h2 className="mb-2 mt-3">EEO Statement</h2>
+                                            <p className="mb-4 mt-1" style={{ color: "#090d3a" }}>{this.props.employerProfileDetail.name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                                        </div>}
+                                </div>
+                                <div>
+                                    <div>
+                                        <button className="default-btn" style={{ paddingLeft: "5rem", paddingRight: "5rem" }}>
+                                            Apply Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-5">
+                                <a className="default-btn" style={{ paddingLeft: "5rem", paddingRight: "5rem", textDecoration: "none", color: "#fff", cursor: "pointer" }}>
+                                    Apply Now
+                                </a>
+                                <p className="mt-5">Link to this job</p>
+                                <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #67A3F3", width: "90%", height: "3rem" }}>
+                                    <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
+                                        <p style={{ fontSize: "0.8rem" }}>https://link-to-this-job</p>
+                                    </div>
+                                    <div className="py-1">
+                                        <button className="default-btn pt-1" style={{ fontSize: "1.1rem", background: "#FF6B00", borderRadius: "5px", height: "2.2rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem", position: "absolute", right: "0.3rem" }}>
+                                            <i className='bx bx-share-alt' style={{ left: "0.5rem" }}></i>Copy
+                                        </button>
+                                    </div>
+                                </div>
+                                {this.props.employerProfileDetail.website != null && this.props.employerProfileDetail.website != "" &&
+                                    <div className="single-footer-widget1 mt-2">
+                                        <p style={{ marginBottom: "0rem" }}>Website</p>
+                                        <a className="website" target="_blank" rel="noreferrer" href={this.props.employerProfileDetail.website}>{this.props.employerProfileDetail.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <button onClick={() => { onClose(); }} className="default-btn1" style={{ paddingLeft: "25px", float: "right", marginTop: "2rem", marginBottom: '2rem', marginRight: "2rem" }}>Confirm</button>
+                    </div>
+                );
+            }
+        });
+    };
 
     hideJob = (e) => {
         let isFilled = this.checkRequiredInputs();
@@ -348,25 +481,25 @@ export class JobEdition extends Component {
             numAns: "0",
             isMustHave: "false",
         }))
-        this.setState({ questionCount: this.state.questionCount + 1, questions: questions});
+        this.setState({ questionCount: this.state.questionCount + 1, questions: questions });
     }
 
     removeQuestion = (i) => {
         let questions = [...this.state.questions];
         questions.splice(i, 1);
-        this.setState({questions: questions, questionCount: this.state.questionCount - 1});
+        this.setState({ questions: questions, questionCount: this.state.questionCount - 1 });
     }
 
     handleQFormChange = (i, key, e) => {
         let questions = [...this.state.questions];
         questions[i][key] = e.target.value;
-        this.setState({questions: questions});
+        this.setState({ questions: questions });
     }
 
     handleQFormChange2 = (i, key, value) => {
         let questions = [...this.state.questions];
         questions[i][key] = value;
-        this.setState({questions: questions});
+        this.setState({ questions: questions });
     }
 
     render() {
@@ -395,15 +528,15 @@ export class JobEdition extends Component {
                                     Job Title
                                 </label><span className="job-apply-char2">*</span>
                                 <input type="text" name="jobTitle" value={this.state.jobTitle}
-                                    onChange={this.handleInputChange} className="form-control" required="required" style={{border:"2px solid #E8EDFC", borderRadius:"5px", height:"2.5rem"}} />
+                                    onChange={this.handleInputChange} className="form-control" required="required" style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }} />
                             </div>
                             <div className="form-group col-3">
                                 <label className="db-txt2">
                                     Job ID
                                 </label>
-                                <span className="job-apply-char2" style={{visibility: "hidden"}}>*</span>
+                                <span className="job-apply-char2" style={{ visibility: "hidden" }}>*</span>
                                 <input type="text" name="jobId" value={this.state.jobId}
-                                    onChange={this.handleInputChange} className="form-control" style={{border:"2px solid #E8EDFC", borderRadius:"5px", height:"2.5rem"}} />
+                                    onChange={this.handleInputChange} className="form-control" style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }} />
                             </div>
                         </div>
                         <div className="form-row">
@@ -431,24 +564,24 @@ export class JobEdition extends Component {
                             <div className="form-group col-6">
                                 <div className="d-flex">
                                     {!this.state.remote &&
-                                    <div className="form-group" style={{width: "40%"}}>
-                                        <label className="db-txt2">
-                                            Job Location
-                                        </label><span className="job-apply-char2">*</span>
-                                        <Autocomplete
-                                            className="form-control"
-                                            language="en"
-                                            apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
-                                            onPlaceSelected={(place, inputRef, autocomplete) => {
-                                                this.handleLocation(place.formatted_address);
-                                            }}
-                                            required="required"
-                                            defaultValue={this.state.jobLocation == "Remote" ? "" : this.state.jobLocation}
-                                        />
-                                    </div>}
+                                        <div className="form-group" style={{ width: "40%" }}>
+                                            <label className="db-txt2">
+                                                Job Location
+                                            </label><span className="job-apply-char2">*</span>
+                                            <Autocomplete
+                                                className="form-control"
+                                                language="en"
+                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                                onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                    this.handleLocation(place.formatted_address);
+                                                }}
+                                                required="required"
+                                                defaultValue={this.state.jobLocation == "Remote" ? "" : this.state.jobLocation}
+                                            />
+                                        </div>}
                                     <div className={this.state.remote ? "form-group" : "form-group ml-auto"}>
                                         <label className="db-txt2">Remote Work?</label>
-                                        <div style={{paddingTop: "0.7rem"}}>
+                                        <div style={{ paddingTop: "0.7rem" }}>
                                             <Switch onChange={this.handleChange} checked={this.state.remote} />
                                         </div>
                                     </div>
@@ -477,16 +610,25 @@ export class JobEdition extends Component {
                                     Preferred Skills
                                     <span className="tool_tip ml-2">
                                         <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                        <p className="tool_submenu container" style={{ width: "14rem", zIndex:"99999" }}>
+                                        <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
                                             <div>
-                                            These skills will be part of the resume evaluation and are not visible to applicants.
+                                                These skills will be part of the resume evaluation and are not visible to applicants.
                                             </div>
                                         </p>
                                     </span>
                                 </label>
                             </div>
                             <div className="form-group col-6" style={{ zIndex: "9999" }}>
-                                <Select isMulti value={this.state.skills} onChange={this.onFilter2} options={SkillSet} styles={this.customStyles} defaultValue={this.state.skills} />
+                                <Select isMulti value={this.state.skills} onChange={this.onFilter2} options={SkillSet.sort((a, b) => {
+                                    let fa = a.value.toLowerCase(), fb = b.value.toLowerCase();
+                                    if (fa < fb) {
+                                        return -1;
+                                    }
+                                    if (fa > fb) {
+                                        return 1;
+                                    }
+                                    return 0;
+                                })} styles={this.customStyles} defaultValue={this.state.skills} />
                             </div>
                         </div>
                         <div className="form-row">
@@ -508,7 +650,7 @@ export class JobEdition extends Component {
                             {this.state.eeo_req == 1 &&
                                 <div className="form-group col-12">
                                     <p style={{ color: "#000", fontWeight: "600", fontSize: "1rem", marginBottom: "0rem" }}>The following statement will be displayed at the bottom of your job description</p>
-                                    <p className="ml-5">{this.props.profile.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                                    <p className="ml-5">{this.props.profile.company_name} is an Equal Opportunity employer.We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
                                 </div>}
                         </div>
                         <div className="form-row">
@@ -537,8 +679,8 @@ export class JobEdition extends Component {
                             <h5 style={{ color: "#090d3a" }}><b>Application Form</b></h5>
                             <span className="tool_tip ml-2">
                                 <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                <p className="tool_submenu container" style={{ width: "14rem", zIndex:"99999" }}>
-                                    This will be filled out by applicants. Name, Email, and Resume are mandatory by default.
+                                <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
+                                    This will be filled out by applicants.Name, Email, and Resume are mandatory by default.
                                 </p>
                             </span>
                         </div>
@@ -572,7 +714,7 @@ export class JobEdition extends Component {
                                 Location
                             </label>
                         </div>
-                        <div className="form-row" style={{marginBottom: "1rem"}}>
+                        <div className="form-row" style={{ marginBottom: "1rem" }}>
                             {this.state.loc_req == 0 ?
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq0}>Required</button>
@@ -591,7 +733,7 @@ export class JobEdition extends Component {
                                 Phone Number
                             </label>
                         </div>
-                        <div className="form-row" style={{marginBottom: "1rem"}}>
+                        <div className="form-row" style={{ marginBottom: "1rem" }}>
                             {this.state.pho_req == 0 ?
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq0}>Required</button>
@@ -610,7 +752,7 @@ export class JobEdition extends Component {
                                 LinkedIn URL
                             </label>
                         </div>
-                        <div className="form-row" style={{marginBottom: "1rem"}}>
+                        <div className="form-row" style={{ marginBottom: "1rem" }}>
                             {this.state.lin_req == 0 ?
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq0}>Required</button>
@@ -630,9 +772,9 @@ export class JobEdition extends Component {
                             </label>
                         </div>
                         {this.state.questions.map((q, index) => {
-                            let responseType = {value: q?.responseType, label: q?.responseType} ||{value: "Yes/No", label: "Yes/No"};
-                            let ans = {value: q?.ans, label: q?.ans} ||{value: "Yes/No", label: "Yes/No"};
-                            return(
+                            let responseType = { value: q?.responseType, label: q?.responseType } || { value: "Yes/No", label: "Yes/No" };
+                            let ans = { value: q?.ans, label: q?.ans } || { value: "Yes/No", label: "Yes/No" };
+                            return (
                                 <div key={index} className="form-row" style={{ marginBottom: "1rem" }}>
                                     <div className="col-12">
                                         <ScreenQuestion
@@ -649,8 +791,8 @@ export class JobEdition extends Component {
                             )
                         })}
                         {this.state.questionCount < 3 &&
-                            <div className="form-row" style={{marginBottom: "1rem"}}>
-                                <span style={{cursor:"pointer"}} className="profile-edit" onClick={this.addQuestion}>
+                            <div className="form-row" style={{ marginBottom: "1rem" }}>
+                                <span style={{ cursor: "pointer" }} className="profile-edit" onClick={this.addQuestion}>
                                     + Add Screening Questions
                                 </span>
                             </div>
@@ -695,19 +837,43 @@ export class JobEdition extends Component {
                                     </div>
                                 </div>
                             </div>}
-                        <div style={{ float: "left", marginBottom: "1rem"}}>
-                            <button
-                                type="submit"
-                                className="default-btn" style={{ marginBottom: "1.5%", paddingLeft: "25px", marginRight:"1rem" }}
-                            >
-                                Save
-                            </button>
-                            <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#fff", color: "#979797" }} onClick={this.props.renderJobs}>Cancel</button>
-                        </div>
-
+                        {this.props.jobInfo.is_closed != 3 ?
+                            <div style={{ float: "left", marginBottom: "1rem" }}>
+                                <button
+                                    type="submit"
+                                    className="default-btn" style={{ marginBottom: "1.5%", paddingLeft: "25px", marginRight: "1rem" }}
+                                >
+                                    Save
+                                </button>
+                                <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#fff", color: "#979797" }} onClick={this.props.renderJobs}>Cancel</button>
+                            </div> :
+                            <div style={{ float: "left", marginBottom: "1rem", display: "inline-block" }}>
+                                <button
+                                    type="submit"
+                                    className="default-btn" style={{ marginBottom: "1.5%", paddingLeft: "25px", marginRight: "1rem" }}
+                                >
+                                    Save & Publish
+                                </button>
+                                <button
+                                    type="button"
+                                    className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#56a3fa", border: "2px solid #56a3fa", paddingTop: "9px", paddingBottom: "8px", paddingLeft: "25px" }}
+                                    onClick={() => { this.saveDraft() }}
+                                >
+                                    Save Draft
+                                </button>
+                                <button
+                                    type="button"
+                                    className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#56a3fa", border: "2px solid #56a3fa", paddingTop: "9px", paddingBottom: "8px" }}
+                                    onClick={() => { this.previewJob() }}
+                                >
+                                    <i className="bx bx-show" style={{ color: "#56a3fa" }}></i>Preview
+                                </button>
+                                <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#fff", color: "#979797" }} onClick={this.props.renderJobs}>Cancel</button>
+                            </div>
+                        }
                     </form>
-                </div>
-            </div>
+                </div >
+            </div >
         )
     };
 };

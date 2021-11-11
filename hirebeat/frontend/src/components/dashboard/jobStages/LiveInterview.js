@@ -269,10 +269,10 @@ export function LiveInterview(props){
     return (
         <React.Fragment>
             <div className="container-fluid">
-                <div className="container-fluid mt-4 pt-3 pb-3">
+                <div className="mt-4 pt-3 pb-3">
                     <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
                         <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
-                            <label style={{ position: "absolute", left: "3.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
+                            <label style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
                             <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                         </div>
                         {props.totalPage > 1 &&
@@ -293,7 +293,7 @@ export function LiveInterview(props){
                             </div>
                         }
                     </div>
-                    <div className="container-fluid chart-bg1" style={{ marginTop: "2%" }}>
+                    <div className="container-fluid chart-bg1" style={{ marginTop: "1rem" }}>
                         <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div style={{ marginLeft: "1rem", display: "flex" }}>

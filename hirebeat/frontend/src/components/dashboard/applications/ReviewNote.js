@@ -23,10 +23,10 @@ export class ReviewNote extends Component {
         }
         // identify employer or reviewer
         let reviewer_type = "";
-        if (this.props.profile.is_subreviwer) {
+        if (this.props.reviewerType == "subr") {
             reviewer_type = "sub_reviewer";
         }
-        else if (this.props.profile.is_external_reviewer) {
+        else if (this.props.reviewerType == "extr") {
             reviewer_type = "external_reviewer";
         }
         let data = {

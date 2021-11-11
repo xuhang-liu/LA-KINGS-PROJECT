@@ -4791,16 +4791,18 @@ max-width: 110px;
 }
 
 #jobs-actions-hover {
-  display: none;
+  display: flex;
   color: "#7D7D7D"; 
   height: "2rem"; 
   margin-bottom: "0.5rem";
+  visibility: hidden;
   transition: transform 1.5s ease-in;
   -webkit-transition: transform 1.5s ease-in;
 }
 
 #show-jobs-actions:hover > #jobs-actions-hover {
   display: flex;
+  visibility: visible;
   transition: transform 1.5s ease-out;
   -webkit-transition:transform 1.5s ease-out;
 }

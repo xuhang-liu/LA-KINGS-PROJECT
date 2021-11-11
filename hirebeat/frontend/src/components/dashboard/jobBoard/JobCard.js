@@ -230,7 +230,7 @@ export class JobCard extends Component {
                     <div className="col-2 interview-txt9 mt-2">
                     </div>
                     {(this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) &&
-                        <div className="col-2 interview-txt9 mt-2">
+                        <div className={(this.props.job.total_records <= 0)?"col-3 interview-txt9 mt-1":"col-2 interview-txt9 mt-1"}>
                             <ActionButton
                                 filter={this.props.filter}
                                 archiveJob={this.archiveJob}
@@ -245,8 +245,8 @@ export class JobCard extends Component {
                             />
                         </div>}
                     {this.props.job.job_details.is_closed != 3 &&
-                        <div className="col-3 interview-txt9 d-flex justify-content-start mt-2 pl-5" style={{ display: "flex", alignItems: "center" }}>
-                            <a className="title-button2 tool_tip" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem" }} href={this.props.job.job_details.job_url}>
+                        <div className="col-3 interview-txt9 d-flex justify-content-start mt-1" style={{ display: "flex", alignItems: "center", paddingLeft: (this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) ? "1rem": "2rem" }}>
+                            <a className="title-button2 tool_tip" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight:(this.props.filter !== "closed")?"0.5px solid #4A6F8A":"", paddingRight:(this.props.filter !== "closed")?"2rem":"" }} href={this.props.job.job_details.job_url}>
                                 <i className="bx-fw bx bx-show"></i>Preview
                                 <p className="tool_submenu container" style={{ width: "9rem", left: "1rem" }}>
                                     <div>
@@ -255,7 +255,7 @@ export class JobCard extends Component {
                                 </p>
                             </a>
                             {this.props.filter !== "closed" &&
-                                <button className="title-button2 tool_tip" onClick={this.openShare} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem" }}>
+                                <button className="title-button2 tool_tip" onClick={this.openShare} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", paddingLeft:"1rem" }}>
                                     <i className="bx-fw bx bx-link-external"></i>Share
                                     <p className="tool_submenu container" style={{ width: "9rem", left: "3rem" }}>
                                         <div>
@@ -428,8 +428,8 @@ const ActionButton = (props) => {
         <div style={{ borderRight: (props.job.job_details.is_closed != 3) ? "0.5px solid #4A6F8A" : "" }}>
             {props.job?.reviewer_type != "subr" &&
                 <div>
-                    <div className="row d-flex justify-content-start pl-5">
-                        <div className="profile-edit" style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem" }}>
+                    <div className="row d-flex justify-content-start" style={{paddingLeft:"2rem"}}>
+                        <div className="profile-edit" style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: (props.applicantsNum <= 0)?"0.5px solid #4A6F8A":"", paddingRight:(props.applicantsNum <= 0)?"2rem":""}}>
                             <i className="bx bx-edit-alt"></i>
                             <span className="tool_tip" style={{ cursor: "pointer" }} onClick={() => { props.setJobInfo(props.jobInfo); props.renderJobEdition() }}>
                                 Edit
@@ -441,7 +441,7 @@ const ActionButton = (props) => {
                             </span>
                         </div>
                         {(props.applicantsNum <= 0) &&
-                            <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%", fontWeight: "500", fontSize: "0.9rem" }}>
+                            <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%", fontWeight: "500", fontSize: "0.9rem", paddingLeft:(props.applicantsNum <= 0)?"1rem":"" }}>
                                 <i className="bx bx-trash"></i>
                                 <span style={{ cursor: "pointer" }} onClick={deleteAlert} className="tool_tip">Delete
                                     <p className="tool_submenu container" style={{ width: "12rem", left: "2rem" }}>

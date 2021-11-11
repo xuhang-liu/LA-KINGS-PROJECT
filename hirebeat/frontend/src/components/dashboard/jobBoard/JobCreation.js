@@ -252,6 +252,17 @@ export class JobCreation extends Component {
                 }
             }
         }
+        if (this.state.jobDescription.toString('html') == "<p><br></p>") {
+            return (
+                confirmAlert({
+                    title: 'Job Description Empty',
+                    message: "Please fill in your job description to continue.",
+                    buttons: [
+                        { label: 'OK' },
+                    ]
+                })
+            )
+        }
         let data = {
             jobTitle: this.state.jobTitle,
             jobId: this.state.jobId,

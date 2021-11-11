@@ -29,7 +29,7 @@ import {
 } from "../../redux/actions/question_actions";
 import { connect } from "react-redux";
 //import { DbRow, DbCenterRow, } from "./DashboardComponents";
-import RowBoxes from "./Rowboxes";
+//import RowBoxes from "./Rowboxes";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
@@ -492,6 +492,7 @@ export class EmployerDashboard extends Component {
           getAllJobs={this.props.getAllJobs}
           jobInfo={this.state.jobInfo}
           getPJobs={this.getPJobs}
+          employerProfileDetail={this.props.employerProfileDetail}
         />;
       case "applications":
         return <ApplicationCover
