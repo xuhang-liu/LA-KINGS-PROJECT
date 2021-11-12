@@ -253,7 +253,7 @@ export class CandidateLogin extends Component {
               <div className="signup-content" style={{ marginTop: "3rem", height: "30rem" }}>
                 <div className="signup-form">
 
-                  <form onSubmit={this.onRegister}>
+                  <form id="Video_Interviewees_Register" onSubmit={this.onRegister}>
                     <div className="form-group">
                       <input
                         type="text"

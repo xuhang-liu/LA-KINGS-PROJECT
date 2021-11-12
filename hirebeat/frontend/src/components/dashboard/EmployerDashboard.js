@@ -254,6 +254,7 @@ export class EmployerDashboard extends Component {
         subpage: "jobs",
       });
     }
+    window.scrollTo(0,0);
   };
 
   renderJobEdition = () => {

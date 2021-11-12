@@ -35,6 +35,7 @@ const ShortList = (props) => {
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page, "Short List");
+        window.scrollTo(0,0);
     };
 
     return (

@@ -299,6 +299,7 @@ export function VideoInterview(props) {
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page, "Video Interview");
+        window.scrollTo(0,0);
     };
 
     const [showMoveForm, setShowMoveForm] = useState(false);
@@ -374,6 +375,7 @@ export function VideoInterview(props) {
         else {
             noCandidateAlert();
         }
+        window.scrollTo(0,0);
     }
 
     const rejectCandidates = () => {
@@ -408,6 +410,7 @@ export function VideoInterview(props) {
         } else {
             noCandidateAlert();
         }
+        window.scrollTo(0,0);
     };
 
     const hideSuccessAlert = () => {
@@ -485,6 +488,7 @@ export function VideoInterview(props) {
         } else {
             noCandidateAlert();
         }
+        window.scrollTo(0,0);
     };
 
     const openRejectNoteForm = () => {
@@ -572,6 +576,7 @@ export function VideoInterview(props) {
         } else {
             alert("Please select a stage!");
         }
+        window.scrollTo(0,0);
     };
 
     return (

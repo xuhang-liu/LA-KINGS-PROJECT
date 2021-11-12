@@ -191,6 +191,7 @@ export class AllCandidates extends Component {
         this.setState({ selectedPage: selectedPage });
         let page = selectedPage + 1;
         this.props.getAllJobs(this.props.user.id, page, "", "", "");
+        window.scrollTo(0,0);
     };
 
     addNewCandidates = () => {

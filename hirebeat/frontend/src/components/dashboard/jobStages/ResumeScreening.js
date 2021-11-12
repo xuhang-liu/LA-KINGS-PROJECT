@@ -202,6 +202,7 @@ export class ResumeScreening extends Component {
         else {
             this.noCandidateAlert();
         }
+        window.scrollTo(0,0);
     }
 
     rejectCandidates = () => {
@@ -240,6 +241,7 @@ export class ResumeScreening extends Component {
         } else {
             this.noCandidateAlert();
         }
+        window.scrollTo(0,0);
     };
     // invite candidates with video interviews
     //    inviteCandidates = () => {
@@ -360,6 +362,7 @@ export class ResumeScreening extends Component {
         else {
             this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "False");
         }
+        window.scrollTo(0,0);
     };
 
     hideSuccessAlert = () => {

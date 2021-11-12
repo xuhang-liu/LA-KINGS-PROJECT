@@ -203,8 +203,10 @@ export class EmployerProfile extends Component {
             "website": website,
         }
         this.props.updateEmployerInfo(data);
-        this.handleUpload();
-        this.getUpdatedData();
+        if (this.state.preview != null && this.state.preview != ""){
+            this.handleUpload();
+        }
+        setTimeout(() => { this.getUpdatedData(); this.getUpdatedData() }, 300);
         this.cancelEditInfo();
     }
 
@@ -222,7 +224,7 @@ export class EmployerProfile extends Component {
                 "twitter": twitter,
             }
             this.props.updateEmployerSocialMedia(data);
-            this.getUpdatedData();
+            setTimeout(() => { this.getUpdatedData() }, 300);
             this.cancelEditMedia();
         }
     }
@@ -238,7 +240,7 @@ export class EmployerProfile extends Component {
             "company_size": (this.state.companySize.value == null || this.state.companySize.value == "") ? this.props.employerProfileDetail.company_size : this.state.companySize.value,
         }
         this.props.updateEmployerBasicInfo(data);
-        this.getUpdatedData();
+        setTimeout(() => { this.getUpdatedData() }, 300);
         this.cancelEditBasicInfo();
     }
 
@@ -248,7 +250,7 @@ export class EmployerProfile extends Component {
             "summary": this.state.overview.toString('html'),
         };
         this.props.updateEmployerSummary(data);
-        this.getUpdatedData();
+        setTimeout(() => { this.getUpdatedData() }, 300);
         this.cancelEditSummary()
     }
 
@@ -262,6 +264,9 @@ export class EmployerProfile extends Component {
             logo_url: logo_url,
         };
         this.props.updateEmployerLogo(metaData);
+        this.setState({
+            src: logo_url
+        });
         setTimeout(() => { this.getUpdatedData(); this.getUpdatedData(); }, 300);
     };
 

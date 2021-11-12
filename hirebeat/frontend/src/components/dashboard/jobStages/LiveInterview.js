@@ -111,6 +111,7 @@ export function LiveInterview(props){
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page, "Live Interview");
+        window.scrollTo(0,0);
     };
 
     const [showMoveForm, setShowMoveForm] = useState(false);
@@ -186,6 +187,7 @@ export function LiveInterview(props){
         else {
             noCandidateAlert();
         }
+        window.scrollTo(0,0);
     }
 
     const rejectCandidates = () => {
@@ -224,6 +226,7 @@ export function LiveInterview(props){
         } else {
             noCandidateAlert();
         }
+        window.scrollTo(0,0);
     };
 
     const hideSuccessAlert = () => {
