@@ -313,7 +313,8 @@ def add_wp_video(request):
     invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
     invited_obj.is_recorded = True
     # update saved video count
-    invited_obj.video_count += 1;
+    invited_obj.video_count += 1
+    invited_obj.is_viewed = False
     invited_obj.save()
 
     return Response("Saved data to database successfully", status=status.HTTP_200_OK)

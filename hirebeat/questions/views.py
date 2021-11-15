@@ -416,11 +416,12 @@ def send_video_interviews(request):
         if emails[i] != "" and names[i] != "":
             # update candidate invite status and date
             candidate = InvitedCandidates.objects.get(id=candidate_ids[i])
-            candidate.is_invited = True
-            candidate.invite_date = timezone.now()
-            candidate.save()
-            # send email
-            send_interviews(names[i], emails[i], urls[i],
+            if not candidate.is_invited:
+                candidate.is_invited = True
+                candidate.invite_date = timezone.now()
+                candidate.save()
+                # send email
+                send_interviews(names[i], emails[i], urls[i],
                             job_title, company_name, expire)
 
     return Response("Send interviews successfully", status=status.HTTP_200_OK)
@@ -506,7 +507,7 @@ def move_candidate_to_interview(request):
                                                                       required_skills_occurrence=required_skills_occurrence, extra_skills_name=extra_skills_name,
                                                                       extra_skills_on_resume=extra_skills_on_resume, extra_skills_occurrence=extra_skills_occurrence,
                                                                       transferable_skills_name=transferable_skills_name, transferable_skills_on_resume=transferable_skills_on_resume,
-                                                                      transferable_skills_occurrence=transferable_skills_occurrence, current_stage=next_stage
+                                                                      transferable_skills_occurrence=transferable_skills_occurrence, current_stage=next_stage, is_viewed=True
                                                                       )
 
     return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)

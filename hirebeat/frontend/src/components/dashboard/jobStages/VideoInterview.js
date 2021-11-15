@@ -667,7 +667,7 @@ export function VideoInterview(props) {
                             </div>
                             {/*<div className="col-1">Action</div>*/}
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
-                                <div className="col-1">Reinvite</div>
+                                <div className="col-1">Action</div>
                             }
                             {(props.reviewerStageLength > 0) &&
                                 <div className="row">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MyModal80 } from "./../../DashboardComponents";
-import {ResumeEva} from "./ResumeEva";
+import { ResumeEva } from "./ResumeEva";
 import { MyVerticallyCenteredModal } from "./MyVerticallyCenteredModal";
 import { confirmAlert } from 'react-confirm-alert';
 
@@ -123,6 +123,7 @@ export const Applicant = (props) => {
         };
 
         props.resendInvitation(meta);
+        setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, 1, props.currentStage) }, 300);
         alert1();
     }
 
@@ -185,12 +186,12 @@ export const Applicant = (props) => {
                     }
                 </div>
                 {(props.reviewerStageLength > 0) &&
-                <div className="col-3">
-                    {applicants[current]?.reviewer_review_status ?
-                        <p style={{fontWeight:"600", color:"#4A6F8A"}}>Reviewed</p>:
-                        <p style={{fontWeight:"600", color:"#090D3A"}}>Pending</p>
-                    }
-                </div>}
+                    <div className="col-3">
+                        {applicants[current]?.reviewer_review_status ?
+                            <p style={{ fontWeight: "600", color: "#4A6F8A" }}>Reviewed</p> :
+                            <p style={{ fontWeight: "600", color: "#090D3A" }}>Pending</p>
+                        }
+                    </div>}
                 {/*<div className="col-1">
                     <div>
                         <button
@@ -236,7 +237,7 @@ export const Applicant = (props) => {
                 </div>*/}
                 {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                     <div className="col-1">
-                        {(isInvited && props.filter == "active") &&
+                        {(isInvited && props.filter == "active") ?
                             <button
                                 onClick={() => inviteAgain()}
                                 className="interview-txt9"
@@ -244,6 +245,14 @@ export const Applicant = (props) => {
                             >
                                 {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
                                 Resend
+                            </button> :
+                            <button
+                                onClick={() => inviteAgain()}
+                                className="interview-txt9"
+                                style={{ color: "#67A3F3", border: "none", background: "white", paddingLeft: "0px" }}
+                            >
+                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
+                                Invite
                             </button>
                         }
                     </div>
@@ -316,7 +325,7 @@ export const Applicant = (props) => {
 function alert1() {
     confirmAlert({
         title: "Invitation Sent",
-        message: "You resend the interview invitation successfully",
+        message: "You send the interview invitation successfully",
         buttons: [
             {
                 label: 'Ok'

@@ -50,7 +50,7 @@ export class JobCreation extends Component {
             job_post: 1,
             jobType: { value: 'Full-Time', label: 'Full-Time' },
             jobLevel: { value: 'Entry Level', label: 'Entry Level' },
-            remote: false,
+            remote: { value: 0, label: 'On Site' }, //0 means onsite, 1 means hybrid, 2 means remote
             skills: null,
             showShare: false,
             questionCount: 0,
@@ -72,6 +72,9 @@ export class JobCreation extends Component {
     };
     onFilter2 = (skills) => {
         this.setState({ skills: skills })
+    };
+    onFilter3 = (remote) => {
+        this.setState({ remote: remote })
     };
     customStyles = {
         control: styles => ({ ...styles, backgroundColor: '#ffffff', border: "2px solid #E8EDFC", borderRadius: "5px" }),
@@ -96,6 +99,11 @@ export class JobCreation extends Component {
         { value: 'Senior', label: 'Senior' },
         { value: 'Director', label: 'Director' },
         { value: 'Executive', label: 'Executive' },
+    ];
+    options2 = [
+        { value: 0, label: 'On Site' },
+        { value: 1, label: 'Hybrid' },
+        { value: 2, label: 'Remote' },
     ];
 
     setJobPost(type) {
@@ -281,13 +289,33 @@ export class JobCreation extends Component {
             questions: this.state.questions,
             is_closed: 0
         };
-        if (this.state.remote) {
+        if (this.state.remote.value == 2) {
             data = {
                 jobTitle: this.state.jobTitle,
                 jobId: this.state.jobId,
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
                 jobLocation: "Remote",
+                userId: this.props.user.id,
+                jobType: this.state.jobType["value"],
+                loc_req: this.state.loc_req,
+                pho_req: this.state.pho_req,
+                lin_req: this.state.lin_req,
+                eeo_req: this.state.eeo_req,
+                eeo_ques_req: this.state.eeo_ques_req,
+                job_post: 0,
+                skills: this.state.skills,
+                questions: this.state.questions,
+                is_closed: 0
+            };
+        }
+        else if (this.state.remote.value == 1) {
+            data = {
+                jobTitle: this.state.jobTitle,
+                jobId: this.state.jobId,
+                jobDescription: this.state.jobDescription.toString('html'),
+                jobLevel: this.state.jobLevel["value"],
+                jobLocation: this.state.jobLocation + "| Hybrid",
                 userId: this.props.user.id,
                 jobType: this.state.jobType["value"],
                 loc_req: this.state.loc_req,
@@ -329,13 +357,33 @@ export class JobCreation extends Component {
             questions: this.state.questions,
             is_closed: 3
         };
-        if (this.state.remote) {
+        if (this.state.remote.value == 2) {
             data = {
                 jobTitle: this.state.jobTitle,
                 jobId: this.state.jobId,
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
                 jobLocation: "Remote",
+                userId: this.props.user.id,
+                jobType: this.state.jobType["value"],
+                loc_req: this.state.loc_req,
+                pho_req: this.state.pho_req,
+                lin_req: this.state.lin_req,
+                eeo_req: this.state.eeo_req,
+                eeo_ques_req: this.state.eeo_ques_req,
+                job_post: 0,
+                skills: this.state.skills,
+                questions: this.state.questions,
+                is_closed: 3
+            };
+        }
+        else if (this.state.remote.value == 1) {
+            data = {
+                jobTitle: this.state.jobTitle,
+                jobId: this.state.jobId,
+                jobDescription: this.state.jobDescription.toString('html'),
+                jobLevel: this.state.jobLevel["value"],
+                jobLocation: this.state.jobLocation + "| Hybrid",
                 userId: this.props.user.id,
                 jobType: this.state.jobType["value"],
                 loc_req: this.state.loc_req,
@@ -374,7 +422,7 @@ export class JobCreation extends Component {
                         <div className="row pl-3">
                             <div className="col-8 pl-5" style={{ paddingRight: "3.7rem" }}>
                                 <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobLevel["value"]} • {this.state.jobType["value"]}</p>
-                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobLocation}</p>
+                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(this.state.remote.value == 2)?"Remote":(this.state.remote.value == 1)?(this.state.jobLocation+" | Hybrid"):this.state.jobLocation}</p>
                                 <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobId}</p>
                                 <div>
                                     <div>
@@ -546,8 +594,18 @@ export class JobCreation extends Component {
                         </div>
                         <div className="form-row">
                             <div className="form-group col-6">
+                                <label className="db-txt2">
+                                    Workplace Policy
+                                </label><span className="job-apply-char2">*</span>
+                                <div style={{ zIndex: "9999" }}>
+                                    <Select value={this.state.remote} onChange={this.onFilter3} options={this.options2} styles={this.customStyles} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className={(this.state.remote.value != 2)?"form-row":"form-row pb-5"}>
+                            <div className="form-group col-6">
                                 <div className="d-flex">
-                                    {!this.state.remote &&
+                                    {(this.state.remote.value != 2) &&
                                         <div className="form-group" style={{ width: "40%" }}>
                                             <label className="db-txt2">
                                                 Job Location
@@ -563,12 +621,12 @@ export class JobCreation extends Component {
                                                 required="required"
                                             />
                                         </div>}
-                                    <div className={this.state.remote ? "form-group" : "form-group ml-auto"}>
+                                    {/* <div className={this.state.remote ? "form-group" : "form-group ml-auto"}>
                                         <label className="db-txt2">Remote Work?</label>
                                         <div style={{ paddingTop: "0.7rem" }}>
                                             <Switch onChange={this.handleChange} checked={this.state.remote} />
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -784,7 +842,7 @@ export class JobCreation extends Component {
                                 </span>
                             </div>
                         }
-                        {!this.state.remote &&
+                        {this.state.remote.value == 0 &&
                             <div>
                                 <hr style={{ border: "1.5px solid #E8EDFC" }} />
                                 <div className="form-row">

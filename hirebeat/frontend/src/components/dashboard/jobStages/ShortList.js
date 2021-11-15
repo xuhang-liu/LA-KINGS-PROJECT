@@ -148,7 +148,7 @@ const AcceptedCandidate = (props) => {
                 <div className="container-fluid chart-bg1" style={{ marginTop: "1rem" }}>
                     <div style={{ color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
                         <div className="col-3">Name</div>
-                        <div className="col-3">Video Average Score</div>
+                        {/* <div className="col-3">Video Average Score</div> */}
                         <div className="col-2">Resume Score</div>
                         {(props.reviewerStageLength > 0) &&
                             <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Status</div>
@@ -364,9 +364,9 @@ const CandidateCard = (props) => {
                     {props.applicant.name.length > 18 ? props.applicant.name.substring(0, 15) + "..." : props.applicant.name}
                 </div>
 
-                <div className="col-3">
+                {/* <div className="col-3">
                     {renderStars(props.stars)}
-                </div>
+                </div> */}
                 <div className="col-2">
                     {renderResume(props.resume_list)}
                 </div>

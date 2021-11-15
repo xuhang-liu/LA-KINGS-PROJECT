@@ -115,6 +115,7 @@ export class ReviewApplication extends Component {
         }
         this.props.updateInviteStatus(data);
         this.hideMoveForm();
+        this.setViewResume();
         // update
         let page = 1;
         let userId = this.props.user.id;
@@ -137,6 +138,7 @@ export class ReviewApplication extends Component {
             "is_reject": true,
         }
         this.props.updateInviteStatus(data);
+        this.setViewResume();
         // update
         let page = 1;
         let userId = this.props.user.id;

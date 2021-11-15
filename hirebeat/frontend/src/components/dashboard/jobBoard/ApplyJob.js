@@ -400,7 +400,7 @@ const ApplyJob = (props) => {
                             <div className="row pl-3">
                                 <div className="col-8 pl-5 mt-2 pb-5" style={{ paddingRight: "3.7rem" }}>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[0]} {(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[1]}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[0]} {(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[1]} {(job_id == null || job_id == "") ? "" : (props.job.job_location?.split("|")[1])?(" | "+props.job.job_location?.split("|")[1]):""}</p>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(props.job.job_id.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
                                     <p className="mt-5" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
                                     <div>
@@ -1116,7 +1116,7 @@ const ApplyJob = (props) => {
                             <div className="row pl-3">
                                 <div className="pl-5 mt-3 pb-5" style={{ paddingRight: "3.7rem" }}>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[0]} {(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[1]}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[0]} {(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[1]} {(job_id == null || job_id == "") ? "" : (props.job.job_location?.split("|")[1])?(" | "+props.job.job_location?.split("|")[1]):""}</p>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(props.job.job_id.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
                                     <p className="mt-4" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
                                     <div className="mt-2">

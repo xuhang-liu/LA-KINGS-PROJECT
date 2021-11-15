@@ -59,10 +59,12 @@ export class EmployerRegister extends Component {
   getParams =() => {
     let params = [];
     let email = window.location.search;
-    email = email.substring(1, email.length); // remove "?" from uri
-    email = window.atob(email); // decode
-    let param = email.split("=")[1]; // get value
-    params.push(param);
+    if (email.startsWith("email")){
+      email = email.substring(1, email.length); // remove "?" from uri
+      email = window.atob(email); // decode
+      let param = email.split("=")[1]; // get value
+      params.push(param);
+    }
     return params;
   };
 

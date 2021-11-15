@@ -369,7 +369,7 @@ export class EmployerProfile extends Component {
                                             <div className="col-9">
                                                 <div className="row">
                                                     <div className="col-8">
-                                                        <h3 className="profile-h3">
+                                                        <h3 className="profile-h3" style={{fontSize:'1.5rem'}}>
                                                             {this.props.companyName}
                                                             {/* (this.props.employerProfileDetail.name !== null && this.props.employerProfileDetail.name !== "") ? this.props.employerProfileDetail.name : "Company Name Here" */}
                                                         </h3>
@@ -381,9 +381,11 @@ export class EmployerProfile extends Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p className="profile-p">
+                                                <p className="profile-p" style={{marginTop:"-0.8rem", color:"#7e8993"}}>
                                                     {(this.props.employerProfileDetail.website !== null && this.props.employerProfileDetail.website !== "") ? this.props.employerProfileDetail.website : "Company Website"}
                                                 </p>
+                                                <h3 className="profile-h3" style={{fontSize:"1rem", marginBottom:"-0.1rem"}}>Job Portal</h3>
+                                                <a className="profile-p" style={{color:"#67a3f3"}} target="_blank" href={"https://hirebeat.co/company-branding/" + this.props.profile.company_name}>https://hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                             </div>
                                         </div> :
                                         <div>

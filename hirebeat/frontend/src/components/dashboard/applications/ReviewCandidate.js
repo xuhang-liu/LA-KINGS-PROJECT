@@ -88,6 +88,7 @@ const ReviewCandidate = (props) => {
             }
             props.updateInviteStatus(data);
             setShowMoveForm(false);
+            setViewResumes();
             // update
             let page = props.selectedPage + 1;
             let isSortByScore = props.isSortByScore || ""
@@ -112,6 +113,7 @@ const ReviewCandidate = (props) => {
             "is_reject": true,
         }
         props.updateInviteStatus(data);
+        setViewResumes();
         // update
         let page = props.selectedPage + 1;
         let isSortByScore = props.isSortByScore || "";
